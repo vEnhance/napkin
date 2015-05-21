@@ -1,0 +1,101 @@
+\documentclass[11pt]{scrreprt}
+\input{tex/preamble}
+
+%\includeonly{
+%	tex/frontmatter/preface,tex/frontmatter/advice,
+%	tex/alg/NT/galois,tex/alg-NT/finite-field,tex/alg-NT/ramification,tex/alg-NT/frobenius,
+%	tex/alg-NT/dedekind,tex/alg-NT/galois,tex/alg-NT/classgrp,tex/alg-NT/discriminant,
+%	tex/H113/grp-action,tex/H113/grp-classify
+%	tex/H113/grp-basic,tex/H113/grp-mod
+%}
+
+
+\begin{document}
+\title{An Infinitely Large Napkin}
+\subtitle{Bedtime Stories for MOPpers}
+\maketitle
+
+\include{tex/frontmatter/title-embellishments}
+\include{tex/frontmatter/preface}
+\tableofcontents
+
+\include{tex/frontmatter/advice}
+
+\Opensolutionfile{tex/backmatter/all-hints}
+\Opensolutionfile{tex/backmatter/all-solns}
+
+\part{Basic Algebra and Topology}
+\include{tex/H113/grp-basic}
+\include{tex/topology/metric-top}
+\include{tex/H113/grp-mod}
+\include{tex/topology/top-more}
+\include{tex/topology/compactness}
+\include{tex/linalg/vector-space}
+
+\part{Linear Algebra}
+\include{tex/linalg/dets}          % missing sols
+\include{tex/linalg/eigenvalues}   % missing problems
+
+\part{Groups, Rings, and Categories}
+\include{tex/H113/grp-action}
+\include{tex/H113/grp-classify}
+\include{tex/H113/ideals}
+\include{tex/cats/categories} % missing sols
+\include{tex/cats/abelian} % missing sols
+
+\part{Algebraic Topology}
+\include{tex/topology/fundamental-group}
+\include{tex/topology/cover-project} % missing problems
+\include{tex/topology/homology} % missing problems
+
+\part{Complex Analysis}
+% chapter on R?
+\include{tex/complex-analysis/holomorphic}
+\include{tex/complex-analysis/meromorphic}
+\include{tex/complex-analysis/picard}
+
+\part{Differential Geometry}
+
+\part{Algebraic Number Theory I: Rings of Integers}
+\include{tex/alg-NT/norm-trace}
+\include{tex/alg-NT/dedekind} % missing probs
+\include{tex/alg-NT/classgrp}
+\include{tex/alg-NT/discriminant}
+\include{tex/alg-NT/pell}
+
+\part{Algebraic Number Theory II: Galois and Ramification Theory}
+\include{tex/alg-NT/galois}
+\include{tex/alg-NT/finite-field}
+\include{tex/alg-NT/ramification} % missing probs
+\include{tex/alg-NT/frobenius}
+
+\part{Classical Algebraic Geometry}
+\include{tex/alg-geom/affine-var} % missing problems
+
+\part{Set Theory, Informally}
+
+
+\part{Miscellany}
+\appendix
+\include{tex/misc/zorn-lemma}
+
+\part{Backmatter}
+\Closesolutionfile{tex/backmatter/all-hints}
+\Closesolutionfile{tex/backmatter/all-solns}
+\include{tex/backmatter/references}
+\include{tex/backmatter/hintsol}
+%% References
+\clearpage
+\printbibliography
+
+% Extra: 
+% algebraic geometry
+% ZFC, ordinals, cardinals, forcing
+
+% Additional: CS 125? NP, finite automata
+
+% Polish up by a lot
+%\include{tex/maschke-schur}
+%\include{tex/finite-regular-rep}
+
+\end{document}
