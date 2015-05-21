@@ -5,7 +5,6 @@ media/*
 asy/*
 
 .log
-.latexmkrc
 .dropbox
 
 **/*.asy
