@@ -1,0 +1,86 @@
+\chapter{More Properties of the Discriminant}
+I'll remind you that the discriminant of a number field $K$ is given by
+\[
+\Delta_K \defeq \det \left(
+\begin{array}{ccc}
+	\sigma_1(\alpha_1) & \dots & \sigma_n(\alpha_1) \\
+	\vdots & \ddots & \vdots \\
+	\sigma_1(\alpha_n) & \dots & \sigma_n(\alpha_n) \\
+\end{array}
+\right)^2
+\]
+where $\alpha_1$, \dots, $\alpha_n$ is a $\ZZ$-basis for $K$,
+and the $\sigma_i$ are the $n$ embeddings of $K$ into $\CC$.
+
+Several examples, properties, and equivalent definitions follow.
+
+\section\problemhead
+\begin{sproblem}[Discriminant of Cyclotomic Field]
+	\label{prob:discrim_cyclotomic_field}
+	Let $p$ be an odd rational prime and $\zeta_p$ a primitive $p$th root of unity.
+	Let $K = \QQ(\zeta_p)$.
+	Show that \[ \Delta_K = (-1)^{\frac{p-1}{2}} p^{p-2}. \]
+	\begin{hint}
+		Direct linear algebra computation.
+	\end{hint}
+\end{sproblem}
+
+\begin{sproblem}[Trace Representation of $\Delta_K$]
+	\gim
+	Let $\alpha_1$, \dots, $\alpha_n$ be a basis for $\OO_K$.
+	Prove that
+	\[ \Delta_K
+		=
+		\det \left(
+		\begin{array}{llll}
+			\TrK(\alpha_1^2) & \TrK(\alpha_1\alpha_2) & \dots & \TrK(\alpha_1\alpha_n) \\
+			\TrK(\alpha_2\alpha_1) & \TrK(\alpha_2^2) & \dots & \TrK(\alpha_2\alpha_n) \\
+			\qquad\vdots & \qquad\vdots & \ddots & \qquad\vdots \\
+			\TrK(\alpha_n\alpha_1) & \TrK(\alpha_n\alpha_2) & \dots & \TrK(\alpha_n\alpha_n) \\
+		\end{array}
+		\right).
+	\]
+	In particular, $\Delta_K$ is an integer.
+	\label{prob:trace_discriminant}
+	\begin{hint}
+		Let $M$ be the ``embedding'' matrix.
+		Look at $M^\top M$, where $M^\top$ is the transpose matrix.
+	\end{hint}
+\end{sproblem}
+
+
+\begin{sproblem}[Root Representation of $\Delta_K$]
+	The \vocab{discriminant} of a quadratic polynomial $Ax^2+Bx+C$ is defined as $B^2-4AC$.
+	More generally, the polynomial discriminant of a polynomial $f \in \ZZ[x]$ of degree $n$ is
+	\[ \Delta(f) \defeq c^{2n-2} \prod_{1 \le i < j \le n} \left( z_i - z_j \right)^2 \]
+	where $z_1, \dots, z_n$ are the roots of $f$, and $c$ is the leading coefficient of $f$.
+
+	Suppose $K$ is monogenic with $\OO_K = \ZZ[\theta]$.
+	Let $f$ denote the minimal polynomial of $\theta$ (hence monic).
+	Show that \[ \Delta_K = \Delta(f). \]
+	\label{prob:root_discriminant}
+	\begin{hint}
+		Vandermonde matrices.
+	\end{hint}
+\end{sproblem}
+
+
+\begin{problem}
+	Show that if $K \neq \QQ$ is a number field then $\left\lvert \Delta_K \right\rvert > 1$.
+	\begin{hint}
+		$M_K \ge 1$ must hold. Bash.
+	\end{hint}
+\end{problem}
+
+\begin{problem}
+	[Brill's Theorem] For a number field $K$ with signature $(r_1, r_2)$, show that 
+	$\Delta_K > 0$ if and only if $r_2$ is even.
+\end{problem}
+
+\begin{problem}
+	[Stickelberger Theorem]
+	\kurumi
+	Let $K$ be a number field. Prove that \[ \Delta_K \equiv 0 \text{ or } 1 \pmod 4. \]
+	% P N
+\end{problem}
+

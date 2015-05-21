@@ -1,0 +1,791 @@
+\chapter{Minkowski Bound and Class Groups}
+We now have a neat theory of unique factorization of ideals.
+In the case of a PID, this in fact gives us unique factorization of elements.
+(We call this a \vocab{unique factorization domain}.)
+Sweet.
+
+We'll define, in a moment, something called the \emph{class group}
+which measures how far something is from being a PID;
+the bigger the class group, the farther it is from being a PID.
+In particular, the PID's are the guys with trivial class group.
+
+Then we will provide some inequalities which let us put restrictions on the class group;
+for instance, this will let us show in some cases that the class group must be trivial.
+Astonishingly, the proof will use Minkowski's Theorem, a result from geometry.
+
+\section{The Class Group}
+\prototype{PID's have trivial class group}
+Let $K$ be a number field, and let $J_K$ denote the multiplicative group of fractional ideals of $\OO_K$.
+Let $P_K$ denote the multiplicative group of \vocab{principal fractional ideals}:
+those of the form $(x) = x \OO_K$ for some $x \in K$.
+\begin{ques}
+Check that $P_K$ is also a multiplicative group.
+(This is really easy: name $x\OO_K \cdot y\OO_K$ and $(x\OO_K)\inv$.)
+\end{ques}
+As $J_K$ is abelian, we can now define the \vocab{class group} to be the quotient
+\[ \Cl_K \defeq J_K / P_K. \]
+The elements of $\Cl_K$ are called \vocab{classes}.
+
+Equivalently,
+\begin{moral}
+The class group $\Cl_K$ is the set of nonzero fractional ideals modulo
+scaling by a constant in $K$.
+\end{moral}
+In particular, $\Cl_K$ is trivial if all ideals are principal,
+since the nonzero principal ideals are the same up to scaling.
+
+The size of the class group is called the \vocab{class number}.
+It's a beautiful theorem that the class number is always finite,
+and the bulk of this chapter will build up to this result.
+It requires several ingredients.
+
+
+\section{The Discriminant of a Number Field}
+\prototype{Quadratic fields.}
+Let's say I have $K = \QQ(\sqrt 2)$.
+As we've seen before, this means $\OO_K = \ZZ[\sqrt 2]$, meaning
+\[ \OO_K = \left\{ a + b \sqrt 2 \mid a,b \in \ZZ \right\}. \]
+The key insight now is that you might think of this as a \emph{lattice}:
+geometrically, we want to think about this the same way we think about $\ZZ^2$.
+
+Perversely, we might try to embed this into $\QQ^2$ by sending $a+b\sqrt 2$ to $(a, b)$.
+But this is a little stupid, since we're rudely making $K$, which somehow lives inside $\QQ$ and is
+``one-dimensional'' in that sense, into a two-dimensional space.
+A better way is to think about the fact that there are two embeddings
+$\sigma_1 : K \to \CC$ and $\sigma_2 : K \to \CC$, namely the identity, and conjugation:
+\begin{align*}
+	\sigma_1(a+b\sqrt2) &= a+b\sqrt 2 \\
+	\sigma_2(a+b\sqrt2) &= a-b\sqrt 2.
+\end{align*}
+Fortunately for us, these embeddings both have real image.
+This leads us to consider the set of points
+\[ \left( \sigma_1(\alpha), \sigma_2(\alpha) \right) \in \RR^2
+\quad\text{as}\quad \alpha \in K. \]
+This lets us visualize what $\OO_K$ looks like in $\RR^2$.
+The points of $K$ cover the entire $\RR^2$, but the points of $\OO_K$ cut out a lattice.
+
+\begin{center}
+	\begin{asy}
+		size(8cm);
+		real T = 1.414;
+		int N = 10;
+		real M = 5;
+		for (int a = -N; a <= N; ++a) {
+			for (int b = -N; b <= N; ++b) {
+				if ((abs(a+T*b) <= M) && (abs(a-T*b) <= M))
+				dot( (a+T*b, a-T*b) );
+			}
+		}
+		draw( (-M,0)--(M,0), dotted);
+		draw( (0,-M)--(0,M), dotted);
+		label("$-2$", (-2,-2), dir(135));
+		label("$-1$", (-1,-1), dir(135));
+		label("$0$", (0,0), dir(135));
+		label("$1$", (1,1), dir(135));
+		label("$2$", (2,2), dir(135));
+		label("$-\sqrt 2$", (-T,T), dir(135));
+		label("$\sqrt 2$", (T,-T), dir(-45));
+		label("$1+\sqrt 2$", (1+T,1-T), dir(-45));
+
+		filldraw((0,0)--(1,1)--(1+T,1-T)--(T,-T)--cycle, heavycyan, blue);
+	\end{asy}
+\end{center}
+
+To see how big the lattice is, we look at how $\{1, \sqrt2\}$, the generators
+of $\OO_K$, behave.
+The point corresponding to this in the lattice is
+\[ a \cdot (1,1) + b \cdot (\sqrt 2, -\sqrt 2). \]
+The \vocab{mesh} of the lattice\footnote{Most authors call this the volume, but I
+think this is not the right word to use -- lattices have ``volume'' zero since they
+are just a bunch of points! In contrast, the English word ``mesh'' really
+does refer to the width of a ``gap''.}
+is defined as the hypervolume of the ``fundamental parallelepiped'' I've colored blue above.
+For this particular case, it ought to be equal to to the area of that parallelogram, which is
+\[
+	\det
+	\left(
+	\begin{array}{cc}
+		1 & \sqrt 2 \\
+		1 & -\sqrt 2
+	\end{array}
+	\right) = -2\sqrt 2.
+\]
+The definition of the discriminant is precisely this, except with an extra square factor
+(since permutation of rows could lead to changes in sign in the matrix above)
+\Cref{prob:trace_discriminant} shows that the squaring makes $\Delta_K$ an integer.
+
+To make the next definition, we invoke the following theorem.
+\begin{theorem}[The $n$ embeddings of a number field]
+	Let $K$ be a number field.
+	Then there are exactly $n$ field homomorphisms $K \injto \CC$,
+	say $\sigma_1, \dots, \sigma_n$ which fix $\QQ$.
+\end{theorem}
+\begin{proof}
+	Deferred to \Cref{thm:n_embeddings}, once we have the tools of Galois theory.
+\end{proof}
+This allows us to define:
+\begin{definition}
+	Suppose $\alpha_1, \dots, \alpha_n$ is a $\ZZ$-basis of $\OO_K$.
+	The \vocab{discriminant} of the number field $K$ is defined by
+	\[
+	\Delta_K \defeq \det \left(
+	\begin{array}{ccc}
+		\sigma_1(\alpha_1) & \dots & \sigma_n(\alpha_1) \\
+		\vdots & \ddots & \vdots \\
+		\sigma_1(\alpha_n) & \dots & \sigma_n(\alpha_n) \\
+	\end{array}
+	\right)^2.
+	\]
+\end{definition}
+This does not depend on the choice of the $\{\alpha_i\}$;
+we will not prove this here.
+\begin{example}[Discriminant of $K = \QQ(\sqrt2)$]
+	We have $\OO_K = \ZZ[\sqrt 2]$
+	and as discussed above the discriminant is
+	\[
+		\Delta_K = 
+		(-2 \sqrt 2)^2 = 8.
+	\]
+\end{example}
+\begin{example}[Discriminant of $\QQ(i)$]
+	We have $\OO_K = \ZZ[i] = \ZZ \oplus i \ZZ$.
+	The embeddings are the identity and complex conjugation
+	hence they take $1$ to $(1,1)$ and $i$ to $(i, -i)$.
+	So
+	\[
+		\Delta_K = 
+		\det \left(
+		\begin{array}{cc}
+			1 & 1 \\
+			i & -i
+		\end{array}
+		\right)^2
+		=
+		(-2i)^2 = -4.
+	\]
+	This example illustrates that the discriminant need not be positive
+	for number fields with wander into the complex plane (the lattice picture
+	is a less perfect analogy).
+	But again, as we'll prove in the problems the discriminant is always
+	an integer.
+\end{example}
+\begin{example}
+	[Discriminant of $\QQ(\sqrt 5)$]
+	This time, $\OO_K = \ZZ \oplus \frac{1+\sqrt5}{2} \ZZ$, and so the discriminant
+	is going to look a little bit different.
+	The embeddings are still $a+b\sqrt 5 \mapsto a+b\sqrt5, a-b\sqrt5$.
+
+	Applying this to the $\ZZ$-basis $\left\{ 1, \frac{1+\sqrt5}{2} \right\}$, we get
+	\[
+		\Delta_K^2
+		=
+		\det
+		\left(
+		\begin{array}{cc}
+			1 & \frac{1+\sqrt5}{2} \\
+			1 & \frac{1-\sqrt5}{2}
+		\end{array}
+		\right)^2
+		= (-\sqrt 5)^2 = 5.
+	\]
+\end{example}
+\begin{exercise}
+	Extend all this to show that if $K = \QQ(\sqrt d)$ for $d \neq 1$ squarefree, we have
+	\[
+		\Delta_K =
+		\begin{cases}
+			d & \text{if } d \equiv 1 \pmod 4 \\
+			4d & \text{if } d \equiv 2, 3 \pmod 4.
+		\end{cases}
+	\]
+Once again we have the cases on $d \pmod 4$.
+\end{exercise}
+
+Actually, let me point out something curious: recall that the polynomial discriminant of $Ax^2+Bx+C$ is $B^2-4AC$. Then:
+\begin{itemize}
+	\ii In the $d \equiv 1 \pmod 4$ case,
+	$\Delta_K$ is the discriminant of $x^2 + x - \frac{d-1}{4}$,
+	which is the minimal polynomial of $\half(1+\sqrt d)$. Of course, $\OO_K = \ZZ[\half(1+\sqrt d)]$.
+	\ii In the $d \equiv 2,3 \pmod 4$ case
+	$\Delta_K$ is the discriminant of $x^2 - d$
+	which is the minimal polynomial of $\sqrt d$. Once again, $\OO_K = \ZZ[\sqrt d]$.
+\end{itemize}
+This is not a coincidence! \Cref{prob:root_discriminant} asserts that this is true in general;
+hence the name ``discriminant''.
+
+\section{The Signature of a Number Field}
+\prototype{$\QQ(\sqrt[100]{2})$ has signature $(2, 49)$.}
+In the example of $K = \QQ(i)$, we more or less embedded $K$ into the space $\RR \times \CC$.
+However, $K$ is a degree two extension, so what we'd really like to do is embed it into $\RR^2$.
+To do so, we're going to take advantage of complex conjugation.
+
+Let $K$ be a number field and $\sigma_1, \dots, \sigma_n$ be its embeddings.
+We distinguish between the \vocab{real embeddings} -- those that map all of $K$ into $\RR$ --
+and the \vocab{complex embeddings} -- those which map some part of $K$ outside $\RR$.
+Notice that if $\sigma$ is a complex embedding, then so is the conjugate $\ol{\sigma} \ne \sigma$;
+hence complex embeddings come in pairs.
+
+\begin{definition}
+	Let $K$ be a number field of degree $n$, and set
+	\begin{align*}
+		r_1 &= \text{number of real embeddings} \\
+		r_2 &= \text{number of pairs of complex embeddings}.
+	\end{align*}
+	The \vocab{signature} of $K$ is the pair $(r_1, r_2)$.
+	Observe that $r_1 + 2r_2 = n$.
+\end{definition}
+\begin{example}[Basic Examples of Signatures]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii $\QQ$ has signature $(1,0)$.
+		\ii $\QQ(\sqrt 2)$ has signature $(2,0)$.
+		\ii $\QQ(i)$ has signature $(0,1)$.
+	\end{enumerate}
+\end{example}
+
+\begin{example}[Signatures for $K = \QQ(\cbrt{2})$]
+	Let $K = \QQ(\sqrt[3]{2})$, and let $\omega$ be a cube root of unity.
+	The elements of $K$ are of the form
+	\[ K = \left\{ a + b\cbrt2 + c\cbrt4 \mid a,b,c \in \QQ  \right\}. \]
+	Now, there are exactly three different embeddings, 
+	\[ \sigma_1 : \cbrt 2 \mapsto \cbrt 2,
+		\quad
+		\sigma_2 : \cbrt 2 \mapsto \cbrt 2 \omega,
+		\quad
+		\sigma_3 : \cbrt 2 \mapsto \cbrt 2 \omega^2. \]
+	The last two are conjugate pairs, so the signature is $(1,1)$.
+\end{example}
+\begin{example}[Even More Signatures]
+	In the same vein $\QQ(\sqrt[99]{2})$ and $\QQ(\sqrt[100]{2})$
+	have signatures $(1,49)$ and $(2,49)$.
+\end{example}
+\begin{ques}
+	Verify that the signatures of the above two.
+\end{ques}
+
+From now on, we will number the embeddings of $K$ in such a way that
+\[ \sigma_1, \sigma_2, \dots, \sigma_{r_1}  \]are the real embeddings,
+while 
+\[
+	\sigma_{r_1+1} = \ol{\sigma_{r_1+r_2+1}}, \quad
+	\sigma_{r_1+2} = \ol{\sigma_{r_1+r_2+2}}, \quad
+	\dots, \quad
+	\sigma_{r_1+r_2} = \ol{\sigma_{r_1+2r_2}}.
+\]
+are the $r_2$ pairs of complex embeddings.
+
+Now, we can define the \vocab{canonical embedding} of $K$ by only setting
+\begin{align*}
+K &\overset\iota\injto \RR^{r_1} \times \CC^{r_2} \\
+\alpha &\mapsto  \left( \sigma_1(\alpha), \dots, \sigma_{r_1}(\alpha),
+\sigma_{r_1+1}(\alpha), \dots, \sigma_{r_1+r_2}(\alpha) \right). 
+\end{align*}
+All we've done is omit, for the complex case, the second of the embeddings in each conjugate pair.
+This is no big deal, since they are just conjugates;
+the above tuple is all the information we need.
+
+For reasons that will become obvious in a moment, I'll let $\tau$ denote the isomorphism
+\[
+	\tau : \RR^{r_1} \times \CC^{r_2} \taking{\sim} \RR^{r_1+2r_2} = \RR^n
+\]
+by breaking each complex number into its real an imaginary part, as
+\begin{align*}
+\alpha \mapsto  \big(& \sigma_1(\alpha), \dots, \sigma_{r_1}(\alpha), \\
+& \Re \sigma_{r_1+1}(\alpha), \;\; \Im \sigma_{r_1+1}(\alpha), \\
+& \Re \sigma_{r_1+1}(\alpha), \;\; \Im \sigma_{r_1+1}(\alpha), \\
+& \dots, \\
+& \Re \sigma_{r_1+r_2}(\alpha), \;\; \Im \sigma_{r_1+r_2}(\alpha) \big). 
+\end{align*}
+\begin{example}[Example of Canonical Embedding]
+	Let $K = \QQ(\sqrt[3]{2})$ again and again set
+	\[ \sigma_1 : \cbrt 2 \mapsto \cbrt 2,
+		\quad
+		\sigma_2 : \cbrt 2 \mapsto \cbrt 2 \omega,
+		\quad
+		\sigma_3 : \cbrt 2 \mapsto \cbrt 2 \omega^2 \]
+	where $\omega = - \half + \frac{\sqrt3}{2} i$,
+	noting that we've already arranged so $\sigma_1 = \id$ is real
+	while $\sigma_2$ and $\sigma_3$ are a conjugate pair.
+	So the embeddings $K \overset\iota\injto \RR \times \CC \taking\sim \RR^3$ is given by
+	\[
+		\alpha \overset\iota\longmapsto \left( \sigma_1(\alpha), \sigma_2(\alpha) \right)
+		\overset\tau\longmapsto \left( \sigma_1(\alpha), \; \Re\sigma_2(\alpha), \; \Im\sigma_2(\alpha)  \right). \]
+	For concreteness, taking $\alpha = 9 + \cbrt 2$ gives
+	\begin{align*}
+		9 + \cbrt 2 &\overset\iota\mapsto
+		\left( 9 + \cbrt 2, \;\; 9 + \cbrt2\omega \right) \\
+		&= \left( 9 + \cbrt 2, \;\;
+		9 - \half\cbrt2 + \frac{\sqrt[6]{108}}{2} i  \right) \in \RR \times \CC \\
+		&\overset\tau\mapsto \left( 9 + \cbrt 2, \;\; 9 - \half \cbrt 2,
+		\;\; \frac{\sqrt[6]{108}}{2}  \right) \in \RR^3.
+	\end{align*}
+\end{example}
+
+Now, the whole point of this is that we want to consider the resulting lattice
+when we take $\OO_K$. In fact, we have the following.
+\begin{lemma}
+	\label{lem:vol_OK_mesh}
+	Consider the composition of the embeddings $K \injto \RR^{r_1} \times \CC^{r_2} \taking\sim \RR^n$.
+	Then as before, $\OO_K$ becomes a lattice $L$ in $\RR^n$, with mesh equal to
+	\[ \frac{1}{2^{r_2}} \sqrt{\left\lvert \Delta_K \right\rvert}. \]
+\end{lemma}
+\begin{proof}
+	Fun linear algebra problem (you just need to manipulate determinants).
+	Left as \Cref{prob:OK_linalg}.
+\end{proof}
+From this we can deduce the following.
+\begin{lemma}
+	Consider the composition of the embeddings $K \injto \RR^{r_1} \times \CC^{r_2} \taking\sim \RR^n$.
+	Let $\aa$ be an ideal in $\OO_K$.
+	Then the image of $\aa$ is a lattice $L_\aa$ in $\RR^n$ with mesh equal to
+	\[ \frac{\Norm(\aa)}{2^{r_2}} \sqrt{\left\lvert \Delta_K \right\rvert}. \]
+\end{lemma}
+\begin{proof}[Sketch of Proof]
+	Let \[ d = \Norm(\aa) \defeq [\OO_K : \aa]. \]
+	Then in the lattice $L_\aa$, we somehow only take $\frac 1d$th of the points
+	which appear in the lattice $L$, which is why the area increases by a factor of $\Norm(\aa)$.
+	To make this all precise I would need to do a lot with lattices and geometry
+	than I have space for this in the chapter, so I will omit the details.
+	But I hope you can see why this is intuitively true.
+\end{proof}
+
+\section{Minkowski's Theorem}
+Now I can tell you why I insisted we move from $\RR^{r_1} \times \CC^{r_2}$ to $\RR^n$.
+In geometry, there's a really cool theorem of Minkowski's that goes as follows.
+\begin{theorem}
+	[Minkowski]
+	Let $S \subseteq \RR^n$ be a convex set which is centrally symmetric (meaning $x \in S \implies -x \in S$)
+	such that $0 \in S$.
+	Let $L$ be a lattice with mesh $d$.
+	If either
+	\begin{enumerate}[(a)]
+		\ii The volume of $S$ exceeds $2^n d$, or
+		\ii The volume of $S$ equals $2^n d$ and $S$ is compact,
+	\end{enumerate}
+	then $S$ contains a nonzero lattice point of $L$.
+\end{theorem}
+\begin{ques}
+	Show that the condition $0 \in S$ is actually extraneous
+	in the sense that any nonempty, convex, centrally symmetric set contains the origin.
+\end{ques}
+
+\begin{proof}[Sketch of Proof]
+	Part (a) is surprisingly simple and has a very olympaid-esque solution: it's basically Pigeonhole on areas.
+	We'll prove point (a) in the special case $n=2$, $L = \ZZ^2$ for simplicity as the proof
+	can easily be generalized to any lattice and any $n$.
+	Thus we want to show that any such convex set $S$ with area more than $4$ contains a lattice point.
+
+	Dissect the plane into $2 \times 2$ squares 
+	\[ [2a-1, 2a+1] \times [2b-1, 2b+1] \]
+	and overlay all these squares on top of each other.
+	By the Pigeonhole Principle, we find there exist two points $p \neq q \in S$ which map to the same point.
+	Since $S$ is symmetric, $-q \in S$ too. Then $\half (p-q)$ is in $S$ (convexity) and is a nonzero lattice point.
+
+	I'll briefly sketch part (b): the idea is to consider $(1+\eps) S$ for $\eps > 0$
+	(this is ``$S$ magnified by a small factor $1+\eps$).
+	This satisfies condition (a). So for each $\eps > 0$ the set of nonzero lattice points in $(1+\eps) S$,
+	say $S_\eps$, is a \emph{finite nonempty set} of (discrete) points
+	(the ``finite'' part follows from the fact that $(1+\eps)S$ is bounded).
+	So there has to be some point that's in $S_\eps$ for every $\eps > 0$ (why?), which implies it's in $S$.
+\end{proof}
+
+\section{The Trap Box}
+The last ingredient we need is a set to apply Minkowski's Theorem to.
+I propose the following box.
+\begin{definition}
+	Let $M$ be a positive real.
+	In $\RR^{r_1} \times \CC^{r_2}$, define the box $S$ to be the
+	set of points $(x_1, \dots, x_{r_1}, z_1, \dots, z_{r_2})$ such that
+	\[
+		\sum_{i=1}^{r_1} \left\lvert x_i \right\rvert
+		+ 2 \sum_{j=1}^{r_2} \left\lvert z_i \right\rvert
+		\le M. 
+	\]
+	Note that this depends on the value of $M$.
+\end{definition}
+
+Think of this box as a \emph{mousetrap}: anything that falls in it is going to have a small norm,
+and our goal is to use Minkowski to lure some nonzero element into it.
+
+\begin{center}
+	\begin{asy}
+		size(6cm);
+		real T = 1.414;
+		int N = 10;
+		real M = 3;
+
+		real K = 2.4;
+		filldraw( (K,0)--(0,K)--(-K,0)--(0,-K)--cycle, palered, darkred);
+		label("$S$", (2*K/3,K/3), dir(45));
+
+		for (int a = -N; a <= N; ++a) {
+			for (int b = -N; b <= N; ++b) {
+				if ((abs(a+T*b) <= M) && (abs(a-T*b) <= M))
+				dot( (a+T*b, a-T*b) );
+			}
+		}
+		draw( (-M,0)--(M,0), dotted);
+		draw( (0,-M)--(0,M), dotted);
+		label("$-2$", (-2,-2), dir(135));
+		label("$-1$", (-1,-1), dir(135));
+		label("$0$", (0,0), dir(135));
+		label("$1$", (1,1), dir(135));
+		label("$2$", (2,2), dir(135));
+		label("$-\sqrt 2$", (-T,T), dir(135));
+		label("$\sqrt 2$", (T,-T), dir(-45));
+		label("$1+\sqrt 2$", (1+T,1-T), dir(-45));
+	\end{asy}
+\end{center}
+
+That is, suppose we have $\alpha \in \aa$, and it falls into the box I've defined above, which means
+\[
+	M \ge
+	\sum_{i=1}^{r_1} \left\lvert \sigma_i(\alpha) \right\rvert
+	+ 2 \sum_{i=r_1+1}^{r_1+r_2} \left\lvert \sigma_i(\alpha) \right\rvert
+	= \sum_{i=1}^{n} \left\lvert \sigma_i(\alpha) \right\rvert
+\]
+where we are remembering that the last few $\sigma$'s come in conjugate pairs.
+This looks like the trace, but the absolute values are in the way.
+So instead, we apply AM-GM to obtain the following result.
+\begin{lemma}[Effect of the Mousetrap]
+	Let $\alpha \in \OO_K$, and suppose $\iota(\alpha)$ is in $S$
+	(where $\iota : K \injto \RR^{r_1} \times \CC^{r_2}$ as usual).
+	Then
+	\[ \Norm_{K/\QQ}(a) = \prod_{i=1}^n \left\lvert \sigma_i(\alpha) \right\rvert
+	\le \left( \frac Mn \right)^n. \]
+\end{lemma}
+The last step we need to do is compute the volume of the box.
+This is again some geometry I won't do, but take my word for it:
+\begin{lemma}[Size of the Mousetrap]
+	Let $\tau : \RR^{r_1} \times \CC^{r_2} \taking\sim \RR^n$ as before.
+	Then the image of $S$ under $\tau$ is a convex, compact, centrally symmetric set with volume
+	\[ 2^{r_1} \cdot \left( \frac{\pi}{2} \right)^{r_2} \cdot \frac{M^n}{n!}. \]
+\end{lemma}
+\begin{ques}
+	(Sanity check)
+	Verify that the above is correct for the signatures $(r_1, r_2) = (2,0)$ and $(r_1,r_2) = (0,1)$,
+	which are the possible signatures when $n=2$.
+\end{ques}
+
+
+\section{The Minkowski Bound}
+We can now put everything we have together to obtain the great Minkowski Bound.
+\begin{theorem}
+	[Minkowski Bound]
+	Let $\aa \subseteq \OO_K$ be any nonzero ideal.
+	Then there exists $0 \neq \alpha \in \aa$ such that
+	\[ \Norm_{K/\QQ}(\alpha) \le \left( \frac 4\pi \right)^{r_2} \frac{n!}{n^n} \sqrt{\left\lvert \Delta_K \right\rvert}
+	\cdot \Norm(\aa). \]
+\end{theorem}
+\begin{proof}
+	This is a matter of putting all our ingredients together.
+	Let's see what things we've defined already:
+	\begin{diagram}
+		K & \rInj^\iota & \RR^{r_1} \times \CC^{r_2} & \rTo^\tau & \RR^n & \\
+		&& \text{box } S & \rMapsto & \tau``(S) 
+		& \quad\text{with volume } 2^{r_1} \left( \frac\pi2 \right)^{r_2} \frac{M^n}{n!} \\
+		\OO_K && \rMapsto && \text{Lattice } L
+		& \quad\text{with mesh } 2^{-r_2} \sqrt{\left\lvert \Delta_K \right\rvert} \\
+		\aa && \rMapsto && \text{Lattice } L_\aa
+		& \quad\text{with mesh } 2^{-r_2} \sqrt{\left\lvert \Delta_K \right\rvert} \Norm(\aa)
+	\end{diagram}
+	Pick a value of $M$ such that the mesh of $L_\aa$
+	equals $2^n$ of the volume of the box.
+	Then Minkowski's Theorem gives that some $0 \neq \alpha \in \aa$ lands inside the box --
+	the mousetrap configured to force $\Norm_{K/\QQ}(\alpha) \le \frac{1}{n^n} M^n$.
+	The correct choice of $M$ is
+	\[
+		M^n
+		= 2^n \cdot \frac{\text{mesh}}{\text{vol box}}
+		= 2^n \cdot \frac{n!}{2^{r_1} \cdot \left( \frac \pi 2 \right)^{r_2}}
+		\cdot 2^{-r_2} \sqrt{\left\lvert \Delta_K \right\rvert} \Norm(\aa) 
+	\]
+	which gives the bound after some arithmetic.
+\end{proof}
+
+\section{The Class Group is Finite}
+\begin{definition}
+	Let
+	$M_K = \left( \frac 4\pi \right)^{r_2} \frac{n!}{n^n} \sqrt{\left\lvert \Delta_K \right\rvert}$
+	for brevity.
+	Note that it is a constant depending on $K$.
+\end{definition}
+So that's cool and all, but what we really wanted was to show that the class group is finite.
+How can the Minkowski Bound help?
+Well, you might notice that we can rewrite it to say
+\[ \Norm\left( (\alpha) \cdot \aa\inv \right) \le M_K \]
+where $C_K$ is some constant depending on $K$, and $\alpha \in \aa$.
+\begin{ques}
+	Show that $(\alpha) \cdot \aa\inv$ is an integral ideal.
+	(Unwind definitions.)
+\end{ques}
+But in the class group we \emph{mod out} by principal ideals like $\alpha$.
+If we shut our eyes for a moment and mod out, the above statement becomes ``$\Norm(\aa\inv)\le M_K$''.
+The precise statement of this is
+\begin{corollary}
+	\label{cor:class_rep_minkowski}
+	Let $K$ be a number field, and pick a fractional ideal $J$.
+	Then we can find $\alpha$ such that $\bb = (\alpha) \cdot J$ is integral
+	and $\Norm(\bb) \le M_K$.
+\end{corollary}
+\begin{proof}
+	For fractional ideals $I$ and $J$ write $I \sim J$ to mean
+	that $I = (\alpha)J$ for some $\alpha$; then $\Cl_K$ is just modding out by $\sim$.
+	Let $J$ be a fractional ideal.
+	Then $J\inv$ is some other fractional ideal.
+	By definition, for some $\alpha \in \OO_K$ we have that $\alpha J\inv$ is an integral ideal $\aa$.
+	The Minkowski bound tells us that for some $x \in \aa$, we have $\Norm(x\aa\inv) \le M_K$.
+	But $x\aa\inv \sim \aa\inv = (\alpha J\inv)\inv \sim J$.
+\end{proof}
+
+\begin{corollary}[Finiteness of Class Group]
+	Class groups are always finite.
+\end{corollary}
+\begin{proof}
+	For every class in $\Cl_K$,
+	we can identify an integral ideal $\aa$ with norm less than $M_K$.
+	We just have to show there are finitely many such integral ideals;
+	this will mean there are finitely many classes.
+
+	Suppose we want to build such an ideal $\aa = \pp_1^{e_1} \dots \pp_m^{e_m}$.
+	Recall that a prime ideal $\pp_i$ must have some rational prime $p$ inside it,
+	meaning $\pp_i$ divides $(p)$ and $p$ divides $\Norm(\pp_i)$.
+	So let's group all the $\pp_i$ we want to build $\aa$ with based on which $(p)$ they came from.
+	\begin{center}
+		\begin{asy}
+			size(4cm);
+			label("$(2)$", (1,0), dir(90));
+			for (int i=1; i <= 4; ++i) dot( (1, -i/4) );
+			label("$(3)$", (2,0), dir(90));
+			for (int i=1; i <= 6; ++i) dot( (2, -i/4) );
+			label("$(5)$", (3,0), dir(90));
+			for (int i=1; i <= 2; ++i) dot( (3, -i/4) );
+			label("$\dots$", (4,0), dir(90));
+		\end{asy}
+	\end{center}
+	To be more dramatic: imagine you have a \textbf{cherry tree}; each branch corresponds to a prime $(p)$
+	and contains as cherries (prime ideals) the factors of $(p)$ (finitely many).
+	Your bucket (the ideal $\aa$ you're building) can only hold a total weight (norm) of $M_K$.
+	So you can't even touch the branches higher than $M_K$.
+	You can repeat cherries (oops), but the weight of a cherry on branch $(p)$ is definitely $\ge p$;
+	all this means that the number of ways to build $\aa$ is finite.
+\end{proof}
+
+\section{Shut Up and Compute II}
+\begin{definition}
+The order of $\Cl_K$ is called the \vocab{class number} of $K$.
+\end{definition}
+
+By computing the actual value of $M_K$,
+we can quite literally build the entire ``cherry tree'' mentioned in the previous proof.
+Let's give an example how!
+\begin{proposition}
+	The field $K = \QQ(\sqrt{-67})$ has class number $1$.
+\end{proposition}
+\begin{proof}
+	Since $K$ has signature $(0,1)$ and discriminant $\Delta_K = -67$ (since $-67 \equiv 1 \pmod 4$)
+	we can compute
+	\[ M_K = \left( \frac 4\pi \right)^{1} \cdot \frac{2!}{2^2} \sqrt{67} \approx 5.2. \]
+	That means we can cut off the cherry tree after $(2)$, $(3)$, $(5)$, since any
+	cherries on these branches will necessarily have norm $\ge M_K$.
+	We now want to factor each of these in $\OO_K = \ZZ[\theta]$, where $\theta = \frac{1+\sqrt{-67}}{2}$
+	has minimal polynomial $x^2 + x + 17$.
+	But something miraculous happens:
+	\begin{itemize}
+		\ii When we try to reduce $x^2+x+17 \pmod 2$, we get an irreducible polynomial $x^2+x+1$.
+		By the factoring algorithm (\Cref{thm:factor_alg}) this means $(2)$ is prime.
+		\ii Similarly, reducing mod $3$ gives $x^2+x+2$, which is irreducible.
+		This means $(3)$ is prime.
+		\ii Finally, for the same reason, $(5)$ is prime.
+	\end{itemize}
+	It's our lucky day; all of the ideals $(2)$, $(3)$, $(5)$ are prime (already principal).
+	To put it another way, each of the three branches has only one (large) cherry on it.
+	That means any time we put together an integral ideal with norm $\le M_K$,
+	it is actually principal.
+	In fact, these guys have norm $4$, $9$, $25$ respectively\dots\ so we can't even touch $(3)$ and $(5)$,
+	and the only ideals we can get are $(1)$ and $(2)$ (with norms $1$ and $4$).
+
+	Now we claim that's all.
+	Pick a fractional ideal $J$.
+	By \Cref{cor:class_rep_minkowski}, we can find a integral ideal $\bb \sim J$ with $\Norm(\bb) \le M_K$.
+	But by the above, either $\bb = (1)$ or $\bb = (4)$, both of which are principal,
+	and hence trivial in $\Cl_K$.
+	So $J$ is trivial in $\Cl_K$ too, as needed.
+\end{proof}
+Let's do a couple more.
+\begin{theorem}[Gaussian Integers have Unique Factorization]
+	The Gaussian integers $\ZZ[i]$ form a unique factorization domain.
+\end{theorem}
+\begin{proof}
+	This is $\OO_K$ where $K = \QQ(i)$, so we just want $\Cl_K$ to be trivial.
+	\begin{ques}
+		Check that $M_K \approx 1.273$.
+	\end{ques}
+	Same as above, but this time $M_K = \frac{2}{\pi}\sqrt{4} < 2$.
+	So every class
+	has an integral ideal of norm $\bb$ at most 
+	\[ 
+		\Norm(\bb)
+		\left( \frac4\pi \right)^{1} \cdot \frac{2!}{2^2} \cdot \sqrt{4}
+		= \frac4\pi < 2. 
+	\]
+	Well, that's silly: we don't have any branches to pick from at all.
+	In other words, we can only have $\bb = (1)$.
+\end{proof}
+
+Here's another example something that still turns out to be unique factorization,
+but this time our cherry tree will actually have cherries that can be picked.
+\begin{proposition}
+	The ring $\ZZ[\sqrt 7]$ is a unique factorization domain.
+\end{proposition}
+\begin{proof}
+	First we compute the Minkowski bound.
+	\begin{ques}
+		Check that $M_K \approx 2.664$.
+	\end{ques}
+	So this time, the only branch is $(2)$. Let's factor $(2)$ as usual: the polynomial $x^2+7$
+	reduces as $(x-1)(x+1) \pmod 2$, and hence
+	\[ (2) = \left( 2, \sqrt7-1 \right) \left( 2, \sqrt7+1 \right). \]
+	Oops! We now have two cherries, and they both seem reasonable.
+	But actually, I claim that
+	\[ \left( 2, \sqrt7-1 \right) = \left( 3 - \sqrt 7 \right). \]
+	\begin{ques}
+		Prove this.
+	\end{ques}
+	So both the cherries are principal ideals, and as before we conclude that $\Cl_K$ is trivial.
+	But note that this time, the prime $(2)$ actually split; we got lucky
+	that the two cherries were principal but this won't always work.
+\end{proof}
+
+How about some nontrivial class groups?
+First, we use a lemma that will help us with
+narrowing down the work in our cherry tree.
+\begin{lemma}
+	Let $\bb$ be an integral ideal with $\Norm(\bb) = 2015$.
+	Then $\bb$ divides the ideal $(2015)$.
+\end{lemma}
+(Obviously, replace $2015$ with your number of choice.)
+\begin{proof}
+	By definition, $2015 = \left\lvert \OO_K / \bb \right\rvert$.
+	Treating $\OO_K/\bb$ as an (additive) abelian group and using Lagrange's Theorem, we find
+	\[ 0 \equiv
+		\underbrace{\alpha + \dots + \alpha}_{2015\text{ times}} = 2015\alpha
+		\pmod \bb \qquad\text{for all } \alpha \in \OO_K. \]
+	Thus $(2015) \subseteq \bb$, done.
+\end{proof}
+
+Now we can give such an example.
+\begin{proposition}
+	The number field $K = \QQ(\sqrt{-17})$ has class group $\ZZ/4\ZZ$.
+\end{proposition}
+You are not obliged to read the entire proof in detail,
+as it is somewhat gory.
+The idea is just that there are some cherries which are not trivial in the class group.
+\begin{proof}
+Since $D_K = -68$, we compute\footnote{
+	Funny anecdote: when we did this at Harvard during Math 129,
+	there was a five-minute interruption in which students (jokingly) complained
+	about the difficulty of evaluating $\frac{4}{\pi} \sqrt{17}$. Excerpt: \\
+		``Will we be allowed to bring a small calculator on the exam?'' -- Student 1 \\
+		``What does the size have to do with anything?  You could have an Apple Watch'' -- Professor \\
+		``Just use the fact that $\pi \ge 3$'' -- me \\
+		``Even Gaitsgory [Math 55 professor] doesn't know that, how are we supposed to?'' -- Student 2 \\
+		``You have to do this yourself!'' -- Professor \\
+		``This is an outrage.'' -- Student 1
+}
+the Minkowsi bound
+\[ M_K = \frac{4}{\pi} \sqrt{17} < 6. \]
+
+Now, it suffices to factor with $(2)$, $(3)$, $(5)$.
+The minimal polynomial of $\sqrt{-17}$ is $x^2+17$, so as usual
+\begin{align*}
+	(2) &= (2, \sqrt{-17}+1)^2 \\
+	(3) &= (3, \sqrt{-17}-1)(3,\sqrt{-17}+1) \\
+	(5) &= (5)
+\end{align*}
+corresponding to the factorizations of $x^2+17$ modulo each of $2$, $3$, $5$.
+Set $\pp = (2, \sqrt{-17}+1)$ and $\qq_1 = (3, \sqrt{-17}-1)$, $\qq_2 = (3, \sqrt{-17}+1)$.
+We can compute
+\[ \Norm(\pp) = 2 \quad\text{and}\quad \Norm(\qq_1) = \Norm(\qq_2) = 3. \]
+In particular, they are not principal.
+The ideal $(5)$ is out the window; it has norm $25$.
+Hence, the three cherries are $\pp$, $\qq_1$, $\qq_2$.
+
+The possible ways to arrange these cherries into ideals with norm $\le 5$ are
+\[ \left\{ (1), \pp, \qq_1, \qq_2, \pp^2 \right\}. \]
+However, you can compute $\pp^2 = (2)$, so $\pp^2$ and $(1)$ are in the same class group;
+that is, they are trivial.
+In particular, the class group has order at most $4$.
+
+From now on, let $[\aa]$ denote the class (member of the class group) that $\aa$ is in.
+Since $\pp$ isn't principal (so $[\pp] \neq [(1)]$), it follows that $\pp$ has order two.
+So Lagrange's Theorem says that $\Cl_K$ has order either $2$ or $4$.
+
+Now we claim $[\qq_1]^2 \neq [(1)]$, which implies that $\qq_1$ has order greater than $2$.
+If not, $\qq_1^2$ is principal.
+We know $\Norm(\qq) = 3$,
+so this can only occur if $\qq_1^2 = (3)$;
+this would force $\qq_1 = \qq_2$.
+This is impossible since $\qq_1 + \qq_2 = (1)$.
+
+Thus, $\qq_1$ has even order greater than $2$.
+So it has to have order $4$.
+From this we deduce $\Cl_K \cong \ZZ/4\ZZ$.
+\end{proof}
+
+
+
+
+\section\problemhead
+\begin{problem}
+	Show that $K = \QQ(\sqrt{-163})$ has trivial class group,
+	and hence $\OO_K = \ZZ[\sqrt{-163}]$ is a unique factorization domain.\footnote{
+	In fact, $n = 163$ is the largest number for which $\QQ(\sqrt{-n})$ has trivial class group.
+	The complete list is $1, 2, 3, 7, 11, 19, 43, 67, 163$, the \vocab{Heegner numbers}.
+	You might notice Euler's prime-generating polynomial $t^2+t+41$ when doing the above problem.
+	Not a coincidence!
+	}
+	\begin{hint}
+		Repeat the previous procedure.
+	\end{hint}
+\end{problem}
+
+\begin{problem}
+	Determine the class group of $\QQ(\sqrt{-31})$.
+	\begin{hint}
+		You should get a group of order three.
+	\end{hint}
+\end{problem}
+
+\begin{problem}
+	[China TST 1998] Let $n$ be a positive integer. A polygon in the plane (not necessarily convex) has area greater than $n$. Prove that one can translate it so that it contains at least $n+1$ lattice points.
+	\begin{hint}
+		Mimic the proof of part (a) of Minkowski's Theorem.
+	\end{hint}
+\end{problem}
+
+\begin{problem} 
+	[\Cref{lem:vol_OK_mesh}]
+	\label{prob:OK_linalg}
+	Consider the composition of the embeddings $K \injto \RR^{r_1} \times \CC^{r_2} \taking\sim \RR^n$.
+	Show that the image of $\OO_K \subseteq K$ has mesh equal to
+	\[ \frac{1}{2^{r_2}} \sqrt{\left\lvert \Delta_K \right\rvert}. \]
+	\begin{hint}
+		Linear algebra.
+	\end{hint}
+\end{problem}
+
+\begin{problem}
+	Let $p \equiv 1 \pmod 4$ be a prime.
+	Show that there are unique integers $a > b > 0$ such that $a^2+b^2=p$.
+	\begin{hint}
+		Factor in $\QQ(i)$.
+	\end{hint}
+	\begin{sol}
+		Let's factor $(p)$ in $\QQ(i)$, which has ring of integers $\ZZ[i]$.
+		Using \Cref{thm:factor_alg}, we get $\ZZ[x] / (p,x^2+1) \cong \FF_p[x] / (x^2+1)$.
+		Since $p \equiv 1 \pmod 4$, $x^2+1 \equiv (x+t)(x-t) \pmod p$ for some $t$.
+		Thus $(p) = (p, t+i)(p, t-i)$ is the full decomposition into prime factors.
+		\todo{finish this}
+	\end{sol}
+\end{problem}

@@ -1,0 +1,770 @@
+\chapter{What is a Space?}
+At the time of writing, I'm convinced that metric topology is the morally correct way to motivate point-set topology as well as to generalize normal calculus.
+Also, ``metric'' is a fun word to say.
+So here is my best attempt.
+
+The concept of a metric space is very ``concrete'', and lends itself easily to visualization. Hence throughout this chapter you should draw lots of pictures as you learn about new objects, like convergent sequences, open sets, closed sets, and so on.
+
+\section{Definition and Examples of Metric Spaces}
+\prototype{$\RR^2$, with the Euclidean metric.}
+\begin{definition}
+	A \vocab{metric space} is a pair $(M, d)$ consisting of
+	a set of points $M$
+	and a \vocab{metric} $d : M \times M \to \mathbb R_{\ge 0}$.
+	The distance function must obey the following axioms.
+	\begin{itemize}
+		\ii For any $x,y \in M$, we have $d(x,y) = d(y,x)$; i.e.\ $d$ is symmetric.
+		\ii The function $d$ must be \vocab{positive definite}
+		which means that $d(x,y) \ge 0$ with equality if and only if $x=y$.
+		\ii The function $d$ should satisfy the \vocab{triangle inequality}: for all $x,y,z \in M$,
+		\[ d(x,z) + d(z,y) \ge d(x,y). \]
+	\end{itemize}
+\end{definition}
+\begin{abuse}
+	Just like with groups, we will abbreviate $(M,d)$ as just $M$.
+\end{abuse}
+\begin{example}[Metric Spaces of $\RR$]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii The real line $\RR$ is a metric space under the metric $d(x,y) = \left\lvert x-y \right\rvert$.
+		\ii The interval $[0,1]$ is also a metric space with the same distance function.
+		\ii In fact, any subset $S$ of $\RR$ can be made into a metric space in this way.
+	\end{enumerate}
+\end{example}
+\begin{example}[Metric Spaces of $\RR^2$]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii We can make $\RR^2$ into a metric space by imposing the Euclidean distance function
+		\[ d\left( (x_1, y_1), (x_2, y_2) \right) = \sqrt{(x_1-x_2)^2 + (y_1-y_2)^2}. \]
+		\ii Just like with the first example, any subset of $\RR^2$ also becomes a metric space after we inherit it.
+		The unit disk, unit circle, and the unit square $[0,1]^2$
+		are special cases.
+	\end{enumerate}
+\end{example}
+\begin{example}[Taxicab on $\RR^2$]
+	It is also possible to place the following \vocab{taxicab distance} on $\RR^2$:
+	\[ d\left( (x_1, y_1), (x_2, y_2) \right) = 
+		\left\lvert x_1-x_2 \right\rvert + \left\lvert y_1-y_2 \right\rvert.
+		\]
+	For now, we will use the more natural Euclidean metric.
+\end{example}
+
+\begin{example}[Metric Spaces of $\RR^n$]
+	We can generalize the above examples easily.
+	Let $n$ be a positive integer. We define the following metric spaces.
+	\begin{enumerate}[(a)]
+		\ii We let $\RR^n$ be the metric space whose points are points in $n$-dimensional Euclidean space, and whose metric is the Euclidean metric
+		\[
+			d\left( 
+			\left( a_1, \dots, a_n \right), \left( b_1, \dots, b_n \right)
+			\right)
+			= \sqrt{(a_1-b_1)^2 + \dots + (a_n-b_n)^2}.
+		\]
+		This is the $n$-dimensional \vocab{Euclidean space}.
+		\ii The open \vocab{unit ball} $B^{n}$ is the subset of $\RR^n$
+		consisting of those points $\left( x_1, \dots, x_n \right)$
+		such that $x_1^2 + \dots + x_n^2 < 1$.
+		\ii The \vocab{unit sphere} $S^{n-1}$ is the subset of $\RR^n$
+		consisting of those points $\left( x_1, \dots, x_n \right)$
+		such that $x_1^2 + \dots + x_n^2 = 1$, with the inherited metric.
+		(The superscript $n-1$ indicates that $S^{n-1}$ is an  $n-1$ dimensional space, even though it lives in $n$-dimensional space.)
+		For example, $S^1 \subseteq \RR^2$ is the unit circle, whose distance between two points is the length of the chord joining them.
+		You can also think of it as the ``boundary'' of the unit ball $B^n$.
+	\end{enumerate}
+\end{example}
+\begin{example}
+	[Function Space] We can let $M$ be the space of integrable functions $[0,1] \to \RR$ and define the metric by $d(f,g) = \int_0^1 \left\lvert f-g \right\rvert \; dx$.
+\end{example}
+
+Here is a slightly more pathological example.
+\begin{example}
+	[Discrete Space]
+	Let $S$ be any set of points (either finite or infinite).
+	We can make $S$ into a \vocab{discrete space} by declaring the following distance function.
+	\[
+		d(x,y)
+		=
+		\begin{cases}
+			1 & \text{if $x \neq y$} \\
+			0 & \text{if $x = y$}.
+		\end{cases}
+	\]
+	If $\left\lvert S \right\rvert = 4$ you might think of this space as the vertices of an regular tetrahedron, living in $\RR^3$.
+	But for larger $S$ it's not so easy to visualize\dots
+\end{example}
+\begin{example}[Graphs are Metric Spaces]
+	Any connected simple graph $G$ can be made into a metric space
+	by defining the distance between two vertices to be the
+	graph-theoretic distance between them.
+	(The discrete metric is the special case when $G$ is the complete graph on $S$.)
+\end{example}
+\begin{ques}
+	Check the conditions of a metric space for the metrics on the discrete space
+	and for the connected graph.
+\end{ques}
+
+\begin{abuse}
+	From now on, we will refer to $\RR^n$ with the Euclidean metric
+	by just $\RR^n$.
+	Moreover, if we wish to take the metric space for a subset $S \subseteq \RR^n$
+	with the inherited metric, we will just write $S$.
+\end{abuse}
+
+\section{Convergence in Metric Spaces}
+\prototype{The sequence $\frac1n$ (for $n=1,2,\dots$) in $\RR$.}
+
+Since we can talk about the distance between two points, we can talk about what it means for a sequence of points to converge.
+This is the same as the typical epsilon-delta definition, with absolute values replaced by the distance function.
+
+\begin{definition}
+	Let $(x_n)_{n \ge 1}$ be a sequence of points in a metric space $M$.
+	We say that $x_n$ \vocab{converges} to $x$ if the following condition holds:
+	for all $\eps > 0$, there is an integer $N$ (depending on $\eps$)
+	such that $d(x_n, x) < \eps$ for each $n \ge N$.
+	This is written \[ x_n \to x \] or more verbosely as \[ \lim_{n \to \infty} x_n = x. \]
+	We say that a sequence converges in $M$ if it converges to a point in $M$.
+\end{definition}
+You should check that this definition coincides with your intuitive notion of ``converges''.
+
+\begin{center}
+	\begin{asy}
+		size(9cm);
+		Drawing("x_1", (-9,0.1), dir(90));
+		Drawing("x_2", (-6,0.8), dir(90));
+		Drawing("x_3", (-5,-0.3), dir(90));
+		Drawing("x_4", (-2, 0.8), dir(90));
+		Drawing("x_5", (-1.7, -0.7), dir(-90));
+		Drawing("x_6", (-0.6, -0.3), dir(225));
+		Drawing("x_7", (-0.4, 0.3), dir(90));
+		Drawing("x_8", (-0.25, -0.24), dir(-90));
+		Drawing("x_9", (-0.12, 0.1), dir(45));
+		dot("$x$", (0,0), dir(-45), blue);
+		draw(CR(origin, 1.5), blue+dashed);
+	\end{asy}
+\end{center}
+
+\begin{example}
+	Consider the sequence
+	$x_1 = 1$, $x_2 = 1.4$, $x_3 = 1.41$, $x_4 = 1.414$, \dots.
+	\begin{enumerate}[(a)]
+		\ii If we view this as a sequence in $\RR$, it converges to $\sqrt 2$.
+		\ii However, even though each $x_i$ is in $\QQ$, this sequence does NOT converge when we view it as a sequence in $\QQ$!
+	\end{enumerate}
+\end{example}
+
+\begin{ques}
+	What are the convergent sequences in a discrete metric space?
+\end{ques}
+
+\section{Continuous Maps}
+\begin{abuse}
+	For a function $f$ and its argument $x$,
+	we will begin abbreviating $f(x)$ to just $fx$
+	when there is no risk of confusion.
+\end{abuse}
+
+In calculus you were also told (or have at least heard) of what it means for a function to be continuous. Probably something like
+\begin{quote}
+	A function $f : \RR \to \RR$ is continuous at a point $p \in \RR$ if for every $\eps > 0$ there exists a $\delta > 0$ such that
+	$\left\lvert x-p \right\rvert < \delta
+		\implies
+		\left\lvert fx - fp \right\rvert < \eps
+	$.
+\end{quote}
+\begin{ques}
+	Can you guess what the corresponding definition for metric spaces is?
+\end{ques}
+
+All we have do is replace the absolute values with the more general distance functions: this gives us a definition of continuity for any function $M \to N$.
+
+\begin{definition}
+	Let $M = (M, d_M)$ and $N = (N, d_N)$ be metric spaces.
+	A function $f : M \to N$ is \vocab{continuous} at a point $p \in M$
+	if for every $\eps > 0$ there exists a $\delta > 0$ such that
+	\[ d_M(x,p) < \delta \implies d_N(fx, fp) < \eps. \]
+	Moreover, the entire function $f$ is continuous if it is continuous at every point $p \in M$.
+\end{definition}
+Notice that, just like in our definition of an isomorphism of a group,
+we use both the metric of $M$ for one condition and the metric of $N$ on the other condition.
+
+This generalization is nice because it tells us immediately how we could carry over continuity arguments in $\RR$ to more general spaces (for example, replacing $\RR$ with $\CC$ to get complex analysis).
+Nonetheless, this definition is kind of cumbersome to work with, because it makes extensive use of the real numbers (epsilons and deltas).
+Here is an equivalent condition.
+\begin{theorem}
+	A function $f : M \to N$ be metric spaces is continuous at a point $p \in M$
+	if and only if the following property holds:
+	if $x_1$, $x_2$, \dots is a sequence in $M$ converging to $p$,
+	then the sequence $f(x_1)$, $f(x_2)$, \dots is a sequence in $N$ converging to $f(p)$.
+\end{theorem}
+\begin{proof}
+	Boring and not hard.
+	We do not even need the triangle inequality.
+\end{proof}
+
+The next example illustrates why this criteria can often be much easier to work with.
+\begin{proposition}
+	Let $f : M \to N$ and $g : N \to L$ be continuous maps of metric spaces.
+	Then their composition $g \circ f$ is continuous.
+\end{proposition}
+\begin{proof}
+	Dead simple with sequences:
+	Let $p \in M$ be arbitrary and let $x_n \to p$ in $M$.
+	Then $fx_n \to fp$ in $N$ and $gfx_n \to gfp$ in $L$, QED.
+\end{proof}
+I hope you'll agree this is much cleaner than having to deal with $\eps$'s and $\delta$'s.
+
+\begin{ques}
+	Let $M$ be any metric space and $D$ a discrete space.
+	When is a map $f : D \to M$ continuous?
+\end{ques}
+
+
+
+\section{Homeomorphisms}
+When do we consider two groups to be the same?
+Answer: if there's a structure-preserving map between them which is also a bijection.
+For topological spaces, we do exactly the same thing, but replace ``structure-preserving'' with ``continuous''.
+
+\begin{definition}
+	Let $M$ and $N$ be metric spaces.
+	A function $f : M \to N$ is a
+	\vocab{homeomorphism} or \vocab{bi-continuous function} if it is a bijection,
+	and both $f : M \to N$ and its inverse $f\inv : N \to M$ are continuous.
+	We say $M$ and $N$ are \vocab{homeomorphic} and in this book we write $M \approx N$ (though some people use other symbols).
+\end{definition}
+Needless to say $\approx$ is an equivalence relation.
+
+You might be surprised that we need the condition $f\inv$ is also continuous.
+The reason we didn't need it when we considered group isomorphisms
+you can show that if $\phi$ is a homomorphism of groups which is a bijection,
+then so is $\phi\inv$.
+But the same is not true for homeomorphisms.
+\begin{exercise}
+	Exhibit a metric space $M$ and a continuous bijection $f : M \to \RR$
+	whose inverse function is not continuous.
+	(Hint: pick $M$ to be a \emph{very large} discrete space.)
+\end{exercise}
+
+Note that this is the topologist's definition of ``same'' --
+homeomorphisms are ``continuous deformations''.
+Here are some examples.
+
+\begin{example}[Examples of Homeomorphisms]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii Any space $M$ is homeomorphic to itself through the identity map.
+		\ii A doughnut is homeomorphic to the coffee cup.
+		\ii The unit circle $S^1$ is homeomorphic to the boundary of the unit square. Here's one bijection between them, after an appropriate scaling:
+		\begin{center}
+			\begin{asy}
+				size(2cm);
+				draw(unitcircle);
+				pair A = (1.4, 1.4);
+				pair B = rotate(90)*A;
+				pair C = rotate(90)*B;
+				pair D = rotate(90)*C;
+				draw(A--B--C--D--cycle);
+				dot(origin);
+				pair P = Drawing(dir(70));
+				pair Q = Drawing(extension(origin, P, A, B));
+				draw(origin--Q, dashed);
+			\end{asy}
+		\end{center}
+	\end{enumerate}
+\end{example}
+\begin{example}
+	[Metrics on the Unit Circle]
+	It may have seemed strange that our metric function on $S^1$
+	was the one inherited from $\RR^2$, meaning the distance between two points
+	on the circle was defined to be the length of the chord.
+	Wouldn't it have made more sense to use the circumference of the arc joining
+	the two points?
+	In fact, it doesn't matter: if we consider $S^1$ with the ``chord'' metric
+	and the ``arc'' metric, we get two homeomorphic spaces.
+
+	The same goes for $S^{n-1}$ for general $n$.
+\end{example}
+
+\begin{example}
+	[Homeomorphisms Really Don't Preserve Size]
+	Surprisingly, the open interval $(0,1)$ is homeomorphic to the real line $\RR$!
+	This might come as a surprise, since $(0,1)$ doesn't look that much like $\RR$;
+	the former is ``bounded'' while the latter is ``unbounded''.
+\end{example}
+\begin{exercise}
+	Write down a homeomorphism from $(0,1)$ to $\RR$.
+\end{exercise}
+
+\begin{example}[Product Topologies]
+	Let $M = (M, d_M)$ and $N = (N, d_N)$ be metric spaces (say, $M = N = \RR$).
+	Let $p_i = (x_i,y_i) \in M \times N$ for $i=1,2$.
+	Consider the following metrics on the set of points $M \times N$:
+	\begin{itemize}
+		\ii $d_{\text{max}} ( p_1, p_2 )
+			= \max \left\{ d_M(x_1, x_2), d_N(y_1, y_2) \right\}$.
+		\ii $d_{\text{Euclid}} ( p_1, p_2 )
+			= \sqrt{d_M(x_1,x_2)^2 + d_N(y_1, y_2)^2}$.
+		\ii $d_{\text{taxicab}} \left( p_1, p_2 \right)
+			= d_M(x_1, x_2) + d_N(y_1, y_2)$.
+	\end{itemize}
+	It's easy to verify that
+	\[ d_{\text{max}}(p_1,p_2)
+		\le d_{\text{Euclid}}(p_1, p_2)
+		\le d_{\text{taxicab}}(p_1, p_2)
+		\le 2d_{\text{max}}(p_1, p_2). \]
+	Using this you can show that
+	\[
+		(M \times N, d_{\text{max}}) \approx 
+		(M \times N, d_{\text{Euclid}}) \approx 
+		(M \times N, d_{\text{taxicab}})
+	\]
+	with the homeomorphism being just the identity map.
+	Hence we will usually simply refer to \emph{the} topology $M \times N$,
+	called the \vocab{product topology},
+	and it will not be important which metric we select.
+\end{example}
+
+\section{Open Sets}
+\prototype{The open disk $x^2+y^2<r^2$ in $\RR^2$.}
+
+Continuity is really about what happens ``locally'': how a function behaves ``close to a certain point $p$''.
+One way to capture this notion of ``closeness'' is to use metrics as we've done above.
+In this way we can define a neighborhood of a point.
+
+\begin{definition}
+	Let $M$ be a metric space.
+	For each real number $r > 0$ and point $p \in M$, we define
+	\[ M_r(p) \defeq \left\{ x \in M: d(x,p) < r \right\}. \]
+	The set $M_r(p)$ is called an \vocab{$r$-neighborhood} of $p$.
+\end{definition}
+\begin{center}
+	\begin{asy}
+		size(4cm);
+		bigblob("$M$");
+		pair p = Drawing("p", (0.3,0.1), dir(-90));
+		real r = 1.8;
+		draw(CR(p,r), dashed);
+		label("$M_r(p)$", p+r*dir(-65), dir(-65));
+		draw(p--(p+r*dir(130)));
+		label("$r$", midpoint(p--(p+r*dir(130))), dir(40));
+	\end{asy}
+\end{center}
+
+We can rephrase convergence more succinctly in terms of $r$-neighborhoods.
+Specifically, a sequence $(x_n)$ converges to $x$
+if for every $r$-neighborhood of $x$, all terms of $x_n$ eventually stay within that $r$-neighborhood.
+
+Let's try to do the same with functions. 
+\begin{ques}
+	In terms of $r$-neighborhoods, what does it mean for a function $f : M \to N$ to be continuous at a point $p \in M$?
+\end{ques}
+
+Essentially, we require that the pre-image of every $\eps$-neighborhood has
+the property that some $\delta$-neighborhood exists inside it.
+This motivates the following definition.
+
+\begin{definition}
+	A set $U \subset M$ is \emph{open} in $M$ if for each $p \in U$, some $r$-neighborhood of $p$
+	is contained inside $U$.
+	In other words, there exists $r>0$ such that $M_r(p) \subseteq U$.
+\end{definition}
+
+\begin{figure}[ht]
+	\centering
+	\begin{asy}
+		size(5cm);
+		draw(unitcircle, dashed);
+		pair P = Drawing("p", (0.6,0.2), dir(-90));
+		draw(CR(P, 0.3), dotted);
+		MP("x^2+y^2<1", dir(45), dir(45));
+	\end{asy}
+	\caption{The set of points $x^2+y^2<1$ in $\RR^2$ is open.}
+	\label{fig:example_open}
+\end{figure}
+
+\begin{example}[Examples of Open Sets]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii Any $r$-neighborhood of a point is open.
+		\ii Open intervals of $\RR$ are open, hence the name!
+		This is the prototypical example to keep in mind.
+		\ii The open unit ball $B^n$ is open in $\RR^n$ for the same reason.
+		\ii In particular, the open interval $(0,1)$ is open in $\RR$.
+		However, if we embed it in $\RR^2$, it is no longer open!
+		\ii The empty set $\varnothing$ and the whole set of points $M$ are open in $M$.
+	\end{enumerate}
+\end{example}
+\begin{example}
+	[Non-Examples of Open Sets]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii The closed interval $[0,1]$ is not open in $\RR$.
+		There is no neighborhood of the point $0$ which is contained in $[0,1]$.
+		\ii The unit circle $S^1$ is not open in $\RR^2$.
+	\end{enumerate}
+\end{example}
+\begin{ques}
+	What are the open sets of the discrete space?
+\end{ques}
+
+Here are two quite important properties of open sets.
+\begin{proposition}
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii The intersection of finitely many open sets is open.
+		\ii The union of open sets is open, even if there are infinitely many.
+	\end{enumerate}
+\end{proposition}
+\begin{ques}
+	Convince yourself this is true.
+\end{ques}
+\begin{exercise}
+	Exhibit an infinite collection of open sets in $\RR$
+	whose intersection is the set $\{0\}$.
+	This implies that infinite intersections of open sets are not necessarily open.
+\end{exercise}
+
+The whole upshot of this is the following theorem.
+\begin{theorem}[Open Set Condition]
+	A function $f : M \to N$ of metric spaces is continuous
+	if and only if the pre-image of every open set is open.
+\end{theorem}
+\begin{proof}
+	I'll just do one direction\dots
+	\begin{exercise}
+		Show that $\delta$-$\eps$ continuity follows from
+		the open set continuity.
+	\end{exercise}
+	Now assume $f$ is continuous.
+	First, suppose $V$ is an open subset of the metric space $N$;
+	let $U = f\pre(V)$. Pick $x \in U$, so $y = f(x) \in V$; we want a neighborhood of $x$ inside $U$.
+
+	\begin{center}
+		\begin{asy}
+			size(12cm);
+			bigblob("$Y$");
+			pair Y = Drawing("y", origin, dir(75));
+			real eps = 1.5;
+			draw(CR(Y, eps), dotted);
+			label("$\varepsilon$", D(Y--(Y+eps*dir(255))));
+			label("$V$",
+				D(shift(-0.5,0)*rotate(190)*scale(3.2,2.8)*unitcircle, dashed));
+			add(shift( (13,0) ) * CC());
+			label("$f$", D( (4.5,0)--(8,0), EndArrow));
+
+			bigblob("$X$");
+			real delta = 1.1;
+			pair X = Drawing("x", (-1.5,-0.5), dir(-45));
+			label("$\delta$", D(X--(X+delta*dir(155))));
+			draw(CR(X, delta), dotted);
+			label("$U = f^{\text{pre}}(V)$",
+				D(shift(-1.5,-0.3)*rotate(235)*scale(2.4,1.8)*unitcircle, dashed));
+		\end{asy}
+	\end{center}
+
+	As $V$ is open, there is some small $\eps$-neighborhood around $y$
+	which is contained inside $V$.
+	By continuity of $f$, we can find a $\delta$ such that the $\delta$-neighborhood
+	of $x$ gets mapped by $f$ into the $\eps$-neighborhood in $N$, 
+	which in particular lives inside $V$.
+	Thus the $\delta$-neighborhood lives in $V$, as desired.
+\end{proof}
+
+From this we can get a new definition of homeomorphism
+which makes it clear why open sets are good things to consider.
+\begin{theorem}
+	A function $f : M \to N$ of metric spaces is a homeomorphism if 
+	\begin{enumerate}[(i)]
+		\ii It is a bijection of the underlying points.
+		\ii It induces a bijection of the open sets of $M$ and $N$:
+		for any open set $U \subseteq M$ the set $f``(U)$ is open,
+		and for any open set $V \subseteq N$ the set $f\pre(V)$ is open.
+	\end{enumerate}
+\end{theorem}
+
+
+This leads us to the following\dots
+
+\section{Forgetting the Metric}
+Notice something interesting about the previous theorem -- it doesn't reference the metrics of $M$ and $N$ at all.
+Instead, it refers only to the open sets.
+
+This leads us to consider the following idea: what if we could refer to spaces \emph{only} by their open sets, forgetting about the fact that we had a metric to begin with?
+That's exactly what we do in point-set topology.
+
+\begin{definition}
+	A \vocab{topological space} is a pair $(X, \mathcal T)$,
+	where $X$ is a set of points,
+	and $\mathcal T$ is the \vocab{topology}, which consists of several subsets of $X$, called the \vocab{open sets} of $X$.
+	The topology must obey the following axioms.
+	\begin{itemize}
+		\ii $\varnothing$ and $X$ are both in $\mathcal T$.
+		\ii Finite intersections of open sets are also in $\mathcal T$.
+		\ii Arbitrary unions (possibly infinite) of open sets are also in $\mathcal T$.
+	\end{itemize}
+\end{definition}
+So this time, the open sets are \emph{given}.
+Rather than defining a metric and getting open sets from the metric,
+we instead start from just the open sets.
+\begin{abuse}
+	We refer to the space $(X, \mathcal T)$ by just $X$.
+	(Do you see a pattern here?)
+\end{abuse}
+
+\begin{example}[Examples of Topologies]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii Given a metric space $M$, we can let $\mathcal T$ be
+		the open sets in the metric sense.
+		The point is that the axioms are satisfied.
+		\ii In particular, \vocab{discrete space} is a topological space in which every set is open. (Why?)
+		\ii Given $X$, we can let $\mathcal T = \left\{ \varnothing, X \right\}$,
+		the opposite extreme of the discrete space.
+	\end{enumerate}
+\end{example}
+
+Now we can port over our metric definitions.
+\begin{definition}
+	An \vocab{open neighborhood} of a point $x \in X$ is an
+	open set $U$ which contains $x$ (see figure).
+\end{definition}
+\begin{center}
+	\begin{asy}
+		size(4cm);
+		bigblob("$X$");
+		pair p = Drawing("x", (0.3,0.1), dir(-90));
+		real r = 1.55;
+		draw(shift(p) * scale(1.6,1.2)*unitcircle, dashed);
+		label("$U$", p+r*dir(45), dir(45));
+	\end{asy}
+\end{center}
+
+\begin{abuse}
+	Just to be perfect clearly: by a ``open neighborhood'' I mean \emph{any} open set containing $x$.
+	But by an ``$r$-neighborhood'' I always mean the points with distance less than $r$ from $x$,
+	and so I can only use this term if my space is a metric space.
+\end{abuse}
+
+\begin{abuse}
+	There's another related term commonly used:
+	a \emph{neighborhood} $V$ of $x$ is a set
+	which contains some open neighborhood of $x$ (often $V$ itself).
+	Think of it as ``open at $x$'', though
+	not always at other points.
+	However, for most purposes, you should think of neighborhoods
+	as just open neighborhoods.
+\end{abuse}
+\begin{definition}
+	A function $f : X \to Y$ of topological spaces
+	is \vocab{continuous} at $p \in X$ if the pre-image of any
+	open neighborhood of $fp$ is an open neighborhood of $p$.
+	It is \vocab{continuous} if it is continuous at every point,
+	meaning that the pre-image of any open set is open.
+\end{definition}
+
+You can also port over the notion of sequences and convergent sequences,
+but I won't bother to do so because sequences lose most of the nice properties they had in metric spaces.
+
+%\begin{definition}
+%	A sequence $(x_n)$ of points in a topological space $X$ is said to \vocab{converge to} $x \in X$ if for every neighborhood of $x$,
+%	eventually all terms of the sequence lie in that neighborhood.
+%\end{definition}
+%\begin{remark}
+%	Unfortunately, for general topological spaces we no longer have the nice property
+%	that any function which preserves sequential limits is automatically continuous.
+%\end{remark}
+
+%There's one other property of open sets that we have in a metric space that isn't implied by the above: for any two points of $X$, we can find an open set containing one but not the other.
+%A space which also has this property is called a \vocab{Kolmogorov space}.
+%This property is a good property to have, because if $x,y \in X$ are in the same open sets, the topology can't tell them apart.
+
+Finally, what are the homeomorphisms?
+The same definition carries over: a bijection which is continuous in both directions.
+\begin{definition}
+	A \vocab{homeomorphism} of topological spaces $(X, \tau_X)$ and $(Y, \tau_Y)$
+	is a bijection from $X$ to $Y$
+	which induces a bijection from $\tau_X$ to $\tau_Y$.
+\end{definition}
+Therefore, any property defined only in terms of open sets is preserved by homeomorphism. Such a property is called a \vocab{topological property}.
+That's why $(0,1) \approx \RR$ is to be expected, because the notion of being ``bounded'' is not a notion which can be expressed in terms of open sets.
+
+\begin{remark}
+	As you might have guessed, there exist topological spaces which cannot be realized
+	as metric spaces (in other words, are not \vocab{metrizable}).
+	One example is just to take $X = \{a,b,c\}$ and the topology $\tau_X = \left\{ \varnothing, \{a,b,c\} \right\}$.
+	This topology is fairly ``stupid'': it can't tell apart any of the points $a$, $b$, $c$!
+	But any metric space can tell its points apart (because $d(x,y) > 0$ when $x \neq y$).
+	We'll see less trivial examples later.
+\end{remark}
+
+
+\section{Closed Sets}
+\prototype{The closed unit disk $x^2+y^2 \le r^2$ in $\RR^2$.}
+It would be criminal for me to talk about open sets without talking about the dual concept, a closed set.
+The name ``closed'' comes from the definition in a metric space.
+\begin{definition}
+	Let $M$ be a metric space.
+	A subset $S \subseteq M$ is \vocab{closed} if the following property holds:
+	let $x_1$, $x_2$, \dots be a sequence of points in $S$
+	and suppose that $x_n$ converges to $x$ in $M$.
+	Then $x \in S$ as well.
+\end{definition}
+Here's another way to phrase it.
+The \vocab{limit points} of a subset $S \subseteq M$ are the points
+in the following set:
+\[ \lim S \defeq \left\{ p \in M : \exists (x_n) \in S \text{ such that } x_n \to p \right\}. \]
+Thus $S$ is closed if and only if $S = \lim S$.
+\begin{exercise}
+	Prove that $\lim S$ is closed even if $S$ isn't closed. (Draw a picture.)
+	Hence we also call $\lim S$ the \vocab{closure} of $S$.
+\end{exercise}
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[height=6cm]{/home/evan/Pictures/TopologicalGG/limit-point-neighborhood.jpg}
+	\caption{Limit points and neighborhods}
+\end{figure}
+
+For this reason, $\lim S$ is also called the \vocab{closure} of $S$ in $M$,
+and denoted $\ol S$.  It is simply the smallest closed set which contains $S$.
+\begin{figure}[ht]
+	\centering
+	\includegraphics[height=9cm]{/home/evan/Pictures/TopologicalGG/stars-limit-point-infinity.jpg}
+	\caption{Limit points of infinite sets.}
+\end{figure}
+
+\begin{example}
+	[Examples of Closed Sets]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii The empty set $\varnothing$ is closed in $M$ for vacuous reasons: there are no sequences of points with elements in $\varnothing$.
+		\ii The entire space $M$ is closed in $M$ for tautological reasons.
+		\ii The closed interval $[0,1]$ in $\RR$ is closed in $\RR$, hence the name.  Like with open sets, this is the prototypical example of a closed set to keep in mind!
+		\ii In fact, the closed interval $[0,1]$ is even closed in $\RR^2$.
+	\end{enumerate}
+\end{example}
+\begin{example}
+	[Non-Examples of Closed Sets]
+	Let $S=(0,1)$ denote the open interval.
+	Then $S$ is not closed in $\RR$
+	because the sequence of points
+	\[
+		\frac12, \;
+		\frac14, \;
+		\frac18, \;
+		\dots
+	\]
+	converges to $0 \in \RR$, but $0 \notin (0,1)$.
+\end{example}
+
+In what sense are these concepts ``dual''?
+Despite first impressions, most sets are neither open nor closed.
+\begin{example}[A Set Neither Open Nor Closed]
+	The half-open interval $[0,1)$ is neither open nor closed in $\RR$.
+\end{example}
+\begin{remark}
+	It's also possible for a set to be both open and closed;
+	see the next chapter.
+\end{remark}
+
+Remarkably, though, the following \emph{is} true.
+\begin{theorem}
+	Let $M$ be a metric space, and $S \subseteq M$ any subset.
+	Then the following are equivalent:
+	\begin{itemize}
+		\ii The set $S$ is closed.
+		\ii The complement $M \setminus S$ is open.
+	\end{itemize}
+\end{theorem}
+\begin{exercise}
+	Prove this theorem!
+	You'll want to draw a picture to make it clear what's happening: for example,
+	you might take $M = \RR^2$ and $S$ to be the open unit disk.
+\end{exercise}
+
+This leads us to a definition for a general topological space.
+\begin{definition}
+	In a general topological space $X$, we say that $S \subseteq X$ is
+	\vocab{closed} if the complement $X \setminus S$ is open.
+\end{definition}
+Hence, for general topological spaces, open and closed sets carry the same information,
+and it is entirely a matter of taste whether we define everything in terms
+of open sets or closed sets.
+In particular,
+\begin{ques}
+	Show that the (possibly infinite) intersection of closed sets is closed
+	while the union of finitely many closed sets is closed.
+	(Hint: just look at complements.)
+\end{ques}
+\begin{ques}
+	Show that a function is continuous if and only if the pre-image
+	of every closed set is closed.
+\end{ques}
+Mathematicians seem to have agreed that they like open sets better.
+
+\section\problemhead
+\begin{problem}
+	Exhibit a function $f : \RR \to \RR$ such that
+	$f$ is continuous at $x \in \RR$ if and only if $x=0$.
+	\begin{hint}
+		$\pm x$ for good choices of $\pm$.
+	\end{hint}
+	\begin{sol}
+		Let $f(x) = x$ for $x \in \QQ$ and $f(x) = -x$ for irrational $x$.
+	\end{sol}
+\end{problem}
+
+\begin{problem}[Furstenberg]
+	We declare a subset of $\ZZ$ to be open if it's the union (possibly empty or infinite)
+	of arithmetic sequences
+	$\left\{ a + nd \mid n \in \ZZ \right\}$,
+	where $a$ and $d$ are positive integers.
+	\begin{enumerate}[(a)]
+		\ii Verify this forms a topology on $\ZZ$, called the \vocab{evenly spaced integer topology}.
+		\ii Prove there are infinitely many primes by considering $\bigcup_p p\ZZ$.
+	\end{enumerate}
+	\begin{hint}
+		Note that $p\ZZ$ is closed for each $p$.
+		If there were finitely many primes, then
+		$\bigcup p\ZZ = \ZZ \setminus \{-1,1\}$ would have to be closed;
+		i.e.\ $\{-1,1\}$ would be open, but all open sets here are infinite.
+	\end{hint}
+\end{problem}
+
+\begin{problem}
+	\gim
+	Prove that a function $f : \RR \to \RR$ which is strictly increasing
+	must be continuous at some point.
+	\begin{hint}
+		Project gaps onto the $y$-axis.
+		Use the fact that uncountably many positive reals cannot have finite sum.
+	\end{hint}
+	\begin{sol}
+		Assume for contradiction it is completely discontinuous;
+		by scaling set $f(0) = 0$, $f(1) = 1$ and focus just on $f : [0,1] \to [0,1]$.
+		Since it's discontinuous everywhere, for every $x \in [0,1]$ there's an $\eps_x > 0$ such that the continuity condition fails.
+		Since the function is strictly increasing, that can only happen if the function misses all points in the interval $(x-\eps_x, x)$ or $(x, x+\eps)$ (or both).
+
+		Projecting these missing intervals to the $y$-axis you find uncountably (one for each $x \in [0,1]$) intervals
+		all of which are disjoint.
+		In particular, summing the $\eps_x$ you get that a sum of uncountably many positive reals is $1$.
+
+		But in general it isn't possible for an uncountable family $\mathcal F$ of positive reals to have finite sum.
+		Indeed, just classify the reals into buckets $\frac1k \le x < \frac1{k-1}$.
+		If the sum is actually finite then each bucket is finite, so the collection $\mathcal F$ must be finite.
+	\end{sol}
+\end{problem}
+
+\begin{problem}
+	\gim
+	Prove that the evenly spaced integer topology on $\ZZ$ is metrizable.
+	In other words, show that one can impose a metric $d : \ZZ^2 \to \ZZ$
+	which makes $\ZZ$ into a metric space whose open sets are those described above.
+	% https://teratologicmuseum.wordpress.com/2009/05/05/a-metric-for-the-evenly-spaced-integer-topology/
+	\begin{hint}
+		The balls at $0$ should be of the form $n!\ZZ$.
+	\end{hint}
+	\begin{sol}
+		Let $d(x,y) = 2015^{-n}$, where $n$ is the largest integer such that $n! \mid x-y$.
+	\end{sol}
+\end{problem}

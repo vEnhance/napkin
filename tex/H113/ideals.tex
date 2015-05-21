@@ -1,0 +1,688 @@
+\chapter{Rings and Ideals}
+This is a typical chapter on commutative algebra.
+
+\section{Number Theory Motivation}
+Commutative algebra is closely tied to algebraic geometry:
+lots of the ideas in commutative algebra have nice ``geometric'' interpretations that motivate the definitions.
+Unfortunately, algebraic geometry also has commutative algebra as a prerequisite, leading to a
+chicken-and-egg problem: to appreciate commutative algebra fully you need to know algebraic geometry,
+but to learn algebraic geometry you need to know commutative algebra.
+
+To try and patch this as best I could, I'll try and flavor and motivate the examples with olympiad number theory.
+This way, your intuition from all those shortlist N6's you had to do can carry hopefully carry over to
+make sense of the examples here.
+Basically, we'll try to generalize properties of the ring $\ZZ$ to any abelian structure
+in which we can also multiply.
+That's why, for example, you can talk about ``irreducible polynomials in $\QQ[x]$'' in the same
+way you can talk about ``primes in $\ZZ$'', or about ``factoring polynomials modulo $p$''
+in the same way we can talk ``unique factorization in $\ZZ$''.
+Even if you only care about $\ZZ$ (say, you're a number theorist), this has a lot of value:
+I assure you that trying to solve $x^n+y^n = z^n$ (for $n > 2$) requires going into a ring other than $\ZZ$!
+
+For all the sections that follow, keep $\ZZ$ in mind as your prototype.
+
+\section{Definition and Examples of Rings}
+\prototype{$\ZZ$ all the way! Also $R[x]$ and various fields.}
+
+Well, I guess I'll define a ring\footnote{Or, according to some authors, a ``commutative ring with unit''.
+You see, some authors don't require rings to have commutative multiplication, and other authors don't
+even require there to be multiplicative units. I've seen some reasonable noncommutative rings,
+but I've never seen a ring without identity that I care about. So, just be warned that
+some authors have different definitions of ring. For us, ``ring'' always mean ``commutative ring with $1$''.}
+\begin{definition}
+	A \vocab{ring} is a triple $(R, +, \times)$, the two operations usually called addition and multiplication, such that
+	\begin{enumerate}[(i)]
+		\ii $(R,+)$ is an abelian group, with identity $0_R$, or just $0$.
+		\ii $\times$ is an associative, commutative binary operation on $R$ with some
+		identity, written $1_R$ or just $1$.
+		\ii Multiplication distributes over addition.
+	\end{enumerate}
+\end{definition}
+\begin{abuse}
+	As usual, we will abbreviate $(R, +, \times)$ to just $R$.
+\end{abuse}
+
+These definitions are just here for completeness.
+The examples are much more important.
+\begin{example}[Typical Rings and Fields]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii The sets $\ZZ$, $\QQ$, $\RR$ and $\CC$ are all rings
+		with the usual addition and multiplication.
+		\ii The integers modulo $n$ are also a ring
+		with the usual addition and multiplication.
+		We denote it by $\ZZ / n\ZZ$ for reasons that we'll explain momentarily.
+		\ii The \vocab{trivial ring} is the ring $R$ with one element $0_R = 1_R$.
+	\end{enumerate}
+\end{example}
+
+Since I've defined this structure, I may as well state the obligatory facts about it.
+\begin{fact}
+	For any ring $R$ and $r \in R$, $r \cdot 0_R = 0_R$.
+	Moreover, $r \cdot (-1_R) = -r$.
+\end{fact}
+\begin{proof}
+	Boring.
+\end{proof}
+
+Here are some more examples of rings.
+\begin{example}[Polynomial Ring]
+	Given any ring $R$, the ring $R[x]$ is defined as the set of polynomials
+	with coefficients in $x$:
+	\[ R[x] = \left\{ a_nx^n+a_{n-1}x^{n-1}+\dots+a_0 \mid a_0, \dots, a_n \in \RR \right\}. \]
+	Addition and multiplication is done exactly in the way you would expect.
+\end{example}
+\begin{remark}
+	[Digression] Happily, polynomial division also does what we expect: if $p(x) \in R[x]$
+	and $p(a) = 0$, then $(x-a)q(x) = p(x)$ for some polynomial $q$.
+	Proof: just do polynomial long division.
+	With that, note the caveat that 
+	\[ x^2-1 \equiv (x-1)(x+1) \pmod 8 \] has \emph{four} roots $1$, $3$, $5$, $7$ in
+	$\ZZ/8\ZZ$!
+
+	The problem is that $2 \cdot 4 = 0$ even though $2$ and $4$ are not zero;
+	we call $2$ and $4$ \emph{zero divisors} for that reason.
+	In an \emph{integral domain} (a ring without zero divisors), this pathology goes away,
+	and just about everything you know about polynomials carries over.
+	(I'll say this all again next section.)
+\end{remark}
+\begin{example}
+	[Multi-variable Polynomial Ring]
+	We can consider polynomials in $n$ variables with coefficients in $R$,
+	denoted \[ R[x_1, \dots, x_n]. \]
+	(We can even adjoin infinitely many $x$'s if we like, but alas\dots)
+\end{example}
+\begin{example}
+	[Gaussian Integers are a Ring]
+	The \vocab{Gaussian integers} are the set of complex numbers
+	with integer real and imaginary parts, that is
+	\[ \ZZ[i] = \left\{ a+bi \mid a,b \in \ZZ \right\}. \]
+\end{example}
+
+\section{Integral Domains and Fields}
+\prototype{$\ZZ$ is an integral domain; $\QQ$ is a field.}
+
+As you already know, if the multiplication is invertible,
+then we call the ring a field.
+To be explicit, let me write the relevant definitions.
+
+\begin{definition}
+	A \vocab{unit} of a ring $R$
+	is an element $u \in R$ which is invertible:
+	for some $u \in R$ we have $ux = 1_R$.
+\end{definition}
+\begin{example}
+	[Examples of Units]
+	\listhack
+	\begin{enumerate}[(a)]
+	\ii The units of $\ZZ$ are $\pm 1$,
+	because these are the only things which ``divide $1$''
+	(which is the reason for the name ``unit'').
+	\ii On the other hand, in $\QQ$ everything is a unit.
+	For example, $\frac 35$ is a unit since $\frac 35 \cdot \frac 53 = 1$.
+	\ii The Gaussian integers $\ZZ[i]$ have four units: $\pm 1$ and $\pm i$.
+	\end{enumerate}
+\end{example}
+
+\begin{definition}
+	A nontrivial ring is a \vocab{field}
+	when all its nonzero elements are units.
+\end{definition}
+
+Colloquially, we say that
+\begin{moral}
+A field is a structure where you can add, subtract, multiply, and divide.
+\end{moral}
+
+\begin{remark}
+	You might say at this point that ``fields are nicer than rings'',
+	but as you'll see in this chapter that the conditions for
+	being a field are somehow ``too strong''.
+	To give an example of what I mean:
+	if you want to think about the concept of ``divisibility''
+	in $\ZZ$, and you've stepped into the vast and bizarre realm of
+	number theory.  Try to do the same thing in $\QQ$ and you get nothing:
+	any nonzero $a$ ``divides'' any nonzero $b$
+	because $b = a \cdot \frac ba$.
+
+	I know at least one person who instead
+	thinks of this as an argument for why people
+	shouldn't care about number theory
+	(studying chaos rather than order).
+\end{remark}
+
+Now it would be nice if we could still conclude the zero product property:
+if $ab = 0$ that either $a = 0$ or $b = 0$.
+If our ring is a field, this is true true: if $b \neq 0$,
+then we can multiply by $b\inv$ to get $a = 0$.
+But many other rings we consider like $\ZZ$ and $\ZZ[x]$ also have this property,
+despite not being a full-fledged field.
+
+Not for all rings though: in $\ZZ/15\ZZ$, $3 \cdot 5 \equiv 0 \pmod{15}$.
+If $a, b \neq 0$ but $ab=0$ then we say $a$ and $b$ are \vocab{zero divisors}
+of the ring $R$.
+A nontrivial ring with no zero divisors is called a \vocab{integral domain}.
+
+\begin{example}
+	[Integral Domains and Fields]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii $\QQ$, $\RR$, $\CC$ are fields, since the notion $\frac 1c$ makes sense in them.
+		\ii $\RR[x]$ is not a field, since there is no polynomial $P(x)$ with $xP(x) = 1$.
+		However, $\RR[x]$ is an integral domain, because if $P(x) Q(x) \equiv 0$ then one
+		of $P$ or $Q$ is zero.
+		\ii $\ZZ[x]$ is also an example of an integral domain.
+		In fact, $R[x]$ is an integral domain for any integral domain $R$ (why?).
+		\ii $\ZZ/n\ZZ$ is a field exactly when $n$ is prime.
+		When $n$ is not prime, it is a ring but not an integral domain.
+	\end{enumerate}
+\end{example}
+
+\section{Ideals}
+\prototype{$5\ZZ$ is an ideal of $\ZZ$.}
+This section is going to go briskly --
+it's the obvious generalization of all the stuff we did with quotient groups.\footnote{%
+	I once found an abstract algebra textbook which teaches rings
+	before groups.  At the time I didn't understand why,
+	but now I think I get it -- modding out by things in
+	commutative rings is far more natural, and you can start talking
+	about all the various flavors of rings and fields.
+	You also have (in my opinion) more vivid first examples
+	for rings than for groups.
+	I actually sympathize a lot with this approach -- maybe I'll convert
+	Napkin to follow it one day.}
+First, we define a homomorphism and isomorphism.
+
+\begin{definition}
+	Let $R = (R, +_R, \times_R)$ and $S = (S, +_S, \times_S)$ be rings.
+	A \vocab{ring homomorphism} is a map $\phi : R \to S$
+	such that 
+	\begin{enumerate}[(i)]
+		\ii $\phi(x +_R y) = \phi(x) +_S \phi(y)$ for each $x,y \in R$
+		\ii $\phi(x \times_R y) = \phi(x) \times_S \phi(y)$ for each $x,y \in R$.
+		\ii $\phi(1_R) = 1_S$.
+	\end{enumerate}
+	If $\phi$ is a bijection then $\phi$ is an \vocab{isomorphism}
+	and we say that rings $R$ and $S$ are \vocab{isomorphic}.
+\end{definition}
+Just what you would expect.
+The only surprise is that we also demand $\phi(1_R)$ to go to $1_S$.
+This condition is not extraneous:
+consider the map $\ZZ \to \ZZ$ called ``multiply by zero''.
+
+Now, just like we were able to mod out by groups, we'd also like to define quotient rings.
+So once again,
+\begin{definition}
+	The \vocab{kernel} of a ring homomorphism $\phi : R \to S$,
+	denoted $\ker \phi$, is the set of $r \in R$ such that $\phi(r) = 0$.
+\end{definition}
+
+In group theory, we were able to characterize the ``normal'' subgroups by a few
+obviously necessary conditions (namely, $gHg\inv = H$).
+We can do the same thing for rings, and it's in fact easier because our operations are commutative.
+
+First, note two obvious facts:
+\begin{itemize}
+	\ii If $\phi(x) = \phi(y) = 0$, then $\phi(x+y) = 0$ as well.
+	So $\ker \phi$ should be closed under addition.
+	\ii If $\phi(x) = 0$, then for any $r \in R$ we have
+	$\phi(rx) = \phi(r)\phi(x) = 0$ too.
+	So for $x \in \ker \phi$ and \emph{any} $r \in R$,
+	we have $rx \in \ker\phi$.
+	(Note, importantly, that $r$ need not be in $I$! This is stronger than just saying $R$
+	is closed under multiplication.)
+\end{itemize}
+
+A subset $I \subseteq R$ is called an \vocab{ideal} if it satisfies these properties.
+\begin{figure}[ht]
+	\centering
+	\includegraphics[height=10cm]{/home/evan/Pictures/TopologicalGG/ideals.jpg}
+	\caption{Ideals absorb multiplication.}
+\end{figure}
+
+\begin{example}
+	[Prototypical Example of an Ideal]
+	Consider the set $I = 5\ZZ = \{\dots,-10,-5,0,5,10,\dots\}$ as an ideal in $\ZZ$.
+	We indeed see $I$ is the kernel of the ``take mod $5$'' homomorphism:
+	\[ \ZZ \surjto \ZZ/5\ZZ. \]
+	It's clearly closed under addition,
+	but it absorbs multiplication from \emph{all} elements of $\ZZ$:
+	given $15 \in I$, $999 \in \ZZ$, we get $15 \cdot 999 \in I$.
+\end{example}
+
+\begin{ques}
+	Let $R$ be a ring an $I$ an ideal.
+	Convince yourself that if $I$ contains any units, then $I = R$.
+	(As an example, consider any ideal in the Gaussian integers
+	which contains $i$.)
+\end{ques}
+\begin{ques}
+	Verify that in $\RR$ (or actually any nontrivial field),
+	prove that the only ideals are $(0) = \{0\}$ and $(1) = \RR$.
+\end{ques}
+
+Now we claim that these conditions are sufficient.
+More explicitly,
+\begin{theorem}
+	[Ring Analog of Normal Subgroups]
+	Let $R$ be a ring and $I$ a subring.
+	Then $I$ is the kernel of some homomorphism if and only if it's an ideal.
+\end{theorem}
+\begin{proof}
+	It's quite similar to the proof for the normal subgroup thing,
+	and you might try it yourself as an exercise.
+	
+	Obviously the conditions are necessary.
+	To see they're sufficient, we \emph{define} a ring by ``cosets''
+	\[ S = \left\{ r + I \mid r \in R \right\}. \]
+	These are the equivalence where we say $r_1 \sim r_2$ if $r_1 - r_2 \in I$
+	(think of this as taking ``mod $I$'').
+	To see that these form a ring, we just have to check that the addition
+	and multiplication we put on them is well-defined.
+	Specifically, we want to check that if $r_1 \sim s_1$ and $r_2 \sim s_2$,
+	then $r_1 + r_2 \sim s_1 + s_2$ and $r_1r_2 \sim s_1s_2$.
+	We actually already did the first part -- just think of $R$ and $S$ are abelian
+	groups, forgetting for the moment that we can multiply.
+	The multiplication is more interesting.
+	\begin{exercise}
+		[Recommended]
+		Show that if $r_1 \sim s_1$ and $r_2 \sim s_2$, then $r_1r_2 \sim s_1s_2$.
+		You will need to use the fact that $I$ absorbs multiplication
+		from \emph{any} elements of $R$, not just those in $I$.
+	\end{exercise}
+	Anyways, since this addition and multiplication is well-defined there
+	is now a surjective homomorphism $R \to S$ with kernel exactly $I$.
+\end{proof}
+
+\begin{definition}
+	Given an ideal $I$, we define as above the \vocab{quotient ring}
+	\[ R/I \defeq \left\{ r+I \mid r \in R \right\}. \]
+	It's the ring of these equivalence classes.
+\end{definition}
+\begin{example}
+	The integers modulo $5$ formed by ``modding out additively by $5$''
+	are for this reason denoted $\ZZ / 5\ZZ$.
+\end{example}
+But here's an important point:
+just as we don't actually think of $\ZZ/5\ZZ$ as consisting of
+$k + 5\ZZ$ for $k=0,\dots,4$,
+we also don't really want to think about $R/I$ as elements $r+I$.
+The better way to think about it is
+\begin{moral}
+	$R/I$ is the result when we declare that elements of $I$ are all zero;
+	that is, we ``mod out by elements of $I$''.
+\end{moral}
+For example, modding out by $5\ZZ$ means that we consider
+all elements in $\ZZ$ divisible by $5$ to be zero.
+This gives you the usual modular arithmetic!
+
+
+\section{Generating Ideals}
+Let's give you some practice with ideals.
+
+\begin{exercise}
+	Show that the only ideals of $\ZZ$ are precisely those
+	sets of the form $n\ZZ$, where $n$ is an integer.
+\end{exercise}
+
+Thus, while ideals of fields are not terribly interesting,
+ideals of $\ZZ$ look eerily like elements of $\ZZ$.
+Let's make this more precise.
+\begin{definition}
+	Let $R$ be a ring.
+	The \vocab{ideal generated} by a set of elements $x_1, \dots, x_n \in R$
+	is denoted by $I = (x_1, x_2, \dots, x_n)$
+	and given by
+	\[
+		I = \left\{ r_1x_1 + \dots + r_nx_n \mid r_i \in R \right\}.
+	\]
+	One can think of this as ``the smallest ideal containing all the $x_i$''.
+\end{definition}
+%The analogy of putting the $\{x_i\}$ in a sealed box and shaking vigorously
+%kind of works here too.
+The ``additive structure'' of ideals is emphasized if I say
+\begin{moral}
+	An ideal is an $R$-module.
+	The ideal $(x_1, \dots, x_n)$ is the submodule
+	spanned by $x_1, \dots, x_n$.
+\end{moral}
+In particular, if $I = (x)$ then $I$ consists of exactly the
+``multiples of $x$'', \emph{id est}
+numbers of the form $rx$ for $r \in R$.
+\begin{remark}
+	We can also apply this definition to infinite generating sets, as long as
+	only finitely many of the $r_i$ are not zero (since infinite sums
+	don't make sense in general).
+\end{remark}
+
+\begin{example}[Examples of Generated Ideals]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii As $(n) = n\ZZ$, all ideals in $\ZZ$ are of the form $(n)$.
+		\ii In $\ZZ[i]$, we have
+		$(5) = \left\{ 5a + 5b i \mid a,b \in \ZZ \right\}$.
+		\ii In $\ZZ[x]$, the ideal $(x)$ consists of polynomials
+		with nonzero constant terms.
+		\ii In $\ZZ[x,y]$, the ideal $(x,y)$ again consists
+		of polynomials with nonzero constant terms.
+		\ii In $\ZZ[x]$, the ideal $(x,5)$ consists of polynomials
+		whose constant term is divisible by $5$.
+	\end{enumerate}
+\end{example}
+\begin{ques}
+	Please check that the set 
+	$I = \left\{ r_1x_1 + \dots + r_nx_n \mid r_i \in R \right\}$
+	is indeed always an ideal (closed under addition,
+	and absorbs multiplication).
+\end{ques}
+
+Now suppose $I = (x_1, \dots, x_n)$.
+What does $R/I$ look like?
+According to what I said at the end of the last section,
+it's what happens when we ``mod out'' by each of the elements $x_i$.
+For example\dots
+\begin{example}
+	[Modding Out by Generated Ideals]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii Let $R = \ZZ$ and $I = (5)$. Then $R/I$ is literally
+		$\ZZ/5\ZZ$, or the ``integers modulo $5$'':
+		it is the result of declaring $5 = 0$.
+		\ii Let $R = \ZZ[x]$ and $I = (x)$.
+		Then $R/I$ means we send $x$ to zero; hence $R/I \cong \ZZ$
+		as given any polynomial $p(x) \in \RR$,
+		we simply get its constant term.
+		\ii Let $R = \ZZ[x]$ again and now let $I = (x-3)$.
+		Then $R/I$ should be thought of as the quotient when $x-3 \equiv 0$,
+		that is, $x \equiv 3$.
+		So given a polynomial $p(x)$ its image after
+		we mod out should be thought of as $p(3)$.
+		Again $R/I \cong \ZZ$, but in a different way.
+		\ii Finally, let $I = (x-3,5)$.
+		Then $R/I$ not only sends $x$ to three, but also $5$ to zero.
+		So given $p \in R$, we get $p(3) \pmod 5$.
+		Then $R/I \cong \ZZ/5\ZZ$.
+	\end{enumerate}
+\end{example}
+By the way, given an ideal $I$ of a ring $R$, it's totally legit to write
+\[ x \equiv y \pmod I \]
+to mean that $x-y \in I$.
+Everything you learned about modular arithmetic carries over.
+
+\section{Principal Ideal Domains and Noetherian Rings}
+\prototype{$\ZZ$ is a PID, $\ZZ[x]$ is not but is at least Noetherian. $\ZZ[x_1, x_2, \dots]$ is not Noetherian.}
+
+What happens if we put multiple generators in an ideal, like $(10,15) \subseteq \ZZ$?
+Well, we have by definition that $(10,15)$ is given as a set by
+\[ 
+	(10,15) \defeq \left\{ 10x + 15y \mid x,y \in \ZZ \right\}.
+\]
+If you're good at Number Theory you'll instantly recognize that this as just $5\ZZ = (5)$.
+Surprise! In $\ZZ$, the ideal $(a,b)$ is exactly $\gcd(a,b) \ZZ$.
+And that's exactly the reason you often see the GCD of two numbers denoted $(a,b)$.
+
+We call such an ideal which is generated by a single \vocab{principal ideal}.
+So, in $\ZZ$ every ideal is generated by a single element.
+But the same is not true in more general rings.
+\begin{example}
+	[A Non-Principal Ideal]
+	In $\ZZ[x]$, $I = (x,2015)$ is \emph{not} a principal ideal.
+	For if $I = (p)$ for some polynomial $p \in I$
+	then $p$ divides $x$ and $2015$.
+	This can only occur if $p = \pm 1$,
+	but then $I$ contains a unit.
+\end{example}
+A ring with the property that all its ideals are principal is called a \vocab{principal ideal domain},
+which is abbreviated PID.
+We like PID's because they effectively let us take the ``greatest common factor''
+in a similar way as the GCD in $\ZZ$.
+
+If it's too much to ask that an ideal is generated by \emph{one} element,
+perhaps we can at least ask that our ideals are generated by \emph{finitely many} elements.
+Unfortunately, in certain weird rings this is also not the case.
+\begin{example}
+	[Non-Noetherian Ring]
+	Consider the ring $R = \ZZ[x_1, x_2, x_3, \dots]$
+	which has \emph{infinitely} many free variables.
+	Then the ideal $I = (x_1, x_2, \dots) \subseteq R$
+	cannot be written with a finite generating set.
+\end{example}
+Nonetheless, most ``sane'' rings we work in \emph{do} have the property that their ideals are finitely generated.
+We now name such rings and give two equivalent definitions:
+\begin{proposition}[The Equvialent Definitions of a Noetherian Ring]
+	For a ring $R$, the following are equivalent.
+	\begin{enumerate}[(a)]
+		\ii Every ideal $I$ of $R$ is finitely generated (\emph{id est}, can be written with a finite generating set).
+		\ii There does \emph{not} exist an infinite ascending chain of ideals
+		\[ I_1 \subsetneq I_2 \subsetneq I_3 \subsetneq \dots. \]
+		The absence of such chains is often called the \vocab{ascending chain condition}.
+	\end{enumerate}
+	Such rings are called \vocab{Noetherian}.
+\end{proposition}
+\begin{example}
+	[Non-Noetherian Ring Breaks ACC]
+	In the ring $R = \ZZ[x_1, x_2, x_3, \dots]$ we have
+	an infinite ascending chain
+	\[ (x_1) \subsetneq (x_1, x_2) \subsetneq (x_1,x_2,x_3) \subsetneq \dots. \]
+\end{example}
+From the example, you can kind of see why the proposition is true:
+from an infinitely generated ideal you can extract an ascending chain
+by throwing elements in one at a time.
+I'll leave the proof to you if you want to do it.\footnote{On the other hand, every undergraduate class in this topic I've seen makes you do it as homework. Admittedly I haven't gone to that many such classes.}
+
+\begin{ques}
+	Why are fields Noetherian?
+	Why are PID's (such as $\ZZ$) Noetherian?
+\end{ques}
+This leaves the question:
+is our prototypical non-example of a PID,
+$\ZZ[x]$, a Noetherian ring?
+The answer is a glorious yes,
+according to the celebrated Hilbert Basis Theorem.
+\begin{theorem}[Hilbert Basis Theorem]
+	Given a Noetherian ring $R$,
+	the ring $R[x]$ is also Noetherian.
+	Thus by induction, $R[x_1, x_2, \dots, x_n]$ is Noetherian
+	for any integer $n$.
+	\label{thm:hilbert_basis}
+\end{theorem}
+The proof of this theorem is really olympiad flavored, so I couldn't possibly spoil it -- I've
+left it as a problem at the end of this chapter.
+
+Noetherian rings really shine in algebraic geometry,
+and it's a bit hard for me to motivate them right now,
+other than to just say ``almost all rings you'll ever care about are Noetherian''.
+Please bear with me!
+
+\section{Prime Ideals}
+We know that every integer can be factored (up to sign)
+as a product of primes; for example $15 = 3 \cdot 5$
+and $-10 = -2 \cdot 5$.
+You might remember the proof involves the so-called Bezout's Lemma,
+which essentially says that $(a,b) = (\gcd(a,b))$;
+in other words we've carefully used the fact that $\ZZ$ is a PID.
+
+It turns out that for general rings, the situation is not as nice
+as factoring elements because most rings are not PID's.
+The classic example of something going wrong is
+\[ 6 = 2 \cdot 3 = \left( 1-\sqrt5 \right)\left( 1+\sqrt5 \right) \]
+in $\ZZ[\sqrt{-5}]$.
+Nonetheless, we can sidestep the issue
+and talk about factoring \emph{ideals}:
+somehow the example $10 = 2 \cdot 5$ should be $(10) = (2) \cdot (5)$,
+which says ``every multiple of $10$ is the product of a
+multiple of $2$ and a multiple of $5$''.
+I'd have to tell you then how to multiply two ideals, which I do
+in the chapter on unique factorization.
+
+Let's at least figure out what primes are.
+In $\ZZ$, we have that $p \neq 1$ is prime if whenever $p \mid xy$,
+either $p \mid x$ or $p \mid y$.
+We port over this definition to our world of ideals.
+\begin{definition}
+	An ideal $I$ is \vocab{proper} if $I \neq R$,
+	or equivalently, $I$ contains no units.
+\end{definition}
+\begin{definition}
+	An non-proper ideal $I$ is a \vocab{prime ideal}
+	if whenever $xy \in I$, either $x \in I$ or $y \in I$.
+\end{definition}
+The condition that $I$ is proper is analogous the
+fact that we don't consider $1$ to be a prime.
+
+\begin{example}[Examples of Prime Ideals]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii The ideal $(7)$ of $\ZZ$ is prime.
+		\ii The ideal $(x)$ of $\ZZ[x]$ is prime.
+		\ii The ideal $(5) = 5\ZZ + 5i\ZZ$ of $\ZZ[i]$ is \emph{not} prime, since
+		the elements $3+i$ and $3-i$ have product $10 \in (5)$,
+		yet neither is itself in $(5)$.
+	\end{enumerate}
+\end{example}
+
+\begin{exercise}
+	What do you call a ring $R$ for which the zero ideal $(0)$ is prime?
+\end{exercise}
+
+We also have the following result.
+\begin{theorem}
+	An ideal $I$ is prime if and only if $R/I$ is an integral domain.
+\end{theorem}
+\begin{exercise}
+	(Mandatory) Convince yourself the theorem is true.
+	(A possible start is to consider $R = \ZZ$ and $I = (15)$.)
+\end{exercise}
+
+I now must regrettably inform you that unique factorization is still
+not true even with the notion of a ``prime'' ideal
+(though again I haven't told you how to multiply two ideals yet).
+But it will become true with some additional assumptions,
+namely that we have a Dedekind domain.
+
+\section{Maximal Ideals}
+Here's another flavor of an ideal.
+\begin{definition}
+	A proper ideal $I$ of a ring $R$ is \vocab{maximal} if
+	no proper ideal $J$ contains it.
+\end{definition}
+\begin{example}
+	[Examples of Maximal Ideals]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii The ideal $I = (7)$ of $\ZZ$ is maximal, because
+		if an ideal $J$ contains $7$
+		and an element $n$ not in $I$
+		it must contain $\gcd(7,n) = 1$, and hence $J = \ZZ$.
+		\ii The ideal $(x)$ is \emph{not} maximal in $\ZZ[x]$,
+		because it's contained in $(x,5)$ (among others).
+		\ii On the other hand, $(x,5)$ is indeed maximal in $\ZZ[x]$,
+		as we will see in a moment.
+	\end{enumerate}
+\end{example}
+
+\begin{exercise}
+	What do you call a ring $R$ for which the zero ideal $(0)$ is maximal?
+\end{exercise}
+
+There's an analogous theorem to the one for prime ideals.
+\begin{theorem}
+	An ideal $I$ is maximal if and only if $R/I$ is a field.
+\end{theorem}
+\begin{proof}
+	See if you can convince yourself of the following:
+	there is a one-to-one correspondence between
+	\begin{enumerate}[(i)]
+		\ii Ideals $J$ with $I \subseteq J \subseteq R$, and
+		\ii Ideals of $R/I$.
+	\end{enumerate}
+	You may want to start by taking $R = \ZZ$ and $I = (15)$.
+	In any case, the theorem is follows from from this.
+\end{proof}
+
+\begin{ques}
+	Show that maximal ideals are prime.
+	(The proof is very short.)
+\end{ques}
+
+In practice, because modding out by generated ideals is pretty convenient,
+this is a very efficient way to check whether an ideal is maximal.
+\begin{example}
+	[Modding Out In $\ZZ{[x]}$]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii This instantly implies that $(x,5)$ is a maximal ideal
+		in $\ZZ[x]$, because if we mod out by $x$ and $2$ in $\ZZ[x]$,
+		we just get $\ZZ/2\ZZ$, which is a field.
+		\ii On the other hand, modding out by just $x$ gives $\ZZ$,
+		which is an integral domain but not a field; that's why $(x)$ is
+		prime but not maximal.
+	\end{enumerate}
+\end{example}
+
+As we say, any maximal ideal is prime.
+But now note that $\ZZ$ has the special property that
+all of its prime ideals are also maximal.
+It's with this condition and a few other minor conditions
+that you get a so-called \emph{Dedekind domain}
+where prime factorization of ideals \emph{does} work.
+More on that later.
+
+\section{Problems}
+Not olympiad problems, but again the spirit is very close
+to what you might see in an olympiad.
+
+\begin{sproblem}
+	Prove that a finite integral domain is in fact a field!
+	\label{prob:finite_domain_field}
+\end{sproblem}
+\begin{problem}
+	Prove the Hilbert Basis Theorem.
+\end{problem}
+\begin{sproblem}
+	Prove that any nonzero prime ideal of $\ZZ[\sqrt 2]$ is maximal.
+	(This is starred since the main idea of the solution will get used extensively in
+	the algebraic NT chapters, even though the problem itself won't.)
+	\label{prob:dedekind_sample}
+\end{sproblem}
+
+\begin{problem}
+	[Krull's Theorem]
+	Let $R$ be a ring and $J$ an ideal.
+	Then $J$ is contained in some maximal ideal $I$.
+	\begin{hint}
+		Zorn.
+	\end{hint}
+	\begin{sol}
+		Look at the poset of \emph{proper} ideals.
+		Apply Zorn's Lemma (again using a union trick to verify the condition;
+		be sure to verify that the union is proper!).
+	\end{sol}
+\end{problem}
+
+\begin{problem}[BC] % From Brian Chen
+	\gim
+	Let $A \subseteq B \subseteq C$ be rings.
+	Suppose $C$ is a finitely generated $A$-module.
+	Does it follow that $B$ is a finitely generated $A$-module?
+	% Assume $A$ is Noetherian. Show that $B$ is finitely generated as an $A$-module.
+	% Find a counterexample where $A$ is not Noetherian.
+	\begin{hint}
+		I think the result is true if you add the assumption $A$ is Noetherian,
+		so look for trouble by picking $A$ not Noetherian.
+	\end{hint}
+	\begin{sol}
+		Nope! Pick
+		\begin{align*}
+			A &= \ZZ[x_1, x_2, \dots] \\
+			B &= \ZZ[x_1, x_2, \dots, \eps x_1, \eps x_2, \dots] \\
+			C &= \ZZ[x_1, x_2, \dots, \eps].
+		\end{align*}
+		where $\eps \neq 0$ but $\eps^2 = 0$.
+		I think the result is true if you add the assumption $A$ is Noetherian.
+	\end{sol}
+\end{problem}
+
+%\bigskip\noindent
+%Bonus problem if you've read the appendix on Zorn's Lemma: prove the following.
+

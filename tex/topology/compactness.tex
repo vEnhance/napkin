@@ -1,0 +1,355 @@
+\chapter{Compactness}
+One of the most important notions of topological spaces is that of \emph{compactness}.
+It generalizes the notion of ``closed and bounded'' in Euclidean space to any topological space.
+
+For metric spaces, there are two equivalent ways of formulating compactness:
+\begin{itemize}
+	\ii A ``natural'' definition using \emph{sequences}, called sequential compactness.
+	\ii A less natural definition using open covers.
+\end{itemize}
+As I alluded to earlier, sequences in metric spaces are super nice,
+but sequences in general topological spaces \emph{suck} (to the point where
+I didn't bother to define convergence of general sequences).
+So it's the second definition that will be used for general spaces.
+
+\section{Definition of Sequential Compactness}
+\prototype{$[0,1]$ is compact, but $(0,1)$ is not.}
+To emphasize, compactness is one of the
+\emph{best} possible properties that a metric space can have.
+\begin{definition}
+	A \vocab{subsequence} of an infinite sequence $x_1, x_2, \dots$ is exactly
+	what it sounds like: a sequence $x_{i_1}, x_{i_2}, \dots$
+	where $i_1 < i_2 < \dots$ are positive integers.
+	Note that the sequence is required to be infinite.
+\end{definition}
+Another way to think about this is ``selecting infinitely many terms''
+or ``deleting some terms'' of the sequence, depending on whether
+your glass is half empty or half full.
+
+\begin{definition}
+	A metric space $M$ is \vocab{sequentially compact} if
+	every sequence has a subsequence which converges.
+\end{definition}
+This time, let me give some non-examples before the examples.
+\begin{example}
+	[Non-Examples of Compact Metric Spaces]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii The space $\RR$ is not compact: consider the sequence $1,2,3,4,\dots$.
+		Any subsequence explodes, hence $\RR$ cannot possibly be compact.
+		\ii More generally, if a space is not \vocab{bounded} it cannot be compact.
+		By bounded I mean that there exists a constant $L$ such that $d_M(x,y) < L$ for all $x,y \in M$.
+		\ii The open interval $(0,1)$ is bounded but not compact: consider the sequence $\frac12, \frac13, \frac14, \dots$.
+		No subsequence can converge to a point in $(0,1)$ because the sequence ``converges to $0$''.
+		\ii More generally, any space which is not complete cannot be compact.
+	\end{enumerate}
+\end{example}
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[height=6cm]{/home/evan/Pictures/TopologicalGG/heart-open-not-compact.png}
+	\caption{My heart was open but too dense\dots}
+\end{figure}
+
+Now for the examples!
+\begin{ques}
+	Show that a finite set is compact.
+	(Pigeonhole Principle.)
+\end{ques}
+\begin{example}[Examples of Compact Spaces]
+	Here are some more examples of compact spaces.
+	I'll prove they're compact in just a moment;
+	for now just convince yourself they are.
+	\begin{enumerate}[(a)]
+		\ii $[0,1]$ is compact. Convince yourself of this!
+		Imagine having a large number of dots in the unit interval\dots
+		\ii The surface of a sphere, $S^2 = \left\{ (x,y,z) \mid x^2+y^2+z^2=1 \right\}$ is compact.
+		\ii The unit ball $B^2 = \left\{ (x,y) \mid x^2+y^2=1 \right\}$ is compact.
+		\ii The \vocab{Hawaiian earring} living in $\RR^2$ is compact:
+		it consists of mutually tangent circles of radius $\frac 1n$ for each $n$,
+		as in \Cref{fig:hawaiian}.
+	\end{enumerate}
+\end{example}
+\begin{figure}[ht]
+	\centering
+	\begin{asy}
+		size(4cm);
+		for (int n=1; n<=30; ++n) draw(CP(dir(0)/n, origin));
+	\end{asy}
+	\caption{Hawaiian Earring.}
+	\label{fig:hawaiian}
+\end{figure}
+
+To aid in generating more examples, we make the following remark.
+\begin{proposition}[Closed Subsets of Compacts]
+	Closed subsets of sequentially compact sets are compact.
+\end{proposition}
+\begin{ques}
+	Prove this (it's trivial).
+\end{ques}
+
+We need to do a bit more work for these examples, which we do in the next section.
+
+\section{Criteria for Compactness}
+%Quick note: right now I've only defined compactness for metric spaces.
+%In the next section I'll define compactness for general spaces, but
+%all the results in this section will still remain true.
+%However the proofs become much harder (in particular, \Cref{thm:tychonoff}
+%becomes notoriously difficult).
+%So you should assume all spaces in this section are metric spaces.
+
+\begin{theorem}
+	[Tychonoff's Theorem] 
+	\label{thm:tychonoff}
+	If $X$ and $Y$ are compact spaces, then so is $X \times Y$.
+\end{theorem}
+\begin{proof}
+	\Cref{prob:tychonoff}.
+\end{proof}
+
+We also have the following result.
+\begin{proposition}
+	$[a,b]$ is compact for any real numbers $a < b$.
+\end{proposition}
+\begin{proof}
+	Killed by \Cref{thm:heine_borel}.
+\end{proof}
+
+Now we can prove the main theorem about Euclidean space:
+in $\RR^n$, compactness is equivalent to being ``closed and bounded''.
+\begin{theorem}[Bolzano-Weierstra\ss]
+	A subset of $\RR^n$ is compact if and only if it closed and bounded.
+	\label{thm:fakeBW}
+\end{theorem}
+\begin{ques}
+	Why does this imply the spaces in our examples are compact?
+\end{ques}
+\begin{proof}
+	Well, look at a closed and bounded $S \subseteq \RR^n$.
+	Since it's bounded, it lives inside some box $[a_1, b_1] \times [a_2, b_2] \times \dots \times [a_n, b_n]$.
+	By Tychonoff's Theorem, since each $[a_i, b_i]$ is compact the entire box is.
+	Since $S$ is a closed subset of this compact box, we're done.
+\end{proof}
+
+One really has to work in $\RR^n$ for this to be true!
+In other spaces, this criteria can easily fail.
+\begin{example}[Closed and Bounded but not Compact]
+	Let $S = \{s_1, s_2, \dots\}$ be any infinite set equipped with the discrete metric.
+	Then $S$ is closed (since all convergent sequences are constant sequences)
+	and $S$ is bounded (all points are a distance $1$ from each other)
+	but it's certainly not compact since the sequence $s_1, s_2, \dots$ doesn't converge.
+\end{example}
+
+The Heine-Borel Theorem, which is \Cref{thm:heine_borel}, tells you exactly
+which sets are compact in metric spaces in a geometric way.
+
+\section{Compactness Using Open Covers}
+\prototype{$[0,1]$ is compact.}
+There's a second related notion of compactness which I'll now define.
+The following definitions might appear very unmotivated, but bear with me.
+\begin{definition}
+	An open cover of a metric space $M$ is a collection of open sets $\{U_\alpha\}$
+	(possibly infinite or uncountable) which \emph{cover} it:
+	every point in $M$ lies in at least one of the $U_\alpha$, 
+	so that \[ M = \bigcup U_\alpha. \]
+	Such a cover is called an \vocab{open cover}.
+	A \vocab{subcover} is exactly what it sounds like:
+	it takes only some of the $U_\alpha$,
+	while ensuring that $M$ remains covered.
+\end{definition}
+\begin{definition}
+	A metric space $M$ is \vocab{compact} if every open cover has a finite subcover.
+\end{definition}
+
+What does this mean? Here's an example:
+\begin{example}[Example of a Finite Subcover]
+	Suppose we cover the unit square $M = [0,1]^2$ by putting an open disk of diameter $1$ at every point
+	(trimming any overflow).
+	This is clearly an open cover because, well, every point lies in \emph{many} of the open sets,
+	and in particular is the center of one.
+
+	But this is way overkill -- we only need about four of these circles to cover the whole square.
+	That's what is meant by a ``finite subcover''.
+	\begin{center}
+		\begin{asy}
+			size(4cm);
+			draw(shift( (-0.5,-0.5) )*unitsquare, black+1);
+			real d = 0.4;
+			real r = 0.5;
+			draw(CR(dir( 45)*d, r), dotted);
+			draw(CR(dir(135)*d, r), dotted);
+			draw(CR(dir(225)*d, r), dotted);
+			draw(CR(dir(315)*d, r), dotted);
+		\end{asy}
+	\end{center}
+\end{example}
+
+Why do we care?
+Because of this:
+\begin{theorem}
+	A metric space $M$ is sequentially compact if and only if it is compact.
+	\label{thm:compactness_metric}
+\end{theorem}
+\begin{example}[An Example of Non-Compactness]
+	The space $X = [0,1)$ is not compact in either sense.
+	We can already see it is not sequentially compact, because it is not even complete (look at $x_n = 1 - \frac 1n$).
+	To see it is not compact under the covering definition, consider the sets
+	\[ U_m = \left[0, 1 - \frac{1}{m+1} \right) \]
+	for $m = 1, 2, \dots$. Then $X = \bigcup U_i$; hence the $U_i$ are indeed a cover.
+	But no finite collection of the $U_i$'s will cover $X$.
+\end{example}
+\begin{ques}
+	Convince yourself that $[0,1]$ \emph{is} compact;
+	this is a little less intuitive than it being sequentially compact.
+\end{ques}
+\begin{abuse}
+	Thus, we'll never call a metric space ``sequentially compact'' again -- we'll just say ``compact''.
+	(Indeed, I kind of already did this in the previous few sections.)
+\end{abuse}
+
+The proof of this is pretty boring in my opinion, and I won't include it (you can find plenty by searching).
+About the only part that I'll bother mentioning is the Lebesgue Number Lemma,
+which is used as a step in the proof, but I think is interesting in its own right.
+\begin{lemma}
+	[Lebesgue Number Lemma]
+	In a compact metric space $M$, suppose there is an open cover $\{U_a\}$.
+	Then there exists a real number $\delta > 0$, called a \vocab{Lebesgue number},
+	such that the $\delta$-neighborhood of any point $p$ lies entirely in some $U_a$.
+\end{lemma}
+\missingfigure{Lebesgue Numbers}
+\begin{ques}
+	Convince yourself this lemma is true for $[0,1]$, where the open cover is finite
+	(this is the only case we need to consider, by \Cref{thm:compactness_metric}).
+\end{ques}
+
+Open covers also have the nice property that, again, they don't refer to metrics or sequences.
+So rather than port the sequential definition, we port this definition over for a general space:
+\begin{definition}
+	A topological space $X$ is \vocab{compact} if every open cover has finite subcover.
+\end{definition}
+
+\section{Applications of Compactness}
+Compactness lets us reduce \emph{infinite} open covers to finite ones.
+Actually, it lets us do this even if the open covers are \emph{blithely stupid}.
+Very often one takes an open cover consisting of a neighborhood of $x \in X$
+for every single point $x$ in the space; this is a huge number of open sets,
+and yet compactness lets us reduce to a finite set.
+
+To give an example of a typical usage:
+\begin{proposition}
+	Let $S$ be a compact set in a metric space $M$.
+	Then it's possible to cover $S$ by $\eps$-neighborhoods for every $\eps > 0$.
+\end{proposition}
+(To picture this: in $\RR^2$, any compact set can be covered by unit disks.)
+\missingfigure{cover a triangle}
+\begin{proof}
+	For every point $p \in M$, take an $\eps$-neighborhood of $p$, say $U_p$.
+	These cover $M$ for the horrendously stupid reason that each point is
+	at the very least covered by the neighborhood $U_p$.
+	Compactness then lets us take a finite subcover.
+\end{proof}
+
+Next, an important result about maps between compact spaces.
+\begin{theorem}[Images of Compacts are Compact]
+	Let $f : X \to Y$ be a continuous function, where $X$ is compact.
+	Then the image \[ f``(X) \subseteq Y \] is compact.
+\end{theorem}
+\begin{ques}
+	Use sequences to solve this problem in the case $X$, $Y$ are metric spaces.
+\end{ques}
+\begin{proof}
+	Take any open cover $\{V_\alpha\}$ in $Y$ of $f``(X)$.
+	By continuity of $f$, it pulls back to an open cover $\{U_\alpha\}$ of $X$.
+	Thus some finite subcover of this covers $X$.
+	The corresponding $V$'s cover $f``(X)$.
+\end{proof}
+
+A nice application of this is the so-called Extreme Value Theorem.
+\begin{corollary}[Extreme Value Theorem]
+	Consider a continuous function $f: [0,1] \to \RR$.
+	Then the image of $f$ is of the form $[a,b]$ for some real numbers $a \le b$.
+	In particular, $f$ obtains a maximum value in the following sense:
+	there exists an $x$ such that for $y \in [0,1]$,
+	$f(x) > y$.
+\end{corollary}
+The typical counterexample given for $(0,1) \to \RR$ is the function $\frac 1x$.
+
+\begin{proof}[Sketch of Proof]
+	The point is that the image $S$ of $[0,1]$ is compact in $\RR$, and hence closed and bounded.
+	You can convince yourself that the closed sets are just unions of closed intervals.
+	Because the image is also ``connected'', there should only be one closed interval in $S$.
+	And the fact that $S$ is bounded implies that it's really of the form $[a,b]$ for some $a \le b$.
+	(To give a full proof, you would use the so-called \emph{least upper bound} property,
+	but that's a little involved for a bedtime story; also, I think $\RR$ is boring.)
+\end{proof}
+
+\section\problemhead
+The later problems are pretty hard;
+some have the flavor of IMO 3/6-style constructions.
+It's important to draw lots of pictures so one can tell what's happening.
+% I'd be happy to learn of any easier ones.
+Of these \Cref{thm:heine_borel} is definitely my favorite.
+
+\begin{sproblem}[Compact Implies Bounded, Remember This!]
+	Let $f : X \to \RR$ be a function, where $X$ is a compact topological space.
+	Show that $f$ is bounded.
+	\begin{hint}
+		Immediate by the fact that the image of $f$ is compact,
+		and hence bounded.
+		Remember this!
+	\end{hint}
+\end{sproblem}
+
+\begin{problem}
+	[Tychonoff's Theorem]
+	Let $X$ and $Y$ be compact metric spaces. Show that $X \times Y$ is compact.
+	(This is also true for general topological spaces, but the proof is surprisingly hard.)
+	\label{prob:tychonoff}
+	\begin{sol}
+	Suppose $p_i = (x_i, y_i)$ is a sequence in $X \times Y$ ($i=1,2,\dots$).
+	Looking on the $X$ side, some subsequence converges:
+	for the sake of illustration say it's $x_1, x_4, x_9, x_{16}, \dots \to x$.
+	Then look at the corresponding sequence $y_1, y_4, y_9, y_{16}, \dots$.
+	Using compactness of $Y$, it has a convergent subsequence, say
+	$y_1, y_{16}, y_{81}, y_{256}, \dots \to y$.
+	Then $p_1, p_{16}, p_{81}, \dots$ will converge to $(x,y)$.
+
+	It's interesting to watch students with little proof experience try this problem.
+	They'll invariably conclude that $(x_n)$ has a convergent subsequence
+	and that $(y_n)$ does too.
+	But these sequences could be totally unrelated.
+	For this proof to work, you do need to apply compactness of $X$ first,
+	and then compactness of $Y$ on the resulting \emph{filtered} sequence like we did here.
+	\end{sol}
+\end{problem}
+
+\begin{problem}
+	Let $M$ be a \emph{compact} metric space, and let $f : M \to N$
+	be a continuous map of metric spaces.
+	Show that $f$ is \vocab{uniformly continuous}\footnote{%
+		The name means that for an $\eps > 0$,
+		we have to pick a $\delta$ that works for \emph{every point} of $M$.
+		For example, the function $f : \RR \to \RR$ by $x \mapsto x^2$
+		is \emph{not} uniformly continuous, since for really large $x$,
+		tiny $\delta$ changes to $x$ lead to fairly large changes in $x^2$.
+	}, meaning that for every $\eps > 0$, there exists a $\delta > 0$ such that 
+	whenever $d_M(x,y) < \delta$ we also have $d_N(fx, fy) < \eps$.
+\end{problem}
+
+\begin{dproblem}
+	[Heine-Borel Theorem]
+	\gim
+	Prove that a metric space $M$ is compact if and only if it is complete and \vocab{totally bounded}:
+	for every $r > 0$ we can cover $M$ using finitely many $r$-neighborhoods.
+	\label{thm:heine_borel}
+\end{dproblem}
+
+\begin{problem}
+	[Almost Arzel\`a-Ascoli Theorem]
+	\gim
+	Let $f_1, f_2, \dots : [0,1] \to [-100,100]$ be an \vocab{equicontinuous} sequence of functions,
+	meaning for every $\eps > 0$, there's a $\delta > 0$ such that
+	whenever $\left\lvert x-y \right\rvert < \delta$, we have $\left\lvert f_n(x)-f_n(y) \right\rvert < \eps$ (for all $n$).
+	Show that we can extract a subsequence $f_{i_1}, f_{i_2}, \dots$ of these functions such that
+	$f_{i_1}(x)$, $f_{i_2}(x)$, \dots\ converges for every $x$.
+\end{problem}

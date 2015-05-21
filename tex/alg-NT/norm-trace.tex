@@ -1,0 +1,656 @@
+\chapter{Algebraic Integers}
+Here's a first taste of algebraic number theory.
+
+This is really close to the border between olympiads and higher math.
+You've always known that $a+\sqrt2 b$ had a ``norm'' $a^2-2b^2$,
+and that somehow this norm was multiplicative.
+You've also always known that roots come in conjugate pairs.
+You might have heard of minimal polynomials but not know much about them.
+
+This chapter will make all these vague notions precise.
+It's drawn largely from the first chapter of \cite{ref:oggier_NT}.
+
+\section{Motivation from High School Algebra}
+This is adapted from by blog, \emph{Power Overwhelming}\footnote{URL: \url{https://usamo.wordpress.com/2014/10/19/why-do-roots-come-in-conjugate-pairs/}}.
+
+In high school precalculus, you'll often be asked to find the roots of some polynomial with integer coefficients.
+
+For instance,
+\[ x^3 - x^2 - x - 15 = (x-3)(x^2+2x+5) \]
+has roots $3$, $1+2i$, $-1-2i$.
+Or as another example, 
+\[ x^3 - 3x^2 - 2x + 2 = (x+1)(x^2-4x+2) \]
+has roots $-1$, $2 + \sqrt 2$, $2 - \sqrt 2$.
+You'll notice that the ``weird'' roots, like $1 \pm 2i$ and $2 \pm \sqrt 2$, are coming up in pairs. In fact, I think precalculus explicitly tells you that the imaginary roots come in conjugate pairs. More generally, it seems like all the roots of the form $a + b \sqrt c$ come in ``conjugate pairs''. And you can see why.
+
+But a polynomial like
+\[ x^3 - 8x + 4 \]
+has no rational roots.
+(The roots of this are approximately $-3.0514$, $0.51730$, $2.5341$.)
+Or even simpler,
+\[ x^3 - 2 \]
+has only one real root, $\sqrt[3]{2}$.
+These roots, even though they are irrational, have no ``conjugate'' pairs.
+Or do they?
+
+Let's try and figure out exactly what's happening.
+Let $\alpha$ be any complex number.
+We define the \vocab{minimal polynomial} of $\alpha$ over $\QQ$ to be the polynomial
+\begin{itemize}
+	\item $P(x)$ has rational coefficients, and leading coefficient $1$,
+	\item $P(\alpha) = 0$.
+	\item The degree of $P$ is as small as possible.
+		This is called the \vocab{degree} of $\alpha$.
+\end{itemize}
+\begin{example}[Examples of Minimal Polynomials]
+	\listhack
+	\begin{enumerate}[(a)]
+	\ii $\sqrt 2$ has minimal polynomial $x^2-2$.
+	\ii The imaginary unit $i = \sqrt{-1}$ has minimal polynomial $x^2+1$.
+	\ii A primitive $p$th root of unity, $\zeta_p = e^{\frac{2\pi i}{p}}$, has minimal polynomial $x^{p-1} + x^{p-2} + \dots + 1$.
+	\end{enumerate}
+\end{example}
+Note that $100x^2 - 200$ is also a polynomial of the same degree which has $\sqrt 2$ as a root; that's why we want to require the polynomial to be monic. That's also why we choose to work in the rational numbers; that way, we can divide by leading coefficients without worrying if we get non-integers.
+
+Why do we care? The point is as follows: suppose we have another polynomial $A(x)$ such that $A(\alpha) = 0$.
+Then we claim that $P(x)$ actually divides $A(x)$!
+That means that all the other roots of $P$ will also be roots of $A$.
+
+The proof is by contradiction: if not, by polynomial long division we can find a quotient and remainder $Q(x)$, $R(x)$ such that
+\[ A(x) = Q(x) P(x) + R(x) \]
+and $R(x) \not\equiv 0$.
+Notice that by plugging in $x = \alpha$, we find that $R(\alpha) = 0$.
+But $\deg R < \deg P$, and $P(x)$ was supposed to be the minimal polynomial.
+That's impossible!
+
+Let's look at a more concrete example.
+Consider $A(x) = x^3-3x^2-2x+2$ from the beginning. 
+The minimal polynomial of $2 + \sqrt 2$ is $P(x) = x^2 - 4x + 2$ (why?).
+Now we know that if $2 + \sqrt 2$ is a root, then $A(x)$ is divisible by $P(x)$. And that's how we know that if $2 + \sqrt 2$ is a root of $A$, so must $2 - \sqrt 2$.
+
+As another example, the minimal polynomial of $\sqrt[3]{2}$ is $x^3-2$. So $\sqrt[3]{2}$ actually has \textbf{two} conjugates, namely, $\alpha = \sqrt[3]{2} \left( \cos 120^\circ + i \sin 120^\circ \right)$ and $\beta = \sqrt[3]{2} \left( \cos 240^\circ + i \sin 240^\circ \right)$. Thus any polynomial which vanishes at $\sqrt[3]{2}$ also has $\alpha$ and $\beta$ as roots!
+
+\begin{ques}
+	Let $\alpha$ be a root of the polynomial $P(x)$.
+	Show that $P(x)$ is the minimal polynomial if and only if it is irreducible.
+	(This is tautological: the point is just to realize that ``minimal polynomials'' and ``irreducible polynomials'' are the same beasts.)
+\end{ques}
+
+\section{Algebraic Numbers and Algebraic Integers}
+\prototype{$\sqrt2$ is an algebraic integer (root of $x^2-2$),
+$\half$ is an algebraic number but not an algebraic integer (root of $x-\half$).}
+Let's now work in much vaster generality.
+First, let's give names to the new numbers we've discussed above.
+\begin{definition}
+	An \vocab{algebraic number} is any $\alpha \in \CC$
+	which is the root of \emph{some} polynomial with coefficients in $\QQ$.
+	The set of algebraic numbers is denoted $\ol\QQ$.
+\end{definition}
+\begin{remark}
+	One can equally well say algebraic numbers are those of which 
+	are roots of some polynomial with coefficients in $\ZZ$ (rather than $\QQ$),
+	since any polynomial in $\QQ[x]$ can be scaled to one in $\ZZ[x]$.
+\end{remark}
+\begin{definition}
+	Consider an algebraic number $\alpha$ and its minimal polynomial $P$ (which is monic and has rational coefficients).
+	If so, consider the minimal polynomial of $\alpha$, which has coefficients in $\QQ$ but is monic.
+	If it turns out the coefficients of $P$ are integers, then we say $\alpha$ is an \vocab{algebraic integer}.
+
+	The set of algebraic integers is denoted $\ol\ZZ$.
+\end{definition}
+\begin{remark}
+	One can show, using \emph{Gauss's Lemma}, that if $\alpha$ is the root
+	of \emph{any} monic polynomial with integer coefficients, then $\alpha$ is an algebraic integer.
+	So in practice, if I want to prove that $\sqrt 2 + \sqrt 3$ is an algebraic integer,
+	then I only have to say ``the polynomial $(x^2-5)^2-6$ works'' without checking that it's minimal.
+\end{remark}
+Sometimes for clarity, we refer to elements of $\ZZ$
+as \vocab{rational integers}.
+\begin{example}[Examples of Algebraic Integers]
+	The numbers
+	\[ 4, \; i = \sqrt{-1}, \; \sqrt[3]{2}, \; \sqrt2+\sqrt3 \]
+	are all algebraic integers, since they are the roots of the monic polynomials
+	$x-4$, $x^2+1$, $x^3-2$ and $(x^2-5)^2-6$.
+
+	The number $\half$ has minimal polynomial $x - \half$,
+	so it's an algebraic number but not an algebraic integer.
+	(In fact, the Rational Root Theorem also directly implies
+	that any monic integer polynomial does not have $\half$ as a root!)
+\end{example}
+\begin{proposition}[Rational Algebrac Integers are Rational Integers]
+	An algebraic integer is rational if and only if it is a rational integer.
+	In symbols, \[ \ol\ZZ \cap \QQ = \ZZ. \]
+\end{proposition}
+\begin{ques}
+	(Important) Prove this.
+\end{ques}
+
+\subsection{Number Fields}
+\prototype{$\QQ(\sqrt2)$ is a typical number field.}
+Given any algebraic number $\alpha$, we're able to consider fields of the form $\QQ(\alpha)$. Let us write down the more full version.
+\begin{definition}
+	A \vocab{number field} $K$ is a field containing $\QQ$ as a subfield
+	which is a \emph{finite-dimensional} $\QQ$-vector space.
+	The \vocab{degree} of $K$ is its dimension.
+\end{definition}
+\begin{example}[Prototypical Example]
+	Consider the field
+	\[ K = \QQ(\sqrt2) = \left\{ a+b\sqrt2 \mid a,b \in \QQ \right\}. \]
+	This is a field extension of $\QQ$,
+	and has degree $2$ (the basis being $1$ and $\sqrt2$).
+\end{example}
+\begin{example}[Adjoining An Algebraic Number]
+	Let $\alpha$ be the root of some irreducible polynomial $P(x)$ in $\QQ$.
+	The field $\QQ(\alpha)$ is a field extension as well, and the basis
+	is $1, \alpha, \alpha^2, \dots, \alpha^{m-1}$,
+	where $m$ is the degree of $\alpha$.
+	In particular, the degree of $\QQ(\alpha)$ is just the degree of $\alpha$.
+\end{example}
+\begin{example}[Non-Examples of Number Fields]
+	$\RR$ and $\CC$ are not number fields since there is no \emph{finite}
+	$\QQ$-basis of them.
+\end{example}
+
+\section{Norms and Traces}
+\prototype{$a+b\sqrt2$ as an element of $\QQ(\sqrt2)$ has norm $a^2-2b^2$ and trace $2a$.}
+Remember when you did olympiads and we had like $a^2+b^2$ was the ``norm'' of $a+bi$?
+Cool, let me tell you what's actually happening.
+
+First, let me make precise the notion of a conjugate.
+\begin{definition}
+	Let $\alpha$ be an algebraic number, and let $P(x)$ be its minimal polynomial,
+	of degree $m$.
+	Then the $m$ roots of $P$ are the (Galois) \vocab{conjugates} of $\alpha$.
+\end{definition}
+It's worth showing at the moment that there are no repeated conjugates.
+\begin{lemma}[Irreducible Polynomials Have Distinct Roots]
+	An irreducible polynomial cannot have a complex double root.
+	\label{lem:irred_complex}
+\end{lemma}
+\begin{proof}
+	Let $f(x) \in \QQ[x]$ be the irreducible polynomial and assume it has a double root $\alpha$.
+	\textbf{Take the derivative $f'(x)$.}
+	This derivative has three interesting properties.
+	\begin{itemize}
+		\ii The degree of $f'$ is one less than the degree of $f$.
+		\ii The polynomials $f$ and $f'$ are not relatively prime
+		because they share a factor $x-\alpha$.
+		\ii The coefficients of $f'$ are also in $\QQ$.
+	\end{itemize}
+	Consider $P = \gcd(f, f')$. We must have $P \in \QQ[x]$ by Euclidean algorithm.
+	But the first two facts about $f'$ ensure that $P$ is nonconstant
+	and $\deg P < \deg f$. Yet $P$ divides $f$, contradiction.
+\end{proof}
+Hence $\alpha$ has exactly as many conjugates as the degree of $\alpha$.
+
+Now, we would \emph{like} to define the \emph{norm} of an element $\Norm(\alpha)$
+as the product of its conjugates.
+For example, we want $2+i$ to have norm $(2+i)(2-i) = 5$,
+and in general for $a+bi$ to have norm $a^2+b^2$.
+It would be \emph{really cool} if the norm was multiplicative;
+we already know this is true for complex numbers!
+
+Unfortunately, this doesn't quite work: consider
+\[ \Norm(2+i) = 5 \text{ and } \Norm(2-i) = 5. \]
+But $(2+i)(2-i) = 5$, which doesn't have norm $25$ like we want,
+since $5$ is degree $1$ and has no conjugates at all.
+The reason this ``bad'' thing is happening is that we're
+trying to define the norm of an \emph{element},
+when we really ought to be defining the norm of an element
+\emph{with respect to a particular $K$}.
+
+What I'm driving at is that the norm should have different meanings depending on which field you're in.
+If we think of $5$ as an element of $\QQ$, then its norm is $5$.
+But thought of as an element of $\QQ(i)$, its norm really ought to be $25$.
+Let's make this happen: for $K$ a number field, we will now define $\Norm_{K/\QQ}(\alpha)$
+to be the norm of $\alpha$ \emph{with respect to $K$} as follows.
+\begin{definition}
+	Let $\alpha \in K$ have degree $n$, so $\QQ(\alpha) \subseteq K$, and set $k = (\deg K) / n$.
+	The \vocab{norm} of $\alpha$ is defined as
+	\[ \Norm_{K/\QQ}(\alpha) \defeq \left( \prod \text{Galois conj of $\alpha$} \right)^k. \]
+	The \vocab{trace} is defined as
+	\[ \Tr_{K/\QQ}(\alpha) \defeq k \cdot \left( \prod \text{Galois conj of $\alpha$} \right). \]
+\end{definition}
+The exponent of $k$ is a ``correction factor'' that makes the norm of $5$ into $5^2=25$
+when we view $5$ as an element of $\QQ(i)$ rather than an element of $\QQ$.
+For a ``generic'' element of $K$, we expect $k = 1$.
+\begin{exercise}
+	Use what you know about nested vector spaces to convince
+	yourself that $k$ is actually an integer.
+\end{exercise}
+\begin{example}[Norm of $a+b\sqrt2$]
+	Let $\alpha = a+b\sqrt2 \in \QQ(\sqrt2)$.
+	If $b \neq 0$, then $\alpha$ and $K$ have the degree $2$.
+	Thus the only conjugate of $\alpha$ is $a-b\sqrt2$, which gives
+	the norm \[ (a+b\sqrt2)(a-b\sqrt2) = a^2-2b^2, \]
+	The trace is $(a-b\sqrt2) + (a+b\sqrt2) = 2a$.
+
+	Nicely, the formula $a^2-2b^2$ and $2a$ also works when $b=0$.
+\end{example}
+Of importance is the following.
+\begin{proposition}[Norms and Traces are Rational Integers]
+	If $\alpha$ is an algebraic integer, its norm and trace are traces and integers.
+\end{proposition}
+\begin{ques}
+	Prove it. (Vieta.)
+\end{ques}
+
+That's great, but it leaves a question unanswered:
+why is it the norm multiplicatve?
+To do this, I have to give a new definition of norm and trace.
+
+\begin{theorem}[Morally Correct Definition of Norm and Trace]
+	Let $K$ be a number field of degree $n$, and let $\alpha \in K$.
+	Let $\mu_\alpha : K \to K$ denote the map \[ x \mapsto \alpha x \]
+	viewed as a linear map of $\QQ$-vector spaces.
+	Then,
+	\begin{itemize}
+		\ii the norm of $\alpha$ equals the determinant $\det \mu_\alpha$, and
+		\ii the trace of $\alpha$ equals the trace $\Tr \mu_\alpha$.
+	\end{itemize} 
+\end{theorem}
+Since the trace an determinant don't depend on the choice of basis,
+you can pick whatever basis you want
+and use whatever definition you got in high school.
+Fantastic, right?
+
+\begin{example}[Explicit Computation of Matrices for $a+b\sqrt2$]
+	Let $K = \QQ(\sqrt2)$, and let $1$, $\sqrt 2$ be the basis of $K$.
+	Let \[ \alpha = a + b \sqrt 2 \] (possibly even $b = 0$), and notice that
+	\[ \left( a+b\sqrt2 \right)\left( x+y\sqrt2 \right)
+		= (ax+2yb) + (bx+ay)\sqrt2. \]
+	We can rewrite this in matrix form as
+	\[ 
+		\left(
+		\begin{array}{cc}
+			a & 2b \\
+			b & a
+		\end{array}
+		\right)
+		\left(
+		\begin{array}{c}
+			x \\
+			y
+		\end{array}
+		\right)
+		=
+		\left(
+		\begin{array}{c}
+			ax+2yb \\
+			bx+ay
+		\end{array}
+		\right).
+	\]
+	Consequently, we can interpret $\mu_\alpha$ as the matrix
+	\[ \mu_\alpha = \left(
+		\begin{array}{cc}
+			a & 2b \\
+			b & a
+		\end{array}
+		\right). \]
+	Of course, the matrix will change if we pick a different basis,
+	but the determinant and trace do not: they are always given by
+	\[ \det \mu_\alpha = a^2-2b^2 \text{ and }
+		\Tr \mu_\alpha = 2a. \]
+\end{example}
+This interpretation explains why the same formula should work for $a+b\sqrt 2$
+even in the case $b = 0$.
+
+\begin{proof}
+I'll prove the result for just the norm; the trace falls out similarly.
+Set
+\[ n = \deg \alpha \quad kn = \deg K. \]
+The proof is split into two parts, depending on whether or not $k=1$.
+\begin{subproof}[Proof if $k=1$]
+	Set $n = \deg \alpha = \deg K$.
+	Thus the norm actually \emph{is} the product of the Galois conjugates.
+	Also, \[ \{1, \alpha, \dots, \alpha^{n-1}\} \]
+	is linearly independent in $K$, and hence a basis (as $\dim K = n$).
+	Let's use this as the basis for $\mu_\alpha$.
+
+	Let \[ x^n+c_{n-1}x^{n-1} + \dots + c_0  \]be the minimal polynomial of $\alpha$.
+	Thus $\mu_\alpha(1) = \alpha$, $\mu_\alpha(\alpha) = \alpha^2$, and so on,
+	but $\mu_\alpha(\alpha^{n-1}) = -c_{n-1}\alpha^{n-1} - \dots - c_0$.
+	Therefore, $\mu_\alpha$ is given by the matrix
+	\[
+		M = 
+		\left(
+		\begin{array}{cccccc}
+			0 & 0 & 0 & \dots & 0 & -c_0 \\
+			1 & 0 & 0 & \dots & 0 & -c_1 \\
+			0 & 1 & 0 & \dots & 0 & -c_2 \\
+			\vdots & \vdots & \vdots & \ddots & 0 & -c_{n-2} \\
+			0 & 0 & 0 & \dots & 1 & -c_{n-1}
+		\end{array}
+		\right).
+	\]
+	Thus \[ \det M = (-1)^n c_0 \] and we're down by Vieta's formulas.
+\end{subproof}
+\begin{subproof}[Proof if $k > 1$]
+	We have nested vector spaces
+	\[ \QQ \subseteq \QQ(\alpha) \subseteq K. \]
+	Let $e_1$, \dots, $e_k$ be an $\QQ(\alpha)$-basis for $K$
+	(meaning: interpret $K$ as a vector space over $\QQ(\alpha)$, and pick that basis).
+	Since $\{1, \alpha, \dots, \alpha^{n-1}\}$ is a $\QQ$ basis for $\QQ(\alpha)$,
+	the elements
+	\[
+		\begin{array}{cccc}
+		e_1, & e_1\alpha, & \dots, & e_1\alpha^{n-1} \\
+		e_2, & e_2\alpha, & \dots, & e_2\alpha^{n-1} \\
+		\vdots & \vdots & \ddots & \vdots \\
+		e_k, & e_k\alpha, & \dots, & e_k\alpha^{n-1}
+		\end{array}
+	\]
+	constitute a $\QQ$-basis of $K$.
+	Using \emph{this} basis, the map $\mu_\alpha$ looks like
+	\[
+		\left(
+		\underbrace{
+		\begin{array}{cccc}
+			M & & & \\
+			& M & & \\
+			& & \ddots & \\
+			& & & M
+		\end{array}
+		}_{\text{$k$ times}}
+		\right)
+	\]
+	where $M$ is the same matrix as above:
+	we just end up with one copy our old matrix for each $e_k$.
+	Thus $\det \mu_\alpha = (\det M)^k$, as needed. \qedhere
+\end{subproof}
+\begin{ques}
+	Verify the result for traces as well. \qedhere
+\end{ques}
+\end{proof}
+
+From this it follows immediately that 
+\[ \Norm_{K/\QQ}(\alpha\beta) = \Norm_{K/\QQ}(\alpha)\Norm_{K/\QQ}(\beta) \]
+because by definition we have 
+\[ \mu_{\alpha\beta} = \mu_\alpha \circ \mu_\beta, \]
+and that the determinant is multiplicative.
+In the same way, the trace is additive.
+
+\section{The Ring of Integers}
+\prototype{If $K = \QQ(\sqrt 2)$, then $\OO_K = \ZZ[\sqrt 2]$.
+	But if $K = \QQ(\sqrt 5)$, then $\OO_K = \ZZ[\frac{1+\sqrt5}{2}]$.}
+
+$\ZZ$ makes for better number theory than $\QQ$.
+In the same way, focusing on the \emph{algebraic integers} of $K$
+gives us some really nice structure, and we'll do that here.
+
+\begin{definition}
+	Given a number field $K$, we define $\OO_K \defeq K \cap \ol\ZZ$ to be the \vocab{ring of integers} of $K$;
+	in other words $\OO_K$ consists of the algebraic integers of $K$.
+\end{definition}
+
+We do the classical example of a quadratic field now.
+Before proceeding, I need to write a silly number theory fact.
+\begin{exercise}
+	Let $a$ and $b$ be rational numbers, and $d$ a squarefree positive integer.
+	\begin{itemize}
+		\ii If $d \equiv 2, 3 \pmod 4$, prove that
+		prove that $2a, a^2-db^2 \in \ZZ$ if and only if $a,b \in \ZZ$.
+		\ii For $d \equiv 1 \pmod 4$, prove that
+		prove that $2a, a^2-db^2 \in \ZZ$ if and only if $a,b \in \ZZ$
+		OR if $a -\half, b-\half \in \ZZ$.
+	\end{itemize}
+	This is annoying but not hard; you'll need to take mod $4$.
+\end{exercise}
+
+\begin{example}
+	[Ring of Integers of $K = \QQ(\sqrt3)$]
+	Let $K$ be as above.
+	We claim that \[ \OO_K = \ZZ[\sqrt 3] = \left\{ m + n\sqrt 3 \mid m,n \in \ZZ  \right\}. \]
+	We set $\alpha = a + b \sqrt 3$.
+	Then $\alpha \in \OO_K$ when the minimal polynomial has integer coefficients.
+
+	If $b = 0$, then the minimal polynomial is $x-\alpha=x-a$,
+	and thus $\alpha$ works if and only if it's an integer.
+	If $b \neq 0$, then the minimal polynomial is
+	\[ (x-a)^2 - 3b^2 = x^2 - 2a \cdot x + (a^2-3b^2). \]
+	From the exercise, this occurs exactly for $a,b \in \ZZ$.
+\end{example}
+\begin{example}
+	[Ring of Integers of $K = \QQ(\sqrt 5)$]
+	We claim that in this case
+	\[ \OO_K = \ZZ\left[ \frac{1+\sqrt5}{2} \right]
+	= \left\{ m + n \cdot \frac{1+\sqrt5}{2} \mid m,n \in \ZZ \right\}. \]
+	The proof is exactly the same, except the exercise tells us instead
+	that for $b \neq 0$, we have both the possibility that $a,b \in \ZZ$
+	or that $a,b = \ZZ - \half$.
+	This reflects the fact that $\frac{1+\sqrt5}{2}$ is the root of $x^2-x-1 = 0$;
+	no such thing is possible with $\sqrt 3$.
+\end{example}
+In general, the ring of integers of $K = \QQ(\sqrt d)$ is
+\[ \OO_K 
+	=
+	\begin{cases}
+		\ZZ[\sqrt d] & d\equiv 2,3 \pmod 4 \\
+		\ZZ\left[ \frac{1+\sqrt d}{2} \right] & d \equiv 1 \pmod 4.
+	\end{cases}
+\]
+
+What we're going to show is that $\OO_K$ behaves a lot like the integers do in $\QQ$.
+In particular, this is going to show that $\ol\ZZ$ behaves in $\ol\QQ$
+in much the same way that $\ZZ$ behaves in $\QQ$.
+
+First, in what way are integers ``integers''?
+Because of this:
+\begin{theorem}
+	Let $K$ be a number field, and let $x \in K$ be any element.
+	Then there exists an integer $n$ such that $nx \in \OO_K$;
+	in other words, $x = \frac 1n \alpha$ for some $\alpha \in \OO_K$.
+\end{theorem}
+\begin{exercise}
+	Prove this yourself.
+	(Start by using the fact that $\alpha$ has a minimal polynomial with integer coefficients.)
+\end{exercise}
+
+Now we are going to try and show $\OO_K$ is a ring;
+we'll check it is closed under addition and multiplication. To do so, the easiest route is the following lemma.
+\begin{definition}
+	An abelian group $G = (G,+)$ is \vocab{finitely generated}
+	if it is finitely generated as a $\ZZ$-module: that is,
+	there exists a finite collection $b_1, \dots, b_m \in G$,
+	such that every $x \in G$ can be written in the form
+	$c_1b_1 + \dots + c_mb_m$ for some $c_1, \dots, c_m \in \ZZ$.
+\end{definition}
+
+\begin{lemma}
+	Let $\alpha \in \ol\QQ$.
+	Then $\alpha$ is an algebraic integer if and only if
+	the abelian group $\ZZ[\alpha]$ is finitely generated.
+\end{lemma}
+\begin{proof}
+	Note that $\alpha$ is an algebraic integer if and only if it's the root
+	of some nonzero, monic polynomial with integer coefficients.
+	Suppose first that
+	\[ \alpha^N = c_{N-1} \alpha^{N-1} + c_{N-2} \alpha^{N-2} + \dots + c_0. \]
+	Then the set $1, \alpha, \dots, \alpha^{N-1}$ generates $\ZZ[\alpha]$,
+	since we can repeatedly replace $\alpha^N$ until all powers of $\alpha$
+	are less than $N$.
+
+	Conversely, suppose that $\ZZ[\alpha]$ is finitely generated
+	by some $b_1, \dots, b_m$.
+	Viewing the $b_i$ as polynomials in $\alpha$, we can select a large integer
+	$N$ (say $N = \deg b_1 + \dots + \deg b_m + 2015$)
+	and express $\alpha^N$ in the $b_i$'s to get
+	\[ \alpha^N = c_1b_1(\alpha) + \dots + c_mb_m(\alpha). \]
+	The above gives us a monic polynomial in $\alpha$,
+	and the choice of $N$ guarantees it is not zero.
+	So $\alpha$ is an algebraic integer.
+\end{proof}
+\begin{example}
+	We already know $\half$ isn't an algebraic integer.
+	So we expect 
+	\[
+		\ZZ \left[ \half \right]
+		= \left\{ \frac{a}{2^m} \mid a, m \in \ZZ \text{ and } m \ge 0 \right\}.
+	\]
+	to not be finitely generated, and this is the case.
+\end{example}
+\begin{ques}
+	To make the last example concrete:
+	name all the elements of $\ZZ[\half]$
+	that cannot be written as an integer combination of
+	\[ \left\{ \frac12, \frac{7}{8}, \frac{13}{64},
+		\frac{2015}{4096}, \frac{1}{1048576} \right\} \]
+\end{ques}
+
+Now we can state the theorem.
+\begin{theorem}[Algebraic Integers Are Closed Under $+$ and $\times$]
+	The set $\ol\ZZ$ is closed under addition and multiplication;
+	i.e.\ it is a ring.
+	In particular, $\OO_K$ is also a ring for any number field $K$.
+\end{theorem}
+\begin{proof}
+	Let $\alpha, \beta \in \ol\ZZ$.
+	Then $\ZZ[\alpha]$ and $\ZZ[\beta]$ are finitely generated.
+	Hence so is $\ZZ[\alpha, \beta]$.
+	(Details: if $\ZZ[\alpha]$ has $\ZZ$-basis $a_1, \dots, a_m$ and
+	$\ZZ[\beta]$ has $\ZZ$-basis $b_1, \dots, b_n$,
+	then take the $mn$ elements $a_ib_j$.)
+
+	Now $\ZZ[\alpha \pm \beta]$ and $\ZZ[\alpha \beta]$ are subsets of $\ZZ[\alpha,\beta]$ and so they are also finitely generated.
+	Hence $\alpha \pm \beta$ and $\alpha\beta$ are algebraic integers.
+\end{proof}
+
+In fact, something ever better is true.
+As you saw, for $\QQ(\sqrt 3)$ we had $\OO_K = \ZZ[\sqrt 3]$;
+in other words, $\OO_K$ was generated by $1$ and $\sqrt 3$.
+Something similar was true for $\QQ(\sqrt 5)$.
+We claim that in fact, the general picture looks exactly like this.
+
+\begin{theorem}[$\OO_K$ is a free $\ZZ$-module]
+	Let $K$ be a number field of degree $n$.
+	Then $\OO_K$ is a free $\ZZ$-module of rank $n$,
+	\emph{id est} $\OO_K \cong \ZZ^{\oplus n}$ as an abelian group.
+	In other words, $\OO_K$ is has a $\ZZ$-basis of $n$ elements as
+	\[ \OO_K = \left\{ c_1\alpha_1 + \dots + c_{n-1}\alpha_{n-1} + c_n \mid c_i \in \ZZ \right\} \]
+	where $\alpha_i$ are algebraic integers in $\OO_K$.
+	\label{thm:OK_free_Z_module}
+\end{theorem}
+\begin{proof}
+	I find this kind of fun: \Cref{prob:OK_free_Z_module}.
+\end{proof}
+
+\section{Primitive Element Theorem, and Monogenic Extensions}
+\prototype{$\QQ(\sqrt3,\sqrt5) \cong \QQ(\sqrt3+\sqrt5)$. Can you see why?}
+I'm only putting this theorem here because I was upset that no one
+told me it was true (it's a very natural conjecture),
+and I hope to not do the same to the reader.
+However, I'm not going to use it in anything that follows.
+
+\begin{theorem}
+	[Artin's Primitive Element Theorem]
+	Every number field $K$ is isomorphic to $\QQ(\alpha)$
+	for some algebraic number $\alpha$.
+	\label{thm:artin_primitive_elm}
+\end{theorem}
+The proof is left as \Cref{prob:artin_primitive_elm}, since to prove it I need to talk
+about field extensions first.
+
+The prototypical example \[ \QQ(\sqrt3,\sqrt5) \cong \QQ(\sqrt3+\sqrt5) \]
+makes it clear why this theorem should not be too surprising.
+%To see why this is true, note that $K$ contains the element
+%\[ \left( \sqrt3+\sqrt5 \right)^2-8 = 2\sqrt15 \]
+%and hence also the element $2(\sqrt15)(\sqrt3+\sqrt5) = 6\sqrt5+10\sqrt3$.
+%Thus from the fact that $6\sqrt5+10\sqrt3$ and $\sqrt3+\sqrt5$ are in $K$,
+%we can extract both $\sqrt 3$ and $\sqrt 5$.
+%Thus $\sqrt3, \sqrt5 \in K$, which is what we wanted.
+
+We might hope that something similar is true of the ring of integers:
+that we can write $\OO_K = \ZZ[\theta]$, in which case $\{1, \theta, \dots, \theta^{n-1}\}$
+with serve both as a basis of $K$ and as the $\ZZ$-basis for $\OO_K$ (here $n = [K:\QQ]$).
+This it is true for the most common examples we use:
+\begin{itemize}
+	\ii the quadratic field, and
+	\ii the cyclotomic field in \Cref{prob:ring_int_cyclotomic}.
+\end{itemize}<++>
+Unfortunately, it is not true in general:
+the first counterexample is $\QQ(\alpha)$ for $\alpha$ a root of $X^3-X^2-2X-8$.
+
+We call an extension with this nice property \vocab{monogenic}.
+As we'll later see, monogenic extentsions have a really nice factoring algorithm,
+\Cref{thm:factor_alg}.
+
+\section\problemhead
+\begin{sproblem}
+	Show that $\alpha$ is a unit of $\OO_K$ (meaning $\alpha\inv \in \OO_K$)
+	if and only if $\Norm_{K/\QQ}(\alpha) = \pm 1$.
+	\begin{hint}
+		The norm is multiplicative and equal to product of Galois conjugates.
+	\end{hint}
+\end{sproblem}
+% trivial
+
+\begin{problem}
+	[USA TST 2012] Decide whether there exists $a,b,c > 2010$ satisfying
+	\[ a^3+2b^3+4c^3=6abc+1. \]
+\end{problem}
+
+\begin{problem}
+	[Black MOP 2010] There are $n > 2$ lamps arranged in a circle; initially one is on and the others are off.
+	We may select any regular polygon whose vertices are among the lamps
+	and toggle the states of all the lamps simultaneously.
+	Show it is impossible to turn all lamps off.
+\end{problem}
+
+\begin{problem}
+	\label{prob:OK_free_Z_module}
+	\gim
+	Let $K$ be a number field of degree $n$.
+	Using the norm, show that $\OO_K$ is a free $\ZZ$-module of rank $n$
+	(thus proving \Cref{thm:OK_free_Z_module}).
+	\begin{hint}
+		Pick a $\QQ$-basis of $\alpha_1$, \dots, $\alpha_n$ of $K$ and WLOG
+		the $\alpha_i$ are in $\OO_K$ by scaling.
+		Look at $\Norm(c_1\alpha_1 + \dots + c_n\alpha_n)$.
+		Bound denominators.
+	\end{hint}
+	\begin{sol}
+		Pick a $\QQ$-basis of $\alpha_1$, \dots, $\alpha_n$ of $K$ and WLOG
+		the $\alpha_i$ are in $\OO_K$ by scaling.
+		Pick $\alpha \in \OO_K$
+		Look at $\Norm(\alpha) = \Norm(c_1\alpha_1 + \dots + c_n\alpha_n)$.
+		If we do a giant norm computation, we find that $\Norm(\alpha)$
+		in the $c_i$ with fixed coefficients.
+		(For example, $\Norm(c_1 + c_2\sqrt 2) = c_1^2 - 2c_2^2$, say.)
+		But $\Norm(\alpha)$ is an \emph{integer}, so the denominators of the $c_i$ 
+		have to be bounded by some very large integer $N$.
+		Thus
+		\[
+			\bigoplus_i \ZZ \cdot \alpha_i
+			\subseteq 
+			\OO_K
+			\subseteq
+			\frac 1N \bigoplus_i \ZZ \cdot \alpha_i.
+		\]
+		The latter inclusion shows that $\OO_K$ is a subgroup
+		of a free group, and hence it is itself free.
+		On the other hand, the first inclusion shows it's rank $n$.
+	\end{sol}
+\end{problem}
+
+\begin{dproblem}[Cyclcotomic Field]
+	\yod
+	\label{prob:ring_int_cyclotomic}
+	Let $p$ be an odd rational prime and $\zeta_p$ a primitive $p$th root of unity.
+	Let $K = \QQ(\zeta_p)$.
+	Prove that that $\OO_K = \ZZ[\zeta_p]$.
+	(In fact, the result is true even if $p$ is not a prime.)
+	\begin{hint}
+		Obviously $\ZZ[\zeta_p] \subseteq \OO_K$, so our goal is to show the reverse inclusion.
+		Show that for any $\alpha \in \OO_K$, the trace of $\alpha(1-\zeta_p)$ is divisible by $p$.
+		Given $x = a_0 + a_1\zeta_p + \dots + a_{p-2}\zeta^{p-2} \in \OO_K$ (where $a_i \in \QQ$),
+		consider $(1-\zeta_p)x$.
+		\todo{add solution from math 129 notes}
+	\end{hint}
+\end{dproblem}
+
+\begin{problem}
+	[Kronecker's Theorem] \yod Let $x$ be an algebraic integer.
+	Suppose all its conjugates have absolute value one.
+	Prove that $x^N=1$ for some positive integer $N$.
+\end{problem}

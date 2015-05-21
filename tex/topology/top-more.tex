@@ -1,0 +1,478 @@
+\chapter{Topological Notions}
+Here I'm just talking about some various properties of general topological spaces.
+The chapter is admittedly a bit disconnected.
+
+I should say a little about metric spaces vs general topological spaces here.
+In most of the sections we only really talk about continuous maps or open sets,
+so it doesn't make a difference whether we restrict our attention to metric spaces or not.
+But when we talk about completeness, we consider \emph{sequences} of points,
+and in particular to the distances between them.
+This notion doesn't make sense for general spaces, so for that section one must
+keep in mind we are only working in metric spaces.
+
+The most important topological notion is missing from this chapter:
+that of a \emph{compact} space.
+It is so important that I have dedicated a separate chapter just for it.
+
+%As I alluded to earlier, sequences in metric spaces are super nice,
+%but sequences in general topological spaces \emph{suck} (to the point where
+%I didn't bother to define convergence of general sequences).
+
+\section{Connected Spaces}
+It is possible for a set to be both open and closed (or \vocab{clopen});
+for example $\varnothing$ and the entire space are examples of clopen sets.
+In fact, the presence of a nontrivial open set other than these two leads
+to a so-called \emph{disconnected} space.
+
+Let $X$ be a general topological space.
+Recall that a set is \emph{clopen} if it is both open and closed;
+for example, $\varnothing$ and $X$ are clopen.
+
+\begin{ques}
+	Show that a space $X$ has a nontrivial clopen set
+	(one other than $\varnothing$ and $X$)
+	if and only if $X$ can be written as a disjoint union $U \sqcup V$
+	where $U$ and $V$ are both open.
+	(Use the definition that $X$ is the complement of an open set.)
+\end{ques}
+
+We say $X$ is \vocab{disconnected} if there are nontrivial clopen sets,
+and \vocab{connected} otherwise.
+To see why this should be a reasonable definition, it might help
+to solve \Cref{prob:disconnected_better_def}.
+
+\begin{example}[Disconnected and Connected Spaces]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii The metric space 
+		\[ \{ (x,y) \mid x^2+y^2\le 1 \} \cup \{ (x,y) \mid (x-4)^2+y^2\le1\} \]
+		is disconnected (it consists of two disks).
+		Here as usual we're thinking of it as a subspace of $\RR^2$.
+
+		\ii Every set in a discrete space is clopen, so a discrete space
+		(with more than one point) is disconnected.
+
+		\ii Convince yourself that the set 
+		\[ \left\{ x \in \QQ : x^2 < 2014 \right\} \]
+		is a clopen subset of $\QQ$. 
+		Hence $\QQ$ is disconnected too -- it has \emph{gaps}.
+
+		\ii $[0,1]$ is connected.
+	\end{enumerate}
+\end{example}
+
+
+%\begin{remark}
+%	For general topological spaces $X$, it is still true that if $S$ is closed
+%	(meaning $X \setminus S$ is open), then it contains the limits of all its sequences.
+%	But the converse of this statement no longer holds.
+%\end{remark}
+
+\section{Path-Connected Spaces}
+\prototype{Walking around in $\CC$.}
+A stronger and perhaps more intuitive notion of a connected space is a \emph{path-connected} space.
+The short description: ``walk around in the space''.
+% We have general topological spaces, but so far they've just been sitting there.
+% Let's start walking in them.
+
+% Throughout this section, we let $I = [0,1]$ with the usual topology
+% inherited from $\RR$.
+%Also, recall that $S^n$ is the surface of the sphere living
+%in $n+1$ dimensional space; hence $S^1$ is a unit circle, say.
+
+\begin{definition}
+	A \vocab{path} in the space $X$ is a continuous function
+	\[ \gamma : [0,1] \to X. \]
+	Its \vocab{endpoints} are the two points $\gamma(0)$ and $\gamma(1)$.
+\end{definition}
+
+You can think of $[0,1]$ as measuring ``time'', and so we'll often write $\gamma(t)$
+for $t \in [0,1]$ (with $t$ standing for ``time'').
+Here's a picture of a path.
+\begin{center}
+	\begin{asy}
+		bigblob("$X$");
+		pair A = Drawing("\gamma(0)", (-3,-1));
+		pair B = Drawing("\gamma(1)", (2,1), dir(90));
+		path p = A..(-2,0)..(0,2)..(1,0)..B;
+		draw(p, EndArrow);
+		MP("\gamma", midpoint(p), dir(90));
+	\end{asy}
+\end{center}
+\begin{ques}
+	Why does this agree with your intuitive notion of what a ``path'' and ``loop'' is?
+\end{ques}
+
+\begin{definition}
+	A space $X$ is \vocab{path-connected} if
+	any two points in it are connected by some path.
+\end{definition}
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[height=8cm]{/home/evan/Pictures/TopologicalGG/cross-path-neighborhood.jpg}
+	\caption{Paths and neighborhoods.}
+\end{figure}
+
+\begin{exercise}
+	Let $X = U \sqcup V$ be a disconnected space.
+	Show that there is no path
+	from a point of $U$ to point $V$.
+	(If $\gamma : [0,1] \to X$, then we get $[0,1] = \gamma\pre(U) \sqcup \gamma\pre(V)$,
+	but $[0,1]$ is connected.)
+\end{exercise}
+This shows that path-connected is stronger than connected.
+See also \Cref{prob:local_path_connected}.
+
+\todo{topologist's sine curve}
+
+\begin{example}[Examples of Path-Connected Spaces]
+	\listhack
+	\begin{itemize}
+		\ii $\RR^2$ is path-connected, since we can ``connect'' any two points with a straight line.
+		\ii The unit circle $S^1$ is path-connected, since
+		we can just draw the major or minor arc to connect two points.
+	\end{itemize}
+\end{example}
+
+% Easy, right?
+
+\section{Homotopy and Simply Connected Spaces}
+\prototype{$\CC$ and $\CC \setminus \{0\}$.}
+Now let's motivate the idea of homotopy.
+Consider the example of the complex plane $\CC$ (which you can
+think of just as $\RR^2$) with two points $A$ and $B$.
+There's a whole bunch of paths from $A$ to $B$ but somehow they're not very different from one another.
+If I told you ``walk from $A$ to $B$'' you wouldn't have too many questions.
+
+\begin{center}
+	\begin{asy}
+		unitsize(0.8cm);
+		bigbox("$\mathbb C$");
+		pair A = Drawing("A", (-3,0), dir(180));
+		pair B = Drawing("B", (3,0), dir(0));
+		draw(A..(-2,0.5)..(0,2)..(1,1.2)..B, red, EndArrow);
+		draw(A--B, mediumgreen, EndArrow);
+		draw(A--(-1,-1)--(2,-1)--B, blue, EndArrow);
+		// draw(A..(1.5,-2)..(-1.5,-2)..B, orange, EndArrow);
+	\end{asy}
+\end{center}
+
+So we're living happily in $\CC$ until a meteor strikes the origin,
+blowing it out of existence.
+Then suddenly to get from $A$ to $B$, people might tell you two different things: ``go left around the meteor'' or ``go right around the meteor''.
+
+\begin{center}
+	\begin{asy}
+		unitsize(0.8cm);
+		bigbox("$\mathbb C \setminus \{0\}$");
+		pair A = Drawing("A", (-3,0), dir(180));
+		pair B = Drawing("B", (3,0), dir(0));
+		draw(A..(-2,0.5)..(0,2)..(1,1.2)..B, red, EndArrow);
+		draw(A--(-1,-1)--(2,-1)--B, blue, EndArrow);
+		filldraw(scale(0.5)*unitcircle, grey, black);
+	\end{asy}
+\end{center}
+
+So what's happening?
+In the first picture, the red, green, and blue paths somehow all looked
+the same: if you imagine them as pieces of elastic string pinned down at $A$ and $B$, you can stretch each one to any other one.
+
+But in the second picture, you can't move the red string to match with the blue string: there's a meteor in the way.
+The paths are actually different.
+\footnote{If you know about winding numbers, you might feel this is familiar.  We'll talk more about this in the chapter on homotopy groups.}
+
+The formal notion we'll use to capture this is \emph{homotopy equivalence}.
+We want to write a definition such that in the first picture,
+the three paths are all \emph{homotopic}, but the two paths in the
+second picture are somehow not homotopic.
+And the idea is just continuous deformation.
+
+\begin{definition}
+	Let $\alpha$ and $\beta$ be paths in $X$ whose endpoints coincide.
+	A (path) \vocab{homotopy} from $\alpha$ to $\beta$ is a continuous function
+	$F : [0,1]^2 \to X$, which we'll write $F_s(t)$ for $s,t \in [0,1]$,
+	such that
+	\[ F_0(t) = \alpha(t) \text{ and } F_1(t) = \beta(t)
+		\text{ for all $t \in [0,1]$} \]
+	and moreover
+	\[ \alpha(0) = \beta(0) = F_s(0)
+		\text{ and }
+		\alpha(1) = \beta(1) = F_s(1)
+		\text{ for all $s \in [0,1]$}. \]
+	If a path homotopy exists, we say $\alpha$ and $\beta$ are path \vocab{homotopic} and write $\alpha \simeq \beta$.
+\end{definition}
+\begin{abuse}
+	While I strictly should say ``path homotopy'' to describe this relation
+	between two paths, I will shorten this to just ``homotopy'' instead.
+	Similarly I will shorten ``path homotopic'' to ``homotopic''.
+\end{abuse}
+Picture: \url{https://commons.wikimedia.org/wiki/File:HomotopySmall.gif}.
+And needless to say, $\simeq$ is an equivalence relation.
+
+What this definition is doing is taking $\alpha$ and ``continuously deforming'' it to $\beta$, while keeping the endpoints fixed.
+Note that for each particular $s$, $F_s$ is itself a function.
+So $s$ represents time as we deform $\alpha$ to $\beta$:
+it goes from $0$ to $1$, starting at $\alpha$ and ending at $\beta$.
+
+\begin{center}
+	\begin{asy}
+		size(9cm);
+		bigbox("$\mathbb C$");
+		pair A = Drawing("A", (-3,0), dir(180));
+		pair B = Drawing("B", (3,0), dir(0));
+		draw(A..MP("F_{0} = \alpha", (0,2), dir(45))..B, heavygreen);
+		draw(A..MP("F_{0.25}", (0,1), dir(45))..B, mediumgreen);
+		draw(A..MP("F_{0.5}", (0,0), dir(90))..B, palecyan);
+		draw(A..MP("F_{0.75}", (0,-1), dir(-45))..B, mediumcyan);
+		draw(A..MP("F_{1} = \beta", (0,-2), dir(-45))..B, heavycyan);
+		// draw(A..(1.5,-2)..(-1.5,-2)..B, orange, EndArrow);
+	\end{asy}
+\end{center}
+
+\begin{ques}
+	Convince yourself the above definition is right.
+	What goes wrong when the meteor strikes?
+\end{ques}
+
+So now I can tell you what makes $\CC$ special.
+It's the following simple definition.
+\begin{definition}
+	A space $X$ is \vocab{simply connected} if it's path-connected and
+	for any paths $A$ and $B$, all paths from $A$ to $B$ are homotopic.
+\end{definition}
+That's why you don't ask question when walking from $A$ to $B$ in $\CC$:
+there's really only one way to walk. Hence the term ``simply'' connected.
+
+\begin{ques}
+	Convince yourself that $\RR^n$ is simply connected for all $n$.
+\end{ques}
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[height=5cm]{/home/evan/Pictures/TopologicalGG/intresction-connected-union.jpg}
+	\caption{Two disjoint topological spaces are certainly not path-connected.}
+\end{figure}
+
+\section{Bases of Spaces}
+\prototype{$\RR$ has a basis of open intervals, and $\RR^2$ has a basis of open disks.}
+
+You might have noticed that the open sets of $\RR$ are a little annoying to describe: the prototypical example of an open set is $(0,1)$,
+but there are other open sets like
+\[
+	(0,1)
+	\cup \left( 1, \frac32 \right)
+	\cup \left( 2, \frac 73 \right)
+	\cup (2014, 2015). \]
+\begin{ques}
+	Check this is an open set.
+\end{ques}
+
+But okay, this isn't \emph{that} different.
+All I've done is taken a bunch of my prototypes and threw a bunch of $\cup$ signs at it.
+And that's the idea behind a basis.
+
+\begin{definition}
+	A \vocab{basis} for a topological space $X$
+	is a subset $\mathcal B$ of the open sets
+	such that every open set in $X$
+	is a union of some (possibly infinite) number of elements in
+	$\mathcal B$.
+\end{definition}
+
+And all we're doing is saying
+\begin{example}[Basis of $\RR$]
+	The open intervals form a basis of $\RR$.
+\end{example}
+In fact, more generally we have the following result.
+\begin{theorem}[Basis of Metric Spaces]
+	The $r$-neighborhoods from a basis of any metric space $M$.
+\end{theorem}
+\begin{proof}
+	Kind of silly -- given an open set $U$
+	draw a $r_p$-neighborhood $U_p$ contained entirely inside $U$.
+	Then $\bigcup_p U_p$ is contained in $U$ and covers
+	every point inside it.
+\end{proof}
+
+Hence, an open set in $\RR^2$ is nothing more than a union
+of a bunch of open disks, and so on.
+The point is that in a metric space, the only open sets you really
+ever have to worry too much about are the $r$-neighborhoods.
+
+
+\section{Subspacing}
+I'll issue a small clarification before proceeding, so as not to confuse the reader.
+We've talked about some properties that a space can have;
+say, a space is \emph{path-connected}, or \emph{simply-connected},
+or a in a moment, a space might be \emph{complete} or \emph{compact} or whatever.
+
+If you think about, it would make sense to use the same adjectives on sets.
+You'd say a set $S$ is path-connected if there's a path between every pair of points in $S$
+through points in $S$. And so on.
+
+The reason you can do this is that for a metric, every subset $S \subseteq M$ is a topological space in its own right (just use the same distance function). This is called the \vocab{subspace topology}.
+For example, you can think of a circle $S^1$ as a connected set by viewing it as a subspace of $\RR^2$.
+(In case you haven't noticed,
+I already said all this in an earlier chapter.)
+Thus,
+\begin{abuse}
+	Any adjective used to describe a space can equally be used for a set,
+	and I'll thus be letting these mix pretty promiscuously.
+	So in what follows, I might refer to subsets being complete,
+	even when I only defined completeness for spaces.
+	This is what I mean.
+\end{abuse}
+
+You can do the same thing in a general topological space $X$.
+Given a subset $S \subseteq X$, the open sets of the subspace $S$ are those of the form $S \cap U$,
+where $U$ is an open set of $X$.
+So for example, if we view $S^1$ as a subspace of $\RR^2$,
+then any open arc is an open set, because you can view it as the intersection of an open disk with $S^1$.
+\begin{center}
+	\begin{asy}
+		size(3cm);
+		draw(unitcircle, black+1);
+		MP("S^1", dir(60), dir(60));
+		MP("\mathbb R^2", dir(-45)*1.2, dir(-45));
+		pair A = dir(-30);
+		pair B = dir(50);
+		draw(CP(dir(10), A), dotted);
+		draw(arc(origin,A,B), blue+2);
+		dotfactor *= 2;
+		opendot(A, blue);
+		opendot(B, blue);
+	\end{asy}
+\end{center}
+
+Needless to say, for metric spaces it doesn't matter which of these definitions I choose.
+(Proving this turns out to be surprisingly annoying, so I won't do so.)
+
+\section{Completeness}
+\prototype{$\RR$ is complete, but $\QQ$ and $(0,1)$ are not.}
+Completeness is a property of \emph{metric} spaces.
+
+So far we can only talk about sequences converging if they have a limit.
+But consider the sequence $x_1 = 1$, $x_2 = 1.4$, $x_3 = 1.41$, $x_4 = 1.414$, \dots.
+It converges to $\sqrt 2$ in $\RR$, of course.
+
+But it fails to converge in $\QQ$.
+And so somehow, if we didn't know about the existence of $\RR$, we would
+have \emph{no idea} that the sequence $(x_n)$ is ``approaching'' something.
+
+That seems to be a shame.
+Let's set up a new definition to describe these sequences whose terms
+get close to each other,
+even if they don't approach any particular point in the space.
+Thus, we want to make this definition in terms of just the given points.
+This is hard to do in a general topological space,
+but such a notion does exist for metric spaces.
+
+\begin{definition}
+	Let $x_1, x_2, \dots$ be a sequence which lives in a metric space $M = (M,d_M)$.
+	We say the sequence is \vocab{Cauchy} if for any $\eps > 0$, we have
+	\[ d_M(x_m, x_n) < \eps \]
+	for all sufficiently large $m$ and $n$.
+\end{definition}
+
+\begin{ques}
+	Show that a sequence which converges is automatically Cauchy.
+	(Draw a picture.)
+\end{ques}
+
+Now we can define the following.
+\begin{definition}
+	A metric space $M$ is \vocab{complete} if every
+	Cauchy sequence converges.
+\end{definition}
+
+\begin{example}
+	[Exmaples of Complete Spaces]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii $\RR$ is complete. (Depending on your definition of $\RR$, this either follows
+		by definition, or requires some work. We won't go through this here.)
+		\ii The discrete space is complete, as the only Cauchy sequences are eventually constant.
+		\ii The closed interval $[0,1]$ is complete.
+		\ii $\RR^n$ is complete as well. (You're welcome to prove this by induction on $n$.)
+	\end{enumerate}
+\end{example}
+\begin{example}
+	[Non-Examples of Complete Sets]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii The rationals $\QQ$ are not complete.
+		\ii The open interval $(0,1)$ is not complete, as the sequence $x_n = \frac 1n$
+		is Cauchy but does not converge.
+	\end{enumerate}
+\end{example}
+
+So, metric spaces need not be complete, like $\QQ$.
+But it turns out that every metric space can be \emph{completed}
+by ``filling in the gaps'' somehow, resulting in a space
+called the \vocab{completion} of the metric space.
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[height=5cm]{/home/evan/Pictures/TopologicalGG/limit-points-complete-me.jpg}
+	\caption{Completing a metric space by adding in its limit points.}
+\end{figure}
+
+%It's a theorem that $\RR$ is complete.
+%To prove this I'd have to define $\RR$ rigorously, which I won't do here.
+%In fact, there are some competing definitions of $\RR$.
+%It is sometimes defined as the completion of the space $\QQ$.
+%Other times it is defined using something called \emph{Dedekind cuts}.
+%For now, let's just accept that $\RR$ behaves as we expect and is complete.
+
+%And thus, I can now tell you exactly what $\RR$ is.
+%You might notice that it's actually not that easy to define:
+%we can define $\QQ = \left\{ a/b : a,b \in \NN \right\}$, but
+%what do we say for $\RR$?
+%Here's the answer:
+%\begin{definition}
+%	$\RR$ is the completion of the metric space $\QQ$.
+%\end{definition}
+
+\section\problemhead
+
+\begin{dproblem}
+	Let $X$ be a topological space.
+	Show that there exists a nonconstant function $X \to \{0,1\}$ if and
+	only if $X$ is disconnected (here $\{0,1\}$ is given the discrete topology).
+	\label{prob:disconnected_better_def}
+\end{dproblem}
+
+\begin{problem}
+	A topological space $X$ is called \vocab{locally path-connected}
+	if for every point $x \in X$, some neighborhood $U$ of $x$ is path-connected.
+	Prove that $X$ is path-connected if and only if it is connected
+	and locally path-connected.
+	\label{prob:local_path_connected}
+\end{problem}
+
+\begin{problem}
+	\gim
+	We know that any open set $U \subseteq \RR$
+	is a union of open intervals (allowing $\pm\infty$ as endpoints).
+	One can show that it's actually possible to write $U$ as the
+	union of \emph{pairwise disjoint} open intervals.\footnote{You are invited to try
+	and prove this, but I personally found the proof quite boring.}
+	Prove that there such a disjoint union has at most \emph{countably many}
+	intervals in it.
+	\begin{hint}
+		Appeal to $\QQ$.
+	\end{hint}
+	\begin{sol}
+		You can pick a rational number in each interval and
+		there are only countably many rational numbers. Done!
+	\end{sol}
+\end{problem}
+
+\begin{dproblem}[Completion]
+	\yod
+	Let $M$ be a metric space.
+	Show that we can add some points to $M$ to obtain a metric space $\ol M$
+	which is complete, in such a way that every open set of $\ol M$ contains
+	a point of $M$ (meaning $M$ is \vocab{dense} in $\ol M$).
+\end{dproblem}

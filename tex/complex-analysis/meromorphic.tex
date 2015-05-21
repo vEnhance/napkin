@@ -1,0 +1,426 @@
+\chapter{Meromorophic Functions}
+\section{The Second Nicest Functions on Earth}
+Last time we studied holomorphic functions, which I dubbed ``the nicest functions on Earth'',
+and the incredibly nice properties they possessed, such as
+\[
+	\oint_\gamma f(z) \; dz = 0.
+\]
+We saw an example of a function that was ``almost holomorphic'', namely $\frac 1z$, which instead satisfied
+\[
+	\oint_{\gamma} \frac 1z \; dz
+	= \frac{1}{2\pi i}
+\]
+for $\gamma(t) = e^{it}$ the unit circle.
+But $\frac 1z$ was ``barely'' not holomorphic: it simply has a defect at the point $z=0$.
+We now want to extend our results to such functions.
+
+In this chapter we will study the so-called ``second nicest functions on Earth'',
+the \emph{meromorphic functions}, or better yet, the ``almost holomorphic'' functions.
+It turns out that, instead of just getting $\oint_\gamma f(z) \; dz = 0$ like we did in
+the holomorphic case, the line integrals will actually be used to \emph{count the number of poles}
+inside the loop $\gamma$. It's ridiculous, I know.
+
+\section{Meromorphic Functions}
+\prototype{$\frac 1z$, with a pole of order $1$ and residue $1$ at $z=0$.}
+
+Let $U$ be an open subset of $\CC$ again.
+We want to consider functions $f$ defined on all points in $U$
+except for a set of ``isolated'' singularities;
+for example, something like \[ \frac{1}{z(z+1)(z^2+1)} \] which is defined
+for all $z$ other than $z=0$, $z=-1$ and $z=i$.
+Or even \[ \frac{1}{\sin(2\pi z)}, \] which is defined at every $z$ which is \emph{not} an integer.
+Even though there's infinitely many points, they are not really that close together.
+
+Let's make these notions precise.
+First, let's make the notion of this ``division by zero'' precise.
+\begin{definition}
+	Let $p \in \CC$ be any point.
+	By a \vocab{deleted neighborhood} of $p$ we mean an open set of the form $U - \{p\}$,
+	where $U$ is a neighborhood of $p$.
+\end{definition}
+\begin{example}
+	For example, a deleted neighborhood of $0$ might be the set
+	\[ \left\{ z \in \CC \mid 0 < \left\lvert z \right\rvert < \frac{1}{1000} \right\}. \]
+	It quite literally looks like an open disk with a hole poked into it.
+\end{example}
+
+\begin{definition}
+	Let $U$ be an open set and $p$ a point inside it.
+	A function $f : U \to \CC$ is said to have a \vocab{pole} at $p$
+	if for some deleted neighborhood of $p$ it admits a \vocab{Laurent series}
+	\[
+		f(z) =
+		\frac{c_{-m}}{(z-p)^m}
+		+ \frac{c_{-m+1}}{(z-p)^{m-1}}
+		+ \dots
+		+ \frac{c_{-1}}{z-p} + c_0 + c_1 (z-p) + \dots
+	\]
+	for some positive integer $m$ (with $c_{-m} \neq 0$),
+\end{definition}
+
+Note that the trailing end \emph{must} terminate.
+If we cannot do so, we say that $p$ is an \vocab{essential singularity} instead.\footnote{%
+	On the other hand, if $m \ge 0$ we just say $p$ is a \vocab{removable singularity}
+	because you could just define $f(z)$ and ``patch'' the hole.}
+
+\begin{abuse}
+	We'll often say something like ``consider the function $f : \CC \to \CC$ by $z \mapsto \frac 1z$''.
+	Of course this isn't completely correct, because $f$ doesn't have a value at $z=0$.
+	If I was going to be completely rigorous I would just set $f(0) = 2015$ or something and move on
+	with life, but for all intents let's just think of it as ``undefined at $z=0$''.
+
+	Why don't I just write $g : \CC \setminus \{0\} \to \CC$?
+	The reason I have to do this is that it's still important 
+	for $f$ to remember it's ``trying'' to be holomorphic on $\CC$,
+	even if isn't assigned a value at $z=0$.
+	As a function $\CC \setminus \{0\} \to \CC$ the function $\frac 1z$ is actually holomorphic.
+\end{abuse}
+
+\begin{definition}
+	Bear with me for a moment here: the integer $m$ called the \vocab{order} of the pole.
+	For reasons that will be clear later (bear with me for now), we also
+	give the coefficient $c_{-1}$ a name, the \vocab{residue} of $f$ at $p$,
+	which we write $\Res(f;p)$.
+\end{definition}
+
+Although I haven't told you yet what a meromorphic function is,
+here are examples nonetheless.
+\begin{example}
+	[Examples of Meromorphic Functions]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii Any holomorphic function is a meromorphic function which happens to have no poles.
+		Stupid, yes.
+		\ii The function $\CC \to \CC$ by $z \mapsto 100z\inv$ for $z \neq 0$
+		but undefined at zero is a meromorphic function.
+		Its only pole is at zero, which has order $1$ and residue $100$.
+		\ii The function $\CC \to \CC$ by $z \mapsto z^{-2015}$ is also a meromorphic function.
+		Its only pole is at zero, and it has order $3$, and residue $0$.
+		\ii The function $\CC \to \CC$ by $z \mapsto \frac{e^z}{z^2}$ is meromorphic,
+		with the Laurent series at $z=0$ given by
+		\[
+			\frac{e^z}{z^2}
+			= \frac{1}{z^2} + \frac{1}{z} + \frac{1}{2} + \frac{z}{6} + \frac{z^2}{24} + \frac{z^3}{120}
+			+ \dots.
+		\]
+		Hence the pole $z=0$ has order $2$ and residue $1$.
+	\end{enumerate}
+\end{example}
+\begin{example}
+	[A Rational Meromorphic Functions]
+	Consider the function $\CC \to \CC$ given  by
+	\begin{align*}
+		z &\mapsto \frac{z^4+1}{z(z-1)} \\
+		&= z^2 + 1 + \frac 2z \cdot \frac{1}{z-1} \\
+		&= z^2 + 1 + \frac 2z \left( 1 + z + z^2 + \dots  \right) \\
+		&= \frac 2z + 3 + 2z + 3z^2 + 2z^3 + 2z^4 + 2z^5 + \dots 
+	\end{align*}
+	has a pole of order $1$ and residue $2$ at $z=0$.
+	(It also has a pole of order $1$ at $z=1$; you are invited to compute the residue.)
+\end{example}
+\begin{example}
+	[Function with Infinitely Many Poles]
+	The function $\CC \to \CC$ by \[ z \mapsto \frac{1}{\sin(z)} \]
+	has infinitely many poles: the numbers $z = 2\pi k$, where $k$ is an integer.
+	Let's compute the Laurent series at just $z=0$:
+	\begin{align*}
+		\frac{1}{\sin(2\pi z)}
+		&= \frac{1}{\frac{z}{1!} - \frac{z^3}{3!} + \frac{z^5}{5!} - \dots} \\
+		&= \frac{1/z}{\frac{1}{1!} - \frac{z^2}{3!} + \frac{z^4}{5!} - \dots} \\
+		&= \frac 1z \cdot \frac{1}{1 - \left( \frac{z^2}{3!} - \frac{z^4}{5!} + \dots \right)} \\
+		&= \frac 1z \sum_{k \ge 0} \left( \frac{z^2}{3!} - \frac{z^4}{5!} + \dots \right)^k.
+	\end{align*}
+	which is a Laurent series, though I have no clue what the coefficients are.
+	You can at least see the residue; the constant term of that huge sum is $1$,
+	so the residue is $1$.
+	Also, the pole has order $1$.
+\end{example}
+
+The Laurent series, if it exists, is unique (as you might have guessed),
+and by our result on holomorphic function it is actually valid for \emph{any}
+disk centered at $p$ (minus the point $p$).
+The part $\frac{c_{-1}}{z-p} + \dots + \frac{c_{-m}}{(z-p)^m}$ is called the \vocab{principal part},
+and the rest of the series $c_0 + c_1(z-p) + \dots$ is called the \vocab{analytic part}.
+
+Now that I have the examples written down I'll actually define a meromorphic function.
+\begin{definition}
+	Let $U$ be an open set, $S \subseteq U$.
+	A function $f : U \to \CC$ is \vocab{meromorphic}
+	if it is holomorphic when viewed as a function $U \setminus S \to \CC$,
+	and moreover each $p \in S$ is a pole.
+\end{definition}
+We don't require $S$ to be finite (for example, $\frac{1}{\sin(2\pi z)}$ is meromorphic
+and has poles whenever $z$ is an integer).
+However, $S$ cannot be very big either.
+To be precise, recall that for $p \in S$ to be a pole, $f$ must be defined on some
+deleted neighborhood of $p$ -- thus that deleted neighborhood can't contain points of $S$.
+So $S$ must be \emph{isolated}\footnote{This is an actual topological definition: a subset
+of a topological space is called isolated if this condition holds}
+in the sense that we can draw a neighborhood around
+each point in $S$, so that no two neighborhoods intersect.
+
+
+\begin{example}
+	[Isolated Sets]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii The set $\ZZ$, regarded as a subset of $\CC$, is a nice example of an isolated set
+		which isn't finite: we can just take a $\frac{1}{2015}$-neighborhood around each point.
+		\ii Even the set $\{\frac 1n \mid n \in 1,2,\dots \}$ is an isolated set.
+		Take a disk of radius $0.001n^{-2015}$ around each point.
+		
+		However, no meromorphic function can actually have this set as its set of poles, since
+		if a function (like $1/\sin(2\pi/z)$) had such poles it would also have to have a pole at $z=0$.
+		Once we add in the point $0$, the set above is no longer an isolated set.
+
+		In general, the set of poles must be closed.
+		\ii The unit circle $S^1$, on the other hand, is not at all isolated.
+	\end{enumerate}
+\end{example}
+
+
+Anyways, you may have noticed that most examples of meromorphic functions we gave
+were of the form $A(z) / B(z)$ for holomorphic functions $A$ and $B$.
+For example, \[ \frac 1z, \quad \frac{e^z}{z}, \quad \frac{1}{\sin z}, \] and so on.
+In fact, this is true in general.
+\begin{theorem}
+	A function $f : U \to \CC$ is meromorphic
+	if and only if it is the quotient $g/h$ of two holomorphic functions $g,h : U \to \CC$
+	where $h$ is a nonzero function with zeros at each pole of $f$.
+\end{theorem}
+We won't prove this here, but the point is to take a function $h$ whose zeros exactly
+correspond, with multiplicity, to the poles of $f$, so that $f \cdot h$ becomes holomorphic.
+The tricky part is showing that such a function $h$ exists.
+
+\section{Winding Numbers and the Residue Theorem}
+Recall that for a counterclockwise circle $\gamma$ and a point $p$ inside it, we had
+\[
+	\oint_{\gamma} (z-p)^m \; dz =
+	\begin{cases}
+		0 & m \neq -1 \\
+		2\pi i & m = -1
+	\end{cases}
+\]
+where $m$ is an integer.
+One can extend this result to in fact show that $\oint_\gamma (z-p)^m \; dz = 0$
+for \emph{any} loop $\gamma$, where $m \neq -1$.
+So we associate a special name for the nonzero value at $m=-1$.
+\begin{definition}
+	For a point $p \in \CC$ and a loop $\gamma$ not passing through it,
+	we define the \vocab{winding number}, denoted $\Wind(p, \gamma)$, by
+	\[
+		\Wind(\gamma, p) = \frac{1}{2\pi i} \oint_{\gamma} \frac{1}{z-p} \; dz
+	\]
+\end{definition}
+For example, our previous results we see that if $\gamma$ is a circle, we have
+\[
+	\Wind(\text{circle}, p)
+	=
+	\begin{cases}
+		1 & \text{$p$ inside the circle} \\
+		0 & \text{$p$ outside the circle}.
+	\end{cases}
+\]
+If you've read the chapter of fundamental groups, then this is just the fundamental group
+associated to $\CC \setminus \{p\}$.
+In particular, the winding number is always an integer (the proof of this requires the complex logarithm,
+so we omit it here).
+In the simplest case the winding numbers are either $0$ or $1$.
+\begin{definition}
+	We say a loop $\gamma$ is \vocab{regular} if $\Wind(p, \gamma) = 1$
+	for all points $p$ in the interior of $\gamma$ (for example,
+	if $\gamma$ is a counterclockwise circle).
+\end{definition}
+
+With all these ingredients we get the following stunning generalization of the Cauchy-Goursat Theorem.
+\begin{theorem}
+	[Cauchy's Residue Theorem]
+	Let $f : \Omega \to \CC$ be meromorphic, where $\Omega$ is simply connected.
+	Then for any loop $\gamma$ not passing through any of its poles, we have
+	\[
+		\frac{1}{2\pi i} \oint_{\gamma} f(z) \; dz
+		= \sum_{\text{pole $p$}} \Wind(\gamma, p) \Res(f; p).
+	\]
+	In particular, if $\gamma$ is regular then the countour integral is the sum of all the residues, in the form
+	\[
+		\frac{1}{2\pi i} \oint_{\gamma} f(z) \; dz
+		= \sum_{\substack{\text{pole $p$} \\ \text{inside $\gamma$}}}  \Res(f; p).
+	\]
+\end{theorem}
+\begin{ques}
+	Verify that this result coincides
+	with what you expect when you integrate $\oint_\gamma cz\inv \; dz$
+	for $\gamma$ a counter-clockwise circle.
+\end{ques}
+
+The proof from here is not really too impressive -- the ``work'' was already
+done in our statements about the winding number.
+\begin{proof}
+	Let the poles with nonzero winding number be $p_1, \dots, p_k$ (the others do not affect the sum).\footnote{
+		To show that there must be finitely many such poles: recall that all our contours $\gamma : [a,b] \to \CC$
+		are in fact bounded, so there is some big closed disk $D$ which contains all of $\gamma$.
+		The poles outside $D$ thus have winding number zero.
+		Now we cannot have infinitely many poles inside the disk $D$, for $D$ is compact and the
+		set of poles is a closed and isolated set!}
+	Then we can write $f$ in the form
+	\[
+		f(z) = g(z) + \sum_{i=1}^k P_i\left( \frac{1}{z-p_i} \right)
+	\]
+	where $P_i\left( \frac{1}{1-p_i} \right)$ is the principal part of the pole $p_i$.
+	(For example, if $f(z) = \frac{z^3-z+1}{z(z+1)}$ we would write $f(z) = (z-1) + \frac1z - \frac1{1+z}$.)
+
+	The point of doing so is that the function $g$ is homomorphic (we've removed all the ``bad'' parts), so 
+	\[ \oint_{\gamma} g(z) \; dz = 0 \]
+	by Cauchy-Goursat.
+
+	On the other hand, if $P_i(x) = c_1x + c_2x^2 + \dots + c_d x^d$ then
+	\begin{align*}
+		\oint_{\gamma} P_i\left( \frac{1}{z-p_i} \right) \; dz
+		&=
+		\oint_{\gamma} c_1 \cdot \left( \frac{1}{z-p_i} \right) \; dz
+		+ \oint_{\gamma} c_2 \cdot \left( \frac{1}{z-p_i} \right)^2 \; dz
+		+ \dots \\
+		&= c_1 \cdot \Wind(\gamma, p_i) + 0 + 0 + \dots \\
+		&= \Wind(\gamma, p_i) \Res(f; p_i).
+	\end{align*}
+	which gives the conclusion.
+\end{proof}
+
+\section{Argument Principle}
+One tricky application is as follows.
+Given a polynomial $P(x) = (x-a_1)^{e_1}(x-a_2)^{e_2}\dots(x-a_n)^{e_n}$, you might know that we have
+\[ \frac{P'(x)}{P(x)} = \frac{e_1}{x-a_1} + \frac{e_2}{x-a_2} + \dots + \frac{e_n}{x-a_n}. \]
+The quantity $P'/P$ is called the \vocab{logarithmic derivative}, as it is the derivative of $\log P$.
+This trick allows us to convert zeros of $P$ into poles of $P'/P$ with order $1$;
+moreover the residues of these poles are the multiplicities of the roots.
+
+In an analogous fashion, we can obtain a similar result for any meromorphic function $f$.
+\begin{proposition}
+	[The Logarithmic Derivative]
+	Let $f : U \to \CC$ be a meromorphic function.
+	Then the logarithmic derivative $f'/f$ is meromorphic as a function from $U$ to $\CC$;
+	its zeros and poles are:
+	\begin{enumerate}[(i)]
+		\ii A pole at each zero of $f$ whose residue is the multiplicity, and
+		\ii A pole at each pole of $f$ whose residue is the negative of the pole's order.
+	\end{enumerate}
+\end{proposition}
+In some sense you can almost think of a pole as a zero of negative multiplicity.
+This spirit is exemplified below.
+\begin{proof}
+	Direct computation: for any zero/pole $a$ of $f$, let $f = (z-a)^k g(z)$ (where $g(a) \neq 0$).
+	Here $k$ is the multiplicity for $a$ a zero and the negative of the order for $a$ a pole.
+	Now $f' = (z-a)^k g'(z) + k(z-a)^{k-1} g(z)$, so
+	\[ \frac{f'}{f} = \frac{g'(z)}{g(z)} + \frac{k}{z-a}. \qedhere \]
+\end{proof}
+
+Using this trick you can determine the number of zeros and poles inside a regular closed curve,
+using the so-called Argument Principle.
+
+\begin{theorem}
+	[Argument Principle]
+	Let $\gamma$ be a regular curve.
+	Suppose $f : U \to \CC$ is meromorphic inside and on $\gamma$, and
+	none of its zeros ore poles lie on $\gamma$.
+	Then
+	\[
+		\frac{1}{2\pi i} \oint_\gamma \frac{f'}{f} \; dz
+		= Z - P
+	\]
+	where $Z$ is the number of zeros inside $\gamma$ (counted with multiplicity)
+	and $P$ is the number of poles inside $\gamma$ (again with multiplicity).
+\end{theorem}
+\begin{proof}
+	Immediate by applying Cauchy's Residue Theorem alongside the preceding proposition.
+	In fact you can generalizes to any curve $\gamma$ via the winding number:
+	the integral is
+	\[ \frac{1}{2\pi i} \oint_\gamma \frac{f'}{f} \; dz
+		= \sum_{\text{zero $z$}} \Wind(\gamma,z)
+		- \sum_{\text{pole $p$}} \Wind(\gamma,p) \]
+	where the sums are with multiplicity.
+\end{proof}
+
+Thus the Argument Principle allows one to count zeros and poles inside any region of choice.
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[height=6cm]{/home/evan/Pictures/TopologicalGG/pole-contour-residue.jpg}
+	\caption{Throwing a contour around a pole lets us extract its residue.}
+\end{figure}
+
+Computers can use this to get information on functions whose values can be computed but whose behavior as a whole
+is hard to understand.
+Suppose you have a holomorphic function $f$, and you want to understand where its zeros are.
+Then just start picking various circles $\gamma$.
+Even with machine rounding error, the integral will be close enough to the true integer value that
+we can decide how many zeros are in any given circle.
+Numerical evidence for the Riemann Hypothesis (concerning the zeros of the Riemann zeta function)
+can be obtained in this way.
+
+\section{Philosophy: Why are holomorphic functions so nice?}
+All the fun we've had with holomorphic and meromorphic functions comes down to the fact that
+complex differentiability is such a strong requirement.
+It's a small miracle that $\CC$, which \emph{a priori} looks only like $\RR^2$,
+is in fact a field.
+Moreover, $\RR^2$ has the nice property that one can draw nontrivial loops
+(it's also true for real functions that $\int_a^a f \; dx = 0$, but this is not so interesting!),
+and this makes the theory much more interesting.
+
+As another piece of intuition from Siu\footnote{Harvard professor}:
+If you try to get (left) differentiable functions over \emph{quaternions},
+you find yourself with just linear functions.
+
+
+\section\problemhead
+% Looman-Menchoff Theorem?
+
+\begin{problem}
+	[Fundamental Theorem of Algebra]
+	Prove that if $f$ is a nonzero polynomial of degree $n$
+	then it has $n$ roots.
+\end{problem}
+
+\begin{dproblem}
+	[Rouch\'e's Theorem]
+	Let $f, g : U \to \CC$ be holomorphic functions, where $U$ contains the unit disk.
+	Suppose that $\left\lvert f(z) \right\rvert > \left\lvert g(z) \right\rvert$
+	for all $z$ on the unit circle.
+	Prove that $f$ and $f+g$ have the same number of zeros
+	which lie strictly inside the unit circle (counting multiplicities).
+\end{dproblem}
+	
+\begin{problem}
+	\yod
+	Prove that the integral
+	\[
+		\int_{-\infty}^{\infty} \frac{\cos x}{x^2+1} \; dx
+	\]
+	converges and determine its value.
+	\begin{hint}
+		It's $\lim_{a \to \infty} \int_{-a}^{a} \frac{\cos x}{x^2+1} \; dx$.
+		For each $a$, construct a semicircle.
+	\end{hint}
+	% semicircle integral
+
+	% \quad \text{ and } \quad
+	% \int_{-\infty}^{\infty} \frac{\sin x}{x^2+1} \; dx
+\end{problem}
+
+\begin{sproblem}
+	Let $f : U \to \CC$ be a nonconstant holomorphic function.
+	\begin{enumerate}[(a)]
+		\ii (Open Mapping Theorem)
+		Prove that the image of $f$ is open in $\CC$.\footnote{%
+			Thus the image of \emph{any}
+			open set $V \subseteq U$ is open in $\CC$
+			(by repeating the proof for the restriction $f : V \to \CC$).
+		}
+		\ii (Maximum Modulus Principle)
+		Show\footnote{One can also deduce the Maximum Modulus Principle
+		from the Mean Value Property.} that $\left\lvert f \right\rvert$
+		cannot have a maximum over $U$.
+		That is, show that for any $z \in U$, there is some $z' \in U$
+		such that $\left\lvert f(z) \right\rvert < \left\lvert f(z') \right\rvert$.
+	\end{enumerate}
+	% http://en.wikipedia.org/wiki/Open_mapping_theorem_(complex_analysis)
+\end{sproblem}

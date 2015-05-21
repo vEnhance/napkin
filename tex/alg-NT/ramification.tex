@@ -1,0 +1,362 @@
+\chapter{Ramification Theory}
+We're very interested in how rational primes $p$ factor in a bigger number field $K$.
+Some examples of this behavior: in $\ZZ[i]$ (which is a UFD!), we have factorizations
+\begin{align*}
+	(2) &= (1+i)^2 \\
+	(3) &= (3) \\
+	(5) &= (2+i)(2-i).
+\end{align*}
+In this chapter we'll learn more about how primes break down when they're thrown into bigger number fields.
+Using weapons from Galois Theory, this will let culminate in a proof of Quadratic Reciprocity.
+
+\section{Ramified / Inert / Split Primes}
+\prototype{In $\ZZ[i]$, $2$ is ramified, $3$ is inert, and $5$ splits.}
+
+Let $p$ be a rational prime, and toss it into $\OO_K$.
+Thus we get a factorization into prime ideals
+\[ p \cdot \OO_K = \pp_1^{e_1} \dots \pp_g^{e_g}. \]
+We say that each $\pp_i$ is \vocab{above} $(p)$.\footnote{%
+	Reminder that $p \cdot \OO_K$ and $(p)$ mean the same thing, and I'll use both interchangeably.}
+Pictorially, you might draw this as follows:
+\begin{diagram}
+	K & \supset & \OO_K & \pp_i \\
+	\dLine && \dLine & \dLine \\
+	\QQ & \supset & \ZZ & (p)
+\end{diagram}
+Some names for various behavior that can happen:
+\begin{itemize}
+	\ii We say $p$ is \vocab{ramified} if $e_i > 1$ for some $i$.
+	For example $2$ is ramified in $\ZZ[i]$.
+	\ii We say $p$ is \vocab{inert} if $g=1$ and $e_1=1$; i.e. $(p)$ remains prime.
+	For example $3$ is inert in $\ZZ[i]$.
+	\ii We say $p$ is \vocab{split} if $g > 1$.
+	For example $5$ is split in $\ZZ[i]$.
+\end{itemize}
+\begin{ques}
+	More generally, for a prime $p$ in $\ZZ[i]$:
+	\begin{itemize}
+		\ii $p$ is ramified exactly when $p = 2$.
+		\ii $p$ is inert exactly when $p \equiv 3 \pmod 4$.
+		\ii $p$ is split exactly when $p \equiv 1 \pmod 4$.
+	\end{itemize}
+	Prove this.
+\end{ques}
+
+\section{Primes ramify if and only if they divide $\Delta_K$}
+The most unusual case is ramification:
+Just like we don't expect a randomly selected polynomial to have a double root,
+we don't expect a randomly selected prime to be ramified.
+In fact, the key to understanding ramification is the discriminant.
+
+For the sake of discussion, let's suppose that $K$ is monogenic, $O_K = \ZZ[\theta]$,
+where $\theta$ has minimal polynomial $f$.
+Let $p$ be a rational prime we'd like to factor.
+If $f$ factors as $f_1^{e_1} \dots f_g^{e_g}$, then we know that
+the prime factorization of $(p)$ is given by
+\[ p \cdot \OO_K = \prod_i \left( p, f_i(\theta) \right)^{e_i}. \]
+In particular, $p$ ramifies exactly when \emph{$f$ has a double root mod $p$}!
+To detect whether this happens, we look at the polynomial discriminant of $f$,
+namely
+\[ \Delta(f) = \prod_{i<j} (z_i - z_j)^2 \]
+and see whether it is zero mod $p$ -- thus $p$ ramifies if and only if this is true.
+
+It turns out that the na\"ive generalization to any number fields
+works if we replace $\Delta(f)$ by just the discriminant $\Delta_K$ of $K$;
+these are the same by \Cref{prob:root_discriminant}.
+That is,
+\begin{theorem}
+	[Discriminant Detects Ramification]
+	Let $p$ be a rational prime and $K$ a number field.
+	Then $p$ is ramified if and only if $p$ divides $\Delta_K$.
+\end{theorem}
+\begin{example}[Ramification in the Gaussian Integers]
+	Let $K = \QQ(i)$ so $\OO_K = \ZZ[i]$ and $\Delta_K = 4$.
+	As predicted, the only prime ramifying in $\ZZ[i]$ is $2$,
+	the only prime factor of $\Delta_K$.
+\end{example}
+In particular, only finitely many primes ramify.
+
+\section{Inertial Degrees}
+\prototype{$(7)$ has inertial degree $2$ in $\ZZ[i]$ and $(2+i)$ has inertial degree $1$ in $\ZZ[i]$.}
+
+Recall that we were able to define an ideal norm $\Norm(\aa) = \left\lvert \OO_K / \aa \right\rvert$
+measuring how ``roomy'' the ideal $\aa$ is.
+For example, $(5)$ has ideal norm $5^2 = 25$ in $\ZZ[i]$, since
+\[ \ZZ[i] / (5) \cong \left\{ a+bi \mid a,b \in \ZZ_5 \right\} \]
+has $25$ elements.
+
+Now, let's look at
+\[ p\OO_K = \pp_1^{e_1} \dots \pp_g^{e_g} \]
+in $\OO_K$, where $K$ has degree $n$.
+Taking the ideal norms of both sides, we have that
+\[ p^n = \Norm(\pp_1)^{e_1} \dots \Norm(\pp_g)^{e_g}. \]
+We conclude that $\pp_i = p^{f_i}$ for some integer $f_i \ge 1$, and moreover that
+\[ n = \sum_{i=1}^g e_i f_i. \]
+\begin{definition}
+	We say $f_i$ is the \vocab{inertial degree} of $\pp_i$,
+	and $e_i$ is the \vocab{ramification index}.
+\end{definition}
+\begin{example}[Examples of Inertial Degrees]
+	Work in $\ZZ[i]$, which is degree $2$.
+	The inertial degree detects how ``spacy'' the
+	given $\pp$ is when interpreted in $\OO_K$.
+	\begin{enumerate}[(a)]
+		\ii The prime $7 \cdot \ZZ[i]$ has inertial degree $2$.
+		Indeed, $\ZZ[i]/ (7)$ is has $7^2=49$ elements,
+		those of the form $a+bi$ for $a$, $b$ modulo $7$.
+		It gives ``two degrees'' of space.
+		\ii Let $(5) = (2+i)(2-i)$.
+		The inertial degrees of $(2+i)$ and $(2-i)$ are both $1$.
+		Indeed, $\ZZ[i] / (2+i)$ only gives ``one degree'' of space,
+		since each of its elements can be viewed as an integers modulo $5$,
+		and there are only $5^1=5$ elements.
+	\end{enumerate}
+	If you understand this, it should be intuitively clear
+	why the sum of the inertial degrees should equal $n$.
+\end{example}
+
+\section{The Magic of Galois Extensions}
+OK, that's all fine and well.
+But something \emph{really magical} happens when we add the
+additional hypothesis that $K/\QQ$ is \emph{Galois}:
+all the inertial degrees and ramification degrees are equal.
+
+This falls out of the following key result.
+Let $K/\QQ$ be Galois with $G = \Gal(K/\QQ)$.
+
+Note that if $\pp \subseteq \OO_K$ is prime above $p$,
+then so the image $\sigma``(\pp)$ is also prime for any $\sigma \in G$
+(since $\sigma$ is an automorphism!).
+Moreover, since $p \in \pp$ and $\sigma$ fixes $\QQ$,
+we know that $p \in \sigma``(\pp)$ as well.
+
+Thus, by the pointwise mapping, the \textbf{the Galois group acts
+on the prime ideals above a rational prime $p$}.
+Picture:
+\begin{center}
+	\begin{asy}
+		size(6cm);
+		pair P = MP("p", (0,-2.8), dir(-90));
+		pair A = MP("\mathfrak p_1", 0.8*dir(210), origin);
+		pair B = MP("\mathfrak p_2", 0.5*dir(140), origin);
+		pair C = MP("\mathfrak p_3", dir(70), origin);
+		pair D = MP("\mathfrak p_4", 1.2*dir(-15), origin);
+		pair E = MP("\mathfrak p_5", 1.4*dir(15), origin);
+		pair F = MP("\mathfrak p_6", 1.5*dir(135), origin);
+		draw(dir(-90)--P);
+		draw(A--D, dashed, EndArrow, Margin(3,3));
+		label("$\sigma$", A--D, dir(-90));
+	\end{asy}
+\end{center}
+
+The $\sigma``(\pp)$ is hideous in this context, since we're really thinking
+of $\sigma$ as just doing a group action, and so we give the following shorthand:
+\begin{abuse}
+	Let $\sigma\pp$ be shorthand for $\sigma``(\pp)$.
+\end{abuse}
+
+Since the $\sigma$'s are all bijections (they are automorphisms!),
+it should come as no surprise that the prime ideals which are in the same
+orbit are closely related.
+But miraculously, it turns out there is only one orbit!
+\begin{theorem}
+	[Galois Group Acts Transitively]
+	Let $K/\QQ$ be Galois with $G = \Gal(K/\QQ)$.
+	Let $\{\pp_i\}$ be the set of distinct prime ideals in
+	the factorization of $p \cdot \OO_K$ (in $\OO_K$).
+
+	Then $G$ acts transitively on the $\pp_i$:
+	for every $i$ and $j$, we can find $\sigma$ such that $\sigma\pp_i = \pp_j$.
+\end{theorem}
+\begin{proof}
+	Fairly slick.
+	Suppose for contradiction that no $\sigma \in G$ sends $\pp_1$ to $\pp_2$, say.
+	By the Chinese Remainder Theorem, we can find an $x \in \OO_K$ such that
+	\begin{align*}
+		x &\equiv 0 \pmod{\pp_1} \\
+		x &\equiv 1 \pmod{\pp_i} \text{ for $i \ge 2$}
+		% \pmod{(\sigma\inv)``(\pp_2)} \text{ for $\sigma \in G$.}
+	\end{align*}
+	Then, compute the norm
+	\[ \NK(x) = \prod_{\sigma \in \Gal(K/\QQ)} \sigma(x). \]
+	Each $\sigma(x)$ is in $K$ because $K/\QQ$ is Galois!
+
+	Since $\NK(x)$ is an integer and divisible by $\pp_1$,
+	we should have that $\NK(x)$ is divisible by $p$.
+	Thus it should be divisible by $\pp_2$ as well.
+	But by the way we selected $x$, we have $x \notin \sigma\inv\pp_2$ for every $\sigma \in G$!
+	So $\sigma(x) \notin \pp_2$ for any $\sigma$, which is a contradiction.
+\end{proof}
+\begin{theorem}[Inertial Degree and Ramification Indices Are All Equal]
+	Assume $K/\QQ$ is Galois.
+	Then for any rational prime $p$ we have
+	\[ p \cdot \OO_K = \left( \pp_1 \pp_2 \dots \pp_g \right)^e \]
+	for some $e$, where the $\pp_i$ are distinct prime ideals
+	with the same inertial degree $f$.
+	Hence \[ [K:\QQ] = efg. \]
+\end{theorem}
+\begin{proof}
+	To see that the inertial degrees are equal, note that each $\sigma$
+	induces an isomorphism
+	\[ \OO_K / \pp \cong \OO_K / \sigma(\pp). \]
+	Because the action is transitive, all $f_i$ are equal.
+	\begin{exercise}
+		Using the fact that $\sigma \in \Gal(K/\QQ)$,
+		show that \[ \sigma``(p \cdot \OO_K) = p \cdot \sigma``(\OO_K) = p \cdot \OO_K. \]
+	\end{exercise}
+	So for every $\sigma$, we have that
+	$p \cdot \OO_K = \prod \pp_i^{e_i} = \prod (\sigma\pp_i)^{e_i}$.
+	Since the action is transitive, all $e_i$ are equal.
+\end{proof}
+
+\section{But Wait, There's More!}
+Let $p$ be a rational prime.
+Thus
+\[ p \cdot \OO_K = \left( \pp_1 \dots \pp_g \right)^e \]
+and all the $\pp_i$ have inertial degree $f$.
+Let $\pp$ denote a choice of the $\pp_1$.
+
+We can look at both the field $\OO_K / \pp$ and $\ZZ / p = \mathbb F_p$.
+Naturally, since $\OO_K / \pp$ is a finite field we can view it as a field extension of $\OO_K$.
+So we can get the following diagram:
+\begin{diagram}
+	K & \supset & \OO_K & \pp & & \OO_K / \pp \cong \FF_{p^f} \\
+	\dLine && \dLine & \dLine & & \dLine \\
+	\QQ & \supset & \ZZ & (p) & & \FF_p
+\end{diagram}
+At the far right we have finite field extensions, which we know are \emph{really} well behaved.
+So we ask:
+\begin{quote}
+	\itshape
+	How are $\Gal\left( (\OO_K/\pp) / \FF_p \right)$
+	and $\Gal(K/\QQ)$ related?
+\end{quote}
+Absurdly enough, there is an explicit answer:
+\textbf{it's just the stabilizer of $\pp$, at least when
+$p$ is unramified}.
+\begin{definition}
+	Let $D_\pp \subseteq \Gal(K/\QQ)$ be the stabilizer of $\pp$, that is
+	\[ D_\pp \defeq \left\{ \sigma \in \Gal(K/\QQ) \mid \sigma\pp = \pp \right\}. \]
+	We say $D_\pp$ is the \vocab{decomposition group} of $\pp$.
+\end{definition}
+Then, every $\sigma \in D_\pp$ induces an automorphism of $\OO_K / \pp$ by
+\[ \alpha \mapsto \sigma(\alpha) \pmod\pp. \]
+So there's a natural map
+\[ D_\pp \taking\theta \Gal\left( (\OO_K/\pp) / \FF_p \right) \]
+by declaring $\theta(\sigma)$ to just be ``$\sigma \pmod \pp$''.
+The fact that $\sigma \in D_\pp$ (i.e.\ $\sigma$ fixes $\pp$)
+ensures this map is well-defined.
+
+\begin{theorem}[Decomposition Group and Galois Group]
+	Define $\theta$ as above. Then
+	\begin{itemize}
+		\ii $\theta$ is surjective, and
+		\ii its kernel is a group of order $e$,
+		the ramification index.
+	\end{itemize}
+	In particular, if $p$ is unramified then
+	$D_\pp \cong \Gal\left( (\OO_K/\pp)/\FF_p \right)$.
+\end{theorem}
+(The proof is not hard, but a bit lengthy and in my opinion
+not very enlightening.)
+
+\begin{moral}
+	If $p$ is unramified, then taking
+	modulo $\pp$ gives
+	$D_\pp \cong \Gal\left( (\OO_K/\pp) / \FF_p \right)$.
+\end{moral}
+
+But we know exactly what $\Gal\left( (\OO_K/\pp)/\FF_p \right)$ is!
+We already have $ \OO_K / \pp \cong \FF_{p^f} $, and the Galois group is
+\[
+	\Gal\left( (\OO_K/\pp) / \FF_p \right)
+	\cong \Gal\left( \FF_{p^f} / \FF_p \right)
+	\cong \left< x \mapsto x^p \right>
+	\cong \Zc f.
+\]
+So $D_\pp \cong \Zc f$ as well.
+
+\section{The Inertia Group}
+Let $p$ be above $\pp$ (with $p$ not necessarily ramified), and consider
+\[ D_\pp \taking\theta \Gal\left( (\OO_K/\pp) : \FF_p \right) \]
+as before.
+The kernel of $\theta$ the \vocab{inertia group} and denoted $I_\pp \subseteq D_\pp$; it has order $e$.
+
+This gives us a pretty cool sequence of subgroups
+$\{1\} \subseteq I \subseteq D \subseteq G$
+where $G$ is the Galois group (I'm dropping the $\pp$-subscripts now).
+Let's look at the corresponding \emph{fixed fields} via the Fundamental Theorem of Galois Theory.
+Picture:
+\begin{diagram}
+	\pp \subseteq \OO_K \subseteq & K & \rIsom & \{1\} \\
+	& \dLine^{\text{Ramify}} & & \dLine_e \\
+	& K^I & & I \\
+	& \dLine^{\text{Inert}} & & \dLine_f \\
+	& K^D & & D \\
+	& \dLine^{\text{Split}} & & \dLine_g \\
+	(p) \subseteq \ZZ \subseteq & \QQ & \rIsom & G
+\end{diagram}
+Something curious happens:
+\begin{itemize}
+	\ii When $(p)$ is lifted into $K^D$ it splits completely into $g$ unramified primes.
+	Each of these has inertial degree $1$.
+	\ii When the primes in $K^D$ are lifted to $K^I$, they remain inert, and now have
+	inertial degree $f$.
+	\ii When then lifted to $K$, they ramify with exponent $e$ (but don't split at all).
+\end{itemize}
+Picture:
+In other words, the process of going form $1$ to $efg$ can be very nicely broken into the three steps above.
+To draw this in the picture, we get
+\begin{diagram}
+	(p) & \rTo & \pp_1 \dots \pp_g & \rTo & \pp_1 \dots \pp_g & \rTo & (\pp_1 \dots \pp_g)^e \\
+	\{f_i\}: && 1,\dots,1 && f,\dots,f && f,\dots,f \\
+	\QQ & \hLine_{\text{Split}} & K^D & \hLine_{\text{Inert}} & K^I & \hLine_{\text{Ramify}} & K
+\end{diagram}
+In any case, in the ``typical'' case that there is no ramification,
+we just have $K^I = K$.
+
+\section{Tangential Remark: More General Galois Extensions}
+All the discussion about Galois extensions
+carries over if we replace $K/\QQ$ by some different Galois extension $K/F$.
+Instead of a rational prime $p$ breaking down in $\OO_K$,
+we would have a prime ideal $\pp$ of $F$ breaking down as
+\[ \pp \cdot \OO_L = (\mathfrak P_1 \dots \mathfrak P_g)^e \]
+in $\OO_L$ and then all results hold verbatim.
+(The $\mathfrak P_i$ are primes in $L$ above $\pp$.)
+Instead of $\FF_p$ we would have $F/\pp$.
+
+The reason I choose to work with $F = \QQ$ is that capital Gothic $P$'s ($\mathfrak P$)
+look \emph{really} terrifying.
+Like, they were the reason I stopped reading \cite{ref:oggier_NT} for a while!
+
+\section\problemhead
+cyclic galois groups? idk\todo{add problems}
+
+\begin{problem}
+	[Korea Olympiad Finals 2014] 
+	Let $p$ be an odd prime and $k$ a positive integer such that $p \mid k^2+5$.
+	Prove that there exist positive integers $m$, $n$ such that $p = m^2+5n^2$.
+	\begin{hint}
+		Factor $p$, show that the class group of $\QQ(\sqrt{-5})$ has order two.
+	\end{hint}
+	\begin{sol}
+		Let $K = \QQ(\sqrt{-5})$. Check that $\Cl_K$ has order two using the Minkowski bound;
+		moreover $\Delta_K = 20$.
+		Now note that $\OO_K = \ZZ[\sqrt{-5}]$, and $x^2+5$ factors mod $p$ as $(x+k)(x-k)$;
+		hence in $\OO_K$ we have $(p) = (p, \sqrt{-5}+k)(p, \sqrt{-5}-k) = \pp_1 \pp_2$, say.
+		For $p > 5$ the prime $p$ does not ramify and we have $\pp_1 \neq \pp_2$, since $\Delta_K = 20$.
+
+		Then $(p^2) = \pp_1^2 \cdot \pp_2^2$. Because the class group has order two,
+		both ideals on the right hand side are principal, and because $\pp_1 \neq \pp_2$ they are distinct.
+		Thus $p^2$ is a nontrivial product of two elements of $\OO_K$; from this we can extract the desired factorization.
+	\end{sol}
+\end{problem}
+
+\begin{dproblem}
+	Prove that no rational prime $p$ can remain inert in
+	$K = \QQ(\cbrt2, \omega)$, the splitting field of $x^3-2$.
+	How does this generalize?
+	\begin{hint}
+		Show that no rational prime $p$ can remain inert if $\Gal(K/\QQ)$ is not cyclic.
+	\end{hint}
+\end{dproblem}

@@ -1,0 +1,980 @@
+\documentclass[11pt]{scrreprt}
+\input{../../tex/preamble}
+\addbibresource{../../references.bib}
+
+\usepackage{mathrsfs}
+\newcommand{\CH}{\mathsf{CH}}
+\newcommand{\ZFC}{\mathsf{ZFC}}
+
+\newcommand{\Name}{\text{Name}}
+\newcommand{\Po}{\mathbb P}
+\newcommand{\nrank}{\opname{n-rank}} % ranks
+
+\def\asydir{}
+
+\begin{document}
+\title{Set Theory}
+\maketitle
+
+\chapter{ZFC and Ordinal Numbers}
+\section{The Ultimate Functional Equation}
+definition nesting. . .
+
+\section{The Axioms}
+
+\section{Sets vs Classes}
+
+\section{Ordinal Numbers}
+Define
+spiral picture
+
+Induction
+
+\section\problemhead
+\begin{problem}
+	Show that the class of ordinals $\On$ is a proper class.
+\end{problem}
+
+
+\chapter{Ordinals and Cardinals}
+transfinite induction
+
+ordinal arithmetic
+
+definition of cardinals
+
+cardinal arithmetic
+
+cofinality: regular vs singular
+
+\section\problemhead
+Inaccessible
+
+
+\chapter{Inner Models}
+Meta
+
+Tarski-Vaught
+
+absoluteness
+
+Skolem hulls $\implies$ Reflection
+
+\section\problemhead
+
+
+\chapter{Forcing}
+We are now going to introduce Paul Cohen's technique of \vocab{forcing},
+which we then use to break the Continuum Hypothesis.
+
+Here is how it works.
+Given a transitive model $M$ and a poset $\Po$ inside it,
+we can consider a ``generic'' subset $G \subseteq \Po$, where $G$ is not in $M$.
+Then, we are going to construct a bigger universe $M[G]$ which contains both $M$ and $G$.
+(This notation is deliberately the same as $\ZZ[\sqrt2]$, for example -- in the algebra case,
+we are taking $\ZZ$ and adding in a new element $\sqrt 2$, plus everything that can be generated from it.)
+By choosing $\Po$ well, we can cause $M[G]$ to have desirable properties.
+
+The models $M$ and $M[G]$ will share the same ordinals.
+But one issue with this is that forcing may introduce some new bijections between cardinals of $M$
+that were not there originally; this leads to a phenomenon called \emph{cardinal collapse}:
+quite literally, cardinals in $M$ will no longer be cardinals in $M[G]$, and instead just an ordinal.
+\missingfigure{universe showing cardinal collapse}
+
+In the case of the Continuum Hypothesis, we'll introduce a $\Po$ such that
+any generic subset $G$ will ``encode'' $\aleph_2^M$ real numbers.
+We'll then show cardinal collapse does not occur, meaning $\aleph_2^{M[G]} = \aleph_2^M$.
+Thus $M[G]$ will have $\aleph_2^{M[G]}$ real numbers, as desired.
+
+\section{Setting Up Posets}
+\prototype{Infinite Binary Tree}
+Let $M$ be a transitive model of $\ZFC$.
+Let $\Po = (\Po, \le) \in M$ be a poset with a maximal element $1_\Po$
+which lives inside a model $M$.
+The elements of $\Po$ are called \vocab{conditions};
+because they will force things to be true in $M[G]$.
+
+\begin{definition}
+	A subset $D \subseteq \Po$ is \vocab{dense} if for all $p \in \Po$,
+	there exists a $q  \in D$ such that $q \le p$.
+\end{definition}
+Examples of dense subsets include the entire $\Po$ as well
+as any downwards ``slice''.
+
+\begin{definition}
+	For $p,q \in \Po$ we write $p \parallel q$,
+	saying ``$p$ is \vocab{compatible} with $q$'',
+	if there is exists $r \in \Po$ with $r \le p$ and $r \le q$.
+	Otherwise, we say $p$ and $q$ are \vocab{incompatible}
+	and write $p \perp q$.
+\end{definition}
+\begin{example}[Infinite Binary Tree]
+	Let $\Po = 2^{<\omega}$ be the \vocab{infinite binary tree} shown below,
+	extended to infinity in the obvious way:
+	\begin{center}
+		\begin{asy}
+			size(8cm);
+			pair P = Drawing("\varnothing", (0,4), dir(90));
+			pair P0 = Drawing("0", (-5,2), 1.5*dir(90));
+			pair P1 = Drawing("1", (5,2),  1.5*dir(90));
+			pair P00 = Drawing("00", (-7,0), 1.4*dir(120));
+			pair P01 = Drawing("01", (-3,0), 1.4*dir(60));
+			pair P10 = Drawing("10", (3,0),  1.4*dir(120));
+			pair P11 = Drawing("11", (7,0),  1.4*dir(60));
+
+			pair P000 = Drawing("000", (-8,-3));
+			pair P001 = Drawing("001", (-6,-3));
+			pair P010 = Drawing("010", (-4,-3));
+			pair P011 = Drawing("011", (-2,-3));
+
+			pair P100 = Drawing("100", (2,-3));
+			pair P101 = Drawing("101", (4,-3));
+			pair P110 = Drawing("110", (6,-3));
+			pair P111 = Drawing("111", (8,-3));
+
+			label("$\vdots$", (-7,-3), dir(-90));
+			label("$\vdots$", (-3,-3), dir(-90));
+			label("$\vdots$", (3,-3), dir(-90));
+			label("$\vdots$", (7,-3), dir(-90));
+
+			draw(P01--P0--P00);
+			draw(P11--P1--P10);
+			draw(P0--P--P1);
+			draw(P000--P00--P001);
+			draw(P100--P10--P101);
+			draw(P010--P01--P011);
+			draw(P110--P11--P111);
+		\end{asy}
+	\end{center}
+
+	\begin{enumerate}[(a)]
+		\ii The maximal element $1_\Po$ is the empty string $\varnothing$.
+		\ii $D = \{\text{all strings ending in $001$}\}$ is an example of a dense set.
+		\ii No two elements of $\Po$ are compatible unless they are comparable.
+	\end{enumerate}
+\end{example}
+
+
+Now, I can specify what it means to be ``generic''.
+\begin{definition}
+	A nonempty set $G \subseteq \Po$ is a \vocab{filter} if
+	\begin{enumerate}[(a)]
+		\ii The set $G$ is upwards-closed:
+		$\forall p \in G (\forall q \ge p) (q \in G)$.
+		\ii Any pair of elements in $G$ is compatible.
+	\end{enumerate}
+	We say $G$ is \vocab{$M$-generic} if for all $D$ which are \emph{in the model $M$},
+	if $D$ is dense then $G \cap D \neq \varnothing$.
+\end{definition}
+\begin{ques}
+	Show that if $G$ is a filter then $1_\Po \in G$.
+\end{ques}
+\begin{example}[Generic Filters on the Infinite Binary Tree]
+	Let $\Po = 2^{<\omega}$.
+	The generic filters on $\Po$ are sets of the following form:
+	\[ \left\{ 0,\; b_1,\; b_1b_2,\; b_1b_2b_3,\; \dots \right\}. \]
+	So every generic filter on $\Po$ correspond to a binary number $b = 0.b_1b_2b_3\dots$.
+
+	It is harder to describe which reals correspond to generic filters,
+	but they should really ``look random''.
+	For example, the set of strings ending in $011$ is dense,
+	so one should expect ``$011$'' to appear inside $b$,
+	and more generally that $b$ should contain every binary string.
+	So one would expect the binary expansion of $\pi-3$ might correspond to a generic,
+	but not something like $0.010101\dots$.
+	That's why we call them ``generic''.
+\end{example}
+
+\begin{center}
+	\begin{asy}
+		size(8cm);
+		pair P = Drawing("\varnothing", red, (0,4), red, dir(90));
+		pair P0 = Drawing("0", red, (-5,2), red, 1.5*dir(90));
+		pair P1 = Drawing("1", (5,2),  1.5*dir(90));
+		pair P00 = Drawing("00", (-7,0), 1.4*dir(120));
+		pair P01 = Drawing("01", red, (-3,0), red, 1.4*dir(60));
+		pair P10 = Drawing("10", (3,0),  1.4*dir(120));
+		pair P11 = Drawing("11", (7,0),  1.4*dir(60));
+
+		pair P000 = Drawing("000", (-8,-3));
+		pair P001 = Drawing("001", (-6,-3));
+		pair P010 = Drawing("010", red, (-4,-3), red);
+		pair P011 = Drawing("011", (-2,-3));
+
+		pair P100 = Drawing("100", (2,-3));
+		pair P101 = Drawing("101", (4,-3));
+		pair P110 = Drawing("110", (6,-3));
+		pair P111 = Drawing("111", (8,-3));
+
+		draw(P01--P0--P00);
+		draw(P11--P1--P10);
+		draw(P0--P--P1);
+		draw(P000--P00--P001);
+		draw(P100--P10--P101);
+		draw(P010--P01--P011);
+		draw(P110--P11--P111);
+
+		draw(P--P0--P01--P010--(P010+2*dir(-90)), red+1.4);
+		MP("G", P010+2*dir(-90), dir(-90), red);
+	\end{asy}
+\end{center}
+
+\begin{exercise}
+	Verify that these are every generic filter $2^{<\omega}$ has the form above.
+	Show that conversely, a binary number gives a filter, but it need not be generic.
+\end{exercise}
+
+Notice that if $p \ge q$, then the sentence $q \in G$ tells us more information than the sentence $p \in G$.
+In that sense $q$ is a \emph{stronger} condition.
+In another sense $1_\Po$ is the weakest possible condition,
+because it tells us nothing about $G$; we always have $1_\Po \in G$
+since $G$ is upwards closed.
+
+\section{More Properties of Posets}
+We had better make sure that generic filters exist.
+In fact this is kind of tricky, but for countable models it works:
+\begin{lemma}[Rasiowa-Sikorski Lemma]
+	Suppose $M$ is a \emph{countable} transitive model of $\ZFC$
+	and $\Po$ is a partial order.
+	Then there exists an $M$-generic filter $G$.
+\end{lemma}
+\begin{proof}
+	Since $M$ is countable, there are only countably many dense sets (they live in $M$!),
+	say \[ D_1, D_2, \ldots, D_n, \ldots \in M. \]
+	Using Choice,
+	let $p_1 \in D_1$, and then let $p_2 \le p_1$ such that $p_2 \in D_2$
+	(this is possible since $D_2$ is dense), and so on.
+	In this way we can inductively exhibit a chain
+	\[ p_1 \ge p_2 \ge p_3 \ge \dots \]
+	with $p_i \in D_i$ for every $i$.
+
+	Hence, we want to generate a filter from the $\{p_i\}$.
+	Just take the upwards closure -- let $G$ be the set of $q \in \Po$ such that $q \ge p_n$ for some $n$.
+	By construction, $G$ is a filter (this is actually trivial).
+	Moreover, $G$ intersects all the dense sets by construction.
+	\todo{problem?}
+\end{proof}
+Fortunately, for breaking $\CH$ we would want $M$ to be countable anyways.
+% This is really just the proof of the Baire category theorem.
+
+The other thing we want to do to make sure we're on the right track is guarantee
+that a generic set $G$ is not actually in $M$.
+(Analogy: $\ZZ[3]$ is a really stupid extension.)
+The condition that guarantees this is:
+
+\begin{definition}
+	A partial order $\Po$ is \vocab{splitting} if
+	for all $p \in \Po$, there exists $q,r \le p$
+	such that $q \perp r$.
+\end{definition}
+\begin{example}[Infinite Binary Tree is (Very) Splitting]
+	The infinite binary tree is about as splitting as you can get.
+	Given $p \in 2^{<\omega}$, just consider the two elements right under it.
+\end{example}
+
+\begin{lemma}[Splitting Posets Omit Generic Sets]
+	Suppose $\Po$ is splitting.  Then if $F \subseteq \Po$ is a filter
+	such that $F \in M$, then $\Po \setminus F$ is dense.
+	In particular, if $G \subseteq \Po$ is generic, then $G \notin M$.
+\end{lemma}
+\begin{proof}
+	Consider $p \notin \Po \setminus F \iff p \in F$.
+	Then there exists $q, r \le p$ which are not compatible.
+	Since $F$ is a filter it cannot contain both;
+	we must have one of them outside $F$, say $q$.
+	Hence every element of $p \in \Po \setminus (\Po \setminus F)$
+	has an element $q \le p$ in $\Po \setminus F$.
+	That's enough to prove $\Po \setminus F$ is dense.
+	\begin{ques}
+		Deduce the last assertion of the lemma about generic $G$. \qedhere
+	\end{ques}
+\end{proof}
+
+\section{Names, and the Generic Extension}
+We now define the \emph{names} associated to a poset $\Po$.
+
+\begin{definition}
+	Suppose $M$ is a transitive model of $\ZFC$, $\Po = (\Po, \le) \in M$ is a partial order.
+	We define the hierarchy of \vocab{$\Po$-names} recursively by
+	\begin{align*}
+		\Name_0 &= \varnothing \\
+		\Name_{\alpha+1} &= \PP(\Name_\alpha \times \Po) \\
+		\Name_{\lambda} &= \bigcup_{\alpha < \lambda} \Name_\alpha.
+	\end{align*}
+	Finally, $\Name = \bigcup_\alpha \Name_\alpha$ denote the class of all $\Po$-names.
+	% For $\tau \in \Name$, let $\nrank(\tau)$ be the least $\alpha$ such that $\tau \in \Name_\alpha$.
+\end{definition}
+(These $\Name_\alpha$'s are the analog of the $V_\alpha$'s:
+each $\Name_\alpha$ is just the set of all names with rank $\le \alpha$.)
+
+\begin{definition}
+	For a filter $G$, we define the \vocab{interpretation} of $\tau$ by $G$,
+	denote $\tau^G$, using the transfinite recursion
+	\[ \tau^G
+		= \left\{ \sigma^G
+		\mid \left<\sigma, p\right> \in \tau
+		\text{ and } p \in G\right\}. \]
+	We then define the model
+	\[ M[G] = \left\{ \tau^G \mid \tau \in \Name^M \right\}. \]
+	In words, $M[G]$ is the interpretation of all the possible $\Po$-names
+	(as computed by $M$).
+\end{definition}
+
+\textbf{You should think of a $\Po$-name as a ``fuzzy set''.}
+Here's the idea.
+Ordinary sets are collections of ordinary sets,
+so fuzzy sets should be collections of fuzzy sets.
+These fuzzy sets can be thought of like the Ghosts of Christmases yet to come:
+they represent things that might be, rather than things that are certain.
+In other words, they represent the possible futures of $M[G]$ for various choices of $G$.
+
+Every fuzzy set has an element $p \in \Po$ pinned to it.
+When it comes time to pass judgment,
+we pick a generic $G$ and filter through the universe of $\Po$-names.
+The fuzzy sets with an element of $G$ attached to it materialize into the real world,
+while the fuzzy sets with elements outside of $G$ fade from existence.
+The result is $M[G]$.
+
+\begin{example}[First Few Levels of the Name Hierarchy]
+	Let us compute
+	\begin{align*}
+		\Name_0 &= \varnothing \\
+		\Name_1 &= \PP(\varnothing \times \Po) \\
+		&= \{\varnothing\} \\
+		\Name_2 &= \PP(\{\varnothing\} \times \Po) \\
+		&= \PP\left( \left\{ 
+			\left<\varnothing, p\right>
+			\mid p \in \Po
+		\right\} \right).
+	\end{align*}
+\end{example}
+Compare the corresponding von Neuman universe.
+\[ V_0 = \varnothing, \; V_1 = \{\varnothing\}, \;
+V_2 = \left\{ \varnothing, \left\{ \varnothing \right\} \right\}. \]
+
+\begin{example}[Example of an Interpretation]
+	As we said earlier, $\Name_1 = \{\varnothing\}$.
+	Now suppose
+	\[ \tau =
+		\left\{
+			\left<\varnothing, p_1\right>,
+			\left<\varnothing, p_2\right>,
+			\dots
+			\left<\varnothing, p_n\right>
+		\right\} 
+		\in \Name_2. \]
+	Then 
+	\[
+		\tau^G
+		= \left\{ \varnothing \mid
+		\left<\varnothing, p\right> \in \tau \text{ and } p \in G\right\}
+		=
+		\begin{cases}
+			\{\varnothing\} & \text{if some } p_i \in G \\
+			\varnothing & \text{otherwise}.
+		\end{cases}
+	\]
+	In particular, remembering that $G$ is nonempty we see that
+	\[ \left\{ \tau^G \mid \tau \in \Name_2 \right\} = V_2^M. \]
+	In fact, this holds for any natural number $n$, not just $2$.
+\end{example}
+So, $M[G]$ and $M$ agree on finite sets.
+
+Now, we want to make sure $M[G]$ contains the elements of $M$.
+To do this, we take advantage of the fact that $1_\Po$ must be in $G$, and define
+for every $x \in M$ the set
+\[ \check x = \left\{ \left<\check y, 1_\Po\right> \mid y \in x \right\} \]
+by transfinite recursion.
+Basically, $\check x$ is just a copy of $x$ where we add check marks and tag every element with $1_\Po$.
+
+\begin{example}
+	Compute $\check 0 = 0$ and $\check 1 = \left\{ \left<\check 0, 1_\Po\right> \right\}$.
+	Thus \[ (\check 0)^G = 0 \quad\text{and}\quad (\check 1)^G = 1. \]
+\end{example}
+\begin{ques}
+	Show that in general, $(\check x)^G = x$.
+	(Rank induction.)
+\end{ques}
+
+However, we'd also like to cause $G$ to be in $M[G]$.
+In fact, we can write down the name exactly:
+\[ \dot G = \left\{ \left<\check p, p\right> \mid p \in \Po \right\}. \]
+\begin{ques}
+	Show that $(\dot G)^G = G$.
+\end{ques}
+\begin{ques}
+	Verify that $M[G]$ is transitive:
+	that is, if $\sigma^G \in \tau^G \in M[G]$, show that $\sigma^G \in M[G]$.
+	(This is offensively easy.)
+\end{ques}
+
+In summary,
+\begin{moral}
+	$M[G]$ is a transitive model extending $M$ (it contains $G$).
+\end{moral}
+
+Moreover, it is reasonably well-behaved even if $G$ is just a filter.
+Let's see what we can get off the bat.
+\begin{lemma}[Properties Obtained from Filters]
+	Let $M$ be a transitive model of $\ZFC$.
+	If $G$ is a filter, then $M[G]$ is transitive
+	and satisfies Extensionality, Foundation, EmptySet, Infinity, Pairing, and Union.
+\end{lemma}
+This leaves PowerSet, Comprehension, Replacement, and Choice.
+\begin{proof}
+	Hence, we get Extensionality and Foundation for free.
+	Infinity and EmptySet follows from $M \subseteq M[G]$.
+
+	For Pairing, suppose $\sigma_1^G, \sigma_2^G \in M[G]$.
+	Then
+	\[ \sigma = 
+		\left\{ \left<\sigma_1, 1_\Po\right>, \left<\sigma_2, 1_\Po\right> \right\}
+	\]
+	works satisfies $\sigma^G = \{\sigma_1, \sigma_2\}$.
+	(Note that we used Pairing in $M$.)
+	Union is left as a problem, which you are encouraged to try now.
+\end{proof}
+Up to here, we don't need to know anything about when a sentence is true in $M[G]$;
+all we had to do was contrive some names like $\check x$ or
+$\left\{ \left<\sigma_1, 1_\Po\right>, \left<\sigma_2, 1_\Po\right> \right\}$
+to get the facts we wanted.
+But for the remaining axioms, we \emph{are} going to need this extra power
+are true in $M[G]$.
+For this, we have to introduce the Fundamental Theorem of Forcing.
+
+\section{Fundamental Theorem of Forcing}
+The model $M$ unfortunately has no idea what $G$ might be,
+only that it is some generic filter.\footnote{%
+	You might say this is a good thing, here's why.
+	We're trying to show that $\neg \CH$ is consistent with $\ZFC$,
+	and we've started with a model $M$ of the real universe $V$.
+	But for all we know $\CH$ might be true in $V$ (what if $V=L$?),
+	in which case it would also be true of $M$.
+
+	Nonetheless, we boldly construct $M[G]$ an extension of the model $M$.
+	In order for it to behave differently from $M$, it has to be out of reach of $M$.
+	Conversely, if $M$ could compute everything about $M[G]$,
+	then $M[G]$ would have to conform to $M$'s beliefs.
+
+	That's why we worked so hard to make sure $G \in M[G]$ but $G \notin M$.
+}
+Nonetheless, we are going to define a relation $\Vdash$, called the \emph{forcing} relation.
+Roughly, we are going to write
+\[ p \Vdash \varphi(\sigma_1, \dots, \sigma_n) \]
+where $p \in \Po$, $\sigma_1, \dots, \sigma_n \in M[G]$, if and only if the following holds:
+\begin{quote}
+	For \emph{any} generic $G$,
+	if $p \in G$,
+	then $M[G] \vDash \varphi(\sigma_1^G, \dots, \sigma_n^G)$.
+\end{quote}
+Note that $\Vdash$ is defined without reference to $G$:
+it is something that $M$ can see.
+We say $p$ \vocab{forces} the sentences $\varphi(\sigma_1, \dots, \sigma_n)$.
+And miraculously, we can define this relation in such a way that the converse is true:
+\emph{a sentence holds if and only if some $p$ forces it}.
+
+
+\begin{theorem}
+	[Fundamental Theorem of Forcing]
+	Suppose $M$ is a transitive model of ZF.
+	Let $\Po \in M$ be a poset, and $G \subseteq \PP$ is an $M$-generic filter.
+	Then,
+	\begin{enumerate}[(1)]
+		\ii Consider $\sigma_1, \dots, \sigma_n \in \Name^M$,
+		Then
+		\[ M[G] \vDash \varphi[\sigma_1^G, \dots, \sigma_n^G] \]
+		if and only if there exists a condition $p \in G$
+		such that $p$ \emph{forces} the sentence $\varphi(\sigma_1, \dots, \sigma_n)$.
+		We denote this by $p \Vdash \varphi(\sigma_1, \dots, \sigma_n)$.
+		\ii This forcing relation is (uniformly) definable in $M$.
+	\end{enumerate}
+\end{theorem}
+
+I'll tell you how the definition works in the following.
+
+\section{(Optional) Defining the Relation}
+Here's how we're going to go.
+We'll define the most generous condition possible such that
+the forcing works in one direction ($p \vDash \varphi(\sigma_1, \dots, \sigma_n)$ means
+$M[G] \vDash \varphi[\sigma_1^G, \dots, \sigma_n^G]$).
+We will then cross our fingers that the converse also works.
+
+We proceed by induction on the formula complexity.
+It turns out in this case that the atomic formula (base cases)
+are hardest and themselves require induction on ranks.
+
+For some motivation, let's consider how we should define $p \Vdash \tau_1 \in \tau_2$ given that we've already defined $p \vDash \tau_1 = \tau_2$.
+We need to ensure this holds iff
+\[ \forall \text{$M$-generic $G$ with $p \in G$}:
+	\ M[G] \vDash \tau_1^G \in \tau_2^G. \]
+So it suffices to ensure that any generic $G \ni p$ hits a condition $q$ which forces $\tau_1^G$ to \emph{equal} a member $\tau^G$ of $\tau_2^G$.
+In other words, we want to choose the definition of $p \Vdash \tau_1 \in \tau_2$ to hold if and only if
+\[
+	\left\{ q \in \Po
+	\mid \exists \left<\tau, r\right> \in \tau_2 
+	\left( q \le r \land q \Vdash(\tau=\tau_1) \right)
+	\right\}
+\]
+is dense below in $p$.
+In other words, if the set is dense, then the generic must hit $q$, so it must hit $r$, meaning that $\left<\tau_r\right> \in \tau_2$ will get interpreted such that $\tau^G \in \tau_2^G$, and moreover the $q \in G$ will force $\tau_1 = \tau$.
+
+Now let's write down the definition\dots
+In what follows, the $\Vdash$ omits the $M$ and $\Po$.
+\begin{definition}
+	Let $M$ be a countable transitive model of ZFC.
+	Let $\Po \in M$ be a partial order.
+	For $p \in \Po$ and $\varphi(\sigma_1, \dots, \sigma_n)$ a formula in LST, we write $\tau \Vdash \varphi(\sigma_1, \dots, \sigma_n)$ to mean the following, defined by induction on formula complexity plus rank.
+	\begin{enumerate}[(1)]
+		\ii $p \Vdash \tau_1 = \tau_2$ means
+		\begin{enumerate}[(i)]
+			\ii For all $\left<\sigma_1, q_1\right> \in \tau_1$ the set
+			\[ D_{\sigma_1, q_1}
+				\defeq
+				\left\{ r \mid
+				r \le q_1 \lthen \exists \left<\sigma_2, q_2\right> \in \tau_2 \left( r \le q_2 \land r \Vdash (\sigma_1 = \sigma_2) \right)\right\}.
+			\]
+			is dense in $p$.
+			(This encodes ``$\tau_1 \subseteq \tau_2$''.)
+			\ii For all $\left<\sigma_2, q_2\right> \in \tau_2$,
+			the set $D_{\sigma_2, q_2}$ defined similarly is dense below $p$.
+		\end{enumerate}
+		\ii $p \Vdash \tau_1 \in \tau_2$ means
+		\[
+		\left\{ q \in \Po
+		\mid \exists \left<\tau, r\right> \in \tau_2 
+		\left( q \le r \land q \Vdash(\tau=\tau_1) \right)
+		\right\} \]
+		is dense below $p$.
+		\ii $p \Vdash \varphi \land \psi$ means $p \Vdash \varphi$ and $p \Vdash \psi$.
+		\ii $p \Vdash \neg \varphi$ means $\forall q \le p$, $q \not\Vdash \varphi$.
+		\ii $p \Vdash \exists x \varphi(x, \sigma_1, \dots, \sigma_n)$ means that the set
+		\[
+			\left\{ q \mid \exists \tau
+				\left( q \Vdash \varphi(\tau, \sigma_1, \dots, \sigma_n \right)
+			\right\}
+		\]
+		is dense below $p$.
+	\end{enumerate}
+\end{definition}
+This is definable in $M$!
+All we've referred to is $\Po$ and names, which are in $M$.
+(Note that being dense is definable.)
+Actually, in parts (3) through (5) of the definition above,
+we use induction on formula complexity.
+But in the atomic cases (1) and (2) we are doing induction on the ranks of the names.
+
+So, the construction above gives us one direction (I've omitted tons of details, but\dots).
+
+Now, how do we get the converse: that a sentence is true if and only if something forces it?
+Well, by induction, we can actually show the following result:
+\begin{lemma}[Consistency and Persistence]
+	We have
+	\begin{enumerate}[(1)]
+		\ii (Consistency) If $p \Vdash \varphi$ and $q \le p$ then $q \Vdash \varphi$.
+		\ii (Persistence) If $\left\{ q \mid q \Vdash \varphi \right\}$
+		is dense below $p$ then $p \Vdash \varphi$.
+	\end{enumerate}
+\end{lemma}
+These are just inductions on the five parts of the definition.
+From this it also follows that
+\begin{corollary}[Completeness]
+	The set $\left\{ p \mid p \Vdash \varphi \text{ or } p \Vdash \neg\varphi \right\}$
+	is dense.
+\end{corollary}
+\begin{proof}
+	We claim that whenever $p \not\Vdash \varphi$ then
+	for some $\ol p \le p$ we have $\ol p \Vdash \neg\varphi$;
+	this will establish the corollary.
+
+	By the contrapositive of the previous lemma,
+	$\{q \mid q \Vdash \varphi\}$ is not dense below $p$,
+	meaning for some $\ol p \le p$, every $q \le \ol p$ gives $q \not\Vdash \varphi$.
+	By the definition of $p \vDash \neg\varphi$,
+	we have $\ol p \vDash \neg\varphi$.
+\end{proof}
+And this gives the converse: the $M$-generic $G$ has to hit some condition
+that passes judgment, one way or the other.
+This completes the proof of the Fundamental Theorem.
+
+\section{The Remaining Axioms}
+\begin{theorem}[The Generic Extension Satisfies $\ZFC$]
+	Suppose $M$ is a transitive model of $\ZFC$.
+	Let $\Po \in M$ be a poset, and $G \subseteq \PP$ is an $M$-generic filter.
+	Then \[ M[G] \vDash \ZFC. \]
+\end{theorem}
+\begin{proof}
+	We'll just do Comprehension, as the other remaining axioms are similar.
+	
+	Suppose $\sigma^G, \sigma_1^G, \dots, \sigma_n^G \in M[G]$
+	are a set and parameters, and
+	$\varphi(x,x_1, \dots, x_n)$ is an LST formula.
+	We want to show that the set
+	\[ A = \left\{ 
+		x \in \sigma^G \mid M[G] \vDash \varphi[x, \sigma_1^G, \dots, \sigma_n^G]
+	\right\} \]
+	is in $M[G]$; i.e.\ it is the interpretation of some name.
+
+	Note that every element of $\sigma^G$ is of the form $\rho^G$
+	for some $\rho \in \dom(\sigma)$ (a bit of abuse here,
+	$\sigma$ is a bunch of pairs of names and $p$'s,
+	and the domain is just the set of names).
+	So by the Fundamental Theorem of Forcing, we may write
+	\[ A = 
+		\left\{ \rho^G \mid \rho \in \dom(\sigma)
+			\text{ and }
+			\exists p \in G
+			\left( p \Vdash \rho \in \sigma
+			\land \varphi(\rho, \sigma_1, \dots, \sigma_n)
+			\right)
+		\right\}.
+	\]
+	To show $A \in M[G]$ we have to write down a $\tau$
+	such that the name $\tau^G$ coincides with $A$.
+	We claim that
+	\[
+		\tau
+		=
+		\left\{ \left<\rho, p\right>
+			\in \dom(\sigma) \times \Po \mid
+			p \Vdash 
+			\land \varphi(\rho, \sigma_1, \dots, \sigma_n)
+		\right\}
+	\]
+	is the correct choice.
+	It's actually clear that $\tau^G = A$ by construction;
+	the ``content'' is showing that $\tau$ is in actually a name of $M$,
+	which follows from Comprehension in $M$.
+
+	So really, the point of the Fundamental Theorem of Forcing
+	is just to let us write down this $\tau$;
+	it lets us show that $\tau$ is in $\Name^M$
+	without actually referencing $G$.
+\end{proof}
+
+
+\section\problemhead
+RS Lemma
+
+Union
+
+
+
+%\begin{exercise}
+%	Show that $\rank \sigma^G \le \nrank(\sigma)$ for any $\sigma \in \Name^M$.
+%\end{exercise}
+
+%\begin{exercise}
+%	Check that
+%	\begin{enumerate}[(1)]
+%		\ii $(\check x)^G = x$.
+%		\ii $(\dot G)^G = G$.
+%	\end{enumerate}
+%\end{exercise}
+
+
+
+\chapter{The Failure of the Continuum Hypothesis}
+We now use the technique of forcing to break the Contiuum Hypothesis by choosing a good poset $\Po$.
+
+\section{Forcing $V \neq L$ is really easy}
+As a small aside, to check we're on the right track we show the following result.
+
+\begin{theorem}[$V \ne L$]
+	Let $M$ be a countable transitive model of $\ZFC$.
+	Let $\Po \in M$ be \emph{any} splitting poset,
+	and let $G \subseteq \Po$ be $M$-generic.
+	Then $M[G] \vDash (V \neq L)$.
+\end{theorem}
+\begin{proof}
+	Since $L$ has a $\Sigma_1$ definition,
+	we have \[ L^{M[G]} = L^M \subseteq M \subsetneq M[G] \]
+	where the last part follows from $G \notin M[G]$.
+\end{proof}
+
+Thus $M[G] \vDash \ZFC + (V \ne L)$ for any splitting poset $\Po$,
+and we are one step closer to breaking $\CH$.
+
+\section{Adding in Reals}
+Starting with a \emph{countable} transitive model $M$.
+
+We want to choose $\Po \in M$ such that $(\aleph_2)^M$ many real numbers appear,
+and then worry about cardinal collapse later.
+
+Recall the earlier situation where we set $\Po$ to be the infinite complete binary tree; its nodes can be thought of as partial functions $n \to 2$ where $n < \omega$.
+Then $G$ itself is a path down this tree; i.e.\ it can be encoded as a total function $G : \omega \to 2$,
+and corresponds to a real number.
+
+\begin{center}
+	\begin{asy}
+		size(8cm);
+		pair P = Drawing("\varnothing", red, (0,4), red, dir(90));
+		pair P0 = Drawing("0", red, (-5,2), red, 1.5*dir(90));
+		pair P1 = Drawing("1", (5,2),  1.5*dir(90));
+		pair P00 = Drawing("00", (-7,0), 1.4*dir(120));
+		pair P01 = Drawing("01", red, (-3,0), red, 1.4*dir(60));
+		pair P10 = Drawing("10", (3,0),  1.4*dir(120));
+		pair P11 = Drawing("11", (7,0),  1.4*dir(60));
+
+		pair P000 = Drawing("000", (-8,-3));
+		pair P001 = Drawing("001", (-6,-3));
+		pair P010 = Drawing("010", red, (-4,-3), red);
+		pair P011 = Drawing("011", (-2,-3));
+
+		pair P100 = Drawing("100", (2,-3));
+		pair P101 = Drawing("101", (4,-3));
+		pair P110 = Drawing("110", (6,-3));
+		pair P111 = Drawing("111", (8,-3));
+
+		draw(P01--P0--P00);
+		draw(P11--P1--P10);
+		draw(P0--P--P1);
+		draw(P000--P00--P001);
+		draw(P100--P10--P101);
+		draw(P010--P01--P011);
+		draw(P110--P11--P111);
+
+		draw(P--P0--P01--P010--(P010+2*dir(-90)), red+1.4);
+		MP("G", P010+2*dir(-90), dir(-90), red);
+	\end{asy}
+\end{center}
+
+We want to do something similar, but with $\omega_2$ many real numbers instead of just one.
+In light of this, consider in $M$ the following poset:
+\[
+	\Po = 
+	\opname{Add} \left( \omega_2, \omega \right)
+	\defeq
+	\left( 
+	\left\{ p : \omega_2 \times \omega \to 2,
+		\dom(p) < \omega
+	\right\},
+	\supseteq
+	\right).
+\]
+These elements (conditions) are ``partial functions'':
+we take some finite subset of $\omega \times \omega_2$ and map it into $2=\{0,1\}$.
+Moreover, we say $p \le q$ if $\dom(p) \supseteq \dom(q)$ and the two functions agree over $\dom(q)$.
+\begin{ques}
+	What is $1_\Po$ here?
+\end{ques}
+
+\begin{exercise}
+	Show that a generic $G$ can be encoded as a function $\omega_2 \times \omega \to 2$.
+\end{exercise}
+
+%Let $G \subseteq \opname{Add}(\omega_2, \omega)$ be an $M$-generic.
+%We claim that, like in the binary case, $G$ can be encoded as a function $\omega_2 \times \omega \to 2$.
+%To see this, consider $\alpha \in \omega_2$ and $n \in \omega$; we have the dense set
+%\[ D_{\alpha, n}
+%	= \left\{ p \in \opname{Add}(\omega_2, \omega)
+%	\mid (\alpha, n) \in \dom(p) \right\}
+%\]
+%(this is obviously dense, given any $p$ add in $(\alpha, n)$ if it's not in there already).
+%So $G$ hits this dense set, meaning that for every $(\alpha, n)$ there's a function in $G$ which defines it.
+%Using the fact that $G$ is upwards closed and a filter, we may as before we may interpret $G$ as a function $\omega_2 \times \omega \to 2$.
+
+\begin{lemma}[$G$ encodes distinct real numbers]
+	For $\alpha \in \omega_2$ define
+	\[ G_\alpha = \left\{ n \mid G\left( \alpha,n \right) = 0 \right\} \in \PP(\NN). \]
+	Then $G_\alpha \neq G_\beta$ for any $\alpha \neq \beta$.
+\end{lemma}
+\begin{proof}
+	We claim that the set
+	\[ D = \left\{ q \mid \exists n \in \omega :
+		q\left( \alpha, n \right) \neq q\left( \beta, n \right)
+		\text{ are both defined}
+	\right\} \]
+	is dense.
+	\begin{ques}
+		Check this.
+		(Use the fact that the domains are all finite.)
+	\end{ques}
+%	This is pretty easy to see.
+%	Consider $p \in \opname{Add}(\omega_2, \omega)$.
+%	Then you can find an $n$ such that
+%	neither $(\alpha, n)$ nor $(\beta, n)$ is defined,
+%	just because $\dom(p)$ is finite.
+%	Then you make $p'$ as $p$ plus $p'( (\alpha, n) ) = 1$
+%	and $p'( (\beta, n) ) = 0$.
+%	Hence the set is dense.
+
+	Since $G$ is an $M$-generic it hits this dense set $D$.
+	Hence $G_\alpha \neq G_\beta$.
+\end{proof}
+
+Since $G \in M[G]$ and $M[G] \vDash \ZFC$,
+it follows that each $G_\alpha$ is in $M[G]$.
+So there are at least $\aleph_2^M$ real numbers in $M$.
+We are done once we can show there is no cardinal collapse.
+
+\section{The Countable Chain Condition}
+It remains to show that with $\Po = \opname{Add}(\omega, \omega_2)$, we have that
+\[ \aleph_2^{M[G]} = \aleph_2^M. \]
+In that case, since $M[G]$ will have $\aleph_2^M = \aleph_2^{M[G]}$ many reals, we will be done.
+
+To do this, we'll rely on the following combinatorial property of $\Po$:
+
+\begin{definition}
+	We say that $A \subset \mathcal P$ is a \vocab{strong antichain}
+	if for any distinct $p$ and $q$ in $A$, we have $p \perp q$.
+\end{definition}
+\begin{example}[Example of an Antichain]
+	In the infinite binary tree, 
+	the set $A = \{00, 01, 10, 11\}$ is a strong antichain
+	(in fact maximal by inclusion).
+\end{example}
+This is stronger than the notion of ``antichain'' than you might be used to!\footnote{%
+	In the context of forcing, some authors use ``antichain'' to refer to ``strong antichain''.
+	I think this is lame.}
+We don't merely require that every two elements are incomparable,
+but that they are in fact \emph{incompatible}.
+\begin{ques}
+	Draw a finite poset and an antichain of it which is not strong.
+\end{ques}
+
+\begin{definition}
+	A poset $\Po$ has the \vocab{$\kappa$-chain condition}
+	(where $\kappa$ is a cardinal) if all strong antichains
+	in $\Po$ have size less than $\kappa$.
+	The special case $\kappa = \omega$ is called the \vocab{countable chain condition}.
+\end{definition}
+
+We are going to show that if the poset has the $\kappa$-chain condition
+then it preserves all cardinals greater than $\kappa$.
+% or was it > \kappa?
+In particular, the countable chain condition will show that $\Po$ preserves all the cardinals.
+Then, we'll show that $\opname{Add}(\omega, \omega_2)$ does indeed have this property.
+This will complete the proof.
+
+We isolate the following lemma.
+\begin{lemma}[Possible Values Argument]
+	Suppose $M$ is a transitive model of $\ZFC$ and $\Po$ is a partial order
+	such that $\Po$ has the $\kappa$-chain condition in $M$.
+	Let $X,Y \in M$ and let $f: X \to Y$
+	be some function in $M[G]$, but $f \notin M$.
+
+	Then there exists a function $F \in M$, with $F: X \to \PP(Y)$ and such that
+	for any $x \in X$,
+	\[ f(x) \in F(x) \quad\text{and}\quad \left\lvert F(x) \right\rvert^M < \kappa. \]
+\end{lemma}
+What this is saying is that if $f$ is some new function that's generated,
+$M$ is still able to pin down the values of $f$ to at most $\kappa$ many values.
+
+\begin{proof}
+	The idea behind the proof is easy: any possible value of $f$ gives us some condition in
+	the poset $\Po$ which forces it.
+	Since distinct values must have incompatible conditions,
+	the $\kappa$-chain condition guarantees
+	there are at most $\kappa$ such values.
+
+	Here are the details.
+	Let $\dot f$, $\check X$, $\check Y$ be names for $f$, $X$, $Y$.
+	Start with a condition $p$ such that $p$ forces the sentence
+	``$\dot f$ is a function from $\check X$ to $\check Y$''; we'll work just below here.
+	For each $x \in X$, we can consider (using the Axiom of Choice) a maximal antichain $A(x)$
+	of incompatible conditions $q \le p$ which forces $f(x)$ to equal some value $y \in Y$.
+	Then, we let $F(x)$ collect all the resulting $y$-values.
+	These are all possible values, and there are less than $\kappa$ of them.
+\end{proof}
+
+\section{Preserving Cardinals}
+\begin{definition}
+	For $M$ a transitive model of ZFC and $\Po \in M$ a poset,
+	we say $\Po$ \vocab{preserves cardinals} if
+	$\forall G \subseteq \Po$ an $M$-generic,
+	the model $M$ and $M[G]$ agree on the sentence ``$\kappa$ is a cardinal'' for every $\kappa$.
+
+	In the same way we will talk about $\Po$ preserving cofinalities, et cetera.
+\end{definition}
+
+\begin{exercise}
+	Let $M$ be a transitive model of ZFC.
+	Let $\Po \in M$ be a poset.
+	Show that the following are equivalent for each $\lambda$:
+	\begin{enumerate}[(1)]
+		\ii $\Po$ preserves cofinalities less than or equal to $\lambda$.
+		\ii $\Po$ preserves regular cardinals less than or equal to $\lambda$.
+	\end{enumerate}
+	Moreover the same holds if we replace ``less than or equal to''
+	by ``greater than or equal to''.
+\end{exercise}
+Thus, to show that $\Po$ preserves cardinality and cofinalities it suffices to show that $\Po$ preserves regularity.
+
+\begin{theorem}
+	Suppose $M$ is a transitive model of ZFC, and $\Po \in M$ is a poset.
+	Suppose $M$ satisfies the sentence ``$\Po$ has the $\kappa$ chain condition and $\kappa$ is regular''.
+	Then $\Po$ preserves cardinals and cofinalities greater than or equal to $\kappa$.
+\end{theorem}
+\begin{proof}
+	It suffices to show that $\Po$ preserves regularity greater than or equal to $\kappa$.
+	Consider $\lambda > \kappa$ which is regular in $M$,
+	and suppose for contradiction that $\lambda$ is not regular in $M[G]$.
+	That's the same as saying that there is a function $f \in M[G]$,
+	$f : \ol \lambda \to \lambda$ cofinal, with $\ol \lambda < \lambda$.
+	Then by the Possible Values Argument,
+	there exists a function $F \in M$ from $\ol \lambda \to \PP(\lambda)$
+	such that $f(\alpha) \in F(\alpha)$ and $\left\lvert F(\alpha) \right\rvert^M < \kappa$
+	for every $\alpha$.
+
+	Now we work in $M$ again.
+	Note for each $\alpha \in \ol\lambda$, $F(\alpha)$ is bounded in $\lambda$ since $\lambda$ is regular in $M$ and greater than $\left\lvert F(\alpha) \right\rvert$.
+	Now look at the function $\ol \lambda \to \lambda$ in $M$ by just
+	\[ \alpha \mapsto \cup F(\alpha) < \lambda. \]
+	This is cofinal in $M$, contradiction.
+\end{proof}
+
+\subsection{Infinite Combinatorics}
+In particular, if $\Po$ has the countable chain condition then $\Po$ preserves all the cardinals (and cofinalities).
+Therefore, it remains to show that $\opname{Add}(\omega, \omega_2)$ satisfies the countable chain condition.
+And this is going to be infinite combinatorics.
+
+\begin{definition}
+	Suppose $C$ is an uncountable collection of finite sets.
+	$C$ is a \textbf{$\Delta$-system} if there exists a \textbf{root} $R$
+	with the condition that for any distinct $X$ and $Y$
+	in $C$, we have $X \cap Y = R$.
+\end{definition}
+
+\begin{lemma}
+	[$\Delta$-System Lemma] Suppose $C$ is an uncountable collection of finite sets.
+	Then $\exists \ol C \subseteq C$ such that
+	\begin{enumerate}[(1)]
+		\ii $\ol C$ is uncountable.
+		\ii $\ol C$ is a $\Delta$-system.
+	\end{enumerate}
+\end{lemma}
+\begin{proof}
+	There exists an integer $n$ such that $C$ has uncountably many guys of length $n$.
+	So we can throw away all the other sets, and just assume that all sets in $C$ have size $n$.
+
+	We now proceed by induction on $n$.
+	The base case $n=1$ is trivial, since we can just take $R = \varnothing$.
+	For the inductive step we consider two cases.
+
+	First, assume there exists an $a \in C$ contained in uncountably many $F \in C$.
+	Throw away all the other guys.
+	Then we can just delete $a$, and apply the inductive hypothesis.
+
+	Now assume that for every $a$, only countably many members of $C$ have $a$ in them.
+	We claim we can even get a $\ol C$ with $R = \varnothing$.
+	First, pick $F_0 \in C$.
+	It's straightforward to construct an $F_1$ such that $F_1 \cap F_0 = \varnothing$.
+	And we can just construct $F_2, F_3, \dots$
+\end{proof}
+
+\begin{lemma}
+	For all $\kappa$, $\opname{Add}(\omega, \kappa)$ satisfies the countable chain condition.
+\end{lemma}
+\begin{proof}
+	Assume not. Let
+	\[ \left\{ p_\alpha : \alpha < \omega_1 \right\} \]
+	be an antichain.  Let
+	\[ C = \left\{ \dom(p_\alpha) : \alpha < \omega_1 \right\}. \]
+	Let $\ol C \subseteq C$ be such that $\ol C$ is uncountable, and $\ol C$ is a $\Delta$-system which root $R$.
+	Then let
+	\[ B = \left\{ p_\alpha : \dom(p_\alpha) \in R \right\}. \]
+	Each $p_\alpha \in B$ is a function $p_\alpha : R \to \{0,1\}$,
+	so there are two that are the same.
+\end{proof}
+
+\end{document}

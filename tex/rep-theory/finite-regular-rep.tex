@@ -1,0 +1,461 @@
+\chapter{The Finite Regular Representation}
+In what follows $k$ is an algebraically closed field, $G$ is a finite group, and the characteristic of $k$ does not divide $\left\lvert G \right\rvert$.
+Hence we can apply both Schur's Theorem and Maschke's Theorem at will.
+
+\todo{blurb on what we're going to prove}
+
+\section{Products of Representations}
+First, I need to tell you how to take the product of two representations.
+\begin{definition}
+	Let $G_1$ and $G_2$ be groups.
+	Given a $G_1$ representation $\rho_1 = (V_1, \cdot_{\rho_1})$ and a $G_2$ representation $\rho_2 = (V_2, \cdot_{\rho_2})$, we define
+	\[ \rho_1 \boxtimes \rho_2 \defeq
+	\left( V_1 \otimes V_2, \cdot \right) \]
+	as a representation of $G_1 \times G_2$ on $V_1 \otimes V_2$.
+	The action is given by
+	\[ (g_1, g_2) \cdot (v_1 \otimes v_2)
+	= \left( g_1 \cdot_{\rho_1} v_1 \right) \otimes (g_2 \cdot_{\rho_2} v_2). \]
+\end{definition}
+
+In the special case $G_1 = G_2 = G$, we can also restrict $\rho_1 \boxtimes \rho_2$ to a representation of $G$.
+Note that we can interpret $G$ itself as a subgroup of $G \times G$ by just looking along the diagonal: there's an obvious isomorphism
+\[ G \sim \left\{ (g,g) \mid g \in G \right\}. \]
+So, let me set up the general definition.
+\begin{definition}
+	Let $\mathcal G$ be a group, and let $\mathcal H$ be a subgroup of $\mathcal G$. Then for any representation $\rho = (V, \cdot_\rho)$ of $\mathcal G$,
+	we let 
+	\[ \Res^{\mathcal G}_{\mathcal H} (\rho) \]
+	denote the representation of $\mathcal H$ on $V$ by the same action.
+\end{definition}
+This notation might look intimidating, but it's not really saying anything, and I include the notation just to be pedantic.
+All we're doing is taking a representation and restricting which elements of the group are acting on it.
+
+We now apply this to get $\rho_1 \otimes \rho_2$ out of $\rho_1 \boxtimes \rho_2$.
+\begin{definition}
+	Let $\rho_1 = (V_1, \cdot_{\rho_1})$
+	and $\rho_2 = (V_2, \cdot_{\rho_2})$
+	be representations of $G$.
+	Then we define
+	\[ \rho_1 \otimes \rho_2
+		\defeq
+		\Res^{G \times G}_G \left( \rho_1 \boxtimes \rho_2 \right)
+	\]
+	meaning $\rho_1 \otimes \rho_2$ has vector space $V_1 \otimes V_2$
+	and action $g \cdot (v_1 \otimes v_2) = (g \cdot_{\rho_1} v_1) \otimes (g \cdot_{\rho_2} v_2)$.
+\end{definition}
+This tensor product obeys some nice properties, for example the following.
+\begin{lemma}
+	Given representations $\rho$, $\rho_1$, $\rho_2$ we have
+	\[
+		\rho \otimes \left( \rho_1 \oplus \rho_2 \right)
+		\simeq
+		\left( \rho \otimes \rho_1 \right) \oplus \left( \rho \otimes \rho_2 \right).
+	\]
+\end{lemma}
+\begin{proof}
+	There's an obvious isomorphism between the underlying vector spaces,
+	and that isomorphism respects the action of $G$.
+\end{proof}
+
+To summarize all the above, here is a table of the representations we've seen, in the order we met them.
+\[
+	\begin{array}{|l|lll|}
+		\hline
+		\text{Representation} & \text{Group} & \text{Space} & \text{Action} \\ \hline
+		\rho & V & G & g \cdot_\rho v \\
+		\text{Fun}(X) & G & \text{Fun}(X) & (g \cdot f)(x) = f(g\inv \cdot x) \\
+		\text{triv}_G & G & k & g \cdot a = a \\
+		\rho_1 \oplus \rho_2 & G & V_1 \oplus V_2 & g \cdot (v_1 + v_2) = (g \cdot_{\rho_1} v_1) + (g \cdot_{\rho_2} v_2) \\
+		\rho_1 \boxtimes \rho_2 & G_1 \times G_2 &  V_1 \otimes V_2 & (g_1, g_2) \cdot (v_1 \otimes v_2) \\
+		&&& = (g_1 \cdot_{\rho_1} v_1) \otimes (g_2 \cdot_{\rho_2} v_2) \\
+		\text{Res}^G_H(\rho) & H & V & h \cdot v = h \cdot_\rho v\\
+		\rho_1 \otimes \rho_2 & G & V_1 \otimes V_2 & g \cdot (v_1 \otimes v_2) = (g \cdot_{\rho_1} v_1) \otimes (g \cdot_{\rho_2} v_2) \\
+		\hline
+	\end{array}
+\]
+
+
+\section{Revisiting Schur and Maschke}
+Defining a tensor product of representations gives us another way to express $\rho^{\oplus n}$, as follows.
+By an abuse of notation, given a vector space $k^m$ we can define an associated $G$-representation $k^m = (k^m, \cdot_{k^m})$ on it by the trivial action, i.e.  $g \cdot_{k^m} v = v$ for $v \in k^m$.
+A special case of this is using $k$ to represent $\triv_G$.
+With this abuse of notation, we have the following lemma.
+\begin{lemma}
+	Let $M$ be an $m$-dimensional vector space over $k$.
+	Then $\rho^{\oplus m} \simeq \rho \otimes M$.
+\end{lemma}
+\begin{proof}
+	It reduces to checking that $\rho \otimes k \defeq \rho \otimes \triv_G$ is isomorphic to $\rho$, which is evident.
+	We can then proceed by induction: $\rho \otimes (k \oplus k^{t-1})
+	\simeq (\rho \otimes k) \oplus (\rho \otimes k^{t-1})$.
+\end{proof}
+So, we can actually rewrite Maschke's and Schur's Theorem as one.
+Instead of
+\[ \rho \simeq \bigoplus_\alpha \rho_\alpha^{\oplus n_\alpha} 
+\quad\text{where}\quad
+n_\alpha = \dim \Hom_G(\rho, \rho_\alpha) \]
+we now have instead
+\[
+	\bigoplus_\alpha \rho_\alpha \otimes \Hom_G(\rho, \rho_\alpha)
+	\simeq \rho.
+\]
+Now we're going to explicitly write down the isomorphism between these maps.
+It suffices to write down the isomorphism
+$\rho_\alpha \otimes \Hom_G(\rho, \rho_\alpha) \to \rho_\alpha^{\oplus n_\alpha}$, and then take the sum over each of the $\alpha$'s.
+But \[ \Hom_G(\rho, \rho_\alpha) \simeq \Hom_G(\rho_\alpha^{\oplus n_\alpha}, \rho_\alpha) \simeq \Hom_G(\rho_\alpha, \rho_\alpha)^{\oplus n_\alpha}. \]
+So to write the isomorphism $\rho_\alpha \otimes \Hom_G(\rho_\alpha, \rho_\alpha)^{\oplus n_\alpha} \to \rho_\alpha^{\oplus n_\alpha}$,
+we just have to write down the isomorphism
+$\rho_\alpha \otimes \Hom_G(\rho_\alpha, \rho_\alpha) \to \rho_\alpha$,
+
+Schur's Lemma tells us that $\Hom_G(\rho_\alpha, \rho_\alpha) \simeq k$; i.e.\ every $\xi \in \Hom_G(\rho_\alpha, \rho_\alpha)$ just corresponds to multiplying $v$ by some constant.
+So this case is easy: the map \[ v \otimes \xi \mapsto \xi(v) \]
+works nicely.
+And since all we've done is break over a bunch of direct sums, the isomorphism propagates all the way up, resulting in the following theorem.
+\begin{theorem}[Maschke and Schur]
+	For any finite-dimensional $\rho$, the homomorphism of $G$ representations
+	\[ 
+	\bigoplus_\alpha \rho_\alpha \otimes \Hom_G(\rho, \rho_\alpha)
+	\to \rho
+	\]
+	given by sending every simple tensor via
+	\[ v \otimes \xi \mapsto \xi(v) \]
+	is an isomorphism.
+\end{theorem}
+Note that it's much easier to write the map from left to right than vice-versa, even though the inverse map does exist (since it's an isomorphism).
+(Tip: as a general rule of thumb, always map \emph{out} of the direct sum.)
+
+\section{Characterizing the $G_1 \times G_2$ irreducibles}
+Now we are in a position to state the main theorem for this post, which shows that the irreducibles we defined above are very well behaved.
+\begin{theorem}
+	Let $G_1$ and $G_2$ be finite groups.
+	Then a finite-dimensional representation $\rho$ of $G_1 \times G_2$
+	is irreducible if and only if it is of the form
+	\[ \rho_1 \boxtimes \rho_2 \]
+	where $\rho_1$ and $\rho_2$ are irreducible representations
+	of $G_1$ and $G_2$, respectively.
+\end{theorem}
+
+\begin{proof}
+First, suppose $\rho = (V, \cdot_\rho)$ is an irreducible representation of $G_1 \times G_2$.
+Set \[ \rho^1 \defeq \Res^{G_1 \times G_2}_{G_1} (\rho). \]
+Then by Maschke's Theorem, we may write $\rho^1$ as a
+direct sum of the irreducibles
+\[
+	\bigoplus_\alpha \rho_\alpha^1 \otimes \Hom_{G_1} (\rho_\alpha^1, \rho^1) \simeq \rho^1
+\]
+with the map $v \otimes \xi \mapsto \xi(v)$ being the isomorphism.
+Now we can put a $G_2$ representation structure on $\Hom_{G_1} (\rho_\alpha^1, \rho^1)$ by
+\[
+	(g_2 \cdot f)(g) 
+	= g_2 \cdot_{\rho} (f(g)).
+\]
+It is easy to check that this is indeed a $G_2$ representation.
+Thus it makes sense to talk about the $G_1 \times G_2$ representation
+\[
+	\bigoplus_\alpha \rho_\alpha^1 \boxtimes \Hom_{G_1} (\rho_\alpha^1, \rho^1). \]
+We claim that the isomorphism for $\rho^1$ as a $G_1$ representation now lifts to an isomorphism of $G_1 \times G_2$ representations.
+That is, we claim that
+\[
+	\bigoplus_\alpha \rho_\alpha^1 \boxtimes \Hom_{G_1} (\rho_\alpha^1, \rho^1) \simeq \rho
+\]
+by the same isomorphism as for $\rho^1$.
+To see this, we only have to check that the isomorphism $v \otimes \xi \mapsto \xi(v)$ commutes with the action of $g_2 \in G_2$.
+But this is obvious, since $g_2 \cdot (v \otimes \xi) = v \otimes (g_2 \cdot \xi) \mapsto (g_2 \cdot \xi)(v)$.
+
+Thus the isomorphism holds.
+But $\rho$ is irreducible, so there can only be one nontrivial summand.
+Thus we derive the required decomposition of $\rho$.
+
+Now for the other direction: take $\rho_1$ and $\rho_2$ irreducible.
+Suppose $\rho_1 \boxtimes \rho_2$ has a nontrivial subrepresentation of the form $\rho_1' \boxtimes \rho_2'$.
+Viewing as $G_1$ representation, we find that $\rho_1'$ is a nontrivial subrepresentation of $\rho_1$, and similarly for $\rho_2$.
+But $\rho_1$ is irreducible, hence $\rho_1' \simeq \rho_1$.
+Similarly $\rho_2' \simeq \rho_2$.
+So in fact $\rho_1' \boxtimes \rho_2' \simeq \rho_1 \boxtimes \rho_2$.
+Hence we conclude $\rho_1 \boxtimes \rho_2$ is irreducible.
+\end{proof}
+
+In particular, this means that any representation $\rho$ of $G \times G$ decomposes as
+\[ \rho \simeq \bigoplus_{\alpha, \beta} \rho_\alpha \boxtimes \rho_\beta \]
+and we even have
+\[ \Res_{G}^{G\times G} \rho \simeq \bigoplus_{\alpha, \beta} \rho_\alpha \otimes \rho_\beta. \]
+
+
+In what follows $k$ is an algebraically closed field, $G$ is a finite group, and the characteristic of $k$ does not divide $\left\lvert G \right\rvert$.
+As a reminder, here are the representations we've already seen in the order we met them,
+plus two new ones we'll introduce properly below.
+\[
+	\begin{array}{|l|lll|}
+		\hline
+		\text{Representation} & \text{Group} & \text{Space} & \text{Action} \\ \hline
+		\rho & V & G & G \to g \cdot_\rho V \\
+		\text{Fun}(X) & G & \text{Fun}(X) & (g \cdot f)(x) = f(g\inv \cdot x) \\
+		\text{triv}_G & G & k & g \cdot a = a \\
+		\rho_1 \oplus \rho_2 & G & V_1 \oplus V_2 & g \cdot (v_1 + v_2) = (g \cdot_{\rho_1} v_1) + (g \cdot_{\rho_2} v_2) \\
+		\rho_1 \boxtimes \rho_2 & G_1 \times G_2 &  V_1 \otimes V_2 & (g_1, g_2) \cdot (v_1 \otimes v_2) \\
+		&&& = (g_1 \cdot_{\rho_1} v_1) \otimes (g_2 \cdot_{\rho_2} v_2) \\
+		\text{Res}^G_H(\rho) & H & V & h \cdot v = h \cdot_\rho v\\
+		\rho_1 \otimes \rho_2 & G & V_1 \otimes V_2 & g \cdot (v_1 \otimes v_2) = (g \cdot_{\rho_1} v_1) \otimes (g \cdot_{\rho_2} v_2) \\
+		\text{Reg}(G) & G \times G & \text{Fun}(G) & (g_1, g_2) \cdot f(g) = f(g_2 g g_1\inv) \\
+		\rho^\vee & V^\vee & G & (g \cdot \xi)(v) = \xi(g\inv \cdot_\rho v) \\
+		\hline
+	\end{array}
+\]
+
+\section{The Regular Representation}
+Recall that $\Fun(G)$ is the vector space of functions from $G$ to $k$, with addition being defined canonically.
+It has a basis of functions $\delta_g$ for each $g \in G$, where
+\[
+	\delta_g(x)
+	=
+	\begin{cases}
+		1 & x = g \\
+		0 & \text{otherwise}
+	\end{cases}
+\]
+for every $x \in G$. (Throughout this post, I'll be trying to use $x$ to denote inputs to a function from $G$ to $k$.)
+
+\begin{definition}
+	Let $G$ be a finite group.
+	Then the \textbf{finite regular representation}, $\Reg(G)$ is a representation on $G \times G$ defined on the vector space $\Fun(G)$, with the following action for each $f \in \Fun(G)$ and $(g_1, g_2) \in G \times G$:
+	\[ ( g_1, g_2 ) \cdot f(x) \defeq f(g_2 x g_1\inv). \]
+\end{definition}
+Note that this is a representation of the \href{http://en.wikipedia.org/wiki/Direct_product_of_groups}{product} $G \times G$, not $G$!
+(As an aside, you can also define this representation for infinite groups $G$ by replacing $\Fun(G)$ with $\Fun_c(G)$, the functions which are nonzero at only finitely many $g \in G$.)
+
+In any case, we now can make $\Reg(G)$ into a representation of $G$ by this restriction, giving $\Res_G^{G \times G} \left( \Reg(G) \right)$,
+which I will abbreviate as just $\Reg^\ast(G)$ through out this post (this is not a standard notation).
+The action for this is
+\[
+	(g \cdot_{\Reg^\ast(G)} f)(x)
+	\defeq
+	\left( (g, g) \cdot_{\Reg(G)} f \right)(x)
+	= f\left( g\inv x g \right).
+\]
+
+\begin{ques}
+	Consider the invariant subspace of $\Reg^\ast(G)$, which is
+	\[ \left( \Reg^\ast(G) \right)^G
+		=
+		\left\{ f : G \to V \mid f(g\inv x g) = f(x) \; \forall x,g \in G \right\}.
+	\]
+	Prove that the dimension of this space is equal to the number of conjugacy classes of $G$.
+	(Look at the $\delta_g$ basis.)
+\end{ques}
+Recall that in general, the invariant subspace $\rho^G$
+is defined as \[ \rho^G \defeq \left\{ v \in V \mid g \cdot_\rho v = v \; \forall g \in G \right\}. \]
+
+\section{Dual Representations}
+Before I can state the main theorem of this post, I need to define the dual representation.
+
+Recall that given a vector space $V$, we define the \href{http://en.wikipedia.org/wiki/Dual_space}{\textbf{dual space}} by
+\[ V^\vee \defeq \Hom(V,k) \]
+i.e.\ it is the set of maps from $V$ to $k$.
+If $V$ is finite-dimensional, we can think of this as follows:
+if $V$ consists of the column vectors of length $m$, then $V^\vee$ is the row vectors of length $m$, which can be multiplied onto elements of $V$.
+(This analogy breaks down for $V$ infinite dimensional.)
+Recall that if $V$ is finite-dimensional then there is a canonical isomorphism $V \simeq (V^\vee)^\vee$ by the map $v \mapsto \ev_v$,
+where $\ev_v : V^\vee \to k$ sends $\xi \mapsto \xi(v)$.
+
+Now we can define the dual representation in a similar way.
+\begin{definition}
+	Let $\rho = (V, \cdot_\rho)$ be a $G$-representation.
+	Then we define the \textbf{dual representation} $\rho^\vee$ by
+	\[ \rho^\vee = \left( V^\vee, \cdot_{\rho^\vee} \right)
+		\quad\text{where}\quad
+		\left( g \cdot_{\rho^\vee} \xi \right)(v)
+		= \xi \left( g\inv \cdot_\rho v \right).
+	\]
+\end{definition}
+\begin{lemma}
+	If $\rho$ is finite-dimensional then $(\rho^\vee)^\vee \simeq \rho$ by the same isomorphism.
+\end{lemma}
+\begin{proof}
+	We want to check that the isomorphism $V = (V^\vee)^\vee$ by
+	$v \mapsto \ev_v$ respects the action of $G$.
+	That's equivalent to checking
+	\[ \ev_{g \cdot_\rho v} = g \cdot_{(\rho^\vee)^\vee} \ev_v. \]
+	But
+	\[
+		\ev_{g \cdot v}(\xi)
+		= \xi(g \cdot_\rho v)
+	\]
+	and
+	\[
+		\left( g \cdot_{(\rho^\vee)^\vee} \ev_v \right)(\xi)
+		= 
+		\ev_v(g\inv \cdot_{\rho^\vee} \xi)
+		= \left( g\inv \cdot_{\rho^\vee} \xi \right)(v)
+		= \xi(g \cdot_\rho v).
+	\]
+	So the functions are indeed equal.
+\end{proof}
+Along with that lemma, we also have the following property.
+\begin{lemma}
+	For any finite-dimensional $\rho_1$, $\rho_2$ we have
+	$\Hom_G(\rho_1, \rho_2) \simeq \Hom_G(\rho_1 \otimes \rho_2^\vee, \triv_G)$.
+\end{lemma}
+\begin{proof}
+	Let $\rho_1 = (V_1, \cdot_{\rho_1})$
+	and $\rho_2 = (V_2, \cdot_{\rho_2})$.
+	We already know that we have an isomorphism of vector homomorphisms
+	\[
+		\Hom_{\textbf{Vect}}(V_1, V_2)
+		\simeq \Hom_{\textbf{Vect}} (V_1 \otimes V_2^\vee, k)
+	\]
+	by sending each $T \in \Hom_{\textbf{Vect}}(V_1, V_2)$
+	to the map $T' \in \Hom_{\textbf{Vect}} (V_1 \otimes V_2^\vee, k)$
+	which has $T'(v \otimes \xi) = \xi(T(v))$.
+	So the point is to check that $T$ respects the $G$-action if and only if $T'$ does.
+	This is just a computation.
+\end{proof}
+You can deduce as a corollary the following.
+\begin{ques}
+	Use the lemma to show $\Hom_G(\rho, \triv_G) \simeq \Hom_G(\triv_G, \rho^\vee)$.
+\end{ques}
+
+Finally, we want to talk about when $\rho^\vee$ being irreducible.
+The main result is the following.
+\begin{lemma}
+	Consider a representation $\rho$, not necessarily finite-dimensional.
+	If $\rho^\vee$ is irreducible then so is $\rho$.
+\end{lemma}
+When $\rho$ is finite dimensional we have $(\rho^\vee)^\vee \simeq \rho$, and so it is true for \emph{finite-dimensional} irreducible $\rho$ that $\rho^\vee$ is also irreducible.
+Interestingly, this result fails for infinite-dimensional spaces \href{http://math.stackexchange.com/questions/49907/is-the-dual-representation-of-an-irreducible-representation-always-irreducible}{as this math.SE thread shows}.
+
+\begin{proof}
+	Let $\rho = (V, \cdot_\rho)$.
+	Let $W$ be a $\rho$-invariant subspace of $V$.
+	Then consider
+	\[ W^\perp = \left\{ \xi \in V^\vee : \xi(w) = 0 \right\}. \]
+	This is a $\rho^\vee$-invariant subspace of $V^\vee$,
+	so since $\rho^\vee$ is irreducible,
+	either $W^\perp = V^\vee$ or $W^\perp = \{0\}$.
+	You can check that these imply $W=0$ and $W=V$, respectively.
+\end{proof}
+
+\section{Main Result}
+Now that we know about the product of representations and dual modules,
+we can state the main result of this post: the complete decomposition of $\Reg(G)$.
+
+\begin{theorem}
+	We have an isomorphism
+	\[
+		\Reg(G) \simeq
+		\bigoplus_{\alpha} \rho_\alpha \boxtimes \rho_\alpha^\vee.
+	\]
+\end{theorem}
+Before we can begin the proof of the theorem we need one more lemma.
+
+\begin{lemma}
+	Let $\pi$ be a representation of $G \times G$.
+	Then there is an isomorphism
+	\[ \Hom_{G \times G}(\pi, \Reg(G))
+		\simeq \Hom_G(\Res^{G \times G}_G(\pi), \triv_G).
+	\]
+\end{lemma}
+\begin{proof}
+	Let $\pi = (V, \cdot_\pi)$.
+	Given a map $T : V \to \Fun(G)$ which respects the $G \times G$ action,
+	we send it to the map $\xi_T : V \to k$ with $\xi_T(v) = T(v)(1)$.
+	Conversely, given a map $\xi : V \to k$ which respects the $G$ action, 
+	we send it to the map $T_\xi : V \to \Fun(G)$
+	so that $T_\xi(v)(x) = \xi\left( (x,x\inv) \cdot v \right)$.
+
+	Some very boring calculations show that the two maps are mutually inverse and respect the action.
+	We'll just do one of them here: let us show that $\xi_T(v)$ respects the $G$ action given that $T$ respects the $G \times G$ action.
+	We want to prove
+	\[ \xi_T\left( (g,g) \cdot_\pi v \right)
+	= g \cdot_\triv \xi_T(v) = \xi_T(v). \]
+	Using the definition of $\xi_T$
+	\[
+		\begin{aligned}
+		\xi_T\left( (g,g) \cdot_\pi (v) \right)
+		&= T\left( (g,g) \cdot_\pi v \right)(1) \\
+		&= \left( (g,g) \cdot_{\Fun(G)} T(v) \right)(1) \\
+		&= T(v)\left( g 1 g\inv \right) = T(v)(1) = \xi_T(v).
+		\end{aligned}
+	\]
+	The remaining computations are left to a very diligent reader.
+\end{proof}
+
+Now let's prove the main theorem!
+
+\begin{proof}
+	We have that $\Reg(G)$ is the sum of finite-dimensional irreducibles $\rho_\alpha \boxtimes \rho_\beta$, meaning
+	\[ 
+		\Reg(G) =
+		\bigoplus_{\alpha, \beta}
+		\left( \rho_\alpha \boxtimes \rho_\beta \right)
+		\otimes
+		\Hom_{G \times G}\left( \rho_\alpha \boxtimes \rho_\beta, \Reg(G) \right).
+	\]
+	But using our lemmas, we have that
+	\[
+		\Hom_{G \times G}\left( \rho_\alpha \boxtimes \rho_\beta, \Reg(G) \right)
+		\simeq
+		\Hom_G(\rho_\alpha \otimes \rho_\beta, \triv_G)
+		\simeq \Hom_G(\rho_\alpha, \rho_\beta^\vee).
+	\]
+	We know that $\rho_\beta^\vee$ is also irreducible, since $\rho_\beta$ is (and we're in a finite-dimensional situation).
+	So
+	\[
+		\Hom_G\left( \rho_\alpha, \rho_\beta^\vee \right)
+		\simeq
+		\begin{cases}
+			k & \rho_\beta^\vee = \rho_\alpha \\
+			\{0\} & \text{otherwise}.
+		\end{cases}
+	\]
+	Thus we deduce
+	\[ \Reg(G)
+		\simeq \bigoplus_{\alpha}
+		\left( \rho_\alpha \boxtimes \rho_\alpha^\vee \right)
+		\otimes k
+		\simeq \bigoplus_{\alpha}
+		\left( \rho_\alpha \boxtimes \rho_\alpha^\vee \right)
+	\]
+	and we're done.
+\end{proof}
+
+\section{Corollaries}
+Recall that $\Fun(G)$, the space underlying $\Reg(G)$, has a basis with size $\left\lvert G \right\rvert$.
+Hence by comparing the dimensions of the isomorphsims, we obtain the following corollary.
+\begin{theorem}
+	We have $\left\lvert G \right\rvert = \sum_\alpha \left( \dim \rho_\alpha \right)^2$.
+\end{theorem}
+Moreover, by restriction to $G$ we can obtain the corollary
+\[
+	\Reg^\ast(G)
+	\simeq \bigoplus_\alpha \Res_{G}^{G \times G} \left( \rho_\alpha \otimes \rho_\alpha^\vee \right)
+	= \bigoplus_\alpha \rho_\alpha \otimes \rho_\alpha^\vee.
+\]
+Now let us look at the $G$-invariant spaces in this decomposition.
+We claim that
+\[ \left( \rho_\alpha \otimes \rho_\alpha^\vee \right)^G \simeq k. \]
+Indeed, {Proposition 1} in {Part 1} tells us that we have a bijection of vector spaces
+\[ \left( \rho_\alpha \otimes \rho_\alpha^\vee \right)^G \simeq 
+	\Hom_G(\triv_G, \rho_\alpha \otimes \rho_\alpha^\vee). \]
+Then we can write
+\[
+\begin{aligned}
+	\Hom_G(\triv_G, \rho_\alpha \otimes \rho_\alpha^\vee)
+	&\simeq 
+	\Hom_G\left(\triv_G, \left( \rho_\alpha^\vee \otimes \rho_\alpha \right)^\vee \right) \\
+	&\simeq \Hom_G\left(\rho_\alpha^\vee \otimes \rho_\alpha, \triv_G \right) \\
+	&\simeq \Hom_G\left(\rho_\alpha \otimes \rho_\alpha^\vee, \triv_G \right) \\
+	&\simeq \Hom_G\left(\rho_\alpha, \rho_\alpha \right) \\
+	&\simeq k
+\end{aligned}
+\]
+by the lemma, where we have also used Schur's Lemma at the last step.
+So that means the dimension of the invariant space $(\Reg^\ast (G))^G$
+is just the number of irreducibles.
+
+But we already showed that the invariant space of $(\Reg^\ast (G))^G$
+has dimension equal to the conjugacy classes of $G$. Thus we conclude the second result.
+\begin{theorem}
+	The number of conjugacy classes of $G$ equals
+	the number of irreducible representations of $G$.
+\end{theorem}
+Hooray!

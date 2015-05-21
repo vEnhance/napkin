@@ -1,0 +1,839 @@
+\chapter{What is a Vector Space?}
+This is a pretty light chapter.
+The point of it is to just define what a vector space and a basis is.
+These are very intuitive concepts that you likely already know.
+
+\section{The Definition of a Ring and Field}
+\prototype{$\ZZ$, $\RR$, or $\CC$ are all rings and the latter two are fields.}
+I'll very informally define a ring/field here; if you're interested in the actual definition,
+you can consult the first part of the chapter on ideals.
+For now you can just remember
+\begin{quote}
+	A ring is a structure with a \emph{commutative}
+	addition, subtraction and multiplication, like $\ZZ$. 
+	It also has a additive identity $0$ and multiplication identity $1$.
+	(Yes, I'm considering only commutative rings.)
+
+	If the multiplication is invertible like in $\RR$ or $\CC$,
+	(meaning $\frac 1x$ makes sense for any $x \neq 0$),
+	then the ring is called a \emph{field}.
+\end{quote}
+In fact, if you replace ``field'' by ``$\RR$'' everywhere in what follows, you probably won't lose much.
+It's customary to use the letter $R$ for rings and $k$ for fields.
+
+\section{Modules and Vector Spaces}
+\prototype{Polynomials of degree at most $n$ form a vector space.}
+You intuitively know already that $\RR^n$ is a ``vector space'':
+its elements can be added together,
+and there's some scaling by real numbers.
+Let's develop this more generally.
+
+Fix a ring $R$.
+Then informally,
+\begin{moral}
+	An $R$-module is any structure where you can add two elements
+	and scale by elements of $R$.
+\end{moral}
+You can think of the $R$-module as consisting of soldiers
+being commanded by the ring $R$.
+Moreover, a \vocab{vector space} is just a module whose commanding ring
+is a actually a field.
+I'll give you the full definition in a moment,
+but first, examples\dots
+
+\begin{example}
+	[Quadratic Polynomials, aka My Favorite Example]
+	My favorite example of an $\RR$-vector space is the
+	set of polynomials of degree at most two, namely
+	\[ \left\{ ax^2+bx+c \mid a,b,c \in \RR \right\}. \]
+	Indeed, you can add any two quadratics, and multiply by constants.
+	You can't multiply two quadratics to get a quadratic,
+	but that's irrelevant -- in a vector space there need not
+	be a notion of multiplying two vectors together.
+
+	In a sense we'll describe later, this vector space has dimension $3$.
+	But I hope you can see why this is kind of true!
+	\label{example:quadratic_vector_space}
+\end{example}
+\begin{example}[All Polynomials]
+	The set of \emph{all} polynomials with real coefficients is an
+	$\RR$-vector space, because you can \emph{add any two polynomials}
+	and \emph{scale by constants}.
+\end{example}
+
+\begin{example}
+	[Euclidean Space]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii The complex numbers
+		\[ \left\{ a+bi \mid a,b \in \RR \right\} \]
+		form a real vector space. As we'll see later,
+		it has ``dimension $2$''.
+		\ii The real numbers $\RR$ form a real vector space of dimension $1$.
+		\ii The set of 3D vectors
+		\[ \left\{ (x,y,z) \mid x,y,z \in \RR \right\} \]
+		forms a vector space, because you can add any two triples
+		component-wise. Again, we'll later explain
+		why it has ``dimension $3$''.
+	\end{enumerate}
+\end{example}
+
+Now let me write the actual rules for how this multiplication behaves.
+\begin{definition}
+	Let $R$ be a ring.
+	A $R$-\vocab{module} is an additive abelian group $M = (M,+)$
+	equipped with a left multiplication by elements of $R$.
+	This multiplication must satisfy the following properties
+	for every $r_1, r_2 \in R$ and $m \in M$:
+	\begin{enumerate}[(i)]
+		\ii $r_1 \cdot (r_2 m) = (r_1r_2) \cdot m$.
+		\ii Multiplication is distributive, meaning
+		\[ (r_1+r_2) \cdot m = r_1 \cdot m + r_2 \cdot m 
+			\text{ and }
+			r \cdot (m_1 + m_2) = r \cdot m_1 + r \cdot m_2. \]
+		\ii $1_R \cdot m = m$.
+		\ii $0_R \cdot m = 0_M$.\footnote{This condition is actually
+			extraneous; you can actually deduce it
+			from the first three rules.}
+	\end{enumerate}
+	If $R$ is a field we say $M$ is an $R$-\vocab{vector space};
+	its elements are called \vocab{vectors}
+	and the members of $R$ are called \vocab{scalars}.
+\end{definition}
+
+\begin{abuse}
+	In the above, we're using the same symbol $+$ for the addition of $M$
+	and the addition of $R$.
+	Sorry about that, but it's kind of hard to avoid, and the point
+	of the axioms is that these additions should be related.
+	I'll try to remember to put $r \cdot m$ for the multiplication of the module and just $r_1r_2$ for the multiplication of $R$.
+\end{abuse}
+
+\begin{ques}
+	In \Cref{example:quadratic_vector_space},
+	I was careful to say ``degree at most $2$'' instead of ``degree $2$''.
+	What's the reason for this?
+	In other words, why is
+	\[ \left\{ ax^2 + bx + c \mid a,b,c \in \RR, a \neq 0  \right\} \]
+	not an $\RR$-vector space?
+\end{ques}
+
+A couple less intuitive but somewhat important examples\dots
+\begin{example}[Abelian Groups are $\ZZ$-modules]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii The example of real polynomials
+		\[ \left\{ ax^2+bx+c \mid a,b,c \in \RR \right\}, \]
+		is also a $\ZZ$-module!
+		Indeed, we can add any two such polynomials,
+		and we can scale them by integers.
+		\ii The set of integers modulo $100$, say $\ZZ/100\ZZ$,
+		is a $\ZZ$-module as well. Can you see how?
+		\ii In fact, \emph{any} abelian group $G = (G,+)$ is a $\ZZ$-module.
+		The multiplication can defined by
+		\[ n \cdot g = \underbrace{g+\dots+g}_{\text{$n$ times}}. \]
+	\end{enumerate}
+\end{example}
+\begin{example}
+	[Every ring is its own module]
+	\listhack
+	\begin{enumerate}[(a)]
+	\ii $\RR$ can be thought of as an $\RR$-vector space over itself.
+	Can you see why?
+
+	\ii By the same reasoning,
+	we see that \emph{any} ring $R$ can be thought of
+	as an $R$-module over itself.
+	\end{enumerate}
+\end{example}
+
+\section{Direct Sums}
+\prototype{$\{ax^2+bx+c\} = \RR \oplus x\RR \oplus x^2\RR$, and
+$\RR^2$ is the sum of its axes.}
+Let's return to \Cref{example:quadratic_vector_space}, and consider
+\[ V = \left\{ ax^2+bx+c \mid a,b,c \in \RR \right\}.  \]
+Even though I haven't told you what a dimension is,
+you can probably see that this vector space ``should have'' dimension $3$.
+We'll get to that in a moment.
+
+The other thing you may have noticed is that somehow
+the $x^2$, $x$ and $1$ terms don't ``talk to each other''.
+They're totally unrelated.
+In other words, we can consider the three sets
+\begin{align*}
+	x^2\RR &\defeq \left\{ ax^2 \mid a \in \RR \right\} \\
+	x\RR &\defeq \left\{ bx \mid b \in \RR \right\} \\
+	\RR &\defeq \left\{ c \mid c \in \RR \right\}.
+\end{align*}
+In an obvious way, each of these can be thought of as a ``copy'' of $\RR$.
+
+Then $V$ quite literally consists of the ``sums of these sets''.
+Specifically, every element of $V$ can be written \emph{uniquely}
+as the sum of one element from each of these sets.
+This motivates us to write
+\[ V = x^2\RR \oplus x\RR \oplus \RR. \]
+The notion which captures this formally is the \vocab{direct sum}.
+
+\begin{definition}
+	Let $M$ be an $R$-module.
+	Let $M_1$ and $M_2$ be subsets of $M$ which are themselves $R$-modules.
+	Then we write $M = M_1 \oplus M_2$ and say $M$ is a \vocab{direct sum}
+	of $M_1$ and $M_2$
+	if every element from $M$ can be written uniquely as a sum
+	of an element from $M_1$ and $M_2$.
+\end{definition}
+As another example, we have that the $xy$-plane consists
+of sums of its vectors.
+\begin{example}[Euclidean Plane]
+	Take the vector space $\RR^2 = \left\{ (x,y) \mid x \in \RR, y \in \RR \right\}$.
+	We can consider it as a direct sum of its two $x$-axis and $y$-axis:
+	\[ X = \left\{ (x,0) \mid x \in \RR  \right\} 
+		\text{ and }
+		Y = \left\{ (0,y) \mid y \in \RR \right\}. \]
+	Then $\RR^2 = X \oplus Y$.
+\end{example}
+
+This gives us a ``top-down'' way to break down modules
+into some disconnected components.
+
+By applying this idea in reverse, we can also construct
+new vector spaces as follows.
+In a very unfortunate accident, the two names and notations for technically
+distinct things are exactly the same.
+\begin{definition}
+	Let $M$ and $N$ be $R$-modules.
+	We define the \vocab{direct sum} $M \oplus N$
+	to the be $R$-module whose elements are pairs $(m,n) \in M \times N$.
+	The operations are given by
+	\[ (m_1, n_1) + (m_2, n_2) = (m_1+m_2, n_1+n_2). \]
+	and
+	\[ r \cdot (m, n) = (r \cdot m, r \cdot n). \]
+\end{definition}
+
+For example, while we technically wrote $\RR^2 = X \oplus Y$,
+since each of $X$ and $Y$ is just a copy of $\RR$,
+we may as well have written $\RR^2 \cong \RR \oplus \RR$.
+
+\begin{abuse}
+	The above illustrates an abuse of notation in the way we write a direct sum. The symbol $\oplus$ has two meanings.
+	\begin{itemize}
+		\ii If $V$ is a \emph{given} space and $W_1$ and $W_2$ are subspaces, then $V = W_1 \oplus W_2$ means that ``$V$ \emph{splits} as a direct sum $W_1 \oplus W_2$'' in the way we defined above.
+		\ii If $W_1$ and $W_2$ are two \emph{unrelated} spaces, then $W_1 \oplus W_2$ is \emph{defined} as the vector space whose \emph{elements} are pairs $(w_1, w_2) \in W_1 \times W_2$.
+	\end{itemize}
+	You can see that these definitions ``kind of'' coincide.
+\end{abuse}
+
+In this way, you can see that $V$ should be isomorphic
+to $\RR \oplus \RR \oplus \RR$;
+we had $V = x^2\RR \oplus x\RR \oplus \RR$,
+but the $1$, $x$, $x^2$ don't really talk to each other
+and each of the summands is really just a copy of $\RR$ at heart.
+
+\begin{definition}
+	We can also define, for every positive integer $n$, the module
+	\[ M^{\oplus n}
+		\defeq \underbrace{M \oplus M \oplus \dots \oplus M}_{\text{$n$ times}}. \]
+\end{definition}
+
+\section{Linear Independence, Spans, and Basis}
+\prototype{%
+	$\left\{ 1,x,x^2 \right\}$ is a basis of
+	$\left\{ ax^2 + bx + c \mid a,b,c \in \RR \right\}$.}
+
+The idea of a basis, the topic of this section,
+gives us another way to capture the notion that
+for \[ V = \left\{ ax^2+bx+c \mid a,b,c \in \RR \right\} \]
+is just sums of copies of $\{1,x,x^2\}$.
+This section should be very very intuitive, if technical.
+If you can't see why the theorems here ``should'' be true,
+you're doing it wrong.
+
+Let $M$ be an $R$-module now.
+We define three very classical notions that you likely are already familiar with.
+If not, fall upon your notion of Euclidean space or $V$ above.
+\begin{definition}
+	A \vocab{linear combination} of some vectors $v_1, \dots, v_n$
+	is a sum of the form $r_1 v_1 + \dots + r_n v_n$,
+	where $r_1, \dots, r_n \in R$.
+	The linear combination is called \vocab{trivial}
+	if $r_1 = r_2 = \dots = r_n = 0_R$, and \vocab{nontrivial} otherwise.
+\end{definition}
+\begin{definition}
+	Consider a finite\footnote{
+		You can have infinite sets as well; for example,
+		you probably want to think of the set of all polynomials
+		as having an infinite basis $\left\{ 1,x,x^2,x^3,\dots \right\}$.
+		The catch is that if your set is infinite,
+		your linear combinations must have at most finitely many
+		nonzero terms.
+		In the polynomial example, that just means
+		that your polynomials have finite degree (which is good).
+	}
+	set of $v_1, \dots, v_n$ of vectors in a module $M$.
+	\begin{itemize}
+		\ii It is called \vocab{linearly independent} if there
+		is no nontrivial linear combination with value $0_M$.
+		(Observe that $0_M = 0 \cdot v_1 + 0 \cdot v_2 + \dots + 0 \cdot v_n$
+		is always true -- the assertion is that there is no other
+		way to express $0_M$ in this from.)
+		\ii It is called \vocab{generating set} if every $v \in M$ can be written as
+		a linear combination of the $v_i$.
+		If $M$ is a vector space we say it is \vocab{spanning} instead.
+		\ii It is called a \vocab{basis} (plural \vocab{bases})
+		if every $v \in M$ can be written
+		\emph{uniquely} as a linear combination of the $v_i$.
+	\end{itemize}
+\end{definition}
+So by definition, $\left\{ 1,x,x^2 \right\}$ is a basis for $V$.
+\begin{ques}
+	Show that a set of vectors is a basis if and only if
+	it is linearly independent and spanning.
+	(Think about the polynomial example if you get stuck.)
+\end{ques}
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[height=7cm]{/home/evan/Pictures/TopologicalGG/basis-span-fantasy.jpg}
+	\caption{A basis is also a spanning set.}
+\end{figure}
+
+Now we state a few results which assert
+that bases in vector spaces behave as nicely as possible.
+\begin{theorem}[Maximality and Minimality of Bases]
+	If $e_1$, $e_2$, \dots, $e_n$ are a basis of a module $M$, then
+	\begin{enumerate}[(a)]
+		\ii The $\{e_i\}$ are spanning, but no proper subset are.
+		\ii The $\{e_i\}$ are linearly independent, but adding any other
+		element of $M$ makes them not linearly independent.
+	\end{enumerate}
+	If $M$ is a vector space, conditions (a) and (b) also imply that the $\{e_i\}$ are a basis.
+	\label{thm:vector_best}
+\end{theorem}
+\begin{proof}
+	Straightforward, do it yourself if you like.
+	The key point to notice is that you need to divide by scalars for the converse direction,
+	hence $M$ is required to be a vector space instead of just a module.
+\end{proof}
+
+\begin{theorem}
+	[Dimension Theorem for Vector Spaces]
+	Any two bases of a vector space have the same size.
+\end{theorem}
+\begin{proof}
+	We prove something even stronger:
+	Let $V$ be a vector space, and assume $v_1, \dots, v_n$ is a spanning set
+	while $w_1, \dots, w_m$ is linearly independent. We claim that $n \ge m$.
+
+	Let $A_0 = \{v_1, \dots, v_n\}$ be the spanning set.
+	Throw in $w_1$: by the spanning condition, so $w_1 = c_1v_1 + \dots + c_nv_n$.
+	There's some nonzero coefficient, say $c_n$.
+	Thus \[ v_n = \frac{1}{c_n} w_1 - \frac{c_1}{c_n}v_1 - \frac{c_2}{c_n}v_2 - \dots. \]
+	Thus $A_1 = \{v_1, \dots, v_{n-1}, w_1\}$ is spanning.
+	Now do the same thing, throwing in $w_2$, and deleting some element of the $v_i$ as before to get $A_2$;
+	the condition that the $w_i$ are linearly independent ensures that some $v_i$ coefficient
+	must always not be zero.
+	Since we can eventually get to $A_m$, we have $n \ge m$.
+\end{proof}
+\begin{remark}
+	In fact, this is true for modules over any ring.
+	(Well, you need the ring to be commutative, but in this book all rings are commutative).
+	Interestingly, the proof for the general case proceeds by reducing
+	to the case of a vector space.
+\end{remark}
+
+The Dimension Theorem, true to its name, lets us define the \vocab{dimension} of
+a vector space to be the size of any finite basis, if one exists.
+When it does exist we say $V$ is \vocab{finite-dimensional}.
+So for example,
+\[ V = \left\{ ax^2 + bx + c \mid a,b,c \in \RR \right\} \]
+has dimension three, because $\left\{ 1,x,x^2 \right\}$ is a basis.
+That's not the only basis: we could as well have written
+\[ \left\{ a(x^2-4x) + b(x+2) + c \mid a,b,c \in \RR \right\} \]
+and gotten the exact same vector space.
+But the beauty of the theorem is that no matter how we try
+to contrive the generating set, we always will get exactly three elements.
+That's why it makes sense to say $V$ has dimension three.
+
+On the other hand, the set of all polynomials is \emph{infinite-dimensional}
+(which should be intuitively clear).
+
+A basis $e_1, \dots, e_n$ of $V$ is really cool because it means that to specify $v \in V$, I just have to specify $a_1, \dots, a_n \in k$,
+and then let $v = a_1e_1 + \dots + a_ne_n$.
+You can even think of $v$ as just $\left( a_1, \dots, a_n \right)$.
+% In a way I'll make precise in a moment, $V$ is actually isomorphic to just $k^{\oplus n}$.
+To put it another way, if $V$ is a $k$-vector space we always have
+\[ V = e_1k \oplus e_2k \oplus \dots \oplus e_nk. \]
+
+From now on,
+\textbf{assume all vector spaces are finite-dimensional
+unless otherwise specified}.
+Infinite-dimensional vector spaces make my eyes glaze over.
+
+\section{Linear Maps}
+We've seen homomorphism and continuous maps.
+Now we're about to see linear map, the structure preserving maps
+between vector spaces. Can you guess the definition?
+
+\begin{definition}
+	Let $V$ and $W$ be vector spaces over a field $k$.
+	A \vocab{linear map} is a map $T : V \to W$ which obeys the following rules.
+	\begin{enumerate}[(i)]
+		\ii $T$ is a homomorphism $(V,+) \to (W,+)$ of abelian groups, meaning $T(v_1 + v_2) = T(v_1) + T(v_2)$.
+		\ii For any $a \in k$ and $v \in V$, $T(a \cdot v) = a \cdot T(v)$.
+	\end{enumerate}
+	If this map is a bijection, it is an \vocab{isomorphism}.
+	We say $V$ and $W$ are \vocab{isomorphic} vector spaces
+	and write $V \simeq W$.
+\end{definition}
+In the expression $T(a \cdot v) = a \cdot T(v)$, note that the first $\cdot$ is the multiplication of $V$ and the second $\cdot$ is the multiplication of $W$.
+Note that this notion of isomorphism really only cares about the size of the basis:
+\begin{proposition}
+	If $V$ is an $n$-dimensional vector space, then
+	$V \simeq k^{\oplus n}$.
+\end{proposition}
+\begin{ques}
+	What is the isomorphism?
+	(Your first guess is probably right.)
+\end{ques}
+\begin{remark}
+You could technically say that all finite-dimensional vector
+spaces are just $k^{\oplus n}$ and that no other space is worth
+caring about.
+But this seems kind of rude.
+Spaces often are more than just triples: $ax^2+bx+c$ is a polynomial,
+and so it has some ``essence'' to it that you'd lose if you
+just compressed it into $(a,b,c)$.
+Moreover, although the space of quadratic polynomials
+does have a natural basis,
+a lot of spaces don't have such an obvious choice;
+thus to cast such a space into $k^{\oplus n}$
+would require you to make arbitrary decisions.
+\label{rem:vector_spaces_have_essence}
+\end{remark}
+
+\section{What is a Matrix?}
+% Now I get to tell you what a matrix is: it's a way of writing a linear map in terms of bases.
+
+Suppose we have a vector space $V$ with basis $e_1, \dots, e_m$
+and a vector space $W$ with basis $w_1, \dots, w_n$.
+I also have a map $T : V \to W$ and I want to tell you what $T$ is.
+It would be awfully inconsiderate of me to try and tell you what $T(v)$
+is at every point $v$.
+In fact, I only have to tell you what $T(e_1)$, \dots, $T(e_m)$ is,
+because from there you can work out $T(a_1e_1 + \dots + a_me_m)$ for yourself:
+\[ T(a_1e_1 + \dots + a_me_m) = a_1T(e_1) + \dots + a_mT(e_m). \]
+Since the $e_i$ are a basis, that tells you all you need to know about $T$.
+\begin{example}
+	Let $V = \left\{ ax^2+bx+c \mid a,b,c \in \RR \right\}$.
+	Then $T(ax^2+bx+c) = aT(x^2) + bT(x) + cT(1)$.
+\end{example}
+
+Now I can even be more concrete.
+I could tell you what $T(e_1)$ is, but seeing as I have a basis of $W$,
+I can actually just tell you what $T(e_1)$ is in terms of this basis.
+Specifically, there are unique $a_{11}, a_{21}, \dots, a_{n1} \in k$ such that
+\[ T(e_1) = a_{11} w_1 + a_{21} w_2 + \dots + a_{n1} w_n. \]
+So rather than you telling you the value of $T(e_1)$ in some abstract space $W$,
+I could just tell you what $a_{11}, a_{21}, \dots, a_{n1}$ were.
+Then I'd just repeat this for $T(e_2)$, $T(e_3)$, all the way up to $T(e_m)$,
+and that would tell you everything you need to know about $T$.
+
+That's where the matrix $T$ comes from!
+It's just a concise way of writing down all $mn$ numbers I need to tell you.
+\[ T =  \underbrace{%
+	\left(
+	\begin{array}{cccc}
+		\mid & \mid & & \mid \\	
+		T(e_1) & T(e_2) & \dots & T(e_{m}) \\
+		\mid & \mid & & \mid \\	
+	\end{array}
+	\right)
+	}_m \Bigg\} n
+	=
+	\left(
+	\begin{array}{cccc}
+		a_{11} & a_{12} & \dots & a_{1m} \\
+		a_{21} & a_{22} & \dots & a_{2m} \\
+		\vdots & \vdots & \ddots & \vdots \\
+		a_{n1} & a_{n2} & \dots & a_{nm}
+	\end{array}
+	\right).
+	\]
+From here you can actually work out for yourself what it means to multiply two matrices.
+Suppose we have picked a basis for three spaces $U$, $V$, $W$.
+Given maps $T : U \to V$ and $S : V \to W$, we can consider their composition $S \circ T$, i.e.
+\[ U \taking{T} V \taking{S} W. \]
+Matrix multiplication is defined exactly so that the matrix $ST$
+is the same thing we get from interpreting the function $S \circ T$ as a matrix.
+(Check this for yourself!)
+In particular, since function composition is associative,
+it follows that matrix multiplication is as well.
+
+To drive this point home,
+\begin{moral}
+	A matrix is the laziest possible way to specify
+	a linear map from $V$ to $W$.
+\end{moral}
+
+This means you can define concepts like the determinant or the trace of a matrix
+both in terms of an ``intrinsic'' map $T : V \to W$ and in terms of the entries of the matrix.
+Since the map $T$ itself doesn't refer to any basis,
+the abstract definition will imply that the numerical definition doesn't depend on the choice of a basis.
+\section{Subspaces and Picking Convenient Bases}
+\prototype{Any two linearly independent vectors in $\RR^3$.}
+% A submodule is exactly what you think it is.
+\begin{definition}
+	Let $M$ be a left $R$-module. 
+	A \vocab{submodule} $N$ of $M$ is a module $N$
+	such that every element of $N$ is also an element of $M$.
+	If $M$ is a vector space then $N$ is called a \vocab{subspace}.
+\end{definition}
+
+\begin{example}[Kernels]
+	The \vocab{kernel} of a map $T : V \to W$ is the
+	set of $v \in V$ such that $T(v) = 0_W$.
+	It is a subspace of $V$, since it's closed under addition and scaling (why?).
+\end{example}
+\begin{example}[Spans]
+	Let $V$ be a vector space and $v_1, \dots, v_m$ be any vectors of $V$.
+	The \vocab{span} of these vectors is defined as the set
+	\[ \left\{ a_1v_1 + \dots + a_mv_m \mid a_1, \dots, a_m \in k \right\}. \]
+	Note that it is a subspace of $V$ as well!
+\end{example}
+\begin{ques}
+	Why is $0_V$ an element of each of the above examples?
+	In general, why must any subspace contain $0_V$?
+\end{ques}
+
+Subspaces behave nicely with respect to bases.
+\begin{theorem}[Basis Completion]
+	Let $V$ be an $n$-dimensional space, and $V'$ a subspace of $V$.
+	Then 
+	\begin{enumerate}[(a)]
+		\ii $V'$ is also finite-dimensional.
+		\ii If $e_1, \dots, e_m$ is a basis of $V'$, then there exists
+		$e_{m+1}, \dots, e_n$ in $V$ such that
+		$e_1, \dots, e_n$ is a basis of $V$.
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	Boring and intuitive.
+\end{proof}
+This means that given $V'$ a subspace of $V$,
+you can always interpret $V'$ as the span of some subset of a basis of $V$.
+
+The same goes for maps, using $\ker T$:
+\begin{theorem}[Picking A Basis for Linear Maps]
+	Let $T:V\to W$ be a map of finite-dimensional vector spaces. 
+	Then there exists a basis $v_1, \dots, v_n$ of $V$
+	and a basis $w_1, \dots, w_m$ of $W$,
+	as well as a nonnegative integer $k$, such that
+	\[
+		T(v_i) =
+		\begin{cases}
+			w_i & \text{if $i \le k$} \\
+			0_W & \text{if $i > k$}.
+		\end{cases}
+	\]
+	\label{thm:linear_map_basis}
+\end{theorem}
+For example, if $V = k^{\oplus 3}$ and $W = k^{\oplus 99}$,
+$T$ might be the map which sends $e_3 \in V$ to $0 \in W$
+and $e_1, e_2 \in V$ to $f_{13}, f_{37}$ in $W$.
+\begin{proof}[Sketch of Proof]
+	You might like to try this one yourself before reading on.
+
+	Let $\ker T$ have dimension $n-k$.
+	We can pick $v_{k+1}, \dots, v_{n}$ a basis of $\ker T$.
+	Then extend it to a basis $v_1, \dots, v_k$ of $V$.
+	You can show that $T$ is injective over the span of $v_1, \dots, v_k$,
+	so its images in $W$ are linearly independent.
+	Setting $w_i = T(v_i)$ for each $i$,
+	we get some linearly independent set in $W$.
+	Then extend it again to a basis of $W$.
+\end{proof}
+
+The above theorem is quite important: you should keep it in your head.
+It gives you a picture of how a linear map behaves:
+in particular, you can write for $T : V \to W$, 
+one can write $V = \ker T \oplus V'$, so that $T$ annihilates its kernel while sending $V'$
+to an isomorphic copy in $W$.
+
+A corollary of this (which you should have expected anyways) is the so called Rank-Nullity Theorem,
+which is just the analog of the First Isomorphism Theorem.
+\begin{theorem}
+	[Rank-Nullity Theorem]
+	If $T : V \to W$, then 
+	\[ \dim V = \dim \ker T + \dim \img T. \]
+	(Here $\img T = T``(V) \subseteq W$ is the image of $T$.)
+\end{theorem}
+
+\section{A Cute Application: Lagrange Interpolation}
+Here's a cute application\footnote{Source: Communicated to me
+by Joe Harris at the first Harvard-MIT Undegraduate Math Symposium.}
+of linear algebra to a theorem from high school we all know.
+\begin{theorem}
+	[Lagrange Interpolation]
+	Let $x_1, \dots, x_{n+1}$ be distinct real numbers
+	and $y_1, \dots, y_{n+1}$ any real numbers.
+	Then there exists a \emph{unique} polynomial of degree $P$
+	at most $n$ passing such that \[ P(x_i) = y_i \]
+	for every $i$.
+\end{theorem}
+\begin{proof}
+	The idea is to consider the vector space $V$ of polynomials with degree at most $n$,
+	as well as the vector space $W = \RR^{n+1}$.
+	\begin{ques}
+		Check that $\dim V = \dim W$.
+	\end{ques}
+	Then consider the linear map $T : V \to W$ given by
+	\[ P \mapsto \left( P(x_1), \dots, P(x_{n+1}) \right). \]
+	This is indeed a linear map because, well, $T(P+Q) = T(P)+T(Q)$ and $T(cP) = cT(P)$.
+	It also happens to be injective: if $P \in \ker T$,
+	then $P(x_1) = \dots = P(x_{n+1}) = 0$,
+	but $\deg P = n$ and so $P$ can only be the zero polynomial.
+	
+	So $T$ is an injective map between vector spaces of the same dimension.
+	Thus it is actually a bijection, which is exactly what we wanted.
+\end{proof}
+
+\section{(Digression) Arrays of Numbers Are Evil}
+\label{sec:basis_evil}
+As I'll stress repeatedly, a matrix represents a \emph{linear map between two vector spaces}.
+Writing it in the form of an $m \times n$ matrix is merely a very convenient way to see the map concretely.
+But it obfuscates the fact that this map is, well, a map, not an array of numbers.
+
+If you took high school precalculus, you'll see everything done in terms of matrices.
+To any typical high school student, a matrix is an array of numbers.
+No one is sure what exactly these numbers represent, but they're told how to magically multiply these arrays to get more arrays. 
+They're told that the matrix
+\[
+	\left(
+	\begin{array}{cccc}
+		1 & 0 & \dots & 0 \\
+		0 & 1 & \dots & 0 \\
+		\vdots & \vdots & \ddots & \vdots \\
+		0 & 0 & \dots & 1 \\
+	\end{array}
+	\right)
+\]
+is an ``identity matrix'', because when you multiply by another matrix it doesn't change.
+Then they're told that the determinant is some magical combination of these numbers formed by this weird multiplication rule.
+No one knows what this determinant does, other than the fact that $\det(AB) = \det A \det B$, and something about areas and row operations and Cramer's rule.
+
+Then you go into linear algebra in college, and you do more magic
+with these arrays of numbers.
+You're told that two matrices $T_1$ and $T_2$ are similar if \[ T_2 = ST_1S\inv \] for some invertible matrix $S$.
+You're told that the trace of a matrix $\Tr T$ is the sum of the diagonal entries.
+Somehow this doesn't change if you look at a similar matrix, but you're not sure why.
+Then you define the characteristic polynomial as \[ p_T = \det (XI - T). \]
+Somehow this also doesn't change if you take a similar matrix, but now you really don't know why.
+And then you have the Cayley-Hamilton Theorem in all its black magic: $p_T(T)$ is the zero map.
+Out of curiosity you Google the proof, and you find some ad-hoc procedure which still leaves you with no idea why it's true.
+
+This is terrible. Who gives a damn about $T_2 = ST_1S\inv$?
+Only if you know that the matrices are linear maps does this make sense:
+$T_2$ is just $T_1$ rewritten with a different choice of basis.
+
+In my eyes, this is \emph{evil}.
+Linear algebra is the study of \emph{linear maps},
+but it is taught as the study of \emph{arrays of numbers},
+and no one knows what these numbers mean.
+And for a good reason: the numbers are meaningless.
+They are a highly convenient way of encoding the matrix,
+but they are not the main objects of study,
+any more than the dates of events are the main objects of study in history.
+
+(The other huge downside is that people get the impression
+that the only vector space in existence is $\RR^{\oplus n}$.
+As explained in \Cref{rem:vector_spaces_have_essence},
+while you \emph{can} work this way if you're a soulless robot,
+it's very unnatural for humans to do so.)
+
+When I took Math 55a as a freshman at Harvard, I got the exact opposite treatment: we did all of linear algebra without writing down a single matrix.
+During all this time I was quite confused.
+What's wrong with a basis?
+I didn't appreciate until later that this approach was the morally correct way to treat the subject: it made it clear what was happening.
+
+Throughout this project, I've tried to strike a balance between these two approaches,
+using matrices when appropriate to illustrate the maps and to simplify proofs,
+but ultimately writing theorems and definitions in their \emph{morally correct} form.
+I hope that this has both the advantage of giving the ``right'' definitions
+while being concrete enough to be digested.
+But I would just like to say for the record that,
+if I had to pick between the high school approach and the 55a approach,
+I would pick 55a in a heartbeat.
+
+\section{A Word on General Modules}
+\prototype{$\ZZ[\sqrt2]$ is a $\ZZ$-module of rank two.}
+I focused mostly on vector fields (aka modules over a ring) in this chapter
+for simplicity, so I want to make a few remarks about modules over a general ring $R$ before concluding.
+
+Firstly, recall that for general modules, we say ``generating set'' instead of ``spanning set''.
+Shrug.
+
+The main issue with rings is that our key theorem \Cref{thm:vector_best} fails in spectacular ways.
+For example, consider the $\ZZ$ as a $\ZZ$-module over itself.
+Then $\{2\}$ is linearly independent, but it cannot be extended to a basis.
+Similarly, $\{2,3\}$ is spanning, but one cannot cut it down to a basis.
+You can see why defining dimension is going to be difficult.
+
+Nonetheless, there are still analogs of some of the definitions above.
+\begin{definition}
+	A $R$-module $M$ is called \vocab{finitely generated} if it as a finite generating set.
+\end{definition}
+\begin{definition}
+	An $R$-module $M$ is called \vocab{free} if it has a basis.
+	As said before, the analogue of the Dimension Theorem holds,
+	and we use the word \vocab{rank} to denote the size of the basis.
+	As before, there's an isomorphism $M \cong R^{\oplus n}$ where $n$ is the rank.
+\end{definition}
+\begin{example}[An Example of a $\ZZ$-module]
+	The $\ZZ$-module
+	\[ \ZZ[\sqrt2] = \left\{ a + b\sqrt 2 \mid a,b \in \ZZ \right\} \]
+	has a basis $\{1, \sqrt 2\}$, so we say it is
+	a free $\ZZ$-module of rank $2$.
+\end{example}
+
+Finally, recall that an abelian group can be viewed a $\ZZ$-module
+(and in fact vice-versa!), so we can (and will) apply these words to abelian groups
+(mainly in the chapter on algebraic number theory);
+we'll even use the notation $G \oplus H$ for two abelian groups $G$ and $H$
+for their Cartesian product, emphasizing the fact that $G$ and $H$ are abelian.
+
+\section\problemhead
+\begin{problem}[TSTST 2014]
+	Let $P(x)$ and $Q(x)$ be arbitrary polynomials with real coefficients, and let $d$ be the degree of $P(x)$. Assume that $P(x)$ is not the zero polynomial.
+	Prove that there exist polynomials $A(x)$ and $B(x)$ such that
+	\begin{enumerate}[(i)]
+		\ii Both $A$ and $B$ have degree at most $d/2$,
+		\ii At most one of $A$ and $B$ is the zero polynomial,
+		\ii $P$ divides $A+Q \cdot B$.
+	\end{enumerate}
+	\begin{hint}
+		Interpret as $V \oplus V \to W$ for suitable $V$, $W$.
+	\end{hint}
+	\begin{sol}
+		Let $V$ be the space of real polynomials with degree at most $d/2$ (which has dimension $1 + \left\lfloor d/2 \right\rfloor$), and $W$ be the space of real polynomials modulo $P$ (which has dimension $d$).
+		Then $\dim (V \oplus V) > \dim W$.
+		So the linear map $V \times V \to W$ by $(A,B) \mapsto A + Q \cdot B$
+		cannot be injective.
+	\end{sol}
+\end{problem}
+
+\begin{problem}
+	\label{prob:endomorphism_eventual_lemma}
+	Let $V$ be a finite dimensional vector space.
+	Let $T : V \to V$ be a linear map, and let $T^n : V \to V$ denote $T$ applied $n$ times.
+	Prove that there exists an integer $N$ such that
+	\[ V = \ker T^N \oplus \img T^N. \]
+	\begin{hint}
+		Use the fact that the infinite chain of subspaces
+		\[ \ker T \subseteq \ker T^2 \subseteq \ker T^3 \subseteq \dots \]
+		and the similar chain for $\img T$ must eventually stabilize
+		(look at the dimension of the spaces).
+	\end{hint}
+\end{problem}
+
+\begin{problem}[Taiwan IMO Camp]
+	\gim
+	In a town there are $n$ people and $k$ clubs. Each club has an odd number of members, and any two clubs have an even number of common members. Prove that $k \le n$.
+	\begin{hint}
+		Dot products in $\FF_2$.
+	\end{hint}
+	\begin{sol}
+		Interpret clubs as vectors in the vector space $\mathbb F_2^n$.
+		Consider a ``dot product'' to show that all $k$ vectors are linearly independent.
+		Thus $k \le \dim \mathbb F_2^n = n$.
+	\end{sol}
+\end{problem}
+
+%Now consider the sequences
+%\[
+%	\{0\} \subsetneq \ker S \subseteq \ker S^2 \subseteq \ker S^3 \subseteq \dots
+%	\text{  and  }
+%	V \supsetneq \img S \supseteq \img S^2 \supseteq \img S^3 \supseteq \dots.
+%\]
+%\begin{ques}
+%	Show that these spaces are all $S$-invariant.
+%	Why do these inclusions happen?
+%\end{ques}
+%For dimension reasons, these subspaces must eventually stabilize: for some large integer $N$,
+%$\ker S^N = \ker S^{N+1} = \dots$ and $\img S^N = \img S^{N+1} = \img S^{N+2} = \dots$.
+%When this happens, $\ker S^N \bigcap \img S^N = \{0\}$ (why?), and 
+%thus for dimension reasons $V_1 = \ker S^N \oplus \img S^N$.\footnote{%
+%	Recall here that for \emph{any} map $T : V \to W$, $\dim \ker T + \dim \img T = \dim V$.}
+
+\endinput
+
+\section{A Quick Word on Dot Products}
+Let's throw orthogonality into the mix.
+To do this we want a notion of a ``dot product'' between two vectors.
+This is provided by a so-called inner form.
+
+I'll just do the case where $k = \RR$.
+
+\begin{definition}
+	Let $V$ be a real vector space.
+	An \vocab{inner form} $\left< \bullet, \bullet \right> : V \times V \to \RR$ is a map with the following properties.
+	\begin{itemize}
+		\ii The form is \textbf{linear in the first argument}, so 
+		$\left<a+b,c\right> = \left<a,c\right>+\left<b,c\right>$
+		and $\left<r \cdot a,b\right> = r \cdot \left<a,b\right>$.
+		\ii The form is symmetric: $\left<a,b\right> = \left<b,a\right>$.
+		This implies that it is also linear in the second argument.
+		\ii The form is \textbf{positive definite}, meaning $\left<v,v\right> \ge 0$ is a real number, and equality takes place only if $v = 0_V$.
+	\end{itemize}
+\end{definition}
+
+\begin{example}
+	If $V = \RR^n$, then one inner form is the standard dot product.
+	Specifically, if $v = \left( a_1, \dots, a_n \right) \in \RR^n$
+	and $w = \left( b_1, \dots, b_n \right) \in \RR^n$ then
+	\[ \left<v,w\right> \defeq a_1b_1 + \dots + a_nb_n \]
+	works.
+\end{example}
+
+\begin{definition}
+	The \vocab{norm} of a $v \in V$ is defined by $\norm{v} = \left<v,v\right>$.
+	Evidently this is positive for all nonzero $v$,
+	since the inner form is positive definite.
+\end{definition}
+
+\begin{definition}
+	Let $v_1, \dots, v_n \in V$.
+	We say that $v_i$ are \textbf{orthogonal} if $\left< v_i, v_j \right> = 0$ for all $i \neq j$.
+	Moreover, it is \textbf{orthonormal} if $\norm{v_i} = 1$ for all $i$.
+\end{definition}
+\begin{example}
+	Let $V = \RR^n$ and use the standard dot product as the inner form.
+	Then the standard basis $e_1 = \left( 1,0,\dots,0 \right)$, $e_2 = (0,1,\dots,0)$, et cetera is an orthonormal basis.
+\end{example}
+
+As you might expect, orthogonal vectors should be linearly independent,
+just based on our geometric intuition for $\RR^n$.
+\begin{lemma}
+	Any orthonormal set of vectors is linearly independent.
+\end{lemma}
+\begin{proof}
+	Suppose $\sum a_iv_i = 0_V$.
+	Then \[ 0_V = \left< v_1, \sum a_i v_i \right> = a_1 \norm{v_i} = a_1. \]
+	Hence $a_1 = 0$.
+	Similarly $a_2 = \dots = a_m = 0$.
+\end{proof}
+
+Finally, we can show that we can select orthogonal bases.
+\begin{proposition}[Gram-Schmidt]
+	Let $V$ be a real finite-dimensional vector space.
+	Then there exists an orthonormal basis.
+\end{proposition}
+\begin{proof}
+	Let $v_1, \dots, v_n$ be a basis of $V$.
+	Inductively, construct $e_i$ such that all $e_i$ are orthonormal
+	and the span of $e_1, \dots, e_k$ equals the span of $v_1, \dots, v_k$.
+	Eventually we end up with $n$ orthonormal $e_i$'s.
+	They are linearly independent, but there are $n$ of them,
+	so they must form a basis.
+\end{proof}
+
+

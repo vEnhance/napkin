@@ -1,0 +1,175 @@
+\documentclass[11pt]{scrreprt}
+\input{../../tex/preamble}
+\def\asydir{}
+
+\renewenvironment{hint}{\begin{gobble}}{\end{gobble}}
+\renewenvironment{sol}{\begin{gobble}}{\end{gobble}}
+
+\begin{document}
+\title{Algebraic Number Theory Chapters}
+\maketitle
+\tableofcontents
+
+\bigskip
+
+\chapter{Bonus: Let's Solve Pell's Equation!}
+\section\problemhead
+
+\begin{thebibliography}{9}
+\bibitem{ref:oggier_NT} Oggier NT
+\bibitem{ref:dummit_foote} Dummit/Foote
+\bibitem{ref:ullery} 
+\end{thebibliography}
+\end{document}
+
+\chapter{Bonus: The Proof of Quadratic Reciprocity (now deleted)}
+(This assumes knowledge of the Legendre symbol.)
+For those of you that know olympiad number theory,
+we can now prove the following result.
+\begin{theorem}
+	[Quadratic Reciprocity]
+	Let $p$ and $q$ be distinct odd primes.
+	Then
+	\[ \left( \frac pq \right)\left( \frac qp \right) = (-1)^{\frac{p-1}{2} \cdot \frac{q-1}{2}}. \]
+\end{theorem}
+
+\section{Setup}
+For this proof, we first define
+\[ L = \QQ(\zeta_q) \]
+where $\zeta_q$ is a primitive $q$th root of unity.
+We know that
+\begin{itemize}
+	\ii $L$ has discriminant $\pm q^{q-2}$, and
+	\ii The Galois group $G$ consists of elements
+	\[ \Gal(L/\QQ) = \{ \sigma_n \mid n \not\equiv 0 \pmod q \} \]
+	where $\sigma_n : \zeta_q \mapsto \zeta_q^n$.
+\end{itemize}
+We also know $\OO_L = \ZZ[\zeta_q]$, but this won't be used.
+
+\begin{ques}
+	Show that $G$ has a unique subgroup $H$ of order two.
+\end{ques}
+In fact, we can describe it exactly: viewing $G \cong \Zm q$, we have
+\[ H = \left\{ \sigma_n \mid \text{$n$ quadratic residue mod $q$} \right\}. \]
+By the Fundamental Theorem of Galois Theory, there ought to be a degree $2$
+extension of $\QQ$ inside $\QQ(\zeta_q)$ (that is, a quadratic field).
+Call it $\QQ(\sqrt{q^\ast})$, for $q^\ast$ squarefree:
+\begin{diagram}
+	L = \QQ(\zeta_q) & \rIsom & \{1\} \\
+	\dLine^{\frac{q-1}{2}} && \dLine \\
+	K = \QQ(\sqrt{q^\ast}) & \rIsom & H \\
+	\dLine^2 && \dLine \\
+	\QQ & \rIsom & G \\
+\end{diagram}
+\begin{exercise}
+	Note that if a rational prime $\ell$ ramifies in $K$,
+	then it ramifies in $L$.\footnote{
+		Actually, it is true in general that given a tower $L/K/\QQ$,
+		we have $\Delta_K$ divides $\Delta_L$.}
+	Use this to show that
+	\[ q^\ast = \pm q \text{ and } q^\ast \equiv 1 \pmod 4. \]
+	Together these determine the value of $q^\ast$.
+\end{exercise}
+
+\section{Equivalent Formulation}
+Now we are going to prove:
+\begin{theorem}
+	[Quadratic Reciprocity, Equivalent Formulation]
+	For distinct odd primes $p$, $q$ we have
+	\[ \left( \frac pq \right) = \left( \frac{q^\ast}{p} \right). \]
+\end{theorem}
+\begin{exercise}
+	Using the fact that $\left( \frac{-1}{p} \right) = (-1)^{\frac{p-1}{2}}$,
+	show that this is equivalent to quadratic reciprocity as we know it.
+\end{exercise}
+
+We look at the rational prime $p$ in $\ZZ$, and let $(p)$ split into $\pp_1 \dots \pp_g$ in $L$,
+with inertial degrees $f$. Pick any $\pp$ among these.
+\begin{ques}
+	Why is $p$ not ramified in either $K$ or $L$?
+\end{ques}
+It could possibly also split in $K$: the picture looks like
+\begin{diagram}
+	\OO_L = \ZZ[\zeta_q] & \supset \pp & \rDotted & \ZZ[\zeta_p]/\pp \cong \FF_{p^f} \\
+	\OO_K = \ZZ[\frac{1+\sqrt{q^\ast}}{2}] & \supseteq \rho & \rDotted & \FF_p \text{ or } \FF_{p^2} \\
+	\ZZ & \supseteq (p) & \rDotted & \FF_p
+\end{diagram}
+Here $\rho$ is either $p \cdot \OO_K$ (if $p$ is inert in $K$) or one of the two prime factors
+(if it happens to split in two).
+We assume here that $\pp \mid \rho \mid (p)$.
+
+\section{Introducing the Frobenius Element}
+With this setup, we can introduce the Frobenius element $\Frob_\pp \in \Gal(L/\QQ)$.
+\begin{claim}
+	We have $\Frob_\pp \in H$ if and only if $p$ splits in $\OO_K$.
+\end{claim}
+\begin{proof}
+Recall that
+\[ \Frob_\pp(\alpha) \equiv \alpha^p \pmod{\pp} \quad \forall \alpha \in \OO_L \]
+is the Frobenius element at $\pp$ (in $\Gal(L/\QQ)$).
+We,re interested in what $\Frob_\pp$ does to $K$:
+specifically, by our Galois setup we have
+\[ \Frob_\pp \in H \iff \Frob_\pp(\alpha) = \alpha 
+\quad \forall \alpha \in \OO_K \]
+and we would like to know which side of the coin we're on!
+
+Thus we just have to understand how $\Frob_\rho$ behaves to figure out what $\Frob_\pp$ does.
+So there are two ways this could pan out.
+\begin{itemize}
+	\ii If $(p)$ is inert in $\OO_K$, meaning $\rho = (p)$, then we get $\FF_{p^2}$,
+	and $\Frob_\rho$ has order two:
+	it's the generator of a Galois group 
+	\[ \Gal(\FF_{p^2}/\FF_p) \cong \Zc 2. \]
+	Hence $\Frob_\rho$ is \emph{not} the identity.
+	\ii On the other hand, if $(p)$ \emph{splits} in $\OO_K$,
+	then the Galois group becomes $\Gal(\FF_p/\FF_p) = \{1\}$.
+	So $\Frob_\rho$ is trivial. \qedhere
+\end{itemize}
+\end{proof}
+
+\section{Identify $\Frob_\pp$}
+Now recall that the elements of the Galois group $\Gal(L/\QQ)$ are
+also (coincidentally!) of the form $x \mapsto x^n$.
+(This is only because $L$ is cyclotomic!)
+To repeat myself,
+\[ \Gal(L/\QQ) = \{ \sigma_n \mid n \not\equiv 0 \pmod q \} \quad\text{where}\quad \sigma_n(x) = x^n. \]
+This gives:
+\begin{claim}
+	$\Frob_\pp$ is $\sigma_p$ (regardless of which $\pp$ is chosen!)
+\end{claim}
+\begin{proof}
+	This is kind of dumb, but there is content\dots
+	for some $n \pmod p$, we have $\Frob_\pp = \sigma_n$.
+	Now, using the property of $\Frob_\pp$ gives
+	\[ \zeta_q^n = \Frob_\pp(\zeta_q) \equiv \zeta_q^p \pmod{\pp}. \]
+	We want to show this forces $n=p$: in other words,
+	we need the $q$th roots of unity be distinct mod $\pp$.
+
+	Look at the polynomial \[ F(X) = X^q-1 \] in \[ \ZZ[\zeta_p]/\pp \cong \FF_{p^f}. \]
+	Its derivative is \[ F'(X) = qX^{q-1} \not\equiv 0 \pmod{\pp} \]
+	(since $\FF_{p^f}$ has characteristic $p \nmid q$).
+	The only root of $F'$ is zero, hence $F$ has no double roots mod $\pp$.
+\end{proof}
+
+\section{Finishing Up}
+In summary, using the fact that $\sigma_p = \Frob_\pp$ we have deduced that
+\[ \sigma_p \in H \iff \text{$p$ splits in $\OO_K = \ZZ\left[ \tfrac12(1+\sqrt{q^\ast}) \right]$}. \]
+Well, $\sigma_p \in H$ if and only if $\left( \frac pq \right) = 1$. And:
+\begin{exercise}
+	Use the Factoring Algorithm to show that $p$ splits exactly when $\left( \frac{q^\ast}{p} \right) = 1$.
+\end{exercise}
+
+This completes the proof.
+In short the path is:
+\[ \left( \frac pq \right) = 1
+	\iff \sigma_p \in H \iff \text{$p$ splits in $ = \ZZ\left[ \tfrac12(1+\sqrt{q^\ast}) \right]$}
+	\iff \left( \frac{q^\ast}{p} \right) = 1.
+\]
+
+
+\section\problemhead
+\begin{problem}
+	Adapt the proof of quadratic reciprocity to get $\left( \frac 2p \right) = (-1)^{\frac{p^2-1}{8}}$.
+\end{problem}
+
+

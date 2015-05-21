@@ -1,0 +1,163 @@
+\usepackage[mdthm,secthm,diagrams]{evan}
+\usepackage[normalem]{ulem}
+\usepackage{wasysym}
+\usepackage{multirow}
+\usepackage{prerex}
+
+%% Environments, meta-level stuff, etwc.
+\newcommand{\vocab}[1]{\textbf{\color{blue} #1}}
+\newcommand{\problemhead}{Problems to Think About}
+\newcommand{\prototype}[1]{
+	\emph{{\color{red} Prototypical example for this section:} #1}\par
+}
+\newenvironment{moral}{\begin{mdframed}\bfseries\color{green!70!black}}%
+	{\end{mdframed}}
+
+\theoremstyle{definition}
+\newtheorem{abuse}[theorem]{Abuse of Notation}
+\newtheorem{sproblem}[theorem]{Problem}
+\newtheorem{dproblem}[theorem]{Problem}
+\renewcommand{\thesproblem}{\thetheorem$^{\star}$}
+\renewcommand{\thedproblem}{\thetheorem$^{\dagger}$}
+\newcommand{\listhack}{$\empty$\vspace{-2em}}
+
+% Answers
+\usepackage{answers}
+\Newassociation{hint}{answeritem}{tex/backmatter/all-hints}
+\Newassociation{sol}{answeritem}{tex/backmatter/all-solns}
+\renewcommand{\solutionextension}{out}
+\renewenvironment{answeritem}[1]{\item[\bf #1.]}{}
+
+% Hot chili peppers
+\reversemarginpar
+\newcommand{\prechili}{\vspace*{0.3em}\hspace*{1.5em}}
+\newcommand{\nochili}{\hspace*{1.5em}}
+\newcommand{\chili}{\includegraphics[width=1.5em]{media/chili.png}}
+\newcommand{\gim}{\marginpar{\prechili\nochili\nochili\chili}}
+\newcommand{\yod}{\marginpar{\prechili\nochili\chili\chili}}
+\newcommand{\kurumi}{\marginpar{\prechili\chili\chili\chili}}
+
+% Add ToC to PDF bookmarks
+\makeatletter
+\usepackage{etoolbox}
+\pretocmd{\tableofcontents}{%
+  \if@openright\cleardoublepage\else\clearpage\fi
+  \pdfbookmark[0]{\contentsname}{toc}%
+}{}{}%
+\makeatother
+
+%% Asymptote definitions
+\begin{asydef}
+	defaultpen(fontsize(11pt));
+	pointfontsize=11;
+	void bigbox(string L) {
+		filldraw((-4,3)--(4,3)--(4,-3)--(-4,-3)--cycle,
+			lightblue+opacity(0.2), black);
+		label(L, (4,3), dir(-45));
+	}
+	void bigblob(string L) {
+		filldraw((-4,3)..(-5,1)..(-4.7,0)..(-4.1,-2)..(-4,-3)
+			..(-1,-3.3)..(1,-3.2)..(4,-3)
+			..(4.3,-1)..(4.1,0.5)..(4,3)
+			..(2,3.3)..(0,3.1)..(-3,2.9)..cycle,
+			lightblue+opacity(0.2), black);
+		label(L, (4,3), dir(5));
+	}
+
+	pair opendot(pair P, pen p = defaultpen) {
+		dot(P, p, UnFill);
+		dot(P, p, Draw);
+		return P;
+	}
+\end{asydef}
+\def\asydir{asy}
+
+%% Bibliography
+\usepackage[backend=biber,style=alphabetic]{biblatex}
+\DeclareLabelalphaTemplate{
+	\labelelement{
+		\field[final]{shorthand}
+		\field{label}
+		\field[strwidth=2,strside=left]{labelname}
+	}
+	\labelelement{
+		\field[strwidth=2,strside=right]{year}    
+	}
+}
+\DeclareFieldFormat{labelalpha}{\textbf{\scriptsize #1}}
+\addbibresource{references.bib}
+
+
+
+%% Macros
+\newcommand{\Zc}[1]{\ZZ_{#1}}
+\newcommand{\Zm}[1]{\ZZ_{#1}^\times}
+\newcommand{\pre}{^{\text{pre}}}
+\newcommand{\normalin}{\trianglelefteq}
+\newcommand{\triv}{\mathrm{triv}}
+\newcommand{\largeotimes}[1]{\mathop{\otimes}\limits_{#1}}
+\newcommand{\Mat}{\mathrm{Mat}}
+\newcommand{\PGL}[1]{\mathbf{PGL}_{#1}(\CC)}
+
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\SL}{SL}
+\DeclareMathOperator{\Stab}{Stab}
+\DeclareMathOperator{\refl}{refl}
+\DeclareMathOperator{\Fun}{Fun}
+\DeclareMathOperator{\Irrep}{Irrep}
+\DeclareMathOperator{\Res}{Res}
+\DeclareMathOperator{\Reg}{Reg}
+\DeclareMathOperator{\ev}{ev}
+\DeclareMathOperator{\Wind}{\mathbf I}
+
+\newcommand{\VV}{\mathcal V}
+\newcommand{\Aff}{\mathbb A}
+% \newcommand{\II}{\mathbb I}
+\newcommand{\CP}{\mathbb{CP}}
+\newcommand{\Cl}{\mathrm{Cl}}
+
+\renewcommand{\Re}{\opname{Re}}
+\renewcommand{\Im}{\opname{Im}}
+
+
+%% Category Theory macros
+\renewcommand{\AA}{\mathcal A}
+\newcommand{\BB}{\mathcal B}
+\newcommand{\obj}{\operatorname{obj}}
+
+\usepackage{tkz-graph}
+\pgfarrowsdeclare{biggertip}{biggertip}{%
+  \setlength{\arrowsize}{1pt}  
+  \addtolength{\arrowsize}{.1\pgflinewidth}  
+  \pgfarrowsrightextend{0}  
+  \pgfarrowsleftextend{-5\arrowsize}  
+}{%
+  \setlength{\arrowsize}{1pt}  
+  \addtolength{\arrowsize}{.1\pgflinewidth}  
+  \pgfpathmoveto{\pgfpoint{-5\arrowsize}{4\arrowsize}}  
+  \pgfpathlineto{\pgfpointorigin}  
+  \pgfpathlineto{\pgfpoint{-5\arrowsize}{-4\arrowsize}}  
+  \pgfusepathqstroke  
+}  
+\tikzset{
+	EdgeStyle/.style = {>=biggertip}
+}
+
+\newcommand\catname\mathsf
+
+\usepackage[all,cmtip,2cell]{xy}
+\UseTwocells
+\newcommand\nattfm[5]{\xymatrix@C+2pc{#1 \rtwocell<4>^{#2}_{#4}{\; #3} & #5}}
+
+%% Alg NT macros
+\renewcommand{\aa}{\mathfrak a}
+\newcommand{\bb}{\mathfrak b}
+\newcommand{\pp}{\mathfrak p}
+\newcommand{\qq}{\mathfrak q}
+
+\newcommand{\OO}{\mathcal O}
+\newcommand{\Frob}{\mathrm{Frob}}
+\DeclareMathOperator{\Norm}{N}
+\DeclareMathOperator{\Gal}{Gal}
+\newcommand{\TrK}{\Tr_{K/\QQ}}
+\newcommand{\NK}{\Norm_{K/\QQ}}

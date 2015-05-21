@@ -1,0 +1,170 @@
+\addtocounter{chapter}{-1}
+\chapter{Read This First}
+\section{Graph of Chapter Dependencies}
+
+There is no need to read this book in linear order.
+Here is a plot of where the various chapters are relative to each other.
+In my opinion, the really cool stuff is the later chapters,
+which have been bolded below.
+Dependencies are indicated by arrows;
+dotted lines are weaker dependencies.
+I suggest that you simply pick a chapter you find interesting,
+and then find the shortest path.
+With that in mind, I hope the length of the entire PDF is not intimidating.
+
+%Follow the graph of dependencies preceding the table of contents
+%to see exactly how the chapters are ordered.
+
+I have tried to keep the chapters short, and no more than 15 pages each,
+so that each chapter can be digested (albeit with some effort) in a couple of hours.
+This is true to the subtitle -- these are \emph{bedtime stories}.
+
+The oddball in this graph is the category theory.
+Basically, the more examples from the preceding chapters you know,
+the easier this chapter will be to digest.
+But \emph{strictly} speaking, you don't need any prerequisites at all;
+the subject is very ``combinatorial''.
+
+\input{tex/frontmatter/digraph}
+\eject
+
+\section{Questions, Exercises, and Problems}
+%Most textbooks have large numbers of exercises, some easy and some hard.
+In this book, there are there hierarchies:
+\begin{itemize}
+	\ii A \emph{question} is intended to be offensively easy.
+	It is usually just a chance to help you internalize definitions.
+	You really ought to answer almost all of these.
+	\ii An \emph{exercise} is marginally harder.
+	The difficulty is like something you might see on an AIME.
+	Often I leave proofs of theorems and propositions as exercises
+	if they are instructive and at least somewhat interesting.
+	\ii Each chapter features several \emph{problems} at the end.
+	Some of these are easy, while others are legitimately difficulty olympiad-style problems.
+	There are three types:
+	\begin{itemize}
+		\ii \textbf{Normal problems}, which are hopefully fun but non-central.
+		\ii \textbf{Daggered problems}, which are (usually interesting) results that one should know,
+		but won't be used directly later.
+		\ii \textbf{Starred problems}, indicating results which will be used later on.\footnote{%
+			A big nuisance in college for me was that, every so often, the professor
+			would invoke some result that was only mentioned on the homework.
+			In fact, sometimes very important results were placed on the homework in this way.
+			% Thus every time during lecture or whatever, I would have to refer back through my
+			% mound of problem sets to dig out whatever said result was, and often I would
+			% then have to remember the proof of it (which I had long forgotten).
+			I wish they could have told me in advance ``please take note of this, we'll use it later on''.
+		}
+	\end{itemize}
+\end{itemize}
+
+\begin{center}
+	\includegraphics[width=14cm]{media/abstruse-goose-exercise.png}
+\end{center}
+
+I personally find most exercises to not be that interesting, and I've tried to keep boring ones to a minimum.
+Regardless, I've tried hard to pick problems that are fun to think about and, when possible, to give them
+the kind of flavor you might find on the IMO or Putnam (even when the underlying background is different).
+
+\gim
+Harder problems are marked with \chili's, like this paragraph.
+For problems that have three chili's you should probably read the hint.
+
+\section{Paper}
+At the risk of being blunt,
+\begin{moral}
+Read this book with pencil and paper.
+\end{moral}
+Here's why:
+
+\begin{center}
+	\includegraphics[width=0.5\textwidth]{media/read-with-pencil.jpg} \\
+	{\footnotesize Source: \url{http://mathwithbaddrawings.com/2015/03/17/the-math-major-who-never-reads-math/}}
+\end{center}
+\textbf{You are not God.}
+You cannot keep everything in your head.\footnote{
+	See also \url{https://usamo.wordpress.com/2015/03/14/writing/} and the source above.
+}
+If you've printed out a hard copy, then write in the margins.
+If you're trying to save paper, grab a notebook or something along with the ride.
+Somehow, someway, make sure you can write. Thanks.
+
+
+\section{Examples}
+I am pathologically obsessed with examples.
+In this book, I place all examples in large boxes to draw emphasis to them, which leads to some pages of the book simply consisting of sequences of boxes one after another. I hope the reader doesn't mind.
+
+I also often highlight a ``prototypical example'' for some sections,
+and reserve the color red for such a note.
+The philosophy is that any time the reader sees a definition or a theorem about such an object, they should test it against the prototypical example.
+If the example is a good prototype, it should be immediately clear why this definition is intuitive, or why the theorem should be true, or why the theorem is interesting, et cetera.
+
+Let me tell you a secret.  When I wrote a definition or a theorem in this book, I would have to recall the exact statement from my memory, and my memory is very poor. So instead, I have to consider the prototypical example, and then only after that do I remember what the definition or the theorem is.
+Incidentally, this is also how I learned all the definitions in the first place.
+I hope you'll find it useful as well.
+
+\section{SNSD}
+Where appropriate, I have added math jokes from the
+Tumblr \emph{Topological Girl's Generation}.
+I hope you find them enjoyable.
+
+\section{Topic Choices}
+The appendix contains a list of resources I like and thoughts about
+particular chapters and subjects and the like.
+I encourage you to check it out.
+
+The most important part of that is the first section.
+For example, I learned category theory from \cite{ref:msci} and loved it,
+and I don't think I could do a better job than it,
+which is why I only barely touch on category theory here!
+
+\section{Conventions and Notations}
+This part describes some of the less familiar notations and definitions
+and settles for once and for all some annoying issues (``is zero a natural number?'').
+
+\subsection*{Sets and Equivalence Relations}
+%\begin{definition}
+%We denote by $\ZZ$, $\QQ$, $\RR$, and $\CC$ the set of integers,
+%rational numbers, real numbers, and complex numbers, respectively.
+%\end{definition}
+$\NN$ is the set of \emph{positive} integers, not including $0$.
+
+%\begin{definition}
+%For sets $S$ and $T$, $S \setminus T$ is set subtraction.
+%Also, $S \times T$ is the Cartesian product.
+%\end{definition}
+
+An \vocab{equivalence relation} on a set $X$ is a relation $\sim$
+which is symmetric, reflexive, and transitive.
+A equivalence relations partitions $X$ into several \vocab{equivalence classes}.
+We will denote this by $X / {\sim}$.
+An element of such an equivalence class is a \vocab{representative} of that equivalence class.
+
+
+\subsection*{Functions}
+Let $X \taking f Y$ be a function.
+
+\begin{itemize}
+\ii By $f\pre(T)$ I mean the \vocab{pre-image}
+\[ f\pre(T) \defeq \left\{ x \in X \mid f(x) \in T \right\} \]
+in contrast to the usual $f\inv(T)$; I only use $f\inv$ for an inverse \emph{function}.
+
+By abuse of notation, we may abbreviate $f\pre(\{y\})$ to $f\pre(y)$.
+We call $f\pre(y)$ a \vocab{fiber}.
+
+\ii By $f``(S)$ I mean the \vocab{image}
+\[ f``(S) \defeq \left\{ f(x) \mid x \in S \right\}. \]
+The notation {``} is from set theory, and is meant to indicate ``point-wise''.
+Most authors use $f(S)$, but this is abuse of notation,
+and I prefer $f``(S)$ for emphasis.
+
+\ii Sometimes functions $f : X \to Y$ are \emph{injective} or \emph{surjective};
+I may emphasize this sometimes by writing $f : X \injto Y$ or $f : X \surjto Y$, respectively.
+\end{itemize}
+
+\subsection*{Rings}
+All rings are commutative with a multiplicative identity $1$ unless otherwise specified.
+We allow $0=1$ in general rings but not in integral domains.
+
+\subsection*{Choice}
+We accept the Axiom of Choice.

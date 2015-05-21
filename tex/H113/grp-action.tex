@@ -1,0 +1,356 @@
+\chapter{Group Actions Overkill AIME problems}
+Consider the following problem, from the 1996 AIME.
+
+\begin{problem*}
+	[AIME 1996] Two of the squares of a $7 \times 7$ checkerboard are painted yellow, and the rest are painted green. Two color schemes are equivalent if one can be obtained from the other by applying a rotation in the plane of the board. How many inequivalent color schemes are possible?
+\end{problem*}
+
+What's happening here? Let $X$ be the set of the $\binom{49}{2}$ possible colorings of the board.
+What's the natural interpretation of ``rotation''?
+Answer: the group $\Zc 4 = \left<r \mid r^4=1\right>$ somehow ``acts'' on this set $X$ by sending one state $x \in X$ to another state $r \cdot x$, which is just $x$ rotated by $90\dg$.
+Intuitively we're just saying that two configurations are the same if they can be reached from one another by this ``action''.
+
+We can make all of this precise using the idea of a group action.
+
+\section{Definition of a Group Action}
+\prototype{The AIME problem.}
+
+\begin{definition}
+	Let $X$ be a set and $G$ a group.
+	A \vocab{group action} is binary operation $\cdot : G \times X \to X$
+	which lets a $g \in G$ send an $x \in X$ to $g \cdot x$.
+	It satisfies the following axioms:
+	\begin{itemize}
+		\ii $(g_1g_2) \cdot x = g_1 \cdot (g_2 \cdot x)$ for any $g_1, g_2 \in G$
+		for all $x \in X$.
+		\ii $1_G \cdot x = x$ for any $x \in X$.
+	\end{itemize}
+\end{definition}
+
+Here are some more examples of group actions.
+\begin{example}[Examples of Group Actions]
+	Let $G=(G,\star)$ be a group.
+	Here are some examples of group actions.
+	\begin{enumerate}[(a)]
+		\ii The group $\Zc 4$ can act on the set of ways to color a $7 \times 7$
+		board either yellow or green.
+		\ii The group $\Zc4 = \left<r \mid r^4=1\right>$ acts on the $xy$-plane $\RR^2$ as follows: $r \cdot (x,y) = (y,-x)$.
+		In other words, it's a rotation by $90\dg$.
+		\ii The dihedral group $D_{2n}$ acts on the set of ways to color the vertices of an $n$-gon.
+		\ii The group $S_n$ acts on $X = \left\{ 1,2,\dots,n \right\}$
+		by applying the permutation $\sigma$: $\sigma \cdot x \defeq \sigma(x)$.
+		\ii The group $G$ can act on itself (i.e.\ $X=G$) by left multiplication: put $g \cdot g' \defeq g \star g'$.
+	\end{enumerate}
+\end{example}
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[height=6cm]{/home/evan/Pictures/TopologicalGG/group-action.png}
+	\caption{Group actions arise from binary operations.}
+\end{figure}
+
+
+
+\section{Stabilizers and Orbits}
+\prototype{Again the AIME problem.}
+
+Given a group action $G$ on $X$,
+we can define an equivalence relation $\sim$ on $X$ as follows:
+$x \sim y$ if $x = g \cdot y$ for some $g \in G$.
+For example, in the AIME problem, $\sim$ means ``one can be obtained from the other by a rotation''.
+\begin{ques}
+	Why is this an equivalence relation?
+\end{ques}
+In that case, the AIME problem wants the number of equivalence classes under $\sim$.
+So let's give these equivalence classes a name: \vocab{orbits}.
+We usually denote orbits by $\OO$.
+
+As usual, orbits carve out $X$ into equivalence classes.
+\begin{center}
+	\begin{asy}
+		bigbox("$X$");
+		draw(ellipse(origin,0.8,2.5));
+		draw(ellipse((-2,0),0.8,1.5));
+		draw(ellipse(( 2,0),0.8,2.25));
+		for (int i=-3; i<=3; ++i) {
+			dot( (0, 0.7*i) );
+		}
+		dot( (-2,0) );
+		dot( (-2,-1) );
+		dot( (-2,1) );
+		dot( ( 2,0) );
+		dot( ( 2,-1) );
+		dot( ( 2,1) );
+		dot( ( 2,-2) );
+		dot( ( 2,2) );
+
+		MP("\mathcal O_1", (-2,-1.5), dir(225));
+		MP("\mathcal O_2", ( 0,-2.5), dir(180));
+		MP("\mathcal O_3", ( 2,-2.25), dir(225));
+	\end{asy}
+\end{center}
+\todo{add color to this picture}
+
+It turns out that a very closely related concept is the following.
+\begin{definition}
+	The \vocab{stabilizer} of a point $x \in X$,
+	denoted $\Stab_G(x)$, is the set $g \in G$ which fix $x$; in other words
+	\[ \Stab_G(x) \defeq \left\{ g \in G \mid g \cdot x = x \right\}. \]
+\end{definition}
+\begin{example}
+	Consider the AIME problem again, with $X$ the possible set of states
+	(again $G = \Zc4$).
+	Let $x$ be the configuration where two opposite corners are colored yellow.
+	Evidently $1_G$ fixes $x$, but so does the $180\dg$ rotation $r^2$.
+	But $r$ and $r^3$ do not preserve $x$, so
+	$\Stab_G(x) = \{1,r^2\} \cong \Zc2$.
+\end{example}
+\begin{ques}
+	Why is $\Stab_G(x)$ a subgroup of $G$?
+\end{ques}
+
+Once we realize the stabilizer is a group, this leads us to what I privately call the ``fundamental theorem of how big an orbit is''.
+\begin{theorem}[Orbit-Stabilizer Theorem]
+	Let $\OO$ be an orbit, and pick any $x \in \OO$.
+	Let $S = \Stab_G(x)$ be a subgroup of $G$.
+	There is a natural bijection between $\OO$ and left cosets.
+	In particular,
+	\[ \left\lvert \OO \right\rvert \left\lvert S \right\rvert = \left\lvert G \right\rvert. \]
+	In particular, the stabilizers of each $x \in \OO$ have the same size.
+\end{theorem}
+\begin{proof}
+	The point is that every coset $gS$ just specifies an element of $\OO$,
+	namely $g \cdot x$. The fact that $S$ is a stabilizer implies
+	that it is irrelevant which representative we pick.
+
+	\begin{center}
+		\begin{asy}
+			size(6cm);
+			draw(ellipse(origin, 0.5, 2));
+			label("$\mathcal O \subseteq X$", (0,2), dir(90));
+			for (real i=-1.5; i<=1.5; ++i) {
+				dot( (0,i) );
+			}
+			draw( (0.3,1.8)--(0.3,1.2)--(4,1.2)--(4,1.8)--cycle );
+			label("$S \subseteq G$", (4,1.5), dir(0));
+			for (real i=0.7; i < 4; i+=0.7) {
+				label("$\circ$", (i, 1.5), origin);
+			}
+			draw( (-0.2,1.5)..(-1,0.5)..(-0.2,-0.5), EndArrow);
+			label("$g$", (-1,0.5), dir(180));
+		\end{asy}
+	\end{center}
+
+	Since the cosets partition $G$, each have size $\left\lvert S \right\rvert$,
+	and there are $\left\lvert \mathcal O \right\rvert$ of them,
+	we get the second result.
+\end{proof}
+
+\section{Burnside's Lemma}
+Now for the crux of this chapter: a way to count the number of orbits.
+\begin{theorem}
+	[The Lemma That Is Not Burnside's]
+	Let $G$ act on a set $X$.
+	The number of orbits of the action is equal to
+	\[ \frac{1}{\left\lvert G \right\rvert}
+		\sum_{g \in G} \left\lvert \opname{FixPt} g \right\rvert \]
+	where $\opname{FixPt} g$ is the set of points $x \in X$
+	such that $g \cdot x = x$.
+\end{theorem}
+The proof is deferred as a bonus problem, since it has a very olympiad-flavored solution.
+As usual, this lemma was not actually proven by Burnside;
+it is sometimes also called the Poly\'a-Burnside enumeration formula.
+
+The point of this is that it lets us destroy the AIME-like problems by simply considering the average of the number of fixed points.
+Consult \cite{ref:aops_burnside} 
+for some more examples of ``hands-on'' applications.
+Here is one:
+\begin{example}
+	[AIME 1996] Two of the squares of a $7 \times 7$ checkerboard are painted yellow, and the rest are painted green. Two color schemes are equivalent if one can be obtained from the other by applying a rotation in the plane of the board. How many inequivalent color schemes are possible?
+
+	We know that $G = \Zc4$ acts on the set $X$ of $\binom{49}{2}$ possible coloring schemes.
+	Now we can compute $\opname{FixPt} g$ explicitly for each $g \in \Zc4$.
+	\begin{itemize}
+		\ii If $g = 1_G$, then every coloring is fixed, for a count of $\binom{49}{2} = 1176$.
+		\ii If $g = r^2$ there are exactly $24$ coloring schemes fixed by $g$:
+		this occurs when the two squares are reflections across the center,
+		which means they are preserved under a $180\dg$ rotation.
+		\ii If $g = r$ or $g=r^3$, then there are no fixed coloring schemes.
+	\end{itemize}
+	As $\left\lvert G \right\rvert = 4$, the average is
+	\[ \frac{1176 + 24 + 0 + 0}{4} = 300. \]
+\end{example}
+\begin{exercise}[MathCounts Target \#8]
+	A circular spinner has seven section of equal size, each of which is colored either red or blue. Two colorings are considered the same if one can be rotated to yield the other. In how many ways can the spinner be colored? (Answer: 20)
+\end{exercise}
+% The group in question is $\Zc7$; the answer should be $20$.
+
+\section{Conjugation of Elements}
+\prototype{In $S_n$, conjugacy classes are ``cycle types''.}
+A particularly common type of action is the so-called \vocab{conjugation}.
+We let $G$ act on itself as follows:
+\[ g : h \mapsto ghg\inv. \]
+You might think this definition is a little artificial.
+Who cares about the element $ghg\inv$?
+Let me try to convince you this definition is not so unnatural.
+\begin{example}
+	[Conjugacy in $S_n$]
+	Let $G = S_5$, and fix a $\pi \in S_5$.
+	Here's the question: $\pi \sigma \pi \inv$ related to $\sigma$?
+	To illustrate this, I'll write out a completely random example of a permutation $\sigma \in S_5$.
+	\[
+		\text{If }
+		\sigma = \;
+		\begin{array}{ccc}
+		1 & \mapsto & 3 \\
+		2 & \mapsto & 1 \\
+		3 & \mapsto & 5 \\
+		4 & \mapsto & 2 \\
+		5 & \mapsto & 4
+		\end{array}
+		\qquad
+		\text{then}
+		\qquad
+		\pi \sigma \pi\inv = 
+		\begin{array}{ccc}
+		\pi(1) & \mapsto & \pi(3) \\
+		\pi(2) & \mapsto & \pi(1) \\
+		\pi(3) & \mapsto & \pi(5) \\
+		\pi(4) & \mapsto & \pi(2) \\
+		\pi(5) & \mapsto & \pi(4)
+		\end{array}
+	\]
+	Thus our fixed $\pi$ doesn't really change the structure of $\sigma$ at all:
+	it just ``renames'' each of the elements $1$, $2$, $3$, $4$, $5$
+	to $\pi(1)$, $\pi(2)$, $\pi(3)$, $\pi(4)$, $\pi(5)$.
+\end{example}
+But wait, you say. That's just a very particular type of group behaving nicely under conjugation.
+Why does this mean anything more generally?
+All I have to say is: remember Cayley's Theorem! (This was \Cref{thm:cayley_theorem}.)
+
+In any case, we may now define:
+\begin{definition}
+	The \vocab{conjugacy classes} of a group $G$ are the orbits of $G$ under
+	the conjugacy action.
+\end{definition}
+
+Let's see what the conjugacy classes of $S_n$ are, for example.
+\begin{example}
+	[Conjugacy Classes of $S_n$ Correspond to Cycle Types]
+	Intuitively, the discussion above says that two elements of $S_n$ should
+	be conjugate if they have the same ``shape'', regardless of what the elements are named.
+	The right way to make the notion of ``shape'' rigorous is cycle notation.
+	For example, consider the permutation
+	\[ \sigma_1 = (1 \; 3 \; 5)(2 \; 4) \]
+	in cycle notation, meaning $1 \mapsto 3 \mapsto 5 \mapsto 1$ and $2 \mapsto 4 \mapsto 2$.
+	It is conjugate to the permutation
+	\[ \sigma_2 = (1 \; 2 \; 3)(4 \; 5) \]
+	or any other way of relabeling the elements.
+	So, we could think of $\sigma$ as having conjugacy class
+	\[ (- \; - \; -)(- \; -). \]
+	More generally, you can show that two elements of $S_n$ are conjugate
+	if and only if they have the same ``shape'' under cycle decomposition.
+\end{example}
+\begin{ques}
+	Show that the number of conjugacy classes of $S_n$
+	equals the number of \emph{partitions} of $n$.
+\end{ques}
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[height=6cm]{/home/evan/Pictures/TopologicalGG/invariant-under-conjugation.jpg}
+	\caption{An element in a conjugacy class of size one.}
+	\label{fig:snsd_conjugation}
+\end{figure}
+\begin{ques}
+	Figure out why the claim in \Cref{fig:snsd_conjugation} is true.
+\end{ques}
+
+
+As long as I've put the above picture, I may as well also define:
+\begin{definition}
+	Let $G$ be a group.
+	The \vocab{center} of $G$, denoted $Z(G)$, is the set of elements $x \in G$
+	such that $xg = gx$ for every $g \in G$.
+	More succinctly,
+	\[ Z(G) \defeq \left\{ x \in G \mid gx=xg \; \forall g \in G \right\}. \]
+\end{definition}
+You can check this is indeed a subgroup of $G$.
+\begin{ques}
+	Why is $Z(G)$ normal in $G$?
+\end{ques}
+\begin{ques}
+	What are the conjugacy classes of elements in the center?
+\end{ques}
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[height=6cm]{/home/evan/Pictures/TopologicalGG/my-love-center-abelian-group.png}
+	\caption{When $Z(G)=G$.}
+\end{figure}
+
+A trivial result that gets used enough that I should explicitly call it out:
+\begin{corollary}[Conjugacy in Abelian Groups is Trivial]
+	If $G$ is abelian, then the conjugacy classes all have size one.
+\end{corollary}
+
+\section\problemhead
+\begin{problem}
+	[PUMaC 2009 C8]
+	Taotao wants to buy a bracelet consisting of seven beads,
+	each of which is orange, white or black.
+	(The bracelet can be rotated and reflected in space.)
+	Find the number of possible bracelets.
+	\begin{hint}
+		Just apply Burnside's Lemma directly to get the answer of $198$
+		(the relevant group is $D_{14}$).
+	\end{hint}
+\end{problem}
+
+\begin{problem}
+	Show that two elements in the same conjugacy class
+	have the same order.
+	\begin{hint}
+		There are multiple ways to see this.
+		One is to just do the algebraic manipulation.
+		Another is to use Cayley's Theorem to embed $G$ into a symmetric group.
+	\end{hint}
+\end{problem}
+
+\begin{problem}
+	\gim
+	Prove Burnside's Lemma. 
+	\begin{hint}
+		Double-count pairs $(g,x)$ with $g \cdot x = x$.
+	\end{hint}
+\end{problem}
+
+\begin{problem}
+	[The ``Class Equation'']
+	Let $G$ be a finite group.
+	We define the \vocab{centralizer} $C_G(g) = \{ x \in G \mid xg = gx \}$
+	for each $g \in G$.
+	Show that
+	\[ \left\lvert G \right\rvert = \left\lvert Z(G) \right\rvert
+	+ \sum_{s \in S} \frac{\left\lvert G \right\rvert}{C_G(s)} \]
+	where $S \subseteq G$ is defined as follows:
+	for each non-singleton conjugacy class $C \subseteq G$, we pick an element
+	of $C$ and add it to $S$.
+\end{problem}
+
+\begin{dproblem}
+	[Classical]
+	\gim
+	Assume $G$ is a finite group and $p$ is the smallest prime dividing its order.
+	Let $H$ be a subgroup of $G$ with $\left\lvert G \right\rvert / \left\lvert H \right\rvert = p$.
+	Show that $H$ is normal in $G$.
+	\begin{hint}
+		Let $G$ act on the left cosets $\{gH \mid g \in G\}$
+		by left multiplication: $g' \cdot gH = g'gH$.
+		Consider the orbit $\OO$ of the coset $H$.
+		By the orbit-stabilizer theorem, $\left\lvert \OO \right\rvert$ divides $\left\lvert G \right\rvert$.
+		But $\left\lvert \OO \right\rvert \le p$ also.
+		So either $\OO = \{H\}$ or $\OO$ contains all cosets.
+		The first case is impossible.
+	\end{hint}
+\end{dproblem}

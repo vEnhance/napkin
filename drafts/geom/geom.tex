@@ -1,0 +1,220 @@
+\documentclass[11pt]{scrreprt}
+\input{../../tex/preamble}
+\def\asydir{}
+\addbibresource{../../references.bib}
+
+\begin{document}
+\title{Algebraic Geometry}
+\maketitle
+
+\chapter{Properties of Affine Varieties}
+We now do two things with affine varieties: first, we put a topology on them,
+and then we study functions on them.
+Many of the ideas here will later grow up to become ideas in modern algebraic geometry:
+the spectrum, sheaves, and schemes.
+
+As in the previous chapter, we are working only over affine varieties in $\CC$ for simplicity.
+
+\section{The Zariski Topology}
+\prototype{In $\Aff^1$, closed sets are finite collections of points.}
+
+First, we'd like to put a topology on any variety $V$, so that we can think
+of our variety $V$ as a space in and of itself.
+Since our affine varieties (for now) all live in $\Aff^n$, all we have to do
+is put a suitable topology on $\Aff^n$, and let subspacing do the rest.
+
+However, rather than putting the standard Euclidean topology on $\Aff^n$,
+we put a much more bizarre topology, the \vocab{Zariski topology}.
+It's defined as follows:
+\begin{moral}
+	The closed sets are those of the form $\VV(I)$.
+\end{moral}
+Here $I \subseteq \CC[x_1, \dots, x_n]$.
+We declare that sets of this form -- and only those sets -- are the \emph{closed sets}.
+Naturally, the open sets are complements.
+
+\begin{example}
+	[Zariski Topology on $\Aff^1$]
+	Let us determine the open sets of $\Aff^1$,
+	which as usual we picture as a straight line
+	(ignoring the fact that $\CC$ is two-dimensional).
+
+	Since $\CC[x]$ is a principal ideal domain, rather than looking at $\VV(I)$
+	for every $I \subseteq \CC[x]$, we just have to look at $\VV(f)$ for a single $f$.
+	There are a few flavors of polynomials $f$:
+	\begin{itemize}
+		\ii The zero polynomial $0$ which vanishes everywhere:
+		this implies that $\Aff^1$ is a closed set.
+		\ii The constant polynomial $1$ which vanishes nowhere.
+		This implies that $\varnothing$ is a closed set.
+		\ii A polynomial $c(x-t_1)(x-t_2)\dots(x-t_n)$ of degree $n$.
+		It has $n$ roots, and so $\{t_1, \dots, t_n\}$ is a closed set.
+	\end{itemize}
+	Hence the closed sets of $\Aff^1$ are exactly all of $\Aff^1$
+	and finite sets of points (including $\varnothing$).
+	Consequently, the \emph{open} sets of $\Aff^1$ are
+	\begin{itemize}
+		\ii $\varnothing$, and
+		\ii $\Aff^1$ minus a finite collection (possibly empty) of points.
+	\end{itemize}
+\end{example}
+
+Thus, the picture of a typical open set looks in $\Aff^1$ might be 
+\begin{center}
+	\begin{asy}
+		size(6cm);
+		pair A = (-9,0); pair B = (9,0);
+		pen bloo = blue+1.5;
+		draw(A--B, blue, Arrows);
+		draw(A--B, bloo);
+		// label("$\mathbb V()$", (0,0), 2*dir(-90));
+		opendot((-3,0), bloo);
+		opendot((-1,0), bloo);
+		opendot((4,0), bloo);
+		label("$\mathbb A^1$", B-(2,0), dir(90));
+	\end{asy}
+\end{center}
+It's everything except a few marked points!
+
+\begin{example}[Zariski Topology on $\Aff^2$]
+	Similarly, in $\Aff^2$, the interesting closed sets are going to consist of finite unions
+	(possibly empty) of the following:
+	\begin{itemize}
+		\ii Closed curves, like $\VV(y-x^2)$ (which is a parabola).
+		\ii Single points, like $\VV(x-3,y-4)$ (which is the point $(3,4)$).
+	\end{itemize}
+	Of course, the entire space $\Aff^2 = \VV(0)$ and the empty set $\varnothing = \VV(1)$
+	are closed sets.
+
+	Thus the nonempty open sets in $\Aff^2$ consist of the \emph{entire} plane,
+	minus a finite collection of points and one-dimensional curves.
+\end{example}
+\begin{ques}
+	Draw a picture (to the best of your artistic ability) of a ``generic''
+	open set in $\Aff^2$
+\end{ques}
+
+All this is to say
+\begin{moral}
+	The nonempty Zariski open sets are \emph{huge}.
+\end{moral}
+This is an important difference than what you're used to in topology.
+To be very clear:
+\begin{itemize}
+	\ii In the past, if I said something like ``has so-and-so property in a neighborhood of point $p$'',
+	one thought of this as saying ``is true in a small region around $p$''.
+	\ii In the Zariski topology, ``has so-and-so property in a neighborhood of point $p$'' should be thought
+	of as saying ``is true for virtually all points, other than those on certain curves''.
+\end{itemize}
+Indeed, ``neighborhood'' is no longer a very accurate description.
+
+It remains to verify that as I've stated it, the closed sets actually form a topology.
+That is, I need to verify briefly that
+\begin{itemize}
+	\ii $\varnothing$ and $\Aff^n$ are both closed.
+	\ii Intersections of closed sets (even infinite) are still closed.
+	\ii Finite unions of closed sets are still closed.
+\end{itemize}
+Well, closed sets are the same as varieties, so we already know this. Moving along\dots
+
+
+
+\section{Coordinate Rings}
+\prototype{If $V = \VV(y-x^2)$ then $\CC[V] = \CC[x,y]/(y-x^2)$.}
+Let's consider functions now from a given variety $V$ to the base field $\CC$.
+
+We restrict our attention to algebraic (polynomial) functions on a variety $V$:
+they should take every point $(a_1, \dots, a_n)$ on $V$ to some complex number $P(a_1, \dots, a_n) \in \CC$.
+For example, a valid function on a three-dimensional affine variety might be $(a,b,c) \mapsto a$,
+which we call ``$x$''.
+Similarly we have a canonical projection $y$ and $z$,
+and we can create polynomials by combining them,
+say $x^2y + 2xyz$.
+
+\begin{definition}
+	The \vocab{coordinate ring} $\CC[V]$ of a variety $V$
+	is the ring of polynomial functions on $V$.
+\end{definition}
+
+At first glance, we might think this is just $\CC[x_1, \dots, x_n]$.
+But on closer inspection we realize that \emph{on a given variety},
+some of these functions are the same.
+For example, consider in $\Aff^2$ the variety $V = \VV(y-x^2)$.
+Then the two functions
+\begin{align*}
+	V & \to \CC \\
+	(x,y) & \mapsto x^2 \\
+	(x,y) & \mapsto y
+\end{align*}
+are actually the same function!
+This leads us naturally to the following:
+\begin{theorem}[Coordinate Rings Correspond to Ideal]
+	Let $I$ be a semiprime ideal, and $V = \VV(I) \subseteq \Aff^n$.
+	Then
+	\[
+		\CC[V] \cong \CC[x_1, \dots, x_n] / I.
+	\]
+\end{theorem}
+\begin{proof}
+	There's a natural surjection as above
+	\[ \CC[x_1, \dots, x_n] \surjto \CC[V] \]
+	and the kernel is $I$.
+\end{proof}
+
+Thus properties of a variety $V$ correspond to properties of $\CC[V]$.
+
+\section{Which rings are coordinate rings?}
+We now ask: which rings are the coordinate ring of some variety?
+There are some obvious requirements.
+\begin{itemize}
+	\ii Such ring must be $\CC$-algebras, of course.
+	(A $\CC$-algebra is a ring that contains a copy of $\CC$ in it.)
+	\ii Such a ring must be finitely generated, since $\CC[V]$
+	is generated by $x_1$, \dots, $x_n$.
+\end{itemize}
+There is a third more subtle condition.
+Define an element $r \in R$ to be \vocab{nilpotent} if $r^N = 0$ for some $r \in R$.
+For example, $x$ is nilpotent in $\CC[x]/(x^{2015})$.
+Call a ring \vocab{reduced} if it has no nonzero nilpotent elements.
+
+\begin{exercise}
+	Let $I$ be an ideal of a ring $R$.
+	Show that $I$ is semiprime if and only if $R/I$ is reduced.
+\end{exercise}
+\begin{remark}
+	For a ring $R$, this completes the following table:
+	\begin{center}
+	\begin{tabular}[h]{l|l}
+		Ideal $I$ & Quotient $R/I$ \\ \hline
+		Maximal & Field \\
+		Prime & Integral Domain \\
+		Semiprime & Reduced
+	\end{tabular}
+	\end{center}
+	In particular, $(0)$ is maximal, prime, or semiprime
+	if and only if $R/(0) \cong R$ is a field, integral domain, or reduced, respectively.
+\end{remark}
+
+Thus, the third requirement is that a coordinate ring must be reduced.
+Conveniently, it turns out that these three conditions are sufficient!
+\begin{theorem}[Coordinate Rings are Finitely Generated Reduced $\CC$-Algebras]
+	Every finitely generated reduced $\CC$-algebra is the coordinate
+	ring of some complex affine variety.
+\end{theorem}
+\begin{proof}
+	Let $R$ be this map.
+	Because it's finitely generated by some $r_1$, $r_2$, \dots, $r_n$,
+	there is some surjective map
+	\[ \CC[x_1, \dots, x_n] \surjto R \]
+	via $x_i \mapsto r_i$.
+	Let $I$ be the kernel of this map.
+	Since $R$ is reduced, $I$ is radical.
+	Then $R \cong \CC[V]$, where $V = \VV(I)$.
+\end{proof}
+
+
+\section{Ring of Regular Functions}
+
+\section{A Basis for the Zariski Topology}
+
+\end{document}
