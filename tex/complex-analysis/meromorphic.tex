@@ -59,10 +59,7 @@ First, let's make the notion of this ``division by zero'' precise.
 \end{definition}
 
 Note that the trailing end \emph{must} terminate.
-If we cannot do so, we say that $p$ is an \vocab{essential singularity} instead.\footnote{%
-	On the other hand, if $m \ge 0$ we just say $p$ is a \vocab{removable singularity}
-	because you could just define $f(z)$ and ``patch'' the hole.}
-
+If we cannot do so, we say that $p$ is an \vocab{essential singularity} instead.
 \begin{abuse}
 	We'll often say something like ``consider the function $f : \CC \to \CC$ by $z \mapsto \frac 1z$''.
 	Of course this isn't completely correct, because $f$ doesn't have a value at $z=0$.
@@ -77,9 +74,25 @@ If we cannot do so, we say that $p$ is an \vocab{essential singularity} instead.
 \end{abuse}
 
 \begin{definition}
-	Bear with me for a moment here: the integer $m$ called the \vocab{order} of the pole.
-	For reasons that will be clear later (bear with me for now), we also
-	give the coefficient $c_{-1}$ a name, the \vocab{residue} of $f$ at $p$,
+	The integer $m$ called the \vocab{order} of the pole.
+	A pole of order $1$ is called \vocab{simple}.
+\end{definiton}
+The order of a pole tells you how ``bad'' the pole is.
+The order of a pole is the ``opposite'' concept of the \vocab{multiplicity} of a \vocab{zero}.
+If $f$ has a pole at zero, then its Taylor series near $z=0$ might look something like
+\[ f(z) = \frac{1}{z^5} + \frac{8}{z^3} - \frac{2}{z^2} + \frac{4}{z} + 9 - 3z + 8z^2 + \dots \]
+and so $f$ has a pole of order five.
+By analogy, if $g$ has a zero at $z=0$, it might look something like
+\[ g(z) = 3z^3 + 2z^4 + 9z^5 + \dots \]
+and so $g$ has a zero of multiplicity three.
+These orders are additive: $f(z) g(z)$ still has a pole of order $5-3=2$,
+but $f(z)g(z)^2$ is completely patched now, and in fact has a \vocab{simple zero} now
+(that is, a zero of degree $1$).
+
+Metaphorically, poles can be thought of as ``negative zeros''.
+
+\begin{definition}
+	We also give the coefficient $c_{-1}$ a name, the \vocab{residue} of $f$ at $p$,
 	which we write $\Res(f;p)$.
 \end{definition}
 
@@ -94,7 +107,7 @@ here are examples nonetheless.
 		\ii The function $\CC \to \CC$ by $z \mapsto 100z\inv$ for $z \neq 0$
 		but undefined at zero is a meromorphic function.
 		Its only pole is at zero, which has order $1$ and residue $100$.
-		\ii The function $\CC \to \CC$ by $z \mapsto z^{-2015}$ is also a meromorphic function.
+		\ii The function $\CC \to \CC$ by $z \mapsto z^{-3} + z^2 + z^9$ is also a meromorphic function.
 		Its only pole is at zero, and it has order $3$, and residue $0$.
 		\ii The function $\CC \to \CC$ by $z \mapsto \frac{e^z}{z^2}$ is meromorphic,
 		with the Laurent series at $z=0$ given by
@@ -158,7 +171,6 @@ So $S$ must be \emph{isolated}\footnote{This is an actual topological definition
 of a topological space is called isolated if this condition holds}
 in the sense that we can draw a neighborhood around
 each point in $S$, so that no two neighborhoods intersect.
-
 
 \begin{example}
 	[Isolated Sets]
