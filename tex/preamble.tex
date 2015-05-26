@@ -1,4 +1,4 @@
-\usepackage[mdthm,secthm,diagrams]{evan}
+\usepackage[nothm,diagrams]{evan}
 \usepackage[normalem]{ulem}
 \usepackage{wasysym}
 \usepackage{multirow}
@@ -13,12 +13,70 @@
 \newenvironment{moral}{\begin{mdframed}\bfseries\color{green!70!black}}%
 	{\end{mdframed}}
 
+
+%% Theorems
+\usepackage{thmtools}
+\usepackage[framemethod=TikZ]{mdframed}
+
 \theoremstyle{definition}
+\mdfdefinestyle{mdbluebox}{%
+	roundcorner = 10pt,
+	linewidth=1pt,
+	skipabove=12pt,
+	innerbottommargin=9pt,
+	skipbelow=2pt,
+	linecolor=blue,
+	nobreak=true
+}
+\declaretheoremstyle[
+	headfont=\sffamily\bfseries,
+	mdframed={style=mdbluebox},
+	headpunct={\\[3pt]},
+	postheadspace={0pt}
+]{thmbluebox}
+
+\mdfdefinestyle{mdrecbox}{%
+	linewidth=0.5pt,
+	skipabove=12pt,
+	frametitleaboveskip=5pt,
+	frametitlebelowskip=0pt,
+	skipbelow=2pt,
+	frametitlefont=\bfseries,
+	innertopmargin=4pt,
+	innerbottommargin=8pt,
+	nobreak=true,
+}
+\declaretheoremstyle[
+	headfont=\bfseries,
+	mdframed={style=mdrecbox},
+	headpunct={\\[3pt]},
+	postheadspace={0pt},
+]{thmrecbox}
+
+\declaretheorem[%
+style=thmbluebox,name=Theorem,numberwithin=section]{theorem}
+\declaretheorem[style=thmbluebox,name=Lemma,sibling=theorem]{lemma}
+\declaretheorem[style=thmbluebox,name=Proposition,sibling=theorem]{proposition}
+\declaretheorem[style=thmbluebox,name=Corollary,sibling=theorem]{corollary}
+\declaretheorem[style=thmrecbox,name=Example,sibling=theorem]{example}
+
+\theoremstyle{theorem}
+\newtheorem{ques}[theorem]{Question}
+\newtheorem{exercise}[theorem]{Exercise}
+
+\theoremstyle{definition}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{fact}[theorem]{Fact}
+\newtheorem{remark}[theorem]{Remark}
 \newtheorem{abuse}[theorem]{Abuse of Notation}
-\newtheorem{sproblem}[theorem]{Problem}
-\newtheorem{dproblem}[theorem]{Problem}
-\renewcommand{\thesproblem}{\thetheorem$^{\star}$}
-\renewcommand{\thedproblem}{\thetheorem$^{\dagger}$}
+
+\newtheorem{problem}{Problem}[chapter]
+\renewcommand{\theproblem}{\thechapter\Alph{problem}}
+\newtheorem{sproblem}[problem]{Problem}
+\newtheorem{dproblem}[problem]{Problem}
+\renewcommand{\thesproblem}{\theproblem$^{\star}$}
+\renewcommand{\thedproblem}{\theproblem$^{\dagger}$}
 \newcommand{\listhack}{$\empty$\vspace{-2em}}
 
 % Answers
