@@ -595,16 +595,22 @@ That means, for example, that algebraic topology can't tell the following homoto
 \end{problem}
 
 \begin{dproblem}
-	[Seifert-van Kampen] \gim
+	[Special Case of Seifert van Kampen] \gim
 	Let $X$ be a topological space.
-	Suppose $U$ and $V$ are open subsets such that
-	\begin{itemize}
-		\ii Both $U$ and $V$ are simply connected (as subspaces).
-		\ii As sets, $X = U \cup V$.
-		\ii The intersection $U \cap V$ is nonempty and path-connected.
-	\end{itemize}
-	Prove that $X$ is simply connected.
+	Suppose $U$ and $V$ are connected open subsets of $X$, with $X = U \cup V$,
+	so that $U \cap V$ is nonempty and path-connected.
+		
+	Prove that if $\pi_1(U) = \pi_1(V) = \{1\}$ then $\pi_1(X) = 1$.
 \end{dproblem}
+\begin{remark}
+	The \vocab{Seifert van Kampen theorem} generalizes this 
+	for $\pi_1(U)$ and $\pi_1(V)$ any groups; it gives a formula for calculating $\pi_1(X)$
+	in terms of $\pi_1(U)$, $\pi_1(V)$, $\pi_1(U \cap V)$.
+	The proof is much the same.
+	
+	Unfortunately, this does not give us a way to calculate $\pi_1(S^1)$,
+	because it is not possible to write $S^1 = U \cup V$ for $U \cap V$ \emph{connected}.
+\end{remark}
 
 \begin{problem}
 	[RMM 2013] \yod
