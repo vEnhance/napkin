@@ -2,13 +2,20 @@
 \input{../../tex/preamble}
 \addbibresource{../../references.bib}
 
-\usepackage{mathrsfs}
 \newcommand{\CH}{\mathsf{CH}}
 \newcommand{\ZFC}{\mathsf{ZFC}}
 
 \newcommand{\Name}{\text{Name}}
 \newcommand{\Po}{\mathbb P}
 \newcommand{\nrank}{\opname{n-rank}} % ranks
+
+\newcommand{\EmptySet}{\mathtt{EmptySet}}
+\newcommand{\PowerSet}{\mathtt{PowerSet}}
+\newcommand{\Extensionality}{\mathtt{Extensionality}}
+\newcommand{\Foundation}{\mathtt{Foundation}}
+
+\usepackage{mathrsfs}
+\newcommand\MM{\mathscr M}
 
 \def\asydir{}
 
@@ -43,24 +50,588 @@ ordinal arithmetic
 
 definition of cardinals
 
+(note that they depend on the outside universe!)
+
 cardinal arithmetic
 
 cofinality: regular vs singular
+
+true to its name, regular is the normal variety
 
 \section\problemhead
 Inaccessible
 
 
-\chapter{Inner Models}
-Meta
+\chapter{Inner Model Theory}
+Model theory is \emph{really} meta, so you will have to pay attention here.
 
-Tarski-Vaught
+Roughly, a ``model of $\ZFC$'' is a set with a binary relation that satisfies the $\ZFC$ axioms,
+just as a group is a set with a binary operation that satisfies the group axioms.
+Unfortunately, unlike with groups, it is very hard for me to give interesting examples of models,
+for the simple reason that we are literally trying to model the entire universe.
 
-absoluteness
+\section{Model}
+\prototype{$(\omega, \in)$ obeys $\PowerSet$, $V_\kappa$ is a model for $\kappa$ inaccessible (later).}
+\begin{definition}
+	A \vocab{model} $\MM$ consists of a set $M$ and a
+	binary relation $E \subseteq M \times M$.
+	(The $E$ relation is the ``$\in$'' for the model.)
+\end{definition}
+\begin{remark}
+	I'm only considering \emph{set-sized} models where $M$ is a set.
+	Experts may be aware that I can actually play with $M$ being a class,
+	but that would require too much care for now.
+\end{remark}
+If you have a model, you can ask certain things about it.
+For example, you can ask ``does it satisfy $\EmptySet$?''.
+Let me give you an example of what I mean, and then make it rigorous.
+\begin{example}
+	[A Stupid Model]
+	Let's take $\MM = (M,E) = \left( \omega, \in \right)$.
+	This is not a very good model of $\ZFC$, but let's see if we can
+	make sense of some of the first few axioms.
+	\begin{enumerate}[(a)]
+		\ii $\MM$ satisfies $\mathtt{Extensionality}$, which is the sentence
+		\[ \forall x \forall y \forall a : \left( a \in x \iff a \in y \right) \implies x = y. \]
+		This just follows from the fact that $E$ is actually $\in$.
 
-Skolem hulls $\implies$ Reflection
+		\ii $\MM$ satisfies $\EmptySet$, which is the sentence
+		\[ \exists a : \forall x \; \neg (x \in a). \]
+		Namely, take $a = \varnothing \in \omega$.
+
+		\ii $\MM$ does not satisfy $\mathtt{Pairing}$, since $\{1,3\}$ is not in $\omega$,
+		even though $1, 3 \in \omega$.
+
+		\ii Miraculously, $\MM$ satisfies $\mathtt{Union}$, since for any $n \in \omega$,
+		$\cup n$ is $n-1$ (unless $n=0$).
+		The Union axiom statements that
+		\[ \forall a \exists z \quad \forall x \; (x \in z) \iff (\exists y : x \in y \in z). \]
+		An important thing to notice is that the ``$\forall a$'' ranges only over
+		the sets in the model of the universe, $\MM$.
+	\end{enumerate}
+\end{example}
+\begin{example}
+	[Very Important: This Stupid Model Satisfies $\PowerSet$]
+	Most incredibly of all: $\MM = (\omega, \in)$ satisfies $\PowerSet$.
+	This is a really important example.
+	
+	You might think this is ridiculous. Look at $2 = \{0,1\}$.
+	The power set of this is $\{0, 1, 2, \{1\}\}$ which is not in the model, right?
+
+	Well, let's look more closely at $\PowerSet$. It states that:
+	\[ \forall x \exists a \forall y (y \in a \iff y \subseteq x). \]
+	What happens if we set $x = 2 = \{0,1\}$?
+	Well, actually, we claim that $a = 3 = \{0,1,2\}$ works.
+	The key point is ``for all $y$'' -- this \emph{only ranges over the objects in $\MM$}.
+	In $\MM$, the only subsets of $2$ are $0 = \varnothing$,
+	$1 = \{0\}$ and $2 = \{0,1\}$.
+	The ``set'' $\{1\}$ in the ``real world'' (in $V$) is not a set in the model $\MM$.
+
+	In particular, you might say that in this strange new world,
+	we have $2^n = n+1$, since $n = \{0,1,\dots,n-1\}$ really does
+	have only $n+1$ subsets.
+\end{example}
+
+\begin{example}
+	[Sentences with Parameters]
+	The sentences we ask of our model are allowed to have ``parameters'' as well.
+	For example, if $\MM = (\omega, \in)$ as before then $\MM$ satisfies the sentence
+	\[ \forall x \in 3 (x \in 5). \]
+\end{example}
+
+\section{Sentences and Satisfaction}
+With this intuitive notion, we can define what it means for a model to satisfy a sentence.
+\begin{definition}
+Note that any sentence $\phi$ can be written in one of the following five forms:
+\begin{itemize}
+	\ii $x \in y$
+	\ii $x = y$
+	\ii $\neg \psi$ (``not $\psi$'') for some shorter sentence $\psi$
+	\ii $\psi_1 \lor \psi_2$ (```$\psi_1$ or $\psi_2$'')
+	for some shorter sentences $\psi_1$, $\psi_1$
+	\ii $\exists x \psi$ (``exists $x$'') for some shorter sentence $\psi$.
+\end{itemize}
+\end{definition}
+\begin{ques}
+	What happened to $\land$ (and) and $\forall$ (for all)?
+	(Hint: use $\neg$.)
+\end{ques}
+Often (almost always, actually) we will proceed by so-called ``induction on formula complexity'',
+meaning that we define or prove something by induction using this.
+Note that we require all formulas to be finite.
+
+Now suppose we have a sentence $\phi$, like $a = b$ or $\exists a \forall x \neg (x \in a)$,
+plus a model $\MM = (M,E)$.
+We want to ask whether $\MM$ satisfies $\phi$.
+
+To give meaning to this, we have to designate certain variables as \vocab{parameters}.
+For example, if I asked you 
+\begin{quote}
+	``Does $a=b$?''
+\end{quote}
+the first question you would ask is what $a$ and $b$ are.
+So $a$, $b$ would be parameters: I have to give them values for this sentence to make sense.
+
+On the other hand, if I asked you
+\begin{quote}
+	``Does $\exists a \forall x \neg (x \in a)$?''
+\end{quote}
+then you would just say ``yes''.
+In this case, $x$ and $a$ are \emph{not} parameters.
+In general, parameters are those variables whose meaning is not given by some $\forall$ or $\exists$.
+
+In what follows, we will let $\phi(x_1, \dots, x_n)$ denote a formula $\phi$,
+whose parameters are $x_1$, \dots, $x_n$.
+Note that possibly $n=0$, for example all $\ZFC$ axioms have no parameters.
+
+\begin{ques}
+	Try to guess the definition of satisfaction before reading it below.
+	(It's not very hard to guess!)
+\end{ques}
+
+\begin{definition}
+	Let $\MM=(M,E)$ be a model.
+	Let $\phi(x_1, \dots, x_n)$ be a sentence, and let $b_1, \dots, b_n \in M$.
+	We will define a relation
+	\[ \MM \vDash \phi[b_1, \dots, b_n] \]
+	and say $\MM$ \vocab{satisfies} the sentence $\phi$ with parameters $b_1, \dots, b_n$.
+
+	The relationship is defined by induction on formula complexity as follows:
+	\begin{itemize}
+		\ii If $\phi$ is ``$x_1=x_2$'' then $\MM \vDash \phi[b_1, b_2] \iff b_1 = b_2$.
+		\ii If $\phi$ is ``$x_1\in x_2$'' then $\MM \vDash \phi[b_1, b_2] \iff b_1 \; E \; b_2$. \\
+		(This is what we mean by ``$E$ interprets $\in$''.)
+		\ii If $\phi$ is ``$\neg \psi$'' then
+		$\MM \vDash \phi[b_1, \dots, b_n] \iff \MM \not\vDash \phi[b_1, \dots, b_n]$.
+		\ii If $\phi$ is ``$\psi_1 \lor \psi_2$'' then $\MM \vDash \phi[b_1, \dots, b_n]$
+		means $\MM \vDash \psi_i[b_1, \dots, b_n]$ for some $i=1,2$.
+		\ii Most important case: suppose $\phi$ is $\exists x \psi(x,x_1, \dots, x_n)$.
+		Then $\MM \vDash \phi[b_1, \dots, b_n]$ if and only if 
+		\[ \exists b \in M \text{ such that } \MM \vDash \psi[b, b_1, \dots, b_n]. \]
+		Note that $\psi$ has one extra parameter.
+	\end{itemize}
+\end{definition}
+Notice where the information of the model actually gets used.
+We only ever use $E$ in interpreting $x_1 \in x_2$; unsurprising.
+But we only ever use the set $M$ when we are running over $\exists$ (and hence $\forall$).
+That's well-worth keeping in mind:
+\begin{moral}
+	The behavior of a model essentially comes from $\exists$ and $\forall$,
+	which search through the entire model $M$.
+\end{moral}
+
+And finally,
+\begin{definition}
+	A \vocab{model of $\ZFC$} is a model $\MM = (M,E)$ satisfying all $\ZFC$ axioms.
+\end{definition}
+
+We are especially interested in models of the form $(M, \in)$, where $M$ is a \emph{transitive} set.
+(We want our universe to be transitive,-
+otherwise we would have elements of sets which are not themselves
+in the universe, which is very strange.)
+Such a model is called a \vocab{transitive model}.
+\begin{abuse}
+	If $M$ is a transitive set, the model $(M, \in)$ will be abbreviated to just $M$.
+\end{abuse}
+\begin{definition}
+	An \vocab{inner model} of $\ZFC$ is a transitive model satisfying $\ZFC$.
+\end{definition}
+
+\section{The Levy Hierarchy}
+\prototype{$\mathtt{isSubset}(x,y)$ is absolute. The axiom
+$\EmptySet$ is $\Sigma_1$, $\mathtt{isPowerSetOf}(X,x)$ is $\Pi_1$.}
+A key point to remember is that the behavior of a model is largely determined by $\exists$ and $\forall$.
+It turns out we can say even more than this.
+
+Consider a formula such as
+\[ \mathtt{isempty}(x) : \neg \exists a (a \in x) \]
+which checks whether a given set $x$ has a nonempty element.
+Technically, this has an ``$\exists$'' in it.
+But somehow this $\exists$ does not really search over the entire model,
+because it is \emph{bounded} to search in $x$.
+That is, we might informally rewrite this as
+\[ \neg (\exists x \in a) \]
+which doesn't fit into the strict form,
+but points out that we are only looking over $a \in x$.
+We call such a quantifier a \vocab{bounded quantifier}.
+%and write it
+%in the way we see it in most mathematics, such as
+%\[ (\exists x \in a) \quad\text{or}\quad (\forall x \in a). \]
+%To be painfully explicit,
+%$\exists x \in a \psi$ is short for $\exists x (x \in a \land \psi)$,
+%while $\forall x \in a \psi$ is short for $\forall x (x \in a \implies \psi)$.
+
+We like sentences with bounded quantifiers because they designate
+properties which are \vocab{absolute} over transitive models.
+It doesn't matter how strange your surrounding model $M$ is.
+As long as $M$ is transitive, 
+\[ M \vDash \mathtt{isEmpty}[\varnothing] \]
+will always hold.
+Similarly, the sentence
+\[ \mathtt{isSubset}(x,y) : x \subseteq y \text { i.e. } \forall a \in x (a \in y). \]
+Sentences with this property are called $\Sigma_0$ or $\Pi_0$.
+
+The situation is different with a sentence like
+\[
+	\mathtt{isPowerSetOf}(y,x) :
+	\forall z \left( z \subseteq x \iff z \in y  \right)
+\]
+which in English means ``$y$ is the power set of $x$'', or just $y = \PP(x)$.
+The $\forall z$ is \emph{not} bounded here.
+This weirdness is what allows things like
+\[ \omega \vDash \text{``$\{0,1,2\}$ is the power set of $\{0,1\}$''} \]
+and hence
+\[ \omega \vDash \PowerSet \]
+which was our stupid example earlier.
+The sentence $\mathtt{isPowerSetOf}$ consists of an unbounded $\forall$ followed
+by an absolute sentence, so we say it is $\Pi_1$.
+
+More generally, the \vocab{Levy hierarchy} keeps track of how bounded our
+quantifiers are.
+Specifically,
+\begin{itemize}
+	\ii Formulas which have only bounded quantifiers are $\Delta_0 = \Sigma_0 = \Pi_0$.
+	\ii Formulas of the form $\exists x_1 \dots \exists x_k \psi$ where $\psi$ is $\Pi_n$
+	are consider $\Sigma_{n+1}$.
+	\ii Formulas of the form $\forall x_1 \dots \forall x_k \psi$ where $\psi$ is $\Sigma_n$
+	are consider $\Pi_{n+1}$.
+\end{itemize}
+(A formula which is both $\Sigma_n$ and $\Pi_n$ is said $\Delta_n$, but we won't
+use this except for $n=0$.)
+
+\begin{example}
+	[Examples of $\Delta_0$ Sentences]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii The sentences $\mathtt{isEmpty}(x)$, $x \subseteq y$, as discussed above.
+		\ii The formula ``$x$ is transitive'' can be expanded as a $\Delta_0$ sentence.
+		\ii The formula ``$x$ is an ordinal'' can be expanded as a $\Delta_0$ sentence.
+	\end{enumerate}
+\end{example}
+\begin{exercise}
+	Write out the expansions for ``$x$ is transitive'' and ``$x$ is ordinal''
+	in a $\Delta_0$ form.
+\end{exercise}
+\begin{example}
+	[More Complex Formulas]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii The axiom $\EmptySet$ is $\Sigma_1$; it is $\exists a (\mathtt{isEmpty}(a))$,
+		and $\mathtt{isEmpty}(a)$ is $\Delta_0$.
+		\ii The formula ``$y = \PP(x)$'' is $\Pi_1$, as discussed above.
+		\ii The formula ``$x$ is countable'' is $\Sigma_1$.
+		One way to phrase it is ``$\exists f$ an injective map $x \injto \omega$'',
+		which necessarily has an unbounded ``$\exists f$''.
+		\ii The axiom $\PowerSet$ is $\Pi_3$:
+		\[ \forall y \exists P \forall x (x\subseteq y \iff x \in P). \]
+	\end{enumerate}
+\end{example}
+
+\section{Substructures, and Tarski-Vaught}
+Let $\MM_1 = (M_1, E_1)$ and $\MM_2 = (M_2, E_2)$ be models.
+\begin{definition}
+	We say that $\MM_1 \subseteq \MM_2$ if $M_1 \subseteq M_2$ and
+	$E_1$ agrees with $E_2$; we say $\MM_1$ is a \vocab{substructure} of $\MM_2$.
+\end{definition}
+
+That's boring. The good part is:
+\begin{definition}
+	We say $\MM_1 \prec \MM_2$, or $\MM_1$ is an \vocab{elementary substructure} of $\MM_2$,
+	if for \emph{every} sentence $\phi(x_1, \dots, x_n)$
+	and parameters $b_1, \dots, b_n \in M_1$, we have
+	\[
+		\MM_1 \vDash \phi[b_1, \dots, b_n] \iff
+		\MM_2 \vDash \phi[b_1, \dots, b_n].
+	\]
+\end{definition}
+In other words, $\MM_1$ and $\MM_2$ agree on every sentence possible.
+Note that the $b_i$ have to come from $M_1$; if the $b_i$ came from $\MM_2$ then
+asking something of $\MM_1$ wouldn't make sense.
+
+Let's ask now: how would $\MM_1 \prec \MM_2$ fail to be true?
+If we look at the possibly sentences, none of the atomic formulas,
+nor the ``$\land$'' and ``$\neg$'', are going to cause issues.
+
+The intuition you should be getting by now is that things go
+wrong once we hit $\forall$ and $\exists$.
+They won't go wrong for bounded quantifiers.
+But unbounded quantifiers search the entire model, and that's where things go wrong.
+
+To give a ``concrete example'':
+imagine $\MM_1$ is MIT, and $\MM_2$ is the state of Massachusetts.
+If $\MM_1$ thinks there exist hackers at MIT,
+certainly there exist hackers in Massachusetts.
+Where things go wrong is something like:
+\[ \MM_2 \vDash \text{``$\exists x$ : $x$ is a course numbered $> 50$.''}. \]
+This is true for $\MM_2$ because we can take the witness $x = \text{Math 55}$, say.
+But it's false for $\MM_1$, because at MIT all courses are numbered $18.701$ or something similar.
+\begin{moral}
+	The issue is that the \emph{witness}
+	for statements in $\MM_2$ do not necessarily propagate up
+	down to witnesses for $\MM_1$, even though they do from $\MM_1$ to $\MM_2$.
+\end{moral}
+
+The Tarski-Vaught test says this is the only impediment:
+if every witness in $\MM_2$ can be replaced by one in $\MM_1$ then $\MM_1 \prec \MM_2$.
+\begin{lemma}
+	[Tarski-Vaught]
+	Let $\MM_1 \subseteq \MM_2$.
+	Then $\MM_1 \prec \MM_2$ if and only if for
+	every sentence $\phi(x, x_1, \dots, x_n)$ and parameters $b_1, \dots, b_n \in M_1$:
+	if there is a witness $\tilde b \in M_2$ to $\MM_2 \vDash \phi(\tilde b, b_1 \dots, b_n)$
+	then there is a witness $b \in M_1$ to $\MM_1 \vDash \phi(b, b_1, \dots, b_n)$.
+\end{lemma}
+\begin{proof}
+	Easy after the above discussion.
+	To formalize it, use induction on formula complexity.
+\end{proof}
+
+\section{Obtaining the Axioms of $\ZFC$}
+Extending the above ideas, one can obtain without much difficulty the following.
+The idea is that almost all the $\ZFC$ axioms are just $\Sigma_1$ claims about certain desired sets,
+and so verifying an axiom reduces to checking some appropriate ``closure'' condition:
+that the witness to the axiom is actually in the model.
+
+For example, the $\EmptySet$ axiom is ``$\exists a (\mathtt{isEmpty}(a))$'',
+and so we're happy as long as $\varnothing \in M$, which is of course
+true for any nonempty transitive set $M$.
+
+\begin{lemma}[Transitive Sets Inheriting $\ZFC$]
+	\label{lem:transitive_ZFC}
+	Let $M$ be a nonempty transitive set. Then
+	\begin{enumerate}[(i)]
+		\ii $M$ satisfies $\Extensionality$, $\Foundation$, $\EmptySet$.
+		\ii $M \vDash \mathtt{Pairing}$ if $x,y \in M \implies \{x,y\} \in M$.
+		\ii $M \vDash \mathtt{Union}$ if $x \in M \implies \cup x \in M$.
+		\ii $M \vDash \PowerSet$ if $x \in M \implies \PP(x) \cap M \in M$.
+		\ii $M \vDash \mathtt{Comprehension}$ if for every set $C$
+		which is $M$-definable with parameters, and every $x \in M$, we have $C \cap x \in M$.
+		\ii $M \vDash \mathtt{Collection}$ if for every function $F : M \to M$
+		which is $M$-definable with parameters,
+		and every $x \in M$, we have $F``x \in M$ as well.
+		\ii $M \vDash \mathtt{Infinity}$ as long as $\omega \in M$.
+	\end{enumerate}
+\end{lemma}
+Here, a set $X \subseteq M$ is \vocab{$M$-definable with parameters}
+if it can be realized as
+\[ X = \left\{ x \in M \mid \phi[x, b_1, \dots, b_n] \right\} \]
+for some (fixed) choice of parameters $b_1,\dots,b_n \in M$.
+We allow $n=0$, in which case we say $X$ is \vocab{$M$-definable without parameters}.
+Note that $X$ need not itself be in $M$!
+As a trivial example, $X = M$ is $M$-definable without parameters
+(just take $\phi[x]$ to always be true), and certainly we do not have $X \in M$.
+\begin{exercise}
+	Verify (i)-(iv) above.
+	(The others are not much harder, but more annoying.)
+\end{exercise}
+\begin{remark}
+	Converses to the statements of \Cref{lem:transitive_ZFC}
+	are true for all claims other than (vii).
+\end{remark}
+
+\section{Mostowski Collapse}
+Up until now I have been only talking about transitive models,
+because they were easier to think about.
+Here's a second, better reason we might only care about transitive models.
+
+\begin{lemma}
+	[Mostowski Collapse]
+	Let $\mathscr X = (X,E)$ be a model
+	such that $\mathscr X \vDash \Extensionality + \Foundation$.
+	Then there exists an isomorphism $\pi : \mathscr X \to M$ for
+	a transitive model $M = (M,\in)$.
+\end{lemma}
+
+This is also called the \emph{transitive collapse}.
+In fact, both $\pi$ and $M$ are unique.
+
+\begin{proof}
+	The idea behind the proof is very simple.
+	Since $E$ is well-founded and extensional, we can look at the
+	$E$-minimal element $x_\varnothing$ of $X$ with respect to $E$.
+	Clearly, we want to send that to $0 = \varnothing$.
+
+	Then we take the next-smallest set under $E$, and send it to $1 = \{\varnothing\}$.
+	We ``keep doing this''; it's not hard to see this does exactly what we want.
+
+	To formalize, define $\pi$ by transfinite recursion:
+	\[ \pi(x) \defeq \left\{ \pi(y) \mid y \; E \; x \right\}. \]
+	This $\pi$, by construction, does the trick.
+\end{proof}
+
+The picture of this is quite ``collapsing'' the elements of $M$ down
+to the bottom of $V$, hence the name.
+\missingfigure{Picture of Mostowski collapse}
+
+
+\section{Adding an Inaccessible, Skolem Hulls, and Going Insane}
+\prototype{$V_\kappa$}
+At this point you might be asking, well, where's my model of $\ZFC$?
+
+I unfortunately have to admit now: $\ZFC$ can never prove that there is a model of $\ZFC$
+(unless $\ZFC$ is inconsistent, but that would be even worse).
+This is a result called G\"odel's Incompleteness Theorem.
+
+Nonetheless, with some very modest assumptions added, we can actually show that a model \emph{does} exist:
+for example, assuming that there exists a strongly inaccessible cardinal $\kappa$ would do the trick,
+$V_\kappa$ will be such a model (\Cref{prob:inaccessible_model}).
+Intuitively you can see why: $\kappa$ is so big that any set of rank lower than it can't escape it
+even if we take their power sets, or any other method that $\ZFC$ lets us do.
+I encourage you to try \Cref{prob:inaccessible_model} now.
+
+More pessimistically, this shows that it's impossible to prove in $\ZFC$ that such a $\kappa$ exists.
+Nonetheless, we now proceed under $\ZFC^+$ for convenience, which adds the existence of such a $\kappa$
+as a final axiom.
+So we now have a model $V_\kappa$ to play with. Joy!
+
+Great. Now we do something \emph{really} crazy.
+\begin{theorem}[Countable Transitive Model]
+	Assume $\ZFC^+$. Then there exists a transitive model $M$ of $\ZFC$
+	such that $M$ is a \emph{countable} set.
+\end{theorem}
+\begin{proof}
+	I'm telling you, this is insane. Fasten your seat belts.
+
+	Start with the set $X_0 = \varnothing$.
+	Then for every integer $n$, we do the following to get $X_{n+1}$.
+	\begin{itemize}
+		\ii Start with $X_{n+1}$ containing very element of $X_n$.
+		\ii Consider a formula $\phi(x, x_1, \dots, x_n)$
+		and $b_1, \dots, b_n$ in $X_n$.
+		Suppose that $M$ thinks there is an $b \in M$ for which
+		\[ M \vDash \phi[b, b_1, \dots, b_n]. \]
+		We then add in the element $b$ to $X_{n+1}$.
+		\ii We do this for \emph{EVERY POSSIBLE FORMULA IN THE LANGUAGE OF SET THEORY}.
+		We also have to put in \emph{EVERY POSSIBLE SET OF PARAMETERS} from the previous set $X_n$.
+	\end{itemize}
+	At every step $X_n$ is countable.
+	Reason: there are countably many possible finite sets of parameters in $X_n$,
+	and countably many possible formulas, so in total we only ever add in countably many things
+	at each step.
+	This exhibits an infinite nested sequence of countable sets
+	\[ X_0 \subseteq X_1 \subseteq X_2 \subseteq \dots \]
+	None of these is a substructure of $M$, because each $X_n$ by relies on witnesses in $X_{n+1}$.
+	So we instead \emph{TAKE THE UNION}:
+	\[ X = \bigcup_n X_n. \]
+	This satisfies the Tarski-Vaught test, and is countable.
+
+	There is one minor caveat: $X$ might not be transitive.
+	We don't care, because we just take its Mostowski collapse.
+\end{proof}
+
+Please take a moment to admire how insane this is.
+It hinges irrevocably on the fact that there are countably many sentences we can write down.
+
+\begin{remark}
+	This proof relies heavily on the Axiom of Choice
+	when we add in the element $b$ to $X_{n+1}$.
+	Without Choice, there is no way of making these decisions all at once.
+
+	Usually, the right way to formalize the Axiom of Choice usage is,
+	for every formula $\phi(x, x_1, \dots, x_n)$, to pre-commit (at the very beginning)
+	to a function $f_\phi(x_1, \dots, x_n)$, such that given any $b_1, \dots, b_n$
+	$f_\phi(b_1, \dots, b_n)$ will spit out the suitable value of $b$ (if one exists).
+	Personally, I think this is hiding the spirit of the proof, but it does
+	make it clear how exactly Choice is being used.
+
+	These $f_\phi$'s have a name: \vocab{Skolem functions}.
+\end{remark}
+
+The trick we used in the proof works in more general settings:
+\begin{theorem}
+	[Downward L\"owenheim-Skolem Theorem]
+	Let $\MM = (M,E)$ be a model, and $A \subseteq M$.
+	Then there exists a set $B$ (called the \vocab{Skolem hull} of $A$)
+	with $A \subseteq B \subseteq M$,
+	such that $(B,E) \prec \MM$, and
+	\[ \left\lvert B \right\rvert < \max \left\{ \omega, \left\lvert A \right\rvert \right\}. \]
+\end{theorem}
+In our case, what we did was simply take $A$ to be the empty set.
+\begin{ques}
+	Prove this. (Exactly the same proof as before.)
+\end{ques}
+
+
+\section{FAQ's on Countable Models}
+The most common one is ``how is this possible?'',
+with runner-up ``what just happened''.
+
+Let me do my best to answer the first question.
+It seems like there are two things running up against each other:
+\begin{enumerate}[(1)]
+	\ii $M$ is a transitive model of $\ZFC$, but its universe is uncountable.
+	\ii $\ZFC$ tells us there are uncountable sets!
+\end{enumerate}
+(This has confused so many people it has a name, Skolem's paradox.)
+
+The reason this works I actually pointed out earlier:
+\emph{countability is not absolute, it is $\Sigma_1$}.
+
+Recall that a set $x$ is countable if
+\emph{there exists} an injective map $x \injto \omega$.
+The first statement just says that \emph{in the universe $V$},
+there is a injective map $F: M \injto \omega$.
+In particular, for any $x \in M$ (hence $x \subseteq M$, since $M$ is transitive),
+$x$ is countable \emph{in $V$}.
+This is the content of the first statement.
+
+But for $M$ to be a model of $\ZFC$, $M$ only has to think statements in $\ZFC$ are true.
+More to the point, the fact that $\ZFC$ tells us there are uncountable sets means
+\[ M \vDash \text{$\exists x$ uncountable}. \]
+In other words,
+\[ M \vDash \exists x \forall f
+	\text{ If $f : x \to \omega$ then $f$ isn't injective}. \]
+The key point is the $\forall f$ searches only functions in our tiny model $M$.
+It is true that in the ``real world'' $V$, there are injective functions $f : x \to \omega$.
+But $M$ has no idea they exist!
+It is a brain in a vat: $M$ is oblivious to any information outside it.
+
+So in fact, every ordinal which appears in $M$ is countable in the real world.
+It is just not countable in $M$.
+Since $M \vDash \ZFC$, $M$ is going to think there is some smallest uncountable cardinal,
+say $\aleph_1^M$.
+It will be the smallest (infinite) ordinal in $M$
+with the property that there is no bijection \emph{in the model $M$}
+between $\aleph_1^M$ and $\omega$.
+However, we necessarily know that such a bijection is going to exist in the real world $V$.
+
+Put another way, cardinalities in $M$ can look vastly different from those in the real world,
+because cardinality is measured by bijections, which I guess is inevitable, but leads to chaos.
+
+\section{Picturing Inner Models}
+
+
 
 \section\problemhead
+\begin{sproblem}
+	Show that for any transitive model $M$, the set of ordinals in $M$
+	is itself some ordinal.
+\end{sproblem}
+
+\begin{dproblem}
+	Assume $\MM_1 \subseteq \MM_2$. Show that
+	\begin{enumerate}[(a)]
+		\ii If $\phi$ is $\Delta_0$,
+		then $\MM_1 \vDash \phi[b_1, \dots, b_n] \iff \MM_2 \vDash \phi[b_1, \dots, b_n]$.
+		\ii If $\phi$ is $\Sigma_1$,
+		then $\MM_1 \vDash \phi[b_1, \dots, b_n] \implies \MM_2 \vDash \phi[b_1, \dots, b_n]$.
+		\ii If $\phi$ is $\Pi_1$,
+		then $\MM_2 \vDash \phi[b_1, \dots, b_n] \implies \MM_1 \vDash \phi[b_1, \dots, b_n]$.
+	\end{enumerate}
+	(This should be easy if you've understood the chapter.)
+\end{dproblem}
+
+\begin{dproblem}
+	[Tarski-Vaught Test]
+	<++>
+\end{dproblem}
+
+\begin{sproblem}
+	[Inaccessible Cardinal]
+	\label{prob:inaccessible_model}
+\end{sproblem}<++>
+
+Reflection
 
 
 \chapter{Forcing}
@@ -420,6 +991,7 @@ Let's see what we can get off the bat.
 	If $G$ is a filter, then $M[G]$ is transitive
 	and satisfies Extensionality, Foundation, EmptySet, Infinity, Pairing, and Union.
 \end{lemma}
+\todo{mathtt these}
 This leaves PowerSet, Comprehension, Replacement, and Choice.
 \begin{proof}
 	Hence, we get Extensionality and Foundation for free.
