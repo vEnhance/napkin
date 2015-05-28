@@ -11,42 +11,340 @@
 
 \newcommand{\EmptySet}{\mathtt{EmptySet}}
 \newcommand{\PowerSet}{\mathtt{PowerSet}}
+\newcommand{\Pairing}{\mathtt{Pairing}}
 \newcommand{\Extensionality}{\mathtt{Extensionality}}
 \newcommand{\Foundation}{\mathtt{Foundation}}
+\newcommand{\Union}{\mathtt{Union}}
 
 \usepackage{mathrsfs}
 \newcommand\MM{\mathscr M}
 
+
+\newtheorem{axiom}{Axiom}
 \def\asydir{}
 
 \begin{document}
 \title{Set Theory}
 \maketitle
 
-\chapter{ZFC and Ordinal Numbers}
+\chapter{The Axioms of Set Theory}
+Chapter $2\half$ of \cite{ref:msci} has a nice description of this.
+
 \section{The Ultimate Functional Equation}
-definition nesting. . .
+In abstract mathematics, we often define structures by what \emph{properties}
+they should have; for example, a group is a set and a binary operation
+satisfying so-and-so axioms, while a metric space is a set and a distance function
+satisfying so-and-so axioms.
 
-\section{The Axioms}
+Nevertheless, these definitions rely on previous definitions.
+The colorful illustration of \cite{ref:msci} on this:
+\begin{itemize}
+	\ii A \emph{vector space} is an abelian group with\dots
+	\ii An \emph{abelian group} has a binary operation such that\dots
+	\ii A \emph{binary operation} on a set is\dots
+	\ii A \emph{set} is \dots
+\end{itemize}
+and so on.
 
-\section{Sets vs Classes}
+We have to stop at some point, because infinite lists of definitions are bad.
+The stopping turns out to be a set, ``defined'' by properties.
+The trick is that we never actually define what a set is,
+but nonetheless postulate that these sets satisfy certain properties:
+these are the $\ZFC$ axioms.
+Loosely, $\ZFC$ can be thought of as the \emph{ultimate functional equation}.
 
-\section{Ordinal Numbers}
-Define
+Before talking about what these axioms are, I should talk about the caveats.
+
+\section{Cantor's Paradox}
+Intuitively, a set is an unordered collection of elements.
+Two sets are equal if they share the same elements:
+\[
+	\left\{ x \mid x \text{ is a featherless biped} \right\}
+	=
+	\left\{ x \mid x \text{ is human} \right\}
+\]
+(let's put aside the issue of dinosaurs).
+
+As another example, we have our empty set $\varnothing$ that contains no objects.
+We can have a set that $\{1, 2, 3\}$, or maybe the set of natural numbers $\mathbb N = \{0, 1, 2, \dots \}$.  (For the purposes of set theory, $0$ is usually considered a natural number.)
+Sets can even contain other sets, like $\left\{ \mathbb Z, \mathbb Q, \mathbb N \right\}$. Fine and dandy, right?
+
+The trouble is that this definition actually isn't good enough, and here's why.
+If we just say ``a set is any collection of objects'',
+then we can consider a really big set $V$, the set of all sets.
+So far no problem, right?
+$V$ has the oddity that it has to contain itself $V \in S$,
+but oh well, no big deal.
+
+Unfortunately, this existence of this $V$ leads immediately to a paradox.
+The classical one is Bertrand's Paradox.
+I will instead present a somewhat simpler one:
+note only does $V$ contain itself, \emph{every subset $S \subseteq V$} is itself
+an element of $V$ (i.e. $S \in V$).
+If we let $\PP(V)$ denote the subsets of $V$, then we have an inclusion
+\[ \PP(V) \injto V. \]
+This is bad, for the following reason:
+\begin{lemma}[Cantor's Diagonal Argument]
+	For \emph{any} set $X$, it's impossible to construct a
+	map $\iota : \PP(X) \injto X$.
+\end{lemma}
+\begin{proof}
+	Assume for contradiction $\iota$ exists.
+	\begin{exercise}
+		Show that there exists a surjective map $j : X \to \PP(X)$.
+		(This is easier than it appears, just ``invert $\iota$'').
+	\end{exercise}
+	We now claim that $j$ can't exist.
+	The idea is contained inside the picture:
+	\[
+		\begin{array}{cccccccc}
+			&& x_1 & x_2 & x_3 & x_4 & x_5 & \dots \\ \cline{3-8}
+			x_1 & \mapsto & \mathbf0 & 1 & 1 & 0 & 1 & \dots \\
+			x_2 & \mapsto & 1 & \mathbf1 & 0 & 1 & 1 & \dots \\
+			x_3 & \mapsto & 0 & 1 & \mathbf0 & 0 & 1 & \dots \\
+			x_4 & \mapsto & 1 & 0 & 0 & \mathbf1 & 0 & \dots \\
+			x_5 & \mapsto & 0 & 1 & 1 & 1 & \mathbf1 & \dots \\
+			\vdots && \vdots & \vdots & \vdots & \vdots & \vdots & \ddots
+		\end{array}
+	\]
+	here for each $j(x) \subseteq X$, I'm writing ``$1$'' to mean that
+	the element is inside $j(x)$, and ``$0$'' otherwise.\footnote{
+		Technically, I don't know that $X$ is countable,
+		so it's not valid to write $x_1$, $x_2$, but whatever,
+		you get the idea.}
+	So $j(x_1) = \{x_2, x_3, x_5 \dots\}$.
+
+	Then we can read off the diagonal to get a new set.
+	In our example, the diagonal specifies a set
+	$A = \{x_2, x_4, x_5 \dots\}$.
+	Then we invert it take a set $B = \{x_1, x_3, \dots\}$.
+	In symbols, we consider the set
+	\[ B = \left\{ x \mid x \notin j(x) \right\} \]
+	By construction, $B \subseteq X$ is not in the image of $j$,
+	which is a contradiction since $j$ was supposed to be injective.
+\end{proof}
+
+
+Now if you're not a set theorist, you could probably just brush this off,
+saying ``oh well, I guess you can't look at certain sets''.
+But if you're a set theorist, this worries you,
+because you realize it means that you can't just define a set as ``a collection of objects'',
+because then everything would blow up. Something more is necessary.
+
+
+
+\section{The Language of Set Theory}
+We need a way to refer to sets other
+than the informal description of ``collection of objects''.
+
+So here's what we're going to do.
+We'll start by defining a formal \emph{language of set theory},
+a way of writing logical statements.
+First of all we can throw in our usual logical operators:
+\begin{itemize}
+	\ii $\forall$ means ``for all''
+	\ii $\exists$ means ``exists''
+	\ii $=$ means ``equal''
+	\ii $X \implies Y$ means ``if $X$ then $Y$''
+	\ii $A \land B$ means ``$A$ and $B$''
+	\ii $A \lor B$ means ``$A$ or $B$''
+	\ii $\neg A$ means ``not $A$''.
+\end{itemize}
+
+Since we're doing set theory,
+there's only one more operator we add in: the inclusion $\in$.
+And that's all we're going to use (for now).
+
+So how do we express something like ``the set $\{1, 2\}$''?
+The trick is that we're not going to actually ``construct'' any sets,
+but rather refer to them indirectly, like so:
+\[ \exists S : x \in S \iff \left( (x=1) \lor (x=2) \right). \]
+This reads: ``there exists an $S$ such that $x$ is in $S$ if
+and only if either $1$ is in $S$ or $2$ is in $S$''.
+We don't have to refer to sets as objects in and of themselves anymore -- we now have a way to ``create'' our sets, by writing formulas for exactly what they contain. This is something a machine can parse.
+
+Well, what are going to do with things like $1$ and $2$, which are not sets? 
+Answer:
+\begin{moral}
+	Elements of sets are themselves sets.
+\end{moral}
+We're going to make \textbf{everything} into a set. Natural numbers will be sets. Ordered pairs will be sets. Functions will be sets. 
+Later, I'll tell you exactly how we manage to do something like encode $1$ as a set. For now, all you need to know is that that sets don't just hold objects; they hold other sets.
+
+So now it makes sense to talk about whether something is a set or not: $\exists x$ means ``$x$ is a set'', while $\nexists x$ means ``$x$ is not a set''.
+In other words, we've rephrased the problem of deciding whether something is a set to whether it exists, which makes it easier to deal with in our formal language.
+That means that our axiom system had better find some way to let us show a lot of things exist, without letting us prove the following formula:
+\[ \exists S \forall x : x \in S. \]
+For if we prove this formula, then we have our ``bad'' set from that caused us to go down the rabbit hole in the first place.
+
+
+\section{The Axioms of $\ZFC$}
+I don't want to get into details about these axioms;
+if you're interested, read 
+\url{https://usamo.wordpress.com/2014/11/13/set-theory-an-intro-to-zfc-part-1/}
+and \url{https://usamo.wordpress.com/2014/11/18/set-theory-part-2-constructing-the-ordinals/}.
+\todo{move to refs}
+Here is a much terser description.
+
+First, the two easiest axioms:
+\begin{itemize}
+	\ii $\Extensionality$ is the sentence
+	$\forall x \forall y
+	\left( \left( \forall a  \left( a \in x \iff a \in y \right) \right)
+	\implies x = y \right)$,
+	which says that if two sets $x$ and $y$ have the same elements,
+	then $x = y$.
+
+	\ii $\EmptySet$ is the sentence $\exists a : \forall x \; \neg (x \in a)$;
+	it says there exists a set with no elements.
+	By $\Extensionality$ this set is unique, so we denote it $\varnothing$.
+\end{itemize}
+
+The next two axioms give us basic ways of building new sets.
+\begin{itemize}
+	\ii Given two elements $x$ and $y$, there exists a set $a$ containing only those two elements.
+	In machine code, this is the sentence $\Pairing$, written
+	\[ \forall x \forall y \exists a \quad \forall z,
+		\; z \in a \iff \left( (z=x) \lor (z=y) \right). \]
+	By $\Extensionality$ this set $a$ is unique, so we write $a = \{x,y\}$.
+
+	\ii Given a set $a$, we can create the union of the elements of $a$.
+	For example, if $a = \{ \{1,2\}, \{3,4\} \}$, then $z = \{1,2,3,4\}$ is a set.
+	Formally, this is the sentence $\Union$:
+	\[ \forall a \exists U \quad \forall x \; (x \in U) \iff (\exists y : x \in y \in U). \]
+	Since $U$ is unique by $\Extensionality$, we denote it $\cup a$.
+
+	\ii 
+	We can construct the \vocab{power set} $\mathcal P(x)$.
+	Formally, the sentence $\PowerSet$ says that
+	\[ \forall x \exists P \forall y (y \in P \iff y \subseteq x) \]
+	where $y \subseteq x$ is short for $\forall z (z \in y \implies z \in x)$.
+	As $\Extensionality$ gives us uniqueness of $P$,
+	we denote it $\mathcal P(x)$.
+
+	\ii $\Foundation$ says there are no infinite descending chains
+	\[ x_0 \ni x_1 \ni x_2 \ni \dots. \]
+	This is important, because it lets us induct.
+	In particular, \textbf{no set contains itself}.
+
+	\ii $\mathtt{Infinity}$ says that there is an infinite set.\footnote{
+	The way it does this: $\exists X$ such that $\forall a \in X$,
+	$a \cup \{a\} \in X$ too.
+	Satisfy yourself that this must force $X$ to be infinite.}
+\end{itemize}
+These are all things you are already used to, so keep your intuition there.
+The next one has some actual content:
+\begin{itemize}
+	\ii The \vocab{schema of restricted comprehension} says the following.
+	If we are \emph{given a set $X$}, and some formula $\phi$
+	(for example $\phi(x)$ might be ``$x$ is not the empty set, i.e. $\exists a(a\in x)$'')
+	then we can \emph{filter} through the elements of $X$ to get a subset
+	\[ Y = \left\{ x \in X \mid \phi(x) \right\}. \]
+	Formally, given a formula $\phi$:
+	\[
+		\forall X \quad \exists Y \quad
+		\forall y (y \in Y \iff y \in X \land \phi(y)).
+	\]
+	(Note that technically, there are infinitely many axioms here:
+	one for every possible formula $\phi$.)
+\end{itemize}
+Notice that we may \emph{only} do this filtering over an already given set.
+So it is not valid to create
+$ \left\{ x \mid x \text{ is a set} \right\} $
+which we are thankful for, because this lets us evade Cantor's paradox.
+
+There is one last axiom called $\mathtt{Replacement}$.
+Suppose $X$ is a set and $\phi(x,y)$ is some formula
+such that for every $x \in X$, there is a \emph{unique} $y$ in the universe
+such that $\phi(x,y)$ is true: for example ``$y = x \cup \{x\}$'' works.
+(In effect, $\phi$ is defining a function $f$ on $X$.)
+Then there exists a set $Y$ consisting exactly of these images:
+i.e. $f``X$ is a set.
+
+\section{Encoding}
+Now that we have this rickety universe of sets, we can start re-building math.
+You'll get to see this more in the next chapter on ordinal numbers.
+
+\begin{definition}
+	An \vocab{ordered pair} $(x,y)$
+	is a set of the form
+	\[ (x,y) \defeq 
+		\left\{ \left\{ x \right\}, \left\{ x,y \right\} \right\}. \]
+\end{definition}
+Note that $(x,y) = (a,b)$ if and only if $x=a$ and $y=b$.
+Ordered $k$-tuples can be defined recursively: a three-tuple $(a,b,c)$ means $(a,(b,c))$.
+
+\begin{definition}
+	A \vocab{function} $f : X \to Y$ 
+	consists is defined as a collection of ordered pairs
+	with the following properties:
+	\begin{itemize}
+		\ii If $(x,y) \in f$, then $x \in X$ and $y \in Y$.
+		\ii For every $x \in X$, there is a unique $y \in Y$
+		such that $(x,y) \in f$. We denote this $y$ by $f(x)$.
+	\end{itemize}
+\end{definition}
+
+ordinals
+
+Et cetera, et cetera.
+
+\section{The Axiom of Choice}
+\todo{write this}
+
+\section\problemhead
+
+
+\chapter{Ordinals}
 spiral picture
 
-Induction
+transfinite induction
+
+ordinal arithmetic
+
+\section{Sets vs Classes}
+\prototype{$V$, $\On$}
+Roughly, the ``bad thing'' that happened was that we considered a set $S$, the
+``set of all sets'', and it was \emph{too big}.
+That is,
+\[ \left\{ x \mid x \text{ is a set} \right\} \]
+is not good.
+Similarly, we cannot construct a set
+\[ \left\{ x \mid x \text{ is an ordered pair} \right\}. \]
+The lesson of Cantor's Paradox is that we cannot create any sets we want;
+we have to be more careful than that.
+
+Nonetheless, if we are given a set
+we can still tell whether or not it is an ordered pair.
+So we define a \vocab{class} to be
+a ``concept'' like the ``class of all ordered pairs''.
+In particular:
+
+\begin{definition}
+	The class of all sets is denoted $V$, defined by $V = \left\{ x \mid x=x \right\}$.
+	It is called the \vocab{von Neumann universe}.
+\end{definition}
+
+A class is a \vocab{proper class} if it is not a set,
+so for example $V$ is a proper class.
+
+\begin{abuse}
+	Given a class $C$, we will write $x \in C$ to mean
+	that $x$ has the defining property of $C$.
+	For example, $x \in V$ means ``$x$ is a set''.
+
+	It does not mean $x$ is an element of $V$
+	-- this doesn't make sense as $V$ is not a set.
+\end{abuse}
+
+
 
 \section\problemhead
 \begin{problem}
 	Show that the class of ordinals $\On$ is a proper class.
 \end{problem}
 
-
-\chapter{Ordinals and Cardinals}
-transfinite induction
-
-ordinal arithmetic
+\chapter{Cardinals}
 
 definition of cardinals
 
@@ -565,7 +863,7 @@ It seems like there are two things running up against each other:
 (This has confused so many people it has a name, Skolem's paradox.)
 
 The reason this works I actually pointed out earlier:
-\emph{countability is not absolute, it is $\Sigma_1$}.
+\emph{countability is not absolute, it is a $\Sigma_1$ notion}.
 
 Recall that a set $x$ is countable if
 \emph{there exists} an injective map $x \injto \omega$.
