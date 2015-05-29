@@ -9,25 +9,31 @@
 \newcommand{\Po}{\mathbb P}
 \newcommand{\nrank}{\opname{n-rank}} % ranks
 
-\newcommand{\EmptySet}{\mathtt{EmptySet}}
-\newcommand{\PowerSet}{\mathtt{PowerSet}}
-\newcommand{\Pairing}{\mathtt{Pairing}}
-\newcommand{\Extensionality}{\mathtt{Extensionality}}
-\newcommand{\Foundation}{\mathtt{Foundation}}
-\newcommand{\Union}{\mathtt{Union}}
+\newcommand{\EmptySet}{\mathrm{EmptySet}}
+\newcommand{\PowerSet}{\mathrm{PowerSet}}
+\newcommand{\Pairing}{\mathrm{Pairing}}
+\newcommand{\Infinity}{\mathrm{Infinity}}
+\newcommand{\Extensionality}{\mathrm{Extensionality}}
+\newcommand{\Foundation}{\mathrm{Foundation}}
+\newcommand{\Union}{\mathrm{Union}}
+\newcommand{\Comprehension}{\mathrm{Comprehension}}
+\newcommand{\Replacement}{\mathrm{Replacement}}
 
 \usepackage{mathrsfs}
+
 \newcommand\MM{\mathscr M}
+\newcommand\llex{<_{\text{lex}}}
 
+\DeclareMathOperator{\cof}{cof}
 
-\newtheorem{axiom}{Axiom}
 \def\asydir{}
+
 
 \begin{document}
 \title{Set Theory}
 \maketitle
 
-\chapter{The Axioms of Set Theory}
+\chapter{Zermelo-Franklin with Choice}
 Chapter $2\half$ of \cite{ref:msci} has a nice description of this.
 
 \section{The Ultimate Functional Equation}
@@ -85,6 +91,7 @@ If we let $\PP(V)$ denote the subsets of $V$, then we have an inclusion
 \[ \PP(V) \injto V. \]
 This is bad, for the following reason:
 \begin{lemma}[Cantor's Diagonal Argument]
+	\label{lem:cantor_diag}
 	For \emph{any} set $X$, it's impossible to construct a
 	map $\iota : \PP(X) \injto X$.
 \end{lemma}
@@ -179,12 +186,16 @@ For if we prove this formula, then we have our ``bad'' set from that caused us t
 
 
 \section{The Axioms of $\ZFC$}
-I don't want to get into details about these axioms;
-if you're interested, read 
-\url{https://usamo.wordpress.com/2014/11/13/set-theory-an-intro-to-zfc-part-1/}
-and \url{https://usamo.wordpress.com/2014/11/18/set-theory-part-2-constructing-the-ordinals/}.
-\todo{move to refs}
-Here is a much terser description.
+I don't especially want to get into details about these axioms;
+if you're interested, read:
+\begin{itemize}
+	\ii \footnotesize \url{https://usamo.wordpress.com/2014/11/13/set-theory-an-intro-to-zfc-part-1/}
+	\ii \footnotesize \url{https://usamo.wordpress.com/2014/11/18/set-theory-part-2-constructing-the-ordinals/}
+\end{itemize}
+Here is a much terser description of the axioms,
+which also includes the corresponding sentence in the language of set theory.
+It is worth the time to get some practice parsing $\forall$, $\exists$, etc.\
+and you can do so by comparing the formal sentences with the natural statement of the axiom.
 
 First, the two easiest axioms:
 \begin{itemize}
@@ -227,13 +238,10 @@ The next two axioms give us basic ways of building new sets.
 	This is important, because it lets us induct.
 	In particular, \textbf{no set contains itself}.
 
-	\ii $\mathtt{Infinity}$ says that there is an infinite set.\footnote{
-	The way it does this: $\exists X$ such that $\forall a \in X$,
-	$a \cup \{a\} \in X$ too.
-	Satisfy yourself that this must force $X$ to be infinite.}
+	\ii $\Infinity$ implies that $\omega = \{0,1,\dots\}$ is a set.
 \end{itemize}
 These are all things you are already used to, so keep your intuition there.
-The next one has some actual content:
+The next one is less intuitive:
 \begin{itemize}
 	\ii The \vocab{schema of restricted comprehension} says the following.
 	If we are \emph{given a set $X$}, and some formula $\phi$
@@ -245,21 +253,32 @@ The next one has some actual content:
 		\forall X \quad \exists Y \quad
 		\forall y (y \in Y \iff y \in X \land \phi(y)).
 	\]
-	(Note that technically, there are infinitely many axioms here:
-	one for every possible formula $\phi$.)
 \end{itemize}
 Notice that we may \emph{only} do this filtering over an already given set.
 So it is not valid to create
-$ \left\{ x \mid x \text{ is a set} \right\} $
-which we are thankful for, because this lets us evade Cantor's paradox.
+$ \left\{ x \mid x \text{ is a set} \right\} $.
+We are thankful for this, because this lets us evade Cantor's paradox.
 
-There is one last axiom called $\mathtt{Replacement}$.
+\begin{abuse}
+	Note that technically, there are infinitely many sentences,
+	a $\Comprehension_\phi$ for every possible formula $\phi$.
+	By abuse of notation, we let $\Comprehension$ abbreviate
+	the infinitely many axioms $\Comprehension_\phi$ for every $\phi$.
+\end{abuse}
+
+There is one last schema called $\Replacement_\phi$.
 Suppose $X$ is a set and $\phi(x,y)$ is some formula
 such that for every $x \in X$, there is a \emph{unique} $y$ in the universe
 such that $\phi(x,y)$ is true: for example ``$y = x \cup \{x\}$'' works.
 (In effect, $\phi$ is defining a function $f$ on $X$.)
 Then there exists a set $Y$ consisting exactly of these images:
-i.e. $f``X$ is a set.
+(i.e. $f``X$ is a set).
+\begin{abuse}
+	By abuse of notation, we let $\Replacement$ abbreviate
+	the infinitely many axioms $\Replacement_\phi$ for every $\phi$.
+\end{abuse}
+
+We postpone discussion of the Axiom of Choice momentarily.
 
 \section{Encoding}
 Now that we have this rickety universe of sets, we can start re-building math.
@@ -285,25 +304,75 @@ Ordered $k$-tuples can be defined recursively: a three-tuple $(a,b,c)$ means $(a
 	\end{itemize}
 \end{definition}
 
-ordinals
+\begin{definition}
+	The \vocab{natural numbers} are defined inductively as
+	\begin{align*}
+		0 &= \varnothing \\
+		1 &= \{0\} \\
+		2 &= \{0,1\} \\
+		3 &= \{0,1,2\} \\
+		&\vdotswithin=
+	\end{align*}
+	The set of all natural numbers is denoted $\omega$.
+\end{definition}
+\begin{abuse}
+	Yes, I'm sorry, in set theory $0$ is considered a natural number.
+	For this reason I'm using $\omega$ and not $\NN$
+	since I explicitly have $0\notin\NN$ in all other parts of this book.
+\end{abuse}
 
 Et cetera, et cetera.
 
-\section{The Axiom of Choice}
-\todo{write this}
+\section{Choice and Well-Ordering}
+The Axiom of Choice states that given a collection $Y$ of nonempty sets,
+there is a function $g : Y \to \cup Y$ which ``picks'' an element of each member of $Y$.
+That means $g(y) \in y$ for every $y \in Y$.
+(The typical illustration is that $Y$ contains infinitely many drawers,
+and each drawer (a $y$) has some sock in it.)
 
-\section\problemhead
+Formally, it is the sentence
+\[ \forall Y \left(\varnothing \notin Y
+	\implies 
+	\exists g : Y \to \cup Y
+	\text{ such that }
+	\forall y \in Y \left( g(y) \in y \right).
+	\right)
+\]
+The tricky part is not that we can conceive of such a function $g$,
+but that in fact this function $g$ is \emph{actually a set}.
 
+There is an equivalent formulation which is often useful.
+\begin{definition}
+	A \vocab{well-ordering} $<$ of $X$ is a strict, total order on $X$
+	which has no infinite descending chains.
+\end{definition}
+Well-orderings on a set are very nice, because we can pick minimal elements:
+this lets us do induction, for example.
+\begin{example}[Examples and Non-Examples of Well-Orderings]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii The natural numbers $\omega = \{0,1,2,\dots\}$
+		are well-ordered by $<$.
+		\ii The integers $\ZZ = \{\dots,-2,-1,0,1,2,\dots\}$ are not well-ordered by $<$,
+		because there are infinite descending chains (take $-1 > -2 > -3 > \dots$).
+		\ii The positive real numbers are not well-ordered by $<$,
+		again because of the descending chain $\frac11>\frac12>\frac13>\dots$.
+		\ii The positive integers are not well-ordered by the divisibility operation $\mid$.
+		While there are no descending chains, there are elements which cannot be compared
+		(for example $3 \nmid 5$, $5 \nmid 3$ and $3 \neq 5$).
+	\end{enumerate}
+\end{example}
 
-\chapter{Ordinals}
-spiral picture
-
-transfinite induction
-
-ordinal arithmetic
+\begin{theorem}
+	[Well-Ordering Theorem]
+	Assuming Choice, for every set we can place some well-ordering on it.
+\end{theorem}
+In fact, the Well-Ordering Theorem is actually equivalent to the Axiom of Choice.
 
 \section{Sets vs Classes}
-\prototype{$V$, $\On$}
+\prototype{The set of all sets is the standard example of a proper class.}
+We close the discussion of $\ZFC$ by mentioning ``classes''.
+
 Roughly, the ``bad thing'' that happened was that we considered a set $S$, the
 ``set of all sets'', and it was \emph{too big}.
 That is,
@@ -316,17 +385,26 @@ we have to be more careful than that.
 
 Nonetheless, if we are given a set
 we can still tell whether or not it is an ordered pair.
-So we define a \vocab{class} to be
+So for convenience, we will define a \vocab{class} to be
 a ``concept'' like the ``class of all ordered pairs''.
-In particular:
+Formally, a class is defined by some formula $\phi$:
+it consists of the sets which satisfy the formula.
 
+In particular:
 \begin{definition}
 	The class of all sets is denoted $V$, defined by $V = \left\{ x \mid x=x \right\}$.
 	It is called the \vocab{von Neumann universe}.
 \end{definition}
 
 A class is a \vocab{proper class} if it is not a set,
-so for example $V$ is a proper class.
+so for example we have:
+\begin{theorem}[There is no set of all sets]
+	$V$ is a proper class.
+\end{theorem}
+\begin{proof}
+	Assume not, and $V$ is a set. Then $V \in V$,
+	which violates $\Foundation$.
+\end{proof}
 
 \begin{abuse}
 	Given a class $C$, we will write $x \in C$ to mean
@@ -337,27 +415,996 @@ so for example $V$ is a proper class.
 	-- this doesn't make sense as $V$ is not a set.
 \end{abuse}
 
+\section\problemhead
+\begin{problem}
+	Let $A$ and $B$ be sets.
+	Show that $A \cap B$ and $A \times B$ are sets.
+\end{problem}
 
+\begin{problem}
+	Show that the class of all groups is a proper class.
+	(You can take the definition of a group as a pair $(G, \cdot)$
+	where $\cdot$ is a function $G \times G \to G$.)
+\end{problem}
+\begin{problem}
+	Show that the Axiom of Choice follows from the Well-Ordering Theorem.
+\end{problem}
+
+\begin{dproblem}
+	Prove that actually, $\Replacement \implies \Comprehension$.
+\end{dproblem}
+
+\begin{problem}
+	[From Taiwan IMO Training Camp]
+	Consider infinitely many people each wearing a hat,
+	which is either red, green, or blue.
+	Each person can see the hat color of everyone except themselves.
+	Simultaneously each person guesses the color of their hat.
+	Show that they can form a strategy such that at most finitely many people guess their color incorrectly. 
+\end{problem}
+
+\chapter{Ordinals}
+\section{Counting for Preschoolers}
+In preschoolers, we were told to count as follows.
+We defined a set of symbols $1$, $2$, $3$, $4$, \dots.
+Then the teacher would hold up three apples and say:
+\begin{quote}
+	``One . . . two . . . three!  There are three apples.''
+\end{quote}
+
+\missingfigure{three apples}
+
+The implicit definition is that the \emph{last} number said is the final answer.
+This raises some obvious problems if we try to count to infinite sets, but even in the finite
+world, this method of counting fails for the simplest set of all:
+how many apples are in the following picture?
+
+\missingfigure{zero apples (velociraptor)}
+
+Answer: $0$. There is nothing to say, and our method of counting has failed
+for the simplest set of all: the empty set.
+
+\section{Counting for Set Theorists}
+\prototype{$\omega+1 = \{0,1,2,\dots,\omega\}$ might work.}
+Rather than using the \emph{last} number listed, I propose the following:
+we start with a list of symbols $0$, $1$, $2$, \dots\ and our final answer
+is going to be the \emph{first} number which was \emph{not} said.
+Thus to count three apples, we would say 
+\begin{quote}
+	``Zero . . . one . . . two!  There are three apples.''
+\end{quote}
+We will call these numbers \emph{ordinal numbers} (rigorous definition later).
+In particular, we'll \emph{define} each ordinal to be the set of things we say:
+\begin{align*}
+	0 &= \varnothing \\
+	1 &= \{0\} \\
+	2 &= \{0,1\} \\
+	3 &= \{0,1,2\} \\
+	&\vdotswithin=
+\end{align*}
+In this way we can write out the natural numbers.
+You can have some fun with this, by saying things like
+\[
+	4 \defeq
+	\left\{ 
+		\left\{  \right\},
+		\left\{ \left\{  \right\} \right\},
+		\left\{ \left\{  \right\}, \left\{ \left\{  \right\} \right\} \right\},
+		\left\{ 
+			\left\{  \right\},
+			\left\{ \left\{  \right\} \right\},
+			\left\{ \left\{  \right\}, \left\{ \left\{  \right\} \right\} \right\}
+		\right\}
+	\right\}
+\]
+In this way, we soon write down all the natural numbers.
+The next ordinal, $\omega$,\footnote{
+	That $\omega$ is actually a set is not obvious.
+	The proof follows from the actual statement of $\Infinity$,
+	which I've dutifully omitted.
+	In fact, $\Infinity$ is equivalent to the existence of $\omega$.
+} is defined as
+\begin{align*}
+	\omega &= \left\{ 0, 1, 2, \dots \right\} \\
+	\intertext{Then comes}
+	\omega+1 &= \left\{ 0, 1, 2, \dots, \omega \right\} \\
+	\omega+2 &= \left\{ 0, 1, 2, \dots, \omega, \omega+1 \right\} \\
+	\omega+3 &= \left\{ 0, 1, 2, \dots, \omega, \omega+1, \omega+2 \right\} \\
+	&\vdotswithin= \\
+	\intertext{And in this way we define $\omega+n$, and eventually reach}
+	\omega \cdot 2 = \omega+\omega &= \left\{ 0, 1, 2 \dots, \omega, \omega+1, \omega+2, \dots \right\} \\
+	\omega \cdot 2 + 1 &= \left\{ 0, 1, 2 \dots, \omega, \omega+1, \omega+2, \dots, \omega \cdot 2 \right\}.
+\end{align*}
+In this way we obtain
+\begin{align*}
+	0,\; & 1,\; 2,\; 3,\; \dots,\; \omega \\
+	& \omega+1,\; \omega+2,\; \dots,\; \omega+\omega \\
+	& \omega \cdot 2 +1,\; \omega \cdot 2 +2,\; \dots,\; \omega \cdot 3,\; \\
+	& \vdots \\
+	& \omega^2 + 1,\; \omega^2+2,\; \dots \\
+	& \vdots \\
+	& \omega^3,\; \dots,\; \omega^4,\; \dots,\; \omega^\omega \\
+	& \vdots \\
+	& \omega^{\omega^{\omega^{\dots}}} \\
+\end{align*}
+
+\missingfigure{Spiral of ordinals}
+
+\begin{remark}
+	(Digression)
+	The number $\omega^{\omega^{\omega^{\dots}}}$ has a name, $\eps_0$;
+	it has the property that $\omega^{\eps_0} = \omega$.
+	The reason for using ``$\eps$'' (which is usually used to denote small quantities)
+	is that, despite how huge it may appear, it is actually a countable set.
+	More on that later.
+\end{remark}
+
+\section{Definition of an Ordinal}
+Our informal description of ordinals gives us a chain
+\[ 0 \in 1 \in 2 \in \dots \in \omega \in \omega+1 \in \dots. \]
+To give the actual definition of an ordinal, I need to define two auxiliary terms first.
+\begin{definition}
+	A set $x$ is \vocab{transitive} if whenever $z \in y \in x$, we have $z \in x$ also.
+\end{definition}
+\begin{example}
+	[$7$ is Transitive]
+	The set $7$ is transitive: for example, $2 \in 5 \in 7 \implies 2 \in 7$.
+\end{example}
+\begin{ques}
+	Show that this is equivalent to: whenever $y \in x$, $y \subseteq x$.
+\end{ques}
+Moreover, recall the definition of ``well-ordering'': a strict linear order
+with no infinite descending chains.
+\begin{example}
+	[$\in$ is a well-ordering on $\omega \cdot 3$]
+	In $\omega \cdot 3$, we have an ordering
+	\[ 0 \in 1 \in 2 \in \dots \in \omega \in \omega+1 \in \dots
+		\in \omega \cdot 2 \in \omega \cdot 2 + 1 \in \dots. \]
+	which has no infinite descending chains.
+	Indeed, a typical descending chain might look like
+	\[ \omega \cdot 2 + 6 \ni \omega \cdot 2 \ni
+		\omega + 2015 \ni \omega+3 \ni \omega \ni 1000 \ni 256 \ni 42 \ni 7 \ni 0. \]
+	Even though there are infinitely many elements, there is no way
+	to make an infinite descending chain.
+\end{example}
+\begin{exercise}
+	(Important) Convince yourself there are no infinite descending chains of ordinals at all
+	(which must be true by $\Foundation$!).
+\end{exercise}
+
+\begin{definition}
+	An \vocab{ordinal} is a transitive set which is well-ordered by $\in$.
+	The class of all ordinals is denoted $\On$.
+\end{definition}
+
+\begin{ques}
+	Satisfy yourself that this definition works.
+\end{ques}
+
+We typically use Greek letters $\alpha$, $\beta$, etc.\ for ordinal numbers.
+\begin{definition}
+	We write
+	\begin{itemize}
+		\ii $\alpha < \beta$ to mean $\alpha \in \beta$,
+		and $\alpha > \beta$ to mean $\alpha \ni \beta$.
+		\ii $\alpha \le \beta$ to mean $\alpha \in \beta$ or $\alpha = \beta$,
+		and $\alpha \ge \beta$ to mean $\alpha \ni \beta$ or $\alpha = \beta$,
+	\end{itemize}
+\end{definition}
+
+\begin{theorem}[Ordinals are Strictly Ordered]
+	Given any two ordinal numbers $\alpha$ and $\beta$,
+	either $\alpha < \beta$, $\alpha = \beta$ or $\alpha > \beta$.
+\end{theorem}
+\begin{proof}
+	Surprisingly annoying, thus omitted.
+\end{proof}
+\begin{theorem}[Ordinals Represent All Order Types]
+	Suppose $<$ is a well-ordering on a set $X$.
+	Then there exists a unique ordinal $\alpha$
+	such that there is a bijection $\alpha \to X$
+	which is order preserving.
+\end{theorem}
+Thus ordinals represent the possible \emph{equivalence classes} of order types.
+Any time you hale a well-ordered set, it is isomorphic to a unique ordinal.
+
+We now formalize the ``$+1$'' operation we were doing:
+\begin{definition}
+	Given an ordinal $\alpha$, we let $\alpha+1 = \alpha \cup \{\alpha\}$.
+	An ordinal of the form $\alpha+1$ is called a \vocab{successor ordinal}.
+\end{definition}
+\begin{definition}
+	If $\lambda$ is an ordinal which is neither zero nor a successor ordinal,
+	then we say $\lambda$ is a \vocab{limit ordinal}.
+\end{definition}
+\begin{example}
+	[Sucessor and Limit Ordinals]
+	$7$, $\omega+3$, $\omega\cdot2+2015$ are successor ordinals,
+	but $\omega$ and $\omega \cdot 2$ are limit ordinals.
+\end{example}
+
+\section{Ordinals Are ``Tall''}
+First, we note that:
+\begin{theorem}
+	[There is no set of all ordinals]
+	$\On$ is a proper class.
+\end{theorem}
+\begin{proof}
+	Assume for contradiction not.
+	Then $\On$ is well-ordered by $\in$ and transitive, so $\On$ is an ordinal,
+	i.e.\ $\On \in \On$, which violates $\Foundation$.
+\end{proof}
+
+From this we deduce:
+\begin{theorem}
+	[Sets of Ordinals Are Bounded]
+	Let $A \subseteq \On$.
+	Then there is some ordinal $\alpha$ such that $A \in \alpha$
+	(i.e.\ $A$ must be bounded).
+\end{theorem}
+\begin{proof}
+	Otherwise, look at $\cup A$.
+	It is a set.
+	But if $A$ is unbounded it must equal $\On$,
+	which is a contradiction.
+\end{proof}
+In light of this, every set of ordinals has a \vocab{supremum},
+which is the least upper bound. We denote this by $\sup A$.
+
+\begin{ques}
+	Show that
+	\begin{enumerate}[(a)]
+		\ii $\sup (\alpha+1) = \alpha$ for any ordinal $\alpha$.
+		\ii $\sup \lambda = \lambda$ for any limit ordinal $\lambda$.
+	\end{enumerate}
+\end{ques}
+
+The pictorial ``tall'' will be explained in a few sections.
+
+\section{Transfinite Induction and Recursion}
+The fact that $\in$ has no infinite descending chains means that induction and recursion still work verbatim.
+\begin{theorem}[Transfinite Induction]
+	Given a statement $P(-)$, suppose that
+	\begin{itemize}
+		\ii $P(0)$ is true, and
+		\ii If $P(\alpha)$ is true for all $\alpha < \beta$, then $P(\beta)$ is true.
+	\end{itemize}
+	Then $P(\alpha)$ is true for every ordinal $\alpha$.
+\end{theorem}
+\begin{theorem}
+	[Transfinite Recursion]
+	To define a sequence $x_\alpha$ for every ordinal $\alpha$,
+	it suffices to
+	\begin{itemize}
+		\ii define $x_0$, then
+		\ii for any $\beta$, define $x_\beta$ for any $\alpha < \beta$.
+	\end{itemize}
+\end{theorem}
+
+The difference between this and normal induction lies in the \emph{limit ordinals}.
+In real life, we might only do things like ``define $x_{n+1} = \dots$''.
+But this is not enough to define $x_\alpha$ for all $\alpha$,
+because we can't hit $\omega$ this way.
+Similarly, the simple $+1$ doesn't let us hit the ordinal $2\omega$,
+even if we already have $\omega+n$ for all $n$.
+In other words, simply incrementing by $1$ cannot get us past limit stages,
+but using transfinite induction to jump upwards lets us sidestep this issue.
+
+So a transfinite induction or recursion is very often broken up into three cases.
+In the induction phrasing, it looks like
+\begin{itemize}
+	\ii (Zero Case) First, resolve $P(0)$.
+	\ii (Successor Case) Show that from $P(\alpha)$ we can get $P(\alpha+1)$.
+	\ii (Limit Case) For $\lambda$ a limit ordinal,
+	show that $P(\lambda)$ holds given $P(\alpha)$ for all $\alpha < \lambda$,
+	where $\lambda$ is a limit ordinal.
+\end{itemize}
+Similarly, transfinite recursion often is split into cases too.
+\begin{itemize}
+	\ii (Zero Case) First, define $x_0$.
+	\ii (Successor Case) Define $x_{\alpha+1}$ from $x_\alpha$.
+	\ii (Limit Case) Define $x_\lambda$ from $x_\alpha$ for all $\alpha < \lambda$,
+	where $\lambda$ is a limit ordinal.
+\end{itemize}
+In both situations, finite induction only does the first two cases,
+but if we're able to do the third case we can climb above the barrier $\omega$.
+
+\section{Ordinal Arithmetic}
+\prototype{$1+\omega=\omega \neq \omega+1$.}
+To give an example of transfinite recursion, let's define addition of ordinals.
+Recall that we defined $\alpha+1 = \alpha \cup \{\alpha\}$.
+By transfinite recursion, let
+\begin{align*}
+	\alpha + 0 &= \alpha \\
+	\alpha + (\beta + 1) &= (\alpha + \beta) + 1 \\
+	\alpha + \lambda &= \bigcup_{\beta < \lambda} (\alpha + \beta).
+\end{align*}
+Here $\lambda \neq 0$.
+
+We can also do this explicitly:
+The picture is to just line up $\alpha$ after $\beta$.
+That is, we can consider the set
+\[
+	X = 
+	\left( \left\{ 0 \right\} \times \alpha \right)
+	\cup
+	\left( \left\{ 1 \right\} \times \beta \right)
+\]
+(i.e.\ we tag each element of $\alpha$ with a $0$, and
+each element of $\beta$ with a $1$).
+We then impose a well-ordering on $X$ by a lexicographic ordering $\llex$
+(sort by first component, then by second).
+This well-ordering is isomorphic to a unique ordinal, 
+\begin{example}
+	[$2+3=5$]
+	Under the explicit construction for $\alpha = 2$ and $\beta = 3$, we get the set
+	\[
+		X = \left\{ (0,0) < (0,1) < (1,0) < (1,1) < (1,2) \right\}
+	\]
+	which is isomorphic to $5$.
+\end{example}
+
+\begin{example}[Ordinal Arithmetic is Not Commutative]
+	Note that $1 + \omega = \omega$!
+	Indeed, under the transfinite definition, we have
+	\[ 1 + \omega = \cup_n (1+n) = 2 \cup 3 \cup 4 \cup \dots = \omega. \]
+	With the explicit construction, we have
+	\[ X = \left\{ (0,0) < (1,0) < (1,1) < (1,2) < \dots \right\} \]
+	which is isomorphic to $\omega$.
+\end{example}
+\begin{exercise}
+	Show that $n+\omega = \omega$ for any $n \in \omega$.
+\end{exercise}
+
+\begin{remark}
+	Ordinal addition is not commutative.
+	However, from the explicit construction
+	we can see that it is at least associative.
+\end{remark}
+
+Similarly, we can define multiplication in two ways.
+By transfinite induction:
+\begin{align*}
+	\alpha \cdot 0 &= \alpha \\
+	\alpha \cdot (\beta + 1) &= (\alpha \cdot \beta) + \alpha \\
+	\alpha \cdot \lambda &= \bigcup_{\beta < \lambda} \alpha \cdot \beta.
+\end{align*}
+We can also do an explicit construction: $\alpha \cdot \beta$
+is the order type of
+\[ \llex \text{ applied to } \beta \times \alpha. \]
+\begin{example}[Ordinal Multiplication is Not Commutative]
+	We have $\omega \cdot 2 = \omega + \omega$,
+	but $2 \cdot \omega = \omega$.
+\end{example}
+\begin{exercise}
+	Prove this.
+\end{exercise}
+\begin{exercise}
+	Verify that ordinal multiplication
+	(like addition) is associative but not commutative.
+	(Look at $\gamma \times \beta \times \alpha$.)
+\end{exercise}
+
+Exponentiation can also be so defined, though the explicit construction is less natural.
+\begin{align*}
+	\alpha^0 &= 1 \\
+	\alpha^{\beta+1} &= \alpha^{\beta} \cdot \alpha \\
+	\alpha^{\lambda} &= \bigcup_{\beta < \lambda} \alpha^\beta.
+\end{align*}
+\begin{exercise}
+	Verify that $2^\omega = \omega$.
+\end{exercise}
+
+
+\section{The Hierarchy of Sets}
+We now define the \vocab{von Neumann Hierarchy} by transfinite recursion.
+\begin{definition}
+	By transfinite induction, we set
+	\begin{align*}
+		V_0 &= \varnothing \\
+		V_{\alpha + 1} &= \PP(V_\alpha) \\
+		V_\lambda &= \bigcup_{\alpha<\lambda} V_\alpha
+	\end{align*}
+\end{definition}
+By transfinite induction, we see $V_\alpha$ is transitive
+and that $V_\alpha \subseteq V_\beta$ for all $\alpha < \beta$.
+
+\begin{example}[$V_\alpha$ for $\alpha \le 3$]
+	The first few levels of the hierarchy are:
+	\begin{align*}
+		V_0 &= \varnothing \\
+		V_1 &= \left\{ 0 \right\} \\
+		V_2 &=  \left\{ 0, 1 \right\} \\
+		V_3 &= \left\{ 0, 1, 2, \left\{ 1 \right\} \right\}.
+	\end{align*}
+	Notice that for each $n$, $V_n$ consists of only finite sets,
+	and each $n$ appears in $V_{n+1}$ for the first time.
+	Observe that
+	\[ V_\omega = \bigcup_{n \in \omega} V_n \]
+	consists only of finite sets; thus $\omega$ appears for the first time
+	in $V_{\omega+1}$.
+\end{example}
+\begin{ques}
+	How many sets are in $V_5$?
+\end{ques}
+
+\begin{definition}
+	The \vocab{rank} of a set $y$, denoted $\rank(y)$,
+	is the smallest ordinal $\alpha$ such that $y \in V_{\alpha+1}$.
+\end{definition}
+\begin{example}
+	$\rank(2) = 2$, and actually $\rank(\alpha)=\alpha$
+	for any ordinal $\alpha$ (problem later).
+	This is the reason for the extra ``$+1$''.
+\end{example}
+\begin{ques}
+	Show that $\rank(y)$ is the smallest ordinal $\alpha$
+	such that $y \subseteq V_\alpha$.
+\end{ques}
+
+It's not yet clear that the rank of a set actually exists, so we prove:
+\begin{theorem}[The von Neumann Hierachy is Complete]
+	The class $V$ is equal to $\bigcup_{\alpha \in \On} V_\alpha$.
+	In other words, every set appears in some $V_\alpha$.
+\end{theorem}
+\begin{proof}
+	Assume for contradiction this is false.
+	The key is that because $\in$ is well-founded,
+	we can take a $\in$-minimal counterexample $x$.
+	Thus $\rank(y)$ is defined for every $y \in x$,
+	and we can consider (by $\Replacement$) the set
+	\[ \left\{ \rank(y) \mid y \in x \right\}. \]
+	Since it is a set of ordinals, it is bounded.
+	So there is some large ordinal $\alpha$ such that $y \in V_\alpha$
+	for all $y \in x$, i.e.\ $x \subseteq V_\alpha$,
+	so $x \in V_{\alpha+1}$.
+\end{proof}
+
+This leads us to the following picture of the universe $V$.
+We can image the universe $V$ as a triangle, built in several stages or layers,
+$V_0 \subset V_1 \subset V_2 \subset \dots$.
+This universe doesn't have a top: but each of the $V_i$ do.
+However, the universe has a very clear bottom.
+Each stage is substantially wider than the previous one.
+
+In the center of this universe are the ordinals:
+for every successor $V_\alpha$, exactly one new ordinal appears, namely $\alpha$.
+Thus we can picture the class of ordinals as a thin line
+that stretches the entire height of the universe.
+A set has rank $\alpha$ if it appears at the same stage that $\alpha$ does.
+
+\begin{center}
+	\begin{asy}
+		size(11cm);
+		pair A = (12,30);
+		pair B = -conj(A);
+		pair M = midpoint(A--B);
+		pair O = origin;
+		MP("V", A, dir(10));
+		draw(A--O--B);
+
+		fill(A--O--B--cycle, opacity(0.3)+palecyan);
+
+		MP("V_0 = \varnothing", origin, dir(-20));
+		MP("V_1 = \{\varnothing\}", 0.05*A, dir(0));
+		MP("V_2 = \{\varnothing, \{\varnothing\} \}", 0.10*A, dir(0));
+
+		draw(MP("V_n", 0.3*A, dir(0))--0.3*B);
+		draw(MP("V_{n+1} = \mathcal P(V_n)", 0.35*A, dir(0))--0.35*B);
+		Drawing("n", 0.35*M, dir(45));
+
+		draw(MP("V_\omega = \bigcup V_n", 0.5*A, dir(0))--0.5*B);
+		draw(MP("V_{\omega+1} = \mathcal P(V_{\omega})", 0.55*A, dir(0))--0.55*B);
+		Drawing("\omega", 0.55*M, dir(45));
+		draw(MP("V_{\omega+2} = \mathcal P(V_{\omega+1})", 0.6*A, dir(0))--0.6*B);
+		Drawing("\omega+1", 0.6*M, dir(45));
+
+		draw(MP("V_{\omega+\omega}", 0.8*A, dir(0))--0.8*B);
+
+		draw(origin--M);
+		MP("\mathrm{On}", M, dir(90));
+
+	\end{asy}
+\end{center}
+
+All of number theory, the study of the integers, lives inside $V_\omega$.
+Real analysis, the study of real numbers, lives inside $V_{\omega+1}$, since a real number
+can be encoded as a subset of $\NN$ (by binary expansion).
+Functional analysis lives one step past that, $V_{\omega+2}$.
+For all intents and purposes, most mathematics does not go beyond $V_{\omega+\omega}$.
+This pales in comparison to the true magnitude of the whole universe.
 
 \section\problemhead
 \begin{problem}
-	Show that the class of ordinals $\On$ is a proper class.
+	Prove that $\rank(\alpha) = \alpha$ for any $\alpha$
+	by transfinite induction.
+\end{problem}
+
+\begin{problem}
+	[Online Math Open]
+	Count the number of transitive sets in $V_5$.
+\end{problem}
+
+\begin{problem}
+	[Brazilian Olympic Revenge]
+	Let $a_2$ be any positive integer.
+	We define the infinite sequence $a_2$, $a_3$, \dots recursively as follows.
+	If $a_{n} = 0$, then $a_{n+1} = 0$.
+	Otherwise, we write $a_{n+1}$ in base $n$, then write all exponents in base $n$, and so on until all
+	numbers in the expression are at most $n$.
+	Then we replace all instances of $n$ by $n+1$ (including the exponents!), subtract $1$,
+	and set the result to $a_{n+1}$.
+	For example, if $a_2 = 11$ we have
+		\begin{align*}
+			a_2 &= 2^{3} + 2 + 1 = 2^{2+1} + 2 + 1 \\
+			a_3 &= 3^{3+1}+3+1-1 = 3^{3+1} + 3\\
+			a_4 &= 4^{4+1} + 4 - 1 = 4^{4+1} + 3 \\
+			a_5 &= 5^{5+1} + 3 - 1 = 5^{5+1} + 2
+		\end{align*}
+	and so on. Prove that $a_N = 0$ for some integer $N > 2$.
 \end{problem}
 
 \chapter{Cardinals}
+An ordinal measures a total ordering.
+However, it does not do a fantastic job at measuring size.
+For example, there is a bijection between the elements of $\omega$ and $\omega+1$:
+\[
+	\begin{array}{rccccccc}
+		\omega+1 = & \{ & \omega & 0 & 1 & 2 & \dots & \} \\
+		\omega = & \{ & 0 & 1 & 2 & 3 & \dots & \}.
+	\end{array}
+\]
+In fact, as you likely already know,
+there is even a bijection between $\omega$ and $\omega^2$:
+\[
+	\begin{array}{l|cccccc}
+		+ & 0 & 1 & 2 & 3 & 4 & \dots \\ \hline
+		0 & 0 & 1 & 3 & 6 & 10 & \dots \\
+		\omega & 2 & 4 & 7 & 11 & \dots & \\
+		\omega \cdot 2 & 5 & 8 & 12 & \dots & & \\
+		\omega \cdot 3 & 9 & 13 & \dots & & & \\
+		\omega \cdot 4 & 14 & \dots & & & &
+	\end{array}
+\]
+So ordinals do not do a good job of keeping track of size.
+For this, we turn to the notion of a cardinal number.
 
-definition of cardinals
+\section{Equinumerous sets and Cardinals}
+\begin{definition}
+	Two sets $A$ and $B$ are \vocab{equinumerous}, written $A \approx B$,
+	if there is a bijection between them.
+\end{definition}
 
-(note that they depend on the outside universe!)
+\begin{definition}
+	A \vocab{cardinal} is an ordinal $\kappa$ such that
+	for no $\alpha < \kappa$ do we have $\alpha \approx \kappa$.
+\end{definition}
+\begin{example}[Examples of Cardinals]
+	Every finite number is a cardinal.
+	Moreover, $\omega$ is a cardinal.
+	However, $\omega+1$, $\omega^2$, $\omega^{2015}$ are not,
+	because they are countable.
+\end{example}
+\begin{example}[$\omega^\omega$ is Countable]
+	Even $\omega^\omega$ is not a cardinal,
+	since it is a countable union
+	\[ \omega^\omega = \bigcup_n \omega^n \]
+	and each $\omega^n$ is countable.
+\end{example}
+\begin{ques}
+	Why must an infinite cardinal be a limit ordinal?
+\end{ques}
 
-cardinal arithmetic
+\begin{remark}
+	There is something fishy about the definition of a cardinal:
+	it relies on an \emph{external} function $f$.
+	That is, to verify $\kappa$ is a cardinal I can't just look at $\kappa$ itself;
+	I need to examine the entire universe $V$ to make sure
+	there does not exist a bijection $f : \kappa \to \alpha$ for $\alpha < \kappa$.
+	For now this is no issue, but later in model theory
+	this will lead to some highly counterintuitive behavior.
+\end{remark}
 
-cofinality: regular vs singular
+\section{Cardinalities}
+Now that we have defined a cardinal, we can discuss the size
+of a set by linking it to a cardinal.
 
-true to its name, regular is the normal variety
+\begin{definition}
+	The \vocab{cardinality} of a set $X$
+	is the \emph{least} ordinal $\kappa$ such that $X \approx \kappa$.
+	We denote it by $\left\lvert X \right\rvert$.
+\end{definition}
+\begin{ques}
+	Why must $\left\lvert X \right\rvert$ be a cardinal?
+\end{ques}
+\begin{remark}
+	One needs the Well-Ordering Theorem (equivalently, Choice)
+	in order to establish that such an ordinal $\kappa$ actually exists.
+\end{remark}
+Since cardinals are ordinals, it makes sense to ask whether $\kappa_1 \le \kappa_2$,
+and so on.
+Our usual intuition works well here.
+\begin{proposition}[Restatement of Cardinality Properties]
+	Let $X$ and $Y$ be sets.
+	\begin{enumerate}[(i)]
+		\ii $X \approx Y$ if and only $\left\lvert X \right\rvert = \left\lvert Y \right\rvert$,
+		if and only if there is a bijection between $X$ and $Y$.
+		\ii $\left\lvert X \right\rvert \le \left\lvert Y \right\rvert$
+		if and only if there is an injective map $X \injto Y$.
+	\end{enumerate}
+\end{proposition}
+\begin{ques}
+	Prove this.
+\end{ques}
+
+\section{Aleph numbers}
+\prototype{$\aleph_0$ is $\omega$, and $\aleph_1$ is the first uncountable}
+First, let us check that cardinals can get arbitrarily large:
+\begin{proposition}
+	We have $\left\lvert X \right\rvert < \left\lvert \PP(X) \right\rvert$ for every set $X$.
+\end{proposition}
+\begin{proof}
+	There is an injective map $X \injto \PP(X)$
+	but there is no injective map $\PP(X) \injto X$ by \Cref{lem:cantor_diag}.
+\end{proof}
+
+Thus we can define:
+\begin{definition}
+	For a cardinal $\kappa$, we define $\kappa^+$ to be the least cardinal above $\kappa$,
+	called the \vocab{successor cardinal}.
+\end{definition}
+This $\kappa^+$ exists and has $\kappa^+ \le \left\lvert \PP(\kappa) \right\rvert$.
+
+Next, we claim that:
+\begin{exercise}
+	Show that if $A$ is a set of cardinals, then $\cup A$ is a cardinal.
+\end{exercise}
+
+Thus by transfinite induction we obtain that:
+\begin{definition}
+	For any $\alpha \in \On$, we define the \vocab{aleph numbers} as
+	\begin{align*}
+		\aleph_0 &= \omega \\
+		\aleph_{\alpha+1} &= \left( \aleph_\alpha \right)^+ \\
+		\aleph_{\lambda} &= \bigcup_{\alpha < \lambda} \aleph_\alpha.
+	\end{align*}
+\end{definition}
+
+Thus we have the following sequence of cardinals:
+\[
+	0 < 1 < 2 < \dots < \aleph_0 < \aleph_1 < \dots < \aleph_\omega < \aleph_{\omega+1} < \dots
+\]
+By definition, $\aleph_0$ is the cardinality of the natural numbers,
+$\aleph_1$ is the first uncountable ordinal, \dots.
+
+We claim the aleph numbers constitute all the cardinals:
+\begin{lemma}[Aleph Numbers Constitute All Infinite Cardinals]
+	If $\kappa$ is a cardinal then
+	either $\kappa$ is finite (i.e.\ $\kappa \in \omega$) or
+	$\kappa = \aleph_\alpha$ for some $\alpha \in \On$.
+\end{lemma}
+\begin{proof}
+	Assume $\kappa$ is infinite, and take $\alpha$ minimal with $\aleph_\alpha \ge \kappa$.
+	Suppose for contradiction that we have $\aleph_\alpha > \kappa$.
+	We may assume $\alpha > 0$, since the case $\alpha = 0$ is trivial.
+
+	If $\alpha = \ol\alpha + 1$ is a successor, then
+	\[ \aleph_{\ol\alpha} < \kappa < \aleph_{\alpha}
+		= (\aleph_{\ol\alpha})^+ \]
+	which contradicts the fact the definition of the successor cardinal.
+	
+	If $\alpha = \lambda$ is a limit ordinal, then $\aleph_\lambda$ is the
+	supremum $\bigcup_{\gamma < \lambda} \aleph_\gamma$.
+	So there must be some $\gamma < \lambda$ has $\aleph_\gamma > \kappa$,
+	which contradicts the minimality of $\alpha$.
+\end{proof}
+
+\begin{definition}
+	An infinite cardinal which is not a successor cardinal
+	is called a \vocab{limit cardinal}.
+	It is exactly those cardinals of the form $\aleph_\lambda$,
+	for $\lambda$ a limit ordinal, plus $\aleph_0$.
+\end{definition}
+
+
+\section{Cardinal Arithmetic}
+\prototype{$\aleph_0 \cdot \aleph_0 = \aleph_0 + \aleph_0 = \aleph_0$}
+Recall the way we set up ordinal arithmetic.
+Note that in particular, $\omega + \omega > \omega$ and $\omega^2 > \omega$.
+Since cardinals count size, this property is undesirable, and
+we want to have
+\begin{align*}
+	\aleph_0 + \aleph_0 &= \aleph_0 \\
+	\aleph_0 \cdot \aleph_0 &= \aleph_0
+\end{align*}
+because $\omega + \omega$ and $\omega \cdot \omega$ are countable.
+In the case of cardinals, we simply ``ignore order''.
+
+The definition of cardinal arithmetic is as expected:
+\begin{definition}[Cardinal Arithmetic]
+	Given cardinals $\kappa$ and $\mu$, define
+	\[ \kappa + \mu
+		\defeq
+		\left\lvert 
+		\left( \left\{ 0 \right\} \times \kappa \right)
+		\cup
+		\left( \left\{ 1 \right\} \times \mu \right)
+		\right\rvert
+	\]
+	and
+	\[
+		k \cdot \mu
+		\defeq
+		\left\lvert \mu \times \kappa \right\rvert
+		.
+	\]
+\end{definition}
+
+
+\begin{ques}
+	Check this agrees with what you learned in pre-school
+	for finite cardinals.
+\end{ques}
+
+\begin{abuse}
+	This is a slight abuse of notation since we are using
+	the same symbols as for ordinal arithmetic,
+	even though the results are different ($\omega \cdot \omega = \omega^2$
+	but $\aleph_0 \cdot \aleph_0 = \aleph_0$).
+	In general, I'll make it abundantly clear whether I am talking
+	about cardinal arithmetic or ordinal arithmetic.
+\end{abuse}
+To help combat this confusion, we use separate symbols for ordinals and cardinals.
+Specifically, $\omega$ will always refer to $\{0,1,\dots\}$ viewed as an ordinal;
+$\aleph_0$ will always refer to the same set viewed as a cardinal.
+More generally,
+\begin{definition}
+	Let $\omega_\alpha = \aleph_\alpha$ viewed as an ordinal.
+\end{definition}
+
+However, as we've seen already we have that $\aleph_0 \cdot \aleph_0 = \aleph_0$.
+In fact, this holds even more generally:
+
+\begin{theorem}[Infinite Cardinals Squared]
+	Let $\kappa$ be an infinite cardinal.
+	Then $\kappa \cdot \kappa = \kappa$.
+\end{theorem}
+\begin{proof}
+	Obviously $\kappa \cdot \kappa \ge \kappa$,
+	so we want to show $\kappa \cdot \kappa \le \kappa$.
+
+	The idea is to repeat the same proof that we had for $\aleph_0 \cdot \aleph_0 = \aleph_0$,
+	so we re-iterate it here. We took the ``square'' of elements of $\aleph_0$, and then
+	\emph{re-ordered} it according to the diagonal:
+	\[
+	\begin{array}{l|cccccc}
+		  & 0 & 1 & 2 & 3 & 4 & \dots \\ \hline
+		0 & 0 & 1 & 3 & 6 & 10 & \dots \\
+		1 & 2 & 4 & 7 & 11 & \dots & \\
+		2 & 5 & 8 & 12 & \dots & & \\
+		3 & 9 & 13 & \dots & & & \\
+		4 & 14 & \dots & & & &
+	\end{array}
+	\]
+	Let's copy this idea for a general $\kappa$.
+
+	We proceed by transfinite induction on $\kappa$.
+	The base case is $\kappa = \aleph_0$, done above.
+	For the inductive step, first we put the ``diagonal'' ordering $<_{\text{diag}}$
+	on $\kappa \times \kappa$ as follows:
+	for $(\alpha_1, \beta_1)$ and $(\alpha_1, \beta_2)$ in $\kappa \times \kappa$
+	we declare $(\alpha_1, \beta_1) <_{\text{diag}} (\alpha_2, \beta_2)$ if
+	\begin{itemize}
+		\ii $\max \left\{ \alpha_1, \beta_1 \right\} < \max \left\{ \alpha_2, \beta_2 \right\}$
+		(they are on different diagonals), or
+		\ii $\max \left\{ \alpha_1, \beta_1 \right\} = \max \left\{ \alpha_2, \beta_2 \right\}$
+		and $\alpha_1 < \alpha_2$ (same diagonal).
+	\end{itemize}
+	
+	Then $<_{\text{diag}}$ is a well-ordering of $\kappa \times \kappa$,
+	so we know it is in order-preserving bijection with some ordinal $\gamma$.
+	Our goal is to show that $\left\lvert \gamma \right\rvert \le \kappa$.
+	To do so, it suffices to prove that for any $\ol\gamma \in \gamma$,
+	we have $\left\lvert \ol\gamma \right\rvert < \kappa$.
+
+	Suppose $\ol\gamma$ corresponds to the point $(\alpha, \beta) \in \kappa$
+	under this bijection.
+	If $\alpha$ and $\beta$ are both finite, then certainly $\ol\gamma$ is finite too.
+	Otherwise, let $\ol\kappa = \max \{\alpha, \beta\} < \kappa$;
+	then the number of points below $\ol\gamma$ is at most
+	\[ 
+		\left\lvert \alpha \right\rvert \cdot \left\lvert \beta \right\rvert
+		\le \ol\kappa \cdot \ol\kappa
+		= \ol\kappa
+	\]
+	by the inductive hypothesis.
+	So $\left\lvert \ol\gamma \right\rvert \le \ol\kappa < \kappa$ as desired.
+\end{proof}
+
+From this it follows that cardinal addition and multiplication is really boring:
+\begin{theorem}[Infinite Cardinal Arithmetic is Trivial]
+	Given cardinals $\kappa$ and $\mu$, one of which is infinite,
+	we have \[ \kappa \cdot \mu = \kappa + \mu = \max\left( \kappa, \mu \right).\]
+\end{theorem}
+\begin{proof}
+	The point is that both of these are less than the square of the maximum.
+	Writing out the details:
+	\begin{align*}
+		\max \left( \kappa, \mu \right)
+		&\le \kappa + \mu \\ 
+		&\le \kappa \cdot \mu \\ 
+		&\le \max \left( \kappa, \mu \right) \cdot \max \left( \kappa, \mu  \right) \\
+		&= \max\left( \kappa, \mu \right). \qedhere
+	\end{align*}
+\end{proof}
+
+
+
+
+\section{Cardinal Exponentiation}
+\prototype{$2^\kappa = \left\lvert \PP(\kappa) \right\rvert$.}
+\begin{definition}
+	Suppose $\kappa$ and $\lambda$ are cardinals.
+	Then
+	\[ \kappa^\lambda
+		\defeq \left\lvert \mathscr F(\lambda, \kappa) \right\rvert.
+	\]
+	Here $\mathscr F(A,B)$ is the set of functions from $A$ to $B$.
+\end{definition}
+
+\begin{abuse}
+	As before, we are using the same notation for
+	both cardinal and ordinal arithmetic. Sorry!
+\end{abuse}
+
+In particular, $2^\kappa = \left\lvert \PP(\kappa) \right\rvert > \kappa$,
+and so from now on we can use the notation $2^\kappa$ freely.
+Note that this is totally different from ordinal arithmetic;
+there we had $2^\omega = \bigcup_{n\in\omega} 2^n = \omega$.
+In cardinal arithmetic $2^{\aleph_0} > \aleph_0$.
+
+I have unfortunately not told you what $2^{\aleph_0}$ equals.
+A natural conjecture is that $2^{\aleph_0} = \aleph_1$; this is called the
+\vocab{Continuum Hypothesis}.
+It turns out to that this is \emph{undecidable} -- it is not possible
+to prove or disprove this from the $\ZFC$ axioms.
+
+\section{Cofinality}
+\prototype{$\aleph_0$, $\aleph_1$, \dots\ are all regular, but $\aleph_\omega$ has cofinality $\omega$.}
+
+\begin{definition}
+	Let $\lambda$ be a limit ordinal, and $\alpha$ another ordinal.
+	A map $f : \alpha \to \lambda$ of ordinals is called \vocab{cofinal}
+	if for every $\ol\lambda < \lambda$, there is some $\ol\alpha \in \alpha$
+	such that $f(\ol\alpha) \ge \ol\lambda$.
+	In other words, the map reaches arbitrarily high into $\lambda$.
+\end{definition}
+\begin{example}
+	[Example of a Cofinal Map]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii The map $\omega \to \omega^\omega$ by $n \mapsto \omega^n$ is cofinal.
+		\ii For any ordinal $\alpha$, the identity map $\alpha \to \alpha$ is cofinal.
+	\end{enumerate}
+\end{example}
+
+\begin{definition}
+	Let $\lambda$ be a limit ordinal.
+	The \vocab{cofinality} of $\lambda$, denoted $\cof(\lambda)$,
+	is the smallest ordinal $\alpha$ such that there is a cofinal map
+	$\alpha \to \lambda$.
+\end{definition}
+\begin{ques}
+	Why must $\alpha$ be an infinite cardinal?
+\end{ques}
+
+Usually, we are interested in taking the cofinality of a cardinal $\kappa$.
+
+Pictorially, you can imagine standing at the bottom of the universe and looking
+up the chain of ordinals to $\kappa$.
+You have a machine gun and are firing bullets upwards, and you want to get arbitrarily
+high but less than $\kappa$.
+The cofinality is then the number of bullets you need to do this.
+
+We now observe that ``most'' of the time, the cofinality of a cardinal is itself.
+Such a cardinal is called \vocab{regular}.
+\begin{example}[$\aleph_0$ is Regular]
+	$\cof(\aleph_0) = \aleph_0$, because no finite subset of $\omega$ can reach arbitrarily high.
+\end{example}
+\begin{example}[$\aleph_1$ is Regular]
+	$\cof(\aleph_1) = \aleph_1$.
+	Indeed, assume for contradiction that some countable
+	set of ordinals $A = \{ \alpha_0, \alpha_1, \dots \} \subseteq \omega_1$
+	reaches arbitrarily high inside $\omega_1$.
+	Then $\Lambda = \cup A$ is a \emph{countable} ordinal,
+	because it is a countable union of countable ordinals.
+	In other words $\Lambda \in \omega_1$.
+	But $\Lambda$ is an upper bound for $A$, contradiction.
+\end{example}
+On the other hand, there \emph{are} cardinals which are not regular;
+since these are the ``rare'' cases we call them \vocab{singular}.
+\begin{example}[$\aleph_\omega$ is Not Regular]
+	Notice that $\aleph_0 < \aleph_1 < \aleph_2 < \dots$ reaches
+	arbitrarily high in $\aleph_\omega$, despite only having $\aleph_0$ terms.
+	It follows that $\cof(\aleph_\omega) = \aleph_0$.
+\end{example}
+
+We now confirm a suspicion you may have:
+\begin{theorem}
+	[Successor Cardinals Are Regular]
+	If $\kappa = \ol\kappa^+$ is a successor cardinal,
+	then it is regular.
+\end{theorem}
+\begin{proof}
+	We copy the proof that $\aleph_1$ was regular.
+
+	Assume for contradiction that for some $\mu \le \ol\kappa$,
+	there are $\mu$ sets reaching arbitrarily high in $\kappa$ as a cardinal.
+	Observe that each of these sets must have cardinality at most $\ol\kappa$.
+	We take the union of all $\mu$ sets, which gives an ordinal $\Lambda$
+	serving as an upper bound.
+
+	The number of elements in the union is at most
+	\[ \#\text{sets} \cdot \#\text{elms}
+		\le \mu \cdot \ol\kappa = \ol\kappa \]
+	and hence $\left\lvert \Lambda \right\rvert \le \ol\kappa < \kappa$.
+\end{proof}
+
+\section{Inaccessible Cardinals}
+So, what about limit cardinals?
+It seems to be that most of them are singular: if $\aleph_\lambda \ne \aleph_0$ is a limit ordinal,
+then the sequence $\{\aleph_\alpha\}_{\alpha \in \lambda}$ (of length $\lambda$) is certainly cofinal.
+
+\begin{example}[Beth Fixed Point]
+	Consider the monstrous cardinal
+	\[ \kappa = \aleph_{\aleph_{\aleph_{\ddots}}}. \]
+	This might look frighteningly huge, as $\kappa = \aleph_\kappa$,
+	but its cofinality is $\omega$ as it is the limit of the sequence
+	\[ \aleph_0, \aleph_{\aleph_0}, \aleph_{\aleph_{\aleph_0}}, \dots \]
+\end{example}
+
+More generally, one can in fact prove that
+\[ \cof(\aleph_\lambda) = \cof(\lambda). \]
+But it is actually conceivable that $\lambda$ is so large
+that $\left\lvert \lambda \right\rvert = \left\lvert \aleph_\lambda \right\rvert$.
+
+A regular limit cardinal other than $\aleph_0$ has a special name: it is \vocab{weakly inaccessible}.
+Such cardinals are so large that it is impossible to prove or disprove their existence in $\ZFC$.
+It is the first of many so-called ``large cardinals''.
+
+An infinite cardinal $\kappa$ is a strong limit cardinal if
+\[ \forall \ol\kappa < \kappa \quad 2^{\ol\kappa} < \kappa \]
+for any cardinal $\ol\kappa$.  For example, $\aleph_0$ is a strong limit cardinal.
+\begin{ques}
+	Why must strong limit cardinals actually be limit cardinals?
+	(This is offensively easy.)
+\end{ques}
+A regular strong limit cardinal other than $\aleph_0$
+is called \vocab{strongly inaccessible}.
 
 \section\problemhead
-Inaccessible
+\begin{problem}
+	Compute $\left\lvert V_\omega \right\rvert$.
+\end{problem}
+
+\begin{problem}
+	Prove that for any limit ordinal $\alpha$, $\cof(\alpha)$ is a \emph{regular} cardinal.
+	\begin{hint}
+		Rearrange the cofinal maps to be nondecreasing.
+	\end{hint}
+\end{problem}
+
+\begin{sproblem}
+	[Strongly Inaccessible Cardinals]
+	\label{prob:strongly_inaccessible}
+	Show that for any strongly inaccessible $\kappa$,
+	we have $\left\lvert V_\kappa \right\rvert = \kappa$.
+\end{sproblem}
+
+\begin{problem}
+	[Konig's Theorem]
+	Show that \[ \kappa^{\cof(\kappa)} > \kappa \] for every infinite cardinal $\kappa$.
+\end{problem}
 
 
 \chapter{Inner Model Theory}
@@ -389,7 +1436,7 @@ Let me give you an example of what I mean, and then make it rigorous.
 	This is not a very good model of $\ZFC$, but let's see if we can
 	make sense of some of the first few axioms.
 	\begin{enumerate}[(a)]
-		\ii $\MM$ satisfies $\mathtt{Extensionality}$, which is the sentence
+		\ii $\MM$ satisfies $\Extensionality$, which is the sentence
 		\[ \forall x \forall y \forall a : \left( a \in x \iff a \in y \right) \implies x = y. \]
 		This just follows from the fact that $E$ is actually $\in$.
 
@@ -397,10 +1444,10 @@ Let me give you an example of what I mean, and then make it rigorous.
 		\[ \exists a : \forall x \; \neg (x \in a). \]
 		Namely, take $a = \varnothing \in \omega$.
 
-		\ii $\MM$ does not satisfy $\mathtt{Pairing}$, since $\{1,3\}$ is not in $\omega$,
+		\ii $\MM$ does not satisfy $\Pairing$, since $\{1,3\}$ is not in $\omega$,
 		even though $1, 3 \in \omega$.
 
-		\ii Miraculously, $\MM$ satisfies $\mathtt{Union}$, since for any $n \in \omega$,
+		\ii Miraculously, $\MM$ satisfies $\Union$, since for any $n \in \omega$,
 		$\cup n$ is $n-1$ (unless $n=0$).
 		The Union axiom statements that
 		\[ \forall a \exists z \quad \forall x \; (x \in z) \iff (\exists y : x \in y \in z). \]
@@ -542,7 +1589,7 @@ A key point to remember is that the behavior of a model is largely determined by
 It turns out we can say even more than this.
 
 Consider a formula such as
-\[ \mathtt{isempty}(x) : \neg \exists a (a \in x) \]
+\[ \mathtt{isEmpty}(x) : \neg \exists a (a \in x) \]
 which checks whether a given set $x$ has a nonempty element.
 Technically, this has an ``$\exists$'' in it.
 But somehow this $\exists$ does not really search over the entire model,
@@ -699,15 +1746,14 @@ true for any nonempty transitive set $M$.
 	Let $M$ be a nonempty transitive set. Then
 	\begin{enumerate}[(i)]
 		\ii $M$ satisfies $\Extensionality$, $\Foundation$, $\EmptySet$.
-		\ii $M \vDash \mathtt{Pairing}$ if $x,y \in M \implies \{x,y\} \in M$.
-		\ii $M \vDash \mathtt{Union}$ if $x \in M \implies \cup x \in M$.
+		\ii $M \vDash \Pairing$ if $x,y \in M \implies \{x,y\} \in M$.
+		\ii $M \vDash \Union$ if $x \in M \implies \cup x \in M$.
 		\ii $M \vDash \PowerSet$ if $x \in M \implies \PP(x) \cap M \in M$.
-		\ii $M \vDash \mathtt{Comprehension}$ if for every set $C$
-		which is $M$-definable with parameters, and every $x \in M$, we have $C \cap x \in M$.
-		\ii $M \vDash \mathtt{Collection}$ if for every function $F : M \to M$
+		\ii $M \vDash \Replacement$ if for every $x \in M$
+		and every function $F : x \to M$
 		which is $M$-definable with parameters,
-		and every $x \in M$, we have $F``x \in M$ as well.
-		\ii $M \vDash \mathtt{Infinity}$ as long as $\omega \in M$.
+		we have $F``x \in M$ as well.
+		\ii $M \vDash \Infinity$ as long as $\omega \in M$.
 	\end{enumerate}
 \end{lemma}
 Here, a set $X \subseteq M$ is \vocab{$M$-definable with parameters}
@@ -720,7 +1766,6 @@ As a trivial example, $X = M$ is $M$-definable without parameters
 (just take $\phi[x]$ to always be true), and certainly we do not have $X \in M$.
 \begin{exercise}
 	Verify (i)-(iv) above.
-	(The others are not much harder, but more annoying.)
 \end{exercise}
 \begin{remark}
 	Converses to the statements of \Cref{lem:transitive_ZFC}
@@ -897,8 +1942,78 @@ Put another way, cardinalities in $M$ can look vastly different from those in th
 because cardinality is measured by bijections, which I guess is inevitable, but leads to chaos.
 
 \section{Picturing Inner Models}
+Here is a picture of a countable transitive model $M$.
 
+\begin{center}
+	\begin{asy}
+		size(14cm);
+		pair A = (12,30);
+		pair B = -conj(A);
+		pair M = midpoint(A--B);
+		pair O = origin;
+		MP("V", A, dir(10));
+		draw(A--O--B);
 
+		fill(A--O--B--cycle, opacity(0.3)+palecyan);
+		MP("M", 0.7*M, 3*dir(0)+dir(45));
+
+		MP("V_0 = \varnothing", origin, dir(-20));
+		MP("V_1 = \{\varnothing\}", 0.05*A, dir(0));
+		MP("V_2 = \{\varnothing, \{\varnothing\} \}", 0.10*A, dir(0));
+
+		pair A1 = 0.4*A;
+		pair B1 = 0.4*B;
+		draw(MP("V_\omega", A1, dir(0))--B1);
+		draw(MP("V_{\omega+1} = \mathcal P(V_n)", 0.45*A, dir(0))--0.45*B);
+		Drawing("\omega", 0.45*M, dir(45));
+
+		filldraw(O--A1--(A1+0.15*M)..(0.7*M)..(B1+0.15*M)--B1--cycle,
+			opacity(0.3)+lightgreen, heavygreen+1);
+		draw(O--0.7*M, heavygreen+1);
+
+		Drawing("\aleph_1^V", 0.80*M, dir(0));
+		Drawing("\aleph_2^V", 0.90*M, dir(0));
+		Drawing("\aleph_1^M", 0.55*M, dir(0));
+		Drawing("\aleph_2^M", 0.60*M, dir(0));
+
+		pair F = 0.6*B+0.15*A;
+		Drawing("f", F, dir(135));
+		draw(F--0.55*M, dotted, EndArrow, Margins);
+		draw(F--0.45*M, dotted, EndArrow, Margins);
+
+		draw(0.7*M--M);
+		MP("\mathrm{On}^V", M, dir(90));
+		MP("\mathrm{On}^M", 0.7*M, dir(135));
+	\end{asy}
+\end{center}
+
+Note that $M$ and $V$ must agree on finite sets,
+since every finite set has a formula that can express it.
+However, past $V_\omega$ the model and the true universe start to diverge.
+
+The entire model $M$ is countable, so it only occupies a small
+portion of the universe, below the first uncountable cardinal $\aleph_1^V$
+(where the superscript means ``of the true universe $V$'').
+The ordinals in $M$ are precisely the ordinals of $V$ which happen to live inside the model,
+because the sentence ``$\alpha$ is an ordinal'' is absolute.
+On the other hand, $M$ has only a portion of these ordinals, since it is only
+a lowly set, and a countable set at that.
+To denote the ordinals of $M$, we write $\On^M$, where the superscript means
+``the ordinals as computed in $M$''.
+Similarly, $\On^V$ will now denote the ``set of true ordinals''.
+
+Nonetheless, the model $M$ has its own version of the first uncountable
+cardinal $\aleph_1^M$.
+In the true universe, $\aleph_1^M$ is countable (below $\aleph_1^V$),
+but the necessary bijection witnessing this might not be inside $M$.
+Thats' why $M$ can think $\aleph_1^M$ is uncountable, 
+even if it is a countable cardinal in the original universe.
+
+So our model $M$ is a brain in a vat.
+It happens to believe all the axioms of $\ZFC$, and so every
+statement that is true in $M$ could conceivably be true in $V$ as well.
+But $M$ can't see the universe around it; it has no idea that what it believes is
+the uncountable $\aleph_1^M$ is really just an ordinary countable cardinal.
 
 \section\problemhead
 \begin{sproblem}
@@ -919,19 +2034,19 @@ because cardinality is measured by bijections, which I guess is inevitable, but 
 	(This should be easy if you've understood the chapter.)
 \end{dproblem}
 
-\begin{dproblem}
-	[Tarski-Vaught Test]
-	<++>
-\end{dproblem}
-
-\begin{sproblem}
-	[Inaccessible Cardinal]
-	\label{prob:inaccessible_model}
-\end{sproblem}<++>
-
 Reflection
 
+\begin{sproblem}
+	[Inaccessible Cardinal Produce Models]
+	\label{prob:inaccessible_model}
+\end{sproblem}
 
+
+
+\chapter{Examples of Models}
+$V=L$
+
+ultrapower
 \chapter{Forcing}
 We are now going to introduce Paul Cohen's technique of \vocab{forcing},
 which we then use to break the Continuum Hypothesis.
@@ -944,11 +2059,66 @@ Then, we are going to construct a bigger universe $M[G]$ which contains both $M$
 we are taking $\ZZ$ and adding in a new element $\sqrt 2$, plus everything that can be generated from it.)
 By choosing $\Po$ well, we can cause $M[G]$ to have desirable properties.
 
-The models $M$ and $M[G]$ will share the same ordinals.
+Picture:
+
+\begin{center}
+	\begin{asy}
+		size(14cm);
+		pair A = (12,30);
+		pair B = -conj(A);
+		pair M = midpoint(A--B);
+		pair O = origin;
+		MP("V", A, dir(10));
+		draw(A--O--B);
+
+		fill(A--O--B--cycle, opacity(0.3)+palecyan);
+
+		MP("V_0 = \varnothing", origin, dir(-20));
+		MP("V_1 = \{\varnothing\}", 0.05*A, dir(0));
+		MP("V_2 = \{\varnothing, \{\varnothing\} \}", 0.10*A, dir(0));
+
+		pair A1 = 0.4*A;
+		pair B1 = 0.4*B;
+		draw(MP("V_\omega", A1, dir(0))--B1);
+		draw(MP("V_{\omega+1} = \mathcal P(V_n)", 0.45*A, dir(0))--0.45*B);
+		Drawing("\omega", 0.45*M, dir(45));
+
+		filldraw(O--A1--(A1+0.30*M)..(0.85*M)..(B1+0.30*M)--B1--cycle,
+			opacity(0.3)+lightgreen, heavygreen+1);
+		draw(O--0.85*M, heavygreen+1);
+		filldraw(O--(1.3*A1)..(0.85*M)..(1.3*B1)--cycle,
+			opacity(0.1)+lightred, heavyred+1);
+
+		Drawing("\aleph_1^V", 0.95*M, dir(0));
+
+		pair F = 0.55*B+0.10*A;
+		Drawing("f", F, dir(90));
+		draw(F--0.55*M, dotted, EndArrow, Margins);
+		draw(F--0.45*M, dotted, EndArrow, Margins);
+
+		Drawing("\aleph_1^M", 0.55*M, dir(45));
+		Drawing("\aleph_1^{M[G]}", 0.65*M, dir(45));
+
+		draw(0.85*M--M);
+		MP("\mathrm{On}^V", M, dir(90));
+		MP("\mathrm{On}^M = \mathrm{On}^{M[G]}", 0.85*M, dir(135));
+
+		MP("M \subseteq M[G]", 0.85*M, 3*dir(0)+dir(45));
+
+		Drawing("\mathbb P", 0.3*M+0.3*A, dir(135));
+		Drawing("G", 0.55*A+0.1*B, dir(45));
+	\end{asy}
+\end{center}
+
+The model $M$ is drawn in green, and its extension $M[G]$ is drawn in red.
+
+The models $M$ and $M[G]$ will share the same ordinals, which is represented here
+as $M$ being no taller than $M[G]$.
 But one issue with this is that forcing may introduce some new bijections between cardinals of $M$
-that were not there originally; this leads to a phenomenon called \emph{cardinal collapse}:
+that were not there originally; this leads to the phenomenon called \vocab{cardinal collapse}:
 quite literally, cardinals in $M$ will no longer be cardinals in $M[G]$, and instead just an ordinal.
-\missingfigure{universe showing cardinal collapse}
+This is because in the process of adjoining $G$, we may accidentally pick up some bijections which were not in the earlier universe.
+In the diagram drawn, this is the function $f$ mapping $\omega$ to $\aleph_1^M$.
 
 In the case of the Continuum Hypothesis, we'll introduce a $\Po$ such that
 any generic subset $G$ will ``encode'' $\aleph_2^M$ real numbers.
@@ -1287,22 +2457,23 @@ Let's see what we can get off the bat.
 \begin{lemma}[Properties Obtained from Filters]
 	Let $M$ be a transitive model of $\ZFC$.
 	If $G$ is a filter, then $M[G]$ is transitive
-	and satisfies Extensionality, Foundation, EmptySet, Infinity, Pairing, and Union.
+	and satisfies $\Extensionality$, $\Foundation$, 
+	$\EmptySet$, $\Infinity$, $\Pairing$, and $\Union$.
 \end{lemma}
-\todo{mathtt these}
-This leaves PowerSet, Comprehension, Replacement, and Choice.
-\begin{proof}
-	Hence, we get Extensionality and Foundation for free.
-	Infinity and EmptySet follows from $M \subseteq M[G]$.
 
-	For Pairing, suppose $\sigma_1^G, \sigma_2^G \in M[G]$.
+This leaves $\PowerSet$, $\Replacement$, and Choice.
+\begin{proof}
+	Hence, we get $\Extensionality$ and $\Foundation$ for free.
+	Then $\Infinity$ and $\EmptySet$ follows from $M \subseteq M[G]$.
+
+	For $\Pairing$, suppose $\sigma_1^G, \sigma_2^G \in M[G]$.
 	Then
 	\[ \sigma = 
 		\left\{ \left<\sigma_1, 1_\Po\right>, \left<\sigma_2, 1_\Po\right> \right\}
 	\]
 	works satisfies $\sigma^G = \{\sigma_1, \sigma_2\}$.
-	(Note that we used Pairing in $M$.)
-	Union is left as a problem, which you are encouraged to try now.
+	(Note that we used $M \vDash \Pairing$.)
+	$\Union$ is left as a problem, which you are encouraged to try now.
 \end{proof}
 Up to here, we don't need to know anything about when a sentence is true in $M[G]$;
 all we had to do was contrive some names like $\check x$ or
@@ -1445,7 +2616,7 @@ Well, by induction, we can actually show the following result:
 		is dense below $p$ then $p \Vdash \varphi$.
 	\end{enumerate}
 \end{lemma}
-These are just inductions on the five parts of the definition.
+You can prove both of these by induction on formula complexity.
 From this it also follows that
 \begin{corollary}[Completeness]
 	The set $\left\{ p \mid p \Vdash \varphi \text{ or } p \Vdash \neg\varphi \right\}$
@@ -1473,7 +2644,7 @@ This completes the proof of the Fundamental Theorem.
 	Then \[ M[G] \vDash \ZFC. \]
 \end{theorem}
 \begin{proof}
-	We'll just do Comprehension, as the other remaining axioms are similar.
+	We'll just do $\Comprehension$, as the other remaining axioms are similar.
 	
 	Suppose $\sigma^G, \sigma_1^G, \dots, \sigma_n^G \in M[G]$
 	are a set and parameters, and
@@ -1513,7 +2684,7 @@ This completes the proof of the Fundamental Theorem.
 	is the correct choice.
 	It's actually clear that $\tau^G = A$ by construction;
 	the ``content'' is showing that $\tau$ is in actually a name of $M$,
-	which follows from Comprehension in $M$.
+	which follows from $M \vDash \Comprehension$.
 
 	So really, the point of the Fundamental Theorem of Forcing
 	is just to let us write down this $\tau$;
@@ -1523,11 +2694,10 @@ This completes the proof of the Fundamental Theorem.
 
 
 \section\problemhead
-RS Lemma
-
-Union
-
-
+\begin{problem}
+	For a filter $G$ and $M$ a transitive model of $\ZFC$,
+	show that $M[G] \vDash \Union$.
+\end{problem}
 
 %\begin{exercise}
 %	Show that $\rank \sigma^G \le \nrank(\sigma)$ for any $\sigma \in \Name^M$.
@@ -1706,7 +2876,8 @@ but that they are in fact \emph{incompatible}.
 	A poset $\Po$ has the \vocab{$\kappa$-chain condition}
 	(where $\kappa$ is a cardinal) if all strong antichains
 	in $\Po$ have size less than $\kappa$.
-	The special case $\kappa = \omega$ is called the \vocab{countable chain condition}.
+	The special case $\kappa = \aleph_1$ is called the \vocab{countable chain condition},
+	because it implies that every strong antichain is countable.
 \end{definition}
 
 We are going to show that if the poset has the $\kappa$-chain condition
