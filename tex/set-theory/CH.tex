@@ -1,0 +1,311 @@
+\chapter{The Failure of the Continuum Hypothesis}
+We now use the technique of forcing to break the Contiuum Hypothesis by choosing a good poset $\Po$.
+
+\section{Forcing $V \neq L$ is really easy}
+As a small aside, to check we're on the right track we show the following result.
+
+\begin{theorem}[$V \ne L$]
+	Let $M$ be a countable transitive model of $\ZFC$.
+	Let $\Po \in M$ be \emph{any} splitting poset,
+	and let $G \subseteq \Po$ be $M$-generic.
+	Then $M[G] \vDash (V \neq L)$.
+\end{theorem}
+\begin{proof}
+	Since $L$ has a $\Sigma_1$ definition,
+	we have \[ L^{M[G]} = L^M \subseteq M \subsetneq M[G] \]
+	where the last part follows from $G \notin M[G]$.
+\end{proof}
+
+Thus $M[G] \vDash \ZFC + (V \ne L)$ for any splitting poset $\Po$,
+and we are one step closer to breaking $\CH$.
+
+\section{Adding in Reals}
+Starting with a \emph{countable} transitive model $M$.
+
+We want to choose $\Po \in M$ such that $(\aleph_2)^M$ many real numbers appear,
+and then worry about cardinal collapse later.
+
+Recall the earlier situation where we set $\Po$ to be the infinite complete binary tree; its nodes can be thought of as partial functions $n \to 2$ where $n < \omega$.
+Then $G$ itself is a path down this tree; i.e.\ it can be encoded as a total function $G : \omega \to 2$,
+and corresponds to a real number.
+
+\begin{center}
+	\begin{asy}
+		size(8cm);
+		pair P = Drawing("\varnothing", red, (0,4), red, dir(90));
+		pair P0 = Drawing("0", red, (-5,2), red, 1.5*dir(90));
+		pair P1 = Drawing("1", (5,2),  1.5*dir(90));
+		pair P00 = Drawing("00", (-7,0), 1.4*dir(120));
+		pair P01 = Drawing("01", red, (-3,0), red, 1.4*dir(60));
+		pair P10 = Drawing("10", (3,0),  1.4*dir(120));
+		pair P11 = Drawing("11", (7,0),  1.4*dir(60));
+
+		pair P000 = Drawing("000", (-8,-3));
+		pair P001 = Drawing("001", (-6,-3));
+		pair P010 = Drawing("010", red, (-4,-3), red);
+		pair P011 = Drawing("011", (-2,-3));
+
+		pair P100 = Drawing("100", (2,-3));
+		pair P101 = Drawing("101", (4,-3));
+		pair P110 = Drawing("110", (6,-3));
+		pair P111 = Drawing("111", (8,-3));
+
+		draw(P01--P0--P00);
+		draw(P11--P1--P10);
+		draw(P0--P--P1);
+		draw(P000--P00--P001);
+		draw(P100--P10--P101);
+		draw(P010--P01--P011);
+		draw(P110--P11--P111);
+
+		draw(P--P0--P01--P010--(P010+2*dir(-90)), red+1.4);
+		MP("G", P010+2*dir(-90), dir(-90), red);
+	\end{asy}
+\end{center}
+
+We want to do something similar, but with $\omega_2$ many real numbers instead of just one.
+In light of this, consider in $M$ the following poset:
+\[
+	\Po = 
+	\opname{Add} \left( \omega_2, \omega \right)
+	\defeq
+	\left( 
+	\left\{ p : \omega_2 \times \omega \to 2,
+		\dom(p) < \omega
+	\right\},
+	\supseteq
+	\right).
+\]
+These elements (conditions) are ``partial functions'':
+we take some finite subset of $\omega \times \omega_2$ and map it into $2=\{0,1\}$.
+Moreover, we say $p \le q$ if $\dom(p) \supseteq \dom(q)$ and the two functions agree over $\dom(q)$.
+\begin{ques}
+	What is $1_\Po$ here?
+\end{ques}
+
+\begin{exercise}
+	Show that a generic $G$ can be encoded as a function $\omega_2 \times \omega \to 2$.
+\end{exercise}
+
+%Let $G \subseteq \opname{Add}(\omega_2, \omega)$ be an $M$-generic.
+%We claim that, like in the binary case, $G$ can be encoded as a function $\omega_2 \times \omega \to 2$.
+%To see this, consider $\alpha \in \omega_2$ and $n \in \omega$; we have the dense set
+%\[ D_{\alpha, n}
+%	= \left\{ p \in \opname{Add}(\omega_2, \omega)
+%	\mid (\alpha, n) \in \dom(p) \right\}
+%\]
+%(this is obviously dense, given any $p$ add in $(\alpha, n)$ if it's not in there already).
+%So $G$ hits this dense set, meaning that for every $(\alpha, n)$ there's a function in $G$ which defines it.
+%Using the fact that $G$ is upwards closed and a filter, we may as before we may interpret $G$ as a function $\omega_2 \times \omega \to 2$.
+
+\begin{lemma}[$G$ encodes distinct real numbers]
+	For $\alpha \in \omega_2$ define
+	\[ G_\alpha = \left\{ n \mid G\left( \alpha,n \right) = 0 \right\} \in \PP(\NN). \]
+	Then $G_\alpha \neq G_\beta$ for any $\alpha \neq \beta$.
+\end{lemma}
+\begin{proof}
+	We claim that the set
+	\[ D = \left\{ q \mid \exists n \in \omega :
+		q\left( \alpha, n \right) \neq q\left( \beta, n \right)
+		\text{ are both defined}
+	\right\} \]
+	is dense.
+	\begin{ques}
+		Check this.
+		(Use the fact that the domains are all finite.)
+	\end{ques}
+%	This is pretty easy to see.
+%	Consider $p \in \opname{Add}(\omega_2, \omega)$.
+%	Then you can find an $n$ such that
+%	neither $(\alpha, n)$ nor $(\beta, n)$ is defined,
+%	just because $\dom(p)$ is finite.
+%	Then you make $p'$ as $p$ plus $p'( (\alpha, n) ) = 1$
+%	and $p'( (\beta, n) ) = 0$.
+%	Hence the set is dense.
+
+	Since $G$ is an $M$-generic it hits this dense set $D$.
+	Hence $G_\alpha \neq G_\beta$.
+\end{proof}
+
+Since $G \in M[G]$ and $M[G] \vDash \ZFC$,
+it follows that each $G_\alpha$ is in $M[G]$.
+So there are at least $\aleph_2^M$ real numbers in $M$.
+We are done once we can show there is no cardinal collapse.
+
+\section{The Countable Chain Condition}
+It remains to show that with $\Po = \opname{Add}(\omega, \omega_2)$, we have that
+\[ \aleph_2^{M[G]} = \aleph_2^M. \]
+In that case, since $M[G]$ will have $\aleph_2^M = \aleph_2^{M[G]}$ many reals, we will be done.
+
+To do this, we'll rely on the following combinatorial property of $\Po$:
+
+\begin{definition}
+	We say that $A \subset \mathcal P$ is a \vocab{strong antichain}
+	if for any distinct $p$ and $q$ in $A$, we have $p \perp q$.
+\end{definition}
+\begin{example}[Example of an Antichain]
+	In the infinite binary tree, 
+	the set $A = \{00, 01, 10, 11\}$ is a strong antichain
+	(in fact maximal by inclusion).
+\end{example}
+This is stronger than the notion of ``antichain'' than you might be used to!\footnote{%
+	In the context of forcing, some authors use ``antichain'' to refer to ``strong antichain''.
+	I think this is lame.}
+We don't merely require that every two elements are incomparable,
+but that they are in fact \emph{incompatible}.
+\begin{ques}
+	Draw a finite poset and an antichain of it which is not strong.
+\end{ques}
+
+\begin{definition}
+	A poset $\Po$ has the \vocab{$\kappa$-chain condition}
+	(where $\kappa$ is a cardinal) if all strong antichains
+	in $\Po$ have size less than $\kappa$.
+	The special case $\kappa = \aleph_1$ is called the \vocab{countable chain condition},
+	because it implies that every strong antichain is countable.
+\end{definition}
+
+We are going to show that if the poset has the $\kappa$-chain condition
+then it preserves all cardinals greater than $\kappa$.
+% or was it > \kappa?
+In particular, the countable chain condition will show that $\Po$ preserves all the cardinals.
+Then, we'll show that $\opname{Add}(\omega, \omega_2)$ does indeed have this property.
+This will complete the proof.
+
+We isolate the following lemma.
+\begin{lemma}[Possible Values Argument]
+	Suppose $M$ is a transitive model of $\ZFC$ and $\Po$ is a partial order
+	such that $\Po$ has the $\kappa$-chain condition in $M$.
+	Let $X,Y \in M$ and let $f: X \to Y$
+	be some function in $M[G]$, but $f \notin M$.
+
+	Then there exists a function $F \in M$, with $F: X \to \PP(Y)$ and such that
+	for any $x \in X$,
+	\[ f(x) \in F(x) \quad\text{and}\quad \left\lvert F(x) \right\rvert^M < \kappa. \]
+\end{lemma}
+What this is saying is that if $f$ is some new function that's generated,
+$M$ is still able to pin down the values of $f$ to at most $\kappa$ many values.
+
+\begin{proof}
+	The idea behind the proof is easy: any possible value of $f$ gives us some condition in
+	the poset $\Po$ which forces it.
+	Since distinct values must have incompatible conditions,
+	the $\kappa$-chain condition guarantees
+	there are at most $\kappa$ such values.
+
+	Here are the details.
+	Let $\dot f$, $\check X$, $\check Y$ be names for $f$, $X$, $Y$.
+	Start with a condition $p$ such that $p$ forces the sentence
+	\[ \text{``$\dot f$ is a function from $\check X$ to $\check Y$''}. \]
+	We'll work just below here.
+
+	For each $x \in X$, we can consider (using the Axiom of Choice) a maximal antichain $A(x)$
+	of incompatible conditions $q \le p$ which forces $f(x)$ to equal some value $y \in Y$.
+	Then, we let $F(x)$ collect all the resulting $y$-values.
+	These are all possible values, and there are less than $\kappa$ of them.
+\end{proof}
+
+\section{Preserving Cardinals}
+\begin{definition}
+	For $M$ a transitive model of ZFC and $\Po \in M$ a poset,
+	we say $\Po$ \vocab{preserves cardinals} if
+	$\forall G \subseteq \Po$ an $M$-generic,
+	the model $M$ and $M[G]$ agree on the sentence ``$\kappa$ is a cardinal'' for every $\kappa$.
+
+	In the same way we will talk about $\Po$ preserving cofinalities, et cetera.
+\end{definition}
+
+\todo{write out this exercise}
+\begin{exercise}
+	Let $M$ be a transitive model of ZFC.
+	Let $\Po \in M$ be a poset.
+	Show that the following are equivalent for each $\lambda$:
+	\begin{enumerate}[(1)]
+		\ii $\Po$ preserves cofinalities less than or equal to $\lambda$.
+		\ii $\Po$ preserves regular cardinals less than or equal to $\lambda$.
+	\end{enumerate}
+	Moreover the same holds if we replace ``less than or equal to''
+	by ``greater than or equal to''.
+\end{exercise}
+Thus, to show that $\Po$ preserves cardinality and cofinalities it suffices to show that $\Po$ preserves regularity.
+
+\begin{theorem}
+	Suppose $M$ is a transitive model of ZFC, and $\Po \in M$ is a poset.
+	Suppose $M$ satisfies the sentence ``$\Po$ has the $\kappa$ chain condition and $\kappa$ is regular''.
+	Then $\Po$ preserves cardinals and cofinalities greater than or equal to $\kappa$.
+\end{theorem}
+\begin{proof}
+	It suffices to show that $\Po$ preserves regularity greater than or equal to $\kappa$.
+	Consider $\lambda > \kappa$ which is regular in $M$,
+	and suppose for contradiction that $\lambda$ is not regular in $M[G]$.
+	That's the same as saying that there is a function $f \in M[G]$,
+	$f : \ol \lambda \to \lambda$ cofinal, with $\ol \lambda < \lambda$.
+	Then by the Possible Values Argument,
+	there exists a function $F \in M$ from $\ol \lambda \to \PP(\lambda)$
+	such that $f(\alpha) \in F(\alpha)$ and $\left\lvert F(\alpha) \right\rvert^M < \kappa$
+	for every $\alpha$.
+
+	Now we work in $M$ again.
+	Note for each $\alpha \in \ol\lambda$,
+	$F(\alpha)$ is bounded in $\lambda$ since $\lambda$ is regular in $M$ and
+	greater than $\left\lvert F(\alpha) \right\rvert$.
+	Now look at the function $\ol \lambda \to \lambda$ in $M$ by just
+	\[ \alpha \mapsto \cup F(\alpha) < \lambda. \]
+	This is cofinal in $M$, contradiction.
+\end{proof}
+
+\subsection{Infinite Combinatorics}
+In particular, if $\Po$ has the countable chain condition then $\Po$ preserves all the cardinals (and cofinalities).
+Therefore, it remains to show that $\opname{Add}(\omega, \omega_2)$ satisfies the countable chain condition.
+And this is going to be infinite combinatorics.
+
+\begin{definition}
+	Suppose $C$ is an uncountable collection of finite sets.
+	$C$ is a \textbf{$\Delta$-system} if there exists a \textbf{root} $R$
+	with the condition that for any distinct $X$ and $Y$
+	in $C$, we have $X \cap Y = R$.
+\end{definition}
+
+\begin{lemma}
+	[$\Delta$-System Lemma] Suppose $C$ is an uncountable collection of finite sets.
+	Then $\exists \ol C \subseteq C$ such that
+	\begin{enumerate}[(1)]
+		\ii $\ol C$ is uncountable.
+		\ii $\ol C$ is a $\Delta$-system.
+	\end{enumerate}
+\end{lemma}
+\begin{proof}
+	There exists an integer $n$ such that $C$ has uncountably many guys of length $n$.
+	So we can throw away all the other sets, and just assume that all sets in $C$ have size $n$.
+
+	We now proceed by induction on $n$.
+	The base case $n=1$ is trivial, since we can just take $R = \varnothing$.
+	For the inductive step we consider two cases.
+
+	First, assume there exists an $a \in C$ contained in uncountably many $F \in C$.
+	Throw away all the other guys.
+	Then we can just delete $a$, and apply the inductive hypothesis.
+
+	Now assume that for every $a$, only countably many members of $C$ have $a$ in them.
+	We claim we can even get a $\ol C$ with $R = \varnothing$.
+	First, pick $F_0 \in C$.
+	It's straightforward to construct an $F_1$ such that $F_1 \cap F_0 = \varnothing$.
+	And we can just construct $F_2, F_3, \dots$
+\end{proof}
+
+\begin{lemma}
+	For all $\kappa$, $\opname{Add}(\omega, \kappa)$ satisfies the countable chain condition.
+\end{lemma}
+\begin{proof}
+	Assume not. Let
+	\[ \left\{ p_\alpha : \alpha < \omega_1 \right\} \]
+	be an antichain.  Let
+	\[ C = \left\{ \dom(p_\alpha) : \alpha < \omega_1 \right\}. \]
+	Let $\ol C \subseteq C$ be such that $\ol C$ is uncountable, and $\ol C$ is a $\Delta$-system which root $R$.
+	Then let
+	\[ B = \left\{ p_\alpha : \dom(p_\alpha) \in R \right\}. \]
+	Each $p_\alpha \in B$ is a function $p_\alpha : R \to \{0,1\}$,
+	so there are two that are the same.
+\end{proof}
+\todo{blah blah blah}
+

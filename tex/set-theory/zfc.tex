@@ -1,0 +1,410 @@
+\chapter{Zermelo-Franklin with Choice}
+Chapter $2\half$ of \cite{ref:msci} has a nice description of this.
+
+\section{The Ultimate Functional Equation}
+In abstract mathematics, we often define structures by what \emph{properties}
+they should have; for example, a group is a set and a binary operation
+satisfying so-and-so axioms, while a metric space is a set and a distance function
+satisfying so-and-so axioms.
+
+Nevertheless, these definitions rely on previous definitions.
+The colorful illustration of \cite{ref:msci} on this:
+\begin{itemize}
+	\ii A \emph{vector space} is an abelian group with\dots
+	\ii An \emph{abelian group} has a binary operation such that\dots
+	\ii A \emph{binary operation} on a set is\dots
+	\ii A \emph{set} is \dots
+\end{itemize}
+and so on.
+
+We have to stop at some point, because infinite lists of definitions are bad.
+The stopping turns out to be a set, ``defined'' by properties.
+The trick is that we never actually define what a set is,
+but nonetheless postulate that these sets satisfy certain properties:
+these are the $\ZFC$ axioms.
+Loosely, $\ZFC$ can be thought of as the \emph{ultimate functional equation}.
+
+Before talking about what these axioms are, I should talk about the caveats.
+
+\section{Cantor's Paradox}
+Intuitively, a set is an unordered collection of elements.
+Two sets are equal if they share the same elements:
+\[
+	\left\{ x \mid x \text{ is a featherless biped} \right\}
+	=
+	\left\{ x \mid x \text{ is human} \right\}
+\]
+(let's put aside the issue of dinosaurs).
+
+As another example, we have our empty set $\varnothing$ that contains no objects.
+We can have a set that $\{1, 2, 3\}$, or maybe the set of natural numbers $\mathbb N = \{0, 1, 2, \dots \}$.  (For the purposes of set theory, $0$ is usually considered a natural number.)
+Sets can even contain other sets, like $\left\{ \mathbb Z, \mathbb Q, \mathbb N \right\}$. Fine and dandy, right?
+
+The trouble is that this definition actually isn't good enough, and here's why.
+If we just say ``a set is any collection of objects'',
+then we can consider a really big set $V$, the set of all sets.
+So far no problem, right?
+$V$ has the oddity that it has to contain itself $V \in S$,
+but oh well, no big deal.
+
+Unfortunately, this existence of this $V$ leads immediately to a paradox.
+The classical one is Bertrand's Paradox.
+I will instead present a somewhat simpler one:
+note only does $V$ contain itself, \emph{every subset $S \subseteq V$} is itself
+an element of $V$ (i.e. $S \in V$).
+If we let $\PP(V)$ denote the subsets of $V$, then we have an inclusion
+\[ \PP(V) \injto V. \]
+This is bad, for the following reason:
+\begin{lemma}[Cantor's Diagonal Argument]
+	\label{lem:cantor_diag}
+	For \emph{any} set $X$, it's impossible to construct a
+	map $\iota : \PP(X) \injto X$.
+\end{lemma}
+\begin{proof}
+	Assume for contradiction $\iota$ exists.
+	\begin{exercise}
+		Show that there exists a surjective map $j : X \to \PP(X)$.
+		(This is easier than it appears, just ``invert $\iota$'').
+	\end{exercise}
+	We now claim that $j$ can't exist.
+	The idea is contained inside the picture:
+	\[
+		\begin{array}{cccccccc}
+			&& x_1 & x_2 & x_3 & x_4 & x_5 & \dots \\ \cline{3-8}
+			x_1 & \mapsto & \mathbf0 & 1 & 1 & 0 & 1 & \dots \\
+			x_2 & \mapsto & 1 & \mathbf1 & 0 & 1 & 1 & \dots \\
+			x_3 & \mapsto & 0 & 1 & \mathbf0 & 0 & 1 & \dots \\
+			x_4 & \mapsto & 1 & 0 & 0 & \mathbf1 & 0 & \dots \\
+			x_5 & \mapsto & 0 & 1 & 1 & 1 & \mathbf1 & \dots \\
+			\vdots && \vdots & \vdots & \vdots & \vdots & \vdots & \ddots
+		\end{array}
+	\]
+	here for each $j(x) \subseteq X$, I'm writing ``$1$'' to mean that
+	the element is inside $j(x)$, and ``$0$'' otherwise.\footnote{
+		Technically, I don't know that $X$ is countable,
+		so it's not valid to write $x_1$, $x_2$, but whatever,
+		you get the idea.}
+	So $j(x_1) = \{x_2, x_3, x_5 \dots\}$.
+
+	Then we can read off the diagonal to get a new set.
+	In our example, the diagonal specifies a set
+	$A = \{x_2, x_4, x_5 \dots\}$.
+	Then we invert it take a set $B = \{x_1, x_3, \dots\}$.
+	In symbols, we consider the set
+	\[ B = \left\{ x \mid x \notin j(x) \right\} \]
+	By construction, $B \subseteq X$ is not in the image of $j$,
+	which is a contradiction since $j$ was supposed to be injective.
+\end{proof}
+
+
+Now if you're not a set theorist, you could probably just brush this off,
+saying ``oh well, I guess you can't look at certain sets''.
+But if you're a set theorist, this worries you,
+because you realize it means that you can't just define a set as ``a collection of objects'',
+because then everything would blow up. Something more is necessary.
+
+
+
+\section{The Language of Set Theory}
+We need a way to refer to sets other
+than the informal description of ``collection of objects''.
+
+So here's what we're going to do.
+We'll start by defining a formal \emph{language of set theory},
+a way of writing logical statements.
+First of all we can throw in our usual logical operators:
+\begin{itemize}
+	\ii $\forall$ means ``for all''
+	\ii $\exists$ means ``exists''
+	\ii $=$ means ``equal''
+	\ii $X \implies Y$ means ``if $X$ then $Y$''
+	\ii $A \land B$ means ``$A$ and $B$''
+	\ii $A \lor B$ means ``$A$ or $B$''
+	\ii $\neg A$ means ``not $A$''.
+\end{itemize}
+
+Since we're doing set theory,
+there's only one more operator we add in: the inclusion $\in$.
+And that's all we're going to use (for now).
+
+So how do we express something like ``the set $\{1, 2\}$''?
+The trick is that we're not going to actually ``construct'' any sets,
+but rather refer to them indirectly, like so:
+\[ \exists S : x \in S \iff \left( (x=1) \lor (x=2) \right). \]
+This reads: ``there exists an $S$ such that $x$ is in $S$ if
+and only if either $1$ is in $S$ or $2$ is in $S$''.
+We don't have to refer to sets as objects in and of themselves anymore -- we now have a way to ``create'' our sets, by writing formulas for exactly what they contain. This is something a machine can parse.
+
+Well, what are going to do with things like $1$ and $2$, which are not sets? 
+Answer:
+\begin{moral}
+	Elements of sets are themselves sets.
+\end{moral}
+We're going to make \textbf{everything} into a set. Natural numbers will be sets. Ordered pairs will be sets. Functions will be sets. 
+Later, I'll tell you exactly how we manage to do something like encode $1$ as a set. For now, all you need to know is that that sets don't just hold objects; they hold other sets.
+
+So now it makes sense to talk about whether something is a set or not: $\exists x$ means ``$x$ is a set'', while $\nexists x$ means ``$x$ is not a set''.
+In other words, we've rephrased the problem of deciding whether something is a set to whether it exists, which makes it easier to deal with in our formal language.
+That means that our axiom system had better find some way to let us show a lot of things exist, without letting us prove the following formula:
+\[ \exists S \forall x : x \in S. \]
+For if we prove this formula, then we have our ``bad'' set from that caused us to go down the rabbit hole in the first place.
+
+
+\section{The Axioms of $\ZFC$}
+I don't especially want to get into details about these axioms;
+if you're interested, read:
+\begin{itemize}
+	\ii \footnotesize \url{https://usamo.wordpress.com/2014/11/13/set-theory-an-intro-to-zfc-part-1/}
+	\ii \footnotesize \url{https://usamo.wordpress.com/2014/11/18/set-theory-part-2-constructing-the-ordinals/}
+\end{itemize}
+Here is a much terser description of the axioms,
+which also includes the corresponding sentence in the language of set theory.
+It is worth the time to get some practice parsing $\forall$, $\exists$, etc.\
+and you can do so by comparing the formal sentences with the natural statement of the axiom.
+
+First, the two easiest axioms:
+\begin{itemize}
+	\ii $\Extensionality$ is the sentence
+	$\forall x \forall y
+	\left( \left( \forall a  \left( a \in x \iff a \in y \right) \right)
+	\implies x = y \right)$,
+	which says that if two sets $x$ and $y$ have the same elements,
+	then $x = y$.
+
+	\ii $\EmptySet$ is the sentence $\exists a : \forall x \; \neg (x \in a)$;
+	it says there exists a set with no elements.
+	By $\Extensionality$ this set is unique, so we denote it $\varnothing$.
+\end{itemize}
+
+The next two axioms give us basic ways of building new sets.
+\begin{itemize}
+	\ii Given two elements $x$ and $y$, there exists a set $a$ containing only those two elements.
+	In machine code, this is the sentence $\Pairing$, written
+	\[ \forall x \forall y \exists a \quad \forall z,
+		\; z \in a \iff \left( (z=x) \lor (z=y) \right). \]
+	By $\Extensionality$ this set $a$ is unique, so we write $a = \{x,y\}$.
+
+	\ii Given a set $a$, we can create the union of the elements of $a$.
+	For example, if $a = \{ \{1,2\}, \{3,4\} \}$, then $z = \{1,2,3,4\}$ is a set.
+	Formally, this is the sentence $\Union$:
+	\[ \forall a \exists U \quad \forall x \; (x \in U) \iff (\exists y : x \in y \in U). \]
+	Since $U$ is unique by $\Extensionality$, we denote it $\cup a$.
+
+	\ii 
+	We can construct the \vocab{power set} $\mathcal P(x)$.
+	Formally, the sentence $\PowerSet$ says that
+	\[ \forall x \exists P \forall y (y \in P \iff y \subseteq x) \]
+	where $y \subseteq x$ is short for $\forall z (z \in y \implies z \in x)$.
+	As $\Extensionality$ gives us uniqueness of $P$,
+	we denote it $\mathcal P(x)$.
+
+	\ii $\Foundation$ says there are no infinite descending chains
+	\[ x_0 \ni x_1 \ni x_2 \ni \dots. \]
+	This is important, because it lets us induct.
+	In particular, \textbf{no set contains itself}.
+
+	\ii $\Infinity$ implies that $\omega = \{0,1,\dots\}$ is a set.
+\end{itemize}
+These are all things you are already used to, so keep your intuition there.
+The next one is less intuitive:
+\begin{itemize}
+	\ii The \vocab{schema of restricted comprehension} says the following.
+	If we are \emph{given a set $X$}, and some formula $\phi$
+	(for example $\phi(x)$ might be ``$x$ is not the empty set, i.e. $\exists a(a\in x)$'')
+	then we can \emph{filter} through the elements of $X$ to get a subset
+	\[ Y = \left\{ x \in X \mid \phi(x) \right\}. \]
+	Formally, given a formula $\phi$:
+	\[
+		\forall X \quad \exists Y \quad
+		\forall y (y \in Y \iff y \in X \land \phi(y)).
+	\]
+\end{itemize}
+Notice that we may \emph{only} do this filtering over an already given set.
+So it is not valid to create
+$ \left\{ x \mid x \text{ is a set} \right\} $.
+We are thankful for this, because this lets us evade Cantor's paradox.
+
+\begin{abuse}
+	Note that technically, there are infinitely many sentences,
+	a $\Comprehension_\phi$ for every possible formula $\phi$.
+	By abuse of notation, we let $\Comprehension$ abbreviate
+	the infinitely many axioms $\Comprehension_\phi$ for every $\phi$.
+\end{abuse}
+
+There is one last schema called $\Replacement_\phi$.
+Suppose $X$ is a set and $\phi(x,y)$ is some formula
+such that for every $x \in X$, there is a \emph{unique} $y$ in the universe
+such that $\phi(x,y)$ is true: for example ``$y = x \cup \{x\}$'' works.
+(In effect, $\phi$ is defining a function $f$ on $X$.)
+Then there exists a set $Y$ consisting exactly of these images:
+(i.e. $f``X$ is a set).
+\begin{abuse}
+	By abuse of notation, we let $\Replacement$ abbreviate
+	the infinitely many axioms $\Replacement_\phi$ for every $\phi$.
+\end{abuse}
+
+We postpone discussion of the Axiom of Choice momentarily.
+
+\section{Encoding}
+Now that we have this rickety universe of sets, we can start re-building math.
+You'll get to see this more in the next chapter on ordinal numbers.
+
+\begin{definition}
+	An \vocab{ordered pair} $(x,y)$
+	is a set of the form
+	\[ (x,y) \defeq 
+		\left\{ \left\{ x \right\}, \left\{ x,y \right\} \right\}. \]
+\end{definition}
+Note that $(x,y) = (a,b)$ if and only if $x=a$ and $y=b$.
+Ordered $k$-tuples can be defined recursively: a three-tuple $(a,b,c)$ means $(a,(b,c))$.
+
+\begin{definition}
+	A \vocab{function} $f : X \to Y$ 
+	consists is defined as a collection of ordered pairs
+	with the following properties:
+	\begin{itemize}
+		\ii If $(x,y) \in f$, then $x \in X$ and $y \in Y$.
+		\ii For every $x \in X$, there is a unique $y \in Y$
+		such that $(x,y) \in f$. We denote this $y$ by $f(x)$.
+	\end{itemize}
+\end{definition}
+
+\begin{definition}
+	The \vocab{natural numbers} are defined inductively as
+	\begin{align*}
+		0 &= \varnothing \\
+		1 &= \{0\} \\
+		2 &= \{0,1\} \\
+		3 &= \{0,1,2\} \\
+		&\vdotswithin=
+	\end{align*}
+	The set of all natural numbers is denoted $\omega$.
+\end{definition}
+\begin{abuse}
+	Yes, I'm sorry, in set theory $0$ is considered a natural number.
+	For this reason I'm using $\omega$ and not $\NN$
+	since I explicitly have $0\notin\NN$ in all other parts of this book.
+\end{abuse}
+
+Et cetera, et cetera.
+
+\section{Choice and Well-Ordering}
+The Axiom of Choice states that given a collection $Y$ of nonempty sets,
+there is a function $g : Y \to \cup Y$ which ``picks'' an element of each member of $Y$.
+That means $g(y) \in y$ for every $y \in Y$.
+(The typical illustration is that $Y$ contains infinitely many drawers,
+and each drawer (a $y$) has some sock in it.)
+
+Formally, it is the sentence
+\[ \forall Y \left(\varnothing \notin Y
+	\implies 
+	\exists g : Y \to \cup Y
+	\text{ such that }
+	\forall y \in Y \left( g(y) \in y \right).
+	\right)
+\]
+The tricky part is not that we can conceive of such a function $g$,
+but that in fact this function $g$ is \emph{actually a set}.
+
+There is an equivalent formulation which is often useful.
+\begin{definition}
+	A \vocab{well-ordering} $<$ of $X$ is a strict, total order on $X$
+	which has no infinite descending chains.
+\end{definition}
+Well-orderings on a set are very nice, because we can pick minimal elements:
+this lets us do induction, for example.
+\begin{example}[Examples and Non-Examples of Well-Orderings]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii The natural numbers $\omega = \{0,1,2,\dots\}$
+		are well-ordered by $<$.
+		\ii The integers $\ZZ = \{\dots,-2,-1,0,1,2,\dots\}$ are not well-ordered by $<$,
+		because there are infinite descending chains (take $-1 > -2 > -3 > \dots$).
+		\ii The positive real numbers are not well-ordered by $<$,
+		again because of the descending chain $\frac11>\frac12>\frac13>\dots$.
+		\ii The positive integers are not well-ordered by the divisibility operation $\mid$.
+		While there are no descending chains, there are elements which cannot be compared
+		(for example $3 \nmid 5$, $5 \nmid 3$ and $3 \neq 5$).
+	\end{enumerate}
+\end{example}
+
+\begin{theorem}
+	[Well-Ordering Theorem]
+	Assuming Choice, for every set we can place some well-ordering on it.
+\end{theorem}
+In fact, the Well-Ordering Theorem is actually equivalent to the Axiom of Choice.
+
+\section{Sets vs Classes}
+\prototype{The set of all sets is the standard example of a proper class.}
+We close the discussion of $\ZFC$ by mentioning ``classes''.
+
+Roughly, the ``bad thing'' that happened was that we considered a set $S$, the
+``set of all sets'', and it was \emph{too big}.
+That is,
+\[ \left\{ x \mid x \text{ is a set} \right\} \]
+is not good.
+Similarly, we cannot construct a set
+\[ \left\{ x \mid x \text{ is an ordered pair} \right\}. \]
+The lesson of Cantor's Paradox is that we cannot create any sets we want;
+we have to be more careful than that.
+
+Nonetheless, if we are given a set
+we can still tell whether or not it is an ordered pair.
+So for convenience, we will define a \vocab{class} to be
+a ``concept'' like the ``class of all ordered pairs''.
+Formally, a class is defined by some formula $\phi$:
+it consists of the sets which satisfy the formula.
+
+In particular:
+\begin{definition}
+	The class of all sets is denoted $V$, defined by $V = \left\{ x \mid x=x \right\}$.
+	It is called the \vocab{von Neumann universe}.
+\end{definition}
+
+A class is a \vocab{proper class} if it is not a set,
+so for example we have:
+\begin{theorem}[There is no set of all sets]
+	$V$ is a proper class.
+\end{theorem}
+\begin{proof}
+	Assume not, and $V$ is a set. Then $V \in V$,
+	which violates $\Foundation$.
+\end{proof}
+
+\begin{abuse}
+	Given a class $C$, we will write $x \in C$ to mean
+	that $x$ has the defining property of $C$.
+	For example, $x \in V$ means ``$x$ is a set''.
+
+	It does not mean $x$ is an element of $V$
+	-- this doesn't make sense as $V$ is not a set.
+\end{abuse}
+
+\section\problemhead
+\begin{problem}
+	Let $A$ and $B$ be sets.
+	Show that $A \cap B$ and $A \times B$ are sets.
+\end{problem}
+
+\begin{problem}
+	Show that the class of all groups is a proper class.
+	(You can take the definition of a group as a pair $(G, \cdot)$
+	where $\cdot$ is a function $G \times G \to G$.)
+\end{problem}
+\begin{problem}
+	Show that the Axiom of Choice follows from the Well-Ordering Theorem.
+\end{problem}
+
+\begin{dproblem}
+	Prove that actually, $\Replacement \implies \Comprehension$.
+\end{dproblem}
+
+\begin{problem}
+	[From Taiwan IMO Training Camp]
+	Consider infinitely many people each wearing a hat,
+	which is either red, green, or blue.
+	Each person can see the hat color of everyone except themselves.
+	Simultaneously each person guesses the color of their hat.
+	Show that they can form a strategy such that at most finitely many people guess their color incorrectly. 
+\end{problem}
+
