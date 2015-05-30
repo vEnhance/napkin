@@ -98,6 +98,18 @@ Note that not all neighborhoods work this time: notably, $U = S^1$ does not work
 	Can you see why?
 \end{example}
 
+\begin{example}
+	[Covering Projections of $\CC \setminus \{0\}$]
+	For those comfortable with complex arithmetic,
+	\begin{enumerate}[(a)]
+		\ii The exponential map $\exp : \CC \to \CC \setminus \{0\}$
+		is a covering projection.
+		\ii For each $n$, the $n$th power map
+		$-^n: \CC \setminus \{0\} \to \CC \setminus \{0\}$
+		is a covering projection.
+	\end{enumerate}
+\end{example}
+
 \section{Lifting Theorem}
 \prototype{$\RR$ covers $S^1$.}
 Now here's the key idea: we are going to try to interpret paths in $B$ as loops in $\RR$.
@@ -178,13 +190,11 @@ a corresponding path in $E$.
 It turns out this is true more generally.
 \begin{theorem}[Lifting Paths]
 	Suppose $\gamma : [0,1] \to B$ is a path with $\gamma(0) = \gamma(1) = b_0$, and 
-	\[ p : (E,e_0) \to (B,b_0) \]
+	$ p : (E,e_0) \to (B,b_0) $
 	is a covering projection.
 	Then there exists a \emph{unique} lifting $\tilde\gamma : [0,1] \to E$
 	such that $\tilde\gamma(0) = e_0$.
 \end{theorem}
-The proof will just use the fact that $[0,1]$ is compact.
-% we invoke \emph{Lebesgue numbers} to make the proof a little easier, but one can do without.
 \begin{proof}
 	For every point $b \in B$, consider an evenly covered neighborhood $U_b$ in $B$.
 	Then the family of open sets
@@ -207,17 +217,31 @@ The proof will just use the fact that $[0,1]$ is compact.
 	and we can repeat.
 \end{proof}
 
-It turns out you can do the same proof with $[0,1]$ replaced by
-any compact metric space $X$, and $0$ replaced by a point $x_0 \in X$ of your choice.
-\begin{theorem}[Lifting General Functions]
-	Let $X$ be a compact metric space.
-	Suppose $f : (X,x_0) \to (B,b_0)$ is a continuous function and $p : (E,e_0) \to (B,b_0)$
-	is a covering projection.
-	Then there exists a \emph{unique} lifting $\tilde f : (X,x_0) \to (E,e_0)$.
+The theorem can be generalized to a diagram
+\begin{diagram}
+	&& (E, e_0) \\
+	& \ruTo^{\tilde f} & \dTo_{p} \\
+	(Y,y_0) & \rTo^{f} & (B, b_0)
+\end{diagram}
+where $Y$ is some general path-connected space, as follows.
+\begin{theorem}[General Lifting Criterion]
+	Let $f: (Y,y_0) \to (B, b_0)$ be continuous and consider a covering projection $p : (E, e_0) \to (B, b_0)$.
+	(As usual, $Y$, $B$, $E$ are path-connected.)
+	Then a lifting  $\tilde f$ with $\tilde f(y_0) = e_0$ if and only if
+	\[ f_\ast``(\pi_1(Y, y_0)) \subseteq p_\ast``(\pi_1(E, e_0)). \]
+	(Here we view both sides as subgroups of $\pi_1(B, b_0)$.)
+	If this lifting exists, it is unique.
 \end{theorem}
+As $p$ is injective, we actually have $p_\ast``(\pi_1(E, e_0)) \cong \pi_1(E, e_0)$.
+But in this case we are interested in the actual elements, not just the isomorphism classes of the groups.
+\begin{ques}
+	What happens if we put $Y= [0,1]$?
+\end{ques}
+
 \begin{remark}[Lifting Homotopies]
-	Here's a cool special case:
+	Here's another cool special case:
 	Recall that a homotopy can be encoded as a continuous function $[0,1] \times [0,1] \to X$.
+	But $[0,1] \times [0,1]$ is also simply connected.
 	Hence given a homotopy $\gamma_1 \simeq \gamma_2$ in the base space $B$, we can lift it to get
  a homotopy $\tilde\gamma_1 \simeq \tilde\gamma_2$ in $E$.
 \end{remark}
@@ -325,9 +349,6 @@ by simply sending every points to the orbit it lives in.
 	(Terrible, I know.)
 \end{definition}
 
-Let's see some examples of this.
-
-
 \begin{example}[$\RR \to S^1$ is regular]
 	Let $G = \ZZ_+$, $X = \RR$
 	and define the group action of $G$ on $X$ by 
@@ -336,7 +357,7 @@ Let's see some examples of this.
 	with $[0,1)$ a complete set of representatives and $0 \sim 1$.
 	\begin{center}
 		\begin{asy}
-			size(11cm);
+			size(9cm);
 			dotfactor *= 2;
 			pair A = MP("0", (-5.1,0), 1.4*dir(90));
 			pair B = MP("1", (-3,0), 1.4*dir(90));
@@ -355,7 +376,7 @@ Let's see some examples of this.
 	\end{center}
 	So we can identify $X/G$ with $S^1$
 	and the associated regular projection
-	is just our usual $\theta \mapsto e^{2i\pi \theta}$.
+	is just our usual $\exp : \theta \mapsto e^{2i\pi \theta}$.
 \end{example}
 	
 \begin{example}[The Torus]
@@ -369,7 +390,7 @@ Let's see some examples of this.
 	and it gives us a covering projection $\RR^2 \to S^1 \times S^1$.
 \end{example}
 
-\begin{example}[$\RR P^2$]
+\begin{example}[$\mathbb {RP}^2$]
 	Let $G = \Zc 2 = \left<T \mid T^2 = 1\right>$ and
 	let $X = S^2$ be the surface of the sphere,
 	viewed as a subset of $\RR^3$.
@@ -404,7 +425,7 @@ Let's see some examples of this.
 	and the points in the equator are the points at infinity
 	(which explains why they get paired up like that).
 
-	This gives us a covering projection $S^2 \to \RR P^2$
+	This gives us a covering projection $S^2 \to \mathbb{RP}^2$
 	(note that the pre-image of a sufficiently small patch is just two copies
 	of it on $S^2$.)
 \end{example}
