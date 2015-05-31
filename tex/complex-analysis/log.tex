@@ -1,0 +1,362 @@
+\chapter{Holomorphic Square Roots and Logarithms}
+\label{ch:complex_log}
+In this chapter we'll make sense of a holomorphic square root and logarithm.
+The main results are \Cref{thm:nth_root}, \Cref{thm:holomorphic_log},
+\Cref{cor:nonvanishing}, and \Cref{cor:principal}.
+If you like, you can read just these four results, and skip the discussion of how they came to be.
+
+Let $f : U \to \CC$ be a holomorphic function.
+A \vocab{holomorphic $n$th root} of $f$ is a function $g : U \to \CC$
+such that $f(z) = g(z)^n$ for all $z \in U$.
+A \vocab{logarithm} of $f$ is a function $g : U \to \CC$
+such that $f(z) = e^{g(z)}$ for all $z \in U$.
+The main question we'll try to figure out is: when do these exist?
+In particular, what if $f = \id$?
+
+\section{Motivation: Square Root of a Complex Number}
+To start us off, can we define $\sqrt z$ for any complex number $z$?
+
+The first obvious problem that comes up is that there for any $z$, there are
+\emph{two} numbers $w$ such that $w^2 = z$.
+How can we pick one to use?
+For our ordinary square root function, we had a notion of ``positive'',
+and so we simply took the positive root.
+
+Let's expand on this: given
+$ z = r \left( \cos\theta + i \sin\theta \right) $
+(here $r \ge 0$) we should take the root to be
+\[ w = \sqrt{r} \left( \cos \alpha + i \sin \alpha \right). \]
+such that $2\alpha \equiv \theta \pmod{2\pi}$;
+there are two choices for $\alpha \pmod{2\pi}$, differing by $\pi$.
+
+For complex numbers, we don't have an obvious way to pick $\alpha$.
+Nonetheless, perhaps we can also get away with an arbitrary distinction:
+let's see what happens if we just choose the $\alpha$ with $-\half\pi < \alpha \le \half\pi$.
+
+Pictured below are some points (in red)
+and their images (in blue) under this ``upper-half'' square root.
+The condition on $\alpha$ means we are forcing the blue points to lie on the right-half plane.
+
+\begin{center}
+	%% First Diagram
+	\begin{asy}
+		size(7cm);
+		cplane();
+		draw(origin--(4.2*dir(180)), grey+1.5);
+		pair O = (-2.4, 1.1);
+		pair T;
+		pair[] A = new pair[8];
+		real r = 1.44;
+		real[] dirs = {45,45,45,135,175,255,-90,-75};
+		for (int i=0; i<8; ++i) {
+			A[i] = O + r*dir(i*45);
+			dot("$z_{" + (string) i + "}$", A[i], dir(dirs[i]), red);
+		}
+		draw(A[0]..A[1]..A[2]..A[3]..A[4]..A[5]..A[6]..A[7]..cycle, red);
+
+		real[] dirs = {-45, -15, 15, 45, 75, 150, 210, 230};
+		for (int i=0; i<8; ++i) {
+			A[i] = sqrt(abs(A[i]))*dir(degrees(A[i])/2);
+			if (degrees(A[i]) > 90) { A[i] *= -1; }
+			dot("$w_{" + (string) i + "}$", A[i], dir(dirs[i]), blue);
+		}
+		draw(A[7]..A[0]..A[1]..A[2]..A[3]..A[4]..A[5], blue);
+	\end{asy}
+\end{center}
+
+
+Here, $w_i^2 = z_i$ for each $i$, and we are constraining the $w_i$
+to lie in the right half of the complex plane.
+We see there is an obvious issue: there is a big discontinuity near
+the point $z_5$ and $z_7$!
+The nearby point $w_6$ has been mapped very far away.
+This discontinuity occurs since the points on the negative real axis are
+at the ``boundary''.
+For example, given $-4$, we send it to $-2i$, but we have hit the boundary:
+in our interval $-\half\pi \le \alpha < \half\pi$, we are at the very left edge.
+
+
+The negative real axis that we must not touch is
+is what we will later call a \emph{branch cut},
+but for now I call it a \textbf{ray of death}.
+It is a warning to the red points: if you cross this line, you will die!
+However, if we move the red circle just a little upwards
+(so that it misses the negative real axis) this issue is avoided entirely,
+and we get what seems to be a ``nice'' square root.
+
+\begin{center}
+	%% Second Diagram
+	\begin{asy}
+		size(7cm);
+		cplane();
+		draw(origin--(4.2*dir(180)), grey+1.5);
+		pair O = (-2.8, 1.9);
+		pair T;
+		pair[] A = new pair[8];
+		real r = 1.44;
+		real[] dirs = {45,45,45,135,175,225,-45,-45};
+		for (int i=0; i<8; ++i) {
+			A[i] = O + r*dir(i*45);
+			dot("$z_{" + (string) i + "}$", A[i], dir(dirs[i]), red);
+		}
+		draw(A[0]..A[1]..A[2]..A[3]..A[4]..A[5]..A[6]..A[7]..cycle, red);
+
+		real[] dirs = {-45, -15, 15, 75, 105, 150, 210, 260};
+		for (int i=0; i<8; ++i) {
+			A[i] = sqrt(abs(A[i]))*dir(degrees(A[i])/2);
+			if (degrees(A[i]) > 90) { A[i] *= -1; }
+			dot("$w_{" + (string) i + "}$", A[i], dir(dirs[i]), blue);
+		}
+		draw(A[0]..A[1]..A[2]..A[3]..A[4]..A[5]..A[6]..A[7]..cycle, blue);
+	\end{asy}
+\end{center}
+
+In fact, the ray of death is fairly arbitrary:
+it is the set of ``boundary issues''
+that arose when we picked $-\half\pi < \alpha \le \half\pi$.
+Suppose we instead insisted on the interval $0 \le \alpha < \pi$;
+then the ray of death would be the \emph{positive} real axis instead.
+The earlier circle we had now works just fine.
+
+\begin{center}
+	%% Third Diagram
+	\begin{asy}
+		size(7cm);
+		cplane();
+		draw(origin--(4.2*dir(0)), grey+1.5);
+		pair O = (-2.4, 1.1);
+		pair T;
+		pair[] A = new pair[8];
+		real r = 1.44;
+		real[] dirs = {-5,45,45,135,175,255,-90,-75};
+		for (int i=0; i<8; ++i) {
+			A[i] = O + r*dir(i*45);
+			dot("$z_{" + (string) i + "}$", A[i], dir(dirs[i]), red);
+		}
+		draw(A[0]..A[1]..A[2]..A[3]..A[4]..A[5]..A[6]..A[7]..cycle, red);
+
+		real[] dirs = {-45, -15, 15, 45, 75, 150, 180, 230};
+		for (int i=0; i<8; ++i) {
+			A[i] = sqrt(abs(A[i]))*dir(degrees(A[i])/2);
+			dot("$w_{" + (string) i + "}$", A[i], dir(dirs[i]), blue);
+		}
+		draw(A[0]..A[1]..A[2]..A[3]..A[4]..A[5]..A[6]..A[7]..cycle, blue);
+	\end{asy}
+\end{center}
+
+What we see is that picking a particular $\alpha$-interval
+leads to a different set of edge cases, and hence a different ray of death.
+The only thing these rays have in common is their starting point of zero.
+In other words, given a red circle and a restriction of $\alpha$,
+I can make a nice ``square rooted'' blue circle as long as the
+ray of death misses it.
+
+So, what exactly is going on?
+
+\section{Square Roots of Holomorphic Functions}
+To get a picture of what's happening, we would like to consider a more
+general problem: let $f: U \to \CC$ be holomorphic.
+Then we want to decide whether there is a $g : U \to \CC$
+such that \[ f(z) = g(z)^2. \]
+Our previous discussion with $f = \id$
+tells us we cannot hope to achieve this for $U = \CC$;
+there is a ``half-ray'' which causes problems.
+However, there are certainly functions $f : \CC \to \CC$ such that a $g$ exists.
+As a simplest example, $f(z) = z^2$ should definitely have a square root!
+
+Now let's see if we can fudge together a square root.
+Earlier, what we did was try to specify a rule to force one of the two choices at each point.
+This is unnecessarily strict.
+Perhaps we can do something like the following:
+start at a point in $z_0 \in U$, pick a square root $w_0$ of $f(z_0)$,
+and then try to ``fudge'' from there the square roots of the other points.
+What do I mean by fudge?
+Well, suppose $z_1$ is a point very close to $z_0$,
+and we want to pick a square root $w_1$ of $f(z_1)$.
+While there are two choices, we also would expect $w_0$ to be close to $w_1$.
+Unless we are highly unlucky, this should tells us which choice of $w_1$ to pick.
+(Stupid concrete example: if I have taken the square root $-4.12i$ of $-17$
+and then ask you to continue this square root to $-16$,
+which sign should you pick for $\pm 4i$?)
+
+There are two possible ways we could get unlucky in the scheme above:
+first, if $w_0 = 0$, then we're sunk.
+But even if we avoid that, we have to worry that we are in a situation, where we run
+around a full loop in the complex plane, and then find that our continuous perturbation
+has left us in a different place than we started.
+For concreteness, consider the following situation, again with $f = \id$:
+
+\begin{center}
+	%% Fourth Diagram
+	\begin{asy}
+		size(7cm);
+		cplane();
+		pair O = origin;
+		pair T;
+		pair[] A = new pair[8];
+		real r = 3.24;
+		real[] dirs = {45,45,45,135,135,255,-45,-45};
+		for (int i=0; i<8; ++i) {
+			A[i] = O + r*dir(i*45);
+			dot("$z_{" + (string) i + "}$", A[i], dir(dirs[i]), red);
+		}
+		draw(A[0]..A[1]..A[2]..A[3]..A[4]..A[5]..A[6]..A[7]..cycle, red);
+
+		real[] dirs = {-65, -15, 15, 45, 45, 135, 143, 135};
+		for (int i=0; i<8; ++i) {
+			A[i] = sqrt(abs(A[i]))*dir(degrees(A[i])/2);
+			dot("$w_{" + (string) i + "}$", A[i], dir(dirs[i]), blue);
+		}
+		draw(A[0]..A[1]..A[2]..A[3]..A[4]..A[5]..A[6]..A[7]..(-A[0]), blue);
+	\end{asy}
+\end{center}
+
+We started at the point $z_0$, with one of its square roots as $w_0$.
+We then wound a full red circle around the origin, only to find that at the end of it,
+the blue arc is at a different place where it started!
+
+The interval construction from earlier doesn't work either:
+no matter how we pick the interval for $\alpha$,
+any ray of death must hit our red circle.
+The problem somehow lies with the fact that we have enclosed the 
+very special point $0$.
+
+Nevertheless, we know that if we take $f(z) = z^2$, then we don't run into any problems
+with our ``make it up as you go'' procedure.
+So, what exactly is going on?
+
+\section{Covering Projections}
+By now, if you have read the part of algebraic topology.
+this should all seem very strangely familiar.
+The ``fudging'' procedure exactly describes the idea of a lifting.
+
+More precisely, recall that there is a covering projection
+\[ (-)^2 : \CC \setminus \{0\}
+	\to \CC \setminus \{0\}. \]
+Let $V = \left\{ z \in U \mid f(z) \neq 0 \right\}$.
+For $z \in U \setminus V$, we already have the square root $g(z) = \sqrt{f(z)} = \sqrt 0 = 0$.
+So the burden is completing $g : V \to \CC$.
+
+Then essentially, what we are trying to do is construct a lifting $g$ for the following diagram:
+\begin{diagram}
+	&&& E = \CC \setminus \{0\} \\
+	&& \ruTo(3,2)^{g} & \dTo_{p = (-)^2} \\
+	V & \rTo_f && B = \CC \setminus \{0\}
+\end{diagram}
+
+Our map $p$ can be described as ``winding around twice''.
+Our \Cref{thm:lifting} now tells us that this lifting exists if and only if
+\[ f_\ast``(\pi_1(V)) \subseteq p_\ast``(\pi_1(E)) \]
+is a subset of the image of $\pi_1(E)$ by $p$.
+Since $B$ and $E$ are both punctured planes, we can identify them with $S^1$.
+\begin{ques}
+	Show that the image under $p$ is
+	exactly $2\ZZ$ once we identify $\pi_1(B) = \ZZ$.
+\end{ques}
+
+That means that for any loop $\gamma$ in $V$, we need $f \circ \gamma$ to have an
+\emph{even} winding number around $0 \in B$.
+This amounts to
+\[
+	\frac{1}{2\pi} \oint_\gamma \frac{f'}{f} \; dz \in 2\ZZ
+\]
+since $f$ has no poles.
+
+Replacing $2$ with $n$ and carrying over the discussion gives the first main result.
+\begin{theorem}
+	[Existence of Holomorphic $n$th Roots]
+	\label{thm:nth_root}
+	Let $f : U \to \CC$ be holomorphic.  
+	Then $f$ has a holomorphic $n$th root if and only if 
+	\[ \frac{1}{2\pi i}\oint_\gamma \frac{f'}{f} \; dz \in n\ZZ \]
+	for every contour $\gamma$ in $U$.
+\end{theorem}
+
+
+\section{Complex Logarithms}
+The multivalued nature of the complex logarithm comes from the fact that
+\[ \exp(z+2\pi i) = \exp(z). \]
+So if $e^w = z$, then any complex number $w + 2\pi i k$ is also a solution.
+
+We can handle this in the same way as before:
+it amounts to a lifting of the following diagram.
+\begin{diagram}
+	&&& E = \CC \\
+	&& \ruTo(3,2)^{g} & \dTo_{p = \exp} \\
+	U & \rTo_f && B = \CC \setminus \{0\}
+\end{diagram}
+There is no longer a need to work with a separate $V$ since:
+\begin{ques}
+	Show that if $f$ has any zeros then $g$ possibly can't exist.
+\end{ques}
+In fact, the map $\exp : \CC \to \CC\setminus\{0\}$ is a universal cover,
+since $\CC$ is simply connected.
+Thus, $p``(\pi_1(\CC))$ is \emph{trivial}.
+So in addition to being zero-free, $f$ cannot have any winding number around $0 \in B$ at all.
+In other words:
+\begin{theorem}
+	[Existence of Logarithms]
+	\label{thm:holomorphic_log}
+	Let $f : U \to \CC$ be holomorphic.  
+	Then $f$ has a logarithm if and only if 
+	\[ \frac{1}{2\pi i}\oint_\gamma \frac{f'}{f} \; dz  = 0 \]
+	for every contour $\gamma$ in $U$.
+\end{theorem}
+
+\section{Some Special Cases}
+The most common special case is
+\begin{corollary}
+	[Nonvanishing Functions from Simply Connected Domains]
+	\label{cor:nonvanishing}
+	Let $f : \Omega \to \CC$ be continuous, where $\Omega$ is simply connected.
+	If $f(z) \neq 0$ for every $z \in \Omega$,
+	then $f$ has both a logarithm and holomorphic $n$th root.
+\end{corollary}
+
+Finally, let's return to the question of $f = \id$ from the very beginning.
+What's the best domain $U$ such that we can define $\sqrt{-} : U \to \CC$?
+Clearly $U = \CC$ cannot be made to work,
+but we can do almost as well.
+For note that the only zero of $f = \id$ is at the origin.
+Thus if we want to make a logarithm exist,
+all we have to do is make an incision in the complex plane
+that renders it impossible to make a loop around the origin.
+The usual choice is to delete negative half of the real axis, our very first ray of death;
+we call this a \vocab{branch cut}, with \vocab{branch point} at $0 \in \CC$
+(the point which we cannot circle around).
+This gives
+\begin{theorem}[Branch Cut Functions]
+	\label{cor:principal}
+	There exist holomorphic functions
+	\begin{align*}
+		\log &: \CC \setminus (-\infty, 0] \to \CC \\
+		\sqrt[n]{-} &: \CC \setminus (-\infty, 0] \to \CC
+	\end{align*}
+	satisfying the obvious properties.
+\end{theorem}
+There are many possible choices of such functions ($n$ choices for the $n$th root
+and infinitely many for $\log$);
+a choice of such a function is called a \vocab{branch}.
+So this is what is meant by a ``branch'' of a logarithm.
+
+The \vocab{principal branch} is the ``canonical'' branch, analogous
+to the way we arbitrarily pick the positive branch
+to define $\sqrt{-} : \RR_{\ge 0} \to \RR_{\ge 0}$.
+For $\log$, we take the $w$ such that $e^w = z$ and the imaginary part of $w$ lies in $(-\pi, \pi]$
+(since we can shift by integer multiples of $2\pi i$).
+Often, authors will write $\opname{Log} z$ to emphasize this choice.
+
+
+\section\problemhead
+\begin{problem}
+	Show that a holomorphic function $f : U \to \CC$
+	has a holomorphic logarithm if and only if it
+	has a holomorphic $n$th root for every integer $n$.
+\end{problem}
+
+\begin{problem}
+	Show that the function $f : U \to \CC$
+	by $z \mapsto z(z-1)$ has a holomorphic square root,
+	where $U$ is the entire complex plane minus the closed interval $[0,1]$.
+\end{problem}
+
