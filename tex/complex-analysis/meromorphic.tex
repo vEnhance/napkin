@@ -139,7 +139,7 @@ here are examples nonetheless.
 	\begin{align*}
 		\frac{1}{\sin(2\pi z)}
 		&= \frac{1}{\frac{z}{1!} - \frac{z^3}{3!} + \frac{z^5}{5!} - \dots} \\
-		&= \frac{1/z}{\frac{1}{1!} - \frac{z^2}{3!} + \frac{z^4}{5!} - \dots} \\
+		% &= \frac{1/z}{\frac{1}{1!} - \frac{z^2}{3!} + \frac{z^4}{5!} - \dots} \\
 		&= \frac 1z \cdot \frac{1}{1 - \left( \frac{z^2}{3!} - \frac{z^4}{5!} + \dots \right)} \\
 		&= \frac 1z \sum_{k \ge 0} \left( \frac{z^2}{3!} - \frac{z^4}{5!} + \dots \right)^k.
 	\end{align*}
@@ -317,13 +317,22 @@ In an analogous fashion, we can obtain a similar result for any meromorphic func
 		\ii A pole at each pole of $f$ whose residue is the negative of the pole's order.
 	\end{enumerate}
 \end{proposition}
-In some sense you can almost think of a pole as a zero of negative multiplicity.
+Again, you can almost think of a pole as a zero of negative multiplicity.
 This spirit is exemplified below.
 \begin{proof}
-	Direct computation: for any zero/pole $a$ of $f$, let $f = (z-a)^k g(z)$ (where $g(a) \neq 0$).
-	Here $k$ is the multiplicity for $a$ a zero and the negative of the order for $a$ a pole.
-	Now $f' = (z-a)^k g'(z) + k(z-a)^{k-1} g(z)$, so
-	\[ \frac{f'}{f} = \frac{g'(z)}{g(z)} + \frac{k}{z-a}. \qedhere \]
+	Dead easy with Taylor series.
+	Let $a$ be a zero/pole of $f$, and WLOG set $a=0$ for convenience.
+	We take the Taylor series at zero to get
+	\[ f(z) = c_kz^k + c_{k+1}z^{k+1} + \dots \]
+	where $k < 0$ if $0$ is a pole and $k > 0$ if $0$ is a zero.
+	Taking the derivative gives
+	\[ f'(z) = kc_k z^{k-1} + (k+1)c_{k+1}z^{k} + \dots. \]
+	Now look at $f'/f$; with some computation, it equals
+	\[
+		\frac{f'(z)}{f(z)}
+		= \frac 1z \frac{kc_k + (k+1)c_{k+1}z + \dots}{c_k + c_{k+1}z + \dots}.
+	\]
+	So we get a simple pole at $z=0$, with residue $k$.
 \end{proof}
 
 Using this trick you can determine the number of zeros and poles inside a regular closed curve,
@@ -331,6 +340,7 @@ using the so-called Argument Principle.
 
 \begin{theorem}
 	[Argument Principle]
+	\label{thm:arg_principle}
 	Let $\gamma$ be a regular curve.
 	Suppose $f : U \to \CC$ is meromorphic inside and on $\gamma$, and
 	none of its zeros ore poles lie on $\gamma$.
