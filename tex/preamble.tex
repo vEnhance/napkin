@@ -105,8 +105,8 @@ style=thmbluebox,name=Theorem,numberwithin=section]{theorem}
 \makeatother
 
 %% Asymptote definitions
-\numberwithin{asy}{section}
-\renewcommand{\theasy}{\arabic{chapter}\Alph{asy}}
+\numberwithin{asy}{chapter}
+\renewcommand{\theasy}{\thechapter\Alph{asy}}
 \begin{asydef}
 	defaultpen(fontsize(11pt));
 	pointfontsize=11;
