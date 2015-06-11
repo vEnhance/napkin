@@ -14,7 +14,7 @@ In real analysis, your input lives inside the real line $\RR$.
 This line is not terribly discerning -- you can construct a lot of unfortunate functions.
 Here are some examples.
 \begin{example}
-	[Evil Real Functions]
+	[Optional: Evil Real Functions]
 	You can skim over these very quickly: they're just here to make a point.
 	\begin{enumerate}[(a)]
 		\ii The \vocab{Devil's Staircase} (or Cantor function) is a continuous function $H : [0,1] \to [0,1]$
@@ -65,19 +65,23 @@ But $\CC$ has something more: it is a \emph{field}, so you can \emph{multiply} a
 So we restrict our attention to differentiable functions called \emph{holomorphic functions}.
 It turns out that the multiplication on $\CC$ makes all the difference.
 The primary theme in what follows is that holomorphic functions are \emph{really, really nice},
-and that knowing tiny amounts of data about the function can deterimne all its values.
+and that knowing tiny amounts of data about the function can determine all its values.
 %In particular, they are highly \emph{rigid} and \emph{regular}.
-Some highlights:
+
+The two main highlights of this chapter,
+from which all other results are more or less corollaries:
 \begin{itemize}
-	\ii It'll turn out that having a first derivative is enough to guarantee having \emph{all} derivatives
-	(which is unlike the real case, in which no number of derivatives will guarantee the rest).
-	\ii Now that you have all derivatives, you can take the Taylor series, (unlike the real case,
-	in which even if you have all derivatives it's possible the Taylor series is totally wrong).
-	\ii It'll turn out that knowing just the values of a holomorphic function on the boundary
-	of the unit circle will tell you all the values everywhere.
-	\ii Even knowing just the values of the function at $1$, $\half$, $\frac13$, \dots
-	is enough to determine the whole function!
-	\ii Integrals in the complex plane will just work like magic.
+	\ii Contour integrals of loops are always zero.
+	\ii A holomorphic function is essentially given by its Taylor series;
+	in particular, single-differentiable implies infinitely differentiable.
+	Thus, holomorphic functions behave quite like polynomials.
+\end{itemize}
+Some of the resulting corollaries:
+\begin{itemize}
+	\ii It'll turn out that knowing just the values of a holomorphic function on the boundary of the unit circle will tell the values in its interior.
+	\ii Knowing just the values of the function at $1$, $\half$, $\frac13$, \dots is enough to determine the whole function!
+	\ii Bounded holomorphic functions $\CC \to \CC$ must be constant
+	\ii And more\dots
 \end{itemize}
 
 As \cite{ref:pugh} writes: ``Complex analysis is the good twin and real analysis is the evil one: beautiful formulas and elegant theorems seem to blossom spontaneously in the complex domain, while toil and pathology rule the reals''.
@@ -109,13 +113,25 @@ But the complex numbers form a \emph{plane}: $h$ can approach zero
 from many directions, and we need all the limits to be equal.
 
 \begin{example}
-	[Not Differentiable Function]
-	Complex conjugation, $z \mapsto \ol z$, is an example
-	of a map which is not differentiable at zero.
-	As we approach $0$ from various directions, we get different
-	values of the ratio $\frac{f(h)}{h}$ vary:
+	[Important: Conjugation is NOT Holomorphic]
+	Let $f(z) = \ol z$, $f : \CC \to \CC$.
+	This function, despite its simple nature, is not holomorphic!
+	Indeed, at $z=0$ we have,
+	\[ \frac{f(h)-f(0)}{h} = \frac{\ol h}{h}. \]
+	This does not have a limit as $h \to 0$, because depending
+	on ``which direction'' we approach zero from we have different values.
 	\begin{center}
-		\includegraphics[width=4cm]{media/complex-conj-not-holo.png}
+		\begin{asy}
+			dot("$0$", origin, dir(-90));
+			draw(dir(90)--origin, EndArrow, Margins);
+			draw(dir(0)--origin, EndArrow, Margins);
+			draw(dir(-45)--origin, EndArrow, Margins);
+			draw(dir(180)--origin, EndArrow, Margins);
+			label("$1$", dir(0), dir(0));
+			label("$1$", dir(180), dir(180));
+			label("$-1$", dir(90), dir(90));
+			label("$i$", dir(-45), dir(-45));
+		\end{asy}
 	\end{center}
 \end{example}
 
@@ -473,7 +489,7 @@ We can write
 	f(a) &= \frac{1}{2\pi i} \oint_\gamma \frac{f(z)}{z-a} \; dz \\
 	&= \frac{1}{2\pi i} \oint_\gamma \frac{f(z)/z}{1 - \frac az} \; dz \\
 	&= \frac{1}{2\pi i} \oint_\gamma f(z)/z \cdot \sum_{k \ge 0} \left( \frac az \right)^k \; dz \\
-	\intertext{You can prove (using the so-called Weirestrass M-test) that the summation order can be switched:}
+	\intertext{You can prove (using the so-called Weierstrass M-test) that the summation order can be switched:}
 	&= \frac{1}{2\pi i} \sum_{k \ge 0} \oint_\gamma \frac{f(z)}{z} \cdot \left( \frac az \right)^k \; dz \\
 	&= \frac{1}{2\pi i} \sum_{k \ge 0} \oint_\gamma a^k \cdot \frac{f(z)}{z^{k+1}} \; dz \\
 	&=  \sum_{k \ge 0} \left( \frac{1}{2\pi i}\oint_\gamma \frac{f(z)}{z^{k+1}} \; dz \right) a^k \\
@@ -512,7 +528,7 @@ Most importantly,
 	exactly by a Taylor series.
 \end{moral}
 This establishes a result we stated at the beginning of the chapter:
-that a function being complex differentiable once means it's not only infinitely differentiable,
+that a function being complex differentiable once means it is not only infinitely differentiable,
 but in fact equal to its Taylor series.
 
 I should maybe emphasize a small subtlety of the result: the Taylor series centered at $p$ is only valid in a disk centered at $p$ which lies entirely in the domain $U$.
@@ -528,31 +544,8 @@ the existence of a Taylor series is incredibly powerful.
 These aren't olympiad problems, but I think they're especially nice!
 In the next complex analysis chapter we'll see some more nice applications.
 
-\begin{dproblem}
-	[Mean Value Property]
-	Let $f : U \to \CC$ be holomorphic.
-	Assume that $z_0 \in U$ and the disk centered at $z_0$
-	with radius $r > 0$ is contained inside $U$. Show that
-	\[ f(z_0) = \frac{1}{2\pi} \int_0^{2\pi} f(z_0+re^{it}) \; dt. \]
-	In other words, $f(z_0)$ is the average of $f$ along the circle.
-	\begin{hint}
-		Evaluate $\oint_\gamma \frac{f(w)}{w-z_0} \; dw$ over the circle.
-	\end{hint}
-\end{dproblem}
+The first few results are the most important.
 
-\begin{dproblem}[Maximums Occur On Boundaries]
-	Let $f : U \to \CC$ be holomorphic, let $Y \subset U$ be compact,
-	and let $\partial Y$ be its boundary\footnote{
-		The boundary $\partial Y$ is the set of points $p$
-		such that no open neighborhood of $p$ is contained in $Y$.
-		It is also a compact set if $Y$ is compact.
-	}.
-	Show that
-	\[ \max_{z \in Y} \left\lvert f(z) \right\rvert
-		= \max_{z \in \partial Y} \left\lvert f(z) \right\rvert. \]
-	In other words, the maximum values of $\left\lvert f \right\rvert$ occur
-	on the boundary. (Such maximums exist by compactness.)
-\end{dproblem}
 
 \begin{sproblem}
 	[Liouville's Theorem]
@@ -573,50 +566,87 @@ In the next complex analysis chapter we'll see some more nice applications.
 %	The proof is just induction on $n$ with the case $n=0$ being the theorem.}
 \end{sproblem}
 
+
+\begin{sproblem}[Zeros are Isolated]
+	An \vocab{isolated set} in the complex plane is a set of points $S$ such that
+	around each point in $S$, one can draw a neighborhood not intersecting any other point of $S$.
+
+	Show that the zero set of any nonzero holomorphic function $f : U \to \CC$
+	is an isolated set, unless there exists a neighborhood of $f$ which is identically zero.
+	\begin{hint}
+		Proceed by contradiction, meaning there exists a sequence $z_1, z_2, \dots \to z$
+		where $0 = f(z_1) = f(z_2) = \dots$ all distinct.
+		Prove that $f = 0$ on some small neighborhood and apply the identity theorem.
+	\end{hint}
+	\begin{sol}
+		Proceed by contradiction, meaning there exists a sequence $z_1, z_2, \dots \to z$
+		where $0 = f(z_1) = f(z_2) = \dots$ all distinct.
+		WLOG set $z=0$.
+		Look at the Taylor series of $f$ around $z=0$.
+		Since it isn't uniformly zero by assumption, write it as $a_Nz^N + a_{N+1}z^{N+1} + \dots$, $a_N \neq 0$.
+		But by continuity of $h(z) = a_N + a_{N+1}z + \dots$ there is some
+		neighborhood of zero where $h(z) \neq 0$.
+	\end{sol}
+\end{sproblem}
+
+\begin{sproblem}
+	[Identity Theorem]
+	\gim
+	Let $f, g : U \to \CC$ be holomorphic, and assume that $U$ is connected.
+	Prove that if $f$ and $g$ agree on some small neighborhood, then $f = g$.
+	\begin{hint}
+		Take the interior of the agreeing points;
+		show that this set is closed, which implies the conclusion.
+	\end{hint}
+	\begin{sol}
+		Let $S$ be the interior of the points satisfying $f=g$.
+		By definition $S$ is open.
+		By the previous part, $S$ is closed: if $z_i \to z$ and $z_i \in S$,
+		then $f=g$ in some neighborhood of $z$, hence $z \in S$.
+		Since $S$ is clopen and nonempty, $S = U$.
+	\end{sol}
+\end{sproblem}
+
 \begin{figure}[ht]
 	\centering
 	\includegraphics[height=6cm]{/home/evan/Pictures/TopologicalGG/bounded-like-complex-sine.jpg}
 	\caption{Complex functions are bounded, even when real functions aren't.}
 \end{figure}
 
-\begin{sproblem}
-	[Identity Theorem]
-	\gim
-	Let $f, g : U \to \CC$ be holomorphic.
-	\begin{enumerate}[(a)]
-		\ii Suppose $z_1$, $z_2$, \dots is a sequence of \emph{distinct} complex numbers in $U$ which
-		converges to a point $z \in U$.  Given that $f(z_i) = g(z_i)$ for all $i$,
-		prove that $f = g$ on some open disk centered at $z$.
-		\ii Assume $U$ is \emph{connected}\footnote{This means $U$ has no proper clopen subsets;
-		hence the right approach to this problem is to show the set of agreement is clopen.
-		For example, this means that an entire function is determined by its values
-		by the values $f(\frac11), f(\frac12), \dots$, or on any open neighborhood!
-		}.
-		Show that $f = g$ on all of $U$.
-	\end{enumerate}
-	\begin{hint}
-		For (a), look at the Taylor series of $f-g$.
-		For (b), take the interior of the agreeing points.
-	\end{hint}
-	\begin{sol}
-		For part (a), WLOG set $z=0$.
-		Look at the Taylor series of $f - g$ around $z=0$.
-		If it isn't zero, write it as $a_Nz^N + a_{N+1}z^{N+1} + \dots$, $a_N \neq 0$.
-		But by continuity of $h(z) = a_N + a_{N+1}z + \dots$ there is some
-		neighborhood of zero where $h(z) \neq 0$.
 
-		For part (b), let $S$ be the interior of the points satisfying $f=g$.
-		By definition $S$ is open.
-		Use (a) to show $S$ is closed: if $z_i \to z$ and $z_i \in S$,
-		then $f=g$ in some neighborhood of $z$, hence $z \in S$.
-		Since $S$ is clopen and nonempty, $S = U$.
-	\end{sol}
-\end{sproblem}
+%\begin{dproblem}
+%	[Mean Value Property]
+%	Let $f : U \to \CC$ be holomorphic.
+%	Assume that $z_0 \in U$ and the disk centered at $z_0$
+%	with radius $r > 0$ is contained inside $U$. Show that
+%	\[ f(z_0) = \frac{1}{2\pi} \int_0^{2\pi} f(z_0+re^{it}) \; dt. \]
+%	In other words, $f(z_0)$ is the average of $f$ along the circle.
+%	\begin{hint}
+%		Evaluate $\oint_\gamma \frac{f(w)}{w-z_0} \; dw$ over the circle.
+%	\end{hint}
+%\end{dproblem}
+
+\begin{dproblem}[Maximums Occur On Boundaries]
+	Let $f : U \to \CC$ be holomorphic, let $Y \subset U$ be compact,
+	and let $\partial Y$ be its boundary\footnote{
+		The boundary $\partial Y$ is the set of points $p$
+		such that no open neighborhood of $p$ is contained in $Y$.
+		It is also a compact set if $Y$ is compact.
+	}.
+	Show that
+	\[ \max_{z \in Y} \left\lvert f(z) \right\rvert
+		= \max_{z \in \partial Y} \left\lvert f(z) \right\rvert. \]
+	In other words, the maximum values of $\left\lvert f \right\rvert$ occur
+	on the boundary. (Such maximums exist by compactness.)
+\end{dproblem}
 
 \begin{problem}
 	[Harvard Quals]
 	Let $f : \CC \to \CC$ be a nonconstant entire function.
 	Prove that the image of $f$ is dense in $\CC$.
+	(In fact, a much stronger result is true:
+	Little Picard's Theorem says that the image of a nonconstant
+	entire function omits at most one point.)
 	\begin{hint}
 		Liouville. Look at $\frac{1}{f(z)-w}$.
 	\end{hint}
@@ -626,6 +656,7 @@ In the next complex analysis chapter we'll see some more nice applications.
 		Look at $\frac{1}{f(z) - w}$ and use Liouville's Theorem.
 	\end{sol}
 \end{problem}
+
 %\begin{dproblem}
 %	[Liouiville's Theorem Extended]
 %	Let $f : \CC \to \CC$ be entire.
@@ -642,22 +673,15 @@ In the next complex analysis chapter we'll see some more nice applications.
 %		with radius $\eps$. Look at $\frac{1}{f(z)-w}$ and show it's bounded.
 %	\end{hint}
 %\end{dproblem}
-\begin{remark}
-	In fact, a much stronger result is true:
-	If $f : \CC \to \CC$ is entire and nonconstant,
-	then the image of $f$ is either $\CC$ or $\CC$ minus a point.
-	This is Little Picard's Theorem, proved in a later\todo{yet to be written} chapter.
-	But the proof uses Liouville's Theorem as an intermediate step.
-\end{remark}
 
-\begin{problem}
-	Show that a nonzero entire function can have at most countably many zeros,
-	and give an example where equality occurs.
-	\begin{hint}
-		Assume there are uncountably many zeros
-		and do a pigeonhole style argument to force them to
-		accumulate at some point.
-		Then apply the identity theorem.
-		Equality occurs at $\sin(z)$.
-	\end{hint}
-\end{problem}
+%\begin{problem}
+%	Show that a nonzero entire function can have at most countably many zeros,
+%	and give an example where equality occurs.
+%	\begin{hint}
+%		Assume there are uncountably many zeros
+%		and do a pigeonhole style argument to force them to
+%		accumulate at some point.
+%		Then apply the identity theorem.
+%		Equality occurs at $\sin(z)$.
+%	\end{hint}
+%\end{problem}

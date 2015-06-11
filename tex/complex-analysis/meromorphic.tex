@@ -1,21 +1,27 @@
 \chapter{Meromorophic Functions}
 \section{The Second Nicest Functions on Earth}
-Last time we studied holomorphic functions, which I dubbed ``the nicest functions on Earth'',
-and the incredibly nice properties they possessed, such as
-\[
-	\oint_\gamma f(z) \; dz = 0.
-\]
-We saw an example of a function that was ``almost holomorphic'', namely $\frac 1z$, which instead satisfied
+If holomorphic functions are like polynomials,
+then \emph{meromorphic} functions are like rational functions.
+Basically, a meromorphic function is a function of the form
+$ \frac{A(z)}{B(z)} $
+where $A , B:  U \to \CC$ are holomorphic and $B$ is not zero.
+The most important example of a meromorphic function is $\frac 1z$.
+
+We are going to see that meromorphic functions behave
+like ``almost-holomorphic'' functions.
+Specifically, a meromorphic function $A/B$ will be holomorphic at all points 
+except the zeros of $B$ (called \emph{poles}).
+By the Identity Theorem, there are cannot be too many zeros of $B$!
+So meromorphic functions can be thought of as ``almost holomorphic''
+(like $\frac 1z$, which is holomorphic everywhere but the origin).
+We saw that
 \[
 	\oint_{\gamma} \frac 1z \; dz
 	= \frac{1}{2\pi i}
 \]
 for $\gamma(t) = e^{it}$ the unit circle.
-But $\frac 1z$ was ``barely'' not holomorphic: it simply has a defect at the point $z=0$.
-We now want to extend our results to such functions.
+We will then extend our results on contours to such situations.
 
-In this chapter we will study the so-called ``second nicest functions on Earth'',
-the \emph{meromorphic functions}, or better yet, the ``almost holomorphic'' functions.
 It turns out that, instead of just getting $\oint_\gamma f(z) \; dz = 0$ like we did in
 the holomorphic case, the line integrals will actually be used to \emph{count the number of poles}
 inside the loop $\gamma$. It's ridiculous, I know.
@@ -24,30 +30,42 @@ inside the loop $\gamma$. It's ridiculous, I know.
 \prototype{$\frac 1z$, with a pole of order $1$ and residue $1$ at $z=0$.}
 
 Let $U$ be an open subset of $\CC$ again.
-We want to consider functions $f$ defined on all points in $U$
-except for a set of ``isolated'' singularities;
-for example, something like \[ \frac{1}{z(z+1)(z^2+1)} \] which is defined
-for all $z$ other than $z=0$, $z=-1$ and $z=i$.
-Or even \[ \frac{1}{\sin(2\pi z)}, \] which is defined at every $z$ which is \emph{not} an integer.
-Even though there's infinitely many points, they are not really that close together.
-
-Let's make these notions precise.
-First, let's make the notion of this ``division by zero'' precise.
 \begin{definition}
-	Let $p \in \CC$ be any point.
-	By a \vocab{deleted neighborhood} of $p$ we mean an open set of the form $U - \{p\}$,
-	where $U$ is a neighborhood of $p$.
+	A function $f : U \to \CC$ is \vocab{meromorphic} if it can be expressed as $A/B$
+	for $A, B : U \to \CC$ holomorphic, with $B$ not identically zero in any neighborhood.
 \end{definition}
-\begin{example}
-	For example, a deleted neighborhood of $0$ might be the set
-	\[ \left\{ z \in \CC \mid 0 < \left\lvert z \right\rvert < \frac{1}{1000} \right\}. \]
-	It quite literally looks like an open disk with a hole poked into it.
-\end{example}
+Let's see how this function $f$ behaves like.
+If $z \in U$ has $B(z) \neq 0$, then in some small neighborhood the function $B$ isn't zero
+at all, and thus $A/B$ is in fact \emph{holomorphic}; thus $f$ is holomorphic at $z$.
+(Concrete example: $\frac 1z$ is holomorphic in any disk not containing $0$.)
+
+On the other hand, suppose $p \in U$ has $B(p) = 0$: without loss of generality, $p=0$
+to ease notation.
+By using the Taylor series at $p=0$ we can put
+\[ B(z) = c_kz^k + c_{k+1}z^{k+1} + \dots \]
+with $c_k \neq 0$ (certainly coefficient is nonzero since $B$ is not identically zero!).
+Then we can write
+\[ \frac{1}{B(z)} = \frac{1}{z^k} \cdot \frac{1}{c_k + c_{k+1}z + \dots}. \]
+But the fraction on the right is a holomorphic function is this neighborhood!
+So all that's happened is that we have an extra $z^{-k}$ kicking around.
+
+
+%We want to consider functions $f$ defined on all points in $U$
+%except for a set of ``isolated'' singularities;
+%for example, something like \[ \frac{1}{z(z+1)(z^2+1)} \] which is defined
+%for all $z$ other than $z=0$, $z=-1$ and $z=i$.
+%Or even \[ \frac{1}{\sin(2\pi z)}, \] which is defined at every $z$ which is \emph{not} an integer.
+%% Even though there's infinitely many points, they are not really that close together.
+
+
+This gives us an equivalent way of viewing meromorphic functions:
 
 \begin{definition}
-	Let $U$ be an open set and $p$ a point inside it.
-	A function $f : U \to \CC$ is said to have a \vocab{pole} at $p$
-	if for some deleted neighborhood of $p$ it admits a \vocab{Laurent series}
+	Let $f : U \to \CC$ as usual.
+	A \vocab{meromorphic} function is a function which is holomorphic on $U$
+	except at an isolated set $S$ of points (meaning it is holomorphic as a function $U \setminus S \to \CC$).
+	For each $p \in S$, called a \vocab{pole} of $f$, the function $f$ must admit a \vocab{Laurent series},
+	meaning that
 	\[
 		f(z) =
 		\frac{c_{-m}}{(z-p)^m}
@@ -55,11 +73,28 @@ First, let's make the notion of this ``division by zero'' precise.
 		+ \dots
 		+ \frac{c_{-1}}{z-p} + c_0 + c_1 (z-p) + \dots
 	\]
-	for some positive integer $m$ (with $c_{-m} \neq 0$),
+	for all $z$ in some neighborhood of $p$, other than $z = p$.
+	Here $m$ is a positive integer (and $c_{-m} \neq 0$).
 \end{definition}
-
 Note that the trailing end \emph{must} terminate.
-If we cannot do so, we say that $p$ is an \vocab{essential singularity} instead.
+By ``isolated set'', I mean that we can draw neighborhoods around each pole in $S$,
+in such a way that no two neighborhoods intersect.
+
+\begin{example}
+	[Example of a Meromorphic Function]
+	Consider the function \[ \frac{z+1}{\sin z}. \]
+	It is meromorphic, because it is holomorphic everywhere except at the zeros of $\sin z$.
+	At each of these points we can put a Laurent series: for example at $z=0$ we have
+	\begin{align*}
+		\frac{z+1}{\sin z}
+		&= (z+1) \cdot \frac{1}{z - \frac{z^3}{3!} + \frac{z^5}{5!} + \dots} \\
+		&= \frac 1z \cdot \frac{z+1}{1 - \left( \frac{z^2}{3!} - \frac{z^4}{5!} + \frac{z^6}{7!} \right)} \\
+		&= \frac 1z \cdot (z+1) \sum_{k \ge 0} \left( \frac{z^2}{3!}-\frac{z^4}{5!}+\frac{z^6}{7!} \right)^k.
+	\end{align*}
+	If we expand out the horrible sum (which I won't do), then you get $\frac 1z$ times a perfectly
+	fine Taylor series, i.e.\ a Laurent series.
+\end{example}
+
 \begin{abuse}
 	We'll often say something like ``consider the function $f : \CC \to \CC$ by $z \mapsto \frac 1z$''.
 	Of course this isn't completely correct, because $f$ doesn't have a value at $z=0$.
@@ -73,10 +108,35 @@ If we cannot do so, we say that $p$ is an \vocab{essential singularity} instead.
 	As a function $\CC \setminus \{0\} \to \CC$ the function $\frac 1z$ is actually holomorphic.
 \end{abuse}
 
+\begin{remark}
+	I have shown that any function $A(z)/B(z)$
+	has this characterization with poles,
+	but an important result is
+	that the converse is true too:
+	if $f : U \setminus S \to \CC$ is holomorphic for some isolated set $S$,
+	and moreover $f$ admits a Laurent series at each point in $S$,
+	then $f$ can be written as a rational quotient of holomorphic functions.
+	I won't prove this here, but it is good to be aware of.
+\end{remark}
+
+
 \begin{definition}
+	Let $p$ be a pole of a meromorphic function $f$, with Laurent seires
+	\[ 
+		f(z) =
+		\frac{c_{-m}}{(z-p)^m}
+		+ \frac{c_{-m+1}}{(z-p)^{m-1}}
+		+ \dots
+		+ \frac{c_{-1}}{z-p} + c_0 + c_1 (z-p) + \dots.
+	\]
 	The integer $m$ called the \vocab{order} of the pole.
-	A pole of order $1$ is called \vocab{simple}.
+	A pole of order $1$ is called a \vocab{simple pole}.
+	
+	We also give the coefficient $c_{-1}$ a name, the \vocab{residue} of $f$ at $p$,
+	which we write $\Res(f;p)$.
 \end{definition}
+
+
 The order of a pole tells you how ``bad'' the pole is.
 The order of a pole is the ``opposite'' concept of the \vocab{multiplicity} of a \vocab{zero}.
 If $f$ has a pole at zero, then its Taylor series near $z=0$ might look something like
@@ -89,15 +149,15 @@ These orders are additive: $f(z) g(z)$ still has a pole of order $5-3=2$,
 but $f(z)g(z)^2$ is completely patched now, and in fact has a \vocab{simple zero} now
 (that is, a zero of degree $1$).
 
+\begin{ques}
+	Prove that orders are additive as described above.
+	(This is obvious once you understand that you are multiplying Taylor/Laurent series.)
+\end{ques}
+
 Metaphorically, poles can be thought of as ``negative zeros''.
 
-\begin{definition}
-	We also give the coefficient $c_{-1}$ a name, the \vocab{residue} of $f$ at $p$,
-	which we write $\Res(f;p)$.
-\end{definition}
 
-Although I haven't told you yet what a meromorphic function is,
-here are examples nonetheless.
+We can now give many more examples.
 \begin{example}
 	[Examples of Meromorphic Functions]
 	\listhack
@@ -119,16 +179,17 @@ here are examples nonetheless.
 		Hence the pole $z=0$ has order $2$ and residue $1$.
 	\end{enumerate}
 \end{example}
+
 \begin{example}
 	[A Rational Meromorphic Functions]
-	Consider the function $\CC \to \CC$ given  by
+	Consider the function $\CC \to \CC$ given by
 	\begin{align*}
 		z &\mapsto \frac{z^4+1}{z(z-1)} \\
 		&= z^2 + 1 + \frac 2z \cdot \frac{1}{z-1} \\
 		&= z^2 + 1 + \frac 2z \left( 1 + z + z^2 + \dots  \right) \\
-		&= \frac 2z + 3 + 2z + 3z^2 + 2z^3 + 2z^4 + 2z^5 + \dots 
+		&= \frac 2z + 3 + 2z + 3z^2 + 2z^3 + 2z^4 + 2z^5 + \dots .
 	\end{align*}
-	has a pole of order $1$ and residue $2$ at $z=0$.
+	It has a pole of order $1$ and residue $2$ at $z=0$.
 	(It also has a pole of order $1$ at $z=1$; you are invited to compute the residue.)
 \end{example}
 \begin{example}
@@ -155,54 +216,7 @@ disk centered at $p$ (minus the point $p$).
 The part $\frac{c_{-1}}{z-p} + \dots + \frac{c_{-m}}{(z-p)^m}$ is called the \vocab{principal part},
 and the rest of the series $c_0 + c_1(z-p) + \dots$ is called the \vocab{analytic part}.
 
-Now that I have the examples written down I'll actually define a meromorphic function.
-\begin{definition}
-	Let $U$ be an open set, $S \subseteq U$.
-	A function $f : U \to \CC$ is \vocab{meromorphic}
-	if it is holomorphic when viewed as a function $U \setminus S \to \CC$,
-	and moreover each $p \in S$ is a pole.
-\end{definition}
-We don't require $S$ to be finite (for example, $\frac{1}{\sin(2\pi z)}$ is meromorphic
-and has poles whenever $z$ is an integer).
-However, $S$ cannot be very big either.
-To be precise, recall that for $p \in S$ to be a pole, $f$ must be defined on some
-deleted neighborhood of $p$ -- thus that deleted neighborhood can't contain points of $S$.
-So $S$ must be \emph{isolated}\footnote{This is an actual topological definition: a subset
-of a topological space is called isolated if this condition holds}
-in the sense that we can draw a neighborhood around
-each point in $S$, so that no two neighborhoods intersect.
 
-\begin{example}
-	[Isolated Sets]
-	\listhack
-	\begin{enumerate}[(a)]
-		\ii The set $\ZZ$, regarded as a subset of $\CC$, is a nice example of an isolated set
-		which isn't finite: we can just take a $\frac{1}{2015}$-neighborhood around each point.
-		\ii Even the set $\{\frac 1n \mid n \in 1,2,\dots \}$ is an isolated set.
-		Take a disk of radius $0.001n^{-2015}$ around each point.
-		
-		However, no meromorphic function can actually have this set as its set of poles, since
-		if a function (like $1/\sin(2\pi/z)$) had such poles it would also have to have a pole at $z=0$.
-		Once we add in the point $0$, the set above is no longer an isolated set.
-
-		In general, the set of poles must be closed.
-		\ii The unit circle $S^1$, on the other hand, is not at all isolated.
-	\end{enumerate}
-\end{example}
-
-
-Anyways, you may have noticed that most examples of meromorphic functions we gave
-were of the form $A(z) / B(z)$ for holomorphic functions $A$ and $B$.
-For example, \[ \frac 1z, \quad \frac{e^z}{z}, \quad \frac{1}{\sin z}, \] and so on.
-In fact, this is true in general.
-\begin{theorem}
-	A function $f : U \to \CC$ is meromorphic
-	if and only if it is the quotient $g/h$ of two holomorphic functions $g,h : U \to \CC$
-	where $h$ is a nonzero function with zeros at each pole of $f$.
-\end{theorem}
-We won't prove this here, but the point is to take a function $h$ whose zeros exactly
-correspond, with multiplicity, to the poles of $f$, so that $f \cdot h$ becomes holomorphic.
-The tricky part is showing that such a function $h$ exists.
 
 \section{Winding Numbers and the Residue Theorem}
 Recall that for a counterclockwise circle $\gamma$ and a point $p$ inside it, we had
@@ -278,7 +292,7 @@ done in our statements about the winding number.
 	\[
 		f(z) = g(z) + \sum_{i=1}^k P_i\left( \frac{1}{z-p_i} \right)
 	\]
-	where $P_i\left( \frac{1}{1-p_i} \right)$ is the principal part of the pole $p_i$.
+	where $P_i\left( \frac{1}{z-p_i} \right)$ is the principal part of the pole $p_i$.
 	(For example, if $f(z) = \frac{z^3-z+1}{z(z+1)}$ we would write $f(z) = (z-1) + \frac1z - \frac1{1+z}$.)
 
 	The point of doing so is that the function $g$ is homomorphic (we've removed all the ``bad'' parts), so 
@@ -429,6 +443,7 @@ you find yourself with just linear functions.
 \end{problem}
 
 \begin{sproblem}
+	\gim
 	Let $f : U \to \CC$ be a nonconstant holomorphic function.
 	\begin{enumerate}[(a)]
 		\ii (Open Mapping Theorem)
@@ -438,8 +453,7 @@ you find yourself with just linear functions.
 			(by repeating the proof for the restriction $f : V \to \CC$).
 		}
 		\ii (Maximum Modulus Principle)
-		Show\footnote{One can also deduce the Maximum Modulus Principle
-		from the Mean Value Property.} that $\left\lvert f \right\rvert$
+		Show that $\left\lvert f \right\rvert$
 		cannot have a maximum over $U$.
 		That is, show that for any $z \in U$, there is some $z' \in U$
 		such that $\left\lvert f(z) \right\rvert < \left\lvert f(z') \right\rvert$.
