@@ -200,8 +200,7 @@ To make this concrete, let's compute the kernel of each of our examples.
 \begin{ques}
 	Show that for any homomorphism $\phi: G \to H$,
 	$\phi``(G)$ is a subgroup of $H$.
-	This means if $\phi : G \to H$ is a homomorphism, then the image of $\phi$
-	is some subgroup of $H$; the rest of the elements of $H$ don't matter.
+	This means if $\phi : G \to H$ is a homomorphism, then the image of $\phi$ is some subgroup of $H$.
 	Hence, we'll be especially interested in the case where $\phi$ is surjective.
 \end{ques}
 
@@ -224,7 +223,7 @@ We already saw that the kernel of this map is
 Recall now that $\ker \phi$ is a subgroup of $G$.
 What this means is that \textbf{$\phi$ is indifferent to the subgroup $100\ZZ$ of $\ZZ_+$}:
 \[ \phi(15) = \phi(2000 + 15) = \phi(-300 + 15) = \phi(700 + 15) = \dots. \]
-So $C_{100}$ is what we get when we ``mod out by $100$''. Cool.
+So $\Zc{100}$ is what we get when we ``mod out by $100$''. Cool.
 
 In other words, let $G$ be a group and $\phi : G \surjto Q$
 be a surjective homomorphism with kernel $N \subseteq G$.
@@ -271,7 +270,7 @@ Now we claim that we can write these equivalence classes very explicitly.
 %\[ \ol g = gN = \left\{ gn \mid n \in N \right\}. \]
 
 \begin{definition}
-	Let $H$ be any subgroup of $G$ (not necessarily normal).
+	Let $H$ be any subgroup of $G$ (not necessarily the kernel of some homomorphism).
 	A set of the form $gH$ is called a \vocab{left coset} of $H$.
 \end{definition}
 \begin{remark}
@@ -286,12 +285,12 @@ Now we claim that we can write these equivalence classes very explicitly.
 	\label{remark:coset_warning}
 \end{remark}
 \begin{remark}
-	Given cosets $g_1H$ and $g_2H$, you can check that the map $x \mapsto g_2g_1\inv x$ is a bijection between them.
-	So actually, all cosets have the same cardinality
-	(even if $H$ isn't normal).
-	Thus one picture you might use is that $G$ has been partitioned
-	into a bunch of equally tall fibers (the cosets), and $\phi$ 
-	collapses each of these fibers onto $Q$.
+	Given cosets $g_1H$ and $g_2H$,
+	you can check that the map $x \mapsto g_2g_1\inv x$ is a bijection between them.
+	So actually, all cosets have the same cardinality.
+	Thus, to picture the case where $H=N$ is the kernel of $\phi$,
+	you might draw $G$ as a bunch of equally tall fibers (the cosets),
+	where $\phi$ collapses each of these fibers onto $Q$.
 \end{remark}
 \begin{center}
 	\begin{asy}
@@ -425,7 +424,7 @@ the surprise is that from the latter we can deduce $H$ is normal.
 
 Thus we have a new criteria for ``normal'' subgroups which does not
 make any external references to $\phi$.
-\begin{theorem}
+\begin{theorem}[Algebraic Condition for Normal Subgroups]
 	Let $H$ be a subgroup of $G$.
 	Then the following are equivalent:
 	\begin{itemize}
@@ -456,10 +455,8 @@ make any external references to $\phi$.
 	You can verify that the second condition is enough to imply
 	that this multiplication is well-defined (this verification is the ``content'' of the theorem).
 	So $G/H$ is indeed a group!
-
-	Then there is an obvious ``projection'' homomorphism $G \to G/H$ whose kernel is $H$,
-	by sending $g$ to its projected image $gH$,
-	and whose kernel is $H$.
+	Moreover there is an obvious ``projection'' homomorphism
+	$G \to G/H$ (with kernel $H$), by $g \mapsto gH$.
 \end{proof}
 %Another way to write the condition is
 %\[ H = gHg\inv \defeq \left\{ ghg\inv \mid h \in H \right\}. \]
@@ -477,7 +474,7 @@ make any external references to $\phi$.
 	Indeed, we have $(g, h) \simeq_{G'} (1_G, h)$ for all $g \in G$ and $h \in H$.
 \end{example}
 \begin{example}[Another Explicit Computation]
-	Let $\phi: D_8 \to \Zc 4$.  be defined by \[ r \mapsto \ol 2, \quad s \mapsto \ol 2. \] 
+	Let $\phi: D_8 \to \Zc 4$ be defined by \[ r \mapsto \ol 2, \quad s \mapsto \ol 2. \] 
 	The kernel of this map is $N = \{1,r^2,sr,sr^3\}$.
 
 	We can do a quick computation of all the elements of $D_8$ to get
