@@ -238,7 +238,7 @@ Consider the following sets:
 	1+N &= \left\{ \dots, -199, -99, 1, 101, 201, \dots \right\} \\
 	2+N &= \left\{ \dots, -198, -98, 2, 102, 202, \dots \right\} \\
 	&\vdots \\
-	99+N &= \left\{ \dots, -199, -1, 99, 199, 299, \dots \right\}.
+	99+N &= \left\{ \dots, -100, -1, 99, 199, 299, \dots \right\}.
 \end{align*}
 The element of each set all have the same image when we apply $\phi$,
 and moreover any two elements in different sets have different images.
@@ -248,7 +248,7 @@ Then the main idea is to notice that
 	whose \emph{elements} are the \emph{sets} above.
 \end{moral}
 
-To recap: let $\phi : G \surjto Q$ be surjective.
+To recap: let $\phi : G \surjto Q$ be surjective, with kernel $N$.
 Given $\phi$ we can define an equivalence relation $\sim_N$
 on $G$ by saying $x \sim_N y$ for $\phi(x) = \phi(y)$.
 This $\sim_N$ divides $G$ into several equivalence classes in $G$
@@ -311,7 +311,7 @@ Now we claim that we can write these equivalence classes very explicitly.
 	\end{asy}
 \end{center}
 
-Anyways, viewed as equivalence classes of $\sim_N$, there is one left coset of $N$ for each value of $Q$.
+Anyways, viewed as equivalence classes of $\sim_N$, there is one left coset of $N$ for each element of $Q$.
 Using this bijection, we can define the quotient group in the following more concrete manner.
 
 \begin{definition}
@@ -323,9 +323,9 @@ Using this bijection, we can define the quotient group in the following more con
 	Let $N \normalin G$.
 	Then the \vocab{quotient group} $G/N$ is the group defined as follows.
 	\begin{itemize}
-		\ii The elements of $G/N$ will be the left cosets of $G$.
+		\ii The elements of $G/N$ will be the left cosets of $N$.
 		\ii We want to define the product of two cosets $C_1$ and $C_2$ in $G/N$.
-		Recall that the cosets are in bijection with values of $Q$.
+		Recall that the cosets are in bijection with elements of $Q$.
 		So let $q_1$ be the value associated to the coset $C_1$,
 		and $q_2$ the one for $C_2$.
 		Then we can take the product to be the coset corresponding to $q_1q_2$.
@@ -439,7 +439,7 @@ make any external references to $\phi$.
 	So we simply \emph{define} the group $G/H$ as the cosets.
 	To put a group operation, we need to verify the following claim.
 	\begin{claim}
-		If $g_1' \sim_N g_1$ and $g_2' \sim_N g_2$ then $g_1'g_2' \sim_N g_1g_2$.
+		If $g_1' \sim_H g_1$ and $g_2' \sim_H g_2$ then $g_1'g_2' \sim_H g_1g_2$.
 	\end{claim}
 	\begin{subproof}
 		Boring algebraic manipulation (again functional equation style).
@@ -471,7 +471,7 @@ make any external references to $\phi$.
 
 	Moreover, just as the notation would imply, you can check that
 	\[ (G \times H) / (G') \cong H. \]
-	Indeed, we have $(g, h) \simeq_{G'} (1_G, h)$ for all $g \in G$ and $h \in H$.
+	Indeed, we have $(g, h) \sim_{G'} (1_G, h)$ for all $g \in G$ and $h \in H$.
 \end{example}
 \begin{example}[Another Explicit Computation]
 	Let $\phi: D_8 \to \Zc 4$ be defined by \[ r \mapsto \ol 2, \quad s \mapsto \ol 2. \] 
@@ -496,6 +496,10 @@ Finally here's some food for thought:
 suppose one has a group presentation for a group $G$
 that uses $n$ generators.
 Can you write it as a quotient of the form $F_n / N$, where $N$ is a normal subgroup of $F_n$?
+
+% TODO Brian:
+% Useful to mention that $|G/N| = |G|/|N|$.
+% Also, mention that modding out $G/H$ means specifying $h=1$ for all $h \in H$.
 
 \section{(Digression) The First Isomorphism Theorem}
 One quick word about what other sources usually say.
@@ -527,9 +531,8 @@ It goes like this.
 \end{theorem}
 To me, this is just a clumsier way of stating the same idea.
 
-About the only merit this claim has is that if $G$ is injective,
-then $\phi$ is in fact injective,
-this theorem is saying that the image of $\phi$ is an \emph{isomorphic copy}
+About the only merit this claim has is that if $\phi$ is injective,
+then the image of $\phi$ is an \emph{isomorphic copy}
 of $G$ inside the group $H$.
 (Try to see this directly!)
 This is a pattern we'll often see in other branches of mathematics:
@@ -596,6 +599,8 @@ is an \emph{embedding} of $G$ into $H$.
 		and then use $g^{\left\lvert G \right\rvert} = 1_G$.
 	\end{sol}
 \end{problem}
+
+% TODO Brian: 3C and 3D are hard
 
 % TODO look at
 % http://www.artofproblemsolving.com/Forum/viewtopic.php?p=3657213#p3657213
