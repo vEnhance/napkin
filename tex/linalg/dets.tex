@@ -46,7 +46,7 @@ think of it as a ``wall'' that separates the elements
 between the two vector spaces.
 For example, the above example might be written as
 \[ 4x^2 \otimes y + 5x \otimes y + 1 \otimes y + 3 \otimes 1. \]
-But of course there should be no distinction between writing $4x^2 \otimes y$ and $x^2 \otimes 4y$ or even $2x^2 \otimes 2y^2$.
+But of course there should be no distinction between writing $4x^2 \otimes y$ and $x^2 \otimes 4y$ or even $2x^2 \otimes 2y$.
 While we want to keep the $x$ and $y$ separate,
 the scalars should be free to float around.
 
@@ -251,8 +251,9 @@ The point of introducing both the tensor product and the dual module is that tog
 we can use them to get an algebraic way of thinking about ``matrices''.
 Here's the intuition.
 If $V$ is three-dimensional and $W$ is five-dimensional, then we can think
-of the maps $V \to W$ as a $3 \times 5$ array of numbers.
-We want to think of these maps as a vector space: after all, you can certainly add any two matrices and multiply them by a scalar.
+of the maps $V \to W$ as a $5 \times 3$ array of numbers.
+We want to think of these maps as a vector space:
+after all, you can certainly add any two matrices and multiply them by a scalar.
 If we want to do so, then it had better be a vector space with dimension $15$,
 but just saying ``$k^{\oplus 15}$'' is not really that satisfying
 (in particular, that requires us to pick a basis).
@@ -414,7 +415,8 @@ This result is called the \vocab{trace} of a matrix $T$.
 	is a \emph{canonical} isomorphism \[ V \simeq (V^\vee)^\vee \]
 	that doesn't depend at all on what $V$ looks like,
 	or on an arbitrary choice of basis.
-	In other words, the structure of $V$ and $(V^\vee)^\vee$ really are the same at heart.
+	In other words, the structures of $V$ and $(V^\vee)^\vee$
+	really are the same at heart.
 \end{itemize}
 
 
@@ -599,7 +601,7 @@ And that is the definition of a determinant.
 Once again, since we defined it in terms of $\Lambda^n(T)$,
 this definition is totally independent of the choice of basis.
 In other words, the determinant can be defined based on $T : V \to V$ alone
-with any reference to matrices.
+without any reference to matrices.
 
 \begin{ques}
 	Why does $\Lambda^n(S \circ T) = \Lambda^n(S) \circ \Lambda^n(T)$?
@@ -659,9 +661,13 @@ and do a full expansion.
 
 \todo{maybe this isn't the best problem}
 \begin{problem}[USAMO 2008, edited]
-	At a certain mathematical conference, every pair of mathematicians are either friends or strangers. At mealtime, every participant eats in one of two large dining rooms. Each mathematician insists upon eating in a room which contains an even number of his or her friends.
-	Assuming that such a split exists,
-	prove that the number of ways that the mathematicians may be split between the two rooms is a power of two.
+	At a certain mathematical conference,
+	every two mathematicians are either friends or strangers.
+	At mealtime, every participant eats in one of two large dining rooms.
+	Each mathematician insists upon eating in a room which contains an
+	even number of his or her friends.
+	Assuming that such a split exists, prove that the number of ways
+	that the mathematicians may be split between the two rooms is a power of two.
 	% http://www.artofproblemsolving.com/Forum/viewtopic.php?p=3338962#p3338962
 \end{problem}
 

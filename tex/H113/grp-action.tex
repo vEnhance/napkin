@@ -17,7 +17,7 @@ We can make all of this precise using the idea of a group action.
 
 \begin{definition}
 	Let $X$ be a set and $G$ a group.
-	A \vocab{group action} is binary operation $\cdot : G \times X \to X$
+	A \vocab{group action} is a binary operation $\cdot : G \times X \to X$
 	which lets a $g \in G$ send an $x \in X$ to $g \cdot x$.
 	It satisfies the following axioms:
 	\begin{itemize}
@@ -94,7 +94,7 @@ As usual, orbits carve out $X$ into equivalence classes.
 It turns out that a very closely related concept is the following.
 \begin{definition}
 	The \vocab{stabilizer} of a point $x \in X$,
-	denoted $\Stab_G(x)$, is the set $g \in G$ which fix $x$; in other words
+	denoted $\Stab_G(x)$, is the set of $g \in G$ which fix $x$; in other words
 	\[ \Stab_G(x) \defeq \left\{ g \in G \mid g \cdot x = x \right\}. \]
 \end{definition}
 \begin{example}
@@ -141,9 +141,8 @@ Once we realize the stabilizer is a group, this leads us to what I privately cal
 		\end{asy}
 	\end{center}
 
-	Since the cosets partition $G$, each have size $\left\lvert S \right\rvert$,
-	and there are $\left\lvert \mathcal O \right\rvert$ of them,
-	we get the second result.
+	Since the $\left\lvert \mathcal O \right\rvert$ cosets partition $G$,
+	each of size $\left\lvert S \right\rvert$, we obtain the second result.
 \end{proof}
 
 \section{Burnside's Lemma}
@@ -180,8 +179,11 @@ Here is one:
 	As $\left\lvert G \right\rvert = 4$, the average is
 	\[ \frac{1176 + 24 + 0 + 0}{4} = 300. \]
 \end{example}
-\begin{exercise}[MathCounts Target \#8]
-	A circular spinner has seven section of equal size, each of which is colored either red or blue. Two colorings are considered the same if one can be rotated to yield the other. In how many ways can the spinner be colored? (Answer: 20)
+\begin{exercise}[MathCounts Chapter Target Round]
+	A circular spinner has seven sections of equal size,
+	each of which is colored either red or blue.
+	Two colorings are considered the same if one can be rotated to yield the other.
+	In how many ways can the spinner be colored? (Answer: 20)
 \end{exercise}
 % The group in question is $\Zc7$; the answer should be $20$.
 
@@ -196,8 +198,9 @@ Let me try to convince you this definition is not so unnatural.
 \begin{example}
 	[Conjugacy in $S_n$]
 	Let $G = S_5$, and fix a $\pi \in S_5$.
-	Here's the question: $\pi \sigma \pi \inv$ related to $\sigma$?
-	To illustrate this, I'll write out a completely random example of a permutation $\sigma \in S_5$.
+	Here's the question: is $\pi \sigma \pi \inv$ related to $\sigma$?
+	To illustrate this,
+	I'll write out a completely random example of a permutation $\sigma \in S_5$.
 	\[
 		\text{If }
 		\sigma = \;
@@ -224,9 +227,11 @@ Let me try to convince you this definition is not so unnatural.
 	it just ``renames'' each of the elements $1$, $2$, $3$, $4$, $5$
 	to $\pi(1)$, $\pi(2)$, $\pi(3)$, $\pi(4)$, $\pi(5)$.
 \end{example}
-But wait, you say. That's just a very particular type of group behaving nicely under conjugation.
+But wait, you say.
+That's just a very particular type of group behaving nicely under conjugation.
 Why does this mean anything more generally?
-All I have to say is: remember Cayley's Theorem! (This was \Cref{thm:cayley_theorem}.)
+All I have to say is: remember Cayley's Theorem!
+(This was \Cref{thm:cayley_theorem}.)
 
 In any case, we may now define:
 \begin{definition}

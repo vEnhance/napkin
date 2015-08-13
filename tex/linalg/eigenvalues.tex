@@ -21,7 +21,8 @@ which would have associated matrix
 \]
 That's perhaps \emph{too} simple, though.
 If we had a basis $e_1, \dots, e_n$ then another very ``simple'' operation
-would just be scaling each basis element $\lambda_i$, i.e.\ a \vocab{diagonal} matrix of the form
+would just be scaling each basis element by $\lambda_i$,
+i.e.\ a \vocab{diagonal} matrix of the form
 \[
 	T = 
 	\left(
@@ -33,7 +34,7 @@ would just be scaling each basis element $\lambda_i$, i.e.\ a \vocab{diagonal} m
 	\end{array}
 	\right).
 \]
-These maps are more general
+These maps are more general.
 Indeed, you can, for example, compute $T^{100}$ in a heartbeat:
 the map sends $e_1 \to \lambda_1^{100} e_1$.
 Try doing that with an arbitrary $n \times n$ matrix.
@@ -83,8 +84,8 @@ However, it is true if we replace $k$ with an algebraically closed field.
 	then $\ker S$ has a nonzero element (i.e.\ has dimension at least one).%
 	\footnote{
 		If you read the chapter on determinants:
-		This follows from the following that a wedge product
-		$v_1 \wedge v_2 \wedge \dots \wedge v_m = 0$
+		This follows from the fact that a wedge product
+		$v_1 \wedge v_2 \wedge \dots \wedge v_m$ is zero
 		if and only if the $v_i$ are linearly dependent.
 		One direction of this is obvious; the converse is intuitive
 		but somewhat annoying to prove.
@@ -129,7 +130,7 @@ For now, you should note that even if $\dim J_i \ge 2$, we still have a basis el
 which is an eigenvector with element $\lambda_i$.
 
 \begin{example}
-	Let $V : k^6 \to k^6$ and suppose $T$ is given by the matrix
+	Let $T : k^6 \to k^6$ and suppose $T$ is given by the matrix
 	\[ 
 		T = 
 		\left(
@@ -166,7 +167,8 @@ Only after that will we break the generalized eigenspace into the individual Jor
 
 The sections below record this proof in the other order:
 the next part deals with breaking generalized eigenspaces into Jordan blocks,
-and the part after that is the one where we break down $V$ into.
+and the part after that is the one where we break down $V$ into
+generalized eigenspaces.
 
 \section{Nilpotent Maps}
 First, let's consider the following -- bear with me for a moment.
@@ -323,7 +325,8 @@ Check that there are exactly $\ell + \dim W + (\dim \ker T - \ell) = \dim V$ ele
 \end{ques}
 \begin{exercise}
 	Show that all the elements are linearly independent.
-	(Assume for contradiction there is some linearly independence, then take $T$ of both sides.)
+	(Assume for contradiction there is some linear independence,
+	then take $T$ of both sides.)
 \end{exercise}
 Hence $\mathcal B$ is a basis of the desired form.
 
@@ -427,7 +430,7 @@ If you are only told the immoral definition of $p_T$ and the evil view that matr
 arrays of numbers, then this looks like a complete miracle.
 Indeed, just look at the terrible proofs on Wikipedia.
 
-But if you use the abstract viewpoint of $T$ as a map, then it's total tautology:
+But if you use the abstract viewpoint of $T$ as a map, then it is a total tautology:
 \begin{proof}[Proof of Cayley-Hamilton]
 	Suppose we write $V$ in Jordan normal form as
 	\[ V = J_1 \oplus \dots \oplus J_m \]
@@ -455,7 +458,7 @@ and so of course we would say that $T$ stretches areas by a factor of $20$!
 \section{(Digression) Tensoring Up}
 Earlier I said that we'll generally just work over algebraically closed fields,
 because, for example, a real matrix can be interpreted as a complex matrix whose
-entries just happen to real numbers.
+entries just happen to be real numbers.
 I just want to briefly tell you, in terms of tensor products, exactly what we have done.
 
 Let's take the space $V = \RR^3$, with basis $e_1$, $e_2$, $e_3$.

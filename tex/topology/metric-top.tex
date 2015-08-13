@@ -73,7 +73,9 @@ The concept of a metric space is very ``concrete'', and lends itself easily to v
 	\end{enumerate}
 \end{example}
 \begin{example}
-	[Function Space] We can let $M$ be the space of integrable functions $[0,1] \to \RR$ and define the metric by $d(f,g) = \int_0^1 \left\lvert f-g \right\rvert \; dx$.
+	[Function Space] We can let $M$ be the space of
+	integrable functions $f : [0,1] \to \RR$ and define the metric
+	by $d(f,g) = \int_0^1 \left\lvert f-g \right\rvert \; dx$.
 \end{example}
 
 Here is a slightly more pathological example.
@@ -89,7 +91,8 @@ Here is a slightly more pathological example.
 			0 & \text{if $x = y$}.
 		\end{cases}
 	\]
-	If $\left\lvert S \right\rvert = 4$ you might think of this space as the vertices of an regular tetrahedron, living in $\RR^3$.
+	If $\left\lvert S \right\rvert = 4$ you might think of this space
+	as the vertices of a regular tetrahedron, living in $\RR^3$.
 	But for larger $S$ it's not so easy to visualize\dots
 \end{example}
 \begin{example}[Graphs are Metric Spaces]
@@ -185,7 +188,8 @@ All we have do is replace the absolute values with the more general distance fun
 	Moreover, the entire function $f$ is continuous if it is continuous at every point $p \in M$.
 \end{definition}
 Notice that, just like in our definition of an isomorphism of a group,
-we use both the metric of $M$ for one condition and the metric of $N$ on the other condition.
+we use both the metric of $M$ for one condition
+and the metric of $N$ for the other condition.
 
 This generalization is nice because it tells us immediately how we could carry over continuity arguments in $\RR$ to more general spaces (for example, replacing $\RR$ with $\CC$ to get complex analysis).
 Nonetheless, this definition is kind of cumbersome to work with, because it makes extensive use of the real numbers (epsilons and deltas).
@@ -201,7 +205,7 @@ Here is an equivalent condition.
 	We do not even need the triangle inequality.
 \end{proof}
 
-The next example illustrates why this criteria can often be much easier to work with.
+The next example illustrates why this criterion can often be much easier to work with.
 \begin{proposition}
 	Let $f : M \to N$ and $g : N \to L$ be continuous maps of metric spaces.
 	Then their composition $g \circ f$ is continuous.
@@ -234,11 +238,10 @@ For topological spaces, we do exactly the same thing, but replace ``structure-pr
 \end{definition}
 Needless to say $\approx$ is an equivalence relation.
 
-You might be surprised that we need the condition $f\inv$ is also continuous.
-The reason we didn't need it when we considered group isomorphisms
-you can show that if $\phi$ is a homomorphism of groups which is a bijection,
-then so is $\phi\inv$.
-But the same is not true for homeomorphisms.
+You might be surprised that we require $f\inv$ to also be continuous.
+Here's the reason: you can show that if $\phi$ is a homomorphism of groups
+which is a bijection, then so is $\phi\inv$.
+The same is not true for continuous bijections, which is why we need the new condition:
 \begin{exercise}
 	Exhibit a metric space $M$ and a continuous bijection $f : M \to \RR$
 	whose inverse function is not continuous.
@@ -253,7 +256,7 @@ Here are some examples.
 	\listhack
 	\begin{enumerate}[(a)]
 		\ii Any space $M$ is homeomorphic to itself through the identity map.
-		\ii A doughnut is homeomorphic to the coffee cup.
+		\ii A doughnut (torus) is homeomorphic to a coffee cup.
 		\ii The unit circle $S^1$ is homeomorphic to the boundary of the unit square. Here's one bijection between them, after an appropriate scaling:
 		\begin{center}
 			\begin{asy}
@@ -540,8 +543,10 @@ Now we can port over our metric definitions.
 \end{center}
 
 \begin{abuse}
-	Just to be perfect clearly: by a ``open neighborhood'' I mean \emph{any} open set containing $x$.
-	But by an ``$r$-neighborhood'' I always mean the points with distance less than $r$ from $x$,
+	Just to be perfect clear:
+	by a ``open neighborhood'' I mean \emph{any} open set containing $x$.
+	But by an ``$r$-neighborhood'' I always mean the
+	points with distance less than $r$ from $x$,
 	and so I can only use this term if my space is a metric space.
 \end{abuse}
 

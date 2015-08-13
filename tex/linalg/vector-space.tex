@@ -1,9 +1,9 @@
 \chapter{What is a Vector Space?}
 This is a pretty light chapter.
-The point of it is to just define what a vector space and a basis is.
+The point of it is to just define what a vector space and a basis are.
 These are very intuitive concepts that you likely already know.
 
-\section{The Definition of a Ring and Field}
+\section{The Definitions of a Ring and Field}
 \prototype{$\ZZ$, $\RR$, or $\CC$ are all rings and the latter two are fields.}
 I'll very informally define a ring/field here; if you're interested in the actual definition,
 you can consult the first part of the chapter on ideals.
@@ -11,7 +11,7 @@ For now you can just remember
 \begin{quote}
 	A ring is a structure with a \emph{commutative}
 	addition, subtraction and multiplication, like $\ZZ$. 
-	It also has a additive identity $0$ and multiplication identity $1$.
+	It also has an additive identity $0$ and multiplicative identity $1$.
 	(Yes, I'm considering only commutative rings.)
 
 	If the multiplication is invertible like in $\RR$ or $\CC$,
@@ -37,7 +37,7 @@ Then informally,
 You can think of the $R$-module as consisting of soldiers
 being commanded by the ring $R$.
 Moreover, a \vocab{vector space} is just a module whose commanding ring
-is a actually a field.
+is actually a field.
 I'll give you the full definition in a moment,
 but first, examples\dots
 
@@ -81,7 +81,7 @@ but first, examples\dots
 Now let me write the actual rules for how this multiplication behaves.
 \begin{definition}
 	Let $R$ be a ring.
-	A $R$-\vocab{module} is an additive abelian group $M = (M,+)$
+	An $R$-\vocab{module} is an additive abelian group $M = (M,+)$
 	equipped with a left multiplication by elements of $R$.
 	This multiplication must satisfy the following properties
 	for every $r_1, r_2 \in R$ and $m \in M$:
@@ -92,7 +92,7 @@ Now let me write the actual rules for how this multiplication behaves.
 			\text{ and }
 			r \cdot (m_1 + m_2) = r \cdot m_1 + r \cdot m_2. \]
 		\ii $1_R \cdot m = m$.
-		\ii $0_R \cdot m = 0_M$.\footnote{This condition is actually
+		\ii $0_R \cdot m = 0_M$.\footnote{This condition is 
 			extraneous; you can actually deduce it
 			from the first three rules.}
 	\end{enumerate}
@@ -123,7 +123,7 @@ A couple less intuitive but somewhat important examples\dots
 	\listhack
 	\begin{enumerate}[(a)]
 		\ii The example of real polynomials
-		\[ \left\{ ax^2+bx+c \mid a,b,c \in \RR \right\}, \]
+		\[ \left\{ ax^2+bx+c \mid a,b,c \in \RR \right\} \]
 		is also a $\ZZ$-module!
 		Indeed, we can add any two such polynomials,
 		and we can scale them by integers.
@@ -179,14 +179,14 @@ The notion which captures this formally is the \vocab{direct sum}.
 	Let $M_1$ and $M_2$ be subsets of $M$ which are themselves $R$-modules.
 	Then we write $M = M_1 \oplus M_2$ and say $M$ is a \vocab{direct sum}
 	of $M_1$ and $M_2$
-	if every element from $M$ can be written uniquely as a sum
+	if every element from $M$ can be written uniquely as the sum
 	of an element from $M_1$ and $M_2$.
 \end{definition}
 As another example, we have that the $xy$-plane consists
 of sums of its vectors.
 \begin{example}[Euclidean Plane]
 	Take the vector space $\RR^2 = \left\{ (x,y) \mid x \in \RR, y \in \RR \right\}$.
-	We can consider it as a direct sum of its two $x$-axis and $y$-axis:
+	We can consider it as a direct sum of its $x$-axis and $y$-axis:
 	\[ X = \left\{ (x,0) \mid x \in \RR  \right\} 
 		\text{ and }
 		Y = \left\{ (0,y) \mid y \in \RR \right\}. \]
@@ -242,7 +242,7 @@ and each of the summands is really just a copy of $\RR$ at heart.
 
 The idea of a basis, the topic of this section,
 gives us another way to capture the notion that
-for \[ V = \left\{ ax^2+bx+c \mid a,b,c \in \RR \right\} \]
+\[ V = \left\{ ax^2+bx+c \mid a,b,c \in \RR \right\} \]
 is just sums of copies of $\{1,x,x^2\}$.
 This section should be very very intuitive, if technical.
 If you can't see why the theorems here ``should'' be true,
@@ -269,19 +269,19 @@ If not, fall upon your notion of Euclidean space or $V$ above.
 		In the polynomial example, that just means
 		that your polynomials have finite degree (which is good).
 	}
-	set of $v_1, \dots, v_n$ of vectors in a module $M$.
+	set $\{v_1, \dots, v_n\}$ of vectors in a module $M$.
 	\begin{itemize}
 		\ii It is called \vocab{linearly independent} if there
 		is no nontrivial linear combination with value $0_M$.
 		(Observe that $0_M = 0 \cdot v_1 + 0 \cdot v_2 + \dots + 0 \cdot v_n$
 		is always true -- the assertion is that there is no other
 		way to express $0_M$ in this from.)
-		\ii It is called \vocab{generating set} if every $v \in M$ can be written as
-		a linear combination of the $v_i$.
+		\ii It is called a \vocab{generating set} if every $v \in M$ can be written as
+		a linear combination of the $\{v_i\}$.
 		If $M$ is a vector space we say it is \vocab{spanning} instead.
 		\ii It is called a \vocab{basis} (plural \vocab{bases})
 		if every $v \in M$ can be written
-		\emph{uniquely} as a linear combination of the $v_i$.
+		\emph{uniquely} as a linear combination of the $\{v_i\}$.
 	\end{itemize}
 \end{definition}
 So by definition, $\left\{ 1,x,x^2 \right\}$ is a basis for $V$.
@@ -300,13 +300,14 @@ So by definition, $\left\{ 1,x,x^2 \right\}$ is a basis for $V$.
 Now we state a few results which assert
 that bases in vector spaces behave as nicely as possible.
 \begin{theorem}[Maximality and Minimality of Bases]
-	If $e_1$, $e_2$, \dots, $e_n$ are a basis of a module $M$, then
+	If $e_1$, $e_2$, \dots, $e_n$ form a basis of a module $M$, then
 	\begin{enumerate}[(a)]
-		\ii The $\{e_i\}$ are spanning, but no proper subset are.
+		\ii The $\{e_i\}$ are spanning, but no proper subset is spanning.
 		\ii The $\{e_i\}$ are linearly independent, but adding any other
 		element of $M$ makes them not linearly independent.
 	\end{enumerate}
-	If $M$ is a vector space, conditions (a) and (b) also imply that the $\{e_i\}$ are a basis.
+	If $M$ is a vector space, conditions
+	(a) and (b) also imply that the $\{e_i\}$ are a basis.
 	\label{thm:vector_best}
 \end{theorem}
 \begin{proof}
@@ -342,7 +343,7 @@ that bases in vector spaces behave as nicely as possible.
 \end{remark}
 
 The Dimension Theorem, true to its name, lets us define the \vocab{dimension} of
-a vector space to be the size of any finite basis, if one exists.
+a vector space as the size of any finite basis, if one exists.
 When it does exist we say $V$ is \vocab{finite-dimensional}.
 So for example,
 \[ V = \left\{ ax^2 + bx + c \mid a,b,c \in \RR \right\} \]
@@ -370,8 +371,8 @@ unless otherwise specified}.
 Infinite-dimensional vector spaces make my eyes glaze over.
 
 \section{Linear Maps}
-We've seen homomorphism and continuous maps.
-Now we're about to see linear map, the structure preserving maps
+We've seen homomorphisms and continuous maps.
+Now we're about to see linear maps, the structure preserving maps
 between vector spaces. Can you guess the definition?
 
 \begin{definition}
@@ -433,7 +434,7 @@ I could tell you what $T(e_1)$ is, but seeing as I have a basis of $W$,
 I can actually just tell you what $T(e_1)$ is in terms of this basis.
 Specifically, there are unique $a_{11}, a_{21}, \dots, a_{n1} \in k$ such that
 \[ T(e_1) = a_{11} w_1 + a_{21} w_2 + \dots + a_{n1} w_n. \]
-So rather than you telling you the value of $T(e_1)$ in some abstract space $W$,
+So rather than telling you the value of $T(e_1)$ in some abstract space $W$,
 I could just tell you what $a_{11}, a_{21}, \dots, a_{n1}$ were.
 Then I'd just repeat this for $T(e_2)$, $T(e_3)$, all the way up to $T(e_m)$,
 and that would tell you everything you need to know about $T$.
@@ -511,7 +512,7 @@ Subspaces behave nicely with respect to bases.
 	Then 
 	\begin{enumerate}[(a)]
 		\ii $V'$ is also finite-dimensional.
-		\ii If $e_1, \dots, e_m$ is a basis of $V'$, then there exists
+		\ii If $e_1, \dots, e_m$ is a basis of $V'$, then there exist
 		$e_{m+1}, \dots, e_n$ in $V$ such that
 		$e_1, \dots, e_n$ is a basis of $V$.
 	\end{enumerate}
@@ -555,8 +556,9 @@ and $e_1, e_2 \in V$ to $f_{13}, f_{37}$ in $W$.
 
 The above theorem is quite important: you should keep it in your head.
 It gives you a picture of how a linear map behaves:
-in particular, you can write for $T : V \to W$, 
-one can write $V = \ker T \oplus V'$, so that $T$ annihilates its kernel while sending $V'$
+in particular, for $T : V \to W$, 
+one can write $V = \ker T \oplus V'$,
+so that $T$ annihilates its kernel while sending $V'$
 to an isomorphic copy in $W$.
 
 A corollary of this (which you should have expected anyways) is the so called Rank-Nullity Theorem,
@@ -576,9 +578,8 @@ of linear algebra to a theorem from high school we all know.
 	[Lagrange Interpolation]
 	Let $x_1, \dots, x_{n+1}$ be distinct real numbers
 	and $y_1, \dots, y_{n+1}$ any real numbers.
-	Then there exists a \emph{unique} polynomial of degree $P$
-	at most $n$ passing such that \[ P(x_i) = y_i \]
-	for every $i$.
+	Then there exists a \emph{unique} polynomial $P$ of degree at most $n$
+	such that \[ P(x_i) = y_i \] for every $i$.
 \end{theorem}
 \begin{proof}
 	The idea is to consider the vector space $V$ of polynomials with degree at most $n$,
@@ -669,18 +670,20 @@ I would pick 55a in a heartbeat.
 I focused mostly on vector fields (aka modules over a ring) in this chapter
 for simplicity, so I want to make a few remarks about modules over a general ring $R$ before concluding.
 
-Firstly, recall that for general modules, we say ``generating set'' instead of ``spanning set''.
+Firstly, recall that for general modules,
+we say ``generating set'' instead of ``spanning set''.
 Shrug.
 
-The main issue with rings is that our key theorem \Cref{thm:vector_best} fails in spectacular ways.
-For example, consider the $\ZZ$ as a $\ZZ$-module over itself.
+The main issue with rings is that our key theorem \Cref{thm:vector_best}
+fails in spectacular ways.
+For example, consider $\ZZ$ as a $\ZZ$-module over itself.
 Then $\{2\}$ is linearly independent, but it cannot be extended to a basis.
 Similarly, $\{2,3\}$ is spanning, but one cannot cut it down to a basis.
 You can see why defining dimension is going to be difficult.
 
 Nonetheless, there are still analogs of some of the definitions above.
 \begin{definition}
-	A $R$-module $M$ is called \vocab{finitely generated} if it as a finite generating set.
+	An $R$-module $M$ is called \vocab{finitely generated} if it has a finite generating set.
 \end{definition}
 \begin{definition}
 	An $R$-module $M$ is called \vocab{free} if it has a basis.

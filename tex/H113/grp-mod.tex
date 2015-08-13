@@ -1,6 +1,6 @@
 \chapter{Homomorphisms and Quotient Groups}
 \section{Generators and Group Presentations}
-Let $G$ be a group. Recall that we for some element $x \in G$, we could consider the subgroup
+Let $G$ be a group. Recall that for some element $x \in G$, we could consider the subgroup
 \[ \left\{ \dots, x^{-2}, x^{-1}, 1, x, x^2, \dots \right\} \]
 of $G$.
 Here's a more pictorial version of what we did: \textbf{put $x$ in a box, seal it tightly, and shake vigorously}.
@@ -108,7 +108,7 @@ We simply drop the ``bijection'' condition.
 
 \begin{definition}
 	Let $G = (G, \star)$ and $H = (H, \ast)$ be groups.
-	A \vocab{group homomorphisms} is a map $\phi : G \to H$
+	A \vocab{group homomorphism} is a map $\phi : G \to H$
 	such that for any $g_1, g_2 \in G$ we have
 	\[ \phi(g_1 \star g_2) = \phi(g_1) \ast \phi(g_2). \]
 \end{definition}
@@ -137,13 +137,16 @@ We simply drop the ``bijection'' condition.
 The last two examples illustrates something: suppose we have a presentation of $G$.
 To specify a homomorphism $G \to H$, we only have to specify where each generator of $G$ goes, in such a way that the relations are all satisfied.
 
-Important remark: the right way to think about an isomorphism is as a ``bijective homomorphism''.
+Important remark:
+the right way to think about an isomorphism is as a ``bijective homomorphism''.
 To be explicit,
 \begin{exercise}
-	Show that $G \cong H$ if and only if there exists homomorphisms $\phi : G \to H$
-	and $\psi : H \to G$ such that $\phi \circ \psi = \id_H$ and $\psi \circ \phi = \id_G$.
+	Show that $G \cong H$ if and only if there exist
+	homomorphisms $\phi : G \to H$ and $\psi : H \to G$
+	such that $\phi \circ \psi = \id_H$ and $\psi \circ \phi = \id_G$.
 \end{exercise}
-So the definition of homeomorphism and isomorphism are not too different.
+So the definitions of homeomorphism of metric spaces
+and isomorphism of groups are not too different
 
 Some obvious properties of homomorphisms follow.
 \begin{fact}
@@ -240,7 +243,7 @@ Consider the following sets:
 	&\vdots \\
 	99+N &= \left\{ \dots, -100, -1, 99, 199, 299, \dots \right\}.
 \end{align*}
-The element of each set all have the same image when we apply $\phi$,
+The elements of each set all have the same image when we apply $\phi$,
 and moreover any two elements in different sets have different images.
 Then the main idea is to notice that
 \begin{moral}
@@ -356,6 +359,7 @@ We can now show Lagrange's Theorem in the general case.
 Here is a more general statement.
 \begin{theorem}
 	[Lagrange's Theorem]
+	\label{thm:lagrange_grp}
 	Let $G$ be a finite group, and let $H$ be any subgroup.
 	Then $\left\lvert H \right\rvert$ divides $\left\lvert G \right\rvert$.
 \end{theorem}
@@ -422,7 +426,7 @@ In this case, we all know that normal subgroups $H$ satisfy $ghg\inv \in H$;
 the surprise is that from the latter we can deduce $H$ is normal.
 \end{remark}
 
-Thus we have a new criteria for ``normal'' subgroups which does not
+Thus we have a new criterion for ``normal'' subgroups which does not
 make any external references to $\phi$.
 \begin{theorem}[Algebraic Condition for Normal Subgroups]
 	Let $H$ be a subgroup of $G$.
@@ -539,7 +543,7 @@ This is a pattern we'll often see in other branches of mathematics:
 whenever we have an \emph{injective structure-preserving map},
 often the image of this map will be some ``copy'' of $G$.
 
-In that sense an injective homomorphisms $\phi : G \injto H$
+In that sense an injective homomorphism $\phi : G \injto H$
 is an \emph{embedding} of $G$ into $H$.
 
 

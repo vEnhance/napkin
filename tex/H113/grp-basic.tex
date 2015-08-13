@@ -1,6 +1,6 @@
 \chapter{What is a Group?}
 A group is one of the most basic structures in higher mathematics.
-In this chapter I will tell you only a bare minimum:
+In this chapter I will tell you only the bare minimum:
 what a group is, and when two groups are the same.
 
 \section{Definition and Examples of Groups}
@@ -116,13 +116,13 @@ Let's resume writing down examples of groups.
 \end{example}
 
 \begin{example}
-	[Adding mod $n$]
+	[Addition mod $n$]
 	Here is an example from number theory:
 	Let $n > 1$ be an integer,
 	and consider the residues modulo $n$.
 	These form a group under addition.
 	We call this the \vocab{cyclic group of order $n$},
-	and abbreviate it as $\Zc n$, with element $\ol 0, \ol 1, \dots$.
+	and abbreviate it as $\Zc n$, with elements $\ol 0, \ol 1, \dots$.
 	\label{def:cyclic_group}
 \end{example}
 \begin{example}
@@ -154,8 +154,9 @@ The next two examples are fairly important ones:
 
 \begin{example}
 	[Dihedral Group]
-	The \vocab{dihedral group of order $2n$} is the group of symmetries of
-	a regular $n$-gon $A_1A_2 \dots A_n$, which includes rotations and reflections.
+	The \vocab{dihedral group of order $2n$}, denoted $D_{2n}$,
+	is the group of symmetries of a regular $n$-gon $A_1A_2 \dots A_n$,
+	which includes rotations and reflections.
 	It consists of the following $2n$ elements:
 	\[ \left\{ 1, r, r^2, \dots, r^{n-1}, s, sr, sr^2, \dots, sr^{n-1} \right\}. \]
 	The element $r$ corresponds to rotating the $n$-gon by $\frac{2\pi}{n}$,
@@ -285,6 +286,7 @@ Now we state a slightly more useful proposition.
 	\[ (ab)(b\inv a\inv)
 		= a (bb\inv) a\inv = aa\inv = 1_G. \]
 	Hence $(ab)\inv = b\inv a\inv$.
+	Similarly, $(b\inv a\inv)(ab) = 1_G$ as well.
 \end{proof}
 
 Finally, we state a very important lemma about groups,
@@ -411,11 +413,12 @@ In groups, there are two notions of order.
 	Note that the order may not be finite, as in $\ZZ_+$.
 	We say $G$ is a \vocab{finite group} just to mean that $\left\lvert G \right\rvert$ is finite.
 \end{definition}
-\begin{example}[Order of the Cyclic Group]
+\begin{example}[Orders of Groups]
 	For a prime $p$, $\left\lvert \Zm p \right\rvert = p-1$.
 	In other words, the order of $\Zm p$ is $p-1$.
-	As another example, the order of the symmetric group $S_n$ is $\left\lvert S_n \right\rvert = n!$
-	and the order dihedral group $D_{2n}$ is $2n$.
+	As another example,
+	the order of the symmetric group $S_n$ is $\left\lvert S_n \right\rvert = n!$
+	and the order of the dihedral group $D_{2n}$ is $2n$.
 \end{example}
 
 \begin{definition}
@@ -452,15 +455,18 @@ The proof is just an olympiad-style pigeonhole argument: consider the infinite s
 \end{fact}
 
 What's the last property of $\Zm p$ that you know from olympiad math?
-We have Fermat's Little Theorem: for any $a$, we have $a^{p-1} \equiv 1 \pmod p$.
-This is no coincidence: exactly the same thing is true in a more general setting.
+We have Fermat's Little Theorem: for any $a \in \Zm p$,
+we have $a^{p-1} \equiv 1 \pmod p$.
+This is no coincidence:
+exactly the same thing is true in a more general setting.
 
 \begin{theorem}
-	[Lagrange's Theorem]
+	[Lagrange's Theorem for Orders]
 	Let $G$ be any finite group.
 	Then $x^{\left\lvert G \right\rvert} = 1_G$ for any $x \in G$.
 \end{theorem}
-Keep this result in mind!
+Keep this result in mind! We'll prove it later in
+the generality of \Cref{thm:lagrange_grp}.
 
 \section{Subgroups}
 \prototype{$\SL_n(\RR)$ is a subgroup of $\GL_n(\RR)$.}
@@ -598,7 +604,7 @@ Just for fun, here is a list of all groups of order less than or equal to ten
 \end{problem}
 
 \begin{problem}
-	Prove Lagrange's Theorem in the special case
+	Prove Lagrange's Theorem for Orders in the special case
 	that $G$ is a finite abelian group.
 	\begin{hint}
 		Copy the proof of Fermat's Little Theorem, using
