@@ -248,6 +248,7 @@ This section should be very very intuitive, if technical.
 If you can't see why the theorems here ``should'' be true,
 you're doing it wrong.
 
+
 Let $M$ be an $R$-module now.
 We define three very classical notions that you likely are already familiar with.
 If not, fall upon your notion of Euclidean space or $V$ above.
@@ -285,6 +286,19 @@ If not, fall upon your notion of Euclidean space or $V$ above.
 	\end{itemize}
 \end{definition}
 So by definition, $\left\{ 1,x,x^2 \right\}$ is a basis for $V$.
+It's not the only one: $\{2, x, x^2\}$ and $\{x+4, x-2, x^2+x\}$
+are other examples of bases, though not as natural.
+However, the set $S = \{3+x^2, x+1, 5+2x+x^2\}$ is not a basis:
+it fails for the following two reasons.
+\begin{itemize}
+	\ii Note that
+	$0 = (3+x^2) + 2(x+1) - (5+2x+x^2)$.
+	So the set $S$ is not linearly independent.
+	\ii It's not possible to write $x^2$ as a sum of elements of $S$.
+	So $S$ fails to be spanning.
+\end{itemize}
+With these new terms, we can just say a basis is a linearly independent, spanning set.
+
 \begin{ques}
 	Show that a set of vectors is a basis if and only if
 	it is linearly independent and spanning.
