@@ -1,7 +1,15 @@
 \documentclass[11pt,numbers=noenddot]{scrreprt}
 \input{tex/preamble}
 
+\usepackage{draftwatermark}
+\SetWatermarkAngle{32}
+\SetWatermarkLightness{0.95}
+\SetWatermarkFontSize{40pt}
+\SetWatermarkScale{1.414}
+\SetWatermarkText{DRAFT (\today)}
+
 %\includeonly{
+%	tex/frontmatter/title-embellishments,
 %	tex/frontmatter/preface,tex/frontmatter/advice,
 %	tex/alg/NT/galois,tex/alg-NT/finite-field,tex/alg-NT/ramification,tex/alg-NT/frobenius,
 %	tex/alg-NT/dedekind,tex/alg-NT/galois,tex/alg-NT/classgrp,tex/alg-NT/discriminant,
@@ -9,13 +17,13 @@
 %	tex/H113/grp-basic,tex/H113/grp-mod
 %}
 
-
 % TODO: not consistent with ). and .)
 % TODO: 25.10 25.11 33.10 spacing is bad in table of contents
 
 \begin{document}
 \title{An Infinitely Large Napkin}
 \subtitle{Bedtime Stories for MOPpers}
+\date{\url{http://www.mit.edu/~evanchen/napkin.html}}
 \maketitle
 
 \include{tex/frontmatter/title-embellishments}
