@@ -39,14 +39,14 @@ Let's use this to motivate the definition of a general \emph{category}.
 		\ii For any two objects $A_1, A_2 \in \obj(\AA)$, 
 		a class of \vocab{arrows} (also called \vocab{morphisms} or \vocab{maps}) between them.
 		We'll denote the set of these arrows by $\Hom_\AA(A_1, A_2)$.
-		\ii For any $A_1, A_2, A_3 \in \obj(A)$,
+		\ii For any $A_1, A_2, A_3 \in \obj(\AA)$,
 		if $f : A_1 \to A_2$ is an arrow and $g : A_2 \to A_3$ is an arrow, we can compose
 		these arrows to get an arrow $g \circ f : A_1 \to A_3$.
 
 		We can represent this in a \vocab{commutative diagram}
 		\begin{diagram}
 			A_1 & \rTo^f & A_2 \\
-			& \rdDashed^{f \circ g} & \dTo_g \\
+			& \rdDashed^{g \circ f} & \dTo_g \\
 			&& A_3
 		\end{diagram}
 
@@ -84,8 +84,8 @@ Let's formalize the motivation we began with.
 		\ii In the same way we can conceive a category $\catname{Ring}$ of rings.
 		\ii Similarly, there is a category $\catname{Top}$ of topological spaces,
 		whose arrows are the continuous maps.
-		\ii There is a category $\catname{Top}_\ast$ of topological spaces with a \emph{distinguished basepoint},
-		that is a pair $(X, x_0)$ where $x_0 \in X$.
+		\ii There is a category $\catname{Top}_\ast$ of topological spaces with a \emph{distinguished basepoint};
+		that is, a pair $(X, x_0)$ where $x_0 \in X$.
 		Arrows are continuous maps $f : X \to Y$ with $f(x_0) = y_0$.
 		\ii Similarly, there is a category $\catname{Vect}_k$ of vector spaces over a field $k$,
 		whose arrows are the linear maps.
@@ -155,9 +155,9 @@ This illustrates the point that
 \begin{moral}
 	The arrows of a category can be totally different from functions.
 \end{moral}
-In fact, in a way we'll make precise later, the term ``concrete category'' refers
+In fact, in a way that can be made precise, the term ``concrete category'' refers
 to one where the arrows really are ``structure-preserving maps between sets'',
-like $\catname{Gp}$, $\catname{Top}$, $\catname{Ring}$, \dots.
+like $\catname{Gp}$, $\catname{Top}$, or $\catname{Ring}$.
 
 \begin{ques}
 	Check that no two distinct objects of a poset are isomorphic.
