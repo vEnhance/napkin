@@ -8,11 +8,11 @@ Unfortunately, algebraic geometry also has commutative algebra as a prerequisite
 chicken-and-egg problem: to appreciate commutative algebra fully you need to know algebraic geometry,
 but to learn algebraic geometry you need to know commutative algebra.
 
-To try and patch this as best I could, I'll try and flavor and motivate the examples with olympiad number theory.
-This way, your intuition from all those shortlist N6's you had to do can carry hopefully carry over to
-make sense of the examples here.
-Basically, we'll try to generalize properties of the ring $\ZZ$ to any abelian structure
-in which we can also multiply.
+To try and patch this as best I could, I'll try to flavor and motivate the examples with olympiad number theory.
+This way, your intuition from all those shortlist N6's
+you had to do can hopefully carry over to make sense of the examples here.
+Basically, we'll try to generalize properties of the ring $\ZZ$ to
+any abelian structure in which we can also multiply.
 That's why, for example, you can talk about ``irreducible polynomials in $\QQ[x]$'' in the same
 way you can talk about ``primes in $\ZZ$'', or about ``factoring polynomials modulo $p$''
 in the same way we can talk ``unique factorization in $\ZZ$''.
@@ -24,11 +24,15 @@ For all the sections that follow, keep $\ZZ$ in mind as your prototype.
 \section{Definition and Examples of Rings}
 \prototype{$\ZZ$ all the way! Also $R[x]$ and various fields.}
 
-Well, I guess I'll define a ring\footnote{Or, according to some authors, a ``commutative ring with unit''.
-You see, some authors don't require rings to have commutative multiplication, and other authors don't
-even require there to be multiplicative units. I've seen some reasonable noncommutative rings,
-but I've never seen a ring without identity that I care about. So, just be warned that
-some authors have different definitions of ring. For us, ``ring'' always mean ``commutative ring with $1$''.}
+Well, I guess I'll define a ring\footnote{%
+	Or, according to some authors, a ``commutative ring with unit''.
+	You see, some authors don't require rings to have commutative multiplication,
+	and other authors don't even require there to be multiplicative units.
+	I've seen some reasonable noncommutative rings, but I've never seen a ring
+	without identity that I care about. So, just be warned that some authors
+	have different definitions of ring.
+	For us, ``ring'' always means ``commutative ring with $1$''.}.
+
 \begin{definition}
 	A \vocab{ring} is a triple $(R, +, \times)$, the two operations usually called addition and multiplication, such that
 	\begin{enumerate}[(i)]
@@ -68,9 +72,9 @@ Since I've defined this structure, I may as well state the obligatory facts abou
 Here are some more examples of rings.
 \begin{example}[Polynomial Ring]
 	Given any ring $R$, the ring $R[x]$ is defined as the set of polynomials
-	with coefficients in $x$:
-	\[ R[x] = \left\{ a_nx^n+a_{n-1}x^{n-1}+\dots+a_0 \mid a_0, \dots, a_n \in \RR \right\}. \]
-	Addition and multiplication is done exactly in the way you would expect.
+	with coefficients in $R$:
+	\[ R[x] = \left\{ a_nx^n+a_{n-1}x^{n-1}+\dots+a_0 \mid a_0, \dots, a_n \in R \right\}. \]
+	Addition and multiplication are done exactly in the way you would expect.
 \end{example}
 \begin{remark}
 	[Digression] Happily, polynomial division also does what we expect: if $p(x) \in R[x]$
@@ -136,11 +140,11 @@ A field is a structure where you can add, subtract, multiply, and divide.
 
 \begin{remark}
 	You might say at this point that ``fields are nicer than rings'',
-	but as you'll see in this chapter that the conditions for
+	but as you'll see in this chapter, the conditions for
 	being a field are somehow ``too strong''.
 	To give an example of what I mean:
-	if you want to think about the concept of ``divisibility''
-	in $\ZZ$, and you've stepped into the vast and bizarre realm of
+	if you try to think about the concept of ``divisibility''
+	in $\ZZ$, you've stepped into the vast and bizarre realm of
 	number theory.  Try to do the same thing in $\QQ$ and you get nothing:
 	any nonzero $a$ ``divides'' any nonzero $b$
 	because $b = a \cdot \frac ba$.
@@ -152,16 +156,16 @@ A field is a structure where you can add, subtract, multiply, and divide.
 \end{remark}
 
 Now it would be nice if we could still conclude the zero product property:
-if $ab = 0$ that either $a = 0$ or $b = 0$.
-If our ring is a field, this is true true: if $b \neq 0$,
+if $ab = 0$ then either $a = 0$ or $b = 0$.
+If our ring is a field, this is true: if $b \neq 0$,
 then we can multiply by $b\inv$ to get $a = 0$.
 But many other rings we consider like $\ZZ$ and $\ZZ[x]$ also have this property,
-despite not being a full-fledged field.
+despite not being full-fledged fields.
 
 Not for all rings though: in $\ZZ/15\ZZ$, $3 \cdot 5 \equiv 0 \pmod{15}$.
 If $a, b \neq 0$ but $ab=0$ then we say $a$ and $b$ are \vocab{zero divisors}
 of the ring $R$.
-A nontrivial ring with no zero divisors is called a \vocab{integral domain}.
+A nontrivial ring with no zero divisors is called an \vocab{integral domain}.
 
 \begin{example}
 	[Integral Domains and Fields]
@@ -198,7 +202,7 @@ First, we define a homomorphism and isomorphism.
 	A \vocab{ring homomorphism} is a map $\phi : R \to S$
 	such that 
 	\begin{enumerate}[(i)]
-		\ii $\phi(x +_R y) = \phi(x) +_S \phi(y)$ for each $x,y \in R$
+		\ii $\phi(x +_R y) = \phi(x) +_S \phi(y)$ for each $x,y \in R$.
 		\ii $\phi(x \times_R y) = \phi(x) \times_S \phi(y)$ for each $x,y \in R$.
 		\ii $\phi(1_R) = 1_S$.
 	\end{enumerate}
@@ -229,11 +233,12 @@ First, note two obvious facts:
 	$\phi(rx) = \phi(r)\phi(x) = 0$ too.
 	So for $x \in \ker \phi$ and \emph{any} $r \in R$,
 	we have $rx \in \ker\phi$.
-	(Note, importantly, that $r$ need not be in $I$! This is stronger than just saying $R$
-	is closed under multiplication.)
 \end{itemize}
 
 A subset $I \subseteq R$ is called an \vocab{ideal} if it satisfies these properties.
+Note that in the second condition, $r$ need not be in $I$!
+So this is stronger than just saying $R$ is closed under multiplication.
+
 \begin{figure}[ht]
 	\centering
 	\includegraphics[height=10cm]{/home/evan/Pictures/TopologicalGG/ideals.jpg}
@@ -251,14 +256,14 @@ A subset $I \subseteq R$ is called an \vocab{ideal} if it satisfies these proper
 \end{example}
 
 \begin{ques}
-	Let $R$ be a ring an $I$ an ideal.
+	Let $R$ be a ring and $I$ an ideal.
 	Convince yourself that if $I$ contains any units, then $I = R$.
 	(As an example, consider any ideal in the Gaussian integers
 	which contains $i$.)
 \end{ques}
 \begin{ques}
 	Verify that in $\RR$ (or actually any nontrivial field),
-	prove that the only ideals are $(0) = \{0\}$ and $(1) = \RR$.
+	the only two ideals are $(0) = \{0\}$ and $(1) = \RR$.
 \end{ques}
 
 Now we claim that these conditions are sufficient.
@@ -281,7 +286,7 @@ More explicitly,
 	and multiplication we put on them is well-defined.
 	Specifically, we want to check that if $r_1 \sim s_1$ and $r_2 \sim s_2$,
 	then $r_1 + r_2 \sim s_1 + s_2$ and $r_1r_2 \sim s_1s_2$.
-	We actually already did the first part -- just think of $R$ and $S$ are abelian
+	We actually already did the first part -- just think of $R$ and $S$ as abelian
 	groups, forgetting for the moment that we can multiply.
 	The multiplication is more interesting.
 	\begin{exercise}
@@ -358,13 +363,14 @@ numbers of the form $rx$ for $r \in R$.
 \begin{example}[Examples of Generated Ideals]
 	\listhack
 	\begin{enumerate}[(a)]
-		\ii As $(n) = n\ZZ$, all ideals in $\ZZ$ are of the form $(n)$.
+		\ii As $(n) = n\ZZ$ for all $ \in \ZZ$,
+		every ideal in $\ZZ$ is of the form $(n)$.
 		\ii In $\ZZ[i]$, we have
 		$(5) = \left\{ 5a + 5b i \mid a,b \in \ZZ \right\}$.
 		\ii In $\ZZ[x]$, the ideal $(x)$ consists of polynomials
-		with nonzero constant terms.
+		with zero constant terms.
 		\ii In $\ZZ[x,y]$, the ideal $(x,y)$ again consists
-		of polynomials with nonzero constant terms.
+		of polynomials with zero constant terms.
 		\ii In $\ZZ[x]$, the ideal $(x,5)$ consists of polynomials
 		whose constant term is divisible by $5$.
 	\end{enumerate}
@@ -390,7 +396,7 @@ For example\dots
 		it is the result of declaring $5 = 0$.
 		\ii Let $R = \ZZ[x]$ and $I = (x)$.
 		Then $R/I$ means we send $x$ to zero; hence $R/I \cong \ZZ$
-		as given any polynomial $p(x) \in \RR$,
+		as given any polynomial $p(x) \in R$,
 		we simply get its constant term.
 		\ii Let $R = \ZZ[x]$ again and now let $I = (x-3)$.
 		Then $R/I$ should be thought of as the quotient when $x-3 \equiv 0$,
@@ -421,8 +427,8 @@ If you're good at Number Theory you'll instantly recognize that this as just $5\
 Surprise! In $\ZZ$, the ideal $(a,b)$ is exactly $\gcd(a,b) \ZZ$.
 And that's exactly the reason you often see the GCD of two numbers denoted $(a,b)$.
 
-We call such an ideal which is generated by a single \vocab{principal ideal}.
-So, in $\ZZ$ every ideal is generated by a single element.
+We call such an ideal (one generated by a single element) a \vocab{principal ideal}.
+So, in $\ZZ$, every ideal is principal.
 But the same is not true in more general rings.
 \begin{example}
 	[A Non-Principal Ideal]
@@ -496,7 +502,7 @@ Please bear with me!
 
 \section{Prime Ideals}
 We know that every integer can be factored (up to sign)
-as a product of primes; for example $15 = 3 \cdot 5$
+as a unique product of primes; for example $15 = 3 \cdot 5$
 and $-10 = -2 \cdot 5$.
 You might remember the proof involves the so-called Bezout's Lemma,
 which essentially says that $(a,b) = (\gcd(a,b))$;
@@ -524,10 +530,10 @@ We port over this definition to our world of ideals.
 	or equivalently, $I$ contains no units.
 \end{definition}
 \begin{definition}
-	An non-proper ideal $I$ is a \vocab{prime ideal}
+	A non-proper ideal $I$ is a \vocab{prime ideal}
 	if whenever $xy \in I$, either $x \in I$ or $y \in I$.
 \end{definition}
-The condition that $I$ is proper is analogous the
+The condition that $I$ is proper is analogous to the
 fact that we don't consider $1$ to be a prime.
 
 \begin{example}[Examples of Prime Ideals]
@@ -597,7 +603,7 @@ There's an analogous theorem to the one for prime ideals.
 		\ii Ideals of $R/I$.
 	\end{enumerate}
 	You may want to start by taking $R = \ZZ$ and $I = (15)$.
-	In any case, the theorem is follows from from this.
+	In any case, the theorem follows from this.
 \end{proof}
 
 \begin{ques}
@@ -612,8 +618,8 @@ this is a very efficient way to check whether an ideal is maximal.
 	\listhack
 	\begin{enumerate}[(a)]
 		\ii This instantly implies that $(x,5)$ is a maximal ideal
-		in $\ZZ[x]$, because if we mod out by $x$ and $2$ in $\ZZ[x]$,
-		we just get $\ZZ/2\ZZ$, which is a field.
+		in $\ZZ[x]$, because if we mod out by $x$ and $5$ in $\ZZ[x]$,
+		we just get $\ZZ/5\ZZ$, which is a field.
 		\ii On the other hand, modding out by just $x$ gives $\ZZ$,
 		which is an integral domain but not a field; that's why $(x)$ is
 		prime but not maximal.
