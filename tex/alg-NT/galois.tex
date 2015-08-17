@@ -4,23 +4,50 @@
 %whether you want to read the rest of this chapter.
 
 \section{Motivation}
-There is a second way to interpret the ``conjugates'' I talked about before.
-Let $K = \QQ(i)$, for example.
-Then we can speak of \emph{embeddings} $\sigma : K \injto \CC$ 
-these are maps with the following two properties.
+\prototype{$\QQ(\sqrt2)$ and $\QQ(\cbrt{2})$.}
+The key idea in Galois theory is that of \emph{embeddings},
+which give us another way to get at the idea of the ``conjugate'' we described earlier.
+
+Let $K/\QQ$ be a number field.
+An \vocab{embedding} $\sigma : K \injto \CC$, is an \emph{injective field homomorphism}:
+it needs to preserve addition and multiplication,
+and in particular it should fix $1$.
+\begin{ques}
+	Show that in this context, $\sigma(q) = q$ for any rational number $q$.
+\end{ques}
+
+\begin{example}
+	[Examples of Embeddings]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii If $K = \QQ(i)$, the two embeddings of $K$ into $\CC$ are
+		$z \mapsto z$ (the identity) and $z \mapsto \ol z$ (complex conjugation).
+		\ii If $K = \QQ(\sqrt 2)$, the two embeddings of $K$ into $\CC$ are
+		$a+b\sqrt 2 \mapsto a+b\sqrt 2$ (the identity) and $a+b\sqrt 2 \mapsto a-b\sqrt 2$ (conjugation).
+		\ii If $K = \QQ(\cbrt 2)$, there are three embeddings:
+		\begin{itemize}
+			\ii The identity embedding, which sends $1 \mapsto 1$ and $\cbrt 2 \mapsto \cbrt 2$.
+			\ii An embedding which sends $1 \mapsto 1$ and $\cbrt 2 \mapsto \omega \cbrt 2$,
+			where $\omega$ is a cube root of unity.
+			Note that this is enough to determine the rest of the embedding.
+			\ii An embedding which sends $1 \mapsto 1$ and $\cbrt 2 \mapsto \omega^2 \cbrt 2$.
+		\end{itemize}
+	\end{enumerate}
+\end{example}
+
+I want to make several observations about these embeddings,
+which will form the core ideas of Galois theory.
+Pay attention here!
+
 \begin{itemize}
-	\ii They are field homomorphisms, so $\sigma(x+y)=\sigma(x)+\sigma(y)$ and $\sigma(xy)=\sigma(x)\sigma(y)$.
-	\ii The map $\sigma$ is the identity on $\QQ$.
-\end{itemize}
-For $K$, there are two such embeddings:
-\begin{itemize}
-	\ii $\sigma_1 : K \injto \CC$ the identity map: send $z$ to $z$.
-	\ii $\sigma_2 : K \injto \CC$ by complex conjugation: send $z$ to $\ol z$.
-\end{itemize}
-Note that \emph{each embedding sends $\alpha \in K$ to one of its Galois conjugates}.
-This is true in general: if we write down the minimal polynomial
+\ii
+First, you'll notice some duality between roots: in the first example, $i$ gets sent to $\pm i$,
+$\sqrt 2$ gets sent to $\pm \sqrt 2$, and $\cbrt 2$ gets sent to the other roots of $x^3-2$.
+This is no coincidence, and one can show this occurs in general.
+Specifically, suppose $\alpha$ has minimal polynomial
 \[ 0 = c_n \alpha^n + c_{n-1} \alpha^{n-1} + \dots + c_1\alpha + c_0 \]
-where the $c_i$ are rational, then by applying any embedding $\sigma$ to both sides gives
+where the $c_i$ are rational.
+Then by applying any embedding $\sigma$ to both sides gives
 \begin{align*}
 	0 &= \sigma(c_n \alpha^n + c_{n-1} \alpha^{n-1} + \dots + c_1\alpha + c_0) \\
 	% &= \sigma(c_n \alpha^n) + \sigma(c_{n-1} \alpha^{n-1})
@@ -30,47 +57,40 @@ where the $c_i$ are rational, then by applying any embedding $\sigma$ to both si
 	&= c_n \sigma(\alpha)^n + c_{n-1} \sigma(\alpha)^{n-1} + \dots + c_1\sigma(\alpha) + c_0
 \end{align*}
 where in the last step we have used the fact that $c_i \in \QQ$, so they are fixed by $\sigma$.
+\emph{So, roots of minimal polynomials go to other roots of that polynomial.}
 
-Galois Theory aims to develop these ideas in full generality, replacing $\QQ$ with any base field $F$,
-and $K$ with any ``extension'' of $F$.
-If you substitute $F = \QQ$ everywhere in this chapter,
-you'll see how this connects with the content of algebraic number theory.
-This also explains the notation $\Tr_{K/\QQ}(\alpha)$;
-with the necessary tools we can define $\Tr_{K/F}(\alpha)$ for any $\alpha \in K$,
-and $F$ an extension of $K$.
+\ii
+Next, I want to draw out a contrast between the second and third examples.
+Specifically, in example (b) where we consider embeddings $K = \QQ(\sqrt 2)$ to $\CC$.
+The image of these embeddings lands entirely in $K$: that is,
+we could just have well as looked at $K \to K$ rather than looking at $K \to \CC$.
+However, this is not true in (c): indeed $\QQ(\cbrt 2) \subset \RR$, but the non-identity embeddings
+have complex outputs!
 
-\section{Outline of This Chapter}
-To do this total generalization, we do the following.
-\begin{itemize}
-	\ii First, we generalize $K/\QQ$ to any $K/F$, by just saying $K$ is an $F$-vector space.
-	\ii We then algebraic closure for $K$, the analog of $\CC$ for $\RR$.
-	\ii We try to prove that irreducible polynomials can't have double roots,
-	but find it fails for stupid reasons, leading us to need a new adjective, ``separable''.
-	\ii With this adjective, we examine embeddings into algebraic closures, like $K \injto \CC$.
-	\ii We take a detour into Galois theory by looking at embeddings $K \injto K$.
+The key difference is to again to think about conjugates.
+Key observation:
+\begin{moral}
+	The field $K = \QQ(\cbrt 2)$ is ``deficient'' because the minimal polynomial $x^3-2$
+	has two other roots $\omega \cbrt{2}$ and $\omega^2 \cbrt{2}$ not contained in $K$.
+\end{moral}
+On the other hand $K = \QQ(\sqrt 2)$ is just fine because both roots of $x^2-2$ are contained inside $K$.
+Finally, one can actually fix the deficiency in $K = \QQ(\cbrt 2)$ by completing it to a field $\QQ(\cbrt 2, \omega)$.
+Fields like $\QQ(i)$ or $\QQ(\sqrt 2)$ which are ``self-contained'' are called
+\emph{Galois extensions}, as we'll explain shortly.
+
+\ii
+Finally, you'll notice that in the examples above, \emph{the number of embeddings from $K$ to $\CC$
+happens to be the degree of $K$}.
+This is an important theorem, \Cref{thm:n_embeddings}.
 \end{itemize}
-The main results of this chapter are that
-\begin{itemize}
-	\ii There are $n$ embeddings from $K$ into $\CC$, where $K$ has degree $n$.
-	\ii An extension $K/\QQ$ is \emph{Galois} if the images of all these embeddings lie in $K$.
-	For example, $\QQ(i)$ is Galois, but $K = \QQ(\sqrt[3]{2})$ is not, since there's an embedding
-	$\sigma : K \to \CC$ which sends $\sqrt[3]{2}$ to $\omega \sqrt[3]{2}$, where $\omega = e^{\frac23 \pi i}$.
-	\ii Fundamental Theorem of Galois Theory.
-\end{itemize}
 
-%If you're willing to accept the boxed result above on faith
-%(which IMO is totally reasonable),
-%then you can skip the rest of this chapter for a while;
-%the Galois material won't be used again until we start trying to
-%study ramification theory.
-%Even then, you'll really only need to know the definition of a Galois group
-%and how to detect whether an extension is Galois (which I've already explained),
-%so it might suffice to just skim the relevant definitions.
+In this chapter we'll develop these ideas in full generality, for any field other than $\QQ$.
 
+\section{Field Extensions, Algebraic Closures, and Splitting Fields}
+\prototype{$\QQ(\cbrt 2)/\QQ$ is an extension, $\CC$ is an algebraic closure of any number field.}
 
-\section{Field Extensions}
-\prototype{$\QQ(\sqrt[3]{2})/\QQ$ or something similar.}
-First, we define a notion of one field sitting inside another.
+First, we define a notion of one field sitting inside another,
+in order to generalize the notion of number field.
 \begin{definition}
 	Let $K$ and $F$ be fields.
 	If $F \subseteq K$, we write $K/F$ and say $K$ is a
@@ -94,126 +114,29 @@ Degrees of finite extensions are multiplicative.
 \end{theorem}
 \begin{proof}
 	Basis bash: you can find a basis of $L$ over $K$, and then expand that into a basis $K$ over $F$.
-	Details are left to a very diligent reader.
 \end{proof}
 
-\section{Algebraic Closures}
-\prototype{$\ol \RR = \CC$.}
-At this point, I may as well also tell you about algebraic closures.
+Next, given a field (like $\QQ$) we want something to embed it into (in our case $\CC$).
+So we just want a field that contains all the roots of all the polynomials:
 \begin{theorem}[Algebraic Closures]
 	Let $F$ be a field.
-	Then there exists a field extension $\ol F$ containing $F$, the \vocab{algebraic closure},
+	Then there exists a field extension $\ol F$ containing $F$, called an \vocab{algebraic closure},
 	such that all polynomials in $\ol F[x]$ factor completely.
 \end{theorem}
 \begin{example}
-	[Some Algebraic Closures]
-	\listhack
-	\begin{enumerate}[(a)]
-	\ii The canonical example, of course, is that the algebraic closure of $\RR$ is $\CC$.
-	% The theorem says that if every \emph{real} polynomial factors in $\CC$, then it factors in $\RR$.
-	\ii The algebraic closure of $\QQ$ is the algebraic numbers by definition,
-	which explains the notation $\ol\QQ$ we used earlier.
-	\end{enumerate}
+	[$\CC$]
+	$\CC$ is an algebraic closure of $\QQ$, $\RR$ and even itself.
 \end{example}
+\begin{abuse}
+	Some authors also require the algebraic closure to be \emph{minimal by inclusion}:
+	for example, given $\QQ$ they would want only $\ol\QQ$ (the algebraic numbers).
+	It's a theorem that such a minimal algebraic closure is unique,
+	and so these authors will refer to \emph{the} algebraic closure of $K$.
 
-I may as well define a splitting field now.
-\begin{definition}
-	Let $F$ be a field and $p \in F$ a polynomial of degree $n$.
-	Then $p$ has roots $\alpha_1, \dots, \alpha_n$ in the algebraic closure of $F$.
-	The \vocab{splitting field} of $F$ is defined as $F(\alpha_1, \dots, \alpha_n)$.
-\end{definition}
-In other words, the splitting field is the smallest field in which $p$ splits.
-\begin{example}[Examples of Splitting Fields]
-	\listhack
-	\begin{enumerate}[(a)]
-		\ii The splitting field of $x^2 - 5$ over $\QQ$ is $\QQ(\sqrt 5)$.
-		This is a degree $2$ extension.
-		\ii The splitting field of $x^2+x+1$ over $\QQ$ is $\QQ(\omega)$,
-		where $\omega$ is a cube root of unity.
-		This is a degree $3$ extension.
-		% In particular, the splitting field of $x^3-2$ is a degree \emph{six} extension.
-		\ii The splitting field of $x^2+3x+2 = (x+1)(x+2)$ is just $\QQ$!
-		There's nothing to do.
-	\end{enumerate}
-\end{example}
-\begin{example}
-	[Splitting Fields: A Cautionary Tale]
-	The splitting field of $x^3 - 2$ over $\QQ$ is in fact
-	\[ \QQ\left( \sqrt[3]{2}, \omega \right) \]
-	and not just $\QQ(\sqrt[3]{2})$!
-	One must really adjoin \emph{all} the roots, and it's not necessarily the case that
-	these roots will generate each other.
+	I like $\CC$, so I'll use the looser definition.
+\end{abuse}
 
-	To be clear:
-	\begin{itemize}
-	\ii For $x^2-5$, we adjoin $\sqrt 5$ and this will automatically include $-\sqrt 5$.
-	\ii For $x^2+x+1$, we adjoin $\omega$ and get the other root $\omega^2$ for free.
-	\ii But if we adjoin $\sqrt[3]{2}$, we do NOT get $\omega\sqrt[3]{2}$ and $\omega^2\sqrt[3]{2}$ for free:
-	indeed, $\QQ(\sqrt[3]{2}) \subset \RR$!
-	\end{itemize}
-	Note that in particular, the splitting field of $x^3-2$ over $\QQ$ is \emph{degree six}.
-\end{example}
-
-In general,
-\textbf{the splitting field of a polynomial can be an extension of degree up to $n!$}.
-The reason is that if $p(x)$ has $n$ roots and none of them are ``related'' to each other,
-then any permutation of the roots will work.
-
-\section{Everyone Hates Characteristic 2: Separable vs Irreducible}
-\prototype{$\QQ$ has characteristic zero, hence irreducible polynomials are separable.}
-We wish to prove that
-\begin{quote}
-	\itshape Irreducible polynomials have no double roots.
-\end{quote}
-% That's important, since our embeddings are sending elements to their conjugates.
-Let's call a polynomial with no double roots \vocab{separable};
-thus we want irreducible $\implies$ separable.
-%For example, $x^2+1 \in \QQ[x]$ and $x^2-5x+6 \in \QQ[x]$
-%are separable but $x^2-2x+1 \in \QQ[x]$ are not.
-%Note that irreducible polynomials in $\QQ$ are separable.
-We did this for $\QQ$ in the last chapter (\Cref{lem:irred_complex}) by taking derivatives.
-Should work for any field, right?
-
-Nope.
-Suppose we took the derivative of some polynomial like $2x^3 + 24x + 9$,
-namely $6x^2 + 24$.
-In $\CC$ is it's obvious that the derivative of a nonconstant polynomial $f'$ isn't zero.
-But suppose we considered the above as a polynomial in $\FF_3$, i.e.\ modulo three.
-Then the derivative is zero.
-Oh, no!
-
-We impose a condition that prevents something like this from happening.
-\begin{definition}
-	For a field $F$, let $p$ be the smallest positive integer such that
-	\[ \underbrace{1+\dots+1}_{\text{$p$ times}} = 0 \]
-	or zero if no such integer $p$ exists.
-	Then we say $F$ has \vocab{characteristic} $p$.
-\end{definition}
-\begin{example}[Field Characteristics]
-	Old friends $\RR$, $\QQ$, $\CC$ all have characteristic zero.
-	But $\FF_p$, the integers modulo $p$, is a field of characteristic $p$.
-\end{example}
-\begin{exercise}
-	Let $F$ be a field of characteristic $p$.
-	Show that if $p > 0$ then $p$ is a prime number.
-	(A proof is given next chapter.)
-\end{exercise}
-With the assumption of characteristic zero, our earlier proof works.
-\begin{lemma}[Separability in Characteristic Zero]
-	Any irreducible polynomial in a characteristic zero field is separable.
-\end{lemma}
-Unfortunately, this lemma is false if the ``characteristic zero'' condition is dropped.
-So in what follows, I'll have the word ``separable'' attached to a lot of things.
-
-The reason it's called \emph{separable} is (I think) is this picture:
-I have a polynomial and I want to break it into irreducible parts.
-Normally, if I have a double root in a polynomial, that means it's not irreducible.
-But in characteristic $p > 0$ this fails.
-So inseparable polynomials are strange when you think about them: somehow
-you have double roots that can't be separated from each other.
-
-
-\section{Embeddings Into Algebraic Closures}
+\section{Embeddings Into Algebraic Closures for Number Fields}
 Now that I've defined all these ingredients, I can give the following theorem.
 \begin{theorem}[The $n$ embeddings of a number field]
 	\label{thm:n_embeddings}
@@ -228,8 +151,8 @@ Now that I've defined all these ingredients, I can give the following theorem.
 	\vocab{embedding} of $\QQ$ into $\CC$.
 \end{remark}
 \begin{proof}
-	This is kind of fun.
-	Recall that any irreducible polynomial over $\QQ$ has distinct roots.
+	This is actually kind of fun!
+	Recall that any irreducible polynomial over $\QQ$ has distinct roots (\Cref{lem:irred_complex}).
 	We'll adjoin elements $\alpha_1, \alpha_2, \dots, \alpha_n$ one at a time to $\QQ$,
 	until we eventually get all of $K$, that is, 
 	\[ K = \QQ(\alpha_1, \dots, \alpha_n). \]
@@ -273,18 +196,80 @@ The relation between these embeddings and the Galois conjugates is given as foll
 	In the previous proof, adjoin $\alpha_1 = \alpha$ first.
 \end{proof}
 
+So, now we can define the trace and norm over $\QQ$ in a nice way:
+given a number field $K$, we set
+\[
+	\Tr_{K/\QQ}(\alpha) = \sum_{i=1}^n \sigma_i(\alpha)
+	\quad\text{and}\quad
+	\Norm_{K/\QQ}(\alpha) = \prod_{i=1}^n \sigma_i(\alpha).
+\]
+where $\sigma_i$ are the $n$ embeddings of $K$ into $\CC$.
+
+\section{Everyone Hates Characteristic 2: Separable vs Irreducible}
+\prototype{$\QQ$ has characteristic zero, hence irreducible polynomials are separable.}
+Now, we want a version of the above theorem for any field $F$.
+If you read the proof, you'll see that the only thing that ever uses anything about the field $\QQ$
+is \Cref{lem:irred_complex}, where we use the fact that
+\begin{quote}
+	\itshape Irreducible polynomials over $F$ have no double roots.
+\end{quote}
+
+Let's call a polynomial with no double roots \vocab{separable};
+thus we want irreducible polynomials to be separable.
+We did this for $\QQ$ in the last chapter by taking derivatives.
+Should work for any field, right?
+
+Nope.
+Suppose we took the derivative of some polynomial like $2x^3 + 24x + 9$,
+namely $6x^2 + 24$.
+In $\CC$ is it's obvious that the derivative of a nonconstant polynomial $f'$ isn't zero.
+But suppose we considered the above as a polynomial in $\FF_3$, i.e.\ modulo three.
+Then the derivative is zero.
+Oh, no!
+
+We have to impose a condition that prevents something like this from happening.
+\begin{definition}
+	For a field $F$, let $p$ be the smallest positive integer such that
+	\[ \underbrace{1+\dots+1}_{\text{$p$ times}} = 0 \]
+	or zero if no such integer $p$ exists.
+	Then we say $F$ has \vocab{characteristic} $p$.
+\end{definition}
+\begin{example}[Field Characteristics]
+	Old friends $\RR$, $\QQ$, $\CC$ all have characteristic zero.
+	But $\FF_p$, the integers modulo $p$, is a field of characteristic $p$.
+\end{example}
+\begin{exercise}
+	Let $F$ be a field of characteristic $p$.
+	Show that if $p > 0$ then $p$ is a prime number.
+	(A proof is given next chapter.)
+\end{exercise}
+With the assumption of characteristic zero, our earlier proof works.
+\begin{lemma}[Separability in Characteristic Zero]
+	Any irreducible polynomial in a characteristic zero field is separable.
+\end{lemma}
+Unfortunately, this lemma is false if the ``characteristic zero'' condition is dropped.
+So in what follows, I'll have the word ``separable'' attached to a lot of things.
+
+The reason it's called \emph{separable} is (I think) is this picture:
+I have a polynomial and I want to break it into irreducible parts.
+Normally, if I have a double root in a polynomial, that means it's not irreducible.
+But in characteristic $p > 0$ this fails.
+So inseparable polynomials are strange when you think about them: somehow
+you have double roots that can't be separated from each other.
+
 We can get this to work for any field extension in which separability is not an issue.
 \begin{definition}
 	A \vocab{separable extension} $K/F$ is one in which every irreducible
 	polynomial in $F$ is separable (for example, if $F$ has characteristic zero).
 \end{definition}
+Then, we can repeat the previous proof verbatim to obtain:
 \begin{theorem}[The $n$ Embeddings of Any Separable Extension]
 	Let $K/F$ be a separable extension of degree $n$ and let $\ol F$ be an algebraic closure of $F$.
 	Then there are exactly $n$ field homomorphisms $K \injto \ol F$,
 	say $\sigma_1, \dots, \sigma_n$ which fix $F$.
 \end{theorem}
 
-This lets us define the trace for \emph{any} separable normal extension.
+In any case, this lets us define the trace for \emph{any} separable normal extension.
 \begin{definition}
 Let $K/F$ be a separable extension of degree $n$, and let $\sigma_1$, \dots, $\sigma_n$
 be the $n$ embeddings into an algebraic closure of $F$. Then we define
@@ -296,125 +281,13 @@ be the $n$ embeddings into an algebraic closure of $F$. Then we define
 When $F = \QQ$ and the algebraic closure is $\CC$, this coincides with our earlier definition!
 \end{definition}
 
-%%fakesection Norms and Trace (deleted)
-%\section{Norms and Trace Revisited}
-%\prototype{Look at $\Norm_{\QQ(i) / \QQ}(2)$.}
-%We now define the trace and norm for any $K/F$, where $K$ and $F$ are both \emph{number fields}.
-%Thus we have a tower of fields
-%\[ \QQ \subseteq F \subseteq K. \]
-%
-%\begin{definition}
-%	Let $K/F$ be an extension of number fields $K$ and $F$, and let $\alpha \in K$.
-%	We set \[ \mu_\alpha : K \to K \quad\text{by}\quad x \mapsto \alpha x \]
-%	and view it as a linear map of $K$-vector spaces.
-%	Then $\Tr_{K/F}(\alpha)$ and $\Norm_{K/F}(\alpha)$ are defined as the trace
-%	and norm of this map, respectively.
-%\end{definition}
-%Our work earlier is the special case $F = \QQ$.
-%
-%%\begin{example}
-%%	[Running a determinant in $\QQ(i)$]
-%%	Note that $\{1, i\}$ is a basis of $K = \QQ(i)$ thought of as a $\QQ$-vector space.
-%%	Let $\alpha = a+bi$.
-%%	Since $(a+bi)(x+yi) = (ax-by) + (bx+ay)i$, we find that $\mu_\alpha$ can be written as a matrix
-%%	\[
-%%		\mu_\alpha = 
-%%		\left(
-%%		\begin{array}{cc}
-%%			a & b \\
-%%			-b & a
-%%		\end{array}
-%%		\right)
-%%	\]
-%%	and so $\Norm_{K/\QQ} (\alpha) = a^2+b^2$, which is what we expected.
-%%\end{example}
-%
-%
-%\begin{example}
-%	[Norms in $\QQ(i)$ as product of Galois Conjugates]
-%	Let $K = \QQ(i)$, $F = \QQ$, so $[K:F] = 2$.
-%	Then the two $\sigma$'s are simply the identity and complex conjugation.
-%	So
-%	\[ \Norm_{K/\QQ}(\alpha) = \alpha \cdot \ol\alpha. \]
-%	For most complex numbers $a+bi$, this gives $(a+bi)(a-bi) = a^2+b^2$.
-%	For real numbers like $2$, we have $2 \cdot 2 = 4$.
-%	The feeling is that $K/\QQ$ has degree $2$, while the number $2$ itself has degree $1$
-%	(and hence no Galois conjugates);
-%	thus we ``compensate'' by squaring: $2^2 = 4$.
-%	In general, if $K / \QQ$ has degree $n$ and $\alpha$ has degree $m$,
-%	we compensate by raising to the $\frac nm$th power.
-%\end{example}
-%\begin{proof}
-%	The proof is exactly the same as before, but with a small difference.
-%	Suppose $\alpha$ has minimal polynomial with degree $n$, say
-%	\[ x^n + c_{n-1}x^{n-1} + \dots + c_0. \]
-%	It's no longer the case that $\{1, \alpha, \dots, \alpha^{n-1}\}$ is a basis of $K$.
-%	Certainly, though, we have 
-%	\[ \QQ \subseteq \QQ(\alpha) \subseteq K. \]
-%
-%	Let $k = [K : \QQ(\alpha)]$, so $nk = [K : \QQ]$.
-%	Then you can take a basis of the form 
-%	\[ \{\alpha^i \beta_j \mid 0 \le i < n, 1 \le j \le k \} \]
-%	under which the matrix $\mu_\alpha$ looks like
-%	\[
-%		\mu_\alpha
-%		=
-%		\underbrace{
-%		\left(
-%		\begin{array}{cccc}
-%			B & & & \\
-%			& B & & \\
-%			& & \ddots & \\
-%			& & & B
-%		\end{array}
-%		\right)
-%		}_{\text{$k$ copies}}
-%		\quad
-%		\text{where}
-%		\quad
-%		B = 
-%		\left(
-%		\begin{array}{cccccc}
-%			0 & 0 & 0 & \dots & 0 & -c_0 \\
-%			1 & 0 & 0 & \dots & 0 & -c_1 \\
-%			0 & 1 & 0 & \dots & 0 & -c_2 \\
-%			\vdots & \vdots & \vdots & \ddots & 0 & -c_{n-2} \\
-%			0 & 0 & 0 & \dots & 1 & -c_{n-1}
-%		\end{array}
-%		\right).
-%	\]
-%	Note that $B$ is our matrix from before!
-%	So 
-%	\[ \Tr_{K/\QQ} \mu_\alpha = k \cdot \Tr_{\QQ(\alpha)/\QQ}(\alpha)
-%		\quad\text{and}\quad
-%		\det_{K/\QQ} \mu_\alpha = \Norm_{\QQ(\alpha)/\QQ}(\alpha)^k. \]
-%	Use now our original result with $\Tr_{\QQ(\alpha)/\QQ}$ and $\Norm_{\QQ(\alpha)/\QQ}$
-%	as the sum and product of the Galois conjugates:
-%	by adapting the proof of the previous theorem with $\alpha_1 = \alpha$,
-%	we get that the $\sigma$'s are evenly distributed over each of $\alpha$'s Galois conjugates,
-%	giving the compensation of $k$.
-%\end{proof}
-%From the proof of the above we can isolate a corollary which really
-%emphasizes how the norm and trace are the product and sum of Galois conjugates.
-%\begin{corollary}[Norm/Trace in terms of Galois Conjugates]
-%	Let $K/\QQ$ be an extension of number fields, pick $\alpha \in K$,
-%	and let $k = [K : \QQ(\alpha)]$. Then
-%	\[ \Norm_{K/\QQ}(\alpha) = \left( \prod \text{Galois conj} \right)^k
-%		\quad\text{and}\quad
-%		\Tr_{K/\QQ}(\alpha) = k \cdot \sum \text{Galois conj} \]
-%	and in particular they are both integers.
-%\end{corollary}
 
-\section{Automorphism Groups}
-\prototype{There are two ways of embedding $\QQ(i)$ into itself.}
-Now, rather than embedding into $\QQ(i) \to \CC$ we will look at isomorphisms $\QQ(i) \to \QQ(i)$.
-As before, there are only two, $i \mapsto \pm i$.
-We can interpret this as saying
-\begin{moral}
-As far as $\QQ$ can tell, the two roots of $x^2+1$ are the same.
-\end{moral}
-Let's now do this in greater generality.
+\section{Automorphism Groups and Galois Extensions}
+\prototype{$\QQ(\sqrt 2)$ is Galois but $\QQ(\cbrt 2)$ is not.}
+We now want to get back at the idea we stated at the beginning of
+this section that $\QQ(\cbrt 2)$ is deficient in a way that $\QQ(\sqrt 2)$ is not.
 
+First, we define the ``internal'' automorphisms.
 \begin{definition}
 	Suppose $K/F$ is an finite extension.
 	Then $\Aut(K/F)$ is the set of \emph{field isomorphisms} $\sigma : K \to K$ which fix $F$.
@@ -425,15 +298,23 @@ Let's now do this in greater generality.
 		\text{$\sigma$ is identity on $F$}
 	  \right\}.
 	\]
-	It is a group under function composition!
+	This is a group under function composition!
 \end{definition}
+Note that this time, we have a condition that $F$ is fixed by $\sigma$.
+(This was not there before when we considered $F = \QQ$, because we got it for free.)
 
-Our previous work shows, \[ \Aut(\QQ(i) / \QQ) \cong \Zc 2 \]
-as we described in the beginning of the chapter.
-Here's a second example.
-\begin{example}[Galois Group of $\QQ(\sqrt2,\sqrt3)$]
-	Let $K = \QQ(\sqrt2, \sqrt3)$.
-	It turns out that $\Gal(K/\QQ) = \{1, \sigma, \tau, \sigma\tau\}$, where
+\begin{example}[Old Examples of Automorphism Groups]
+	Reprising the example at the beginning of the chapter in the new notation, we have:
+	\begin{enumerate}[(a)]
+		\ii $\Aut(\QQ(i) / \QQ) \cong \Zc 2$, with elements $z \mapsto z$ and $z \mapsto \ol z$.
+		\ii $\Aut(\QQ(\sqrt 2) / \QQ) \cong \Zc 2$ in the same way.
+		\ii $\Aut(\QQ(\cbrt 2) / \QQ)$ is the trivial group, with only the identity embedding!
+	\end{enumerate}
+\end{example}
+
+\begin{example}[Automorphism Group of $\QQ(\sqrt2,\sqrt3)$]
+	Here's a new example: let $K = \QQ(\sqrt2, \sqrt3)$.
+	It turns out that $\Aut(K/\QQ) = \{1, \sigma, \tau, \sigma\tau\}$, where
 	\[
 		\sigma :
 		\begin{cases}
@@ -450,8 +331,8 @@ Here's a second example.
 	In other words, $\Aut(K/\QQ)$ is the Klein Four Group.
 \end{example}
 
-Notice that elements are getting sent to one of their Galois conjugates.
-This is true in general, exactly as before:
+First, let's repeat the proof of the observation that these embeddings shuffle around roots
+(akin to the first observation in the introduction):
 \begin{lemma}
 	[Root Shuffling in $\Aut(K/F)$]
 	Let $f \in F[x]$, suppose $K/F$ a finite extension, and assume $\alpha \in K$ is a root of $f$.
@@ -470,30 +351,58 @@ In particular, taking $f$ to be the minimal polynomial of $\alpha$ we deduce
 	one of its various Galois conjugates (over $F$).
 \end{moral}
 
+Next, let's look again at the ``deficiency'' of certain fields.
+Look at $K = \QQ(\cbrt 2)$.
+So, again $K / \QQ$ is deficient for two reasons.
+First, while there are three maps $\QQ(\cbrt 2) \injto \CC$,
+only one of them lives in $\Aut(K/\QQ)$, namely the identity.
+In other words, $\left\lvert \Aut(K/\QQ) \right\rvert$ is \emph{too small}.
+Secondly, $K$ is missing some Galois conjugates ($\omega \cbrt 2$ and $\omega^2 \cbrt 2$).
 
-\section{Galois Extensions}
-\prototype{Splitting fields like $\QQ(i)$ are Galois. The typical non-example is $\QQ(\sqrt[3]{2})$.}
-Let's observe something else.
-In both the earlier examples we see that $\Aut(K/\QQ)$ has $[K : \QQ]$ elements.
-Indeed, this makes sense: if $K$ is a number field and there are $n$ embeddings of it into $\CC$,
-shouldn't we expect that $\Aut(K/\QQ)$ has $n$ automorphisms?
-Alas, this is not the case, and again the counterexample is our classic $\QQ(\cbrt{2})$.
-\begin{example}
-	[Galois Group of $\QQ(\cbrt{2})$]
-	Let $K = \QQ(\cbrt{2})$.
-	An embedding $\sigma : K \to K$ is determined by where it sends $\cbrt{2}$,
-	and $\sigma(\cbrt{2})$ must be a root of $x^3-2$.
-	But $x^3-2$ only has one root in $K$,
-	the other roots are complex!
-
-	Thus the only embedding is the identity, and
-	\[ \Aut(K/\QQ) = \{1\} \]
-	is the trivial group.
+The way to capture the fact that there are missing Galois conjugates is the notion of a splitting field.
+\begin{definition}
+	Let $F$ be a field and $p(x) \in F$ a polynomial of degree $n$.
+	Then $p(x)$ has roots $\alpha_1, \dots, \alpha_n$ in an algebraic closure of $F$.
+	The \vocab{splitting field} of $F$ is defined as $F(\alpha_1, \dots, \alpha_n)$.
+\end{definition}
+In other words, the splitting field is the smallest field in which $p(x)$ splits.
+\begin{example}[Examples of Splitting Fields]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii The splitting field of $x^2 - 5$ over $\QQ$ is $\QQ(\sqrt 5)$.
+		This is a degree $2$ extension.
+		\ii The splitting field of $x^2+x+1$ over $\QQ$ is $\QQ(\omega)$,
+		where $\omega$ is a cube root of unity.
+		This is a degree $3$ extension.
+		% In particular, the splitting field of $x^3-2$ is a degree \emph{six} extension.
+		\ii The splitting field of $x^2+3x+2 = (x+1)(x+2)$ is just $\QQ$!
+		There's nothing to do.
+	\end{enumerate}
 \end{example}
-So the \emph{reason} this fails is that some of the Galois conjugates of $\cbrt{2}$
-don't like in $K$.
-In fact, it turns out this is the only reason it might fail,
-though the proof is longer I have patience for.
+\begin{example}
+	[Splitting Fields: A Cautionary Tale]
+	The splitting field of $x^3 - 2$ over $\QQ$ is in fact
+	\[ \QQ\left( \cbrt 2, \omega \right) \]
+	and not just $\QQ(\cbrt 2)$!
+	One must really adjoin \emph{all} the roots, and it's not necessarily the case that
+	these roots will generate each other.
+
+	To be clear:
+	\begin{itemize}
+	\ii For $x^2-5$, we adjoin $\sqrt 5$ and this will automatically include $-\sqrt 5$.
+	\ii For $x^2+x+1$, we adjoin $\omega$ and get the other root $\omega^2$ for free.
+	\ii But if we adjoin $\cbrt 2$, we do NOT get $\omega\cbrt2$ and $\omega^2\cbrt2$ for free:
+	indeed, $\QQ(\cbrt 2) \subset \RR$!
+	\end{itemize}
+	Note that in particular, the splitting field of $x^3-2$ over $\QQ$ is \emph{degree six}.
+\end{example}
+
+In general,
+\textbf{the splitting field of a polynomial can be an extension of degree up to $n!$}.
+The reason is that if $p(x)$ has $n$ roots and none of them are ``related'' to each other,
+then any permutation of the roots will work.
+
+Now, we get the following theorem:
 \begin{theorem}[Galois Extensions are Splitting]
 	For finite extensions $K/F$, 
 	$\left\lvert \Aut(K/F) \right\rvert$ divides $[K:F]$,
@@ -501,21 +410,11 @@ though the proof is longer I have patience for.
 	of some separable polynomial with coefficients in $F$.
 	\label{thm:Galois_splitting}
 \end{theorem}
-% The proof is given in an optional section at the end of the chapter.
-In short,
-\begin{moral}
-	Galois extensions $K/F$ are the ones such that $\sigma``(K) \subseteq K$
-	for each of the $n$ embeddings $\sigma$.
-\end{moral}
-So things like $\QQ(\sqrt 2)$ and $\QQ(i)$ work, but $\QQ(\sqrt[3]{2})$ fails,
-since the embedding taking $\sqrt[3]{2}$ to a complex number fail to be contained in $\QQ(\sqrt[3]{2})$.
-
-\begin{definition}
-	If $K/F$ is a finite extension and $\left\lvert \Aut(K/F) \right\rvert = [K:F]$,
-	we say the extension $K/F$ is \vocab{Galois}.
-	In that case, we denote $\Aut(K/F)$ by $\Gal(K/F)$ instead
-	and call this the \vocab{Galois group} of $K/F$.
-\end{definition}
+The proof of this is deferred to an optional section at the end of the chapter.
+If $K/F$ is a finite extension and $\left\lvert \Aut(K/F) \right\rvert = [K:F]$,
+we say the extension $K/F$ is \vocab{Galois}.
+In that case, we denote $\Aut(K/F)$ by $\Gal(K/F)$ instead
+and call this the \vocab{Galois group} of $K/F$.
 
 \begin{example}
 	[Examples and Non-Examples of Galois extensions]
@@ -527,50 +426,65 @@ since the embedding taking $\sqrt[3]{2}$ to a complex number fail to be containe
 		\ii The extension $\QQ(\sqrt2, \sqrt 3) / \QQ$ is Galois,
 		since it's the splitting field of $(x^2-5)^2-6$ over $\QQ$.
 		As discussed before, the Galois group is $\Zc 2 \times \Zc 2$.
-		\ii The extension $\QQ(\sqrt[3]{2}) / \QQ$ is \emph{not} Galois.
+		\ii The extension $\QQ(\cbrt{2}) / \QQ$ is \emph{not} Galois.
 	\end{enumerate}
 \end{example}
 
-Here is some more intuition on what $[K:F]$ actually measures: suppose $K$ is a splitting field
-of some $(x-\alpha_1) \dots (x-\alpha_n)$, meaning $K = F(\alpha_1, \dots, \alpha_n)$.
-Then a permutation $\sigma \in \Aut(K/F)$ is determined by where it sends each $\alpha_i$.
-The dimension of $[K:F]$ measures how much ``redundancy'' there is among the $\alpha_i$.
-For example, in the case of \[ (x-\sqrt5)(x+\sqrt5) = x^2-5  \]the $\sqrt 5$ and $-\sqrt 5$ were redundant,
-in the sense that knowing $\sigma(\sqrt 5)$ tells you $\sigma(-\sqrt 5) = -\sigma(\sqrt 5)$.
-But in the $x^3-2$ case, knowing $\sigma(\sqrt[3]{2})$ does \emph{not} tell you where
-$\omega\sqrt[3]{2}$ should go; this is reflected in the fact that $[K:F]$ and $\Aut(K/F)$
-are both six rather than three.
+%Here is some more intuition on what $[K:F]$ actually measures: suppose $K$ is a splitting field
+%of some $(x-\alpha_1) \dots (x-\alpha_n)$, meaning $K = F(\alpha_1, \dots, \alpha_n)$.
+%Then a permutation $\sigma \in \Aut(K/F)$ is determined by where it sends each $\alpha_i$.
+%The dimension of $[K:F]$ measures how much ``redundancy'' there is among the $\alpha_i$.
+%For example, in the case of \[ (x-\sqrt5)(x+\sqrt5) = x^2-5  \]the $\sqrt 5$ and $-\sqrt 5$ were redundant,
+%in the sense that knowing $\sigma(\sqrt 5)$ tells you $\sigma(-\sqrt 5) = -\sigma(\sqrt 5)$.
+%But in the $x^3-2$ case, knowing $\sigma(\cbrt{2})$ does \emph{not} tell you where
+%$\omega\cbrt{2}$ should go; this is reflected in the fact that $[K:F]$ and $\Aut(K/F)$
+%are both six rather than three.
 
-
-%\begin{definition}
-%	Let $K$ be a field.
-%	Then an \vocab{automorphism} of $K$ is a field isomorphism $\sigma : K \to K$
-%	(in particular $\sigma(1_K) = 1_K$).
-%	The set of all automorphisms is denoted $\Aut(K)$ and it is a group
-%	under function composition; we call it the \vocab{automorphism group}.
-%\end{definition}
-%\begin{example}[Automorphism Group of $\QQ(i)$]
-%	The map $\sigma : \QQ(i) \to \QQ(i)$ by $z \mapsto \ol z$ (complex conjugation) 
-%	is an automorphism, as is $z \mapsto z$.
-%	I claim these are the only such automorphisms, so $\Aut(\QQ(i)) \cong \ZZ/2\ZZ$.
-%
-%	First, $\sigma$ satisfies Cauchy's Functional Equation when restricted to $\QQ$;
-%	since $\sigma(1) = 1$, we derive that $\sigma$ fixes all rational numbers.
-%	So once we decide where $i$ goes, we can put
-%	\[ \sigma(a+bi) = \sigma(a) + \sigma(b)\sigma(i). \]
-%	Since $i^2+1 = 0$, we have $\sigma(i)^2 + 1 = 0$.
-%	Hence $\sigma(i) = \pm i$, as desired.
-%\end{example}
-%The above proof just expresses the idea that
-%an automorphism sends elements to their ``conjugates''.
+To explore $\QQ(\cbrt 2)$ one last time:
+\begin{example}
+	[Galois Closures, and the Automorphism Group of $\QQ(\cbrt2, \omega)$]
+	Let's return to the field $K = \QQ(\cbrt 2, \omega)$,
+	which is a field with $[K:\QQ] = 6$.
+	Consider the two automorphisms:
+	\[
+		\sigma:
+		\begin{cases}
+			\cbrt 2 &\to \omega \cbrt 2 \\
+			\omega &\mapsto \omega
+		\end{cases}
+		\quad\text{and}\quad
+		\tau:
+		\begin{cases}
+			\cbrt 2 &\to \cbrt 2 \\
+			\omega &\mapsto \omega^2.
+		\end{cases}
+	\]
+	Notice that $\sigma^3 = \tau^2 = \id$.
+	From this one can see that the automorphism group of $K$ must have order $6$
+	(it certainly has order $\le 6$; now use Lagrange's Theorem).
+	So, $K/\QQ$ is Galois! Actually one can check explicitly that
+	\[ \Gal(K/\QQ) \cong S_3 \]
+	is the symmetric group on $3$ elements, with order $3! = 6$.
+\end{example}
+This example illustrates the fact that
+\begin{moral}
+	Given a non-Galois field extension, 
+	one can ``add in'' missing conjugates to make it Galois.
+\end{moral}
+This is called taking a \vocab{Galois closure}.
 
 \section{Fundamental Theorem of Galois Theory}
 After all this stuff about Galois Theory, I might as well tell you the Fundamental Theorem,
 though I won't prove it.
-The key idea is to look at \emph{fixed fields}.
+Basically, it says the following: let $K/F$ be Galois with Galois group $G$.
+Then: 
+\begin{moral}
+	Subgroups of $G$ correspond exactly to fields $E$ with $F \subset E \subset K$.
+\end{moral}
 
+To tell you how the bijection goes, I have to define a fixed group.
 \begin{definition}
-	Let $K$ be a field and $H$ a group of automorphisms $K \to K$.
+	Let $K$ be a field and $H$ a subgroup of $\Aut(K/F)$.
 	We define the \vocab{fixed field} of $H$, denoted $K^H$, as
 	\[ K^H \defeq \left\{ x \in K : \sigma(x) \in K \; \forall \sigma \in H \right\}. \]
 \end{definition}
@@ -578,10 +492,11 @@ The key idea is to look at \emph{fixed fields}.
 	Verify quickly that $K^H$ is actually a field.
 \end{ques}
 
-Consider $K = \QQ(\sqrt2, \sqrt3)$ again,
+Now let's look at examples again.
+Consider $K = \QQ(\sqrt2, \sqrt3)$,
 where \[ G = \Gal(K/\QQ) = \{\id, \sigma, \tau, \sigma\tau\} \]
-is the Klein four group (where $\sigma(\sqrt2) = -\sqrt 2$ but $\sigma(\sqrt 3) = \sqrt 3$;
-$\tau$ goes the other way).
+is the Klein four group
+(where $\sigma(\sqrt2) = -\sqrt 2$ but $\sigma(\sqrt 3) = \sqrt 3$; $\tau$ goes the other way).
 \begin{ques}
 	Let $H = \{\id, \sigma\}$. What is $K^H$?
 \end{ques}
@@ -635,85 +550,13 @@ That, and much more, holds in general.
 	\end{enumerate}
 \end{theorem}
 
-%%fakesection Deleted Proof: Galois Extenisons are Splitting
-%\section{(Optional) Proof that Galois Extensions are Splitting}
-%We prove \Cref{thm:Galois_splitting}.
-%First, we extract a useful fragment from the Fundamental Theorem.
-%\begin{theorem}[Fixed Field Theorem]
-%	\label{thm:fixed_field_theorem}
-%	Let $K$ be a field and $G$ a subgroup of $\Aut(K)$.
-%	Then $[K:K^G] = \left\lvert G \right\rvert$.
-%\end{theorem}
-%
-%The inequality itself is not difficult:
-%\begin{exercise}
-%	Show that $[K:F] \ge \Aut(K/F)$,
-%	and that equality holds if and only if
-%	the set of elements fixed by all $\sigma \in \Aut(K/F)$
-%	is exactly $F$.
-%	(Use \Cref{thm:fixed_field_theorem}.)
-%\end{exercise}
-%The equality case is trickier.
-%
-%The easier direction is when $K$ is a splitting field.
-%Assume $K = F(\alpha_1, \dots, \alpha_n)$ is the splitting field of some separable polynomial $p \in F[x]$
-%with $n$ distinct roots $\alpha_1, \dots, \alpha_n$ be the distinct roots.
-%Adjoin them one by one:
-%\begin{diagram}
-%	F & \rInj & F(\alpha_1) & \rInj & F(\alpha_1, \alpha_2) & \rInj & \dots & \rInj & K \\
-%	\dTo^\id && \dTo^{\tau_1} && \dTo^{\tau_2} && \dots && \dTo_{\tau_n = \sigma} \\
-%	F & \rInj & F(\alpha_1) & \rInj & F(\alpha_1, \alpha_2) & \rInj & \dots & \rInj & K \\
-%\end{diagram}
-%(Does this diagram look familiar?)
-%Every map $K \to K$ which fixes $F$ corresponds to an above commutative diagram.
-%As before, there are exactly $[F(\alpha_1) : F]$ ways to pick $\tau_1$.
-%(You need the fact that the minimal polynomial $p_1$ of $\alpha_1$ is separable for this:
-%there needs to be exactly $\deg p_1 = [F(\alpha_1) : F]$ distinct roots to nail $p_1$ into.)
-%Similarly, given a choice of $\tau_1$, there are $[F(\alpha_1, \alpha_2) : F(\alpha_1)]$ ways to pick $\tau_2$.
-%Multiplying these all together gives the desired $[K:F]$.
-%
-%\bigskip
-%
-%Now assume $K/F$ is Galois.
-%First, we state the following lemma.
-%\begin{lemma}
-%	Let $K/F$ be Galois, and $p \in F[x]$ irreducible.
-%	If any root of $p$ (in $\ol F$) lies in $K$, then all of them do,
-%	and in fact $p$ is separable.
-%\end{lemma}
-%\begin{proof}
-%	Let $\alpha \in K$ be the prescribed root.
-%	Consider the set
-%	\[ S = \left\{ \sigma(\alpha) \mid \sigma \in \Gal(K/F) \right\}. \]
-%	(Note that $\alpha \in S$ since $\Gal(K/F) \ni \id$.)
-%	By construction, any $\tau \in \Gal(K/F)$ fixes $S$.
-%	So if we construct
-%	\[ \tilde p(x) = \prod_{\beta \in S} (x - \beta). \]
-%	then by Vieta's Formulas, we find that all the coefficients of $\tilde p$ are fixed by elements of $\sigma$.
-%	By the \emph{equality case} we specified in the exercise, it follows that $\tilde p$ has coefficients in $F$!
-%	(This is where we use the condition.)
-%	Also, by \Cref{lem:root_shuffle}, $\tilde p$ divides $p$.
-%
-%	Yet $p$ was irreducible, so it is the minimal polynomial of $\alpha$ in $F[x]$,
-%	and therefore we must have that $p$ divides $\tilde p$.
-%	Hence $p = \tilde p$. Since $\tilde p$ was built to be separable, so is $p$.
-%\end{proof}
-%Now we're basically done -- pick a basis $\omega_1$, \dots, $\omega_n$ of $K/F$,
-%and let $p_i$ be their minimal polynomials; by the above, we don't get any roots outside $K$.
-%Consider $P = p_1 \dots p_n$, removing any repeated factors.
-%The roots of $P$ are $\omega_1$, \dots, $\omega_n$ and some other guys in $K$.
-%So $K$ is the splitting field of $P$.
+\begin{exercise}
+	Suppose we apply this theorem for 
+	\[ K = \QQ(\cbrt2, \omega). \]
+	Verify that the fact $E = \QQ(\cbrt 2)$ is not Galois
+	corresponds to the fact that $S_3$ does not have normal subgroups of order $2$.
+\end{exercise}
 
-
-\section{More Examples of Galois Groups}
-
-\todo{Actually write this section}
-
-$\sqrt2+\sqrt3$
-
-$x^3-2$
-
-$x^p-2$
 
 \section\problemhead
 \begin{sproblem}[Galois Group of the Cyclotomic Field]
@@ -759,3 +602,73 @@ $x^p-2$
 	\todo{add solution} % \url{http://www.math.cornell.edu/~kbrown/6310/primitive.pdf}}
 	\label{prob:artin_primitive_elm}
 \end{problem}
+\pagebreak
+\section{(Optional) Proof that Galois Extensions are Splitting}
+We prove \Cref{thm:Galois_splitting}.
+First, we extract a useful fragment from the Fundamental Theorem.
+\begin{theorem}[Fixed Field Theorem]
+	\label{thm:fixed_field_theorem}
+	Let $K$ be a field and $G$ a subgroup of $\Aut(K)$.
+	Then $[K:K^G] = \left\lvert G \right\rvert$.
+\end{theorem}
+
+The inequality itself is not difficult:
+\begin{exercise}
+	Show that $[K:F] \ge \Aut(K/F)$,
+	and that equality holds if and only if
+	the set of elements fixed by all $\sigma \in \Aut(K/F)$
+	is exactly $F$.
+	(Use \Cref{thm:fixed_field_theorem}.)
+\end{exercise}
+The equality case is trickier.
+
+The easier direction is when $K$ is a splitting field.
+Assume $K = F(\alpha_1, \dots, \alpha_n)$ is the splitting field of some separable polynomial $p \in F[x]$
+with $n$ distinct roots $\alpha_1, \dots, \alpha_n$ be the distinct roots.
+Adjoin them one by one:
+\begin{diagram}
+	F & \rInj & F(\alpha_1) & \rInj & F(\alpha_1, \alpha_2) & \rInj & \dots & \rInj & K \\
+	\dTo^\id && \dTo^{\tau_1} && \dTo^{\tau_2} && \dots && \dTo_{\tau_n = \sigma} \\
+	F & \rInj & F(\alpha_1) & \rInj & F(\alpha_1, \alpha_2) & \rInj & \dots & \rInj & K \\
+\end{diagram}
+(Does this diagram look familiar?)
+Every map $K \to K$ which fixes $F$ corresponds to an above commutative diagram.
+As before, there are exactly $[F(\alpha_1) : F]$ ways to pick $\tau_1$.
+(You need the fact that the minimal polynomial $p_1$ of $\alpha_1$ is separable for this:
+there needs to be exactly $\deg p_1 = [F(\alpha_1) : F]$ distinct roots to nail $p_1$ into.)
+Similarly, given a choice of $\tau_1$, there are $[F(\alpha_1, \alpha_2) : F(\alpha_1)]$ ways to pick $\tau_2$.
+Multiplying these all together gives the desired $[K:F]$.
+
+\bigskip
+
+Now assume $K/F$ is Galois.
+First, we state the following lemma.
+\begin{lemma}
+	Let $K/F$ be Galois, and $p \in F[x]$ irreducible.
+	If any root of $p$ (in $\ol F$) lies in $K$, then all of them do,
+	and in fact $p$ is separable.
+\end{lemma}
+\begin{proof}
+	Let $\alpha \in K$ be the prescribed root.
+	Consider the set
+	\[ S = \left\{ \sigma(\alpha) \mid \sigma \in \Gal(K/F) \right\}. \]
+	(Note that $\alpha \in S$ since $\Gal(K/F) \ni \id$.)
+	By construction, any $\tau \in \Gal(K/F)$ fixes $S$.
+	So if we construct
+	\[ \tilde p(x) = \prod_{\beta \in S} (x - \beta). \]
+	then by Vieta's Formulas, we find that all the coefficients of $\tilde p$ are fixed by elements of $\sigma$.
+	By the \emph{equality case} we specified in the exercise, it follows that $\tilde p$ has coefficients in $F$!
+	(This is where we use the condition.)
+	Also, by \Cref{lem:root_shuffle}, $\tilde p$ divides $p$.
+
+	Yet $p$ was irreducible, so it is the minimal polynomial of $\alpha$ in $F[x]$,
+	and therefore we must have that $p$ divides $\tilde p$.
+	Hence $p = \tilde p$. Since $\tilde p$ was built to be separable, so is $p$.
+\end{proof}
+Now we're basically done -- pick a basis $\omega_1$, \dots, $\omega_n$ of $K/F$,
+and let $p_i$ be their minimal polynomials; by the above, we don't get any roots outside $K$.
+Consider $P = p_1 \dots p_n$, removing any repeated factors.
+The roots of $P$ are $\omega_1$, \dots, $\omega_n$ and some other guys in $K$.
+So $K$ is the splitting field of $P$.
+
+
