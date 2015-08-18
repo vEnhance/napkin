@@ -4,31 +4,28 @@
 \setcounter{diagheight}{50}
 \begin{chart}
 \halfcourse 10,45:{Chapters 1,3}{Groups}{}
-\halfcourse 5,35:{Chapter 9}{Grp Actions}{}
-\halfcourse 30,35:{Chapter 11}{Ideals}{}
-
 \halfcourse 50,45:{Chapter 2}{Spaces}{}
 \halfcourse 50,35:{Chapter 4,5}{Topology}{}
-
 \halfcourse 65,45:{Chapter 6}{Modules}{}
 \halfcourse 65,35:{Chapters 7-8}{Lin Alg}{}
+\opthalfcourse 65,25:{Chapters 9-10}{Diff Geom}{}
+\halfcourse 5,35:{Chapter 11}{Grp Actions}{}
+\opthalfcourse 5,20:{Chapter 12}{Grp Classif}{}
+\halfcourse 30,35:{Chapter 13}{Ideals}{}
+\reqhalfcourse 30,22:{Chapter 14-15}{Cat Th}{}
+\reqhalfcourse 30,10:{Chapters 16-18}{Alg Top}{}
+\reqhalfcourse 55,10:{Chapters 19-21}{Cmplx Ana}{}
+\reqhalfcourse 42,10:{Chapter 22-26}{Alg NT 1}{}
+\reqhalfcourse 42,0:{Chapter 27-30}{Alg NT 2}{}
+\reqhalfcourse 16,10:{Chapters 31-}{Alg Geom}{}
 
-\opthalfcourse 5,20:{Chapter 10}{Grp Classif}{}
-
-\reqhalfcourse 30,22:{Chapter 12-13}{Cat Th}{}
-
-\reqhalfcourse 30,10:{Chapters 14-16}{Alg Top}{}
-\reqhalfcourse 42,10:{Chapter 20-24}{Alg NT 1}{}
-\reqhalfcourse 42,0:{Chapter 25-28}{Alg NT 2}{}
-\reqhalfcourse 55,10:{Chapters 17-19}{Cmplx Ana}{}
-\reqhalfcourse 16,10:{Chapters 29-}{Alg Geom}{}
-
-\reqhalfcourse 65,0:{Chapters 30-}{Set Theory}{}
+\reqhalfcourse 65,0:{Chapters 32-}{Set Theory}{}
 
 \prereqc 10,45,30,22;0:   % Gp -> Cat Th
 \coreqc  30,35,30,22;0:   % Ideals -> Cat Th
 \coreqc  50,45,30,22;0:   % Space -> Cat Th
 \coreqc  65,35,30,22;-10: % Lin Alg -> Cat Th
+\prereqc 65,35,65,25;0:   % Lin Alg -> Diff Geo
 \coreqc  50,35,30,22;-10: % Top -> Cat Th
 \coreqc  30,22,16,10;0:   % Cat Th -> Alg Geom
 \prereqc 30,22,30,10;0:   % Cat Th -> Alg Top
