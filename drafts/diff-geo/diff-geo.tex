@@ -6,10 +6,12 @@
 \newcommand{\fpartial}[2]{\frac{\partial #1}{\partial #2}}
 
 \begin{document}
-\title{Diff Geo}
+\title{Differential Geometry}
 \maketitle
-
 \chapter{Multivariable Calculus Done Correctly}
+
+\emph{NB: this chapter is isolated in the dependency graph and can be safely skipped.}
+
 As I have ranted about before, linear algebra is done wrong
 by the extensive use of matrices to obscure the structure of a linear map.
 Similar problems occur with multivariable calculus, so here I would like to set 
@@ -19,11 +21,9 @@ Once that's done, I will tell you what a differential form is,
 and you'll finally know all those stupid $dx$'s and $dy$'s really mean.
 (They weren't just there for decoration!)
 
-Since we are doing this chapter using linear algebra,
+Since we are doing this chapter using morally correct linear algebra,
 it's imperative you're comfortable with linear maps,
 and in particular the dual space $V^\vee$ which we will repeatedly use.
-
-\todo{manifolds}
 
 \section{Preliminaries}
 \prototype{$V = \RR^n$, and $\norm{(x_1, \dots, x_n)} = \sqrt{x_1^2 + \dots + x_n^2}$.}
@@ -37,12 +37,13 @@ satisfying the triangle inequality and scaling by constants:
 \]
 In particular, $\norm{0_V}_V = 0$.
 
-The norm can be used as a metric on $V$ (by taking $d(x,y) = \norm{x-y}$), thus we can talk about continuous maps.
+The norm can be used as a metric on $V$ (by taking $d(x,y) = \norm{x-y}$),
+thus we can talk about continuous maps,  open sets, etc.
 The typical example, of course, is $V = \RR^n$ as above.
 
 
 \section{The Total Derivative}
-\prototype{If $f(x,y) = x^2+y^2$, then $(Df)_{(x,y)} = 2xe_1^\vee + 2ye_2^\vee$.}
+\prototype{If $f(x,y) = x^2+y^2$, then $(Df)_{(x,y)} = 2x\ee_1^\vee + 2y\ee_2^\vee$.}
 First, let $f : (a,b) \to \RR$.
 You might recall from high school calculus that for every point $p \in \RR$,
 we defined $f'(p)$ as the derivative at the point $p$ (if it existed), which we interpreted as the \emph{slope} of
@@ -139,14 +140,14 @@ this we use the norm of the vector space.
 	Check that $V = W = \RR$, this is equivalent to the single-variable definition.
 	(What are the linear maps from $V$ to $W$?)
 \end{ques}
-\begin{example}
-	Let $V = \RR^2$ with basis $e_1$, $e_2$ and let $W = \RR$,
-	and let $f\left( xe_1+ye_2 \right) = x^2+y^2$.  Let $p = ae_1 + be_2$.
+\begin{example}[Total Derivative of $f(x,y) = x^2+y^2$]
+	Let $V = \RR^2$ with standard basis $\ee_1$, $\ee_2$ and let $W = \RR$,
+	and let $f\left( x \ee_1 + y \ee_2 \right) = x^2+y^2$.  Let $p = a\ee_1 + b\ee_2$.
 	Then, we claim that \[ (Df)_p : \RR^2 \to \RR \quad\text{by}\quad
-	v \mapsto 2a \cdot e_1^\vee(v) + 2b \cdot e_2^\vee(v). \]
+	v \mapsto 2a \cdot \ee_1^\vee(v) + 2b \cdot \ee_2^\vee(v). \]
 \end{example}
-Here, the notation $e_1^\vee$ and $e_2^\vee$ makes sense,
-because by definition $(Df)_p \in V^\vee$: it's a function from $V$ to $\RR$!
+Here, the notation $\ee_1^\vee$ and $\ee_2^\vee$ makes sense,
+because by definition $(Df)_p \in V^\vee$: these are functions from $V$ to $\RR$!
 
 Let's check this manually with the limit definition.
 Set $v = xe_1 + ye_2$, and note that the norm on $V$ is $\norm{(x,y)}_V = \sqrt{x^2+y^2}$
@@ -155,8 +156,7 @@ Then we compute
 \begin{align*}
 	\frac{\norm{f(p + v) - f(p) - T(v)}_W}{\norm{v}_V} 
 	&= \frac{\left\lvert (a+x)^2 + (b+y)^2 - (a^2+b^2) - (2ax+2by) \right\rvert}{\sqrt{x^2+y^2}} \\
-	&= \frac{x^2+y^2}{\sqrt{x^2+y^2}} \\
-	&= \sqrt{x^2+y^2} \\
+	&= \frac{x^2+y^2}{\sqrt{x^2+y^2}} = \sqrt{x^2+y^2} \\
 	&\to 0
 \end{align*}
 as $\norm{v} \to 0$.
@@ -169,9 +169,11 @@ Thus, for $p = ae_1 + be_2$ we indeed have $(Df)_p = 2a \cdot e_1^\vee + 2b \cdo
 \section{The Projection Principle}
 Before proceeding I need to say something really important.
 \begin{theorem}[Projection Principle]
+	\label{thm:project_principle}
 	Let $W$ be an $n$-dimensional real vector space with basis $w_1, \dots, w_n$.
-	Then a continuous function $f : V \to W$
-	amounts to a $n$-tuple of continuous $f_1, f_2, \dots, f_n : V \to \RR$
+	Then there is a bijection between continuous functions $f : V \to W$ and
+	$n$-tuples of continuous $f_1, f_2, \dots, f_n : V \to \RR$
+	by projection onto the $i$th basis element, i.e.\ 
 	\[ f(v) = f_1(v)w_1 + \dots + f_n(v)w_n. \]
 \end{theorem}
 \begin{proof}
@@ -187,7 +189,7 @@ For this reason, we'll most often be interested in functions $f : V \to \RR$.
 That's why the dual space $V^\vee$ is so important.
 
 \section{Total and Partial Derivatives}
-\prototype{If $f(x,y) = x^2+y^2$, then $(Df) : (x,y) \mapsto 2xe_1^\vee + 2ye_2^\vee$, and
+\prototype{If $f(x,y) = x^2+y^2$, then $(Df) : (x,y) \mapsto 2x\ee_1^\vee + 2y\ee_2^\vee$, and
 $\fpartial fx = 2x$, $\fpartial fy = 2y$.}
 Let $U \subseteq V$ be open and let $V$ have a basis $e_1$, \dots, $e_n$.
 Suppose $f : U \to \RR$ is a function which is differentiable everywhere,
@@ -197,8 +199,9 @@ In that case, one can consider $Df$ as \emph{itself} a function:
 	Df : U &\to V^\vee \\
 	p &\mapsto (Df)_p.
 \end{align*}
-\textbf{This is a little crazy}: to every \emph{point} in $U$ we associate a \emph{function} in $V^\vee$.
-We say $Df$ is the \vocab{total derivative} of $f$ at $p$.
+This is a little crazy: to every \emph{point} in $U$ we associate a \emph{function} in $V^\vee$.
+We say $Df$ is the \vocab{total derivative} of $f$ at $p$,
+to reflect how much information we're dealing with.
 
 Let's apply the projection principle now to $Df$.
 Since we picked a basis $e_1$, \dots, $e_n$ of $V$,
@@ -249,11 +252,10 @@ That is to say,
 \end{remark}
 
 
-\begin{example}
+\begin{example}[Partial Derivatives of $f(x,y) = x^2+y^2$]
 	Let $f : \RR^2 \to \RR$ by $(x,y) \mapsto x^2+y^2$.
 	Then in our new language, 
-	\[ Df : (x,y) \mapsto 2x \cdot e_1^\vee + 2y \cdot e_2^\vee \]
-	(here $e_1 = (1,0)$, $e_2=(0,1)$).
+	\[ Df : (x,y) \mapsto 2x \cdot \ee_1^\vee + 2y \cdot \ee_2^\vee. \]
 	Thus the partials are
 	\[
 		\frac{\partial f}{\partial x} : (x,y) \mapsto 2x \in \RR
@@ -273,6 +275,7 @@ Fortunately, it turns out you already know how to compute partial derivatives,
 because you had to take AP Calculus at some point in your life.
 It turns out for most reasonable functions, this is all you'll ever need.
 \begin{theorem}[Continuous Partials Implies Differentiable]
+	Let $U \subset V$ be open and pick any basis $e_1, \dots, e_n$.
 	Let $f : U \to W$ and suppose that $\fpartial{f}{e_i}$ is defined
 	for each $i$ and moreover is \emph{continuous}.
 	Then $f$ is differentiable and given by
@@ -308,24 +311,185 @@ It turns out for most reasonable functions, this is all you'll ever need.
 		\fpartial fx (x,y) &= \sin y + y^4 \cdot 2x \\
 		\fpartial fy (x,y) &= x \cos y + x^2 \cdot 4y^3.
 	\end{align*}
-	Then $Df = \fpartial fx e_1^\vee + \fpartial fy e_2^\vee$,
+	Then $Df = \fpartial fx \ee_1^\vee + \fpartial fy \ee_2^\vee$,
 	which I won't bother to write out.
 \end{example}
 
 The example $f(x,y) = x^2+y^2$ is the same thing.
 That being said, who cares about $x \sin y + x^2y^4$ anyways?
 
+\section{A Word on Higher Derivatives}
+Let $U \subseteq V$ be open, and take $f : U \to W$, so that $Df : U \to \Hom(V,W)$.
 
-\section{(Optional) Gradients}
-Lovers of matrices and vectors often call $(Df)_p$ the \vocab{gradient}
-of $f$ at $p$, and denote it $(\nabla f)_p$.
-It makes sense 
-\todo{dot product, canonical isomorphism}
+Well, $\Hom(V,W)$ can also be thought of as a normed vector space in its own right:
+it turns out that one can define an operator norm on it by setting
+\[ \norm{T} \defeq \sup \left\{ \frac{\norm{T(v)f}_W}{\Norm{v}_W} \mid v \neq 0_V \right\}. \] 
+So $\Hom(V,W)$ can be thought of as a normed vector space as well.
+Thus it makes sense to write
+\[ D(Df) : U \to \Hom(V,\Hom(V,W)) \]
+which we abbreviate as $D^2 f$. Dropping all doubt and plunging on,
+\[ D^3f : U \to \Hom(V, \Hom(V,\Hom(V,W))). \]
+I'm sorry.
+As consolation, we at least know that $\Hom(V,W) \simeq V^\vee \otimes W$ in a natural way,
+so we can at least condense this as
+\[ D^kf : V \to (V^\vee)^{\otimes k} \otimes W \]
+rather than writing a bunch of $\Hom$'s.
+\begin{remark}
+	If $k=2$, $W = \RR$, then $D^2f(v) \in (V^\vee)^{\otimes 2}$,
+	so it can be represented as an $n \times n$ matrix, which for some reason is called Hessian.
+\end{remark}
+The most important property of the second derivative is that
+\begin{theorem}
+	[Symmetry of $Df^2$]
+	Let $f : U \to W$ with $U \subseteq V$ open.
+	If $(D^2f)_p$ exists at some $p \in U$, then it is symmetric, meaning
+	\[ (D^2f)_p(v_1, v_2) = (D^2f)_p(v_2, v_1). \]
+\end{theorem}
+I'll just quote this without proof, because double derivatives make my head spin.
+An important corollary of this theorem:
+\begin{corollary}
+	[Clairaut's Theorem: Mixed Partials are Symmetric]
+	Let $f : U \to \RR$ with $U \subseteq V$ open.
+	For any point $p$ such that the quantities are defined,
+	\[
+		\frac{\partial}{\partial e_i}
+		\frac{\partial}{\partial e_j}
+		f(p)
+		=
+		\frac{\partial}{\partial e_j}
+		\frac{\partial}{\partial e_i}
+		f(p).
+	\]
+\end{corollary}
 
+\section{Exterior Derivatives}
+Let's now get a handle on what $dx$ means. This is something called a \emph{differential form},
+whose purpose in life is to be integrated.
+Fix a real vector space $V$ of dimension $n$, and let $\ee_1$, \dots, $\ee_n$ be a standard basis.
 
+First, given a function $f : V \to \RR$,
+we define 
+\[ df \defeq Df = \sum_i f_i e_i^\vee \]
+In particular, suppose $V = \RR^n$ and $f(x_1, \dots, x_n) = x_1$ (i.e.\ $f = \ee_1^\vee$). Then:
+\begin{ques}
+	Show that \[ d(\ee_1^\vee) = \ee_1^\vee. \]
+\end{ques}
+\begin{abuse}
+	Unfortunately, someone somewhere decided it would be a good idea to use ``$x_1$'' to denote $\ee_1^\vee$
+	(because \emph{obviously}\footnote{Sarcasm.} $x_1$ means
+	``the function that takes $(x_1, \dots, x_n) \in \RR^n$ to $x_1$'')
+	and thus decided that \[ dx_1 \defeq \ee_1^\vee. \]
+	This notation is so entrenched that I have no choice but to grudgingly accept it.
+	\label{abuse:dx}
+\end{abuse}
+\begin{remark}
+	This is the reason why we use the notation $\frac{df}{dx}$ in calculus now:
+	given, say $f : \RR \to \RR$ by $f(x) = x^2$, it is indeed true that
+	\[ df = 2x \cdot \ee_1^\vee = 2x \cdot dx. \]
+\end{remark}
+
+More generally, $df$ is in a class of objects called a $k$-form.
+\begin{definition}
+	We define a \vocab{$k$-form} $\alpha$ to be a smooth (infinitely differentiable)
+	map $\alpha : V \to \Lambda^k(V^\vee)$.
+	(Here $\Lambda^k(V^\vee)$ is the wedge product.)
+\end{definition}
+
+\begin{example}
+	[$k$-forms for $k=0,1$]
+	\listhack
+	\begin{enumerate}[(a)]
+		\item A $0$-form is just a function $V \to \RR$.
+		\item A $1$-form is a function $V \to V^\vee$.
+		For example, the total derivative $df$ of a function $V \to \RR$ is a $1$-form.
+		\item Let $V = \RR^3$ with standard basis $\ee_1$, $\ee_2$, $\ee_3$.
+		Then a typical $2$-form is given by
+		\[
+			\alpha(v)
+			=
+			f(v) \ee_1^\vee \wedge \ee_2^\vee
+			+ g(v) \ee_1^\vee \wedge \ee_3^\vee
+			+ h(v) \ee_2^\vee \wedge \ee_3^\vee
+			\in \Lambda^2(V).
+		\]
+	\end{enumerate}
+\end{example}
+
+Now, by the projection principle (\Cref{thm:project_principle}) we only have to specify
+a function on each of $\binom nk$ basis elements of $\Lambda^k(V^\vee)$.
+So, take any basis $\{e_i\}$ of $V$, and 
+take the usual basis for $\Lambda^k(V^\vee)$ of elements
+\[ e_{i_1}^\vee \wedge e_{i_2}^\vee \wedge \dots \wedge e_{i_k}^\vee. \]
+Thus, a general $k$-form takes the shape
+\[ \alpha(v) = \sum_{1 \le i_1 < \dots < i_k \le n} 
+	f_{i_1, \dots, i_k}(v)
+	e_{i_1}^\vee \wedge e_{i_2}^\vee \wedge \dots \wedge e_{i_k}^\vee. \]
+Since this is a huge nuisance to write, we will abbreviate this to just
+\[ \alpha = \sum_I f_I de_I \]
+where we understand the sum runs over $I = (i_1, \dots, i_k)$,
+and $de_I$ represents $e_{i_1}^\vee \wedge \dots \wedge e_{i_k}^\vee$.
+
+Now, we saw that we can take a $0$-form $f : V \to \RR$ to a $1$-form $df : V \to V^\vee$.
+More generally, we can define the \vocab{exterior derivative} in terms of our basis $e_1$, \dots, $e_n$ as follows:
+if $\alpha = \sum_I f_I de_I$ then we set
+\[ d\alpha \defeq \sum_I df_I \wedge de_I = \sum_I \sum_j \fpartial{f_I}{e_j} de_j \wedge de_I. \]
+(We'll show this doesn't depend on the choice of basis in a moment.)
+\begin{example}[Computing some exterior derivatives]
+	Let $V = \RR^3$ with standard basis $\ee_1$, $\ee_2$, $\ee_3$.
+	Let $f(x,y,z) = x^4 + y^3 + 2xz$.
+	Then we compute
+	\[ df = Df = (4x^3+2z) \; dx + 3y^2 \; dy + 2x \; dz. \]
+	Next, we can evaluate $d(df)$ as prescribed: it is
+	\begin{align*}
+		d^2f &= (12x^2 \; dx + dz) \wedge dx + (6y \; dy) \wedge dy + (dx \wedge dz) \\
+		&= 12x^2 (dx \wedge dx) + 2(dz \wedge dx) + 6y (dy \wedge dy) + 2(dx \wedge dz) \\
+		&= 2(dz \wedge dx) + 2(dx \wedge dz) \\
+		&= 0.
+	\end{align*}
+	So surprisingly, $d^2f$ is the zero map.
+	Here, we have exploited \Cref{abuse:dx} for the first time,
+	in writing $dx$, $dy$, $dz$.
+\end{example}
+And in fact, this is always true in general:
+\begin{theorem}[Exterior Derivative Vanishes]
+	Let $\alpha$ be any $k$-form.
+	Then $d^2(\alpha) = 0$.
+	Even more succinctly, $d^2 = 0$.
+	\label{thm:dd_zero}
+\end{theorem}
+The proof is left as \Cref{prob:dd_zero}.
+
+Here are some other properties of $d$:
+\begin{itemize}
+	\ii As we just saw, $d^2 = 0$.
+	\ii It is bilinear; $d(c\alpha+\beta) = c \cdot d\alpha + d\beta$.
+	\ii For a $k$-form $\alpha$ and $\ell$-form $\beta$, one can show that
+	\[ d(\alpha \wedge \beta) = d\alpha \wedge \beta + (-1)^k (\alpha \wedge d\beta). \]
+\end{itemize}
+In fact, one can show that the $df$ as defined in terms of bases above is
+the \emph{unique} map sending $k$-forms to $(k+1)$-forms.
+Actually, one way to define $df$ is to take as axioms the bulleted properties above
+and then declare $d$ to be the unique solution to this functional equation.
+In any case, this tells us that our definition of $d$ does not depend on the basis chosen.
 
 \section{Problems}
+\begin{problem}[Chain Rule]
+	Let $V \taking f W \taking g X$ be differentiable maps between normed vector spaces,
+	and let $h = g \circ f$.
+	Prove the Chain Rule: for any point $p \in V$, we have
+	\[ (Dh)_p = (Dg)_{f(p)} \circ (Df)_p. \]
+\end{problem}
+\begin{problem}
+	\label{prob:dd_zero}
+	Establish \Cref{thm:dd_zero}, which states that $d^2 = 0$.
+\end{problem}
+\begin{problem}
+	Let $U \subseteq V$ be open, and $f : U \to \RR$ be differentiable $k$ times.
+	Show that $(D^kf)_p$ is symmetric in its $k$ arguments, meaning for any $v_1, \dots, v_k \in V$
+	and any permutation $\sigma$ on $\left\{ 1, \dots, k \right\}$ we have
+	\[ (D^kf)_p(v_1, \dots, v_k) = (D^kf)_p(v_{\sigma(1)}, \dots, v_{\sigma(k)}). \]
+\end{problem}
 
 
-
+\chapter{Integrating Differential Forms}
 \end{document}
