@@ -162,7 +162,7 @@ And finally,
 \end{definition}
 
 We are especially interested in models of the form $(M, \in)$, where $M$ is a \emph{transitive} set.
-(We want our universe to be transitive,-
+(We want our universe to be transitive,
 otherwise we would have elements of sets which are not themselves
 in the universe, which is very strange.)
 Such a model is called a \vocab{transitive model}.
@@ -201,7 +201,7 @@ We like sentences with bounded quantifiers because they designate
 properties which are \vocab{absolute} over transitive models.
 It doesn't matter how strange your surrounding model $M$ is.
 As long as $M$ is transitive, 
-\[ M \vDash \mathtt{isEmpty}[\varnothing] \]
+\[ M \vDash \mathtt{isEmpty}(\varnothing) \]
 will always hold.
 Similarly, the sentence
 \[ \mathtt{isSubset}(x,y) : x \subseteq y \text { i.e. } \forall a \in x (a \in y). \]
@@ -232,7 +232,7 @@ Specifically,
 	\ii Formulas of the form $\forall x_1 \dots \forall x_k \psi$ where $\psi$ is $\Sigma_n$
 	are consider $\Pi_{n+1}$.
 \end{itemize}
-(A formula which is both $\Sigma_n$ and $\Pi_n$ is said $\Delta_n$, but we won't
+(A formula which is both $\Sigma_n$ and $\Pi_n$ is called $\Delta_n$, but we won't
 use this except for $n=0$.)
 
 \begin{example}
@@ -424,7 +424,7 @@ Great. Now we do something \emph{really} crazy.
 	such that $M$ is a \emph{countable} set.
 \end{theorem}
 \begin{proof}
-	I'm telling you, this is insane. Fasten your seat belts.
+	Fasten your seat belts.
 
 	Start with the set $X_0 = \varnothing$.
 	Then for every integer $n$, we do the following to get $X_{n+1}$.
@@ -435,8 +435,8 @@ Great. Now we do something \emph{really} crazy.
 		Suppose that $M$ thinks there is an $b \in M$ for which
 		\[ M \vDash \phi[b, b_1, \dots, b_n]. \]
 		We then add in the element $b$ to $X_{n+1}$.
-		\ii We do this for \emph{EVERY POSSIBLE FORMULA IN THE LANGUAGE OF SET THEORY}.
-		We also have to put in \emph{EVERY POSSIBLE SET OF PARAMETERS} from the previous set $X_n$.
+		\ii We do this for \emph{every possible formula in the language of set theory}.
+		We also have to put in \emph{every possible set of parameters} from the previous set $X_n$.
 	\end{itemize}
 	At every step $X_n$ is countable.
 	Reason: there are countably many possible finite sets of parameters in $X_n$,
@@ -445,7 +445,7 @@ Great. Now we do something \emph{really} crazy.
 	This exhibits an infinite nested sequence of countable sets
 	\[ X_0 \subseteq X_1 \subseteq X_2 \subseteq \dots \]
 	None of these is a substructure of $M$, because each $X_n$ by relies on witnesses in $X_{n+1}$.
-	So we instead \emph{TAKE THE UNION}:
+	So we instead \emph{take the union}:
 	\[ X = \bigcup_n X_n. \]
 	This satisfies the Tarski-Vaught test, and is countable.
 
@@ -625,7 +625,7 @@ the uncountable $\aleph_1^M$ is really just an ordinary countable cardinal.
 	(This should be easy if you've understood the chapter.)
 \end{dproblem}
 
-Reflection
+\todo{Reflection}
 
 \begin{sproblem}
 	[Inaccessible Cardinal Produce Models]
