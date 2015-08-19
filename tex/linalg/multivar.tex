@@ -350,8 +350,7 @@ An important corollary of this theorem:
 \end{corollary}
 
 \section{Exterior Derivatives}
-Let's now get a handle on what $dx$ means. This is something called a \emph{differential form},
-whose purpose in life is to be integrated.
+Let's now get a handle on what $dx$ means. This is something called a \emph{differential form}.
 Fix a real vector space $V$ of dimension $n$, and let $\ee_1$, \dots, $\ee_n$ be a standard basis.
 
 First, given a function $f : V \to \RR$,
@@ -377,10 +376,11 @@ In particular, suppose $V = \RR^n$ and $f(x_1, \dots, x_n) = x_1$ (i.e.\ $f = \e
 
 More generally, $df$ is in a class of objects called a $k$-form.
 \begin{definition}
-	We define a \vocab{$k$-form} $\alpha$ to be a smooth (infinitely differentiable)
+	We define a \vocab{differential $k$-form} $\alpha$ to be a smooth (infinitely differentiable)
 	map $\alpha : V \to \Lambda^k(V^\vee)$.
 	(Here $\Lambda^k(V^\vee)$ is the wedge product.)
 \end{definition}
+Like with $Df$, we'll use $\alpha_p$ instead of $\alpha(p)$.
 
 \begin{example}
 	[$k$-forms for $k=0,1$]
@@ -392,11 +392,11 @@ More generally, $df$ is in a class of objects called a $k$-form.
 		\item Let $V = \RR^3$ with standard basis $\ee_1$, $\ee_2$, $\ee_3$.
 		Then a typical $2$-form is given by
 		\[
-			\alpha(v)
+			\alpha_p
 			=
-			f(v) \ee_1^\vee \wedge \ee_2^\vee
-			+ g(v) \ee_1^\vee \wedge \ee_3^\vee
-			+ h(v) \ee_2^\vee \wedge \ee_3^\vee
+			f(p) \ee_1^\vee \wedge \ee_2^\vee
+			+ g(p) \ee_1^\vee \wedge \ee_3^\vee
+			+ h(p) \ee_2^\vee \wedge \ee_3^\vee
 			\in \Lambda^2(V).
 		\]
 	\end{enumerate}
@@ -408,8 +408,8 @@ So, take any basis $\{e_i\}$ of $V$, and
 take the usual basis for $\Lambda^k(V^\vee)$ of elements
 \[ e_{i_1}^\vee \wedge e_{i_2}^\vee \wedge \dots \wedge e_{i_k}^\vee. \]
 Thus, a general $k$-form takes the shape
-\[ \alpha(v) = \sum_{1 \le i_1 < \dots < i_k \le n} 
-	f_{i_1, \dots, i_k}(v)
+\[ \alpha_p = \sum_{1 \le i_1 < \dots < i_k \le n} 
+	f_{i_1, \dots, i_k}(p)
 	e_{i_1}^\vee \wedge e_{i_2}^\vee \wedge \dots \wedge e_{i_k}^\vee. \]
 Since this is a huge nuisance to write, we will abbreviate this to just
 \[ \alpha = \sum_I f_I de_I \]
