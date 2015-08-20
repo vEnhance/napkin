@@ -8,6 +8,7 @@
 \maketitle
 
 
+
 \chapter{Multivariable Calculus Done Correctly}
 As I have ranted about before, linear algebra is done wrong
 by the extensive use of matrices to obscure the structure of a linear map.
@@ -581,15 +582,20 @@ We'll make this precise when we see Stoke's Theorem in the next chapter.
 \begin{problem}
 	\label{prob:dd_zero}
 	Establish \Cref{thm:dd_zero}, which states that $d^2 = 0$.
+	\begin{hint}
+		This is just a summation.
+		You will need the fact that mixed partials are symmetric.
+	\end{hint}
 \end{problem}
 \begin{problem}
 	Let $U \subseteq V$ be open, and $f : U \to \RR$ be differentiable $k$ times.
 	Show that $(D^kf)_p$ is symmetric in its $k$ arguments, meaning for any $v_1, \dots, v_k \in V$
 	and any permutation $\sigma$ on $\left\{ 1, \dots, k \right\}$ we have
 	\[ (D^kf)_p(v_1, \dots, v_k) = (D^kf)_p(v_{\sigma(1)}, \dots, v_{\sigma(k)}). \]
+	\begin{hint}
+		Simply induct, with the work having been done on the $k=2$ case.
+	\end{hint}
 \end{problem}
-
-
 \chapter{Integrating Differential Forms}
 In this chapter, we'll show how to integrate differential forms over cells,
 and state Stoke's Theorem in this context.
@@ -1027,37 +1033,52 @@ For example, if $c$ is the interval $[a,b]$ then $\partial c = \{b\} - \{a\}$,
 and thus we obtain the Fundamental Theorem of Calculus.
 
 \section{Problems}
-\begin{problem}
-	Show that $\partial^2 = 0$.
-\end{problem}
-
 \begin{dproblem}[Green's Theorem]
 	Let $f,g : \RR^2 \to \RR$ be smooth functions.
 	Prove that
 	\[ \int_c \left( \fpartial gx - \fpartial fy \right) \; dx \wedge dy
 	= \int_{\partial c} (f \; dx + g \; dy). \]
+	\begin{hint}
+		Direct application of Stoke's Theorem to $\alpha = f \; dx + g \; dy$.
+	\end{hint}
 \end{dproblem}
+
+\begin{problem}
+	Show that $\partial^2 = 0$.
+	\begin{hint}
+		This is just an exercises in sigma notation.
+	\end{hint}
+\end{problem}
 
 \begin{problem}[Pullback and $d$ Commute]
 	Let $U$ and $U'$ be open sets of vector spaces $V$ and $V'$
 	and let $\phi : U \to U'$ be a smooth map between them.
 	Prove that for any differential form $\alpha$ on $U'$ we have
 	\[ \phi^\ast(d\alpha) = d(\phi^\ast\alpha). \]
+	\begin{hint}
+		This is a straightforward (but annoying) computation.
+	\end{hint}
 \end{problem}
 
 \begin{problem}[Arc Length Isn't a Form]
 	Show that there does \emph{not} exist a $1$-form $\alpha$ on $\RR^2$ such that
 	for a curve $c : [0,1] \to \RR^2$,
 	the integral $\int_c \alpha$ gives the arc length of $c$.
+	\begin{hint}
+		We would want $\alpha_p(v) = \norm{v}$.
+	\end{hint}
 \end{problem}
 
 \begin{problem}
+	\gim
 	An \vocab{exact} $k$-form $\alpha$ is one satisfying $\alpha = d\beta$ for some $\beta$.
 	Prove that
 	\[ \int_{C_1} \alpha = \int_{C_2} \alpha \]
 	where $C_1$ and $C_2$ are any concentric circles in the plane
 	and $\alpha$ is some exact $1$-form.
+	\begin{hint}
+		Show that $d^2=0$ implies $\int_{\partial c} \alpha = 0$ for exact $\alpha$.
+		Draw an annulus.
+	\end{hint}
 \end{problem}
-
-
 \end{document}
