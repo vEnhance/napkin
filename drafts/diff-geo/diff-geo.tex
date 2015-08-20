@@ -488,9 +488,14 @@ That's why $\alpha_p$ as a ``function'' is contrived to lie in the wedge product
 this ensures that the notion of ``volume'' makes sense, so that for example,
 the equality $\alpha_p(v_1, v_2) = -\alpha_p(v_2, v_1)$ holds.
 
-This is what makes differential forms good for integrating, which we'll do in the next chapter.
-For now, let's differentiate them:
-
+This is what makes differential forms good for integrating,
+which we'll do in the next chapter.
+Indeed,
+\begin{quote}
+	\noindent ``The definition of a differential form is:
+	something you can integrate.'' \\ --- Joe Harris
+\end{quote}
+But for now, let's differentiate them.
 
 \section{Exterior Derivatives}
 \prototype{Possibly $dx_1 = \ee_1^\vee$.}
@@ -567,12 +572,12 @@ In that sense, $d^2 = 0$ is saying something like ``the boundary of the boundary
 We'll make this precise when we see Stoke's Theorem in the next chapter.
 
 \section{Problems}
-\begin{problem}[Chain Rule]
+\begin{sproblem}[Chain Rule]
 	Let $U_1 \taking f U_2 \taking g U_3$ be differentiable maps
 	between open sets of normed vector spaces $V_i$, and let $h = g \circ f$.
 	Prove the Chain Rule: for any point $p \in U_1$, we have
 	\[ (Dh)_p = (Dg)_{f(p)} \circ (Df)_p. \]
-\end{problem}
+\end{sproblem}
 \begin{problem}
 	\label{prob:dd_zero}
 	Establish \Cref{thm:dd_zero}, which states that $d^2 = 0$.
@@ -679,9 +684,9 @@ This is a special case of a \emph{pullback}:
 roughly, if $\phi : U \to U'$ (where $U \subseteq V$, $U' \subseteq V'$),
 we can change any differential $k$-form $\alpha$ on $U'$
 to a $k$-form on $U$.
-In particular, if $U = [a,b]$, we can resort to our old definition of an integral.\footnote{
+In particular, if $U = [a,b]$,\footnote{
 OK, so $[a,b]$ isn't actually open, sorry. I ought to write $(a-\eps, b+\eps)$, or something.}
-
+we can resort to our old definition of an integral.
 Let's now do this in full generality.
 
 \section{Pullbacks}
@@ -693,7 +698,7 @@ Given a map $\phi : U \to U'$ we now want to define a pullback in much the same 
 Picture:
 \begin{center}
 	\begin{asy}
-		size(12cm);
+		size(13cm);
 		bigblob("$U$");
 		pair p = (-1,0);
 		dot("$p$", p, dir(90), red);
@@ -762,7 +767,8 @@ Then, we define
 A diligent reader can check these definitions are equivalent.
 \begin{example}
 	[Computation of a Pullback]
-	Let $V = \RR^2$, and suppose $\phi : V \to V'$ is given by sending
+	Let $V = \RR^2$ with basis $\ee_1$ and $\ee_2$,
+	and suppose $\phi : V \to V'$ is given by sending
 	\[ \phi(a\ee_1 + b\ee_2) = (a^2+b^2)w_1 + \log(a^2+1) w_2 + b^3 w_3 \]
 	where $w_1$, $w_2$, $w_3$ is a basis for $V'$.
 	Consider the form $\alpha_q = f(q) w_1 \wedge w_3$, where $f : V' \to \RR$.
@@ -783,11 +789,275 @@ but I won't take the time to check these here
 (one can verify them all by expanding with a basis).
 	
 \section{Cells}
+\prototype{The circle in $\RR^2$ can be thought of as the cell $[0,R]\times[0,2\pi] \to \RR^2$ by
+$(r,\theta) \mapsto (r\cos\theta)\ee_1 + (r\sin\theta)\ee_2$.}
+Now that we have the notion of a pullback,
+we can define the notion of an integral for more general spaces.
+Specifically, to generalize the notion of integrals we had before:
+\begin{definition}
+	A \vocab{$k$-cell} is a smooth function $c : [a_1, b_1] \times [a_2,b_2] \times \dots [a_k, b_k] \to V$.
+\end{definition}
+\begin{example}
+	[Examples of Cells]
+	Let $V = \RR^2$ for convenience.
+	\begin{enumerate}[(a)]
+		\ii A $0$-cell consists of a single point.
+		\ii As we saw, a $1$-cell is an arbitrary curve.
+		\ii A $2$-cell corresponds to a $2$-dimensional surface.
+		For example, the map $c : [0,R] \times [0,2\pi]$ by
+		\[ c : (r,\theta) \mapsto (r\cos\theta, r\sin\theta) \]
+		can be thought of as a disk of radius $R$.
+	\end{enumerate}
+\end{example}
+Then, to define an integral
+\[ \int_c \alpha \]
+for a differential $k$-form $\alpha$ and a $k$-cell $c : [0,1]^k$, we simply take the pullback
+\[ \int_{[0,1]^k} c^\ast \alpha \]
+Since $c^\ast \alpha$ is a $k$-form on the $k$-dimensional unit box,
+it can be written as $f(x_1, \dots, x_n) \; dx_1 \wedge \dots \wedge dx_n$,
+so the above integral can be written as
+\[ \int_0^1 \dots \int_0^1 f(x_1, \dots, x_n) \; dx_1 \wedge \dots \wedge dx_n \]
+
+\begin{example}[Area of a Circle]
+	Consider $V = \RR^2$ and let $c : (r,\theta) \mapsto (r\cos\theta)\ee_1 + (r\sin\theta)\ee_2$
+	on $[0,R] \times [0,2\pi]$ as before.
+	Take the $2$-form $\alpha$ which gives $\alpha_p = \ee_1^\vee \wedge \ee_2^\vee$ at every point $p$.
+	Then
+	\begin{align*}
+		c^\ast\alpha &= 
+		\left( \cos\theta dr - r\sin\theta d\theta \right)
+		\wedge
+		\left( \sin\theta dr + r\cos\theta d\theta \right) \\
+		&= r(\cos^2\theta+\sin^2\theta) (dr \wedge d\theta) \\
+		&= r \; dr \wedge d\theta
+	\end{align*}
+	Thus,
+	\[ \int_c \alpha
+		= \int_0^R \int_0^{2\pi} r \; dr \wedge d\theta
+		= \pi r^2 \]
+	which is the area of a circle.
+\end{example}
+
+Here's some geometric intuition for what's happening.
+Given a $k$-cell in $V$, a differential $k$-form $\alpha$ accepts a point $p$ and some tangent vectors $v_1$, \dots, $v_k$
+and spits out a number $\alpha_p(v_1, \dots, v_k)$,
+which as before we view as a signed hypervolume.
+Then the integral \emph{adds up all these infinitesimals across the entire cell}.
+In particular, if $V = \RR^k$ and we take the form $\alpha : p \mapsto \ee_1^\vee \wedge \dots \wedge \ee_k^\vee$,
+then what these $\alpha$'s give is the $k$th hypervolume of the cell.
+For this reason, this $\alpha$ is called the \vocab{volume form} on $\RR^k$.
+
+You'll notice I'm starting to play loose with the term ``cell'':
+while the cell $c : [0,R] \times [0,2\pi] \to \RR^2$ is supposed to be a function
+I have been telling you to think of it as a unit disk (i.e.\ in terms of its image).
+In the same vein, a curve $[0,1] \to V$ should be thought of as a curve in space,
+rather than a function on time.
+
+This error turns out to be benign.
+Let $\alpha$ be a $k$-form on $U$ and $c : [a_1, b_1] \times \dots \times [a_k, b_k] \to U$ a $k$-cell.
+Suppose $\phi : [a_1', b_1'] \times \dots [a_k', b_k'] \to [a_1, b_1] \times \dots \times [a_k, b_k]$;
+it is a \vocab{reparametrization} if $\phi$ is bijective and $(D\phi)_p$ is always invertible
+(think ``change of variables'');
+thus
+\[ c \circ \phi : [a_1', b_1'] \times \dots \times [a_k',b_k'] \to U \]
+is a $k$-cell as well.
+Then it is said to be \vocab{preserve orientation} if $\det(D\phi)_p > 0$ for all $p$
+and \vocab{reverse orientation} if $\det(D\phi)_p < 0$ for all $p$.
+\begin{exercise}
+	Why is it that exactly one of these cases must occur?
+\end{exercise}
+
+\begin{theorem}
+	[Changing Variables Doesn't Affect Integrals]
+	Let $c$ be a $k$-cell, $\alpha$ a $k$-form, and $\phi$ a reparametrization.
+	Then
+	\[ \int_{c \circ \phi} \alpha
+		=
+		\begin{cases}
+			\int_c \alpha & \phi \text{ preserves orientation} \\
+			- \int_c \alpha & \phi \text{ reverses orientation}.
+		\end{cases}
+	\]
+\end{theorem}
+\begin{proof}
+	Use naturality of the pullback to reduce it to the corresponding
+	theorem in normal calculus.
+\end{proof}
+
+So for example, if we had parametrized the unit circle as $[0,1] \times [0,1] \to \RR^2$
+by $(r,t) \mapsto R\cos(2\pi t) \ee_1 + R\sin(2\pi t) \ee_2$, we would have arrived at the same result.
+So we really can think of a $k$-cell just in terms of the points it specifies.
+
+\section{Boundaries}
+\prototype{The boundary of $[a,b]$ is $\{b\}-\{a\}$. The boundary of a square goes around its edge counterclockwise.}
+First, I introduce a technical term that lets us consider multiple cells at once.
+\begin{definition}
+	A \vocab{$k$-chain} $U$ is a formal linear combination of $k$-cells over $U$,
+	i.e. a sum of the form
+	\[ c = a_1 c_1 + \dots + a_m c_m \]
+	where each $a_i \in \RR$ and $c_i$ is a $k$-cell.
+	We define $\int_c \alpha = \sum_i a_i \int c_i$.
+\end{definition}
+In particular, a $0$-cell consists of several points, each with a given weight.
+
+Now, how do we define the boundary?
+For a $1$-cell $[a,b] \to U$, as I hinted earlier we want the answer to be the $0$-chain $\{c(b)\}-\{c(a)\}$.
+Here's how we do it in general.
+\begin{definition}
+	Suppose $c : [0,1]^k \to U$ is a $k$-cell.
+	Then the \vocab{boundary} of $c$, denoted $\partial c : [0,1]^{k-1} \to U$,
+	is the $(k-1)$-chain defined as follows.
+	For each $i = 1,\dots,k$ define
+	\begin{align*}
+		c_i^{\text{start}}(t_1, \dots, t_{k-1}) &
+		= (t_1, \dots, t_{i-1}, 0, t_i, \dots, t_k) \\
+		c_i^{\text{stop}}(t_1, \dots, t_{k-1}) &
+		= (t_1, \dots, t_{i-1}, 1, t_i, \dots, t_k).
+	\end{align*}
+	Then
+	\[ \partial c \defeq
+	\sum_{i=1}^k (-1)^{i+1} \left( c_i^{\text{stop}} - c_i^{\text{start}}  \right). \]
+	Finally, the boundary of a chain is the sum of the boundaries of each cell (with the appropriate weights).
+	That is, $\partial(\sum a_ic_i) = \sum a_i \partial c_i$.
+\end{definition}
+\begin{ques}
+	Satisfy yourself that one can extend this definition to
+	a $k$-cell $c$ defined on $c : [a_1, b_1] \times \dots \times [a_k, b_k] \to V$
+	(rather than from $[0,1]^k \to V$).
+\end{ques}
+
+\begin{example}
+	[Examples of Boundaries]
+	Consider the $2$-cell $c : [0,1]^2 \to \RR^2$ shown below.
+	\begin{center}
+		\begin{asy}
+			size(7cm);
+			pen e1 = heavyred;
+			pen e2 = orange;
+			pen e3 = olive;
+			pen e4 = heavymagenta;
+			draw((0,0)--(2,0), e1, EndArrow);
+			draw((2,0)--(2,2), e2, EndArrow);
+			draw((2,2)--(0,2), e3, EndArrow);
+			draw((0,2)--(0,0), e4, EndArrow);
+			label(scale(0.8)*"$[0,1]^2$", (1,1));
+			draw( (3,1)--(6,1), EndArrow);
+			label("$c$", (4.5,1), dir(90));
+			pair p1 = (7,-1);
+			pair p2 = (12,-2);
+			pair p3 = (11,3);
+			pair p4 = (8,2);
+			fill(p1--p2--p3--p4--cycle, palecyan);
+			draw(p1--p2, e1, EndArrow, Margins);
+			draw(p2--p3, e2, EndArrow, Margins);
+			draw(p3--p4, e3, EndArrow, Margins);
+			draw(p4--p1, e4, EndArrow, Margins);
+			dot("$p_1$", p1, dir(225), blue+4);
+			dot("$p_2$", p2, dir(315), blue+4);
+			dot("$p_3$", p3, dir( 45), blue+4);
+			dot("$p_4$", p4, dir(135), blue+4);
+			label("$c$", (p1+p2+p3+p4)/4);
+		\end{asy}
+	\end{center}
+	Here $p_1$, $p_2$, $p_3$, $p_4$ are the images of $(0,0)$, $(0,1)$, $(1,0)$, $(1,1)$, respectively.
+	Then we can think of $\partial c$ as
+	\[ \partial c = [p_1,p_2] + [p_2,p_3] + [p_3,p_4] + [p_4,p_1] \]
+where each ``interval'' represents the $1$-cell shown by the reddish arrows on the right.
+	We can take the boundary of this as well, and obtain an empty chain as
+	\[ \partial(\partial c) = \sum_{i=1}^4 \partial([p_i, p_{i+1}]) = \sum_{i=1}^4 \{p_{i+1}\}-\{p_i\} = 0. \]
+\end{example}
+
+\begin{example}
+	[Boundary of a Unit Disk]
+	Consider the unit disk given by
+	\[ c : [0,1] \times [0,2\pi] \to \RR^2 \quad\text{by}\quad
+	(r,\theta) \mapsto s\cos(2\pi t)\ee_1 + s\sin(2\pi t)\ee_2. \]
+	The four parts of the boundary are shown in the picture below:
+	\begin{center}
+		\begin{asy}
+			size(7cm);
+			pen e1 = heavyred;
+			pen e2 = orange;
+			pen e3 = olive;
+			pen e4 = heavymagenta;
+			draw((0,0)--(2,0), e1, EndArrow);
+			draw((2,0)--(2,2), e2, EndArrow);
+			draw((2,2)--(0,2), e3, EndArrow);
+			draw((0,2)--(0,0), e4, EndArrow);
+			label("$r$", (2,0), dir(-45));
+			label("$\theta$", (0,2), dir(135));
+
+			label(scale(0.8)*"$[0,1]^2$", (1,1));
+			draw( (3,1)--(6,1), EndArrow);
+			label("$c$", (4.5,1), dir(90));
+
+			pair O = (9,1);
+			pair P = O + 2*dir(0);
+			fill(CP(O,P), palecyan);
+			real eps = 0.3;
+			draw(shift(0,eps) * (O--P), e1, EndArrow, Margins);
+			draw(shift(0,-eps) * (P--O), e3, EndArrow, Margins);
+			draw(CP(O,P), e2, EndArrow, Margins);
+			dot(O, e4+4);
+		\end{asy}
+	\end{center}
+	Note that two of the arrows more or less cancel each other out when they are integrated.
+	Moreover, we interestingly have a \emph{degenerate} $1$-cell at the center of the circle;
+	it is a constant function $[0,1] \to \RR^2$ which always gives the origin.
+\end{example}
+
+Obligatory theorem, analogous to $d^2=0$ and left as a problem.
+\begin{theorem}[The Boundary of the Boundary is Empty]
+	$\partial^2 = 0$, in the sense that for any $k$-chain $c$ we have $\partial^2(c) = 0$.
+\end{theorem}
 
 \section{Stoke's Theorem}
+\prototype{$\int_{[a,b]} dg = g(b) - g(a)$.}
+
+We now have all the ingredients to state Stoke's Theorem for cells.
+\begin{theorem}
+	[Stoke's Theorem for Cells]
+	Take $U \subseteq V$ as usual, let $c : [0,1]^k \to U$ be a $k$-cell
+	and let $\alpha : U \to \Lambda^k(V)$ be a $k$-form.
+	Then
+	\[ \int_c d\alpha = \int_{\partial c} \alpha. \]
+	In particular, if $d\alpha = 0$ then the left-hand side vanishes.
+\end{theorem}
+For example, if $c$ is the interval $[a,b]$ then $\partial c = \{b\} - \{a\}$,
+and thus we obtain the Fundamental Theorem of Calculus.
 
 \section{Problems}
-stupid commuting exercise
+\begin{problem}
+	Show that $\partial^2 = 0$.
+\end{problem}
+
+\begin{dproblem}[Green's Theorem]
+	Let $f,g : \RR^2 \to \RR$ be smooth functions.
+	Prove that
+	\[ \int_c \left( \fpartial gx - \fpartial fy \right) \; dx \wedge dy
+	= \int_{\partial c} (f \; dx + g \; dy). \]
+\end{dproblem}
+
+\begin{problem}[Pullback and $d$ Commute]
+	Let $U$ and $U'$ be open sets of vector spaces $V$ and $V'$
+	and let $\phi : U \to U'$ be a smooth map between them.
+	Prove that for any differential form $\alpha$ on $U'$ we have
+	\[ \phi^\ast(d\alpha) = d(\phi^\ast\alpha). \]
+\end{problem}
+
+\begin{problem}[Arc Length Isn't a Form]
+	Show that there does \emph{not} exist a $1$-form $\alpha$ on $\RR^2$ such that
+	for a curve $c : [0,1] \to \RR^2$,
+	the integral $\int_c \alpha$ gives the arc length of $c$.
+\end{problem}
+
+\begin{problem}
+	An \vocab{exact} $k$-form $\alpha$ is one satisfying $\alpha = d\beta$ for some $\beta$.
+	Prove that
+	\[ \int_{C_1} \alpha = \int_{C_2} \alpha \]
+	where $C_1$ and $C_2$ are any concentric circles in the plane
+	and $\alpha$ is some exact $1$-form.
+\end{problem}
 
 
 \end{document}
