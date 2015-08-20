@@ -5,12 +5,14 @@
 \renewcommand\gim{}
 \renewcommand\yod{}
 \renewcommand\kurumi{}
+\renewenvironment{hint}{\begin{gobble}}{\end{gobble}}
+\renewenvironment{sol}{\begin{gobble}}{\end{gobble}}
 
 \begin{document}
 \title{Categories}
 \maketitle
 
-\chapter{Objects in Categories}
+\chapter{Objects and Morphisms}
 I can't possibly hope to do category theory any justice in these few chapters;
 thus I'll just give a very high-level overview of how many of the concepts we've
 encountered so far can be re-cast into categorical terms.
@@ -43,7 +45,7 @@ and the isomorphisms can be viewed as just maps.
 Let's use this to motivate the definition of a general \emph{category}.
 
 \section{Categories, and Examples Thereof}
-\prototype{$\catname{Gp}$ is possibly the most natural example.}
+\prototype{$\catname{Grp}$ is possibly the most natural example.}
 \begin{definition}
 	A \vocab{category} $\AA$ consists of the following.
 	\begin{itemize}
@@ -87,11 +89,11 @@ Let's formalize the motivation we began with.
 	\listhack
 	\label{example:basic_categories}
 	\begin{enumerate}[(a)]
-		\ii There is a category of groups $\catname{Gp}$. The data is
+		\ii There is a category of groups $\catname{Grp}$. The data is
 		\begin{itemize}
-			\ii The objects of $\catname{Gp}$ are the groups.
-			\ii The arrows of $\catname{Gp}$ are the homomorphisms between these groups.
-			\ii The composition $\circ$ in $\catname{Gp}$ is function composition.
+			\ii The objects of $\catname{Grp}$ are the groups.
+			\ii The arrows of $\catname{Grp}$ are the homomorphisms between these groups.
+			\ii The composition $\circ$ in $\catname{Grp}$ is function composition.
 		\end{itemize}
 		\ii In the same way we can conceive a category $\catname{Ring}$ of rings.
 		\ii Similarly, there is a category $\catname{Top}$ of topological spaces,
@@ -171,7 +173,7 @@ This illustrates the point that
 \end{moral}
 In fact, in a way that can be made precise, the term ``concrete category'' refers
 to one where the arrows really are ``structure-preserving maps between sets'',
-like $\catname{Gp}$, $\catname{Top}$, or $\catname{Ring}$.
+like $\catname{Grp}$, $\catname{Top}$, or $\catname{Ring}$.
 
 \begin{ques}
 	Check that no two distinct objects of a poset are isomorphic.
@@ -252,7 +254,7 @@ Here are a couple examples.
 	For example,
 	\begin{enumerate}[(a)]
 		\ii The initial object of $\catname{Set}$ is the empty set $\varnothing$.
-		\ii The initial object of $\catname{Gp}$ is the trivial group $\{1\}$.
+		\ii The initial object of $\catname{Grp}$ is the trivial group $\{1\}$.
 		\ii The initial object of $\catname{Ring}$ is the ring $\ZZ$
 		(recall that ring homomorphisms $R \to S$ map $1_R$ to $1_S$).
 		\ii The initial object of $\catname{Top}$ is the empty space.
@@ -260,12 +262,9 @@ Here are a couple examples.
 	\end{enumerate}
 \end{example}
 
-We justify the use of ``the'' as follows.
-\begin{exercise}
-	In \emph{any} category,
-	show that if an initial object exists,
-	it's unique up to isomorphism.
-\end{exercise}
+We justify the use of ``the'' by \Cref{prob:initial_object}:
+we'll show later that any two initial objects are isomorphic.
+In fact, you should probably do that problem now.
 \begin{remark}
 	In mathematics, we really never know nor care if two objects are actually equal
 	or whether they are isomorphic.
@@ -288,7 +287,7 @@ One can take the ``dual'' notion, a terminal object.
 	\begin{enumerate}[(a)]
 		\ii The terminal object of $\catname{Set}$ is the singleton set $\{\ast\}$.
 		(There are many singleton sets, of course, but \emph{as sets} they are all isomorphic!)
-		\ii The terminal object of $\catname{Gp}$ is the trivial group $\{1\}$.
+		\ii The terminal object of $\catname{Grp}$ is the trivial group $\{1\}$.
 		\ii The terminal object of $\catname{Ring}$ is the zero ring (a ring with element $0=1$).
 		(recall that ring homomorphisms $R \to S$ map $1_R$ to $1_S$).
 		\ii The terminal object of $\catname{Top}$ is the single-point space.
@@ -315,24 +314,330 @@ but I will offer you the following advice:
 \begin{itemize}
 	\ii In $\catname{Set}$, arrows from $\{\ast\}$ to $S$ correspond to elements of $S$.
 	\ii In $\catname{Top}$, arrows from $\{\ast\}$ to $X$ correspond to points of $X$.
-	\ii In $\catname{Gp}$, arrows from $\ZZ$ to $G$ correspond to elements of $G$.
+	\ii In $\catname{Grp}$, arrows from $\ZZ$ to $G$ correspond to elements of $G$.
 	\ii In $\catname{Ring}$, arrows from $\ZZ[x]$ to $R$ correspond to elements of $R$.
 \end{itemize}
 and so on.
 So in most concrete categories, you can think of elements as functions from special sets to the set in question.
+In each of these cases we call the object in question a \vocab{free object}.
 
+\section{Binary Products}
+\prototype{$X \times Y$ in most concrete categories is the set-theoretic product.}
+The ``universal property'' is a way of describing objects in terms of maps
+in such a way that it defines the object up to unique isomorphism
+(much the same as the initial and terminal objects).
 
+To show how this works in general, let me give a concrete example.
+Suppose I'm in a category -- let's say $\catname{Set}$ for now.
+I have two sets $X$ and $Y$, and I want to construct the Cartesian product $X \times Y$ as we know it.
+The philosophy of category theory dictates that I should talk about maps only,
+and avoid referring to anything about the sets themselves.
+How might I do this?
+
+Well, let's think about maps into $X \times Y$.
+The key observation is that 
+\begin{moral}
+A function $A \taking f X \times Y$
+amounts to a pair of functions $(A \taking g X, A \taking h Y)$.
+\end{moral}
+Put another way, there is a natural projection map $X \times Y \surjto X$ and $X \times Y \surjto Y$.
+Picture:
+\begin{diagram}
+	&& X \\
+	X \times Y & \ruSurj(2,1)^{\pi_X} & \\
+	& \rdSurj(2,1)_{\pi_Y} & Y
+\end{diagram}
+(We have to do this in terms of projection maps rather than elements,
+because category theory forces us to talk about arrows.)
+Now how do I add $A$ to this diagram?
+The point is that there is a bijection between functions $A \taking f X \times Y$
+and pairs $(g,h)$ of functions.
+Thus for every pair $A \taking g X$ and $A \taking h Y$ there is a \emph{unique} function
+$A \taking f X \times Y$. Picture:
+
+But $X \times Y$ is special in that it is ``universal'':
+for any \emph{other} set $A$, if you give me a function $A \to X$ and $A \to Y$, I can use it
+build a \emph{unique} function $A \to X \times Y$.
+\begin{diagram}
+	&& && X \\
+	A & \rDotted~{\exists! f} & X \times Y & \ruTo(4,1)^g \ruSurj(2,1)_{\pi_X} & \\
+	& \rdTo(4,1)_h && \rdProj(2,1)^{\pi_Y} & Y
+\end{diagram}
+We can do this in any general category, defining a so-called product.
+\begin{definition}
+	Let $X$ and $Y$ be objects in any category $\AA$.
+	The \vocab{product} consists of an object $X \times Y$ and projection maps $\pi_X$, $\pi_Y$
+	for any object $A$ and maps $A \taking g X$, $A \taking h Y$, there
+	is a \emph{unique} function $A \taking f X \times Y$ such that the diagram
+	\begin{diagram}
+		&& && X \\
+		A & \rDotted~{\exists! f} & X \times Y & \ruTo(4,1)^g \ruProj(2,1)_{\pi_X} & \\
+		& \rdTo(4,1)_h && \rdProj(2,1)^{\pi_Y} & Y
+	\end{diagram}
+	commutes.
+\end{definition}
+\begin{abuse}
+	Strictly speaking, the product should consist of \emph{both} the object $X \times Y$
+	and the projection maps $\pi_X$ and $\pi_Y$.
+	However, if $\pi_X$ and $\pi_Y$ are understood, then we just refer to the object $X \times Y$
+	as the product.
+\end{abuse}
+
+Products do not always exist; for example, take a category with just two objects and no non-identity morphisms.
+Nonetheless:
+\begin{proposition}
+	When they exist, products are unique up to isomorphism:
+	given two products $P_1$ and $P_2$ of $X$ and $Y$
+	there is an isomorphism between the two.
+\end{proposition}
+\begin{proof}
+	This is very similar to the proof that initial object are unique up to unique isomorphism.
+	Consider two such objects $P_1$ and $P_2$, and the associated projection maps.
+	So, we have a diagram
+	\begin{diagram}
+		&& X && \\
+		& \ruProj^{\pi_X^1} & \uProj_{\pi_X^2} & \luProj^{\pi_X^1} & \\
+		P_1 & \rTo~f & P_2 & \rTo~g & P_1 \\
+		& \rdProj_{\pi_Y^1} & \dProj_{\pi_Y^2} & \ldProj_{\pi_Y^1} & \\
+		&& Y &&
+	\end{diagram}
+	There are unique morphisms $f$ and $g$ between $P_1$ and $P_2$ that
+	make the entire diagram commute, according to the universal property.
+
+	On the other hand, look at $g \circ f$ and focus on just the outer square.
+	Observe that $g \circ f$ is a map which makes the outer square commute,
+	so by the universal property of $P_1$ it is the only one.
+	But $\id_{P_1}$ works as well.
+	Thus $\id_{P_1} = g \circ f$.
+	Similarly, $f \circ g = \id_{P_2}$ so $f$ and $g$ are isomorphisms.
+\end{proof}
+\begin{exercise}
+	In fact, show the products are unique up to \emph{unique} isomorphism:
+	the $f$ and $g$ above are the only isomorphisms between $P_1$ and $P_2$.
+\end{exercise}
+
+This is a bit mystical:
+normally, when we want to construct an object with certain properties,
+we give, well, a construction.
+The ``universal property'' allows us to bypass all this work by saying
+``the object with these properties is unique up to unique isomorphism'',
+thus allowing us to use its properties without ever understanding its internal workings.
+
+Of course, that's not to say we can't give concrete examples.
+\begin{example}
+	[Examples of Products]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii In $\catname{Set}$, the product of two sets $X$ and $Y$ is their Cartesian product.
+		\ii In $\catname{Grp}$, the product of $G$, $H$ is the group product $G \times H$.
+		\ii In $\catname{Vect}_k$, the product of $V$ and $W$ is $V \oplus W$.
+		\ii Let $\mathcal P$ be a poset interpreted as a product.
+		Then the product of two objects $x$ and $y$ is the \vocab{greatest lower bound};
+		for example,
+		\begin{itemize}
+			\ii If the poset is $(\RR, \le)$ then it's $\min\{x,y\}$.
+			\ii If the poset is the subsets of a finite set by inclusion, then it's $x \cap y$.
+			\ii If the poset is the positive integers ordered by division, then it's $\gcd(x,y)$.
+		\end{itemize}
+	\end{enumerate}
+\end{example}
+
+Of course, we can define products of more than just one object.
+Consider a set of objects $(X_i)_{i \in I}$ in a category $\AA$
+We define a \vocab{cone} on the $X_i$ to be an object to be an object $A$
+with some ``projection'' maps onto each $X_i$.
+Then the \vocab{product} is a cone $P$ which is ``universal'' in the same sense as before:
+given any other cone $A$ there is a unique map $A \to P$ making the diagram commute.
+In short, a product is a ``universal cone''.
+
+The picture of this is
+\begin{diagram}
+	&& A && \\
+	& \ldProj(2,4) \ldProj(1,4) & \dTo~{!\exists f} & \rdProj(2,4) \rdProj(1,4)& \\
+	&& P && \\
+	& \ldProj \ldProj(1,2) && \rdProj \rdProj(1,2) & \\
+	X_1 & X_2 && X_3 & X_4
+\end{diagram}
+See also \Cref{prob:associative_product}.
+
+One can also do the dual construction to get a \vocab{coproduct}: given $X$ and $Y$, it's the object that $X+Y$
+together with maps $X \taking{\iota_X} X+Y$ and $Y \taking{\iota_Y} X+Y$
+(that's Greek $\iota$, think inclusion)
+such that for any object $A$ and maps $X \taking g A$, $Y \taking h A$
+there is a unique $f$ for which
+\begin{diagram}
+	X &&&& \\
+	& \rdTo(1,2)_{\iota_X} \rdTo(3,2)^g && \\
+	& X+Y & \rTo~{!\exists f} & A \\
+	\ruTo(1,2)^{\iota^Y} && \ruTo(3,2)_h & \\
+	Y &&&&
+\end{diagram}
+commutes.
+We'll leave some of the concrete examples as an exercise this time.
+Predictable terminology: a coproduct is a universal \vocab{cocone}.
+
+\section{Equalizers}
+\prototype{The equalizer of $f,g : X \to Y$ is the set of points with $f(x) = g(x)$.}
+Given two sets $X$ and $Y$, and maps $X \taking{f,g} Y$, we define their \vocab{equalizer} to be
+\[ \left\{ x \in X \mid f(x) = g(x) \right\}. \]
+We would like a categorical way of defining this, too.
+
+Consider two objects $X$ and $Y$ with two parallel maps $f$ and $g$ between them.
+Stealing a page from \cite{msci}, we call this a \vocab{fork}:
+\begin{diagram}
+	X & \pile{\rTo^f \\ \rTo_g} & Y
+\end{diagram}
+A cone over this fork is an object $A$ and arrows over $X$ and $Y$ which make the diagram commute, like so.
+\begin{diagram}
+	A && \\
+	\dTo^q & \rdDashed^{f \circ q = g \circ q} & \\
+	X & \pile{\rTo^f \\ \rTo_g} & Y
+\end{diagram}
+Effectively, the arrow over $Y$ is just forcing $f \circ q = g \circ q$.
+In any case, the \vocab{equalizer} of $f$ and $g$ is a ``universal cone'' over this fork:
+a map $E \taking{e} X$ such that $\exists ! h : A \to E$ with
+\begin{diagram}
+	& A & \\
+	\ldTo(1,3)^q & \dTo~{!\exists h} & \rdDashed(1,3) \\
+	& E & \\
+	X \ldTo(1,1)^e & \pile{\rTo^f \\ \rTo_g} & \rdDashed(1,1) Y \\
+\end{diagram}
+Again, the dotted arrows can be omitted.
+\begin{exercise}
+	Show uniqueness up of equalizers up to unique isomorphism (when they exist).
+\end{exercise}
+
+\begin{example}
+	[Examples of Equalizers]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii In $\catname{Set}$, given $X \taking{f,g} Y$
+		the equalizer $E$ can be realized as $E = \{x \mid f(x) = g(x)\}$,
+		with the inclusion $e : E \injto X$ as the morphism.
+		As usual, by abuse we'll often just refer to $E$ as the equalizer.
+
+		\ii Ditto in $\catname{Top}$, $\catname{Gp}$.
+		One has to check that the appropriate structures are preserved
+		(e.g. one should check that $\{\phi(g) = \psi(g) \mid g \in G\}$ is a group).
+
+		\ii In particular, given a homomorphism $\phi : G \to H$, the inclusion
+		\[ \ker\phi \injto G \]
+		is an equalizer for the fork $G \to H$ by $\phi$ and the trivial homomorphism.
+	\end{enumerate}
+\end{example}
+
+According to (c) equalizers let us get at the concept of a kernel if there is a distinguished
+``trivial map'', like the trivial homomorphism in $\catname{Grp}$.
+We'll flesh this idea out in the chapter on abelian categories.
+
+\begin{remark}
+	[Digression on Limits]
+	We've defined cones over discrete sets of $X_i$ and over forks.
+	It turns out you can also define a cone over any general \vocab{diagram} of objects and arrows;
+	we specify a projection from $A$ to each object and
+	require that the projections from $A$ commute with the arrows in the diagram.
+	(For example, a fork is a diagram with two edges and two parallel arrows.)
+	If you then demand the cone be universal, you have the extremely general definition of a \vocab{limit}.
+	As always, these are unique up to unique isomorphism.
+	We can also define the dual notion of a colimits in the same way.
+\end{remark}
+
+\section{Monic and Epic Maps}
+The notion of ``injective'' doesn't make sense in an arbitrary category since arrows need not be functions.
+The correct categorical notion is:
+\begin{definition}
+	A map $X \taking f Y$ is \vocab{monic} (or a monomorphism) if for any commutative diagram
+	\begin{diagram}
+		A & \pile{\rTo^g \\ \rTo_h} & X & \rTo^f Y 
+	\end{diagram}
+	we must have $g = h$.
+	In other words, $f \circ g = f \circ h \implies g = h$.
+\end{definition}
+\begin{ques}
+	Verify that in a concrete category,
+	injective $\implies$ monic.
+\end{ques}
+In most situations, the converse is also true:
+\begin{exercise}
+	Show that in $\catname{Set}$, $\catname{Grp}$, $\catname{Ring}$,
+	monic implies injective. (Take $A = \{\ast\}$, $A = \{1\}$, $A = \ZZ[x]$.)
+\end{exercise}
+More generally, as we said before there are many categories
+with a free object that you can use to think of as elements.
+An element of a set is function $1 \to S$, and element of a ring is a function $\ZZ[x] \to R$, et cetera.
+In all these categories, the definition of monic literally reads ``$f$ is injective on $\Hom_\AA(A, X)$''.
+So in these categories, ``monic'' and ``injective'' coincide.
+(But there are some examples of categories without free objects where one can have monic,
+non-injective maps.)
+
+Of course, we can also take the dual notion.
+\begin{definition}
+	A map $X \taking f Y$ is \vocab{epic} (or an epimorphism) if for any commutative diagram
+	\begin{diagram}
+		X & \rTo^f & Y & \pile{\rTo^g \\ \rTo_h} & A
+	\end{diagram}
+	we must have $g = h$.
+	In other words, $g \circ f = h \circ f \implies g = h$.
+\end{definition}
+
+This is kind of like surjectivity, although it's a little farther than last time.
+Note that in concrete categories, surjective $\implies$ epic.
+\begin{exercise}
+	Show that in $\catname{Set}$, $\catname{Grp}$, $\catname{Ab}$, $\catname{Vect}_k$, $\catname{Top}$,
+	the notions of epic and surjective coincide.
+	(For $\catname{Set}$, take $A = \{0, 1\}$.)
+\end{exercise}
+However, there are more cases where it fails.
+Most notably:
+\begin{example}
+	[Epic but not Surjective]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii In $\catname{Ring}$, for instance, the inclusion $\ZZ \injto \QQ$ is epic.
+		Indeed, if a homomorphism $\QQ \to Z$ agrees on every integer then it agrees everywhere (why?),
+		\ii In the category of \emph{Hausdorff} topological spaces
+		(every two points have disjoint neighborhoods),
+		in fact epic $\iff$ dense image (like $\QQ \injto \RR$).
+	\end{enumerate}
+	Thus failures arise when a function $f : X \to Y$ can be determined by just some of the points of $X$.
+\end{example}
 
 \section\problemhead
 
+\begin{sproblem}
+	Let $\AA$ be a category.
+	Show that any two initial objects $A_1$, $A_2$ of $\AA$ are \emph{uniquely isomorphic};
+	there is a unique isomorphism between them.
+	\label{prob:initial_object}
+\end{sproblem}
 
+\begin{dproblem}
+	What is the coproduct $X+Y$ in the categories $\catname{Set}$, $\catname{Vect}_k$, and a poset?
+\end{dproblem}
+
+\begin{problem}
+	In any category $\AA$ where all products exist,
+	show that \[ (X \times Y) \times Z \cong X \times (Y \times Z) \]
+	where $X$, $Y$, $Z$ are arbitrary objects.
+	\label{prob:associative_product}
+\end{problem}
+
+\begin{problem}[Equalizers are Monic]
+	Show that the equalizer of any fork is monic.
+\end{problem}
+
+\begin{problem}
+	\gim
+	Consider a category $\AA$ with a \vocab{zero object},
+	meaning an object which is both initial and terminal. 
+	Given objects $X$ and $Y$ in $A$, prove that the projection $X \times Y \to X$ is epic.
+\end{problem}
 
 \chapter{Functors and Natural Transformations}
-In a sentence, functors are maps between categories and natural transformations
-are maps between functors.
+Functors are maps between categories; natural transformations are maps between functors.
 
 \section{Functors}
-\prototype{Forgetful functors. Also $-^\vee$ is a contravariant functor.}
+\prototype{Forgetful functors; fundamental groups; $-^\vee$.}
 In mathematics, we'd often like to take an object from one category and get an object from another category.
 For example, given a group we might like to obtain a set;
 given a set, we might like to consider the vector space whose basis is that set,
@@ -371,8 +676,8 @@ and so we can now think about maps between categories.
 		gives a map $U(T) : U(V) \to U(W)$ of the underlying point-sets.
 		In other words we ``forget'' that $V$ has a vector space structure.
 
-		Similarly there are forgetful functors from $\catname{Gp}$, $\catname{Ring}$, etc. to set.
-		There is even a forgetful functor $\catname{Ring} \to \catname{Gp}$: send a ring $R$
+		Similarly there are forgetful functors from $\catname{Grp}$, $\catname{Ring}$, etc. to set.
+		There is even a forgetful functor $\catname{Ring} \to \catname{Grp}$: send a ring $R$
 		to the abelian group $(R,+)$.
 
 		\ii A \vocab{free functor} is in some sense the opposite.
@@ -489,7 +794,7 @@ This general construction can be done in any category $\AA$, as follows:
 	\end{diagram}
 \end{example}
 
-Suppose $G \cong H$ are groups, and $U : \catname{Gp} \to \catname{Set}$ is forgetful.
+Suppose $G \cong H$ are groups, and $U : \catname{Grp} \to \catname{Set}$ is forgetful.
 Then we get two sets $U(G)$ and $U(H)$.
 These two sets have the same cardinality and are isomorphic in $\catname{Set}$.
 Now the beauty of category theory shows itself: this in fact works \emph{for any functors and categories},
@@ -516,7 +821,7 @@ and the proof is done solely through arrows.
 This will be super convenient in algebraic topology, for example.
 We'll show from a space $X$ you can create a group $\pi_n(X)$ or $H_n(X)$ that
 gives information about the space $X$.
-If we can show verify this is in fact a functor $\catname{Top} \to \catname{Gp}$,
+If we can show verify this is in fact a functor $\catname{Top} \to \catname{Grp}$,
 then for $X \cong Y$, we get for free that $\pi_n(X) \cong \pi_n(Y)$ and $H_n(X) \cong H_n(Y)$.
 
 \section{Natural Transformations}
@@ -705,7 +1010,7 @@ As a result of this, we also write $F \cong G$ to mean $F(X) \cong G(X)$
 \begin{dproblem}
 	Let $X$ and $Y$ be objects in a category $\AA$.
 	Show that $X \cong Y$ if and only if $H_X(A) \cong H_Y(A)$ naturally in $A$.\footnote{
-		From \cite{ref:msci}: let's consider $\AA = \catname{Gp}$ for concreteness.
+		From \cite{ref:msci}: let's consider $\AA = \catname{Grp}$ for concreteness.
 		Suppose $A$, $X$, $Y$ are groups such that $H_X(A) \cong H_Y(A)$ for all $A$.
 		If $A = \ZZ$, then $\left\lvert X \right\rvert = \left\lvert Y \right\rvert$.
 		If $A = \ZZ / p\ZZ$, then $X$ and $Y$ have the same number of elements of order $p$.
@@ -784,57 +1089,13 @@ Much of this will seem exceedingly unmotivated until you learn about homology gr
 In light of this, it might be worth trying to read the chapter on homology groups
 simultaneously with this one.
 
-\section{Products and Coproducts}
-\prototype{$X \times Y$ in any reasonable category.}
-You can technically skip this section if you want, but I think it provides some nice intuition about
-the so-called \emph{universal property} that will be useful later on.
-
-Suppose I'm in a category, say $\catname{Set}$, and I have two sets $X$ and $Y$.
-I want to identify (up to isomorphism) an object which corresponds to the set $X \times Y$.
-The philosophy of category theory dictates that I should talk about maps only,
-and avoid referring to anything about the sets themselves.
-How might I do this?
-
-Well, let's think about maps into $X \times Y$.
-The key observation is that 
-\begin{moral}
-A function $A \taking f X \times Y$
-amounts to a pair of functions $(A \taking g X, A \taking h Y)$.
-\end{moral}
-Put another way, there is a natural projection map $X \times Y \surjto X$ and $X \times Y \surjto Y$.
-Picture:
-\begin{diagram}
-	&& X \\
-	X \times Y & \ruSurj(2,1)^{\pi_X} & \\
-	& \rdSurj(2,1)_{\pi_Y} & Y
-\end{diagram}
-(We have to do this in terms of projection maps rather than elements,
-because category theory forces us to talk about arrows.)
-Now how do I add $A$ to this diagram?
-The point is that there is a bijection between functions $A \taking f X \times Y$
-and pairs $(g,h)$ of functions.
-Thus for every pair $A \taking g X$ and $A \taking h Y$ there is a \emph{unique} function
-$A \taking f X \times Y$. Picture:
-
-But $X \times Y$ is special in that it is ``universal'':
-for any \emph{other} set $A$, if you give me a function $A \to X$ and $A \to Y$, I can use it
-build a \emph{unique} function $A \to X \times Y$.
-\begin{diagram}
-	&& && X \\
-	A & \rDotted~{\exists! f} & X \times Y & \ruTo(4,1)^g \ruSurj(2,1)_{\pi_X} & \\
-	& \rdTo(4,1)_h && \rdSurj(2,1)^{\pi_Y} & Y
-\end{diagram}
-
-
-
-
 \section{Zero Objects, Kernels and Cokernels}
-\prototype{In $\catname{Gp}$, the zero object is $\{1\}$.}
+\prototype{In $\catname{Grp}$, the zero object is $\{1\}$.}
+
 You already know for groups, rings, vector spaces, etc.\ what a kernel is:
 if I have an arrow $\phi : A \to B$, I define $\ker A$ to be the set of guys which $\phi$ sends to zero.
 
-In order to define this
-
+Define a kernel using equalizers
 
 \section{Exact Sequences}
 \prototype{$0 \to G \to G \times H \to H \to 0$}
