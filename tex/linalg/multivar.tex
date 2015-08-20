@@ -336,8 +336,8 @@ I'll just quote this without proof, because double derivatives make my head spin
 An important corollary of this theorem:
 \begin{corollary}
 	[Clairaut's Theorem: Mixed Partials are Symmetric]
-	Let $f : U \to \RR$ with $U \subseteq V$ open.
-	For any point $p$ such that the quantities are defined,
+	Let $f : U \to \RR$ with $U \subseteq V$ open be twice differentiable.
+	Then for any point $p$ such that the quantities are defined,
 	\[
 		\frac{\partial}{\partial e_i}
 		\frac{\partial}{\partial e_j}
@@ -350,6 +350,8 @@ An important corollary of this theorem:
 \end{corollary}
 
 \section{Exterior Derivatives}
+(Warning: most of this section will seem highly unmotivated up until differential forms get integrated.)
+
 Let's now get a handle on what $dx$ means. This is something called a \emph{differential form}.
 Fix a real vector space $V$ of dimension $n$, and let $\ee_1$, \dots, $\ee_n$ be a standard basis.
 
@@ -371,7 +373,8 @@ In particular, suppose $V = \RR^n$ and $f(x_1, \dots, x_n) = x_1$ (i.e.\ $f = \e
 \begin{remark}
 	This is the reason why we use the notation $\frac{df}{dx}$ in calculus now:
 	given, say $f : \RR \to \RR$ by $f(x) = x^2$, it is indeed true that
-	\[ df = 2x \cdot \ee_1^\vee = 2x \cdot dx. \]
+	\[ df = 2x \cdot \ee_1^\vee = 2x \cdot dx \]
+	and so by abuse of notation we write $df/dx = 2x$.
 \end{remark}
 
 More generally, $df$ is in a class of objects called a $k$-form.

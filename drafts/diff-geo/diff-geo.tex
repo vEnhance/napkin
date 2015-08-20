@@ -3,15 +3,12 @@
 \addbibresource{../../references.bib}
 \def\asydir{}
 
-\newcommand{\fpartial}[2]{\frac{\partial #1}{\partial #2}}
-
 \begin{document}
 \title{Differential Geometry}
 \maketitle
+
+
 \chapter{Multivariable Calculus Done Correctly}
-
-\emph{NB: this chapter is isolated in the dependency graph and can be safely skipped.}
-
 As I have ranted about before, linear algebra is done wrong
 by the extensive use of matrices to obscure the structure of a linear map.
 Similar problems occur with multivariable calculus, so here I would like to set 
@@ -165,14 +162,21 @@ Thus, for $p = ae_1 + be_2$ we indeed have $(Df)_p = 2a \cdot e_1^\vee + 2b \cdo
 \begin{remark}
 	As usual, differentiability implies continuity.
 \end{remark}
+\begin{remark}
+	Although $U \subseteq V$, it might be helpful to think of vectors from $U$ and $V$
+	as different types of objects (in particular, note that it's possible for $0_V \notin U$).
+	The vectors in $U$ are ``inputs'' on our space
+	while the vectors coming from $V$ are ``small displacements''.
+	For this reason, I deliberately try to use $p \in U$ and $v \in V$ when possible.
+\end{remark}
 
 \section{The Projection Principle}
 Before proceeding I need to say something really important.
 \begin{theorem}[Projection Principle]
 	\label{thm:project_principle}
 	Let $W$ be an $n$-dimensional real vector space with basis $w_1, \dots, w_n$.
-	Then there is a bijection between continuous functions $f : V \to W$ and
-	$n$-tuples of continuous $f_1, f_2, \dots, f_n : V \to \RR$
+	Then there is a bijection between continuous functions $f : U \to W$ and
+	$n$-tuples of continuous $f_1, f_2, \dots, f_n : U \to \RR$
 	by projection onto the $i$th basis element, i.e.\ 
 	\[ f(v) = f_1(v)w_1 + \dots + f_n(v)w_n. \]
 \end{theorem}
@@ -182,10 +186,10 @@ Before proceeding I need to say something really important.
 The theorem remains true if one replaces ``continuous'' by ``differentiable'', ``smooth'', ``arbitrary'',
 or most other reasonable words. Translation:
 \begin{moral}
-To think about a function $f : V \to \RR^{n}$,
+To think about a function $f : U \to \RR^{n}$,
 it suffices to think about each coordinate separately.
 \end{moral}
-For this reason, we'll most often be interested in functions $f : V \to \RR$.
+For this reason, we'll most often be interested in functions $f : U \to \RR$.
 That's why the dual space $V^\vee$ is so important.
 
 \section{Total and Partial Derivatives}
@@ -349,8 +353,8 @@ I'll just quote this without proof, because double derivatives make my head spin
 An important corollary of this theorem:
 \begin{corollary}
 	[Clairaut's Theorem: Mixed Partials are Symmetric]
-	Let $f : U \to \RR$ with $U \subseteq V$ open.
-	For any point $p$ such that the quantities are defined,
+	Let $f : U \to \RR$ with $U \subseteq V$ open be twice differentiable.
+	Then for any point $p$ such that the quantities are defined,
 	\[
 		\frac{\partial}{\partial e_i}
 		\frac{\partial}{\partial e_j}
@@ -362,38 +366,20 @@ An important corollary of this theorem:
 	\]
 \end{corollary}
 
-\section{Exterior Derivatives}
-Let's now get a handle on what $dx$ means. This is something called a \emph{differential form},
-whose purpose in life is to be integrated.
+\section{Differential Forms}
+\prototype{Algebraically, something that looks like $f \ee_1^\vee \wedge \ee_2^\vee + \dots$,
+and geometrically, see the picture.}
+
+Let's now get a handle on what $dx$ means. This turns out to be a special case of a so-called \emph{differential form}.
 Fix a real vector space $V$ of dimension $n$, and let $\ee_1$, \dots, $\ee_n$ be a standard basis.
 
-First, given a function $f : V \to \RR$,
-we define 
-\[ df \defeq Df = \sum_i f_i e_i^\vee \]
-In particular, suppose $V = \RR^n$ and $f(x_1, \dots, x_n) = x_1$ (i.e.\ $f = \ee_1^\vee$). Then:
-\begin{ques}
-	Show that \[ d(\ee_1^\vee) = \ee_1^\vee. \]
-\end{ques}
-\begin{abuse}
-	Unfortunately, someone somewhere decided it would be a good idea to use ``$x_1$'' to denote $\ee_1^\vee$
-	(because \emph{obviously}\footnote{Sarcasm.} $x_1$ means
-	``the function that takes $(x_1, \dots, x_n) \in \RR^n$ to $x_1$'')
-	and thus decided that \[ dx_1 \defeq \ee_1^\vee. \]
-	This notation is so entrenched that I have no choice but to grudgingly accept it.
-	\label{abuse:dx}
-\end{abuse}
-\begin{remark}
-	This is the reason why we use the notation $\frac{df}{dx}$ in calculus now:
-	given, say $f : \RR \to \RR$ by $f(x) = x^2$, it is indeed true that
-	\[ df = 2x \cdot \ee_1^\vee = 2x \cdot dx. \]
-\end{remark}
-
-More generally, $df$ is in a class of objects called a $k$-form.
 \begin{definition}
-	We define a \vocab{$k$-form} $\alpha$ to be a smooth (infinitely differentiable)
+	We define a \vocab{differential $k$-form} $\alpha$ to be a smooth (infinitely differentiable)
 	map $\alpha : V \to \Lambda^k(V^\vee)$.
 	(Here $\Lambda^k(V^\vee)$ is the wedge product.)
 \end{definition}
+
+Like with $Df$, we'll use $\alpha_p$ instead of $\alpha(p)$.
 
 \begin{example}
 	[$k$-forms for $k=0,1$]
@@ -405,13 +391,14 @@ More generally, $df$ is in a class of objects called a $k$-form.
 		\item Let $V = \RR^3$ with standard basis $\ee_1$, $\ee_2$, $\ee_3$.
 		Then a typical $2$-form is given by
 		\[
-			\alpha(v)
+			\alpha_p
 			=
-			f(v) \ee_1^\vee \wedge \ee_2^\vee
-			+ g(v) \ee_1^\vee \wedge \ee_3^\vee
-			+ h(v) \ee_2^\vee \wedge \ee_3^\vee
-			\in \Lambda^2(V).
+			f(p) \ee_1^\vee \wedge \ee_2^\vee
+			+ g(p) \ee_1^\vee \wedge \ee_3^\vee
+			+ h(p) \ee_2^\vee \wedge \ee_3^\vee
+			\in \Lambda^2(V)
 		\]
+		where $f,g,h : V \to \RR$ are smooth functions.
 	\end{enumerate}
 \end{example}
 
@@ -421,19 +408,120 @@ So, take any basis $\{e_i\}$ of $V$, and
 take the usual basis for $\Lambda^k(V^\vee)$ of elements
 \[ e_{i_1}^\vee \wedge e_{i_2}^\vee \wedge \dots \wedge e_{i_k}^\vee. \]
 Thus, a general $k$-form takes the shape
-\[ \alpha(v) = \sum_{1 \le i_1 < \dots < i_k \le n} 
-	f_{i_1, \dots, i_k}(v)
+\[ \alpha_p = \sum_{1 \le i_1 < \dots < i_k \le n} 
+	f_{i_1, \dots, i_k}(p)
 	e_{i_1}^\vee \wedge e_{i_2}^\vee \wedge \dots \wedge e_{i_k}^\vee. \]
 Since this is a huge nuisance to write, we will abbreviate this to just
 \[ \alpha = \sum_I f_I de_I \]
 where we understand the sum runs over $I = (i_1, \dots, i_k)$,
 and $de_I$ represents $e_{i_1}^\vee \wedge \dots \wedge e_{i_k}^\vee$.
 
-Now, we saw that we can take a $0$-form $f : V \to \RR$ to a $1$-form $df : V \to V^\vee$.
+Now that we have an element $\Lambda^k(V^\vee)$, what can it do?
+Well, first let me get the definition on the table, then tell you what it's doing.
+\begin{definition}
+	For linear functions $\xi_1, \dots, \xi_k \in \Lambda^k(V)$
+	and vectors $v_1, \dots, v_k \in V$, we define
+	\[
+		(\xi_1 \wedge \dots \wedge \xi_k)(v_1, \dots, v_k)
+		\defeq
+		\det
+		\left(
+		\begin{array}{ccc}
+			\xi_1(v_1) & \dots & \xi_1(v_k) \\
+			\vdots & \ddots & \vdots \\
+			\xi_k(v_k) & \dots & \xi_k(v_k)
+		\end{array}
+		\right).
+	\]
+	You can check that this is well-defined
+	under e.g. $v \wedge w = -w \wedge v$ and so on.
+\end{definition}
+
+\begin{example}
+	[Evaluation of a Differential Form]
+	Set $V = \RR^3$
+	Suppose that at some point $p$, the $2$-form $\alpha$ returns
+	\[ \alpha_p = 2 \ee_1^\vee \wedge \ee_2^\vee + \ee_1^\vee \wedge \ee_3^\vee. \]
+	Let $v_1 = 3\ee_1 + \ee_2 + 4\ee_3$ and $v_2 = 8\ee_1 + 9\ee_2 + 5\ee_3$.
+	Then
+	\[
+		\alpha_p(v_1, v_2)
+		=
+		2\det \left( \begin{array}{cc}
+			3 & 1 \\ 8 & 9 \end{array} \right)
+		+
+		\det \left( \begin{array}{cc}
+			3 & 4 \\ 8 & 5 \end{array} \right)
+		= 21.
+	\]
+\end{example}
+
+What does this definition mean?
+One way to say it is that
+\begin{moral}
+	If I walk to a point $p \in U$,
+	a $k$-form $\alpha$ will take in $k$ vectors $v_1, \dots, v_k$
+	and spit out a number, which is to be interpreted as a (signed) volume.
+\end{moral}
+
+Picture:
+\begin{center}
+	\begin{asy}
+		bigblob("$U$");
+		pair p = (-2,-2);
+		dot("$p$", p, dir(225), red);
+		pair p1 = p + 1.4*dir(120);
+		pair p2 = p + 1.7*dir(10);
+		draw(p--p1, red, EndArrow);
+		draw(p--p2, red, EndArrow);
+		label("$v_1$", p1, dir(p1-p), red);
+		label("$v_2$", p2, dir(p2-p), red);
+		label("$\alpha_p(v_1, v_2) \in \mathbb R$", p+dir(45)*3);
+	\end{asy}
+\end{center}
+
+In other words, at every point $p$, we get a function $\alpha_p$.
+Then I can feed in $k$ tangent vectors to $\alpha_p$ and get a number,
+which I interpret as a signed volume of the parallelpiped spanned the $\{v_i\}$'s
+in some way (e.g.\ the flux of a force field).
+That's why $\alpha_p$ as a ``function'' is contrived to lie in the wedge product:
+this ensures that the notion of ``volume'' makes sense, so that for example,
+the equality $\alpha_p(v_1, v_2) = -\alpha_p(v_2, v_1)$ holds.
+
+This is what makes differential forms good for integrating, which we'll do in the next chapter.
+For now, let's differentiate them:
+
+
+\section{Exterior Derivatives}
+\prototype{Possibly $dx_1 = \ee_1^\vee$.}
+First, given a function $f : V \to \RR$,
+we define 
+\[ df \defeq Df = \sum_i f_i e_i^\vee \]
+In particular, suppose $V = \RR^n$ and $f(x_1, \dots, x_n) = x_1$ (i.e.\ $f = \ee_1^\vee$). Then:
+\begin{ques}
+	Show that for any $p \in U$, \[ \left( d(\ee_1^\vee) \right)_p = \ee_1^\vee. \]
+\end{ques}
+\begin{abuse}
+	Unfortunately, someone somewhere decided it would be a good idea to use ``$x_1$'' to denote $\ee_1^\vee$
+	(because \emph{obviously}\footnote{Sarcasm.} $x_1$ means
+	``the function that takes $(x_1, \dots, x_n) \in \RR^n$ to $x_1$'')
+	and then decided that \[ dx_1 \defeq \ee_1^\vee. \]
+	This notation is so entrenched that I have no choice but to grudgingly accept it.
+	Note that it's not even right, since technically it's $(dx_1)_p = \ee_1^\vee$; $dx_1$ is a $1$-form.
+	\label{abuse:dx}
+\end{abuse}
+\begin{remark}
+	This is the reason why we use the notation $\frac{df}{dx}$ in calculus now:
+	given, say $f : \RR \to \RR$ by $f(x) = x^2$, it is indeed true that
+	\[ df = 2x \cdot \ee_1^\vee = 2x \cdot dx \]
+	and so by abuse of notation we write $df/dx = 2x$.
+\end{remark}
+
 More generally, we can define the \vocab{exterior derivative} in terms of our basis $e_1$, \dots, $e_n$ as follows:
 if $\alpha = \sum_I f_I de_I$ then we set
 \[ d\alpha \defeq \sum_I df_I \wedge de_I = \sum_I \sum_j \fpartial{f_I}{e_j} de_j \wedge de_I. \]
-(We'll show this doesn't depend on the choice of basis in a moment.)
+We'll show this doesn't depend on the choice of basis in a moment.
+
 \begin{example}[Computing some exterior derivatives]
 	Let $V = \RR^3$ with standard basis $\ee_1$, $\ee_2$, $\ee_3$.
 	Let $f(x,y,z) = x^4 + y^3 + 2xz$.
@@ -452,10 +540,10 @@ if $\alpha = \sum_I f_I de_I$ then we set
 \end{example}
 And in fact, this is always true in general:
 \begin{theorem}[Exterior Derivative Vanishes]
+	\label{thm:dd_zero}
 	Let $\alpha$ be any $k$-form.
 	Then $d^2(\alpha) = 0$.
-	Even more succinctly, $d^2 = 0$.
-	\label{thm:dd_zero}
+	Even more succinctly, \[ d^2 = 0. \]
 \end{theorem}
 The proof is left as \Cref{prob:dd_zero}.
 
@@ -470,13 +558,19 @@ In fact, one can show that the $df$ as defined in terms of bases above is
 the \emph{unique} map sending $k$-forms to $(k+1)$-forms.
 Actually, one way to define $df$ is to take as axioms the bulleted properties above
 and then declare $d$ to be the unique solution to this functional equation.
+
 In any case, this tells us that our definition of $d$ does not depend on the basis chosen.
+
+According to Wikipedia, ``if a $k$-form $\alpha$ is thought of as measuring the flux through a $k$-parallelpiped,
+then $d\alpha$ measures the flux through the boundary of a $(k+1)$-parallelpiped''.
+In that sense, $d^2 = 0$ is saying something like ``the boundary of the boundary is empty''.
+We'll make this precise when we see Stoke's Theorem in the next chapter.
 
 \section{Problems}
 \begin{problem}[Chain Rule]
-	Let $V \taking f W \taking g X$ be differentiable maps between normed vector spaces,
-	and let $h = g \circ f$.
-	Prove the Chain Rule: for any point $p \in V$, we have
+	Let $U_1 \taking f U_2 \taking g U_3$ be differentiable maps
+	between open sets of normed vector spaces $V_i$, and let $h = g \circ f$.
+	Prove the Chain Rule: for any point $p \in U_1$, we have
 	\[ (Dh)_p = (Dg)_{f(p)} \circ (Df)_p. \]
 \end{problem}
 \begin{problem}
@@ -492,4 +586,208 @@ In any case, this tells us that our definition of $d$ does not depend on the bas
 
 
 \chapter{Integrating Differential Forms}
+In this chapter, we'll show how to integrate differential forms over cells,
+and state Stoke's Theorem in this context.
+
+\section{Motivation: Line Integrals}
+Given a function $g : [a,b] \to \RR$ we know by the Fundamental Theorem of Calculus
+that it can be integrated as
+\[
+	\int_{[a,b]} g(t) \; dt = f(b) - f(a)
+\]
+where $f$ is a function such that $\frac{df}{dt} = g$.
+(You might recognize this more readily as the more customary $\int_a^b g(t) \; dt$.)
+Put another way, given a function $f : (a,b) \to \RR$,
+we can write
+\[ \int_{[a,b]} g \; dt = \int_{[a,b]} df = f(b) - f(a) \]
+where $df$ is the exterior derivative we defined earlier.
+
+Cool, so we can integrate over $[a,b]$.
+Now, suppose more generally, we have $U$ an open subset of our real vector space $V$
+and a $1$-form $\alpha : U \to V^\vee$.
+We consider a \vocab{parametrized curve}, which is a smooth function $c : [a,b] \to U$.
+Picture:
+\begin{center}
+	\begin{asy}
+		size(9cm);
+		pair A = (-13,0);
+		pair B = (-9,0);
+		draw(A--B, grey);
+		dot(A, grey); dot(B, grey);
+		label("$[a,b]$", A--B, dir(90), grey);
+		dot("$t$", 0.3*A+0.7*B, dir(-90), grey);
+
+		draw( (-8,0) -- (-6,0) , EndArrow);
+		label("$c$", (-7,0), dir(90));
+
+		bigblob("$U$");
+		pair a = (-2,-2);
+		pair b = (3,0);
+		pair p = (0,1);
+		pair q = (2,0);
+		label("$c$", q, dir(45), red);
+		draw(a..p..q..b, red);
+		dot("$p = c(t)$", p, dir(90), blue);
+		draw(p--(p+1.5*dir(-10)), blue, EndArrow);
+
+		draw( (0,-4)--(0,-8), EndArrow );
+		label("$\alpha$", (0,-6), dir(0));
+		label("$\alpha_p(v) \in \mathbb R$", (0,-9), heavygreen);
+
+		draw( (-10,-1)--(-1,-8), EndArrow);
+		label("$c^\ast \alpha$", (-5.5,-4.5), dir(225));
+	\end{asy}
+\end{center}
+
+We want to define an $\int_c \alpha$ satisfying the following geometric interpretation:
+\begin{moral}
+	The integral $\int_c \alpha$ should add up all the $\alpha$ along the curve $c$.
+\end{moral}
+Our differential form $\alpha$ first takes in a point $p$ to get $\alpha_p \in V^\vee$.
+Then, it eats a tangent vector $v \in V$ to the curve $c$ to finally give a real number $\alpha_p(v) \in \RR$.
+We would like to ``add all these numbers up'', using only the notion of an integral over $[a,b]$.
+
+\begin{exercise}
+	Try to guess what the definition of the integral should be.
+	(By type-checking, there's only one reasonable answer.)
+\end{exercise}
+
+So, the definition we give is
+\[
+	\int_c \alpha
+	\defeq
+	\int_{[a,b]}
+	\alpha_{c(t)} \left( c'(t) \right) \; dt.
+\]
+Here, $c'(t)$ is shorthand for $(Dc)_{c(t)}(1)$.
+It represents the \emph{tangent vector} to the curve $c$ at the point $p=c(t)$, at time $t$.
+(Here we are taking advantage of the fact that $[a,b]$ is one-dimensional).
+
+Now that definition was a pain to write, so we will define a differential
+$1$-form $c^\ast \alpha$ on $[a,b]$ to swallow that entire thing:
+specifically, in this case we define $c^\ast\alpha$ to be
+\[ \left( c^\ast \alpha \right)_t (\eps) = (Dc)_{c(t)} (\eps) \]
+(here $\eps$ is some displacement in time).
+Thus, we can more succinctly write
+\[
+	\int_c \alpha
+	\defeq
+	\int_{[a,b]}
+	\alpha_{c(t)} \left( c'(t) \right) \; dt.
+\]
+This is a special case of a \emph{pullback}:
+roughly, if $\phi : U \to U'$ (where $U \subseteq V$, $U' \subseteq V'$),
+we can change any differential $k$-form $\alpha$ on $U'$
+to a $k$-form on $U$.
+In particular, if $U = [a,b]$, we can resort to our old definition of an integral.\footnote{
+OK, so $[a,b]$ isn't actually open, sorry. I ought to write $(a-\eps, b+\eps)$, or something.}
+
+Let's now do this in full generality.
+
+\section{Pullbacks}
+Let $V$ and $V'$ be finite dimensional real vector spaces (possibly different dimensions)
+and suppose $U$ and $U'$ are open subsets of each;
+next, consider a $k$-form $\alpha$ on $U'$.
+
+Given a map $\phi : U \to U'$ we now want to define a pullback in much the same way as before.
+Picture:
+\begin{center}
+	\begin{asy}
+		size(12cm);
+		bigblob("$U$");
+		pair p = (-1,0);
+		dot("$p$", p, dir(90), red);
+		pair p1 = p + 1.4*dir(150);
+		pair p2 = p + 1.7*dir(-50);
+		draw(p--p1, red, EndArrow);
+		draw(p--p2, red, EndArrow);
+
+		add(scale(0.8)*shift(14*dir(180))*CC());
+		bigblob("$U'$");
+		pair q = (-0.5,0.5);
+		dot("$q = \phi(p)$", q, dir(90), blue);
+		pair q1 = q + 1.8*dir(-100);
+		pair q2 = q + 2.3*dir(-10);
+		draw(q--q1, blue, EndArrow);
+		draw(q--q2, blue, EndArrow);
+
+		draw((-9,0)--(-3,0), EndArrow);
+		label("$\phi$", (-6,0), dir(90));
+	
+		draw( (0,-4)--(0,-8), EndArrow );
+		label("$\alpha$", (0,-6), dir(0));
+		label("$\alpha_q(\dots) \in \mathbb R$", (0,-9), heavygreen);
+
+		draw( (-11,-3)--(-1,-8), EndArrow);
+		label("$\phi^\ast \alpha$", (-6,-6), dir(225));
+	\end{asy}
+\end{center}
+
+Well, there's a total of about one thing we can do.
+Specifically: $\alpha$ accepts a point in $U'$ and $k$ tangent vectors in $V'$,
+and returns a real number.
+We want $\phi^\ast \alpha$ to accept a point in $p \in U$
+and $k$ tangent vectors $v_1, \dots, v_k$ in $V$,
+and feed the corresponding information to $\alpha$
+
+Clearly we give the point $q = \phi(p)$.
+As for the tangent vectors, since we are interested in volume, we take the
+derivative of $\phi$ at $p$, $(D\phi)_p$, which will scale each of our vectors $v_i$
+into some vector in the target $V'$.
+To cut a long story short:
+\begin{definition}
+	Given $\phi : U \to U'$ and $\alpha$ a $k$-form, we define the \vocab{pullback}
+	\[
+		(\phi^\ast \alpha)_p(v_1, \dots, v_k)
+		\defeq \alpha_{\phi(p)}
+		\left( (D\phi)_p(v_1), \dots, (D\phi)_p(v_k) \right).
+	\]
+\end{definition}
+
+There is a more concrete way to define the pullback using bases.
+Suppose $w_1, \dots, w_n$ is a basis of $V'$
+and $e_1, \dots, e_m$ is a basis of $V$.
+Thus, by the projection principle (\Cref{thm:project_principle}) 
+the map $\phi : V \to V'$ can be thought of as
+\[ \phi(v) = \phi_1(v) w_1 +  \dots \phi_n(v) w_n \]
+where each $\phi_i$ takes in a $v \in V$ and returns a real number.
+We know also that $\alpha$ can be written concretely as
+\[ \alpha = \sum_{J \subseteq \{1, \dots, n\}} f_J w_J. \]
+Then, we define
+\[
+	\phi^\ast\alpha
+	= \sum_{I \subseteq \{1, \dots, m\}}
+	(f_I \circ \phi) (D\phi_{i_1} \wedge \dots \wedge D\phi_{i_k}).
+\]
+A diligent reader can check these definitions are equivalent.
+\begin{example}
+	[Computation of a Pullback]
+	Let $V = \RR^2$, and suppose $\phi : V \to V'$ is given by sending
+	\[ \phi(a\ee_1 + b\ee_2) = (a^2+b^2)w_1 + \log(a^2+1) w_2 + b^3 w_3 \]
+	where $w_1$, $w_2$, $w_3$ is a basis for $V'$.
+	Consider the form $\alpha_q = f(q) w_1 \wedge w_3$, where $f : V' \to \RR$.
+	Then
+	\[ (\phi^\ast\alpha)_p = f(\phi(p)) \cdot (2a \ee_1^\vee + 2b\ee_2^\vee) \wedge (3b^2 \ee_2^\vee)
+		= f(\phi(p)) \cdot 6ab^2 \cdot \ee_1^\vee \wedge \ee_2^\vee. \]
+\end{example}
+
+It turns out that the pullback basically behaves nicely as possible, e.g.\
+\begin{itemize}
+	\ii $\phi^\ast(c\alpha + \beta) = c\phi^\ast \alpha + \phi^\ast\beta$ (bilinearity)
+	\ii $\phi^\ast(\alpha\wedge\beta)
+	= (\phi^\ast \alpha)\wedge(\phi^\ast \beta)$
+	\ii $\phi_1^\ast(\phi_2^\ast(\alpha)) 
+	= (\phi_1 \circ \phi_2)^\ast(\alpha)$ (naturality)
+\end{itemize}
+but I won't take the time to check these here
+(one can verify them all by expanding with a basis).
+	
+\section{Cells}
+
+\section{Stoke's Theorem}
+
+\section{Problems}
+stupid commuting exercise
+
+
 \end{document}
