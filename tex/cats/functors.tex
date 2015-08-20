@@ -1,0 +1,445 @@
+\chapter{Functors and Natural Transformations}
+Functors are maps between categories; natural transformations are maps between functors.
+
+\section{Functors}
+\prototype{Forgetful functors; fundamental groups; $-^\vee$.}
+In mathematics, we'd often like to take an object from one category and get an object from another category.
+For example, given a group we might like to obtain a set;
+given a set, we might like to consider the vector space whose basis is that set,
+and so on.
+The nice way to do that is using the notion of a functor:
+category theorists are always asking ``what are the maps?'',
+and so we can now think about maps between categories.
+
+\begin{definition}
+	Let $\AA$ and $\BB$ be categories.
+	A \vocab{functor} $F$ takes every object of $A$ to an object of $B$
+	and every arrow $A_1 \taking{f} A_2$ to an arrow $F(A_1) \taking{F(f)} F(A_2)$.
+	You can picture this as follows.
+	\begin{diagram}
+		& A_1 & & B_1 & = F(A_1) & \\
+		\AA \ni & \dTo^f & \rDotted^F & \dTo_{F(f)} && \in \BB \\
+		& A_2 & & B_2 & = F(A_2) &
+	\end{diagram}
+	(I'll try to use dotted arrows for functors, which cross different categories, for emphasis.)
+	It needs to satisfy the following requirements:
+	\begin{itemize}
+		\ii Identity arrows get sent to identity arrows:
+		for each identity arrow $\id_A$, we have $F(\id_A) = \id_{F(A)}$.
+		\ii The functor respects composition:
+		if $A_1 \taking f A_2 \taking g A_3$ are arrows in $\AA$,
+		then $F(g \circ f) = F(g) \circ F(f)$.
+	\end{itemize}
+\end{definition}
+\begin{example}
+	[Free and Forgetful Functors]
+	Note that these are both informal terms.
+	\begin{enumerate}[(a)]
+		\ii A \vocab{forgetful functor} is a functor that ``forgets'' some structure.
+		For example, there is a forgetful functor $U : \catname{Vect}_k \to \catname{Set}$
+		by taking $V$ to the set of vectors $U(V)$; certainly a linear map $T : V \to W$
+		gives a map $U(T) : U(V) \to U(W)$ of the underlying point-sets.
+		In other words we ``forget'' that $V$ has a vector space structure.
+
+		Similarly there are forgetful functors from $\catname{Grp}$, $\catname{Ring}$, etc. to set.
+		There is even a forgetful functor $\catname{Ring} \to \catname{Grp}$: send a ring $R$
+		to the abelian group $(R,+)$.
+
+		\ii A \vocab{free functor} is in some sense the opposite.
+		A free functor $F : \catname{Set} \to \catname{Vect}_k$ can be taken by considering
+		$F(S)$ to be the vector space with basis $S$.
+	\end{enumerate}
+\end{example}
+\begin{remark}
+	We can actually use this to give a definition of concrete category:
+	it's a category with an ``injective'' forgetful functor to $U: \AA \to \catname{Set}$
+	(The correct definition of ``injective'' here is \vocab{faithful}: no two arrows in $\AA$
+	get sent to the same arrow in $\catname{Set}$.)
+\end{remark}
+
+\begin{example}
+	[Functors from $\mathcal G$]
+	Let $G$ be a group and $\mathcal G = \{\ast\}$ be the associated one-object category.
+	\begin{enumerate}[(a)]
+		\ii Consider a functor $F : \mathcal G \to \catname{Set}$, and let $S = F(\ast)$.
+		Then the data of $F$ corresponds to putting a \emph{group action} of $G$ on $S$.
+		\ii Consider a functor $F : \mathcal G \to \catname{FDVect}_k$, and let $V = F(\ast)$ have dimension $n$.
+		Then the data of $F$ corresponds to embedding $G$ as a subgroup of the $n \times n$ matrices
+		(i.e.\ the linear maps $V \to V$).
+		This is one way groups historically arose; the theory of viewing groups as matrices
+		forms the field of representation theory.
+		\ii Let $H$ be a group and construct $\mathcal H$ the same way.
+		Then functors $\mathcal G \to \mathcal H$ correspond to homomorphism $G \to H$.
+	\end{enumerate}
+\end{example}
+\begin{exercise}
+	Check the above group-based functors work as advertised.
+\end{exercise}
+%Now we present one much trickier example.
+%If you don't get this one at first, skip it and come back later.
+%\begin{example}
+%	[Covariant Yoneda Functor]
+%	For a category $\AA$, define the \vocab{covariant Yoneda functor} $H^A : \AA \to \catname{Set}$
+%	by defining \[ H^A(A_1) \defeq \Hom_\AA (A, A_1) \in \catname{Set}. \]
+%	Hence each $A_1$ is sent to the \emph{arrows from $A$ to $A_1$};
+%	so \textbf{$H^A$ describes how $A$ sees the world}.
+%	Now we want to specify how $H^A$ behaves on arrows.
+%	For each arrow $A_1 \taking{f} A_2$, we need
+%	to specify $\catname{Set}$-map $\Hom_\AA (A, A_1) \to \Hom(A, A_2)$;
+%	in other words, we need to send an arrow $A \taking{p} A_1$ to an arrow $A \to A_2$.
+%	There's only one reasonable way to do this: take the composition
+%	\[ A \taking{p} A_1 \taking{f} A_2. \]
+%	In other words, $H_A(f)$ is $p \mapsto p \circ f$.
+%	In still other words, $H_A(f) = - \circ f$;
+%	the $-$ is a slot for the input to go into.
+%\end{example}
+
+As another example:
+\begin{ques}
+	If $\mathbb P$ and $\mathbb Q$ are posets interpreted as categories,
+	what does a functor from $\mathbb P$ to $\mathbb Q$ represent?
+\end{ques}
+\begin{exercise}
+	Verify that there is a category of \emph{all categories},
+	$\catname{Cat}$, whose arrows are functors.
+	In particular, you will need to name the ``identity functors''
+	and verify that the composition of a functor is also a functor.
+\end{exercise}
+
+The dual notion of a functor is a \vocab{contravariant functor}.
+They work exactly the same way, except the arrows get flipped by the functor.
+You can think of this is a functor $\AA \to \BB^{\text{op}}$ (equivalently, $\AA^{\text{op}} \to \BB$). Pictorially:
+\begin{diagram}
+	& A_1 & & B_1 & = F(A_1) & \\
+	\AA \ni & \dTo^f & \rDotted^F & \uTo_{F(f)} && \in \BB \\
+	& A_2 & & B_2 & = F(A_2) &
+\end{diagram}
+For emphasis, a usual functor is often called a \vocab{covariant functor}.
+
+Contravariant functors come up in a lot in geometric applications.
+Here's why.
+If $X$ is a geometric object, we'll often consider
+the \emph{set of functions} $X \taking\psi A$ for some particular $A$.
+For example, if $V$ was a vector space, we could consider the functions $V \to k$,
+giving the dual module $V^\vee$.
+Or if $X$ was a space, we might consider the continuous
+real functions $X \taking{p} \RR$.
+As a non-geometric example: for a set $S$,
+a function $S \to \{x,y\}$ corresponds to a subset of $S$.
+
+Now suppose you have two spaces $X$, $Y$ and a map $f : X \to Y$.
+Then given $Y \taking p \RR$, you automatically get a map $X \taking{f} Y \taking{p} \RR$.
+And it turns out this is a functor!
+This general construction can be done in any category $\AA$, as follows:
+\begin{example}[Contravariant Yoneda Functor]
+	The \vocab{contravariant Yoneda functor} $H_A : \AA^{\text{op}} \to \catname{Set}$;
+	is used to describe how objects of $\AA$ see $A$.
+	For each $X \in \AA$ it puts \[ H_A(X) \defeq \Hom_{\AA}(X, A) \in \catname{Set}. \]
+	For $X \taking{f} Y$, $H_A(f)$ sends each arrow $Y \taking{p} A \in \Hom_\AA(Y,A)$ to 
+	\[ X \taking{f} Y \taking{p} A \quad \in \Hom_\AA(X,A) \]
+	as we did above.
+	Thus $H_A(f)$ is an arrow from $\Hom_\AA(Y,A) \to \Hom_\AA(X,A)$.
+	(Note the flipping!)
+\end{example}
+\begin{remark}
+	Dually, there is also a \vocab{covariant Yoneda functor} $H^A : \AA \to \catname{Set}$
+	by $H^A(X) = H^A(A, X)$. This guy describes how $A$ sees the world.
+	\label{def:covariant_yoneda}
+\end{remark}
+
+\begin{example}[$V \mapsto V^\vee$ is Contravariant]
+	Consider the category $\catname{Vect}_k$.
+	If you read the digression on dual spaces,
+	you now know there is a contravariant functor $\catname{Vect}_k \to \catname{Vect}_k$ by
+	taking the \emph{dual} $V^\vee$ of a vector space $V$:
+	\begin{diagram}
+		V & & V^\vee \\
+		\dTo^T & \rDotted^{-^\vee} & \uTo_{T^\vee} \\
+		W & & W^\vee
+	\end{diagram}
+\end{example}
+
+Suppose $G \cong H$ are groups, and $U : \catname{Grp} \to \catname{Set}$ is forgetful.
+Then we get two sets $U(G)$ and $U(H)$.
+These two sets have the same cardinality and are isomorphic in $\catname{Set}$.
+Now the beauty of category theory shows itself: this in fact works \emph{for any functors and categories},
+and the proof is done solely through arrows.
+
+\begin{theorem}
+	[Functors Preserve Isomorphism]
+	\label{thm:functor_isom}
+	If $A_1 \cong A_2$ are isomorphic objects in $\AA$
+	and $F : \AA \to \BB$ is a functor
+	then $F(A_1) \cong F(A_2)$.
+\end{theorem}
+\begin{proof}
+	Try it yourself! The picture is:
+	\begin{diagram}
+		& A_1 & & B_1 & = F(A_1) & \\
+		\AA \ni & \dTo^f \uTo_g & \rDotted^F & \dTo^{F(f)} \uTo_{F(g)} && \in \BB \\
+		& A_2 & & B_2 & = F(A_2) &
+	\end{diagram}
+	You'll need to use both key properties of functors: they preserve composition
+	and the identity map.
+\end{proof}
+
+This will be super convenient in algebraic topology, for example.
+We'll show from a space $X$ you can create a group $\pi_n(X)$ or $H_n(X)$ that
+gives information about the space $X$.
+If we can show verify this is in fact a functor $\catname{Top} \to \catname{Grp}$,
+then for $X \cong Y$, we get for free that $\pi_n(X) \cong \pi_n(Y)$ and $H_n(X) \cong H_n(Y)$.
+
+\section{Natural Transformations}
+\emph{Note}: we won't use natural transformations anywhere else in the Napkin,
+and it's included here just for completeness.
+
+We made categories to keep track of objects and maps, then went a little crazy and asked
+``what are the maps between categories?'' to get functors.
+Now we'll ask ``what are the maps between functions?'' to get natural transformations.
+
+It might sound terrifying that we're drawing arrows between functors, but this is actually an old idea.
+Recall that given two paths $\alpha, \beta : [0,1] \to X$,
+we built a path-homotopy by ``continuously deforming'' the path $\alpha$ to $\beta$;
+this could be viewed as a function $[0,1] \times [0,1] \to X$.
+The definition of a natural transformation is similar: we want to pull $F$ to $G$
+along a series of arrows in the target space $\BB$.
+
+\begin{definition}
+	Let $F, G : \AA \to \BB$ be two functors.
+	A \vocab{natural transformation} $\alpha$ from $F$ to $G$, denoted
+	\[ \nattfm{\AA}{F}{\alpha}{G}{\BB} \]
+	consists of, for each $A \in \AA$ an arrow $\alpha_A \in \Hom_\BB(F(A), G(A))$, which is
+	called the \vocab{component} of $\alpha$ at $A$.
+	Pictorially, it looks like this:
+	\begin{diagram}
+		& & & F(A) \in \BB \\
+		\AA \ni & A & \ruDotted(2,1)^F & \dTo_{\alpha_A} \\
+		& & \rdDotted(2,1)^G & G(A) \in \BB
+	\end{diagram}
+	These $\alpha_A$ are subject to the ``naturality'' requirement that for any $A_1 \taking{f} A_2$,
+	the diagram
+	\begin{diagram}
+		F(A_1) & \rTo^{F(f)} & F(A_2) \\
+		\dTo_{\alpha_{A_1}} & & \dTo_{\alpha_{A_2}} \\
+		G(A_1) & \rTo_{G(f)} & G(A_2)
+	\end{diagram}
+	commutes.
+\end{definition}
+The arrow $\alpha_A$ represents the path that $F(A)$ takes to get to $G(A)$
+(just as in a path-homotopy from $\alpha$ to $\beta$
+each \emph{point} $\alpha(t)$ gets deformed to the \emph{point} $\beta(t)$ continuously).
+A picture might help: consider
+\begin{center}
+	\begin{asy}
+		size(14cm);
+		dotfactor *= 1.4;
+
+		path sparrow(pair X, pair Y) {
+			// Short for "spaced arrow"
+			return (0.9*X+0.1*Y)--(0.1*X+0.9*Y);
+		}
+
+		pair A1 = Drawing("A_1", dir(210), dir(225));
+		pair A2 = Drawing("A_2", origin, dir(90));
+		pair A3 = Drawing("A_3", dir(-30), dir(-45));
+		path f = Drawing(sparrow(A2, A1), EndArrow);
+		label("$f$", f, dir(90));
+		path g = Drawing(sparrow(A2, A3), EndArrow);
+		label("$g$", g, dir(90));
+		label("$\mathcal A$", 0.6*(A1+A3));
+
+		pen p = blue;
+		transform FF = shift( (3.5, 0.7) );
+		dot("$F(A_1)$", FF*A1, dir(225), p);
+		dot("$F(A_2)$", FF*A2, dir(90), p);
+		dot("$F(A_3)$", FF*A3, dir(-45), p);
+		draw(FF*f, p, EndArrow);
+		draw(FF*g, p, EndArrow);
+		label("$F(f)$", FF*f, dir(110), p);
+		label("$F(g)$", FF*g, dir(70), p);
+		draw(FF*f, p+1.4);
+		draw(FF*g, p+1.4);
+
+		p = deepcyan;
+		transform GG = shift( (3.5, -0.7) );
+		dot("$G(A_1)$", GG*A1, dir(225), p);
+		dot("$G(A_2)$", GG*A2, 3*dir(-90), p);
+		dot("$G(A_3)$", GG*A3, dir(-45), p);
+		label("$G(f)$", D(GG*f, p, EndArrow), dir(110), p);
+		label("$G(g)$", D(GG*g, p, EndArrow), dir(70), p);
+		draw(GG*f, p+1.4);
+		draw(GG*g, p+1.4);
+
+		p = lightred;
+		label("$\alpha_{A_1}$", D(sparrow(FF*A1, GG*A1), p, EndArrow), dir(180), p);
+		label("$\alpha_{A_2}$", D(sparrow(FF*A2, GG*A2), p, EndArrow), dir(180), p);
+		label("$\alpha_{A_3}$", D(sparrow(FF*A3, GG*A3), p, EndArrow), dir(0), p);
+
+		p = magenta + dotted + 0.7;
+		path Fa = (0.5,0)--FF*(-1,-0.2);
+		path Ga = (0.5,-0.6)--GG*(-1,-0.4);
+		label("$F$", D(Fa, p, EndArrow), dir(135), p);
+		label("$G$", D(Ga, p, EndArrow), dir(225), p);
+
+		p = lightred + 0.7;
+		label("$\alpha$", D(sparrow(midpoint(Fa), midpoint(Ga)), p, EndArrow), dir(180), p);
+
+		p = grey + dashed;
+		pointpen = p;
+		pair B1 = D(midpoint(FF*A2--GG*A1));
+		pair B2 = D(0.6 * (FF*A3) + 0.4 * (GG*A2));
+		draw(sparrow(FF*A1, B1), p, EndArrow);
+		draw(sparrow(GG*A2, B1), p, EndArrow);
+		draw(sparrow(FF*A3, B2), p, EndArrow);
+		pair B3 = D(FF*A3 + 0.7*dir(100));
+		draw(sparrow(B3, FF*A3), p, EndArrow);
+		label("$\mathcal B$", GG*(0.6*(A1+A3)));
+		draw(sparrow(FF*A2, GG*A3), p, EndArrow);
+		pair B4 = D(FF*A1 + 0.5*dir(90));
+		draw(sparrow(FF*A1, B4), p, EndArrow);
+	\end{asy}
+\end{center}
+Here $\AA$ is the small black category with three elements and two non-identity arrows $f$, $g$.
+(I've omitted the identity arrows for simplicity).
+The images of $\AA$ under $F$ and $G$ are the blue and green ``subcategories'' of $\BB$.
+Note that $\BB$ could potentially have many more objects and arrows in it (grey).
+The natural transformation $\alpha$ (red) selects an arrow of $\BB$ from each $F(A)$
+to the corresponding $G(A)$, such dragging the entire image of $F$ to the image of $G$.
+Finally, we require that any diagram formed by the blue, red, and green arrows is commutative (naturality),
+so the natural transformation is really ``natural''.
+
+There is a second equivalent definition that looks much more like the homotopy.
+\begin{definition}
+	Let $\mathbf 2$ denote the category generated by a poset with two elements $0 \le 1$, that is,
+	\begin{center}
+	\begin{tikzpicture}[scale=2]
+		\SetVertexMath
+		\Vertices{circle}{1,0}
+		\Edge[style={->}, label={$0 \le 1$}](0)(1)
+		\Loop[dist=12, dir=NO, label={$\id_0$}, labelstyle={above=1pt}](0)
+		\Loop[dist=12, dir=NO, label={$\id_1$}, labelstyle={above=1pt}](1)
+	\end{tikzpicture}
+	\end{center}
+	Then a \emph{natural transformation} 
+	$ \nattfm{\AA}{F}{\alpha}{G}{\BB} $
+	is just a functor $\alpha : \AA \times \mathbf 2 \to \BB$ with
+	\[ \alpha(0,A) = F(A), \;\; \alpha(0,f) = F(f) 
+		\quad\text{and}\quad
+	\alpha(1,A) = G(A), \;\; \alpha(1,f) = G(f). \]
+	or more succinctly, $\alpha(0,-) = F$, $\alpha(1,-) = G$.
+\end{definition}
+The proof that these are equivalent is left as a practice problem.
+
+Naturally, two natural transformations $\alpha : F \to G$ and $\beta : G \to H$ can get composed.
+\begin{diagram}
+	& & F(A) \\
+	& \ruDotted^F & \dTo_{\alpha_A} \\
+	\AA \ni A & \rDotted^G & G(A) \\
+	& \rdDotted_H & \dTo_{\beta_A} \\
+	&& H(A)
+\end{diagram}
+
+Now suppose $\alpha$ is a natural transformation such that $\alpha_A$ is an isomorphism for each $A$.
+In this way, we can construct an inverse arrow $\beta_A$ to it.
+\begin{diagram}
+	& & F(A) \in \BB \\
+	\AA \ni A & \ruDotted(2,1)^F & \dTo^{\alpha_A} \uTo_{\beta_A} \\
+	& \rdDotted(2,1)^G & G(A) \in \BB
+\end{diagram}
+In this case, we say $\alpha$ is a \vocab{natural isomorphism}.
+We can then say that $F(A) \cong G(A)$ \vocab{naturally} in $A$.
+(And $\beta$ is an isomorphism too!)
+
+This is what it really means when we say that ``there is a natural / canonical isomorphism''.
+For example, I claimed earlier that there was a canonical isomorphism $(V^\vee)^\vee \cong V$,
+and mumbled something about ``not having to pick a basis'' and ``God-given''.
+Category theory, amazingly, lets us formalize this:
+it just says that $(V^\vee)^\vee \cong \id(V)$ naturally in $V \in \catname{FDVect}_k$.
+Really, we have a natural transformation
+\[ \nattfm{\catname{FDVect}_k}{\id}{\eps}{(-^\vee)^\vee}{\catname{FDVect}_k}. \]
+where the component $\eps_V$ is given by $v \mapsto \opname{ev}_v$
+(as discussed earlier,
+the fact that it is an isomorphism follows from the fact that $V$ and $(V^\vee)^\vee$
+have equal dimensions and $\eps_V$ is injective).
+
+% A last remark: similar to the situation with groups isomorphisms,
+% collecting all these $\beta_A$'s gives a natural isomorphism too.
+\begin{ques}
+	In fact, there is a category $[\AA, \BB]$ of \emph{functors} from $\AA$ into $\BB$,
+	whose arrows are natural transformations.
+	When are two functors isomorphic in $[\AA, \BB]$?
+\end{ques}
+As a result of this, we also write $F \cong G$ to mean $F(X) \cong G(X)$
+
+\section\problemhead
+\begin{dproblem}
+	Let $X$ and $Y$ be objects in a category $\AA$.
+	Show that $X \cong Y$ if and only if $H_X(A) \cong H_Y(A)$ naturally in $A$.\footnote{
+		From \cite{ref:msci}: let's consider $\AA = \catname{Grp}$ for concreteness.
+		Suppose $A$, $X$, $Y$ are groups such that $H_X(A) \cong H_Y(A)$ for all $A$.
+		If $A = \ZZ$, then $\left\lvert X \right\rvert = \left\lvert Y \right\rvert$.
+		If $A = \ZZ / p\ZZ$, then $X$ and $Y$ have the same number of elements of order $p$.
+		Each $A$ gives us some information on how $X$ and $Y$ are similar,
+		but the whole natural isomorphism is strong enough to imply $X \cong Y$.}
+\end{dproblem}
+
+\begin{problem}
+	Show that the two definitions of natural transformation
+	(one in terms of $\AA \times \mathbf 2 \to \BB$
+	and one in terms of arrows $F(A) \taking{\alpha_A} G(A)$) 
+	are equivalent.
+	\begin{hint}
+		The category $\AA \times \mathbf 2$ has ``redundant arrows''.
+	\end{hint}
+	\begin{sol}
+		The main observation is that in $\AA \times \mathbf 2$,
+		you have the arrows in $\AA$ (of the form $(f, \id_{\mathbf 2})$),
+		and then the arrows crossing the two copies of $\AA$ (of the form $(\id_A, 0 \le 1)$).
+		But there are some more arrows $(f, 0 \le 1)$: nonetheless, they can be thought of as compositions
+		\[ (f, 0 \le 1) = (f, \id_{\mathbf 2}) \circ (\id_A, 0 \le 1) = (\id_A, 0 \le 1) \circ (f, \id_{\mathbf 2}). \]
+		Now we want to specify a functor $\alpha : \AA \times \mathbf 2$, we only have to specify
+		where each of these two more basic things goes.
+		The conditions on $\alpha$ already tells us that $(f, \id_{\mathbf 2})$ should be mapped to $F(f)$ or $G(f)$
+		(depending on whether the arrow above is in $\AA \times \{0\}$ or $\AA \times \{1\}$),
+		and specifying the arrow $(\id_A, 0 \le 1)$ amounts to specifying the $A$th component.
+		Where does naturality come in?
+
+		The above discussion transfers to products of categories in general:
+		you really only have to think about $(f, \id)$ and $(\id, g)$ arrows
+		to get the general arrow $(f,g) = (f, \id) \circ (\id, g) = (\id, g) \circ (f, \id)$.
+	\end{sol}
+\end{problem}
+
+\begin{problem}
+	Let $\AA$ be the category of finite sets whose arrows are bijections between sets.
+	For $A \in \AA$,
+		let $F(A)$ be the set of \emph{permutations} of $A$ and
+		let $G(A)$ be the set of \emph{orderings} on $A$.\footnote{
+			A permutation is a bijection $A \to A$,
+			and an ordering is a bijection $\{1, \dots, n\} \to A$,
+			where $n$ is the size of $A$.}
+	\begin{enumerate}[(a)]
+		\ii Extend $F$ and $G$ to functors $\AA \to \catname{Set}$.
+		\ii Show that $F(A) \cong G(A)$ for every $A$, but this isomorphism is \emph{not} natural.
+	\end{enumerate}
+\end{problem}
+
+\begin{problem}
+	[Yoneda Lemma]
+	Let $\AA$ be a category, pick $A \in \AA$, and let $H_A$ be the contravariant Yoneda functor.
+	\begin{enumerate}[(a)]
+	\ii \gim
+	Let $X : \AA^{\text{op}} \to \catname{Set}$ be a contravariant functor.
+	Exhibit a bijection
+	\[ X(A) \cong \left\{ \text{Natural transformations }
+		\nattfm{\AA^{\text{op}}}{H_A}{\alpha}{X}{\catname{Set}}
+	\right\}. \]
+	\ii \kurumi Moreover, interpreting both sides as functors
+	$[\AA^{\text{op}}, \catname{Set}] \times \AA^{\text{op}} \to \catname{Set}$
+	show that the isomorphism is \emph{natural} in $X$ and $A$.
+	\end{enumerate}
+\end{problem}
+The Yoneda Lemma has tons of very cool consequences; one is that solving it
+makes you feel like a minor god.
+The proof is long, but it is not actually very difficult -- from start to finish,
+there is only one thing you can possibly do.
