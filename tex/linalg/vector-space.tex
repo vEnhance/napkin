@@ -270,7 +270,7 @@ If not, fall upon your notion of Euclidean space or $V$ above.
 		In the polynomial example, that just means
 		that your polynomials have finite degree (which is good).
 	}
-	set $\{v_1, \dots, v_n\}$ of vectors in a module $M$.
+	set of vectors $v_1, \dots, v_n$ in a module $M$.
 	\begin{itemize}
 		\ii It is called \vocab{linearly independent} if there
 		is no nontrivial linear combination with value $0_M$.
@@ -314,20 +314,22 @@ With these new terms, we can just say a basis is a linearly independent, spannin
 Now we state a few results which assert
 that bases in vector spaces behave as nicely as possible.
 \begin{theorem}[Maximality and Minimality of Bases]
-	If $e_1$, $e_2$, \dots, $e_n$ form a basis of a module $M$, then
-	\begin{enumerate}[(a)]
-		\ii The $\{e_i\}$ are spanning, but no proper subset is spanning.
-		\ii The $\{e_i\}$ are linearly independent, but adding any other
-		element of $M$ makes them not linearly independent.
-	\end{enumerate}
-	If $M$ is a vector space, conditions
-	(a) and (b) also imply that the $\{e_i\}$ are a basis.
 	\label{thm:vector_best}
+	Let $V$ be a vector space and $e_1, \dots, e_n \in V$. The following are equivalent
+	\begin{enumerate}[(a)]
+		\ii The $e_i$ form a basis.
+		\ii The $e_i$ are spanning, but no proper subset is spanning.
+		\ii The $e_i$ are linearly independent, but adding any other
+		element of $V$ makes them not linearly independent.
+	\end{enumerate}
+	If we replace $V$ by a general module $M$, then (a) $\implies$ (b) and (a) $\implies$ (c)
+	but not conversely.
 \end{theorem}
 \begin{proof}
 	Straightforward, do it yourself if you like.
 	The key point to notice is that you need to divide by scalars for the converse direction,
-	hence $M$ is required to be a vector space instead of just a module.
+	hence $V$ is required to be a vector space instead of just a module
+	for the implications (b) $\implies$ (a) and (c) $\implies$ (a).
 \end{proof}
 
 \begin{theorem}
@@ -335,9 +337,12 @@ that bases in vector spaces behave as nicely as possible.
 	Any two bases of a vector space have the same size.
 \end{theorem}
 \begin{proof}
-	We prove something even stronger:
+	We prove something stronger:
 	Let $V$ be a vector space, and assume $v_1, \dots, v_n$ is a spanning set
 	while $w_1, \dots, w_m$ is linearly independent. We claim that $n \ge m$.
+	\begin{ques}
+		Show that this claim is enough to imply the theorem.
+	\end{ques}
 
 	Let $A_0 = \{v_1, \dots, v_n\}$ be the spanning set.
 	Throw in $w_1$: by the spanning condition, so $w_1 = c_1v_1 + \dots + c_nv_n$.
@@ -455,6 +460,7 @@ and that would tell you everything you need to know about $T$.
 
 That's where the matrix $T$ comes from!
 It's just a concise way of writing down all $mn$ numbers I need to tell you.
+To be explicit, the matrix for $T$ is defined as the array
 \[ T =  \underbrace{%
 	\left(
 	\begin{array}{cccc}
@@ -479,7 +485,7 @@ Suppose we have picked a basis for three spaces $U$, $V$, $W$.
 Given maps $T : U \to V$ and $S : V \to W$, we can consider their composition $S \circ T$, i.e.
 \[ U \taking{T} V \taking{S} W. \]
 Matrix multiplication is defined exactly so that the matrix $ST$
-is the same thing we get from interpreting the function $S \circ T$ as a matrix.
+is the same thing we get from interpreting the composed function $S \circ T$ as a matrix.
 (Check this for yourself!)
 In particular, since function composition is associative,
 it follows that matrix multiplication is as well.
