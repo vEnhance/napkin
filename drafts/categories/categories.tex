@@ -12,6 +12,7 @@
 \title{Categories}
 \maketitle
 
+% TODO: remember to update master file with new chapters
 \chapter{Objects and Morphisms}
 I can't possibly hope to do category theory any justice in these few chapters;
 thus I'll just give a very high-level overview of how many of the concepts we've
@@ -60,12 +61,13 @@ Let's use this to motivate the definition of a general \emph{category}.
 		We can represent this in a \vocab{commutative diagram}
 		\begin{diagram}
 			A_1 & \rTo^f & A_2 \\
-			& \rdDashed^{g \circ f} & \dTo_g \\
+			& \rdDashed^h & \dTo_g \\
 			&& A_3
 		\end{diagram}
-
-		The composition operation $\circ$ is part of $\AA$;
+		where $h = g \circ f$.
+		The composition operation $\circ$ is part of the data of $\AA$;
 		it must be associative.
+		In the diagram above we say that $h$ \vocab{factors} through $A_2$.
 		
 		\ii Finally, every object $A \in \obj(\AA)$ has a special \vocab{identity arrow} $\id_A$;
 		you can guess what it does.\footnote{To be painfully explicit: if $f : A' \to A$ is an arrow then $\id_A \circ f = f$;
@@ -250,7 +252,7 @@ Here are a couple examples.
 	[Initial Object]
 	An \vocab{initial object} of $\AA$ is an object
 	$A_{\text{init}} \in \AA$ such that for any $A \in \AA$ (possibly $A = A_{\text{init}}$),
-	there is exactly one arrow from $A$ to $A_{\text{init}}$.
+	there is exactly one arrow from $A_{\text{init}}$ to $A$.
 	For example,
 	\begin{enumerate}[(a)]
 		\ii The initial object of $\catname{Set}$ is the empty set $\varnothing$.
@@ -375,6 +377,8 @@ We can do this in any general category, defining a so-called product.
 		& \rdTo(4,1)_h && \rdProj(2,1)^{\pi_Y} & Y
 	\end{diagram}
 	commutes.
+	In other words, if $A \taking g X$ and $A \taking h Y$,
+	then each of $g$ and $h$ \emph{factors uniquely} through $X \times Y$.
 \end{definition}
 \begin{abuse}
 	Strictly speaking, the product should consist of \emph{both} the object $X \times Y$
@@ -495,16 +499,19 @@ A cone over this fork is an object $A$ and arrows over $X$ and $Y$ which make th
 \end{diagram}
 Effectively, the arrow over $Y$ is just forcing $f \circ q = g \circ q$.
 In any case, the \vocab{equalizer} of $f$ and $g$ is a ``universal cone'' over this fork:
-a map $E \taking{e} X$ such that $\exists ! h : A \to E$ with
+a map $E \taking{e} X$ such that $\exists ! h : A \to E$ such that
 \begin{diagram}
 	& A & \\
 	\ldTo(1,3)^q & \dTo~{!\exists h} & \rdDashed(1,3) \\
 	& E & \\
 	X \ldTo(1,1)^e & \pile{\rTo^f \\ \rTo_g} & \rdDashed(1,1) Y \\
 \end{diagram}
-Again, the dotted arrows can be omitted.
+commutes; in other words, any map $A \taking{q} X$ equalizing $X \taking{f,g} Y$
+must factor uniquely through $E$.
+Again, the dotted arrows can be omitted, and as before equalizers may not exist.
+But when they do exist:
 \begin{exercise}
-	Show uniqueness up of equalizers up to unique isomorphism (when they exist).
+	Show uniqueness of equalizers up to unique isomorphism).
 \end{exercise}
 
 \begin{example}
@@ -521,7 +528,7 @@ Again, the dotted arrows can be omitted.
 		(e.g. one should check that $\{\phi(g) = \psi(g) \mid g \in G\}$ is a group).
 
 		\ii In particular, given a homomorphism $\phi : G \to H$, the inclusion
-		\[ \ker\phi \injto G \]
+		$ \ker\phi \injto G $
 		is an equalizer for the fork $G \to H$ by $\phi$ and the trivial homomorphism.
 	\end{enumerate}
 \end{example}
@@ -539,7 +546,7 @@ We'll flesh this idea out in the chapter on abelian categories.
 	(For example, a fork is a diagram with two edges and two parallel arrows.)
 	If you then demand the cone be universal, you have the extremely general definition of a \vocab{limit}.
 	As always, these are unique up to unique isomorphism.
-	We can also define the dual notion of a colimits in the same way.
+	We can also define the dual notion of a \vocab{colimits} in the same way.
 \end{remark}
 
 \section{Monic and Epic Maps}
@@ -569,6 +576,9 @@ In all these categories, the definition of monic literally reads ``$f$ is inject
 So in these categories, ``monic'' and ``injective'' coincide.
 (But there are some examples of categories without free objects where one can have monic,
 non-injective maps.)
+\begin{ques}
+	Show that the composition of two monic maps is monic.
+\end{ques}
 
 Of course, we can also take the dual notion.
 \begin{definition}
@@ -622,9 +632,10 @@ Most notably:
 	\label{prob:associative_product}
 \end{problem}
 
-\begin{problem}[Equalizers are Monic]
+\begin{sproblem}[Equalizers are Monic]
 	Show that the equalizer of any fork is monic.
-\end{problem}
+	\label{prob:equalizer_monic}
+\end{sproblem}
 
 \begin{problem}
 	\gim
@@ -666,6 +677,7 @@ and so we can now think about maps between categories.
 		then $F(g \circ f) = F(g) \circ F(f)$.
 	\end{itemize}
 \end{definition}
+
 \begin{example}
 	[Free and Forgetful Functors]
 	Note that these are both informal terms.
@@ -686,10 +698,12 @@ and so we can now think about maps between categories.
 	\end{enumerate}
 \end{example}
 \begin{remark}
-	We can actually use this to give a definition of concrete category:
-	it's a category with an ``injective'' forgetful functor to $U: \AA \to \catname{Set}$
-	(The correct definition of ``injective'' here is \vocab{faithful}: no two arrows in $\AA$
-	get sent to the same arrow in $\catname{Set}$.)
+	There is also a notion of ``injective'' and ``surjective'' for functors (on arrows) as follows.
+	A functor $F : \AA \to \BB$ is \vocab{faithful}/\vocab{full} if for any $A_1, A_2$,
+	$F : \Hom_\AA(A_1, A_2) \to \Hom_\BB(FA_1, FA_2)$ is injective/surjective.
+
+	We can use this to give an exact definition of concrete category:
+	it's a category with an faithful forgetful functor to $U: \AA \to \catname{Set}$.
 \end{remark}
 
 \begin{example}
@@ -710,36 +724,37 @@ and so we can now think about maps between categories.
 \begin{exercise}
 	Check the above group-based functors work as advertised.
 \end{exercise}
-%Now we present one much trickier example.
-%If you don't get this one at first, skip it and come back later.
-%\begin{example}
-%	[Covariant Yoneda Functor]
-%	For a category $\AA$, define the \vocab{covariant Yoneda functor} $H^A : \AA \to \catname{Set}$
-%	by defining \[ H^A(A_1) \defeq \Hom_\AA (A, A_1) \in \catname{Set}. \]
-%	Hence each $A_1$ is sent to the \emph{arrows from $A$ to $A_1$};
-%	so \textbf{$H^A$ describes how $A$ sees the world}.
-%	Now we want to specify how $H^A$ behaves on arrows.
-%	For each arrow $A_1 \taking{f} A_2$, we need
-%	to specify $\catname{Set}$-map $\Hom_\AA (A, A_1) \to \Hom(A, A_2)$;
-%	in other words, we need to send an arrow $A \taking{p} A_1$ to an arrow $A \to A_2$.
-%	There's only one reasonable way to do this: take the composition
-%	\[ A \taking{p} A_1 \taking{f} A_2. \]
-%	In other words, $H_A(f)$ is $p \mapsto p \circ f$.
-%	In still other words, $H_A(f) = - \circ f$;
-%	the $-$ is a slot for the input to go into.
-%\end{example}
+
+Now we present one much trickier example.
+If you don't get this one at first, skip it and come back later.
+\begin{example}
+	[Covariant Yoneda Functor]
+	For a category $\AA$, define the \vocab{covariant Yoneda functor} $H^A : \AA \to \catname{Set}$
+	by defining \[ H^A(A_1) \defeq \Hom_\AA (A, A_1) \in \catname{Set}. \]
+	Hence each $A_1$ is sent to the \emph{arrows from $A$ to $A_1$};
+	so \textbf{$H^A$ describes how $A$ sees the world}.
+	Now we want to specify how $H^A$ behaves on arrows.
+	For each arrow $A_1 \taking{f} A_2$, we need
+	to specify $\catname{Set}$-map $\Hom_\AA (A, A_1) \to \Hom(A, A_2)$;
+	in other words, we need to send an arrow $A \taking{p} A_1$ to an arrow $A \to A_2$.
+	There's only one reasonable way to do this: take the composition
+	\[ A \taking{p} A_1 \taking{f} A_2. \]
+	In other words, $H_A(f)$ is $p \mapsto p \circ f$.
+	In still other words, $H_A(f) = - \circ f$;
+	the $-$ is a slot for the input to go into.
+\end{example}
 
 As another example:
 \begin{ques}
 	If $\mathbb P$ and $\mathbb Q$ are posets interpreted as categories,
 	what does a functor from $\mathbb P$ to $\mathbb Q$ represent?
 \end{ques}
-\begin{exercise}
+\begin{ques}
 	Verify that there is a category of \emph{all categories},
 	$\catname{Cat}$, whose arrows are functors.
 	In particular, you will need to name the ``identity functors''
 	and verify that the composition of a functor is also a functor.
-\end{exercise}
+\end{ques}
 
 The dual notion of a functor is a \vocab{contravariant functor}.
 They work exactly the same way, except the arrows get flipped by the functor.
@@ -1085,23 +1100,323 @@ this will require some additional assumptions about our category,
 culminating in the definition of a so-called ``abelian category''.
 Once that's done, I'll be able to tell you what this ``diagram chasing'' thing is all about.
 
-Much of this will seem exceedingly unmotivated until you learn about homology groups.
+Throughout this chapter, ``$\injto$'' will be used for monic maps and ``$\surjto$'' for epic maps.
+
+\section{Zero Objects, Kernels, Cokernels, and Images}
+\prototype{In $\catname{Grp}$, the trivial group and homomorphism are the zero objects and morphisms.
+If $G$, $H$ are abelian then $\phi : G \to H$ is $H/\img \phi$.}
+
+A \vocab{zero object} of a category is an object $0$ which is both final and terminal;
+of course, it's unique up to unique isomorphism.
+For example, in $\catname{Grp}$ the zero object is the trivial group, 
+in $\catname{Vect}_k$ it's the zero-dimensional vector space consisting of one point, and so on.
+\begin{ques}
+	Show that $\catname{Set}$ and $\catname{Top}$ don't have zero objects.
+\end{ques}
+For the rest of this chapter, all categories will have zero objects.
+
+In a category $\AA$ with zero objects, any two objects $A$ and $B$ thus have a distinguished morphism
+\[ A \to 0 \to B \]
+which is called the \vocab{zero morphism} and also denoted $0$.
+For example, in $\catname{Grp}$ this is the trivial homomorphism.
+
+We can now define:
+\begin{definition}
+	Consider a map $A \taking f B$.
+	The \vocab{kernel} is defined as the equalizer of this map and the map $A \taking 0 B$.
+	Thus, it's a map $\ker A : \Ker A \injto A$ such that
+	\begin{diagram}
+		\Ker A && \\
+		\dInj^{\ker A} & \rdDashed^0 & \\
+		A & \rTo_f & B
+	\end{diagram}
+	commutes, and moreover any other map with the same property factors uniquely through $\Ker A$
+	(so it is universal with this property).
+	By \Cref{prob:equalizer_monic}, $\ker A$ is a monic morphism, 
+	which justifies the use of ``$\injto$''.
+\end{definition}
+Notice that we're using $\ker f$ to represent the map and $\Ker f$ to represent the object
+Similarly, we define the cokernel, the dual notion:
+\begin{definition}
+	Consider a map $A \taking f B$.
+	The \vocab{cokernel} is defined as the coequalizer of this map and the map $A \taking 0 B$.
+	Thus, it's a map $\coker B: B \surjto \Coker B$ such that
+	\begin{diagram}
+		A & \rTo^f & B \\
+		& \rdDashed_0 & \dSurj_{\coker B} \\
+		&& \Coker B
+	\end{diagram}
+	commutes, and moreover any other map with the same property factors uniquely through $\Ker A$
+	(so it is universal with this property).
+	By the dual of \Cref{prob:equalizer_monic}, $\coker A$ is a epic morphism,
+	which justifies the use of ``$\surjto$''.
+\end{definition}
+Think of the cokernel of a map $A \taking f B$ as ``$B$ modulo the image of $f$'', e.g.
+\begin{example}
+	[Cokernels]
+	Consider the map $\Zc6 \to D_{12} = \left\langle r,s \mid r^6=s^2=1, rs=sr\inv\right\rangle$.
+	Then the cokernel of this map in $\catname{Gp}$ is $D_{12} / \left\langle r \right\rangle \cong \Zc 2$.
+\end{example}
+This doesn't always work out quite the way we want since in general the image of
+a homomorphism need not be normal in the codomain.
+Nonetheless, we can use this to define:
+\begin{definition}
+	The \vocab{image} of $A \taking f B$ is the kernel of $\coker f$.
+	We denote $\Img f = \Ker(\coker f)$.
+	This gives a unique map $\img f : A \to \Img f$.
+\end{definition}
+When it exists, this coincides with our concrete notion of ``image''.
+Picture:
+\begin{diagram}
+	A & \rTo^f & B \\
+	& \rdTo(1,2)~{\exists!} \rdDashed(3,2)^{0\qquad\qquad} \ruInj(1,2) & & \rdSurj(1,2)^{\coker B} \\
+	& \Img f & \rDashed^0 & \Coker B
+\end{diagram}
+Note that by universality of $\Img f$,
+we find that there is a unique map $\img f : A \to \Img f$ that makes the entire diagram commute.
+
+\section{Additive and Abelian Categories}
+\prototype{$\catname{Ab}$, $\catname{Vect}_k$ are abelian categories.}
+We can now define the notion of an additive and abelian category,
+which are the types of categories where this notion is most useful.
+
+\begin{definition}
+	An \vocab{additive category} $\AA$ is one with the following properties.
+	\begin{itemize}
+		\ii $\AA$ has a zero object, and any two objects has a product.
+		\ii More importantly: every $\Hom_\AA(A, B)$ forms an \emph{abelian group} (written additively)
+		such that composition distributions over addition:
+		\[ (g+h)\circ f = g\circ f + h\circ f
+			\quad\text{and}\quad
+			f\circ(g+h) = f\circ g + f \circ h. \]
+		The zero map serves as the identity element for each group.
+\end{itemize}
+\end{definition}
+\begin{definition}
+	An \vocab{abelian category} $\AA$ is one with the additional properties that
+	for any morphism $A \taking f B$,
+	\begin{itemize}
+		\ii The kernel and cokernel exist, and
+		\ii The morphism factors through the image so that $\img(f)$ is epic.
+	\end{itemize}
+	So, this yields a diagram
+	\begin{diagram}
+		\Ker(f) & \rInj^{\quad\ker(f)} & A & \rSurj^{\img(f)\quad} & \Img(f) & \rInj & B & \rSurj^{\coker(f)} \Coker(f).
+	\end{diagram}
+\end{definition}
+
+\begin{example}[Examples of Abelian Categories]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii $\catname{Vect}_k$, $\catname{Ab}$ are abelian categories,
+		where $f+g$ takes its usual meaning.
+		\ii $\catname{Grp}$ is not even additive, because there is no way to assign
+		a commutative addition to pairs of morphisms.
+	\end{enumerate}
+\end{example}
+
+In general, once you assume a category is abelian, all the properties you would want
+of these kernels, cokernels, \dots\ that you would guess hold true.
+For example,
+\begin{proposition}
+	A map $A \taking f B$ is monic if and only if its kernel is $0 \to A$.
+	Dually, $A \taking f B$ is epic if and only if its cokernel is $B \to 0$.
+\end{proposition}
+\begin{proof}
+	The easy direction is:
+	\begin{exercise}
+		Show that if $A \taking f B$ is monic, then $0 \to A$ is a kernel.
+		(This holds even in non-abelian categories.)
+	\end{exercise}
+	Of course, since kernels are unique up to isomorphism, this establishes
+	monic $\implies$ $0$ kernel.
+	
+	On the other hand, assume that $0 \to A$ is a kernel of $A \taking f B$.
+	For this we can use exploit the group structure of the underlying homomorphisms now.
+	Assume that the diagram
+	\begin{diagram}
+		Z & \pile{\rTo^g \\ \rTo_h} & A & \rTo^f & B
+	\end{diagram}
+	commutes.
+	Then $(g - h) \circ f = g \circ f - h \circ f = 0$, and we've arrived at a commutative diagram.
+	\begin{diagram}
+		Z && \\
+		\dTo^{g-h} & \rdDotted^0 & \\
+		A & \rTo_f & B
+	\end{diagram}
+	But since $0 \to A$ is a kernel it follows that $g-h$ factors through $0$,
+	so $g-h = 0 \implies g = h$, which is to say that $f$ is monic.
+\end{proof}
+\begin{proposition}
+	A map is an isomorphsim if and only if it is monic and epic.
+\end{proposition}
+\begin{proof}
+	Omitted, because the Mitchell Embedding Theorem presented in a moment will trivialize this.
+\end{proof}
+
+\section{Exact Sequences}
+\prototype{$0 \to G \to G \times H \to H \to 0$ is exact.}
+Exact sequences will seem exceedingly unmotivated until you learn about homology groups,
+which is one of the most natural places that exact sequences appear.
 In light of this, it might be worth trying to read the chapter on homology groups
 simultaneously with this one.
 
-\section{Zero Objects, Kernels and Cokernels}
-\prototype{In $\catname{Grp}$, the zero object is $\{1\}$.}
+First, let me state the definition for groups, to motivate the general categorical definition.
+A sequence of groups
+\[ G_0 \taking{f_1} G_1 \taking{f_2} G_2 \taking{f_3} \dots \taking{f_n} G_n \]
+is \emph{exact} at $G_k$ if the image of $f_k$ is the kernel of $f_{k+1}$.
+We say the entire sequence is exact if it's exact at $k=1,\dots,n-1$.
+\begin{example}
+	[Exact Sequences]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii The sequence
+		\[ 0 \to \Zc 3
+			\overset{\times 5}{\injto} \Zc{15}
+			\surjto \Zc{5}
+			\to 0 \]
+		is exact.
+		Actually, $0 \to G \injto G \times H \surjto H \to 0$ is exact in general.
+		(Here $0$ denotes the trivial group.)
+		\ii For groups, the map $0 \to A \to B$ is exact if and only if $A \to B$ is injective.
+		\ii For groups, the map $A \to B \to 0$ is exact if and only if $A \to B$ is surjective.
+	\end{enumerate}
+\end{example}
 
-You already know for groups, rings, vector spaces, etc.\ what a kernel is:
-if I have an arrow $\phi : A \to B$, I define $\ker A$ to be the set of guys which $\phi$ sends to zero.
+Now, we want to mimic this definition in a general \emph{abelian} category $\AA$.
+So, let's write down a criteria for when $A \taking f B \taking g C$ is exact.
+First, we had better have that $g \circ f = 0$, which encodes the fact that $\img(g) \subset \ker(f)$.
+Adding in all the relevant objects, we get the commutative diagram below.
+\begin{diagram}
+	A && \rDashed^0 && C \\
+	\dSurj^{\img f} & \rdTo(2,1)^f & B & \ruTo(2,1)^g & \uDashed_0 \\
+	\Img f & \ruInj(2,1)_{\iota} & \rDotted_{\exists!} & \luInj(2,1) & \Ker g \\
+\end{diagram}
+Here the map $A \surjto \Img f$ is epic since we are assuming $\AA$ is an abelian category.
+So, we have that
+\[ 0 = (g \circ \iota) \circ \img f = g \circ (\iota \circ \img f) = g \circ f = 0 \]
+but since $\img f$ is epic, this means that $g \circ \iota = 0$.
+So there is a \emph{unique} map $\Img f \to \Ker g$, and we require that this diagram commutes.
+In short,
+\begin{definition}
+	Let $\AA$ be an abelian category. The sequence
+	\[ A_0 \taking{f_1} A_1 \taking{f_2} A_2 \taking{f_3} \dots \taking{f_n} A_n \]
+	is \vocab{exact} at $A_i$ if $f_i \circ f_{i+1} = 0$ and
+	the canonical map $\Img f_i \to \Ker f_{i+1}$ is an isomorphism.
+	The entire sequence is exact if it is exact at each $A_i$ ($1 \le i \le n-1$).
+\end{definition}
 
-Define a kernel using equalizers
+\begin{exercise}
+	Show that, as before, $0 \to A \to B$ is exact $\iff$ $A \to B$ is monic.
+\end{exercise}
 
-\section{Exact Sequences}
-\prototype{$0 \to G \to G \times H \to H \to 0$}
+\section{The Freyd-Mitchell Embedding Theorem}
+We now introduce the Freyd-Mitchell Embedding Theorem,
+which essentially says that any abelian category can be realized as a concrete one.
+
+\begin{definition}
+	A category is \vocab{small} if $\obj(\AA)$ is a set (as opposed to a class),
+	i.e.\ there is a ``set of all objects in $\AA$''.
+	For example, $\catname{Set}$ is not small because there is no set of all sets.
+\end{definition}
+
+\begin{theorem}
+	[Freyd-Mitchell Embedding Theorem]
+	Let $\AA$ be a small abelian category.
+	Then there exists a ring $R$ (with $1$ but possibly non-commutative)
+	and a full, faithful, exact functor onto the category of left $R$-modules.
+\end{theorem}
+Here a functor is \vocab{exact} if it preserves exact sequences.
+Essentially, this says that for any concrete category and any suitably small sub-diagram,
+it suffices to think about the objects of $\AA$ as ``concrete'' objects with appropriate morphisms.
+This opens up the so-called technique of \emph{diagram chasing}.
+
+For example, let's prove the following.
+\begin{lemma}
+	[Short Five Lemma]
+	In an abelian category, consider the commutative diagram
+	\begin{diagram}
+		0 & \rTo & A & \rInj^p & B & \rSurj^q & C & \rTo & 0 \\
+		&& \dTo^\simeq_\alpha && \dTo_\beta && \dTo^\simeq_\gamma && \\
+		0 & \rTo & A' & \rInj^{p'} & B' & \rSurj^{q'} & C' & \rTo & 0
+	\end{diagram}
+	and assume the top and bottom rows are exact.
+	If $\alpha$ and $\gamma$ are isomorphisms, then so is $\beta$.
+\end{lemma}
+
+\begin{proof}
+	We prove that $\beta$ is epic (with a dual proof to get monic).
+
+	One can show that it's possible to take a small subcategory of $\AA$
+	containing the $10$ elements and $13$ arrows above, as well as all necessary
+	kernels, cokernels, et cetera.
+	(Essentially, let $\BB_0$ be the diagram above and let $\BB_{i+1}$ add in any needed objects;
+	then $\bigcup \BB_i$ is a set-sized category).
+	Therefore by the Embedding Theorem we can treat the category as $R$-modules over some $R$.
+
+	This lets us do a so-called ``diagram chase'' where we move elements around the picture,
+	using the concrete interpretation of our category of $R$-modules.
+
+	Let $b'$ be an element of $B'$.
+	Then $q'(b') \in C'$, and since $\gamma$ is surjective, so we have a $c$ such that $\gamma(c) = b'$,
+	and finally a $b \in B$ such that $q(b) = c$.
+	Picture:
+	\begin{diagram}
+		b \in B & \rMapsto^q & c \in C \\
+		\dDashed_\beta && \dMapsto^\simeq_\gamma \\
+		b' \in B' & \rMapsto^{q'} & c' \in C'
+	\end{diagram}
+	Now, it is not necessarily the case that $\beta(b) = b'$.
+	However, since the diagram commutes we at least have that
+	\[ q'(b') = q'(\beta(b)) \]
+	so $b' - \beta(b) \in \ker q' = \img p'$, and there is an $a' \in A$ such that
+	$p'(a') = b' - \beta(b)$;
+	use $\alpha$ now to lift it to $a \in A$.
+	Picture:
+	\begin{diagram}
+		a \in A && b \in B && \\
+		\dMapsto && && \\
+		a' \in A' & \rMapsto & b'-\beta(b) \in B' & \rMapsto & 0 \in C'
+	\end{diagram}
+	Then, we have
+	\[
+		\beta(b + q(a)) = \beta b + \beta p a
+		= \beta b + p' \alpha a
+		= \beta b + (b' - \beta b)
+		= b'
+	\]
+	so $b' \in \img \beta$ which completes the proof that $\beta'$ is surjective.
+\end{proof}
 
 
-
+\section\problemhead
+\begin{problem}
+	[Five Lemma]
+	\gim
+	In an abelian category, consider the commutative diagram
+	\begin{diagram}
+		A & \rTo^p & B & \rTo^q & C & \rTo^r & D & \rTo^s & E \\
+		\dSurj_\alpha && \dTo^\simeq_\beta && \dTo_\gamma && \dTo^\simeq_\delta && \dInj_\eps \\
+		A' & \rTo_{p'} & B' & \rTo_{q'} & C' & \rTo_{r'} & D' & \rTo_{s'} & E'
+	\end{diagram}
+	where the first and second rows are exact.
+	Prove that if $\alpha$ is epic, $\eps$ is monic, and $\beta$, $\delta$ are isomorphisms,
+	then $\gamma$ is an isomorphism as well.
+	Thus this is a stronger version of the short five lemma.
+\end{problem}
+\begin{sproblem}
+	[Snake Lemma]
+	\yod
+	In an abelian category, consider the diagram
+	\begin{diagram}
+		&& A & \rTo^f & B & \rSurj^g & C & \rTo & 0 \\
+		&& \dTo_a && \dTo_b && \dTo_c && \\
+		0 & \rTo & A' & \rInj_{f'} & B' & \rTo_{g'} & C' && 
+	\end{diagram}
+	where the first and second rows are exact sequences.
+	Prove that there is an exact sequence
+	\[ \Ker a \to \Ker b \to \Ker c \to \Coker a \to \Coker b \to \Coker c. \]
+\end{sproblem}
 
 
 \end{document}
