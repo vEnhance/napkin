@@ -72,7 +72,7 @@ and $[\half, 1]$ for the second path; we run ``twice as fast''.
 This hack unfortunately reveals a second shortcoming: this ``product'' is not associative.
 If we take $(\gamma_1 \ast \gamma_2) \ast \gamma_3$ for some suitable paths,
 then $[0, \frac14]$, $[\frac14, \frac12]$ and $[\frac12, 1]$
-as the times allocated for $\gamma_1$, $\gamma_2$, $\gamma_3$.
+are the times allocated for $\gamma_1$, $\gamma_2$, $\gamma_3$.
 \begin{ques}
 	What are the times allocated
 	for $\gamma_1 \ast (\gamma_2 \ast \gamma_3)$?
@@ -119,7 +119,7 @@ it is definitely true that
 It is also true that if $\alpha_1 \simeq \alpha_2$ and $\beta_1 \simeq \beta_2$ then $\alpha_1 \ast \beta_1 \simeq \alpha_2 \ast \beta_2$.
 
 Naturally, homotopy is an equivalence relation,
-so paths $\gamma$ lives in some ``homotype type'',
+so paths $\gamma$ lives in some ``homotopy type'',
 the equivalence classes under $\simeq$. We'll denote this $[\gamma]$.
 Then it makes sense to talk about $[\alpha] \ast [\beta]$.
 Thus, \textbf{we can think of $\ast$ as an operation on homotopy classes}.
@@ -304,7 +304,7 @@ Before you read the proof, see if you can guess the isomorphism based just on th
 	Let $\alpha$ be any path from $x_1$ to $x_2$ (possible by path-connectedness), and let $\ol\alpha$ be its reverse.
 	Then we can construct a map
 	\[ 
-		\pi_1(X,x_1) \to \pi(X,x_2)
+		\pi_1(X,x_1) \to \pi_1(X,x_2)
 		\text{ by }
 		[\gamma] \mapsto [\ol\alpha \ast \gamma \ast \alpha]. \]
 	In other words, given a loop $\gamma$ at $x_1$,
@@ -320,7 +320,7 @@ Before you read the proof, see if you can guess the isomorphism based just on th
 
 	Similarly, there is a homomorphism
 	\[ 
-		\pi_1(X,x_2) \to \pi(X,x_1)
+		\pi_1(X,x_2) \to \pi_1(X,x_1)
 		\text{ by }
 		[\gamma] \mapsto [\alpha \ast \gamma \ast \ol\alpha]. \]
 	As these maps are mutual inverses, it follows
@@ -403,7 +403,7 @@ The answer lies in the following rephrasing:
 	as a continuous function $S^1 \to X$.
 \end{ques}
 It turns out we can define homotopy for things other than paths.
-Two functions $f, g : Y \to X$ if there exists a continuous
+Two functions $f, g : Y \to X$ are \vocab{homotopic} if there exists a continuous
 function $Y \times [0,1] \to X$ which continuously deforms $f$ to $g$.
 So everything we did above was just the special case $Y = S^1$.
 
@@ -486,7 +486,7 @@ Elaborate on this one}
 I bring this up because I want to give the following next definition.
 \begin{definition}
 	Let $X$ and $Y$ be continuous spaces.
-	They are \vocab{homotopy equivalent} if there exists
+	They are \vocab{homotopy equivalent} if there exist
 	functions $f : X \to Y$ and $g : Y \to X$ such that
 	\begin{enumerate}[(i)]
 		\ii $f \circ g : X \to X$ is homotopic to the identity map on $X$, and
@@ -528,14 +528,14 @@ and bending than homeomorphism: we are allowed to compress huge spaces into sing
 	You can check that these satisfy the required condition.
 \end{example}
 \begin{remark}
-	$\CC \setminus \{0\}$ cannot be homeomorphic to $S^1$
+	On the other hand, $\CC \setminus \{0\}$ cannot be \emph{homeomorphic} to $S^1$
 	for the following reason:
 	one can make $S^1$ disconnected by deleting two points;
 	the same is not true for $\CC \setminus \{0\}$.
 \end{remark}
 \begin{example}
 	[$\text{Disk} = \text{Point}$, $\text{Annulus} = \text{Circle}$.]
-	By the same tokens, a disk is homotopic to a point;
+	By the same token, a disk is homotopic to a point;
 	an annulus is homotopic to a circle.
 	(This might be a little easier to visualize, since it's finite.)
 \end{example}
@@ -589,8 +589,8 @@ That means, for example, that algebraic topology can't tell the following homoto
 
 \begin{problem}[Harmonic Fan]
 	Exhibit a subspace $X$ of the metric space $\RR^2$ which is
-	path-connected but for which a point $p$ can be found such
-	any $r$-neighborhood $p$ with $r < \half$ is not path-connected.
+	path-connected but for which a point $p$ can be found such that
+	any $r$-neighborhood of $p$ with $r < 1$ is not path-connected.
 	% harmonic fan
 \end{problem}
 
@@ -603,7 +603,7 @@ That means, for example, that algebraic topology can't tell the following homoto
 	Prove that if $\pi_1(U) = \pi_1(V) = \{1\}$ then $\pi_1(X) = 1$.
 \end{dproblem}
 \begin{remark}
-	The \vocab{Seifert van Kampen theorem} generalizes this 
+	The \vocab{Seifert--van Kampen theorem} generalizes this 
 	for $\pi_1(U)$ and $\pi_1(V)$ any groups; it gives a formula for calculating $\pi_1(X)$
 	in terms of $\pi_1(U)$, $\pi_1(V)$, $\pi_1(U \cap V)$.
 	The proof is much the same.

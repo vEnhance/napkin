@@ -42,7 +42,8 @@ and so we can now think about maps between categories.
 		gives a map $U(T) : U(V) \to U(W)$ of the underlying point-sets.
 		In other words we ``forget'' that $V$ has a vector space structure.
 
-		Similarly there are forgetful functors from $\catname{Grp}$, $\catname{Ring}$, etc. to set.
+		Similarly there are forgetful functors from $\catname{Grp}$, $\catname{Ring}$,
+		etc. to $\catname{Set}$.
 		There is even a forgetful functor $\catname{Ring} \to \catname{Grp}$: send a ring $R$
 		to the abelian group $(R,+)$.
 
@@ -53,11 +54,11 @@ and so we can now think about maps between categories.
 \end{example}
 \begin{remark}
 	There is also a notion of ``injective'' and ``surjective'' for functors (on arrows) as follows.
-	A functor $F : \AA \to \BB$ is \vocab{faithful}/\vocab{full} if for any $A_1, A_2$,
-	$F : \Hom_\AA(A_1, A_2) \to \Hom_\BB(FA_1, FA_2)$ is injective/surjective.
+	A functor $F : \AA \to \BB$ is \vocab{faithful} (resp.\ \vocab{full}) if for any $A_1, A_2$,
+	$F : \Hom_\AA(A_1, A_2) \to \Hom_\BB(FA_1, FA_2)$ is injective (resp.\ surjective).
 
 	We can use this to give an exact definition of concrete category:
-	it's a category with an faithful forgetful functor to $U: \AA \to \catname{Set}$.
+	it's a category with an faithful (forgetful) functor $U: \AA \to \catname{Set}$.
 \end{remark}
 
 \begin{example}
@@ -72,7 +73,7 @@ and so we can now think about maps between categories.
 		This is one way groups historically arose; the theory of viewing groups as matrices
 		forms the field of representation theory.
 		\ii Let $H$ be a group and construct $\mathcal H$ the same way.
-		Then functors $\mathcal G \to \mathcal H$ correspond to homomorphism $G \to H$.
+		Then functors $\mathcal G \to \mathcal H$ correspond to homomorphisms $G \to H$.
 	\end{enumerate}
 \end{example}
 \begin{exercise}
@@ -112,7 +113,7 @@ As another example:
 
 The dual notion of a functor is a \vocab{contravariant functor}.
 They work exactly the same way, except the arrows get flipped by the functor.
-You can think of this is a functor $\AA \to \BB^{\text{op}}$ (equivalently, $\AA^{\text{op}} \to \BB$). Pictorially:
+You can think of this as a functor $\AA \to \BB^{\text{op}}$ (equivalently, $\AA^{\text{op}} \to \BB$). Pictorially:
 \begin{diagram}
 	& A_1 & & B_1 & = F(A_1) & \\
 	\AA \ni & \dTo^f & \rDotted^F & \uTo_{F(f)} && \in \BB \\
@@ -190,7 +191,7 @@ and the proof is done solely through arrows.
 This will be super convenient in algebraic topology, for example.
 We'll show from a space $X$ you can create a group $\pi_n(X)$ or $H_n(X)$ that
 gives information about the space $X$.
-If we can show verify this is in fact a functor $\catname{Top} \to \catname{Grp}$,
+If we can show this is in fact a functor $\catname{Top} \to \catname{Grp}$,
 then for $X \cong Y$, we get for free that $\pi_n(X) \cong \pi_n(Y)$ and $H_n(X) \cong H_n(Y)$.
 
 \section{Natural Transformations}
@@ -199,7 +200,7 @@ and it's included here just for completeness.
 
 We made categories to keep track of objects and maps, then went a little crazy and asked
 ``what are the maps between categories?'' to get functors.
-Now we'll ask ``what are the maps between functions?'' to get natural transformations.
+Now we'll ask ``what are the maps between functors?'' to get natural transformations.
 
 It might sound terrifying that we're drawing arrows between functors, but this is actually an old idea.
 Recall that given two paths $\alpha, \beta : [0,1] \to X$,
@@ -303,12 +304,12 @@ A picture might help: consider
 		draw(sparrow(FF*A1, B4), p, EndArrow);
 	\end{asy}
 \end{center}
-Here $\AA$ is the small black category with three elements and two non-identity arrows $f$, $g$.
+Here $\AA$ is the small black category with three elements and two non-identity arrows $f$, $g$
 (I've omitted the identity arrows for simplicity).
 The images of $\AA$ under $F$ and $G$ are the blue and green ``subcategories'' of $\BB$.
 Note that $\BB$ could potentially have many more objects and arrows in it (grey).
 The natural transformation $\alpha$ (red) selects an arrow of $\BB$ from each $F(A)$
-to the corresponding $G(A)$, such dragging the entire image of $F$ to the image of $G$.
+to the corresponding $G(A)$, dragging the entire image of $F$ to the image of $G$.
 Finally, we require that any diagram formed by the blue, red, and green arrows is commutative (naturality),
 so the natural transformation is really ``natural''.
 
@@ -326,11 +327,11 @@ There is a second equivalent definition that looks much more like the homotopy.
 	\end{center}
 	Then a \emph{natural transformation} 
 	$ \nattfm{\AA}{F}{\alpha}{G}{\BB} $
-	is just a functor $\alpha : \AA \times \mathbf 2 \to \BB$ with
+	is just a functor $\alpha : \AA \times \mathbf 2 \to \BB$ satisfying
 	\[ \alpha(0,A) = F(A), \;\; \alpha(0,f) = F(f) 
 		\quad\text{and}\quad
 	\alpha(1,A) = G(A), \;\; \alpha(1,f) = G(f). \]
-	or more succinctly, $\alpha(0,-) = F$, $\alpha(1,-) = G$.
+	More succinctly, $\alpha(0,-) = F$, $\alpha(1,-) = G$.
 \end{definition}
 The proof that these are equivalent is left as a practice problem.
 

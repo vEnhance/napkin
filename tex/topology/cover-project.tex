@@ -182,7 +182,7 @@ and that's why we start at any integer $n$.)
 After that we just trace along the path in $B$, and we get
 a corresponding path in $E$.
 \begin{ques}
-	Take a path $\gamma$ in $S^1$ with at $\gamma(0) = 1 \in \CC$.
+	Take a path $\gamma$ in $S^1$ with $\gamma(0) = 1 \in \CC$.
 	Convince yourself that once we select an integer $n \in \RR$,
 	then there is exactly one lifting starting at $n$.
 \end{ques}
@@ -200,10 +200,10 @@ It turns out this is true more generally.
 	Then the family of open sets
 	\[ \left\{ \gamma\pre(U_b) \mid b \in B \right\} \]
 	is an open cover of $[0,1]$.
-	Since $[0,1]$ is a compact metric space, we can take a finite subcover.
-	It follows that we can chop $[0,1]$ into finitely many disjoint closed intervals
+	As $[0,1]$ is compact we can take a finite subcover.
+	Thus we can chop $[0,1]$ into finitely many disjoint closed intervals
 	$[0,1] = I_1 \sqcup I_2 \sqcup \dots \sqcup I_N$ in that order,
-	with the property that for every $I_k$, $\gamma``(I_k)$ is contained
+	such that for every $I_k$, $\gamma``(I_k)$ is contained
 	in some $U_b$.
 
 	We'll construct $\tilde\gamma$ interval by interval now,
@@ -211,7 +211,10 @@ It turns out this is true more generally.
 	Initially, place a robot at $e_0 \in E$ and a mouse at $b_0 \in B$.
 	For each interval $I_k$, the mouse moves around according
 	to however $\gamma$ behaves on $I_k$.
-	But the whole time it's in some evenly covered $U_k$; the fact that $p$ is a covering projection tells us that there's are several copies of $U_k$ living in $E$. Exactly one of them, say $V_k$, contains our robot.
+	But the whole time it's in some evenly covered $U_k$;
+	the fact that $p$ is a covering projection tells us that
+	there are several copies of $U_k$ living in $E$.
+	Exactly one of them, say $V_k$, contains our robot.
 	So the robot just mimics the mouse until it gets to the end of $I_k$.
 	Then the mouse is in some new evenly covered $U_{k+1}$,
 	and we can repeat.
@@ -228,9 +231,10 @@ where $Y$ is some general path-connected space, as follows.
 	\label{thm:lifting}
 	Let $f: (Y,y_0) \to (B, b_0)$ be continuous and consider a covering projection $p : (E, e_0) \to (B, b_0)$.
 	(As usual, $Y$, $B$, $E$ are path-connected.)
-	Then a lifting  $\tilde f$ with $\tilde f(y_0) = e_0$ if and only if
-	\[ f_\ast``(\pi_1(Y, y_0)) \subseteq p_\ast``(\pi_1(E, e_0)). \]
-	(Here we view both sides as subgroups of $\pi_1(B, b_0)$.)
+	Then a lifting $\tilde f$ with $\tilde f(y_0) = e_0$ exists if and only if
+	\[ f_\ast``(\pi_1(Y, y_0)) \subseteq p_\ast``(\pi_1(E, e_0)), \]
+	i.e.\ the image of $\pi_1(Y, y_0)$ under $f$ is contained in
+	the image of $\pi_1(E, e_0)$ under $p$ (both viewed as subgroups of $\pi_1(B, b_0)$).
 	If this lifting exists, it is unique.
 \end{theorem}
 As $p$ is injective, we actually have $p_\ast``(\pi_1(E, e_0)) \cong \pi_1(E, e_0)$.
@@ -246,7 +250,7 @@ But in this case we are interested in the actual elements, not just the isomorph
 	Hence given a homotopy $\gamma_1 \simeq \gamma_2$ in the base space $B$, we can lift it to get
  a homotopy $\tilde\gamma_1 \simeq \tilde\gamma_2$ in $E$.
 \end{remark}
-Another nice application is \Cref{ch:complex_log}.
+Another nice application of this result is \Cref{ch:complex_log}.
 
 \section{Lifting Correspondence}
 \prototype{$(\RR,0)$ covers $(S^1,1)$.}
@@ -315,7 +319,7 @@ This motivates the following definition.
 
 \begin{example}[Fundamental Group of $S^1$]
 	Let's return to our standard $p : \RR \to S^1$.
-	Since $\RR$ is is simply connected, this is a universal cover of $S^1$.
+	Since $\RR$ is simply connected, this is a universal cover of $S^1$.
 	And indeed, the fiber of any point in $S^1$
 	is a copy of the integers: naturally in bijection with loops in $S^1$.
 	
@@ -334,7 +338,7 @@ Let $X$ be a topological space and $G$ a group acting on its points.
 Thus for every $g$, we get a map $X \to X$ by 
 \[ x \mapsto g \cdot x. \]
 We require that this map is continuous for every $g \in G$.\footnote{%
-	Another way of phrasing this as saying that the action,
+	Another way of phrasing this: the action,
 	interpreted as a map $X \times G \to X$, should be continuous,
 	where $G$ on the left-hand side is interpreted as a set with
 	the discrete topology.}
@@ -344,8 +348,8 @@ in the same orbit of this action.
 (The open sets of $X/G$ are just the open sets of $X$ after this identification.)
 In other words, the points of $X/G$ are the orbits of the action.
 Then we get a natural ``projection''
-\[ X \to G/X \]
-by simply sending every points to the orbit it lives in.
+\[ X \to X/G \]
+by simply sending every point to the orbit it lives in.
 \begin{definition}
 	Such a projection is called \vocab{regular}.
 	(Terrible, I know.)
@@ -405,10 +409,10 @@ by simply sending every points to the orbit it lives in.
 	As for the points on the equator, we can take half of them; the other half
 	gets fused with the corresponding antipodes.
 
-	Now if we flatten everything, you can think of the result as disk
+	Now if we flatten everything, you can think of the result as a disk
 	with half its boundary.
 	The resulting space has a name: \emph{real projective $2$-space},
-	denote $\mathbb{RP}^2$.
+	denoted $\mathbb{RP}^2$.
 	\begin{center}
 		\begin{asy}
 			size(3cm);
@@ -519,7 +523,7 @@ It's an absolute miracle that this is true more generally:
 the greatest triumph of covering spaces is the following result.
 Suppose a space $X$ has the following conditions.
 \begin{definition}
-	A space $X$ is called \vocab{locally connected} if for every point $x \in X$
+	A space $X$ is called \vocab{locally connected} if each point $x \in X$
 	has a connected neighborhood $U$.
 \end{definition}
 \begin{definition}
@@ -537,7 +541,7 @@ Then we get the following theorem.
 	Suppose $B$ is a connected, locally connected, semi-locally simply connected space.
 	Then:
 	\begin{itemize}
-		\ii Every subgroup of $H \subseteq \pi_1(B)$ corresponds
+		\ii Every subgroup $H \subseteq \pi_1(B)$ corresponds
 		to exactly one covering projection $p : E \to B$
 		with $E$ path-connected (up to isomorphism).
 

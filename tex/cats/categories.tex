@@ -11,10 +11,9 @@ If you're interested in category theory (like I was!), perhaps in
 what surprising results are true for general categories, I strongly recommend \cite{ref:msci}.
 
 \section{Motivation: Isomorphisms}
-From earlier chapters let's recall the definition of an \emph{isomorphism} of two objects.
-We had that
+From earlier chapters let's recall the definition of an \emph{isomorphism} of two objects:
 \begin{itemize}
-	\ii Two groups $G$ and $H$ were isomorphic if there was a bijective homomorphism:
+	\ii Two groups $G$ and $H$ are isomorphic if there was a bijective homomorphism:
 	equivalently, we wanted homomorphisms $\phi : G \to H$ and $\psi : H \to G$
 	which were mutual inverses, meaning $\phi \circ \psi = \id_H$ and $\psi \circ \phi = \id_G$.
 	\ii Two metric (or topological) spaces $X$ and $Y$ are isomorphic
@@ -64,7 +63,7 @@ Let's use this to motivate the definition of a general \emph{category}.
 	The reason we can't use the word ``set'' is because of some paradoxical issues with
 	collections which are too large;
 	Cantor's Paradox says there is no set of all sets.
-	So referring to these by ``class'' is a way of sidestepping this issues.
+	So referring to these by ``class'' is a way of sidestepping these issues.
 \end{remark}
 \begin{abuse}
 	From now on, by $A \in \AA$ we'll mean $A \in \obj(\AA)$.
@@ -211,7 +210,7 @@ Here's a second quite important example of a non-concrete category.
 \begin{exercise}
 	Verify the above!
 	That is, show that the data of a one-object category with all isomorphisms
-	is the same of the data of a group.
+	is the same as the data of a group.
 \end{exercise}
 
 Finally, here are some examples of categories you can make from other categories.
@@ -221,7 +220,7 @@ Finally, here are some examples of categories you can make from other categories
 	\begin{enumerate}[(a)]
 		\ii Given a category $\AA$, we can construct the \vocab{opposite category}
 		$\AA^{\text{op}}$, which is the same as $\AA$ but with all arrows reversed.
-		\ii Given a category $\AA$ and $\BB$, we can construct the \vocab{product category} $\AA \times \BB$
+		\ii Given categories $\AA$ and $\BB$, we can construct the \vocab{product category} $\AA \times \BB$
 		as follows: the objects are pairs $(A, B)$ for $A \in \AA$ and $B \in \BB$,
 		and the arrows from $(A_1, B_1)$ to $(A_2, B_2)$
 		are pairs \[ \left( A_1 \taking{f} A_2, B_1 \taking{g} B_2 \right). \]
@@ -249,11 +248,15 @@ Here are a couple examples.
 	\end{enumerate}
 \end{example}
 
-We justify the use of ``the'' by \Cref{prob:initial_object}:
-we'll show later that any two initial objects are isomorphic.
-In fact, you should probably do that problem now.
+We will usually refer to ``the'' initial object of a category, since:
+\begin{exercise}
+	[Important!]
+	Show that any two initial objects $A_1$, $A_2$ of $\AA$ are \emph{uniquely isomorphic}
+	meaning there is a unique isomorphism between them.
+\end{exercise}
+
 \begin{remark}
-	In mathematics, we really never know nor care if two objects are actually equal
+	In mathematics, we usually neither know nor care if two objects are actually equal
 	or whether they are isomorphic.
 	For example, there are many competing ways to define $\RR$,
 	but we still just refer to it as ``the'' real numbers.
@@ -267,7 +270,7 @@ In fact, you should probably do that problem now.
 One can take the ``dual'' notion, a terminal object.
 \begin{example}
 	[Terminal Object]
-	An \vocab{terminal object} of $\AA$ is an object
+	A \vocab{terminal object} of $\AA$ is an object
 	$A_{\text{final}} \in \AA$ such that for any $A \in \AA$ (possibly $A = A_{\text{final}}$),
 	there is exactly one arrow from $A$ to $A_{\text{final}}$.
 	For example,
@@ -276,7 +279,7 @@ One can take the ``dual'' notion, a terminal object.
 		(There are many singleton sets, of course, but \emph{as sets} they are all isomorphic!)
 		\ii The terminal object of $\catname{Grp}$ is the trivial group $\{1\}$.
 		\ii The terminal object of $\catname{Ring}$ is the zero ring (a ring with element $0=1$).
-		(recall that ring homomorphisms $R \to S$ map $1_R$ to $1_S$).
+		(Recall that ring homomorphisms $R \to S$ must map $1_R$ to $1_S$).
 		\ii The terminal object of $\catname{Top}$ is the single-point space.
 		\ii The terminal object of a partially ordered set is its maximal element, if one exists.
 	\end{enumerate}
@@ -291,7 +294,7 @@ However, we can illustrate more strongly the notion of duality to give a short p
 \end{ques}
 In general, one can consider in this way the dual of \emph{any} categorical notion:
 properties of $\AA$ can all be translated to dual properties of $\AA^{\text{op}}$
-(often by adding the word ``co'' in front).
+(often by adding the prefix ``co'' in front).
 
 One last neat construction: suppose we're working in a concrete category,
 meaning (loosely) that the objects are ``sets with additional structure''.
@@ -598,13 +601,6 @@ Most notably:
 \end{example}
 
 \section\problemhead
-
-\begin{sproblem}
-	Let $\AA$ be a category.
-	Show that any two initial objects $A_1$, $A_2$ of $\AA$ are \emph{uniquely isomorphic};
-	there is a unique isomorphism between them.
-	\label{prob:initial_object}
-\end{sproblem}
 
 \begin{dproblem}
 	What is the coproduct $X+Y$ in the categories $\catname{Set}$, $\catname{Vect}_k$, and a poset?

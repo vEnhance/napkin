@@ -48,7 +48,7 @@ Here are some examples.
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.8\textwidth]{media/weierstrass-pubdomain.png}
-	\caption{The Weierstrass Function (image in public domain).}
+	\caption{The Weierstra\ss\ Function (image in public domain).}
 \end{figure}
 
 Let's even put aside the pathology.
@@ -78,8 +78,10 @@ from which all other results are more or less corollaries:
 \end{itemize}
 Some of the resulting corollaries:
 \begin{itemize}
-	\ii It'll turn out that knowing just the values of a holomorphic function on the boundary of the unit circle will tell the values in its interior.
-	\ii Knowing just the values of the function at $1$, $\half$, $\frac13$, \dots is enough to determine the whole function!
+	\ii It'll turn out that knowing just the values of a holomorphic function
+	on the boundary of the unit circle will tell you the values in its interior.
+	\ii Knowing just the values of the function at $1$, $\half$, $\frac13$, \dots
+	are enough to determine the whole function!
 	\ii Bounded holomorphic functions $\CC \to \CC$ must be constant
 	\ii And more\dots
 \end{itemize}
@@ -90,7 +92,7 @@ As \cite{ref:pugh} writes: ``Complex analysis is the good twin and real analysis
 \section{Complex Differentiation}
 \prototype{Polynomials are holomorphic; $\ol z$ is not.}
 Let $f : U \to \CC$ be a complex function.
-Then for some $z \in U$, we define the \vocab{derivative} at $z_0$ to be
+Then for some $z_0 \in U$, we define the \vocab{derivative} at $z_0$ to be
 \[
 	\lim_{h \to 0} \frac{f(z_0+h) - f(z_0)}{h}.
 \]
@@ -105,9 +107,9 @@ such that
 If you like topology, you are encouraged to think of this in terms of neighborhoods in the complex plane.
 (This is why we require $U$ to be open: it makes it possible to take $\delta$-neighborhoods in it.)
 
-But note that having a complex differentiability is actually much stronger
+But note that having a complex derivative is actually much stronger
 than a real function having a derivative.
-In the real line, $h$ can only approach zero from below and above.
+In the real line, $h$ can only approach zero from below and above,
 and for the limit to exist we need the ``left limit'' to equal the ``right limit''.
 But the complex numbers form a \emph{plane}: $h$ can approach zero
 from many directions, and we need all the limits to be equal.
@@ -122,15 +124,23 @@ from many directions, and we need all the limits to be equal.
 	on ``which direction'' we approach zero from we have different values.
 	\begin{center}
 		\begin{asy}
-			dot("$0$", origin, dir(-90));
-			draw(dir(90)--origin, EndArrow, Margins);
-			draw(dir(0)--origin, EndArrow, Margins);
-			draw(dir(-45)--origin, EndArrow, Margins);
-			draw(dir(180)--origin, EndArrow, Margins);
-			label("$1$", dir(0), dir(0));
-			label("$1$", dir(180), dir(180));
-			label("$-1$", dir(90), dir(90));
-			label("$i$", dir(-45), dir(-45));
+			size(7cm);
+			dot("$0$", origin, dir(225));
+			void meow(string s, real theta, real eps = 45, pen p) {
+				draw( (dir(theta) * 0.8) -- (dir(theta) * 0.2), p+1);
+				draw( (dir(theta) * 0.8) -- (dir(theta) * 0.2), p, Arrow);
+				label(s, dir(theta)*0.5, dir(eps), p);
+			}
+			meow("$1$", 0, 90, blue);
+			meow("$1$", 180, 90, blue);
+			meow("$i$", -45, 45, heavygreen);
+			meow("$-1$", 90, 0, red);
+			label("$f(z) = \overline z$", dir(135));
+			label("$\dfrac{f(0+h)-f(0)}{h}$", dir(135)-0.35*dir(90));
+
+			import graph;
+			graph.xaxis("Re", -1, 1, grey, NoTicks, Arrows);
+			graph.yaxis("Im", -1, 1, grey, NoTicks, Arrows);
 		\end{asy}
 	\end{center}
 \end{example}
@@ -215,8 +225,8 @@ Let's see an example of a contour integral.
 	\begin{align*}
 		\int_0^{2\pi} (e^{it})^m \cdot (ie^{it}) \; dt
 		&= \int_0^{2\pi} i(e^{it})^{1+m} \; dt \\
-		&= i \int_0^{2\pi} \cos (1+m)t + i \sin(1+m)t \; dt \\
-		&= - \int_0^{2\pi} \sin(1+m)t \; dt + i \int_0^{2\pi} \cos (1+m)t \; dt.
+		&= i \int_0^{2\pi} \cos [(1+m)t] + i \sin [(1+m)t] \; dt \\
+		&= - \int_0^{2\pi} \sin [(1+m)t] \; dt + i \int_0^{2\pi} \cos [(1+m)t] \; dt.
 	\end{align*}
 	This is now an elementary calculus question.
 	One can see that this equals $2\pi i$ if $m=-1$ and
@@ -255,12 +265,12 @@ The theorem says that even if we multiply by $z^m$ for $m \neq 1$, we get the sa
 \end{ques}
 
 This might seem a little boring.
-Things will really cool really soon, I promise.
+Things will get really cool really soon, I promise.
 
 \section{Cauchy-Goursat Theorem}
 \prototype{$\oint_\gamma z^m \; dz = 0$ for $m \ge 0$. But if $m < 0$, Cauchy's theorem does not apply.}
-Let $f : \Omega \to \CC$ be simply connected (for example, $\Omega = \CC$),
-and consider two paths $\alpha$, $\beta$ with the same start and end point.
+Let $\Omega \subseteq \CC$ be simply connected (for example, $\Omega = \CC$),
+and consider two paths $\alpha$, $\beta$ with the same start and end points.
 
 \begin{center}
 	\begin{asy}
@@ -275,11 +285,11 @@ and consider two paths $\alpha$, $\beta$ with the same start and end point.
 
 What's the relation between $\oint_\alpha f(z) \; dz$ and $\oint_\beta f(z) \; dz$?
 You might expect there to be some relation between them, considering that the space $\Omega$ is simply connected.
-But you probably wouldn't expect there to \emph{much} of a relation.
+But you probably wouldn't expect there to be \emph{much} of a relation.
 
-As a concrete example, let $\Psi : \CC \to \CC$ be the function which extracts the imaginary part of $z$
-(for example, $\Psi(2015+3i) = 3i$). Let's consider two paths from $-1$ to $1$: 
-$\beta$ just walking along the real axis, and $\alpha$ which follows an upper semicircle.
+As a concrete example, let $\Psi : \CC \to \CC$ be the function $z \mapsto z - \Re[z]$
+(for example, $\Psi(2015+3i) = 3i$). Let's consider two paths from $-1$ to $1$.
+Thus $\beta$ just walking along the real axis, and $\alpha$ which follows an upper semicircle.
 
 \begin{center}
 	\begin{asy}
@@ -298,10 +308,8 @@ We can compute it now just out of non-laziness.
 If you like, you are welcome to compute it yourself (it's a little annoying but not hard).
 If I myself didn't mess up, it is
 \[ \oint_\alpha \Psi(z) \; dz = - \oint_{\ol\alpha} \Psi(z) \; dz
-= - \int_0^\pi i \sin(t) \cdot e^{it} \; dt = \half\pi. \]
-(Hilariously, it's real, even though we were adding a bunch of pure imaginary numbers.
-But indeed you can see that $\Psi(\gamma(t)) \cdot \gamma'(t)$ is real for all $t$;
-remember that we also multiply by the direction of the path.)
+= - \int_0^\pi (i \sin(t)) \cdot ie^{it} \; dt = \half\pi i \]
+which in particular is not zero.
 
 But somehow $\Psi$ is not a really natural function.
 It's not respecting any of the nice, continuous structure of $\CC$ since
@@ -344,7 +352,7 @@ and moreover $\Omega$ is simply connected, then you get a ``Fundamental Theorem 
 \[ \oint_\alpha f(z) \; dz = F(\alpha(b)) - F(\alpha(a)) \]
 where $\alpha : [a,b] \to \CC$ is some path.
 So to prove Cauchy-Gorsat, you just have to show this antiderivative $F$ exists.
-Goursat works very hard to proves the result in the special case that $\gamma$ is a triangle,
+Goursat works very hard to prove the result in the special case that $\gamma$ is a triangle,
 and hence by induction for any polygon.
 Once he has the result for a rectangle, he uses this special case to construct the function $F$ explicitly.
 Goursat then shows that $F$ is holomorphic, completing the proof.
@@ -483,7 +491,7 @@ In fact, that's the central result we're going to use to prove the result.
 \section{Holomorphic Functions Are Analytic}
 \prototype{Imagine a formal series!}
 In the setup of the previous problem, we have a circle $\gamma : [0,2\pi] \to \CC$
-and a homomorphic function $U \to \CC$ which contains the disk $D$.
+and a holomorphic function $U \to \CC$ which contains the disk $D$.
 We can write
 \begin{align*}
 	f(a) &= \frac{1}{2\pi i} \oint_\gamma \frac{f(z)}{z-a} \; dz \\
@@ -531,9 +539,10 @@ This establishes a result we stated at the beginning of the chapter:
 that a function being complex differentiable once means it is not only infinitely differentiable,
 but in fact equal to its Taylor series.
 
-I should maybe emphasize a small subtlety of the result: the Taylor series centered at $p$ is only valid in a disk centered at $p$ which lies entirely in the domain $U$.
+I should maybe emphasize a small subtlety of the result:
+the Taylor series centered at $p$ is only valid in a disk centered at $p$ which lies entirely in the domain $U$.
 If $U = \CC$ this is no issue, since you can make the disk big enough to accommodate any point you want.
-It's more subtle in the case if $U$ is, for example, a square; you can't cover the entire square
+It's more subtle in the case that $U$ is, for example, a square; you can't cover the entire square
 with a disk centered at some point without going outside the square.
 However, since $U$ is open we can at any rate at least find some neighborhood for which the Taylor
 series is correct -- in stark contrast to the real case.
