@@ -31,6 +31,7 @@ and so we can now think about maps between categories.
 		then $F(g \circ f) = F(g) \circ F(f)$.
 	\end{itemize}
 \end{definition}
+
 \begin{example}
 	[Free and Forgetful Functors]
 	Note that these are both informal terms.
@@ -51,10 +52,12 @@ and so we can now think about maps between categories.
 	\end{enumerate}
 \end{example}
 \begin{remark}
-	We can actually use this to give a definition of concrete category:
-	it's a category with an ``injective'' forgetful functor to $U: \AA \to \catname{Set}$
-	(The correct definition of ``injective'' here is \vocab{faithful}: no two arrows in $\AA$
-	get sent to the same arrow in $\catname{Set}$.)
+	There is also a notion of ``injective'' and ``surjective'' for functors (on arrows) as follows.
+	A functor $F : \AA \to \BB$ is \vocab{faithful}/\vocab{full} if for any $A_1, A_2$,
+	$F : \Hom_\AA(A_1, A_2) \to \Hom_\BB(FA_1, FA_2)$ is injective/surjective.
+
+	We can use this to give an exact definition of concrete category:
+	it's a category with an faithful forgetful functor to $U: \AA \to \catname{Set}$.
 \end{remark}
 
 \begin{example}
@@ -75,36 +78,37 @@ and so we can now think about maps between categories.
 \begin{exercise}
 	Check the above group-based functors work as advertised.
 \end{exercise}
-%Now we present one much trickier example.
-%If you don't get this one at first, skip it and come back later.
-%\begin{example}
-%	[Covariant Yoneda Functor]
-%	For a category $\AA$, define the \vocab{covariant Yoneda functor} $H^A : \AA \to \catname{Set}$
-%	by defining \[ H^A(A_1) \defeq \Hom_\AA (A, A_1) \in \catname{Set}. \]
-%	Hence each $A_1$ is sent to the \emph{arrows from $A$ to $A_1$};
-%	so \textbf{$H^A$ describes how $A$ sees the world}.
-%	Now we want to specify how $H^A$ behaves on arrows.
-%	For each arrow $A_1 \taking{f} A_2$, we need
-%	to specify $\catname{Set}$-map $\Hom_\AA (A, A_1) \to \Hom(A, A_2)$;
-%	in other words, we need to send an arrow $A \taking{p} A_1$ to an arrow $A \to A_2$.
-%	There's only one reasonable way to do this: take the composition
-%	\[ A \taking{p} A_1 \taking{f} A_2. \]
-%	In other words, $H_A(f)$ is $p \mapsto p \circ f$.
-%	In still other words, $H_A(f) = - \circ f$;
-%	the $-$ is a slot for the input to go into.
-%\end{example}
+
+Now we present one much trickier example.
+If you don't get this one at first, skip it and come back later.
+\begin{example}
+	[Covariant Yoneda Functor]
+	For a category $\AA$, define the \vocab{covariant Yoneda functor} $H^A : \AA \to \catname{Set}$
+	by defining \[ H^A(A_1) \defeq \Hom_\AA (A, A_1) \in \catname{Set}. \]
+	Hence each $A_1$ is sent to the \emph{arrows from $A$ to $A_1$};
+	so \textbf{$H^A$ describes how $A$ sees the world}.
+	Now we want to specify how $H^A$ behaves on arrows.
+	For each arrow $A_1 \taking{f} A_2$, we need
+	to specify $\catname{Set}$-map $\Hom_\AA (A, A_1) \to \Hom(A, A_2)$;
+	in other words, we need to send an arrow $A \taking{p} A_1$ to an arrow $A \to A_2$.
+	There's only one reasonable way to do this: take the composition
+	\[ A \taking{p} A_1 \taking{f} A_2. \]
+	In other words, $H_A(f)$ is $p \mapsto p \circ f$.
+	In still other words, $H_A(f) = - \circ f$;
+	the $-$ is a slot for the input to go into.
+\end{example}
 
 As another example:
 \begin{ques}
 	If $\mathbb P$ and $\mathbb Q$ are posets interpreted as categories,
 	what does a functor from $\mathbb P$ to $\mathbb Q$ represent?
 \end{ques}
-\begin{exercise}
+\begin{ques}
 	Verify that there is a category of \emph{all categories},
 	$\catname{Cat}$, whose arrows are functors.
 	In particular, you will need to name the ``identity functors''
 	and verify that the composition of a functor is also a functor.
-\end{exercise}
+\end{ques}
 
 The dual notion of a functor is a \vocab{contravariant functor}.
 They work exactly the same way, except the arrows get flipped by the functor.
@@ -443,3 +447,4 @@ The Yoneda Lemma has tons of very cool consequences; one is that solving it
 makes you feel like a minor god.
 The proof is long, but it is not actually very difficult -- from start to finish,
 there is only one thing you can possibly do.
+

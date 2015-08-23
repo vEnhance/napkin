@@ -46,12 +46,13 @@ Let's use this to motivate the definition of a general \emph{category}.
 		We can represent this in a \vocab{commutative diagram}
 		\begin{diagram}
 			A_1 & \rTo^f & A_2 \\
-			& \rdDashed^{g \circ f} & \dTo_g \\
+			& \rdDashed^h & \dTo_g \\
 			&& A_3
 		\end{diagram}
-
-		The composition operation $\circ$ is part of $\AA$;
+		where $h = g \circ f$.
+		The composition operation $\circ$ is part of the data of $\AA$;
 		it must be associative.
+		In the diagram above we say that $h$ \vocab{factors} through $A_2$.
 		
 		\ii Finally, every object $A \in \obj(\AA)$ has a special \vocab{identity arrow} $\id_A$;
 		you can guess what it does.\footnote{To be painfully explicit: if $f : A' \to A$ is an arrow then $\id_A \circ f = f$;
@@ -361,6 +362,8 @@ We can do this in any general category, defining a so-called product.
 		& \rdTo(4,1)_h && \rdProj(2,1)^{\pi_Y} & Y
 	\end{diagram}
 	commutes.
+	In other words, if $A \taking g X$ and $A \taking h Y$,
+	then each of $g$ and $h$ \emph{factors uniquely} through $X \times Y$.
 \end{definition}
 \begin{abuse}
 	Strictly speaking, the product should consist of \emph{both} the object $X \times Y$
@@ -481,16 +484,19 @@ A cone over this fork is an object $A$ and arrows over $X$ and $Y$ which make th
 \end{diagram}
 Effectively, the arrow over $Y$ is just forcing $f \circ q = g \circ q$.
 In any case, the \vocab{equalizer} of $f$ and $g$ is a ``universal cone'' over this fork:
-a map $E \taking{e} X$ such that $\exists ! h : A \to E$ with
+a map $E \taking{e} X$ such that $\exists ! h : A \to E$ such that
 \begin{diagram}
 	& A & \\
 	\ldTo(1,3)^q & \dTo~{!\exists h} & \rdDashed(1,3) \\
 	& E & \\
 	X \ldTo(1,1)^e & \pile{\rTo^f \\ \rTo_g} & \rdDashed(1,1) Y \\
 \end{diagram}
-Again, the dotted arrows can be omitted.
+commutes; in other words, any map $A \taking{q} X$ equalizing $X \taking{f,g} Y$
+must factor uniquely through $E$.
+Again, the dotted arrows can be omitted, and as before equalizers may not exist.
+But when they do exist:
 \begin{exercise}
-	Show uniqueness up of equalizers up to unique isomorphism (when they exist).
+	Show uniqueness of equalizers up to unique isomorphism).
 \end{exercise}
 
 \begin{example}
@@ -507,7 +513,7 @@ Again, the dotted arrows can be omitted.
 		(e.g. one should check that $\{\phi(g) = \psi(g) \mid g \in G\}$ is a group).
 
 		\ii In particular, given a homomorphism $\phi : G \to H$, the inclusion
-		\[ \ker\phi \injto G \]
+		$ \ker\phi \injto G $
 		is an equalizer for the fork $G \to H$ by $\phi$ and the trivial homomorphism.
 	\end{enumerate}
 \end{example}
@@ -525,7 +531,7 @@ We'll flesh this idea out in the chapter on abelian categories.
 	(For example, a fork is a diagram with two edges and two parallel arrows.)
 	If you then demand the cone be universal, you have the extremely general definition of a \vocab{limit}.
 	As always, these are unique up to unique isomorphism.
-	We can also define the dual notion of a colimits in the same way.
+	We can also define the dual notion of a \vocab{colimits} in the same way.
 \end{remark}
 
 \section{Monic and Epic Maps}
@@ -555,6 +561,9 @@ In all these categories, the definition of monic literally reads ``$f$ is inject
 So in these categories, ``monic'' and ``injective'' coincide.
 (But there are some examples of categories without free objects where one can have monic,
 non-injective maps.)
+\begin{ques}
+	Show that the composition of two monic maps is monic.
+\end{ques}
 
 Of course, we can also take the dual notion.
 \begin{definition}
@@ -610,6 +619,7 @@ Most notably:
 
 \begin{sproblem}[Equalizers are Monic]
 	Show that the equalizer of any fork is monic.
+	\label{prob:equalizer_monic}
 \end{sproblem}
 
 \begin{problem}
