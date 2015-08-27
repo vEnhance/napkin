@@ -70,6 +70,7 @@ that were not there originally; this leads to the phenomenon called \vocab{cardi
 quite literally, cardinals in $M$ will no longer be cardinals in $M[G]$, and instead just an ordinal.
 This is because in the process of adjoining $G$, we may accidentally pick up some bijections which were not in the earlier universe.
 In the diagram drawn, this is the function $f$ mapping $\omega$ to $\aleph_1^M$.
+Essentially, the difficulty is that ``$\kappa$ is a cardinal'' is a $\Pi_1$ statement.
 
 In the case of the Continuum Hypothesis, we'll introduce a $\Po$ such that
 any generic subset $G$ will ``encode'' $\aleph_2^M$ real numbers.
@@ -237,21 +238,10 @@ In fact this is kind of tricky, but for countable models it works:
 	Then there exists an $M$-generic filter $G$.
 \end{lemma}
 \begin{proof}
-	Since $M$ is countable, there are only countably many dense sets (they live in $M$!),
-	say \[ D_1, D_2, \ldots, D_n, \ldots \in M. \]
-	Using Choice,
-	let $p_1 \in D_1$, and then let $p_2 \le p_1$ such that $p_2 \in D_2$
-	(this is possible since $D_2$ is dense), and so on.
-	In this way we can inductively exhibit a chain
-	\[ p_1 \ge p_2 \ge p_3 \ge \dots \]
-	with $p_i \in D_i$ for every $i$.
-
-	Hence, we want to generate a filter from the $\{p_i\}$.
-	Just take the upwards closure -- let $G$ be the set of $q \in \Po$ such that $q \ge p_n$ for some $n$.
-	By construction, $G$ is a filter (this is actually trivial).
-	Moreover, $G$ intersects all the dense sets by construction.
-	\todo{problem?}
+	Essentially, hit them one by one.
+	\Cref{prob:rslemma}.
 \end{proof}
+
 Fortunately, for breaking $\CH$ we would want $M$ to be countable anyways.
 % This is really just the proof of the Baire category theorem.
 
@@ -656,6 +646,31 @@ This completes the proof of the Fundamental Theorem.
 \begin{problem}
 	For a filter $G$ and $M$ a transitive model of $\ZFC$,
 	show that $M[G] \vDash \Union$.
+\end{problem}
+
+\begin{problem}[Rasiowa-Sikorski Lemma]
+	\label{prob:rslemma}
+	Show that in a countable transitive model $M$ of $\ZFC$,
+	one can find an $M$-generic filter on any partial order.
+	\begin{hint}
+		Let $D_1$, $D_2$, \dots be the dense sets (there are countably many of them).
+	\end{hint}
+	\begin{sol}
+	Since $M$ is countable, there are only countably many dense sets (they live in $M$!),
+	say \[ D_1, D_2, \ldots, D_n, \ldots \in M. \]
+	Using Choice,
+	let $p_1 \in D_1$, and then let $p_2 \le p_1$ such that $p_2 \in D_2$
+	(this is possible since $D_2$ is dense), and so on.
+	In this way we can inductively exhibit a chain
+	\[ p_1 \ge p_2 \ge p_3 \ge \dots \]
+	with $p_i \in D_i$ for every $i$.
+
+	Hence, we want to generate a filter from the $\{p_i\}$.
+	Just take the upwards closure -- let $G$ be the set of $q \in \Po$ such that $q \ge p_n$ for some $n$.
+	By construction, $G$ is a filter (this is actually trivial).
+	Moreover, $G$ intersects all the dense sets by construction.
+	\todo{problem?}
+	\end{sol}
 \end{problem}
 
 %\begin{exercise}

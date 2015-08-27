@@ -625,12 +625,50 @@ the uncountable $\aleph_1^M$ is really just an ordinary countable cardinal.
 	(This should be easy if you've understood the chapter.)
 \end{dproblem}
 
-\todo{Reflection}
+\begin{dproblem}[Reflection]
+	\gim
+	Let $\kappa$ be an inaccessible cardinal such that $|V_\alpha| < \kappa$ for all $\alpha < \kappa$.
+	Prove that for any $\delta < \kappa$ there exists $\delta < \alpha < \kappa$
+	such that $V_\alpha \prec V_\kappa$; in other words,
+	the set of $\alpha$ such that $V_\alpha \prec V_\kappa$ is \emph{unbounded} in $\kappa$.
+	This means that properties of $V_\kappa$ reflect down to properties of $V_\alpha$.
+	\begin{hint}
+		This is very similar to the proof of L\"owenheim-Skolem.
+		For a sentence $\phi$, let $f_\phi$
+		send $\alpha$ to the least $\beta < \kappa$ such that for all $\vec b \in M_\alpha$, if there exists $a \in M$ such that $V_\kappa \vDash \phi[a, \vec b]$ then $\exists a \in M_\beta$ such that $V_\kappa \vDash \phi[a, \vec b]$.
+		(To prove this $\beta$ exists, use the fact that $\kappa$ is cofinal.)
+		Then, take the supremum over the countably many sentences for each $\alpha$.
+	\end{hint}
+	\begin{sol}
+		For a sentence $\phi$ let \[ f_\phi : \kappa \to \kappa \]
+		send $\alpha$ to the least $\beta < \kappa$ such that for all $\vec b \in V_\alpha$, if there exists $a \in V_\kappa$ such that $V_\kappa \vDash \phi[a, \vec b]$ then $\exists a \in V_\beta$ such that $V_\kappa \vDash \phi[a, \vec b]$.
+
+		We claim this is well-defined.
+		There are only $\left\lvert V_\alpha \right\rvert^n$ many possible choices of $\vec b$,
+		and in particular there are fewer than $\kappa$ of these
+		(since we know that $\left\lvert V_\alpha \right\rvert < \kappa$; compare \Cref{prob:strongly_inaccessible}).
+		Otherwise, we can construct a cofinal map from $\left\lvert V_\alpha^n \right\rvert$ 
+		into $\kappa$ by mapping each vector $\vec b$ into a $\beta$ for which the proposition fails.
+		And that's impossible since $\kappa$ is regular!
+
+		In other words, what we've done is fix $\phi$ and then use Tarski-Vaught on all the $\vec b \in V_\alpha^n$.
+		Now let $g : \kappa \to \kappa$ be defined by
+		\[ \alpha \mapsto \sup f_\phi(\alpha). \]
+		Since $\kappa$ is regular and there are only countably many formulas, $g(\alpha)$ is well-defined.
+
+		Check that if $\alpha$ has the property that $g$ maps $\alpha$ into itself (in other words, $\alpha$ is closed under $g$), then by the Tarski-Vaught test, we have $V_\alpha \prec V_\kappa$.
+
+		So it suffices to show there are arbitrarily large $\alpha < \kappa$ which are closed under $g$.
+		Fix $\alpha_0$. Let $\alpha_1 = g(\alpha_0$), et cetera and define
+		\[ \alpha = \sup_{n < \omega} \alpha_n. \]
+		This $\alpha$ is closed under $g$, and by making $\alpha_0$ arbitrarily large we can make $\alpha$ as large as we like.
+	\end{sol}
+\end{dproblem}
 
 \begin{sproblem}
 	[Inaccessible Cardinal Produce Models]
 	\label{prob:inaccessible_model}
+	\gim
+	Let $\kappa$ be an inaccessible cardinal.
+	Prove that $V_\kappa$ is a model of $\ZFC$.
 \end{sproblem}
-
-
-

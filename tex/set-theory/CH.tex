@@ -1,23 +1,26 @@
-\chapter{The Failure of the Continuum Hypothesis}
+\chapter{Breaking the Continuum Hypothesis}
 We now use the technique of forcing to break the Contiuum Hypothesis by choosing a good poset $\Po$.
+As I mentioned earlier, one can also build a model where the Continuum Hypothesis is true;
+this is called the \emph{constructible universe}, i.e.\ the model $V=L$.
+However, I think it's more fun when things break\dots
 
-\section{Forcing $V \neq L$ is really easy}
-As a small aside, to check we're on the right track we show the following result.
-
-\begin{theorem}[$V \ne L$]
-	Let $M$ be a countable transitive model of $\ZFC$.
-	Let $\Po \in M$ be \emph{any} splitting poset,
-	and let $G \subseteq \Po$ be $M$-generic.
-	Then $M[G] \vDash (V \neq L)$.
-\end{theorem}
-\begin{proof}
-	Since $L$ has a $\Sigma_1$ definition,
-	we have \[ L^{M[G]} = L^M \subseteq M \subsetneq M[G] \]
-	where the last part follows from $G \notin M[G]$.
-\end{proof}
-
-Thus $M[G] \vDash \ZFC + (V \ne L)$ for any splitting poset $\Po$,
-and we are one step closer to breaking $\CH$.
+%\section{Forcing $V \neq L$ is really easy}
+%As a small aside, to check we're on the right track we show the following result.
+%
+%\begin{theorem}[$V \ne L$]
+%	Let $M$ be a countable transitive model of $\ZFC$.
+%	Let $\Po \in M$ be \emph{any} splitting poset,
+%	and let $G \subseteq \Po$ be $M$-generic.
+%	Then $M[G] \vDash (V \neq L)$.
+%\end{theorem}
+%\begin{proof}
+%	Since $L$ has a $\Sigma_1$ definition,
+%	we have \[ L^{M[G]} = L^M \subseteq M \subsetneq M[G] \]
+%	where the last part follows from $G \notin M[G]$.
+%\end{proof}
+%
+%Thus $M[G] \vDash \ZFC + (V \ne L)$ for any splitting poset $\Po$,
+%and we are one step closer to breaking $\CH$.
 
 \section{Adding in Reals}
 Starting with a \emph{countable} transitive model $M$.
@@ -199,83 +202,73 @@ $M$ is still able to pin down the values of $f$ to at most $\kappa$ many values.
 	\[ \text{``$\dot f$ is a function from $\check X$ to $\check Y$''}. \]
 	We'll work just below here.
 
-	For each $x \in X$, we can consider (using the Axiom of Choice) a maximal antichain $A(x)$
+	For each $x \in X$, we can consider (using the Axiom of Choice) a maximal strong antichain $A(x)$
 	of incompatible conditions $q \le p$ which forces $f(x)$ to equal some value $y \in Y$.
 	Then, we let $F(x)$ collect all the resulting $y$-values.
 	These are all possible values, and there are less than $\kappa$ of them.
 \end{proof}
 
 \section{Preserving Cardinals}
-TODO: actually write everything past this point
-\todo{everything below here sucks}
+As we saw earlier, cardinal collapse can still occur.
+For the Continuum Hypothesis we want to avoid this possible,
+so we can add in $\aleph_2^M$ many real numbers and have $\aleph_2^{M[G]} = \aleph_2^M$.
+It turns out that to verify this, one can check a weaker result.
 
 \begin{definition}
-	For $M$ a transitive model of ZFC and $\Po \in M$ a poset,
+	For $M$ a transitive model of $\ZFC$ and $\Po \in M$ a poset,
 	we say $\Po$ \vocab{preserves cardinals} if
 	$\forall G \subseteq \Po$ an $M$-generic,
 	the model $M$ and $M[G]$ agree on the sentence ``$\kappa$ is a cardinal'' for every $\kappa$.
-
-	In the same way we will talk about $\Po$ preserving cofinalities, et cetera.
+	Similarly we say $\Po$ \vocab{preserves regular cardinals} if $M$ and $M[G]$
+	agree on the sentence ``$\kappa$ is a regular cardinal'' for every $\kappa$.
 \end{definition}
+Intuition:
+In a model $M$, it's possible that two ordinals which are in bijection in $V$ are no longer in bijection in $M$.
+Similarly, it might be the case that some cardinal $\kappa \in M$ is regular,
+but stops being regular in $V$ because some function $f : \ol\kappa \to \kappa$ is cofinal but happened to only exist in $V$.
+In still other words, ``$\kappa$ is a regular cardinal '' turns out to be a $\Pi_1$ statement too.
 
-\todo{write out this exercise}
-\begin{exercise}
-	Let $M$ be a transitive model of ZFC.
+Fortunately, each implies the other.
+We quote the following without proof.
+\begin{proposition}[Preserving Cardinals $\iff$ Preserving Regular Cardinals]
+	Let $M$ be a transitive model of $\ZFC$.
 	Let $\Po \in M$ be a poset.
-	Show that the following are equivalent for each $\lambda$:
-	\begin{enumerate}[(1)]
-		\ii $\Po$ preserves cofinalities less than or equal to $\lambda$.
-		\ii $\Po$ preserves regular cardinals less than or equal to $\lambda$.
-	\end{enumerate}
+	Then for any $\lambda$,
+		$\Po$ preserves cardinalities less than or equal to $\lambda$
+		if and only if $\Po$ preserves regular cardinals less than or equal to $\lambda$.
 	Moreover the same holds if we replace ``less than or equal to''
 	by ``greater than or equal to''.
-\end{exercise}
-Thus, to show that $\Po$ preserves cardinality and cofinalities it suffices to show that $\Po$ preserves regularity.
+\end{proposition}
 
-\begin{theorem}
-	Suppose $M$ is a transitive model of ZFC, and $\Po \in M$ is a poset.
+Thus, to show that $\Po$ preserves cardinality and cofinalities it suffices to show that $\Po$ preserves regularity.
+The following theorem lets us do this:
+\begin{theorem}[Chain Conditions Preserve Regular Cardinals]
+	Let $M$ be a transitive model of ZFC, and let $\Po \in M$ be a poset.
 	Suppose $M$ satisfies the sentence ``$\Po$ has the $\kappa$ chain condition and $\kappa$ is regular''.
-	Then $\Po$ preserves cardinals and cofinalities greater than or equal to $\kappa$.
+	Then $\Po$ preserves regularity greater than or equal to $\kappa$.
 \end{theorem}
 \begin{proof}
-	It suffices to show that $\Po$ preserves regularity greater than or equal to $\kappa$.
-	Consider $\lambda > \kappa$ which is regular in $M$,
-	and suppose for contradiction that $\lambda$ is not regular in $M[G]$.
-	That's the same as saying that there is a function $f \in M[G]$,
-	$f : \ol \lambda \to \lambda$ cofinal, with $\ol \lambda < \lambda$.
-	Then by the Possible Values Argument,
-	there exists a function $F \in M$ from $\ol \lambda \to \PP(\lambda)$
-	such that $f(\alpha) \in F(\alpha)$ and $\left\lvert F(\alpha) \right\rvert^M < \kappa$
-	for every $\alpha$.
-
-	Now we work in $M$ again.
-	Note for each $\alpha \in \ol\lambda$,
-	$F(\alpha)$ is bounded in $\lambda$ since $\lambda$ is regular in $M$ and
-	greater than $\left\lvert F(\alpha) \right\rvert$.
-	Now look at the function $\ol \lambda \to \lambda$ in $M$ by just
-	\[ \alpha \mapsto \cup F(\alpha) < \lambda. \]
-	This is cofinal in $M$, contradiction.
+	Use the Possible Values Argument.
+	\Cref{prob:chain}.
 \end{proof}
 
-\section{Infinite Combinatorics}
-In particular, if $\Po$ has the countable chain condition then $\Po$ preserves all the cardinals (and cofinalities).
+In particular, if $\Po$ has the countable chain condition then $\Po$ preserves \emph{all} the cardinals (and cofinalities).
 Therefore, it remains to show that $\opname{Add}(\omega, \omega_2)$ satisfies the countable chain condition.
-And this is going to be infinite combinatorics.
+
+\section{Infinite Combinatorics}
+We now prove that $\opname{Add}(\omega, \omega_2)$ satisfies the countable chain condition.
+This is purely combinatorial, and so we work briefly.
 
 \begin{definition}
 	Suppose $C$ is an uncountable collection of finite sets.
-	$C$ is a \textbf{$\Delta$-system} if there exists a \textbf{root} $R$
+	$C$ is a \vocab{$\Delta$-system} if there exists a \vocab{root} $R$
 	with the condition that for any distinct $X$ and $Y$
 	in $C$, we have $X \cap Y = R$.
 \end{definition}
 
 \begin{lemma}
 	[$\Delta$-System Lemma] Suppose $C$ is an uncountable collection of finite sets.
-	Then $\exists \ol C \subseteq C$ such that
-	\begin{enumerate}[(1)]
-		\ii $\ol C$ is uncountable.
-		\ii $\ol C$ is a $\Delta$-system.
-	\end{enumerate}
+	Then $\exists \ol C \subseteq C$ such that $\ol C$ is an uncountable $\Delta$-system.
 \end{lemma}
 \begin{proof}
 	There exists an integer $n$ such that $C$ has uncountably many guys of length $n$.
@@ -302,7 +295,7 @@ And this is going to be infinite combinatorics.
 \begin{proof}
 	Assume not. Let
 	\[ \left\{ p_\alpha : \alpha < \omega_1 \right\} \]
-	be an antichain.  Let
+	be a strong antichain.  Let
 	\[ C = \left\{ \dom(p_\alpha) : \alpha < \omega_1 \right\}. \]
 	Let $\ol C \subseteq C$ be such that $\ol C$ is uncountable, and $\ol C$ is a $\Delta$-system which root $R$.
 	Then let
@@ -310,5 +303,42 @@ And this is going to be infinite combinatorics.
 	Each $p_\alpha \in B$ is a function $p_\alpha : R \to \{0,1\}$,
 	so there are two that are the same.
 \end{proof}
-\todo{blah blah blah}
+
+Thus, we have proven that the Continuum Hypothesis cannot be proven in $\ZFC$.
+
+\section\problemhead
+\begin{problem}
+	\label{prob:chain}
+	Let $M$ be a transitive model of ZFC, and let $\Po \in M$ be a poset.
+	Suppose $M$ satisfies the sentence ``$\Po$ has the $\kappa$ chain condition and $\kappa$ is regular''.
+	Show that $\Po$ preserves regularity greater than or equal to $\kappa$.
+	\begin{hint}
+		Assume not, and take $\lambda > \kappa$ regular in $M$;
+		if $f : \ol \lambda \to \lambda$,
+		use the Possible Values Argument on $f$ to generate a function in $M$
+		that breaks cofinality of $\lambda$.
+	\end{hint}
+	\begin{sol}
+		It suffices to show that $\Po$ preserves regularity greater than or equal to $\kappa$.
+		Consider $\lambda > \kappa$ which is regular in $M$,
+		and suppose for contradiction that $\lambda$ is not regular in $M[G]$.
+		That's the same as saying that there is a function $f \in M[G]$,
+		$f : \ol \lambda \to \lambda$ cofinal, with $\ol \lambda < \lambda$.
+		Then by the Possible Values Argument,
+		there exists a function $F \in M$ from $\ol \lambda \to \PP(\lambda)$
+		such that $f(\alpha) \in F(\alpha)$ and $\left\lvert F(\alpha) \right\rvert^M < \kappa$
+		for every $\alpha$.
+
+		Now we work in $M$ again.
+		Note for each $\alpha \in \ol\lambda$,
+		$F(\alpha)$ is bounded in $\lambda$ since $\lambda$ is regular in $M$ and
+		greater than $\left\lvert F(\alpha) \right\rvert$.
+		Now look at the function $\ol \lambda \to \lambda$ in $M$ by just
+		\[ \alpha \mapsto \cup F(\alpha) < \lambda. \]
+		This is cofinal in $M$, contradiction.
+	\end{sol}
+\end{problem}
+
+
+
 
