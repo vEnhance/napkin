@@ -28,15 +28,15 @@ We can now define:
 \begin{definition}
 	Consider a map $A \taking f B$.
 	The \vocab{kernel} is defined as the equalizer of this map and the map $A \taking 0 B$.
-	Thus, it's a map $\ker A : \Ker A \injto A$ such that
+	Thus, it's a map $\ker f : \Ker f \injto A$ such that
 	\begin{diagram}
 		\Ker A && \\
-		\dInj^{\ker A} & \rdDashed^0 & \\
+		\dInj^{\ker f} & \rdDashed^0 & \\
 		A & \rTo_f & B
 	\end{diagram}
 	commutes, and moreover any other map with the same property factors uniquely through $\Ker A$
 	(so it is universal with this property).
-	By \Cref{prob:equalizer_monic}, $\ker A$ is a monic morphism, 
+	By \Cref{prob:equalizer_monic}, $\ker f$ is a monic morphism, 
 	which justifies the use of ``$\injto$''.
 \end{definition}
 Notice that we're using $\ker f$ to represent the map and $\Ker f$ to represent the object
@@ -44,15 +44,15 @@ Similarly, we define the cokernel, the dual notion:
 \begin{definition}
 	Consider a map $A \taking f B$.
 	The \vocab{cokernel} is defined as the coequalizer of this map and the map $A \taking 0 B$.
-	Thus, it's a map $\coker B: B \surjto \Coker B$ such that
+	Thus, it's a map $\coker f: B \surjto \Coker f$ such that
 	\begin{diagram}
 		A & \rTo^f & B \\
-		& \rdDashed_0 & \dSurj_{\coker B} \\
-		&& \Coker B
+		& \rdDashed_0 & \dSurj_{\coker f} \\
+		&& \Coker f
 	\end{diagram}
-	commutes, and moreover any other map with the same property factors uniquely through $\Ker A$
+	commutes, and moreover any other map with the same property factors uniquely through $\Ker f$
 	(so it is universal with this property).
-	By the dual of \Cref{prob:equalizer_monic}, $\coker A$ is a epic morphism,
+	By the dual of \Cref{prob:equalizer_monic}, $\coker f$ is an epic morphism,
 	which justifies the use of ``$\surjto$''.
 \end{definition}
 Think of the cokernel of a map $A \taking f B$ as ``$B$ modulo the image of $f$'', e.g.
@@ -73,8 +73,8 @@ When it exists, this coincides with our concrete notion of ``image''.
 Picture:
 \begin{diagram}
 	A & \rTo^f & B \\
-	& \rdTo(1,2)~{\exists!} \rdDashed(3,2)^{0\qquad\qquad} \ruInj(1,2) & & \rdSurj(1,2)^{\coker B} \\
-	& \Img f & \rDashed^0 & \Coker B
+	& \rdTo(1,2)~{\exists!} \rdDashed(3,2)^{0\qquad\qquad} \ruInj(1,2) & & \rdSurj(1,2)^{\coker f} \\
+	& \Img f & \rDashed^0 & \Coker f
 \end{diagram}
 Note that by universality of $\Img f$,
 we find that there is a unique map $\img f : A \to \Img f$ that makes the entire diagram commute.
@@ -87,9 +87,9 @@ which are the types of categories where this notion is most useful.
 \begin{definition}
 	An \vocab{additive category} $\AA$ is one with the following properties.
 	\begin{itemize}
-		\ii $\AA$ has a zero object, and any two objects has a product.
+		\ii $\AA$ has a zero object, and any two objects have a product.
 		\ii More importantly: every $\Hom_\AA(A, B)$ forms an \emph{abelian group} (written additively)
-		such that composition distributions over addition:
+		such that composition distributes over addition:
 		\[ (g+h)\circ f = g\circ f + h\circ f
 			\quad\text{and}\quad
 			f\circ(g+h) = f\circ g + f \circ h. \]
@@ -136,7 +136,7 @@ For example,
 	monic $\implies$ $0$ kernel.
 	
 	On the other hand, assume that $0 \to A$ is a kernel of $A \taking f B$.
-	For this we can use exploit the group structure of the underlying homomorphisms now.
+	For this we can exploit the group structure of the underlying homomorphisms now.
 	Assume that the diagram
 	\begin{diagram}
 		Z & \pile{\rTo^g \\ \rTo_h} & A & \rTo^f & B
@@ -188,7 +188,7 @@ We say the entire sequence is exact if it's exact at $k=1,\dots,n-1$.
 \end{example}
 
 Now, we want to mimic this definition in a general \emph{abelian} category $\AA$.
-So, let's write down a criteria for when $A \taking f B \taking g C$ is exact.
+So, let's write down a criterion for when $A \taking f B \taking g C$ is exact.
 First, we had better have that $g \circ f = 0$, which encodes the fact that $\img(g) \subset \ker(f)$.
 Adding in all the relevant objects, we get the commutative diagram below.
 \begin{diagram}
@@ -262,7 +262,7 @@ For example, let's prove the following.
 	using the concrete interpretation of our category of $R$-modules.
 
 	Let $b'$ be an element of $B'$.
-	Then $q'(b') \in C'$, and since $\gamma$ is surjective, so we have a $c$ such that $\gamma(c) = b'$,
+	Then $q'(b') \in C'$, and since $\gamma$ is surjective, we have a $c$ such that $\gamma(c) = b'$,
 	and finally a $b \in B$ such that $q(b) = c$.
 	Picture:
 	\begin{diagram}
@@ -273,7 +273,7 @@ For example, let's prove the following.
 	Now, it is not necessarily the case that $\beta(b) = b'$.
 	However, since the diagram commutes we at least have that
 	\[ q'(b') = q'(\beta(b)) \]
-	so $b' - \beta(b) \in \ker q' = \img p'$, and there is an $a' \in A$ such that
+	so $b' - \beta(b) \in \ker q' = \img p'$, and there is an $a' \in A'$ such that
 	$p'(a') = b' - \beta(b)$;
 	use $\alpha$ now to lift it to $a \in A$.
 	Picture:

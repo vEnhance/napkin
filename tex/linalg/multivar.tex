@@ -5,7 +5,7 @@ Similar problems occur with multivariable calculus, so here I would like to set
 the record straight.
 
 Once that's done, I will tell you what a differential form is,
-and you'll finally know all those stupid $dx$'s and $dy$'s really mean.
+and you'll finally know what all those stupid $dx$'s and $dy$'s really mean.
 (They weren't just there for decoration!)
 
 Since we are doing this chapter using morally correct linear algebra,
@@ -31,7 +31,7 @@ The typical example, of course, is $V = \RR^n$ as above.
 
 \section{The Total Derivative}
 \prototype{If $f(x,y) = x^2+y^2$, then $(Df)_{(x,y)} = 2x\ee_1^\vee + 2y\ee_2^\vee$.}
-First, let $f : (a,b) \to \RR$.
+First, let $f : [a,b] \to \RR$.
 You might recall from high school calculus that for every point $p \in \RR$,
 we defined $f'(p)$ as the derivative at the point $p$ (if it existed), which we interpreted as the \emph{slope} of
 the ``tangent line''.
@@ -124,7 +124,7 @@ this we use the norm of the vector space.
 \end{definition}
 
 \begin{ques}
-	Check that $V = W = \RR$, this is equivalent to the single-variable definition.
+	Check if that $V = W = \RR$, this is equivalent to the single-variable definition.
 	(What are the linear maps from $V$ to $W$?)
 \end{ques}
 \begin{example}[Total Derivative of $f(x,y) = x^2+y^2$]
@@ -294,7 +294,7 @@ It turns out for most reasonable functions, this is all you'll ever need.
 			0 & (x,y) = (0,0).
 		\end{cases}
 	\]
-	is the classical counterexample -- the total derivative $Df$ does not exist at zero,
+	is the classic counterexample -- the total derivative $Df$ does not exist at zero,
 	even though both partials do.
 \end{remark}
 
@@ -317,7 +317,7 @@ Let $U \subseteq V$ be open, and take $f : U \to W$, so that $Df : U \to \Hom(V,
 
 Well, $\Hom(V,W)$ can also be thought of as a normed vector space in its own right:
 it turns out that one can define an operator norm on it by setting
-\[ \norm{T} \defeq \sup \left\{ \frac{\norm{T(v)f}_W}{\Norm{v}_W} \mid v \neq 0_V \right\}. \] 
+\[ \norm{T} \defeq \sup \left\{ \frac{\norm{T(v)}_W}{\norm{v}_W} \mid v \neq 0_V \right\}. \] 
 So $\Hom(V,W)$ can be thought of as a normed vector space as well.
 Thus it makes sense to write
 \[ D(Df) : U \to \Hom(V,\Hom(V,W)) \]
@@ -325,12 +325,13 @@ which we abbreviate as $D^2 f$. Dropping all doubt and plunging on,
 \[ D^3f : U \to \Hom(V, \Hom(V,\Hom(V,W))). \]
 I'm sorry.
 As consolation, we at least know that $\Hom(V,W) \simeq V^\vee \otimes W$ in a natural way,
-so we can at least condense this as
+so we can at least condense this to
 \[ D^kf : V \to (V^\vee)^{\otimes k} \otimes W \]
 rather than writing a bunch of $\Hom$'s.
 \begin{remark}
 	If $k=2$, $W = \RR$, then $D^2f(v) \in (V^\vee)^{\otimes 2}$,
-	so it can be represented as an $n \times n$ matrix, which for some reason is called Hessian.
+	so it can be represented as an $n \times n$ matrix,
+	which for some reason is called a \vocab{Hessian}.
 \end{remark}
 The most important property of the second derivative is that
 \begin{theorem}
@@ -429,7 +430,7 @@ Well, first let me get the definition on the table, then tell you what it's doin
 
 \begin{example}
 	[Evaluation of a Differential Form]
-	Set $V = \RR^3$
+	Set $V = \RR^3$.
 	Suppose that at some point $p$, the $2$-form $\alpha$ returns
 	\[ \alpha_p = 2 \ee_1^\vee \wedge \ee_2^\vee + \ee_1^\vee \wedge \ee_3^\vee. \]
 	Let $v_1 = 3\ee_1 + \ee_2 + 4\ee_3$ and $v_2 = 8\ee_1 + 9\ee_2 + 5\ee_3$.
@@ -472,7 +473,7 @@ Picture:
 
 In other words, at every point $p$, we get a function $\alpha_p$.
 Then I can feed in $k$ tangent vectors to $\alpha_p$ and get a number,
-which I interpret as a signed volume of the parallelpiped spanned the $\{v_i\}$'s
+which I interpret as a signed volume of the parallelpiped spanned by the $\{v_i\}$'s
 in some way (e.g.\ the flux of a force field).
 That's why $\alpha_p$ as a ``function'' is contrived to lie in the wedge product:
 this ensures that the notion of ``volume'' makes sense, so that for example,
@@ -507,7 +508,7 @@ In particular, suppose $V = \RR^n$ and $f(x_1, \dots, x_n) = x_1$ (i.e.\ $f = \e
 \end{abuse}
 \begin{remark}
 	This is the reason why we use the notation $\frac{df}{dx}$ in calculus now:
-	given, say $f : \RR \to \RR$ by $f(x) = x^2$, it is indeed true that
+	given, say, $f : \RR \to \RR$ by $f(x) = x^2$, it is indeed true that
 	\[ df = 2x \cdot \ee_1^\vee = 2x \cdot dx \]
 	and so by abuse of notation we write $df/dx = 2x$.
 \end{remark}
@@ -549,7 +550,7 @@ Here are some other properties of $d$:
 	\ii For a $k$-form $\alpha$ and $\ell$-form $\beta$, one can show that
 	\[ d(\alpha \wedge \beta) = d\alpha \wedge \beta + (-1)^k (\alpha \wedge d\beta). \]
 \end{itemize}
-In fact, one can show that the $df$ as defined in terms of bases above is
+In fact, one can show that $df$ as defined in terms of bases above is
 the \emph{unique} map sending $k$-forms to $(k+1)$-forms.
 Actually, one way to define $df$ is to take as axioms the bulleted properties above
 and then declare $d$ to be the unique solution to this functional equation.

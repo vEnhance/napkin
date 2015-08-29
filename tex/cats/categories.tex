@@ -330,8 +330,7 @@ The key observation is that
 A function $A \taking f X \times Y$
 amounts to a pair of functions $(A \taking g X, A \taking h Y)$.
 \end{moral}
-Put another way, there is a natural projection map $X \times Y \surjto X$ and $X \times Y \surjto Y$.
-Picture:
+Put another way, there is a natural projection map $X \times Y \surjto X$ and $X \times Y \surjto Y$:
 \begin{diagram}
 	&& X \\
 	X \times Y & \ruSurj(2,1)^{\pi_X} & \\
@@ -346,7 +345,7 @@ Thus for every pair $A \taking g X$ and $A \taking h Y$ there is a \emph{unique}
 $A \taking f X \times Y$. Picture:
 
 But $X \times Y$ is special in that it is ``universal'':
-for any \emph{other} set $A$, if you give me a function $A \to X$ and $A \to Y$, I can use it
+for any \emph{other} set $A$, if you give me functions $A \to X$ and $A \to Y$, I can use it
 build a \emph{unique} function $A \to X \times Y$.
 \begin{diagram}
 	&& && X \\
@@ -383,7 +382,7 @@ Nonetheless:
 	there is an isomorphism between the two.
 \end{proposition}
 \begin{proof}
-	This is very similar to the proof that initial object are unique up to unique isomorphism.
+	This is very similar to the proof that initial objects are unique up to unique isomorphism.
 	Consider two such objects $P_1$ and $P_2$, and the associated projection maps.
 	So, we have a diagram
 	\begin{diagram}
@@ -435,8 +434,8 @@ Of course, that's not to say we can't give concrete examples.
 \end{example}
 
 Of course, we can define products of more than just one object.
-Consider a set of objects $(X_i)_{i \in I}$ in a category $\AA$
-We define a \vocab{cone} on the $X_i$ to be an object to be an object $A$
+Consider a set of objects $(X_i)_{i \in I}$ in a category $\AA$.
+We define a \vocab{cone} on the $X_i$ to be an object $A$
 with some ``projection'' maps onto each $X_i$.
 Then the \vocab{product} is a cone $P$ which is ``universal'' in the same sense as before:
 given any other cone $A$ there is a unique map $A \to P$ making the diagram commute.
@@ -452,9 +451,9 @@ The picture of this is
 \end{diagram}
 See also \Cref{prob:associative_product}.
 
-One can also do the dual construction to get a \vocab{coproduct}: given $X$ and $Y$, it's the object that $X+Y$
+One can also do the dual construction to get a \vocab{coproduct}: given $X$ and $Y$, it's the object $X+Y$
 together with maps $X \taking{\iota_X} X+Y$ and $Y \taking{\iota_Y} X+Y$
-(that's Greek $\iota$, think inclusion)
+(that's Greek iota, think inclusion)
 such that for any object $A$ and maps $X \taking g A$, $Y \taking h A$
 there is a unique $f$ for which
 \begin{diagram}
@@ -475,7 +474,7 @@ Given two sets $X$ and $Y$, and maps $X \taking{f,g} Y$, we define their \vocab{
 We would like a categorical way of defining this, too.
 
 Consider two objects $X$ and $Y$ with two parallel maps $f$ and $g$ between them.
-Stealing a page from \cite{msci}, we call this a \vocab{fork}:
+Stealing a page from \cite{ref:msci}, we call this a \vocab{fork}:
 \begin{diagram}
 	X & \pile{\rTo^f \\ \rTo_g} & Y
 \end{diagram}
@@ -499,7 +498,7 @@ must factor uniquely through $E$.
 Again, the dotted arrows can be omitted, and as before equalizers may not exist.
 But when they do exist:
 \begin{exercise}
-	Show uniqueness of equalizers up to unique isomorphism).
+	Show uniqueness of equalizers up to unique isomorphism.
 \end{exercise}
 
 \begin{example}
@@ -534,7 +533,7 @@ We'll flesh this idea out in the chapter on abelian categories.
 	(For example, a fork is a diagram with two edges and two parallel arrows.)
 	If you then demand the cone be universal, you have the extremely general definition of a \vocab{limit}.
 	As always, these are unique up to unique isomorphism.
-	We can also define the dual notion of a \vocab{colimits} in the same way.
+	We can also define the dual notion of a \vocab{colimit} in the same way.
 \end{remark}
 
 \section{Monic and Epic Maps}
@@ -559,7 +558,7 @@ In most situations, the converse is also true:
 \end{exercise}
 More generally, as we said before there are many categories
 with a free object that you can use to think of as elements.
-An element of a set is function $1 \to S$, and element of a ring is a function $\ZZ[x] \to R$, et cetera.
+An element of a set is a function $1 \to S$, and element of a ring is a function $\ZZ[x] \to R$, et cetera.
 In all these categories, the definition of monic literally reads ``$f$ is injective on $\Hom_\AA(A, X)$''.
 So in these categories, ``monic'' and ``injective'' coincide.
 (But there are some examples of categories without free objects where one can have monic,

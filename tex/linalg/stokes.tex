@@ -1,6 +1,6 @@
 \chapter{Integrating Differential Forms}
 In this chapter, we'll show how to integrate differential forms over cells,
-and state Stoke's Theorem in this context.
+and state Stokes' Theorem in this context.
 
 \section{Motivation: Line Integrals}
 Given a function $g : [a,b] \to \RR$ we know by the Fundamental Theorem of Calculus
@@ -16,7 +16,7 @@ we can write
 where $df$ is the exterior derivative we defined earlier.
 
 Cool, so we can integrate over $[a,b]$.
-Now, suppose more generally, we have $U$ an open subset of our real vector space $V$
+Now suppose more generally, we have $U$ an open subset of our real vector space $V$
 and a $1$-form $\alpha : U \to V^\vee$.
 We consider a \vocab{parametrized curve}, which is a smooth function $c : [a,b] \to U$.
 Picture:
@@ -82,12 +82,7 @@ specifically, in this case we define $c^\ast\alpha$ to be
 \[ \left( c^\ast \alpha \right)_t (\eps) = (Dc)_{c(t)} (\eps) \]
 (here $\eps$ is some displacement in time).
 Thus, we can more succinctly write
-\[
-	\int_c \alpha
-	\defeq
-	\int_{[a,b]}
-	\alpha_{c(t)} \left( c'(t) \right) \; dt.
-\]
+\[ \int_c \alpha \defeq \int_{[a,b]} c^\ast \alpha. \]
 This is a special case of a \emph{pullback}:
 roughly, if $\phi : U \to U'$ (where $U \subseteq V$, $U' \subseteq V'$),
 we can change any differential $k$-form $\alpha$ on $U'$
@@ -269,7 +264,7 @@ it is a \vocab{reparametrization} if $\phi$ is bijective and $(D\phi)_p$ is alwa
 thus
 \[ c \circ \phi : [a_1', b_1'] \times \dots \times [a_k',b_k'] \to U \]
 is a $k$-cell as well.
-Then it is said to be \vocab{preserve orientation} if $\det(D\phi)_p > 0$ for all $p$
+Then it is said to \vocab{preserve orientation} if $\det(D\phi)_p > 0$ for all $p$
 and \vocab{reverse orientation} if $\det(D\phi)_p < 0$ for all $p$.
 \begin{exercise}
 	Why is it that exactly one of these cases must occur?
@@ -419,12 +414,12 @@ Obligatory theorem, analogous to $d^2=0$ and left as a problem.
 	$\partial^2 = 0$, in the sense that for any $k$-chain $c$ we have $\partial^2(c) = 0$.
 \end{theorem}
 
-\section{Stoke's Theorem}
+\section{Stokes' Theorem}
 \prototype{$\int_{[a,b]} dg = g(b) - g(a)$.}
 
-We now have all the ingredients to state Stoke's Theorem for cells.
+We now have all the ingredients to state Stokes' Theorem for cells.
 \begin{theorem}
-	[Stoke's Theorem for Cells]
+	[Stokes' Theorem for Cells]
 	Take $U \subseteq V$ as usual, let $c : [0,1]^k \to U$ be a $k$-cell
 	and let $\alpha : U \to \Lambda^k(V)$ be a $k$-form.
 	Then
@@ -441,7 +436,7 @@ and thus we obtain the Fundamental Theorem of Calculus.
 	\[ \int_c \left( \fpartial gx - \fpartial fy \right) \; dx \wedge dy
 	= \int_{\partial c} (f \; dx + g \; dy). \]
 	\begin{hint}
-		Direct application of Stoke's Theorem to $\alpha = f \; dx + g \; dy$.
+		Direct application of Stokes' Theorem to $\alpha = f \; dx + g \; dy$.
 	\end{hint}
 \end{dproblem}
 
