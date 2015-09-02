@@ -11,7 +11,7 @@ We are going to see that meromorphic functions behave
 like ``almost-holomorphic'' functions.
 Specifically, a meromorphic function $A/B$ will be holomorphic at all points 
 except the zeros of $B$ (called \emph{poles}).
-By the Identity Theorem, there are cannot be too many zeros of $B$!
+By the Identity Theorem, there cannot be too many zeros of $B$!
 So meromorphic functions can be thought of as ``almost holomorphic''
 (like $\frac 1z$, which is holomorphic everywhere but the origin).
 We saw that
@@ -20,7 +20,7 @@ We saw that
 	= \frac{1}{2\pi i}
 \]
 for $\gamma(t) = e^{it}$ the unit circle.
-We will then extend our results on contours to such situations.
+We will extend our results on contours to such situations.
 
 It turns out that, instead of just getting $\oint_\gamma f(z) \; dz = 0$ like we did in
 the holomorphic case, the line integrals will actually be used to \emph{count the number of poles}
@@ -34,7 +34,7 @@ Let $U$ be an open subset of $\CC$ again.
 	A function $f : U \to \CC$ is \vocab{meromorphic} if it can be expressed as $A/B$
 	for $A, B : U \to \CC$ holomorphic, with $B$ not identically zero in any neighborhood.
 \end{definition}
-Let's see how this function $f$ behaves like.
+Let's see how this function $f$ behaves.
 If $z \in U$ has $B(z) \neq 0$, then in some small neighborhood the function $B$ isn't zero
 at all, and thus $A/B$ is in fact \emph{holomorphic}; thus $f$ is holomorphic at $z$.
 (Concrete example: $\frac 1z$ is holomorphic in any disk not containing $0$.)
@@ -43,10 +43,11 @@ On the other hand, suppose $p \in U$ has $B(p) = 0$: without loss of generality,
 to ease notation.
 By using the Taylor series at $p=0$ we can put
 \[ B(z) = c_kz^k + c_{k+1}z^{k+1} + \dots \]
-with $c_k \neq 0$ (certainly coefficient is nonzero since $B$ is not identically zero!).
+with $c_k \neq 0$
+(certainly some coefficient is nonzero since $B$ is not identically zero!).
 Then we can write
 \[ \frac{1}{B(z)} = \frac{1}{z^k} \cdot \frac{1}{c_k + c_{k+1}z + \dots}. \]
-But the fraction on the right is a holomorphic function is this neighborhood!
+But the fraction on the right is a holomorphic function in this neighborhood!
 So all that's happened is that we have an extra $z^{-k}$ kicking around.
 
 
@@ -88,7 +89,7 @@ in such a way that no two neighborhoods intersect.
 	\begin{align*}
 		\frac{z+1}{\sin z}
 		&= (z+1) \cdot \frac{1}{z - \frac{z^3}{3!} + \frac{z^5}{5!} + \dots} \\
-		&= \frac 1z \cdot \frac{z+1}{1 - \left( \frac{z^2}{3!} - \frac{z^4}{5!} + \frac{z^6}{7!} \right)} \\
+		&= \frac 1z \cdot \frac{z+1}{1 - \left( \frac{z^2}{3!} - \frac{z^4}{5!} + \frac{z^6}{7!} - \dots \right)} \\
 		&= \frac 1z \cdot (z+1) \sum_{k \ge 0} \left( \frac{z^2}{3!}-\frac{z^4}{5!}+\frac{z^6}{7!} \right)^k.
 	\end{align*}
 	If we expand out the horrible sum (which I won't do), then you get $\frac 1z$ times a perfectly
@@ -129,7 +130,7 @@ in such a way that no two neighborhoods intersect.
 		+ \dots
 		+ \frac{c_{-1}}{z-p} + c_0 + c_1 (z-p) + \dots.
 	\]
-	The integer $m$ called the \vocab{order} of the pole.
+	The integer $m$ is called the \vocab{order} of the pole.
 	A pole of order $1$ is called a \vocab{simple pole}.
 	
 	We also give the coefficient $c_{-1}$ a name, the \vocab{residue} of $f$ at $p$,
@@ -184,13 +185,14 @@ We can now give many more examples.
 	[A Rational Meromorphic Functions]
 	Consider the function $\CC \to \CC$ given by
 	\begin{align*}
-		z &\mapsto \frac{z^4+1}{z(z-1)} \\
-		&= z^2 + 1 + \frac 2z \cdot \frac{1}{z-1} \\
-		&= z^2 + 1 + \frac 2z \left( 1 + z + z^2 + \dots  \right) \\
-		&= \frac 2z + 3 + 2z + 3z^2 + 2z^3 + 2z^4 + 2z^5 + \dots .
+		z &\mapsto \frac{z^4+1}{z^2-1} \\
+		&= z^2 + 1 + \frac{1}{z-1} \cdot \frac{2}{z+1}
+		&= z^2 + 1 + \frac1{z-1} 
+		\left( 1 - \half(z-1) + \frac14(z-1)^2 - \frac18(z-1)^3 + \dots \right) \\
+		&= \frac{1}{z-1} + \frac32 + \frac94(z-1)^2 + \frac{1}{16}(z-1)^3 - \dots
 	\end{align*}
-	It has a pole of order $1$ and residue $2$ at $z=0$.
-	(It also has a pole of order $1$ at $z=1$; you are invited to compute the residue.)
+	It has a pole of order $1$ and residue $2$ at $z=1$.
+	(It also has a pole of order $1$ at $z=-1$; you are invited to compute the residue.)
 \end{example}
 \begin{example}
 	[Function with Infinitely Many Poles]
@@ -211,7 +213,7 @@ We can now give many more examples.
 \end{example}
 
 The Laurent series, if it exists, is unique (as you might have guessed),
-and by our result on holomorphic function it is actually valid for \emph{any}
+and by our result on holomorphic functions it is actually valid for \emph{any}
 disk centered at $p$ (minus the point $p$).
 The part $\frac{c_{-1}}{z-p} + \dots + \frac{c_{-m}}{(z-p)^m}$ is called the \vocab{principal part},
 and the rest of the series $c_0 + c_1(z-p) + \dots$ is called the \vocab{analytic part}.
@@ -238,7 +240,7 @@ So we associate a special name for the nonzero value at $m=-1$.
 		\Wind(\gamma, p) = \frac{1}{2\pi i} \oint_{\gamma} \frac{1}{z-p} \; dz
 	\]
 \end{definition}
-For example, our previous results we see that if $\gamma$ is a circle, we have
+For example, by our previous results we see that if $\gamma$ is a circle, we have
 \[
 	\Wind(\text{circle}, p)
 	=
@@ -247,7 +249,7 @@ For example, our previous results we see that if $\gamma$ is a circle, we have
 		0 & \text{$p$ outside the circle}.
 	\end{cases}
 \]
-If you've read the chapter of fundamental groups, then this is just the fundamental group
+If you've read the chapter on fundamental groups, then this is just the fundamental group
 associated to $\CC \setminus \{p\}$.
 In particular, the winding number is always an integer (the proof of this requires the complex logarithm,
 so we omit it here).
@@ -357,7 +359,7 @@ using the so-called Argument Principle.
 	\label{thm:arg_principle}
 	Let $\gamma$ be a regular curve.
 	Suppose $f : U \to \CC$ is meromorphic inside and on $\gamma$, and
-	none of its zeros ore poles lie on $\gamma$.
+	none of its zeros or poles lie on $\gamma$.
 	Then
 	\[
 		\frac{1}{2\pi i} \oint_\gamma \frac{f'}{f} \; dz
@@ -368,7 +370,7 @@ using the so-called Argument Principle.
 \end{theorem}
 \begin{proof}
 	Immediate by applying Cauchy's Residue Theorem alongside the preceding proposition.
-	In fact you can generalizes to any curve $\gamma$ via the winding number:
+	In fact you can generalize to any curve $\gamma$ via the winding number:
 	the integral is
 	\[ \frac{1}{2\pi i} \oint_\gamma \frac{f'}{f} \; dz
 		= \sum_{\text{zero $z$}} \Wind(\gamma,z)
