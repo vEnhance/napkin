@@ -194,15 +194,16 @@ and the metric of $N$ for the other condition.
 This generalization is nice because it tells us immediately how we could carry over continuity arguments in $\RR$ to more general spaces (for example, replacing $\RR$ with $\CC$ to get complex analysis).
 Nonetheless, this definition is kind of cumbersome to work with, because it makes extensive use of the real numbers (epsilons and deltas).
 Here is an equivalent condition.
-\begin{theorem}
+\begin{theorem}[Sequential Continuity]
+	\label{thm:seq_cont}
 	A function $f : M \to N$ be metric spaces is continuous at a point $p \in M$
 	if and only if the following property holds:
 	if $x_1$, $x_2$, \dots is a sequence in $M$ converging to $p$,
-	then the sequence $f(x_1)$, $f(x_2)$, \dots is a sequence in $N$ converging to $f(p)$.
+	then the sequence $f(x_1)$, $f(x_2)$, \dots in $N$ converges to $f(p)$.
 \end{theorem}
 \begin{proof}
-	Boring and not hard.
-	We do not even need the triangle inequality.
+	It's not too hard to see that $\eps$-$\delta$ continuity implies sequential continuity.
+	The other direction is trickier is left as \Cref{prob:sequential}.
 \end{proof}
 
 The next example illustrates why this criterion can often be much easier to work with.
@@ -734,6 +735,25 @@ Mathematicians seem to have agreed that they like open sets better.
 		$\bigcup p\ZZ = \ZZ \setminus \{-1,1\}$ would have to be closed;
 		i.e.\ $\{-1,1\}$ would be open, but all open sets here are infinite.
 	\end{hint}
+\end{problem}
+
+\begin{problem}
+	\label{prob:sequential}
+	Show that sequentially continuous at $p$ implies $\eps$-$\delta$ continuous at $p$,
+	as in \Cref{thm:seq_cont}.
+	\begin{hint}
+		Use contradiction. Only take $\delta$ of the form $1/k$ ($k \in \ZZ$).
+	\end{hint}
+	\begin{sol}
+		Assume for contradiction that there is a bad bad $\eps_0 > 0$
+		meaning that for any $\delta$, there is a $x \in M$ which is within $\delta$
+		of $p \in M$ but $f(x)$ is at least $\eps$ away from $f(p) \in N$.
+		For $\delta = 1/k$ let $x_k$ be the said counterexample.
+		Then $x_k$ converges to $p$ (by triangle inequality) so
+		$f(x_k)$ is supposed to converge to $f(p)$,
+		which is impossible by construction since the $f(x_k)$ 
+		are at least $\eps_0$ away from $f(p)$.
+	\end{sol}
 \end{problem}
 
 \begin{problem}
