@@ -196,7 +196,7 @@ Nonetheless, this definition is kind of cumbersome to work with, because it make
 Here is an equivalent condition.
 \begin{theorem}[Sequential Continuity]
 	\label{thm:seq_cont}
-	A function $f : M \to N$ be metric spaces is continuous at a point $p \in M$
+	A function $f : M \to N$ of metric spaces is continuous at a point $p \in M$
 	if and only if the following property holds:
 	if $x_1$, $x_2$, \dots is a sequence in $M$ converging to $p$,
 	then the sequence $f(x_1)$, $f(x_2)$, \dots in $N$ converges to $f(p)$.
@@ -544,7 +544,7 @@ Now we can port over our metric definitions.
 \end{center}
 
 \begin{abuse}
-	Just to be perfect clear:
+	Just to be perfectly clear:
 	by a ``open neighborhood'' I mean \emph{any} open set containing $x$.
 	But by an ``$r$-neighborhood'' I always mean the
 	points with distance less than $r$ from $x$,
@@ -555,7 +555,7 @@ Now we can port over our metric definitions.
 	There's another related term commonly used:
 	a \emph{neighborhood} $V$ of $x$ is a set
 	which contains some open neighborhood of $x$ (often $V$ itself).
-	Think of it as ``open at $x$'', though
+	Think of it as ``open around $x$'', though
 	not always at other points.
 	However, for most purposes, you should think of neighborhoods
 	as just open neighborhoods.
@@ -564,12 +564,13 @@ Now we can port over our metric definitions.
 	A function $f : X \to Y$ of topological spaces
 	is \vocab{continuous} at $p \in X$ if the pre-image of any
 	open neighborhood of $fp$ is an open neighborhood of $p$.
-	It is \vocab{continuous} if it is continuous at every point,
+	It is continuous if it is continuous at every point,
 	meaning that the pre-image of any open set is open.
 \end{definition}
 
-You can also port over the notion of sequences and convergent sequences,
-but I won't bother to do so because sequences lose most of the nice properties they had in metric spaces.
+You can also port over the notion of sequences and convergent sequences.
+But I won't bother to do so because sequences lose most of the nice properties
+they had in metric spaces when works in general topological spaces.
 
 %\begin{definition}
 %	A sequence $(x_n)$ of points in a topological space $X$ is said to \vocab{converge to} $x \in X$ if for every neighborhood of $x$,
@@ -620,10 +621,6 @@ The \vocab{limit points} of a subset $S \subseteq M$ are the points
 in the following set:
 \[ \lim S \defeq \left\{ p \in M : \exists (x_n) \in S \text{ such that } x_n \to p \right\}. \]
 Thus $S$ is closed if and only if $S = \lim S$.
-\begin{exercise}
-	Prove that $\lim S$ is closed even if $S$ isn't closed. (Draw a picture.)
-	Hence we also call $\lim S$ the \vocab{closure} of $S$.
-\end{exercise}
 
 \begin{figure}[ht]
 	\centering
@@ -631,8 +628,12 @@ Thus $S$ is closed if and only if $S = \lim S$.
 	\caption{Limit points and neighborhoods}
 \end{figure}
 
+\begin{exercise}
+	Prove that $\lim S$ is closed even if $S$ isn't closed. (Draw a picture.)
+\end{exercise}
 For this reason, $\lim S$ is also called the \vocab{closure} of $S$ in $M$,
 and denoted $\ol S$.  It is simply the smallest closed set which contains $S$.
+
 \begin{figure}[ht]
 	\centering
 	\includegraphics[height=9cm]{/home/evan/Pictures/TopologicalGG/stars-limit-point-infinity.jpg}
@@ -670,11 +671,11 @@ Despite first impressions, most sets are neither open nor closed.
 \end{example}
 \begin{remark}
 	It's also possible for a set to be both open and closed;
-	see the next chapter.
+	this will be discussed in a later chapter.
 \end{remark}
 
 Remarkably, though, the following \emph{is} true.
-\begin{theorem}
+\begin{theorem}[Closed Sets are Complements of Open Sets]
 	Let $M$ be a metric space, and $S \subseteq M$ any subset.
 	Then the following are equivalent:
 	\begin{itemize}
