@@ -1,4 +1,5 @@
 \chapter{Topological Notions}
+\label{ch:top_more}
 Here I'm just talking about some various properties of general topological spaces.
 The chapter is admittedly a bit disconnected.\footnote{Pun not intended, but hey, why not.}
 
@@ -14,19 +15,21 @@ The most important topological notion is missing from this chapter:
 that of a \emph{compact} space.
 It is so important that I have dedicated a separate chapter just for it.
 
+Note that in contrast to the warning on open/closed sets I gave earlier,
+\begin{moral}
+	The adjectives in this chapter will be used to describe \emph{spaces}.
+\end{moral}
+
 %As I alluded to earlier, sequences in metric spaces are super nice,
 %but sequences in general topological spaces \emph{suck} (to the point where
 %I didn't bother to define convergence of general sequences).
 
 \section{Connected Spaces}
-It is possible for a set to be both open and closed (or \vocab{clopen});
+It is possible for a set to be both open and closed (or \vocab{clopen}) in a
+topological space $X$;
 for example $\varnothing$ and the entire space are examples of clopen sets.
 In fact, the presence of a nontrivial clopen set other than these two leads
 to a so-called \emph{disconnected} space.
-
-Let $X$ be a general topological space.
-Recall that a set is \emph{clopen} if it is both open and closed;
-for example, $\varnothing$ and $X$ are clopen.
 
 \begin{ques}
 	Show that a space $X$ has a nontrivial clopen set
@@ -45,12 +48,8 @@ to solve \Cref{prob:disconnected_better_def}.
 	\listhack
 	\begin{enumerate}[(a)]
 		\ii The metric space 
-		\[ \{ (x,y) \mid x^2+y^2\le 1 \} \cup \{ (x,y) \mid (x-4)^2+y^2\le1\} \]
+		\[ \{ (x,y) \mid x^2+y^2\le 1 \} \cup \{ (x,y) \mid (x-4)^2+y^2\le1\} \subseteq \RR^2 \]
 		is disconnected (it consists of two disks).
-		Here as usual we're thinking of it as a subspace of $\RR^2$.
-
-		\ii Every set in a discrete space is clopen, so a discrete space
-		(with more than one point) is disconnected.
 
 		\ii Convince yourself that the set 
 		\[ \left\{ x \in \QQ : x^2 < 2014 \right\} \]
@@ -61,6 +60,9 @@ to solve \Cref{prob:disconnected_better_def}.
 	\end{enumerate}
 \end{example}
 
+\begin{ques}
+	For which integers $n$ is a discrete space on $n$ points disconnected?
+\end{ques}
 
 %\begin{remark}
 %	For general topological spaces $X$, it is still true that if $S$ is closed
@@ -241,7 +243,7 @@ It's the following simple definition.
 	A space $X$ is \vocab{simply connected} if it's path-connected and
 	for any paths $A$ and $B$, all paths from $A$ to $B$ are homotopic.
 \end{definition}
-That's why you don't ask question when walking from $A$ to $B$ in $\CC$:
+That's why you don't ask questions when walking from $A$ to $B$ in $\CC$:
 there's really only one way to walk. Hence the term ``simply'' connected.
 
 \begin{ques}
@@ -257,7 +259,8 @@ there's really only one way to walk. Hence the term ``simply'' connected.
 \section{Bases of Spaces}
 \prototype{$\RR$ has a basis of open intervals, and $\RR^2$ has a basis of open disks.}
 
-You might have noticed that the open sets of $\RR$ are a little annoying to describe: the prototypical example of an open set is $(0,1)$,
+You might have noticed that the open sets of $\RR$ are a little annoying to describe:
+the prototypical example of an open set is $(0,1)$,
 but there are other open sets like
 \[
 	(0,1)
@@ -300,53 +303,6 @@ of a bunch of open disks, and so on.
 The point is that in a metric space, the only open sets you really
 ever have to worry too much about are the $r$-neighborhoods.
 
-
-\section{Subspacing}
-I'll issue a small clarification before proceeding, so as not to confuse the reader.
-We've talked about some properties that a space can have;
-say, a space is \emph{path-connected}, or \emph{simply-connected},
-or in a moment, a space might be \emph{complete} or \emph{compact} or whatever.
-
-If you think about, it would make sense to use the same adjectives on sets.
-You'd say a set $S$ is path-connected if there's a path between every pair of points in $S$
-through points in $S$. And so on.
-
-The reason you can do this is that for a metric, every subset $S \subseteq M$ is a topological space in its own right (just use the same distance function). This is called the \vocab{subspace topology}.
-For example, you can think of a circle $S^1$ as a connected set by viewing it as a subspace of $\RR^2$.
-(In case you haven't noticed,
-I already said all this in an earlier chapter.)
-Thus,
-\begin{abuse}
-	Any adjective used to describe a space can equally be used for a set,
-	and I'll thus be letting these mix pretty promiscuously.
-	So in what follows, I might refer to subsets being complete,
-	even when I only defined completeness for spaces.
-	This is what I mean.
-\end{abuse}
-
-You can do the same thing in a general topological space $X$.
-Given a subset $S \subseteq X$, the open sets of the subspace $S$ are those of the form $S \cap U$,
-where $U$ is an open set of $X$.
-So for example, if we view $S^1$ as a subspace of $\RR^2$,
-then any open arc is an open set, because you can view it as the intersection of an open disk with $S^1$.
-\begin{center}
-	\begin{asy}
-		size(3cm);
-		draw(unitcircle, black+1);
-		MP("S^1", dir(60), dir(60));
-		MP("\mathbb R^2", dir(-45)*1.2, dir(-45));
-		pair A = dir(-30);
-		pair B = dir(50);
-		draw(CP(dir(10), A), dotted);
-		draw(arc(origin,A,B), blue+2);
-		dotfactor *= 2;
-		opendot(A, blue);
-		opendot(B, blue);
-	\end{asy}
-\end{center}
-
-Needless to say, for metric spaces it doesn't matter which of these definitions I choose.
-(Proving this turns out to be surprisingly annoying, so I won't do so.)
 
 \section{Completeness}
 \prototype{$\RR$ is complete, but $\QQ$ and $(0,1)$ are not.}
@@ -398,7 +354,7 @@ Now we can define the following.
 	\end{enumerate}
 \end{example}
 \begin{example}
-	[Non-Examples of Complete Sets]
+	[Non-Examples of Complete Spaces]
 	\listhack
 	\begin{enumerate}[(a)]
 		\ii The rationals $\QQ$ are not complete.
@@ -409,8 +365,9 @@ Now we can define the following.
 
 So, metric spaces need not be complete, like $\QQ$.
 But it turns out that every metric space can be \emph{completed}
-by ``filling in the gaps'' somehow, resulting in a space
+by ``filling in the gaps'', resulting in a space
 called the \vocab{completion} of the metric space.
+For example, the completion of $\QQ$ is $\RR$ (in fact, this is often taken as the definition of $\RR$).
 
 \begin{figure}[ht]
 	\centering
@@ -434,14 +391,84 @@ called the \vocab{completion} of the metric space.
 %	$\RR$ is the completion of the metric space $\QQ$.
 %\end{definition}
 
+\section{Subspacing}
+Earlier in this chapter, I declared that all the adjectives we defined were used to describe spaces.
+However, I now want to be more flexible and describes how they can be used to define subsets of spaces as well.
+
+We've talked about some properties that a space can have;
+say, a space is \emph{path-connected}, or \emph{simply-connected}, or \emph{complete}.
+If you think about, it would make sense to use the same adjectives on sets.
+You'd say a set $S$ is path-connected if there's a path between every pair of points in $S$
+through points in $S$. And so on.
+
+The reason you can do this is that for a metric space $M$,
+\begin{moral}
+	Every subset $S \subseteq M$ is a metric space in its own right .
+\end{moral}
+To see this, we just use the same distance function;
+this is called the \vocab{subspace topology}.
+For example, you can think of a circle $S^1$ as a connected set by viewing it as a subspace of $\RR^2$.
+Thus,
+\begin{abuse}
+	Any adjective used to describe a space can equally be used for a subset of a space,
+	and I'll thus be letting these mix pretty promiscuously.
+	So in what follows, I might refer to subsets being complete,
+	even when I only defined completeness for spaces.
+	This is what I mean.
+\end{abuse}
+So to be perfectly clear:
+\begin{itemize}
+	\ii The statement ``$[0,1]$ is complete'' makes sense (and is true);
+	it says that $[0,1]$ is a complete metric space.
+	\ii The statement ``$[0,1]$ is a complete subset of $\RR$'' is valid;
+	it says that the subspace $[0,1]$ of $\RR$ is a complete metric space,
+	which is of course true.
+	\ii The statement ``$[0,1]$ is a closed subset of $\RR$'' makes sense;
+	it says that the set of points $[0,1]$ form a closed subset of a parent space $\RR$.
+	\ii The statement ``$[0,1]$ is closed'' does \emph{not} make sense.
+	Closed sets are only defined relative to parent spaces.
+\end{itemize}
+
+To make sure you understand this:
+\begin{ques}
+	Let $M$ be a complete metric space and let $S \subseteq M$.
+	Prove that $S$ is complete if and only if it is closed in $M$.
+	(This is obvious once you figure out what the question is asking.)
+	In particular, $[0,1]$ is complete.
+\end{ques}
+
+One can also define the subspace topology in a general topological space $X$.
+Given a subset $S \subseteq X$, the open sets of the subspace $S$ are those of the form $S \cap U$,
+where $U$ is an open set of $X$.
+So for example, if we view $S^1$ as a subspace of $\RR^2$,
+then any open arc is an open set, because you can view it as the intersection of an open disk with $S^1$.
+\begin{center}
+	\begin{asy}
+		size(3cm);
+		draw(unitcircle, black+1);
+		MP("S^1", dir(60), dir(60));
+		MP("\mathbb R^2", dir(-45)*1.2, dir(-45));
+		pair A = dir(-30);
+		pair B = dir(50);
+		draw(CP(dir(10), A), dotted);
+		draw(arc(origin,A,B), blue+2);
+		dotfactor *= 2;
+		opendot(A, blue);
+		opendot(B, blue);
+	\end{asy}
+\end{center}
+
+Needless to say, for metric spaces it doesn't matter which of these definitions I choose.
+(Proving this turns out to be surprisingly annoying, so I won't do so.)
+
 \section\problemhead
 
-\begin{dproblem}
+\begin{sproblem}
 	Let $X$ be a topological space.
 	Show that there exists a nonconstant continuous function $X \to \{0,1\}$ if and
 	only if $X$ is disconnected (here $\{0,1\}$ is given the discrete topology).
 	\label{prob:disconnected_better_def}
-\end{dproblem}
+\end{sproblem}
 
 \begin{problem}
 	A topological space $X$ is called \vocab{locally path-connected}

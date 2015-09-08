@@ -53,7 +53,8 @@ The concept of a metric space is very ``concrete'', and lends itself easily to v
 	We can generalize the above examples easily.
 	Let $n$ be a positive integer. We define the following metric spaces.
 	\begin{enumerate}[(a)]
-		\ii We let $\RR^n$ be the metric space whose points are points in $n$-dimensional Euclidean space, and whose metric is the Euclidean metric
+		\ii We let $\RR^n$ be the metric space whose points are points in $n$-dimensional Euclidean space,
+		and whose metric is the Euclidean metric
 		\[
 			d\left( 
 			\left( a_1, \dots, a_n \right), \left( b_1, \dots, b_n \right)
@@ -67,8 +68,10 @@ The concept of a metric space is very ``concrete'', and lends itself easily to v
 		\ii The \vocab{unit sphere} $S^{n-1}$ is the subset of $\RR^n$
 		consisting of those points $\left( x_1, \dots, x_n \right)$
 		such that $x_1^2 + \dots + x_n^2 = 1$, with the inherited metric.
-		(The superscript $n-1$ indicates that $S^{n-1}$ is an  $n-1$ dimensional space, even though it lives in $n$-dimensional space.)
-		For example, $S^1 \subseteq \RR^2$ is the unit circle, whose distance between two points is the length of the chord joining them.
+		(The superscript $n-1$ indicates that $S^{n-1}$ is an $n-1$ dimensional space,
+		even though it lives in $n$-dimensional space.)
+		For example, $S^1 \subseteq \RR^2$ is the unit circle,
+		whose distance between two points is the length of the chord joining them.
 		You can also think of it as the ``boundary'' of the unit ball $B^n$.
 	\end{enumerate}
 \end{example}
@@ -128,6 +131,12 @@ This is the same as the typical epsilon-delta definition, with absolute values r
 	We say that a sequence converges in $M$ if it converges to a point in $M$.
 \end{definition}
 You should check that this definition coincides with your intuitive notion of ``converges''.
+\begin{abuse}
+	If the parent space $M$ is understood, we will allow ourselves
+	to abbreviate ``converges in $M$'' to just ``converges''.
+	However, keep in mind that convergence is defined relative to the parent space;
+	the ``limit'' of the space must actually be a point in $M$ for a sequence to converge.
+\end{abuse}
 
 \begin{center}
 	\begin{asy}
@@ -151,7 +160,8 @@ You should check that this definition coincides with your intuitive notion of ``
 	$x_1 = 1$, $x_2 = 1.4$, $x_3 = 1.41$, $x_4 = 1.414$, \dots.
 	\begin{enumerate}[(a)]
 		\ii If we view this as a sequence in $\RR$, it converges to $\sqrt 2$.
-		\ii However, even though each $x_i$ is in $\QQ$, this sequence does NOT converge when we view it as a sequence in $\QQ$!
+		\ii However, even though each $x_i$ is in $\QQ$,
+		this sequence does NOT converge when we view it as a sequence in $\QQ$!
 	\end{enumerate}
 \end{example}
 
@@ -372,6 +382,10 @@ This motivates the following definition.
 	is contained inside $U$.
 	In other words, there exists $r>0$ such that $M_r(p) \subseteq U$.
 \end{definition}
+\begin{abuse}
+	Note that a set being open is defined \emph{relative to} the parent space $M$.
+	However, if $M$ is understood we can abbreviate ``open in $M$'' to just ``open''.
+\end{abuse}
 
 \begin{figure}[ht]
 	\centering
@@ -382,7 +396,7 @@ This motivates the following definition.
 		draw(CR(P, 0.3), dotted);
 		MP("x^2+y^2<1", dir(45), dir(45));
 	\end{asy}
-	\caption{The set of points $x^2+y^2<1$ in $\RR^2$ is open.}
+	\caption{The set of points $x^2+y^2<1$ in $\RR^2$ is open in $\RR^2$.}
 	\label{fig:example_open}
 \end{figure}
 
@@ -390,7 +404,7 @@ This motivates the following definition.
 	\listhack
 	\begin{enumerate}[(a)]
 		\ii Any $r$-neighborhood of a point is open.
-		\ii Open intervals of $\RR$ are open, hence the name!
+		\ii Open intervals of $\RR$ are open in $\RR$, hence the name!
 		This is the prototypical example to keep in mind.
 		\ii The open unit ball $B^n$ is open in $\RR^n$ for the same reason.
 		\ii In particular, the open interval $(0,1)$ is open in $\RR$.
@@ -431,7 +445,7 @@ Here are two quite important properties of open sets.
 The whole upshot of this is the following theorem.
 \begin{theorem}[Open Set Condition]
 	A function $f : M \to N$ of metric spaces is continuous
-	if and only if the pre-image of every open set is open.
+	if and only if the pre-image of every open set in $N$ is open in $M$.
 \end{theorem}
 \begin{proof}
 	I'll just do one direction\dots
@@ -485,7 +499,6 @@ which makes it clear why open sets are good things to consider.
 		and for any open set $V \subseteq N$ the set $f\pre(V)$ is open.
 	\end{enumerate}
 \end{theorem}
-
 
 This leads us to the following\dots
 
@@ -611,11 +624,15 @@ It would be criminal for me to talk about open sets without talking about the du
 The name ``closed'' comes from the definition in a metric space.
 \begin{definition}
 	Let $M$ be a metric space.
-	A subset $S \subseteq M$ is \vocab{closed} if the following property holds:
+	A subset $S \subseteq M$ is \vocab{closed} in $M$ if the following property holds:
 	let $x_1$, $x_2$, \dots be a sequence of points in $S$
 	and suppose that $x_n$ converges to $x$ in $M$.
 	Then $x \in S$ as well.
 \end{definition}
+\begin{abuse}
+	Same caveat: we abbreviate ``closed in $M$'' to just ``closed''
+	if the parent space $M$ is understood.
+\end{abuse}
 Here's another way to phrase it.
 The \vocab{limit points} of a subset $S \subseteq M$ are the points
 in the following set:
@@ -644,8 +661,10 @@ and denoted $\ol S$.  It is simply the smallest closed set which contains $S$.
 	[Examples of Closed Sets]
 	\listhack
 	\begin{enumerate}[(a)]
-		\ii The empty set $\varnothing$ is closed in $M$ for vacuous reasons: there are no sequences of points with elements in $\varnothing$.
+		\ii The empty set $\varnothing$ is closed in $M$ for vacuous reasons:
+		there are no sequences of points with elements in $\varnothing$.
 		\ii The entire space $M$ is closed in $M$ for tautological reasons.
+		(Verify this!)
 		\ii The closed interval $[0,1]$ in $\RR$ is closed in $\RR$, hence the name.  Like with open sets, this is the prototypical example of a closed set to keep in mind!
 		\ii In fact, the closed interval $[0,1]$ is even closed in $\RR^2$.
 	\end{enumerate}
@@ -671,7 +690,7 @@ Despite first impressions, most sets are neither open nor closed.
 \end{example}
 \begin{remark}
 	It's also possible for a set to be both open and closed;
-	this will be discussed in a later chapter.
+	this will be discussed in \Cref{ch:top_more}.
 \end{remark}
 
 Remarkably, though, the following \emph{is} true.
@@ -679,8 +698,8 @@ Remarkably, though, the following \emph{is} true.
 	Let $M$ be a metric space, and $S \subseteq M$ any subset.
 	Then the following are equivalent:
 	\begin{itemize}
-		\ii The set $S$ is closed.
-		\ii The complement $M \setminus S$ is open.
+		\ii The set $S$ is closed in $M$.
+		\ii The complement $M \setminus S$ is open in $M$.
 	\end{itemize}
 \end{theorem}
 \begin{exercise}
@@ -692,7 +711,7 @@ Remarkably, though, the following \emph{is} true.
 This leads us to a definition for a general topological space.
 \begin{definition}
 	In a general topological space $X$, we say that $S \subseteq X$ is
-	\vocab{closed} if the complement $X \setminus S$ is open.
+	\vocab{closed} in $X$ if the complement $X \setminus S$ is open in $X$.
 \end{definition}
 Hence, for general topological spaces, open and closed sets carry the same information,
 and it is entirely a matter of taste whether we define everything in terms
@@ -708,6 +727,50 @@ In particular,
 	of every closed set is closed.
 \end{ques}
 Mathematicians seem to have agreed that they like open sets better.
+
+\section{Common Pitfalls}
+An important distinction to keep in mind is that
+\begin{moral}
+	Convergence and open/closed sets are defined \emph{relative to a parent space}.
+	Therefore, it makes no sense to ask a question like ``is $[0,1]$ open?''.
+\end{moral}
+For example, here are some gotchas:
+\begin{itemize}
+	\ii Consider the sequence $1$, $1.4$, $1.41$, $1.414$, \dots.
+	Viewed as a sequence in $\RR$, it converges to $\sqrt 2$.
+	But if viewed as a sequence in $\QQ$, this sequence does \emph{not} converge!
+	For a sequence to converge one has to be able to write down where it approaches,
+	but $\sqrt 2 \notin \QQ$.
+	Similarly, the sequence $0.9$, $0.99$, $0.999$, $0.9999$ does not converge in the space $(0,1)$,
+	although it does converge in $[0,1]$.
+	In general it doesn't make sense to ask
+	``does $(x_n)$ converge'' without specifying which space one is discussing.
+
+	The fact that these sequences fail to converge even though they ``ought to'' is weird and bad,
+	and so in \Cref{ch:top_more} we'll define a \emph{complete} metric space as one where sequences
+	that ``should'' converge (called \emph{Cauchy}) actually do.
+
+	\ii In general, it makes no sense to ask a question like ``is $[0,1]$ open?''.
+	The questions ``is $[0,1]$ open in $\RR$?'' and ``is $[0,1]$ open in $[0,1]$?'' do make sense, however.
+	The answer to the first question is ``no'' but the answer to the second question is ``yes'';
+	indeed, every space is open in itself.
+	If $M = [0,1]$ the ball of radius $\half$ around $0 \in M$ is indeed contained in $M$,
+	because the $\half$-neighborhood of $0$ \emph{in $M$} is exactly $[0,\half)$.
+
+	\ii Dually, it doesn't make sense to ask ``is $[0,1]$ closed''?
+	It is closed \emph{in $\RR$} and \emph{in itself} (but every space is closed in itself, anyways).
+\end{itemize}
+
+To make sure you understand the above, you should convince yourself the following exercise is true.
+\begin{exercise}
+	Let $M = [0,1] \cup (2,3)$.
+	Show that $[0,1]$ and $(2,3)$ are both open and closed in $M$.
+\end{exercise}
+This illustrates a third point:
+a nontrivial set can be both open and closed (apologies for the terminology).
+(As we'll see in \Cref{ch:top_more}, this implies the space is disconnected; i.e. the only
+examples look quite like the one we've given above.)
+
 
 \section\problemhead
 \begin{problem}

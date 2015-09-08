@@ -108,11 +108,21 @@ We need to do a bit more work for these examples, which we do in the next sectio
 \end{proof}
 
 We also have the following result.
-\begin{proposition}
+\begin{proposition}[The Interval is Compact]
 	$[a,b]$ is compact for any real numbers $a < b$.
 \end{proposition}
 \begin{proof}
 	Killed by \Cref{thm:heine_borel}.
+	However, here is a sketch of a direct proof.
+
+	WLOG, work with $[0,1]$. Split $[0,1]$ into $[0,\half] \cup [\half,1]$.
+	By Pigeonhole, infinitely many terms of the sequence lie in the left half (say);
+	let $x_1$ be the first one and then keep only the terms in the left half after $x_1$.
+	Now split $[0, \half]$ into $[0,\frac14] \cup [\frac14,\half]$.
+	Again, by Pigeonhole, infinitely many terms fall in some half; pick one of them, call it $x_2$.
+	Rinse and repeat.
+	In this way we generate a sequence $x_1$, $x_2$, \dots which is Cauchy,
+	implying that it converges since $[0,1]$ is complete.
 \end{proof}
 
 Now we can prove the main theorem about Euclidean space:
@@ -290,7 +300,19 @@ It's important to draw lots of pictures so one can tell what's happening.
 % I'd be happy to learn of any easier ones.
 Of these \Cref{thm:heine_borel} is definitely my favorite.
 
-\begin{sproblem}[Compact Implies Bounded, Remember This!]
+\begin{problem}
+	Show that $[0,1]$ and $(0,1)$ are not homeomorphic.
+	\begin{hint}
+		$[0,1]$ is compact.
+	\end{hint}
+	\begin{sol}
+		Compactness is preserved under homeomorphism, so this is obvious.
+		To be clear, suppose $f : [0,1] \to (0,1)$ is continuous and surjective.
+		This would imply $(0,1)$ is compact, which is false.
+	\end{sol}
+\end{problem}
+
+\begin{sproblem}[Compact Implies Bounded]
 	Let $f : X \to \RR$ be a continuous function,
 	where $X$ is a compact topological space.
 	Show that $f$ is bounded.
@@ -348,9 +370,12 @@ Of these \Cref{thm:heine_borel} is definitely my favorite.
 \begin{problem}
 	[Almost Arzel\`a-Ascoli Theorem]
 	\gim
-	Let $f_1, f_2, \dots : [0,1] \to [-100,100]$ be an \vocab{equicontinuous} sequence of functions,
+	Let 
+	\[ f_1, f_2, \dots : [0,1] \to [-100,100] \]
+	be an \vocab{equicontinuous} sequence of functions,
 	meaning for every $\eps > 0$, there's a $\delta > 0$ such that
-	whenever $\left\lvert x-y \right\rvert < \delta$, we have $\left\lvert f_n(x)-f_n(y) \right\rvert < \eps$ (for all $n$).
+	whenever $\left\lvert x-y \right\rvert < \delta$,
+	we have $\left\lvert f_n(x)-f_n(y) \right\rvert < \eps$ (for all $n$).
 	Show that we can extract a subsequence $f_{i_1}, f_{i_2}, \dots$ of these functions such that
 	$f_{i_1}(x)$, $f_{i_2}(x)$, \dots\ converges for every $x$.
 \end{problem}
