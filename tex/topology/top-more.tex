@@ -1,7 +1,7 @@
 \chapter{Topological Notions}
 \label{ch:top_more}
 Here I'm just talking about some various properties of general topological spaces.
-The chapter is admittedly a bit disconnected.\footnote{Pun not intended, but hey, why not.}
+The chapter is admittedly a bit disconnected (pun not intended, but hey, why not).
 
 I should say a little about metric spaces vs general topological spaces here.
 In most of the sections we only really talk about continuous maps or open sets,
@@ -51,6 +51,9 @@ to solve \Cref{prob:disconnected_better_def}.
 		\[ \{ (x,y) \mid x^2+y^2\le 1 \} \cup \{ (x,y) \mid (x-4)^2+y^2\le1\} \subseteq \RR^2 \]
 		is disconnected (it consists of two disks).
 
+		\ii A discrete space on more than one point is disconnected,
+		since \emph{every} set is clopen in the discrete space.
+
 		\ii Convince yourself that the set 
 		\[ \left\{ x \in \QQ : x^2 < 2014 \right\} \]
 		is a clopen subset of $\QQ$. 
@@ -59,10 +62,6 @@ to solve \Cref{prob:disconnected_better_def}.
 		\ii $[0,1]$ is connected.
 	\end{enumerate}
 \end{example}
-
-\begin{ques}
-	For which integers $n$ is a discrete space on $n$ points disconnected?
-\end{ques}
 
 %\begin{remark}
 %	For general topological spaces $X$, it is still true that if $S$ is closed
@@ -123,10 +122,9 @@ Here's a picture of a path.
 	(If $\gamma : [0,1] \to X$, then we get $[0,1] = \gamma\pre(U) \sqcup \gamma\pre(V)$,
 	but $[0,1]$ is connected.)
 \end{exercise}
+In fact, there exist path-connected spaces which are not connected
+(one is called the \emph{topologist's sine curve}).
 This shows that path-connected is stronger than connected.
-See also \Cref{prob:local_path_connected}.
-
-\todo{topologist's sine curve}
 
 \begin{example}[Examples of Path-Connected Spaces]
 	\listhack
@@ -470,13 +468,23 @@ Needless to say, for metric spaces it doesn't matter which of these definitions 
 	\label{prob:disconnected_better_def}
 \end{sproblem}
 
-\begin{problem}
-	A topological space $X$ is called \vocab{locally path-connected}
-	if for every point $x \in X$, some neighborhood $U$ of $x$ is path-connected.
-	Prove that $X$ is path-connected if and only if it is connected
-	and locally path-connected.
-	\label{prob:local_path_connected}
-\end{problem}
+\begin{sproblem}
+	Let $f : X \to Y$ be a continuous function,
+	and let $S \subset Y$ be the image of $f$,
+	i.e.\ define $S = f``(X)$.
+	\begin{enumerate}[(a)]
+		\ii Show that if $X$ is connected then so is $S$.
+		\ii Show that if $X$ is path-connected then so is $S$.
+	\end{enumerate}
+\end{sproblem}
+
+%\begin{problem}
+%	A topological space $X$ is called \vocab{locally path-connected}
+%	if for every point $x \in X$, some neighborhood $U$ of $x$ is path-connected.
+%	Prove that $X$ is path-connected if and only if it is connected
+%	and locally path-connected.
+%	\label{prob:local_path_connected}
+%\end{problem}
 
 \begin{problem}
 	\gim

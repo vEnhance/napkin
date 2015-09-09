@@ -1,6 +1,7 @@
 \chapter{Compactness}
 One of the most important notions of topological spaces is that of \emph{compactness}.
-It generalizes the notion of ``closed and bounded'' in Euclidean space to any topological space.
+It generalizes the notion of ``closed and bounded'' in Euclidean space to any topological space
+(e.g.\ see \Cref{thm:heine_borel}).
 
 For metric spaces, there are two equivalent ways of formulating compactness:
 \begin{itemize}
@@ -108,14 +109,14 @@ We need to do a bit more work for these examples, which we do in the next sectio
 \end{proof}
 
 We also have the following result.
-\begin{proposition}[The Interval is Compact]
-	$[a,b]$ is compact for any real numbers $a < b$.
-\end{proposition}
+\begin{theorem}[The Interval is Compact]
+	\label{thm:interval_compact}
+	$[0,1]$ is compact.
+\end{theorem}
 \begin{proof}
-	Killed by \Cref{thm:heine_borel}.
-	However, here is a sketch of a direct proof.
-
-	WLOG, work with $[0,1]$. Split $[0,1]$ into $[0,\half] \cup [\half,1]$.
+	Killed by \Cref{thm:heine_borel};
+	however, here is a sketch of a direct proof.
+	Split $[0,1]$ into $[0,\half] \cup [\half,1]$.
 	By Pigeonhole, infinitely many terms of the sequence lie in the left half (say);
 	let $x_1$ be the first one and then keep only the terms in the left half after $x_1$.
 	Now split $[0, \half]$ into $[0,\frac14] \cup [\frac14,\half]$.
@@ -196,10 +197,11 @@ What does this mean? Here's an example:
 
 Why do we care?
 Because of this:
-\begin{theorem}
+\begin{theorem}[Sequentially Compact $\iff$ Compact]
 	A metric space $M$ is sequentially compact if and only if it is compact.
 	\label{thm:compactness_metric}
 \end{theorem}
+We defer the proof to the last section.
 \begin{example}[An Example of Non-Compactness]
 	The space $X = [0,1)$ is not compact in either sense.
 	We can already see it is not sequentially compact, because it is not even complete (look at $x_n = 1 - \frac 1n$).
@@ -217,21 +219,6 @@ Because of this:
 	(Indeed, I kind of already did this in the previous few sections.)
 \end{abuse}
 
-The proof of this is pretty boring in my opinion, and I won't include it (you can find plenty by searching).
-About the only part that I'll bother mentioning is the Lebesgue Number Lemma,
-which is used as a step in the proof, but I think is interesting in its own right.
-\begin{lemma}
-	[Lebesgue Number Lemma]
-	In a compact metric space $M$, suppose there is an open cover $\{U_a\}$.
-	Then there exists a real number $\delta > 0$, called a \vocab{Lebesgue number},
-	such that the $\delta$-neighborhood of any point $p$ lies entirely in some $U_a$.
-\end{lemma}
-\missingfigure{Lebesgue Numbers}
-\begin{ques}
-	Convince yourself this lemma is true for $[0,1]$, where the open cover is finite
-	(this is the only case we need to consider, by \Cref{thm:compactness_metric}).
-\end{ques}
-
 Open covers also have the nice property that, again, they don't refer to metrics or sequences.
 So rather than port the sequential definition, we port this definition over for a general space:
 \begin{definition}
@@ -246,13 +233,14 @@ for every single point $x$ in the space; this is a huge number of open sets,
 and yet compactness lets us reduce to a finite set.
 
 To give an example of a typical usage:
-\begin{proposition}
-	Let $S$ be a compact set in a metric space $M$.
-	Then it's possible to cover $S$ by $\eps$-neighborhoods for every $\eps > 0$.
+\begin{proposition}[Compact $\implies$ Totally Bounded]
+	Let $M$ be compact.
+	Then $M$ is \vocab{totally bounded}, meaning
+	that for any $\eps > 0$ we can cover $M$ with $\eps$-neighborhoods.
 \end{proposition}
 (To picture this: in $\RR^2$, any compact set can be covered by unit disks.)
 \missingfigure{cover a triangle}
-\begin{proof}
+\begin{proof}[Proof Using Covers]
 	For every point $p \in M$, take an $\eps$-neighborhood of $p$, say $U_p$.
 	These cover $M$ for the horrendously stupid reason that each point is
 	at the very least covered by the neighborhood $U_p$.
@@ -264,34 +252,127 @@ Next, an important result about maps between compact spaces.
 	Let $f : X \to Y$ be a continuous function, where $X$ is compact.
 	Then the image \[ f``(X) \subseteq Y \] is compact.
 \end{theorem}
-\begin{ques}
-	Use sequences to solve this problem in the case $X$, $Y$ are metric spaces.
-\end{ques}
-\begin{proof}
+\begin{proof}[Proof Using Covers]
 	Take any open cover $\{V_\alpha\}$ in $Y$ of $f``(X)$.
 	By continuity of $f$, it pulls back to an open cover $\{U_\alpha\}$ of $X$.
 	Thus some finite subcover of this covers $X$.
 	The corresponding $V$'s cover $f``(X)$.
 \end{proof}
+\begin{ques}
+	Solve this using the sequential definition of continuity too.
+	(This is even easier.)
+\end{ques}
 
-A nice application of this is the so-called Extreme Value Theorem.
-\begin{corollary}[Extreme Value Theorem]
+A nice application of this is:
+\begin{corollary}[Extreme Value Theorem and Intermediate Value Theorem]
 	Consider a continuous function $f: [0,1] \to \RR$.
 	Then the image of $f$ is of the form $[a,b]$ for some real numbers $a \le b$.
-	In particular, $f$ obtains a maximum value in the following sense:
-	there exists an $x$ such that for $y \in [0,1]$,
-	$f(x) > y$.
+	In particular, $f$ obtains a maximum value $f(x) = b$
+	for some $x \in [0,1]$ (possibly not unique).
 \end{corollary}
 The typical counterexample given for $(0,1) \to \RR$ is the function $\frac 1x$.
 
 \begin{proof}[Sketch of Proof]
 	The point is that the image $S$ of $[0,1]$ is compact in $\RR$, and hence closed and bounded.
 	You can convince yourself that the closed sets are just unions of closed intervals.
-	Because the image is also ``connected'', there should only be one closed interval in $S$.
+	Because the image is also connected, there should only be one closed interval in $S$.
 	And the fact that $S$ is bounded implies that it's really of the form $[a,b]$ for some $a \le b$.
 	(To give a full proof, you would use the so-called \emph{least upper bound} property,
 	but that's a little involved for a bedtime story; also, I think $\RR$ is boring.)
 \end{proof}
+
+One last application: if $M$ is a compact metric space, then continuous functions $f : M \to N$
+are continuous in an especially ``nice'' way:
+\begin{definition}
+	A function $f : M \to N$ of metric spaces is called \vocab{uniformly continuous}
+	if for any $\eps > 0$, there exists a $\delta > 0$ (depending only on $\eps$) such that 
+	whenever $d_M(x,y) < \delta$ we also have $d_N(fx, fy) < \eps$.	
+\end{definition}
+The name means that for $\eps > 0$,
+we have to pick a $\delta$ that works for \emph{every point} of $M$.
+\begin{example}[Uniform Continuity]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii The functions $\RR$ to $\RR$ of the form $x \mapsto ax+b$ are all uniformly continuous,
+		since one can always take $\delta = \eps/|a|$ (or $\delta=1$ if $a=0$).
+		\ii Actually, it is true that a differentiable function $\RR \to \RR$
+		with a bounded derivative is uniformly continuous.
+		(The converse is false for the reason that uniformly continuous doesn't imply differentiable at all.)
+		\ii The function $f : \RR \to \RR$ by $x \mapsto x^2$
+		is \emph{not} uniformly continuous, since for really large $x$,
+		tiny $\delta$ changes to $x$ lead to fairly large changes in $x^2$.
+		\ii However, when restricted to $(0,1)$ or $[0,1]$ the function $x \mapsto x^2$ is uniformly continuous.
+		\ii The function $(0,1) \to \RR$ by $x \mapsto 1/x$ is \emph{not} uniformly continuous
+		(same reason as before).
+	\end{enumerate}
+\end{example}
+
+Now, as promised:
+\begin{proposition}[Continuous on Compact $\implies$ Uniformly Continuous]
+	If $M$ is compact and $f : M \to N$ is continuous,
+	then $f$ is uniformly continuous.
+\end{proposition}
+\begin{proof}[Proof Using Sequences]
+	Fix $\eps > 0$, and assume for contradiction
+	that for every $\delta = 1/k$ there exists points $x_k$ and $y_k$ with $\delta$ of each
+	other but with images $\eps > 0$ apart.
+	By compactness, take a convergent subsequence $x_{i_k} \to p$.
+	Then $y_{i_k} \to p$ as well since the $x_k$'s and $y_k$'s are close to each other.
+	So both sequences $f(x_{i_k})$ and $f(y_{i_k})$ should converge to $f(p)$ by sequential continuity,
+	but this can't be true since the two sequences are always $\eps$ apart.
+\end{proof}
+
+\section{(Optional) Equivalence of Formulations of Compactness}
+We'll prove that for a metric space $M$, the following are equivalent:
+\begin{enumerate}[(i)]
+	\ii Every sequence has a convergent subsequence,
+	\ii The space $M$ is complete and totally bounded.
+	\ii Every open cover has a finite subcover, and
+\end{enumerate}
+We leave the proof that (i) $\iff$ (ii) as \Cref{thm:heine_borel};
+the ideal of the proof is much in the spirit of \Cref{thm:interval_compact}.
+\begin{proof}
+	[Proof that (i) and (ii) $\implies$ (iii)]
+	We prove the following lemma, which is interesting in its own right.
+	\begin{lemma}
+		[Lebesgue Number Lemma]
+		Let $M$ be a compact metric space and $\{U_\alpha\}$ an open cover.
+		Then there exists a real number $\delta > 0$, called a \vocab{Lebesgue number} for that covering,
+		such that the $\delta$-neighborhood of any point $p$ lies entirely in some $U_\alpha$.
+	\end{lemma}
+	\missingfigure{Lebesgue Numbers}
+	\begin{subproof}[Proof of Lemma]
+		Assume for contradiction that for every $\delta = 1/k$ there is a point $x_k \in M$
+		such that its $1/k$-neighborhood isn't contained in any $U_\alpha$.
+		In this way we construct a sequence $x_1$, $x_2$, \dots;
+		thus we're allowed to take a subsequence which converges to some $x$.
+		Then for every $\eps > 0$ we can find an integer $n$ such that $d(x_n, x) + 1/n < \eps$;
+		thus the $\eps$-neighborhood at $x$ isn't contained in any $U_\alpha$ for every $\eps > 0$.
+		This is impossible, because we assumed $x$ was covered by some open set.
+	\end{subproof}
+	Now, take a Lebesgue number $\delta$ for the covering.
+	Since $M$ is totally bounded, finitely many $\delta$-neighborhoods cover the space,
+	so finitely many $U_\alpha$ do as well.
+\end{proof}
+
+\begin{proof}
+	[Proof that (iii) $\implies$ (ii)]
+	One step is trivial:
+	\begin{ques}
+		Show that the covering condition $\implies$ totally bounded.
+	\end{ques}
+	The tricky part is showing $M$ is complete.
+	Assume for contradiction it isn't and thus that the sequence $(x_k)$ is Cauchy,
+	but it doesn't converge to any particular point.
+	\begin{ques}
+		Show that this implies for each $p \in M$, there is an $\eps_p$-neighborhood $U_p$
+		which contains at most finitely many of the points of the sequence $(x_k)$.
+		(You will have to use the fact that $x_k \not\to p$ and $(x_k)$ is Cauchy.)
+	\end{ques}
+	Now if we consider $M = \bigcup_p U_p$ we get a finite subcover of these neighborhoods;
+	but this finite subcover can only cover finitely many points of the sequence, by contradiction.
+\end{proof}
+
 
 \section\problemhead
 The later problems are pretty hard;
@@ -346,32 +427,23 @@ Of these \Cref{thm:heine_borel} is definitely my favorite.
 	\end{sol}
 \end{problem}
 
-\begin{problem}
-	Let $M$ be a \emph{compact} metric space, and let $f : M \to N$
-	be a continuous map of metric spaces.
-	Show that $f$ is \vocab{uniformly continuous}\footnote{%
-		The name means that for an $\eps > 0$,
-		we have to pick a $\delta$ that works for \emph{every point} of $M$.
-		For example, the function $f : \RR \to \RR$ by $x \mapsto x^2$
-		is \emph{not} uniformly continuous, since for really large $x$,
-		tiny $\delta$ changes to $x$ lead to fairly large changes in $x^2$.
-	}, meaning that for every $\eps > 0$, there exists a $\delta > 0$ such that 
-	whenever $d_M(x,y) < \delta$ we also have $d_N(fx, fy) < \eps$.
-\end{problem}
 
 \begin{dproblem}
 	[Heine-Borel Theorem]
 	\gim
-	Prove that a metric space $M$ is compact if and only if it is complete and \vocab{totally bounded}:
-	for every $r > 0$ we can cover $M$ using finitely many $r$-neighborhoods.
+	Prove that a metric space $M$ is compact if and only if it is complete and totally bounded.
 	\label{thm:heine_borel}
+	\begin{hint}
+		Mimic the proof of \Cref{thm:interval_compact}.
+		The totally bounded condition lets you do Pigeonhole.
+	\end{hint}
 \end{dproblem}
 
 \begin{problem}
 	[Almost Arzel\`a-Ascoli Theorem]
 	\gim
 	Let 
-	\[ f_1, f_2, \dots : [0,1] \to [-100,100] \]
+	$f_1, f_2, \dots : [0,1] \to [-100,100]$
 	be an \vocab{equicontinuous} sequence of functions,
 	meaning for every $\eps > 0$, there's a $\delta > 0$ such that
 	whenever $\left\lvert x-y \right\rvert < \delta$,
