@@ -80,7 +80,7 @@ First, I have to tell you how to add and multiply two ideals $\aa$ and $\bb$.
 we cut off the sum after some finite number of terms.)
 You can readily check these are actually ideals.
 
-This definition is more natural if you think about in terms of 
+This definition is more natural if you think about it in terms of 
 the generators of $\aa$ and $\bb$.
 \begin{proposition}
 	Suppose $\aa = \left( a_1, a_2, \dots, a_n \right)$
@@ -92,7 +92,7 @@ the generators of $\aa$ and $\bb$.
 	\end{enumerate}
 \end{proposition}
 \begin{proof}
-	Pretty boring (and straightforward); just convince yourself that this result is correct.
+	Pretty straightforward; just convince yourself that this result is correct.
 \end{proof}
 In other words, for sums you append the two sets of generators together,
 and for products you take products of the generators.
@@ -155,8 +155,9 @@ I wouldn't worry about it\dots
 We now define a Dedekind domain as follows.
 \begin{definition}
 	An integral domain $\mathcal A$ is a \vocab{Dedekind domain}
-	if it is Noetherian, integrally closed, and most importantly:
-	every nonzero prime ideal of $\mathcal A$ is in fact maximal.
+	if it is Noetherian, integrally closed, and 
+	\emph{every nonzero prime ideal of $\mathcal A$ is in fact maximal}.
+	(The last condition is the important one.)
 \end{definition}
 Here there's one new word I have to define for you, but we won't make much use of it.
 \begin{definition}
@@ -242,7 +243,7 @@ Unique factorization works perfectly in Dedekind domains!
 	and this factorization is unique up to the order of the $\pp_i$.
 
 	Moreover, $\aa$ divides $\bb$ if and only if for every prime ideal $\pp$,
-	the exponent of $\pp$ in $\aa$ is less than the corresponding in $\bb$.
+	the exponent of $\pp$ in $\aa$ is less than the corresponding exponent in $\bb$.
 \end{theorem}
 \todo{Ofer joke}
 % As ideals, you and I are coprime because together we are (1).
@@ -289,7 +290,7 @@ So the three main steps in the new situation are as follows.
 	\ii Show that it's unique, using the new inverse we've defined.
 \end{enumerate}
 
-Finally, let me comment on the case how nice this is if $\mathcal A$ is a PID (like $\ZZ$).
+Finally, let me comment on how nice this is if $\mathcal A$ is a PID (like $\ZZ$).
 Thus every element $a \in \mathcal A$ is in direct correspondence with an ideal $(a)$.
 Now if $(a)$ factors as a product of ideals $\pp_i = (p_i)$, say,
 \[ (a) = (p_1)^{e_1} (p_2)^{e_2} \dots (p_n)^{e_n} . \]
@@ -299,7 +300,7 @@ just like in $\ZZ$. (In fact, the converse of this is true.)
 
 \section{Shut Up and Compute!}
 Let's look at some examples from quadratic fields.
-Recall that if $K = \QQ(\sqrt{-d})$, then
+Recall that if $K = \QQ(\sqrt{d})$, then
 \[
 	\OO_K =
 	\begin{cases}
@@ -517,9 +518,8 @@ the ideal norm gives us a notion of the ``size'' of an ideal.
 \end{example}
 
 Thus the ideal norm measures how ``roomy'' the ideal is:
-that is, $(5)$ is a lot more spaced out in $\ZZ[i]$ in than it is in $\ZZ$.
+that is, $(5)$ is a lot more spaced out in $\ZZ[i]$ than it is in $\ZZ$.
 (This intuition will be important when we will actually view $\OO_K$ as a lattice.)
-
 
 \begin{ques}
 	What are the ideals with ideal norm one?
