@@ -132,8 +132,8 @@ In particular, this fulfills our desire that $\dim V \otimes W
 
 \section{Dual Module}
 \prototype{Rotate a column matrix by $90$ degrees.}
-Here's a vector space I haven't showed you yet.
 
+Consider the following vector space:
 \begin{example}
 	[Functions from $\RR^3 \to \RR$]
 	The set of real functions $f(x,y,z)$ is an
@@ -153,13 +153,9 @@ The following definition might seem strange at first, but bear with me.
 	Let $V$ be a $k$-vector space.
 	Then $V^\vee$, the \vocab{dual space} of $V$, is defined
 	as the vector space whose elements are \emph{linear maps from $V$ to $k$}.
-%	The sum of two functions $f$ and $g$ is $f + g$
-%	(meaning $(f+g)(v) = f(v) + g(v)$)
-%	and the action of $k$ is given by $c \cdot f$
-%	(meaning $(c \cdot f)(v) = c \cdot f(v)$).
 \end{definition}
-The addition and multiplication are tautological:
-it's the same notation we use when we write $pf+g$ to mean $pf(x) + g(x)$.
+The addition and multiplication are pointwise:
+it's the same notation we use when we write $cf+g$ to mean $c \cdot f(x) + g(x)$.
 The dual space itself is less easy to think about.
 
 Let's try to find a basis for $V^\vee$.
@@ -254,15 +250,31 @@ Here's the intuition.
 If $V$ is three-dimensional and $W$ is five-dimensional, then we can think
 of the maps $V \to W$ as a $5 \times 3$ array of numbers.
 We want to think of these maps as a vector space:
-after all, you can certainly add any two matrices and multiply them by a scalar.
-If we want to do so, then it had better be a vector space with dimension $15$,
+(since one can add or scale matrices).
+So it had better be a vector space with dimension $15$,
 but just saying ``$k^{\oplus 15}$'' is not really that satisfying
-(in particular, that requires us to pick a basis).
+(what is the basis?).
 But we're about to show that we \emph{can} do this in a nice, general fashion:
-the vector space $V^\vee \otimes W$, which somehow is a product of our target space,
+the vector space \[ V^\vee \otimes W \]
+which somehow is a product of our target space,
 and the space of ``maps out of $V$''.
 
-Let me quickly introduce a shorter way of saying ``the maps from $V$ to $W$''.
+How does this work? For concreteness, suppose $V$ has a basis $e_1$, $e_2$, $e_3$,
+and $W$ has a basis $f_1$, $f_2$, $f_3$, $f_4$, $f_5$..
+Consider an element of $V^\vee \otimes W$, say
+\[ e_1^\vee \otimes (f_2 + 2f_4) + 4e_2^\vee \otimes f_5. \]
+We want to interpret this element as a function $V \to W$: given a $v \in V$,
+we want to return an element of $W$.
+How?
+There's really only one way to proceed:
+feed in $v \in V$ into the $V^\vee$ guys on the left.
+That is, take the map
+\[ v \mapsto e_1^\vee(v) \cdot (f_2 + 2f_4) + 4e_2^\vee(v) \cdot f_5 \in W. \]
+So, there's a natural way to interpret any element of $V^\vee \otimes W$
+as a linear map $V \to W$.
+Our goal is to show that every linear map can be interpreted this way.
+
+First, for notational convenience,
 \begin{definition}
 	Let $\Hom(V,W)$ be the set of linear maps from $V$ to $W$
 	(which one can interpret as matrices which send $V$ to $W$),
@@ -274,18 +286,18 @@ In this notation, $V^\vee \defeq \Hom(V,k)$.
 We can now write down something that's more true generally.
 \begin{theorem}
 	Let $V$ and $W$ be finite-dimensional vector spaces.
-	There is a natural isomorphism
+	We described a map
 	\[ V^\vee \otimes W \to \Hom(V,W) \]
-	as follows: we send $f \otimes w$
-	to the function $T_{f,w}$ defined by $T_{f,w}(v) = f(v) \cdot w$.
+	by sending $\xi \otimes w$ to the function $v \mapsto \xi(v) \cdot w$.
+	This map is an isomorphism.
 \end{theorem}
 This looks intimidating, but there's no content.
-Think of it this way: suppose $V$ is three-dimensional with basis $e_1$,
-$e_2$, $e_3$.  Suppose $T(e_1) = w_1$, $T(e_2) = w_2$ and $T(e_3) = w_3$.
+Think of it this way: suppose $V$ has basis $e_1$, $e_2$, $e_3$.
+Suppose $T(e_1) = w_1$, $T(e_2) = w_2$ and $T(e_3) = w_3$.
 In that case, we can think of $T$ as represented by
 \[ e_1^\vee \otimes w_1 + e_2^\vee \otimes w_2 + e_3^\vee \otimes w_3. \]
-The beauty of it is that we don't actually have to refer to the basis at all
-to state the theorem.
+This element of $V^\vee \otimes W$ is contrived to agree with $T$ on the basis elements $e_i$.
+The beauty of this is that we don't actually have to refer to the basis at all to state the theorem.
 \begin{proof}
 	Let $e_1, \dots, e_m$ and $f_1, \dots, f_n$ be a basis of $V$ and $W$.
 	Then let $e_1^\vee, \dots, e_m^\vee$ be the dual basis of $V$.
@@ -294,16 +306,17 @@ to state the theorem.
 	Then $e_i^\vee \otimes f_j$ corresponds to the matrix
 	which has $1$ in the $(i,j)$th component and zero everywhere else
 	(can you see why?).
-	With this the assertion is obvious.
+	With this the assertion is obvious,
+	since the set of $m \times n$ matrices has this as an obvious basis.
 \end{proof}
 
 So there is a \textbf{natural isomorphism} from $V^\vee \otimes W \simeq \Hom(V,W)$.
-We did use a basis in the \emph{proof}, this doesn't change the 
+While we did use a basis in the \emph{proof}, this doesn't change the 
 fact that the isomorphism is ``God-given'', depending only on the spirit
-of $V$ and $W$ itself and not which basis we choose to express it in.
+of $V$ and $W$ itself and not which basis we choose to express the vector spaces in.
 
 The above is perhaps a bit dense, so here is a concrete example.
-\begin{example}
+\begin{example}[Explicit Example]
 	Let $V = \RR^2$ and suppose we've picked a basis $e_1$, $e_2$ of $V$.
 	Then let $T : V \to V$ by
 	\[ T = \left(
@@ -317,7 +330,7 @@ The above is perhaps a bit dense, so here is a concrete example.
 		+ 3e_2^\vee \otimes e_1 + 4e_2^\vee \otimes e_2. \]
 	The beauty of the basis-free definition is that even if we change the basis,
 	the above expression will look completely different, but
-	the actual \emph{value} of the image of $T$ in $V^\vee \otimes V$ doesn't change.
+	the actual element in $V^\vee \otimes V$ doesn't change.
 \end{example}
 
 
@@ -325,7 +338,7 @@ We are now ready to give the definition of a trace.
 Recall that a square matrix $T$ can be thought of as a map $T : V \to V$.
 According to the above theorem there is a map
 \[ \End(V) \simeq V^\vee \otimes V \]
-\emph{id est}, every map $V \to V$ can be thought of as an element of $V^\vee \otimes V$.
+so every map $V \to V$ can be thought of as an element of $V^\vee \otimes V$.
 But we can also define an
 \emph{evaluation map} $\opname{ev} : V^\vee \otimes V \to k$
 by ``collapsing'' each simple tensor: $f \otimes v \mapsto f(v)$.
@@ -557,6 +570,7 @@ for general $m$ and $n$.
 
 
 \section{The Determinant}
+\prototype{$(ae_1+be_2)\wedge(ce_1+de_2) = (ad-bc)e_1\wedge e_2$.}
 Now we're ready to define the determinant.
 Suppose $T : V \to V$ is a square matrix.
 We claim that the map $\Lambda^m(V) \to \Lambda^m(V)$ given by
@@ -569,7 +583,7 @@ We call that map $\Lambda^m(T)$.
 Now here's something interesting.
 Suppose $V$ has dimension $n$, and let $m=n$.
 Then $\Lambda^n(V)$ has dimension $\binom nn = 1$ -- it's a one dimensional space!
-Hence $\Lambda^n(V) \simeq k$ in a natural way.
+Hence $\Lambda^n(V) \simeq k$.
 
 So $\Lambda^n(T)$ can be thought of as a linear map from $k$ to $k$.
 But we know that \emph{a linear map from $k$ to $k$ is just multiplication by a constant}.
@@ -580,7 +594,7 @@ Hence $\Lambda^n(T)$ is multiplication by some constant.
 	we define the \vocab{determinant} of $T$ as $c = \det T$.
 \end{definition}
 
-\begin{example}
+\begin{example}[The Determinant of a $2 \times 2$ Matrix]
 	Let $V = \RR^2$ again with basis $e_1$ and $e_2$.
 	Let
 	\[ T = \left(
@@ -594,9 +608,13 @@ Hence $\Lambda^n(T)$ is multiplication by some constant.
 	Now let's consider $\Lambda^2(V)$.
 	It has a basis $e_1 \wedge e_2$.
 	Now $\Lambda^2(T)$ sends it to
-	\[ (ae_1 + be_2) \wedge (ce_1 + de_2) \]
-	and we already computed this to be $(ad-bc)(e_1 \wedge e_2)$.
-	Hence $\det T = ad-bc$.
+	\[ e_1 \wedge e_2 \overset{\Lambda^2{T}}{\longmapsto} T(e_1) \wedge T(e_2) =
+		(ae_1 + be_2) \wedge (ce_1 + de_2) 
+		= (ad-bc)(e_1 \wedge e_2). 
+	\]
+	So $\Lambda^2(T) : \Lambda^2(V) \to \Lambda^2(V)$
+	is multiplication by $\det T = ad-bc$,
+	because it sent $e_1 \wedge e_2$ to $(ad-bc)(e_1 \wedge e_2)$.
 \end{example}
 And that is the definition of a determinant.
 Once again, since we defined it in terms of $\Lambda^n(T)$,
@@ -608,10 +626,11 @@ without any reference to matrices.
 	Why does $\Lambda^n(S \circ T) = \Lambda^n(S) \circ \Lambda^n(T)$?
 	(Remember that these are one-dimensional maps.)
 \end{ques}
-In this way, we also get $\det(S \circ T) = \det(S) \det(T)$ for free.
-The general nasty formula for a determinant in terms of the matrix also follows:
-simply write out
-\[ \left( a_{11}e_1 + a_{21}e_2 + \dots \right) \wedge \dots
+In this way, we also get \[ \det(S \circ T) = \det(S) \det(T) \] for free.
+The general nasty formula for a determinant in terms of the matrix also follows from our work,
+and is just a generalization of the work we did for $n=2$.
+Simply write out
+\[ \left( a_{11}e_1 + a_{21}e_2 + \dots \right) \wedge \dots \wedge
 	\left( a_{1n}e_1 + a_{2n}e_2 + \dots + a_{nn} e_n \right)
 \]
 and do a full expansion.

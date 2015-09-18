@@ -72,9 +72,24 @@ but first, examples\dots
 		\ii The real numbers $\RR$ form a real vector space of dimension $1$.
 		\ii The set of 3D vectors
 		\[ \left\{ (x,y,z) \mid x,y,z \in \RR \right\} \]
-		forms a vector space, because you can add any two triples
+		forms a real vector space, because you can add any two triples
 		component-wise. Again, we'll later explain
 		why it has ``dimension $3$''.
+	\end{enumerate}
+\end{example}
+
+\begin{example}
+	[More Examples of Vector Spaces]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii The set \[ \QQ[\sqrt 2] = \left\{ a + b \sqrt 2 , a, b \in \QQ \right\} \]
+		has a structure of a $\QQ$-vector space in the obvious fashion:
+		one can add any two elements, and scale by rational numbers.
+		(It is not a real vector space -- why?)
+		\ii The set \[ \left\{ (x,y,z) \mid x+y+z = 0 \text{ and } x,y,z \in \RR \right\} \]
+		is a $2$-dimensional real vector space.
+		\ii The set of all functions $f : \RR \to \RR$ is also a real vector space
+		(since the notions $f+g$ and $c \cdot f$ both make sense for $c \in \RR$).
 	\end{enumerate}
 \end{example}
 
@@ -260,17 +275,7 @@ If not, fall upon your notion of Euclidean space or $V$ above.
 	if $r_1 = r_2 = \dots = r_n = 0_R$, and \vocab{nontrivial} otherwise.
 \end{definition}
 \begin{definition}
-	Consider a finite\footnote{
-		You can have infinite sets as well; for example,
-		you probably want to think of the set of all polynomials
-		as having an infinite basis $\left\{ 1,x,x^2,x^3,\dots \right\}$.
-		The catch is that if your set is infinite,
-		your linear combinations must have at most finitely many
-		nonzero terms.
-		In the polynomial example, that just means
-		that your polynomials have finite degree (which is good).
-	}
-	set of vectors $v_1, \dots, v_n$ in a module $M$.
+	Consider a finite set of vectors $v_1, \dots, v_n$ in a module $M$.
 	\begin{itemize}
 		\ii It is called \vocab{linearly independent} if there
 		is no nontrivial linear combination with value $0_M$.
@@ -284,6 +289,9 @@ If not, fall upon your notion of Euclidean space or $V$ above.
 		if every $v \in M$ can be written
 		\emph{uniquely} as a linear combination of the $\{v_i\}$.
 	\end{itemize}
+	The same definitions apply for an infinite set, with the proviso
+	that all sums must be finite.
+
 \end{definition}
 So by definition, $\left\{ 1,x,x^2 \right\}$ is a basis for $V$.
 It's not the only one: $\{2, x, x^2\}$ and $\{x+4, x-2, x^2+x\}$
@@ -297,7 +305,26 @@ it fails for the following two reasons.
 	\ii It's not possible to write $x^2$ as a sum of elements of $S$.
 	So $S$ fails to be spanning.
 \end{itemize}
-With these new terms, we can just say a basis is a linearly independent, spanning set.
+With these new terms, we can just say a basis is a linearly independent and spanning set.
+
+\begin{example}[More Example of Bases]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii Regard $\QQ[\sqrt2]$ as a $\QQ$-vector space. Then $\{1, \sqrt 2\}$ is a basis.
+		\ii If $V$ is the set of all real polynomials, there is an infinite basis $\{1, x, x^2, \dots\}$.
+		The condition that we only use finitely many terms just says
+		that the polynomials must have finite degree (which is good).
+		\ii Let $V = \{ (x,y,z) \mid x+y+z=0 \text{ and } x,y,z \in \RR\}$.
+		Then we expect there to be a basis of size $2$, but unlike previous examples
+		there is no immediately ``obvious'' choice.
+		Some working examples include:
+		\begin{itemize}
+			\ii $(1,-1,0)$ and $(1,0,-1)$,
+			\ii $(0,1,-1)$ and $(1,0,-1)$,
+			\ii $(5,3,-8)$ and $(2,-1,-1)$.
+		\end{itemize}
+	\end{enumerate}
+\end{example}
 
 \begin{ques}
 	Show that a set of vectors is a basis if and only if
@@ -315,16 +342,19 @@ Now we state a few results which assert
 that bases in vector spaces behave as nicely as possible.
 \begin{theorem}[Maximality and Minimality of Bases]
 	\label{thm:vector_best}
-	Let $V$ be a vector space and $e_1, \dots, e_n \in V$. The following are equivalent
+	Let $V$ be a vector space over some field $k$
+	and take $e_1, \dots, e_n \in V$. The following are equivalent:
 	\begin{enumerate}[(a)]
 		\ii The $e_i$ form a basis.
 		\ii The $e_i$ are spanning, but no proper subset is spanning.
 		\ii The $e_i$ are linearly independent, but adding any other
 		element of $V$ makes them not linearly independent.
 	\end{enumerate}
-	If we replace $V$ by a general module $M$, then (a) $\implies$ (b) and (a) $\implies$ (c)
-	but not conversely.
 \end{theorem}
+\begin{remark}
+	If we replace $V$ by a general module $M$ over a ring $R$,
+	then (a) $\implies$ (b) and (a) $\implies$ (c) but not conversely.
+\end{remark}
 \begin{proof}
 	Straightforward, do it yourself if you like.
 	The key point to notice is that you need to divide by scalars for the converse direction,
@@ -401,10 +431,26 @@ between vector spaces. Can you guess the definition?
 		\ii $T$ is a homomorphism $(V,+) \to (W,+)$ of abelian groups, meaning $T(v_1 + v_2) = T(v_1) + T(v_2)$.
 		\ii For any $a \in k$ and $v \in V$, $T(a \cdot v) = a \cdot T(v)$.
 	\end{enumerate}
-	If this map is a bijection, it is an \vocab{isomorphism}.
-	We say $V$ and $W$ are \vocab{isomorphic} vector spaces
-	and write $V \simeq W$.
+	If this map is a bijection (equivalently, if it has an inverse),
+	it is an \vocab{isomorphism}.
+	We say $V$ and $W$ are \vocab{isomorphic} vector spaces and write $V \simeq W$.
 \end{definition}
+
+\begin{example}[Examples of Linear Maps]
+	\begin{enumerate}[(a)]
+		\ii For any vector spaces $V$ and $W$ there is a trivial linear map sending everything to $0_W \in W$.
+		\ii For any vector space $V$, there is the identity isomorphism $\id : V \to V$.
+		\ii The map $\RR^3 \to \RR$ by $(a,b,c) \mapsto 4a+2b+c$ is a linear map.
+		\ii Let $V$ be the set of real polynomials of degree at most $2$.
+		The map $\RR^3 \to V$ by $(a,b,c) \mapsto ax^2+bx+c$ is an \emph{isomorphism}.
+		\ii Let $W$ be the set of functions $\RR \to \RR$.
+		The evaluation map $W \to \RR$ by $f \mapsto f(0)$ is a linear map.
+		\ii There is a map of $\QQ$-vector spaces $\QQ[\sqrt2] \to \QQ[\sqrt2]$
+		called ``multiply by $\sqrt2$''; this map sends $a+b\sqrt2 \mapsto 2b + a\sqrt2$.
+		This map is an isomorphism, because it has an inverse ``multiply by $1/\sqrt2$''.
+	\end{enumerate}
+\end{example}
+
 In the expression $T(a \cdot v) = a \cdot T(v)$, note that the first $\cdot$ is the multiplication of $V$ and the second $\cdot$ is the multiplication of $W$.
 Note that this notion of isomorphism really only cares about the size of the basis:
 \begin{proposition}
@@ -412,22 +458,23 @@ Note that this notion of isomorphism really only cares about the size of the bas
 	$V \simeq k^{\oplus n}$.
 \end{proposition}
 \begin{ques}
+	Let $e_1$, \dots, $e_n$ be a basis for $V$.
 	What is the isomorphism?
 	(Your first guess is probably right.)
 \end{ques}
 \begin{remark}
-You could technically say that all finite-dimensional vector
-spaces are just $k^{\oplus n}$ and that no other space is worth
-caring about.
-But this seems kind of rude.
-Spaces often are more than just triples: $ax^2+bx+c$ is a polynomial,
-and so it has some ``essence'' to it that you'd lose if you
-just compressed it into $(a,b,c)$.
-Moreover, although the space of quadratic polynomials
-does have a natural basis,
-a lot of spaces don't have such an obvious choice;
-thus to cast such a space into $k^{\oplus n}$
-would require you to make arbitrary decisions.
+	You could technically say that all finite-dimensional vector
+	spaces are just $k^{\oplus n}$ and that no other space is worth
+	caring about.
+	But this seems kind of rude.
+	Spaces often are more than just triples: $ax^2+bx+c$ is a polynomial,
+	and so it has some ``essence'' to it that you'd lose if you
+	just compressed it into $(a,b,c)$.
+
+	Moreover, a lot of spaces, like the set of vectors $(x,y,z)$ with $x+y+z=0$,
+	do not have an obvious choice of basis.
+	Thus to cast such a space into $k^{\oplus n}$
+	would require you to make arbitrary decisions.
 \label{rem:vector_spaces_have_essence}
 \end{remark}
 
