@@ -111,14 +111,14 @@ For this particular case, it ought to be equal to to the area of that parallelog
 	\right) = -2\sqrt 2.
 \]
 The definition of the discriminant is precisely this, except with an extra square factor
-(since permutation of rows could lead to changes in sign in the matrix above)
+(since permutation of rows could lead to changes in sign in the matrix above).
 \Cref{prob:trace_discriminant} shows that the squaring makes $\Delta_K$ an integer.
 
 To make the next definition, we invoke the following theorem.
 \begin{theorem}[The $n$ embeddings of a number field]
 	Let $K$ be a number field.
 	Then there are exactly $n$ field homomorphisms $K \injto \CC$,
-	say $\sigma_1, \dots, \sigma_n$ which fix $\QQ$.
+	say $\sigma_1, \dots, \sigma_n$, which fix $\QQ$.
 \end{theorem}
 \begin{proof}
 	Deferred to \Cref{thm:n_embeddings}, once we have the tools of Galois theory.
@@ -164,8 +164,8 @@ we will not prove this here.
 		(-2i)^2 = -4.
 	\]
 	This example illustrates that the discriminant need not be positive
-	for number fields with wander into the complex plane (the lattice picture
-	is a less perfect analogy).
+	for number fields which wander into the complex plane
+	(the lattice picture is a less perfect analogy).
 	But again, as we'll prove in the problems the discriminant is always
 	an integer.
 \end{example}
@@ -198,7 +198,7 @@ we will not prove this here.
 			4d & \text{if } d \equiv 2, 3 \pmod 4.
 		\end{cases}
 	\]
-Once again we have the cases on $d \pmod 4$.
+	Once again we have the cases on $d \pmod 4$.
 \end{exercise}
 
 Actually, let me point out something curious: recall that the polynomial discriminant of $Ax^2+Bx+C$ is $B^2-4AC$. Then:
@@ -206,7 +206,7 @@ Actually, let me point out something curious: recall that the polynomial discrim
 	\ii In the $d \equiv 1 \pmod 4$ case,
 	$\Delta_K$ is the discriminant of $x^2 + x - \frac{d-1}{4}$,
 	which is the minimal polynomial of $\half(1+\sqrt d)$. Of course, $\OO_K = \ZZ[\half(1+\sqrt d)]$.
-	\ii In the $d \equiv 2,3 \pmod 4$ case
+	\ii In the $d \equiv 2,3 \pmod 4$ case,
 	$\Delta_K$ is the discriminant of $x^2 - d$
 	which is the minimal polynomial of $\sqrt d$. Once again, $\OO_K = \ZZ[\sqrt d]$.
 \end{itemize}
@@ -260,7 +260,7 @@ hence complex embeddings come in pairs.
 	have signatures $(1,49)$ and $(2,49)$.
 \end{example}
 \begin{ques}
-	Verify that the signatures of the above two.
+	Verify the signatures of the above two number fields.
 \end{ques}
 
 From now on, we will number the embeddings of $K$ in such a way that
@@ -288,7 +288,7 @@ For reasons that will become obvious in a moment, I'll let $\tau$ denote the iso
 \[
 	\tau : \RR^{r_1} \times \CC^{r_2} \taking{\sim} \RR^{r_1+2r_2} = \RR^n
 \]
-by breaking each complex number into its real an imaginary part, as
+by breaking each complex number into its real and imaginary part, as
 \begin{align*}
 \alpha \mapsto  \big(& \sigma_1(\alpha), \dots, \sigma_{r_1}(\alpha), \\
 & \Re \sigma_{r_1+1}(\alpha), \;\; \Im \sigma_{r_1+1}(\alpha), \\
@@ -304,9 +304,9 @@ by breaking each complex number into its real an imaginary part, as
 		\quad
 		\sigma_3 : \cbrt 2 \mapsto \cbrt 2 \omega^2 \]
 	where $\omega = - \half + \frac{\sqrt3}{2} i$,
-	noting that we've already arranged so $\sigma_1 = \id$ is real
+	noting that we've already arranged indices so $\sigma_1 = \id$ is real
 	while $\sigma_2$ and $\sigma_3$ are a conjugate pair.
-	So the embeddings $K \overset\iota\injto \RR \times \CC \taking\sim \RR^3$ is given by
+	So the embeddings $K \overset\iota\injto \RR \times \CC \taking\sim \RR^3$ are given by
 	\[
 		\alpha \overset\iota\longmapsto \left( \sigma_1(\alpha), \sigma_2(\alpha) \right)
 		\overset\tau\longmapsto \left( \sigma_1(\alpha), \; \Re\sigma_2(\alpha), \; \Im\sigma_2(\alpha)  \right). \]
@@ -344,7 +344,7 @@ From this we can deduce the following.
 	Let \[ d = \Norm(\aa) \defeq [\OO_K : \aa]. \]
 	Then in the lattice $L_\aa$, we somehow only take $\frac 1d$th of the points
 	which appear in the lattice $L$, which is why the area increases by a factor of $\Norm(\aa)$.
-	To make this all precise I would need to do a lot with lattices and geometry
+	To make this all precise I would need to do a lot more with lattices and geometry
 	than I have space for this in the chapter, so I will omit the details.
 	But I hope you can see why this is intuitively true.
 \end{proof}
@@ -379,7 +379,7 @@ In geometry, there's a really cool theorem of Minkowski's that goes as follows.
 	\[ [2a-1, 2a+1] \times [2b-1, 2b+1] \]
 	and overlay all these squares on top of each other.
 	By the Pigeonhole Principle, we find there exist two points $p \neq q \in S$ which map to the same point.
-	Since $S$ is symmetric, $-q \in S$ too. Then $\half (p-q)$ is in $S$ (convexity) and is a nonzero lattice point.
+	Since $S$ is symmetric, $-q \in S$. Then $\half (p-q) \in S$ (convexity) and is a nonzero lattice point.
 
 	I'll briefly sketch part (b): the idea is to consider $(1+\eps) S$ for $\eps > 0$
 	(this is ``$S$ magnified by a small factor $1+\eps$).
@@ -607,7 +607,7 @@ Let's give an example how!
 
 	Now we claim that's all.
 	Pick a fractional ideal $J$.
-	By \Cref{cor:class_rep_minkowski}, we can find a integral ideal $\bb \sim J$ with $\Norm(\bb) \le M_K$.
+	By \Cref{cor:class_rep_minkowski}, we can find an integral ideal $\bb \sim J$ with $\Norm(\bb) \le M_K$.
 	But by the above, either $\bb = (1)$ or $\bb = (4)$, both of which are principal,
 	and hence trivial in $\Cl_K$.
 	So $J$ is trivial in $\Cl_K$ too, as needed.
@@ -633,7 +633,7 @@ Let's do a couple more.
 	In other words, we can only have $\bb = (1)$.
 \end{proof}
 
-Here's another example something that still turns out to be unique factorization,
+Here's another example of something that still turns out to be unique factorization,
 but this time our cherry tree will actually have cherries that can be picked.
 \begin{proposition}
 	The ring $\ZZ[\sqrt 7]$ is a unique factorization domain.

@@ -6,7 +6,7 @@ This is an optional aside, and can be safely ignored.
 \prototype{$\pm 1$, roots of unity, $3-\sqrt2$ and its powers.}
 Recall according to \Cref{prob:OK_unit_norm} that $\alpha \in \OO_K$ is invertible
 if and only if \[ \NK(\alpha) = \pm 1. \]
-We let $\OO_K^\times$ denote the set of units of in $K$.
+We let $\OO_K^\times$ denote the set of units of $\OO_K$.
 
 \begin{ques}
 	Show that $\OO_K^\times$ is a group under multiplication.
@@ -20,7 +20,7 @@ What are some examples of units?
 	\begin{enumerate}
 		\ii $\pm 1$ are certainly units, present in any number field.
 
-		\ii If $\OO_K$ contains an root of unity $\omega$ (\emph{id est} $\omega^n=1$),
+		\ii If $\OO_K$ contains a root of unity $\omega$ (\emph{id est} $\omega^n=1$),
 		then $\omega$ is a unit.
 		(In fact, $\pm 1$ are special cases of this.)
 
@@ -61,7 +61,7 @@ What are some examples of units?
 	\begin{enumerate}[(a)]
 		\ii If $K = \QQ(i)$, then $\OO_K = \ZZ[i]$. So
 		\[ \mu(\OO_K) = \{\pm1, \pm i\} \quad\text{where } K = \QQ(i). \]
-		For $\OO_K = \ZZ[i]$ and the only roots of unity of the form $a+bi$ are $\pm 1, \pm i$.
+		For $\OO_K = \ZZ[i]$ the only roots of unity of the form $a+bi$ are $\pm 1, \pm i$.
 		\ii If $K = \QQ(\sqrt3)$, then $\OO_K = \ZZ[\sqrt 3]$.
 		\[ \mu(\OO_K) = \{\pm 1\} \quad\text{where } K = \QQ(\sqrt 3). \]
 		\ii If $K = \QQ(\sqrt{-3})$, then $\OO_K = \ZZ[\half(1+\sqrt{-3})]$.
@@ -88,7 +88,7 @@ during an Easter concert in the Sistine Chapel.
 	[Dirichlet's Unit Theorem]
 	Let $K$ be a number field with signature $(r_1, r_2)$ and set
 	\[ s = r_1 + r_2 - 1. \]
-	Then there exists units $u_1$, \dots, $u_s$ such that every $\alpha \in \mu(\OO_K^\times)$
+	Then there exist units $u_1$, \dots, $u_s$ such that every $\alpha \in \mu(\OO_K^\times)$
 	can be written \emph{uniquely} in the form
 	\[ \alpha = \omega \cdot u_1^{n_1} \dots u_s^{n_s} \]
 	for $\omega \in \mu(\OO_K)$, $n_1, \dots, n_s \in \ZZ$.
@@ -110,7 +110,7 @@ Here are some example applications.
 		Thus
 		\[ \OO_K^\times = \{\pm 1, \pm i\} \quad\text{where } K = \QQ(i). \]
 		This is not surprising,
-		since if $a+bi \in \ZZ[i]$ is a unit if and only if $a^2+b^2 = 1$.
+		since $a+bi \in \ZZ[i]$ is a unit if and only if $a^2+b^2 = 1$.
 
 		\ii Let $K = \QQ(\sqrt 3)$, which has signature $(2,0)$.
 		Then $s=1$, so we expect exactly one fundamental unit.
@@ -152,7 +152,7 @@ suppose we want to show that $10 + 3\sqrt{11}$ is a fundamental unit of $K = \QQ
 which has ring of integers $\ZZ[\sqrt{11}]$.
 If not, then for some $n > 1$, we would have to have
 \[ 10 + 3 \sqrt{11} = \pm \left( x+y\sqrt{11} \right)^n. \]
-For this to happen, at the very least we would need $\left\lvert y \right\rvert < 3$
+For this to happen, at the very least we would need $\left\lvert y \right\rvert < 3$.
 We would also have $x^2-11y^2 = \pm 1$.
 So one can just verify (using $y= 1,2$) that this fails.
 
