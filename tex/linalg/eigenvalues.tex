@@ -171,7 +171,7 @@ and the part after that is the one where we break down $V$ into
 generalized eigenspaces.
 
 \section{Nilpotent Maps}
-First, let's consider the following -- bear with me for a moment.
+First, let's consider the following --- bear with me for a moment.
 \begin{definition}
 	A map $T: V \to V$ is \vocab{nilpotent} if $T^m$ is the zero map for some integer $m$.
 	(Here $T^m$ means ``$T$ applied $m$ times''.)
@@ -439,7 +439,7 @@ But if you use the abstract viewpoint of $T$ as a map, then it is a total tautol
 	\[ p_T(X) = (X - \lambda_1)^{d_1} (X - \lambda_2)^{d_2} \dots (X - \lambda_m)^{d_m}. \]
 	By definition, $(X - \lambda_1)^{d_1}$ is the zero map on $J_1$.
 	So $T$ is zero on $J_1$.
-	Similarly it's zero on each of the other $J_i$'s -- end of story.
+	Similarly it's zero on each of the other $J_i$'s --- end of story.
 \end{proof}
 
 Also, a quick fun fact: all of this actually gives us another way to show the trace
@@ -465,9 +465,11 @@ Let's take the space $V = \RR^3$, with basis $e_1$, $e_2$, $e_3$.
 Thus objects in $V$ are of the form
 \[ r_1 e_1 + r_2 e_2 + r_3 e_3 \]
 where $r_1$, $r_2$, $r_3$ are real numbers.
-We want to be able to do the same with complex numbers $z_i$.
+We want to consider essentially the same vector space,
+but with complex coefficients $z_i$ rather than real coefficients $e_i$.
 
-So here's what we do: consider the \vocab{complexification}
+So here's what we do: view $\CC$ as a $\RR$-vector space (with basis $\{1,i\}$, say)
+and consider the \vocab{complexification}
 \[ V_\CC \defeq \CC \largeotimes{\RR} V. \]
 Then you can check that our elements are actually of the form
 \[ z_1 \otimes e_1 + z_2 \otimes e_2 + z_3 \otimes e_3. \]

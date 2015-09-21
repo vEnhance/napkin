@@ -60,7 +60,6 @@ Same thing.
 The point is that we can take any two of our polynomials
 and artificially ``tensor'' them together.
 
-
 The definition of the tensor product does exactly this,
 and nothing else.
 I'll only define this for vector spaces for simplicity.
@@ -93,41 +92,49 @@ the basis of $V \otimes W$ is literally the ``product''
 of the bases of $V$ and $W$.
 In particular, this fulfills our desire that $\dim V \otimes W
 = \dim V \cdot \dim W$.
-\begin{proposition}
+\begin{proposition}[Basis of $V \otimes W$]
 	Let $V$ and $W$ be finite-dimensional $k$-vector spaces.
 	If $e_1, \dots, e_m$ is a basis of $V$ and $f_1, \dots, f_n$ is a basis of $W$,
 	then the basis of $V \otimes_k W$
 	is precisely $e_i \otimes f_j$, where $i=1,\dots,m$ and $j=1,\dots,n$.
 \end{proposition}
 \begin{proof}
-	Boring and omitted.
+	Omitted; it's easy at least to see that this basis is spanning.
 \end{proof}
 
-%\begin{example}[Explicit Computation]
-%	Let $V$ have basis $e_1$, $e_2$ and $W$ have basis $f_1, f_2$.
-%	Let $v = 3e_1 + 4e_2 \in V$ and $w = 5f_1 + 6f_2 \in W$.
-%	Let's write $v \otimes w$ in this basis for $V \otimes_k W$.
-%	\begin{align*}
-%		v \otimes w &= (3e_1+4e_2) \otimes (5f_1+6f_2) \\
-%		&= (3e_1) \otimes (5f_1) +  (4e_2) \otimes (5f_1)
-%		+ (3e_1) \otimes (6f_2) + (4e_2) \otimes (6f_2) \\
-%		&= 15 (e_1 \otimes f_1) + 20(e_2 \otimes f_1)
-%		+ 18 (e_1 \otimes f_2) + 24(e_2 \otimes f_2).
-%	\end{align*}
-%\end{example}
-%
-%So in this way, you can see why tensor products are a nice ``product'' to consider if we're really interested in $V \times W$ in a way that's more intimate than just a direct sum.
+\begin{example}[Explicit Computation]
+	Let $V$ have basis $e_1$, $e_2$ and $W$ have basis $f_1, f_2$.
+	Let $v = 3e_1 + 4e_2 \in V$ and $w = 5f_1 + 6f_2 \in W$.
+	Let's write $v \otimes w$ in this basis for $V \otimes_k W$:
+	\begin{align*}
+		v \otimes w &= (3e_1+4e_2) \otimes (5f_1+6f_2) \\
+		&= (3e_1) \otimes (5f_1) +  (4e_2) \otimes (5f_1)
+		+ (3e_1) \otimes (6f_2) + (4e_2) \otimes (6f_2) \\
+		&= 15 (e_1 \otimes f_1) + 20(e_2 \otimes f_1)
+		+ 18 (e_1 \otimes f_2) + 24(e_2 \otimes f_2).
+	\end{align*}
+	So you can see why tensor products are a nice ``product'' to
+	consider if we're really interested in $V \times W$
+	in a way that's more intimate than just a direct sum.
+\end{example}
 
 \begin{abuse}
 	We'll almost always abbreviate $\otimes_k$ to just $\otimes$.
 \end{abuse}
-
 \begin{remark}
 	Observe that to define a linear map $V \otimes W \to X$,
 	I only have to say what happens to each simple tensor $v \otimes w$,
 	since the simple tensors \emph{generate} $V \otimes W$.
-	But again, keep in mind that $V \otimes W$ consists of \emph{sums}
-	of these simple tensors!
+	But again, keep in mind that 
+	\textbf{$V \otimes W$ consists of \emph{sums} of these simple tensors!}
+\end{remark}
+
+\begin{remark}
+	Much like the Cartesian product $A \times B$ of sets,
+	you can tensor together any two vector spaces $V$ and $W$ over the same field $k$;
+	the relationship between $V$ and $W$ is completely irrelevant
+	One can think of the $\otimes$ as a ``wall'' that one can pass
+	scalars in $k$ through, but otherwise keeps the elements of $V$ and $W$ separated.
 \end{remark}
 
 \section{Dual Module}
@@ -192,13 +199,13 @@ First, here is a very concrete interpretation of the vector space.
 		\right)
 		= 71. \]
 \end{example}
-More precisely: to specify a linear map $V \to k$,
-I only have to tell you where each basis element of $V$ goes.
+More precisely: \textbf{to specify a linear map $V \to k$,
+I only have to tell you where each basis element of $V$ goes}.
 In the above example, $f$ sends $e_1$ to $3$, $e_2$ to $4$, and $e_3$ to $5$.
 So $f$ sends \[ 2e_1 + 5e_2 + 9e_3 \mapsto 2 \cdot 3 + 5 \cdot 4 + 9 \cdot 5 = 71. \]
 
 Let's make all this precise.
-\begin{proposition}
+\begin{proposition}[The Dual Basis for $V^\vee$]
 	Let $V$ be a finite-dimensional vector space with basis $e_1, \dots, e_n$.
 	For each $i$ consider the function $e_i^\vee : V \to k$ by
 	\[
@@ -254,25 +261,29 @@ We want to think of these maps as a vector space:
 So it had better be a vector space with dimension $15$,
 but just saying ``$k^{\oplus 15}$'' is not really that satisfying
 (what is the basis?).
-But we're about to show that we \emph{can} do this in a nice, general fashion:
-the vector space \[ V^\vee \otimes W \]
-which somehow is a product of our target space,
-and the space of ``maps out of $V$''.
 
-How does this work? For concreteness, suppose $V$ has a basis $e_1$, $e_2$, $e_3$,
-and $W$ has a basis $f_1$, $f_2$, $f_3$, $f_4$, $f_5$..
+To do better, we consider the tensor product \[ V^\vee \otimes W \]
+which somehow is a product of maps out of $V$ and the target space $W$.
+We claim that this is in fact the space we want:
+i.e.\ \textbf{there is a natural bijection between elements of $V^\vee \otimes W$
+and linear maps from $V$ to $W$}.
+
+First, how do we interpret an element of $V^\vee \otimes W$ as a map $V \to W$?
+For concreteness, suppose $V$ has a basis $e_1$, $e_2$, $e_3$,
+and $W$ has a basis $f_1$, $f_2$, $f_3$, $f_4$, $f_5$.
 Consider an element of $V^\vee \otimes W$, say
 \[ e_1^\vee \otimes (f_2 + 2f_4) + 4e_2^\vee \otimes f_5. \]
-We want to interpret this element as a function $V \to W$: given a $v \in V$,
-we want to return an element of $W$.
-How?
-There's really only one way to proceed:
+We want to interpret this element as a function $V \to W$:
+so given a $v \in V$,
+we want to output an element of $W$.
+There's really only one way to do this:
 feed in $v \in V$ into the $V^\vee$ guys on the left.
 That is, take the map
 \[ v \mapsto e_1^\vee(v) \cdot (f_2 + 2f_4) + 4e_2^\vee(v) \cdot f_5 \in W. \]
-So, there's a natural way to interpret any element of $V^\vee \otimes W$
+So, there's a natural way to interpret any element
+$\xi_1 \otimes w_1 + \dots + \xi_k \otimes w_k \in V^\vee \otimes W$
 as a linear map $V \to W$.
-Our goal is to show that every linear map can be interpreted this way.
+The claim is that in fact, every linear map $V \to W$ has a unique such interpretation.
 
 First, for notational convenience,
 \begin{definition}
@@ -284,34 +295,38 @@ First, for notational convenience,
 In this notation, $V^\vee \defeq \Hom(V,k)$.
 
 We can now write down something that's more true generally.
-\begin{theorem}
+\begin{theorem}[$V^\vee \otimes W$ $\iff$ Linear Maps $V \to W$]
 	Let $V$ and $W$ be finite-dimensional vector spaces.
 	We described a map
-	\[ V^\vee \otimes W \to \Hom(V,W) \]
-	by sending $\xi \otimes w$ to the function $v \mapsto \xi(v) \cdot w$.
-	This map is an isomorphism.
+	\[ \Psi : V^\vee \otimes W \to \Hom(V,W) \]
+	by sending $\xi_1 \otimes w_1 + \dots + \xi_k \otimes w_k$ to the linear map
+	\[ v \mapsto \xi_1(v) w_1 + \dots + \xi_k (w_k). \]
+	Then $\Psi$ is an isomorphism of vector spaces, i.e.\ every linear map $V \to W$
+	can be uniquely represented as an element of $V^\vee \otimes W$ in this way.
 \end{theorem}
-This looks intimidating, but there's no content.
-Think of it this way: suppose $V$ has basis $e_1$, $e_2$, $e_3$.
-Suppose $T(e_1) = w_1$, $T(e_2) = w_2$ and $T(e_3) = w_3$.
-In that case, we can think of $T$ as represented by
-\[ e_1^\vee \otimes w_1 + e_2^\vee \otimes w_2 + e_3^\vee \otimes w_3. \]
-This element of $V^\vee \otimes W$ is contrived to agree with $T$ on the basis elements $e_i$.
-The beauty of this is that we don't actually have to refer to the basis at all to state the theorem.
-\begin{proof}
-	Let $e_1, \dots, e_m$ and $f_1, \dots, f_n$ be a basis of $V$ and $W$.
-	Then let $e_1^\vee, \dots, e_m^\vee$ be the dual basis of $V$.
-	Hence $e_i^\vee \otimes f_j$ is a basis of $V^\vee \otimes W$.
+The beauty is that we don't actually have to refer to the basis at all to state the theorem.
 
-	Then $e_i^\vee \otimes f_j$ corresponds to the matrix
-	which has $1$ in the $(i,j)$th component and zero everywhere else
-	(can you see why?).
-	With this the assertion is obvious,
-	since the set of $m \times n$ matrices has this as an obvious basis.
+\begin{proof}
+	This looks intimidating, but it's actually not difficult.
+	We proceed in two steps:
+	\begin{enumerate}
+		\ii First, we check that $\Psi$ is \emph{surjective};
+		every linear map has at least one representation of this form.
+		To see this, take any $T : V \to W$.
+		Suppose $V$ has basis $e_1$, $e_2$, $e_3$ and that
+		$T(e_1) = w_1$, $T(e_2) = w_2$ and $T(e_3) = w_3$.
+		Then the element
+		\[ e_1^\vee \otimes w_1 + e_2^\vee \otimes w_2 + e_3^\vee \otimes w_3 \]
+		works, as it is contrived to agree with $T$ on the basis elements $e_i$.
+		\ii So it suffices to check now that $\dim V^\vee \otimes W = \dim \Hom(V,W)$.
+		Certainly, $V^\vee \otimes W$ has dimension $\dim V \cdot \dim W$.
+		But by viewing $\Hom(V,W)$ as $\dim V \cdot \dim W$ matrices, we see that
+		it too has dimension $\dim V \cdot \dim W$. \qedhere
+	\end{enumerate}
 \end{proof}
 
-So there is a \textbf{natural isomorphism} from $V^\vee \otimes W \simeq \Hom(V,W)$.
-While we did use a basis in the \emph{proof}, this doesn't change the 
+So there is a \textbf{natural isomorphism} $V^\vee \otimes W \simeq \Hom(V,W)$.
+While we did use a basis liberally in the \emph{proof that it works}, this doesn't change the 
 fact that the isomorphism is ``God-given'', depending only on the spirit
 of $V$ and $W$ itself and not which basis we choose to express the vector spaces in.
 
@@ -553,7 +568,7 @@ should still be zero.
 
 Just like $e_1 \wedge e_2$ was a basis earlier, we can find the basis
 for general $m$ and $n$.
-\begin{proposition}
+\begin{proposition}[Basis of the Wedge Product]
 	Let $V$ be a vector space with basis $e_1, \dots, e_n$.
 	A basis for $\Lambda^m(V)$ consists of the elements
 	\[ e_{i_1} \wedge e_{i_2} \wedge \dots \wedge e_{i_m} \]
@@ -561,7 +576,7 @@ for general $m$ and $n$.
 	\[ 1 \le i_1 < i_2 < \dots < i_m \le n. \]
 	Hence $\Lambda^m(V)$ has dimension $\binom nm$.
 \end{proposition}
-\begin{proof}
+\begin{proof}[Sketch of Proof]
 	We knew earlier that $e_{i_1} \otimes \dots \otimes e_{i_m}$ was a basis for the tensor product.
 	Here we have the additional property that (a) if two basis elements re-appear then the whole thing vanishes, and
 	(b) we can shuffle around elements, and so we arbitrarily decide to put the basis elements
@@ -582,7 +597,7 @@ We call that map $\Lambda^m(T)$.
 
 Now here's something interesting.
 Suppose $V$ has dimension $n$, and let $m=n$.
-Then $\Lambda^n(V)$ has dimension $\binom nn = 1$ -- it's a one dimensional space!
+Then $\Lambda^n(V)$ has dimension $\binom nn = 1$ --- it's a one dimensional space!
 Hence $\Lambda^n(V) \simeq k$.
 
 So $\Lambda^n(T)$ can be thought of as a linear map from $k$ to $k$.
