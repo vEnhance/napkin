@@ -805,19 +805,6 @@ for their Cartesian product, emphasizing the fact that $G$ and $H$ are abelian.
 	\end{hint}
 \end{problem}
 
-\begin{problem}[Taiwan IMO Camp]
-	\gim
-	In a town there are $n$ people and $k$ clubs. Each club has an odd number of members, and any two clubs have an even number of common members. Prove that $k \le n$.
-	\begin{hint}
-		Dot products in $\FF_2$.
-	\end{hint}
-	\begin{sol}
-		Interpret clubs as vectors in the vector space $\mathbb F_2^n$.
-		Consider a ``dot product'' to show that all $k$ vectors are linearly independent.
-		Thus $k \le \dim \mathbb F_2^n = n$.
-	\end{sol}
-\end{problem}
-
 %Now consider the sequences
 %\[
 %	\{0\} \subsetneq \ker S \subseteq \ker S^2 \subseteq \ker S^3 \subseteq \dots
@@ -833,78 +820,4 @@ for their Cartesian product, emphasizing the fact that $G$ and $H$ are abelian.
 %When this happens, $\ker S^N \bigcap \img S^N = \{0\}$ (why?), and 
 %thus for dimension reasons $V_1 = \ker S^N \oplus \img S^N$.\footnote{%
 %	Recall here that for \emph{any} map $T : V \to W$, $\dim \ker T + \dim \img T = \dim V$.}
-
-\endinput
-
-\section{A Quick Word on Dot Products}
-Let's throw orthogonality into the mix.
-To do this we want a notion of a ``dot product'' between two vectors.
-This is provided by a so-called inner form.
-
-I'll just do the case where $k = \RR$.
-
-\begin{definition}
-	Let $V$ be a real vector space.
-	An \vocab{inner form} $\left< \bullet, \bullet \right> : V \times V \to \RR$ is a map with the following properties.
-	\begin{itemize}
-		\ii The form is \textbf{linear in the first argument}, so 
-		$\left<a+b,c\right> = \left<a,c\right>+\left<b,c\right>$
-		and $\left<r \cdot a,b\right> = r \cdot \left<a,b\right>$.
-		\ii The form is symmetric: $\left<a,b\right> = \left<b,a\right>$.
-		This implies that it is also linear in the second argument.
-		\ii The form is \textbf{positive definite}, meaning $\left<v,v\right> \ge 0$ is a real number, and equality takes place only if $v = 0_V$.
-	\end{itemize}
-\end{definition}
-
-\begin{example}
-	If $V = \RR^n$, then one inner form is the standard dot product.
-	Specifically, if $v = \left( a_1, \dots, a_n \right) \in \RR^n$
-	and $w = \left( b_1, \dots, b_n \right) \in \RR^n$ then
-	\[ \left<v,w\right> \defeq a_1b_1 + \dots + a_nb_n \]
-	works.
-\end{example}
-
-\begin{definition}
-	The \vocab{norm} of a $v \in V$ is defined by $\norm{v} = \left<v,v\right>$.
-	Evidently this is positive for all nonzero $v$,
-	since the inner form is positive definite.
-\end{definition}
-
-\begin{definition}
-	Let $v_1, \dots, v_n \in V$.
-	We say that $v_i$ are \textbf{orthogonal} if $\left< v_i, v_j \right> = 0$ for all $i \neq j$.
-	Moreover, it is \textbf{orthonormal} if $\norm{v_i} = 1$ for all $i$.
-\end{definition}
-\begin{example}
-	Let $V = \RR^n$ and use the standard dot product as the inner form.
-	Then the standard basis $e_1 = \left( 1,0,\dots,0 \right)$, $e_2 = (0,1,\dots,0)$, et cetera is an orthonormal basis.
-	\todo{use boldface for standard basis here (and elsewhere)}
-\end{example}
-
-As you might expect, orthogonal vectors should be linearly independent,
-just based on our geometric intuition for $\RR^n$.
-\begin{lemma}
-	Any orthonormal set of vectors is linearly independent.
-\end{lemma}
-\begin{proof}
-	Suppose $\sum a_iv_i = 0_V$.
-	Then \[ 0_V = \left< v_1, \sum a_i v_i \right> = a_1 \norm{v_i} = a_1. \]
-	Hence $a_1 = 0$.
-	Similarly $a_2 = \dots = a_m = 0$.
-\end{proof}
-
-Finally, we can show that we can select orthogonal bases.
-\begin{proposition}[Gram-Schmidt]
-	Let $V$ be a real finite-dimensional vector space.
-	Then there exists an orthonormal basis.
-\end{proposition}
-\begin{proof}
-	Let $v_1, \dots, v_n$ be a basis of $V$.
-	Inductively, construct $e_i$ such that all $e_i$ are orthonormal
-	and the span of $e_1, \dots, e_k$ equals the span of $v_1, \dots, v_k$.
-	Eventually we end up with $n$ orthonormal $e_i$'s.
-	They are linearly independent, but there are $n$ of them,
-	so they must form a basis.
-\end{proof}
-
 

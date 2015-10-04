@@ -1,0 +1,413 @@
+\chapter{Inner Product Spaces}
+It will often turn out that our vector spaces which look more like $\RR^n$
+not only have the notion of addition, but also a notion of \emph{orthogonality}
+and the notion of \emph{distance}.
+All this is achieved by endowing the vector space with a so-called \textbf{inner form},
+which you likely already know as the ``dot product'' for $\RR^n$.
+Indeed, in $\RR^n$ you already know that
+\begin{itemize}
+	\ii $v \cdot w = 0$ if and only if $v$ and $w$ are perpendicular, and
+	\ii $|v|^2 = v \cdot v$.
+\end{itemize}
+The purpose is to quickly set up this structure in full generality.
+Some highlights of the chapter:
+\begin{itemize}
+	\ii We'll see that the high school ``dot product'' formulation is actually very natural:
+	it falls out from the two axioms we listed above.
+	If you ever wondered why $\sum a_ib_i$ behaves as nicely as it does, now you'll know.
+	\ii We show that how the inner form can be used to make $V$ into a \emph{metric space},
+	giving it more geometric structure.
+	\ii We'll identify $V \simeq V^\vee$ in a way that wasn't possible before,
+	and as a corollary deduce the following nice result:
+	symmetric matrices with complex entries always have real eigenvalues.
+\end{itemize}
+
+Throughout this chapter, \emph{all vector spaces are over $\CC$ or $\RR$},
+unless otherwise specified.
+We'll generally prefer working over $\CC$ instead of $\RR$ since,
+like we saw in the chapter on spectral theory, $\CC$ is algebraically closed
+in a nice way that $\RR$ is not,
+and moreover every real matrix can be thought of as a matrix with complex entries as well.
+
+\section{Defining the Norm}
+\prototype{Dot product in $\RR^n$.}
+
+First, let's define the inner form for real spaces.
+Rather than the notation $v \cdot w$ it is most customary
+to use $\left< v,w \right>$ for general vector spaces.
+\begin{definition}
+	Let $V$ be a real vector space.
+	An \vocab{real inner form}\footnote{%
+	Other names include ``inner product'', ``dot product'', ``positive definite symmetric bilinear form'', \dots}
+	is a function
+	\[ \left< \bullet, \bullet \right> : V \times V \to \RR \]
+	which satisfies the following properties:
+	\begin{itemize}
+			\ii The form is \vocab{symmetric}: for any $v,w \in V$ we have
+		\[ \left< v,w \right> = \left< w,v\right>. \]
+		Of course, one would expect this property from a product.
+
+		\ii The form is \textbf{linear in the first argument}, meaning that
+		$\left< cx, y\right> = c \left< x,y \right>$ and
+		$\left< x+y, z\right> = \left< x,z\right> + \left< y,z\right>$.
+		This is often summarized by the single equation
+		\[ \left< cx+y, z \right> = c \left< x,z \right> + \left< y,z \right>. \]
+		Of course by symmetry it is linear in the second argument too.
+		This should be thought of ``distributive over addition''.
+
+		\ii The form is \vocab{positive definite}, meaning $\left<v,v\right> \ge 0$
+		is a nonnegative real number, and equality takes place only if $v = 0_V$.
+	\end{itemize}
+\end{definition}
+
+\begin{example}
+	[$\RR^n$]
+	As we already know, one can define the inner form on $\RR^n$ as follows.
+	Let $\ee_1 = (1, 0, \dots, 0)$, $\ee_2 = (0, 1, \dots, 0)$, \dots, $\ee_n = (0, \dots, 0, 1)$
+	be the standard basis.
+	Then we let
+	\[ 
+		\left< a_1 \ee_1 + \dots + a_n \ee_n, b_1 \ee_1 + \dots + b_n \ee_n \right>
+		\defeq a_1b_1 + \dots + a_nb_n.
+	\]
+	It's easy to see this is bilinear (symmetric and linear in both arguments).
+	To see it is positive definite, note that if $a_i = b_i$
+	then the dot product is $a_1^2 + \dots + a_n^2$, which is zero exactly when all $a_i$ are zero.
+\end{example}
+
+The definition for a complex product space is similar, but has a minor difference:
+rather than symmetry we instead have \emph{conjugate symmetry}
+meaning $\left< v, w \right> = \ol{ \left< w,v \right> }$.
+Thus, while we still have linearity in the first argument,
+we actually have a different linearity for the second argument.
+To be explicit:
+\begin{definition}
+	Let $V$ be a complex vector space.
+	An \vocab{complex inner form} $\left< \bullet, \bullet \right> : V \times V \to \CC$
+	is a function which satisfies the following properties:
+	\begin{itemize}
+		\ii The form has \vocab{conjugate symmetry}, which means that
+		for any $v,w \in V$ we have
+		\[ \left< v,w \right> = \ol{\left< w,v\right>}. \]
+
+		\ii The form is \textbf{linear in the first argument}, so again we have
+		\[ \left< cx+y, z \right> = c \left< x,z \right> + \left< y,z \right>. \]
+		However it no longer follows that it is linear in the second argument, see below!
+
+		\ii The form is \vocab{positive definite},
+		meaning $\left<v,v\right>$ is a nonnegative real number,
+		and equals zero exactly when $v = 0_V$.
+	\end{itemize}
+\end{definition}
+\begin{ques}
+	Show that in a complex inner form, we instead have
+	\[ \left< x, cy + z \right> = \ol c \left< x, y \right> + \left< x, z\right>.  \]
+\end{ques}
+
+\begin{example}
+	[$\CC^n$]
+	The dot product in $\CC^n$ is defined as follows:
+	let $\ee_1$, $\ee_2$, \dots, $\ee_n$ be the standard basis.
+	For complex numbers $w_i$, $z_i$ we set
+	\[ 
+		\left< w_1 \ee_1 + \dots + w_n \ee_n, z_1 \ee_1 + \dots + z_n \ee_n \right>
+		\defeq w_1\ol{z_1} + \dots + w_n \ol{z_n}.
+	\]
+\end{example}
+\begin{ques}
+	Check that the above is in fact a complex inner form.
+\end{ques}
+
+\begin{definition}
+	A real or complex vector space with an inner form is called
+	an \vocab{inner product space}.
+\end{definition}
+\begin{remark}
+	\label{rem:only_complex_forms}
+	Note that we can apply the axioms for a complex inner form
+	to those for a real inner form verbatim; in $\RR$, conjugation is the identity.
+	Thus for real vector spaces, for example, ``conjugate symmetry'' is just ``symmetry''.
+	Consequently, when proving results about inner product spaces it usually
+	suffices to do just the complex case.
+\end{remark}
+
+The above example explains why we have to require the complex inner form
+to satisfy conjugate symmetry rather than just symmetry.
+If we had tried to define the dot product as $\sum w_i z_i$,
+then we would have lost the condition of being positive definite,
+because there is no guarantee that $\left< v,v \right> = \sum z_i^2$ will even be a real number at all.
+On the other hand, with conjugate symmetry we actually enforce $\left< v,v \right> = \ol{\left< v,v \right>}$,
+id est $\left< v,v \right> \in \RR$ for every $v$.
+
+Now that we have a dot product, we can talk both about the norm and orthogonality.
+
+\section{Norms}
+\prototype{$\RR^n$ becomes its usual Euclidean space with the vector norm.}
+
+The inner form equips our vector space with a notion of distance, which we call the norm.
+\begin{definition}
+	Let $V$ be an inner product space.
+	The \vocab{norm} of a $v \in V$ is defined by 
+	\[ \norm{v} = \sqrt{\left<v,v\right>}. \]
+	This definition makes sense because we assumed our form to be positive definite.
+\end{definition}
+
+\begin{example}[$\RR^n$ and $\CC^n$ Are Normed Vector Spaces]
+	When $V = \RR^n$ or $V = \CC^n$ with the standard dot product norm,
+	then the norm of $v$ corresponds to the absolute value that we are used to.
+\end{example}
+
+Our goal now is to prove that
+\begin{moral}
+	With the metric $d(v,w) = \norm{v-w}$, $V$ becomes a metric space.
+\end{moral}
+To do this we have to establish the triangle inequality.
+We use the following lemma as a stepping stone:
+Let's now prove something we all know and love:
+\begin{lemma}
+	[Cauchy-Schwarz]
+	Let $V$ be a inner product space.
+	For any $v,w \in V$ we have
+	\[ \left\lvert \left< v,w\right> \right\rvert
+	\le \norm{v} \norm{w} \]
+	with equality if and only if $v$ and $w$ are linearly dependent.
+\end{lemma}
+\begin{proof}
+	The key to the proof is to think about the equality case:
+	we'll use the inequality $\left< cv-w, cv-w\right> \ge 0$.
+	Deferring the choice of $c$ until later, we compute
+	\begin{align*}
+		0 &\le \left< cv-w, cv-w \right> \\
+		&= \left< cv, cv\right> - \left< cv, w\right> - \left< w, cv\right> + \left< w,w \right> \\
+		&= |c|^2 \left< v,v \right> - c \left< v,w \right> - \ol c \left< w,v \right> + \left< w,w \right> \\
+		&= |c|^2 \norm{v}^2 + \norm{w}^2 - c \left< v,w \right> - \ol{c \left< v,w\right> }. \\
+		2 \Re \left[ c \left< v,w \right> \right] &\le |c|^2 \norm{v}^2 + \norm{w}^2  \\
+		\intertext{At this point, a good choice of $c$ is} 
+		c &= \frac{ \norm w}{\norm v} \cdot \frac{|\left< v,w\right>|}{\left< v,w\right>}. \\
+		\intertext{since then}
+		c \left< v,w \right> &= \frac{\norm w}{\norm v} \left\lvert \left< v,w\right> \right\rvert \in \RR \\
+		|c| &= \frac{\norm w}{\norm v} \\
+		\intertext{whence the inequality becomes}
+		 2\frac{\norm w}{\norm v} \left\lvert \left< v,w\right> \right\rvert &\le 2 \norm{w}^2  \\
+		 \left\lvert \left< v,w\right> \right\rvert &\le \norm v \norm w. \qedhere
+	\end{align*}
+\end{proof}
+Thus:
+\begin{theorem}
+	[Triangle Inequality]
+	We always have
+	\[ \norm v + \norm w \le \norm{v+w} \]
+	withe quality if and only if $v$ and $w$ are linearly dependent.
+\end{theorem}
+\begin{exercise}
+	Prove this by squaring both sides, and applying Cauchy-Schwarz.
+\end{exercise}
+
+In this way, our vector space now has a topological structure of a metric space.
+
+\section{Orthogonality}
+\prototype{Still $\RR^n$!}
+Our next goal is to give the geometric notion of ``perpendicular''.
+The definition is easy enough:
+\begin{definition}
+	Two nonzero vectors $v$ and $w$ in an inner product space
+	are \vocab{orthogonal} if $\left< v,w \right> = 0$.
+\end{definition}
+
+As we expect from our geometric intution in $\RR^n$, this implies independence:
+\begin{lemma}[Orthogonal Vectors Are Independent]
+	Any set of nonzero pairwise orthogonal vectors is linearly independent.
+\end{lemma}
+\begin{proof}
+	Consider a dependence
+	\[ a_1 v_1 + \dots + a_n v_n = 0 \]
+	for $a_i$ in $\RR$ or $\CC$.
+	Then \[ 0_V = \left< v_1, \sum a_i v_i \right> = a_1 \norm{v_i}^2. \]
+	Hence $a_1 = 0$, since we assumed $\norm{v_1} \neq 0$.
+	Similarly $a_2 = \dots = a_m = 0$.
+\end{proof}
+
+In light of this, we can now consider a stronger condition on our bases:
+\begin{definition}
+	An \vocab{orthonormal} basis of a finite-dimensional inner product space $V$
+	is a basis $e_1$, \dots, $e_n$ such that
+	$\norm{e_i} = 1$ for every $i$ and $\left< e_i, e_j \right> = 0$ for any $i \neq j$.
+\end{definition}
+\begin{example}[$\RR^n$ and $\CC^n$ have standard bases]
+	In $\RR^n$ and $\CC^n$ equipped with the standard dot product,
+	the standard basis $\ee_1$, \dots, $\ee_n$ is also orthonormal.
+\end{example}
+This is no loss of generality:
+\begin{theorem}[Gram-Schmidt]
+	Let $V$ be a finite-dimensional vector space.
+\end{theorem}
+\begin{proof}
+	Not hard, but omitted for now.
+	Maybe if I have time I will add it later.
+\end{proof}
+Thus, we can generally assume our bases are orthonormal.
+
+Worth remarking:
+\begin{example}[The Dot Product is the ``Only'' Inner Form]
+	Let $V$ be a finite-dimensional inner product space,
+	and consider \emph{any} orthonormal basis $e_1, \dots, e_n$.
+	Then we have that
+	\[ \left< a_1e_1 + \dots + a_ne_n, b_1e_1 + \dots + b_ne_n \right> 
+		= \sum_{i,j=1}^n a_i\ol{b_j} \left< e_i, e_j \right>
+		= \sum_{i=1}^n a_i \ol{b_i} \]
+	owing to the fact that the $\{e_i\}$ are orthonormal.
+\end{example}
+So the dot product is actually a \emph{highly natural} inner form to consider.
+It arises just out of the geometric consideration that in an orthonormal basis
+we ought to have norm $1$ and pairwise orthogonality;
+this is enough to obtain the dot product by extending linearly.
+
+
+\section{Identifying with the Dual Space}
+Earlier I complained that there was no natural isomorphism $V \simeq V^\vee$.
+But in fact, given an inner form we can actually make such an identification:
+that is we can naturally associate every linear map $\xi : V \to k$ with a vector $v \in V$.
+
+To see how we might do this, suppose $V = \RR^3$ for now with standard basis $\ee_1$, $\ee_2$, $\ee_3$.
+How might we use the standard product to represent a map from $V \to \RR$?
+For example, take $\xi \in V^\vee$ by $\xi(\ee_1) = 3$, $\xi(\ee_2) = 4$ and $\xi(\ee_3) = 5$.
+Actually, I claim that
+\[ \xi(v) = \left< v, 3\ee_1 + 4\ee_2 + 5\ee3 \right> \]
+for every $v$.
+And this is obvious, once you do the computation.
+
+More generally:
+\begin{theorem}[$V$ is isomorphic to $V^\vee$]
+	Let $V$ be an finite-dimensional inner product space and $V^\vee$ its dual.
+	Then the map $V \to V^\vee$ by
+	\[ v \mapsto \left<  - , v \right> \in V^\vee \]
+	is an isomorphism.
+\end{theorem}
+\begin{proof}
+	It suffices to show that the map is injective and surjective.
+	\begin{itemize}
+		\ii Injective: suppose $\left< w, v_1 \right> = \left< w, v_2\right>$
+		for every vector $w$.
+		This means $\left< w, v_1 - v_2\right> = 0$ for every vector $w \in V$.
+		This can only happen if $v_1 - v_2 = 0$; for example, take $w = v_1 - v_2$
+		and use positive definiteness.
+		\ii Surjective: take an orthonormal basis, and mimic the argument we gave earlier.
+	\end{itemize}
+	Actually, since we already know $\dim V = \dim V^\vee$ we only had to prove one of the above.
+	As a matter of personal taste, I find the proof of injectivity more elegant,
+	and the proof of surjectivity more enlightening, so I included both.
+\end{proof}
+
+\section{The Transpose of a Matrix}
+Let $V$ be a finite-dimensional inner product space and let $T : V \to V$.
+The \vocab{adjoint} or \vocab{conjugate transpose} of $T$, denoted $T^\ast$,
+is defined as follows: for every vector $w \in V$, we let $T^\ast(w)$ be the unique vector with
+\[ \left< v, T^\ast(w) \right> = \left< T(v), w \right> \]
+for every $v \in V$.
+This is well-defined, because $v \mapsto \left< T(v), w \right>$ is some function in $V^\vee$,
+and hence by the isomorphism we described earlier it can be written uniquely in the form $\left< v, x \right>$
+for some $x \in V$; we then let $T^\ast(w) = x$.
+
+Of course, the name conjugate transpose suggests something else:
+\begin{theorem}
+	[Adjoints are Conjugate Transpose]
+	Fix an orthonormal basis of a finite-dimensional inner product $V$.
+	If we write $T$ as a matrix in this basis, then $T^\ast$ is the conjugate transpose.
+\end{theorem}
+\begin{proof}
+	One-line version: take $v$ and $w$ to be basis elements, and this falls right out.
+
+	Full proof: let
+	\[ T = \left(
+		\begin{array}{ccc}
+			a_{11} & \dots & a_{1n} \\
+			\vdots & \ddots & \vdots \\
+			a_{n1} & \dots & a_{nn}
+		\end{array}
+		\right)
+	\]
+	in this basis $e_1$, \dots, $e_n$.
+	Then, letting $w = e_i$ and $v = e_j$ we deduce that
+	\[ \left< e_i, T^\ast(e_j) \right> = \left< T(e_i) , e_j\right> = a_{ji}
+		\implies
+		\left< T^\ast(e_j), e_i \right> = \ol{a_{ji}} \]
+	for any $i$, which is enough to deduce the result.
+\end{proof}
+
+In this way we can talk about the transpose of a matrix in a meaningful way.
+
+\section{Spectral Theory of Normal Maps}
+The world would be a very beautiful place if it turned out
+that we could pick a basis of eigenvectors that was also orthonormal.
+This is of course far too much to hope for; even without the orthonormal condition,
+we saw in the previous chapter that we could still have $1$'s off the diagonal.
+However, it turns out that there is a good characterization of this:
+
+\begin{definition}
+	We say $T$ is \vocab{normal} if $TT^\ast = T^\ast T$.
+\end{definition}
+\begin{theorem}
+	[Normal $\iff$ Diagonalizable in Inner Form]
+	Let $V$ be a finite-dimensional inner product space.
+	A linear map $T : V \to V$ is normal
+	if and only if one can pick an orthonormal basis of eigenvectors.
+\end{theorem}
+\begin{proof}
+	One direction is trivial (figure out which one).
+	For the other, see the last page of 
+	\url{math.ucla.edu/~mikehill/Math5651/Lecture28.pdf} until
+	I get bored enough to actually write down the proof again.
+	\todo{remove snarky note}
+\end{proof}
+This means that not only can we write
+\[ T = \left(
+	\begin{array}{cccc}
+		\lambda_1 & \dots & \dots & 0 \\
+		0 & \lambda_2 & \dots & 0 \\
+		\vdots & \vdots & \ddots & \vdots \\
+		0 & 0 & \dots & \lambda_n
+	\end{array}
+	\right)
+\]
+but moreover that the basis associated with this matrix happens to be orthonormal vectors.
+
+
+In particular,
+\begin{definition}
+	A matrix over a complex finite-dimensional inner product space
+	is said to be \vocab{self-adjoint} or \vocab{Hermitian} if $T = T^\ast$;
+	i.e.\ as a matrix in any orthonormal basis, $T$ is its own conjugate transpose.
+	For real finite-dimensional inner product spaces we say ``self-adjoint'', ``Hermitian'' or \vocab{symmetric}.
+\end{definition}
+
+Then we have that
+\begin{theorem}[Hermitian matrices have real eigenvalues]
+	A Hermitian matrix $T$ is diagonalizable, and all its eigenvalues are real.
+\end{theorem}
+\begin{proof}
+	Obviously Hermitian $\implies$ normal,
+	so write it in the orthonormal basis of eigenvectors.
+	To see that the eigenvalues are real, note that $T = T^\ast$
+	means $\lambda_i = \ol{\lambda_i}$ for every $i$.
+\end{proof}
+
+
+\section\problemhead
+\begin{problem}
+	[Pythagorean Theorem]
+	Show that if $\left< v,w \right> = 0$ in an inner product space,
+	then $\norm{v}^2 + \norm{w}^2 = \norm{v+w}^2$.
+\end{problem}
+
+\begin{problem}[Taiwan IMO Camp]
+	\gim
+	In a town there are $n$ people and $k$ clubs. Each club has an odd number of members, and any two clubs have an even number of common members. Prove that $k \le n$.
+	\begin{hint}
+		Dot products in $\FF_2$.
+	\end{hint}
+	\begin{sol}
+		Interpret clubs as vectors in the vector space $\mathbb F_2^n$.
+		Consider a ``dot product'' to show that all $k$ vectors are linearly independent.
+		Thus $k \le \dim \mathbb F_2^n = n$.
+	\end{sol}
+\end{problem}

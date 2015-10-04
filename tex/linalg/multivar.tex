@@ -12,22 +12,7 @@ Since we are doing this chapter using morally correct linear algebra,
 it's imperative you're comfortable with linear maps,
 and in particular the dual space $V^\vee$ which we will repeatedly use.
 
-\section{Preliminaries}
-\prototype{$V = \RR^n$, and $\norm{(x_1, \dots, x_n)} = \sqrt{x_1^2 + \dots + x_n^2}$.}
-In this chapter, all vector spaces are \vocab{normed} and finite-dimensional over $\RR$.
-By ``normed'' I mean there is an ``absolute value'' function $\norm{-}_V : V \to \RR_{\ge 0}$
-satisfying the triangle inequality and scaling by constants: 
-\[
-	\norm{v_1+v_2}_V \le \norm{v_1}_V+\norm{v_2}_V
-	\qquad\text{and}\qquad
-	\norm{cv}_V = c\norm{v}_V \quad\text{(for $c \ge 0$)}.
-\]
-In particular, $\norm{0_V}_V = 0$.
-
-The norm can be used as a metric on $V$ (by taking $d(x,y) = \norm{x-y}$),
-thus we can talk about continuous maps,  open sets, etc.
-The typical example, of course, is $V = \RR^n$ as above.
-
+In this chapter, all vector spaces have norms and finite-dimensional over $\RR$.
 
 \section{The Total Derivative}
 \prototype{If $f(x,y) = x^2+y^2$, then $(Df)_{(x,y)} = 2x\ee_1^\vee + 2y\ee_2^\vee$.}
