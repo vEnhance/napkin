@@ -47,7 +47,7 @@ This is no coincidence, and one can show this occurs in general.
 Specifically, suppose $\alpha$ has minimal polynomial
 \[ 0 = c_n \alpha^n + c_{n-1} \alpha^{n-1} + \dots + c_1\alpha + c_0 \]
 where the $c_i$ are rational.
-Then by applying any embedding $\sigma$ to both sides gives
+Then applying any embedding $\sigma$ to both sides gives
 \begin{align*}
 	0 &= \sigma(c_n \alpha^n + c_{n-1} \alpha^{n-1} + \dots + c_1\alpha + c_0) \\
 	% &= \sigma(c_n \alpha^n) + \sigma(c_{n-1} \alpha^{n-1})
@@ -63,7 +63,7 @@ where in the last step we have used the fact that $c_i \in \QQ$, so they are fix
 Next, I want to draw out a contrast between the second and third examples.
 Specifically, in example (b) where we consider embeddings $K = \QQ(\sqrt 2)$ to $\CC$.
 The image of these embeddings lands entirely in $K$: that is,
-we could just have well as looked at $K \to K$ rather than looking at $K \to \CC$.
+we could just as well have looked at $K \to K$ rather than looking at $K \to \CC$.
 However, this is not true in (c): indeed $\QQ(\cbrt 2) \subset \RR$, but the non-identity embeddings
 have complex outputs!
 
@@ -140,7 +140,7 @@ So we just want a field that contains all the roots of all the polynomials:
 Now that I've defined all these ingredients, I can give the following theorem.
 \begin{theorem}[The $n$ embeddings of a number field]
 	\label{thm:n_embeddings}
-	Let $K$ be a number field.
+	Let $K$ be a number field of degree $n$.
 	Then there are exactly $n$ field homomorphisms $K \injto \CC$,
 	say $\sigma_1, \dots, \sigma_n$ which fix $\QQ$.
 \end{theorem}
@@ -222,7 +222,7 @@ Should work for any field, right?
 Nope.
 Suppose we took the derivative of some polynomial like $2x^3 + 24x + 9$,
 namely $6x^2 + 24$.
-In $\CC$ is it's obvious that the derivative of a nonconstant polynomial $f'$ isn't zero.
+In $\CC$ it's obvious that the derivative of a nonconstant polynomial $f'$ isn't zero.
 But suppose we considered the above as a polynomial in $\FF_3$, i.e.\ modulo three.
 Then the derivative is zero.
 Oh, no!
@@ -250,7 +250,7 @@ With the assumption of characteristic zero, our earlier proof works.
 Unfortunately, this lemma is false if the ``characteristic zero'' condition is dropped.
 So in what follows, I'll have the word ``separable'' attached to a lot of things.
 
-The reason it's called \emph{separable} is (I think) is this picture:
+The reason it's called \emph{separable} is (I think) this picture:
 I have a polynomial and I want to break it into irreducible parts.
 Normally, if I have a double root in a polynomial, that means it's not irreducible.
 But in characteristic $p > 0$ this fails.
@@ -266,7 +266,7 @@ Then, we can repeat the previous proof verbatim to obtain:
 \begin{theorem}[The $n$ Embeddings of Any Separable Extension]
 	Let $K/F$ be a separable extension of degree $n$ and let $\ol F$ be an algebraic closure of $F$.
 	Then there are exactly $n$ field homomorphisms $K \injto \ol F$,
-	say $\sigma_1, \dots, \sigma_n$ which fix $F$.
+	say $\sigma_1, \dots, \sigma_n$, which fix $F$.
 \end{theorem}
 
 In any case, this lets us define the trace for \emph{any} separable normal extension.
@@ -289,7 +289,7 @@ this section that $\QQ(\cbrt 2)$ is deficient in a way that $\QQ(\sqrt 2)$ is no
 
 First, we define the ``internal'' automorphisms.
 \begin{definition}
-	Suppose $K/F$ is an finite extension.
+	Suppose $K/F$ is a finite extension.
 	Then $\Aut(K/F)$ is the set of \emph{field isomorphisms} $\sigma : K \to K$ which fix $F$.
 	In symbols
 	\[ \Aut(K/F) =
@@ -348,7 +348,7 @@ First, let's repeat the proof of the observation that these embeddings shuffle a
 In particular, taking $f$ to be the minimal polynomial of $\alpha$ we deduce
 \begin{moral}
 	An embedding $\sigma \in \Aut(K/F)$ sends an $\alpha \in F$
-	one of its various Galois conjugates (over $F$).
+	to one of its various Galois conjugates (over $F$).
 \end{moral}
 
 Next, let's look again at the ``deficiency'' of certain fields.
@@ -624,7 +624,7 @@ The equality case is trickier.
 
 The easier direction is when $K$ is a splitting field.
 Assume $K = F(\alpha_1, \dots, \alpha_n)$ is the splitting field of some separable polynomial $p \in F[x]$
-with $n$ distinct roots $\alpha_1, \dots, \alpha_n$ be the distinct roots.
+with $n$ distinct roots $\alpha_1, \dots, \alpha_n$.
 Adjoin them one by one:
 \begin{diagram}
 	F & \rInj & F(\alpha_1) & \rInj & F(\alpha_1, \alpha_2) & \rInj & \dots & \rInj & K \\
@@ -635,7 +635,7 @@ Adjoin them one by one:
 Every map $K \to K$ which fixes $F$ corresponds to an above commutative diagram.
 As before, there are exactly $[F(\alpha_1) : F]$ ways to pick $\tau_1$.
 (You need the fact that the minimal polynomial $p_1$ of $\alpha_1$ is separable for this:
-there needs to be exactly $\deg p_1 = [F(\alpha_1) : F]$ distinct roots to nail $p_1$ into.)
+there need to be exactly $\deg p_1 = [F(\alpha_1) : F]$ distinct roots to nail $p_1$ into.)
 Similarly, given a choice of $\tau_1$, there are $[F(\alpha_1, \alpha_2) : F(\alpha_1)]$ ways to pick $\tau_2$.
 Multiplying these all together gives the desired $[K:F]$.
 
@@ -655,7 +655,7 @@ First, we state the following lemma.
 	(Note that $\alpha \in S$ since $\Gal(K/F) \ni \id$.)
 	By construction, any $\tau \in \Gal(K/F)$ fixes $S$.
 	So if we construct
-	\[ \tilde p(x) = \prod_{\beta \in S} (x - \beta). \]
+	\[ \tilde p(x) = \prod_{\beta \in S} (x - \beta), \]
 	then by Vieta's Formulas, we find that all the coefficients of $\tilde p$ are fixed by elements of $\sigma$.
 	By the \emph{equality case} we specified in the exercise, it follows that $\tilde p$ has coefficients in $F$!
 	(This is where we use the condition.)
