@@ -17,8 +17,10 @@ Here are some examples.
 	[Optional: Evil Real Functions]
 	You can skim over these very quickly: they're just here to make a point.
 	\begin{enumerate}[(a)]
-		\ii The \vocab{Devil's Staircase} (or Cantor function) is a continuous function $H : [0,1] \to [0,1]$
-		which has derivative zero at all but finitely many points, yet $H(0) = 0$ and $H(1) = 1$.
+		\ii The \vocab{Devil's Staircase} (or Cantor function)
+		is a continuous function $H : [0,1] \to [0,1]$
+		which has derivative zero almost everywhere,
+		yet $H(0) = 0$ and $H(1) = 1$.
 		\ii The \vocab{Weierstra\ss\ function}
 		\[ x \mapsto \sum_{n=0}^\infty \left( \half \right)^n \cos \left( 2015^n \pi x \right) \]
 		is continuous \emph{everywhere} but differentiable \emph{nowhere}.
@@ -33,7 +35,8 @@ Here are some examples.
 		has the first $99$ derivatives but not the $100$th one.
 		\ii
 		If a function has all derivatives (we call these \vocab{smooth} functions),
-		then it has a Taylor series. But that Taylor series might still be wrong. The function
+		then it has a Taylor series.
+		But for real functions that Taylor series might still be wrong. The function
 		\[ x \mapsto
 			\begin{cases}
 				e^{-1/x} & x > 0 \\
