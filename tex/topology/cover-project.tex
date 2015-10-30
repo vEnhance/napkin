@@ -326,7 +326,7 @@ This motivates the following definition.
 	You can show (and it's intuitively obvious) that the bijection
 	\[ \Phi : \pi_1(S^1) \leftrightarrow \ZZ \]
 	is in fact a group homomorphism if we equip $\ZZ$ with its
-	additive group structure $\ZZ_+$.
+	additive group structure $\ZZ$.
 	Since it's a bijection, this leads us to conclude $\pi_1(S^1) \cong \ZZ$.
 \end{example}
 
@@ -356,7 +356,7 @@ by simply sending every point to the orbit it lives in.
 \end{definition}
 
 \begin{example}[$\RR \to S^1$ is regular]
-	Let $G = \ZZ_+$, $X = \RR$
+	Let $G = \ZZ$, $X = \RR$
 	and define the group action of $G$ on $X$ by 
 	\[ n \cdot x = n + x \]
 	You can then think of $X/G$ as ``real numbers modulo $1$'',
@@ -386,7 +386,7 @@ by simply sending every point to the orbit it lives in.
 \end{example}
 	
 \begin{example}[The Torus]
-	Let $G = \ZZ_+ \times \ZZ_+$ and $X = \RR^2$,
+	Let $G = \ZZ \times \ZZ$ and $X = \RR^2$,
 	and define the group action of $G$ on $X$ by $(m,n) \cdot (x,y)
 	= (m+x, n+y)$.
 	Again, since $[0,1)^2$ is a complete set of representatives,
@@ -483,14 +483,14 @@ More importantly, we have the following result.
 	But $1_E$ is a lift of $1_B$ (duh) and lifts are unique.
 \end{proof}
 
-\begin{example}[Subgroups of $\ZZ_+$]
-	Let's look at the space $S^1$ with fundamental group $\ZZ_+$.
-	The group $\ZZ_+$ has two types of subgroups:
+\begin{example}[Subgroups of $\ZZ$]
+	Let's look at the space $S^1$ with fundamental group $\ZZ$.
+	The group $\ZZ$ has two types of subgroups:
 	\begin{itemize}
 		\ii The trivial subgroup.
 		This corresponds to the canonical projection $\RR \to S^1$,
 		since $\pi_1(\RR)$ is the trivial group ($\RR$ is simply connected)
-		and hence its image in $\ZZ_+$ is the trivial group.
+		and hence its image in $\ZZ$ is the trivial group.
 		\ii $n\ZZ$ for $n \ge 1$.
 		This is given by the covering projection $S^1 \to S^1$
 		by $z \mapsto z^n$.
@@ -499,7 +499,7 @@ More importantly, we have the following result.
 	\end{itemize}
 \end{example}
 
-It turns out that these are the \emph{only} covering projections of $S^n$ by path-connected spaces: there's one for each subgroup of $\ZZ_+$.
+It turns out that these are the \emph{only} covering projections of $S^n$ by path-connected spaces: there's one for each subgroup of $\ZZ$.
 (We don't care about disconnected spaces because, again, a covering projection
 via disconnected spaces is just a bunch of unrelated ``good'' coverings.)
 For this statement to make sense I need to tell you what it means for
