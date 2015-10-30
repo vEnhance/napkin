@@ -1,2 +1,523 @@
 \chapter{Singular Homology}
-TODO: Write
+Now that we've defined $\pi_1(X)$, we turn our attention to a second way of capturing the same idea, $H_1(X)$.
+We'll then define $H_n(X)$ for $n \ge 2$.
+The good thing about the $H_n$ groups is that, unlike the $\pi_n$ groups, they are much easier to compute in practice.
+The downside is that they are a little more involved to compute,
+and the ``algebraic'' part of ``algebraic topology'' will become a lot more technical.
+
+\section{Simplices and Boundaries}
+\prototype{$\partial[v_0, v_1, v_2] = [v_0,v_1]-[v_0,v_2]+[v_1,v_2]$.}
+First things first:
+\begin{definition}
+	The \vocab{standard $n$-simplex}, denoted $\Delta^n$, is defined as
+	\[ \left\{ (x_0 , x_1, \dots x_n) \mid x_i \ge 0, x_0+\dots+x_n=1 \right\}. \]
+	Hence it's the convex hull of some vertices $[v_0, \dots, v_n]$.
+	Note that we keep track of the order $v_0$, \dots, $v_n$ of the vertices,
+	for reasons that will soon become clear.
+
+	Given a topological space $X$, a \vocab{singular $n$-simplex} is a map $\sigma : \Delta^n \to X$.
+\end{definition}
+\begin{example}
+	[Singular Simplices]
+	\listhack
+	\label{ex:simplex}
+	\begin{enumerate}[(a)]
+		\ii Since $\Delta^0 = [v_0]$ is just a point,
+		a singular $0$-simplex $X$ is just a point of $X$.
+		\ii Since $\Delta^1 = [v_0, v_1]$ is an interval,
+		a singular $1$-simplex $X$ is just a path in $X$.
+		\ii Since $\Delta^2 = [v_0, v_1, v_2]$ is an equilateral triangle,
+		a singular $2$-simplex $X$ looks a ``disk'' in $X$.
+	\end{enumerate}
+	Here is a picture of all three in a space $X$:
+	\begin{center}
+		\begin{asy}
+			size(8cm);
+			bigblob("$X$");
+			dot("$\sigma^0$", (-3.7,2.5), dir(-90));
+
+			pen hg = heavygreen;
+			pair A0 = (-2.7, 1.1);
+			pair A1 = (-2.9, -2.3);
+			dot("$v_0$", A0, dir(90), hg);
+			dot("$v_1$", A1, dir(-90), hg);
+			path s1 = A0..(-3.1,0.7)..A1;
+			draw(s1, hg, EndArrow);
+			label("$\sigma^1$", s1, dir(10), hg);
+
+			pen rr = red;
+			pair B0 = (1, 1.8);
+			pair B1 = (-0.7, -1.1);
+			pair B2 = (1.9, -1.9);
+			dot("$v_0$", B0, dir(90), rr);
+			dot("$v_1$", B1, dir(210), rr);
+			dot("$v_2$", B2, dir(330), rr);
+			pair b0 = (0,0);
+			pair b1 = (0,-2);
+			pair b2 = (1.6,0.3);
+			draw(B0..b0..B1, rr, EndArrow);
+			draw(B1..b1..B2, rr, EndArrow);
+			draw(B2..b2..B0, rr, EndArrow);
+			fill(B0..b0..B1--B1..b1..B2--B2..b2..B0--cycle, lightred+opacity(0.2));
+			label("$\sigma^2$", centroid(B0, B1, B2), rr);
+		\end{asy}
+	\end{center}
+	The arrows aren't strictly necessary, but I've included them
+	to help keep track of the ``order'' of the vertices;
+	this will be useful in just a moment.
+\end{example}
+
+Now we're going to do something much like when we were talking about Stoke's Theorem:
+we'll put a boundary $\partial$ operator on the singular $n$-simplices.
+This will give us a formal linear sums of $n$-simplices $\sum_k a_k \sigma_k$,
+which we call a \vocab{$n$-chain}.
+
+In that case,
+\begin{definition}
+	Given a singular $n$-simplex $\sigma$ with vertices $[v_0, \dots, v_n]$,
+	note that for every $i$ we have an $(n-1)$ simplex $[v_0, \dots, v_{i-1}, v_{i+1}, \dots, v_n]$.
+	The \vocab{boundary operator} $\partial$ is then defined by
+	\[ \partial(\sigma) \defeq \sum_i (-1)^i
+		\left[ v_0, \dots, v_{i-1}, v_{i+1}, \dots, v_n \right]. \]
+	The boundary operator then extends linearly to $n$-chains:
+	\[ \partial\left( \sum_k a_k \sigma_k \right) \defeq \sum a_k \partial(\sigma_k). \]
+	By convention, a $0$-chain has empty boundary.
+\end{definition}
+\begin{example}
+	[Boundary Operator]
+	Consider the chains depicted in \Cref{ex:simplex}. Then
+	\begin{enumerate}[(a)]
+		\ii $\partial\sigma^0 = 0$.
+		\ii $\partial(\sigma^1) = [v_1] - [v_0]$:
+		it's the ``difference'' of the $0$-chain corresponding to point $v_1$
+		and the $0$-chain corresponding to point $v_0$.
+		\ii $\partial(\sigma^2) = [v_0,v_1] - [v_0,v_2] + [v_1, v_2]$;
+		i.e. one can think of it as the sum of the three oriented arrows
+		which make up the ``sides'' of $\sigma^2$.
+		\ii Notice that if we take the boundary again, we get
+		\begin{align*}
+			\partial(\partial(\sigma^2))
+			&= \partial([v_0,v_1]) - \partial([v_0,v_2]) + \partial([v_1,v_2]) \\
+			&= \left( [v_1]-[v_0] \right) - \left( [v_2]-[v_0] \right) + \left( [v_2]-[v_1] \right)  \\
+			&= 0.
+		\end{align*}
+	\end{enumerate}
+\end{example}
+
+The fact that $\partial^2 = 0$ is of course not a coincidence.
+\begin{theorem}
+	[$\partial^2=0$]
+	For any chain $c$, $\partial(\partial(c)) = 0$.
+\end{theorem}
+\begin{proof}
+	Essentially identical to \Cref{prob:partial_zero}:
+	this is just a matter of writing down a bunch of $\sum$ signs.
+\end{proof}
+
+\section{The Singular Homology Groups}
+
+Let $X$ be a topological space, and let $C_n(X)$ be the free abelian group
+of $n$-chains of $X$ that we defined earlier.
+Our work above gives us a boundary operator $\partial$, so we have a sequence of maps
+\[ \dots \taking\partial C_3(X) \taking\partial C_2(X)
+	\taking\partial C_1(X) \taking\partial C_0(X) \taking\partial 0 \]
+(here I'm using $0$ to for the trivial group, which is standard notation for abelian groups.)
+We'll call this the \vocab{singular chain complex}.
+
+Now, how does this let us detect holes in the space?
+To see why, let's consider the following annulus, with a $1$-chain $c$ drawn into it in red:
+\begin{center}
+	\begin{asy}
+		size(6cm);
+		pair O = origin;
+		filldraw(CR(O, 6), lightblue+opacity(0.2), blue);
+		filldraw(CR(O, 1), white, blue);
+		label("$X$", 6*dir(45), dir(45));
+		pen rr = red;
+		pair v0 = 5*dir(100);
+		pair v1 = 4*dir(220);
+		pair v2 = 2.2*dir(330);
+		dot("$v_0$", v0, dir(v0), rr);
+		dot("$v_1$", v1, dir(v1), rr);
+		dot("$v_2$", v2, dir(v2), rr);
+		draw(v0..(3.2*dir(110))..v1, rr, EndArrow);
+		draw(v1..(2.1*dir(270))..v2, rr, EndArrow);
+		draw(v2..(3.6*dir(45))..v0, rr, EndArrow);
+	\end{asy}
+\end{center}
+Notice that 
+\[ \partial c = ([v_1]-[v_0]) - ([v_2]-[v_0]) + ([v_2]-[v_1]) = 0 \]
+and so we can say this $1$-chain $c$ is a ``cycle'',
+because it has trivial boundary.
+However, $c$ is not itself the boundary of any $2$-chain,
+because of the hole in the center of the space
+--- it's impossible to ``fill in'' the interior of $c$!
+So, we have detected the hole by the algebraic fact that 
+\[ c \in \ker\left( C_1(X) \taking{\partial} C_0(X) \right)
+	\qquad\text{but}\qquad
+	c \notin \img \left( C_2(X) \taking{\partial} C_1(X) \right). \]
+Indeed, if the hole was not present then this statement would be false.
+
+We can capture this idea in any dimension, as follows.
+\begin{definition}
+	Let 
+	\[ \dots \taking\partial C_2(X) \taking\partial C_1(X) \taking\partial C_0(X) \taking\partial 0 \]
+	as above.
+	We say that $c \in C_n(X)$ is:
+	\begin{itemize}
+		\ii a \vocab{cycle} if $\partial c \in \ker\left( C_{n}(X) \taking\partial C_{n-1}(X) \right)$, and
+		\ii a \vocab{boundary} if $c \in \img \left( C_{n+1}(X) \taking\partial C_n(X) \right)$.
+	\end{itemize}
+	Denote the cycles and boundaries by $Z_n(X), B_n(X) \subseteq C_n(X)$, respectively.
+\end{definition}
+
+\begin{ques}
+	Just to get you used the notation:
+	check that $B_n$ and $Z_n$ are themselves abelian groups,
+	and that $B_n(X) \subseteq Z_n(X) \subseteq C_n(X)$.
+\end{ques}
+
+The key point is that we can now define:
+\begin{definition}
+	The \vocab{$n$th homology group} $H_n(X)$ is
+	defined as \[ H_n(X) \defeq Z_n(X) / B_n(X). \]
+\end{definition}
+\begin{example}
+	[The Zeroth Homology Group]
+	Let's compute $H_0(X)$ for a topological space $X$.
+	We take $C_0(X)$, which is just formal linear sums of points of $X$.
+
+	First, we consider the kernel of $\partial : C_0(X) \to 0$,
+	so the kernel of $\partial$ is the entire space $C_0(X)$:
+	that is, every point is a ``cycle''.
+
+	Now, what is the boundary?
+	The main idea is that $[b] - [a] = 0$ if and only if
+	there's a $1$-chain which connects $a$ to $b$, i.e.\
+	there is a path from $a$ to $b$.
+	In particular,
+	\[ \text{$X$ path connected} \implies H_0(X) \cong \ZZ. \]
+\end{example}
+More generally, we have
+\begin{proposition}[Homology Groups Split Into Path-Connected Components]
+	If $X = \bigcup_\alpha X_\alpha$ is a decomposition into path-connected components,
+	then we have \[ H_n(X) \cong \bigoplus_\alpha H_n(X_\alpha). \]
+	In particular, if $X$ has $r$ path-connected components, then $H_0(X) \cong \ZZ^{\oplus r}$.
+\end{proposition}
+
+Now let's investigate the first homology group.
+Formally, for $X$ path-connected,
+\begin{center}
+	$H_1(X)$ is the \emph{abelianization} of $\pi_1(X, x_0)$.
+\end{center}
+Roughly, as you can see from the example, $H_1(X)$ captures the same information
+as $\pi_1(X, x_0)$: a cycle (in $Z_1(X)$) corresponds to the same thing
+as the loops we studied in $\pi_1(X, x_0)$,
+and the boundaries (in $B_1(X)$, i.e.\ the things we mod out by)
+are exactly the nulhomotopic loops in $\pi_1(X, x_0)$.
+The difference is that $H_1(X)$ allows loops to commute, whereas $\pi_1(X, x_0)$ does not.
+\begin{example}
+	[The First Homology Group of the Annulus]
+	To give a concrete example, consider the annulus $X$ above.
+	We found a chain $c$ that wrapped once around the hole of $X$.
+	The point is that in fact,
+	\[ H_1(X) = \left< c\right> \cong \ZZ \]
+	which is to say the chains $c$, $2c$, \dots are all not the same in $H_1(X)$,
+	but that any other $1$-chain is equivalent to one of these.
+	This captures the fact that $X$ is really just $S^1$.
+\end{example}
+\begin{example}
+	[The First Homology Group of the Figure 8]
+	Consider $X_8$ (see \Cref{ex:figure8}).
+	Both homology and homotopy see the two loops in $X_8$, call them $a$ and $b$.
+	The difference is that in $\pi_1(X_8, x_0)$,
+	these two loops are not allowed to commute: we don't have $ab \neq ba$,
+	because the group operation in $\pi_1$ is ``concatenate paths''
+	But in the homology group $H_1(X)$ the way we add $a$ and $b$
+	is to add them formally, to get the $1$-chain $a+b$.
+	So \[ H_1(X) \cong \ZZ^{\oplus 2} \quad\text{while}\quad \pi_1(X, \ast) = \left< a,b\right>. \]
+\end{example}
+
+This is fantastic and all, but how does one go about actually computing any homology groups?
+This will be a rather long story, and we'll have to do a significant amount of both algebra and geometry
+before we're really able to compute any homology groups.
+In what follows, it will often be helpful to keep track of which things are purely algebraic
+(work for any chain complex), and which parts are actually stating something which is geometrically true.
+
+\section{The Homology Functor and Chain Complexes}
+
+Our first goal is to show the following result.
+\begin{definition}
+	The category $\catname{hTop}$ is defined as follows:
+	\begin{itemize}
+		\ii Objects: topological spaces.
+		\ii Morphisms: \emph{homotopy classes} of morphisms $X \to Y$.
+	\end{itemize}
+	In particular, $X$ and $Y$ are isomorphic in $\catname{hTop}$
+	if and only if they are homotopic.
+\end{definition}
+\begin{theorem}[$H_n : \catname{hTop} \to \catname{Grp}$]
+	\label{thm:Hn_functor}
+	For any particular $n$, $H_n$ is a functor $\catname{hTop} \to \catname{Grp}$.
+	In particular,
+	\begin{itemize}
+		\ii Given any map $f : X \to Y$, we get an induced map $f_\ast : H_n(X) \to H_n(Y)$.
+		\ii For two homotopic maps $f, g : X \to Y$, $f_\ast = g_\ast$.
+		\ii Two homotopic spaces $X$ and $Y$ have isomorphic homology groups:
+		if $f : X \to Y$ is a homotopy then $f_\ast : H_n(X) \to H_n(Y)$ is an isomorphism.
+		\ii (Insert your favorite result about functors here.)
+	\end{itemize}
+\end{theorem}
+
+In order to do this, we have to describe how to take a map $f : X \to Y$
+and obtain a map $H_n(f) : H_n(X) \to H_n(Y)$.
+Then we have to show that this map doesn't depend on the choice of homotopy.
+To do this we will have to go back to the chain complex $C_\bullet(X)$ that we built at the beginning.
+
+\subsection*{Algebra of Chain Complexes}
+Let's start with the algebra.
+First, I'll define the following abstraction of the complex to any sequence of abelian groups.
+Actually, though, it works in any category (not just $\catname{AbGrp}$).
+The strategy is as follows: we'll define everything that we need completely abstractly,
+then show that the geometry concepts we want correspond to this setting.
+
+\begin{definition}
+	Let $\AA = \catname{AbGrp}$.
+	A \vocab{chain complex} in $\AA$ is a sequence of groups $A_n$ and maps
+	\[ \dots \taking{\partial_A} A_n \taking{\partial_A} A_{n-1} \taking{\partial_A} \dots \]
+	such that the composition of any two adjacent maps is the zero morphism.
+	We we usually denote this by $A_\bullet$.
+
+	The $n$th homology group $H_n(A_\bullet)$ is defined
+	as $\ker(A_n \to A_{n-1}) / \img(A_{n+1} \to A_n)$.
+	Cycles and boundaries are defined in the same way as before.
+\end{definition}
+Obviously, this is just a algebraic generalization of the structure we previously looked at,
+rid of all its original geometric context.
+
+\begin{definition}
+	A \vocab{morphism of chain complexes} $f : A_\bullet \to B_\bullet$ is
+	a sequence of maps $f_n$ for every $n$ such that the following diagram commutes:
+	\begin{diagram}
+		\dots &\rTo^{\partial_A} & A_{n+1} & \rTo^{\partial_A} &
+		A_n & \rTo^{\partial_A} & A_{n-1} & \rTo^{\partial_A} & \dots \\
+		&& \dTo_{f_{n+1}} && \dTo_{f_n} && \dTo_{f_{n-1}} && \\
+		\dots & \rTo^{\partial_B} & B_{n+1} & \rTo^{\partial_B} &
+		B_n & \rTo^{\partial_B} & B_{n-1} & \rTo^{\partial_B} & \dots \\
+	\end{diagram}
+	(Under this definition, the set of chain complexes in $\AA$ is itself an abelian category.)
+\end{definition}
+
+Note that given a morphism of chain complexes $f : A_\bullet \to B_\bullet$,
+every cycle in $A_n$ gets sent to a cycle in $B_n$, since the following square commutes:
+\begin{diagram}
+	A_n & \rTo^{\partial_A} & A_{n-1} \\
+	\dTo^{f_n} & & \dTo \\
+	B_n & \rTo_{\partial_B} & B_{n-1} \\
+\end{diagram}
+Similarly, every boundary in $A_n$ gets sent to a boundary in $B_n$. Thus,
+\begin{moral}
+	Every map of $f : A_\bullet \to B_\bullet$ gives a
+	map $f_\ast : H_n(A) \to H_n(B)$ for every $n$.
+\end{moral}
+In fact, each $H_n$ is a functor from chain complexes of $\AA$ to $\AA$ itself.
+
+Next, we want to define what it means for two maps $f$ and $g$ to be homotopic.
+Here's the answer:
+\begin{definition}
+	Let $f, g : A_\bullet \to B_\bullet$.
+	Suppose that one can find a map $P_n : A_n \to B_{n+1}$ for every $n$ such that
+	\[ g_n - f_n = \partial_B \circ P_n + P_{n-1} \circ \partial_A \]
+	Then $P$ is a \vocab{chain homotopy} from $f$ to $g$
+	and $f$ and $g$ are \vocab{chain homotopic}.
+\end{definition}
+
+We can draw the following picture to illustrate this (warning: the diagonal dotted arrows do NOT commute
+with all the other arrows):
+\begin{diagram}
+	\dots &\rTo^{\partial_A} & A_{n+1} & \rTo^{\partial_A} &
+	A_n & \rTo^{\partial_A} & A_{n-1} & \rTo^{\partial_A} & \dots \\
+	&& \dTo~{g-f} & \ldDotted~{P_n} & \dTo~{g-f}
+	& \ldDotted~{P_{n-1}} & \dTo~{g-f} && \\
+	\dots & \rTo^{\partial_B} & B_{n+1} & \rTo^{\partial_B} &
+	B_n & \rTo^{\partial_B} & B_{n-1} & \rTo^{\partial_B} & \dots \\
+\end{diagram}
+The definition is that in each slanted ``parallelogram'', the $g-f$ arrow is the sum of the two
+compositions along the sides.
+
+\begin{remark}
+	This equation should look terribly unmotivated right now,
+	aside from the fact that we are about to show it does the right algebraic thing.
+	Its derivation comes from the geometric context that we have deferred
+	until the next section, where ``homotopy'' will naturally give ``chain homotopy''.
+\end{remark}
+
+Now, the point of this definition is that
+\begin{proposition}[Chain homotopic maps induce the same map on homology groups]
+	Let $f, g: A_\bullet \to B_\bullet$ be chain homotopic maps $A_\bullet \to B_\bullet$.
+	Then the induced maps $f_\ast, g_\ast : H_n(A_\bullet) \to H_n(B_\bullet)$ coincide for each $n$.
+\end{proposition}
+\begin{proof}
+	It's equivalent to show $g-f$ gives the zero map on homology groups,
+	In other words, we need to check that every cycle of $A_n$ becomes
+	a boundary of $B_n$ under $g-f$.
+	\begin{ques}
+		Verify that this is true. \qedhere
+	\end{ques}
+\end{proof}
+
+
+\subsection*{Geometry of Chain Complexes}
+Now let's fill in the geometric details of the picture above.
+This will follow from the following two lemmas.
+\begin{lemma}[Map of Space $\implies$ Map of Singular Chain Complexes]
+	Each $f : X \to Y$ induces a map $C_n(X) \to C_n(Y)$.
+\end{lemma}
+\begin{proof}
+	Take the composition
+	\[ \Delta^n \taking{\sigma} X \taking{f} Y. \]
+	In other words, a path in $X$ becomes a path in $Y$, et cetera.
+	(It's not hard to see that the squares involving $\partial$ commute;
+	check it if you like.)
+\end{proof}
+
+Now, what we need is to show that if $f , g : X \to Y$ are homotopic,
+then they are chain homotopic.
+To produce a chain homotopy, we need to take every $n$-simplex $X$
+to an $(n+1)$-chain in $Y$, thus defining the map $P_n$.
+
+Let's think about how we might do this. Let's take the $n$-simplex $\sigma : \Delta^n \to X$
+and feed it through $f$ and $g$; pictured below is a $1$-simplex $\sigma$ (i.e.\ a path in $X$)
+which has been mapped into the space $Y$.
+Homotopy means the existence of a map $F : X \times [0,1] \to Y$
+such that $F(-,0) = f$ and $F(-,1) = g$, parts of which I've illustrated below with grey arrows
+in the image for $Y$.
+
+\begin{center}
+	\begin{asy}
+		size(14cm);
+		bigblob("$Y$");
+		pair A = (-3.5,2);
+		pair B = (-2.2,-2);
+		pair C = (2.2,1.6);
+		pair D = (2.0, -1.1);
+
+		pen rr = red;
+		dot("$v_0$", A, dir(90), rr); dot("$v_1$", B, dir(-090), rr);
+		path v = A..(-2,0)..B;
+		draw(v, rr, EndArrow);
+		label("$f(\sigma)$", v, dir(180), rr);
+
+		pen hg = heavygreen;
+		dot("$w_0$", C, dir(90), hg); dot("$w_1$", D, dir(-90), hg);
+		path w = C..(2.3,0)..D; 
+		draw(w, hg, EndArrow);
+		label("$g(\sigma)$", w, dir(0), hg);
+
+		pen gr = grey + dashed;
+		draw(A--C, gr, Margins);
+		path F = A--D;
+		draw(F, gr, Margins);
+		label("$F$", F, dir(90), gr);
+		draw(B--D, gr, Margins);
+
+		add(shift(12.5,0)*CC());
+		pair W = 1.5*dir(135);
+		pair X = 1.5*dir(225);
+		pair Y = 1.5*dir(45);
+		pair Z = 1.5*dir(-45);
+		dot("$v_0$", W, dir(W), rr);
+		dot("$v_1$", X, dir(X), rr);
+		dot("$w_0$", Y, dir(Y), hg);
+		dot("$w_1$", Z, dir(Z), hg);
+
+		label("$\Delta^1 \times [0,1]$", 2*dir(90), dir(90));
+		pair A1 = (1.5,0);
+		pair A2 = (3.5,0);
+		pair A3 = (6.25,0);
+		pair A4 = (7.5,0);
+		draw(A1--A2, EndArrow);
+		draw(A3--A4, EndArrow);
+		label("$\boxed{X \times [0,1]}$", midpoint(A2--A3), blue);
+		label("$F$", A3--A4, dir(90));
+		label("$\sigma \times \operatorname{id}$", A1--A2, dir(90));
+
+		draw(W--X, rr, EndArrow);
+		draw(Y--Z, hg, EndArrow);
+		draw(W--Y, gr);
+		draw(X--Z, gr);
+		draw(W--Z, gr);
+	\end{asy}
+\end{center}
+
+This picture suggests how we might proceed:
+we want to create a $2$-chain on $Y$ given the $1$-chains we've drawn.
+The homotopy $F$ provides with a ``square'' structure on $Y$,
+i.e.\ the square bounded by $v_0$, $v_1$, $w_1$, $w_0$.
+We split this up into two triangles; and that's our $2$-chain.
+
+We can make this formal by taking $\Delta^1 \times [0,1]$ (which \emph{is} a square)
+and split it into two triangles.
+Then, if we apply $\sigma \times \id$, we'll get an $(n+1)$-cell in $X \times [0,1]$,
+and then finally applying $F$ will map everything into our space $Y$.
+In our example, the final image is the $2$-chain, consisting of two triangles,
+which in our picture can be written as $[v_0, v_1, w_0] - [v_0, w_0, w_1]$;
+the boundaries are given by the red, green, grey.
+
+More generally, for a $n$-simplex $\phi = [x_0, \dots, x_n]$ we define the so-called \emph{prism operator} $P_n$
+as follows. Set $v_i = f(x_i)$ and $w_i = g(x_i)$ for each $i$.
+Then, we let
+\[ P_n(\phi) \defeq \sum_{i=0}^n (-1)^i (F \circ (\phi\times\id)) \left[ v_0, \dots, v_i, w_i, \dots, w_n \right]. \]
+This is just the generalization of the construction above to dimensions $n > 1$,
+--- we split $\Delta^n \times [0,1]$ into $n+1$ simplices,
+map it into $X$ by $\phi \times \id$ and then push the whole thing into $Y$.
+The $(-1)^i$ makes sure that the ``diagonal'' faces all cancel off with each other.
+
+We now claim that for every $\sigma$,
+\[ \partial_Y(P_n(\sigma)) = g(\sigma) - f(\sigma) - P_{n-1}(\partial_X\sigma). \]
+In the picture, $\partial_Y \circ P_n$ is the boundary of the entire prism
+(in the figure, this becomes the red, green, and grey lines, not including diagonal grey,
+which is cancelled out).
+The $g-f$ is the green minus the red,
+and the $P_{n-1} \circ \partial X$ represents the grey edges of the prism
+(not including the diagonal line from $v_1$ to $w_0$).
+Indeed, one can check (just by writing down several $\sum$ signs)
+that the above identity holds.
+
+So that gives the chain homotopy from $f$ to $g$, completing the proof of \Cref{thm:Hn_functor}.
+
+\section{More Examples of Chain Complexes}
+We now end this chapter by providing some more examples of chain complexes,
+which we'll use at the beginning of the next chapter to finally compute homology groups.
+
+\begin{example}
+	[Relative Chain Groups]
+	Suppose $X$ is a topological space, and $A \subset X$ a subspace.
+	We can ``mod out'' by $A$ in the following manner: define
+	\[ C_n(X,A) \defeq C_n(X) / C_n(A) \]
+	for every $n$. Thus chains contained entirely in $A$ are trivial.
+
+	Then, the usual $\partial$ on $C_n(X)$ generates a new chain complex
+	\[ \dots \taking\partial C_{n+1}(X,A) \taking\partial C_n(X,A)
+	\taking\partial C_{n-1}(X,A) \taking\partial \dots. \]
+\end{example}
+This is well-defined since $\partial$ takes $C_n(A)$ to $C_{n-1}(A)$.
+The resulting homology groups are called the \vocab{relative homology groups} and called $H_n(X,A)$.
+Our hope is that this might be $H_n(X) / H_n(A)$ but this is not quite true,
+though this guess is not too far off; we'll examine this further in the next chapter.
+
+\begin{example}
+	[Mayer-Vietoris Sequence with Two Open Sets]
+	Suppose a space $X$ is covered by two open sets $U$ and $V$.
+	We can define $C_n(U+V)$ as follows:
+	it consists of chains such that each simplex is either entirely contained in $U$,
+	or entirely contained in $V$.
+	
+	Of course, $\partial$ then defines another chain complex
+	\[ \dots \taking\partial C_{n+1}(U+V) \taking\partial C_n(U+V)
+	\taking\partial C_{n-1}(U+V) \taking\partial \dots. \]
+\end{example}
+So once again, we can define homology groups for this complex; we denote them by $H_n(U+V)$.
+Miraculously, it will turn out that $H_n(U+V) \cong H_n(X)$.
+
+\section\problemhead
