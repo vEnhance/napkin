@@ -219,7 +219,7 @@ Finally, here are some examples of categories you can make from other categories
 	\listhack
 	\begin{enumerate}[(a)]
 		\ii Given a category $\AA$, we can construct the \vocab{opposite category}
-		$\AA^{\text{op}}$, which is the same as $\AA$ but with all arrows reversed.
+		$\AA\op$, which is the same as $\AA$ but with all arrows reversed.
 		\ii Given categories $\AA$ and $\BB$, we can construct the \vocab{product category} $\AA \times \BB$
 		as follows: the objects are pairs $(A, B)$ for $A \in \AA$ and $B \in \BB$,
 		and the arrows from $(A_1, B_1)$ to $(A_2, B_2)$
@@ -289,11 +289,11 @@ Again, terminal objects are unique up to isomorphism.
 The reader is invited to repeat the proof from the preceding exercise here.
 However, we can illustrate more strongly the notion of duality to give a short proof.
 \begin{ques}
-	Verify that terminal objects of $\AA$ are equivalent to initial objects of $\AA^{\text{op}}$.
+	Verify that terminal objects of $\AA$ are equivalent to initial objects of $\AA\op$.
 	Thus terminal objects of $\AA$ are unique up to isomorphism.
 \end{ques}
 In general, one can consider in this way the dual of \emph{any} categorical notion:
-properties of $\AA$ can all be translated to dual properties of $\AA^{\text{op}}$
+properties of $\AA$ can all be translated to dual properties of $\AA\op$
 (often by adding the prefix ``co'' in front).
 
 One last neat construction: suppose we're working in a concrete category,
@@ -376,7 +376,7 @@ We can do this in any general category, defining a so-called product.
 
 Products do not always exist; for example, take a category with just two objects and no non-identity morphisms.
 Nonetheless:
-\begin{proposition}
+\begin{proposition}[Uniqueness of Products]
 	When they exist, products are unique up to isomorphism:
 	given two products $P_1$ and $P_2$ of $X$ and $Y$
 	there is an isomorphism between the two.

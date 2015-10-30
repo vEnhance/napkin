@@ -1,20 +1,58 @@
 \chapter{Functors and Natural Transformations}
 Functors are maps between categories; natural transformations are maps between functors.
 
-\section{Functors}
+\section{Many Examples of Functors}
 \prototype{Forgetful functors; fundamental groups; $-^\vee$.}
-In mathematics, we'd often like to take an object from one category and get an object from another category.
-For example, given a group we might like to obtain a set;
-given a set, we might like to consider the vector space whose basis is that set,
-and so on.
-The nice way to do that is using the notion of a functor:
-category theorists are always asking ``what are the maps?'',
+Here's the point of a functor:
+\begin{moral}
+	Pretty much any time you make an object out of another object,
+	you get a functor.
+\end{moral}
+Before I give you a formal definition, let me list (informally) some examples.
+(You'll notice some of them have opposite categories $\AA\op$ appearing in places.
+Don't worry about those for now; you'll see why in a moment.)
+\begin{itemize}
+	\ii Given a group $G$ (or vector space, field, \dots), we can take its underlying set $S$;
+	this is a functor from $\catname{Grp} \to \catname{Set}$.
+	\ii Given a set $S$ we can consider a vector space with basis $S$;
+	this is a functor from $\catname{Set} \to \catname{Vect}$.
+
+	\ii Given a vector space $V$ we can consider its dual space $V^\vee$.
+	This is a functor $\catname{Vect}_k\op \to \catname{Vect}_k$.
+	\ii Tensor products give a functor from $\catname{Vect}_k \times \catname{Vect}_k \to \catname{Vect}_k$.
+	\ii Given a set $S$, we can build its power set, giving a functor $\catname{Set} \to \catname{Set}$.
+	\ii In algebraic topology, we take a topological space $X$ and build several groups $H_1(X)$, $\pi_1(X)$,
+	etc.\ associated to it. All these group constructions are functors $\catname{Top} \to \catname{Grp}$.
+	\ii Sets of homomorphisms:
+	\begin{itemize}
+		\ii Given two vector spaces $V_1$ and $V_2$ over $k$,
+		we construct the abelian group of linear maps $V_1 \to V_2$.
+		This is a functor from $\catname{Vect}_k\op \times \catname{Vect}_k \to \catname{AbGrp}$.
+		\ii More generally, for a category $\AA$, we can take pairs $(A_1, A_2)$ of objects and
+		obtain a set $\Hom_{\AA}(A_1, A_2)$.
+		This turns out to be a functor $\AA\op \times \AA \to \catname{Set}$.
+		\ii The above operation has two ``slots''.
+		If we ``pre-fill'' the first slots, then we get a functor $\AA \to \catname{Set}$.
+		That is, by fixing $A \in \AA$, we obtain a functor (called $H^A$)
+		from $\AA \to \catname{Set}$ by sending $A' \in \AA$ to $\Hom_{\AA} (A, A')$.
+		This is called the covariant Yoneda functor (explained later).
+		\ii As we saw above, for every $A \in \AA$ we obtain a functor $H^A : \AA \to \catname{Set}$.
+		It turns out we can construct a category $[\AA, \catname{Set}]$
+		whose elements are functors $\AA \to \catname{Set}$;
+		in that case, we now have a functor $\AA\op \to [\AA, \catname{Set}]$.
+	\end{itemize}
+\end{itemize}
+
+\section{Covariant Functors}
+\prototype{Forgetful/free functors, \dots}
+Category theorists are always asking ``what are the maps?'',
 and so we can now think about maps between categories.
 
 \begin{definition}
 	Let $\AA$ and $\BB$ be categories.
-	A \vocab{functor} $F$ takes every object of $A$ to an object of $B$
-	and every arrow $A_1 \taking{f} A_2$ to an arrow $F(A_1) \taking{F(f)} F(A_2)$.
+	Of course, a \vocab{functor} $F$ takes every object of $\AA$ to an object of $\BB$.
+	In addition, though, it must take every arrow $A_1 \taking{f} A_2$
+	to an arrow $F(A_1) \taking{F(f)} F(A_2)$.
 	You can picture this as follows.
 	\begin{diagram}
 		& A_1 & & B_1 & = F(A_1) & \\
@@ -22,7 +60,7 @@ and so we can now think about maps between categories.
 		& A_2 & & B_2 & = F(A_2) &
 	\end{diagram}
 	(I'll try to use dotted arrows for functors, which cross different categories, for emphasis.)
-	It needs to satisfy the following requirements:
+	It needs to satisfy the following ``naturality'' requirements:
 	\begin{itemize}
 		\ii Identity arrows get sent to identity arrows:
 		for each identity arrow $\id_A$, we have $F(\id_A) = \id_{F(A)}$.
@@ -32,24 +70,35 @@ and so we can now think about maps between categories.
 	\end{itemize}
 \end{definition}
 
+So the idea is:
+\begin{moral}
+Whenever we naturally make an object $A \in \AA$ into an object of $B \in \BB$,
+there should usually be a natural way to transform a map $A_1 \to A_2$ into a map $B_1 \to B_2$.
+\end{moral}
+Let's see some examples of this.
+
 \begin{example}
 	[Free and Forgetful Functors]
 	Note that these are both informal terms.
 	\begin{enumerate}[(a)]
-		\ii A \vocab{forgetful functor} is a functor that ``forgets'' some structure.
-		For example, there is a forgetful functor $U : \catname{Vect}_k \to \catname{Set}$
-		by taking $V$ to the set of vectors $U(V)$; certainly a linear map $T : V \to W$
-		gives a map $U(T) : U(V) \to U(W)$ of the underlying point-sets.
-		In other words we ``forget'' that $V$ has a vector space structure.
+		\ii We talked about a \vocab{forgetful functor} earlier,
+		which takes the underlying set of a category like $\catname{Vect}_k$.
+		Let's call it $U : \catname{Vect}_k \to \catname{Set}$.
+
+		Now, given a map $T : V_1 \to V_2$ in $\catname{Vect}_k$,
+		there is an obvious $U(T) : U(V_1) \to U(V_2)$ which is just
+		the set-theoretic map corresponding to $T$.
 
 		Similarly there are forgetful functors from $\catname{Grp}$, $\catname{Ring}$,
 		etc. to $\catname{Set}$.
 		There is even a forgetful functor $\catname{Ring} \to \catname{Grp}$: send a ring $R$
 		to the abelian group $(R,+)$.
 
-		\ii A \vocab{free functor} is in some sense the opposite.
+		\ii We also talked about a \vocab{free functor} in the example.
 		A free functor $F : \catname{Set} \to \catname{Vect}_k$ can be taken by considering
 		$F(S)$ to be the vector space with basis $S$.
+		Now, given a map $f : S \to T$, what is the obvious map $F(S) \to F(T)$?
+		Simple: take each basis element $s \in S$ to the basis element $f(s) \in T$.
 	\end{enumerate}
 \end{example}
 \begin{remark}
@@ -80,14 +129,16 @@ and so we can now think about maps between categories.
 	Check the above group-based functors work as advertised.
 \end{exercise}
 
-Now we present one much trickier example.
-If you don't get this one at first, skip it and come back later.
+Here's a more involved example.
+If you find it confusing, skip it and come back after reading about its contravariant version.
 \begin{example}
 	[Covariant Yoneda Functor]
+	Fix an $A \in \AA$.
 	For a category $\AA$, define the \vocab{covariant Yoneda functor} $H^A : \AA \to \catname{Set}$
 	by defining \[ H^A(A_1) \defeq \Hom_\AA (A, A_1) \in \catname{Set}. \]
 	Hence each $A_1$ is sent to the \emph{arrows from $A$ to $A_1$};
 	so \textbf{$H^A$ describes how $A$ sees the world}.
+
 	Now we want to specify how $H^A$ behaves on arrows.
 	For each arrow $A_1 \taking{f} A_2$, we need
 	to specify $\catname{Set}$-map $\Hom_\AA (A, A_1) \to \Hom(A, A_2)$;
@@ -104,70 +155,14 @@ As another example:
 	If $\mathbb P$ and $\mathbb Q$ are posets interpreted as categories,
 	what does a functor from $\mathbb P$ to $\mathbb Q$ represent?
 \end{ques}
-\begin{ques}
-	Verify that there is a category of \emph{all categories},
-	$\catname{Cat}$, whose arrows are functors.
-	In particular, you will need to name the ``identity functors''
-	and verify that the composition of a functor is also a functor.
-\end{ques}
 
-The dual notion of a functor is a \vocab{contravariant functor}.
-They work exactly the same way, except the arrows get flipped by the functor.
-You can think of this as a functor $\AA \to \BB^{\text{op}}$ (equivalently, $\AA^{\text{op}} \to \BB$). Pictorially:
-\begin{diagram}
-	& A_1 & & B_1 & = F(A_1) & \\
-	\AA \ni & \dTo^f & \rDotted^F & \uTo_{F(f)} && \in \BB \\
-	& A_2 & & B_2 & = F(A_2) &
-\end{diagram}
-For emphasis, a usual functor is often called a \vocab{covariant functor}.
-
-Contravariant functors come up in a lot in geometric applications.
-Here's why.
-If $X$ is a geometric object, we'll often consider
-the \emph{set of functions} $X \taking\psi A$ for some particular $A$.
-For example, if $V$ was a vector space, we could consider the functions $V \to k$,
-giving the dual module $V^\vee$.
-Or if $X$ was a space, we might consider the continuous
-real functions $X \taking{p} \RR$.
-As a non-geometric example: for a set $S$,
-a function $S \to \{x,y\}$ corresponds to a subset of $S$.
-
-Now suppose you have two spaces $X$, $Y$ and a map $f : X \to Y$.
-Then given $Y \taking p \RR$, you automatically get a map $X \taking{f} Y \taking{p} \RR$.
-And it turns out this is a functor!
-This general construction can be done in any category $\AA$, as follows:
-\begin{example}[Contravariant Yoneda Functor]
-	The \vocab{contravariant Yoneda functor} $H_A : \AA^{\text{op}} \to \catname{Set}$;
-	is used to describe how objects of $\AA$ see $A$.
-	For each $X \in \AA$ it puts \[ H_A(X) \defeq \Hom_{\AA}(X, A) \in \catname{Set}. \]
-	For $X \taking{f} Y$, $H_A(f)$ sends each arrow $Y \taking{p} A \in \Hom_\AA(Y,A)$ to 
-	\[ X \taking{f} Y \taking{p} A \quad \in \Hom_\AA(X,A) \]
-	as we did above.
-	Thus $H_A(f)$ is an arrow from $\Hom_\AA(Y,A) \to \Hom_\AA(X,A)$.
-	(Note the flipping!)
-\end{example}
-\begin{remark}
-	Dually, there is also a \vocab{covariant Yoneda functor} $H^A : \AA \to \catname{Set}$
-	by $H^A(X) = H^A(A, X)$. This guy describes how $A$ sees the world.
-	\label{def:covariant_yoneda}
-\end{remark}
-
-\begin{example}[$V \mapsto V^\vee$ is Contravariant]
-	Consider the category $\catname{Vect}_k$.
-	If you read the digression on dual spaces,
-	you now know there is a contravariant functor $\catname{Vect}_k \to \catname{Vect}_k$ by
-	taking the \emph{dual} $V^\vee$ of a vector space $V$:
-	\begin{diagram}
-		V & & V^\vee \\
-		\dTo^T & \rDotted^{-^\vee} & \uTo_{T^\vee} \\
-		W & & W^\vee
-	\end{diagram}
-\end{example}
-
+Now, let me give an explanation why we might care.
 Suppose $G \cong H$ are groups, and $U : \catname{Grp} \to \catname{Set}$ is forgetful.
 Then we get two sets $U(G)$ and $U(H)$.
-These two sets have the same cardinality and are isomorphic in $\catname{Set}$.
-Now the beauty of category theory shows itself: this in fact works \emph{for any functors and categories},
+Since the groups are isomorphic, the two sets
+have the same cardinality and are isomorphic in $\catname{Set}$.
+Now the beauty of category theory shows itself:
+this in fact works \emph{for any functors and categories},
 and the proof is done solely through arrows.
 
 \begin{theorem}
@@ -188,11 +183,105 @@ and the proof is done solely through arrows.
 	and the identity map.
 \end{proof}
 
+This will give us a great intuition in the future, because
+\begin{enumerate}[(i)]
+	\ii Almost every operation we do in our lifetime will be a functor, and
+	\ii We now know that functors take isomorphic objects to isomorphic objects.
+\end{enumerate}
+Thus, we now automatically know that basically any ``reasonable'' operation
+we do will preserve isomorphism (where ``reasonable'' means that it's a functor).
+
 This will be super convenient in algebraic topology, for example.
 We'll show from a space $X$ you can create a group $\pi_n(X)$ or $H_n(X)$ that
 gives information about the space $X$.
 If we can show this is in fact a functor $\catname{Top} \to \catname{Grp}$,
 then for $X \cong Y$, we get for free that $\pi_n(X) \cong \pi_n(Y)$ and $H_n(X) \cong H_n(Y)$.
+
+While I'm here:
+\begin{definition}
+	There is a category $\catname{Cat}$ whose objects are categories,
+	and such that arrows between the categories are natural transformations.
+\end{definition}
+\begin{ques}
+	Verify this works; figure out the identity and compositions.
+\end{ques}
+
+\section{Contravariant Functors}
+\prototype{Dual spaces, contravariant Yoneda functor, etc.}
+
+Now I have to explain what the opposite categories were doing earlier.
+In all the previous examples, we took an arrow $A_1 \to A_2$,
+and it became an arrow $F(A_1) \to F(A_2)$.
+Sometimes, however, the arrow in fact goes the other way:
+we get an arrow $F(A_2) \to F(A_1)$ instead.
+In other words, instead of just getting a functor $\AA \to \BB$
+we ended up with a functor $\AA\op \to \BB$.
+
+These functors have a name: a \vocab{contravariant functor}.  Pictorially:
+\begin{diagram}
+	& A_1 & & B_1 & = F(A_1) & \\
+	\AA \ni & \dTo^f & \rDotted^F & \uTo_{F(f)} && \in \BB \\
+	& A_2 & & B_2 & = F(A_2) &
+\end{diagram}
+For emphasis, a usual functor is often called a \vocab{covariant functor}.
+
+Let's see why this might happen.
+\begin{example}[$V \mapsto V^\vee$ is Contravariant]
+	Consider the functor $\catname{Vect}_k \to \catname{Vect}_k$ by $V \mapsto V^\vee$.
+
+	If we were trying to specify a covariant functor,
+	we would need, for every linear map $T : V_1 \to V_2$,
+	a linear map $T^\vee : V_1^\vee \to V_2^\vee$.
+	But recall that $V_1^\vee = \Hom(V_1, k)$ and $V_2^\vee = \Hom(V_2, k)$:
+	there's no easy way to get an obvious map from left to right.
+
+	However, there \emph{is} an obvious map from right to left:
+	given $\xi_2 : V_2 \to k$, we can easily give a map from $V_1 \to k$:
+	just compose with $T$!
+	In other words, there is a very natural map $V_2^\vee \to V_1^\vee$
+	according to the composition
+	\begin{diagram}
+		V_1 & \rTo^T & V_2 & \rTo^{\xi_2} & k
+	\end{diagram}
+	In summary, a map $T : V_1 \to V_2$ induces naturally a map
+	$T^\vee : V_2^\vee \to V_1^\vee$ in the opposite direction.
+	So the contravariant functor looks like:
+	\begin{diagram}
+		V_1 & & V_1^\vee \\
+		\dTo^T & \rDotted^{-^\vee} & \uTo_{T^\vee} \\
+		V_2 & & V_2^\vee
+	\end{diagram}
+\end{example}
+
+%Contravariant functors come up in a lot in geometric applications.
+%Here's why.
+%If $X$ is a geometric object, we'll often consider
+%the \emph{set of functions} $X \taking\psi A$ for some particular $A$.
+%For example, if $V$ was a vector space, we could consider the functions $V \to k$,
+%giving the dual module $V^\vee$.
+%Or if $X$ was a space, we might consider the continuous
+%real functions $X \taking{p} \RR$.
+%As a non-geometric example: for a set $S$,
+%a function $S \to \{x,y\}$ corresponds to a subset of $S$.
+
+We can generalize the example above in any category by
+replacing the field $k$ with any chosen object $A \in \AA$.
+
+\begin{example}[Contravariant Yoneda Functor]
+	The \vocab{contravariant Yoneda functor} $H_A : \AA\op \to \catname{Set}$;
+	is used to describe how objects of $\AA$ see $A$.
+	For each $X \in \AA$ it puts \[ H_A(X) \defeq \Hom_{\AA}(X, A) \in \catname{Set}. \]
+	For $X \taking{f} Y$, $H_A(f)$ sends each arrow $Y \taking{p} A \in \Hom_\AA(Y,A)$ to 
+	\[ X \taking{f} Y \taking{p} A \quad \in \Hom_\AA(X,A) \]
+	as we did above.
+	Thus $H_A(f)$ is an arrow from $\Hom_\AA(Y,A) \to \Hom_\AA(X,A)$.
+	(Note the flipping!)
+\end{example}
+
+\begin{exercise}
+	Check now the claim that $\AA\op \times \AA \to \catname{Set}$
+	by $(A_1, A_2) \mapsto \Hom(A_1, A_2)$ is in fact a functor.
+\end{exercise}
 
 \section{Natural Transformations}
 \emph{Note}: we won't use natural transformations anywhere else in the Napkin,
@@ -354,6 +443,10 @@ In this way, we can construct an inverse arrow $\beta_A$ to it.
 In this case, we say $\alpha$ is a \vocab{natural isomorphism}.
 We can then say that $F(A) \cong G(A)$ \vocab{naturally} in $A$.
 (And $\beta$ is an isomorphism too!)
+This means that the functors $F$ and $G$ are ``really the same'':
+not only are they isomorphic on the level of objects,
+but these isomorphisms are ``natural''.
+As a result of this, we also write $F \cong G$ to mean $F(X) \cong G(X)$
 
 This is what it really means when we say that ``there is a natural / canonical isomorphism''.
 For example, I claimed earlier that there was a canonical isomorphism $(V^\vee)^\vee \cong V$,
@@ -367,26 +460,127 @@ where the component $\eps_V$ is given by $v \mapsto \opname{ev}_v$
 the fact that it is an isomorphism follows from the fact that $V$ and $(V^\vee)^\vee$
 have equal dimensions and $\eps_V$ is injective).
 
-% A last remark: similar to the situation with groups isomorphisms,
-% collecting all these $\beta_A$'s gives a natural isomorphism too.
+\section{Massive Digression: Yoneda Lemma}
+Now that I have natural transformations, I can define the following:
+\begin{definition}
+	The \vocab{functor category} of two categories $\AA$ and $\BB$,
+	denoted $[\AA, \BB]$, is defined as follows:
+	\begin{itemize}
+		\ii The objects of $[\AA, \BB]$ are functors $F : \AA \to \BB$, and
+		\ii The morphisms are natural transformations $\alpha : F \to G$.
+	\end{itemize}
+\end{definition}
 \begin{ques}
-	In fact, there is a category $[\AA, \BB]$ of \emph{functors} from $\AA$ into $\BB$,
-	whose arrows are natural transformations.
-	When are two functors isomorphic in $[\AA, \BB]$?
+	When are two objects in the functor category isomorphic?
 \end{ques}
-As a result of this, we also write $F \cong G$ to mean $F(X) \cong G(X)$
+
+With this, I can make good on the last example I mentioned at the beginning:
+\begin{exercise}
+	Construct the following functors:
+	\begin{itemize}
+		\ii $\AA \to [\AA\op, \catname{Set}]$ by $A \mapsto H_A$, which we call $H_\bullet$.
+		\ii $\AA\op \to [\AA, \catname{Set}]$ by $A \mapsto H^A$, which we call $H^\bullet$.
+	\end{itemize}
+\end{exercise}
+Notice that we have opposite categories either way; even if you like $H^A$ because it is covariant,
+the map $H^\bullet$ is contravariant.
+So for what follows, we'll prefer to use $H_\bullet$.
+
+The main observation now is that given a category $\AA$, $H_\bullet$ provides some \emph{special}
+functors $\AA\op \to \catname{Set}$ which are already ``built'' in to the category $A$.
+In light of this, we make the following definitions:
+\begin{definition}
+	A \vocab{presheaf} $X$ is just a contravariant functor $\AA\op \to \catname{Set}$.
+	It is called \vocab{representable} if $X \cong H_A$ for some $A$.
+\end{definition}
+In other words, when we think about representable, the question we're asking is:
+\begin{quote}
+	\itshape
+	What kind of presheaves are already ``built in'' to the category $\AA$?
+\end{quote}
+One way to get at this question is: given a presheaf $X$ and a particular $H_A$,
+we can look at the \emph{set} of natural transformations $\alpha : X \implies H_A$,
+and see if we can learn anything about it.
+In fact, this set can be written explicitly:
+
+\begin{theorem}
+	[Yoneda Lemma]
+	\label{thm:yoneda}
+	Let $\AA$ be a category,
+	pick $A \in \AA$, and let $H_A$ be the contravariant Yoneda functor.
+	Let $X : \AA\op \to \catname{Set}$ be a contravariant functor.
+	Then the map 
+	\[ \left\{ \text{Natural transformations }
+		\nattfm{\AA\op}{H_A}{\alpha}{X}{\catname{Set}} \right\}
+		\to X(A) \]
+	defined by $\alpha \mapsto \alpha_A(\id_A) \in X(A)$
+	is an isomorphism of $\catname{Set}$ (i.e.\ a bijection).
+	Moreover, if we view both sides of the equality as functors
+	\[ \AA\op \times [\AA\op, \catname{Set}] \to \catname{Set} \]
+	then this isomorphism is natural.
+\end{theorem}
+\begin{remark}[Technical Digression]
+	Technically, I should say that $\AA$ is ``locally small'',
+	meaning that $\Hom(A_1, A_2)$ is a set for every $A_1$ and $A_2$.
+	But without this restriction, $H_A$ doesn't even make sense.
+\end{remark}
+
+This might be startling at first sight.
+Here's an unsatisfying explanation why this might not be too crazy:
+in category theory, a rule of thumb is that ``two objects of the same type
+that are built naturally are probably the same''.
+you can see this theme when we defined functors and natural transformations,
+and even just compositions.
+Now to look at the set of natural transformations, we took a pair of elements $A \in \AA$
+and $X \in [\AA, \catname{Set}]$ and constructed a \emph{set} of natural transformations.
+Is there another way we can get a set from these two pieces of information?
+Yes: just look at $X(A)$.
+The Yoneda Lemma is telling us that our heuristic still holds true here.
+
+Some consequences of the Yoneda Lemma are recorded in \cite{ref:msci}.
+Since this chapter is already a bit too long, I'll just write down the statements,
+and refer you to \cite{ref:msci} for the proofs.
+
+\begin{enumerate}
+	\ii As we mentioned before, $H^\bullet$ provides a functor
+	\[ \AA \to [\AA\op, \catname{Set}]. \]
+	It turns out this functor is in fact \emph{fully faithful};
+	it quite literally embeds the category $\AA$ into the functor category on the right
+	(much like Cayley's Theorem embeds every group into a permutation group).
+
+	\ii If $X, Y \in \AA$ then
+	\[ H_X \cong H_Y \iff X \cong Y \iff H^X \cong H^Y. \]
+	To see why this is expected, consider $\AA = \catname{Grp}$ for concreteness.
+	Suppose $A$, $X$, $Y$ are groups such that $H_X(A) \cong H_Y(A)$ for all $A$.
+	For example,
+	\begin{itemize}
+		\ii If $A = \ZZ$, then $\left\lvert X \right\rvert = \left\lvert Y \right\rvert$.
+		\ii If $A = \ZZ / 2\ZZ$, then $X$ and $Y$ have the same number of elements of order $2$.
+		\ii \dots
+	\end{itemize}
+	Each $A$ gives us some information on how $X$ and $Y$ are similar,
+	but the whole natural isomorphism is strong enough to imply $X \cong Y$.
+	
+	\ii Consider the functor $U : \catname{Grp} \to \catname{Set}$.
+	It can be represented by $H^\ZZ$, in the sense that 
+	\[ \Hom_{\catname{Grp}}(\ZZ, G) \cong U(G)
+		\qquad\text{ by }\qquad \phi \mapsto \phi(1). \]
+	That is, elements of $G$ are in bijection with maps $\ZZ \to G$,
+	determined by the image of $+1$ (or $-1$ if you prefer).
+	So a representation of $U$ was determined by looking at $\ZZ$ and picking $+1 \in U(\ZZ)$.
+
+	The generalization of this is a follows: let $\AA$ be a category
+	and $X : \AA \to \catname{Set}$ a covariant functor.
+	Then a representation $H^A \cong X$ consists of an object $A \in \AA$ and
+	an element $u \in X(A)$ satisfying a certain condition.
+	You can read this off the condition\footnote{%
+		Just for completeness, the condition is:
+		For all $A' \in \AA$ and $x \in X(A')$, there's a unique $f : A \to A'$ with $(Xf)(u) = x$.
+	} if you know what the inverse map is in \Cref{thm:yoneda}.
+	In the above situation, $X = U$, $A = \ZZ$ and $u = \pm 1$.
+\end{enumerate}
 
 \section\problemhead
-\begin{dproblem}
-	Let $X$ and $Y$ be objects in a category $\AA$.
-	Show that $X \cong Y$ if and only if $H_X(A) \cong H_Y(A)$ naturally in $A$.\footnote{
-		From \cite{ref:msci}: let's consider $\AA = \catname{Grp}$ for concreteness.
-		Suppose $A$, $X$, $Y$ are groups such that $H_X(A) \cong H_Y(A)$ for all $A$.
-		If $A = \ZZ$, then $\left\lvert X \right\rvert = \left\lvert Y \right\rvert$.
-		If $A = \ZZ / p\ZZ$, then $X$ and $Y$ have the same number of elements of order $p$.
-		Each $A$ gives us some information on how $X$ and $Y$ are similar,
-		but the whole natural isomorphism is strong enough to imply $X \cong Y$.}
-\end{dproblem}
 
 \begin{problem}
 	Show that the two definitions of natural transformation
@@ -429,23 +623,24 @@ As a result of this, we also write $F \cong G$ to mean $F(X) \cong G(X)$
 	\end{enumerate}
 \end{problem}
 
+
+
 \begin{problem}
-	[Yoneda Lemma]
-	Let $\AA$ be a category, pick $A \in \AA$, and let $H_A$ be the contravariant Yoneda functor.
+	[Proving the Yoneda Lemma]
+	In the context of \Cref{thm:yoneda}:
 	\begin{enumerate}[(a)]
-	\ii \gim
-	Let $X : \AA^{\text{op}} \to \catname{Set}$ be a contravariant functor.
-	Exhibit a bijection
-	\[ X(A) \cong \left\{ \text{Natural transformations }
-		\nattfm{\AA^{\text{op}}}{H_A}{\alpha}{X}{\catname{Set}}
-	\right\}. \]
-	\ii \kurumi Moreover, interpreting both sides as functors
-	$[\AA^{\text{op}}, \catname{Set}] \times \AA^{\text{op}} \to \catname{Set}$
-	show that the isomorphism is \emph{natural} in $X$ and $A$.
+	\ii Prove that the map described is in fact a bijection.
+	(To do this, you will probably have to explicitly write down the inverse map.)
+
+	\ii \yod Prove that the bijection is indeed natural.
+	(This is long-winded, but not difficult; from start to finish,
+	there is only one thing you can possibly do.)
 	\end{enumerate}
 \end{problem}
-The Yoneda Lemma has tons of very cool consequences; one is that solving it
-makes you feel like a minor god.
-The proof is long, but it is not actually very difficult -- from start to finish,
-there is only one thing you can possibly do.
 
+%	The bijection is defined as follows:
+%	\begin{itemize}
+%		\ii For $\alpha$ on the right-hand side, we take the element $\alpha_A(\id_A) \in X(A)$.
+%		\ii For $x \in X(A)$, its image in the right-hand side is the $\alpha$
+%		with $\alpha_{A'} : H_A(A') \to X(A')$ by $(A' \taking f A) \mapsto (Xf)(x)$.
+%	\end{itemize}
