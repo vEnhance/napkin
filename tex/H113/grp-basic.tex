@@ -232,15 +232,16 @@ We say that a group is \vocab{abelian} if the operation is commutative and \voca
 	I will use the notation $\{1\}$.
 \end{example}
 
-\begin{ques}
+\begin{exercise}
 	Which of these are groups?
 	\begin{enumerate}[(a)]
-		\ii Rational numbers with odd denominators, where the operation is addition.
+		\ii Rational numbers with odd denominators (in simplest form), where the operation is addition.
+		(This includes integers, written as $n/1$, and $0 = 0/1$).
 		\ii The set of rational numbers with denominator at most $2$, where the operation is addition.
 		\ii The set of rational numbers with denominator at most $2$, where the operation is multiplication.
 		\ii The set of nonnegative integers, where the operation is addition.
 	\end{enumerate}
-\end{ques}
+\end{exercise}
 
 
 \section{Properties of Groups}
@@ -277,8 +278,14 @@ It is a law in Guam and 37 other states that I now state the following propositi
 	\end{enumerate}
 \end{fact}
 \begin{proof}
-	Omitted because it's easy, boring, and everywhere.
-	\todo{David says I should include this}
+	This is mostly just some formal ``functional-equation'' style manipulations,
+	and you needn't feel bad skipping it on a first read.
+	\begin{enumerate}[(a)]
+		\ii If $1$ and $1'$ are identities, then $1 = 1 \star 1' = 1'$.
+		\ii If $h$ and $h'$ are inverses to $g$, then $1_G = g \star h
+		\implies h' = (h' \star g) \star h = 1_G \star h = h$.
+		\ii Trivial; omitted. \qedhere
+	\end{enumerate}
 \end{proof}
 
 Now we state a slightly more useful proposition.
@@ -498,8 +505,8 @@ And this definition generalizes in exactly the way you expect.
 	\begin{enumerate}[(a) ]
 		\ii $2\ZZ_+$ is a subgroup of $\ZZ_+$, which is isomorphic to $\ZZ_+$ itself!
 		\ii Consider again $S_n$, the symmetric group on $n$ elements.
-		Let $T$ be the set of permutations $\tau$ for which $\tau(n) = n$.
-		Then $T$ is a subgroup of $S_n$;
+		Let $T$ be the set of permutations $\tau : \{1, \dots, n\} \to \{1, \dots, n\}$
+		for which $\tau(n) = n$.  Then $T$ is a subgroup of $S_n$;
 		in fact, it is isomorphic to $S_{n-1}$.
 		\ii Consider the group $G \times H$ (\Cref{def:product_group})
 		and the elements $ \left\{ (g, 1_H) \mid g \in G \right\} $.
