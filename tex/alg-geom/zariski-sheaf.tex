@@ -237,7 +237,8 @@ in the following way:
 \begin{definition}
 	Let $U \subseteq V$ be open.
 	We say a function $\phi : U \to \CC$ is \vocab{regular} if
-	for every point $p$, we can find an open set $U_p$ containing $p$ and polynomials $g_p, h_p \in \CC[V]$ such that
+	for every point $p$, we can find an open set $U_p$ containing $p$
+	and polynomials $g_p, h_p \in \CC[V]$ such that
 	\[ \phi(x) = \frac{g_p(x)}{h_p(x)} \qquad \forall x \in U_p. \]
 	In particular, $h_p(x) \neq 0$ on $U_p$.
 	We denote the set of all regular functions by $\OO_V(U)$.
@@ -252,6 +253,8 @@ in the following way:
 %	or the regular functions for $U = V$.
 %	Fortunately, we'll see in a moment that these coincide.
 %\end{abuse}
+
+Thus, $\phi$ should be ``locally'' a quotient of two polynomials.
 
 This definition is misleading complicated, and the examples should illuminate it significantly.
 Firstly, in practice, most of the time we will be able to find a ``global'' representation
@@ -304,7 +307,17 @@ Actually, we have the following more general result which computes the regular f
 		=
 		\left\{ \frac{g}{f^n} \mid g \in \CC[V] \text{ and } n \in \ZZ \right\}.
 	\]
+	In particular, $\OO_V(V) = \OO_V(D(1)) = \CC[V]$.
 \end{theorem}
+\begin{proof}
+	Omitted.
+	The proof of this theorem requires the Nullstellensatz, so it relies on $\CC$ being algebraically closed.
+	In fact, a counter-example is easy to find if we replace $\CC$ by $\RR$: consider $\frac{1}{x^2+1}$.
+\end{proof}
+This means that the global regular functions are just the same as those in the coordinate ring:
+you don't gain anything new by allowing it to be locally a quotient.
+(The same goes for distinguished open sets.)
+
 \begin{example}[Regular Functions on Distinguished Open Sets]
 	\listhack
 	\begin{enumerate}[(a)]
@@ -314,14 +327,13 @@ Actually, we have the following more general result which computes the regular f
 		So more examples are $1/x$ and $(x+1)/x^3$.
 	\end{enumerate}
 \end{example}
-In particular, the theorem implies that for distinguished open sets the ``local representation'' clause
-is useless for constructing new functions.
-The proof of this theorem requires the Nullstellensatz, so it relies on $\CC$ being algebraically closed.
-In fact, a counter-example is easy to find if we replace $\CC$ by $\RR$: consider $\frac{1}{x^2+1}$.
 
 \begin{ques}
-	Why doesn't this theorem apply to \Cref{ex:local_rep}?
+	Why doesn't our theorem on regular functions apply to \Cref{ex:local_rep}?
 \end{ques}
+
+The regular functions will become of crucial importance
+once we begin defining a scheme in the next chapter.
 
 \section{A Glimpse of Ringed Spaces}
 In summary, given an affine variety $V$ we have added the following structure to it:
