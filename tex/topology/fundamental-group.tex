@@ -365,11 +365,16 @@ Then if we consider the composition
 \[ [0,1] \taking\gamma (X, x_0) \taking f (Y, y_0) \]
 then we get straight-away a loop in $Y$ at $y_0$!
 Let's call this loop $f_\sharp \gamma$.
-It's easy to show that if $\gamma_1 \simeq \gamma_2$ are path-homotopic,
-then in fact
-\[ f_\sharp \gamma_1 \simeq f_\sharp \gamma_2. \]
-(Proof: just take the homotopy $h$ taking $\gamma_1$ to $\gamma_2$
-and consider $f \circ h$.)
+\begin{lemma}[$f_\sharp$ is homotopy invariant]
+	\label{lem:fsharp_homotopy_invariant}
+	If $\gamma_1 \simeq \gamma_2$ are path-homotopic,
+	then in fact
+	\[ f_\sharp \gamma_1 \simeq f_\sharp \gamma_2. \]
+\end{lemma}
+\begin{proof}
+	Just take the homotopy $h$ taking $\gamma_1$ to $\gamma_2$	
+	and consider $f \circ h$.
+\end{proof}
 
 Now we want to show that by taking the map $f_\sharp$, we get a \emph{functor}
 \begin{diagram}
@@ -392,7 +397,7 @@ In particular, by the fact that functors preserve isomorphism (\Cref{thm:functor
 
 \begin{remark}
 	Note the similarity between this and the construction
-	of the covariant Yoneda functor (\Cref{def:covariant_yoneda}).
+	of the covariant Yoneda functor (\Cref{ex:covariant_yoneda}).
 \end{remark}
 
 \section{Higher Homotopy Groups}
@@ -493,9 +498,9 @@ I bring this up because I want to give the following next definition.
 		\ii $f \circ g : X \to X$ is homotopic to the identity map on $X$, and
 		\ii $g \circ f : Y \to Y$ is homotopic to the identity map on $Y$.
 	\end{enumerate}
-	\todo{define contractible}
+	If a topological space is homotopy equivalent to a point,
+	then it is said to be \vocab{contractible}.
 \end{definition}
-\todo{categorize this}
 \begin{ques}
 	Why are two homeomorphic spaces also homotopy equivalent?
 \end{ques}
@@ -503,22 +508,27 @@ I bring this up because I want to give the following next definition.
 Intuitively, you can think of this as a more generous form of stretching
 and bending than homeomorphism: we are allowed to compress huge spaces into single points.
 
-\begin{example}[$\CC$ is homotopy equivalent to a point]
-	Consider the topological spaces $\CC$ and the space consisting of the single point $0$.  We claim these spaces are homotopy equivalent (can you guess what $f$ and $g$ are?)
+\begin{example}[$\CC$ is contractible]
+	Consider the topological spaces $\CC$
+	and the space consisting of the single point $\{0\}$. 
+	We claim these spaces are homotopy equivalent (can you guess what $f$ and $g$ are?)
 	Indeed, the two things to check are
 	\begin{enumerate}[(i)]
-		\ii $\CC \to \{0\} \hookrightarrow \CC$ by $z \mapsto 0 \mapsto 0$ is homotopy equivalent to the identity on $\CC$, which we just saw, and
+		\ii $\CC \to \{0\} \hookrightarrow \CC$ by $z \mapsto 0 \mapsto 0$
+		is homotopy equivalent to the identity on $\CC$, which we just saw, and
 		\ii $\{0\} \hookrightarrow \CC \to \{0\}$ by $0 \mapsto 0 \mapsto 0$, which \emph{is} the identity on $\{0\}$.
 	\end{enumerate}
 	Here by $\hookrightarrow$ I just mean $\to$ in the special case
 	that the function is just an ``inclusion''.
 \end{example}
 \begin{remark}
-	$\CC$ cannot be homeomorphic to a point because one cannot even biject the sets correctly.
+	$\CC$ cannot be \emph{homeomorphic} to a point
+	because there is no bijection of sets between them.
 \end{remark}
 
 \begin{example}[$\CC \setminus \{0\}$ is homotopy equivalent to $S^1$]
-	Consider the topological spaces $\CC \setminus \{0\}$, the \vocab{punctured plane}, and the circle $S^1$ viewed as a subset of $S^1$.
+	Consider the topological spaces $\CC \setminus \{0\}$,
+	the \vocab{punctured plane}, and the circle $S^1$ viewed as a subset of $S^1$.
 	We claim these spaces are actually homotopy equivalent!
 	The necessary functions are the inclusion
 	\[ S^1 \hookrightarrow \CC \setminus \{0\} \]
@@ -540,20 +550,21 @@ and bending than homeomorphism: we are allowed to compress huge spaces into sing
 	an annulus is homotopic to a circle.
 	(This might be a little easier to visualize, since it's finite.)
 \end{example}
-\missingfigure{illustrate}
 
 I bring these up because it turns out that 
 \begin{moral}
 	Algebraic topology can't distinguish between homotopy equivalent spaces.
 \end{moral}
 More precisely,
-\begin{theorem}
+\begin{theorem}[Homotopy Equivalent Spaces Have Isomorphic Fundamental Groups]
+	\label{thm:fundgrp_homotopy_invariant}
 	Let $X$ and $Y$ be path-connected, homotopy-equivalent spaces.
 	Then $\pi_n(X) \cong \pi_n(Y)$ for every positive integer $n$.
 \end{theorem}
 \begin{proof}
 	Let $\gamma : [0,1] \to X$ be a loop.
-	Let $f : X \to Y$ and $g : Y \to X$ be maps witnessing that $X$ and $Y$ are homotopy equivalent.
+	Let $f : X \to Y$ and $g : Y \to X$ be maps witnessing that $X$ and $Y$ are homotopy equivalent
+	(meaning $f \circ g$ and $g \circ f$ are each homotopic to the identity).
 	Then the composition
 	\[ [0,1] \taking\gamma X \taking f Y \]
 	is a loop in $Y$ and hence $f$ induces a natural homomorphism $\pi_1(X) \to \pi_1(Y)$.
@@ -561,7 +572,11 @@ More precisely,
 	The conditions on $f$ and $g$ now say exactly that these two homomorphisms
 	are inverse to each other, meaning the maps are isomorphisms.
 \end{proof}
-As we will see, the homology groups are also helpless.
+In particular,
+\begin{ques}
+	What are the fundamental groups of contractible spaces?
+\end{ques}
+
 That means, for example, that algebraic topology can't tell the following homotopic subspaces of $\RR^2$ apart.
 \begin{center}
 	{\color{red} \Huge \venus}
@@ -569,22 +584,50 @@ That means, for example, that algebraic topology can't tell the following homoto
 	{\color{blue} \Huge \mars}
 \end{center}
 
+\section{The Pointed Homotopy Category}
+To finish, we summarize much of the content of this chapter using categorical notions.
+
+\begin{definition}
+	The \vocab{pointed homotopy category} $\catname{hTop}_\ast$ is defined as follows.
+	\begin{itemize}
+		\ii Objects: pairs $(X, x_0)$ of spaces with a distinguished basepoint, and
+		\ii Morphisms: \emph{homotopy classes} of continuous functions $(X, x_0) \to (Y, y_0)$.
+	\end{itemize}
+\end{definition}
+In particular, two path-connected spaces are isomorphic in this category exactly
+when they are homotopy equivalent.
+Then we can summarize many of the preceding results as follows:
+\begin{theorem}[Functorial Interpretation of Fundamental Groups]
+	There is a functor
+	\[ \pi_1 : \catname{hTop}_\ast \to \catname{Gp} \]
+	sending
+	\begin{diagram}
+		(X,x_0) & \rTo & \pi_1(X, x_0) \\
+		\dTo^f & & \dTo^{f_\sharp} \\
+		(Y,y_0) & \rTo & \pi_1(Y, y_0)
+	\end{diagram}
+\end{theorem}
+This implies several things, like
+\begin{itemize}
+	\ii The functor bundles the information of $f_\sharp$,
+	including the fact that it respects composition.
+	In the categorical language, $f_\sharp$ is $\pi_1(f)$.
+	\ii Homotopic spaces have isomorphic fundamental group
+	(since the spaces are isomorphic in $\catname{hTop}$,
+	and functors preserve isomorphism by \Cref{thm:functor_isom}).
+	In fact, you'll notice that the proofs
+	of \Cref{thm:functor_isom} and \Cref{thm:fundgrp_homotopy_invariant}
+	are secretly identical to each other.
+	\ii If maps $f, g : (X, x_0) \to (Y, y_0)$ are homotopic,
+	then $f_\sharp = g_\sharp$. This is basically \Cref{lem:fsharp_homotopy_invariant}
+\end{itemize}
+
 \begin{remark}
-	There is a categorical way to interpret all of this.
-	One can construct a category $\catname{hTop}_\ast$ whose \emph{objects} are pairs $(X,x_0)$
-	of spaces with a distinguished basepoint, but whose arrows are the \emph{homotopy classes}
-	of continuous functions (rather than just the functions themselves).
-	Then what we've just seen is that there is a functor
-	\[ \catname{hTop}_\ast \to \catname{Gp} \]
-	sending each $(X, x_0)$ to $\pi_1(X, x_0)$.
 	In fact, $\pi_1(X, x_0)$ is the set of arrows $(S^1, 1) \to (X, x_0)$ in $\catname{hTop}_\ast$,
 	so this looks exactly like the covariant Yoneda functor again,
 	except with target $\catname{Gp}$ instead of $\catname{Set}$.
-
-	In any case the theorem above is then killed by the fact
-	that functors preserve isomorphism (\Cref{thm:functor_isom}).
-	You can see this from the proof: we've done the same trick of looking at $f \circ g$ and $g \circ f$ again.
 \end{remark}
+
 
 \section\problemhead
 

@@ -133,6 +133,7 @@ Here's a more involved example.
 If you find it confusing, skip it and come back after reading about its contravariant version.
 \begin{example}
 	[Covariant Yoneda Functor]
+	\Cref{ex:covariant_yoneda}
 	Fix an $A \in \AA$.
 	For a category $\AA$, define the \vocab{covariant Yoneda functor} $H^A : \AA \to \catname{Set}$
 	by defining \[ H^A(A_1) \defeq \Hom_\AA (A, A_1) \in \catname{Set}. \]
@@ -179,8 +180,8 @@ and the proof is done solely through arrows.
 		\AA \ni & \dTo^f \uTo_g & \rDotted^F & \dTo^{F(f)} \uTo_{F(g)} && \in \BB \\
 		& A_2 & & B_2 & = F(A_2) &
 	\end{diagram}
-	You'll need to use both key properties of functors: they preserve composition
-	and the identity map.
+	You'll need to use both key properties of functors:
+	they preserve composition and the identity map.
 \end{proof}
 
 This will give us a great intuition in the future, because
