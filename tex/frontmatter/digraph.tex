@@ -8,17 +8,19 @@
 \halfcourse 50,35:{Chapter 4,5}{Topology}{}
 \halfcourse 65,45:{Chapter 6}{Modules}{}
 \halfcourse 65,35:{Chapters 7-9}{Lin Alg}{}
-\opthalfcourse 65,25:{Chapters 10-11}{Diff Geom}{}
+\halfcourse 65,25:{Chapters 10-11}{Diff Geom}{}
 \halfcourse 5,35:{Chapter 12}{Grp Actions}{}
-\opthalfcourse 5,20:{Chapter 13}{Grp Classif}{}
-\halfcourse 30,35:{Chapter 14}{Ideals}{}
-\reqhalfcourse 30,22:{Chapter 15-17}{Cat Th}{}
-\reqhalfcourse 30,10:{Chapters 18-20}{Alg Top}{}
-\reqhalfcourse 55,10:{Chapters 21-22}{Cmplx Ana}{}
-\reqhalfcourse 42,10:{Chapter 24-28}{Alg NT 1}{}
-\reqhalfcourse 42,0:{Chapter 29-32}{Alg NT 2}{}
-\reqhalfcourse 16,10:{Chapters 33-36}{Alg Geom}{}
-\reqhalfcourse 65,0:{Chapters 37-}{Set Theory}{}
+\halfcourse 5,20:{Chapter 13}{Grp Classif}{}
+\halfcourse 30,35:{Chapter 14-15}{Ideals}{}
+\reqhalfcourse 55,10:{Chapters 16-18}{Cmplx Ana}{}
+\reqhalfcourse 30,10:{Chapter 19-21}{Alg Top 1}{}
+\reqhalfcourse 30,22:{Chapter 22-24}{Cat Th}{}
+\reqhalfcourse 20,0:{Chapters 25-28}{Alg Top 2}{}
+\reqhalfcourse 42,10:{Chapter 29-33}{Alg NT 1}{}
+\reqhalfcourse 42,0:{Chapter 34-37}{Alg NT 2}{}
+\reqhalfcourse 16,10:{Chapters 38-41}{Alg Geom 1}{}
+\reqhalfcourse 6,0:{Chapters 42-45}{Alg Geom 2}{}
+\reqhalfcourse 30,45:{Chapters 46-51}{Set Theory}{}
 
 \prereqc 10,45,30,22;0:   % Gp -> Cat Th
 \coreqc  30,35,30,22;0:   % Ideals -> Cat Th
@@ -26,25 +28,28 @@
 \coreqc  65,35,30,22;-10: % Lin Alg -> Cat Th
 \prereqc 65,35,65,25;0:   % Lin Alg -> Diff Geo
 \coreqc  50,35,30,22;-10: % Top -> Cat Th
-\coreqc  30,22,16,10;0:   % Cat Th -> Alg Geom
-\prereqc 30,22,30,10;0:   % Cat Th -> Alg Top
-\coreqc  65,45,30,35;0:   % Module -> Ideal
+\coreqc  30,22,16,10;0:   % Cat Th -> AG2
+\prereqc  65,45,30,35;0:   % Module -> Ideal
+
+\prereqc 30,10,20,0;0:    % AT1 -> AT2
+\prereqc 30,22,20,0;20:   % Cat -> AT2
+\coreqc  30,22,30,10;0:   % Cat -> AT1
 
 \prereqc 10,45,5,35;0:    % Grp -> Grp Act
 \prereq   5,35,5,20:      % Grp Act -> Grp Class
 \prereq  50,45,50,35:     % Space -> Top
-\prereqc 50,35,30,10;0:   % Top -> AT
-\prereqc  5,35,30,10;0:   % Grp Act -> AT
+\prereqc 50,35,30,10;0:   % Top -> AT1
+\prereqc  5,35,30,10;0:   % Grp Act -> AT1
 \prereqc 50,35,55,10;0:   % Top -> Cmplx Ana
 \coreqc  10,45,30,35;0:   % Grp -> Ideals
-\prereqc 30,35,42,10;0:   % Ideals -> ANT 1
+\prereqc 30,35,42,10;0:   % Ideals -> ANT1
 \prereq  65,45,65,35:     % Modules -> Linalg
-\prereq  65,45,42,10:     % Modules -> ANT 1
-\coreqc  65,35,42,10;0:   % Lin Alg -> ANT 1
-\prereqc 30,35,16,10;0:   % Ideals -> Alg Geom
-\prereqc 50,35,16,10;-30: % Top -> Alg Geom
-\prereqc 42,10,42,0;0:    % ANT 1 -> ANT 2
-\prereqc  5,35,42,0;-30:  % Grp Act -> ANT 2
+\prereq  65,45,42,10:     % Modules -> ANT1
+\coreqc  65,35,42,10;0:   % Lin Alg -> ANT1
+\prereqc 30,35,16,10;0:   % Ideals -> AG1
+\prereqc 50,35,16,10;-30: % Top -> AG1
+\prereqc 42,10,42,0;0:    % ANT1 -> ANT2
+\prereqc 16,10,6,0;0:     % AG1 -> AG2
+\prereqc 30,22,6,0;80:     % Cat -> AG2
+\prereqc  5,35,42,0;-30:  % Grp Act -> ANT2
 \end{chart}
-
-Soon to be added: set theory, abelian categories, differential geometry
