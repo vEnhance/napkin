@@ -289,7 +289,7 @@ It is a law in Guam and 37 other states that I now state the following propositi
 \end{proof}
 
 Now we state a slightly more useful proposition.
-\begin{proposition}
+\begin{proposition}[Inverse of Products]
 	Let $G$ be a group, and $a,b \in G$.
 	Then $(ab)\inv = b\inv a\inv$.
 \end{proposition}
@@ -303,7 +303,7 @@ Now we state a slightly more useful proposition.
 
 Finally, we state a very important lemma about groups,
 which highlights why having an inverse is so valuable.
-\begin{lemma}
+\begin{lemma}[Left Multiplication is a Bijection]
 	Let $G$ be a group, and pick a $g \in G$. 
 	Then the map $G \to G$ given by
 	$x \mapsto gx$
@@ -574,8 +574,8 @@ Just for fun, here is a list of all groups of order less than or equal to ten
 	Some of you might wonder where $\Zc 2 \times \Zc 3$ is.
 	All I have to say is: Chinese Remainder Theorem!
 
-	Those of you who also know what the dihedral group $D_6$ is might also
-	be wondering where that is. It's actually isomorphic to $S_3$.
+	You might wonder where $D_6$ is in this list.
+	It's actually isomorphic to $S_3$.
 	\ii The only group of order $7$ is $\Zc 7$.
 	\ii The groups of order eight are more numerous.
 	\begin{itemize}
@@ -583,7 +583,9 @@ Just for fun, here is a list of all groups of order less than or equal to ten
 		\ii $\Zc 4 \times \Zc 2$.
 		\ii $\Zc 2 \times \Zc 2 \times \Zc 2$.
 		\ii $D_8$, the dihedral group with eight elements, which is not abelian.
-		\ii The non-abelian group $Q_8$ of \emph{quaternions}.
+		\ii A non-abelian group $Q_8$, called the \emph{quaternion group}.
+		It consists of eight elements $\pm 1$, $\pm i$, $\pm j$, $\pm k$
+		with $i^2=j^2=k^2=ijk=-1$.
 	\end{itemize}
 	\ii The groups of order nine are
 	\begin{itemize}
@@ -631,14 +633,18 @@ Just for fun, here is a list of all groups of order less than or equal to ten
 \end{problem}
 
 \begin{problem}
-	Show that $D_6 \cong S_3$.
+	Show that $D_6 \cong S_3$ but $D_{24} \not\cong S_4$.
 	\begin{hint}
-		Decide where the isomorphism should send $r$ and $s$,
+		For the former,
+		decide where the isomorphism should send $r$ and $s$,
 		and the rest will follow through.
+		For the latter, look at orders.
 	\end{hint}
 	\begin{sol}
 		One can check manually that $D_6 \cong S_3$,
 		using the map $r \mapsto (1 \; 2 \; 3)$ and $s \mapsto (1 \; 2)$.
+		On the other hand $D_{24}$ contains an element of order $12$
+		while $S_4$ does not.
 	\end{sol}
 \end{problem}
 
