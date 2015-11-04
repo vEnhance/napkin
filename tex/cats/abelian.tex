@@ -151,8 +151,9 @@ For example,
 	But since $0 \to A$ is a kernel it follows that $g-h$ factors through $0$,
 	so $g-h = 0 \implies g = h$, which is to say that $f$ is monic.
 \end{proof}
-\begin{proposition}
-	A map is an isomorphsim if and only if it is monic and epic.
+\begin{proposition}[Isomorphism $\iff$ Monic and Epic]
+	In an abelian category,
+	a map is an isomorphism if and only if it is monic and epic.
 \end{proposition}
 \begin{proof}
 	Omitted, because the Mitchell Embedding Theorem presented in a moment will trivialize this.
@@ -204,10 +205,11 @@ So there is a \emph{unique} map $\Img f \to \Ker g$, and we require that this di
 In short,
 \begin{definition}
 	Let $\AA$ be an abelian category. The sequence
-	\[ A_0 \taking{f_1} A_1 \taking{f_2} A_2 \taking{f_3} \dots \taking{f_n} A_n \]
-	is \vocab{exact} at $A_i$ if $f_i \circ f_{i+1} = 0$ and
-	the canonical map $\Img f_i \to \Ker f_{i+1}$ is an isomorphism.
+	\[ \dots \to A_{n-1} \taking{f_n} A_n \taking{f_{n+1}} A_{n+1} \to \dots \]
+	is \vocab{exact} at $A_n$ if $f_n \circ f_{n+1} = 0$ and
+	the canonical map $\Img f_n \to \Ker f_{n+1}$ is an isomorphism.
 	The entire sequence is exact if it is exact at each $A_i$ ($1 \le i \le n-1$).
+	(We allow infinite sequences as well.)
 \end{definition}
 
 \begin{exercise}
@@ -231,9 +233,22 @@ which essentially says that any abelian category can be realized as a concrete o
 	and a full, faithful, exact functor onto the category of left $R$-modules.
 \end{theorem}
 Here a functor is \vocab{exact} if it preserves exact sequences.
-Essentially, this says that for any concrete category and any suitably small sub-diagram,
-it suffices to think about the objects of $\AA$ as ``concrete'' objects with appropriate morphisms.
-This opens up the so-called technique of \emph{diagram chasing}.
+This theorem is good because it means
+\begin{moral}
+	You can basically forget about all the weird definitions
+	that work in any abelian category.
+\end{moral}
+Any time you're faced with a statement about an abelian category,
+it suffices to just prove it for a ``concrete'' category
+where injective/surjective/kernel/image/exact/etc. agree with your previous notions.
+A proof by this means is sometimes called \emph{diagram chasing}.
+
+\begin{remark}
+	The ``small'' condition is a technical obstruction
+	that requires the objects $\AA$ to actually form a class.
+	I'll ignore this distinction, because one can almost always work around it
+	by doing enough set-theoretic technicalities.
+\end{remark}<++>
 
 For example, let's prove the following.
 \begin{lemma}
@@ -250,14 +265,12 @@ For example, let's prove the following.
 
 \begin{proof}
 	We prove that $\beta$ is epic (with a dual proof to get monic).
-
-	One can show that it's possible to take a small subcategory of $\AA$
-	containing the $10$ elements and $13$ arrows above, as well as all necessary
-	kernels, cokernels, et cetera.
-	(Essentially, let $\BB_0$ be the diagram above and let $\BB_{i+1}$ add in any needed objects;
-	then $\bigcup \BB_i$ is a set-sized category).
-	Therefore by the Embedding Theorem we can treat the category as $R$-modules over some $R$.
-
+%	One can show that it's possible to take a small subcategory of $\AA$
+%	containing the $10$ elements and $13$ arrows above, as well as all necessary
+%	kernels, cokernels, et cetera.
+%	(Essentially, let $\BB_0$ be the diagram above and let $\BB_{i+1}$ add in any needed objects;
+%	then $\bigcup \BB_i$ is a set-sized category).
+	By the Embedding Theorem we can treat the category as $R$-modules over some $R$.
 	This lets us do a so-called ``diagram chase'' where we move elements around the picture,
 	using the concrete interpretation of our category of $R$-modules.
 
@@ -294,6 +307,7 @@ For example, let's prove the following.
 
 
 \section\problemhead
+
 \begin{problem}
 	[Five Lemma]
 	\gim
@@ -308,6 +322,7 @@ For example, let's prove the following.
 	then $\gamma$ is an isomorphism as well.
 	Thus this is a stronger version of the short five lemma.
 \end{problem}
+
 \begin{sproblem}
 	[Snake Lemma]
 	\yod
@@ -322,4 +337,22 @@ For example, let's prove the following.
 	\[ \Ker a \to \Ker b \to \Ker c \to \Coker a \to \Coker b \to \Coker c. \]
 \end{sproblem}
 
+\begin{sproblem}
+	[Exact Sequences Break Into Short Exact Sequences]
+	\label{prob:break_exact}
+	In an abelian category, consider an exact sequence
+	\[ \dots \to A_{n-1} \taking{f} A_n \taking{g} A_{n+1} \to \dots. \]
+	Prove that this yields a short exact sequence
+	\[ 0 \to \ker g \to A_n \to \img g \to 0. \]
+	Thus, any exact sequence can be broken into short exact sequences, as
+	\begin{diagram}
+		&& 0 & & 0 && 0 && 0 \\
+		&&& \rdDotted(1,1) C_n \ruDotted(1,1) &&&& \rdDotted(1,1) C_{n+2} \ruDotted(1,1) & \\
+		\dots & \rTo & A_{n-1} \ruDotted(1,1) & \rTo^{f_{n-1}} & \rdDotted(1,1) A_n & \rTo^{f_n} &
+		A_{n+1} \ruDotted(1,1)  & \rTo^{f_{n+1}} & \rdDotted(1,1) \dots \\
+		& \rdDotted(1,1) C_{n-1} \ruDotted(1,1) &&&& \rdDotted(1,1) C_{n+1} \ruDotted(1,1) &&& \\
+		0 \ruDotted(1,1) && \rdDotted(1,1) 0 && 0 \ruDotted(1,1) && \rdDotted(1,1) 0 &&
+	\end{diagram}
+	where $C_k = \img f_{k-1} = \ker f_k$ for every $k$.
+\end{sproblem}
 

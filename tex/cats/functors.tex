@@ -1,4 +1,5 @@
 \chapter{Functors and Natural Transformations}
+\label{ch:functors}
 Functors are maps between categories; natural transformations are maps between functors.
 
 \section{Many Examples of Functors}
@@ -133,7 +134,7 @@ Here's a more involved example.
 If you find it confusing, skip it and come back after reading about its contravariant version.
 \begin{example}
 	[Covariant Yoneda Functor]
-	\Cref{ex:covariant_yoneda}
+	\label{ex:covariant_yoneda}
 	Fix an $A \in \AA$.
 	For a category $\AA$, define the \vocab{covariant Yoneda functor} $H^A : \AA \to \catname{Set}$
 	by defining \[ H^A(A_1) \defeq \Hom_\AA (A, A_1) \in \catname{Set}. \]
@@ -281,10 +282,7 @@ replacing the field $k$ with any chosen object $A \in \AA$.
 	by $(A_1, A_2) \mapsto \Hom(A_1, A_2)$ is in fact a functor.
 \end{exercise}
 
-\section{Natural Transformations}
-\emph{Note}: we won't use natural transformations anywhere else in the Napkin,
-and it's included here just for completeness.
-
+\section{(Optional) Natural Transformations}
 We made categories to keep track of objects and maps, then went a little crazy and asked
 ``what are the maps between categories?'' to get functors.
 Now we'll ask ``what are the maps between functors?'' to get natural transformations.
@@ -458,7 +456,7 @@ where the component $\eps_V$ is given by $v \mapsto \opname{ev}_v$
 the fact that it is an isomorphism follows from the fact that $V$ and $(V^\vee)^\vee$
 have equal dimensions and $\eps_V$ is injective).
 
-\section{Massive Digression: Yoneda Lemma}
+\section{(Optional) The Yoneda Lemma}
 Now that I have natural transformations, I can define the following:
 \begin{definition}
 	The \vocab{functor category} of two categories $\AA$ and $\BB$,
