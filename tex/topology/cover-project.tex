@@ -461,8 +461,8 @@ Let $X$ and $Y$ be topological spaces and $f : (X, x_0) \to (Y, y_0)$.
 Recall that we defined a group homomorphism
 \[ f_\sharp : \pi_1(X, x_0) \to \pi_1(Y_0, y_0) 
 	\quad\text{by}\quad
-	[\gamma] \mapsto [f \circ \gamma] \]
-which gave us a functor $\catname{Top}_\ast \to \catname{Gp}$.
+	[\gamma] \mapsto [f \circ \gamma]. \]
+% which gave us a functor $\catname{Top}_\ast \to \catname{Gp}$.
 
 More importantly, we have the following result.
 \begin{proposition}
@@ -505,19 +505,24 @@ via disconnected spaces is just a bunch of unrelated ``good'' coverings.)
 For this statement to make sense I need to tell you what it means for
 two covering projections to be equivalent.
 
-This is done most naturally in the language of category theory.
-Fix a space $B$.
-We can build a category whose objects are covering projections $p : E \to B$.
-Then given two covering projections $p_1 : E_1 \to B$ and $p_2 : E_2 \to B$
-a \vocab{map of covering projections} is a continuous function $f : E_1 \to E_2$
-such that $p_2 \circ f = p_1$.
-\begin{diagram}
-	E_1 & \rTo^f && E_2 \\
-	& \rdTo(3,2)_{p_1} && \dTo_{p_2} \\
-	&&& B
-\end{diagram}
-Then we can just use the categorical definition of isomorphism:
-there exist two such maps which are inverses.
+\begin{definition}
+	Fix a space $B$.
+	Given two covering projections $p_1 : E_1 \to B$ and $p_2 : E_2 \to B$
+	a \vocab{map of covering projections} is a continuous function $f : E_1 \to E_2$
+	such that $p_2 \circ f = p_1$.
+	\begin{diagram}
+		E_1 & \rTo^f && E_2 \\
+		& \rdTo(3,2)_{p_1} && \dTo_{p_2} \\
+		&&& B
+	\end{diagram}
+	Then two covering projections $p_1$ and $p_2$ are isomorphic if there are
+	$f : E_1 \to E_2$ and $g : E_2 \to E_1$
+	such that $f \circ g = \id_{E_1}$ and $g \circ f = \id_{E_2}$.
+\end{definition}
+\begin{remark}
+	[For Category Theorists]
+	The set of covering projections forms a category in this way.
+\end{remark}
 
 It's an absolute miracle that this is true more generally:
 the greatest triumph of covering spaces is the following result.

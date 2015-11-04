@@ -376,29 +376,36 @@ Let's call this loop $f_\sharp \gamma$.
 	and consider $f \circ h$.
 \end{proof}
 
-Now we want to show that by taking the map $f_\sharp$, we get a \emph{functor}
-\begin{diagram}
-	& (X, x_0) & & \pi_1(X, x_0) & \\
-	\catname{Top}_\ast \ni & \dTo^f & \rDotted & \dTo_{f_\sharp} & \in \catname{Gp} \\
-	& (Y, y_0) & & \pi_1(Y, y_0) &
-\end{diagram}
-\begin{ques}
-	Check this -- we need that $(f \circ g)_\sharp = f_\sharp \circ g_\sharp$
-	and that $(\id_X)_\sharp = \id_{\pi_1(X)}$.
-	Both are totally obvious once you can tell what they're asking.
-\end{ques}
-Thus in this way we've constructed a functor
-\[ \catname{Top}_\ast \to \catname{Gp}. \]
-In particular, by the fact that functors preserve isomorphism (\Cref{thm:functor_isom}), we have
-\begin{moral}
-	Homeomorophic topological spaces have isomorphic fundamental groups.
-	Category theory gives this to us for free.
-\end{moral}
+It's worth noting at this point that if $X$ and $Y$ are homeomorphic,
+then their fundamental groups are all isomorphic.
+Indeed, let $f : X \to Y$ and $g : Y \to X$ be mutually inverse continuous maps.
+Then one can check that $f_\sharp : \pi_1(X, x_0) \to \pi_1(Y, y_0)$
+and $g_\sharp : \pi_1(Y, y_0) \to \pi_1(X, x_0)$ are inverse maps
+between the groups (assuming $f(x_0) = y_0$ and $g(y_0) = x_0$).
 
-\begin{remark}
-	Note the similarity between this and the construction
-	of the covariant Yoneda functor (\Cref{ex:covariant_yoneda}).
-\end{remark}
+%Now we want to show that by taking the map $f_\sharp$, we get a \emph{functor}
+%\begin{diagram}
+%	& (X, x_0) & & \pi_1(X, x_0) & \\
+%	\catname{Top}_\ast \ni & \dTo^f & \rDotted & \dTo_{f_\sharp} & \in \catname{Gp} \\
+%	& (Y, y_0) & & \pi_1(Y, y_0) &
+%\end{diagram}
+%\begin{ques}
+%	Check this -- we need that $(f \circ g)_\sharp = f_\sharp \circ g_\sharp$
+%	and that $(\id_X)_\sharp = \id_{\pi_1(X)}$.
+%	Both are totally obvious once you can tell what they're asking.
+%\end{ques}
+%Thus in this way we've constructed a functor
+%\[ \catname{Top}_\ast \to \catname{Gp}. \]
+%In particular, by the fact that functors preserve isomorphism (\Cref{thm:functor_isom}), we have
+%\begin{moral}
+%	Homeomorophic topological spaces have isomorphic fundamental groups.
+%	Category theory gives this to us for free.
+%\end{moral}
+%
+%\begin{remark}
+%	Note the similarity between this and the construction
+%	of the covariant Yoneda functor (\Cref{ex:covariant_yoneda}).
+%\end{remark}
 
 \section{Higher Homotopy Groups}
 Why the notation $\pi_1$ for the fundamental group?
@@ -585,7 +592,10 @@ That means, for example, that algebraic topology can't tell the following homoto
 \end{center}
 
 \section{The Pointed Homotopy Category}
-To finish, we summarize much of the content of this chapter using categorical notions.
+This chapter is meant to be read by those who know some basic category theory.
+Those of you that don't should come back after reading \Cref{ch:cats,ch:functors}.
+Those of you that do will enjoy how succinctly, we can summarize
+the content of this chapter using categorical notions.
 
 \begin{definition}
 	The \vocab{pointed homotopy category} $\catname{hTop}_\ast$ is defined as follows.
@@ -598,6 +608,7 @@ In particular, two path-connected spaces are isomorphic in this category exactly
 when they are homotopy equivalent.
 Then we can summarize many of the preceding results as follows:
 \begin{theorem}[Functorial Interpretation of Fundamental Groups]
+	\label{thm:fundgrp_functor}
 	There is a functor
 	\[ \pi_1 : \catname{hTop}_\ast \to \catname{Gp} \]
 	sending
@@ -624,7 +635,7 @@ This implies several things, like
 
 \begin{remark}
 	In fact, $\pi_1(X, x_0)$ is the set of arrows $(S^1, 1) \to (X, x_0)$ in $\catname{hTop}_\ast$,
-	so this looks exactly like the covariant Yoneda functor again,
+	so this is actually a covariant Yoneda functor (\Cref{ex:covariant_yoneda}),
 	except with target $\catname{Gp}$ instead of $\catname{Set}$.
 \end{remark}
 
