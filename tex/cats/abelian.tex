@@ -122,7 +122,7 @@ which are the types of categories where this notion is most useful.
 In general, once you assume a category is abelian, all the properties you would want
 of these kernels, cokernels, \dots\ that you would guess hold true.
 For example,
-\begin{proposition}
+\begin{proposition}[Monic $\iff$ Trival Kernel]
 	A map $A \taking f B$ is monic if and only if its kernel is $0 \to A$.
 	Dually, $A \taking f B$ is epic if and only if its cokernel is $B \to 0$.
 \end{proposition}
@@ -156,7 +156,7 @@ For example,
 	a map is an isomorphism if and only if it is monic and epic.
 \end{proposition}
 \begin{proof}
-	Omitted, because the Mitchell Embedding Theorem presented in a moment will trivialize this.
+	Omitted, because the Mitchell Embedding Theorem presented later will trivialize this.
 \end{proof}
 
 \section{Exact Sequences}
@@ -248,7 +248,7 @@ A proof by this means is sometimes called \emph{diagram chasing}.
 	that requires the objects $\AA$ to actually form a class.
 	I'll ignore this distinction, because one can almost always work around it
 	by doing enough set-theoretic technicalities.
-\end{remark}<++>
+\end{remark}
 
 For example, let's prove the following.
 \begin{lemma}
@@ -286,7 +286,7 @@ For example, let's prove the following.
 	Now, it is not necessarily the case that $\beta(b) = b'$.
 	However, since the diagram commutes we at least have that
 	\[ q'(b') = q'(\beta(b)) \]
-	so $b' - \beta(b) \in \ker q' = \img p'$, and there is an $a' \in A'$ such that
+	so $b' - \beta(b) \in \Ker q' = \Img p'$, and there is an $a' \in A'$ such that
 	$p'(a') = b' - \beta(b)$;
 	use $\alpha$ now to lift it to $a \in A$.
 	Picture:
@@ -302,9 +302,39 @@ For example, let's prove the following.
 		= \beta b + (b' - \beta b)
 		= b'
 	\]
-	so $b' \in \img \beta$ which completes the proof that $\beta'$ is surjective.
+	so $b' \in \Img \beta$ which completes the proof that $\beta'$ is surjective.
 \end{proof}
 
+\section{Breaking Long Exact Sequences}
+\prototype{First Isomorphism Theorem}
+
+In fact, it turns out that any exact sequence, one can break it into short exact sequences.
+This relies on the following result.
+\begin{proposition}[``First Isomorphism Theorem'' in Abelian Categories]
+	Let $A \taking f B$ be an arrow of an abelian category.
+	Then there is an exact sequence
+	\[ 0 \to \Ker f \taking{\ker f} A \to \taking{\img f} \Img f \to 0. \]
+\end{proposition}
+
+\begin{example}
+Let's analyze this theorem in our two examples of abelian categories:
+\begin{enumerate}[(a)]
+	\ii In the category of abelian groups, 
+	this is basically the First Isomorphism Theorem.
+	\ii In the category $\catname{Vect}_k$,
+	this amounts to the Rank-Nullity Theorem, \Cref{thm:rank_nullity}.
+\end{enumerate}
+\end{example}
+Thus, any exact sequence can be broken into short exact sequences, as
+\begin{diagram}
+	&& 0 & & 0 && 0 && 0 \\
+	&&& \rdDotted(1,1) C_n \ruDotted(1,1) &&&& \rdDotted(1,1) C_{n+2} \ruDotted(1,1) & \\
+	\dots & \rTo & A_{n-1} \ruDotted(1,1) & \rTo^{f_{n-1}} & \rdDotted(1,1) A_n & \rTo^{f_n} &
+	A_{n+1} \ruDotted(1,1)  & \rTo^{f_{n+1}} & \rdDotted(1,1) \dots \\
+	& \rdDotted(1,1) C_{n-1} \ruDotted(1,1) &&&& \rdDotted(1,1) C_{n+1} \ruDotted(1,1) &&& \\
+	0 \ruDotted(1,1) && \rdDotted(1,1) 0 && 0 \ruDotted(1,1) && \rdDotted(1,1) 0 &&
+\end{diagram}
+where $C_k = \img f_{k-1} = \ker f_k$ for every $k$.
 
 \section\problemhead
 
@@ -337,22 +367,5 @@ For example, let's prove the following.
 	\[ \Ker a \to \Ker b \to \Ker c \to \Coker a \to \Coker b \to \Coker c. \]
 \end{sproblem}
 
-\begin{sproblem}
-	[Exact Sequences Break Into Short Exact Sequences]
-	\label{prob:break_exact}
-	In an abelian category, consider an exact sequence
-	\[ \dots \to A_{n-1} \taking{f} A_n \taking{g} A_{n+1} \to \dots. \]
-	Prove that this yields a short exact sequence
-	\[ 0 \to \ker g \to A_n \to \img g \to 0. \]
-	Thus, any exact sequence can be broken into short exact sequences, as
-	\begin{diagram}
-		&& 0 & & 0 && 0 && 0 \\
-		&&& \rdDotted(1,1) C_n \ruDotted(1,1) &&&& \rdDotted(1,1) C_{n+2} \ruDotted(1,1) & \\
-		\dots & \rTo & A_{n-1} \ruDotted(1,1) & \rTo^{f_{n-1}} & \rdDotted(1,1) A_n & \rTo^{f_n} &
-		A_{n+1} \ruDotted(1,1)  & \rTo^{f_{n+1}} & \rdDotted(1,1) \dots \\
-		& \rdDotted(1,1) C_{n-1} \ruDotted(1,1) &&&& \rdDotted(1,1) C_{n+1} \ruDotted(1,1) &&& \\
-		0 \ruDotted(1,1) && \rdDotted(1,1) 0 && 0 \ruDotted(1,1) && \rdDotted(1,1) 0 &&
-	\end{diagram}
-	where $C_k = \img f_{k-1} = \ker f_k$ for every $k$.
-\end{sproblem}
+
 

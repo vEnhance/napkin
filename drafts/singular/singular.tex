@@ -841,9 +841,12 @@ For example:
 \section{The Mayer-Vietoris Sequence}
 \prototype{The computation of $H_n(S^m)$ by splitting $S^m$ into two hemispheres.}
 
-We now present two major geometric theorems,
-one in this section and the other in \Cref{sec:excision}.
-The proofs are somewhat involved, and so we defer a reader to \cite{ref:hatcher} for them.
+There are two major geometric results.
+One is the Excision Theorem, which we defer until later.
+The other we present here, which will let us take advantage of the
+Mayer-Vietoris sequence.
+The proofs are somewhat involved and are thus omitted;
+see \cite{ref:hatcher} for details.
 
 The first theorem is that the notation $H_n(U+V)$ that we have kept until now
 is redundant, and can be replaced with just $H_n(X)$:
@@ -1045,6 +1048,8 @@ actually understand the maps in question to complete the solution.
 	In particular, consider the two generators $z_1$ and $z_2$ of
 	$\wt H_1(U \cap V) = \ZZ \oplus \ZZ$,
 	i.e.\ one cycle in each connected component of $U \cap V$.
+	(To clarify: $U \cap V$ consists of two ``wristbands'';
+	$z_i$ wraps around the $i$th one once.)
 	Moreover, let $\alpha_U$ denote a generator of $\wt H_1(U) \cong \ZZ$,
 	and $\alpha_V$ a generator of $H_2(U) \cong \ZZ$.
 	Then we have that
@@ -1052,7 +1057,7 @@ actually understand the maps in question to complete the solution.
 	(The signs may differ on which direction you pick for the generators;
 	note that $\ZZ$ has two possible generators.)
 	We can even format this as a matrix:
-	\[ \phi = \begin{pmatrix} 1 & -1 \\ 1 & -1 \end{pmatrix}. \]
+	\[ \phi = \begin{pmatrix} 1 & 1 \\ -1 & -1 \end{pmatrix}. \]
 	And we observe $\phi(z_1 - z_2) = 0$, meaning this map has nontrivial kernel!
 	That is, \[ \ker\phi = \left< z_1 - z_2 \right> \cong \ZZ. \]
 	Thus, $\wt H_2(X) \cong \img \delta \cong \ker \phi \cong \ZZ$.
@@ -1112,11 +1117,22 @@ Finally, to fully justify the last step, we present the following lemma.
 		\end{diagram}
 		commutes. (The maps attached to $A \oplus C$ are the obvious ones.)
 	\end{enumerate}
+	In these cases we say the short exact sequence \vocab{splits}.
 \end{lemma}
 In particular, for $C = \ZZ$, or any free abelian group,
 condition (b) is necessarily true.
 So, once we obtained the short exact sequence $0 \to \ZZ \to \wt H_1(X) \to \ZZ \to 0$,
-we were home free.
+we were done.
+
+\begin{remark}
+	An example of a short exact sequence which doesn't split is
+	\[ 0 \to \Zc 2 \xhookrightarrow{\times 2} \Zc 4 \surjto \Zc 2 \to 0 \]
+	since it is not true that $\Zc 4 \cong \Zc2 \oplus \Zc 2$.
+\end{remark}
+\begin{remark}
+	The splitting lemma is true in any abelian category.
+	The ``direct sum'' is the colimit of the two objects $A$ and $C$.
+\end{remark}
 
 \section\problemhead
 

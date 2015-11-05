@@ -1,1 +1,541 @@
-\chapter{The Long Exact Sequence}
+\chapter{The Long Exact Sequence (Draft)}
+In this chapter we introduce the key fact about chain complexes that will allow us to compute
+the homology groups of any space: the so-called ``long exact sequence''.
+
+For those that haven't read about abelian categories:
+a sequence of morphisms of abelian groups
+\[ \dots \to G_{n+1} \to G_n \to G_{n-1} \to \dots \]
+is \vocab{exact} if the image of any arrow is equal to the kernel of the next arrow.
+In particular,
+\begin{itemize}
+	\ii The map $0 \to A \to B$ is exact if and only if $A \to B$ is injective.
+	\ii the map $A \to B \to 0$ is exact if and only if $A \to B$ is surjective.
+\end{itemize}
+A short exact sequence is one of the form $0 \to A \injto B \surjto C \to 0$.
+
+\section{Short Exact Sequences and Four Examples}
+\prototype{Relative sequence and Mayer-Vietoris sequence.}
+Let $\AA = \catname{AbGrp}$.
+Recall that we defined a morphism of chain complexes in $\AA$ already.
+\begin{definition}
+Suppose we have a map of chain complexes
+\[ 0 \to A_\bullet \taking f B_\bullet \taking g C_\bullet \to 0 \]
+It is said to be \vocab{short exact} if \emph{each row} of the diagram below is short exact.
+\begin{diagram}
+	&& \vdots && \vdots && \vdots && \\
+	&& \dTo^{\partial_A} && \dTo^{\partial_B} && \dTo^{\partial_C} && \\
+	0 & \rTo & A_{n+1} & \rInj^{f_{n+1}} & B_{n+1} & \rSurj^{g_{n+1}} & C_{n+1} & \rTo & 0 \\
+	&& \dTo^{\partial_A} && \dTo^{\partial_B} && \dTo^{\partial_C} && \\
+	0 & \rTo & A_n & \rInj^{f_n} & B_n & \rSurj^{g_n} & C_n & \rTo & 0 \\
+	&& \dTo^{\partial_A} && \dTo^{\partial_B} && \dTo^{\partial_C} && \\
+	0 & \rTo & A_{n-1} & \rInj^{f_{n-1}} & B_{n-1} & \rSurj^{g_{n-1}} & C_{n-1} & \rTo & 0 \\
+	&& \dTo^{\partial_A} && \dTo^{\partial_B} && \dTo^{\partial_C} && \\
+	&& \vdots && \vdots && \vdots &&
+\end{diagram}
+\end{definition}
+
+Here are examples of short exact sequences of chain complexes.
+\begin{example}
+	[Relative Chain Short Exact Sequence]
+	\label{ex:rel_short_exact}
+	Since $C_n(X,A) \defeq C_n(X) / C_n(A)$, we have a short exact sequence
+	\[ 0 \to C_\bullet(A) \injto C_\bullet(X) \surjto C_\bullet(X,A) \to 0 \]
+	for every space $X$ and subspace $A$.
+	The maps for each $n$ are the obvious ones:
+	$C_n(A) \injto C_n(X)$ inclusion and $C_n(X) \surjto C_n(X,A)$ projection.
+\end{example}
+\begin{example}
+	[Augmented Relative Chain Short Exact Sequence]
+	\label{ex:aug_rel_short_exact}
+	We can augment adding the following row to the bottom of the diagram:
+	\begin{diagram}
+		0 & \rTo & C_0(A) & \rInj & C_0(X) & \rSurj & C_0(X,A) & \rTo & 0\\
+		&& \dSurj^{\eps} && \dSurj^{\eps} && \dTo && \\
+		0 & \rTo & \ZZ & \rTo_\id & \ZZ & \rTo & 0 & \rTo & 0\\
+	\end{diagram}
+	In other words, this is the short exact sequence
+	\[ 0 \to C_\bullet(A) \text{ augmented} \injto C_\bullet(X) \text{ augmented}
+	\surjto C_\bullet(X,A) \to 0 \]
+	where the augmentation is as described in \Cref{def:augment}.
+\end{example}
+
+\begin{example}
+	[Mayer-Vietoris Short Exact Sequence and its Augmentation]
+	\label{ex:mayer_short_exact}
+	Let $X = U \cup V$ be an open cover.
+	For each $n$ consider
+	\begin{diagram}
+		C_n(U \cap V) & \rInj & C_n(U) \oplus C_n(V) & \rSurj & C_n(U + V) \\
+		c & \rMapsto & (c, -c) && \\
+		&& (c, d) & \rMapsto & c + d
+	\end{diagram}
+	This generates a short exact sequence
+	\[ 0 \to  C_\bullet(U \cap V) \injto C_\bullet(U) \oplus C_\bullet(V)
+	\surjto C_\bullet(U + V) \to 0. \]
+	Like before, we can \emph{augment} each of the chain complexes in the Mayer-Vietoris
+	sequence as well, by appending the following to the bottom of the diagram.
+	\begin{diagram}
+		0 & \rTo & C_0(U \cap V) & \rInj & C_0(U) \oplus C_0(V) & \rSurj & C_0(U+V) & \rTo & 0\\
+		&& \dSurj^{\eps} && \dSurj^{\eps \oplus \eps} && \dTo^\eps && \\
+		0 & \rTo & \ZZ & \rTo & \ZZ \oplus \ZZ & \rTo & \ZZ & \rTo & 0
+	\end{diagram}
+\end{example}
+
+\section{The Long Exact Sequence of Homology Groups}
+Consider a short exact sequence $0 \to A_\bullet \taking f B_\bullet \taking g C_\bullet \to 0$.
+Now, we know that we get induced maps of homology groups, i.e.\ we have
+\begin{diagram}
+	\vdots && \vdots && \vdots  \\
+	H_{n+1}(A_\bullet) & \rTo^{f_\ast} & H_{n+1}(B_\bullet) & \rTo^{g_\ast} & H_{n+1}(C_\bullet) \\
+	H_{n}(A_\bullet) & \rTo^{f_\ast} & H_{n}(B_\bullet) & \rTo^{g_\ast} & H_{n}(C_\bullet) \\
+	H_{n}(A_\bullet) & \rTo^{f_\ast} & H_{n}(B_\bullet) & \rTo^{g_\ast} & H_{n}(C_\bullet) \\
+	\vdots && \vdots && \vdots \\
+\end{diagram}
+But the theorem is that we can string these all together,
+taking each $H_{n+1}(C_\bullet)$ to $H_n(A_\bullet)$.
+
+\begin{theorem}[Short Exact $\implies$ Long Exact]
+	\label{thm:long_exact}
+	Let $0 \to A_\bullet \taking f B_\bullet \taking g C_\bullet \to 0$ 
+	be \emph{any} short exact sequence of chain complexes we like.
+	Then there is an \emph{exact} sequence
+	\begin{diagram}
+		&& \dots & \rTo & H_{n+2}(C_\bullet) \\
+		H_{n+1}(A_\bullet) & \rTo_{f_\ast} &
+		H_{n+1}(B_\bullet) & \ldTo(4,1)~\partial \rTo^{g_\ast} & H_{n+1}(C_\bullet) \\
+		H_{n}(A_\bullet) & \rTo_{f_\ast} &
+		H_{n}(B_\bullet) & \rTo^{g_\ast} \ldTo(4,1)~{\partial} & H_{n}(C_\bullet) \\
+		H_{n-1}(A_\bullet) & \rTo_{f_\ast} &
+		H_{n-1}(B_\bullet) & \rTo^{g_\ast} \ldTo(4,1)~{\partial} & H_{n-1}(C_\bullet) \\
+		H_{n-2}(A_\bullet) & \rTo & \dots & \ldTo(4,1)~\partial & 
+	\end{diagram}
+	This is called a \vocab{long exact sequence} of homology groups.
+\end{theorem}
+\begin{proof}
+	A very long diagram chase, valid over any abelian category.
+	(Alternatively, it's actually possible to use the Snake Lemma twice.)
+\end{proof}
+
+\begin{remark}
+	The map $\partial : H_n(C_\bullet) \to H_{n-1}(A_\bullet)$ can be written explicitly as follows.
+	Recall that $H_n$ is ``cycles modulo boundaries'', and consider the sub-diagram
+	\begin{diagram}
+	&& B_n & \rSurj^{g_n} & C_n \\
+	 && \dTo^{\partial_B} && \dTo_{\partial_C} \\
+	A_{n-1} & \rInj^{f_{n-1}} & B_{n-1} & \rSurj_{g_{n-1}} & C_{n-1} \\
+	\end{diagram}
+	We need to take every cycle in $C_n$ to a cycle in $A_{n-1}$.
+	(Then we need to check a ton of ``well-defined'' issues,
+	but let's put that aside for now.)
+
+	Suppose $c \in C_n$ is a cycle (so $\partial_C(c) = 0$).
+	By surjectivity, there is a $b \in B_n$ with $g_n(b) = c$,
+	which maps down to $\partial_B(b)$.
+	Now, the image of $\partial_B(b)$ under $g_{n-1}$ is zero by commutativity of the square,
+	and so we can pull back under $f_{n-1}$ to get a unique element of $A_{n-1}$
+	(by exactness at $B_{n-1}$).
+
+	In summary: we go ``\emph{left, down, left}'' to go from $c$ to $a$:
+	\begin{diagram}
+		&& b & \rMapsto^{g_n} & \boxed c \\
+		&& \dMapsto^{\partial_B} && \dMapsto_{\partial_C} \\
+		\boxed a & \rMapsto^{f_{n-1}} & \partial_B(b) & \rMapsto_{g_{n-1}} & 0
+	\end{diagram}
+\end{remark}
+\begin{exercise}
+	Check quickly that the recovered $a$ is actually a cycle,
+	meaning $\partial_A(a) = 0$.
+	(You'll need another row, and the fact that $\partial_B^2 = 0$.)
+\end{exercise}
+
+The final word is that:
+\begin{moral}
+	Short exact sequences of chain complexes give long exact sequences of homology groups.
+\end{moral}
+In particular, if we take our examples \Cref{ex:rel_short_exact,ex:aug_rel_short_exact,%
+ex:mayer_short_exact},
+we can just plug them into the theorem. The first two give:
+\begin{theorem}[Long Exact Sequence for Relative Homology]
+	Let $X$ be a space, and $A \subset X$ a subspace.
+	There are long exact sequences
+	\[ \dots \to H_n(A) \to H_n(X) \to H_n(X,A) \to H_{n-1}(A) \to \dots. \]
+	and
+	\[ \dots \to \wt H_n(A) \to \wt H_n(X) \to H_n(X,A) \to \wt H_{n-1}(A) \to \dots. \]
+\end{theorem}
+The Mayer-Vietoris ones give, for $X = U \cup V$ an open cover,
+\[ \dots \to H_n(U \cap V) \to H_n(U) \oplus H_n(V) \to H_n(U+V) \to H_{n-1}(U \cap V) \to \dots. \]
+and its reduced version
+\[ \dots \to \wt H_n(U \cap V) \to \wt H_n(U) \oplus \wt H_n(V)
+\to \wt H_n(U+V) \to \wt H_{n-1}(U \cap V) \to \dots. \]
+The exactness of these sequences will give \textbf{tons of information}
+about $H_n(X)$ if only we knew something about what $H_n(U+V)$
+or $H_n(X,A)$ looked like.  This will be the purpose of the next section.
+
+On the other hand, we can already make headway on $H_n(X,A)$ if we're curious what it looks like.
+For example:
+\begin{lemma}
+	[Relative Homology to Contractible Spaces]
+	\label{lem:rel_contractible}
+	Let $X$ be a topological space, and let $A$ be a contractible subspace of $X$
+	(for example, a single point).
+	Then \[ H_n(X, A) \cong \wt H_n(X) \]
+	for every $n$.
+\end{lemma}
+\begin{proof}
+	Since $A$ is contractible, we have $\wt H_n(A) = 0$ for every $n$.
+	For each $n$ there's a segment of the long exact sequence given by
+	\[ \dots \to \underbrace{\wt H_n(A)}_{=0} \to \wt H_n(X) \to H_n(X,A)
+	\to \underbrace{\wt H_{n-1}(A)}_{=0} \to \dots. \]
+	So since $0 \to \wt H_n(X) \to H_n(X,A) \to 0$ is exact,
+	this means $H_n(X,A) \cong \wt H_n(X)$.
+\end{proof}
+
+
+\section{The Mayer-Vietoris Sequence}
+\prototype{The computation of $H_n(S^m)$ by splitting $S^m$ into two hemispheres.}
+
+There are two major geometric results.
+One is the Excision Theorem, which we defer until later.
+The other we present here, which will let us take advantage of the
+Mayer-Vietoris sequence.
+The proofs are somewhat involved and are thus omitted;
+see \cite{ref:hatcher} for details.
+
+The first theorem is that the notation $H_n(U+V)$ that we have kept until now
+is redundant, and can be replaced with just $H_n(X)$:
+\begin{theorem}[Open Cover Homology Theorem]
+	The inclusion $\iota : C_\bullet(U+V) \injto C_\bullet(X)$ 
+	induces an isomorphism
+	\[ H_n(U+V) \cong H_n(X). \]
+\end{theorem}
+\begin{remark}
+	In fact, this is true for any open cover (even uncountable),
+	not just those with two covers $U \cup V$.
+	But we only state the special case with two open sets,
+	because this is what is needed for \Cref{ex:mayer_short_exact}.
+\end{remark}
+So, \Cref{ex:mayer_short_exact} together with the above theorem implies,
+after replacing all the $H_n(U+V)$'s with $H_n(X)$'s:
+\begin{theorem}[Long Exact Sequence for Mayer-Vietoris]
+	If $X = U \cup V$ is an open cover, then we have long exact sequences
+	\[ \dots \to H_n(U \cap V) \to H_n(U) \oplus H_n(V)
+		\to H_n(X) \to H_{n-1}(U \cap V) \to \dots. \]
+	and
+	\[ \dots \to \wt H_n(U \cap V) \to \wt H_n(U) \oplus \wt H_n(V) \to
+		\wt H_n(X) \to \wt H_{n-1}(U \cap V) \to \dots. \]
+\end{theorem}
+
+At long last, we can compute the homology groups of the spheres.
+The theorem is that
+\begin{theorem}[The Homology Groups of $S^m$]
+	\label{thm:reduced_homology_sphere}
+	For integers $m$ and $n$,
+	\[ \wt H_n(S^m) \cong
+	\begin{cases}
+		\ZZ & n=m \\
+		0 & \text{otherwise}.
+	\end{cases}
+	\]
+\end{theorem}
+\begin{proof}
+	This one's fun, so I'll only spoil the case $m=1$, and leave the rest to you.
+	Decompose the circle $S^1$ into two arcs $U$ and $V$, as shown:
+	\begin{center}
+		\begin{asy}
+			size(4cm);
+			draw(unitcircle);
+			label("$S^1$", dir(45), dir(45));
+			real R = 0.1;
+			draw(arc(origin,1-R,-100,100), blue+1);
+			label("$U$", (1-R)*dir(0), dir(180), blue);
+			draw(arc(origin,1+R,80,280), red+1);
+			label("$V$", (1+R)*dir(180), dir(180), red);
+		\end{asy}
+	\end{center}
+	Each of $U$ and $V$ is contractible, so all their reduced homology groups vanish.
+	Moreover, $U \cap V$ is homotopy equivalent to two points,
+	hence 
+	\[ \wt H_n(U \cap V) \cong
+		\begin{cases}
+			\ZZ & n = 0 \\
+			0 & \text{otherwise}.
+		\end{cases}
+	\]
+	Now consider again the segment of the short exact sequence
+	\[ 
+		\dots \to
+		\underbrace{\wt H_n(U) \oplus \wt H_n(V)}_{= 0} \to
+		\wt H_n(S^1) \to \wt H_{n-1}(U \cap V) \to
+		\underbrace{\wt H_{n-1}(U) \oplus \wt H_{n-1}(V)}_{=0} \to \dots.
+	\]
+	From this we derive that $\wt H_n(S^1)$ is $\ZZ$ for $n=1$ and $0$ elsewhere.
+\end{proof}
+
+Here are some more examples.
+\begin{proposition}[The Homology Groups of the Figure Eight]
+	Let $X = S^1 \wedge S^1$ be the figure eight.
+	Then
+	\[
+		\wt H_n(X) \cong
+		\begin{cases}
+			\ZZ^{\oplus 2} & n = 1 \\
+			0 & \text{otherwise}.
+		\end{cases}
+	\]
+\end{proposition}
+\begin{proof}
+	Again, for simplicity we work with reduced homology groups.
+	Let $U$ be the ``left'' half of the figure eight plus a little bit of the right,
+	as shown below.
+	\begin{center}
+		\begin{asy}
+			size(4cm);
+			draw(unitcircle);
+			draw(CR(2*dir(180),1), blue+2);
+			draw(arc(origin,1,135,225), blue+2);
+			label("$U$", 2*dir(180)+dir(135), dir(135), blue);
+			label("$S^1 \wedge S^1$", dir(15), dir(15));
+		\end{asy}
+	\end{center}
+	The set $V$ is defined symmetrically.
+	In this case $U \cap V$ is contractible, while each of $U$ and $V$
+	is homotopic to $S^1$.
+
+	Thus, we can read a segment of the long exact sequence as
+	\[
+		\dots \to
+		\underbrace{\wt H_n(U \cap V)}_{=0}
+		\to \wt H_n(U) \oplus \wt H_n(V) \to \wt H_n(X) \to 
+		\underbrace{\wt H_{n-1}(U \cap V)}_{=0} \to \dots.
+	\]
+	So we get that $\wt H_n(X) \cong \wt H_n(S^1) \oplus \wt H_n(S^1)$,
+\end{proof}
+
+Up until now, we have been very fortunate that we have always been able to make
+certain parts of the space contractible.
+This is not always the case, and in the next example we will have to
+actually understand the maps in question to complete the solution.
+
+\begin{proposition}
+	[Homology Groups of the Torus]
+	Let $X = S^1 \times S^1$ be the torus.
+	Then
+	\[
+		\wt H_n(X)
+		=
+		\begin{cases}
+			\ZZ^{\oplus 2} & n = 1 \\
+			\ZZ & n = 2 \\
+			0 & \text{otherwise}.
+		\end{cases}
+	\]
+\end{proposition}
+\begin{proof}
+	To make our diagram look good on 2D paper,
+	we'll represent the torus as a square with its edges identified,
+	though three-dimensionally the picture makes sense as well.
+	Consider $U$ (shaded light orange) and $V$ (shaded green) as shown.
+	(Note that $V$ is connected due to the identification of the left and right (blue) edges,
+	even if it doesn't look like it in the picture).
+	\begin{center}
+		\begin{asy}
+			pair A = (0,0);
+			pair B = (1,0);
+			pair C = (1,1);
+			pair D = (0,1);
+			draw(A--B, red+1.5, MidArrow);
+			draw(B--C, blue+1.5, MidArrow);
+			draw(D--C, red+1.5, MidArrow);
+			draw(A--D, blue+1.5, MidArrow);
+			fill(box((0.2,0),(0.8,1)), orange+opacity(0.2));
+			fill(box(A,(0.3,1)), heavygreen+opacity(0.2));
+			fill(box((0.7,0),C), heavygreen+opacity(0.2));
+			draw( (0.3,0)--(0.3,1), heavygreen+dashed+1.2);
+			draw( (0.7,0)--(0.7,1), heavygreen+dashed+1.2);
+			draw( (0.2,0)--(0.2,1), orange+dashed+1.2);
+			draw( (0.8,0)--(0.8,1), orange+dashed+1.2);
+
+			label("$U$", (0.5, 0.5));
+			label("$V$", (0.1, 0.8));
+			label("$V$", (0.9, 0.8));
+		\end{asy}
+	\end{center}
+	In the three dimensional picture, $U$ and $V$ are two cylinders which together give the torus.
+	This time, $U$ and $V$ are each homotopic to $S^1$, and the intersection $U \cap V$
+	is the disjoint union of two circles: thus $\wt H_1(U \cap V) \cong \ZZ \oplus \ZZ$,
+	and $H_0(U \cap V) \cong \ZZ^{\oplus 2} \implies \wt H_0(U \cap V) \cong \ZZ$.
+
+	For $n \ge 3$, we have
+	\[ 
+		\dots \to
+		\underbrace{\wt H_n(U \cap V)}_{=0}
+		\to \wt H_n(U) \oplus \wt H_n(V) \to \wt H_n(X) \to 
+		\underbrace{\wt H_{n-1}(U \cap V)}_{=0} \to \dots.
+	\]
+	and so $H_n(X) \cong 0$ for $n \ge 0$.
+	Also, we have $H_0(X) \cong \ZZ$ since $X$ is path-connected.
+	So it remains to compute $H_2(X)$ and $H_1(X)$.
+
+	Let's find $H_2(X)$ first.
+	We first consider the segment
+	\[ 
+		\dots \to
+		\underbrace{\wt H_2(U) \oplus \wt H_2(V)}_{=0} \to \wt H_2(X) \xhookrightarrow{\delta}
+		\underbrace{\wt H_1(U \cap V)}_{\cong \ZZ \oplus \ZZ} \xrightarrow{\phi}
+		\underbrace{\wt H_1(U) \oplus \wt H_1(V)}_{\cong \ZZ \oplus \ZZ} \to \dots
+	\]
+	Unfortunately, this time it's not immediately clear what $\wt H_2(X)$ because
+	we only have one zero at the left.
+	In order to do this, we have to actually figure out what the maps $\delta$ and $\phi$ look like.
+	Note that, as we'll see, $\phi$ isn't an isomorphism even though the groups are isomorphic.
+
+	The presence of the zero term has allowed us to make the connecting map $\delta$ injective.
+	First, $\wt H_2(X)$ is isomorphic to the image of of $\delta$, which is
+	exactly the kernel of the arrow $\phi$ inserted.
+	To figure out what $\ker \phi$ is, we have to think back to how the map
+	$C_\bullet(U \cap V) \to C_\bullet(U) \oplus C_\bullet(V)$ was constructed:
+	it was $c \mapsto (c, -c)$.
+	So the induced maps of homology groups is actually what you would guess:
+	a $1$-cycle $z$ in $\wt H_1(U \cap V)$ gets sent $(z, -z)$ in $\wt H_1(U) \oplus \wt H_1(V)$.
+
+	In particular, consider the two generators $z_1$ and $z_2$ of
+	$\wt H_1(U \cap V) = \ZZ \oplus \ZZ$,
+	i.e.\ one cycle in each connected component of $U \cap V$.
+	(To clarify: $U \cap V$ consists of two ``wristbands'';
+	$z_i$ wraps around the $i$th one once.)
+	Moreover, let $\alpha_U$ denote a generator of $\wt H_1(U) \cong \ZZ$,
+	and $\alpha_V$ a generator of $H_2(U) \cong \ZZ$.
+	Then we have that
+	\[ z_1 \mapsto (\alpha_U, -\alpha_V) \qquad\text{and}\qquad z_2 \mapsto (\alpha_U, -\alpha_V). \]
+	(The signs may differ on which direction you pick for the generators;
+	note that $\ZZ$ has two possible generators.)
+	We can even format this as a matrix:
+	\[ \phi = \begin{pmatrix} 1 & 1 \\ -1 & -1 \end{pmatrix}. \]
+	And we observe $\phi(z_1 - z_2) = 0$, meaning this map has nontrivial kernel!
+	That is, \[ \ker\phi = \left< z_1 - z_2 \right> \cong \ZZ. \]
+	Thus, $\wt H_2(X) \cong \img \delta \cong \ker \phi \cong \ZZ$.
+	We'll also note that $\img \phi$ is the set generated by $(\alpha_U, -\alpha_V)$;
+	(in particular $\img\phi \cong \ZZ$ and the quotient by $\img\phi$ is $\ZZ$ too).
+
+	The situation is similar with $\wt H_1(X)$: this time, we have
+	\[ 
+		\dots 
+		%\to \underbrace{\wt H_1(U \cap V)}_{\cong \ZZ \oplus \ZZ}
+		\xrightarrow{\phi} \underbrace{\wt H_1(U) \oplus \wt H_1(V)}_{\cong \ZZ \oplus \ZZ}
+		\overset{\psi}{\to} \wt H_1(X) \overset\partial\surjto
+		\underbrace{\wt H_0(U \cap V)}_{\cong \ZZ} 
+		\to \underbrace{\wt H_0(U) \oplus \wt H_0(V)}_{=0} \to \dots
+	\]
+	and so we know that the connecting map $\partial$ is surjective,
+	hence $\img \partial \cong \ZZ$.
+	Now, we also have
+	\begin{align*}
+		\ker \partial \cong \img \psi &\cong \left( \wt H_1(U) \oplus \wt H_1(V) \right) / \ker \psi \\
+		&\cong \left( \wt H_1(U) \oplus \wt H_1(V) \right) / \img \phi \\
+		&\cong \ZZ
+	\end{align*}
+	by what we knew about $\img \phi$ already.
+	To finish off we need some algebraic tricks. The first is \Cref{prob:break_exact},
+	which gives us a short exact sequence
+	\[
+		0 \to \underbrace{\ker\partial}_{\cong \img\psi \cong \ZZ} 
+		\injto \wt H_1(X)
+		\surjto \underbrace{\img\partial}_{\cong \ZZ} \to 0.
+	\]
+	You should satisfy yourself that $\wt H_1(X) \cong \ZZ \oplus \ZZ$ is the
+	only possibility, but we'll prove this rigorously with \Cref{lem:split_exact}.
+\end{proof}
+
+Note that the previous example is of a different attitude than the previous ones,
+because we had to figure out what the maps in the long exact sequence actually were.
+In principle you could do this for the previous two examples as well,
+by making explicit what all the arrows are.
+You can do this even for the connecting arrow, because the ``left, down, left'' procedure
+used in the proof of \Cref{thm:long_exact} gives us a concrete description of the arrow.
+
+Finally, to fully justify the last step, we present the following lemma.
+\begin{lemma}[Splitting Lemma]
+	\label{lem:split_exact}
+	For a short exact sequence $0 \to A \taking f B \taking g C \to 0$
+	of abelian groups, the following are equivalent:
+	\begin{enumerate}[(a)]
+		\ii There exists $p : B \to A$ such that $A \taking f B \taking p A$ is the identity.
+		\ii There exists $s : C \to B$ such that $C \taking s B \taking g C$ is the identity.
+		(Note that this is true whenever $B$ is free!)
+		\ii There is an isomorphism from $B$ to $A \oplus C$ such that the diagram
+		\begin{diagram}
+			&&& & B & &&&  \\
+			0 & \rTo & A & \ruInj(2,1)^f & \dIsom^\cong & \rdSurj(2,1)^g & C & \rTo & 0 \\
+			&&& \rdInj(2,1) & A \oplus C & \ruSurj(2,1) &&& 
+		\end{diagram}
+		commutes. (The maps attached to $A \oplus C$ are the obvious ones.)
+	\end{enumerate}
+	In these cases we say the short exact sequence \vocab{splits}.
+\end{lemma}
+In particular, for $C = \ZZ$, or any free abelian group,
+condition (b) is necessarily true.
+So, once we obtained the short exact sequence $0 \to \ZZ \to \wt H_1(X) \to \ZZ \to 0$,
+we were home free.
+
+\begin{remark}
+	An example of a short exact sequence which doesn't split is
+	\[ 0 \to \Zc 2 \xhookrightarrow{\times 2} \Zc 4 \surjto \Zc 2 \to 0 \]
+	since it is not true that $\Zc 4 \cong \Zc2 \oplus \Zc 2$.
+\end{remark}
+
+\section\problemhead
+
+\begin{problem}
+	Complete the proof of \Cref{thm:reduced_homology_sphere},
+	i.e.\ compute $H_n(S^m)$ for all $m$ and $n$.
+	(Try doing $m=2$ first, and you'll see how to proceed.)
+	\begin{hint}
+		Induction on $m$, using hemispheres.
+	\end{hint}
+\end{problem}
+
+\begin{problem}
+	Compute the reduced homology groups of $\RR^n$ with $p \ge 1$ points removed.
+	\begin{hint}
+		One strategy is induction on $p$, with base case $p=1$.
+		Another strategy is to let $U$ be the desired space and let $V$
+		be the union of $p$ non intersecting balls.
+	\end{hint}
+	\begin{sol}
+		The answer is $\wt H_{n-1}(X) \cong \ZZ^{\oplus p}$,
+		with all other groups vanishing.
+		For $p=1$, $\RR^n - \{\ast\} \cong S^{n-1}$ so we're done.
+		For all other $p$, draw a hyperplane dividing the $p$ points into two halves
+		with $a$ points on one side and $b$ points on the other (so $a+b=p$).
+		Set $U$ and $V$ and use induction.
+
+		Alternatively, let $U$ be the desired space and let $V$
+		be the union of $p$ disjoint balls, one around every point.
+		Then $U \cup V = \RR^n$ has all reduced homology groups trivial.
+		From the Mayer-Vietoris sequence we can read $\wt H_k(U \cap V) \cong \wt H_k(U) \cap \wt H_k(V)$.
+		Then $U \cap V$ is $p$ punctured balls, which are each the same as $S^{n-1}$.
+		One can read the conclusion from here.
+	\end{sol}
+\end{problem}
+
+\begin{dproblem}[Klein Bottle]
+	\gim
+	Show that the reduced homology groups of the Klein bottle are given by
+	\[
+		\wt H_n(X) = 
+		\begin{cases}
+			\ZZ \oplus \Zc 2 & n = 1 \\
+			0 & \text{otherwise}.
+		\end{cases}
+	\]
+	\begin{hint}
+		It's possible to use two cylinders with $U$ and $V$.
+		This time the matrix is $\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}$
+		or some variant though; in particular, it's injective, so $\wt H_2(X) = 0$.
+	\end{hint}
+\end{dproblem}
+
+
+\todo{add to artwork gallery}
+
+

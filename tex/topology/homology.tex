@@ -1,4 +1,4 @@
-\chapter{Singular Homology}
+\chapter{Singular Homology (Draft)}
 Now that we've defined $\pi_1(X)$, we turn our attention to a second way of capturing the same idea, $H_1(X)$.
 We'll then define $H_n(X)$ for $n \ge 2$.
 The good thing about the $H_n$ groups is that, unlike the $\pi_n$ groups, they are much easier to compute in practice.
@@ -112,10 +112,11 @@ The fact that $\partial^2 = 0$ is of course not a coincidence.
 \begin{proof}
 	Essentially identical to \Cref{prob:partial_zero}:
 	this is just a matter of writing down a bunch of $\sum$ signs.
+	Diligent readers are welcome to try the computation.
 \end{proof}
 
 \section{The Singular Homology Groups}
-
+\prototype{Probably $H_n(S^m)$, especially the case $m = n =1$.}
 Let $X$ be a topological space, and let $C_n(X)$ be the free abelian group
 of $n$-chains of $X$ that we defined earlier.
 Our work above gives us a boundary operator $\partial$, so we have a sequence of maps
@@ -204,6 +205,10 @@ More generally, we have
 	then we have \[ H_n(X) \cong \bigoplus_\alpha H_n(X_\alpha). \]
 	In particular, if $X$ has $r$ path-connected components, then $H_0(X) \cong \ZZ^{\oplus r}$.
 \end{proposition}
+(If it's surprising to see $\ZZ^{\oplus r}$, remember that
+an abelian group is the same thing as a $\ZZ$-module,
+so the notation $G \oplus H$ is customary in place of $G \times H$
+when $G$, $H$ are abelian.)
 
 Now let's investigate the first homology group.
 Formally, for $X$ path-connected,
@@ -227,7 +232,7 @@ The difference is that $H_1(X)$ allows loops to commute, whereas $\pi_1(X, x_0)$
 	This captures the fact that $X$ is really just $S^1$.
 \end{example}
 \begin{example}
-	[The First Homology Group of the Figure 8]
+	[The First Homology Group of the Figure Eight]
 	Consider $X_8$ (see \Cref{ex:figure8}).
 	Both homology and homotopy see the two loops in $X_8$, call them $a$ and $b$.
 	The difference is that in $\pi_1(X_8, x_0)$,
@@ -235,8 +240,62 @@ The difference is that $H_1(X)$ allows loops to commute, whereas $\pi_1(X, x_0)$
 	because the group operation in $\pi_1$ is ``concatenate paths''
 	But in the homology group $H_1(X)$ the way we add $a$ and $b$
 	is to add them formally, to get the $1$-chain $a+b$.
-	So \[ H_1(X) \cong \ZZ^{\oplus 2} \quad\text{while}\quad \pi_1(X, \ast) = \left< a,b\right>. \]
+	So \[ H_1(X) \cong \ZZ^{\oplus 2} \quad\text{while}\quad \pi_1(X, x_0) = \left< a,b\right>. \]
 \end{example}
+
+\begin{example}
+	[The Homology Groups of $S^2$]
+	Consider $S^2$, the two-dimensional sphere.
+	Since it's path connected, we have $H_0(S^2) = \ZZ$.
+	We also have $H_1(S^2) = 0$, for the same reason that $\pi_1(S^2)$ is trivial as well.
+	On the other hand we claim that \[ H_2(S^2) \cong \ZZ. \]
+	The elements of $H_2(S^2)$ correspond to wrapping $S^2$ in a tetrahedral bag
+	(or two bags, or three bags, etc.).
+	Thus, the second homology group lets us detect the spherical cavity of $S^2$.
+\end{example}
+Actually, more generally it turns out that we will have
+\[
+	H_n(S^m) \cong 
+	\begin{cases}
+		\ZZ & n=m \text{ or } n=0 \\
+		0 & \text{otherwise}.
+	\end{cases}
+\]
+
+\begin{example}
+	[Contractible Spaces]
+	Given any contractible space $X$, it turns out that
+	\[
+		H_n(X)
+		\cong
+		\begin{cases}
+			\ZZ & n = 0 \\
+			0 & \text{otherwise}.
+		\end{cases}
+	\]
+	The reason is that, like homotopy groups, it turns out
+	that homology groups are homotopy invariant.
+	(We'll prove this next section.)
+	So the homology groups of contractible $X$ are the same
+	as those of a one-point space, which are those above.
+\end{example}
+
+\begin{example}
+	[Homology Groups of the Torus]
+	While we won't be able to prove it for a while, it turns out that
+	\[
+		H_n(S^1 \times S^1)
+		\cong
+		\begin{cases}
+			\ZZ & n = 0,2 \\
+			\ZZ^{\oplus 2} & n = 1 \\
+			0 & \text{otherwise}.
+		\end{cases}
+	\]
+	The homology group at $1$ corresponds to our knowledge that $\pi_1(S^1 \times S^1) \cong \ZZ^2$
+	and the homology group at $2$ detects the ``cavity'' of the torus.
+\end{example}
+
 
 This is fantastic and all, but how does one go about actually computing any homology groups?
 This will be a rather long story, and we'll have to do a significant amount of both algebra and geometry
@@ -245,7 +304,12 @@ In what follows, it will often be helpful to keep track of which things are pure
 (work for any chain complex), and which parts are actually stating something which is geometrically true.
 
 \section{The Homology Functor and Chain Complexes}
-Our first goal is to show the following result.
+As I mentioned before, the homology groups are homotopy invariant.
+This will be a similar song and dance as the work we did to
+create a functor $\pi_1 : \catname{hTop}_\ast \to \catname{Grp}$.
+Rather than working slowly and pulling away the curtain to reveal the category theory at the end,
+we'll instead start with the category theory right from the start just to save some time.
+
 \begin{definition}
 	The category $\catname{hTop}$ is defined as follows:
 	\begin{itemize}
@@ -255,7 +319,10 @@ Our first goal is to show the following result.
 	In particular, $X$ and $Y$ are isomorphic in $\catname{hTop}$
 	if and only if they are homotopic.
 \end{definition}
-\begin{theorem}[$H_n : \catname{hTop} \to \catname{Grp}$]
+You'll notice this is the same as $\catname{hTop}_\ast$,
+except without the basepoints.
+
+\begin{theorem}[Homology is a Functor $\catname{hTop} \to \catname{Grp}$]
 	\label{thm:Hn_functor}
 	For any particular $n$, $H_n$ is a functor $\catname{hTop} \to \catname{Grp}$.
 	In particular,
@@ -271,7 +338,9 @@ Our first goal is to show the following result.
 In order to do this, we have to describe how to take a map $f : X \to Y$
 and obtain a map $H_n(f) : H_n(X) \to H_n(Y)$.
 Then we have to show that this map doesn't depend on the choice of homotopy.
-To do this we will have to go back to the chain complex $C_\bullet(X)$ that we built at the beginning.
+(This is the analog of the work we did with $f_\sharp$ before.)
+It turns out that this timed around, proving this is much more tricky,
+and we will have to go back to the chain complex $C_\bullet(X)$ that we built at the beginning.
 
 \subsection*{Algebra of Chain Complexes}
 Let's start with the algebra.
@@ -487,7 +556,34 @@ So that gives the chain homotopy from $f$ to $g$, completing the proof of \Cref{
 
 \section{More Examples of Chain Complexes}
 We now end this chapter by providing some more examples of chain complexes,
-which we'll use at the beginning of the next chapter to finally compute homology groups.
+which we'll use in the next chapter to finally compute topological homology groups.
+
+\begin{example}
+	[Reduced Homology Groups]
+	Suppose $X$ is a (nonempty) topological space.
+	One can augment the standard singular complex as follows:
+	do the same thing as before, but augment the end by adding a $\ZZ$,
+	as shown:
+	\[ \dots \to C_1(X) \to C_0(X) \taking{\eps} \ZZ \to 0 \]
+	Here $\eps$ is defined by $\eps(\sum n_ip_i) = \sum n_i$ for points $p_i \in X$.
+	(Recall that a $0$-chain is just a formal sum of points!)
+\end{example}
+\begin{definition}
+	\label{def:augment}
+	The homology groups of the augmented chain complex are called the
+	\vocab{reduced homology groups} $\wt H_n(X)$ of the space $X$.
+
+	Obviously $\wt H_n(X) \cong H_n(X)$ for $n > 0$.
+	But when $n=0$, the map $H_0(X) \to \ZZ$ by $\eps$ has kernel $\wt H_0(X)$,
+	thus $H_0(X) \cong \wt H_0(X) \oplus \ZZ$.
+\end{definition}
+This is usually just an added convenience.
+For example, it means that if $X$ is contractible,
+then all its reduced homology groups vanish,
+and thus we won't have to keep fussing with the special $n=0$ case.
+\begin{ques}
+	Given the claim earlier about $H_n(S^m)$, what should $\wt H_n(S^m)$ be?
+\end{ques}
 
 \begin{example}
 	[Relative Chain Groups]
@@ -499,14 +595,26 @@ which we'll use at the beginning of the next chapter to finally compute homology
 	Then, the usual $\partial$ on $C_n(X)$ generates a new chain complex
 	\[ \dots \taking\partial C_{n+1}(X,A) \taking\partial C_n(X,A)
 	\taking\partial C_{n-1}(X,A) \taking\partial \dots. \]
+
+
+		This is well-defined since $\partial$ takes $C_n(A)$ into $C_{n-1}(A)$.
 \end{example}
-This is well-defined since $\partial$ takes $C_n(A)$ to $C_{n-1}(A)$.
-The resulting homology groups are called the \vocab{relative homology groups} and called $H_n(X,A)$.
-Our hope is that this might be $H_n(X) / H_n(A)$ but this is not quite true,
-though this guess is not too far off; we'll examine this further in the next chapter.
+\begin{definition}
+	The homology groups of the relative chain complex are the
+	\vocab{relative homology groups} and denoted $H_n(X,A)$.
+\end{definition}
+\todo{can we give a nice example of this?}
+
+One n\"aive guess is that this might equal $H_n(X) / H_n(A)$.
+This is not true and in general doesn't even make sense;
+if we take $X$ to be $\RR^2$ and $A = S^1$ a circle inside it, we have $H_1(X) = H_1(\RR^2) = 0$
+and $H_1(S^1) = \ZZ$.
+
+Another guess is that $H_n(X,A)$ might just be $H_n(X/A)$.
+This will turn out to be true in some nice circumstances, which we describe later on.
 
 \begin{example}
-	[Mayer-Vietoris Sequence with Two Open Sets]
+	[Mayer-Vietoris Sequence]
 	Suppose a space $X$ is covered by two open sets $U$ and $V$.
 	We can define $C_n(U+V)$ as follows:
 	it consists of chains such that each simplex is either entirely contained in $U$,
@@ -520,3 +628,4 @@ So once again, we can define homology groups for this complex; we denote them by
 Miraculously, it will turn out that $H_n(U+V) \cong H_n(X)$.
 
 \section\problemhead
+
