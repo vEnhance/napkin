@@ -1,4 +1,4 @@
-\chapter{The Long Exact Sequence (Draft)}
+\chapter{The Long Exact Sequence}
 In this chapter we introduce the key fact about chain complexes that will allow us to compute
 the homology groups of any space: the so-called ``long exact sequence''.
 
@@ -35,29 +35,6 @@ It is said to be \vocab{short exact} if \emph{each row} of the diagram below is 
 \end{definition}
 
 Here are examples of short exact sequences of chain complexes.
-\begin{example}
-	[Relative Chain Short Exact Sequence]
-	\label{ex:rel_short_exact}
-	Since $C_n(X,A) \defeq C_n(X) / C_n(A)$, we have a short exact sequence
-	\[ 0 \to C_\bullet(A) \injto C_\bullet(X) \surjto C_\bullet(X,A) \to 0 \]
-	for every space $X$ and subspace $A$.
-	The maps for each $n$ are the obvious ones:
-	$C_n(A) \injto C_n(X)$ inclusion and $C_n(X) \surjto C_n(X,A)$ projection.
-\end{example}
-\begin{example}
-	[Augmented Relative Chain Short Exact Sequence]
-	\label{ex:aug_rel_short_exact}
-	We can augment adding the following row to the bottom of the diagram:
-	\begin{diagram}
-		0 & \rTo & C_0(A) & \rInj & C_0(X) & \rSurj & C_0(X,A) & \rTo & 0\\
-		&& \dSurj^{\eps} && \dSurj^{\eps} && \dTo && \\
-		0 & \rTo & \ZZ & \rTo_\id & \ZZ & \rTo & 0 & \rTo & 0\\
-	\end{diagram}
-	In other words, this is the short exact sequence
-	\[ 0 \to C_\bullet(A) \text{ augmented} \injto C_\bullet(X) \text{ augmented}
-	\surjto C_\bullet(X,A) \to 0 \]
-	where the augmentation is as described in \Cref{def:augment}.
-\end{example}
 
 \begin{example}
 	[Mayer-Vietoris Short Exact Sequence and its Augmentation]
@@ -69,15 +46,45 @@ Here are examples of short exact sequences of chain complexes.
 		c & \rMapsto & (c, -c) && \\
 		&& (c, d) & \rMapsto & c + d
 	\end{diagram}
+	One can easily see (by taking a suitable basis)
+	that the kernel of the latter map is exactly
+	the image of the first map.
 	This generates a short exact sequence
 	\[ 0 \to  C_\bullet(U \cap V) \injto C_\bullet(U) \oplus C_\bullet(V)
 	\surjto C_\bullet(U + V) \to 0. \]
-	Like before, we can \emph{augment} each of the chain complexes in the Mayer-Vietoris
+\end{example}
+\begin{example}
+	[Augemented Mayer-Vietoris Sequence]
+	We can \emph{augment} each of the chain complexes in the Mayer-Vietoris
 	sequence as well, by appending the following to the bottom of the diagram.
 	\begin{diagram}
 		0 & \rTo & C_0(U \cap V) & \rInj & C_0(U) \oplus C_0(V) & \rSurj & C_0(U+V) & \rTo & 0\\
 		&& \dSurj^{\eps} && \dSurj^{\eps \oplus \eps} && \dTo^\eps && \\
 		0 & \rTo & \ZZ & \rTo & \ZZ \oplus \ZZ & \rTo & \ZZ & \rTo & 0
+	\end{diagram}
+	In other words we modify the above short exact sequence into
+	\[ 0 \to  \wt C_\bullet(U \cap V) 
+		\injto \wt C_\bullet(U) \oplus \wt C_\bullet(V) 
+		\surjto \wt C_\bullet(U + V) \to 0 \]
+	where $\wt C_\bullet$ is the chain complex defined in \Cref{def:augment}.
+\end{example}
+
+\begin{example}
+	[Relative Chain Short Exact Sequence]
+	\label{ex:rel_short_exact}
+	Since $C_n(X,A) \defeq C_n(X) / C_n(A)$, we have a short exact sequence
+	\[ 0 \to C_\bullet(A) \injto C_\bullet(X) \surjto C_\bullet(X,A) \to 0 \]
+	for every space $X$ and subspace $A$.
+	%The maps for each $n$ are the obvious ones:
+	%$C_n(A) \injto C_n(X)$ inclusion and $C_n(X) \surjto C_n(X,A)$ projection.
+	This can be augmented: we get
+	\[ 0 \to \wt C_\bullet(A) \injto \wt C_\bullet(X)
+		\surjto C_\bullet(X,A) \to 0 \]
+	by adding the final row
+	\begin{diagram}
+		0 & \rTo & C_0(A) & \rInj & C_0(X) & \rSurj & C_0(X,A) & \rTo & 0\\
+		&& \dSurj^{\eps} && \dSurj^{\eps} && \dTo && \\
+		0 & \rTo & \ZZ & \rTo_\id & \ZZ & \rTo & 0 & \rTo & 0.
 	\end{diagram}
 \end{example}
 
@@ -152,9 +159,14 @@ The final word is that:
 \begin{moral}
 	Short exact sequences of chain complexes give long exact sequences of homology groups.
 \end{moral}
-In particular, if we take our examples \Cref{ex:rel_short_exact,ex:aug_rel_short_exact,%
-ex:mayer_short_exact},
-we can just plug them into the theorem. The first two give:
+In particular, if we take the four examples given earlier.
+The Mayer-Vietoris ones give, for $X = U \cup V$ an open cover,
+\[ \dots \to H_n(U \cap V) \to H_n(U) \oplus H_n(V) \to H_n(U+V) \to H_{n-1}(U \cap V) \to \dots. \]
+and its reduced version
+\[ \dots \to \wt H_n(U \cap V) \to \wt H_n(U) \oplus \wt H_n(V)
+\to \wt H_n(U+V) \to \wt H_{n-1}(U \cap V) \to \dots. \]
+We will discuss how these can be used in just a moment.
+The latter two give us the so-called relative homology long exact sequence:
 \begin{theorem}[Long Exact Sequence for Relative Homology]
 	Let $X$ be a space, and $A \subset X$ a subspace.
 	There are long exact sequences
@@ -162,11 +174,6 @@ we can just plug them into the theorem. The first two give:
 	and
 	\[ \dots \to \wt H_n(A) \to \wt H_n(X) \to H_n(X,A) \to \wt H_{n-1}(A) \to \dots. \]
 \end{theorem}
-The Mayer-Vietoris ones give, for $X = U \cup V$ an open cover,
-\[ \dots \to H_n(U \cap V) \to H_n(U) \oplus H_n(V) \to H_n(U+V) \to H_{n-1}(U \cap V) \to \dots. \]
-and its reduced version
-\[ \dots \to \wt H_n(U \cap V) \to \wt H_n(U) \oplus \wt H_n(V)
-\to \wt H_n(U+V) \to \wt H_{n-1}(U \cap V) \to \dots. \]
 The exactness of these sequences will give \textbf{tons of information}
 about $H_n(X)$ if only we knew something about what $H_n(U+V)$
 or $H_n(X,A)$ looked like.  This will be the purpose of the next section.
@@ -178,8 +185,7 @@ For example:
 	\label{lem:rel_contractible}
 	Let $X$ be a topological space, and let $A$ be a contractible subspace of $X$
 	(for example, a single point).
-	Then \[ H_n(X, A) \cong \wt H_n(X) \]
-	for every $n$.
+	Then \[ H_n(X, A) \cong \wt H_n(X) \qquad \forall n. \]
 \end{lemma}
 \begin{proof}
 	Since $A$ is contractible, we have $\wt H_n(A) = 0$ for every $n$.
@@ -195,7 +201,7 @@ For example:
 \prototype{The computation of $H_n(S^m)$ by splitting $S^m$ into two hemispheres.}
 
 There are two major geometric results.
-One is the Excision Theorem, which we defer until later.
+One is the Excision Theorem, which we defer until next chapter.
 The other we present here, which will let us take advantage of the
 Mayer-Vietoris sequence.
 The proofs are somewhat involved and are thus omitted;
@@ -204,8 +210,10 @@ see \cite{ref:hatcher} for details.
 The first theorem is that the notation $H_n(U+V)$ that we have kept until now
 is redundant, and can be replaced with just $H_n(X)$:
 \begin{theorem}[Open Cover Homology Theorem]
-	The inclusion $\iota : C_\bullet(U+V) \injto C_\bullet(X)$ 
-	induces an isomorphism
+	Consider the inclusion $\iota : C_\bullet(U+V) \injto C_\bullet(X)$.
+	Then there exists a $\rho : C_\bullet(X) \to C_\bullet(U+V)$ such that
+	$\rho\iota$ and $\iota\rho$ are chain homotopic to the identities.
+	Thus $\iota$ induces an isomorphism
 	\[ H_n(U+V) \cong H_n(X). \]
 \end{theorem}
 \begin{remark}
@@ -270,6 +278,12 @@ The theorem is that
 	\]
 	From this we derive that $\wt H_n(S^1)$ is $\ZZ$ for $n=1$ and $0$ elsewhere.
 \end{proof}
+
+Thus, the key idea in Mayer-Vietoris is that
+\begin{moral}
+	Mayer-Vietoris lets us compute $H_n(X)$
+	by splitting $X$ into two open sets.
+\end{moral}
 
 Here are some more examples.
 \begin{proposition}[The Homology Groups of the Figure Eight]
@@ -336,7 +350,7 @@ actually understand the maps in question to complete the solution.
 	though three-dimensionally the picture makes sense as well.
 	Consider $U$ (shaded light orange) and $V$ (shaded green) as shown.
 	(Note that $V$ is connected due to the identification of the left and right (blue) edges,
-	even if it doesn't look like it in the picture).
+	even if it doesn't look connected in the picture).
 	\begin{center}
 		\begin{asy}
 			pair A = (0,0);
@@ -472,19 +486,26 @@ Finally, to fully justify the last step, we present the following lemma.
 	\end{enumerate}
 	In these cases we say the short exact sequence \vocab{splits}.
 \end{lemma}
-In particular, for $C = \ZZ$, or any free abelian group,
+The point of the splitting lemma is part (c):
+\begin{moral}
+	An exact sequence which splits let us obtain $B$ given $A$ and $C$.
+\end{moral}
+In particular, for $C = \ZZ$ or any free abelian group,
 condition (b) is necessarily true.
 So, once we obtained the short exact sequence $0 \to \ZZ \to \wt H_1(X) \to \ZZ \to 0$,
-we were home free.
-
+we were done.
 \begin{remark}
+	Unfortunately, not all exact sequences split:
 	An example of a short exact sequence which doesn't split is
 	\[ 0 \to \Zc 2 \xhookrightarrow{\times 2} \Zc 4 \surjto \Zc 2 \to 0 \]
 	since it is not true that $\Zc 4 \cong \Zc2 \oplus \Zc 2$.
 \end{remark}
+\begin{remark}
+	The splitting lemma is true in any abelian category.
+	The ``direct sum'' is the colimit of the two objects $A$ and $C$.
+\end{remark}
 
 \section\problemhead
-
 \begin{problem}
 	Complete the proof of \Cref{thm:reduced_homology_sphere},
 	i.e.\ compute $H_n(S^m)$ for all $m$ and $n$.
