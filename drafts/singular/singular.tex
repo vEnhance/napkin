@@ -12,13 +12,502 @@
 \section{Product Topology}
 \section{Quotient Topology}
 \section{Wedge Product}
+Figure 8
 \section{CW Complexes}
 
 \chapter{More on Computing Homology Groups}
-\chapter{The Cohomology Ring}
+
+relative homology groups, and excision
+
+wedge products
+
+degree and hairy ball theorem
+
+cellular
+
+
+\section\problemhead
+\begin{sproblem}[Motivating Example for Cohomology]
+	Let $X = \CP^2$ and $Y = S^2 \wedge S^4$.
+	Prove that $H_n(X) \cong H_n(Y)$ for every $n$.
+	(But it turns out that $X$ and $Y$ are not homotopy equivalent.)
+\end{sproblem}
+
+\chapter{Singular Cohomology}
+Here's the main way to motivate this chapter.
+Let $X = \CP^2$ and $Y = S^2 \wedge S^4$;
+one can quickly compute that $H_n(X) \cong H_n(Y)$ for every $n$.
+However, as it turns out $X$ and $Y$ are not homotopy equivalent --- so how can we tell them apart?
+
+In this chapter, we'll define a \emph{cohomology group} $H^n(X)$ and $H^n(Y)$.
+We will still have $H^n(X) \cong H^n(Y)$ for every $X$ and $Y$:
+in fact, the $H^n$'s are completely determined by the $H_n$'s
+by the so-called \emph{Universal Coefficient Theorem}
+However, it turns out that one can take all the cohomology groups and put
+them together to form a \emph{cohomology ring} $H^\bullet$.
+We will then see that $H^\bullet(X) \not\cong H^\bullet(Y)$ as rings.
+
 \section{Cochain Complexes}
-A \vocab{cochain complex} $C^\bullet$ is algebraically the same as a chain complex:
+\begin{definition}
+A \vocab{cochain complex} $A^\bullet$ is algebraically the same as a chain complex:
 it is a sequence of abelian groups
-\[ \dots \taking\delta A^{n-1} \taking\delta A^n \taking\delta A^{n+1} \taking\delta \dots. \]
+\[ \dots \taking{\delta} A^{n-1} \taking\delta A^n \taking\delta A^{n+1} \taking\delta \dots. \]
+such that $\delta^2 = 0$.
+Notation-wise, we're now using subscripts, and use $\delta$ rather $\partial$.
+We can still define the homology groups by
+\[ H_n(A^\bullet) = \ker\left( A^n \taking\delta A^{n+1} \right)
+	/ \img\left( A^{n-1} \taking\delta A^n \right). \]
+\end{definition}
+
+\textbf{The most common way to get a cochain complex
+is to \emph{dualize} a chain complex.}
+Specifically, pick an abelian group $G$;
+note that $\Hom(-, G)$ is a contravariant functor,
+and thus takes every chain complex
+\[ \dots \taking\partial A_{n+1} \taking\partial
+	A_n \taking\partial A_{n-1} \taking\partial \dots \]
+into a cochain complex: letting $A^n = \Hom(A_n, G)$ we obtain
+\[ \dots \taking\delta A^{n-1} \taking\delta
+	A^n \taking\delta A^{n+1} \taking\delta \dots. \]
+where $\delta(A_n \taking{f} G) = A_{n+1} \taking\partial A \taking{f} G$.
+\begin{definition}
+	Given a chain complex $A_\bullet$ of abelian groups and a group $G$,
+	we define the \vocab{cohomology groups} $H^n(A_\bullet; G)$ to be the
+	homology groups of the dual $A^\bullet$ obtained by applying $\Hom(-,G)$.
+\end{definition}
+This is admittedly horrible naming:
+the \emph{cohomology groups of a chain complex}
+are the \emph{homology groups of the cochain complex}
+dual to that chain complex.
+
+\section{Cohomology of Spaces}
+\prototype{$C^0(X;G)$ all functions $X \to G$ while $H^0(X)$ are those functions $X \to G$
+constant on path components.}
+
+The case of interest is our usual geometric situation, with $C_\bullet(X)$.
+\begin{definition}
+	For a space $X$ and abelian group $G$,
+	we define $C^\bullet(X;G)$ to be the dual complex to $C_\bullet(X)$,
+	called the \vocab{singular cochain complex} of $X$;
+	its elements are called \vocab{cochains}.
+
+	Then we define the \vocab{cohomology groups}
+	of the space $X$ as 
+	\[ H^n(X; G) \defeq H^n(C_\bullet(X); G) = H_n(C^\bullet(X;G)). \]
+\end{definition}
+
+\begin{example}
+	[$C^0(X; G)$, $C^1(X; G)$, and $H^0(X;G)$]
+	Of course the archetypal example is to dualize the singular chain complex
+	of a space $X$. In this situation, elements of $C^n$ are called \emph{cochains}.
+	\begin{itemize}
+		\ii $C_0(X)$ is the free abelian group on $X$,
+		so $C^0(X) = \Hom(C_0(X), G)$ is a function that
+		takes every point of $X$ to an element of $G$.
+		\ii $C_1(X)$ is the free abelian group on $1$-simplices in $X$.
+		So $C^1(X)$ needs to take every $1$-simplex to an element of $G$.
+	\end{itemize}
+	Let's now try to understand $\delta : C^1(X) \to C^0(X)$.
+
+	Now given a cochain $\phi \in C^0(X)$, i.e.\ a homomorphism $\phi : C^0(X) \to G$,
+	what is $\delta\phi : C^1(X) \to G$?
+	Answer: 
+	\[ \delta\phi : [v_0, v_1] \mapsto \phi([v_0]) - \phi([v_1]). \]
+	Hence, elements of $\ker(C^0 \taking\partial C^1)$ are those cochains
+	that are \emph{constant on path-connected components}.
+\end{example}
+In particular, much like $H_0(X)$, we have \[ H^0(X) \cong G^{\oplus r} \]
+if $X$ has $r$ path-connected components (where $r$ is finite\footnote{%
+	Something funny happens if $X$ has \emph{infinitely} many path-connected components:
+	say $X = \bigsqcup_\alpha X_\alpha$ over an infinite indexing set.
+	In this case we have
+	$H_0(X) = \bigoplus_\alpha G$ while $H^0(X) = \prod_\alpha G$.
+	For homology we get a \emph{direct sum} while
+	for cohomology we get a \emph{direct product}.
+
+	These are actually different for infinite indexing sets.
+	For general modules $\bigoplus_\alpha M_\alpha$ is \emph{defined} to only allow
+	to have \emph{finitely many} zero terms.
+	(This was never mentioned earlier in the Napkin,
+	since I only ever defined $M \oplus N$ and extended it to finite direct sums.)
+	No such restriction holds for $\prod_\alpha G_\alpha$ a product of groups.
+	This corresponds to the fact that $C_0(X)$ is formal linear sums of $0$-chains
+	(which, like all formal sums, are finite)
+	from the path-connected components of $G$.
+	But a cochain of $C^0(X)$ is a \emph{function}
+	from each path-connected component of $X$ to $G$,
+	where there is no restriction.
+}).
+
+To the best of my knowledge, the higher cohomology groups $H^n(X; G)$
+(or even the cochain groups $C^n(X; G) = \Hom(C_n(X), G)$) are harder to describe concretely.
+
+\begin{abuse}
+	In this chapter the only cochain complexes
+	we will consider are dual complexes as above.
+	So, any time we write a chain complex $A^\bullet$ it is implicitly given
+	by applying $\Hom(-,G)$ to $A_\bullet$.
+\end{abuse}
+
+\section{Cohomology of Spaces is Functorial}
+We now check that the cohomology groups still exhibit the same nice functorial behavior.
+First, let's categorize the previous results we had:
+
+\begin{ques}
+	Define $\catname{CoCmplx}$
+	the category of cochain complexes.
+\end{ques}
+
+\begin{exercise}
+	Interpret $\Hom(-,G)$ as a contravariant functor
+	from \[ \Hom(-,G) : \catname{Cmplx}\op \to \catname{CoCmplx}. \]
+	This means in particular that given a chain map $f : A_\bullet \to B_\bullet$,
+	we naturally obtain a dual map $f^\vee : B^\bullet \to A^\bullet$.
+\end{exercise}
+
+\begin{ques}
+	Interpret $H^n : \catname{CoCmplx} \to \catname{Grp}$ as a functor.
+	Compose these to get a contravariant functor
+	$H^n(-;G) : \catname{Cmplx}\op \to \catname{Grp}$.
+\end{ques}
+
+Then in exact analog to our result that $H_n : \catname{hTop} \to \catname{Grp}$ we have:
+\begin{theorem}[$H^n (-;G): \catname{hTop}\op \to \catname{Grp}$]
+	For every $n$, $H^n(-;G)$ is a contravariant functor
+	from $\catname{hTop}\op$ to $\catname{Grp}$.
+\end{theorem}
+\begin{proof}
+	The idea is to leverage the work we already did in constructing
+	the prism operator earlier.
+	First, we construct the entire sequence of functors
+	from $\catname{Top}\op \to \catname{Grp}$:
+	\begin{diagram}
+		\catname{Top}\op & \rTo^{C_\bullet} & \catname{Cmplx}\op & \rTo^{\Hom(-;G)}
+		& \catname{CoCmplx} & \rTo^{H^n} & \catname{Grp} \\
+		X && C_\bullet(X) && C^\bullet(X;G) && H^n(X;G) \\
+		\dTo^f &\rMapsto& \dTo^{f_\sharp} &\rMapsto&
+		\uTo^{f^\sharp} &\rMapsto& \uTo^{f^\ast} \\
+		Y && C_\bullet(Y) && C^\bullet(Y;G) && H^n(Y;G).
+	\end{diagram}
+	Here $f^\sharp = (f_\sharp)^\vee$, and $f^\ast$
+	is the resulting induced map on homology groups of the cochain complex.
+
+	So as before all we have to show is that $f \simeq g$,
+	then $f^\ast = g^\ast$.
+	Recall now that there is a prism operator such that
+	$f_\sharp - g_\sharp = P \partial + \partial P$.
+	If we apply the entire functor $\Hom(-;G)$ we get that
+	$f^\sharp - g^\sharp = \delta P^\vee + P^\vee \delta$
+	where $P^\vee : C^{n+1}(Y;G) \to C^n(X;G)$.
+	So $f^\sharp$ and $g^\sharp$ are chain homotopic thus $f^\ast = g^\ast$.
+\end{proof}
+
+
+\section{Universal Coefficient Theorem}
+We now wish to show that the cohomology groups are determined up to isomorphism
+by the homology groups: given $H_n(A_\bullet)$, we can extract $H^n(A_\bullet; G)$.
+This is achieved by the \emph{Universal Coefficient Theorem}.
+\begin{theorem}
+	[Universal Coefficient Theorem]
+	Let $A_\bullet$ be a chain complex of \emph{free} abelian groups,
+	and let $G$ be another abelian group.
+	Then there is a natural short exact sequence
+	\[
+		0 \to \Ext(H_{n-1}(A_\bullet), G) \to H^n(A_\bullet; G)
+		\taking{h} \Hom(H_n(A_\bullet), G) \to 0. \]
+	In addition, this exact sequence is \emph{split}
+	so in particular
+	\[ H^n(C_\bullet; G) \cong \Ext(H_{n-1}(A_\bullet, G)
+		\oplus \Hom(H_n(A_\bullet), G). \]
+\end{theorem}
+Fortunately, in our case of interest, $A_\bullet$ is $C_\bullet(X)$
+which is by definition free.
+
+There are two things we need to explain, what the map $h$ is and the map $\Ext$ is.
+
+It's not too hard to guess how \[ h : H^n(A_\bullet; G) \to \Hom(H_n(A_\bullet), G) \] is defined.
+An element of $H^n(A_\bullet;G)$ is represented by a function which sends a cycle
+in $A_n$ to an element of $G$.
+The content of the theorem is to show that $h$ is surjective with kernel $\Ext(H_{n-1}(A_\bullet), G)$.
+
+What about $\Ext$?
+It turns out that $\Ext(-,G)$ is the so-called \vocab{Ext functor}, defined as follows.
+Let $H$ be an abelian group, and consider a \vocab{free resolution} of $H$,
+by which we mean an exact sequence
+\[ \dots \taking{f_2} F_1 \taking{f_1} F_0 \taking{f_0} H \to 0. \]
+Then we can apply $\Hom(-,G)$ to get a cochain complex
+\[ \dots \xleftarrow{f_2^\vee} \Hom(F_1, G) \xleftarrow{f_1}
+	\Hom(F_0, G) \xleftarrow{f_0} \Hom(H,G) \to 0. \]
+but \emph{this cochain complex need not be exact}
+(in categorical terms, $\Hom(-,G)$ does not preserve exactness).
+We define \[ \Ext(H,G) \defeq \ker(f_2^\vee) / \img(f_1^\vee) \]
+and it's a theorem that this doesn't depend on the choice of the free resolution.
+There's a lot of homological algebra that goes into this,
+which I won't take the time to discuss;
+but the upshot of the little bit that I did include is that the $\Ext$
+functor is very easy to compute in practice, since
+you can pick any free resolution you want and compute the above.
+
+%By ``natural'', we mean that if $f : A_\bullet \to B_\bullet$ is a chain map,
+%then we obtain a commutative diagram
+%\begin{diagram}
+%	0 & \rTo & \Ext(H_{n-1}(A_\bullet), G) & \rTo
+%		& H^n(A_\bullet;G) & \rTo & \Hom(H_n(A_\bullet), G) & \rTo & 0 \\
+%	& & \uTo^{ \Ext(f_\ast, G) } & & \uTo^{f^\ast} & & \uTo^{\Hom(f_\ast, G)} & & \\
+%	0 & \rTo & \Ext(H_{n-1}(B_\bullet), G) & \rTo
+%		& H^n(A_\bullet;G) & \rTo & \Hom(H_n(B_\bullet), G) & \rTo & 0 \\
+%\end{diagram}
+%where $f_\ast$ is the induced arrow $H_n(A_\bullet) \to H_n(B_\bullet)$.
+
+\begin{lemma}
+	[Computing the $\Ext$ Functor]
+	For any abelian groups $G$, $H$, $H'$ we have
+	\begin{enumerate}[(a)]
+		\ii $\Ext(H \oplus H, G) = \Ext(H, G) \oplus \Ext(H', G)$.
+		\ii $\Ext(H,G) = 0$ for $H$ free, and
+		\ii $\Ext(\Zc n, G) = G / nG$.
+	\end{enumerate}
+\end{lemma}
+\begin{proof}
+	For (a), note that if $\dots \to F_1 \to F_0 \to H \to 0$
+	and $\dots \to F_1' \to F_0' \to F_0' \to H' \to 0$ are free resolutions,
+	then so is $F_1 \oplus F_1' \to F_0 \oplus F_0' \to H \oplus H' \to 0$.
+
+	For (b), note that $0 \to H \to H \to 0$ is a free resolution.
+	
+	Part (c) follows by taking the free resolution
+	\[ 0 \to \ZZ \taking{\times n} \ZZ \to \Zc n \to 0 \]
+	and applying $\Hom(-,G)$ to it.
+	\begin{ques}
+		Finish the proof of (c) from here. \qedhere
+	\end{ques}
+\end{proof}
+
+\begin{ques}
+	Some $\Ext$ practice: compute
+	$\Ext(\ZZ^{\oplus 2015}, G)$ and $\Ext(\Zc{30}, \Zc 4)$.
+\end{ques}
+
+\section{Example Computation of Cohomology Groups}
+\prototype{Possibly $H^n(S^m)$.}
+Before we start doing some computations, we take the time
+to define reduced cohomology groups as well.
+For $X$ nonempty we define the \vocab{reduced cohomology groups} by $\wt H^n(X;G)$
+by $H^n(\wt C_\bullet(X); G)$.
+To be concrete, the augmented singular chain complex is
+\[ \dots \taking\partial C_1(X) \taking\partial C_0(X) \taking\eps \ZZ \to 0 \]
+dualizes to
+\[
+	\dots \xleftarrow\delta C^1(X;G) \xleftarrow\delta C^0(X;G)
+	\xleftarrow{\eps^\vee} \underbrace{\Hom(\ZZ, G)}_{\cong G}
+	\leftarrow 0.
+\]
+Since the $\ZZ$ we add is also free,
+the Universal Coefficient Theorem still applies.
+
+\begin{ques}
+	For each $n \ge 1$, $\wt H^n(X;G) \cong H^n(X;G)$.
+\end{ques}
+
+As for $\wt H^0(X;G)$ we use the Universal Coefficient Theorem;
+since the homology at $\ZZ$ is trivial, the $\Ext$ term vanishes and
+$\wt H^0(X;G) \cong \Hom(\wt H_0(X), G)$.
+Geometrically, $\wt H^0(X;G)$ consists of functions $X \to G$
+which are constant on path-connected components,
+modulo the functions which are constant on all of $X$.
+
+\begin{example}
+	[Cohomolgy Groups of $S^m$]
+	It is straightforward to compute $H^n(S^m)$ now:
+	all the $\Ext$ terms vanish since $H_n(S^m)$ is always free,
+	and hence we obtain that 
+	\[ H^n(S^m) \cong \Hom(H_n(S^m), G) \cong
+		\begin{cases}
+			G & n=m, n=0 \\
+			0 & \text{otherwise}.
+		\end{cases}
+	\]
+	By UCT for reduced groups, we also have
+	\[ \wt H^n(S^m) \cong \Hom(\wt H_n(S^m), G) \cong
+		\begin{cases}
+			G & n=m \\
+			0 & \text{otherwise}.
+		\end{cases}
+	\]
+	since $\Hom(\ZZ, G)$.
+\end{example}
+
+\begin{example}
+	[Cohomolgy Groups of Torus]
+	This example has no nonzero $\Ext$ terms either,
+	since this time $H^n(S^1 \times S^1)$ is always free.
+	So we obtain
+	\[ H^n(S^1 \times S^1) \cong \Hom(H_n(S^1 \times S^1), G)
+		\cong
+		\begin{cases}
+			G & n = 0,2 \\
+			G^{\oplus 2} & n = 1.
+		\end{cases}
+	\]
+\end{example}
+
+\begin{example}
+	[Cohomolgy Groups of Klein Bottle]
+	This example will actually have $\Ext$ term.
+	Recall that if $K$ is a Klein Bottle then its homology groups are
+	$\ZZ$ in dimension $n=0$ and $\ZZ \oplus \Zc 2$ in $n=1$, and $0$ elsewhere.
+
+	For $n=0$, we again just have $H^0(K;G) \cong \Hom(\ZZ, G) \cong G$.
+	For $n=1$, the $\Ext$ term is $\Ext(H_0(K), G) \cong \Ext(\ZZ, G) = 0$
+	so \[ H^1(K;G) \cong \Hom(\ZZ \oplus \Zc2, G) \cong G \oplus \Hom(\Zc2, G). \]
+	We have that $\Hom(\Zc2,G)$ is the subgroup
+	of elements of order $2$ in $G$ (and $0 \in G$).
+
+	But for $n=2$, we have our first interesting $\Ext$ group:
+	the exact sequence is
+	\[ 0 \to \Ext(\ZZ \oplus \Zc 2, G) \to H^2(X;G) \to \underbrace{H_2(X)}_{=0} \to 0. \]
+	Thus, we have
+	\[ H^2(X;G) \cong \left( \Ext(\ZZ,G) \oplus \Ext(\Zc2,G) \right) \oplus 0
+		\cong G/2G. \]
+	All the higher groups vanish.
+	In summary:
+	\[
+		H^n(X;G) \cong
+		\begin{cases}
+			G & n = 0 \\
+			G \oplus \Hom(\Zc2, G) & n = 1 \\
+			G/2G & n = 2 \\
+			0 & n \ge 3. 
+		\end{cases}
+	\]
+\end{example}
+
+From the previous example we can extract the following observation.
+\begin{lemma}
+	[$0$th and $1$st Homology Groups are just Duals]
+	For $n = 0$ and $n = 1$, we have
+	\begin{align*}
+		H^n(X;G) &\cong \Hom(H_n(X), G) \\
+		\wt H^n(X;G) &\cong \Hom(\wt H_n(X), G).
+	\end{align*}
+\end{lemma}
+\begin{proof}
+	It's already been shown for $n=0$.
+	For $n=1$, notice that $H_0(X)$ and $\wt H_0(X)$ are free,
+	so the $\Ext$ term vanishes.
+\end{proof}
+
+\section\problemhead
+\begin{sproblem}
+	[Wedge Product Cohomology]
+	For any $G$ and $n$ we have
+	\[
+		\wt H^n(X \vee Y; G)
+		\cong
+		\wt H^n(X; G) \oplus \wt H^n(Y; G).
+	\]	
+\end{sproblem}
+\begin{sproblem}[$\Zc2$-Cohomology of $\RP^n$]
+	Show that
+	\[
+		H^m(\RP^n, \Zc2)
+		\cong
+		\begin{cases}
+			\ZZ & \text{$m=0$, or $m$ is odd and $m=n$} \\
+			\Zc2 & \text{$0 < m < n$ and $m$ is odd }
+			0 & \text{otherwise}.
+		\end{cases}
+	\]
+\end{sproblem}
+
+\chapter{The Cup Product}
+I won't do much more in this chapter other than
+introduce the cup product and say a few examples.
+For an actual treatise, see \cite{ref:hatcher} or \cite{ref:maxim752}.
+
+\section{Graded Rings}
+\prototype{Polynomial rings are graded rings.}
+In this chapter, the ring $R$ is commutative with identity;
+but the remaining rings need not be commutative.
+However, the word ``ring'' refers to a ring with identity,
+or else we will use \vocab{pseudo-ring} to denote a ring that need not possess $1$.
+
+\todo{define graded ring}
+
+\todo{graded commutative}
+
+\section{Cup Products}
+Suppose now we replace our abelian group $G$ by a commutative ring $R$ with identity.
+Then this gives us a way to multiply two cochains, as follows.
+Suppose $\phi \in C^k(X;R)$ and $\psi \in C^\ell(X;R)$.
+Then we can define their \vocab{cup product}
+$\phi\smile\psi \in C^{k+\ell}(X;R)$ to be
+\[
+	(\phi\smile\psi)([v_0, \dots, v_{k+\ell}])
+	= 
+	\phi\left( [v_0, \dots, v_k] \right)
+	\cdot
+	\psi\left( [v_k, \dots, v_{k+\ell}] \right)
+\]
+where the multiplication is in $R$.
+
+\begin{ques}
+	Which $0$-cochain is the identity for $\smile$?
+\end{ques}
+
+This behaves well with respect to $\delta$:
+\begin{lemma}[$\delta$ with Cup Products]
+	We have
+	$\delta(\phi\smile\psi) = \delta\phi\smile\psi + (-1)^k\phi\smile\delta\psi$.
+\end{lemma}
+\begin{proof}
+	Direct $\sum$ computations.
+\end{proof}
+From this, it is not hard to see that we get an induced map
+\[ H^k(X;R) \times H^\ell(X;R) \taking\smile H^{k+\ell}(X;R).  \]
+We then define the \vocab{cohomology ring} $H^\bullet(X;R)$
+whose elements are finite sums in 
+\[ \bigoplus_{k \ge 0} H^k(X;R) \]
+and with multiplication given by $\smile$.
+
+Observe that $H^\bullet(X;R)$ is a \emph{graded ring}.
+We say that an element $\alpha \in H^k(X;R)$ has dimension $k$,
+and write $|\alpha|=k$.
+It turns out (though we won't prove it; see \cite{ref:hatcher})
+that the cup product is in fact graded commutative.
+
+\begin{example}[Cohomology Ring of $S^n$]
+	Consider $S^n$ for $n \ge 1$.
+	The nontrivial cohomology groups are given by
+	$H^0(S^n; \ZZ) \cong H^n(S^n, \ZZ) \cong \ZZ$.
+	So as an abelian group
+	\[ H^\bullet(S^n, \ZZ) \cong \ZZ \oplus \alpha \ZZ \]
+	where $\alpha$ is the generator of $H^n(S^n, \ZZ)$.
+	
+	Now, observe that $|\alpha\smile\alpha| = 2n$, but
+	since $H^{2n}(S^n, \ZZ) = 0$ we must have $\alpha\smile\alpha=0$.
+	So even more succinctly,
+	\[ H^\bullet(S^n, \ZZ) \cong \ZZ[\alpha]/(\alpha^2). \]
+\end{example}
+
+\begin{example}[Real and Complex Projective Space]
+	Though we won't prove it, it turns out that
+	\begin{align*}
+		H^\bullet(\RP^n, \Zc2) \cong \Zc2[\alpha]/(\alpha^{n+1}) \\
+		H^\bullet(\CP^n, \ZZ) \cong \ZZ[\beta]/(\beta^{n+1})
+	\end{align*}
+	where $|\alpha|=1$ is a generator of $H^1(\RP^n; \Zc2)$
+	and $|\beta|=2$ is a generator of $H^2(\CP^n; \ZZ)$.
+\end{example}
+
+\section{Cup Product Structure}
+In general, it's not so easy to figure out what the cup product looks like
+for an arbitrary space.
+
+
+\section{Kunneth Formula}
+\section{The Borsuk-Ulam Theorem}
+
+\section\problemhead
 
 \end{document}

@@ -350,9 +350,9 @@ The strategy is as follows: we'll define everything that we need completely abst
 then show that the geometry concepts we want correspond to this setting.
 
 \begin{definition}
-	Let $\AA = \catname{AbGrp}$.
-	A \vocab{chain complex} in $\AA$ is a sequence of groups $A_n$ and maps
-	\[ \dots \taking{\partial_A} A_n \taking{\partial_A} A_{n-1} \taking{\partial_A} \dots \]
+	A \vocab{chain complex} is a sequence of groups $A_n$ and maps
+	\[ \dots \taking{\partial} A_{n+1} \taking{\partial}
+		A_n \taking{\partial} A_{n-1} \taking{\partial} \dots \]
 	such that the composition of any two adjacent maps is the zero morphism.
 	We we usually denote this by $A_\bullet$.
 
@@ -373,7 +373,8 @@ rid of all its original geometric context.
 		\dots & \rTo^{\partial_B} & B_{n+1} & \rTo^{\partial_B} &
 		B_n & \rTo^{\partial_B} & B_{n-1} & \rTo^{\partial_B} & \dots \\
 	\end{diagram}
-	(Under this definition, the set of chain complexes in $\AA$ is itself an abelian category.)
+	Under this definition, the set of chain complexes becomes a category,
+	which we denote $\catname{Cmplx}$.
 \end{definition}
 
 Note that given a morphism of chain complexes $f : A_\bullet \to B_\bullet$,
@@ -388,7 +389,9 @@ Similarly, every boundary in $A_n$ gets sent to a boundary in $B_n$. Thus,
 	Every map of $f : A_\bullet \to B_\bullet$ gives a
 	map $f_\ast : H_n(A) \to H_n(B)$ for every $n$.
 \end{moral}
-In fact, each $H_n$ is a functor from chain complexes of $\AA$ to $\AA$ itself.
+\begin{exercise}
+	Interpret $H_n$ as a functor $\catname{Cmplx} \to \catname{Grp}$.
+\end{exercise}
 
 Next, we want to define what it means for two maps $f$ and $g$ to be homotopic.
 Here's the answer:
@@ -567,7 +570,12 @@ which we'll use in the next chapter to finally compute topological homology grou
 	\[ \dots \to C_1(X) \to C_0(X) \taking{\eps} \ZZ \to 0 \]
 	Here $\eps$ is defined by $\eps(\sum n_ip_i) = \sum n_i$ for points $p_i \in X$.
 	(Recall that a $0$-chain is just a formal sum of points!)
+	We denote this \vocab{augmented singular chain complex} by $\wt C_\bullet(X)$.
 \end{example}
+\begin{ques}
+	What's the homology of the above chain at $\ZZ$?
+	(Hint: you need $X$ nonempty.)
+\end{ques}
 \begin{definition}
 	\label{def:augment}
 	The homology groups of the augmented chain complex are called the
