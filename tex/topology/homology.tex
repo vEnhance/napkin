@@ -635,3 +635,27 @@ So once again, we can define homology groups for this complex; we denote them by
 Miraculously, it will turn out that $H_n(U+V) \cong H_n(X)$.
 
 \section\problemhead
+
+\begin{problem}
+	For $n \ge 1$ show that the composition
+	\[ S^{n-1} \injto D^{n} \taking{F} S^{n-1} \]
+	cannot be the identity map on $S^{n-1}$ for any $F$.
+	\begin{hint}
+		Take the $n-1$st homology groups.
+	\end{hint}
+	\begin{soln}
+		Applying the functor $H_{n-1}$ we get
+		that the composition $\ZZ \to 0 \to \ZZ$ is the identity
+		which is clearly not possible.
+	\end{soln}
+\end{problem}
+\begin{problem}
+	[Brouwer Fixed Point Theorem]
+	Use the previous problem to prove that any
+	continuous function $f : D^n \to D^n$ has a fixed point.
+	\begin{hint}
+		Build $F$ as follows:
+		draw the ray from $x$ through $f(x)$
+		and intersect it with the boundary $S^{n-1}$.
+	\end{hint}
+\end{problem}

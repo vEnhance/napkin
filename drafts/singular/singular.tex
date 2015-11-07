@@ -15,18 +15,71 @@
 Figure 8
 \section{CW Complexes}
 
+Torus, Klein, RP
+
+
 \chapter{More on Computing Homology Groups}
 
+\section{Excision}
 relative homology groups, and excision
 
 wedge products
 
-degree and hairy ball theorem
 
+\section{Degree}
+\prototype{$z \mapsto z^d$ has degree $d$.}
+For any $n > 0$ map $f$ from $S^n$ to itself
+\[ f_\ast : \underbrace{H^n(S^n)}_{\cong \ZZ} \to \underbrace{H^n(S^n)}_{\cong \ZZ} \]
+which must be multiplication by some constant $d$.
+This $d$ is called the \vocab{degree} of $f$, denoted $\deg f$.
+\begin{ques}
+	Show that $\deg(f \circ g) = \deg(f) \deg(g)$.
+\end{ques}
+
+\begin{example}
+	[Degree]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii For $n=1$, the map $z \mapsto z^k$ (viewing $S^1 \subseteq \CC$)
+		has degree $k$.
+		\ii A reflection map $(x_0, x_1, \dots, x_n) \mapsto (-x_0, x_1, \dots, x_n)$
+		has degree $-1$; we won't prove this, but geometrically this should be clear.
+		\ii The antipodal map $x \mapsto -x$ has degree $(-1)^{n+1}$
+		since it's the composition of $n+1$ reflections as above.
+		We denote this map by $-\id$.
+	\end{enumerate}
+\end{example}
+
+Obviously, if $f$ and $g$ are homotopic, then $\deg f = \deg g$.
+In fact, a theorem of Hopf says that this is a classifying invariant:
+anytime $\deg f = \deg g$, we have that $f$ and $g$ are homotopic.
+
+One nice application of this:
+\begin{theorem}
+	[Hairy Ball Theorem]
+	Whenever $n$ is even, $S^n$ doesn't have a continuous field
+	of nonzero tangent vectors.
+\end{theorem}
+\begin{proof}
+	If the vectors are nonzero then WLOG they have norm $1$;
+	that is for every $x$ we have an orthogonal unit vector $v(x)$.
+	Then we can construct a homotopy map $F : S^n \times [0,1] \to S^n$ by
+	\[ (x,t) \mapsto (\cos \pi t)x + (\sin \pi t) v(x). \]
+	which gives a homotopy from $\id$ to $-\id$.
+	So $\deg \id = \deg(-\id)$, which means $1 = (-1)^{n+1}$.
+\end{proof}
+
+\section{Cellular Cohomology}
 cellular
 
 
 \section\problemhead
+\begin{problem}
+	Show that a non-surjective map $f : S^n \to S^n$ has degree zero.
+	\begin{hint}
+		The space $S^n - \{x_0\}$ is contractible.
+	\end{hint}
+\end{problem}
 \begin{sproblem}[Motivating Example for Cohomology]
 	Let $X = \CP^2$ and $Y = S^2 \wedge S^4$.
 	Prove that $H_n(X) \cong H_n(Y)$ for every $n$.
@@ -414,7 +467,7 @@ From the previous example we can extract the following observation.
 		\cong
 		\begin{cases}
 			\ZZ & \text{$m=0$, or $m$ is odd and $m=n$} \\
-			\Zc2 & \text{$0 < m < n$ and $m$ is odd }
+			\Zc2 & \text{$0 < m < n$ and $m$ is odd} \\
 			0 & \text{otherwise}.
 		\end{cases}
 	\]
