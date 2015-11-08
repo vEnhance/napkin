@@ -35,8 +35,6 @@ It is said to be \vocab{short exact} if \emph{each row} of the diagram below is 
 \end{diagram}
 \end{definition}
 
-Here are examples of short exact sequences of chain complexes.
-
 \begin{example}
 	[Mayer-Vietoris Short Exact Sequence and its Augmentation]
 	\label{ex:mayer_short_exact}
@@ -125,6 +123,7 @@ taking each $H_{n+1}(C_\bullet)$ to $H_n(A_\bullet)$.
 \end{proof}
 
 \begin{remark}
+	\label{rem:leftdownleft}
 	The map $\partial : H_n(C_\bullet) \to H_{n-1}(A_\bullet)$ can be written explicitly as follows.
 	Recall that $H_n$ is ``cycles modulo boundaries'', and consider the sub-diagram
 	\begin{diagram}
@@ -235,7 +234,6 @@ after replacing all the $H_n(U+V)$'s with $H_n(X)$'s:
 \end{theorem}
 
 At long last, we can compute the homology groups of the spheres.
-The theorem is that
 \begin{theorem}[The Homology Groups of $S^m$]
 	\label{thm:reduced_homology_sphere}
 	For integers $m$ and $n$,
@@ -245,6 +243,9 @@ The theorem is that
 		0 & \text{otherwise}.
 	\end{cases}
 	\]
+	The generator $\wt H_n(S^n)$ is an $n$-cell which covers $S^n$
+	exactly once (for example, the generator for $\wt H_1(S^1)$
+	is a loop which wraps around $S^1$ once).
 \end{theorem}
 \begin{proof}
 	This one's fun, so I'll only spoil the case $m=1$, and leave the rest to you.
@@ -255,10 +256,10 @@ The theorem is that
 			draw(unitcircle);
 			label("$S^1$", dir(45), dir(45));
 			real R = 0.1;
-			draw(arc(origin,1-R,-100,100), blue+1);
-			label("$U$", (1-R)*dir(0), dir(180), blue);
-			draw(arc(origin,1+R,80,280), red+1);
-			label("$V$", (1+R)*dir(180), dir(180), red);
+			draw(arc(origin,1-R,-100,100), red+1);
+			label("$V$", (1-R)*dir(0), dir(180), red);
+			draw(arc(origin,1+R,80,280), blue+1);
+			label("$U$", (1+R)*dir(180), dir(180), blue);
 		\end{asy}
 	\end{center}
 	Each of $U$ and $V$ is contractible, so all their reduced homology groups vanish.
@@ -274,10 +275,51 @@ The theorem is that
 	\[ 
 		\dots \to
 		\underbrace{\wt H_n(U) \oplus \wt H_n(V)}_{= 0} \to
-		\wt H_n(S^1) \to \wt H_{n-1}(U \cap V) \to
+		\wt H_n(S^1) \taking{\partial} \wt H_{n-1}(U \cap V) \to
 		\underbrace{\wt H_{n-1}(U) \oplus \wt H_{n-1}(V)}_{=0} \to \dots.
 	\]
 	From this we derive that $\wt H_n(S^1)$ is $\ZZ$ for $n=1$ and $0$ elsewhere.
+
+	It remains to analyze the generators of $\wt H_1(S^1)$.
+	Note that the isomorphism was given by the connecting homomorphism $\partial$,
+	which is given by a ``left, down, left'' procedure (\Cref{rem:leftdownleft})
+	in the following diagram.
+	\begin{diagram}
+		&& C_1(U) \oplus C_1(V) & \rTo & C_1(U+V) \\
+		&& \dTo^{\partial \oplus \partial} && \\
+		C_0(U \cap V) & \rTo & C_0(U) \oplus C_0(V) &&
+	\end{diagram}
+	Mark the points $a$ and $b$ as shown in the two disjoint paths of $U \cap V$.
+	\begin{center}
+		\begin{asy}
+			size(3cm);
+			label("$S^1$", dir(45), dir(45));
+			real R = 0.1;
+			/*
+			draw(arc(origin,1-R,-100,100), red+1);
+			label("$V$", (1-R)*dir(0), dir(180), red);
+			draw(arc(origin,1+R,80,280), blue+1);
+			label("$U$", (1+R)*dir(180), dir(180), blue);
+			*/
+			dot("$a$", dir(90), dir(90));
+			dot("$b$", dir(-90), dir(-90));
+			draw(arc(origin,1,90,270), EndArrow, Margins);
+			draw(arc(origin,1,90,-90), EndArrow, Margins);
+			label("$c$", dir(180), dir(180));
+			label("$d$", dir(0), dir(0));
+		\end{asy}
+	\end{center}
+	Then $a-b$ is a cycle which represents a generator of $H_0(U \cap V)$.
+	We can find the pre-image of $\partial$ as follows:
+	letting $c$ and $d$ be the chains joining $a$ and $b$, with $c$ contained
+	in $U$, and $d$ contained in $V$, the diagram completes as
+	\begin{diagram}
+		&& (c,d) & \rMapsto & c-d \\
+		&& \dMapsto && \\
+		a-b & \rMapsto & (a-b, a-b) &&
+	\end{diagram}
+	In other words $\partial(c-d) = a-b$, so $c-d$ is a generator for $S^1$,
+	which in $\wt H_1(S^1)$ is equivalent to a loop winding around $S^1$ once.
 \end{proof}
 
 Thus, the key idea in Mayer-Vietoris is that
@@ -297,6 +339,7 @@ Here are some more examples.
 			0 & \text{otherwise}.
 		\end{cases}
 	\]
+	The generators for $\wt H_1(X)$ are the two loops of the figure eight.
 \end{proposition}
 \begin{proof}
 	Again, for simplicity we work with reduced homology groups.
@@ -324,6 +367,11 @@ Here are some more examples.
 		\underbrace{\wt H_{n-1}(U \cap V)}_{=0} \to \dots.
 	\]
 	So we get that $\wt H_n(X) \cong \wt H_n(S^1) \oplus \wt H_n(S^1)$,
+	The claim about the generators follows from the fact that, 
+	according to the isomorphism above,
+	the generators of $\wt H_n(X)$ are the generators of $\wt H_n(U)$
+	and $\wt H_n(V)$, which we described geometrically
+	in the last theorem.
 \end{proof}
 
 Up until now, we have been very fortunate that we have always been able to make
@@ -462,11 +510,11 @@ actually understand the maps in question to complete the solution.
 \end{proof}
 
 Note that the previous example is of a different attitude than the previous ones,
-because we had to figure out what the maps in the long exact sequence actually were.
-In principle you could do this for the previous two examples as well,
-by making explicit what all the arrows are.
-You can do this even for the connecting arrow, because the ``left, down, left'' procedure
-used in the proof of \Cref{thm:long_exact} gives us a concrete description of the arrow.
+because we had to figure out what the maps in the long exact sequence actually were
+to even compute the groups.
+In principle, you could also figure out all the isomorphisms in the previous proof
+and explicitly compute the generators of $\wt H_1(S^1 \times S^1)$,
+but to avoid getting bogged down in detail I won't do so here.
 
 Finally, to fully justify the last step, we present the following lemma.
 \begin{lemma}[Splitting Lemma]
