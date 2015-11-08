@@ -245,9 +245,9 @@ For topological spaces, we do exactly the same thing, but replace ``structure-pr
 	A function $f : M \to N$ is a
 	\vocab{homeomorphism} or \vocab{bi-continuous function} if it is a bijection,
 	and both $f : M \to N$ and its inverse $f\inv : N \to M$ are continuous.
-	We say $M$ and $N$ are \vocab{homeomorphic} and in this book we write $M \approx N$ (though some people use other symbols).
+	We say $M$ and $N$ are \vocab{homeomorphic}.
 \end{definition}
-Needless to say $\approx$ is an equivalence relation.
+Needless to say, homeomorphism is an equivalence relation.
 
 You might be surprised that we require $f\inv$ to also be continuous.
 Here's the reason: you can show that if $\phi$ is a homomorphism of groups
@@ -328,10 +328,11 @@ Here are some examples.
 		\le 2d_{\text{max}}(p_1, p_2). \]
 	Using this you can show that
 	\[
-		(M \times N, d_{\text{max}}) \approx 
-		(M \times N, d_{\text{Euclid}}) \approx 
+		(M \times N, d_{\text{max}}), \qquad
+		(M \times N, d_{\text{Euclid}}), \qquad
 		(M \times N, d_{\text{taxicab}})
 	\]
+	are homeomorphic,
 	with the homeomorphism being just the identity map.
 	Hence we will usually simply refer to \emph{the} topology $M \times N$,
 	called the \vocab{product topology},
@@ -603,10 +604,14 @@ The same definition carries over: a bijection which is continuous in both direct
 \begin{definition}
 	A \vocab{homeomorphism} of topological spaces $(X, \tau_X)$ and $(Y, \tau_Y)$
 	is a bijection from $X$ to $Y$
-	which induces a bijection from $\tau_X$ to $\tau_Y$.
+	which induces a bijection from $\tau_X$ to $\tau_Y$:
+	i.e.\ the bijection preserves open sets.
 \end{definition}
-Therefore, any property defined only in terms of open sets is preserved by homeomorphism. Such a property is called a \vocab{topological property}.
-That's why $(0,1) \approx \RR$ is to be expected, because the notion of being ``bounded'' is not a notion which can be expressed in terms of open sets.
+Therefore, any property defined only in terms of open sets is preserved by homeomorphism.
+Such a property is called a \vocab{topological property}.
+That's why $(0,1)$ homeomorphic to $\RR$ is not so surprising,
+because the notion of being ``bounded'' is not a notion
+which can be expressed in terms of open sets.
 
 \begin{remark}
 	As you might have guessed, there exist topological spaces which cannot be realized
