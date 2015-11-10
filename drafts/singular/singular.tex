@@ -9,13 +9,202 @@
 \maketitle
 
 \chapter{Some Topological Constructions}
-\section{Product Topology}
+In this short chapter we briefly describe some common spaces and constructions
+in topology that we haven't yet discussed.
+
+\section{Spheres}
+Recall that
+\[ S^n = \left\{ (x_0, \dots, x_n)
+	\mid x_0^2 + \dots + x_n^2 = 1 \right\} \subset \RR^{n+1} \]
+is the surface of an $n$-sphere while
+\[ D^{n+1} = \left\{ (x_0, \dots, x_n)
+	\mid x_0^2 + \dots + x_n^2 \le 1 \right\} \subset \RR^{n+1} \]
+is the corresponding \emph{closed disk}
+(So for example, $D^2$ is a disk in a plane while $S^1$ is the unit circle.)
+
+In particular, $S^0$ consists of two points,
+while $D^1$ can be thought of as the interval $[-1,1]$.
+
+\begin{center}
+	\begin{asy}
+		size(8cm);
+		draw(dir(0)--dir(180), blue);
+		dot(dir(0), red+4);
+		dot(dir(180), red+4);
+		label("$S^0$", dir(0), dir(90), red);
+		label("$D^1$", dir(0)--dir(180), blue);
+		add(shift(-4,0)*CC());
+		unitsize(2cm);
+		filldraw(unitcircle, lightblue+opacity(0.2), red);
+		label("$D^2$", origin, blue);
+		label("$S^1$", dir(45), dir(45), red);
+	\end{asy}
+\end{center}
+
+
 \section{Quotient Topology}
-\section{Wedge Product}
+\prototype{$D^n / S^{n-1} = S^n$, or the torus.}
+
+Given a space $X$, we can \emph{identify} some of the points together
+by any equivalence relation $\sim$;
+for an $x \in X$ we denote its equivalence class by $[x]$.
+Geometrically, this is the space achieved by welding together points
+equivalent under $\sim$.
+
+Formally,
+\begin{definition}
+	Let $X$ be a topological space, and $\sim$ an equivalence relation
+	and the points of $X$.
+	Then $X / {\sim}$ is the space whose
+	\begin{itemize}
+		\ii Points are equivalence classes of $X$, and
+		\ii $U \subseteq X / {\sim}$ is open if and only if
+		$\left\{ x \in X \text{ such that } [x] \in U  \right\}$
+		is open in $X$.
+	\end{itemize}
+\end{definition}
+As far as I can tell, this definition is mostly useless for intuition,
+so here are some examples.
+
+\begin{example}[Interval Modulo Endpoints]
+	Suppose we take $D^1 = [-1, 1]$
+	and quotient by the equivalence relation which identifies
+	the endpoints $-1$ and $1$.
+	(Formally, $x \sim y \iff (x=y) \text{ or } \{x,y\} = \{-1,1\}$.)
+	In that case, we simply recover $S^1$:
+	\begin{center}
+		\begin{asy}
+			size(8cm);
+			draw(dir(0)--dir(180), blue);
+			dot("$-1$", dir(0), dir(90), red+4);
+			dot("$-1$", dir(180), dir(90), red+4);
+			label("$D^1$", dir(0)--dir(180), blue);
+			add(shift(-4,0)*CC());
+			unitsize(2cm);
+			draw(unitcircle, blue);
+			label("$S^1 \approx D^1 / {\sim}$", dir(45), dir(45), blue);
+			dot("$-1 \sim 1$", dir(90), dir(90), red);
+		\end{asy}
+	\end{center}
+	Observe that a small neighborhood around $-1 \sim 1$ in the quotient space
+	corresponds to two half-intervals at $-1$ and $1$ in the original space $D^1$.
+	This should convince you the definition we gave is the right one.
+\end{example}
+
+\begin{example}[More Quotient Spaces]
+	Convince yourself each of the following is correct:
+	\begin{itemize}
+		\ii Generalizing the previous example, $D^n$ modulo its boundary $S^{n-1}$ is $S^n$.
+		\ii Given a square $ABCD$, suppose we identify segments $AB$ and $DC$ together.
+		Then we get a cylinder. (Think elementary school, when you would tape
+		up pieces of paper together to get cylinders.)
+		\ii In the previous example, if we also identify $BC$ and $DA$ together,
+		then we get a torus. (Imagine taking our cylinder and putting the two
+		circles at the end together.)
+		\ii Let $X = \RR$, and let $x \sim y$ if $y -x \in \ZZ$.
+		Then $X / {\sim}$ is $S^1$ as well.
+	\end{itemize}
+\end{example}
+
+One special case that we did above:
+\begin{definition}
+	Let $A \subseteq X$.
+	Consider the equivalence relation which identifies
+	all the points of $A$ with each other
+	while leaving all remaining points inequivalent.
+	(In other words, $x \sim y$ if $x=y$ or $x,y \in A$.)
+	Then the resulting quotient space is denoted $X/A$.
+\end{definition}
+
+So in this notation, \[ D^n / S^{n-1} = S^n. \]
+
+\begin{abuse}
+	Note that I'm deliberately being sloppy, and saying
+	``$D^n / S^{n-1} = S^n$'' or ``$D^n / S^{n-1}$ \emph{is} $S^n$'',
+	when I really ought to say ``$D^n / S^{n-1}$ is homeomorphic to $S^n$''.
+	This is a general theme in mathematics:
+	objects which are homoeomorphic/isomorphic/etc.\ are generally
+	not carefully distinguished from each other.
+\end{abuse}
+
+\section{Product Topology}
+\prototype{$\RR \times \RR$ is $\RR^2$, $S^1 \times S^1$ is the torus.}
+
+\begin{definition}
+	Given topological spaces $X$ and $Y$,
+	the product space $X \times Y$ is the space whose
+	\begin{itemize}
+		\ii Points are pairs $(x,y)$ with $x \in X$, $y \in Y$, and
+		\ii Topology is given as follows: the \emph{basis} of
+		the topology for $X \times Y$ is $U \times V$,
+		for $U \subseteq X$ open and $V \subseteq Y$ open.
+	\end{itemize}
+\end{definition}
+\begin{remark}
+	It is not hard to show that, in fact,
+	one need only consider basis elements for $U$ and $V$.
+	That is to say,
+	\[ \left\{ U \times V \mid
+		U,V \text{ basis elements for } X,Y \right\} \]
+	is also a basis for $X \times Y$.
+\end{remark}
+
+This does exactly what you think it would.
+\begin{example}[The Unit Square]
+	Let $X = [0,1]$ and consider $X \times X$.
+	We of course expect this to be the unit square.
+	Pictured below is an open set of $X \times X$ in the basis.
+	\begin{center}
+		\begin{asy}
+		size(6cm);
+		filldraw(unitsquare, opacity(0.2)+lightblue, black);
+
+		pair B = (0,1);
+		pair A = (1,0);
+		fill(box(0.3*A+0.2*B,0.6*A+0.7*B), lightred+opacity(0.5));
+		label("$U \times V$", (0.45,0.45), brown);
+
+		draw(0.3*A--(0.3*A+B), heavygreen+dashed+1);
+		draw(0.6*A--(0.6*A+B), heavygreen+dashed+1);
+		draw(0.2*B--(0.2*B+A), heavycyan+dashed+1);
+		draw(0.7*B--(0.7*B+A), heavycyan+dashed+1);
+
+		draw( 0.3*A--0.6*A, heavygreen+2 );
+		opendot( 0.3*A,  heavygreen+2);
+		opendot( 0.6*A, heavygreen+2);
+		label("$U$", 0.45*A, dir(-90), heavygreen);
+		draw( 0.2*B--0.7*B, heavycyan+2 );
+		opendot( 0.2*B, heavycyan+2);
+		opendot( 0.7*B, heavycyan+2);
+		label("$V$", 0.45*B, dir(180), heavycyan);
+		\end{asy}
+	\end{center}
+\end{example}
+\begin{exercise}
+	Convince yourself this basis gives the same topology
+	as the product metric on $X \times X$.
+	So this is the ``right'' definition.
+\end{exercise}
+
+\begin{example}[More Product Spaces]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii $\RR \times \RR$ is the Euclidean plane.
+		\ii $S^1 \times [0,1]$ is a cylinder.
+		\ii $S^1 \times S^1$ is a torus! (Why?)
+	\end{enumerate}
+\end{example}
+
+\section{Disjoint Union Wedge Product}
+\prototype{$S^1 \wedge S^1$ is the figure eight.}
+
 Figure 8
+
+warning about how not Euclidean
+
 \section{CW Complexes}
 
-Torus, Klein, RP
+\section{The Torus, Klein Bottle, and $\RP^n$}
 
 
 \chapter{More on Computing Homology Groups}
@@ -174,7 +363,8 @@ can write the following formula.
 	[Cellular Boundary Formula]
 	Let $e$ be a $k$-cell, and let $f_\beta$ denote all $(k-1)$-cells of $X$.
 	Define $d_\beta$ to be the degree of the composed map
-	\[ \partial D^n \xrightarrow{\text{attach}} X^{n-1} \surjto S_\beta^{n-1} \]
+	\[ S^{n-1} = \partial D_\beta^n \xrightarrow{\text{attach}}
+		X^{n-1} \surjto S_\beta^{n-1} \]
 	where the first arrow is the attaching map for $e$
 	and the second arrow is the quotient of collapsing $X^{n-1} - f_\beta$ to a point.
 	Then \[ d_n : e \mapsto \sum_\beta d_\beta f_\beta \]
@@ -185,7 +375,6 @@ CP
 Torus, Klein, RP2
 
 \section\problemhead
-
 \begin{problem}
 	Show that a non-surjective map $f : S^n \to S^n$ has degree zero.
 	\begin{hint}
