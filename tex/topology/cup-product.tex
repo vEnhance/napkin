@@ -1,1 +1,90 @@
-\chapter{The Cohomology Ring}
+\chapter{The Cup Product (In Progress)}
+I won't do much more in this chapter other than
+introduce the cup product and say a few examples.
+For an actual treatise, see \cite{ref:hatcher} or \cite{ref:maxim752}.
+
+\section{Graded Rings}
+\prototype{Polynomial rings are graded rings.}
+In this chapter, the ring $R$ is commutative with identity;
+but the remaining rings need not be commutative.
+However, the word ``ring'' refers to a ring with identity,
+or else we will use \vocab{pseudo-ring} to denote a ring that need not possess $1$.
+
+\todo{define graded ring}
+
+\todo{graded commutative}
+
+\section{Cup Products}
+Suppose now we replace our abelian group $G$ by a commutative ring $R$ with identity.
+Then this gives us a way to multiply two cochains, as follows.
+Suppose $\phi \in C^k(X;R)$ and $\psi \in C^\ell(X;R)$.
+Then we can define their \vocab{cup product}
+$\phi\smile\psi \in C^{k+\ell}(X;R)$ to be
+\[
+	(\phi\smile\psi)([v_0, \dots, v_{k+\ell}])
+	= 
+	\phi\left( [v_0, \dots, v_k] \right)
+	\cdot
+	\psi\left( [v_k, \dots, v_{k+\ell}] \right)
+\]
+where the multiplication is in $R$.
+
+\begin{ques}
+	Which $0$-cochain is the identity for $\smile$?
+\end{ques}
+
+This behaves well with respect to $\delta$:
+\begin{lemma}[$\delta$ with Cup Products]
+	We have
+	$\delta(\phi\smile\psi) = \delta\phi\smile\psi + (-1)^k\phi\smile\delta\psi$.
+\end{lemma}
+\begin{proof}
+	Direct $\sum$ computations.
+\end{proof}
+From this, it is not hard to see that we get an induced map
+\[ H^k(X;R) \times H^\ell(X;R) \taking\smile H^{k+\ell}(X;R).  \]
+We then define the \vocab{cohomology ring} $H^\bullet(X;R)$
+whose elements are finite sums in 
+\[ \bigoplus_{k \ge 0} H^k(X;R) \]
+and with multiplication given by $\smile$.
+
+Observe that $H^\bullet(X;R)$ is a \emph{graded ring}.
+We say that an element $\alpha \in H^k(X;R)$ has dimension $k$,
+and write $|\alpha|=k$.
+It turns out (though we won't prove it; see \cite{ref:hatcher})
+that the cup product is in fact graded commutative.
+
+\begin{example}[Cohomology Ring of $S^n$]
+	Consider $S^n$ for $n \ge 1$.
+	The nontrivial cohomology groups are given by
+	$H^0(S^n; \ZZ) \cong H^n(S^n, \ZZ) \cong \ZZ$.
+	So as an abelian group
+	\[ H^\bullet(S^n, \ZZ) \cong \ZZ \oplus \alpha \ZZ \]
+	where $\alpha$ is the generator of $H^n(S^n, \ZZ)$.
+	
+	Now, observe that $|\alpha\smile\alpha| = 2n$, but
+	since $H^{2n}(S^n, \ZZ) = 0$ we must have $\alpha\smile\alpha=0$.
+	So even more succinctly,
+	\[ H^\bullet(S^n, \ZZ) \cong \ZZ[\alpha]/(\alpha^2). \]
+\end{example}
+
+\begin{example}[Real and Complex Projective Space]
+	Though we won't prove it, it turns out that
+	\begin{align*}
+		H^\bullet(\RP^n, \Zc2) \cong \Zc2[\alpha]/(\alpha^{n+1}) \\
+		H^\bullet(\CP^n, \ZZ) \cong \ZZ[\beta]/(\beta^{n+1})
+	\end{align*}
+	where $|\alpha|=1$ is a generator of $H^1(\RP^n; \Zc2)$
+	and $|\beta|=2$ is a generator of $H^2(\CP^n; \ZZ)$.
+\end{example}
+
+\section{Cup Product Structure}
+In general, it's not so easy to figure out what the cup product looks like
+for an arbitrary space.
+
+
+\section{Kunneth Formula}
+\section{The Borsuk-Ulam Theorem}
+
+\section\problemhead
+
