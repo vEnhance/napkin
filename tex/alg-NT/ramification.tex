@@ -276,8 +276,8 @@ We already have $ \OO_K / \pp \cong \FF_{p^f} $, and the Galois group is
 \]
 So $D_\pp \cong \Zc f$ as well.
 
-\section{The Inertia Group}
-Let $p$ be above $\pp$ (with $p$ not necessarily ramified), and consider
+\section{(Optional) The Inertia Group}
+Let $p$ be above $\pp$ (with $p$ possibly ramified), and consider
 \[ D_\pp \taking\theta \Gal\left( (\OO_K/\pp) : \FF_p \right) \]
 as before.
 The kernel of $\theta$ the \vocab{inertia group} and denoted $I_\pp \subseteq D_\pp$; it has order $e$.
@@ -331,26 +331,6 @@ Like, they were the reason I stopped reading \cite{ref:oggier_NT} for a while!
 
 \section\problemhead
 cyclic galois groups? idk\todo{add problems}
-
-\begin{problem}
-	[Korea Olympiad Finals 2014] 
-	Let $p$ be an odd prime and $k$ a positive integer such that $p \mid k^2+5$.
-	Prove that there exist positive integers $m$, $n$ such that $p = m^2+5n^2$.
-	\begin{hint}
-		Factor $p$, show that the class group of $\QQ(\sqrt{-5})$ has order two.
-	\end{hint}
-	\begin{sol}
-		Let $K = \QQ(\sqrt{-5})$. Check that $\Cl_K$ has order two using the Minkowski bound;
-		moreover $\Delta_K = 20$.
-		Now note that $\OO_K = \ZZ[\sqrt{-5}]$, and $x^2+5$ factors mod $p$ as $(x+k)(x-k)$;
-		hence in $\OO_K$ we have $(p) = (p, \sqrt{-5}+k)(p, \sqrt{-5}-k) = \pp_1 \pp_2$, say.
-		For $p > 5$ the prime $p$ does not ramify and we have $\pp_1 \neq \pp_2$, since $\Delta_K = 20$.
-
-		Then $(p^2) = \pp_1^2 \cdot \pp_2^2$. Because the class group has order two,
-		both ideals on the right hand side are principal, and because $\pp_1 \neq \pp_2$ they are distinct.
-		Thus $p^2$ is a nontrivial product of two elements of $\OO_K$; from this we can extract the desired factorization.
-	\end{sol}
-\end{problem}
 
 \begin{dproblem}
 	Prove that no rational prime $p$ can remain inert in
