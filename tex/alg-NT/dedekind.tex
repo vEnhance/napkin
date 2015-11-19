@@ -298,7 +298,7 @@ This verbatim reads \[ a = p_1^{e_1} p_2^{e_2} \dots p_n^{e_n}. \]
 Hence, Dedekind domains which are PID's satisfy unique factorization for \emph{elements},
 just like in $\ZZ$. (In fact, the converse of this is true.)
 
-\section{Shut Up and Compute!}
+\section{The Factoring Algorithm}
 Let's look at some examples from quadratic fields.
 Recall that if $K = \QQ(\sqrt{d})$, then
 \[
@@ -407,22 +407,31 @@ In fact, it turns out this always works in general:
 given a rational prime $p$, there is an algorithm
 to factor $p$ in any $\OO_K$ of the form $\ZZ[\theta]$.
 
-\begin{proposition}[Factoring Algorithm / Dedekind-Kummer Theorem]
+\begin{theorem}[Factoring Algorithm / Dedekind-Kummer Theorem]
 	\label{thm:factor_alg}
-	Let $p$ be a rational prime number, and $K$ a
-	monogenic number field with $\OO_K=\ZZ[\theta]$.
-	Let $f$ be the minimal polynomial of $\theta$ and
-	factor $\ol f$ mod $p$ as \[ \ol f \equiv \prod_{i=1}^g (\ol f_i)^{e_i} \pmod p. \]
-	Then $\pp_i = (f_i(\theta), p)$ is prime for each $i$
-	and the factorization of $(p)$ is
-	\[ \OO_K \supseteq (p) = \prod_{i=1}^g \pp_i^{e_i}. \]
-\end{proposition}
+	Let $K$ be a number field.
+	Let $\theta \in \OO_K$ with $[\OO_K : \ZZ[\theta]] = j < \infty$,
+	and let $p$ be a prime not dividing $j$.
+	Then $p$ is factored as follows:
+	\begin{quote}
+		Let $f$ be the minimal polynomial of $\theta$ and
+		factor $\ol f$ mod $p$ as \[ \ol f \equiv \prod_{i=1}^g (\ol f_i)^{e_i} \pmod p. \]
+		Then $\pp_i = (f_i(\theta), p)$ is prime for each $i$
+		and the factorization of $(p)$ is
+		\[ \OO_K \supseteq (p) = \prod_{i=1}^g \pp_i^{e_i}. \]
+	\end{quote}
+	In particular, if $K$ is monogenic with $\OO_K = \ZZ[\theta]$ then $j=1$
+	and the theorem applies for all primes $p$.
+\end{theorem}
+In almost all our applications in this book, $K$ will be monogenic; i.e.\ $j=1$.
 Here $\ol \psi$ denotes the image in $\FF_p[x]$ of a polynomial $\psi \in \ZZ[x]$.
+
 \begin{ques}
 	There are many possible pre-images $f_i$ we could have chosen
 	(for example if $\ol{f_i} = x^2+1 \pmod 3$, we could pick $f_i = x^2 + 3x + 7$.)
 	Why does this not affect the value of $\pp_i$?
 \end{ques}
+
 Note that earlier, we could check the factorization worked
 for any particular case. 
 The proof that this works is much the same, but we need one extra tool, the ideal norm.
@@ -440,6 +449,17 @@ Then your $(p) = \pp_1^{e_1} \dots \pp_g^{e_g}$.
 \begin{exercise}
 	Factor $(29)$ in $\QQ(i)$ using the above algorithm.
 \end{exercise}
+
+%\begin{remark}
+%	What if $K$ isn't monogenic?
+%	It turns out that we can still apply the
+%	factoring algorithm to ``almost all primes'' as follows.
+%	Suppose $K$ is a number field and $\alpha \in \OO_K$ such that
+%	$[\OO_K : \ZZ[\alpha]] = j < \infty$.
+%	Then as long as $p \nmid j$, we can apply the above algorithm
+%	with $f$ the minimal polynomial of $\alpha$.
+%	The formulation we presented above was the special case where $j=1$.
+%\end{remark}
 
 \section{Fractional Ideals}
 \prototype{Analog to $\QQ$ for $\ZZ$, allowing us to take inverses of ideals.
@@ -467,12 +487,12 @@ See \Cref{prob:fractional_ideal_alt_def} for a different equivalent definition.
 
 It turns out that fractional ideals form a multiplicative group,
 just like $\QQ$.
-\begin{theorem}
+\begin{theorem}[The Class Group]
 	Let $\mathcal A$ be a Dedekind domain and $K$ its group of fractions.
 	For any ideal $\aa\inv$, the set
 	\[ \aa\inv = \left\{ x \mid x\aa \subseteq (1) = \mathcal A  \right\} \]
 	is a fractional ideal with $\aa \aa\inv = (1)$.
-	Thus nonzero fractional ideals of $K$ from a group under multiplication
+	Thus nonzero fractional ideals of $K$ form a group under multiplication
 	with identity $(1) = \mathcal A$.
 \end{theorem}
 This is kind of cool.
@@ -616,6 +636,7 @@ Thus $\Norm$ is a natural group homomorphism $J_K \to \QQ \setminus \{0\}$.
 \begin{problem}
 	\label{prob:prove_factoring_algorithm}
 	In the notation of \Cref{thm:factor_alg}, let $I = \prod_{i=1}^r \pp_i^{e_i}$.
+	Assume for simplicity that $K$ is monogenic, hence $\OO_K = \ZZ[\theta]$.
 	\begin{enumerate}[(a)]
 		\ii Prove that each $\pp_i$ is prime.
 		\ii Show that $(p)$ divides $I$.
@@ -646,7 +667,7 @@ Thus $\Norm$ is a natural group homomorphism $J_K \to \QQ \setminus \{0\}$.
 			\equiv (f(\alpha)) \equiv 0 \pmod p \]
 		so we've shown that $I \subseteq (p)$.
 
-	Finally, we prove (c) with a is a size argument.
+	Finally, we prove (c) with a size argument.
 		The idea is that $I$ and $(p)$ really should have the same size;
 		to nail this down we'll use the ideal norm.
 		Since $(p)$ divides $I$, we can write

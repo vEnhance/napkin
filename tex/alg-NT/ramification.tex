@@ -209,6 +209,32 @@ But miraculously, it turns out there is only one orbit!
 	Since the action is transitive, all $e_i$ are equal.
 \end{proof}
 
+Let's see an illustration of this.
+\begin{example}[Factoring $5$ in a Galois/Non-Galois Extension]
+	Let $p = 5$ be a prime.
+	\begin{enumerate}[(a)]
+		\ii Let $E = \QQ(\cbrt2)$.
+		One can show that $\OO_E = \ZZ[\cbrt2]$, so 
+		we use the Factoring Algorithm on the minimal polynomial $x^3-2$.
+		Since $x^3-2 \equiv (x-3)(x^2+3x+9) \pmod 5$ is the irreducible factorization,
+		we have that
+		\[ (5) = (5,\cbrt2-3)(5, \cbrt4+3\cbrt2+9) \]
+		which have inertial degrees $1$ and $2$, respectively.
+		The fact that this is not uniform reflects that $E$ is not Galois.
+
+		\ii Now let $K = \QQ(\cbrt2,\omega)$, which is the splitting
+		field of $x^3-2$ over $\QQ$; now $K$ is Galois.
+		It turns out that
+		\[ \OO_K = \ZZ[\eps] \quad\text{where}\quad \eps \text { is a root of } t^6+3t^5-5t^3+3t+1. \]
+		(this takes a lot of work to obtain, so we won't do it here).
+		Modulo $5$ this has an irreducible factorization
+		$(x^2+x+2)(x^2+3x+3)(x^2+4x+1) \pmod 5$,
+		so by the Factorization Algorithm,
+		\[ (5) = (5, \eps^2+\eps+2)(5, \eps^2+3\eps+3)(5, \eps^2+4\eps+1). \]
+		This time all inertial degrees are $2$, as the theorem predicts for $K$ Galois.
+	\end{enumerate}
+\end{example}
+
 \section{But Wait, There's More!}
 Let $p$ be a rational prime.
 Thus
@@ -248,6 +274,7 @@ The fact that $\sigma \in D_\pp$ (i.e.\ $\sigma$ fixes $\pp$)
 ensures this map is well-defined.
 
 \begin{theorem}[Decomposition Group and Galois Group]
+	\label{thm:decomposition}
 	Define $\theta$ as above. Then
 	\begin{itemize}
 		\ii $\theta$ is surjective, and
