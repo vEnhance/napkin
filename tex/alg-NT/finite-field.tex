@@ -76,8 +76,9 @@ we are doomed to have nonzero characteristic.
 \end{proof}
 \begin{remark}
 	An amusing alternate proof of (c) by contradiction:
-	if a prime $q \neq p$ divides $\left\lvert F \right\rvert$, then Cauchy's Theorem (\Cref{thm:cauchy_group}) on $(F, +)$
-	then there's a (nonzero) element $x$ of order $q$.
+	if a prime $q \neq p$ divides $\left\lvert F \right\rvert$, then
+	by Cauchy's Theorem (\Cref{thm:cauchy_group}) on $(F, +)$
+	there's a (nonzero) element $x$ of order $q$.
 	Evidently \[ x \cdot ( \underbrace{1 + \dots + 1}_{\text{$q$ times}} ) = 0 \] 
 	then, but $x \neq 0$, and hence the characteristic of $F$ also divides $q$, which is impossible.
 \end{remark}
@@ -117,15 +118,15 @@ We next proceed to prove ``Fermat's Little Theorem'':
 	Then every element $x \in F$ satisfies
 	\[ x^{p^n} - x = 0. \]
 \end{theorem}
-\begin{proof}[Sketch of Proof]
-	If $x = 0$ it's true; otherwise, using Lagrange's Theorem
+\begin{proof}
+	If $x = 0$ it's true; otherwise, use Lagrange's Theorem
 	on the abelian group $(F, \times)$ to get $x^{p^n-1} = 1_F$.
 \end{proof}
 
 We can now prove:
 \begin{theorem}[Complete Classification of Finite Fields]
 	A field $F$ is a finite field with $p^n$ elements if and only if
-	it a splitting field of $x^{p^n}-x$ over $\FF_p$.
+	it is a splitting field of $x^{p^n}-x$ over $\FF_p$.
 \end{theorem}
 \begin{proof}
 	By ``Fermat's Little Theorem'', all the elements of $F$ satisfy this polynomial.

@@ -67,10 +67,10 @@ First things first:
 	this will be useful in just a moment.
 \end{example}
 
-Now we're going to do something much like when we were talking about Stoke's Theorem:
+Now we're going to do something much like when we were talking about Stokes' Theorem:
 we'll put a boundary $\partial$ operator on the singular $n$-simplices.
 This will give us a formal linear sums of $n$-simplices $\sum_k a_k \sigma_k$,
-which we call a \vocab{$n$-chain}.
+which we call an \vocab{$n$-chain}.
 
 In that case,
 \begin{definition}
@@ -405,7 +405,7 @@ then show that the geometry concepts we want correspond to this setting.
 	as $\ker(A_n \to A_{n-1}) / \img(A_{n+1} \to A_n)$.
 	Cycles and boundaries are defined in the same way as before.
 \end{definition}
-Obviously, this is just a algebraic generalization of the structure we previously looked at,
+Obviously, this is just an algebraic generalization of the structure we previously looked at,
 rid of all its original geometric context.
 
 \begin{definition}
@@ -568,24 +568,26 @@ in the image for $Y$.
 
 This picture suggests how we might proceed:
 we want to create a $2$-chain on $Y$ given the $1$-chains we've drawn.
-The homotopy $F$ provides with a ``square'' structure on $Y$,
+The homotopy $F$ provides us with a ``square'' structure on $Y$,
 i.e.\ the square bounded by $v_0$, $v_1$, $w_1$, $w_0$.
 We split this up into two triangles; and that's our $2$-chain.
 
 We can make this formal by taking $\Delta^1 \times [0,1]$ (which \emph{is} a square)
-and split it into two triangles.
+and splitting it into two triangles.
 Then, if we apply $\sigma \times \id$, we'll get an $(n+1)$-cell in $X \times [0,1]$,
 and then finally applying $F$ will map everything into our space $Y$.
 In our example, the final image is the $2$-chain, consisting of two triangles,
 which in our picture can be written as $[v_0, v_1, w_0] - [v_0, w_0, w_1]$;
 the boundaries are given by the red, green, grey.
 
-More generally, for a $n$-simplex $\phi = [x_0, \dots, x_n]$ we define the so-called \emph{prism operator} $P_n$
+More generally, for an $n$-simplex $\phi = [x_0, \dots, x_n]$
+we define the so-called \emph{prism operator} $P_n$
 as follows. Set $v_i = f(x_i)$ and $w_i = g(x_i)$ for each $i$.
 Then, we let
-\[ P_n(\phi) \defeq \sum_{i=0}^n (-1)^i (F \circ (\phi\times\id)) \left[ v_0, \dots, v_i, w_i, \dots, w_n \right]. \]
-This is just the generalization of the construction above to dimensions $n > 1$,
---- we split $\Delta^n \times [0,1]$ into $n+1$ simplices,
+\[ P_n(\phi) \defeq \sum_{i=0}^n (-1)^i (F \circ (\phi\times\id))
+	\left[ v_0, \dots, v_i, w_i, \dots, w_n \right]. \]
+This is just the generalization of the construction above to dimensions $n > 1$;
+we split $\Delta^n \times [0,1]$ into $n+1$ simplices,
 map it into $X$ by $\phi \times \id$ and then push the whole thing into $Y$.
 The $(-1)^i$ makes sure that the ``diagonal'' faces all cancel off with each other.
 
