@@ -534,7 +534,7 @@ We port over this definition to our world of ideals.
 	if whenever $xy \in I$, either $x \in I$ or $y \in I$.
 \end{definition}
 The condition that $I$ is proper is analogous to the
-fact that we don't consider $1$ to be a prime.
+fact that we don't consider $1$ to be a prime number.
 
 \begin{example}[Examples of Prime Ideals]
 	\listhack
@@ -546,13 +546,18 @@ fact that we don't consider $1$ to be a prime.
 		yet neither is itself in $(5)$.
 	\end{enumerate}
 \end{example}
+\begin{remark}
+	Ideals have the nice property that they get rid of ``sign issues''.
+	For example, in $\ZZ$, do we consider $-3$ to be a prime?
+	When phrased with ideals, this annoyance goes away: $(-3) = (3)$.
+\end{remark}
 
 \begin{exercise}
 	What do you call a ring $R$ for which the zero ideal $(0)$ is prime?
 \end{exercise}
 
 We also have the following result.
-\begin{theorem}
+\begin{theorem}[Prime Ideal $\iff$ Quotient is Integral Domain]
 	An ideal $I$ is prime if and only if $R/I$ is an integral domain.
 \end{theorem}
 \begin{exercise}

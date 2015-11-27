@@ -1,11 +1,88 @@
-\chapter{Reference Requests and Thoughts on Material Presentation}
-I don't like resources too much: otherwise I wouldn't have written this.
-But anyways\dots
+\chapter{Pedagogical Comments and References}
+\label{ch:refs}
+Here are some higher-level comments on the way specific topics were presented,
+as well as pointers to further reading.
 
-\section{Enthusiastically Recommended Further Reading}
+\section{Basic Algebra and Topology}
+\subsection{Linear Algebra and Multivariable Calculus}
+Following the comments in \Cref{sec:basis_evil},
+I think that most presentations of linear algebra and multivariable calculus
+are \emph{immoral}, because they miss the two key ideas, namely:
+\begin{itemize}
+	\ii In linear algebra, we study \emph{linear maps} between spaces.
+	\ii In calculus, we \emph{approximate functions at points by linear functions}.
+\end{itemize}
+In particular, I believe linear algebra should \emph{always} be taught
+before multivariable calculus.
+The fact that this is the opposite of what happens is a testament to how
+atrociously these subjects are usually taught.
+
+In particular, I do not recommend most linear algebra or
+multivariable calculus books.
+
+For linear algebra, I've heard that \cite{ref:axler} follows this approach,
+hence the appropriate name ``Linear Algebra Done Right''.
+I followed with heavy modifications the proceedings of Math 55a,
+see \cite{ref:55a}.
+
+For multivariable calculus and differential geometry,
+I found the notes \cite{ref:manifolds} to be unusually well written.
+I referred to it frequently while I was enrolled in Math 55b \cite{ref:55b}.
+
+\subsection{General Topology}
+My personal view on spaces is that every space I ever work with
+is either metrizable or is the Zariski topology.
+
+I adopted the approach of \cite{ref:pugh}, using metric topology first.
+I find that metric spaces are far more intuitive, and are a much better
+way to get a picture of what open / closed / compact etc.\ sets look like.
+This is the approach history took; general topology grew out of metric topology.
+
+In my opinion, it's a very bad idea to start any general topology class
+by defining what a general topological space is,
+because it doesn't communicate a good picture of open and closed sets
+to draw pictures of.
+
+\subsection{Groups and Commutative Algebra}
+I teach groups before commutative rings but might convert later.
+Rings have better examples, don't have the confusion of multiplicative
+notation for additive groups, and modding out by ideals is more intuitive.
+
+There's a specific thing I have a qualm with in group theory:
+the way that the concept of a normal subgroup is introduced.
+Only \cite{ref:gowers} does something similar to what I do.
+Most other people simply \emph{define} a normal subgroup $N$
+as one with $gNg\inv$ and then proceed to define modding out,
+without taking the time to explain where this definition comes from.
+I remember distinctly this concept as the first time in learning math
+where I didn't understand what was going on.
+Only in hindsight do I see where this definition came from;
+I tried hard to make sure my own presentation didn't have this issue.
+
+I deliberately don't include a chapter on just commutative algebra;
+other than the chapter on rings and ideals.
+The reason is that I always found it easier to learn
+commutative algebra theorems on the fly,
+in the context of something like algebraic number theory or algebraic geometry.
+For example, I finally understand why radicals and the Nullstellensatz were important
+when I saw how they were used in algebraic geometry.
+Before then, I never understood why I cared about them.
+
+
+\section{Second-Year Topics}
+\subsection{Complex Analysis}
+I picked the approach of presenting the Cauchy-Gorsat Theorem is given
+(rather than proving a weaker version by Stoke's Theorem, or whatever),
+and then deriving the key result that holomorphic functions are analytic
+from it. I think this most closely mirrors the ``real-life'' use of complex
+analysis, i.e.\ the computation of contour integrals.
+
+The main reference for this chapter was \cite{ref:dartmouth}, which I recommend.
+
 \subsection{Category Theory}
-I enthusiastically recommend \cite{ref:msci}.
-Beautifully written.
+I enthusiastically recommend \cite{ref:msci},
+from which my chapters are based,
+and which contains much more than I had time to cover.
 You might try reading chapters {2-4} in reverse order though:
 I found that limits were much more intuitive than adjoints.
 But your mileage may vary.
@@ -14,45 +91,70 @@ The category theory will make more sense as you learn
 more examples of structures: it will help to have read,
 say, the chapters on groups, rings, and modules.
 
+\subsection{Set Theory}
+Set theory is far off the beaten path.
+The notes I have written are based off the class I took at Harvard College,
+Math 145a \cite{ref:145a}.
+
+My general impression is that the way I present set theory
+(trying to remain intuitive and informal in what a topic full of minefields)
+is not standard. Possible other reference: \cite{ref:miquel}.
+
+\section{Advanced Topics}
+\subsection{Algebraic Topology}
+I cover the fundamental group $\pi_1$ first, because I think it is more
+intuitive this way. A possible reference in this topic is \cite{ref:munkres}.
+Only later do I do the much more involved homology groups.
+The standard book for this is \cite{ref:hatcher},
+but I also found \cite{ref:maxim752} to be very helpful,
+particularly in the part about cohomology rings.
+
+I don't actually do very much algebraic topology.
+In particular, I think the main reason to learn algebraic topology
+is to see the construction of the homology and cohomology groups
+from the chain complex, and watch the long exact sequence in action.
+The concept of a (co)chain complex comes up often in other contexts as well,
+like the cohomology of sheaves or Galois cohomology.
+Algebraic topology is by far the most natural one.
+
+\subsection{Algebraic Number Theory}
+I learned from \cite{ref:oggier_NT}, using \cite{ref:lenstra_chebotarev}
+for the part about the Chebotarev Density Theorem.
+
+When possible I try to keep the algebraic number theory chapter close at
+heart to an ``olympiad spirit''.
+Factoring in rings like $\ZZ[i]$ and $\ZZ[\sqrt{-5}]$
+is very much an olympiad-flavored topic at heart:
+one is led naturally to the idea of factoring in general rings of integers,
+around which the presentation is built.
+As a reward for the entire buildup, the exposition finishes
+with the application of the Chebotarev Density Theorem to IMO 2003, Problem 6.
+
+\subsection{Algebraic Geometry}
+My preferred introduction to algebraic geometry is \cite{ref:gathmann}.
+
+At the outset, I think there are three main approaches:
+\begin{itemize}
+	\ii Only looking at affine and projective varieties,
+	as part of an ``introductory'' class.
+	\ii Studying affine and projective varieties closely
+	and using them as the motivating example of a \emph{scheme},
+	and then developing algebraic geometry from there.
+	\ii Jumping straight into the definition of a scheme,
+	as in the well-respected \cite{ref:vakil}.
+\end{itemize}
+I have gone with the second approach,
+I think that if you don't know what a scheme is,
+then you haven't learned algebraic geometry.
+But on the other hand I think the definition of a scheme is woefully
+difficult to digest without having a good handle first on varieties.
+But these opinions are based on my personal experience of having
+tried to learn the subject through all three approaches over a period of a year.
+Your mileage may vary.
+
+\section{Further Topics}
 \subsection{Analytic Number Theory}
-Not covered at all in Napkin, because it would have taken too much
-space, and the superb \cite{ref:analytic_NT} exists.
-I strongly recommend these lecture notes.
+I never had time to write up notes in Napkin for these.
+If you're interested though, I recommend \cite{ref:analytic_NT} exists.
 They are highly accessible and delightful to read.
-
-\section{Subjects I have (Strong) Opinions On}
-\subsection{Linear Algebra}
-See the rant in \Cref{sec:basis_evil}.
-I think it's immoral to not think of a matrix as a linear map.
-Hence I do not recommend most linear algebra books.
-
-I've heard that \cite{ref:axler} follows this approach,
-hence the appropriate name ``Linear Algebra Done Right''.
-I followed with heavy modifications the proceedings of Math 55a,
-see \cite{ref:55a}
-
-\subsection{General Topology}
-My personal view is that spaces should either be metric or the Zariski topology.
-
-I essentially follow the approach of \cite{ref:pugh}, using metric topology first.
-I find that metric spaces are far more intuitive, and are a much better
-way to get a picture of what open / closed / compact etc.\ sets look like.
-This is the approach history took;
-general topology grew out of metric topology.
-
-In my opinion, it's a very bad idea to start any general topology class
-by defining what a general topological space is.
-No one will have any idea what an open set should look like.
-
-\todo{abstract alg, \dots}
-
-\subsection{Abstract Algebra}
-I teach groups before commutative rings but might convert.
-Rings have better examples, don't have the confusion of multiplicative
-notation for additive groups, and modding out by ideals makes more sense.
-Oh well.
-
-\subsection{Differential Geometry}
-As linear algebra is butchered, so is multivariable calculus,
-with partial derivatives and matrices superseding linear maps.
-
+The only real prerequisites are a good handle on Cauchy's residue formula.
