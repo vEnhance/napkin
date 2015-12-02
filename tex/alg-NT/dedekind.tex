@@ -79,10 +79,9 @@ First, I have to tell you how to add and multiply two ideals $\aa$ and $\bb$.
 (Note that infinite sums don't make sense in general rings, which is why in $\aa \cdot \bb$
 we cut off the sum after some finite number of terms.)
 You can readily check these are actually ideals.
-
 This definition is more natural if you think about it in terms of 
 the generators of $\aa$ and $\bb$.
-\begin{proposition}
+\begin{proposition}[Ideal Arithmetic via Generators]
 	Suppose $\aa = \left( a_1, a_2, \dots, a_n \right)$
 	and $\bb = \left( b_1, \dots, b_m \right)$ are ideals in a ring $R$.
 	Then
@@ -170,7 +169,7 @@ The \emph{interesting} condition in the definition
 of a Dedekind domain is the last one: prime ideals and maximal ideals
 are the same thing.
 The other conditions are just technicalities, but ``primes are maximal'' has real substance.
-\begin{example}
+\begin{example}[$\ZZ$ is a Dedekind Domain]
 	The ring $\ZZ$ is a Dedekind domain.
 	Note that
 	\begin{itemize}
@@ -186,7 +185,7 @@ The other conditions are just technicalities, but ``primes are maximal'' has rea
 The case of interest is a ring $\OO_K$ in which we wish to do factorizing.
 We're now going to show that for any number field $K$, the ring $\OO_K$ is a Dedekind domain.
 First, the boring part.
-\begin{proposition}
+\begin{proposition}[$\OO_K$ Integrally Closed and Noetherian]
 	For any number field $K$, the ring $\OO_K$ is integrally closed and Noetherian.
 \end{proposition}
 \begin{proof}
@@ -412,7 +411,7 @@ to factor $p$ in any $\OO_K$ of the form $\ZZ[\theta]$.
 	Let $K$ be a number field.
 	Let $\theta \in \OO_K$ with $[\OO_K : \ZZ[\theta]] = j < \infty$,
 	and let $p$ be a prime not dividing $j$.
-	Then $p$ is factored as follows:
+	Then $(p) = p \OO_K$ is factored as follows:
 	\begin{quote}
 		Let $f$ be the minimal polynomial of $\theta$ and
 		factor $\ol f$ mod $p$ as \[ \ol f \equiv \prod_{i=1}^g (\ol f_i)^{e_i} \pmod p. \]

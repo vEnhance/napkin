@@ -9,22 +9,21 @@ The most important example of a meromorphic function is $\frac 1z$.
 
 We are going to see that meromorphic functions behave
 like ``almost-holomorphic'' functions.
-Specifically, a meromorphic function $A/B$ will be holomorphic at all points 
+Specifically, a meromorphic function $A/B$ will be holomorphic at all points
 except the zeros of $B$ (called \emph{poles}).
 By the Identity Theorem, there cannot be too many zeros of $B$!
 So meromorphic functions can be thought of as ``almost holomorphic''
 (like $\frac 1z$, which is holomorphic everywhere but the origin).
 We saw that
-\[
-	\oint_{\gamma} \frac 1z \; dz
-	= \frac{1}{2\pi i}
-\]
+\[ \frac{1}{2\pi i} \oint_{\gamma} \frac 1z \; dz =  1 \]
 for $\gamma(t) = e^{it}$ the unit circle.
 We will extend our results on contours to such situations.
 
-It turns out that, instead of just getting $\oint_\gamma f(z) \; dz = 0$ like we did in
-the holomorphic case, the line integrals will actually be used to \emph{count the number of poles}
-inside the loop $\gamma$. It's ridiculous, I know.
+It turns out that, instead of just getting $\oint_\gamma f(z) \; dz = 0$
+like we did in the holomorphic case,
+the contour integrals will actually be used to
+\emph{count the number of poles} inside the loop $\gamma$.
+It's ridiculous, I know.
 
 \section{Meromorphic Functions}
 \prototype{$\frac 1z$, with a pole of order $1$ and residue $1$ at $z=0$.}
@@ -120,7 +119,6 @@ in such a way that no two neighborhoods intersect.
 	I won't prove this here, but it is good to be aware of.
 \end{remark}
 
-
 \begin{definition}
 	Let $p$ be a pole of a meromorphic function $f$, with Laurent seires
 	\[ 
@@ -136,7 +134,6 @@ in such a way that no two neighborhoods intersect.
 	We also give the coefficient $c_{-1}$ a name, the \vocab{residue} of $f$ at $p$,
 	which we write $\Res(f;p)$.
 \end{definition}
-
 
 The order of a pole tells you how ``bad'' the pole is.
 The order of a pole is the ``opposite'' concept of the \vocab{multiplicity} of a \vocab{zero}.

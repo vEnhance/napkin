@@ -4,7 +4,8 @@ In this chapter I will tell you only the bare minimum:
 what a group is, and when two groups are the same.
 
 \section{Definition and Examples of Groups}
-\prototype{The additive group of integers $\ZZ_+$ and the cyclic group $\ZZ_m$. Just don't let yourself forget that most groups are non-commutative.}
+\prototype{The additive group of integers $(\ZZ,+)$ and the cyclic group $\Zc m$.
+Just don't let yourself forget that most groups are non-commutative.}
 
 A group consists of two pieces of data: a set $G$, and an associative binary operation $\star$ with some properties.
 Before I write down the definition of a group, let me give two examples.
@@ -19,13 +20,8 @@ Before I write down the definition of a group, let me give two examples.
 		$a+0=0+a = a$ for any $a$.
 		\ii Every element $a \in \ZZ$ has an additive \emph{inverse}: $a + (-a) = (-a) + a = 0$.
 	\end{itemize}
-	We call this group $\ZZ_+$.
+	We call this group $\ZZ$.
 \end{example}
-\begin{abuse}
-	For this chapter and the third chapter,
-	I'll use $\ZZ_+$ to be clear that I'm referring to the additive group.
-	However, after this part I'll start just writing $\ZZ$ like everyone else.
-\end{abuse}
 \begin{example}[Nonzero Rationals]
 	Let $\QQ^\times$ be the set of \emph{nonzero rational numbers}.
 	The pair $(\QQ^\times, \cdot)$ is a group:
@@ -331,24 +327,26 @@ The fact that the map is injective is often called the \vocab{cancellation law}.
 (Why do you think so?)
 
 \section{Isomorphisms}
-\prototype{$\ZZ_+ \cong 10\ZZ_+$.}
+\prototype{$\ZZ \cong 10\ZZ$.}
 First, let me talk about what it means for groups to be isomorphic.
 Consider the following two groups:
 \begin{itemize}
-	\ii $\ZZ_+ = (\left\{ \dots,-2,-1,0,1,2,\dots \right\}, +)$.
-	\ii $10\ZZ_+ = (\left\{ \dots, -20, -10, 0, 10, 20, \dots \right\}, +)$.
+	\ii $\ZZ = (\left\{ \dots,-2,-1,0,1,2,\dots \right\}, +)$.
+	\ii $10\ZZ = (\left\{ \dots, -20, -10, 0, 10, 20, \dots \right\}, +)$.
 \end{itemize}
 These groups are ``different'', but only superficially so -- you might even say they only differ in the names of the elements.
 Think about what this might mean formally for a moment.
 
 Specifically the map
-\[ \phi : \ZZ_+ \to 10 \ZZ_+  \text{ by } x \mapsto 10 x \]
+\[ \phi : \ZZ \to 10 \ZZ  \text{ by } x \mapsto 10 x \]
 is a bijection of the underlying sets which respects the group action.
 In symbols,
 \[ \phi(x + y) = \phi(x) + \phi(y). \]
 In other words, $\phi$ is a way of re-assigning names of the elements
 without changing the structure of the group.
-That's all just formalism for capturing the obvious fact that $\ZZ_+$ and $10 \ZZ_+$ are the same thing.
+That's all just formalism for
+capturing the obvious fact that $(\ZZ,+)$
+and $(10 \ZZ, +)$ are the same thing.
 
 Now, let's do the general definition.
 \begin{definition}
@@ -365,13 +363,13 @@ Note that in this definition, the left-hand side $\phi(g_1 \star g_2)$ uses the 
 	[Examples of Isomorphims]
 	Let $G$ and $H$ be groups.  We have the following isomorphisms.
 	\begin{enumerate}[(a)]
-		\ii $\ZZ_+ \cong 10 \ZZ_+$, as above.
+		\ii $\ZZ \cong 10 \ZZ$, as above.
 		\ii There is an isomorphism
 		\[ G \times H \cong H \times G\]
 		by the map $(g,h) \mapsto (h,g)$.
 		\ii The identity map $\id : G \to G$
 		is an isomorphism, hence $G \cong G$.
-		\ii There is another isomorphism of $\ZZ_+$ to itself: send every $x$ to $-x$.
+		\ii There is another isomorphism of $\ZZ$ to itself: send every $x$ to $-x$.
 	\end{enumerate}
 \end{example}
 \begin{example}
@@ -422,7 +420,7 @@ In groups, there are two notions of order.
 \begin{definition}
 	The \vocab{order of a group} $G$ is the number of elements of $G$.
 	We denote this by $\left\lvert G \right\rvert$.
-	Note that the order may not be finite, as in $\ZZ_+$.
+	Note that the order may not be finite, as in $\ZZ$.
 	We say $G$ is a \vocab{finite group} just to mean that $\left\lvert G \right\rvert$ is finite.
 \end{definition}
 \begin{example}[Orders of Groups]
@@ -440,7 +438,7 @@ In groups, there are two notions of order.
 \end{definition}
 \begin{example}[Examples of Orders]
 	The order of $-1$ in $\QQ^\times$ is $2$,
-	while the order of $1$ in $\ZZ_+$ is infinite.
+	while the order of $1$ in $\ZZ$ is infinite.
 \end{example}
 \begin{ques}
 	Find the order of each of the six elements of $\Zc 6$,
@@ -503,7 +501,7 @@ And this definition generalizes in exactly the way you expect.
 	[Examples of Subgroups]
 	\listhack
 	\begin{enumerate}[(a) ]
-		\ii $2\ZZ_+$ is a subgroup of $\ZZ_+$, which is isomorphic to $\ZZ_+$ itself!
+		\ii $2\ZZ$ is a subgroup of $\ZZ$, which is isomorphic to $\ZZ$ itself!
 		\ii Consider again $S_n$, the symmetric group on $n$ elements.
 		Let $T$ be the set of permutations $\tau : \{1, \dots, n\} \to \{1, \dots, n\}$
 		for which $\tau(n) = n$.  Then $T$ is a subgroup of $S_n$;
@@ -543,12 +541,16 @@ Next is an especially important example that we'll talk about more in later chap
 
 Finally, we present some non-examples of subgroups.
 \begin{example}[Non-Examples of Subgroups]
-	Consider the group $\ZZ_+$.
+	Consider the group $\ZZ = (\ZZ, +)$.
 	\begin{enumerate}[(a)]
-		\ii The set $\left\{ 0,1,2,\dots \right\}$ is not a subgroup of $\ZZ_+$ because it does not contain inverses.
-		\ii The set $\{ n^3 \mid n \in \ZZ \} = \{ \dots, -8, -1, 0, 1, 8, \dots \}$ is not a subgroup
-		because it is not closed under addition; the sum of two cubes is not in general a cube.
-		\ii The empty set $\varnothing$ is not a subgroup of $\ZZ_+$ because it lacks an identity element.
+		\ii The set $\left\{ 0,1,2,\dots \right\}$ is
+		not a subgroup of $\ZZ$ because it does not contain inverses.
+		\ii The set $\{ n^3 \mid n \in \ZZ \}
+		= \{ \dots, -8, -1, 0, 1, 8, \dots \}$ is not a subgroup
+		because it is not closed under addition;
+		the sum of two cubes is not in general a cube.
+		\ii The empty set $\varnothing$ is not a subgroup
+		of $\ZZ$ because it lacks an identity element.
 	\end{enumerate}
 \end{example}
 
@@ -594,7 +596,7 @@ Just for fun, here is a list of all groups of order less than or equal to ten
 	\end{itemize}
 	\ii The groups of order $10$ are
 	\begin{itemize}
-		\ii $\ZZ_{10} \cong \ZZ_5 \times \ZZ_2$ (again Chinese Remainder Theorem).
+		\ii $\Zc{10} \cong \Zc5 \times \Zc2$ (again Chinese Remainder Theorem).
 		\ii $D_{10}$, the dihedral group with $10$ elements.
 		This group is non-abelian.
 	\end{itemize}
@@ -650,7 +652,7 @@ Just for fun, here is a list of all groups of order less than or equal to ten
 
 \begin{sproblem}
 	Let $p$ be a prime.
-	Show that the only group of order $p$ is $\ZZ_p$.
+	Show that the only group of order $p$ is $\Zc p$.
 	\begin{hint}
 		Generated groups.
 	\end{hint}

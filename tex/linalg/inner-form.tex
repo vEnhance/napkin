@@ -239,11 +239,22 @@ In light of this, we can now consider a stronger condition on our bases:
 \end{example}
 This is no loss of generality:
 \begin{theorem}[Gram-Schmidt]
-	Let $V$ be a finite-dimensional vector space.
+	Let $V$ be a finite-dimensional inner product space.
+	Then it has an orthonormal basis.
 \end{theorem}
-\begin{proof}
-	Not hard, but omitted for now.
-	Maybe if I have time I will add it later.
+\begin{proof}[Sketch of Proof]
+	One constructs the orthonormal basis explicitly from any basis
+	$e_1$, \dots, $e_n$ of $V$.
+	Define $\opname{proj}_u(v) = \frac{\left< v,u\right>}{\left< u,u\right>} u$.
+	Then recursively define
+	\begin{align*}
+		u_1 &= e_1 \\
+		u_2 &= e_2 - \opname{proj}_{u_1}(e_2) \\
+		u_3 &= e_3 - \opname{proj}_{u_1}(e_3) - \opname{proj}_{u_2}(e_3) \\
+		&\vdotswithin{=} \\
+		u_n &= e_n - \opname{proj}_{u_1}(e_n) - \dots - \opname{proj}_{u_{n-1}}(e_{n-1}).
+	\end{align*}
+	One can show the $u_i$ are pairwise orthogonal and not zero.
 \end{proof}
 Thus, we can generally assume our bases are orthonormal.
 

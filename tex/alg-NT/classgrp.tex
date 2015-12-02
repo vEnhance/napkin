@@ -5,9 +5,9 @@ In the case of a PID, this in fact gives us unique factorization of elements.
 Sweet.
 
 We'll define, in a moment, something called the \emph{class group}
-which measures how far something is from being a PID;
-the bigger the class group, the farther it is from being a PID.
-In particular, the PID's are the guys with trivial class group.
+which measures how far $\OO_K$ is from being a PID;
+the bigger the class group, the farther $\OO_K$ is from being a PID.
+In particular, the $\OO_K$ is a PID if it has trivial class group.
 
 Then we will provide some inequalities which let us put restrictions on the class group;
 for instance, this will let us show in some cases that the class group must be trivial.
@@ -51,6 +51,7 @@ geometrically, we want to think about this the same way we think about $\ZZ^2$.
 Perversely, we might try to embed this into $\QQ^2$ by sending $a+b\sqrt 2$ to $(a, b)$.
 But this is a little stupid, since we're rudely making $K$, which somehow lives inside $\QQ$ and is
 ``one-dimensional'' in that sense, into a two-dimensional space.
+It also depends on a choice of basis, which we don't like.
 A better way is to think about the fact that there are two embeddings
 $\sigma_1 : K \to \CC$ and $\sigma_2 : K \to \CC$, namely the identity, and conjugation:
 \begin{align*}
@@ -635,7 +636,7 @@ Let's do a couple more.
 
 Here's another example of something that still turns out to be unique factorization,
 but this time our cherry tree will actually have cherries that can be picked.
-\begin{proposition}
+\begin{proposition}[$\QQ(\sqrt7)$ Has Class Number $1$]
 	The ring $\ZZ[\sqrt 7]$ is a unique factorization domain.
 \end{proposition}
 \begin{proof}
@@ -660,7 +661,7 @@ but this time our cherry tree will actually have cherries that can be picked.
 How about some nontrivial class groups?
 First, we use a lemma that will help us with
 narrowing down the work in our cherry tree.
-\begin{lemma}
+\begin{lemma}[Ideals Divide Their Norms]
 	Let $\bb$ be an integral ideal with $\Norm(\bb) = 2015$.
 	Then $\bb$ divides the ideal $(2015)$.
 \end{lemma}
@@ -675,24 +676,14 @@ narrowing down the work in our cherry tree.
 \end{proof}
 
 Now we can give such an example.
-\begin{proposition}
-	The number field $K = \QQ(\sqrt{-17})$ has class group $\ZZ/4\ZZ$.
+\begin{proposition}[Class Group of $\QQ(\sqrt{-17})$]
+	The number field $K = \QQ(\sqrt{-17})$ has class group $\Zc 4$.
 \end{proposition}
 You are not obliged to read the entire proof in detail,
 as it is somewhat gory.
 The idea is just that there are some cherries which are not trivial in the class group.
 \begin{proof}
-Since $D_K = -68$, we compute\footnote{
-	Funny anecdote: when we did this at Harvard during Math 129,
-	there was a five-minute interruption in which students (jokingly) complained
-	about the difficulty of evaluating $\frac{4}{\pi} \sqrt{17}$. Excerpt: \\
-		``Will we be allowed to bring a small calculator on the exam?'' -- Student 1 \\
-		``What does the size have to do with anything?  You could have an Apple Watch'' -- Professor \\
-		``Just use the fact that $\pi \ge 3$'' -- me \\
-		``Even Gaitsgory [Math 55 professor] doesn't know that, how are we supposed to?'' -- Student 2 \\
-		``You have to do this yourself!'' -- Professor \\
-		``This is an outrage.'' -- Student 1
-}
+Since $D_K = -68$, we compute
 the Minkowsi bound
 \[ M_K = \frac{4}{\pi} \sqrt{17} < 6. \]
 
@@ -713,7 +704,7 @@ Hence, the three cherries are $\pp$, $\qq_1$, $\qq_2$.
 
 The possible ways to arrange these cherries into ideals with norm $\le 5$ are
 \[ \left\{ (1), \pp, \qq_1, \qq_2, \pp^2 \right\}. \]
-However, you can compute $\pp^2 = (2)$, so $\pp^2$ and $(1)$ are in the same class group;
+However, you can compute \[ \pp^2 = (2) \] so $\pp^2$ and $(1)$ are in the same class group;
 that is, they are trivial.
 In particular, the class group has order at most $4$.
 
@@ -730,12 +721,25 @@ This is impossible since $\qq_1 + \qq_2 = (1)$.
 
 Thus, $\qq_1$ has even order greater than $2$.
 So it has to have order $4$.
-From this we deduce $\Cl_K \cong \ZZ/4\ZZ$.
+From this we deduce \[ \Cl_K \cong \Zc 4. \qedhere \]
 \end{proof}
 
 
 
 
+\begin{remark}
+	When we did this at Harvard during Math 129,
+	there was a five-minute interruption in which students (jokingly) complained
+	about the difficulty of evaluating $\frac{4}{\pi} \sqrt{17}$. Excerpt: 
+	\begin{quote}
+		``Will we be allowed to bring a small calculator on the exam?'' -- Student 1 \\
+		``What does the size have to do with anything?  You could have an Apple Watch'' -- Professor \\
+		``Just use the fact that $\pi \ge 3$'' -- me \\
+		``Even Gaitsgory [Math 55 professor] doesn't know that, how are we supposed to?'' -- Student 2 \\
+		``You have to do this yourself!'' -- Professor \\
+		``This is an outrage.'' -- Student 1
+	\end{quote}
+\end{remark}
 \section\problemhead
 \begin{problem}
 	Show that $K = \QQ(\sqrt{-163})$ has trivial class group,
