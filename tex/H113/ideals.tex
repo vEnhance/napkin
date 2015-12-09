@@ -25,25 +25,31 @@ For all the sections that follow, keep $\ZZ$ in mind as your prototype.
 \prototype{$\ZZ$ all the way! Also $R[x]$ and various fields.}
 
 Well, I guess I'll define a ring\footnote{%
-	Or, according to some authors, a ``commutative ring with unit''.
-	You see, some authors don't require rings to have commutative multiplication,
-	and other authors don't even require there to be multiplicative units.
-	I've seen some reasonable noncommutative rings, but I've never seen a ring
-	without identity that I care about. So, just be warned that some authors
-	have different definitions of ring.
-	For us, ``ring'' always means ``commutative ring with $1$''.}.
+	Or, according to some authors, a ``ring with unit''.
+	You see, some authors don't require rings to have multiplicative units.
+	But I've never seen a ring without identity that I care about.
+	So, just be warned that some authors have different definitions of ring.
+	For us, ``ring'' always means ``ring with $1$''.}.
 
 \begin{definition}
-	A \vocab{ring} is a triple $(R, +, \times)$, the two operations usually called addition and multiplication, such that
+	A \vocab{ring} is a triple $(R, +, \times)$,
+	the two operations usually called addition and multiplication, such that
 	\begin{enumerate}[(i)]
 		\ii $(R,+)$ is an abelian group, with identity $0_R$, or just $0$.
-		\ii $\times$ is an associative, commutative binary operation on $R$ with some
+		\ii $\times$ is an associative, binary operation on $R$ with some
 		identity, written $1_R$ or just $1$.
 		\ii Multiplication distributes over addition.
 	\end{enumerate}
+	The ring $R$ is \vocab{commutative} if $\times$ is commutative.
 \end{definition}
 \begin{abuse}
 	As usual, we will abbreviate $(R, +, \times)$ to just $R$.
+\end{abuse}
+\begin{abuse}
+	For simplicity, assume all rings are commutative
+	for the rest of this chapter.
+	We'll run into some noncommutative rings eventually,
+	but for such rings we won't need the full theory of this chapter anyways.
 \end{abuse}
 
 These definitions are just here for completeness.
@@ -65,13 +71,11 @@ Since I've defined this structure, I may as well state the obligatory facts abou
 	For any ring $R$ and $r \in R$, $r \cdot 0_R = 0_R$.
 	Moreover, $r \cdot (-1_R) = -r$.
 \end{fact}
-\begin{proof}
-	Boring.
-\end{proof}
 
 Here are some more examples of rings.
 \begin{example}[Polynomial Ring]
-	Given any ring $R$, the ring $R[x]$ is defined as the set of polynomials
+	Given any ring $R$,
+	the ring $R[x]$ is defined as the set of polynomials
 	with coefficients in $R$:
 	\[ R[x] = \left\{ a_nx^n+a_{n-1}x^{n-1}+\dots+a_0 \mid a_0, \dots, a_n \in R \right\}. \]
 	Addition and multiplication are done exactly in the way you would expect.
@@ -129,7 +133,7 @@ To be explicit, let me write the relevant definitions.
 \end{example}
 
 \begin{definition}
-	A nontrivial ring is a \vocab{field}
+	A nontrivial (commutative) ring is a \vocab{field}
 	when all its nonzero elements are units.
 \end{definition}
 
@@ -165,7 +169,11 @@ despite not being full-fledged fields.
 Not for all rings though: in $\ZZ/15\ZZ$, $3 \cdot 5 \equiv 0 \pmod{15}$.
 If $a, b \neq 0$ but $ab=0$ then we say $a$ and $b$ are \vocab{zero divisors}
 of the ring $R$.
-A nontrivial ring with no zero divisors is called an \vocab{integral domain}.
+So we give a name to such rings.
+\begin{definition}
+	A nontrivial (commutative) ring with no zero divisors
+	is called an \vocab{integral domain}.
+\end{definition}
 
 \begin{example}
 	[Integral Domains and Fields]
@@ -195,6 +203,7 @@ it's the obvious generalization of all the stuff we did with quotient groups.\fo
 	for rings than for groups.
 	I actually sympathize a lot with this approach -- maybe I'll convert
 	Napkin to follow it one day.}
+
 First, we define a homomorphism and isomorphism.
 
 \begin{definition}
@@ -235,9 +244,21 @@ First, note two obvious facts:
 	we have $rx \in \ker\phi$.
 \end{itemize}
 
-A subset $I \subseteq R$ is called an \vocab{ideal} if it satisfies these properties.
+A subset $I \subseteq R$ is called an ideal if it satisfies these properties.
+That is,
+\begin{definition}
+	A subset $I \subseteq R$ is an \vocab{ideal}
+	if it is closed under addition, and for each $x \in I$,
+	$rx \in I$ for all $r \in R$.
+\end{definition}
 Note that in the second condition, $r$ need not be in $I$!
 So this is stronger than just saying $R$ is closed under multiplication.
+\begin{remark}
+	If $R$ is not commutative, we also need the condition $xr \in I$.
+	That is, the ideal is \emph{two-sided}: it absorbs multiplication
+	from both the left and the right.
+	But since most of our rings are commutative we needn't worry with this distinction.
+\end{remark}
 
 \begin{figure}[ht]
 	\centering
@@ -270,7 +291,7 @@ Now we claim that these conditions are sufficient.
 More explicitly,
 \begin{theorem}
 	[Ring Analog of Normal Subgroups]
-	Let $R$ be a ring and $I \subset R$.
+	Let $R$ be a ring and $I \subsetneq R$.
 	Then $I$ is the kernel of some homomorphism if and only if it's an ideal.
 \end{theorem}
 \begin{proof}

@@ -9,7 +9,7 @@ I'll very informally define a ring/field here; if you're interested in the actua
 you can consult the first part of the chapter on ideals.
 For now you can just remember
 \begin{quote}
-	A ring is a structure with a \emph{commutative}
+	A commutative ring is a structure with a \emph{commutative}
 	addition, subtraction and multiplication, like $\ZZ$. 
 	It also has an additive identity $0$ and multiplicative identity $1$.
 	(Yes, I'm considering only commutative rings.)
@@ -28,7 +28,7 @@ its elements can be added together,
 and there's some scaling by real numbers.
 Let's develop this more generally.
 
-Fix a ring $R$.
+Fix a commutative ring $R$.
 Then informally,
 \begin{moral}
 	An $R$-module is any structure where you can add two elements
@@ -95,7 +95,7 @@ but first, examples\dots
 
 Now let me write the actual rules for how this multiplication behaves.
 \begin{definition}
-	Let $R$ be a ring.
+	Let $R$ be a commutative ring.
 	An $R$-\vocab{module} is an additive abelian group $M = (M,+)$
 	equipped with a left multiplication by elements of $R$.
 	This multiplication must satisfy the following properties
@@ -157,7 +157,7 @@ A couple less intuitive but somewhat important examples\dots
 	Can you see why?
 
 	\ii By the same reasoning,
-	we see that \emph{any} ring $R$ can be thought of
+	we see that \emph{any} commutative ring $R$ can be thought of
 	as an $R$-module over itself.
 	\end{enumerate}
 \end{example}
@@ -350,7 +350,7 @@ that bases in vector spaces behave as nicely as possible.
 	\end{enumerate}
 \end{theorem}
 \begin{remark}
-	If we replace $V$ by a general module $M$ over a ring $R$,
+	If we replace $V$ by a general module $M$ over a commutative ring $R$,
 	then (a) $\implies$ (b) and (a) $\implies$ (c) but not conversely.
 \end{remark}
 \begin{proof}
@@ -383,8 +383,7 @@ that bases in vector spaces behave as nicely as possible.
 	Since we can eventually get to $A_m$, we have $n \ge m$.
 \end{proof}
 \begin{remark}
-	In fact, this is true for modules over any ring.
-	(Well, you need the ring to be commutative, but in this book all rings are commutative).
+	In fact, this is true for modules over any commutative ring.
 	Interestingly, the proof for the general case proceeds by reducing
 	to the case of a vector space.
 \end{remark}
@@ -725,10 +724,13 @@ As explained in \Cref{rem:vector_spaces_have_essence},
 while you \emph{can} work this way if you're a soulless robot,
 it's very unnatural for humans to do so.
 
-When I took Math 55a as a freshman at Harvard, I got the exact opposite treatment: we did all of linear algebra without writing down a single matrix.
+When I took Math 55a as a freshman at Harvard,
+I got the exact opposite treatment:
+we did all of linear algebra without writing down a single matrix.
 During all this time I was quite confused.
 What's wrong with a basis?
-I didn't appreciate until later that this approach was the morally correct way to treat the subject: it made it clear what was happening.
+I didn't appreciate until later that this approach was the
+morally correct way to treat the subject: it made it clear what was happening.
 
 Throughout this project, I've tried to strike a balance between these two approaches,
 using matrices when appropriate to illustrate the maps and to simplify proofs,
@@ -741,8 +743,9 @@ I would pick 55a in a heartbeat.
 
 \section{A Word on General Modules}
 \prototype{$\ZZ[\sqrt2]$ is a $\ZZ$-module of rank two.}
-I focused mostly on vector fields (aka modules over a ring) in this chapter
-for simplicity, so I want to make a few remarks about modules over a general ring $R$ before concluding.
+I focused mostly on vector fields (aka modules over a field) in this chapter
+for simplicity, so I want to make a few remarks about
+modules over a general commutative ring $R$ before concluding.
 
 Firstly, recall that for general modules,
 we say ``generating set'' instead of ``spanning set''.
