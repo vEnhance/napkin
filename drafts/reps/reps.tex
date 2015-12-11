@@ -1,0 +1,799 @@
+\documentclass[11pt]{scrreprt}
+\input{../../tex/preamble}
+\def\asydir{}
+\addbibresource{../../references.bib}
+\renewcommand{\gim}{($\ast$)}
+
+
+\begin{document}
+\title{Representation Theory}
+\maketitle
+
+\chapter{Representations of Algebras}
+In the 19th century, a group was literally defined
+as a subset of $\GL(n)$ or of $S_n$: the word ``group'' hadn't been invented yet.
+Only much later did the abstract definition of a group was given,
+an abstract set $G$ which was an object in its own right.
+
+While this abstraction is good for some reasons,
+it is often also useful to work with concrete representations.
+This is the subject of representation theory.
+Linear algebra is easier than abstract algebra,
+so if we can take a group $G$ and represent it concretely
+as a set of matrices in $\opname{GL}(n)$,
+this makes them easier to study.
+This is the \emph{representation theory of groups}:
+how can we take a group and represent its elements as matrices?
+
+\section{Algebras}
+\prototype{$k[x_1, \dots, x_n]$ and $k[G]$.}
+Rather than working directly with groups from the beginning,
+it will be more convenient to deal with so-called $k$-algebras.
+This setting is more natural and general than that of groups,
+so once we develop the theory of algebras well enough,
+it will be fairly painless to specialize to the case of groups.
+
+Colloquially,
+\begin{moral}
+	An associative $k$-algebra is
+	a (possibly noncommutative) ring with a copy of $k$ inside it.
+	It is thus a $k$-vector space.
+\end{moral}
+In particular this makes such an algebra it into a $k$-vector space.
+I'll present examples before the definition:
+\begin{example}
+	[Examples of $k$-Algebras]
+	Let $k$ be any field.
+	\begin{enumerate}[(a)]
+		\ii The field $k$ itself is a $k$-algebra.
+		\ii The polynomial ring $k[x_1, \dots, x_n]$.
+		\ii The set of $n \times n$ matrices with entries in $k$,
+		which we denote by $\Mat_n(k)$.
+		Note the multiplication here is not commutative.
+		\ii The set $\Mat(V)$ of linear operators $T : V \to V$,
+		with multiplication given by the composition of operators.
+		(Here $V$ is some vector space over $k$.)
+		This is really the same as the previous example.
+	\end{enumerate}
+\end{example}
+\begin{definition}
+	Let $k$ be a field.
+	A \vocab{$k$-algebra} $A$ is a ring, \emph{possibly noncommutative},
+	equipped with an ring homomorphism $k \to A$
+	(whose image is the ``copy of $k$'').
+	Thus we can consider $k$ as a subset of $A$, and
+	we then additionally require $\lambda \cdot a = a \cdot \lambda$
+	for each $\lambda0 \in k$ and $a \in A$.
+
+	If the multiplication operation is also commutative,
+	then we say $A$ is a \vocab{commutative} algebra.
+\end{definition}
+\begin{definition}
+	Equivalently, a \vocab{$k$-algebra} $A$ is a
+	$k$-\emph{vector space} which also has a associative,
+	bilinear multiplication operation (with an identity $1_A$).
+	The ``copy of $k$'' is obtained by considering elements
+	$\lambda 1_A$ for each $\lambda \in k$
+	(i.e.\ scaling the identity by the elements of $k$,
+	taking advantage of the vector space structure).
+\end{definition}
+
+\begin{abuse}
+	Some authors don't require $A$ to be associative or have unit,
+	so to them what we have just defined is an
+	``associative algebra with $1$''.
+	However, this is needlessly wordy for our purposes.
+\end{abuse}
+
+\begin{example}
+	[Group Algebra]
+	The \vocab{group algebra} $k[G]$ is the $k$-vector space
+	whose \emph{basis elements} are the elements of a group $G$,
+	and where the product of two basis elements is the group multiplication.
+	For example, suppose $G = \Zc 2 = \{1_G, x\}$.
+	Then
+	\[ k[G] = \left\{ a1_G + bx \mid a,b \in k \right\} \]
+	with multiplication given by
+	\[ (a1_G + bx)(c1_G+dx) = (ac+bd)1_G + (bc+ad)x. \]
+\end{example}
+\begin{ques}
+	When is $k[G]$ commutative?
+\end{ques}
+The example $k[G]$ is very important,
+because (as we will soon see) a representation of the algebra $k[G]$
+amounts to a representation of the group $G$ itself.
+
+It is worth mentioning at this point that:
+\begin{definition}
+	A \vocab{homomorphism} of $k$-algebras $A$, $B$ is a
+	linear map $T : A \to B$ which respects multiplication
+	(i.e.\ $T(xy) = T(x)T(y)$) and which sends $1_A$ to $1_B$.
+	In other words, $T$ is both a homomorphism as a ring and as a vector space.
+\end{definition}
+\begin{definition}
+	Given $k$-algebras $A$ and $B$, the \vocab{direct sum} $A \oplus B$
+	is defined as pairs $a + b$, where addition is done in the obvious way,
+	but we declare $ab = 0$ for any $a \in A$ and $b \in B$.
+\end{definition}
+\begin{ques}
+	Show that $1_A + 1_B$ is the multiplicative identity of $A \oplus B$.
+\end{ques}
+
+\section{Representations}
+\prototype{$k[S_3]$ acting on $k^{\oplus 3}$ is my favorite.}
+
+\begin{definition}
+	A \vocab{representation} of a $k$-algebra $A$ consists of
+	\begin{enumerate}[(i)]
+		\ii A $k$-vector space $V$, and
+		\ii An \emph{action} $\cdot$ of $A$ on $k$: thus, for every $a \in A$
+		we can take $v \in V$ and act on it to get $a \cdot v$.
+		This satisfies the usual axioms:
+		\begin{itemize}
+			\ii $(a+b) \cdot v = a \cdot v + b \cdot v$,
+			and $(ab) \cdot v = a(b \cdot v)$.
+			\ii $\lambda \cdot v = \lambda v$ for $\lambda \in k$.
+			In particular, $1_A \cdot v = v$.
+		\end{itemize}
+	\end{enumerate}
+	In other words, a representation is a \textbf{left $A$-module} $V$.
+\end{definition}
+
+\begin{definition}
+	The action of $A$ can be more succinctly described as saying
+	that there is a \emph{$k$-algebra homomorphism} $\rho : A \to \Mat(V)$.
+	(So $a \cdot v = \rho(a)(v)$.)
+	Thus we can also define a \vocab{representation} of $A$ as a pair
+	\[ \left( V, \rho : A \to \Mat(V) \right). \]
+\end{definition}
+\begin{remark}
+	This is completely analogous to how a group action $G$ on a set $X$
+	with $n$ elements just amounts to a group homomorphism $G \to S_n$.
+\end{remark}
+From this perspective, what we are really trying to do is:
+\begin{moral}
+	If $A$ is an algebra,
+	we are trying to \emph{represent}
+	the elements of $A$ as matrices.
+\end{moral}
+
+\begin{abuse}
+	While a representation is a pair $(V, \rho)$
+	of both the vector space $V$ and the action $\rho$,
+	we frequently will just abbreviate it to ``$V$''.
+	This is probably one of the worst abuses I will commit.
+\end{abuse}
+
+\begin{example}
+	[Representations of $\Mat(V)$]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii Let $A = \Mat_2(\RR)$.
+		Then there is a representation $(\RR^{\oplus 2}, \rho)$
+		where a matrix $a \in A$ just acts by $a \cdot v = \rho(a)(v) = a(v)$.
+
+		\ii More generally, given a vector space $V$ over any field $k$,
+		there is an obvious representation of $A = \Mat(V)$
+		by $a \cdot v = \rho(a)(v) = a(v)$ (since $a \in \Mat(V)$).
+
+		From the matrix perspective: if $A = \Mat(V)$,
+		then we can just represent $A$ as matrices over $V$.
+
+		\ii There are other representations of $A = \Mat_2(\RR)$.
+		A silly example is the representation $(\RR^{\oplus 4}, \rho)$ given by
+		\[
+			\rho : 
+			\begin{pmatrix} a & b \\ c & d \end{pmatrix} 
+			\mapsto
+			\begin{pmatrix} a & b & 0 & 0 \\ c & d & 0 & 0 \\
+				0 & 0 & a & b \\ 0 & 0 & c & d \end{pmatrix} .
+		\]
+		More abstractly, viewing $\RR^{\oplus 4}$ as
+		$(\RR^{\oplus 2}) \oplus (\RR^{\oplus 2})$,
+		this is $a \cdot (v_1,v_2) = (a \cdot v_1, a \cdot v_2)$.
+	\end{enumerate}
+\end{example}
+
+\begin{example}
+	[Representations of Polynomials Algebras]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii Let $A = k$.
+		Then a representation of $k$ is just any $k$-vector space $V$.
+
+		\ii If $A = k[x]$,
+		then a representation $(V, \rho)$ of $A$
+		amounts to a vector space $V$ plus the choice of
+		a linear operator $T \in \Mat(V)$ (the image $\rho(x)$).
+
+		\ii If $A = k[x] / (x^2)$
+		then a representation $(V, \rho)$ of $A$
+		amounts to a vector space $V$ plus the choice of
+		a linear operator $T \in \Mat(V)$ satisfying $T^2 = 0$.
+
+		\ii We can create arbitrary ``functional equations'' with this pattern.
+		For example, if $A = k[x,y] / (x^2 - x+y, y^4)$
+		then representing $A$ by $V$ amounts to finding operators
+		$S, T \in \Mat(V)$ satisfying $S^2 = S-T$ and $T^4 = 0$.
+	\end{enumerate}
+\end{example}
+
+
+\begin{example}
+	[Representations of Groups]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii Let $A = \RR[S_3]$.
+		Then let 
+		\[ V = \RR^{\oplus 3} = \{ (x,y,z) \mid x,y,z \in \RR \}. \]
+		We can let $A$ act on $V$ as follows:
+		given a permutation $\pi \in S_3$, we permute the corresponding
+		coordinates in $V$.
+		So for example, if 
+		\[ \text{If } \pi = (1 \; 2)
+		\text{ then } \pi \cdot (x,y,z) = (y,x,z). \]
+		This extends linearly to let $A$ act on $V$,
+		by permuting the coordinates.
+
+		From the matrix perspective, what we are doing
+		is representing the permutations in $S_3$
+		as permutation matrices on $k^{\oplus 3}$, like
+		\[ (1 \; 2)
+		\mapsto \begin{pmatrix} 0&1&0 \\ 1&0&0 \\ 0&0&1 \end{pmatrix}. \]
+		
+		\ii More generally, let $A = k[G]$.
+		Then a representation $(V, \rho)$ of $A$ amounts to 
+		a group homomorphism $\psi : G \to \GL(V)$.
+	\end{enumerate}
+\end{example}
+\begin{example}[Regular Representation]
+	Any $k$-algebra $A$ is a representation $(A, \rho)$ over itself,
+	with $a \cdot b = \rho(a)(b) = ab$ (i.e.\ multiplication given by $A$).
+	This is called the \vocab{regular representation}, denoted $\Reg(A)$.
+\end{example}
+
+\begin{example}
+	[Direct Sums of Representations]
+	Let $A$ be $k$-algebra and let $V = (V, \rho_1)$ and $W = (W, \rho_2)$
+	be two representations of $A$.
+	Then $V \oplus W$ is a representation, with action $\rho$ by
+	\[ a \cdot (v,w) = (a \cdot v, a \cdot w). \]
+	In terms of matrices, this looks like
+	\[ \rho(a) = \begin{pmatrix}
+			\rho_1(a) & 0 \\ 0 & \rho_2(a)
+		\end{pmatrix}. \]
+	This is called the \vocab{direct sum} of $V$ and $W$.
+	We have already seen this example earlier in the special case
+	when we let $A = \Mat_2(\RR)$ act on $\RR^{\oplus 4}$.
+\end{example}
+
+Direct sums also come up when we play with algebras.
+\begin{proposition}[Representations of $A \oplus B$ are $V_A \oplus V_B$]
+	\label{prop:rep_direct_sum}
+	Let $A$ and $B$ be $k$-algebras.
+	Then every representation of $A \oplus B$ is of the form 
+	\[ V_A \oplus V_B \]
+	where $V_A$ and $V_B$ are representations of $A$ and $B$, respectively.
+\end{proposition}
+\begin{proof}[Sketch of Proof]
+	Let $(V, \rho)$ be a representation of $A \oplus B$.
+	For any $v \in V$, $\rho(1_A+1_B)v = \rho(1_A)v + \rho(1_B)v$.
+	One can then set $V_A = \{ \rho(1_A)v \mid v \in V \}$
+	and $V_B = \{ \rho(1_B)v \mid v \in V \}$.
+	These are disjoint, since if $\rho(1_A) v = \rho(1_B) v'$,
+	we have $\rho(1_A)v = \rho(1_A1_A)v = \rho(1_A1_B) v' = 0_V$,
+	and similarly for the other side.
+\end{proof}
+
+\section{Irreducible and Indecomposable Representations}
+\prototype{$k[S_3]$ decomposes as the sum of two spaces.}
+
+One of the goals of representation theory will be to classify
+all possible representations of an algebra $A$.
+If we want to have a hope of doing this,
+then we want to discard ``silly'' representations such as
+\[
+	\rho : 
+	\begin{pmatrix} a & b \\ c & d \end{pmatrix} 
+	\mapsto
+	\begin{pmatrix} a & b & 0 & 0 \\ c & d & 0 & 0 \\
+		0 & 0 & a & b \\ 0 & 0 & c & d \end{pmatrix} .
+\]
+and focus our attention instead on ``irreducible'' representations.
+This motivates the following definition.
+
+\begin{definition}
+	Let $V$ be a representation of $A$.
+	A \vocab{subrepresentation} $W \subset V$ is a subspace $W$
+	with the property that for any $a \in A$ and $w \in W$,
+	$a \cdot w = w$.
+	In other words, this subspace is invariant under actions by $A$.
+\end{definition}
+Thus if $V \neq W_1 \oplus W_2$ for representations $W_1$, $W_2$
+then $W_1$ and $W_2$ are subrepresentations.
+
+\begin{definition}
+	If $V$ has no proper subrepresentations then it is \vocab{irreducible}.
+	If $V \neq W_1 \oplus W_2$ for proper subrepresentations $W_1$, $W_2$,
+	then we say it is \vocab{indecomposable}.
+\end{definition}
+
+Why do we need two parts of the definition?
+Unfortunately, if $W$ is a subrepresentation of $V$,
+then it is not necessarily the case that we can find a
+supplementary vector space $W'$ such that $V = W \oplus W'$.
+Put another way, if $V$ is reducible, we know that it has a subrepresentation,
+but a decomposition requires \emph{two} subrepresentations.
+Here is a standard counterexample:
+\begin{exercise}
+	Let $A = \RR[x]$, and $V = \RR^{\oplus 2}$ the representation with action
+	\[ \rho(x) = \begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}. \]
+	Show that the only subrepresentation is $W = \{ (t,0) \mid t \in \RR \}$.
+	So $V$ is not irreducible, but it is indecomposable.
+\end{exercise}
+
+Here is a slightly more optimistic example,
+and the ``prototypical example'' that you should keep in mind.
+\begin{example}[Representation of $S_n$ decomposes]
+	Let $A = \RR[S_3]$ again,
+	with the action on 
+	\[ V = \RR^{\oplus 3} = \{ (x,y,z) \mid x,y,z \in \RR \}. \]
+	Consider the two subspaces
+	\begin{align*}
+		W_1 &= \left\{ (t,t,t) \mid t \in \RR \right\} \\
+		W_2 &= \left\{ (x,y,z) \mid x+y+z = 0 \right\}.
+	\end{align*}
+	Note $V = W_1 \oplus W_2$ as vector spaces.
+	But each of $W_1$ and $W_2$ is a subrepresentation
+	(since the action of $A$ keeps each $W_i$ in place),
+	so $V = W_1 \oplus W_2$ as representations.
+\end{example}
+
+\begin{exercise}
+	Let $A = \Mat_d(k)$ and consider the obvious representation $k^{\oplus d}$
+	that we described earlier. Show that it is irreducible.
+	(This is obvious if you understand the definitions well enough.)
+\end{exercise}
+
+\section{Morphisms of Representations}
+We now proceed to define the morphisms between representations.
+
+\begin{definition}
+	Let $(V, \rho_1)$ and $(W, \rho_2)$ be representations of $A$.
+	An \vocab{intertwining operator}, or \vocab{morphism}, is a
+	linear map $T : V \to W$ such that
+	\[ T(a \cdot v) = a \cdot T(v) \]
+	for any $a \in A$, $v \in V$.
+	(Note the first $\cdot$ is the action $\rho_1$
+	and the second $\cdot$ is the action of $\rho_2$.)
+	This is exactly what you expect if you think that $V$ and $W$
+	are ``left $A$-modules''.
+	If $T$ is invertible, then it is an \vocab{isomorphism} of representations
+	and we say $V \cong W$.
+\end{definition}
+\begin{remark}
+	[For Commutative Diagram Lovers]
+	The condition $T(a \cdot v) = a \cdot T(v)$ can be read as saying that
+	\begin{diagram}
+		V & \rTo^{\rho_1(a)} & V \\
+		\dTo^T & & \dTo_T \\
+		W & \rTo^{\rho_2(a)} & W
+	\end{diagram}
+	commutes for any $a \in A$.
+\end{remark}
+
+\begin{remark}
+	[For Category Lovers]
+	A representation is just a ``bilinear'' functor from an
+	abelian one-object category $\{\ast\}$ (so $\Hom(\ast, \ast) \cong A$)
+	to the abelian category $\catname{Vect}_k$.
+	Then an intertwining operator is just a \emph{natural transformation}.
+\end{remark}
+
+Here are some examples of intertwining operators.
+\begin{example}[Intertwining Operators]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii For any $\lambda \in k$, the scalar map $T(v) = \lambda v$
+		is intertwining.
+		\ii If $W \subseteq V$ is a subrepresentation,
+		then the inclusion $W \injto V$ is a subrepresentation.
+		\ii The projection map $V_1 \oplus V_2 \surjto V_1$
+		is an intertwining operator.
+		\ii Let $V  = \RR^{\oplus 2}$ 
+		and represent $A = k[x]$ by $(V, \rho)$ where
+		\[ \rho(x) = \begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix}. \]
+		Thus $\rho(x)$ is rotation by $90\dg$ around the origin.
+		Let $T$ be rotation by $30\dg$.
+		Then $T : V \to V$ is intertwining (the rotations commute).
+	\end{enumerate}
+\end{example}
+
+\begin{exercise}[Kernel and Image Are Subrepresentations]
+	Let $T : V \to W$ be an intertwining operator.
+	\begin{enumerate}[(a)]
+		\ii Show that $\ker T \subseteq V$ is a subrepresentation of $V$.
+		\ii Show that $\img T \subseteq W$ is a subrepresentation of $W$.
+	\end{enumerate}
+\end{exercise}
+
+This gives us the famous Schur's Lemma.
+\begin{theorem}
+	[Schur's Lemma]
+	Let $V$ and $W$ be representations of a $k$-algebra $A$.
+	Let $T : V \to W$ be a \emph{nonzero} intertwining operator.
+	Then
+	\begin{enumerate}[(a)]
+		\ii If $V$ is irreducible, then $T$ is injective.
+		\ii If $W$ is irreducible, then $T$ is surjective.
+	\end{enumerate}
+	In particular if both $V$ and $W$ are irreducible then $T$
+	is either zero or an isomorphism.
+\end{theorem}
+An important special case is if $k$ is algebraically closed:
+then the only intertwining operators $V \to V$
+are the trivial constant ones.
+\begin{theorem}
+	[Schur's Lemma for Algebraically Closed Fields]
+	Let $k$ be an algebraically closed field.
+	Let $V$ and $V$ be irreducible representations of a $k$-algebra $A$.
+	Then any intertwining operator $T : V \to V$ is multiplication by a scalar.
+\end{theorem}
+\begin{exercise}
+	Use the fact that $T$ has an eigenvalue $\lambda$ to
+	deduce this from Schur's Lemma.
+	(Consider $T - \lambda \cdot \id_V$, and use Schur to deduce it's zero.)
+\end{exercise}
+We have already seen the counterexample of rotation by $90\dg$ for $k = \RR$;
+this was the same counterexample we gave to the assertion that all linear maps
+have eigenvalues.
+
+\section{The Representations of $\Mat_d(k)$}
+To give an example of the kind of progress already possible,
+we prove the following theorem.
+\begin{theorem}
+	[Representations of $\Mat_d(k)$]
+	\label{thm:rep_1mat}
+	Let $k$ be any field, $d$ be a positive integer and
+	let $X = k^{\oplus d}$ be the obvious representation of $A = \Mat_d(k)$.
+	Then the only finite-dimensional representations
+	of $\Mat_d(k)$ are $W^{\oplus n}$
+	for some positive integer $n$ (up to isomorphism).
+	In particular, it is irreducible if and only if $n=1$.
+\end{theorem}
+For concreteness, I'll just sketch the case $d=2$,
+since the same proof applies verbatim to other situations.
+This shows that the examples of representations of $\Mat_2(\RR)$
+we gave earlier are the only ones.
+
+As we've said this is essentially a functional equation.
+The algebra $A = \Mat_2(k)$ has basis given by four matrices
+\[
+	E_1 = \begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix},
+	\qquad
+	E_2 = \begin{pmatrix} 0 & 0 \\ 0 & 1 \end{pmatrix},
+	\qquad
+	E_3 = \begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix},
+	\qquad
+	E_4 = \begin{pmatrix} 0 & 0 \\ 1 & 0 \end{pmatrix}
+\]
+satisfying relations like $E_1 + E_2 = \id$, $E_i^2 = E_i$, $E_1E_2 = 0$, etc.
+So let $V$ be a representation of $A$, and let $M_i = \rho(E_i)$ for each $i$;
+we want to classify the possible matrices $M_i$ on $V$
+satisfying the same functional equations.
+This is because, for example,
+\[ \id_V = \rho(\id_A) = \rho(E_1+E_2) = M_1 + M_2. \]
+By the same token $M_1M_3 = M_3$.
+Proceeding in a similar way, we can obtain the following multiplication table.
+\[
+	\begin{array}{r|llll}
+		\times & M_1 & M_2 & M_3 & M_4 \\ \hline
+		M_1 & M_1 & 0 & M_3 & 0 \\
+		M_2 & 0 & M_2 & 0 & M_4 \\
+		M_3 & 0 & M_3 & 0 & M_1 \\
+		M_4 & M_4 & 0 & M_2 & 0
+	\end{array}
+	\qquad \text{and} \qquad
+	M_1 + M_2 = \id_V
+\]
+Note that each $M_i$ is a linear operator $V \to V$;
+for all we know, it could have hundreds of entries.
+Nonetheless, given the multiplication table of the basis $E_i$
+we get the corresponding table for the $M_i$.
+
+So, in short, the problem is as follows:
+\begin{moral}
+	Find all vector spaces $V$ and quadruples of matrices $M_i$
+	satisfying the multiplication table above.
+\end{moral}
+
+Let $W_1$ be the image of $M_1 : V \to V$ and $W_2$ the image of $M_2 : V \to V$.
+\begin{claim}
+	$V = W_1 \oplus W_2$.
+\end{claim}
+\begin{proof}
+	First, note that for any $v \in V$ we have
+	\[ v = \rho(\id)(v) = (M_1+M_2)v = M_1v + M_2v. \]
+	Moreover, we have that $W_1 \cap W_2 = \{0\}$, because if
+	$M_1v_1 = M_2v_2$ then $M_1v_1 = M_1(M_1v_1) = M_1(M_2v_2) = 0$.
+\end{proof}
+\begin{claim}
+	$W_1 \cong W_2$.
+\end{claim}
+\begin{proof}
+	Check that the maps $W_1 \taking{\times M_4} W_2$
+	and $W_2 \taking{\times M_3} W_1$ are
+	well-defined and mutually inverse.
+\end{proof}
+Now, let $e_1, \dots, e_n$ be basis elements of $W_1$;
+thus $M_4e_1$, \dots, $M_4e_n$ are basis elements of $W_2$.
+However, each $\{e_j, M_4e_j\}$ forms a basis of a subrepresentation
+isomorphic to $X = k^{\oplus 2}$ (what's the isomorphism?).
+
+This finally implies that all representations of $A$
+are of the form $W^{\oplus n}$.
+In particular, $W$ is irreducible because there are no representations
+of smaller dimension at all!
+
+\section\problemhead
+
+\begin{sproblem}
+	\label{prob:reg_mat}
+	Let $(V, \rho)$ be a representation of $A$.
+	Then $\Mat(V)$ is a representation of $A$
+	with action given by $a \cdot T = \rho(a) \circ T$, for $T \in \Mat(V)$.
+	\begin{enumerate}[(a)]
+		\ii Show that $\rho : \Reg(A) \to \Mat(V)$ is an intertwining operator.
+		\ii If $V$ is $d$-dimensional, show that $\Mat(V) \cong V^{\oplus d}$
+		as representations of $A$.
+	\end{enumerate}
+	\begin{hint}
+		For part (b), pick a basis and do $T \mapsto (T(e_1), \dots, T(e_n))$.
+	\end{hint}
+\end{sproblem}
+
+\begin{dproblem}
+	[Schur's Lemma for Commutative Algebras]
+	Let $A$ be a \emph{commutative} algebra over an algebraically closed field $k$.
+	Prove that any irreducible representation of $A$ is one-dimensional.
+	\begin{hint}
+		For any $a \in A$, the map $v \mapsto a \cdot v$ is intertwining.
+	\end{hint}
+\end{dproblem}
+
+\begin{sproblem}
+	\label{prob:regA_intertwine}
+	Find all intertwining operators $T : \Reg(A) \to \Reg(A)$,
+	where $A$ is a fixed algebra.
+\end{sproblem}
+
+\chapter{Semisimple Algebras}
+In what follows, assume the field $k$ is algebraically closed.
+
+A \vocab{completely reducible} representation is one which
+can be written as a direct sum of irreducible representations.
+We like these types of representations, because they don't have the
+undesired behavior of being indecomposable while being reducible.
+
+Now, we name the good algebras:
+a finite-dimensional algebra $A$ is \vocab{semisimple}
+if all its finite-dimensional representations are completely reducible.
+The culminating point of the chapter is when we
+prove that $A$ is semisimple if and only if
+$A \cong \bigoplus_i \Mat(V_i)$,
+where the $V_i$ are the irreducible representations of $A$
+(yes, there are only finitely many!).
+
+The goal for the chapter is to examine these in more detail:
+we'll find conditions on algebras $A$ which cause all its representations
+to be completely reducible.
+
+
+\section{Schur's Lemma Continued}
+\prototype{For $V$ irreducible,
+	$\Homrep(V^{\oplus 2}, V^{\oplus 2}) \simeq k^{\oplus 4}$.}
+\begin{definition}
+	For an algebra $A$ and representations $V$ and $W$,
+	we let $\Homrep(V,W)$ be the set of intertwining operators between them.
+	(It is also a $k$-algebra.)
+\end{definition}
+
+By Schur's Lemma, we already know that if $V$ and $W$ are irreducible,
+then
+\[
+	\Homrep(V,W) \simeq
+	\begin{cases}
+		k & \text{if $V \not\cong W$} \\
+		0 & \text{if $V \not\cong W$}.
+	\end{cases}
+\]
+Can we say anything more?
+For example, it also tells us that 
+\[ \Homrep(V, V^{\oplus 2}) = k^{\oplus 2}. \]
+The possible maps are $v \mapsto (c_1v_1, c_2v_2)$ for some choice of $c_1, c_2 \in k$.
+
+More generally, suppose $V$ is irreducible and consider
+\[ \Homrep(V^{\oplus m}, V^{\oplus n}). \]
+Intertwining operators are determined completely
+$T : V^{\oplus m} \to V^{\oplus n}$ by the $mn$ choices of compositions
+\begin{diagram}
+	V & \rInj & V^{\oplus m} & \rTo^T & V^{\oplus n} & \rSurj & V
+\end{diagram}
+where the first arrow is inclusion to the $i$th component of $V^{\oplus m}$
+(for $1 \le i \le m$) and the second arrow is inclusion to the $j$th
+component of $V^{\oplus n}$ (for $1 \le j \le n$).
+However, by Schur's Lemma on each of these compositions,
+we know they must be constant.
+
+Thus, $\Homrep(V^{\oplus n}, V^{\oplus m})$ consist of $n \times m$ ``matrices''
+of constants, and the map is provided by
+\[
+	\begin{pmatrix}
+		c_{11} & c_{12} & \dots & c_{1(n-1)} & c_{1n} \\
+		c_{21} & c_{22} & \dots & c_{2(n-1)} & c_{1n} \\
+		\vdots & \vdots & \ddots & \vdots & \vdots \\
+		c_{m1} & c_{m2} & \dots & c_{m(n-1)} & c_{mn}
+	\end{pmatrix}
+	\begin{pmatrix} v_1 \\ v_2 \\ \vdots \\ v_n \end{pmatrix}
+	\in V^{\oplus n}
+\]
+where the $c_{ij} \in k$ but $v_i \in V$; note the type mismatch!
+This is \emph{not} just a linear map $V^{\oplus n_i} \to V^{\oplus m_i}$;
+rather, the outputs are $m$ \emph{linear combinations} of the inputs.
+
+More generally, we have the following result.
+\begin{theorem}
+	[Schur's Lemma for Completely Reducible Representations]
+	\label{thm:compred_schur}
+	Let $V$ and $W$ be completely reducible representations,
+	and set $V = \bigoplus V_i^{\oplus n_i}$, $W = \bigoplus V_i^{\oplus m_i}$
+	for integers $n_i, m_i \ge 0$, where each $V_i$ is irreducible.
+	Then
+	\[ \Homrep(V, W)
+		\simeq \bigoplus_i \Mat_{n_i \times m_i}(k) \]
+	meaning that an intertwining operator $T : V \to W$
+	amounts to, for each $i$, an $n_i \times m_i$ matrix of constants
+	which gives a map $V_i^{\oplus n_i} \to V_i^{\oplus m_i}$.
+\end{theorem}
+
+\begin{corollary}
+	[Subrepresentations of Completely Reducible Representations]
+	\label{cor:subrep_schur}
+	Let $V = \bigoplus V_i^{\oplus n_i}$ be completely reducible.
+	Then any subrepresentation $W$ of $V$ is isomorphic
+	to $\bigoplus V_i^{\oplus m_i}$ where $m_i \le n_i$ for each $i$,
+	and the inclusion $W \injto V$ is given
+	by the direct sum of inclusion $V_i^{\oplus m_i} \injto V_i^{\oplus n_i}$,
+	which are $n_i \times m_i$ matrices.
+\end{corollary}
+\begin{proof}
+	Apply Schur's Lemma to the inclusion $W \injto V$.
+\end{proof}
+
+
+
+\section{Density Theorem}
+We are going to take advantage of the previous result to prove that
+finite-dimensional algebras have finitely many irreducible representations.
+
+\begin{theorem}
+	[Density]
+	Let $V_1$, \dots, $V_r$ be pairwise nonisomorphic
+	finite-dimensional representations of $A$.
+	Let $(V, \rho)$ be the representation of $A$
+	by $A = V_1 \oplus \dots \oplus V_r$.
+	Then the map of representations
+	\[ \rho : A \to \bigoplus_{i=1}^r \Mat(V_i) \]
+	is surjective.
+\end{theorem}
+\begin{proof}
+	First, by \Cref{prob:reg_mat}, we have
+	\[ \bigoplus_{i=1}^r \Mat(V_i) \cong \bigoplus_i V_i^{\oplus d_i} \]
+	so we can consider this instead; it will be easier to work with.
+
+	First, we handle the case $r = 1$.
+	Fix a basis $e_1$, \dots, $e_n$ of $V = V_1$.
+	Assuming for contradiction that the map is not surjective.
+	Then there is a map of representations (by $\rho$ and the isomorphism)
+	$\Reg(A) \to V^{\oplus n}$ given by $a \mapsto (a \cdot e_1, \dots, a \cdot e_n)$.
+	By hypothesis is not surjective:
+	its image is a \emph{proper} subrepresentation of $V^{\oplus n}$.
+	Assume its image is isomorphic to $V^{\oplus m}$ for $m < n$,
+	so by \Cref{thm:compred_schur} there is a matrix of constants $X$ with
+	\begin{diagram}
+		\Reg(A) & \rTo & V^{\oplus n} & \lInj^{X \cdot -} & V^{\oplus r} \\
+		a & \rMapsto & (a \cdot e_1, \dots, a \cdot e_n) && \\
+		1_A & \rMapsto & (e_1, \dots, e_n) & \lMapsto & (v_1, \dots, v_m)
+	\end{diagram}
+	where the two arrows in the top row have the same image;
+	hence the pre-image $(v_1, \dots, v_m)$ of $(e_1, \dots, e_n)$ can be found.
+	But since $r < n$ we can find constants $c_1, \dots, c_n$ not all zero
+	such that $X$ applied to the column vector $(c_1, \dots, c_n)$ is zero:
+	\[
+		\sum_{i=1}^n c_ie_i
+		=
+		\begin{pmatrix} c_1 & \dots & c_n \end{pmatrix}
+		\begin{pmatrix} e_1 \\ \vdots \\ e_n \end{pmatrix}
+		=
+		\begin{pmatrix} c_1 & \dots & c_n \end{pmatrix}
+		X
+		\begin{pmatrix} v_1 \\ \vdots \\ v_m \end{pmatrix}
+		= 0
+	\]
+	contradicting the fact that $e_i$ are linearly independent.
+	Hence we conclude the theorem for $r=1$.
+
+	As for $r \ge 2$, the image of $\rho$ is necessarily of the form
+	$\bigoplus_i V_i^{\oplus r_i}$ (by \Cref{cor:subrep_schur})
+	and by the above $r_i = \dim V_i$ for each $i$.
+\end{proof}
+
+In particular, this tells us that
+\begin{corollary}
+	[Finiteness of Number of Representations]
+	Any finite-dimensional algebra $A$
+	has at most finitely many finite-dimensional irreducible representations.
+	\label{cor:finiteness}
+\end{corollary}
+\begin{proof}
+	If $V_i$ are such irreducible representations
+	then $A \surjto \bigoplus_i V_i^{\oplus \dim V_i}$,
+	hence we have the inequality $\sum (\dim V_i)^2 \le \dim A$.
+\end{proof}
+
+\section{Semisimple Algebras}
+
+\begin{definition}
+	A finite-dimensional algebra $A$ is a \vocab{semisimple}
+	if every finite-dimensional representation of $A$ is completely reducible.
+\end{definition}
+
+\begin{theorem}
+	[Semisimple Algebras]
+	Let $A$ be a finite-dimensional algebra.
+	Then the following are equivalent:
+	\begin{enumerate}[(i)]
+		\ii $A \cong \bigoplus_i \Mat_{d_i}(k)$ for some $d_i$.
+		\ii $A$ is semisimple.
+		\ii $\Reg(A)$ is completely reducible.
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	(i) $\implies$ (ii) follows
+	from \Cref{thm:rep_1mat} and \Cref{prop:rep_direct_sum}.
+	(ii) $\implies$ (iii) is tautological.
+
+	To see (iii) $\implies$ (i), we use the following clever trick.
+	Consider
+	\[ \Homrep(\Reg(A), \Reg(A)). \]
+	On one hand, by \Cref{prob:regA_intertwine},
+	it is isomorphic to $A\op$ ($A$ with opposite multiplication),
+	because the only intertwining operators $\Reg(A) \to \Reg(A)$
+	are those of the form $- \cdot a$.
+	On the other hand, suppose that we have set
+	$ \Reg(A) = \bigoplus_i V_i^{n_i} $.
+	By \Cref{thm:compred_schur}, we have
+	\[ A\op \simeq \Homrep(\Reg(A), \Reg(A))
+		= \bigoplus_i \Mat_{n_i \times n_i}(k). \]
+	But $\Mat_n(k)\op \simeq \Mat_n(k)$ (just by transposing),
+	so we recover the desired conclusion.
+\end{proof}
+
+In fact, if we combine the above result with \Cref{cor:finiteness},
+we also have the following.
+\begin{theorem}
+	[Sum of Squares Formula]
+	For a finite-dimensional algebra $A$ we have
+	\[ \sum_{i} \dim(V_i)^2 \le \dim A \]
+	where the $V_i$ are the irreducible representations of $A$;
+	equality holds exactly when $A$ is semisimple,
+	in which case \[ A \cong \bigoplus_i \Mat(V_i). \]
+\end{theorem}
+\begin{proof}
+	The inequality was already mentioned in \Cref{cor:finiteness}.
+	It is equality if and only if the map $\rho : A \to \bigoplus_i \Mat(V_i)$
+	is an isomorphism; this means all $V_i$ are present.
+\end{proof}
+
+
+\end{document}

@@ -300,7 +300,7 @@ First, for notational convenience,
 	Let $\Hom(V,W)$ be the set of linear maps from $V$ to $W$
 	(which one can interpret as matrices which send $V$ to $W$),
 	viewed as a vector space over $k$.
-	Let $\End(V) = \Hom(V,V)$.
+	Let $\Mat(V) = \Hom(V,V)$.
 \end{definition}
 In this notation, $V^\vee \defeq \Hom(V,k)$.
 
@@ -362,13 +362,13 @@ The above is perhaps a bit dense, so here is a concrete example.
 We are now ready to give the definition of a trace.
 Recall that a square matrix $T$ can be thought of as a map $T : V \to V$.
 According to the above theorem there is a map
-\[ \End(V) \simeq V^\vee \otimes V \]
+\[ \Mat(V) \simeq V^\vee \otimes V \]
 so every map $V \to V$ can be thought of as an element of $V^\vee \otimes V$.
 But we can also define an
 \emph{evaluation map} $\opname{ev} : V^\vee \otimes V \to k$
 by ``collapsing'' each pure tensor: $f \otimes v \mapsto f(v)$.
 So this gives us a composed map
-\[ \End(V) \taking\simeq V^\vee \otimes V \taking{\opname{ev}} k. \]
+\[ \Mat(V) \taking\simeq V^\vee \otimes V \taking{\opname{ev}} k. \]
 This result is called the \vocab{trace} of a matrix $T$.
 
 \begin{example}[Example of a Trace]
