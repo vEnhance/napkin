@@ -498,6 +498,85 @@ You'll see this written sometimes as $T_\CC = \id \otimes T$.
 	\end{hint}
 \end{problem}
 
+\begin{problem}
+	[Putnam 1988]
+	\gim
+	Let $V$ be an $n$-dimensional vector space.
+	Let $T : V \to V$ be a linear map and suppose there exists $n+1$ eigenvectors,
+	any $n$ of which are linearly independent.
+	Does it follow that $T$ is a scalar multiple of the identity?
+	\begin{hint}
+		Look at the trace of $T$.
+	\end{hint}
+\end{problem}
+
+\begin{problem}
+	[Putnam 2015]
+	\yod
+	Define $S$ to be the set of real matrices 
+	$\left(\begin{smallmatrix} a & b \\ c & d \end{smallmatrix}\right)$
+	such that $a$, $b$, $c$, $d$ form
+	an arithmetic progression in that order.
+	Find all $M \in S$ such that for some integer $k > 1$, $M^k \in S$.
+	\begin{hint}
+		Show the matrix is invertible (unless $a=b=c=d$)
+		and then diagonalize the matrix as
+		$
+		M =
+		\begin{pmatrix} s & -q \\ -r & p \end{pmatrix}
+		\begin{pmatrix} \lambda_1 & 0 \\ 0 & \lambda_2 \end{pmatrix}
+		\begin{pmatrix} p & q \\ r & s \end{pmatrix}
+		=
+		\begin{pmatrix} 
+			ps\lambda_1 - qr\lambda_2 & qs(\lambda_1-\lambda_2) \\
+			pr(\lambda_2-\lambda_1) & ps\lambda_2 - qr\lambda_1
+		\end{pmatrix} 
+		$.
+		There is a family of solutions other than just $a=b=c=d$.
+	\end{hint}
+	\begin{sol}
+		The answer is 
+		\[ \begin{pmatrix} t&t\\t&t \end{pmatrix}
+			\quad\text{and}\quad 
+			\begin{pmatrix} -3t&-t\\t&3t \end{pmatrix} \]
+		for $t \in \RR$.
+		These work by taking $k=3$.
+		Now to see these are the only ones, consider an arithmetic matrix
+		\[ M = \begin{pmatrix} a & a+e \\ a+2e & a+3e \end{pmatrix}. \]
+		which is not zero everywhere.
+		Its characteristic polynomial is $t^2 - (2a+3e)t - 2e^2$,
+		with discriminant $(2a+3e)^2 + 8e^2$,
+		so it has two distinct real roots; moreover, since $-2e^2 \le 0$
+		either one of the roots is zero or they are of opposite signs.
+		Now we can diagonalize $M$ by writing
+		\[
+			M =
+			\begin{pmatrix} s & -q \\ -r & p \end{pmatrix}
+			\begin{pmatrix} \lambda_1 & 0 \\ 0 & \lambda_2 \end{pmatrix}
+			\begin{pmatrix} p & q \\ r & s \end{pmatrix}
+			=
+			\begin{pmatrix} 
+				ps\lambda_1 - qr\lambda_2 & qs(\lambda_1-\lambda_2) \\
+				pr(\lambda_2-\lambda_1) & ps\lambda_2 - qr\lambda_1
+			\end{pmatrix} 
+		\]
+		where $ps-qr=1$. By using the fact the diagonal entries have sum equalling
+		the off-diagonal entries, we obtain that
+		\[ (ps-qr)(\lambda_1+\lambda_2) = (qs-pr)(\lambda_1-\lambda_2) 
+			\implies qs-pr = \frac{\lambda_1+\lambda_2}{\lambda_1-\lambda_2}. \]
+		Now if $M^k \in S$ too then the same calculation gives
+		\[ qs-pr = \frac{\lambda_1^k+\lambda_2^k}{\lambda_1^k-\lambda_2^k}. \]
+		Let $x = \lambda_1/\lambda_2 < 0$ (since $-2e^2 < 0$). We appropriately get
+		\[ \frac{x+1}{x-1} = \frac{x^k+1}{x^k-1}
+			\implies \frac{2}{x-1} = \frac{2}{x^k-1}
+			\implies x = x^k \implies x = -1 \text{ or } x = 0 \]
+		and $k$ odd. If $x=0$ we get $e=0$ and if $x=-1$ we get $2a+3e=0$,
+		which gives the curve of solutions that we claimed.
+		(Unfortunately, during the test I neglected to address $x=-1$,
+		which probably means I will get null marks.)
+	\end{sol}
+\end{problem}
+
 \endinput
 \section{Reducing to the Nilpotent Case}
 \begin{definition}

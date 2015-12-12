@@ -231,7 +231,7 @@ Let's make all this precise.
 I want to emphasize that this choice of basis for $V^\vee$ is absolutely not canonical, and depends very heavily on which basis of $V$ is originally selected.
 It is not ``God-given'', in other words.
 
-\begin{example}
+\begin{example}[Explicit Example of Element in $V^\vee$]
 	In this notation, $f = 3e_1^\vee + 4e_2^\vee + 5e_3^\vee$.
 	Do you see why the ``sum'' notation works as expected here?
 	Indeed
@@ -368,7 +368,9 @@ But we can also define an
 \emph{evaluation map} $\opname{ev} : V^\vee \otimes V \to k$
 by ``collapsing'' each pure tensor: $f \otimes v \mapsto f(v)$.
 So this gives us a composed map
-\[ \Mat(V) \taking\simeq V^\vee \otimes V \taking{\opname{ev}} k. \]
+\begin{diagram}
+	\Mat(V) & \rTo^\simeq & V^\vee \otimes V & \rTo^{\opname{ev}} & k.
+\end{diagram}
 This result is called the \vocab{trace} of a matrix $T$.
 
 \begin{example}[Example of a Trace]
@@ -710,11 +712,164 @@ and do a full expansion.
 	\end{hint}
 \end{problem}
 
+\begin{problem}
+	\gim
+	Let $T : V \to W$ and $S : W \to V$ be linear maps
+	between finite-dimensional vector spaces $V$ and $W$.
+	Prove that $\Tr(T \circ S) = \Tr(S \circ T)$
+	(preferably without taking a basis).
+	\begin{hint}
+		Interpret $T \otimes S \mapsto \Tr(T \circ S)$ as a
+		linear map $(V^\vee \otimes W) \otimes (W^\vee \otimes V) \to k$,
+		and verify that it is commutative.
+	\end{hint}
+	\begin{sol}
+		This amounts to drawing the diagram
+		\begin{diagram}
+			&& (W^\vee \otimes V) \otimes (V^\vee \otimes W)
+			&\rIsom& (V^\vee \otimes W) \otimes (W^\vee \otimes V) && \\
+			& \ldTo^{\text{compose}} & \dTo && \dTo & \rdTo^{\text{compose}} & \\
+			\Mat(W) & \lIsom & W^\vee \otimes W & & V^\vee \otimes V & \rIsom & \Mat(V) \\
+			& \rdTo_{\Tr} & \dTo_{\opname{ev}} && \dTo_{\opname{ev}} & \ldTo_{\Tr} & \\
+			&& k & \rIsom{\id} & k &&
+		\end{diagram}
+		It is easy to check that the center rectangle commutes,
+		by check it on simple tensors $\xi_W \otimes v \otimes \xi_V \otimes w$.
+		So the outer hexagon commutes and we're done.
+		This is really the same as the proof with bases;
+		what it amounts to is checking the assertion is true for
+		matrices that have a $1$ somewhere and $0$ elsewhere,
+		then extending by linearity.
+	\end{sol}
+\end{problem}
 
 \begin{problem}
-	[Sweden 2010, edited] A herd of $1000$ cows of nonzero weight is given.
+	[Sweden 2010, edited]
+	\gim
+	A herd of $1000$ cows of nonzero weight is given.
 	Prove that we can remove one cow such that the remaining $999$ cows cannot be split
 	into two halves of equal weights.
+\end{problem}
+
+\begin{problem}
+	\yod
+	Let $V$ be a vector space over $K$ and $T : V \to V$.
+	Show that
+	\[
+		\det(a \cdot \id_V - T) =
+		\sum_{n=0}^{\dim V} a^{\dim V-n} \cdot (-1)^n
+		\Tr\left( \Lambda^n(T) \right)
+	\]
+	where the trace is taking by viewing $\Lambda^n(T) : \Lambda^n(V) \to \Lambda^n(V)$.
+	\begin{hint}
+		Take bases, and do a fairly long calculation.
+	\end{hint}
+	\begin{sol}
+		\newcommand{\Fix}{\opname{Fix}}
+		\newcommand{\NoFix}{\opname{NoFix}}
+		Pick a basis $e_1, \dots, e_n$ of $V$.
+		Let $T$ have matrix $(x_{ij})$, and let $m = \dim V$.
+		Let $\delta_{ij}$ be the Kronecker delta.
+		Also, let $\Fix(\sigma)$ denote the fixed points of a permutation $\sigma$
+		and let $\NoFix(\sigma)$ denote the non-fixed points.
+
+		Expanding then gives
+		\begin{align*}
+			&\qquad \det (a \cdot \id - T) \\
+			&= \sum_{\sigma \in S_m} \left( \sign(\sigma)
+			\cdot \prod_{i=1}^m \left( a \cdot \delta_{i \sigma(i)} - x_{i \sigma(i)} \right)\right) \\
+			% ------------------------
+			&=
+			\sum_{s=0}^m
+			\sum_{1 \le i_1 < \dots < i_s \le m}
+			\sum_{\substack{\sigma \in S_m \\ \sigma \text{ fixes } i_k}}
+			\left( \sign(\sigma)
+			\cdot \prod_{i=1}^m \left( a \cdot \delta_{i \sigma(i)} - x_{i \sigma(i)} \right)\right) \\
+			% ------------------------
+			&=
+			\sum_{s=0}^m
+			\sum_{1 \le i_1 < \dots < i_s \le m}
+			\sum_{\substack{\sigma \in S_m \\ \sigma \text{ fixes } (i_k)}}
+			\left( \sign(\sigma)
+			\cdot \prod_{i \notin (i_k)} -x_{i \sigma(i)}
+			\prod_{i \in (i_k)}^n \left( a \cdot - x_{ii} 
+			\right)\right) \\
+			% -----------------------
+			&= 
+			\sum_{\sigma \in S_m}
+			\left( \sign(\sigma)
+			\cdot \prod_{i \in \NoFix(\sigma)} -x_{i \sigma(i)}
+			\prod_{i \in \Fix{\sigma}} \left( a - x_{ii} 
+			\right)\right) \\
+			% -----------------------
+			&=
+			\sum_{\sigma \in S_m}
+			\left( \sign(\sigma)
+			\cdot \left( \prod_{i \in \NoFix(\sigma)} -x_{i \sigma(i)} \right)
+			\left( \sum_{t=0}^{\left\lvert \Fix(\sigma) \right\rvert}
+			a^{\left\lvert \Fix(\sigma) \right\rvert - t} \cdot \sum_{i_1 < \dots < i_t \in \Fix(\sigma)}
+			\prod_{k=1}^t -x_{i_ki_k} \right)
+			\right) \\
+			% -----------------------
+			&=
+			\sum_{\sigma \in S_m}
+			\left( \sign(\sigma)
+			\left( \sum_{t=0}^{\left\lvert \Fix(\sigma) \right\rvert}
+			a^{m-t-\left\lvert \Fix(\sigma) \right\rvert} 
+			\sum_{\substack{X \subseteq \{1, \dots, m\} \\ \NoFix(\sigma) \subseteq X \\ X \text{ has exactly $t$ fixed}}} \prod_{i \in X} -x_{i \sigma(i)}
+			\right) \right) \\
+			% -----------------------
+			&= 
+			\sum_{n=0}^m
+			a^{m-n}
+			\left(
+			\sum_{\sigma \in S_m}
+			\sign(\sigma)
+			\sum_{\substack{X \subseteq \{1, \dots, m\} \\ \NoFix(\sigma) \subseteq X \\ \left\lvert X \right\rvert = n} }
+			\prod_{i \in X} -x_{i \sigma(i)}
+			\right) \\
+			% -----------------------
+			&= \sum_{n=0}^m
+			a^{m-n} (-1)^n
+			\left(
+			\sum_{\substack{X \subseteq \{1, \dots, m\} \\ \left\lvert X \right\rvert = n} }
+			\sum_{\substack{\sigma \in S_m \\ \NoFix(\sigma) \subseteq X}}
+			\sign(\sigma) \prod_{i \in X} x_{i \sigma(i)}
+			\right).
+		\end{align*}
+
+		Hence it's the same to show that
+		\[
+			\sum_{\substack{X \subseteq \{1, \dots, m\} \\ \left\lvert X \right\rvert = n} }
+			\sum_{\substack{\sigma \in S_m \\ \NoFix(\sigma) \subseteq X}}
+			\sign(\sigma) \prod_{i \in X} x_{i \sigma(i)}
+			= \Tr_{\Lambda^n(V)} \left( \Lambda^n(T) \right)
+		\]
+		holds for every $n$.
+
+		We can expand the definition of trace as using basis elements as
+		\begin{align*}
+			\Tr\left( \Lambda^n(T) \right)
+			&= \sum_{1 \le i_1 < \dots < i_n \le m}
+			\left( \bigwedge_{k=1}^n e_{i_k} \right)^\vee
+			\left( \Lambda^n(T) \left( \bigwedge_{k=1}^n e_{i_k} \right) \right) \\
+			&= \sum_{1 \le i_1 < \dots < i_n \le m}
+			\left( \bigwedge_{k=1}^n e_{i_k} \right)^\vee
+			\left(  \bigwedge_{k=1}^n T(e_{i_k}) \right) \\
+			&= \sum_{1 \le i_1 < \dots < i_n \le m}
+			\left( \bigwedge_{k=1}^n e_{i_k} \right)^\vee
+			\left(  \bigwedge_{k=1}^n 
+			\left( \sum_{j=1}^m x_{i_kj} e_j \right)
+			\right) \\
+			&= \sum_{1 \le i_1 < \dots < i_n \le m}
+			\sum_{\pi \in S_n} \sign(\pi) \prod_{k=1}^n x_{i_{\pi(k)}k} \\
+			&= \sum_{\substack{X \subseteq \{1,\dots,m\} \\ \left\lvert X \right\rvert = n}}
+			\sum_{\pi \in S_X} \sign(\pi) \prod_{i \in X} x_{t \pi(t)}
+		\end{align*}
+		Hence it remains to show that the permutations over $X$
+		are in bijection with the permutations over $S_m$ which fix $\{1, \dots, m\} - X$,
+		which is clear, and moreover, the signs clearly coincide.
+	\end{sol}
 \end{problem}
 
 %\todo{maybe this isn't the best problem}
