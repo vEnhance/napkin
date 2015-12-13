@@ -377,7 +377,7 @@ We now proceed to define the morphisms between representations.
 	\begin{diagram}
 		V & \rTo^{\rho_1(a)} & V \\
 		\dTo^T & & \dTo_T \\
-		W & \rTo^{\rho_2(a)} & W
+		W & \rTo_{\rho_2(a)} & W
 	\end{diagram}
 	commutes for any $a \in A$.
 \end{remark}
@@ -567,6 +567,13 @@ of smaller dimension at all!
 	where $A$ is a fixed algebra.
 \end{sproblem}
 
+\begin{problem}
+	Let $G = \Zc n$ and let $k = \CC$.
+	Show that up to isomorphism there are exactly $n$
+	irreducible representations of $k[G]$.
+	What if $k = \RR$?
+\end{problem}
+
 \chapter{Semisimple Algebras}
 In what follows, assume the field $k$ is algebraically closed.
 
@@ -677,19 +684,54 @@ We are going to take advantage of the previous result to prove that
 finite-dimensional algebras have finitely many irreducible representations.
 
 \begin{theorem}
-	[Density]
-	Let $V_1$, \dots, $V_r$ be pairwise nonisomorphic
+	[Jacobson Density Theorem]
+	Let $(V_1, \rho_1)$, \dots, $(V_r, \rho_r)$ be pairwise nonisomorphic
 	finite-dimensional representations of $A$.
-	Let $(V, \rho)$ be the representation of $A$
-	by $A = V_1 \oplus \dots \oplus V_r$.
-	Then the map of representations
-	\[ \rho : A \to \bigoplus_{i=1}^r \Mat(V_i) \]
+	Then the map of vector spaces
+	\[ \bigoplus_{i=1}^r \rho_i : A \surjto \bigoplus_{i=1}^r \Mat(V_i) \]
 	is surjective.
 \end{theorem}
+The right way to think about this theorem is that
+\begin{moral}
+	The Density Theorem is the ``Chinese Remainder Theorem''
+	for irreducible representations of $A$.
+\end{moral}
+Recall that in number theory, the Chinese Remainder Theorem tells us
+that given lots of ``unrelated'' congruences, we can find a single $N$
+which simultaneously satisfies them all.
+Similarly, given lots of different nonisomorphic representations of $A$,
+this means that we can select a single $a \in A$ which induces any tuple
+$(\rho_1(a), \dots, \rho_r(a))$ of actions we want --- a surprising result,
+since even the $r=1$ case is not obvious at all!
+
+\begin{diagram}
+	&&& \rho_1(a) &= M_1 \in \Mat(V_1) \\
+	&& \ruTo(3,2) & \rho_2(a) &= M_2 \in \Mat(V_2) \\
+	\boxed{a \in A} && \ruTo(3,1) && \vdots \\
+	& \rdTo(3,1) && \rho_r(a) &= M_r \in \Mat(V_r) \\
+\end{diagram}
+
+This also gives us the non-obvious corollary
+\begin{corollary}
+	[Finiteness of Number of Representations]
+	Any finite-dimensional algebra $A$
+	has at $\dim A$ irreducible representations.
+	\label{cor:finiteness}
+\end{corollary}
 \begin{proof}
-	First, by \Cref{prob:reg_mat}, we have
-	\[ \bigoplus_{i=1}^r \Mat(V_i) \cong \bigoplus_i V_i^{\oplus d_i} \]
-	so we can consider this instead; it will be easier to work with.
+	If $V_i$ are such irreducible representations
+	then $A \surjto \bigoplus_i V_i^{\oplus \dim V_i}$,
+	hence we have the inequality $\sum (\dim V_i)^2 \le \dim A$.
+\end{proof}
+
+\begin{proof}[Proof of Density Theorem]
+	Let $V = V_1 \oplus \dots \oplus V_r$, so $A$
+	acts on $V = (V, \rho)$ by $\rho = \bigoplus_i \rho_i$.
+	Thus by \Cref{prob:reg_mat}, we can instead consider $\rho$
+	as an \emph{intertwining operator}
+	\[ \rho : \Reg(A) \to \bigoplus_{i=1}^r \Mat(V_i)
+		\cong \bigoplus_{i=1}^r V_i^{\oplus d_i}. \]
+	We will use this instead as it will be easier to work with.
 
 	First, we handle the case $r = 1$.
 	Fix a basis $e_1$, \dots, $e_n$ of $V = V_1$.
@@ -728,19 +770,6 @@ finite-dimensional algebras have finitely many irreducible representations.
 	and by the above $r_i = \dim V_i$ for each $i$.
 \end{proof}
 
-In particular, this tells us that
-\begin{corollary}
-	[Finiteness of Number of Representations]
-	Any finite-dimensional algebra $A$
-	has at most finitely many finite-dimensional irreducible representations.
-	\label{cor:finiteness}
-\end{corollary}
-\begin{proof}
-	If $V_i$ are such irreducible representations
-	then $A \surjto \bigoplus_i V_i^{\oplus \dim V_i}$,
-	hence we have the inequality $\sum (\dim V_i)^2 \le \dim A$.
-\end{proof}
-
 \section{Semisimple Algebras}
 
 \begin{definition}
@@ -771,7 +800,7 @@ In particular, this tells us that
 	because the only intertwining operators $\Reg(A) \to \Reg(A)$
 	are those of the form $- \cdot a$.
 	On the other hand, suppose that we have set
-	$ \Reg(A) = \bigoplus_i V_i^{n_i} $.
+	$ \Reg(A) = \bigoplus_i V_i^{\oplus n_i} $.
 	By \Cref{thm:compred_schur}, we have
 	\[ A\op \simeq \Homrep(\Reg(A), \Reg(A))
 		= \bigoplus_i \Mat_{n_i \times n_i}(k). \]
@@ -779,20 +808,70 @@ In particular, this tells us that
 	so we recover the desired conclusion.
 \end{proof}
 
-In fact, if we combine the above result with \Cref{cor:finiteness},
-we also have the following.
+In fact, if we combine the above result with
+the Density Theorem (and \Cref{cor:finiteness}), we also have the following.
 \begin{theorem}
 	[Sum of Squares Formula]
 	For a finite-dimensional algebra $A$ we have
 	\[ \sum_{i} \dim(V_i)^2 \le \dim A \]
 	where the $V_i$ are the irreducible representations of $A$;
 	equality holds exactly when $A$ is semisimple,
-	in which case \[ A \cong \bigoplus_i \Mat(V_i). \]
+	in which case 
+	\[ \Reg(A) \cong \bigoplus_i \Mat(V_i)
+		\cong \bigoplus_I V_i^{\oplus \dim V_i}. \]
 \end{theorem}
 \begin{proof}
 	The inequality was already mentioned in \Cref{cor:finiteness}.
 	It is equality if and only if the map $\rho : A \to \bigoplus_i \Mat(V_i)$
 	is an isomorphism; this means all $V_i$ are present.
+\end{proof}
+
+\begin{remark}
+	[Digression]
+	For any finite-dimensional $A$, the kernel of the map
+	$\rho : A \to \bigoplus_i \Mat(V_i)$ is denoted $\opname{Rad}(A)$
+	and is the so-called \vocab{Jacobson radical} of $A$;
+	it's the set of all $a \in A$ which act by zero in all irreducible representations of $A$.
+	The usual definition of ``semisimple'' given in books is that
+	this Jacobson radical is trivial.
+\end{remark}
+
+\section{Maschke's Theorem}
+We now prove that the representation theory of groups is as nice as possible.
+\begin{theorem}
+	[Maschke's Theorem]
+	Let $G$ be a finite group, and $k$ an algebraically closed
+	field whose characteristic does not divide $|G|$.
+	Then $k[G]$ is semisimple.
+\end{theorem}
+This tells us that when studying representations of groups,
+all representations are completely reducible.
+\begin{proof}
+	Consider any finite-dimensional representation $(V, \rho)$ of $k[G]$.
+	Given a proper subrepresentation $W \subseteq V$,
+	our goal is to construct a supplementary $G$-invariant subspace $W'$
+	which satisfies \[ V = W \oplus W'. \]
+	This will show that indecomposable $\iff$ irreducible,
+	which is enough to show $k[G]$ semisimple.
+
+	Let $\pi : V \to W$ be any projection of $V$ onto $W$,
+	meaning $\pi(v) = v \iff v \in W$.
+	We consider the \emph{averaging} map $P : V \to V$ by
+	\[ 
+		P(v) = \frac{1}{\left\lvert G \right\rvert}
+		\sum_{g \in G} \rho(g\inv) \circ \pi \circ \rho(g).
+	\]
+	We'll use the following properties of the map:
+	\begin{exercise}
+		Show that the map $P$ has the following three properties.
+		\begin{itemize}
+			\ii For any $w \in W$, $P(w) = w$.
+			\ii For any $v \in V$, $P(w) \in W$.
+			\ii The map $P : V \to V$ is an intertwining operator.
+		\end{itemize}
+	\end{exercise}
+	Now $\ker P$ and $\img P = W$ are subrepresentations,
+	so setting $W' = \ker T$ works.
 \end{proof}
 
 
