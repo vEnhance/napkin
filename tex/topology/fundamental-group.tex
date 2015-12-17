@@ -109,14 +109,19 @@ It's just a matter of how fast we run in certain parts.
 	\end{asy}
 \end{center}
 
-So as long as we're fusing paths together, we probably don't want to think of $[0,1]$ itself too seriously.
-And so we only consider everything up to homotopy equivalence:
-it is definitely true that
+So as long as we're fusing paths together,
+we probably don't want to think of $[0,1]$ itself too seriously.
+And so we only consider everything up to (path) homotopy equivalence.
+(Recall that two paths $\alpha$ and $\beta$ are homotopic if
+there's a path homotopy $F : [0,1]^2 \to X$ between them,
+which is a continuous deformation from $\alpha$ to $\beta$.)
+It is definitely true that
 \[
 	\left( \gamma_1 \ast \gamma_2 \right) \ast \gamma_3
 	\simeq 
 	\gamma_1 \ast \left( \gamma_2 \ast \gamma_3 \right) . \]
-It is also true that if $\alpha_1 \simeq \alpha_2$ and $\beta_1 \simeq \beta_2$ then $\alpha_1 \ast \beta_1 \simeq \alpha_2 \ast \beta_2$.
+It is also true that if $\alpha_1 \simeq \alpha_2$ and $\beta_1 \simeq \beta_2$
+then $\alpha_1 \ast \beta_1 \simeq \alpha_2 \ast \beta_2$.
 
 Naturally, homotopy is an equivalence relation,
 so paths $\gamma$ lives in some ``homotopy type'',
@@ -454,7 +459,7 @@ taken from Wikipedia.
 		\pi_n(S^m) & m = 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\ \hline
 		n = 1 & \ZZ & \{1\} & \{1\} & \{1\} & \{1\} & \{1\} & \{1\} & \{1\} & \{1\} & \{1\} \\
 		2 &  & \ZZ & \ZZ & \Zc2 & \Zc2 & \Zc{12} & \Zc2 & \Zc2 & \Zc3 & \Zc{15}\\
-		3 &  &  & \ZZ & \Zc2 & \Zc2 & \ZZ{12} & \Zc2 & \Zc2 & \Zc3 & \Zc{15}\\
+		3 &  &  & \ZZ & \Zc2 & \Zc2 & \Zc{12} & \Zc2 & \Zc2 & \Zc3 & \Zc{15}\\
 		4 &  &  &  & \ZZ & \Zc2 & \Zc2 & \ZZ \times \Zc{12} & \Zc2^2 & \Zc2 \times \Zc2 & \Zc{24} \times \Zc3 \\
 		5 &  &  &  &  & \ZZ & \Zc2 & \Zc2 & \Zc{24} & \Zc2 & \Zc2 \\
 		6 &  &  &  &  &  & \ZZ & \Zc2 & \Zc2 & \Zc{24} & \{1\} \\
@@ -465,10 +470,9 @@ taken from Wikipedia.
 
 Actually, it turns out that if you can compute $\pi_n(S^m)$
 for every $m$ and $n$,
-then you can compute \emph{any} homotopy classes.
+then you can essentially compute \emph{any} homotopy classes.
 Thus, computing $\pi_n(S^m)$ is sort of a lost cause in general,
 and the mixture of chaos and pattern in the above table is a testament to this.
-
 
 \section{Homotopy Equivalent Spaces}
 \prototype{A disk is homotopy equivalent to a point, an annulus is homotopy equivalent to $S^1$.}
