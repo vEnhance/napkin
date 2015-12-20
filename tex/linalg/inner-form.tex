@@ -283,7 +283,7 @@ To see how we might do this, suppose $V = \RR^3$ for now with standard basis $\e
 How might we use the standard product to represent a map from $V \to \RR$?
 For example, take $\xi \in V^\vee$ by $\xi(\ee_1) = 3$, $\xi(\ee_2) = 4$ and $\xi(\ee_3) = 5$.
 Actually, I claim that
-\[ \xi(v) = \left< v, 3\ee_1 + 4\ee_2 + 5\ee3 \right> \]
+\[ \xi(v) = \left< 3\ee_1 + 4\ee_2 + 5\ee3, v \right> \]
 for every $v$.
 And this is obvious, once you do the computation.
 
@@ -291,15 +291,15 @@ More generally:
 \begin{theorem}[$V$ is isomorphic to $V^\vee$]
 	Let $V$ be a finite-dimensional inner product space and $V^\vee$ its dual.
 	Then the map $V \to V^\vee$ by
-	\[ v \mapsto \left<  - , v \right> \in V^\vee \]
+	\[ v \mapsto \left<  v, - \right> \in V^\vee \]
 	is an isomorphism.
 \end{theorem}
 \begin{proof}
 	It suffices to show that the map is injective and surjective.
 	\begin{itemize}
-		\ii Injective: suppose $\left< w, v_1 \right> = \left< w, v_2\right>$
+		\ii Injective: suppose $\left< v_1, w \right> = \left< v_2, w \right>$
 		for every vector $w$.
-		This means $\left< w, v_1 - v_2\right> = 0$ for every vector $w \in V$.
+		This means $\left< v_1 - v_2, w \right> = 0$ for every vector $w \in V$.
 		This can only happen if $v_1 - v_2 = 0$; for example, take $w = v_1 - v_2$
 		and use positive definiteness.
 		\ii Surjective: take an orthonormal basis, and mimic the argument we gave earlier.
@@ -308,6 +308,10 @@ More generally:
 	As a matter of personal taste, I find the proof of injectivity more elegant,
 	and the proof of surjectivity more enlightening, so I included both.
 \end{proof}
+Thus
+\begin{moral}
+	Once $V$ is given an inner form, $V$ and $V^\vee$ are canonically isomorphic.
+\end{moral}
 
 \section{The Transpose of a Matrix}
 Let $V$ be a finite-dimensional inner product space and let $T : V \to V$.
@@ -422,6 +426,29 @@ Then we have that
 		Thus $k \le \dim \mathbb F_2^n = n$.
 	\end{sol}
 \end{problem}
+
+\begin{sproblem}[Inner Product Structure of Tensors]
+	\label{prob:inner_prod_tensor}
+	Let $V$ and $W$ be finite-dimensional inner product spaces over $k$,
+	where $k$ is either $\RR$ or $\CC$.
+	\begin{enumerate}[(a)]
+		\ii Find a canonical way to make $V \otimes_k W$ into an inner product space too.
+		\ii Let $e_1$, \dots, $e_n$ be an orthonormal basis of $V$
+		and $f_1$, \dots, $f_m$ be an orthonormal basis of $W$.
+		What's an orthonormal basis of $V \otimes W$?
+	\end{enumerate}
+	\begin{hint}
+		Define it on simple tensors then extend linearly.
+	\end{hint}
+	\begin{sol}
+		The inner form given by
+		\[ \left< v_1 \otimes w_1 , v_2 \otimes w_2 \right>_{V \otimes W}
+		= \left< v_1,v_2 \right>_V \left< w_1,w_2\right>_W \]
+		on pure tensors, then extending linearly.
+		For (b) take $e_i \otimes f_j$ for $1 \le i \le n$, $1 \le j \le m$.
+	\end{sol}
+\end{sproblem}
+
 
 \begin{problem}[Putnam 2014]
 	\gim

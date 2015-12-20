@@ -262,3 +262,14 @@ style=thmbluebox,name=Theorem,numberwithin=section]{theorem}
 \newcommand\llex{<_{\text{lex}}}
 
 \DeclareMathOperator{\cof}{cof}
+
+%% Quantum macros
+\usepackage{braket}
+\newcommand{\cvec}[1]{\begin{pmatrix} #1 \end{pmatrix}}
+\newcommand{\pair}[2]{\begin{pmatrix} #1 \\ #2 \end{pmatrix}}
+\newcommand{\zup}{\ket\uparrow}
+\newcommand{\zdown}{\ket\downarrow}
+\newcommand{\xup}{\ket\rightarrow}
+\newcommand{\xdown}{\ket\leftarrow}
+\newcommand{\yup}{\ket\otimes}
+\newcommand{\ydown}{\ket\odot}

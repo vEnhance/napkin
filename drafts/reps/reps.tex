@@ -874,8 +874,137 @@ all representations are completely reducible.
 	so setting $W' = \ker T$ works.
 \end{proof}
 
+\section{Example: The Representations of $\CC[S_3]$}
+We compute all irreducible representations of $\CC[S_3]$.
+I'll take for granted right now there are exactly three such representations
+(which will be immediate by the first theorem in the next chapter:
+we'll in fact see that the number of representations of $k[G]$
+is exactly equal to the number of conjugacy classes of $G$).
 
-\chapter{Characters}
+Given that, if the three representations of have dimension $d_1$, $d_2$, $d_3$ ,
+then we ought to have
+\[ d_1^2 + d_2^2 + d_3^2 = |G| = 6. \]
+From this, combined with some deep arithmetic,
+we deduce that we should have $d_1 = d_2 = 1$ and $d_3 = 2$
+or some permutation.
+
+In fact, we can describe these representations explicitly:
+\begin{itemize}
+	\ii There is a trivial one-dimensional representation $\CC_{\text{triv}}$
+	where the map $S_3 \to \CC^\times$ is the identity.
+	Thus in $\CC_{\text{triv}}$ every $\sigma \in S_3$ acts as the identity.
+
+	\ii There is a nontrivial one-dimensional representation $\CC_{\text{sign}}$
+	where the map $S_3 \to \CC^\times$ is given by sending $\sigma$
+	to the sign of $\sigma$.
+	Thus in $\CC_{\text{sign}}$ every $\sigma \in S_3$ acts as $\pm 1$.
+	\begin{exercise}
+		Check that $\CC_{\text{sign}}$ are $\CC_{\text{triv}}$
+		are not isomorphic.
+	\end{exercise}
+
+	\ii Finally, we have already seen the two-dimensional representation,
+	but now we give it a name.
+	Define $\refl_0$ to be the representation whose vector space is
+	$\{ (x,y,z) \mid x+y+z = 0 \}$,
+	and whose action of $S_3$ on it is permutation of coordinates.
+	\begin{exercise}
+		Show that $\refl_0$ is irreducible, for example by showing directly
+		that no subspace is invariant under the action of $S_3$.
+	\end{exercise}
+	Thus $V$ is also not isomorphic to the previous two representations.
+\end{itemize}
+This implies that these are all the irreducible representations of $S_3$.
+Note that, if we take the representation $V$ of $S_3$ on $k^{\oplus 3}$,
+we just get that $V = \refl_0 \oplus \CC_{\text{triv}}$.
+
+\section\problemhead
+\todo{problems like $D_{2n}$}
+
+\chapter{Definition of A Character}
+Characters are basically the best thing ever.
+To every representation $V$ of $A$ we will attach a
+so-called character $\chi_V : A \to k$.
+It will turn out that the characters of irreducible representation $V$
+will determine the representation $V$ completely.
+Thus for example if $A$ is finite-dimensional then this means an
+irreducible representation is just specified by a set of $\dim A$ numbers.
+
+\section{The Character}
+\begin{definition}
+	Let $V = (V, \rho)$ be a finite-dimensional representation of $A$.
+	The \vocab{character} $\chi_V : A \to k$ attached to
+	$A$ is defined $\chi_V = \Tr \circ \rho$, i.e.\
+	\[ \chi_V(a) \defeq \Tr\left( \rho(a) : V \to V \right). \]
+\end{definition}
+Since $\Tr$ and $\rho$ are additive, this is a $k$-linear map
+(but it is not multiplicative).
+Note also that $\chi_{V \oplus W} = \chi_V + \chi_W$
+for any representations $V$ and $W$.
+
+We are especially interested in the case $A = k[G]$.
+As usual, we just have to specify $\chi_V(g)$ for each
+$g \in S_3$ to get the whole map $k[G] \to k$.
+Thus we often think of $\chi_V$ as a function $G \to k$,
+called a character of the group $G$.
+Here is the case $G = S_3$:
+\begin{example}
+	[Character Table of $S_3$]
+	Let's consider the three irreducible representations
+	of $G = S_3$ from before.
+	For $\CC_{\text{triv}}$ all traces are $1$;
+	for $\CC_{\text{sign}}$ the traces are $\pm 1$ depending on sign
+	(obviously, for one-dimensional maps $k \to k$ the trace ``is''
+	just the map itself).
+	For $\refl_0$ we take a basis $(1,0,-1)$ and $(0,1,-1)$ (say)
+	and compute the trace of each $\sigma$ directly in this basis.
+	\[
+		\begin{array}{|r|rrr|}
+			\hline
+			\chi_V(g) & \CC_{\text{triv}} & \CC_{\text{sign}} & \refl_0 \\ \hline
+			\id & 1 & 1 & 2 \\
+			(1 \; 2) & 1 & -1 & 0 \\
+			(2 \; 3) & 1 & -1 & 0 \\
+			(3 \; 1) & 1 & -1 & 0 \\
+			(1 \; 2 \; 3) & 1 & 1 & -1 \\
+			(3 \; 2 \; 1) & 1 & 1 & -1 \\ \hline
+		\end{array}
+	\]
+\end{example}
+The above table is called the \vocab{character table} of the group $G$.
+The table above has certain mysterious properties,
+all of which are true more generally.
+\begin{itemize}
+	\ii It seems that $\chi_V(g)$ only depends on
+	the conjugacy class of $g$.
+	\ii The sum of the squares are any column is $6$ again!
+	\ii The ``dot product'' of any two columns is zero.
+	\ii The number of columns equals the number
+\end{itemize}
+We now set about to explain this behavior for any finite group $G$.
+
+\begin{abuse}
+	The name ``character'' for $\chi_V : G \to k$ is a bit of a misnomer.
+	This $\chi_V$ is not additive or multiplicative in any way,
+	as the above example shows: one can almost think of it as
+	an element of $k^{\oplus |G|}$.
+\end{abuse}
+
+\section{The Dual Space Modulo the Commutator}
+For any algebra, we first observe that since $\Tr(TS) = \Tr(ST)$,
+we have for any $V$ that
+\[ \chi_V(ab) = \chi_V(ba). \]
+For this reason we say $\chi_V$ is a \vocab{class function}.
+In particular, for groups:
+\begin{ques}
+	Deduce that if $g$ and $h$ are in the same conjugacy class of a 
+	group $G$, and $V$ is a representation of $\CC[G]$,
+	then $\chi(g) = \chi(h)$.
+\end{ques}
+
+Now, given our algebra $A$ we define the \vocab{commutator} $[A,A]$
+
+\section{Character Tables}
 
 \chapter{Some Applications}
 
