@@ -8,7 +8,7 @@
 \SetWatermarkScale{1.414}
 \SetWatermarkText{DRAFT (\today)}
 
-%\includeonly{}
+%\includeonly{tex/frontmatter/advice}
 
 % TODO: not consistent with ). and .)
 % TODO: 25.10 25.11 33.10 spacing is bad in table of contents
@@ -90,6 +90,12 @@
 \include{tex/alg-NT/frobenius}
 
 
+\part{Representation Theory}
+\include{tex/rep-theory/rep-alg}
+\include{tex/rep-theory/semisimple}
+\include{tex/rep-theory/characters}
+\include{tex/rep-theory/applications}
+
 \part{Algebraic Geometry I: Varieties}
 \include{tex/alg-geom/affine-var} % missing problems
 \include{tex/alg-geom/proj-var} % TODO
@@ -101,6 +107,11 @@
 \include{tex/alg-geom/divisors} % TODO
 \include{tex/alg-geom/sheaves} % TODO
 \include{tex/alg-geom/bundles} % TODO
+
+\part{Quantum Algorithms}
+\include{tex/quantum/vectors}
+\include{tex/quantum/circuits}
+\include{tex/quantum/algorithm}
 
 \part{Set Theory I: ZFC, Ordinals, and Cardinals}
 \include{tex/set-theory/zfc}

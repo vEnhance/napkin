@@ -311,19 +311,19 @@ More generally:
 
 \section{The Transpose of a Matrix}
 Let $V$ be a finite-dimensional inner product space and let $T : V \to V$.
-The \vocab{adjoint} or \vocab{conjugate transpose} of $T$, denoted $T^\ast$,
-is defined as follows: for every vector $w \in V$, we let $T^\ast(w)$ be the unique vector with
-\[ \left< v, T^\ast(w) \right> = \left< T(v), w \right> \]
+The \vocab{adjoint} or \vocab{conjugate transpose} of $T$, denoted $T^\dagger$,
+is defined as follows: for every vector $w \in V$, we let $T^\dagger(w)$ be the unique vector with
+\[ \left< v, T^\dagger(w) \right> = \left< T(v), w \right> \]
 for every $v \in V$.
 This is well-defined, because $v \mapsto \left< T(v), w \right>$ is some function in $V^\vee$,
 and hence by the isomorphism we described earlier it can be written uniquely in the form $\left< v, x \right>$
-for some $x \in V$; we then let $T^\ast(w) = x$.
+for some $x \in V$; we then let $T^\dagger(w) = x$.
 
 Of course, the name conjugate transpose suggests something else:
 \begin{theorem}
 	[Adjoints are Conjugate Transposes]
 	Fix an orthonormal basis of a finite-dimensional inner product $V$.
-	If we write $T$ as a matrix in this basis, then $T^\ast$ is the conjugate transpose.
+	If we write $T$ as a matrix in this basis, then $T^\dagger$ is the conjugate transpose.
 \end{theorem}
 \begin{proof}
 	One-line version: take $v$ and $w$ to be basis elements, and this falls right out.
@@ -339,9 +339,9 @@ Of course, the name conjugate transpose suggests something else:
 	\]
 	in this basis $e_1$, \dots, $e_n$.
 	Then, letting $w = e_i$ and $v = e_j$ we deduce that
-	\[ \left< e_i, T^\ast(e_j) \right> = \left< T(e_i) , e_j\right> = a_{ji}
+	\[ \left< e_i, T^\dagger(e_j) \right> = \left< T(e_i) , e_j\right> = a_{ji}
 		\implies
-		\left< T^\ast(e_j), e_i \right> = \ol{a_{ji}} \]
+		\left< T^\dagger(e_j), e_i \right> = \ol{a_{ji}} \]
 	for any $i$, which is enough to deduce the result.
 \end{proof}
 
@@ -355,7 +355,7 @@ we saw in the previous chapter that we could still have $1$'s off the diagonal.
 However, it turns out that there is a good characterization of this:
 
 \begin{definition}
-	We say $T$ is \vocab{normal} if $TT^\ast = T^\ast T$.
+	We say $T$ is \vocab{normal} if $TT^\dagger = T^\dagger T$.
 \end{definition}
 \begin{theorem}
 	[Normal $\iff$ Diagonalizable in Inner Form]
@@ -386,7 +386,7 @@ but moreover that the basis associated with this matrix happens to be orthonorma
 In particular,
 \begin{definition}
 	A matrix over a complex finite-dimensional inner product space
-	is said to be \vocab{self-adjoint} or \vocab{Hermitian} if $T = T^\ast$;
+	is said to be \vocab{self-adjoint} or \vocab{Hermitian} if $T = T^\dagger$;
 	i.e.\ as a matrix in any orthonormal basis, $T$ is its own conjugate transpose.
 	For real finite-dimensional inner product spaces we say ``self-adjoint'', ``Hermitian'' or \vocab{symmetric}.
 \end{definition}
@@ -398,7 +398,7 @@ Then we have that
 \begin{proof}
 	Obviously Hermitian $\implies$ normal,
 	so write it in the orthonormal basis of eigenvectors.
-	To see that the eigenvalues are real, note that $T = T^\ast$
+	To see that the eigenvalues are real, note that $T = T^\dagger$
 	means $\lambda_i = \ol{\lambda_i}$ for every $i$.
 \end{proof}
 
