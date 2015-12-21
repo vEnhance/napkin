@@ -44,7 +44,7 @@ The trouble is that this definition actually isn't good enough, and here's why.
 If we just say ``a set is any collection of objects'',
 then we can consider a really big set $V$, the set of all sets.
 So far no problem, right?
-$V$ has the oddity that it has to contain itself $V \in S$,
+$V$ has the oddity that it has to contain itself $V \in V$,
 but oh well, no big deal.
 
 Unfortunately, this existence of this $V$ leads immediately to a paradox.
@@ -52,12 +52,13 @@ The classical one is Bertrand's Paradox.
 I will instead present a somewhat simpler one:
 note only does $V$ contain itself, \emph{every subset $S \subseteq V$} is itself
 an element of $V$ (i.e. $S \in V$).
-If we let $\PP(V)$ denote the subsets of $V$, then we have an inclusion
+If we let $\PP(V)$ denote the power set of $V$
+(i.e.\ all the subsets of $V$), then we have an inclusion
 \[ \PP(V) \injto V. \]
 This is bad, for the following reason:
 \begin{lemma}[Cantor's Diagonal Argument]
 	\label{lem:cantor_diag}
-	For \emph{any} set $X$, it's impossible to construct a
+	For \emph{any} set $X$, it's impossible to construct an injective
 	map $\iota : \PP(X) \injto X$.
 \end{lemma}
 \begin{proof}

@@ -1,4 +1,8 @@
-\chapter{Cauchy's Functional Equation and Zorn's Lemma}
+\chapter{Bonus: Cauchy's Functional Equation and Zorn's Lemma}
+\emph{This is an informal chapter on Zorn's Lemma,
+which will give an overview of what's going to come in the last parts of the Napkin.
+It may be omitted, as all important terms used here will be defined in full later.}
+
 In the world of olympiad math, there's a famous functional equation that goes as follows: 
 \[ f : \RR \to \RR \qquad f(x+y) = f(x) + f(y). \]
 Everyone knows what its solutions are!
@@ -105,19 +109,19 @@ The list goes on:
 	& \vdots \\
 	& \omega^2 + 1, \omega^2+2, \dots \\
 	& \vdots \\
-	& \omega^3, \dots, \omega^4, \dots, \omega^\omega \\
-	& \vdots, \\
-	& \omega^{\omega^{\omega^{\dots}}} \\
+	& \omega^3, \dots, \omega^4, \dots, \omega^\omega
+	\dots, \omega^{\omega^{\omega^{\dots}}} \\
 \end{aligned}
 \]
 Pictorially, it kind of looks like this:
 \begin{center}
-	\includegraphics[scale=0.75]{media/500px-Omega-exp-omega-labeled.png}
+	\includegraphics[scale=0.70]{media/500px-Omega-exp-omega-labeled.png}
 \end{center}
 Anyways, in the same way that natural numbers dominate all finite sets,
 the ordinals dominate \emph{all the sets}.
 \begin{theorem}
-	For every set $S$ there's some ordinal $\alpha$ which is bigger than it.
+	Assume the Axiom of Choice.
+	Then for every set $S$ there's some ordinal $\alpha$ which is bigger than it.
 \end{theorem}
 
 But it turns out (and you can intuitively see) that as large as the ordinals grow,
@@ -126,7 +130,7 @@ Meaning: if I start at an ordinal (like $2 \omega + 4$) and jump down, I can onl
 take finitely many jumps before I hit $0$.
 (To see this, try writing down a chain starting at $2 \omega + 4$ yourself.)
 Hence, induction and recursion still work verbatim:
-\begin{theorem}
+\begin{theorem}[Transfinite Induction]
 	Given a statement $P(-)$, suppose that
 	\begin{itemize}
 		\ii $P(0)$ is true, and
@@ -234,7 +238,7 @@ So we can formalize the process as follows:
 \end{enumerate}
 How do we know that we'll stop eventually?
 Well, the thing is that this process consumes a lot of real numbers.
-In particular, the ordinals get larger than the size of $\RR$.
+In particular, the ordinals get larger than the size of $\RR$ (assuming Choice).
 Hence if we don't stop we will quite literally reach a point where we have used up every single real number.
 Clearly that's impossible, because by then the elements can't possibly be independent!
 
