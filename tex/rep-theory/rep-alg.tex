@@ -337,6 +337,10 @@ then $W_1$ and $W_2$ are subrepresentations.
 	If $V \neq W_1 \oplus W_2$ for proper subrepresentations $W_1$, $W_2$,
 	then we say it is \vocab{indecomposable}.
 \end{definition}
+\begin{definition}
+	For brevity, an \vocab{irrep} is a
+	finite-dimensional irreducible representation.
+\end{definition}
 
 \begin{example}[Representation of $S_n$ decomposes]
 	Let $A = \RR[S_3]$ again, acting via permutation of coordinates on
@@ -357,7 +361,7 @@ then $W_1$ and $W_2$ are subrepresentations.
 		In that case, $(1 \; 2)$ sends $w$ to $w' = (b,a,c)$.
 		Then $w$ and $w'$ span $W_2$.
 	\end{itemize}
-	Thus $V$ breaks down completely into irreducible representations.
+	Thus $V$ breaks down completely into irreps.
 \end{example}
 
 Unfortunately, if $W$ is a subrepresentation of $V$,
@@ -463,7 +467,7 @@ are the trivial constant ones.
 \begin{theorem}
 	[Schur's Lemma for Algebraically Closed Fields]
 	Let $k$ be an algebraically closed field.
-	Let $V$ and $V$ be irreducible representations of a $k$-algebra $A$.
+	Let $V$ be an irrep of a $k$-algebra $A$.
 	Then any intertwining operator $T : V \to V$ is multiplication by a scalar.
 \end{theorem}
 \begin{exercise}
@@ -574,8 +578,9 @@ of smaller dimension at all!
 
 \begin{dproblem}
 	[Schur's Lemma for Commutative Algebras]
-	Let $A$ be a \emph{commutative} algebra over an algebraically closed field $k$.
-	Prove that any irreducible representation of $A$ is one-dimensional.
+	Let $A$ be a \emph{commutative} algebra
+	over an algebraically closed field $k$.
+	Prove that any irrep of $A$ is one-dimensional.
 	\begin{hint}
 		For any $a \in A$, the map $v \mapsto a \cdot v$ is intertwining.
 	\end{hint}

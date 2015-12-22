@@ -348,6 +348,10 @@ then $W_1$ and $W_2$ are subrepresentations.
 	If $V \neq W_1 \oplus W_2$ for proper subrepresentations $W_1$, $W_2$,
 	then we say it is \vocab{indecomposable}.
 \end{definition}
+\begin{definition}
+	For brevity, an \vocab{irrep} is a
+	finite-dimensional irreducible representation.
+\end{definition}
 
 \begin{example}[Representation of $S_n$ decomposes]
 	Let $A = \RR[S_3]$ again, acting via permutation of coordinates on
@@ -368,7 +372,7 @@ then $W_1$ and $W_2$ are subrepresentations.
 		In that case, $(1 \; 2)$ sends $w$ to $w' = (b,a,c)$.
 		Then $w$ and $w'$ span $W_2$.
 	\end{itemize}
-	Thus $V$ breaks down completely into irreducible representations.
+	Thus $V$ breaks down completely into irreps.
 \end{example}
 
 Unfortunately, if $W$ is a subrepresentation of $V$,
@@ -474,7 +478,7 @@ are the trivial constant ones.
 \begin{theorem}
 	[Schur's Lemma for Algebraically Closed Fields]
 	Let $k$ be an algebraically closed field.
-	Let $V$ and $V$ be irreducible representations of a $k$-algebra $A$.
+	Let $V$ be an irrep of a $k$-algebra $A$.
 	Then any intertwining operator $T : V \to V$ is multiplication by a scalar.
 \end{theorem}
 \begin{exercise}
@@ -585,8 +589,9 @@ of smaller dimension at all!
 
 \begin{dproblem}
 	[Schur's Lemma for Commutative Algebras]
-	Let $A$ be a \emph{commutative} algebra over an algebraically closed field $k$.
-	Prove that any irreducible representation of $A$ is one-dimensional.
+	Let $A$ be a \emph{commutative} algebra
+	over an algebraically closed field $k$.
+	Prove that any irrep of $A$ is one-dimensional.
 	\begin{hint}
 		For any $a \in A$, the map $v \mapsto a \cdot v$ is intertwining.
 	\end{hint}
@@ -627,8 +632,7 @@ if all its finite-dimensional representations are completely reducible.
 The culminating point of the chapter is when we
 prove that $A$ is semisimple if and only if
 $A \cong \bigoplus_i \Mat(V_i)$,
-where the $V_i$ are the irreducible representations of $A$
-(yes, there are only finitely many!).
+where the $V_i$ are the irreps of $A$ (yes, there are only finitely many!).
 
 The goal for the chapter is to examine these in more detail:
 we'll find conditions on algebras $A$ which cause all its representations
@@ -643,8 +647,7 @@ to be completely reducible.
 	(It is also a $k$-algebra.)
 \end{definition}
 
-By Schur's Lemma, we already know that if $V$ and $W$ are irreducible,
-then
+By Schur's Lemma, we already know that if $V$ and $W$ are irreps, then
 \[
 	\Homrep(V,W) \simeq
 	\begin{cases}
@@ -657,7 +660,7 @@ For example, it also tells us that
 \[ \Homrep(V, V^{\oplus 2}) = k^{\oplus 2}. \]
 The possible maps are $v \mapsto (c_1v_1, c_2v_2)$ for some choice of $c_1, c_2 \in k$.
 
-More generally, suppose $V$ is irreducible and consider
+More generally, suppose $V$ is an irrep and consider
 \[ \Homrep(V^{\oplus m}, V^{\oplus n}). \]
 Intertwining operators are determined completely
 $T : V^{\oplus m} \to V^{\oplus n}$ by the $mn$ choices of compositions
@@ -692,7 +695,7 @@ More generally, we have the following result.
 	\label{thm:compred_schur}
 	Let $V$ and $W$ be completely reducible representations,
 	and set $V = \bigoplus V_i^{\oplus n_i}$, $W = \bigoplus V_i^{\oplus m_i}$
-	for integers $n_i, m_i \ge 0$, where each $V_i$ is irreducible.
+	for integers $n_i, m_i \ge 0$, where each $V_i$ is an irrep.
 	Then
 	\[ \Homrep(V, W)
 		\simeq \bigoplus_i \Mat_{n_i \times m_i}(k) \]
@@ -719,7 +722,7 @@ More generally, we have the following result.
 
 \section{Density Theorem}
 We are going to take advantage of the previous result to prove that
-finite-dimensional algebras have finitely many irreducible representations.
+finite-dimensional algebras have finitely many irreps.
 
 \begin{theorem}
 	[Jacobson Density Theorem]
@@ -732,7 +735,7 @@ finite-dimensional algebras have finitely many irreducible representations.
 The right way to think about this theorem is that
 \begin{moral}
 	The Density Theorem is the ``Chinese Remainder Theorem''
-	for irreducible representations of $A$.
+	for irreps of $A$.
 \end{moral}
 Recall that in number theory, the Chinese Remainder Theorem tells us
 that given lots of ``unrelated'' congruences, we can find a single $N$
@@ -752,13 +755,12 @@ since even the $r=1$ case is not obvious at all!
 This also gives us the non-obvious corollary
 \begin{corollary}
 	[Finiteness of Number of Representations]
-	Any finite-dimensional algebra $A$ has at most $\dim A$
-	irreducible finite-dimensional representations.
+	Any finite-dimensional algebra $A$ has at most $\dim A$ irreps.
 	\label{cor:finiteness}
 \end{corollary}
 \begin{proof}
-	If $V_i$ are such irreducible representations
-	then $A \surjto \bigoplus_i V_i^{\oplus \dim V_i}$,
+	If $V_i$ are such irreps then 
+	$A \surjto \bigoplus_i V_i^{\oplus \dim V_i}$,
 	hence we have the inequality $\sum (\dim V_i)^2 \le \dim A$.
 \end{proof}
 
@@ -852,7 +854,7 @@ the Density Theorem (and \Cref{cor:finiteness}), we also have the following.
 	[Sum of Squares Formula]
 	For a finite-dimensional algebra $A$ we have
 	\[ \sum_{i} \dim(V_i)^2 \le \dim A \]
-	where the $V_i$ are the irreducible representations of $A$;
+	where the $V_i$ are the irreps of $A$;
 	equality holds exactly when $A$ is semisimple,
 	in which case 
 	\[ \Reg(A) \cong \bigoplus_i \Mat(V_i)
@@ -869,7 +871,7 @@ the Density Theorem (and \Cref{cor:finiteness}), we also have the following.
 	For any finite-dimensional $A$, the kernel of the map
 	$\rho : A \to \bigoplus_i \Mat(V_i)$ is denoted $\opname{Rad}(A)$
 	and is the so-called \vocab{Jacobson radical} of $A$;
-	it's the set of all $a \in A$ which act by zero in all irreducible representations of $A$.
+	it's the set of all $a \in A$ which act by zero in all irreps of $A$.
 	The usual definition of ``semisimple'' given in books is that
 	this Jacobson radical is trivial.
 \end{remark}
@@ -914,7 +916,7 @@ all representations are completely reducible.
 \end{proof}
 
 \section{Example: The Representations of $\CC[S_3]$}
-We compute all irreducible representations of $\CC[S_3]$.
+We compute all irreps of $\CC[S_3]$.
 I'll take for granted right now there are exactly three such representations
 (which will be immediate by the first theorem in the next chapter:
 we'll in fact see that the number of representations of $G$
@@ -953,7 +955,7 @@ In fact, we can describe these representations explicitly:
 	\end{exercise}
 	Thus $V$ is also not isomorphic to the previous two representations.
 \end{itemize}
-This implies that these are all the irreducible representations of $S_3$.
+This implies that these are all the irreps of $S_3$.
 Note that, if we take the representation $V$ of $S_3$ on $k^{\oplus 3}$,
 we just get that $V = \refl_0 \oplus \CC_{\text{triv}}$.
 
@@ -961,14 +963,12 @@ we just get that $V = \refl_0 \oplus \CC_{\text{triv}}$.
 \begin{problem}
 	\gim
 	Let $G = \Zc n$ and let $k = \CC$.
-	Show that up to isomorphism there are exactly $n$
-	irreducible representations of $k[G]$.
+	Show that up to isomorphism there are exactly $n$ irreps of $k[G]$.
 	What if $k = \RR$?
 \end{problem}
 
-
 \begin{problem}
-	Determine all the irreducible representations of $D_{10}$,
+	Determine all the irreps of $D_{10}$,
 	given that there are exactly four of them.
 \end{problem}
 
@@ -976,10 +976,9 @@ we just get that $V = \refl_0 \oplus \CC_{\text{triv}}$.
 Characters are basically the best thing ever.
 To every representation $V$ of $A$ we will attach a
 so-called character $\chi_V : A \to k$.
-It will turn out that the characters of irreducible representation $V$
+It will turn out that the characters of irreps of $V$
 will determine the representation $V$ completely.
-Thus for example if $A$ is finite-dimensional then this means an
-irreducible representation is just specified by a set of $\dim A$ numbers.
+Thus an irrep is just specified by a set of $\dim A$ numbers.
 
 \section{Definitions}
 \begin{definition}
@@ -1001,8 +1000,7 @@ called a character of the group $G$.
 Here is the case $G = S_3$:
 \begin{example}
 	[Character Table of $S_3$]
-	Let's consider the three irreducible representations
-	of $G = S_3$ from before.
+	Let's consider the three irreps of $G = S_3$ from before.
 	For $\CC_{\text{triv}}$ all traces are $1$;
 	for $\CC_{\text{sign}}$ the traces are $\pm 1$ depending on sign
 	(obviously, for one-dimensional maps $k \to k$ the trace ``is''
@@ -1038,6 +1036,10 @@ which we will prove as the chapter progresses.
 	as the above example shows: one can almost think of it as
 	an element of $k^{\oplus |G|}$.
 \end{abuse}
+
+\begin{ques}
+	Show that $\chi_V(1_A) = \dim V$.
+\end{ques}
 
 \section{The Dual Space Modulo the Commutator}
 For any algebra, we first observe that since $\Tr(TS) = \Tr(ST)$,
@@ -1087,16 +1089,13 @@ So we can think of each character $\chi_V$ as an element of $(A\ab)^\vee$.
 	[Character of Representations of Algebras]
 	Let $A$ be an algebra over an algebraically closed field. Then
 	\begin{enumerate}[(a)]
-		\ii Characters of pairwise non-isomorphic finite-dimensional
-		irreducible representations are linearly independent
-		as elements of $A\ab$.
+		\ii Characters of pairwise non-isomorphic irreps are
+		linearly independent as elements of $A\ab$.
 		\ii If $A$ is finite-dimensional and semisimple,
-		then the characters attached to irreducible representations
+		then the characters attached to irreps
 		form a basis of $A\ab$.
 	\end{enumerate}
-	In particular, if $A$ is finite-dimensional and semisimple
-	then the number of finite-dimensional irreducible representations
-	of $A$ is equal to $\dim A\ab$.
+	In particular, in (b) the number of irreps of $A$ equals $\dim A\ab$.
 \end{theorem}
 \begin{proof}
 	Part (a) is more or less obvious by the Density Theorem.
@@ -1106,9 +1105,9 @@ So we can think of each character $\chi_V$ as an element of $(A\ab)^\vee$.
 	\begin{ques}
 		Deduce that $c_1 = \dots = c_r = 0$ from Density.
 	\end{ques}
-	For part (b), assume there are $r$ irreducible representations,
+	For part (b), assume there are $r$ irreps
 	we may assume that \[ A = \bigoplus_{i=1}^r \Mat(V_i) \]
-	where $V_1$, \dots, $V_r$ are the irreducible representations of $A$.
+	where $V_1$, \dots, $V_r$ are the irreps of $A$.
 	Since we have already showed the characters are linearly independent
 	we need only show that $\dim ( A / [A,A] ) = r$,
 	which follows from the observation earlier that each $\Mat(V_i)$
@@ -1122,7 +1121,7 @@ Now we specialize to the case of finite groups $G$, represented over $\CC$.
 \begin{definition}
 	Let $\Classes(G)$ denote the set conjugacy classes of $G$.
 \end{definition}
-If $G$ has $r$ conjugacy classes, then it has $r$ irreducible representations.
+If $G$ has $r$ conjugacy classes, then it has $r$ irreps.
 Each (finite-dimensional) representation $V$, irreducible or not, gives a
 character $\chi_V$.
 \begin{abuse}
@@ -1147,9 +1146,10 @@ when we looked at the character table of $S_3$.
 We now aim to prove the following orthogonality theorem,
 which will imply (III) and (IV) from earlier.
 \begin{theorem}[Orthogonality]
-	For any complex representations $V$ and $W$ of $G$ we have
+	For any finite-dimenisonal complex representations $V$ and $W$
+	of $G$ we have
 	\[ \left< \chi_V, \chi_W \right> = \dim \Homrep(W, V). \]
-	In particular, if $V$ and $W$ are irreducible then
+	In particular, if $V$ and $W$ are irreps then
 	\[ \left< \chi_V, \chi_W \right> 
 		=
 		\begin{cases}
@@ -1159,7 +1159,7 @@ which will imply (III) and (IV) from earlier.
 	\]
 \end{theorem}
 \begin{corollary}[Irreps Give an Orthonormal Basis]
-	The characters associated to irreducible representations
+	The characters associated to irreps
 	form an \emph{orthonormal} basis of $\FunCl(G)$.
 \end{corollary}
 
@@ -1170,7 +1170,7 @@ which give a natural way to deal with the quantity $\chi_V(g)\ol{\chi_W(g)}$.
 	Let $V = (V, \rho)$ be a representation of $G$.
 	The \vocab{dual representation} $V^\vee$ is the representation on $V^\vee$
 	with the action of $G$ given as follows:
-	for each $\xi \in V^\vee$< the image of the action $g \cdot \xi \in V^\vee$
+	for each $\xi \in V^\vee$, the image of the action $g \cdot \xi \in V^\vee$
 	is specified by
 	\[ v \xmapsto{g \cdot \xi} \xi\left( \rho(g\inv)(x) \right). \]
 \end{definition}
@@ -1264,14 +1264,14 @@ With this, we can now prove the orthogonality relation.
 
 
 The orthogonality relation gives us a fast and mechanical way to check
-whether a representation $V$ is irreducible.
+whether a finite-dimensional representation $V$ is irreducible.
 Namely, compute the traces $\chi_V(g)$ for each $g \in G$,
 and then check whether $\left< \chi_V, \chi_V \right> = 1$.
 So, for example, we could have seen the three representations of
-$S_3$ that we found were irreducible directly from the character table.
+$S_3$ that we found were irreps directly from the character table.
 
 In other words, we can now efficiently verify any time we have
-a complete set of irreducible representations.
+a complete set of irreps.
 We give another example with $D_{10}$ again.
 \begin{example}
 	[Dihedral Group on $10$ Elements]
@@ -1307,10 +1307,11 @@ We give another example with $D_{10}$ again.
 \end{example}
 
 \section\problemhead
-\begin{dproblem}
+\begin{sproblem}
 	[Second Orthogonality Formula]
+	\label{prob:second_orthog}
 	Let $g$ and $h$ be elements of a finite group $G$,
-	and let $V_1$, \dots, $V_r$ be the irreducible representations of $G$.
+	and let $V_1$, \dots, $V_r$ be the irreps of $G$.
 	Prove that
 	\[
 		\sum_{i = 1}^r \chi_{V_i}(g) \ol{\chi_{V_i}(h)}
@@ -1321,16 +1322,158 @@ We give another example with $D_{10}$ again.
 		\end{cases}
 	\]
 	Here, $Z(g) = \left\{ x \in G : xg = gx \right\}$.
-\end{dproblem}
+\end{sproblem}
 
 \todo{Heisenberg group?}
 
 
 
 \chapter{Some Applications}
+With all this setup, we now take the time to develop some nice
+results which are of independent interest.
 
 \section{Frobenius Divisibility}
-\section{Frobenius Determinant}
+\begin{theorem}
+	[Frobenius Divisibility]
+	Let $V$ be a complex irrep of a finite group $G$.
+	Then $\dim V$ divides $|G|$.
+\end{theorem}
+The proof of this will require algebraic integers
+(developed in the algebraic number theory chapter).
+Recall that an \emph{algebraic integer} is a complex number
+which is the root of a polynomial with integer coefficients,
+and that these algebraic integers form a ring $\ol\ZZ$
+under addition and multiplication, and that $\ol\ZZ \cap \QQ = \ZZ$.
+
+First, we prove the following lemma.
+\newcommand{\tempuuujbhtkx}{$\ZZ[G]$}
+\begin{lemma}[Elements of \tempuuujbhtkx\ are Integral]
+	\label{lem:group_ring_integral}
+	Let $\alpha \in \ZZ[G]$.
+	Then there exists a monic polynomial $P$ with integer coefficients
+	such that $P(\alpha) = 0$.
+\end{lemma}
+\begin{proof}
+	Let $A_k$ be the $\ZZ$-span of $1, \alpha^1, \dots, \alpha^k$.
+	Since $\ZZ[G]$ is Noetherian,
+	the inclusions $A_0 \subseteq A_1 \subseteq A_2 \subseteq \dots$
+	cannot all be strict, hence $A_k = A_{k+1}$ for some $k$,
+	which means $\alpha^{k+1}$ can be expressed in terms of
+	lower powers of $\alpha$.
+\end{proof}
+
+\begin{proof}
+	[Proof of Frobenius Divisibility]
+	Let $C_1$, \dots, $C_m$ denote the conjugacy classes of $G$.
+	Then consider the rational number \[ \frac{|G|}{\dim V}; \]
+	we will show it is an algebraic integer, which will prove the theorem.
+	Observe that we can rewrite it as
+	\[
+		\frac{|G|}{\dim V}
+		= \frac{|G| \left< \chi_V, \chi_V \right>}{\dim V}
+		= \sum_{g \in G} \frac{\chi_V(g) \ol{\chi_V(g)}}{\dim V}.
+	\]
+	We split the sum over conjugacy classes, so
+	\[
+		\frac{|G|}{\dim V}
+		=
+		\sum_{i=1}^m \ol{\chi_V(C_i)} \cdot \frac{|C_i| \chi_V(C_i)}{\dim V}.
+	\]
+	We claim that for every $i$,
+	\[ \frac{|C_i| \chi_V(C_i)}{\dim V}
+		= \frac{1}{\dim V} \Tr T_i \]
+	is an algebraic integer,
+	where \[ T_i \defeq \rho\left(\sum_{h \in C_i} h\right). \]
+	To see this, note that $T_i$ commutes with elements of $G$,
+	and hence is an intertwining operator $T_i : V \to V$.
+	Thus by Schur's Lemma, $T_i = \lambda_i \cdot \id_V$
+	and $\Tr T = \lambda_i \dim V$.
+	By \Cref{lem:group_ring_integral}, $\lambda_i \in \ol\ZZ$, as desired.
+	
+	Now we are done, since $\ol{\chi_V(C_i)} in \ol\ZZ$ too
+	(it is the sum of conjugates of roots of unity),
+	so $\frac{|G|}{\dim V}$ is the sum of products of algebraic integers,
+	hence itself an algebraic integer.
+\end{proof}
+
 \section{Burnside's Theorem}
+We now prove a group-theoretic result.
+This is the famous poster child for representation theory
+(in the same way that RSA is the poster child of number theory)
+because the result is purely group theoretic.
+
+Recall that a group is \emph{simple} if it has no normal subgroups.
+In fact, we will prove the following theorem.
+\begin{theorem}[Burnside]
+	Let $G$ be a nonabelian group of order $p^a q^b$ (where $a,b \ge 0$).
+	Then $G$ is not simple.
+\end{theorem}
+In what follows $p$ and $q$ will always denote prime numbers.
+
+\begin{lemma}[On $\gcd(|C|, \dim V) = 1$]
+	Let $V = (V, \rho)$ be an complex irrep of $G$.
+	Assume $C$ is a conjugacy class of $G$ with $\gcd(|C|, \dim V) = 1$.
+	Then for any $g \in C$, either
+	\begin{itemize}
+		\ii $\rho(g)$ is multiplication by a scalar, or
+		\ii $\chi_V(g) = \Tr \rho(g) = 0$.
+	\end{itemize}
+\end{lemma}
+\begin{proof}
+	If $\eps_i$ are the $n$ eigenvalues of $\rho(g)$ (which are roots of unity),
+	then from the proof of Frobenius divisibility we know
+	$\frac{|C|}{n} \chi_V(g) \in \ol\ZZ$,
+	thus from $\gcd(|C|, n) = 1$ we get 
+	\[ \frac1n \chi_V(g) = \frac1n(\eps_1 + \dots + \eps_n) \in \ol\ZZ. \]
+	So this follows readily from a fact from algebraic number theory,
+	namely \Cref{prob:rep_lemma}:
+	either $\eps_1 = \dots = \eps_n$ (first case) or
+	$\eps_1 + \dots + \eps_n = 0$ (second case).
+\end{proof}
+
+\begin{lemma}
+	[Simple Groups Don't Have Prime Power Conjuagcy Classes]
+	Let $G$ be a finite simple group.
+	Then $G$ cannot have a conjugacy class of order $p^k$ (where $k > 0$).
+\end{lemma}
+\begin{proof}
+	By contradiction.
+	Assume $C$ is such a conjugacy class, and fix any $g \in C$.
+	By the second orthogonality formula (\Cref{prob:second_orthog})
+	applied $g$ and $1_G$ (which are not conjugate since $g \neq 1_G$) we have
+	\[ \sum_{i=1}^r \dim V_i \chi_{V_i}(g) = 0 \]
+	where $V_i$ are as usual all irreps of $G$.
+	\begin{exercise}
+		Show that there exists a nontrivial irrep $V$
+		such that $p \nmid \dim V$ and $\chi_V(g) \neq 0$.
+		(Proceed by contradiction to show that $-\frac1p \in \ol\ZZ$ if not.)
+	\end{exercise}
+	Let $V = (V, \rho)$ be the irrep mentioned.
+	By the previous lemma, we now know that $\rho(g)$ acts as a scalar in $V$.
+
+	Now consider the subgroup
+	\[ H = \left< ab\inv \mid a,b \in C \right> \subset G. \]
+	We claim this is a nontrivial normal subgroup of $G$.
+	It is easy to check $H$ is normal,
+	and since $|C| > 1$ we have that $H$ is nontrivial.
+	Each element of $H$ acts trivially in $G$,
+	so since $V$ is nontrivial and irreducible $H \neq G$.
+	This contradicts the assumption that $G$ was simple.
+\end{proof}
+
+With this lemma, Burnside's Theorem follows by partitioning
+the $|G|$ elements of our group into conjugacy classes.
+Assume for contradiction $G$ is simple.
+Each conjugacy class must have order either $1$ (of which there are $|Z(G)|$)
+or divisible by $pq$, but on the other hand the sum equals $|G| = p^aq^b$.
+Consequently, we must have $|Z(G)| > 1$.
+But $G$ is not abelian, hence $Z(G) \neq G$,
+thus the center $Z(G)$ is a nontrivial normal subgroup,
+contradicting the assumption that $G$ was simple.
+
+
+
+\section{Frobenius Determinant}
 
 \end{document}
+TODO: "finite-dimensional irreducible representation" $\to$ irrep

@@ -1,1 +1,147 @@
 \chapter{Some Applications (In Progress)}
+With all this setup, we now take the time to develop some nice
+results which are of independent interest.
+
+\section{Frobenius Divisibility}
+\begin{theorem}
+	[Frobenius Divisibility]
+	Let $V$ be a complex irrep of a finite group $G$.
+	Then $\dim V$ divides $|G|$.
+\end{theorem}
+The proof of this will require algebraic integers
+(developed in the algebraic number theory chapter).
+Recall that an \emph{algebraic integer} is a complex number
+which is the root of a polynomial with integer coefficients,
+and that these algebraic integers form a ring $\ol\ZZ$
+under addition and multiplication, and that $\ol\ZZ \cap \QQ = \ZZ$.
+
+First, we prove the following lemma.
+\newcommand{\tempuuujbhtkx}{$\ZZ[G]$}
+\begin{lemma}[Elements of \tempuuujbhtkx\ are Integral]
+	\label{lem:group_ring_integral}
+	Let $\alpha \in \ZZ[G]$.
+	Then there exists a monic polynomial $P$ with integer coefficients
+	such that $P(\alpha) = 0$.
+\end{lemma}
+\begin{proof}
+	Let $A_k$ be the $\ZZ$-span of $1, \alpha^1, \dots, \alpha^k$.
+	Since $\ZZ[G]$ is Noetherian,
+	the inclusions $A_0 \subseteq A_1 \subseteq A_2 \subseteq \dots$
+	cannot all be strict, hence $A_k = A_{k+1}$ for some $k$,
+	which means $\alpha^{k+1}$ can be expressed in terms of
+	lower powers of $\alpha$.
+\end{proof}
+
+\begin{proof}
+	[Proof of Frobenius Divisibility]
+	Let $C_1$, \dots, $C_m$ denote the conjugacy classes of $G$.
+	Then consider the rational number \[ \frac{|G|}{\dim V}; \]
+	we will show it is an algebraic integer, which will prove the theorem.
+	Observe that we can rewrite it as
+	\[
+		\frac{|G|}{\dim V}
+		= \frac{|G| \left< \chi_V, \chi_V \right>}{\dim V}
+		= \sum_{g \in G} \frac{\chi_V(g) \ol{\chi_V(g)}}{\dim V}.
+	\]
+	We split the sum over conjugacy classes, so
+	\[
+		\frac{|G|}{\dim V}
+		=
+		\sum_{i=1}^m \ol{\chi_V(C_i)} \cdot \frac{|C_i| \chi_V(C_i)}{\dim V}.
+	\]
+	We claim that for every $i$,
+	\[ \frac{|C_i| \chi_V(C_i)}{\dim V}
+		= \frac{1}{\dim V} \Tr T_i \]
+	is an algebraic integer,
+	where \[ T_i \defeq \rho\left(\sum_{h \in C_i} h\right). \]
+	To see this, note that $T_i$ commutes with elements of $G$,
+	and hence is an intertwining operator $T_i : V \to V$.
+	Thus by Schur's Lemma, $T_i = \lambda_i \cdot \id_V$
+	and $\Tr T = \lambda_i \dim V$.
+	By \Cref{lem:group_ring_integral}, $\lambda_i \in \ol\ZZ$, as desired.
+	
+	Now we are done, since $\ol{\chi_V(C_i)} in \ol\ZZ$ too
+	(it is the sum of conjugates of roots of unity),
+	so $\frac{|G|}{\dim V}$ is the sum of products of algebraic integers,
+	hence itself an algebraic integer.
+\end{proof}
+
+\section{Burnside's Theorem}
+We now prove a group-theoretic result.
+This is the famous poster child for representation theory
+(in the same way that RSA is the poster child of number theory)
+because the result is purely group theoretic.
+
+Recall that a group is \emph{simple} if it has no normal subgroups.
+In fact, we will prove the following theorem.
+\begin{theorem}[Burnside]
+	Let $G$ be a nonabelian group of order $p^a q^b$ (where $a,b \ge 0$).
+	Then $G$ is not simple.
+\end{theorem}
+In what follows $p$ and $q$ will always denote prime numbers.
+
+\begin{lemma}[On $\gcd(|C|, \dim V) = 1$]
+	Let $V = (V, \rho)$ be an complex irrep of $G$.
+	Assume $C$ is a conjugacy class of $G$ with $\gcd(|C|, \dim V) = 1$.
+	Then for any $g \in C$, either
+	\begin{itemize}
+		\ii $\rho(g)$ is multiplication by a scalar, or
+		\ii $\chi_V(g) = \Tr \rho(g) = 0$.
+	\end{itemize}
+\end{lemma}
+\begin{proof}
+	If $\eps_i$ are the $n$ eigenvalues of $\rho(g)$ (which are roots of unity),
+	then from the proof of Frobenius divisibility we know
+	$\frac{|C|}{n} \chi_V(g) \in \ol\ZZ$,
+	thus from $\gcd(|C|, n) = 1$ we get 
+	\[ \frac1n \chi_V(g) = \frac1n(\eps_1 + \dots + \eps_n) \in \ol\ZZ. \]
+	So this follows readily from a fact from algebraic number theory,
+	namely \Cref{prob:rep_lemma}:
+	either $\eps_1 = \dots = \eps_n$ (first case) or
+	$\eps_1 + \dots + \eps_n = 0$ (second case).
+\end{proof}
+
+\begin{lemma}
+	[Simple Groups Don't Have Prime Power Conjuagcy Classes]
+	Let $G$ be a finite simple group.
+	Then $G$ cannot have a conjugacy class of order $p^k$ (where $k > 0$).
+\end{lemma}
+\begin{proof}
+	By contradiction.
+	Assume $C$ is such a conjugacy class, and fix any $g \in C$.
+	By the second orthogonality formula (\Cref{prob:second_orthog})
+	applied $g$ and $1_G$ (which are not conjugate since $g \neq 1_G$) we have
+	\[ \sum_{i=1}^r \dim V_i \chi_{V_i}(g) = 0 \]
+	where $V_i$ are as usual all irreps of $G$.
+	\begin{exercise}
+		Show that there exists a nontrivial irrep $V$
+		such that $p \nmid \dim V$ and $\chi_V(g) \neq 0$.
+		(Proceed by contradiction to show that $-\frac1p \in \ol\ZZ$ if not.)
+	\end{exercise}
+	Let $V = (V, \rho)$ be the irrep mentioned.
+	By the previous lemma, we now know that $\rho(g)$ acts as a scalar in $V$.
+
+	Now consider the subgroup
+	\[ H = \left< ab\inv \mid a,b \in C \right> \subset G. \]
+	We claim this is a nontrivial normal subgroup of $G$.
+	It is easy to check $H$ is normal,
+	and since $|C| > 1$ we have that $H$ is nontrivial.
+	Each element of $H$ acts trivially in $G$,
+	so since $V$ is nontrivial and irreducible $H \neq G$.
+	This contradicts the assumption that $G$ was simple.
+\end{proof}
+
+With this lemma, Burnside's Theorem follows by partitioning
+the $|G|$ elements of our group into conjugacy classes.
+Assume for contradiction $G$ is simple.
+Each conjugacy class must have order either $1$ (of which there are $|Z(G)|$)
+or divisible by $pq$, but on the other hand the sum equals $|G| = p^aq^b$.
+Consequently, we must have $|Z(G)| > 1$.
+But $G$ is not abelian, hence $Z(G) \neq G$,
+thus the center $Z(G)$ is a nontrivial normal subgroup,
+contradicting the assumption that $G$ was simple.
+
+
+
+\section{Frobenius Determinant}
+

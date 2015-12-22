@@ -2,10 +2,9 @@
 Characters are basically the best thing ever.
 To every representation $V$ of $A$ we will attach a
 so-called character $\chi_V : A \to k$.
-It will turn out that the characters of irreducible representation $V$
+It will turn out that the characters of irreps of $V$
 will determine the representation $V$ completely.
-Thus for example if $A$ is finite-dimensional then this means an
-irreducible representation is just specified by a set of $\dim A$ numbers.
+Thus an irrep is just specified by a set of $\dim A$ numbers.
 
 \section{Definitions}
 \begin{definition}
@@ -27,8 +26,7 @@ called a character of the group $G$.
 Here is the case $G = S_3$:
 \begin{example}
 	[Character Table of $S_3$]
-	Let's consider the three irreducible representations
-	of $G = S_3$ from before.
+	Let's consider the three irreps of $G = S_3$ from before.
 	For $\CC_{\text{triv}}$ all traces are $1$;
 	for $\CC_{\text{sign}}$ the traces are $\pm 1$ depending on sign
 	(obviously, for one-dimensional maps $k \to k$ the trace ``is''
@@ -64,6 +62,10 @@ which we will prove as the chapter progresses.
 	as the above example shows: one can almost think of it as
 	an element of $k^{\oplus |G|}$.
 \end{abuse}
+
+\begin{ques}
+	Show that $\chi_V(1_A) = \dim V$.
+\end{ques}
 
 \section{The Dual Space Modulo the Commutator}
 For any algebra, we first observe that since $\Tr(TS) = \Tr(ST)$,
@@ -113,16 +115,13 @@ So we can think of each character $\chi_V$ as an element of $(A\ab)^\vee$.
 	[Character of Representations of Algebras]
 	Let $A$ be an algebra over an algebraically closed field. Then
 	\begin{enumerate}[(a)]
-		\ii Characters of pairwise non-isomorphic finite-dimensional
-		irreducible representations are linearly independent
-		as elements of $A\ab$.
+		\ii Characters of pairwise non-isomorphic irreps are
+		linearly independent as elements of $A\ab$.
 		\ii If $A$ is finite-dimensional and semisimple,
-		then the characters attached to irreducible representations
+		then the characters attached to irreps
 		form a basis of $A\ab$.
 	\end{enumerate}
-	In particular, if $A$ is finite-dimensional and semisimple
-	then the number of finite-dimensional irreducible representations
-	of $A$ is equal to $\dim A\ab$.
+	In particular, in (b) the number of irreps of $A$ equals $\dim A\ab$.
 \end{theorem}
 \begin{proof}
 	Part (a) is more or less obvious by the Density Theorem.
@@ -132,9 +131,9 @@ So we can think of each character $\chi_V$ as an element of $(A\ab)^\vee$.
 	\begin{ques}
 		Deduce that $c_1 = \dots = c_r = 0$ from Density.
 	\end{ques}
-	For part (b), assume there are $r$ irreducible representations,
+	For part (b), assume there are $r$ irreps
 	we may assume that \[ A = \bigoplus_{i=1}^r \Mat(V_i) \]
-	where $V_1$, \dots, $V_r$ are the irreducible representations of $A$.
+	where $V_1$, \dots, $V_r$ are the irreps of $A$.
 	Since we have already showed the characters are linearly independent
 	we need only show that $\dim ( A / [A,A] ) = r$,
 	which follows from the observation earlier that each $\Mat(V_i)$
@@ -148,7 +147,7 @@ Now we specialize to the case of finite groups $G$, represented over $\CC$.
 \begin{definition}
 	Let $\Classes(G)$ denote the set conjugacy classes of $G$.
 \end{definition}
-If $G$ has $r$ conjugacy classes, then it has $r$ irreducible representations.
+If $G$ has $r$ conjugacy classes, then it has $r$ irreps.
 Each (finite-dimensional) representation $V$, irreducible or not, gives a
 character $\chi_V$.
 \begin{abuse}
@@ -173,9 +172,10 @@ when we looked at the character table of $S_3$.
 We now aim to prove the following orthogonality theorem,
 which will imply (III) and (IV) from earlier.
 \begin{theorem}[Orthogonality]
-	For any complex representations $V$ and $W$ of $G$ we have
+	For any finite-dimenisonal complex representations $V$ and $W$
+	of $G$ we have
 	\[ \left< \chi_V, \chi_W \right> = \dim \Homrep(W, V). \]
-	In particular, if $V$ and $W$ are irreducible then
+	In particular, if $V$ and $W$ are irreps then
 	\[ \left< \chi_V, \chi_W \right> 
 		=
 		\begin{cases}
@@ -185,7 +185,7 @@ which will imply (III) and (IV) from earlier.
 	\]
 \end{theorem}
 \begin{corollary}[Irreps Give an Orthonormal Basis]
-	The characters associated to irreducible representations
+	The characters associated to irreps
 	form an \emph{orthonormal} basis of $\FunCl(G)$.
 \end{corollary}
 
@@ -196,7 +196,7 @@ which give a natural way to deal with the quantity $\chi_V(g)\ol{\chi_W(g)}$.
 	Let $V = (V, \rho)$ be a representation of $G$.
 	The \vocab{dual representation} $V^\vee$ is the representation on $V^\vee$
 	with the action of $G$ given as follows:
-	for each $\xi \in V^\vee$< the image of the action $g \cdot \xi \in V^\vee$
+	for each $\xi \in V^\vee$, the image of the action $g \cdot \xi \in V^\vee$
 	is specified by
 	\[ v \xmapsto{g \cdot \xi} \xi\left( \rho(g\inv)(x) \right). \]
 \end{definition}
@@ -290,14 +290,14 @@ With this, we can now prove the orthogonality relation.
 
 
 The orthogonality relation gives us a fast and mechanical way to check
-whether a representation $V$ is irreducible.
+whether a finite-dimensional representation $V$ is irreducible.
 Namely, compute the traces $\chi_V(g)$ for each $g \in G$,
 and then check whether $\left< \chi_V, \chi_V \right> = 1$.
 So, for example, we could have seen the three representations of
-$S_3$ that we found were irreducible directly from the character table.
+$S_3$ that we found were irreps directly from the character table.
 
 In other words, we can now efficiently verify any time we have
-a complete set of irreducible representations.
+a complete set of irreps.
 We give another example with $D_{10}$ again.
 \begin{example}
 	[Dihedral Group on $10$ Elements]
@@ -333,10 +333,11 @@ We give another example with $D_{10}$ again.
 \end{example}
 
 \section\problemhead
-\begin{dproblem}
+\begin{sproblem}
 	[Second Orthogonality Formula]
+	\label{prob:second_orthog}
 	Let $g$ and $h$ be elements of a finite group $G$,
-	and let $V_1$, \dots, $V_r$ be the irreducible representations of $G$.
+	and let $V_1$, \dots, $V_r$ be the irreps of $G$.
 	Prove that
 	\[
 		\sum_{i = 1}^r \chi_{V_i}(g) \ol{\chi_{V_i}(h)}
@@ -347,7 +348,7 @@ We give another example with $D_{10}$ again.
 		\end{cases}
 	\]
 	Here, $Z(g) = \left\{ x \in G : xg = gx \right\}$.
-\end{dproblem}
+\end{sproblem}
 
 \todo{Heisenberg group?}
 

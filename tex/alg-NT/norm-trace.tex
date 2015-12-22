@@ -437,7 +437,7 @@ in much the same way that $\ZZ$ behaves in $\QQ$.
 
 First, in what way are integers ``integers''?
 Because of this:
-\begin{theorem}
+\begin{theorem}[$K = \QQ \cdot \OO_K$]
 	Let $K$ be a number field, and let $x \in K$ be any element.
 	Then there exists an integer $n$ such that $nx \in \OO_K$;
 	in other words, $x = \frac 1n \alpha$ for some $\alpha \in \OO_K$.
@@ -458,7 +458,9 @@ To do so, the easiest route is the following lemma.
 	$c_1b_1 + \dots + c_mb_m$ for some $c_1, \dots, c_m \in \ZZ$.
 \end{definition}
 
-\begin{lemma}
+
+\newcommand{\tempaeuqnxhj}{$\ZZ[\alpha]$} % fml latex
+\begin{lemma}[$\alpha \in \ol\ZZ$ $\iff$ \tempaeuqnxhj\ finitely generated]
 	Let $\alpha \in \ol\QQ$.
 	Then $\alpha$ is an algebraic integer if and only if
 	the abelian group $\ZZ[\alpha]$ is finitely generated.
@@ -656,6 +658,14 @@ As we'll later see, monogenic extensions have a really nice factoring algorithm,
 		\todo{add solution from math 129 notes}
 	\end{hint}
 \end{dproblem}
+
+\begin{problem}
+	\label{prob:rep_lemma}
+	Consider $n$ roots of unity $\eps_1$, \dots, $\eps_n$.
+	Assume the average $\frac1n(\eps_1 + \dots + \eps_n)$ is an algebraic integer.
+	Prove that either the average is zero or $\eps_1 = \dots = \eps_n$.
+	(This lemma will be used when we prove Burnside's Theorem using representation theory.)
+\end{problem}
 
 \begin{problem}
 	[Kronecker's Theorem] \yod Let $x$ be an algebraic integer.

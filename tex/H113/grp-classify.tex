@@ -11,35 +11,7 @@ The following problem will hopefully never be proposed at the IMO.
 \end{quote}
 Nonetheless, it's remarkable how much progress we've made on this ``problem''.
 In this chapter I'll try to talk about some things we have accomplished.
-\todo{this chapter kind of sucks}
-
-\section{More on Normal Groups, and Conjugacy of Subgroups}
-\prototype{Conjugacy in $S_n$.}
-
-I've defined conjugacy of elements previously, but I now need to define
-it for groups:
-\begin{definition}
-	Let $G$ be a group, and let $X$ denote the set of subgroups of $G$.
-	Then \vocab{conjugation} is the action of $G$ on $X$ that sends
-	\[ H \mapsto gHg\inv = \left\{ ghg\inv \mid h \in H \right\}. \]
-	If $H$ and $K$ are subgroups of $G$ such that $H = gKg\inv$ for some $g \in G$
-	(in other words, they are in the same orbit under this action),
-	then we say they are \vocab{conjugate} subgroups.
-\end{definition}
-
-Because we somehow don't think of conjugate elements as ``that different'' (for example,
-in permutation groups), the following shouldn't be surprising.
-\begin{ques}
-	Show that for any subgroup $H$ of a group $G$, the map $H \to gHg\inv$ by
-	$h \mapsto ghg\inv$ is in fact an isomorphism.
-	This implies that any two conjugate subgroups are isomorphic.
-\end{ques}
-
-\begin{definition}
-	For any subgroup $H$ of $G$ the \vocab{normalizer} of $H$ is defined as
-	\[ N_G(H) \defeq \left\{ g \in G \mid gHg\inv = H \right\}. \]
-	In other words, it is the stabilizer of $H$ under the conjugation action.
-\end{definition}
+%\todo{this chapter kind of sucks}
 
 \section{Sylow Theorems}
 Here we present the famous Sylow theorems, some of the most
@@ -116,9 +88,10 @@ Here's an example of another ``practical'' application.
 
 
 \section{(Optional) Proving Sylow's Theorem}
-The proof of Sylow's Theorem is somewhat intense, and in fact many proofs exist.
-I'll present one below here.
-It makes extensive use of group actions, so I want to recall the following facts first.
+The proof of Sylow's Theorem is somewhat involved,
+and in fact many proofs exist.  I'll present one below here.
+It makes extensive use of group actions,
+so I want to recall the following facts first.
 If $G$ acts on $X$, then
 \begin{itemize}
 	\ii The orbits of the action form a partition of $X$.
@@ -130,6 +103,35 @@ If $G$ acts on $X$, then
 	In the case $\OO = \{x\}$, then by definition, $x$ is a \vocab{fixed point} of every element of $G$: we have $g \cdot x = x$ for every $x$.
 \end{itemize}
 Note that when I say $x$ is a fixed point, I mean it is fixed by \textbf{every} element of the group, i.e.\ the orbit really has size one. Hence that's a really strong condition.
+
+\subsection*{Definitions}
+\prototype{Conjugacy in$S_n$}
+In addition, I need the following definitions.
+I've defined conjugacy of elements previously,
+but I now need to define it for groups:
+\begin{definition}
+	Let $G$ be a group, and let $X$ denote the set of subgroups of $G$.
+	Then \vocab{conjugation} is the action of $G$ on $X$ that sends
+	\[ H \mapsto gHg\inv = \left\{ ghg\inv \mid h \in H \right\}. \]
+	If $H$ and $K$ are subgroups of $G$ such that $H = gKg\inv$ for some $g \in G$
+	(in other words, they are in the same orbit under this action),
+	then we say they are \vocab{conjugate} subgroups.
+\end{definition}
+
+Because we somehow don't think of conjugate elements as
+``that different'' (for example, in permutation groups),
+the following shouldn't be surprising.
+\begin{ques}
+	Show that for any subgroup $H$ of a group $G$, the map $H \to gHg\inv$ by
+	$h \mapsto ghg\inv$ is in fact an isomorphism.
+	This implies that any two conjugate subgroups are isomorphic.
+\end{ques}
+
+\begin{definition}
+	For any subgroup $H$ of $G$ the \vocab{normalizer} of $H$ is defined as
+	\[ N_G(H) \defeq \left\{ g \in G \mid gHg\inv = H \right\}. \]
+	In other words, it is the stabilizer of $H$ under the conjugation action.
+\end{definition}
 
 We are now ready to present the proof.
 

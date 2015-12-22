@@ -12,8 +12,7 @@ if all its finite-dimensional representations are completely reducible.
 The culminating point of the chapter is when we
 prove that $A$ is semisimple if and only if
 $A \cong \bigoplus_i \Mat(V_i)$,
-where the $V_i$ are the irreducible representations of $A$
-(yes, there are only finitely many!).
+where the $V_i$ are the irreps of $A$ (yes, there are only finitely many!).
 
 The goal for the chapter is to examine these in more detail:
 we'll find conditions on algebras $A$ which cause all its representations
@@ -28,8 +27,7 @@ to be completely reducible.
 	(It is also a $k$-algebra.)
 \end{definition}
 
-By Schur's Lemma, we already know that if $V$ and $W$ are irreducible,
-then
+By Schur's Lemma, we already know that if $V$ and $W$ are irreps, then
 \[
 	\Homrep(V,W) \simeq
 	\begin{cases}
@@ -42,7 +40,7 @@ For example, it also tells us that
 \[ \Homrep(V, V^{\oplus 2}) = k^{\oplus 2}. \]
 The possible maps are $v \mapsto (c_1v_1, c_2v_2)$ for some choice of $c_1, c_2 \in k$.
 
-More generally, suppose $V$ is irreducible and consider
+More generally, suppose $V$ is an irrep and consider
 \[ \Homrep(V^{\oplus m}, V^{\oplus n}). \]
 Intertwining operators are determined completely
 $T : V^{\oplus m} \to V^{\oplus n}$ by the $mn$ choices of compositions
@@ -77,7 +75,7 @@ More generally, we have the following result.
 	\label{thm:compred_schur}
 	Let $V$ and $W$ be completely reducible representations,
 	and set $V = \bigoplus V_i^{\oplus n_i}$, $W = \bigoplus V_i^{\oplus m_i}$
-	for integers $n_i, m_i \ge 0$, where each $V_i$ is irreducible.
+	for integers $n_i, m_i \ge 0$, where each $V_i$ is an irrep.
 	Then
 	\[ \Homrep(V, W)
 		\simeq \bigoplus_i \Mat_{n_i \times m_i}(k) \]
@@ -104,7 +102,7 @@ More generally, we have the following result.
 
 \section{Density Theorem}
 We are going to take advantage of the previous result to prove that
-finite-dimensional algebras have finitely many irreducible representations.
+finite-dimensional algebras have finitely many irreps.
 
 \begin{theorem}
 	[Jacobson Density Theorem]
@@ -117,7 +115,7 @@ finite-dimensional algebras have finitely many irreducible representations.
 The right way to think about this theorem is that
 \begin{moral}
 	The Density Theorem is the ``Chinese Remainder Theorem''
-	for irreducible representations of $A$.
+	for irreps of $A$.
 \end{moral}
 Recall that in number theory, the Chinese Remainder Theorem tells us
 that given lots of ``unrelated'' congruences, we can find a single $N$
@@ -137,13 +135,12 @@ since even the $r=1$ case is not obvious at all!
 This also gives us the non-obvious corollary
 \begin{corollary}
 	[Finiteness of Number of Representations]
-	Any finite-dimensional algebra $A$ has at most $\dim A$
-	irreducible finite-dimensional representations.
+	Any finite-dimensional algebra $A$ has at most $\dim A$ irreps.
 	\label{cor:finiteness}
 \end{corollary}
 \begin{proof}
-	If $V_i$ are such irreducible representations
-	then $A \surjto \bigoplus_i V_i^{\oplus \dim V_i}$,
+	If $V_i$ are such irreps then 
+	$A \surjto \bigoplus_i V_i^{\oplus \dim V_i}$,
 	hence we have the inequality $\sum (\dim V_i)^2 \le \dim A$.
 \end{proof}
 
@@ -237,7 +234,7 @@ the Density Theorem (and \Cref{cor:finiteness}), we also have the following.
 	[Sum of Squares Formula]
 	For a finite-dimensional algebra $A$ we have
 	\[ \sum_{i} \dim(V_i)^2 \le \dim A \]
-	where the $V_i$ are the irreducible representations of $A$;
+	where the $V_i$ are the irreps of $A$;
 	equality holds exactly when $A$ is semisimple,
 	in which case 
 	\[ \Reg(A) \cong \bigoplus_i \Mat(V_i)
@@ -254,7 +251,7 @@ the Density Theorem (and \Cref{cor:finiteness}), we also have the following.
 	For any finite-dimensional $A$, the kernel of the map
 	$\rho : A \to \bigoplus_i \Mat(V_i)$ is denoted $\opname{Rad}(A)$
 	and is the so-called \vocab{Jacobson radical} of $A$;
-	it's the set of all $a \in A$ which act by zero in all irreducible representations of $A$.
+	it's the set of all $a \in A$ which act by zero in all irreps of $A$.
 	The usual definition of ``semisimple'' given in books is that
 	this Jacobson radical is trivial.
 \end{remark}
@@ -299,7 +296,7 @@ all representations are completely reducible.
 \end{proof}
 
 \section{Example: The Representations of $\CC[S_3]$}
-We compute all irreducible representations of $\CC[S_3]$.
+We compute all irreps of $\CC[S_3]$.
 I'll take for granted right now there are exactly three such representations
 (which will be immediate by the first theorem in the next chapter:
 we'll in fact see that the number of representations of $G$
@@ -338,7 +335,7 @@ In fact, we can describe these representations explicitly:
 	\end{exercise}
 	Thus $V$ is also not isomorphic to the previous two representations.
 \end{itemize}
-This implies that these are all the irreducible representations of $S_3$.
+This implies that these are all the irreps of $S_3$.
 Note that, if we take the representation $V$ of $S_3$ on $k^{\oplus 3}$,
 we just get that $V = \refl_0 \oplus \CC_{\text{triv}}$.
 
@@ -346,14 +343,12 @@ we just get that $V = \refl_0 \oplus \CC_{\text{triv}}$.
 \begin{problem}
 	\gim
 	Let $G = \Zc n$ and let $k = \CC$.
-	Show that up to isomorphism there are exactly $n$
-	irreducible representations of $k[G]$.
+	Show that up to isomorphism there are exactly $n$ irreps of $k[G]$.
 	What if $k = \RR$?
 \end{problem}
 
-
 \begin{problem}
-	Determine all the irreducible representations of $D_{10}$,
+	Determine all the irreps of $D_{10}$,
 	given that there are exactly four of them.
 \end{problem}
 
