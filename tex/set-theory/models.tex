@@ -84,7 +84,7 @@ Note that any sentence $\phi$ can be written in one of the following five forms:
 	\ii $x = y$
 	\ii $\neg \psi$ (``not $\psi$'') for some shorter sentence $\psi$
 	\ii $\psi_1 \lor \psi_2$ (```$\psi_1$ or $\psi_2$'')
-	for some shorter sentences $\psi_1$, $\psi_1$
+	for some shorter sentences $\psi_1$, $\psi_2$
 	\ii $\exists x \psi$ (``exists $x$'') for some shorter sentence $\psi$.
 \end{itemize}
 \end{definition}
@@ -138,7 +138,7 @@ Note that possibly $n=0$, for example all $\ZFC$ axioms have no parameters.
 		\ii If $\phi$ is ``$x_1\in x_2$'' then $\MM \vDash \phi[b_1, b_2] \iff b_1 \; E \; b_2$. \\
 		(This is what we mean by ``$E$ interprets $\in$''.)
 		\ii If $\phi$ is ``$\neg \psi$'' then
-		$\MM \vDash \phi[b_1, \dots, b_n] \iff \MM \not\vDash \phi[b_1, \dots, b_n]$.
+		$\MM \vDash \phi[b_1, \dots, b_n] \iff \MM \not\vDash \psi[b_1, \dots, b_n]$.
 		\ii If $\phi$ is ``$\psi_1 \lor \psi_2$'' then $\MM \vDash \phi[b_1, \dots, b_n]$
 		means $\MM \vDash \psi_i[b_1, \dots, b_n]$ for some $i=1,2$.
 		\ii Most important case: suppose $\phi$ is $\exists x \psi(x,x_1, \dots, x_n)$.
@@ -181,12 +181,12 @@ It turns out we can say even more than this.
 
 Consider a formula such as
 \[ \mathtt{isEmpty}(x) : \neg \exists a (a \in x) \]
-which checks whether a given set $x$ has a nonempty element.
+which checks whether a given set $x$ has an element in it.
 Technically, this has an ``$\exists$'' in it.
 But somehow this $\exists$ does not really search over the entire model,
 because it is \emph{bounded} to search in $x$.
 That is, we might informally rewrite this as
-\[ \neg (\exists x \in a) \]
+\[ \neg (\exists a \in x) \]
 which doesn't fit into the strict form,
 but points out that we are only looking over $a \in x$.
 We call such a quantifier a \vocab{bounded quantifier}.
