@@ -712,14 +712,15 @@ and do a full expansion.
 	\end{hint}
 \end{problem}
 
-\begin{problem}
+\begin{dproblem}
+	[Traces Kind of Commute]
 	\gim
 	Let $T : V \to W$ and $S : W \to V$ be linear maps
 	between finite-dimensional vector spaces $V$ and $W$.
-	Prove that $\Tr(T \circ S) = \Tr(S \circ T)$
-	(preferably without taking a basis).
+	Prove that $\Tr(T \circ S) = \Tr(S \circ T)$.
 	\begin{hint}
-		Interpret $T \otimes S \mapsto \Tr(T \circ S)$ as a
+		One solution is to just take a basis.
+		Otherwise, interpret $T \otimes S \mapsto \Tr(T \circ S)$ as a
 		linear map $(V^\vee \otimes W) \otimes (W^\vee \otimes V) \to k$,
 		and verify that it is commutative.
 	\end{hint}
@@ -741,7 +742,18 @@ and do a full expansion.
 		matrices that have a $1$ somewhere and $0$ elsewhere,
 		then extending by linearity.
 	\end{sol}
-\end{problem}
+\end{dproblem}
+
+\begin{dproblem}
+	[Product of Traces]
+	Let $T : V \to V$ and $S : W \to W$ be linear maps
+	of finite-dimensional vector spaces $V$ and $W$,
+	Consider $T \otimes S : V \otimes W \to V \otimes W$.
+	Prove that $\Tr(T \otimes S) = \Tr(T) \Tr(S)$.
+	\begin{hint}
+		Again one can just take a basis.
+	\end{hint}
+\end{dproblem}
 
 \begin{problem}
 	[Sweden 2010, edited]

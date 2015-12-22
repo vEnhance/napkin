@@ -19,7 +19,6 @@ The goal for the chapter is to examine these in more detail:
 we'll find conditions on algebras $A$ which cause all its representations
 to be completely reducible.
 
-
 \section{Schur's Lemma Continued}
 \prototype{For $V$ irreducible,
 	$\Homrep(V^{\oplus 2}, V^{\oplus 2}) \simeq k^{\oplus 4}$.}
@@ -138,8 +137,8 @@ since even the $r=1$ case is not obvious at all!
 This also gives us the non-obvious corollary
 \begin{corollary}
 	[Finiteness of Number of Representations]
-	Any finite-dimensional algebra $A$
-	has at $\dim A$ irreducible representations.
+	Any finite-dimensional algebra $A$ has at most $\dim A$
+	irreducible finite-dimensional representations.
 	\label{cor:finiteness}
 \end{corollary}
 \begin{proof}
@@ -276,7 +275,7 @@ all representations are completely reducible.
 	our goal is to construct a supplementary $G$-invariant subspace $W'$
 	which satisfies \[ V = W \oplus W'. \]
 	This will show that indecomposable $\iff$ irreducible,
-	which is enough to show $k[G]$ semisimple.
+	which is enough to show $k[G]$ is semisimple.
 
 	Let $\pi : V \to W$ be any projection of $V$ onto $W$,
 	meaning $\pi(v) = v \iff v \in W$.
@@ -294,8 +293,67 @@ all representations are completely reducible.
 			\ii The map $P : V \to V$ is an intertwining operator.
 		\end{itemize}
 	\end{exercise}
-	Now $\ker P$ and $\img P = W$ are subrepresentations,
-	so setting $W' = \ker T$ works.
+	Thus $P$ is idempotent (it is the identity on its image $W$),
+	so by \Cref{prob:idempotent} we have $V = \ker P \oplus \img P$,
+	but both $\ker P$ and $\img P$ are subrepresentations as desired.
 \end{proof}
 
+\section{Example: The Representations of $\CC[S_3]$}
+We compute all irreducible representations of $\CC[S_3]$.
+I'll take for granted right now there are exactly three such representations
+(which will be immediate by the first theorem in the next chapter:
+we'll in fact see that the number of representations of $G$
+is exactly equal to the number of conjugacy classes of $G$).
+
+Given that, if the three representations of have dimension $d_1$, $d_2$, $d_3$ ,
+then we ought to have
+\[ d_1^2 + d_2^2 + d_3^2 = |G| = 6. \]
+From this, combined with some deep arithmetic,
+we deduce that we should have $d_1 = d_2 = 1$ and $d_3 = 2$
+or some permutation.
+
+In fact, we can describe these representations explicitly:
+\begin{itemize}
+	\ii There is a trivial one-dimensional representation $\Ctriv$
+	where the map $S_3 \to \CC^\times$ is the identity.
+	Thus in $\Ctriv$ every $\sigma \in S_3$ acts as the identity.
+
+	\ii There is a nontrivial one-dimensional representation
+	$\Csign$ where the map $S_3 \to \CC^\times$ is given
+	by sending $\sigma$ to the sign of $\sigma$.
+	Thus in $\Csign$ every $\sigma \in S_3$ acts as $\pm 1$.
+	Of course, $\Ctriv$ and $\Csign$ are not isomorphic
+	(as one-dimensional representations are never isomorphic
+	unless the constants they act on coincide for all $a$,
+	as we saw in \Cref{prob:one_dim}).
+
+	\ii Finally, we have already seen the two-dimensional representation,
+	but now we give it a name.
+	Define $\refl_0$ to be the representation whose vector space is
+	$\{ (x,y,z) \mid x+y+z = 0 \}$,
+	and whose action of $S_3$ on it is permutation of coordinates.
+	\begin{exercise}
+		Show that $\refl_0$ is irreducible, for example by showing directly
+		that no subspace is invariant under the action of $S_3$.
+	\end{exercise}
+	Thus $V$ is also not isomorphic to the previous two representations.
+\end{itemize}
+This implies that these are all the irreducible representations of $S_3$.
+Note that, if we take the representation $V$ of $S_3$ on $k^{\oplus 3}$,
+we just get that $V = \refl_0 \oplus \CC_{\text{triv}}$.
+
+\section\problemhead
+\begin{problem}
+	\gim
+	Let $G = \Zc n$ and let $k = \CC$.
+	Show that up to isomorphism there are exactly $n$
+	irreducible representations of $k[G]$.
+	What if $k = \RR$?
+\end{problem}
+
+
+\begin{problem}
+	Determine all the irreducible representations of $D_{10}$,
+	given that there are exactly four of them.
+\end{problem}
 

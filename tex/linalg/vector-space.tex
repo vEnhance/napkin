@@ -431,7 +431,7 @@ between vector spaces. Can you guess the definition?
 	\end{enumerate}
 	If this map is a bijection (equivalently, if it has an inverse),
 	it is an \vocab{isomorphism}.
-	We say $V$ and $W$ are \vocab{isomorphic} vector spaces and write $V \simeq W$.
+	We say $V$ and $W$ are \vocab{isomorphic} vector spaces and write $V \cong W$.
 \end{definition}
 
 \begin{example}[Examples of Linear Maps]
@@ -452,9 +452,9 @@ between vector spaces. Can you guess the definition?
 
 In the expression $T(a \cdot v) = a \cdot T(v)$, note that the first $\cdot$ is the multiplication of $V$ and the second $\cdot$ is the multiplication of $W$.
 Note that this notion of isomorphism really only cares about the size of the basis:
-\begin{proposition}
+\begin{proposition}[$n$-dimensional vector spaces are isomorphic]
 	If $V$ is an $n$-dimensional vector space, then
-	$V \simeq k^{\oplus n}$.
+	$V \cong k^{\oplus n}$.
 \end{proposition}
 \begin{ques}
 	Let $e_1$, \dots, $e_n$ be a basis for $V$.
@@ -813,6 +813,17 @@ This will happen when we study algebraic number theory and homology groups.
 		Plug in $y = -1, 0, 1$. Use dimensions of $\RR[x]$.
 	\end{hint}
 \end{problem}
+
+\begin{sproblem}
+	[Idempotents are Projection Maps]
+	\label{prob:idempotent}
+	Let $TP: V \to V$ be a linear map, where $V$ is a vector space
+	(not necessarily finite-dimensional).
+	Suppose $P$ is \vocab{idempotent}, meaning $P \circ P = P$,
+	or equivalently $P$ is the identity on its image.
+	Prove that $V = \ker P \oplus \img P$.
+	Thus we can think of $P$ as \emph{projection} onto the subspace $\img P$.
+\end{sproblem}
 
 \begin{sproblem}
 	\label{prob:endomorphism_eventual_lemma}

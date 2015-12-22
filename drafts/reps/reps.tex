@@ -126,7 +126,7 @@ It is worth mentioning at this point that:
 	A \vocab{representation} of a $k$-algebra $A$ consists of
 	\begin{enumerate}[(i)]
 		\ii A $k$-vector space $V$, and
-		\ii An \emph{action} $\cdot$ of $A$ on $k$: thus, for every $a \in A$
+		\ii An \emph{action} $\cdot$ of $A$ on $V$: thus, for every $a \in A$
 		we can take $v \in V$ and act on it to get $a \cdot v$.
 		This satisfies the usual axioms:
 		\begin{itemize}
@@ -246,25 +246,56 @@ From this perspective, what we are really trying to do is:
 		a group homomorphism $\psi : G \to \GL(V)$.
 	\end{enumerate}
 \end{example}
+\begin{abuse}
+	From now on, we will often shorten ``representation of $k[G]$''
+	to ``representation of $G$''.
+\end{abuse}
 \begin{example}[Regular Representation]
 	Any $k$-algebra $A$ is a representation $(A, \rho)$ over itself,
 	with $a \cdot b = \rho(a)(b) = ab$ (i.e.\ multiplication given by $A$).
 	This is called the \vocab{regular representation}, denoted $\Reg(A)$.
 \end{example}
 
-\begin{example}
-	[Direct Sums of Representations]
-	Let $A$ be $k$-algebra and let $V = (V, \rho_1)$ and $W = (W, \rho_2)$
+\section{Direct Sums}
+\prototype{The example with $\RR[S_3]$ seems best.}
+\begin{definition}
+	Let $A$ be $k$-algebra and let $V = (V, \rho_V)$ and $W = (W, \rho_W)$
 	be two representations of $A$.
 	Then $V \oplus W$ is a representation, with action $\rho$ by
 	\[ a \cdot (v,w) = (a \cdot v, a \cdot w). \]
-	In terms of matrices, this looks like
-	\[ \rho(a) = \begin{pmatrix}
-			\rho_1(a) & 0 \\ 0 & \rho_2(a)
-		\end{pmatrix}. \]
-	This is called the \vocab{direct sum} of $V$ and $W$.
-	We have already seen this example earlier in the special case
-	when we let $A = \Mat_2(\RR)$ act on $\RR^{\oplus 4}$.
+	This representation is called the \vocab{direct sum} of $V$ and $W$.
+\end{definition}
+\begin{example}
+	Earlier we let $\Mat_2(\RR)$ act on $\RR^{\oplus 4}$ by
+	\[
+		\rho : 
+		\begin{pmatrix} a & b \\ c & d \end{pmatrix} 
+		\mapsto
+		\begin{pmatrix} a & b & 0 & 0 \\ c & d & 0 & 0 \\
+			0 & 0 & a & b \\ 0 & 0 & c & d \end{pmatrix} .
+	\]
+	So this is just a direct sum of two two-dimensional representations.
+\end{example}
+More generally, given representations $(V, \rho_V)$ and $(W, \rho_W)$
+the representation $\rho$ of $V \oplus W$ looks like
+\[ \rho(a) =
+	\begin{pmatrix}
+		\rho_V(a) & 0 \\ 0 & \rho_W(a)
+	\end{pmatrix}.
+\]
+\begin{example}[Representation of $S_n$ decomposes]
+	Let $A = \RR[S_3]$ again,
+	acting via permutation of coordinates on
+	\[ V = \RR^{\oplus 3} = \{ (x,y,z) \mid x,y,z \in \RR \}. \]
+	Consider the two subspaces
+	\begin{align*}
+		W_1 &= \left\{ (t,t,t) \mid t \in \RR \right\} \\
+		W_2 &= \left\{ (x,y,z) \mid x+y+z = 0 \right\}.
+	\end{align*}
+	Note $V = W_1 \oplus W_2$ as vector spaces.
+	But each of $W_1$ and $W_2$ is a subrepresentation
+	(since the action of $A$ keeps each $W_i$ in place),
+	so $V = W_1 \oplus W_2$ as representations too.
 \end{example}
 
 Direct sums also come up when we play with algebras.
@@ -318,7 +349,28 @@ then $W_1$ and $W_2$ are subrepresentations.
 	then we say it is \vocab{indecomposable}.
 \end{definition}
 
-Why do we need two parts of the definition?
+\begin{example}[Representation of $S_n$ decomposes]
+	Let $A = \RR[S_3]$ again, acting via permutation of coordinates on
+	\[ V = \RR^{\oplus 3} = \{ (x,y,z) \mid x,y,z \in \RR \}. \]
+	Consider again the two subspaces
+	\begin{align*}
+		W_1 &= \left\{ (t,t,t) \mid t \in \RR \right\} \\
+		W_2 &= \left\{ (x,y,z) \mid x+y+z = 0 \right\}.
+	\end{align*}
+	As we've seen, $V = W_1 \oplus W_2$, and thus $V$ is not irreducible.
+	But one can show that $W_1$ and $W_2$ are irreducible 
+	(and hence indecomposable) as follows.
+	\begin{itemize}
+		\ii For $W_1$ it's obvious, since $W_1$ is one-dimensional.
+		\ii For $W_2$, consider any vector $w = (a,b,c)$
+		with $a+b+c=0$ and not all zero.  Then WLOG we can assume $a \neq b$ 
+		(since not all three coordinates are equal).
+		In that case, $(1 \; 2)$ sends $w$ to $w' = (b,a,c)$.
+		Then $w$ and $w'$ span $W_2$.
+	\end{itemize}
+	Thus $V$ breaks down completely into irreducible representations.
+\end{example}
+
 Unfortunately, if $W$ is a subrepresentation of $V$,
 then it is not necessarily the case that we can find a
 supplementary vector space $W'$ such that $V = W \oplus W'$.
@@ -334,24 +386,10 @@ Here is a standard counterexample:
 
 Here is a slightly more optimistic example,
 and the ``prototypical example'' that you should keep in mind.
-\begin{example}[Representation of $S_n$ decomposes]
-	Let $A = \RR[S_3]$ again,
-	with the action on 
-	\[ V = \RR^{\oplus 3} = \{ (x,y,z) \mid x,y,z \in \RR \}. \]
-	Consider the two subspaces
-	\begin{align*}
-		W_1 &= \left\{ (t,t,t) \mid t \in \RR \right\} \\
-		W_2 &= \left\{ (x,y,z) \mid x+y+z = 0 \right\}.
-	\end{align*}
-	Note $V = W_1 \oplus W_2$ as vector spaces.
-	But each of $W_1$ and $W_2$ is a subrepresentation
-	(since the action of $A$ keeps each $W_i$ in place),
-	so $V = W_1 \oplus W_2$ as representations.
-\end{example}
 
 \begin{exercise}
 	Let $A = \Mat_d(k)$ and consider the obvious representation $k^{\oplus d}$
-	that we described earlier. Show that it is irreducible.
+	of $A$ that we described earlier. Show that it is irreducible.
 	(This is obvious if you understand the definitions well enough.)
 \end{exercise}
 
@@ -536,6 +574,23 @@ In particular, $W$ is irreducible because there are no representations
 of smaller dimension at all!
 
 \section\problemhead
+\begin{dproblem}
+	\label{prob:one_dim}
+	Suppose we have one-dimensional representations
+	$V_1 = (V_1, \rho_1)$ and $V_2 = (V_2, \rho_2)$ of $A$.
+	Show that $V_1 \cong V_2$ if and only if
+	$\det\rho_1(a) = \det\rho_2(a)$ for every $a \in A$
+	(intuitively, $\rho_1$ and $\rho_2$ are exactly the same).
+\end{dproblem}
+
+\begin{dproblem}
+	[Schur's Lemma for Commutative Algebras]
+	Let $A$ be a \emph{commutative} algebra over an algebraically closed field $k$.
+	Prove that any irreducible representation of $A$ is one-dimensional.
+	\begin{hint}
+		For any $a \in A$, the map $v \mapsto a \cdot v$ is intertwining.
+	\end{hint}
+\end{dproblem}
 
 \begin{sproblem}
 	\label{prob:reg_mat}
@@ -552,27 +607,11 @@ of smaller dimension at all!
 	\end{hint}
 \end{sproblem}
 
-\begin{dproblem}
-	[Schur's Lemma for Commutative Algebras]
-	Let $A$ be a \emph{commutative} algebra over an algebraically closed field $k$.
-	Prove that any irreducible representation of $A$ is one-dimensional.
-	\begin{hint}
-		For any $a \in A$, the map $v \mapsto a \cdot v$ is intertwining.
-	\end{hint}
-\end{dproblem}
-
 \begin{sproblem}
 	\label{prob:regA_intertwine}
 	Find all intertwining operators $T : \Reg(A) \to \Reg(A)$,
 	where $A$ is a fixed algebra.
 \end{sproblem}
-
-\begin{problem}
-	Let $G = \Zc n$ and let $k = \CC$.
-	Show that up to isomorphism there are exactly $n$
-	irreducible representations of $k[G]$.
-	What if $k = \RR$?
-\end{problem}
 
 \chapter{Semisimple Algebras}
 In what follows, assume the field $k$ is algebraically closed.
@@ -594,7 +633,6 @@ where the $V_i$ are the irreducible representations of $A$
 The goal for the chapter is to examine these in more detail:
 we'll find conditions on algebras $A$ which cause all its representations
 to be completely reducible.
-
 
 \section{Schur's Lemma Continued}
 \prototype{For $V$ irreducible,
@@ -714,8 +752,8 @@ since even the $r=1$ case is not obvious at all!
 This also gives us the non-obvious corollary
 \begin{corollary}
 	[Finiteness of Number of Representations]
-	Any finite-dimensional algebra $A$
-	has at $\dim A$ irreducible representations.
+	Any finite-dimensional algebra $A$ has at most $\dim A$
+	irreducible finite-dimensional representations.
 	\label{cor:finiteness}
 \end{corollary}
 \begin{proof}
@@ -852,7 +890,7 @@ all representations are completely reducible.
 	our goal is to construct a supplementary $G$-invariant subspace $W'$
 	which satisfies \[ V = W \oplus W'. \]
 	This will show that indecomposable $\iff$ irreducible,
-	which is enough to show $k[G]$ semisimple.
+	which is enough to show $k[G]$ is semisimple.
 
 	Let $\pi : V \to W$ be any projection of $V$ onto $W$,
 	meaning $\pi(v) = v \iff v \in W$.
@@ -870,15 +908,16 @@ all representations are completely reducible.
 			\ii The map $P : V \to V$ is an intertwining operator.
 		\end{itemize}
 	\end{exercise}
-	Now $\ker P$ and $\img P = W$ are subrepresentations,
-	so setting $W' = \ker T$ works.
+	Thus $P$ is idempotent (it is the identity on its image $W$),
+	so by \Cref{prob:idempotent} we have $V = \ker P \oplus \img P$,
+	but both $\ker P$ and $\img P$ are subrepresentations as desired.
 \end{proof}
 
 \section{Example: The Representations of $\CC[S_3]$}
 We compute all irreducible representations of $\CC[S_3]$.
 I'll take for granted right now there are exactly three such representations
 (which will be immediate by the first theorem in the next chapter:
-we'll in fact see that the number of representations of $k[G]$
+we'll in fact see that the number of representations of $G$
 is exactly equal to the number of conjugacy classes of $G$).
 
 Given that, if the three representations of have dimension $d_1$, $d_2$, $d_3$ ,
@@ -890,18 +929,18 @@ or some permutation.
 
 In fact, we can describe these representations explicitly:
 \begin{itemize}
-	\ii There is a trivial one-dimensional representation $\CC_{\text{triv}}$
+	\ii There is a trivial one-dimensional representation $\Ctriv$
 	where the map $S_3 \to \CC^\times$ is the identity.
-	Thus in $\CC_{\text{triv}}$ every $\sigma \in S_3$ acts as the identity.
+	Thus in $\Ctriv$ every $\sigma \in S_3$ acts as the identity.
 
-	\ii There is a nontrivial one-dimensional representation $\CC_{\text{sign}}$
-	where the map $S_3 \to \CC^\times$ is given by sending $\sigma$
-	to the sign of $\sigma$.
-	Thus in $\CC_{\text{sign}}$ every $\sigma \in S_3$ acts as $\pm 1$.
-	\begin{exercise}
-		Check that $\CC_{\text{sign}}$ are $\CC_{\text{triv}}$
-		are not isomorphic.
-	\end{exercise}
+	\ii There is a nontrivial one-dimensional representation
+	$\Csign$ where the map $S_3 \to \CC^\times$ is given
+	by sending $\sigma$ to the sign of $\sigma$.
+	Thus in $\Csign$ every $\sigma \in S_3$ acts as $\pm 1$.
+	Of course, $\Ctriv$ and $\Csign$ are not isomorphic
+	(as one-dimensional representations are never isomorphic
+	unless the constants they act on coincide for all $a$,
+	as we saw in \Cref{prob:one_dim}).
 
 	\ii Finally, we have already seen the two-dimensional representation,
 	but now we give it a name.
@@ -919,9 +958,21 @@ Note that, if we take the representation $V$ of $S_3$ on $k^{\oplus 3}$,
 we just get that $V = \refl_0 \oplus \CC_{\text{triv}}$.
 
 \section\problemhead
-\todo{problems like $D_{2n}$}
+\begin{problem}
+	\gim
+	Let $G = \Zc n$ and let $k = \CC$.
+	Show that up to isomorphism there are exactly $n$
+	irreducible representations of $k[G]$.
+	What if $k = \RR$?
+\end{problem}
 
-\chapter{Definition of A Character}
+
+\begin{problem}
+	Determine all the irreducible representations of $D_{10}$,
+	given that there are exactly four of them.
+\end{problem}
+
+\chapter{Characters}
 Characters are basically the best thing ever.
 To every representation $V$ of $A$ we will attach a
 so-called character $\chi_V : A \to k$.
@@ -930,7 +981,7 @@ will determine the representation $V$ completely.
 Thus for example if $A$ is finite-dimensional then this means an
 irreducible representation is just specified by a set of $\dim A$ numbers.
 
-\section{The Character}
+\section{Definitions}
 \begin{definition}
 	Let $V = (V, \rho)$ be a finite-dimensional representation of $A$.
 	The \vocab{character} $\chi_V : A \to k$ attached to
@@ -942,7 +993,7 @@ Since $\Tr$ and $\rho$ are additive, this is a $k$-linear map
 Note also that $\chi_{V \oplus W} = \chi_V + \chi_W$
 for any representations $V$ and $W$.
 
-We are especially interested in the case $A = k[G]$.
+We are especially interested in the case $A = k[G]$, of course.
 As usual, we just have to specify $\chi_V(g)$ for each
 $g \in S_3$ to get the whole map $k[G] \to k$.
 Thus we often think of $\chi_V$ as a function $G \to k$,
@@ -956,8 +1007,8 @@ Here is the case $G = S_3$:
 	for $\CC_{\text{sign}}$ the traces are $\pm 1$ depending on sign
 	(obviously, for one-dimensional maps $k \to k$ the trace ``is''
 	just the map itself).
-	For $\refl_0$ we take a basis $(1,0,-1)$ and $(0,1,-1)$ (say)
-	and compute the trace of each $\sigma$ directly in this basis.
+	For $\refl_0$ we take a basis $(1,0,-1)$ and $(0,1,-1)$, say,
+	and compute the traces directly in this basis.
 	\[
 		\begin{array}{|r|rrr|}
 			\hline
@@ -973,19 +1024,17 @@ Here is the case $G = S_3$:
 \end{example}
 The above table is called the \vocab{character table} of the group $G$.
 The table above has certain mysterious properties,
-all of which are true more generally.
-\begin{itemize}
-	\ii It seems that $\chi_V(g)$ only depends on
-	the conjugacy class of $g$.
+which we will prove as the chapter progresses.
+\begin{enumerate}[(I)]
+	\ii The value of $\chi_V(g)$ only depends on the conjugacy class of $g$.
+	\ii The number of columns equals the number of conjugacy classes.
 	\ii The sum of the squares are any column is $6$ again!
 	\ii The ``dot product'' of any two columns is zero.
-	\ii The number of columns equals the number
-\end{itemize}
-We now set about to explain this behavior for any finite group $G$.
+\end{enumerate}
 
 \begin{abuse}
 	The name ``character'' for $\chi_V : G \to k$ is a bit of a misnomer.
-	This $\chi_V$ is not additive or multiplicative in any way,
+	This $\chi_V$ is not multiplicative in any way,
 	as the above example shows: one can almost think of it as
 	an element of $k^{\oplus |G|}$.
 \end{abuse}
@@ -994,18 +1043,294 @@ We now set about to explain this behavior for any finite group $G$.
 For any algebra, we first observe that since $\Tr(TS) = \Tr(ST)$,
 we have for any $V$ that
 \[ \chi_V(ab) = \chi_V(ba). \]
-For this reason we say $\chi_V$ is a \vocab{class function}.
-In particular, for groups:
+This explains observation (I) from earlier:
 \begin{ques}
 	Deduce that if $g$ and $h$ are in the same conjugacy class of a 
 	group $G$, and $V$ is a representation of $\CC[G]$,
 	then $\chi(g) = \chi(h)$.
 \end{ques}
-
 Now, given our algebra $A$ we define the \vocab{commutator} $[A,A]$
+to be the (two-sided) ideal\footnote{%
+	This means the ideal consists of sums elements of the form
+	$a(xy-yx)b$ for $a,b \in A$.
+}
+generated by elements of the form $xy-yx$.
+Thus $[A,A]$ is contained in the kernel of each $\chi_V$.
+\begin{definition}
+	The space $A / [A,A]$ is called the \vocab{abelianization} of $A$;
+	for brevity we denote it as $A\ab$.
+	We think of this as ``$A$ modulo the relation $ab=ba$ for each $a,b \in A$.''
+\end{definition}
+So we can think of each character $\chi_V$ as an element of $(A\ab)^\vee$.
 
-\section{Character Tables}
+\begin{example}
+	[Examples of Abelianizations]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii If $A$ is commutative, then $[A,A] = \{0\}$
+		and $A\ab = A$.
+		\ii If $A = \Mat_k(d)$, then $[A,A]$ consists exactly
+		of the $d \times d$ matrices of trace zero.
+		(Proof: harmless exercise.)
+		Consequently, $A\ab$ is one-dimensional.
+		\ii Suppose $A = k[G]$.  We claim that $\dim A\ab$ is equal to the
+		number of conjugacy classes of $A$.
+		Indeed, an element of $A$ can be thought of as just 
+		an arbitrary function $\xi : G \to k$.
+		So an element of $A\ab$ is a function $\xi: G \to k$ such that
+		$\xi(gh) = \xi(hg)$ for every $g,h \in G$.
+		This is equivalent to functions from conjugacy classes of $G$ to $k$.
+	\end{enumerate}
+\end{example}
+
+\begin{theorem}
+	[Character of Representations of Algebras]
+	Let $A$ be an algebra over an algebraically closed field. Then
+	\begin{enumerate}[(a)]
+		\ii Characters of pairwise non-isomorphic finite-dimensional
+		irreducible representations are linearly independent
+		as elements of $A\ab$.
+		\ii If $A$ is finite-dimensional and semisimple,
+		then the characters attached to irreducible representations
+		form a basis of $A\ab$.
+	\end{enumerate}
+	In particular, if $A$ is finite-dimensional and semisimple
+	then the number of finite-dimensional irreducible representations
+	of $A$ is equal to $\dim A\ab$.
+\end{theorem}
+\begin{proof}
+	Part (a) is more or less obvious by the Density Theorem.
+	Suppose there is a linear dependence, so that for every $a$ we have
+	\[ c_1 \chi_{V_1}(a) + c_2 \chi_{V_2}(a) + \dots + c_r \chi_{V_r} (a) = 0\]
+	for some integer $r$.
+	\begin{ques}
+		Deduce that $c_1 = \dots = c_r = 0$ from Density.
+	\end{ques}
+	For part (b), assume there are $r$ irreducible representations,
+	we may assume that \[ A = \bigoplus_{i=1}^r \Mat(V_i) \]
+	where $V_1$, \dots, $V_r$ are the irreducible representations of $A$.
+	Since we have already showed the characters are linearly independent
+	we need only show that $\dim ( A / [A,A] ) = r$,
+	which follows from the observation earlier that each $\Mat(V_i)$
+	has a one-dimensional abelianization.
+\end{proof}
+Since $\dim \CC[G]\ab$ is the number of conjugacy classes of $G$,
+this completes the proof of (II).
+
+\section{Orthogonality of Characters}
+Now we specialize to the case of finite groups $G$, represented over $\CC$.
+\begin{definition}
+	Let $\Classes(G)$ denote the set conjugacy classes of $G$.
+\end{definition}
+If $G$ has $r$ conjugacy classes, then it has $r$ irreducible representations.
+Each (finite-dimensional) representation $V$, irreducible or not, gives a
+character $\chi_V$.
+\begin{abuse}
+	From now on, we will often regard $\chi_V$ as a function $G \to \CC$
+	or as a function $\Classes(G) \to \CC$.
+	So for example, we will write both $\chi_V(g)$ (for $g \in G$)
+	and $\chi_V(C)$ (for a conjugacy class $C$);
+	the latter just means $\chi_V(g_C)$ for any representative $g_C \in C$.
+\end{abuse}
+\begin{definition}
+	Let $\FunCl(G)$ denote the set of functions $\Classes(G) \to \CC$
+	viewed as a vector space over $\CC$.
+	We endow it with the inner form
+	\[
+		\left< f_1, f_2 \right> = 
+		\frac{1}{|G|}
+		\sum_{g \in G} f_1(g) \ol{f_2(g)}.
+	\]
+\end{definition}
+This is the same ``dot product'' that we mentioned at the beginning,
+when we looked at the character table of $S_3$.
+We now aim to prove the following orthogonality theorem,
+which will imply (III) and (IV) from earlier.
+\begin{theorem}[Orthogonality]
+	For any complex representations $V$ and $W$ of $G$ we have
+	\[ \left< \chi_V, \chi_W \right> = \dim \Homrep(W, V). \]
+	In particular, if $V$ and $W$ are irreducible then
+	\[ \left< \chi_V, \chi_W \right> 
+		=
+		\begin{cases}
+			1 & V  \cong W \\
+			0 & \text{otherwise}.
+		\end{cases}
+	\]
+\end{theorem}
+\begin{corollary}[Irreps Give an Orthonormal Basis]
+	The characters associated to irreducible representations
+	form an \emph{orthonormal} basis of $\FunCl(G)$.
+\end{corollary}
+
+In order to prove this theorem, we have to define
+the dual representation and the tensor representation,
+which give a natural way to deal with the quantity $\chi_V(g)\ol{\chi_W(g)}$.
+\begin{definition}
+	Let $V = (V, \rho)$ be a representation of $G$.
+	The \vocab{dual representation} $V^\vee$ is the representation on $V^\vee$
+	with the action of $G$ given as follows:
+	for each $\xi \in V^\vee$< the image of the action $g \cdot \xi \in V^\vee$
+	is specified by
+	\[ v \xmapsto{g \cdot \xi} \xi\left( \rho(g\inv)(x) \right). \]
+\end{definition}
+\begin{definition}
+	Let $V = (V, \rho_V)$ and $W = (W, \rho_W)$ be representations of $G$.
+	The \vocab{tensor product} of $V$ and $W$ is the representation
+	on $V \otimes W$ with the action of $G$ given on pure tensors by
+	\[
+		g \cdot (v \otimes w)
+		= 
+		(\rho_V(g)(v)) \otimes (\rho_W(g)(w)) \]
+	which extends linearly to define the action of $G$ on all of $V \otimes W$.
+\end{definition}
+
+\begin{theorem}
+	[Character Traces]
+	If $V$ and $W$ are finite-dimensional representations of $G$,
+	then for any $g \in G$.
+	\begin{enumerate}[(a)]
+		\ii $\chi_{V \oplus W}(g) = \chi_V(g) + \chi_W(g)$.
+		\ii $\chi_{V \otimes W}(g) = \chi_V(g) \cdot \chi_W$.
+		\ii $\chi_{V}(g) = \ol{\chi_V(g)}$.
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	Parts (a) and (b) follow from the identities
+	$\Tr(S \oplus T) = \Tr(S) + \Tr(T)$
+	and $\Tr(S \otimes T) = \Tr(S) \Tr(T)$.
+	However, part (c) is trickier.
+	As $(\rho(g))^{|G|} = \rho(g^{|G|}) = \rho(1_G) = \id_V$
+	by Lagrange's Theorem, we can diagonalize $\rho(g)$,
+	say with eigenvalues $\lambda_1$, \dots, $\lambda_n$
+	which are $|G|$th roots of unity,
+	corresponding to eigenvectors $e_1$, \dots, $e_n$.
+	Then we see that in the basis $e_1^\vee$, \dots, $e_n^\vee$,
+	the action of $g$ on $V^\vee$ has eigenvalues
+	$\lambda_1\inv$, $\lambda_2\inv$, \dots, $\lambda_n\inv$.
+	So
+	\begin{align*}
+		\chi_V(g) &= \sum_{i=1}^n \lambda_i \\
+		\chi_{V^\vee}(g) &= \sum_{i=1}^n \lambda_i\inv
+		= \sum_{i=1}^n \ol{\lambda_i}
+	\end{align*}
+	where the last step follows from the identity $|z|=1 \iff z\inv = \ol z$.
+\end{proof}
+\begin{remark}
+	[Warning]
+	The identities (b) and (c) do not extend linearly to $\CC[G]$,
+	i.e.\ it is not true for example that $\chi_V(a) = \ol{\chi_V(a)}$
+	if we think of $\chi_V$ as a map $\CC[G] \to \CC$.
+\end{remark}
+
+With this, we can now prove the orthogonality relation.
+\begin{proof}
+	[Proof of Orthogonality Relation]
+	The key point is that we can now reduce
+	the sums of products to just a single character by
+	\[ \chi_V(g) \ol{\chi_W(g)} = \chi_{V \otimes W^\vee} (g). \]
+	So we can rewrite the sum in question as just
+	\[
+		\left< \chi_V, \chi_W \right>
+		= \frac{1}{|G|} \sum_{g \in G} \chi_{V \otimes W^\vee} (g)
+		= \chi_{V \otimes W^\vee}
+		\left( \frac{1}{|G|} \sum_{g \in G} g \right).
+	\]
+	Let $P : V \otimes W^\vee \to V \otimes W^\vee$ be the
+	action of $\frac{1}{|G|} \sum_{g \in G}$,
+	so we wish to find $\Tr P$.
+	\begin{exercise}
+		Show that $P$ is idempotent.
+		(Compute $P \circ P$ directly.)
+	\end{exercise}
+	Hence $V \otimes W^\vee = \ker P \oplus \img P$ (by \Cref{prob:idempotent})
+	and $\img P$ is subspace of elements which are fixed under $G$.
+	From this we deduce that
+	\[ \Tr P = \dim \img P =
+		\dim \left\{ x \in V \otimes W^\vee
+		\mid g \cdot x = x \; \forall g \in G  \right\}.
+		\]
+	Now, consider the usual isomorphism $V \otimes W^\vee \to \Hom(W, V)$.
+	\begin{exercise}
+		Let $g \in G$.
+		Show that under this isomorphism, $T \in \Hom(W, V)$
+		satisfies $g \cdot T = T$ if and only if
+		$T(g \cdot w) = g \cdot T(w)$ for each $w \in W$.
+		(This is just unwinding three or four definitions.)
+	\end{exercise}
+	Consequently, $\chi_{V \otimes W^\vee}(P) = \Tr P = \dim \Homrep(W,V)$
+	as desired.
+\end{proof}
+
+
+The orthogonality relation gives us a fast and mechanical way to check
+whether a representation $V$ is irreducible.
+Namely, compute the traces $\chi_V(g)$ for each $g \in G$,
+and then check whether $\left< \chi_V, \chi_V \right> = 1$.
+So, for example, we could have seen the three representations of
+$S_3$ that we found were irreducible directly from the character table.
+
+In other words, we can now efficiently verify any time we have
+a complete set of irreducible representations.
+We give another example with $D_{10}$ again.
+\begin{example}
+	[Dihedral Group on $10$ Elements]
+	Let $D_{10} = \left< r,s \mid r^5 = s^2 = 1, rs = sr\inv \right>$.
+	Let $\omega = \exp(\frac{2\pi i}{5})$.
+	We write the following four representations of $D_{10}$.
+	\begin{itemize}
+		\ii $\Ctriv$, all elements of $D_{10}$ act as the identity.
+		\ii $\Csign$, all elements of $D_{10}$ act as the identity.
+		\ii $V_1$, which is two-dimensional and given by
+		$r \mapsto \begin{pmatrix} \omega & 0 \\ 0 & \omega^4 \end{pmatrix}$
+		and $s \mapsto \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$.
+		\ii $V_2$, which is two-dimensional and given by
+		$r \mapsto \begin{pmatrix} \omega^2 & 0 \\ 0 & \omega^3 \end{pmatrix}$
+		and $s \mapsto \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$.
+	\end{itemize}
+	We claim that these four representations are irreducible
+	and pairwise non-isomorphic.
+	We do so by writing the character table:
+	\[
+		\begin{array}{|c|rrcc|}
+			\hline
+			& \Ctriv & \Csign & V_1 & V_2 \\\hline
+			1 & 1 & 1 & 2 & 2 \\
+			r, r^4 & 1 & 1 & \omega + \omega^4 & \omega^2 + \omega^3 \\
+			r^2, r^3 & 1 & 1 & \omega^2 + \omega^3 & \omega + \omega^4 \\
+			sr^k & 1 & -1 & 0 & 0 \\ \hline
+		\end{array}
+	\]
+	Then a direct computation shows the orthogonality relations,
+	hence we indeed have an orthonormal basis.
+	For example, $\left< \Ctriv, \Csign \right> = 1 + 2 \cdot 1 + 2 \cdot 1 + 5 \cdot (-1) = 0$.
+\end{example}
+
+\section\problemhead
+\begin{dproblem}
+	[Second Orthogonality Formula]
+	Let $g$ and $h$ be elements of a finite group $G$,
+	and let $V_1$, \dots, $V_r$ be the irreducible representations of $G$.
+	Prove that
+	\[
+		\sum_{i = 1}^r \chi_{V_i}(g) \ol{\chi_{V_i}(h)}
+		=
+		\begin{cases}
+			|Z(g)| & \text{if $g$ and $h$ are conjugates} \\
+			0 & \text{otherwise}.
+		\end{cases}
+	\]
+	Here, $Z(g) = \left\{ x \in G : xg = gx \right\}$.
+\end{dproblem}
+
+\todo{Heisenberg group?}
+
+
 
 \chapter{Some Applications}
+
+\section{Frobenius Divisibility}
+\section{Frobenius Determinant}
+\section{Burnside's Theorem}
 
 \end{document}

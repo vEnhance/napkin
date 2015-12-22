@@ -115,7 +115,7 @@ It is worth mentioning at this point that:
 	A \vocab{representation} of a $k$-algebra $A$ consists of
 	\begin{enumerate}[(i)]
 		\ii A $k$-vector space $V$, and
-		\ii An \emph{action} $\cdot$ of $A$ on $k$: thus, for every $a \in A$
+		\ii An \emph{action} $\cdot$ of $A$ on $V$: thus, for every $a \in A$
 		we can take $v \in V$ and act on it to get $a \cdot v$.
 		This satisfies the usual axioms:
 		\begin{itemize}
@@ -235,25 +235,56 @@ From this perspective, what we are really trying to do is:
 		a group homomorphism $\psi : G \to \GL(V)$.
 	\end{enumerate}
 \end{example}
+\begin{abuse}
+	From now on, we will often shorten ``representation of $k[G]$''
+	to ``representation of $G$''.
+\end{abuse}
 \begin{example}[Regular Representation]
 	Any $k$-algebra $A$ is a representation $(A, \rho)$ over itself,
 	with $a \cdot b = \rho(a)(b) = ab$ (i.e.\ multiplication given by $A$).
 	This is called the \vocab{regular representation}, denoted $\Reg(A)$.
 \end{example}
 
-\begin{example}
-	[Direct Sums of Representations]
-	Let $A$ be $k$-algebra and let $V = (V, \rho_1)$ and $W = (W, \rho_2)$
+\section{Direct Sums}
+\prototype{The example with $\RR[S_3]$ seems best.}
+\begin{definition}
+	Let $A$ be $k$-algebra and let $V = (V, \rho_V)$ and $W = (W, \rho_W)$
 	be two representations of $A$.
 	Then $V \oplus W$ is a representation, with action $\rho$ by
 	\[ a \cdot (v,w) = (a \cdot v, a \cdot w). \]
-	In terms of matrices, this looks like
-	\[ \rho(a) = \begin{pmatrix}
-			\rho_1(a) & 0 \\ 0 & \rho_2(a)
-		\end{pmatrix}. \]
-	This is called the \vocab{direct sum} of $V$ and $W$.
-	We have already seen this example earlier in the special case
-	when we let $A = \Mat_2(\RR)$ act on $\RR^{\oplus 4}$.
+	This representation is called the \vocab{direct sum} of $V$ and $W$.
+\end{definition}
+\begin{example}
+	Earlier we let $\Mat_2(\RR)$ act on $\RR^{\oplus 4}$ by
+	\[
+		\rho : 
+		\begin{pmatrix} a & b \\ c & d \end{pmatrix} 
+		\mapsto
+		\begin{pmatrix} a & b & 0 & 0 \\ c & d & 0 & 0 \\
+			0 & 0 & a & b \\ 0 & 0 & c & d \end{pmatrix} .
+	\]
+	So this is just a direct sum of two two-dimensional representations.
+\end{example}
+More generally, given representations $(V, \rho_V)$ and $(W, \rho_W)$
+the representation $\rho$ of $V \oplus W$ looks like
+\[ \rho(a) =
+	\begin{pmatrix}
+		\rho_V(a) & 0 \\ 0 & \rho_W(a)
+	\end{pmatrix}.
+\]
+\begin{example}[Representation of $S_n$ decomposes]
+	Let $A = \RR[S_3]$ again,
+	acting via permutation of coordinates on
+	\[ V = \RR^{\oplus 3} = \{ (x,y,z) \mid x,y,z \in \RR \}. \]
+	Consider the two subspaces
+	\begin{align*}
+		W_1 &= \left\{ (t,t,t) \mid t \in \RR \right\} \\
+		W_2 &= \left\{ (x,y,z) \mid x+y+z = 0 \right\}.
+	\end{align*}
+	Note $V = W_1 \oplus W_2$ as vector spaces.
+	But each of $W_1$ and $W_2$ is a subrepresentation
+	(since the action of $A$ keeps each $W_i$ in place),
+	so $V = W_1 \oplus W_2$ as representations too.
 \end{example}
 
 Direct sums also come up when we play with algebras.
@@ -307,7 +338,28 @@ then $W_1$ and $W_2$ are subrepresentations.
 	then we say it is \vocab{indecomposable}.
 \end{definition}
 
-Why do we need two parts of the definition?
+\begin{example}[Representation of $S_n$ decomposes]
+	Let $A = \RR[S_3]$ again, acting via permutation of coordinates on
+	\[ V = \RR^{\oplus 3} = \{ (x,y,z) \mid x,y,z \in \RR \}. \]
+	Consider again the two subspaces
+	\begin{align*}
+		W_1 &= \left\{ (t,t,t) \mid t \in \RR \right\} \\
+		W_2 &= \left\{ (x,y,z) \mid x+y+z = 0 \right\}.
+	\end{align*}
+	As we've seen, $V = W_1 \oplus W_2$, and thus $V$ is not irreducible.
+	But one can show that $W_1$ and $W_2$ are irreducible 
+	(and hence indecomposable) as follows.
+	\begin{itemize}
+		\ii For $W_1$ it's obvious, since $W_1$ is one-dimensional.
+		\ii For $W_2$, consider any vector $w = (a,b,c)$
+		with $a+b+c=0$ and not all zero.  Then WLOG we can assume $a \neq b$ 
+		(since not all three coordinates are equal).
+		In that case, $(1 \; 2)$ sends $w$ to $w' = (b,a,c)$.
+		Then $w$ and $w'$ span $W_2$.
+	\end{itemize}
+	Thus $V$ breaks down completely into irreducible representations.
+\end{example}
+
 Unfortunately, if $W$ is a subrepresentation of $V$,
 then it is not necessarily the case that we can find a
 supplementary vector space $W'$ such that $V = W \oplus W'$.
@@ -323,24 +375,10 @@ Here is a standard counterexample:
 
 Here is a slightly more optimistic example,
 and the ``prototypical example'' that you should keep in mind.
-\begin{example}[Representation of $S_n$ decomposes]
-	Let $A = \RR[S_3]$ again,
-	with the action on 
-	\[ V = \RR^{\oplus 3} = \{ (x,y,z) \mid x,y,z \in \RR \}. \]
-	Consider the two subspaces
-	\begin{align*}
-		W_1 &= \left\{ (t,t,t) \mid t \in \RR \right\} \\
-		W_2 &= \left\{ (x,y,z) \mid x+y+z = 0 \right\}.
-	\end{align*}
-	Note $V = W_1 \oplus W_2$ as vector spaces.
-	But each of $W_1$ and $W_2$ is a subrepresentation
-	(since the action of $A$ keeps each $W_i$ in place),
-	so $V = W_1 \oplus W_2$ as representations.
-\end{example}
 
 \begin{exercise}
 	Let $A = \Mat_d(k)$ and consider the obvious representation $k^{\oplus d}$
-	that we described earlier. Show that it is irreducible.
+	of $A$ that we described earlier. Show that it is irreducible.
 	(This is obvious if you understand the definitions well enough.)
 \end{exercise}
 
@@ -525,6 +563,23 @@ In particular, $W$ is irreducible because there are no representations
 of smaller dimension at all!
 
 \section\problemhead
+\begin{dproblem}
+	\label{prob:one_dim}
+	Suppose we have one-dimensional representations
+	$V_1 = (V_1, \rho_1)$ and $V_2 = (V_2, \rho_2)$ of $A$.
+	Show that $V_1 \cong V_2$ if and only if
+	$\det\rho_1(a) = \det\rho_2(a)$ for every $a \in A$
+	(intuitively, $\rho_1$ and $\rho_2$ are exactly the same).
+\end{dproblem}
+
+\begin{dproblem}
+	[Schur's Lemma for Commutative Algebras]
+	Let $A$ be a \emph{commutative} algebra over an algebraically closed field $k$.
+	Prove that any irreducible representation of $A$ is one-dimensional.
+	\begin{hint}
+		For any $a \in A$, the map $v \mapsto a \cdot v$ is intertwining.
+	\end{hint}
+\end{dproblem}
 
 \begin{sproblem}
 	\label{prob:reg_mat}
@@ -541,25 +596,9 @@ of smaller dimension at all!
 	\end{hint}
 \end{sproblem}
 
-\begin{dproblem}
-	[Schur's Lemma for Commutative Algebras]
-	Let $A$ be a \emph{commutative} algebra over an algebraically closed field $k$.
-	Prove that any irreducible representation of $A$ is one-dimensional.
-	\begin{hint}
-		For any $a \in A$, the map $v \mapsto a \cdot v$ is intertwining.
-	\end{hint}
-\end{dproblem}
-
 \begin{sproblem}
 	\label{prob:regA_intertwine}
 	Find all intertwining operators $T : \Reg(A) \to \Reg(A)$,
 	where $A$ is a fixed algebra.
 \end{sproblem}
-
-\begin{problem}
-	Let $G = \Zc n$ and let $k = \CC$.
-	Show that up to isomorphism there are exactly $n$
-	irreducible representations of $k[G]$.
-	What if $k = \RR$?
-\end{problem}
 
