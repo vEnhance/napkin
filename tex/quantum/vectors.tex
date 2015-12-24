@@ -104,7 +104,7 @@ $|c_0|^2 + |c_1|^2 + \dots + |c_{n-1}|^2 = 1$.
 If you think that's weird, well, it gets worse.
 First, some linear algebra:
 \begin{definition}
-	Let $V$ be a finite-dimensional normed vector space.
+	Let $V$ be a finite-dimensional inner product space.
 	For a map $T: V \to V$, the following conditions are equivalent:
 	\begin{itemize}
 		\ii $\left< Tx, y\right> = \left< x, Ty \right>$
@@ -187,12 +187,12 @@ This behavior is called \vocab{quantum collapse}.
 		\sum_{\substack{0 \le i \le n \\ \substack{\lambda_i = \lambda}}}
 		c_i \ket{i}_T.
 	\]
-	All the coefficients from different eigenspaces have been destroyed.
 \end{itemize}
-\begin{ques}
-	Suppose we measure $\ket\psi$ with $T$ and get $\lambda$.
-	What happens if we measure with $T$ again?
-\end{ques}
+In other words,
+\begin{moral}
+	When we make a measurement,
+	the coefficients from different eigenspaces are destroyed.
+\end{moral}
 Why does this happen? Beats me\dots physics (and hence real life) is weird.
 But anyways, an example.
 \begin{example}
@@ -236,6 +236,10 @@ But anyways, an example.
 		$\ket\psi$ collapses to one of $\ket0_T$ and $\ket1_T$.
 	\end{enumerate}
 \end{example}
+\begin{ques}
+	Suppose we measure $\ket\psi$ with $T$ and get $\lambda$.
+	What happens if we measure with $T$ again?
+\end{ques}
 
 For $H = \CC^{\oplus 2}$ we can come up with more classes of examples using
 the so-called \vocab{Pauli matrices}.
@@ -267,11 +271,13 @@ In light of this, the previous examples were (a) measuring along $\sigma_z$,
 (b) measuring along $\id$, and (c) measuring along $7\sigma_x$.
 
 Notice that if we are given a state $\ket\psi$,
-and are told in advance that it is either $\xup$ or $\xdown$,
-for example, then we are in what is more or less a classical situation.
+and are told in advance that it is either $\xup$ or $\xdown$
+(or any other orthogonal states)
+then we are in what is more or less a classical situation.
 Specifically, if we make a measurement along $\sigma_x$,
 then we find out which state that $\ket\psi$ was in (with 100\% certainty),
 and the state does not undergo any collapse.
+Thus, orthogonal states are reliably distinguishable.
 
 \section{Entanglement}
 \prototype{Singlet state: spooky action at a distance.}
@@ -297,6 +303,9 @@ here $\ket{i}_A$ is the basis of the first $\CC^{\oplus 2}$
 while $\ket{i}_B$ is the basis of the second $\CC^{\oplus 2}$,
 so these vectors should be thought of as ``unrelated''
 just as with any tensor product.
+The pure tensors mean exactly what you want:
+for example $\ket0_A \otimes \ket1_B$ means
+``$0$ for qubit $A$ and $1$ for qubit $B$''.
 
 As before, a measurement of a state in $H$ requires
 a Hermitian map $H \to H$.
@@ -312,7 +321,7 @@ This does what you would hope for pure tensors in $H$:
 	$\frac{i}{\sqrt5}\ket0_A + \frac{2}{\sqrt5}\ket1_A$
 	and qubit $B$ in the state
 	$\frac{1}{\sqrt2} \ket0_B + \frac{1}{\sqrt2}\ket1_B$.
-	So, the two qubits in tandem are represented by the tensor product
+	So, the two qubits in tandem are represented by the pure tensor
 	\[
 		\ket\psi
 		=
@@ -330,7 +339,7 @@ This does what you would hope for pure tensors in $H$:
 		$\ket1_A \otimes \ket1_B$.
 	\end{itemize}
 	(We could have used other bases, like $\xup_A \otimes \ket0_B$ and
-	$\xdown_A \otimes \ket0_B$ for the first eigenpsace, but no worries.)
+	$\xdown_A \otimes \ket0_B$ for the first eigenpsace, but it doesn't matter.)
 	Expanding $\ket\psi$ in the four-element basis, we find that
 	we'll get the first eigenspace with probability
 	\[ \left|\frac{i}{\sqrt{10}}\right|^2
@@ -357,42 +366,67 @@ when we make the measurement, we just make sure to not touch the other qubit
 	What's the result of this measurement?
 \end{exercise}
 
-However, some states behave very weirdly.
-Consider the state
-\[
-	\ket{\Psi_-}
-	=
-	\frac{1}{\sqrt2} \ket0_A \otimes \ket1_B
-	- \frac{1}{\sqrt2} \ket1_A \otimes \ket0_B
-\]
-which is called the \vocab{singlet state}.
-One can see that $\ket{\Psi_-}$ is not a simple tensor,
-which means that it doesn't just consists of two qubits side by side:
-the qubits in $H_A$ and $H_B$ have become \emph{entangled}.
+Since the $\otimes$ is getting cumbersome to write,
+we make the following abbreviation.
+\begin{abuse}
+	From now on $\ket 0_A \otimes \ket 0_B$ will be abbreviated
+	to just $\ket{00}$, and similarly for $\ket{01}$, $\ket{10}$, $\ket{11}$.
+\end{abuse}
 
-Now, what happens if we measure just the qubit $A$?
-This corresponds to making the measurement
-\[ T = \sigma_z^A \otimes \id_B. \]
-The eigenspace decomposition of $T$ can be described as:
-\begin{itemize}
-	\ii The space spanned by $\ket{0}_A \otimes \ket{0}_B$ and
-	$\ket{0}_A \otimes \ket{1}_B$, with eigenvalue $+1$.
-	\ii The space spanned by $\ket{1}_A \otimes \ket{0}_B$ and
-	$\ket{1}_A \otimes \ket{1}_B$, with eigenvalue $-1$.
-\end{itemize}
-So one of two things will happen:
-\begin{itemize}
-	\ii With probability $\half$, we measure $+1$
-	and the collapsed state is $\ket0_A \otimes \ket1_B$.
-	\ii With probability $\half$, we measure $-1$
-	and the collapsed state is $\ket1_A \otimes \ket0_B$.
-\end{itemize}
-But now we see that measurement along $A$ has told us what the
-state of the bit $B$ is completely!
+\begin{example}
+	[Simultaneously Measuring A General $2$-Qubit State]
+	\label{ex:simult_measurement}
+	Consider a normalized state $\ket\psi$ in
+	$H = \CC^{\oplus 2} \otimes \CC^{\oplus 2}$, say
+	\[ \ket\psi = \alpha\ket{00} + \beta\ket{01}
+		+ \gamma\ket{10} + \delta\ket{11}. \]
+	We can make a measurement along the diagonal matrix
+	$T : H \to H$ with 
+	\[ T(\ket{00}) = 0\ket{00}, \quad
+	T(\ket{01}) = 1\ket{01}, \quad
+	T(\ket{10}) = 2\ket{10}, \quad
+	T(\ket{11}) = 3\ket{11}. \]
+	Thus we get each of the eigenvalues $0$, $1$, $2$, $3$
+	with probability $|\alpha|^2$, $|\beta|^2$, $|\gamma|^2$, $|\delta|^2$.
+	So if we like we can make ``simultaneous'' measurements on two qubits
+	in the same way that we make measurements on one qubit.
+\end{example}
+
+However, some states behave very weirdly.
+\begin{example}[The Singlet State]
+	Consider the state
+	\[
+		\ket{\Psi_-}
+		=
+		\frac{1}{\sqrt2} \ket{01}
+		- \frac{1}{\sqrt2} \ket{10}
+	\]
+	which is called the \vocab{singlet state}.
+	One can see that $\ket{\Psi_-}$ is not a simple tensor,
+	which means that it doesn't just consists of two qubits side by side:
+	the qubits in $H_A$ and $H_B$ have become \emph{entangled}.
+
+	Now, what happens if we measure just the qubit $A$?
+	This corresponds to making the measurement
+	\[ T = \sigma_z^A \otimes \id_B. \]
+	The eigenspace decomposition of $T$ can be described as:
+	\begin{itemize}
+		\ii The span of $\ket{00}$ and $\ket{01}$, with eigenvalue $+1$.
+		\ii The span of $\ket{10}$ and $\ket{10}$, with eigenvalue $-1$.
+	\end{itemize}
+	So one of two things will happen:
+	\begin{itemize}
+		\ii With probability $\half$, we measure $+1$
+		and the collapsed state is $\ket{01}$.
+		\ii With probability $\half$, we measure $-1$
+		and the collapsed state is $\ket{10}$.
+	\end{itemize}
+	But now we see that measurement along $A$ has told us what the
+	state of the bit $B$ is completely!
+\end{example}
 By solely looking at measurements on $A$, we learn $B$;
 this paradox is called \emph{spooky action at a distance},
 or in Einstein's tongue, \vocab{spukhafte Fernwirkung}.  
-
 Thus,
 \begin{moral}
 	In tensor products of Hilbert spaces,
@@ -402,14 +436,14 @@ Thus,
 
 What this really means is that the qubits cannot be described independently;
 the state of the system must be given as a whole.
+That's what entangled states mean: the qubits somehow depend on each other.
 
 \section\problemhead
 
 \begin{problem}
 	We measure $\ket{\Psi_-}$ by $\sigma_x^A \otimes \id_B$,
 	and hence obtain either $+1$ or $-1$.
-	Show that the state of qubit $B$ is determined
-	by this measurement completely, and find the corresponding values.
+	Determine the state of qubit $B$ from this measurement.
 	\begin{hint}
 		Rewrite $\ket{\Psi_-} = -\frac{1}{\sqrt2}
 		\left( \xup_A\otimes\xdown_B - \xdown_A\xup_B \right)$.
@@ -421,7 +455,8 @@ the state of the system must be given as a whole.
 		Now, $\xup_A \otimes \xup_B$, $\xup_A \otimes \xdown_B$
 		span one eigenspace of $\sigma_x^A \otimes \id_B$,
 		and $\xdown_A \otimes \xup_B$, $\xdown_A \otimes \xdown_B$
-		span the other. So this is the same as before.
+		span the other. So this is the same as before:
+		$+1$ gives $\xdown_B$ and $-1$ gives $\xdown_A$.
 	\end{sol}
 \end{problem}
 
@@ -442,4 +477,15 @@ the state of the system must be given as a whole.
 		\sigma_x^A \otimes \sigma_y^B \otimes \sigma_y^C, \quad
 		\sigma_x^A \otimes \sigma_x^B \otimes \sigma_x^C.
 	\]
+	As for the paradox: what happens if you multiply all these measurement together?
+	\begin{hint}
+		$-1$, $1$, $1$, $1$.
+		When we multiply them all together,
+		we get that $\id^A \otimes \id^B \otimes \id^C$
+		has measurement $-1$, which is the paradox.
+		What this means is that the values of the measurements
+		are created when we make the observation,
+		and not prepared in advance.
+	\end{hint}
 \end{problem}
+

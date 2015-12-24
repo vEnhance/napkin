@@ -5,9 +5,6 @@
 \addbibresource{../../references.bib}
 \renewcommand{\gim}{($\ast$)}
 
-\newcommand{\UCNOT}{U_{\mathrm{CNOT}}}
-\newcommand{\UCOPY}{U_{\mathrm{COPY}}}
-
 \begin{document}
 \title{Quantum Algorithms}
 \maketitle
@@ -380,14 +377,40 @@ when we make the measurement, we just make sure to not touch the other qubit
 	What's the result of this measurement?
 \end{exercise}
 
+Since the $\otimes$ is getting cumbersome to write,
+we make the following abbreviation.
+\begin{abuse}
+	From now on $\ket 0_A \otimes \ket 0_B$ will be abbreviated
+	to just $\ket{00}$, and similarly for $\ket{01}$, $\ket{10}$, $\ket{11}$.
+\end{abuse}
+
+\begin{example}
+	[Simultaneously Measuring A General $2$-Qubit State]
+	\label{ex:simult_measurement}
+	Consider a normalized state $\ket\psi$ in
+	$H = \CC^{\oplus 2} \otimes \CC^{\oplus 2}$, say
+	\[ \ket\psi = \alpha\ket{00} + \beta\ket{01}
+		+ \gamma\ket{10} + \delta\ket{11}. \]
+	We can make a measurement along the diagonal matrix
+	$T : H \to H$ with 
+	\[ T(\ket{00}) = 0\ket{00}, \quad
+	T(\ket{01}) = 1\ket{01}, \quad
+	T(\ket{10}) = 2\ket{10}, \quad
+	T(\ket{11}) = 3\ket{11}. \]
+	Thus we get each of the eigenvalues $0$, $1$, $2$, $3$
+	with probability $|\alpha|^2$, $|\beta|^2$, $|\gamma|^2$, $|\delta|^2$.
+	So if we like we can make ``simultaneous'' measurements on two qubits
+	in the same way that we make measurements on one qubit.
+\end{example}
+
 However, some states behave very weirdly.
 \begin{example}[The Singlet State]
 	Consider the state
 	\[
 		\ket{\Psi_-}
 		=
-		\frac{1}{\sqrt2} \ket0_A \otimes \ket1_B
-		- \frac{1}{\sqrt2} \ket1_A \otimes \ket0_B
+		\frac{1}{\sqrt2} \ket{01}
+		- \frac{1}{\sqrt2} \ket{10}
 	\]
 	which is called the \vocab{singlet state}.
 	One can see that $\ket{\Psi_-}$ is not a simple tensor,
@@ -399,17 +422,15 @@ However, some states behave very weirdly.
 	\[ T = \sigma_z^A \otimes \id_B. \]
 	The eigenspace decomposition of $T$ can be described as:
 	\begin{itemize}
-		\ii The space spanned by $\ket{0}_A \otimes \ket{0}_B$ and
-		$\ket{0}_A \otimes \ket{1}_B$, with eigenvalue $+1$.
-		\ii The space spanned by $\ket{1}_A \otimes \ket{0}_B$ and
-		$\ket{1}_A \otimes \ket{1}_B$, with eigenvalue $-1$.
+		\ii The span of $\ket{00}$ and $\ket{01}$, with eigenvalue $+1$.
+		\ii The span of $\ket{10}$ and $\ket{10}$, with eigenvalue $-1$.
 	\end{itemize}
 	So one of two things will happen:
 	\begin{itemize}
 		\ii With probability $\half$, we measure $+1$
-		and the collapsed state is $\ket0_A \otimes \ket1_B$.
+		and the collapsed state is $\ket{01}$.
 		\ii With probability $\half$, we measure $-1$
-		and the collapsed state is $\ket1_A \otimes \ket0_B$.
+		and the collapsed state is $\ket{10}$.
 	\end{itemize}
 	But now we see that measurement along $A$ has told us what the
 	state of the bit $B$ is completely!
@@ -467,6 +488,16 @@ That's what entangled states mean: the qubits somehow depend on each other.
 		\sigma_x^A \otimes \sigma_y^B \otimes \sigma_y^C, \quad
 		\sigma_x^A \otimes \sigma_x^B \otimes \sigma_x^C.
 	\]
+	As for the paradox: what happens if you multiply all these measurement together?
+	\begin{hint}
+		$-1$, $1$, $1$, $1$.
+		When we multiply them all together,
+		we get that $\id^A \otimes \id^B \otimes \id^C$
+		has measurement $-1$, which is the paradox.
+		What this means is that the values of the measurements
+		are created when we make the observation,
+		and not prepared in advance.
+	\end{hint}
 \end{problem}
 
 \chapter{Quantum Circuits}
@@ -479,26 +510,26 @@ linear combinations of $0$ and $1$.
 In classical logic, we build circuits which take in some bits for input,
 and output some more bits for input.
 These circuits are built out of individual logic gates.
-For example, the AND gate can be pictured as follows.
+For example, the \vocab{AND gate} can be pictured as follows.
 \[
 	\Qcircuit @C=0.8em @R=.7em {
-		\lstick{0} & \qw & \multigate{1}{\textsc{and}} & \qw & 0 \\
-		\lstick{0} & \qw & \ghost{\textsc{and}} & & 
+		\lstick{0} &\qw & \multigate{1}{\textsc{and}} & \rstick{0} \qw \\
+		\lstick{0} &\qw & \ghost{\textsc{and}} & 
 	}
-	\qquad\quad
+	\hspace{4.5em}
 	\Qcircuit @C=0.8em @R=.7em {
-		\lstick{0} & \qw & \multigate{1}{\textsc{and}} & \qw & 0 \\
-		\lstick{1} & \qw & \ghost{\textsc{and}} & & 
+		\lstick{0} &\qw & \multigate{1}{\textsc{and}} & \rstick{0} \qw \\
+		\lstick{1} &\qw & \ghost{\textsc{and}} & 
 	}
-	\qquad\quad
+	\hspace{4.5em}
 	\Qcircuit @C=0.8em @R=.7em {
-		\lstick{1} & \qw & \multigate{1}{\textsc{and}} & \qw & 0 \\
-		\lstick{0} & \qw & \ghost{\textsc{and}} & & 
+		\lstick{1} &\qw & \multigate{1}{\textsc{and}} & \rstick{0} \qw \\
+		\lstick{0} &\qw & \ghost{\textsc{and}} & 
 	}
-	\qquad\quad
+	\hspace{4.5em}
 	\Qcircuit @C=0.8em @R=.7em {
-		\lstick{1} & \qw & \multigate{1}{\textsc{and}} & \qw & 1 \\
-		\lstick{1} & \qw & \ghost{\textsc{and}} & & 
+		\lstick{1} &\qw & \multigate{1}{\textsc{and}} & \rstick{1} \qw \\
+		\lstick{1} &\qw & \ghost{\textsc{and}} & 
 	}
 \]
 One can also represent the AND gate using the ``truth table'':
@@ -513,7 +544,7 @@ One can also represent the AND gate using the ``truth table'':
 		\hline
 	\end{array}
 \]
-Similarly, we have the OR gate and the NOT gate:
+Similarly, we have the \vocab{OR gate} and the \vocab{NOT gate}:
 \[
 	\begin{array}{|cc|c|}
 		\hline
@@ -533,16 +564,193 @@ Similarly, we have the OR gate and the NOT gate:
 		\hline
 	\end{array}
 \]
-COPY gate
-
-NAND, CNOT (notation for this)
+We also have a so-called \vocab{COPY gate}, which duplicates a bit.
+\[
+	\Qcircuit @C=0.8em @R=.7em {
+		\lstick{0} & \qw & \multigate{1}{\textsc{copy}} & \rstick{0} \qw & \\
+		&& & \rstick{0} \qw & 
+	}
+	\qquad\qquad
+	\Qcircuit @C=0.8em @R=.7em {
+		\lstick{1} & \qw & \multigate{1}{\textsc{copy}} & \rstick{1} \qw & \\
+		&& & \rstick{1} \qw & 
+	}
+\]
+Of course, the first theorem you learn about these gates is that:
+\begin{theorem}
+	[AND, OR, NOT, COPY Are Universal]
+	The set of four gates AND, OR, NOT, COPY is universal in the sense that
+	any boolean function $f : \{0,1\}^n \to \{0,1\}$ 
+	can be implemented as a circuit using only these gates.
+\end{theorem}
+\begin{proof}
+	Somewhat silly: we essentially write down a circuit that OR's across
+	all input strings in $f\pre(1)$.
+	For example, suppose we have $n=3$ and want to simulate the function
+	$f(abc)$ with $f(011) = f(110) = 1$ and $0$ otherwise.
+	Then the corresponding Boolean expression for $f$ is simply
+	\[
+		f(abc) = 
+		\left[ \text{(not $a$) and $b$ and $c$} \right]
+		\text{ or }
+		\left[ \text{$a$ and $b$ and (not $c$)} \right].
+	\]
+	Clearly, one can do the same for any other $f$,
+	and implement this logic into a circuit.
+\end{proof}
+\begin{remark}
+	Since
+	$x \text{ and } y = \text{not } ( (\text{not $x$}) \text{ or } (\text{not $y$}))$,
+	it follows that in fact, we can dispense with the AND gate.
+\end{remark}
 
 \section{Reversible Classical Logic}
-CCNOT (reversible logic) (quantum notation for this)
+\prototype{CNOT gate, Toffoli gate.}
+
+For the purposes of quantum mechanics, this is not enough.
+To carry through the analogy we in fact need gates that are \vocab{reversible},
+meaning the gates are bijections from the input space to the output space.
+In particular, such gates must take the same number of input and output gates.
+\begin{example}[Reversible Gates]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii None of the gates AND, OR, COPY are reversible for dimension reasons.
+		\ii The NOT gate, however, is reversible:
+		it is a bijection $\{0,1\} \to \{0,1\}$.
+	\end{enumerate}
+\end{example}
+\begin{example}
+	[The CNOT Gate]
+	The controlled-NOT gate, or the \vocab{CNOT} gate,
+	is a reversible $2$-bit gate with the following truth table.
+	\[
+		\begin{array}{|rr|rr|}
+			 \hline
+			 \multicolumn{2}{|c|}{\text{In}} & \multicolumn{2}{|c|}{\text{Out}} \\
+			 \hline
+			 0 & 0 & 0 & 0 \\ 
+			 1 & 0 & 1 & 1 \\ 
+			 0 & 1 & 0 & 1 \\ 
+			 1 & 1 & 1 & 0 \\ \hline
+		\end{array}
+	\]
+	In other words, this gate XOR's the first bit to the second bit,
+	while leaving the first bit unchanged.
+	It is depicted as follows.
+	\[
+		\Qcircuit @C=1em @R=.7em {
+			\lstick{x} & \ctrl{1} & \rstick{x} \qw \\
+			\lstick{y} & \targ & \rstick{x+y \mod 2} \qw 
+		}
+	\]
+	The first dot is called the ``control'',
+	while the $\oplus$ is the ``negation'' operation:
+	the first bit controls whether the second bit gets flipped or not.
+	Thus, a typical application might be as follows.
+	\[
+		\Qcircuit @C=1em @R=.7em {
+			\lstick{1} & \ctrl{1} & \rstick{1} \qw \\
+			\lstick{0} & \targ & \rstick{1} \qw
+		}
+	\]
+\end{example}
+So, NOT and CNOT are the only nontrivial reversible gates on two bits.
+
+We now need a different definition of universal for our reversible gates.
+\begin{definition}
+	A set of reversible gates can \vocab{simulate} a Boolean function $f(x_1 \dots x_n)$,
+	if one can implement a circuit which takes
+	\begin{itemize}
+		\ii As input, $x_1 \dots x_n$ plus some fixed bits set to $0$ or $1$,
+		called \vocab{ancilla bits}\footnote{%
+			The English word ``ancilla'' means ``maid''.}.
+		\ii As output, the input bits $x_1, \dots, x_n$,
+		the output bit $f(x_1, \dots, x_n)$,
+		and possibly some extra bits (called \vocab{garbage bits}).
+	\end{itemize}
+	The gate(s) are \vocab{universal} if they can simulate any Boolean function.
+\end{definition}
+For example, the CNOT gate can simulate the NOT gate,
+using a single ancilla bit $1$ but with no garbage,
+according to the following circuit.
+\[
+	\Qcircuit @C=1em @R=.7em {
+		\lstick{x} & \ctrl{1} & \rstick{x} \qw \\
+		\lstick{1} & \targ & \rstick{\text{not } x} \qw
+	}
+\]
+Unfortunately, it is not universal.
+\begin{proposition}
+	[CNOT $\not\Rightarrow$ AND]
+	The CNOT gate cannot simulate the boolean function ``$x \text{ and } y$''.
+\end{proposition}
+\begin{proof}[Sketch of Proof]
+	One can see that any function simulated using only CNOT gates
+	must be of the form \[ a_1x_1 + a_2x_2 + \dots + a_nx_n \pmod 2 \]
+	because CNOT is the map $(x,y) \mapsto (x, x+y)$.
+	Thus, even with ancilla bits, we can only create functions
+	of the form $ax+by+c \pmod 2$ for fixed $a$, $b$, $c$.
+	The AND gate is not of this form.
+\end{proof}
+
+So, we need at least a three-qubit gate.
+The most commonly used one is the following.
+\begin{definition}
+	The three-bit \vocab{Toffoli gate}, also called the CCNOT gate, is given by
+	\[
+		\Qcircuit @C=1em @R=.7em {
+			\lstick{x} & \ctrl{1} & \rstick{x} \qw \\
+			\lstick{y} & \ctrl{1} & \rstick{y} \qw \\
+			\lstick{z} & \targ & \rstick{z + xy \pmod 2} \qw
+		}
+	\]
+	So the Toffoli has two controls, and toggles the last bit if and only if 
+	both of the control bits are $1$.
+\end{definition}
+This replacement is sufficient.
+\begin{theorem}
+	[Toffoli Gate is Universal]
+	The Toffoli gate is universal.
+\end{theorem}
+\begin{proof}
+	We will show it can reversibly simulate AND, NOT, hence OR,
+	which we know is enough to show universality.
+
+	For the AND gate, we draw the circuit
+	\[
+		\Qcircuit @C=1em @R=.7em {
+			\lstick{x} & \ctrl{1} & \rstick{x} \qw \\
+			\lstick{y} & \ctrl{1} & \rstick{y} \qw \\
+			\lstick{1} & \targ & \rstick{x \text{ and } y} \qw
+		}
+	\]
+	with one ancilla bit, and no garbage bits.
+
+	For the NOT gate, we use two ancilla $1$ bits and two garbage bits:
+	\[
+		\Qcircuit @C=1em @R=.7em {
+			\lstick{1} & \ctrl{1} & \rstick{1} \qw \\
+			\lstick{1} & \ctrl{1} & \rstick{1} \qw \\
+			\lstick{z} & \targ & \rstick{\text{not } z} \qw
+		}
+	\]
+	This completes the proof.
+\end{proof}
+
+Hence, in theory we can create any classical circuit we desire
+using the Toffoli gate alone.
+Of course, this could require exponentially many gates for even the
+simplest of functions.
+Fortunately, this is NO BIG DEAL because I'm a math major,
+and having $2^n$ gates is a problem best left for the CS majors.
 
 \section{Quantum Logic Gates}
 In quantum mechanics, since we can have \emph{linear combinations} of basis
 elements, our logic gates will instead consist of \emph{linear maps}.
+Moreover, in quantum computation, gates are always reversible,
+which was why we took the time in the previous section to show
+that we can still do simulate any function when restricted to reversible gates
+(e.g.\ using the Toffoli gate).
 
 First, some linear algebra:
 \begin{definition}
@@ -557,12 +765,6 @@ First, some linear algebra:
 	if it satisfies these equivalent conditions.
 \end{definition}
 
-We will also make the following abbreviation:
-\begin{abuse}
-	From now on $\ket 0 \otimes \ket 0$ will be abbreviated
-	to just $\ket{00}$, and similarly for $\ket{01}$, $\ket{10}$, $\ket{11}$.
-\end{abuse}
-
 Then
 \begin{moral}
 	Quantum logic gates are unitary matrices.
@@ -570,10 +772,6 @@ Then
 In particular, unlike the classical situation,
 quantum gates are always reversible
 (and hence they always take the same number of input and output bits).
-This does not hinder us, because we have already seen that
-all classical computations can be done with reversible gates
-(e.g.\ with the Toffoli gate); thus the quantum analog of the Toffoli gate
-will allow us to perform all classical computations.
 
 For example, consider the CNOT gate.
 Its quantum analog should be a unitary map $\UCNOT : H \to H$,
@@ -581,7 +779,9 @@ where $H = \CC^{\oplus 2} \otimes \CC^{\oplus 2}$,
 given on basis elements by
 \[
 	\UCNOT(\ket{00}) = \ket{00}, \quad
-	\UCNOT(\ket{01}) = \ket{01}, \quad
+	\UCNOT(\ket{01}) = \ket{01}
+\]
+\[
 	\UCNOT(\ket{10}) = \ket{11}, \quad
 	\UCNOT(\ket{11}) = \ket{10}.
 \]
@@ -591,17 +791,17 @@ So pictorially, the quantum CNOT gate is given by
 		\lstick{\ket0} & \ctrl{1} & \rstick{\ket0} \qw \\
 		\lstick{\ket0} & \targ & \rstick{\ket0} \qw \\
 	}
-	\hspace{5em}
+	\hspace{6em}
 	\Qcircuit @C=0.8em @R=.7em {
 		\lstick{\ket0} & \ctrl{1} & \rstick{\ket0} \qw \\
 		\lstick{\ket1} & \targ & \rstick{\ket1} \qw \\
 	}
-	\hspace{5em}
+	\hspace{6em}
 	\Qcircuit @C=0.8em @R=.7em {
 		\lstick{\ket1} & \ctrl{1} & \rstick{\ket1} \qw \\
 		\lstick{\ket0} & \targ & \rstick{\ket1} \qw \\
 	}
-	\hspace{5em}
+	\hspace{6em}
 	\Qcircuit @C=0.8em @R=.7em {
 		\lstick{\ket1} & \ctrl{1} & \rstick{\ket1} \qw \\
 		\lstick{\ket1} & \targ & \rstick{\ket0} \qw \\
@@ -664,7 +864,7 @@ even when the original inputs are not entangled.
 		\]
 		\ii More generally, if $U$ is a $2 \times 2$ unitary matrix
 		(i.e.\ a map $\CC^{\oplus 2} \to \CC^{\oplus 2}$) then
-		there is $U$-\vocab{rotation gate} similar to the previous one,
+		there is \vocab{$U$-rotation gate} similar to the previous one,
 		which applies $U$ to the input.
 		\[
 			\Qcircuit @C=0.8em @R=.7em {
@@ -731,13 +931,156 @@ See also \Cref{prob:baby_no_clone}.
 
 \section{Deutsch-Jozsa Algorithm}
 The Deutsch-Jozsa algorithm is the first example of a nontrivial
-quantum algorithm which cannot be performed classically.
+quantum algorithm which cannot be performed classically:
+it is a ``proof of concept'' that would later inspire Grover's search algorithm
+and Shor's factoring algorithm.
+
+The problem is as follows: we're given a function $f : \{0,1\}^n \to \{0,1\}$,
+and promised that the function $f$ is either
+\begin{itemize}
+	\ii A constant function, or
+	\ii A balanced function, meaning that exactly half the inputs map to
+	$0$ and half the inputs map to $1$.
+\end{itemize}
+The function $f$ is given in the form of a reversible black box $U_f$ which
+is the control of a NOT gate, so it can be represented as the circuit diagram
+\[
+	\Qcircuit @C=1em @R=0.7em {
+		\lstick{\ket{x_1x_2 \dots x_n}} & /^n \qw & \multigate{1}{U_f} &
+			\rstick{\ket{x_1x_2\dots x_n}} \qw \\
+		\lstick{\ket{y}} & \qw & \ghost{U_f} & \rstick{\ket{y+f(x) \mod 2}}\qw \\
+	}
+\]
+i.e.\ if $f(x_1, \dots, x_n) = 0$ then the gate does nothing,
+otherwise the gate flips the $y$ bit at the bottom.
+The slash with the $n$ indicates that the top of the input really consists
+of $n$ qubits, not just the one qubit drawn,
+and so the black box $U_f$ is a map on $n+1$ qubits.
+
+The problem is to determine,
+with as few calls to the black box $U_f$ as possible,
+whether $f$ is balanced or constant.
+
+\begin{ques}
+	Classically, show that in the worst case we may need
+	up to $2^{n-1}+1$ calls to the function $f$ to answer the question.
+\end{ques}
+
+So with only classical tools, it would take $O(2^n)$ queries to determine
+whether $f$ is balanced or constant.
+However,
+\begin{theorem}
+	[Deutsch-Jozsa]
+	The Deutsch-Jozsa problem can be determined in a quantum circuit
+	with only a single call to the black box.
+\end{theorem}
+\begin{proof}
+	For concreteness, we do the case $n=1$ explicitly;
+	the general case is contained in \Cref{prob:deutsch_jozsa}.
+	We claim that the necessary circuit is
+	\[
+		\Qcircuit @C=1em @R=0.7em {
+			\lstick{\ket0} & \gate{H} & \multigate{1}{U_f} & \gate{H} & \meter \qw \\
+			\lstick{\ket1} & \gate{H} & \ghost{U_f} & \qw & \\
+		}
+	\]
+	Here the $H$'s are Hadamard gates, and meter at the end of the rightmost wire
+	indicates that we make a measurement along the usual $\ket0$, $\ket1$ basis.
+	This is not a typo! Even though classically the top wire is just
+	a repeat of the input information,
+	we are about to see that it's the top we want to measure.
+
+	Note that after the two Hadamard operations, the state we get is
+	\begin{align*}
+		\ket{01} &\xmapsto{H^{\otimes 2}}
+		\left( \frac{1}{\sqrt2}(\ket0+\ket1) \right)
+		\otimes
+		\left( \frac{1}{\sqrt2}(\ket0-\ket1) \right) \\
+		&=
+		\half \Big( \ket0\otimes\big(\ket0-\ket1\big) 
+		\; + \; \ket1\otimes\big(\ket0-\ket1\big) \Big).
+	\end{align*}
+	So after applying $U_f$, we obtain
+	\[
+		\half\Big( 
+		\ket0\otimes\big(\ket{0+f(0)}-\ket{1+f(0)}\big)
+		\; + \; \ket1\otimes\big(\ket{0+f(1)}-\ket{1+f(1)}\big)
+		\Big)
+	\]
+	where the modulo $2$ has been left implicit.
+	Now, observe that the effect of going from
+	$\ket0-\ket1$ to $\ket{0+f(x)}-\ket{1+f(x)}$ is merely
+	to either keep the state the same (if $f(x)=0$)
+	or to negate it (if $f(x)=1$).
+	So we can simplify and factor to get
+	\[
+		\half
+		\left( (-1)^{f(0)}\ket0 + (-1)^{f(1)}\ket1 \right)
+		\otimes
+		\left( \ket0-\ket1 \right).
+	\]
+	Thus, the picture so far is:
+	\[
+		\Qcircuit @C=1em @R=0.7em {
+			\lstick{\ket0} & \gate{H} & \multigate{1}{U_f} &
+				\rstick{\frac{1}{\sqrt2}%
+				\Big((-1)^{f(0)}\ket0+(-1)^{f(1)}\ket1\Big)} \qw \\
+			\lstick{\ket1} & \gate{H} & \ghost{U_f} &
+				\rstick{\frac{1}{\sqrt2}(\ket0-\ket1)} \qw
+		}
+	\]
+	In particular, the resulting state is not entangled,
+	and we can simply discard the last qubit (!).
+	Now observe:
+	\begin{itemize}
+		\ii If $f$ is constant, then the upper-most state is $\pm\xup$.
+		\ii If $f$ is balanced, then the upper-most state is $\pm\xdown$.
+	\end{itemize}
+	So simply doing a measurement along $\sigma_x$ will give us the answer.
+	Equivalently, perform another $H$ gate
+	(so that $H\xup = \ket0$, $H\xdown = \ket1$)
+	and measuring along $\sigma_z$ in the usual $\ket0$, $\ket1$ basis.
+	Thus for $n=1$ we only need a single call to the oracle.
+\end{proof}
 
 
 \section\problemhead
 \begin{problem}[Fredkin Gate]
-	Show that the Fredkin gate with the following truth table is reversible.
-	\todo{truth table}
+	The \vocab{Fredkin gate} (also called the controlled swap, or CSWAP gate)
+	is the three-bit gate with the following truth table:
+	\[
+	\begin{array}{|rrr|rrr|}
+		 \hline
+		 \multicolumn{3}{|c|}{\text{In}} & \multicolumn{3}{|c|}{\text{Out}} \\
+		 \hline
+		 0 & 0 & 0 & 0 & 0 & 0 \\
+		 0 & 0 & 1 & 0 & 0 & 1 \\
+		 0 & 1 & 0 & 0 & 1 & 0 \\
+		 0 & 1 & 1 & 0 & 1 & 1 \\
+		 1 & 0 & 0 & 1 & 0 & 0 \\
+		 1 & 0 & 1 & 1 & 1 & 0 \\
+		 1 & 1 & 0 & 1 & 0 & 1 \\
+		 1 & 1 & 1 & 1 & 1 & 1 \\\hline
+	 \end{array}
+	\]
+	Thus the gate swaps the last two input bits whenever the first bit is $1$.
+	Show that this gate is also reversible and universal.
+	\begin{hint}
+		One way is to create CCNOT using a few Fredkin gates.
+	\end{hint}
+	\begin{sol}
+		To show the Fredkin gate is universal
+		it suffices to reversibly create a CCNOT gate with it.
+		We write the system
+		\begin{align*}
+			(z,\neg z,-) &= \opname{Fred}(z,1,0) \\
+			(x,a,-) &= \opname{Fred}(x,1,0) \\
+			(y,b,-) &= \opname{Fred}(y,a,0) \\
+			(-,c,-) &= \opname{Fred}(b,0,1) \\
+			(-,d,-) &= \opname{Fred}(c, z, \neg z).
+		\end{align*}
+		Direct computation shows that $d = z+xy\pmod 2$.
+	\end{sol}
 \end{problem}
 
 \begin{problem}
@@ -752,7 +1095,122 @@ quantum algorithm which cannot be performed classically.
 		\lstick{\ket0} & \ghost{U} & \rstick{\ket\psi} \qw
 	}
 	\]
+	\begin{hint}
+		Plug in $\ket\psi=\ket0$, $\ket\psi=\ket1$, $\ket\psi = \xup$
+		and derive a contradiction.
+	\end{hint}
 \end{problem}
+
+\begin{problem}[Deutsch-Jozsa]
+	\label{prob:deutsch_jozsa}
+	Given the black box $U_f$ described in the Deutsch-Jozsa algorithm,
+	consider the following circuit.
+	\[
+		\Qcircuit @C=1em @R=0.7em {
+			\lstick{\ket{0\dots0}} & /^n \qw & \gate{H^{\otimes n}} & \multigate{1}{U_f}
+				& \gate{H^{\otimes n}} & \meter \qw \\
+			\lstick{\ket1} & \qw & \gate{H} & \ghost{U_f} & \qw & \\
+		}
+	\]
+	That is, take $n$ copies of $\ket 0$, apply the Hadamard rotation to all of them,
+	apply $U_f$, reverse the Hadamard to all $n$ input bits
+	(again discarding the last bit), then measure all $n$ bits
+	in the $\ket0$/$\ket1$ basis (as in \Cref{ex:simult_measurement}).
+
+	Show that the probability of measuring $\ket{0\dots0}$
+	is $1$ if $f$ is constant and $0$ if $f$ is balanced.
+	\begin{hint}
+		First show that the box sends
+		$\ket{x_1} \otimes \dots \otimes \ket{x_m} \otimes \xdown$
+		to $(-1)^{f(x_1, \dots, x_m)}
+		(\ket{x_1} \otimes \dots \otimes \ket{x_m} \otimes \xdown)$.
+	\end{hint}
+	\begin{sol}
+		Put $\xdown = \frac{1}{\sqrt2} (\ket0-\ket1)$.
+		Then we have that $U_f$ sends
+		\[
+			\ket{x_1}  \dots  \ket{x_m}  \ket 0 
+			- \ket{x_1}  \dots  \ket{x_m}  \ket 1 
+			\xmapsto{U_f}
+			\pm \ket{x_1}  \dots  \ket{x_m}  \ket 0 
+			\mp \ket{x_1}  \dots  \ket{x_m}  \ket 1 
+		\]
+		the sign being $+$, $-$ exactly when $f(x_1, \dots, x_m) = 1$.
+
+		Now, upon inputting $\ket0 \dots \ket0 \ket1$, we find that $H^{\otimes m+1}$ maps it to
+		\[ 2^{-n/2} \sum_{x_1, \dots, x_n} \ket{x_1} \dots \ket{x_n} \xdown.  \]
+		Then the image under $U_f$ is
+		\[ 2^{-n/2} \sum_{x_1, \dots, x_n} (-1)^{f(x_1, \dots, x_n)} \ket{x_1} \dots \ket{x_n} \xdown.  \]
+		We now discard the last qubit, leaving us with
+		\[ 2^{-n/2} \sum_{x_1, \dots, x_n} (-1)^{f(x_1, \dots, x_n)} \ket{x_1} \dots \ket{x_n}.  \]
+		Applying $H^{\otimes m}$ to this, we get
+		\[ 2^{-n/2} \sum_{x_1, \dots, x_n} (-1)^{f(x_1, \dots, x_n)}
+			\cdot
+			\left(
+			2^{-n/2}
+			\sum_{y_1, \dots, y_n}
+			(-1)^{x_1y_1 + \dots + x_ny_n}
+			\ket{y_1} \ket{y_2} \dots \ket{y_n}
+			\right)
+		\]
+		since $H\ket0 = \frac{1}{\sqrt2}(\ket0+\ket1)$
+		while $H\ket1 = \frac{1}{\sqrt2}(\ket0-\ket1)$,
+		so minus signs arise exactly if $x_i = 0$ and $y_i = 0$ simultaneously,
+		hence the term $(-1)^{x_1y_1 + \dots + x_ny_n}$.
+		Swapping the order of summation, we get
+		\[ 
+			2^{-n}
+			\sum_{y_1, \dots, y_n}
+			C(y_1, \dots, y_n)
+			\ket{y_1} \ket{y_2} \dots \ket{y_n}
+		\]
+		where $C_{y_1, \dots, y_n}  = \sum_{x_1, \dots, x_n} (-1)^{f(x_1, \dots, x_n)+x_1y_1 + \dots + x_ny_n}$.
+		Now, we finally consider two cases.
+		\begin{itemize}
+			\ii If $f$ is the constant function, then we find that
+			\[
+				C(y_1, \dots, y_n) = 
+				\begin{cases}
+					\pm 1 &  y_1 = \dots = y_n = 0 \\
+					0 & \text{otherwise}.
+				\end{cases}
+			\]
+			To see this, note that the result is clear for $y_1 = \dots = y_n = 0$;
+			otherwise, if WLOG $y_1 = 1$, then the terms for $x_1 = 0$ exactly cancel
+			the terms for $x_1 = 0$, pair by pair.
+			Thus in this state, the measurements all result in $\ket0 \dots \ket0$.
+
+			\ii On the other hand if $f$ is balanced, we derive that
+			\[ C(0, \dots, 0) = 0. \]
+			Thus \emph{no} measurements result in $\ket 0 \dots \ket 0$.
+		\end{itemize}
+		In this way, we can tell whether $f$ is balanced or not.
+	\end{sol}
+\end{problem}
+
+\begin{dproblem}[Barenco et al, 1995; arXiv:quant-ph/9503016v1]
+	Let
+	\[
+		P = \begin{pmatrix} 1 & 0 \\ 0& i \end{pmatrix} 
+		\qquad
+		Q = \frac{1}{\sqrt2}\begin{pmatrix} 1 & -i \\ -i & 1 \end{pmatrix}
+	\]
+	Verify that the quantum Toffoli gate can be implemented
+	using just controlled rotations via the circuit
+	\[
+		\Qcircuit @R=1em @C=0.7em {
+			\lstick{\ket{x_1}} & \qw & \ctrl{2} & \ctrl{1} & \ctrl{1} & \qw & \ctrl{1} & \qw \\
+			\lstick{\ket{x_2}} & \ctrl{1} & \qw & \gate{P} & \targ & \ctrl{1} & \targ & \qw \\
+			\lstick{\ket{x_3}} & \gate{Q} & \gate{Q} & \qw & \qw & \gate{Q^\dagger} & \qw & \qw
+		}
+	\]
+	This was a big surprise to researchers when discovered,
+	because classical reversible logic requires three-bit gates (e.g. Toffoli, Fredkind).
+	\begin{hint}
+		This is direct computation.
+	\end{hint}
+\end{dproblem}
+
 
 
 \chapter{Shor's Algorithm}
