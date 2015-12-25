@@ -616,6 +616,17 @@ of smaller dimension at all!
 	\label{prob:regA_intertwine}
 	Find all intertwining operators $T : \Reg(A) \to \Reg(A)$,
 	where $A$ is a fixed algebra.
+	\begin{hint}
+		Right multiplication.
+	\end{hint}
+	\begin{sol}
+		The operators are those of the form $T(a) = ab$
+		for some fixed $b \in A$.
+		One can check these work, since for $c \in A$
+		we have $T(c \cdot a) = cab = c \cdot T(a)$.
+		To see they are the only ones, note that
+		$T(a) = T(a \cdot 1_A) = a \cdot T(1_A)$ for any $a \in A$.
+	\end{sol}
 \end{sproblem}
 
 \chapter{Semisimple Algebras}
@@ -960,16 +971,39 @@ Note that, if we take the representation $V$ of $S_3$ on $k^{\oplus 3}$,
 we just get that $V = \refl_0 \oplus \CC_{\text{triv}}$.
 
 \section\problemhead
+
 \begin{problem}
-	\gim
-	Let $G = \Zc n$ and let $k = \CC$.
-	Show that up to isomorphism there are exactly $n$ irreps of $k[G]$.
-	What if $k = \RR$?
+	Find all the irreps of $\CC[\Zc n]$.
+	\begin{hint}
+		They are all one-dimensional, $n$ of them.
+		What are the homomorphisms $\Zc n \to \CC^\times$?
+	\end{hint}
 \end{problem}
 
 \begin{problem}
-	Determine all the irreps of $D_{10}$,
-	given that there are exactly four of them.
+	Prove that all irreducible representations
+	of a finite group are finite-dimensional.
+	\begin{hint}
+		This is actually easy.
+	\end{hint}
+	\begin{sol}
+		Pick any $v \in V$, then the subspace
+		spanned by elements $g \cdot v$ for $v \in V$
+		is $G$-invariant;
+		this is a finite-dimensional subspace,
+		so it must equal all of $V$.
+	\end{sol}
+\end{problem}
+
+\begin{problem}
+	\gim
+	Determine all the complex irreps of $D_{10}$.
+	\begin{hint}
+		There are only two one-dimensional ones
+		(corresponding to the only two
+		homomorphisms $D_{10} \to \CC^\times$).
+		So the remaining ones are two-dimensional.
+	\end{hint}
 \end{problem}
 
 \chapter{Characters}
@@ -1008,15 +1042,13 @@ Here is the case $G = S_3$:
 	For $\refl_0$ we take a basis $(1,0,-1)$ and $(0,1,-1)$, say,
 	and compute the traces directly in this basis.
 	\[
-		\begin{array}{|r|rrr|}
+		\begin{array}{|r|rrrrrr|}
 			\hline
-			\chi_V(g) & \CC_{\text{triv}} & \CC_{\text{sign}} & \refl_0 \\ \hline
-			\id & 1 & 1 & 2 \\
-			(1 \; 2) & 1 & -1 & 0 \\
-			(2 \; 3) & 1 & -1 & 0 \\
-			(3 \; 1) & 1 & -1 & 0 \\
-			(1 \; 2 \; 3) & 1 & 1 & -1 \\
-			(3 \; 2 \; 1) & 1 & 1 & -1 \\ \hline
+			\chi_V(g) & \id & (1\;2) & (2\;3) & (3\;1) 
+				& (1\;2\;3) & (3\;2\;1)  \\ \hline
+			\Ctriv & 1 & 1 & 1 & 1 & 1 & 1 \\
+			\CC_{\mathrm{sign}} & 1 & -1 & -1 & -1 & 1 & 1 \\
+			\refl_0 & 2 & 0 & 0 & 0 & -1 & -1 \\ \hline
 		\end{array}
 	\]
 \end{example}
@@ -1038,7 +1070,9 @@ which we will prove as the chapter progresses.
 \end{abuse}
 
 \begin{ques}
-	Show that $\chi_V(1_A) = \dim V$.
+	Show that $\chi_V(1_A) = \dim V$,
+	so one can read the dimensions of the representations
+	from the leftmost column of a character table.
 \end{ques}
 
 \section{The Dual Space Modulo the Commutator}
@@ -1272,6 +1306,8 @@ $S_3$ that we found were irreps directly from the character table.
 
 In other words, we can now efficiently verify any time we have
 a complete set of irreps.
+
+\section{Examples of Character Tables}
 We give another example with $D_{10}$ again.
 \begin{example}
 	[Dihedral Group on $10$ Elements]
@@ -1292,13 +1328,13 @@ We give another example with $D_{10}$ again.
 	and pairwise non-isomorphic.
 	We do so by writing the character table:
 	\[
-		\begin{array}{|c|rrcc|}
+		\begin{array}{|c|rccr|}
 			\hline
-			& \Ctriv & \Csign & V_1 & V_2 \\\hline
-			1 & 1 & 1 & 2 & 2 \\
-			r, r^4 & 1 & 1 & \omega + \omega^4 & \omega^2 + \omega^3 \\
-			r^2, r^3 & 1 & 1 & \omega^2 + \omega^3 & \omega + \omega^4 \\
-			sr^k & 1 & -1 & 0 & 0 \\ \hline
+			D_{10} & 1 & r, r^4 & r^2, r^3 & sr^k \\ \hline
+			\Ctriv & 1 & 1 & 1 & 1 \\
+			\Csign & 1 & 1 & 1 & -1 \\
+			V_1 & 2 & \omega+\omega^4 & \omega^2+\omega^3 & 0 \\
+			V_2 & 2 & \omega^2+\omega^3 & \omega+\omega^4 & 0 \\ \hline
 		\end{array}
 	\]
 	Then a direct computation shows the orthogonality relations,
@@ -1306,10 +1342,164 @@ We give another example with $D_{10}$ again.
 	For example, $\left< \Ctriv, \Csign \right> = 1 + 2 \cdot 1 + 2 \cdot 1 + 5 \cdot (-1) = 0$.
 \end{example}
 
+\begin{example}
+	[Character Table of $S_4$]
+	We now have enough machinery to to compute the character
+	table of $S_4$, which has five conjugacy classes
+	(corresponding to cycle types $\id$, $2$, $3$, $4$ and $2+2$).
+	First of all, we note that it has two one-dimensional representations,
+	$\Ctriv$ and $\Csign$, and these are the only ones
+	(because there are only two homomorphisms $S_4 \to \CC^\times$).
+	So thus far we have the table
+	\[
+		\begin{array}{|c|rrrrr|}
+			\hline
+			S_4 & 1 & (\bullet\;\bullet) & (\bullet\;\bullet\;\bullet)
+				& (\bullet\;\bullet\;\bullet\;\bullet)
+				& (\bullet\;\bullet)(\bullet\;\bullet)
+				\\ \hline
+			\Ctriv & 1 & 1 & 1 & 1 & 1 \\
+			\Csign & 1 & -1 & 1 & -1 & 1 \\ 
+			\vdots & \multicolumn{5}{|c|}{\vdots}
+		\end{array}
+	\]
+	Note the columns represent $1+6+8+6+3=24$ elements.
+
+	Now, the remaining three representations have dimensions
+	$d_1$, $d_2$, $d_3$ with
+	\[ d_1^2 + d_2^2 + d_3^2 = 4! - 2 = 22 \]
+	which has only $(d_1, d_2, d_3) = (2,3,3)$ and permutations.
+	Now, we can take the $\refl_0$ representation
+	\[ \left\{ (w,x,y,z) \mid w+x+y+z=0 \right\} \]
+	with basis $(1,0,0,-1)$, $(0,1,0,-1)$ and $(0,0,1,-1)$.
+	This can be geometrically checked to be irreducible,
+	but we can also do this geometrically by computing the
+	character directly (this is tedious):
+	it comes out to have $3$, $-1$, $0$, $1$, $-1$
+	which indeed gives norm
+	\[
+		\left< \chi_{\refl_0}, \chi_{\refl_0} \right>
+		=
+		\frac{1}{4!}
+		\left( 
+			\underbrace{3^2}_{\id}
+			+ \underbrace{6\cdot(-1)^2}_{(\bullet\;\bullet)}
+			+ \underbrace{8\cdot(0)^2}_{(\bullet\;\bullet\;\bullet)}
+			+ \underbrace{6\cdot(1)^2}_{(\bullet\;\bullet\;\bullet\;\bullet)}
+			+ \underbrace{3\cdot(-1)^2}_{(\bullet\;\bullet)(\bullet\;\bullet)}
+		\right)
+		= 1.
+	\]
+	Note that we can also tensor this with the sign representation,
+	to get another irreducible representation
+	(since $\Csign$ has all traces $\pm 1$, the norm doesn't change).
+	Finally, we recover the final row using orthogonality
+	(which we name $\CC^2$, for lack of a better name);
+	hence the completed table is as follows.
+	\[
+		\begin{array}{|c|rrrrr|}
+			\hline
+			S_4 & 1 & (\bullet\;\bullet) & (\bullet\;\bullet\;\bullet)
+				& (\bullet\;\bullet\;\bullet\;\bullet)
+				& (\bullet\;\bullet)(\bullet\;\bullet)
+				\\ \hline
+			\Ctriv & 1 & 1 & 1 & 1 & 1 \\
+			\Csign & 1 & -1 & 1 & -1 & 1 \\ 
+			\CC^2 & 2 & 0 & 2 & -1 & 0 \\ 
+			\refl_0 & 3 & -1 & 0 & 1 & -1 \\
+			\refl_0 \otimes \Csign & 3 & 1 & 0 & -1 & -1 \\\hline
+		\end{array}
+	\]
+\end{example}
+
 \section\problemhead
+
+\begin{dproblem}
+	[Reading Decompsitions from Characters]
+	Let $W$ be a complex representation of a finite group $G$.
+	Let $V_1$, \dots, $V_r$ be the complex irreps of $G$
+	and set $n_i = \left< \chi_W, \chi_{V_i} \right>$.
+	Prove that each $n_i$ is a positive integer and
+	\[
+		W = \bigoplus_{i=1}^r 
+		V_i^{\oplus n_i}
+	\]
+	\begin{hint}
+		Obvious.
+		Let $W = \bigoplus V_i^{m_i}$ (possible since $\CC[G]$ semisimple)
+		thus $\chi_W = \sum_i m_i \chi_{V_i}$.
+	\end{hint}
+\end{dproblem}
+
+\begin{problem}
+	Consider complex representations of $G = S_4$.
+	The representation $\refl_0 \otimes \refl_0$
+	is $9$-dimensional, so it is clearly irreducible.
+	Compute its decomposition in terms of the five
+	irreducible representations.
+	\begin{hint}
+		Use the previous problem, with $\chi_W = \chi_{\refl_0}^2$.
+	\end{hint}
+	\begin{sol}
+		$\Csign \oplus \CC^2 \oplus \refl_0 \oplus (\refl_0\otimes\Csign)$.
+	\end{sol}
+\end{problem}
+
+\begin{problem}
+	[Tensoring by One-Dimensional Irreps]
+	Let $V$ and $W$ be irreps of $G$, with $\dim W = 1$.
+	Show that $V \otimes W$ is irreducible.
+	\begin{hint}
+		Characters. Note that $|\chi_W| = 1$ everywhere.
+	\end{hint}
+	\begin{sol}
+		First, observe that $|\chi_W(g)|=1$ for all $g \in G$.
+		\begin{align*}
+			\left< \chi_{V \otimes W}, \chi_{V \otimes W} \right>
+			&= \left< \chi_V \chi_W, \chi_V \chi_W \right> \\
+			&= \frac{1}{|G|} \sum_{g \in G} 
+			\left\lvert \chi_V(g) \right\rvert^2
+			\left\lvert \chi_W(g) \right\rvert^2 \\
+			&= \frac{1}{|G|} \sum_{g \in G} 
+			\left\lvert \chi_V(g) \right\rvert^2 \\
+			&= \left< \chi_V, \chi_V \right> = 1.
+		\end{align*}
+	\end{sol}
+\end{problem}
+
+\begin{problem}
+	[Quaternions]
+	Compute the character table of the quaternion group $Q_8$.
+	\begin{hint}
+		There are five conjugacy classes, $1$, $-1$
+		and $\pm i$, $\pm j$, $\pm k$.
+		Given four of the representations, orthogonality
+		can give you the fifth one.
+	\end{hint}
+	\begin{sol}
+		The table is given by
+		\[
+			\begin{array}{|c|rrrrr|}
+				\hline
+				Q_8 & 1 & -1 & \pm i & \pm j & \pm k \\ \hline
+				\Ctriv & 1 & 1 & 1 & 1 & 1 \\
+				\CC_i & 1 & 1 & 1 & -1 & -1 \\
+				\CC_j & 1 & 1 & -1 & 1 & -1 \\
+				\CC_k & 1 & 1 & -1 & -1 & 1 \\
+				\CC^2 & 2 & -2 & 0 & 0 & 0 \\\hline
+			\end{array}
+		\]
+		The one-dimensional representations (first four rows)
+		follows by considering the homomorphism $Q_8 \to \CC^\times$.
+		The last row is two-dimensional and can be recovered
+		by using the orthogonality formula.
+	\end{sol}
+\end{problem}
+
 \begin{sproblem}
 	[Second Orthogonality Formula]
 	\label{prob:second_orthog}
+	\gim
 	Let $g$ and $h$ be elements of a finite group $G$,
 	and let $V_1$, \dots, $V_r$ be the irreps of $G$.
 	Prove that
@@ -1322,11 +1512,15 @@ We give another example with $D_{10}$ again.
 		\end{cases}
 	\]
 	Here, $Z(g) = \left\{ x \in G : xg = gx \right\}$.
+	\begin{hint}
+		Write as 
+		\[ \sum_{i=1}^r \chi_{V_i \otimes V_i^\vee} (gh\inv)
+			= \chi_{\bigoplus_i V_i \otimes V_i^\vee}(gh\inv)
+			= \chi_{\CC[G]}(gh\inv).
+		\]
+		Now look at the usual basis for $\CC[G]$.
+	\end{hint}
 \end{sproblem}
-
-\todo{Heisenberg group?}
-
-
 
 \chapter{Some Applications}
 With all this setup, we now take the time to develop some nice
@@ -1474,6 +1668,105 @@ contradicting the assumption that $G$ was simple.
 
 
 \section{Frobenius Determinant}
+We finish with the following result,
+the problem that started the branch of representation theory.
+Given a finite group $G$,
+we create $n$ variables $\{x_g\}_{g \in G}$,
+and an $n \times n$ matrix $X_G$ whose $(g,h)$th entry is $x_{gh}$.
+\begin{example}[Frobenius Determinants]
+	\listhack
+	\begin{enumerate}[(a)]
+	\ii If $G = \Zc 2 = \left< T \mid T^2 = 1\right>$
+	then the matrix would be \[ X_G =
+	\begin{pmatrix} x_{\id} & x_T \\ x_T & x_{\id} \end{pmatrix}. \]
+	Then $\det X_G = (x_{\id}-x_T)(x_{\id}+x_T)$.
+	\ii If $G = S_3$, a long computation gives
+	the irreducible factorization of $\det X_G$ is
+	\[
+		\left( \sum_{\sigma \in S_3} x_{\sigma} \right)
+		\left( \sum_{\sigma \in S_3} \sign(\sigma)x_\sigma \right)
+		\Big( F\left(x_\id, x_{(123)}, x_{(321)}\right)
+		- F\left(x_{(12)}, x_{(23)}, x_{(31)}\right) \Big)^2 \]
+	where $F(a,b,c) = a^2+b^2+c^2-ab-bc-ca$;
+	the latter factor is irreducible.
+	\end{enumerate}
+\end{example}
+\begin{theorem}
+	[Frobenius Determinant]
+	The polynomial $\det X_G$ (in $|G|$ variables) factors
+	into a product of irreducible polynomials such that
+	\begin{enumerate}[(i)]
+		\ii The number of polynomials equals the number
+		of conjugacy classes of $G$, and
+		\ii The multiplicity of each polynomial
+		equals its degree.
+	\end{enumerate}
+\end{theorem}
+You may already be able to guess how the ``sum of squares'' result
+is related! (Indeed, look at $\deg\det X_G$.)
+
+Legend has it that Dedekind observed this behavior first in 1896.
+He didn't know how to prove it in general,
+so he sent it in a letter to Frobenius,
+who created representation theory to solve the problem.
+
+With all the tools we've built, it is now fairly straightforward
+to prove the result.
+
+\begin{proof}
+	Let $V = (V, \rho) = \Reg(\CC[G])$ and let $V_1$, \dots, $V_r$
+	be the irreps of $G$.
+	Let's consider the map $T : \CC[G] \to \CC[G]$
+	which has matrix $X_G$ in the usual basis of $\CC[G]$, namely
+	\[ T = T(\{x_g\}) = \sum_{g \in G} x_g \rho(g) \in \Mat(V). \]
+	Thus we want to examine $\det T$.
+
+	But we know that $V = \bigoplus_{i=1}^r V_i^{\oplus \dim V_i}$
+	as before, and so breaking down $T$ over its subspaces we know
+	\[
+		\det T
+		= \prod_{i=1}^r \left( \det T|_{V_i}  \right)^{\dim V_i}.
+	\]
+	where $T|_{V_i}$ is the restricted map $T : V_i \to V_i$.
+	So we only have to show two things:
+	the polynomials $\det T_{V_i}$ are irreducible,
+	and they are pairwise different for different $i$.
+
+	Let $V_i = (V_i, \rho)$, and pick $k = \dim V_i$.
+	\begin{itemize}
+		\ii \emph{Irreducible}:
+		By Density, for any $M \in \Mat(V_i)$ there exists
+		a \emph{particular} choice of complex numbers $x_g \in G$ such that
+		\[
+			M = \sum_{g \in G} x_g
+			\cdot \rho_i(g)
+			= T|_{V_i}(\{x_g\}).
+		\]
+		View $\rho_i(g)$ as a $k \times k$ matrix with complex coefficients.
+		Thus the ``generic'' $T|_{V_i}(\{x_g\})$, viewed as a matrix with
+		polynomial entries, must have linearly independent entries
+		(or there would be some matrix in $\Mat(V_i)$ that we can't achieve).
+
+		Then, the assertion follows (by a linear variable change)
+		from the simple fact that the polynomial
+		$\det (y_{ij})_{1 \le i, j \le m}$ in $m^2$ variables
+		is always irreducible.
+
+		\ii \emph{Pairwise distinct}:
+		We show that from $\det T|_{V_i}(\{x_g\})$ we can read
+		off the character $\chi_{V_i}$, which proves the claim.
+		In fact
+		\begin{exercise}
+			Pick \emph{any} basis for $V_i$.
+			If $\dim V_i = k$, and $1_G \neq g \in G$, then
+			\[
+				\chi_{V_i} (g)
+				\text{ is the coefficient of } x_g^{k-1} x_{1_G}.
+			\]
+		\end{exercise}
+		Thus, we are done. \qedhere
+	\end{itemize}
+\end{proof}
+
 
 \end{document}
-TODO: "finite-dimensional irreducible representation" $\to$ irrep

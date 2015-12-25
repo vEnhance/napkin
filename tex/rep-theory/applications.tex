@@ -1,4 +1,4 @@
-\chapter{Some Applications (In Progress)}
+\chapter{Some Applications}
 With all this setup, we now take the time to develop some nice
 results which are of independent interest.
 
@@ -144,4 +144,104 @@ contradicting the assumption that $G$ was simple.
 
 
 \section{Frobenius Determinant}
+We finish with the following result,
+the problem that started the branch of representation theory.
+Given a finite group $G$,
+we create $n$ variables $\{x_g\}_{g \in G}$,
+and an $n \times n$ matrix $X_G$ whose $(g,h)$th entry is $x_{gh}$.
+\begin{example}[Frobenius Determinants]
+	\listhack
+	\begin{enumerate}[(a)]
+	\ii If $G = \Zc 2 = \left< T \mid T^2 = 1\right>$
+	then the matrix would be \[ X_G =
+	\begin{pmatrix} x_{\id} & x_T \\ x_T & x_{\id} \end{pmatrix}. \]
+	Then $\det X_G = (x_{\id}-x_T)(x_{\id}+x_T)$.
+	\ii If $G = S_3$, a long computation gives
+	the irreducible factorization of $\det X_G$ is
+	\[
+		\left( \sum_{\sigma \in S_3} x_{\sigma} \right)
+		\left( \sum_{\sigma \in S_3} \sign(\sigma)x_\sigma \right)
+		\Big( F\left(x_\id, x_{(123)}, x_{(321)}\right)
+		- F\left(x_{(12)}, x_{(23)}, x_{(31)}\right) \Big)^2 \]
+	where $F(a,b,c) = a^2+b^2+c^2-ab-bc-ca$;
+	the latter factor is irreducible.
+	\end{enumerate}
+\end{example}
+\begin{theorem}
+	[Frobenius Determinant]
+	The polynomial $\det X_G$ (in $|G|$ variables) factors
+	into a product of irreducible polynomials such that
+	\begin{enumerate}[(i)]
+		\ii The number of polynomials equals the number
+		of conjugacy classes of $G$, and
+		\ii The multiplicity of each polynomial
+		equals its degree.
+	\end{enumerate}
+\end{theorem}
+You may already be able to guess how the ``sum of squares'' result
+is related! (Indeed, look at $\deg\det X_G$.)
+
+Legend has it that Dedekind observed this behavior first in 1896.
+He didn't know how to prove it in general,
+so he sent it in a letter to Frobenius,
+who created representation theory to solve the problem.
+
+With all the tools we've built, it is now fairly straightforward
+to prove the result.
+
+\begin{proof}
+	Let $V = (V, \rho) = \Reg(\CC[G])$ and let $V_1$, \dots, $V_r$
+	be the irreps of $G$.
+	Let's consider the map $T : \CC[G] \to \CC[G]$
+	which has matrix $X_G$ in the usual basis of $\CC[G]$, namely
+	\[ T = T(\{x_g\}) = \sum_{g \in G} x_g \rho(g) \in \Mat(V). \]
+	Thus we want to examine $\det T$.
+
+	But we know that $V = \bigoplus_{i=1}^r V_i^{\oplus \dim V_i}$
+	as before, and so breaking down $T$ over its subspaces we know
+	\[
+		\det T
+		= \prod_{i=1}^r \left( \det T|_{V_i}  \right)^{\dim V_i}.
+	\]
+	where $T|_{V_i}$ is the restricted map $T : V_i \to V_i$.
+	So we only have to show two things:
+	the polynomials $\det T_{V_i}$ are irreducible,
+	and they are pairwise different for different $i$.
+
+	Let $V_i = (V_i, \rho)$, and pick $k = \dim V_i$.
+	\begin{itemize}
+		\ii \emph{Irreducible}:
+		By Density, for any $M \in \Mat(V_i)$ there exists
+		a \emph{particular} choice of complex numbers $x_g \in G$ such that
+		\[
+			M = \sum_{g \in G} x_g
+			\cdot \rho_i(g)
+			= T|_{V_i}(\{x_g\}).
+		\]
+		View $\rho_i(g)$ as a $k \times k$ matrix with complex coefficients.
+		Thus the ``generic'' $T|_{V_i}(\{x_g\})$, viewed as a matrix with
+		polynomial entries, must have linearly independent entries
+		(or there would be some matrix in $\Mat(V_i)$ that we can't achieve).
+
+		Then, the assertion follows (by a linear variable change)
+		from the simple fact that the polynomial
+		$\det (y_{ij})_{1 \le i, j \le m}$ in $m^2$ variables
+		is always irreducible.
+
+		\ii \emph{Pairwise distinct}:
+		We show that from $\det T|_{V_i}(\{x_g\})$ we can read
+		off the character $\chi_{V_i}$, which proves the claim.
+		In fact
+		\begin{exercise}
+			Pick \emph{any} basis for $V_i$.
+			If $\dim V_i = k$, and $1_G \neq g \in G$, then
+			\[
+				\chi_{V_i} (g)
+				\text{ is the coefficient of } x_g^{k-1} x_{1_G}.
+			\]
+		\end{exercise}
+		Thus, we are done. \qedhere
+	\end{itemize}
+\end{proof}
+
 

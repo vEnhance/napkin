@@ -1,4 +1,4 @@
-\chapter{Semisimple Algebras (In Progress)}
+\chapter{Semisimple Algebras}
 In what follows, assume the field $k$ is algebraically closed.
 
 A \vocab{completely reducible} representation is one which
@@ -340,15 +340,38 @@ Note that, if we take the representation $V$ of $S_3$ on $k^{\oplus 3}$,
 we just get that $V = \refl_0 \oplus \CC_{\text{triv}}$.
 
 \section\problemhead
+
 \begin{problem}
-	\gim
-	Let $G = \Zc n$ and let $k = \CC$.
-	Show that up to isomorphism there are exactly $n$ irreps of $k[G]$.
-	What if $k = \RR$?
+	Find all the irreps of $\CC[\Zc n]$.
+	\begin{hint}
+		They are all one-dimensional, $n$ of them.
+		What are the homomorphisms $\Zc n \to \CC^\times$?
+	\end{hint}
 \end{problem}
 
 \begin{problem}
-	Determine all the irreps of $D_{10}$,
-	given that there are exactly four of them.
+	Prove that all irreducible representations
+	of a finite group are finite-dimensional.
+	\begin{hint}
+		This is actually easy.
+	\end{hint}
+	\begin{sol}
+		Pick any $v \in V$, then the subspace
+		spanned by elements $g \cdot v$ for $v \in V$
+		is $G$-invariant;
+		this is a finite-dimensional subspace,
+		so it must equal all of $V$.
+	\end{sol}
+\end{problem}
+
+\begin{problem}
+	\gim
+	Determine all the complex irreps of $D_{10}$.
+	\begin{hint}
+		There are only two one-dimensional ones
+		(corresponding to the only two
+		homomorphisms $D_{10} \to \CC^\times$).
+		So the remaining ones are two-dimensional.
+	\end{hint}
 \end{problem}
 

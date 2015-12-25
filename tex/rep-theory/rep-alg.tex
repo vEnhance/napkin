@@ -1,4 +1,4 @@
-\chapter{Representations of Algebras (In Progress)}
+\chapter{Representations of Algebras}
 In the 19th century, a group was literally defined
 as a subset of $\GL(n)$ or of $S_n$: the word ``group'' hadn't been invented yet.
 Only much later did the abstract definition of a group was given,
@@ -605,5 +605,16 @@ of smaller dimension at all!
 	\label{prob:regA_intertwine}
 	Find all intertwining operators $T : \Reg(A) \to \Reg(A)$,
 	where $A$ is a fixed algebra.
+	\begin{hint}
+		Right multiplication.
+	\end{hint}
+	\begin{sol}
+		The operators are those of the form $T(a) = ab$
+		for some fixed $b \in A$.
+		One can check these work, since for $c \in A$
+		we have $T(c \cdot a) = cab = c \cdot T(a)$.
+		To see they are the only ones, note that
+		$T(a) = T(a \cdot 1_A) = a \cdot T(1_A)$ for any $a \in A$.
+	\end{sol}
 \end{sproblem}
 
