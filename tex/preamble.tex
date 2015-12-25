@@ -9,7 +9,9 @@
 \newcommand{\prototype}[1]{
 	\emph{{\color{red} Prototypical example for this section:} #1} \par\medskip
 }
-\newenvironment{moral}{\begin{mdframed}\bfseries\color{green!70!black}}%
+\newenvironment{moral}{%
+	\begin{mdframed}[linecolor=green!70!black]%
+	\bfseries\color{green!70!black}}%
 	{\end{mdframed}}
 
 
@@ -24,11 +26,12 @@
 	skipabove=12pt,
 	innerbottommargin=9pt,
 	skipbelow=2pt,
+	nobreak=true,
 	linecolor=blue,
-	nobreak=true
+	backgroundcolor=TealBlue!5,
 }
 \declaretheoremstyle[
-	headfont=\sffamily\bfseries,
+	headfont=\sffamily\bfseries\color{MidnightBlue},
 	mdframed={style=mdbluebox},
 	headpunct={\\[3pt]},
 	postheadspace={0pt}
@@ -44,9 +47,11 @@
 	innertopmargin=4pt,
 	innerbottommargin=8pt,
 	nobreak=true,
+	linecolor=RawSienna,
+	backgroundcolor=Salmon!5,
 }
 \declaretheoremstyle[
-	headfont=\bfseries,
+	headfont=\bfseries\color{RawSienna},
 	mdframed={style=mdrecbox},
 	headpunct={\\[3pt]},
 	postheadspace={0pt},
@@ -59,9 +64,25 @@ style=thmbluebox,name=Theorem,numberwithin=section]{theorem}
 \declaretheorem[style=thmbluebox,name=Corollary,sibling=theorem]{corollary}
 \declaretheorem[style=thmrecbox,name=Example,sibling=theorem]{example}
 
+\declaretheoremstyle[
+	headfont=\bfseries,
+	bodyfont=\normalfont\small,
+	spaceabove=4pt,
+	spacebelow=8pt,
+	mdframed={
+		skipabove=8pt,
+		linewidth=2pt,
+		rightline=false,
+		leftline=true,
+		topline=false,
+		bottomline=false,
+		linecolor=gray,
+		backgroundcolor=black!2
+	}
+]{inlineprob}
 \theoremstyle{theorem}
-\newtheorem{ques}[theorem]{Question}
-\newtheorem{exercise}[theorem]{Exercise}
+\declaretheorem[name=Question,sibling=theorem,style=inlineprob]{ques}
+\declaretheorem[name=Exercise,sibling=theorem,style=inlineprob]{exercise}
 
 \theoremstyle{definition}
 \newtheorem{claim}[theorem]{Claim}
