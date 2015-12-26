@@ -5,6 +5,7 @@
 \addbibresource{../../references.bib}
 \renewcommand{\gim}{($\ast$)}
 
+
 \begin{document}
 \title{Quantum Algorithms}
 \maketitle
@@ -1214,5 +1215,169 @@ However,
 
 
 \chapter{Shor's Algorithm}
+OK, now for Shor's Algorithm:
+how to factor $M = pq$ in $O\left( (\log M)^2 \right)$ time.
+
+\section{The Classical (Inverse) Fourier Transform}
+The ``crux move'' in Shor's algorithm is the so-called
+Quantum Fourier transform.
+The Fourier transform is used to extract \emph{periodicity} in data,
+and it turns out the quantum analogue is a lot faster than the classical one.
+
+Let me throw the definition at you first.
+Let $N$ be a positive integer, and let $\omega_N = \exp\left( \frac{2\pi i}{N} \right)$.
+\begin{definition}
+	Given a tuple of complex numbers
+	\[ \left( x_0, x_1, \dots, x_{N-1} \right) \]
+	its \vocab{discrete inverse Fourier transform} is 
+	the sequence $(y_0, y_1, \dots, y_{N-1})$ defined by
+	\[ y_k = \frac1N \sum_{j=0}^{N-1} \omega_N^{jk} x_i. \]
+	Equivalently, one is applying the matrix
+	\[
+		\begin{pmatrix} 
+			1 & 1 & 1 & \dots & 1 \\
+			1 & \omega_N & \omega_N^2 & \dots & \omega_N^{N-1} \\
+			1 & \omega_N^2 & \omega_N^4 & \dots & \omega_N^{2(N-1)} \\
+			\vdots & \vdots & \vdots & \ddots & \vdots \\
+			1 & \omega_N^{N-1} & \omega_N^{2(N-1)} & \dots & \omega_N^{(N-1)^2}
+		\end{pmatrix}
+		\begin{pmatrix} x_0 \\ x_1 \\ \vdots \\ x_N \end{pmatrix}
+		=
+		\begin{pmatrix} y_0 \\ y_1 \\ \vdots \\ y_N \end{pmatrix}.
+	\]
+\end{definition}
+The reason this operation is important is because it lets
+us detect if the $x_i$ are periodic, as the following example shows.
+\begin{example}
+	[Example of Discrete Inverse Fourier Transform]
+	Let $N = 6$, $\omega = \omega_6 = \exp(\frac{2\pi i}{6})$
+	and suppose $(x_0,x_1,x_2,x_3,x_4,x_5)=(0,1,0,1,0,1)$
+	(hence $x_i$ is periodic modulo $2$).
+	Thus,
+	\begin{align*}
+		y_0 &= \omega^0 + \omega^0+ \omega^0 = 3 \\
+		y_1 &= \omega^1 + \omega^3 + \omega^5 = 0 \\
+		y_2 &= \omega^2 + \omega^{6} + \omega^{10} = 0 \\
+		y_3 &= \omega^3 + \omega^9 + \omega^{15} = -3 \\
+		y_4 &= \omega^4 + \omega^{12} + \omega^{20} = 0 \\
+		y_5 &= \omega^5 + \omega^{15} + \omega^{25} = 0.
+	\end{align*}
+	Thus, in the inverse transformation the ``amplitudes''
+	are all concentrated at multiples of $3$;
+	thus this reveals the periodicity of the original
+	sequence by $\frac N3 = 2$.
+\end{example}
+\begin{remark}
+	The fact that this operation is called the ``inverse''
+	Fourier transform is mostly a historical accident
+	(as my understanding goes).
+	Confusingly, the corresponding quantum operation is the
+	(not-inverted) Fourier transform.
+\end{remark}
+
+\section{The Quantum Fourier Transform}
+Note that to compute a Fourier transform, we need to multiply an $N \times N$ matrix
+with an $N$-vector, so this takes $O(N^2)$ multiplications.
+However, we are about to show that with a quantum computer,
+one can do this using $O( (\log N)^2 )$ quantum gates when $N = 2^n$,
+on a system with $n$ qubits.
+
+First, some more notation:
+\begin{abuse}
+	In what follows, $\ket{x}$ will refer to
+	$\ket{x_n} \otimes \ket{x_{n-1}} \otimes \dots \otimes \ket{x_1}$
+	where $x = x_nx_{n-1} \dots x_1$ in binary.
+	For example, if $n = 3$
+	then $\ket{6}$ really means $\ket1 \otimes \ket1 \otimes \ket 0$.
+\end{abuse}
+Observe that the $n$-qubit space now has an
+orthonormal basis $\ket0$, $\ket1$, \dots, $\ket{N-1}$
+
+\begin{definition}
+	Consider an $n$-qubit state
+	\[ \ket\psi = \sum_{x=0}^{N-1} x_k \ket{k}. \]
+	The \vocab{quantum Fourier transform} is defined by
+	\[
+		\UQFT(\ket\psi) = \frac{1}{\sqrt N}\sum_{k=0}^{N-1}
+		\left( \sum_{k=0}^{N-1} \omega_N^{jk} \right) \ket{j}.
+	\]
+	In other words, using the basis $\ket0$, \dots, $\ket{N-1}$,
+	$\UQFT$ is given by the matrix
+	\[
+		\UQFT = \frac{1}{\sqrt N}
+		\begin{pmatrix} 
+			1 & 1 & 1 & \dots & 1 \\
+			1 & \omega_N & \omega_N^2 & \dots & \omega_N^{N-1} \\
+			1 & \omega_N^2 & \omega_N^4 & \dots & \omega_N^{2(N-1)} \\
+			\vdots & \vdots & \vdots & \ddots & \vdots \\
+			1 & \omega_N^{N-1} & \omega_N^{2(N-1)} & \dots & \omega_N^{(N-1)^2}
+		\end{pmatrix}
+	\]
+\end{definition}
+This is the exactly the same definition as before,
+except we have a $\sqrt N$ factor added so that $\UQFT$ is unitary.
+But the trick is that in the quantum setup, the matrix can be rewritten:
+\begin{proposition}
+	[Tensor Representation]
+	Let $\ket x = \ket{x_nx_{n-1} \dots x_1}$.
+	Then
+	\begin{align*}
+		\UQFT( \ket{x_nx_{n-1} \dots x_1} )
+		= \frac{1}{\sqrt N} &
+		\left( \ket0 +\exp(2\pi i \cdot 0.x_1) \ket 1 \right) \\
+		&\otimes \left( \ket0 +\exp(2\pi i \cdot 0.x_2x_1) \ket 1 \right) \\
+		&\otimes \dots  \\
+		&\otimes \left( \ket0 +\exp(2\pi i \cdot 0.x_n\dots x_1) \ket 1 \right)
+	\end{align*}
+\end{proposition}
+\begin{proof}
+	Direct (and quite annoying) computation.
+	In short, expand everything.
+\end{proof}
+
+So by using mixed states, we can deal with the Quantum Fourier Transform
+using this ``multiplication by tensor product'' trick that isn't possible classically.
+
+Now, without further ado, here's the circuit.
+Define the rotation matrices
+\[ R_k = \begin{pmatrix} 1 & 0 \\ 0 & \exp(2\pi i/2^k) \end{pmatrix}. \]
+Then, for $n=3$ the circuit is given by by using controlled $R_k$'s as follows:
+\[
+	\Qcircuit @C=1em @R=.7em {
+		\lstick{\ket{x_3}} & \gate{H} & \gate{R_2} & \gate{R_3} & \qw & \qw & \qw & \rstick{\ket{y_1}} \\
+		\lstick{\ket{x_2}} & \qw & \ctrl{-1} & \qw & \gate{H} & \gate{R_3} & \qw & \rstick{\ket{y_2}} \\
+		\lstick{\ket{x_1}} & \qw & \qw & \ctrl{-2} & \qw & \ctrl{-1} & \gate{H} & \rstick{\ket{y_3}} \\
+	}
+\]
+\begin{exercise}
+	Show that in this circuit, the image of of $\ket{x_3x_2x_1}$
+	(for binary $x_i$) is 
+	\[
+		\Big(\ket0+\exp(2\pi i \cdot 0.x_1) \ket1\Big)
+		\otimes \Big(\ket0+\exp(2\pi i \cdot 0.x_2x_1) \ket1\Big)
+		\otimes \Big(\ket0+\exp(2\pi i \cdot 0.x_3x_2x_1) \ket1\Big)
+	\]
+	as claimed.
+\end{exercise}
+
+For general $n$, we can write this as inductively as
+\[
+ \Qcircuit @C=1em @R=.7em {
+  \lstick{\ket{x_n}}     & \multigate{5}{\text{QFT}_{n-1}} & \gate{R_n} & \qw                    & \qw & \cdots & & \qw                    & \qw & \cdots & & \qw              & \qw      & \rstick{\ket{y_1}} \qw \\
+  \lstick{\ket{x_{n-1}}}     & \ghost{\text{QFT}_{n-1}}        & \qw                    & \gate{R_{n-1}} & \qw & \cdots & & \qw                    & \qw & \cdots & & \qw              & \qw      & \rstick{\ket{y_2}} \qw \\
+  \lstick{\vdots\ \ }    & \pureghost{\text{QFT}_{n-1}}    &                        &                        &     &        & &                        &     &        & &                  &          & \rstick{\ \ \vdots} \\
+  \lstick{\ket{x_i}}     & \ghost{\text{QFT}_{n-1}}        & \qw                    & \qw                    & \qw & \cdots & & \gate{R_i} & \qw & \cdots & & \qw              & \qw      & \rstick{\ket{y_{n-i+1}}} \qw \\
+  \lstick{\vdots\ \ }    & \pureghost{\text{QFT}_{n-1}}    &                        &                        &     &        & &                        &     &        & &                  &          & \rstick{\ \ \vdots} \\
+  \lstick{\ket{x_2}} & \ghost{\text{QFT}_{n-1}}        & \qw                    & \qw                    & \qw & \cdots & & \qw                    & \qw & \cdots & & \gate{R_2} & \qw      & \rstick{\ket{y_{n-1}}} \qw \\
+  \lstick{\ket{x_1}}     & \qw                             & \ctrl{-6}               & \ctrl{-5}               & \qw & \cdots & & \ctrl{-3}               & \qw & \cdots & & \ctrl{-1}         & \gate{H} & \rstick{\ket{y_n}} \qw
+ }
+\]
+where we have rearranged some of the wires which commute.
+\begin{ques}
+	Convince yourself that when $n=3$ the two circuits displayed are equivalent.
+\end{ques}
+
+Thus, the quantum Fourier transform is achievable with $O(n^2)$ gates,
+which is enormously better than the classical $O(N^2)$ operations (where $N=2^n$).
 
 \end{document}
