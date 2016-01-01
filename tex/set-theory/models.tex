@@ -18,9 +18,9 @@ for the simple reason that we are literally trying to model the entire universe.
 	Experts may be aware that I can actually play with $M$ being a class,
 	but that would require too much care for now.
 \end{remark}
-If you have a model, you can ask certain things about it.
-For example, you can ask ``does it satisfy $\EmptySet$?''.
-Let me give you an example of what I mean, and then make it rigorous.
+If you have a model, you can ask certain things about it,
+such as ``does it satisfy $\EmptySet$?''.
+Let me give you an example of what I mean and then make it rigorous.
 \begin{example}
 	[A Stupid Model]
 	Let's take $\MM = (M,E) = \left( \omega, \in \right)$.
@@ -28,7 +28,8 @@ Let me give you an example of what I mean, and then make it rigorous.
 	make sense of some of the first few axioms.
 	\begin{enumerate}[(a)]
 		\ii $\MM$ satisfies $\Extensionality$, which is the sentence
-		\[ \forall x \forall y \forall a : \left( a \in x \iff a \in y \right) \implies x = y. \]
+		\[ \forall x \forall y \forall a :
+			\left( a \in x \iff a \in y \right) \implies x = y. \]
 		This just follows from the fact that $E$ is actually $\in$.
 
 		\ii $\MM$ satisfies $\EmptySet$, which is the sentence
@@ -204,7 +205,8 @@ As long as $M$ is transitive,
 \[ M \vDash \mathtt{isEmpty}(\varnothing) \]
 will always hold.
 Similarly, the sentence
-\[ \mathtt{isSubset}(x,y) : x \subseteq y \text { i.e. } \forall a \in x (a \in y). \]
+\[ \mathtt{isSubset}(x,y) : x \subseteq y \text { i.e. } \forall a \in x (a \in y) \]
+is absolute.
 Sentences with this property are called $\Sigma_0$ or $\Pi_0$.
 
 The situation is different with a sentence like
@@ -281,7 +283,7 @@ That's boring. The good part is:
 	\]
 \end{definition}
 In other words, $\MM_1$ and $\MM_2$ agree on every sentence possible.
-Note that the $b_i$ have to come from $M_1$; if the $b_i$ came from $\MM_2$ then
+Note that the $b_i$ have to come from $\MM_1$; if the $b_i$ came from $\MM_2$ then
 asking something of $\MM_1$ wouldn't make sense.
 
 Let's ask now: how would $\MM_1 \prec \MM_2$ fail to be true?

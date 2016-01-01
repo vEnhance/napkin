@@ -49,9 +49,9 @@ The table above has certain mysterious properties,
 which we will prove as the chapter progresses.
 \begin{enumerate}[(I)]
 	\ii The value of $\chi_V(g)$ only depends on the conjugacy class of $g$.
-	\ii The number of columns equals the number of conjugacy classes.
-	\ii The sum of the squares are any column is $6$ again!
-	\ii The ``dot product'' of any two columns is zero.
+	\ii The number of rows equals the number of conjugacy classes.
+	\ii The sum of the squares of any row is $6$ again!
+	\ii The ``dot product'' of any two rows is zero.
 \end{enumerate}
 
 \begin{abuse}
@@ -195,10 +195,9 @@ which give a natural way to deal with the quantity $\chi_V(g)\ol{\chi_W(g)}$.
 \begin{definition}
 	Let $V = (V, \rho)$ be a representation of $G$.
 	The \vocab{dual representation} $V^\vee$ is the representation on $V^\vee$
-	with the action of $G$ given as follows:
-	for each $\xi \in V^\vee$, the image of the action $g \cdot \xi \in V^\vee$
-	is specified by
-	\[ v \xmapsto{g \cdot \xi} \xi\left( \rho(g\inv)(x) \right). \]
+	with the action of $G$ given as follows: for each $\xi \in V^\vee$,
+	the action of $g$ gives a $g \cdot \xi \in V^\vee$ specified by
+	\[ v \xmapsto{g \cdot \xi} \xi\left( \rho(g\inv)(v) \right). \]
 \end{definition}
 \begin{definition}
 	Let $V = (V, \rho_V)$ and $W = (W, \rho_W)$ be representations of $G$.
@@ -365,7 +364,7 @@ We give another example with $D_{10}$ again.
 	\[ \left\{ (w,x,y,z) \mid w+x+y+z=0 \right\} \]
 	with basis $(1,0,0,-1)$, $(0,1,0,-1)$ and $(0,0,1,-1)$.
 	This can be geometrically checked to be irreducible,
-	but we can also do this geometrically by computing the
+	but we can also do this numerically by computing the
 	character directly (this is tedious):
 	it comes out to have $3$, $-1$, $0$, $1$, $-1$
 	which indeed gives norm

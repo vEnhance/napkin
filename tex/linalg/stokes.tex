@@ -137,7 +137,7 @@ Specifically: $\alpha$ accepts a point in $U'$ and $k$ tangent vectors in $V'$,
 and returns a real number.
 We want $\phi^\ast \alpha$ to accept a point in $p \in U$
 and $k$ tangent vectors $v_1, \dots, v_k$ in $V$,
-and feed the corresponding information to $\alpha$
+and feed the corresponding information to $\alpha$.
 
 Clearly we give the point $q = \phi(p)$.
 As for the tangent vectors, since we are interested in volume, we take the
@@ -193,8 +193,9 @@ but I won't take the time to check these here
 (one can verify them all by expanding with a basis).
 	
 \section{Cells}
-\prototype{The circle in $\RR^2$ can be thought of as the cell $[0,R]\times[0,2\pi] \to \RR^2$ by
-$(r,\theta) \mapsto (r\cos\theta)\ee_1 + (r\sin\theta)\ee_2$.}
+\prototype{A disk in $\RR^2$ can be thought of as the cell
+	$[0,R]\times[0,2\pi] \to \RR^2$ by
+	$(r,\theta) \mapsto (r\cos\theta)\ee_1 + (r\sin\theta)\ee_2$.}
 Now that we have the notion of a pullback,
 we can define the notion of an integral for more general spaces.
 Specifically, to generalize the notion of integrals we had before:
@@ -238,7 +239,7 @@ so the above integral can be written as
 	Thus,
 	\[ \int_c \alpha
 		= \int_0^R \int_0^{2\pi} r \; dr \wedge d\theta
-		= \pi r^2 \]
+		= \pi R^2 \]
 	which is the area of a circle.
 \end{example}
 

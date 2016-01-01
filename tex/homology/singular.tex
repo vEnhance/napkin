@@ -1,8 +1,10 @@
 \chapter{Singular Homology}
-Now that we've defined $\pi_1(X)$, we turn our attention to a second way of capturing the same idea, $H_1(X)$.
+Now that we've defined $\pi_1(X)$,
+we turn our attention to a second way of capturing the same idea, $H_1(X)$.
 We'll then define $H_n(X)$ for $n \ge 2$.
-The good thing about the $H_n$ groups is that, unlike the $\pi_n$ groups, they are much easier to compute in practice.
-The downside is that they are a little more involved to compute,
+The good thing about the $H_n$ groups is that, unlike the $\pi_n$ groups,
+they are much easier to compute in practice.
+The downside is that their definition will require quite a bit of setup,
 and the ``algebraic'' part of ``algebraic topology'' will become a lot more technical.
 
 \section{Simplices and Boundaries}
@@ -384,7 +386,7 @@ In order to do this, we have to describe how to take a map $f : X \to Y$
 and obtain a map $H_n(f) : H_n(X) \to H_n(Y)$.
 Then we have to show that this map doesn't depend on the choice of homotopy.
 (This is the analog of the work we did with $f_\sharp$ before.)
-It turns out that this timed around, proving this is much more tricky,
+It turns out that this time around, proving this is much more tricky,
 and we will have to go back to the chain complex $C_\bullet(X)$ that we built at the beginning.
 
 \subsection*{Algebra of Chain Complexes}
@@ -577,7 +579,7 @@ and splitting it into two triangles.
 Then, if we apply $\sigma \times \id$, we'll get an $(n+1)$-cell in $X \times [0,1]$,
 and then finally applying $F$ will map everything into our space $Y$.
 In our example, the final image is the $2$-chain, consisting of two triangles,
-which in our picture can be written as $[v_0, v_1, w_0] - [v_0, w_0, w_1]$;
+which in our picture can be written as $[v_0, v_1, w_1] - [v_0, w_0, w_1]$;
 the boundaries are given by the red, green, grey.
 
 More generally, for an $n$-simplex $\phi = [x_0, \dots, x_n]$

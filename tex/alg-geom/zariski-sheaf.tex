@@ -257,9 +257,11 @@ in the following way:
 
 Thus, $\phi$ should be ``locally'' a quotient of two polynomials.
 
-This definition is misleading complicated, and the examples should illuminate it significantly.
-Firstly, in practice, most of the time we will be able to find a ``global'' representation
-of a regular function as a quotient, and we will not need to fuss with the $p$'s.
+This definition is misleadingly complicated,
+and the examples should illuminate it significantly.
+Firstly, in practice, most of the time we will be able to find
+a ``global'' representation of a regular function as a quotient,
+and we will not need to fuss with the $p$'s.
 For example:
 \begin{example}
 	[Regular Functions]
@@ -274,7 +276,7 @@ For example:
 		is regular on $U$.
 	\end{enumerate}
 \end{example}
-The ``local'' clause with $p$'s is just to avoid some strange edge cases.
+The ``local'' clause with $p$'s is still necessary, though.
 \begin{example}
 	[Requiring Local Representations]
 	\label{ex:local_rep}
@@ -290,9 +292,11 @@ The ``local'' clause with $p$'s is just to avoid some strange edge cases.
 			c/b & b \neq 0.
 		\end{cases}
 	\]
-	Clearly these are the ``same function'' (since $ab=cd$), but we cannot write ``$a/d$'' or ``$c/b$''
+	Clearly these are the ``same function'' (since $ab=cd$),
+	but we cannot write ``$a/d$'' or ``$c/b$''
 	to express it because we run into divide-by-zero issues.
-	That's why in the definition of a regular function, we have to allow multiple representations.
+	That's why in the definition of a regular function,
+	we have to allow multiple representations.
 \end{example}
 
 The division-by-zero, as one would expect, essentially prohibits regular functions on the entire space $V$;
