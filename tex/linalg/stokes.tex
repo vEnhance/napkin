@@ -1,18 +1,18 @@
 \chapter{Integrating Differential Forms}
-In this chapter, we'll show how to integrate differential forms over cells,
+We now show how to integrate differential forms over cells,
 and state Stokes' Theorem in this context.
 In this chapter, all vector spaces are finite-dimensional and real.
 
 \section{Motivation: Line Integrals}
-Given a function $g : [a,b] \to \RR$ we know by the Fundamental Theorem of Calculus
-that it can be integrated as
+Given a function $g : [a,b] \to \RR$,
+we know by the Fundamental Theorem of Calculus that
 \[
 	\int_{[a,b]} g(t) \; dt = f(b) - f(a)
 \]
-where $f$ is a function such that $\frac{df}{dt} = g$.
-(You might recognize this more readily as the more customary $\int_a^b g(t) \; dt$.)
-Put another way, given a function $f : (a,b) \to \RR$,
-we can write
+where $f$ is a function such that $g = df/dt$.
+%(You might recognize this more readily
+%as the more customary $\int_a^b g(t) \; dt$.)
+Equivalently, for $f : [a,b] \to \RR$,
 \[ \int_{[a,b]} g \; dt = \int_{[a,b]} df = f(b) - f(a) \]
 where $df$ is the exterior derivative we defined earlier.
 
@@ -23,7 +23,7 @@ We consider a \vocab{parametrized curve}, which is a smooth function $c : [a,b] 
 Picture:
 \begin{center}
 	\begin{asy}
-		size(9cm);
+		size(8.5cm);
 		pair A = (-13,0);
 		pair B = (-9,0);
 		draw(A--B, grey);
@@ -74,8 +74,9 @@ So, the definition we give is
 	\alpha_{c(t)} \left( c'(t) \right) \; dt.
 \]
 Here, $c'(t)$ is shorthand for $(Dc)_{c(t)}(1)$.
-It represents the \emph{tangent vector} to the curve $c$ at the point $p=c(t)$, at time $t$.
-(Here we are taking advantage of the fact that $[a,b]$ is one-dimensional).
+It represents the \emph{tangent vector} to the curve $c$ at the point $p=c(t)$,
+at time $t$.
+(Here we are taking advantage of the fact that $[a,b]$ is one-dimensional.)
 
 Now that definition was a pain to write, so we will define a differential
 $1$-form $c^\ast \alpha$ on $[a,b]$ to swallow that entire thing:

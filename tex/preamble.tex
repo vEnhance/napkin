@@ -64,25 +64,26 @@ style=thmbluebox,name=Theorem,numberwithin=section]{theorem}
 \declaretheorem[style=thmbluebox,name=Corollary,sibling=theorem]{corollary}
 \declaretheorem[style=thmrecbox,name=Example,sibling=theorem]{example}
 
+\mdfdefinestyle{mdinlinebox}{%
+	skipabove=8pt,
+	linewidth=3pt,
+	rightline=false,
+	leftline=true,
+	topline=false,
+	bottomline=false,
+	linecolor=gray,
+	backgroundcolor=black!2
+}
 \declaretheoremstyle[
 	headfont=\bfseries,
 	bodyfont=\normalfont\small,
-	spaceabove=4pt,
-	spacebelow=8pt,
-	mdframed={
-		skipabove=8pt,
-		linewidth=2pt,
-		rightline=false,
-		leftline=true,
-		topline=false,
-		bottomline=false,
-		linecolor=gray,
-		backgroundcolor=black!2
-	}
-]{inlineprob}
+	spaceabove=0pt,
+	spacebelow=0pt,
+	mdframed={style=mdinlinebox}
+]{thminlinebox}
 \theoremstyle{theorem}
-\declaretheorem[name=Question,sibling=theorem,style=inlineprob]{ques}
-\declaretheorem[name=Exercise,sibling=theorem,style=inlineprob]{exercise}
+\declaretheorem[name=Question,sibling=theorem,style=thminlinebox]{ques}
+\declaretheorem[name=Exercise,sibling=theorem,style=thminlinebox]{exercise}
 
 \theoremstyle{definition}
 \newtheorem{claim}[theorem]{Claim}

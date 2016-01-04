@@ -297,7 +297,7 @@ It turns out for most reasonable functions, this is all you'll ever need.
 The example $f(x,y) = x^2+y^2$ is the same thing.
 That being said, who cares about $x \sin y + x^2y^4$ anyways?
 
-\section{A Word on Higher Derivatives}
+\section{(Optional) A Word on Higher Derivatives}
 Let $U \subseteq V$ be open, and take $f : U \to W$, so that $Df : U \to \Hom(V,W)$.
 
 Well, $\Hom(V,W)$ can also be thought of as a normed vector space in its own right:
@@ -320,12 +320,13 @@ rather than writing a bunch of $\Hom$'s.
 \end{remark}
 The most important property of the second derivative is that
 \begin{theorem}
-	[Symmetry of $Df^2$]
+	[Symmetry of $D^2 f$]
 	Let $f : U \to W$ with $U \subseteq V$ open.
 	If $(D^2f)_p$ exists at some $p \in U$, then it is symmetric, meaning
 	\[ (D^2f)_p(v_1, v_2) = (D^2f)_p(v_2, v_1). \]
 \end{theorem}
-I'll just quote this without proof, because double derivatives make my head spin.
+I'll just quote this without proof (see e.g. \cite[\S5, Theorem 16]{ref:pugh}),
+because double derivatives make my head spin.
 An important corollary of this theorem:
 \begin{corollary}
 	[Clairaut's Theorem: Mixed Partials are Symmetric]
@@ -343,11 +344,31 @@ An important corollary of this theorem:
 \end{corollary}
 
 \section{Differential Forms}
-\prototype{Algebraically, something that looks like $f \ee_1^\vee \wedge \ee_2^\vee + \dots$,
-and geometrically, see the picture.}
+\prototype{Algebraically,
+	something that looks like $f \ee_1^\vee \wedge \ee_2^\vee + \dots$,
+	and geometrically, see the picture.}
 
-Let's now get a handle on what $dx$ means. This turns out to be a special case of a so-called \emph{differential form}.
-Fix a real vector space $V$ of dimension $n$, and let $\ee_1$, \dots, $\ee_n$ be a standard basis.
+\begin{remark}
+	This section and the next one on exterior derivatives
+	are sort of convoluted.
+	The reason is that differential forms, despite their name,
+	are really meant to be integrated (not differentiated):
+	\begin{quote}
+		\noindent ``The definition of a differential form is:
+		something you can integrate.'' \\ --- Joe Harris
+	\end{quote}
+	Unfortunately, I sort of have to talk about the exterior
+	derivative before I can talk about Stoke's Theorem.
+	So much of this will seem quite unmotivated until later.
+
+	It may be helpful to skim the first section of the next chapter,
+	just so you have a sense for what is coming.
+\end{remark}
+
+Let's now get a handle on what $dx$ means.
+This turns out to be a special case of a so-called \emph{differential form}.
+Fix a real vector space $V$ of dimension $n$,
+and let $\ee_1$, \dots, $\ee_n$ be a standard basis.
 
 \begin{definition}
 	We define a \vocab{differential $k$-form} $\alpha$ to be a smooth (infinitely differentiable)
@@ -363,7 +384,7 @@ Like with $Df$, we'll use $\alpha_p$ instead of $\alpha(p)$.
 	\begin{enumerate}[(a)]
 		\item A $0$-form is just a function $V \to \RR$.
 		\item A $1$-form is a function $V \to V^\vee$.
-		For example, the total derivative $df$ of a function $V \to \RR$ is a $1$-form.
+		For example, the total derivative $Df$ of a function $V \to \RR$ is a $1$-form.
 		\item Let $V = \RR^3$ with standard basis $\ee_1$, $\ee_2$, $\ee_3$.
 		Then a typical $2$-form is given by
 		\[
@@ -396,7 +417,7 @@ Now that we have an element $\Lambda^k(V^\vee)$, what can it do?
 Well, first let me get the definition on the table, then tell you what it's doing.
 \begin{definition}
 	For linear functions $\xi_1, \dots, \xi_k \in V^\vee$
-	and vectors $v_1, \dots, v_k \in V$, we define
+	and vectors $v_1, \dots, v_k \in V$, set
 	\[
 		(\xi_1 \wedge \dots \wedge \xi_k)(v_1, \dots, v_k)
 		\defeq
@@ -405,7 +426,7 @@ Well, first let me get the definition on the table, then tell you what it's doin
 		\begin{array}{ccc}
 			\xi_1(v_1) & \dots & \xi_1(v_k) \\
 			\vdots & \ddots & \vdots \\
-			\xi_k(v_k) & \dots & \xi_k(v_k)
+			\xi_k(v_1) & \dots & \xi_k(v_k)
 		\end{array}
 		\right).
 	\]
@@ -457,21 +478,15 @@ Picture:
 \end{center}
 
 In other words, at every point $p$, we get a function $\alpha_p$.
-Then I can feed in $k$ tangent vectors to $\alpha_p$ and get a number,
+Then I can feed in $k$ vectors to $\alpha_p$ and get a number,
 which I interpret as a signed volume of the parallelpiped spanned by the $\{v_i\}$'s
 in some way (e.g.\ the flux of a force field).
 That's why $\alpha_p$ as a ``function'' is contrived to lie in the wedge product:
 this ensures that the notion of ``volume'' makes sense, so that for example,
 the equality $\alpha_p(v_1, v_2) = -\alpha_p(v_2, v_1)$ holds.
 
-This is what makes differential forms good for integrating,
-which we'll do in the next chapter.
-Indeed,
-\begin{quote}
-	\noindent ``The definition of a differential form is:
-	something you can integrate.'' \\ --- Joe Harris
-\end{quote}
-But for now, let's differentiate them.
+This is what makes differential forms so fit for integration.
+
 
 \section{Exterior Derivatives}
 \prototype{Possibly $dx_1 = \ee_1^\vee$.}
@@ -510,9 +525,10 @@ We'll show this doesn't depend on the choice of basis in a moment.
 	\[ df = Df = (4x^3+2z) \; dx + 3y^2 \; dy + 2x \; dz. \]
 	Next, we can evaluate $d(df)$ as prescribed: it is
 	\begin{align*}
-		d^2f &= (12x^2 \; dx + dz) \wedge dx + (6y \; dy) \wedge dy + (dx \wedge dz) \\
-		&= 12x^2 (dx \wedge dx) + 2(dz \wedge dx) + 6y (dy \wedge dy) + 2(dx \wedge dz) \\
-		&= 2(dz \wedge dx) + 2(dx \wedge dz) \\
+		d^2f &= (12x^2 \; dx + 2 dz) \wedge dx + (6y \; dy) \wedge dy
+		+ 2(dx \wedge dz) \\
+		&= 12x^2 (dx \wedge dx) + 4(dz \wedge dx) + 6y (dy \wedge dy) + 4(dx \wedge dz) \\
+		&= 4(dz \wedge dx) + 4(dx \wedge dz) \\
 		&= 0.
 	\end{align*}
 	So surprisingly, $d^2f$ is the zero map.
@@ -539,12 +555,14 @@ In fact, one can show that $df$ as defined in terms of bases above is
 the \emph{unique} map sending $k$-forms to $(k+1)$-forms.
 Actually, one way to define $df$ is to take as axioms the bulleted properties above
 and then declare $d$ to be the unique solution to this functional equation.
+In any case, this tells us that our definition of $d$
+does not depend on the basis chosen.
 
-In any case, this tells us that our definition of $d$ does not depend on the basis chosen.
-
-According to Wikipedia, ``if a $k$-form $\alpha$ is thought of as measuring the flux through a $k$-parallelpiped,
+According to Wikipedia, ``if a $k$-form $\alpha$ is thought of as
+measuring the flux through a $k$-parallelpiped,
 then $d\alpha$ measures the flux through the boundary of a $(k+1)$-parallelpiped''.
-In that sense, $d^2 = 0$ is saying something like ``the boundary of the boundary is empty''.
+In that sense, $d^2 = 0$ is saying something like
+``the boundary of the boundary is empty''.
 We'll make this precise when we see Stokes' Theorem in the next chapter.
 
 \section\problemhead
