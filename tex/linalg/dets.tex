@@ -243,7 +243,7 @@ It is not ``God-given'', in other words.
 	That's exactly what we wanted.
 \end{example}
 
-Also, you might be inclined to point out that $V \simeq V^\vee$ at this point,
+Also, you might be inclined to point out that $V \cong V^\vee$ at this point,
 since there's an obvious isomorphism $e_i \mapsto e_i^\vee$.
 You might call it ``rotating the column matrix by $90\dg$''.
 I want to point out again that
@@ -255,9 +255,9 @@ I want to point out again that
 
 	It \emph{is} true that $V$ and $V^\vee$ are isomorphic,
 	but the fact is that any two $k$-vector spaces of the same dimension are isomorphic,
-	so the fact that $V \simeq V^\vee$ is not especially impressive.
+	so the fact that $V \cong V^\vee$ is not especially impressive.
 	
-	\ii If $V$ is infinite-dimensional it is no longer necessarily true that $V \simeq V^\vee$.
+	\ii If $V$ is infinite-dimensional it is no longer necessarily true that $V \cong V^\vee$.
 \end{itemize}
 
 \section{The Trace}
@@ -335,7 +335,7 @@ The beauty is that we don't actually have to refer to the basis at all to state 
 	\end{enumerate}
 \end{proof}
 
-So there is a \textbf{natural isomorphism} $V^\vee \otimes W \simeq \Hom(V,W)$.
+So there is a \textbf{natural isomorphism} $V^\vee \otimes W \cong \Hom(V,W)$.
 While we did use a basis liberally in the \emph{proof that it works}, this doesn't change the 
 fact that the isomorphism is ``God-given'', depending only on the spirit
 of $V$ and $W$ itself and not which basis we choose to express the vector spaces in.
@@ -362,14 +362,14 @@ The above is perhaps a bit dense, so here is a concrete example.
 We are now ready to give the definition of a trace.
 Recall that a square matrix $T$ can be thought of as a map $T : V \to V$.
 According to the above theorem there is a map
-\[ \Mat(V) \simeq V^\vee \otimes V \]
+\[ \Mat(V) \cong V^\vee \otimes V \]
 so every map $V \to V$ can be thought of as an element of $V^\vee \otimes V$.
 But we can also define an
 \emph{evaluation map} $\opname{ev} : V^\vee \otimes V \to k$
 by ``collapsing'' each pure tensor: $f \otimes v \mapsto f(v)$.
 So this gives us a composed map
 \begin{diagram}
-	\Mat(V) & \rTo^\simeq & V^\vee \otimes V & \rTo^{\opname{ev}} & k.
+	\Mat(V) & \rTo^\cong & V^\vee \otimes V & \rTo^{\opname{ev}} & k.
 \end{diagram}
 This result is called the \vocab{trace} of a matrix $T$.
 
@@ -452,8 +452,8 @@ This result is called the \vocab{trace} of a matrix $T$.
 	$\opname{ev}_v \in (V^\vee)^\vee$.
 	In fact, you can show that the map $v \mapsto \opname{ev}_v$
 	is an isomorphism from $V$ to $(V^\vee)^\vee$ for dimension reasons.
-	So unlike the situation $V \simeq V^\vee$, there
-	is a \emph{canonical} isomorphism \[ V \simeq (V^\vee)^\vee \]
+	So unlike the situation $V \cong V^\vee$, there
+	is a \emph{canonical} isomorphism \[ V \cong (V^\vee)^\vee \]
 	that doesn't depend at all on what $V$ looks like,
 	or on an arbitrary choice of basis.
 	In other words, the structures of $V$ and $(V^\vee)^\vee$
@@ -623,7 +623,7 @@ We call that map $\Lambda^m(T)$.
 Now here's something interesting.
 Suppose $V$ has dimension $n$, and let $m=n$.
 Then $\Lambda^n(V)$ has dimension $\binom nn = 1$ --- it's a one dimensional space!
-Hence $\Lambda^n(V) \simeq k$.
+Hence $\Lambda^n(V) \cong k$.
 
 So $\Lambda^n(T)$ can be thought of as a linear map from $k$ to $k$.
 But we know that \emph{a linear map from $k$ to $k$ is just multiplication by a constant}.

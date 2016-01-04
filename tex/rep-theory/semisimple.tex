@@ -20,7 +20,7 @@ to be completely reducible.
 
 \section{Schur's Lemma Continued}
 \prototype{For $V$ irreducible,
-	$\Homrep(V^{\oplus 2}, V^{\oplus 2}) \simeq k^{\oplus 4}$.}
+	$\Homrep(V^{\oplus 2}, V^{\oplus 2}) \cong k^{\oplus 4}$.}
 \begin{definition}
 	For an algebra $A$ and representations $V$ and $W$,
 	we let $\Homrep(V,W)$ be the set of intertwining operators between them.
@@ -29,7 +29,7 @@ to be completely reducible.
 
 By Schur's Lemma, we already know that if $V$ and $W$ are irreps, then
 \[
-	\Homrep(V,W) \simeq
+	\Homrep(V,W) \cong
 	\begin{cases}
 		k & \text{if $V \cong W$} \\
 		0 & \text{if $V \not\cong W$}.
@@ -78,7 +78,7 @@ More generally, we have the following result.
 	for integers $n_i, m_i \ge 0$, where each $V_i$ is an irrep.
 	Then
 	\[ \Homrep(V, W)
-		\simeq \bigoplus_i \Mat_{n_i \times m_i}(k) \]
+		\cong \bigoplus_i \Mat_{n_i \times m_i}(k) \]
 	meaning that an intertwining operator $T : V \to W$
 	amounts to, for each $i$, an $n_i \times m_i$ matrix of constants
 	which gives a map $V_i^{\oplus n_i} \to V_i^{\oplus m_i}$.
@@ -222,9 +222,9 @@ This also gives us the non-obvious corollary
 	On the other hand, suppose that we have set
 	$ \Reg(A) = \bigoplus_i V_i^{\oplus n_i} $.
 	By \Cref{thm:compred_schur}, we have
-	\[ A\op \simeq \Homrep(\Reg(A), \Reg(A))
+	\[ A\op \cong \Homrep(\Reg(A), \Reg(A))
 		= \bigoplus_i \Mat_{n_i \times n_i}(k). \]
-	But $\Mat_n(k)\op \simeq \Mat_n(k)$ (just by transposing),
+	But $\Mat_n(k)\op \cong \Mat_n(k)$ (just by transposing),
 	so we recover the desired conclusion.
 \end{proof}
 
