@@ -195,17 +195,160 @@ This does exactly what you think it would.
 	\end{enumerate}
 \end{example}
 
-\section{Disjoint Union Wedge Product}
+\section{Disjoint Union and Wedge Sum}
 \prototype{$S^1 \wedge S^1$ is the figure eight.}
 
-Figure 8
+The disjoint union of two spaces is geometrically exactly
+what it sounds like: you just imagine the two spaces side by side.
+For completeness, here is the formal definition.
+\begin{definition}
+	Let $X$ and $Y$ be two topological spaces.
+	The \vocab{disjoint union}, denoted $X \amalg Y$, is defined by
+	\begin{itemize}
+		\ii The points are the disjoint union $X \sqcup Y$, and
+		\ii A subset $U \subseteq X \sqcup Y$ is open if
+		and only if $U \cap X$ and $U \cap Y$ are open.
+	\end{itemize}
+\end{definition}
+\begin{exercise}
+	Show that the disjoint union of two nonempty spaces is disconnected.
+\end{exercise}
 
-warning about how not Euclidean
+More interesting is the wedge sum, where two topological spaces $X$
+and $Y$ are fused together only at a single base point.
+\begin{definition}
+	Let $X$ and $Y$ be topological spaces, and $x_0 \in X$ and $y_0 \in Y$
+	be points.
+	We define the equivalence relation $\sim$ by declaring $x_0 \sim y_0$ only.
+	Then the \vocab{wedge sum} of two spaces is defined as
+	\[ X \vee Y = (X \amalg Y) / {\sim}. \]
+\end{definition}
+
+\begin{example}
+	[$S^1 \vee S^1$ is a Figure Eight]
+	Let $X = S^1$ and $Y = S^1$,
+	and let $x_0 \in X$ and $y_0 \in Y$ be any points.
+	Then $X \vee Y$ is a ``figure eight'': it is two
+	circles fused together at one point.
+	\begin{center}
+		\begin{asy}
+			size(3cm);
+			draw(shift(-1,0)*unitcircle);
+			draw(shift(1,0)*unitcircle);
+			dotfactor *= 1.4;
+			dot(origin);
+		\end{asy}
+	\end{center}
+\end{example}
+\begin{abuse}
+	We often don't mention $x_0$ and $y_0$ when they are understood
+	(or irrelevant).  For example, from now on we will just
+	write $S^1 \vee S^1$ for a figure eight.
+\end{abuse}
+
+\begin{remark}
+	Annoyingly, in \LaTeX\ \verb+\wedge+ gives $\wedge$ instead
+	of $\vee$ (which is \verb+\vee+).
+	So this really should be called the ``vee product'', but too late.
+\end{remark}
+
 
 \section{CW Complexes}
+Using this construction, we can start building some spaces.
+One common way to do so is using a so-called \vocab{CW complex}.
+Intuitively, a CW complex is built as follows:
+\begin{itemize}
+	\ii Start with a set of points $X^0$.
+	\ii Define $X^1$ by taking some line segments (copies of $D^1$)
+	and fusing the endpoints (copies of $S^0$) onto $X^0$.
+	\ii Define $X^2$ by taking copies of $D^2$ (a disk)
+	and welding its boundary (a copy of $S^1$) onto $X^1$.
+	\ii Repeat inductively up until a finite stage $n$.
+\end{itemize}
+The resulting space $X$ is the CW-complex.
+The set $X^n$ is called the \vocab{$n$-skeleton} of $X$.
+Each $D^k$ is called a \vocab{$k$-cell}; it is customary to
+denote it by $e_i^k$ where $i$ is some index.
+\begin{abuse}
+	Technically, most sources (like \cite{ref:hatcher}) allow one to
+	repeat the process infinitely, giving infinite-dimensional spaces.
+	We will not encounter any such spaces in the Napkin.
+\end{abuse}
 
-\section{The Torus, Klein Bottle, and $\RP^n$}
+\begin{example}
+	[$D^2$ with $2+2+1$ and $1+1+1$ Cells]
+	\listhack
+	\begin{enumerate}[(a)]
+	\ii First, we start with $X^0$ having two points $e_a^0$ and $e_b^0$.
+	Then, we join them with two $1$-cells $D^1$ (green),
+	call them $e_c^1$ and $e_d^1$.
+	The endpoints of each $1$-cell (the copy of $S^0$) get identified
+	with distinct points of $X^0$; hence $X^1 \cong S^1$.
+	Finally, we take a single $2$-cell $e^2$ (yellow) and weld it in,
+	with its boundary fitting into the copy of $S^1$ that we just drew.
+	This gives the figure on the left.
 
+	\ii In fact, one can do this using just $1+1+1=3$ cells.
+	Start with $X^0$ having a single point $e^0$.
+	Then, use a single $1$-cell $e^1$, fusing its two endpoints
+	into the single point of $X^0$.
+	Then, one can fit in a copy of $S^1$ as before,
+	giving $D^2$ as on the right.
+	\end{enumerate}
+	\begin{center}
+		\begin{asy}
+			size(4cm);
+			filldraw(unitcircle, opacity(0.2)+yellow, heavygreen);
+			dotfactor *= 1.4;
+			dot(dir(90), blue);
+			dot(dir(-90), blue);
+			label("$e_a^0$", dir(90), dir(90), blue);
+			label("$e_b^0$", dir(-90), dir(-90), blue);
+			label("$e_c^1$", dir(0), dir(0), heavygreen);
+			label("$e_d^1$", dir(180), dir(180), heavygreen);
+			label("$e^2$", origin, origin);
+		\end{asy}
+		\qquad
+		\begin{asy}
+			size(4cm);
+			filldraw(unitcircle, opacity(0.2)+yellow, heavygreen);
+			dotfactor *= 1.4;
+			dot(dir(90), blue);
+			label("$e^0$", dir(90), dir(90), blue);
+			label("$e^1$", dir(-90), dir(-90), heavygreen);
+			label("$e^2$", origin, origin);
+		\end{asy}
+	\end{center}
+\end{example}
+
+\begin{example}
+	[$S^n$ as a CW Complex]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii One can obtain $S^n$ (for $n \ge 1$) with just two cells.
+		Namely, take a single point $e^0$ for $X^0$, and to obtain $S^n$
+		take $D^n$ and weld its entire boundary into $e^0$.
+
+		We already saw this example in the beginning with $n=2$,
+		when we saw that the sphere $S^2$ was the result when we fuse
+		the boundary of a disk $D^2$ together.
+		
+		\ii Alternatively, one can do a ``hemisphere'' construction,
+		by construction $S^n$ inductively using two cells in each dimension.
+		So $S^0$ consists of two points, then $S^1$ is obtained
+		by joining these two points by two segments ($1$-cells),
+		and $S^2$ is obtained by gluing two hemispheres (each a $2$-cell)
+		with $S^1$ as its equator.
+	\end{enumerate}
+\end{example}
+
+
+
+\section{The Torus, Klein Bottle, $\RP^n$, $\CP^n$}
+
+
+
+\section\problemhead
 
 \chapter{More on Computing Homology Groups}
 \section{Excision}
@@ -897,5 +1040,6 @@ for an arbitrary space.
 \section{The Borsuk-Ulam Theorem}
 
 \section\problemhead
+
 
 \end{document}
