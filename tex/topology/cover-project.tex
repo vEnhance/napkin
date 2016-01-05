@@ -389,11 +389,10 @@ by simply sending every point to the orbit it lives in.
 	Let $G = \ZZ \times \ZZ$ and $X = \RR^2$,
 	and define the group action of $G$ on $X$ by $(m,n) \cdot (x,y)
 	= (m+x, n+y)$.
-	Again, since $[0,1)^2$ is a complete set of representatives,
+	As $[0,1)^2$ is a complete set of representatives,
 	you can think of it as a unit square with the edges identified.
-
-	This is a torus, also known as $S^1 \times S^1$,
-	and it gives us a covering projection $\RR^2 \to S^1 \times S^1$.
+	We obtain the torus $S^1 \times S^1$
+	and a covering projection $\RR^2 \to S^1 \times S^1$.
 \end{example}
 
 \begin{example}[$\mathbb {RP}^2$]
@@ -409,8 +408,9 @@ by simply sending every point to the orbit it lives in.
 	As for the points on the equator, we can take half of them; the other half
 	gets fused with the corresponding antipodes.
 
-	Now if we flatten everything, you can think of the result as a disk
-	with half its boundary.
+	Now if we flatten everything,
+	you can think of the result as a disk with half its boundary:
+	this is $\RP^2$ from before.
 	The resulting space has a name: \emph{real projective $2$-space},
 	denoted $\mathbb{RP}^2$.
 	\begin{center}
@@ -419,17 +419,12 @@ by simply sending every point to the orbit it lives in.
 			dotfactor *= 2;
 			draw(dir(-90)..dir(0)..dir(90));
 			draw(dir(90)..dir(180)..dir(-90), dashed);
-			fill(unitcircle, rgb(0.9,0.9,0.9));
+			fill(unitcircle, yellow+opacity(0.2));
 			dot(dir(90));
 			opendot(dir(-90));
 			label("$\mathbb{RP}^2$", origin, origin);
 		\end{asy}
 	\end{center}
-
-	It should be familiar to those of you who do projective geometry.
-	The points in the ``interior'' are your usual Eucliean points,
-	and the points in the equator are the points at infinity
-	(which explains why they get paired up like that).
 
 	This gives us a covering projection $S^2 \to \mathbb{RP}^2$
 	(note that the pre-image of a sufficiently small patch is just two copies
