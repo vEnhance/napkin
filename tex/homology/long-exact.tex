@@ -157,18 +157,23 @@ taking each $H_{n+1}(C_\bullet)$ to $H_n(A_\bullet)$.
 
 The final word is that:
 \begin{moral}
-	Short exact sequences of chain complexes give long exact sequences of homology groups.
+	Short exact sequences of chain complexes give
+	long exact sequences of homology groups.
 \end{moral}
-In particular, if we take the four examples given earlier.
-The Mayer-Vietoris ones give, for $X = U \cup V$ an open cover,
-\[ \dots \to H_n(U \cap V) \to H_n(U) \oplus H_n(V) \to H_n(U+V) \to H_{n-1}(U \cap V) \to \dots. \]
-and its reduced version
-\[ \dots \to \wt H_n(U \cap V) \to \wt H_n(U) \oplus \wt H_n(V)
-\to \wt H_n(U+V) \to \wt H_{n-1}(U \cap V) \to \dots. \]
-We will discuss how these can be used in just a moment.
-The latter two give us the so-called relative homology long exact sequence:
+In particular, let us take the four examples given earlier.
+\begin{example}[Mayer-Vietoris Long Exact Sequence, Provisional Version]
+	The Mayer-Vietoris ones give, for $X = U \cup V$ an open cover,
+	\[ \dots \to H_n(U \cap V) \to H_n(U) \oplus H_n(V) \to H_n(U+V) \to H_{n-1}(U \cap V) \to \dots. \]
+	and its reduced version
+	\[ \dots \to \wt H_n(U \cap V) \to \wt H_n(U) \oplus \wt H_n(V)
+	\to \wt H_n(U+V) \to \wt H_{n-1}(U \cap V) \to \dots. \]
+\end{example}
+This version is ``provisional'' because in the next section
+we will replace $H_n(U+V)$ and $\wt H_n(U+V)$ with something better.
+As for the relative homology sequences, we have:
 \begin{theorem}[Long Exact Sequence for Relative Homology]
-	Let $X$ be a space, and $A \subset X$ a subspace.
+	\label{thm:long_exact_rel}
+	Let $X$ be a space, and let $A \subset X$ be a subspace.
 	There are long exact sequences
 	\[ \dots \to H_n(A) \to H_n(X) \to H_n(X,A) \to H_{n-1}(A) \to \dots. \]
 	and
@@ -176,32 +181,14 @@ The latter two give us the so-called relative homology long exact sequence:
 \end{theorem}
 The exactness of these sequences will give \textbf{tons of information}
 about $H_n(X)$ if only we knew something about what $H_n(U+V)$
-or $H_n(X,A)$ looked like.  This will be the purpose of the next section.
-
-On the other hand, we can already make headway on $H_n(X,A)$ if we're curious what it looks like.
-For example:
-\begin{lemma}
-	[Relative Homology to Contractible Spaces]
-	\label{lem:rel_contractible}
-	Let $X$ be a topological space, and let $A$ be a contractible subspace of $X$
-	(for example, a single point).
-	Then \[ H_n(X, A) \cong \wt H_n(X) \qquad \forall n. \]
-\end{lemma}
-\begin{proof}
-	Since $A$ is contractible, we have $\wt H_n(A) = 0$ for every $n$.
-	For each $n$ there's a segment of the long exact sequence given by
-	\[ \dots \to \underbrace{\wt H_n(A)}_{=0} \to \wt H_n(X) \to H_n(X,A)
-	\to \underbrace{\wt H_{n-1}(A)}_{=0} \to \dots. \]
-	So since $0 \to \wt H_n(X) \to H_n(X,A) \to 0$ is exact,
-	this means $H_n(X,A) \cong \wt H_n(X)$.
-\end{proof}
-
+or $H_n(X,A)$ looked like.  This is the purpose of the next chapter.
 
 \section{The Mayer-Vietoris Sequence}
 \prototype{The computation of $H_n(S^m)$ by splitting $S^m$ into two hemispheres.}
 
-There are two major geometric results.
-One is the Excision Theorem, which we defer until next chapter.
+Now that we have done so much algebra, we need to invoke some geometry.
+There are two major geometric results in the Napkin.
+One is the Excision Theorem, which we discuss next chapter.
 The other we present here, which will let us take advantage of the
 Mayer-Vietoris sequence.
 The proofs are somewhat involved and are thus omitted;
@@ -210,11 +197,13 @@ see \cite{ref:hatcher} for details.
 The first theorem is that the notation $H_n(U+V)$ that we have kept until now
 is redundant, and can be replaced with just $H_n(X)$:
 \begin{theorem}[Open Cover Homology Theorem]
+	\label{thm:open_cover_homology}
 	Consider the inclusion $\iota : C_\bullet(U+V) \injto C_\bullet(X)$.
-	Then there exists a $\rho : C_\bullet(X) \to C_\bullet(U+V)$ such that
-	$\rho\iota$ and $\iota\rho$ are chain homotopic to the identities.
-	Thus $\iota$ induces an isomorphism
+	Then $\iota$ induces an isomorphism
 	\[ H_n(U+V) \cong H_n(X). \]
+	% Then there exists a $\rho : C_\bullet(X) \to C_\bullet(U+V)$ such that
+	% $\rho\iota$ and $\iota\rho$ are chain homotopic to the identities.
+	% Thus $\iota$ induces an isomorphism
 \end{theorem}
 \begin{remark}
 	In fact, this is true for any open cover (even uncountable),
@@ -224,7 +213,7 @@ is redundant, and can be replaced with just $H_n(X)$:
 \end{remark}
 So, \Cref{ex:mayer_short_exact} together with the above theorem implies,
 after replacing all the $H_n(U+V)$'s with $H_n(X)$'s:
-\begin{theorem}[Long Exact Sequence for Mayer-Vietoris]
+\begin{theorem}[Mayer-Vietoris Long Exact Sequence]
 	If $X = U \cup V$ is an open cover, then we have long exact sequences
 	\[ \dots \to H_n(U \cap V) \to H_n(U) \oplus H_n(V)
 		\to H_n(X) \to H_{n-1}(U \cap V) \to \dots. \]
@@ -589,6 +578,37 @@ we were done.
 		One can read the conclusion from here.
 	\end{sol}
 \end{problem}
+
+\begin{sproblem}
+	Let $n \ge 1$ and $k \ge 0$ be integers.
+	Compute $H_k(\RR^n, \RR^n \setminus \{0\})$.
+	\begin{hint}
+		Use \Cref{thm:long_exact_rel}.
+		Note that $\RR^n \setminus \{0\}$ is homotopy equivalent to $S^{n-1}$.
+	\end{hint}
+	\begin{sol}
+		It is $\ZZ$ for $k=n$ and $0$ otherwise.
+	\end{sol}
+\end{sproblem}
+
+\begin{sproblem}
+	[Triple Long Exact Sequence]
+	\label{prob:triple_long_exact}
+	Let $B \subset A \subset X$ be subspaces.
+	Show that there is a long exact sequence
+	\[
+		\dots \to H_n(B,A) \to H_n(X,A)
+		\to H_n(X,B) \to H_{n-1}(B,A) \to \dots.
+	\]
+	\begin{hint}
+		Find a new short exact sequence
+		to apply \Cref{thm:long_exact} to.
+	\end{hint}
+	\begin{sol}
+		Use the short exact sequence
+		$0 \to C_n(A,B) \to C_n(X,B) \to C_n(X,A) \to 0$.
+	\end{sol}
+\end{sproblem}
 
 \begin{sproblem}[Klein Bottle]
 	\gim

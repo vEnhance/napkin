@@ -8,17 +8,20 @@
 \title{Singular Homology}
 \maketitle
 
-\chapter{More on Computing Homology Groups}
-\section{Excision}
-\todo{relative homology groups, and excision}
-\todo{wedge products}
-\todo{invariance of dimension}
+\section{Temp}
+\label{prob:triple_long_exact}
+\label{ex:long_exact_rel}
+\label{thm:long_exact_rel}
+\label{thm:open_cover_homology}
 
+\chapter{Bonus: Cellular Homology}
+We now introduce cellular homology, which essentially lets us compute
+the homology groups of any CW complex we like.
 
-\section{Degree}
+\section{Degrees}
 \prototype{$z \mapsto z^d$ has degree $d$.}
-For any $n > 0$ map $f$ from $S^n$ to itself
-\[ f_\ast : \underbrace{H^n(S^n)}_{\cong \ZZ} \to \underbrace{H^n(S^n)}_{\cong \ZZ} \]
+For any $n > 0$ and map $f : S^n \to S^n$, consider
+\[ f_\ast : \underbrace{H_n(S^n)}_{\cong \ZZ} \to \underbrace{H_n(S^n)}_{\cong \ZZ} \]
 which must be multiplication by some constant $d$.
 This $d$ is called the \vocab{degree} of $f$, denoted $\deg f$.
 \begin{ques}
@@ -46,7 +49,7 @@ anytime $\deg f = \deg g$, we have that $f$ and $g$ are homotopic.
 One nice application of this:
 \begin{theorem}
 	[Hairy Ball Theorem]
-	Whenever $n$ is even, $S^n$ doesn't have a continuous field
+	If $n > 0$ is even, then $S^n$ doesn't have a continuous field
 	of nonzero tangent vectors.
 \end{theorem}
 \begin{proof}
@@ -55,8 +58,30 @@ One nice application of this:
 	Then we can construct a homotopy map $F : S^n \times [0,1] \to S^n$ by
 	\[ (x,t) \mapsto (\cos \pi t)x + (\sin \pi t) v(x). \]
 	which gives a homotopy from $\id$ to $-\id$.
-	So $\deg \id = \deg(-\id)$, which means $1 = (-1)^{n+1}$.
+	So $\deg(\id) = \deg(-\id)$, which means $1 = (-1)^{n+1}$
+	so $n$ must be odd.
 \end{proof}
+Of course, the one can construct such a vector field whenever $n$ is odd.
+For example, when $n=1$ such a vector field is drawn below.
+\begin{center}
+	\begin{asy}
+		size(5cm);
+		draw(unitcircle, blue+1);
+		label("$S^1$", dir(100), dir(100), blue);
+		void arrow(real theta) {
+			pair P = dir(theta);
+			dot(P);
+			pair delta = 0.8*P*dir(90);
+			draw( P--(P+delta), EndArrow );
+		}
+		arrow(0);
+		arrow(50);
+		arrow(140);
+		arrow(210);
+		arrow(300);
+	\end{asy}
+\end{center}
+
 
 \section{Cellular Homology}
 Before starting, we state the following lemma.
@@ -161,18 +186,40 @@ Recalling that $H_k(X^k, X^{k-1})$ has a basis the $k$-cells of $X$, we
 can write the following formula.
 \begin{theorem}
 	[Cellular Boundary Formula]
-	Let $e$ be a $k$-cell, and let $f_\beta$ denote all $(k-1)$-cells of $X$.
+	Let $e^k$ be a $k$-cell, and let $e_\beta^{k-1}$
+	denote all $(k-1)$-cells of $X$.
 	Define $d_\beta$ to be the degree of the composed map
 	\[ S^{n-1} = \partial D_\beta^n \xrightarrow{\text{attach}}
 		X^{n-1} \surjto S_\beta^{n-1} \]
-	where the first arrow is the attaching map for $e$
-	and the second arrow is the quotient of collapsing $X^{n-1} - f_\beta$ to a point.
-	Then \[ d_n : e \mapsto \sum_\beta d_\beta f_\beta \]
+	where the first arrow is the attaching map for $e^k$
+	and the second arrow is the quotient of collapsing
+	$X^{n-1} - e^{k-1}_\beta$ to a point.
+	Then \[ d_n : e^k \mapsto \sum_\beta d_\beta e_\beta^{k-1} \]
 \end{theorem}
 
-CP
 
-Torus, Klein, RP2
+\todo{CP, Torus, Klein, RP2}
+
+\section{Euler Characteristic}
+Let $X$ be a finite CW complex.
+We define
+\[ \chi(X) = \sum_n (-1)^n \cdot \text{\# $n$-cells of $X$}. \]
+This generalizes the familiar $V-E+F$ formula.
+
+A priori, we might expect that this depends on the choice
+of CW complex, but it turns that we can in fact write:
+\begin{theorem}
+	[Euler Characteristic via Betti Numbers]
+	For any finite CW complex $X$ we have
+	\[ \chi(X) = \sum_n (-1)^n \rank H_n(X). \]
+\end{theorem}
+Thus $\chi(X)$ does not depend on the choice of CW decomposition.
+The numbers $\rank H_n(X)$ are called the \vocab{Betti numbers} of $X$.
+
+\begin{proof}
+	Harmless exercise.
+	\todo{maybe actually write this one out}
+\end{proof}
 
 \section\problemhead
 \begin{problem}
@@ -180,6 +227,21 @@ Torus, Klein, RP2
 	\begin{hint}
 		The space $S^n - \{x_0\}$ is contractible.
 	\end{hint}
+\end{problem}
+
+\begin{problem}[Moore Spaces]
+	\gim
+	Let $G_1$, $G_2$, \dots, $G_N$ be a sequence of
+	finitely generated abelian groups.
+	Construct a space $X$ such that
+	\[
+		\wt H_n(X)
+		\cong
+		\begin{cases}
+			G_n & 1 \le n \le N \\
+			0 & \text{otherwise}.
+		\end{cases}
+	\]
 \end{problem}
 
 \begin{problem}
@@ -208,18 +270,6 @@ Torus, Klein, RP2
 	\end{sol}
 \end{problem}
 
-\begin{problem}[Moore Spaces]
-	Let $G_1$, $G_2$, \dots, $G_N$ be a sequence of finitely generated abelian groups.
-	Construct a space $X$ such that
-	\[
-		\wt H_n(X)
-		\cong
-		\begin{cases}
-			G_n & 1 \le n \le N \\
-			0 & \text{otherwise}.
-		\end{cases}
-	\]
-\end{problem}
 
 \chapter{Singular Cohomology}
 \section{Motivation}
@@ -700,3 +750,6 @@ for an arbitrary space.
 \section\problemhead
 
 
+
+
+\end{document}

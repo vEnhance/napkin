@@ -1,0 +1,357 @@
+\chapter{Excision and Relative Homology}
+We have already seen how to use the Mayer-Vietoris sequence:
+we started with a sequence
+\[ \dots \to H_n(U \cap V) \to H_n(U) \oplus H_n(V) \to H_n(U+V) \to H_{n-1}(U \cap V) \to \dots \]
+and its reduced version,
+then appealed to the geometric fact that $H_n(U+V) \cong H_n(X)$.
+This allowed us to algebraically make computations on $H_n(X)$.
+
+In this chapter, we turn our attention to the long exact
+sequence associated to the chain complex
+\[ 0 \to C_n(A) \injto C_n(X) \surjto C_n(X,A) \to 0. \]
+The setup will look a lot like the previous two chapters,
+except in addition to $H_n : \catname{hTop} \to \catname{Grp}$
+we will have a functor $H_n : \catname{hPairTop} \to \catname{Grp}$
+which takes a pair $(X,A)$ to $H_n(X,A)$.
+Then, we state (again without proof) the key geometric result,
+and use this to make deductions.
+
+\section{The Long Exact Sequences}
+Recall \Cref{thm:long_exact_rel}, which says that the sequences
+\[ \dots \to H_n(A) \to H_n(X) \to H_n(X,A) \to H_{n-1}(A) \to \dots. \]
+and
+\[ \dots \to \wt H_n(A) \to \wt H_n(X) \to H_n(X,A) \to \wt H_{n-1}(A) \to \dots \]
+are long exact.
+
+This is already enough to deduce:
+\begin{lemma}
+	[Homology Relative to Contractible Spaces]
+	\label{lem:rel_contractible}
+	Let $X$ be a topological space,
+	and let $A$ be a contractible subspace of $X$.
+	Then for all $n$, \[ H_n(X, A) \cong \wt H_n(X). \]
+\end{lemma}
+\begin{proof}
+	Since $A$ is contractible, we have $\wt H_n(A) = 0$ for every $n$.
+	For each $n$ there's a segment of the long exact sequence given by
+	\[ \dots \to \underbrace{\wt H_n(A)}_{=0} \to \wt H_n(X) \to H_n(X,A)
+	\to \underbrace{\wt H_{n-1}(A)}_{=0} \to \dots. \]
+	So since $0 \to \wt H_n(X) \to H_n(X,A) \to 0$ is exact,
+	this means $H_n(X,A) \cong \wt H_n(X)$.
+\end{proof}
+
+In particular, if $A$ is a point we obtain that
+\begin{moral}
+	$H_n(X, \{\ast\})$ is just the reduced homology group $\wt H_n(X)$.
+\end{moral}
+
+Finally, by \Cref{prob:triple_long_exact}
+we even have a long exact sequence
+\[
+	\dots
+	\to H_n(B,A)
+	\to H_n(X,A)
+	\to H_n(X,B)
+	\to H_{n-1}(B,A)
+	\to \dots.
+\]
+for any $A \subset B \subset X$.
+
+\section{The Category of Pairs}
+Since we now have an $H_n(X,A)$ instead of just $H_n(X)$,
+a natural next step is to create a suitable category of \emph{pairs}
+and give ourselves the same functorial setup as before.
+
+\begin{definition}
+	Let $\varnothing \neq A \subset X$ and $\varnothing \neq B \subset X$
+	be subspaces, and consider a map $f : X \to Y$.
+	If the image of $A$ is contained within $B$, we write
+	\[ f : (X,A) \to (Y,B). \]
+	We say $f$ is a \vocab{map of pairs},
+	between the pairs $(X,A)$ and $(Y,B)$.
+\end{definition}
+\begin{definition}
+	We say that $f,g : (X,A) \to (Y,B)$ are \vocab{pair-homotopic} if they
+	are ``homotopic through maps of pairs''.
+
+	More formally, a \vocab{pair-homotopy}
+	$f, g : (X,A) \to (Y,B)$ is a map $F : [0,1] \times X \to Y$,
+	which we'll write as $F_t(X)$, such that
+	$F$ is a homotopy of the maps $f,g : X \to Y$
+	and each $F_t$ is itself a map of pairs.
+\end{definition}
+Thus, we naturally arrive at two categories:
+\begin{itemize}
+	\ii $\catname{PairTop}$, the category of \emph{pairs} of
+	toplogical spaces, and
+	\ii $\catname{hPairTop}$, the same category except
+	with maps only equivalent up to homotopy.
+\end{itemize}
+\begin{definition}
+	As before, we say pairs $(X,A)$ and $(Y,B)$ are
+	\vocab{pair-homotopy equivalent}
+	if they are isomorphic in $\catname{hPairTop}$.
+	An isomorphism of $\catname{hPairTop}$ is a
+	\vocab{pair-homotopy equivalence}.
+\end{definition}
+
+We can do the same song and dance as before
+with the prism operator to obtain the following result.
+\begin{lemma}[Induced Maps of Relative Homology]
+	We have a functor 
+	\[ H_n : \catname{hPairTop} \to \catname{Grp}. \]
+\end{lemma}
+That is, if $f : (X,A) \to (Y,B)$ then we obtain an induced map
+\[ f_\ast : H_n(X,A) \to H_n(Y,B). \]
+and if two such $f$ and $g$ are pair-homotopic
+then $f_\ast = g_\ast$.
+
+Now, we want an analog of contractible spaces for our pairs:
+i.e.\ pairs of spaces $(X,A)$ such that $H_n(X,A) = 0$.
+The correct definition is:
+\begin{definition}
+	Let $A \subset X$.
+	We say that $A$ is a \vocab{deformation retract} of $X$
+	if there is a map of pairs $r : (X, A) \to (A, A)$
+	which is a pair homotopy equivalence.
+\end{definition}
+\begin{example}
+	[Examples of Deformation Retracts]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii If a single point $p$ is a deformation retract of a space $X$,
+		then $X$ is contractible, since the retraction $r : X \to \{\ast\}$
+		(when viewed as a map $X \to X$)
+		is homotopic to the identity map $\id_X : X \to X$.
+		\ii The punctured disk $D^2 \setminus \{0\}$
+		deformation retracts onto its boundary $S^1$.
+		\ii More generally, $D^{n} \setminus \{0\}$
+		deformation retracts onto its boundary $S^{n-1}$.
+		\ii Similarly, $\RR^n \setminus \{0\}$
+		deformation retracts onto a sphere $S^{n-1}$.
+	\end{enumerate}
+\end{example}
+Of course in this situation we have that
+\[ H_n(X,A) \cong H_n(X,X) = 0. \]
+
+\begin{exercise}
+	Show that if $A \subset V \subset X$,
+	and $A$ is a deformation retract of $V$,
+	then $H_n(X,A) \cong H_n(X,V)$ for all $n$.
+	(Use \Cref{prob:triple_long_exact}. Solution in next section.)
+\end{exercise}
+
+\section{Excision}
+Now for the key geometric result, which is the analog of
+\Cref{thm:open_cover_homology} for our relative homology groups.
+\begin{theorem}
+	[Excision]
+	Let $Z \subset A \subset X$ be subspaces such that
+	the closure of $Z$ is contained in the interior of $A$.
+	Then the inclusion $\iota (X \setminus Z, A \setminus Z) \injto (X,A)$
+	(viewed as a map of pairs) induces an isomorphism of
+	relative homology groups
+	\[ H_n(X \setminus Z, A \setminus Z) \cong H_n(X,A). \]
+\end{theorem}
+This means we can \emph{excise} (delete) a subset $Z$ of $A$ in computing
+the relative homology groups $H_n(X,A)$.
+This should intuitively make sense:
+since we are ``modding out by points in $A$'',
+the internals of the point $A$ should not matter so much.
+
+The main application of Excision is to decide
+when $H_n(X,A) \cong \wt H_n(X/A)$.
+Answer:
+
+\begin{theorem}
+	[Relative Homology $\implies$ Quotient Space]
+	\label{thm:good_pair}
+	Let $X$ be a space and $A$ be a subspace such that
+	$A$ is a deformation retract of some neighborhood $V \subset X$.
+	Then the quotient map $q : X \to X/A$ induces an isomorphism
+	\[ H_n(X,A) \cong H_n(X/A, A/A) \cong \wt H_n(X/A). \]
+\end{theorem}
+\begin{proof}
+	By hypothesis, we can consider the following maps of pairs:
+	\begin{align*}
+		r & : (V,A) \to (A,A)  \\
+		q & : (X,A) \to (X/A, A/A) \\
+		\widehat q &: (X-A, V-A) \to (X/A-A/A, V/A-A/A).
+	\end{align*}
+	Moreover, $r$ is a pair-homotopy equivalence.
+	Considering the long exact sequence of of a triple
+	(which was \Cref{prob:triple_long_exact})
+	we have a diagram
+	\begin{diagram}
+		H_n(V,A) & \rTo & H_n(X,A) & \rTo^f & H_n(X, V) & \rTo & H_{n-1}(V,A) \\
+		\dTo_r^\cong && && && \dTo_r^\cong \\
+		\underbrace{H_n(A,A)}_{=0} && && && \underbrace{H_{n-1}(A,A)}_{=0}
+	\end{diagram}
+	where the isomorphisms arise since $r$ is a pair-homotopy equivalence.
+	So $f$ is an isomorphism.
+	Similarly the map
+	\[ g : H_n(X/A, A/A) \to H_n(X/A, V/A) \]
+	is an isomorphism.
+
+	Now, consider the commutative diagram
+	\begin{diagram}
+		H_n(X,A) & \rTo^f & H_n(X,V) & \lTo^{\text{Excise}} & H_n(X-A, V-A) \\
+		\dTo^{q_\ast} && && \dTo^{\widehat{q}_\ast}_{\cong} \\
+		H_n(X/A,A/A) & \rTo^g & H_n(X/A,V/A)
+		& \lTo^{\text{Excise}} & H_n(X/A-A/A, V/A-A/A) \\
+	\end{diagram}
+	and observe that the rightmost arrow $\widehat{q}_\ast$ is an isomorphism,
+	because outside of $A$ the map $\widehat q$ is the identity.
+	We know $f$ and $g$ are isomorphisms,
+	as are the two arrows marked with ``Excise'' (by Excision).
+	From this we conclude that $q_\ast$ is an isomorphism.
+	Of course we already know that homology relative to a point
+	is just the relative homology groups
+	(this is the important case of \Cref{lem:rel_contractible}).
+\end{proof}
+
+\section{Some Applications}
+One nice application of Excision is to compute $\wt H_n(X \vee Y)$.
+\begin{theorem}[Homology of Wedge Sums]
+	Let $X$ and $Y$ be spaces with basepoints $x_0 \in X$ and $y_0 \in Y$,
+	and assuming each point is a deformation retract of some neighborhood.
+	Then for every $n$ we have
+	\[
+		\wt H_n(X \vee Y)
+		= \wt H_n(X) \oplus \wt H_n(Y).
+	\]
+\end{theorem}
+\begin{proof}
+	Apply \Cref{thm:good_pair} with the subset $\{x_0, y_0\}$ of $X \amalg Y$,
+	\begin{align*}
+		\wt H_n (X \vee Y)
+		\cong \wt H_n( (X \amalg Y) / \{x_0, y_0\} )
+		&\cong H_n(X \amalg Y, \{x_0,y_0\}) \\
+		&\cong H_n(X, \{x_0\}) \oplus H_n(Y, \{y_0\}) \\
+		&\cong\wt H_n(X) \oplus \wt H_n(Y). \qedhere
+	\end{align*}
+\end{proof}
+
+Another application is to give a second method
+of computing $H_n(S^m)$.
+To do this, we will prove that
+\[ \wt H_n(S^m) \cong \wt H_{n-1}(S^{m-1}) \]
+for any $n,m > 1$.
+However, 
+\begin{itemize}
+	\ii $\wt H_0(S^n)$ is $\ZZ$ for $n=0$ and $0$ otherwise.
+	\ii $\wt H_n(S^0)$ is $\ZZ$ for $m=0$ and $0$ otherwise.
+\end{itemize}
+So by induction on $\min \{m,n\}$ we directly obtain that
+\[
+	\wt H_n(S^m) \cong
+	\begin{cases}
+		\ZZ & m=n \\
+		0 & \text{otherwise}
+	\end{cases}
+\]
+which is what we wanted.
+
+To prove the claim, let's consider the exact sequence
+formed by the pair $X = D^2$ and $A = S^1$.
+\begin{example}[The Long Exact Sequence for $(X,A) = (D^2, S^1)$]
+	Consider $D^2$ (which is contractible) with boundary $S^1$.
+	Clearly $S^1$ is a deformation retraction of $D^2 \setminus \{0\}$,
+	and if we fuse all points on the boundary together we get $D^2 / S^1 \cong S^2$.
+	So we have a long exact sequence
+	\begin{diagram}
+		\wt H_2(S^1) & \rTo & \underbrace{\wt H_2(D^2)}_{=0} & \rTo & \wt H_2(S^2) \\
+		&&& \ldTo(4,2) & \\
+		\wt H_1(S^1) & \rTo & \underbrace{\wt H_1(D^2)}_{=0} & \rTo & \wt H_1(S^2) \\
+		&&& \ldTo(4,2) & \\
+		\wt H_0(S^1) & \rTo & \underbrace{\wt H_0(D^2)}_{=0} & \rTo & \underbrace{\wt H_0(S^2)}_{=0}
+	\end{diagram}
+	From this diagram we read that
+	\[
+		\dots, \quad
+		\wt H_3(S^2) = \wt H_2(S^1), \quad
+		\wt H_2(S^2) = \wt H_1(S^1), \quad
+		\wt H_1(S^2) = \wt H_0(S^1).
+	\]
+\end{example}
+More generally, the exact sequence for the pair $(X,A) = (D^m, S^{m-1})$
+shows that $\wt H_n(S^m) \cong \wt H_{n-1}(S^{m-1})$,
+which is the desired conclusion.
+
+\section{Invariance of Dimension}
+Here is one last example of an application of Excision.
+\begin{definition}
+	Let $X$ be a space and $p \in X$ a point.
+	The $k$t \vocab{local homology group} of $p$ at $X$ is defined as
+	\[ H_k(X, X \setminus \{p\}). \]
+\end{definition}
+Note that for any neighborhood $U$ of $p$, we have by Excision that
+\[ H_k(X, X \setminus \{p\}) \cong H_k(U, U \setminus \{p\}). \]
+Thus this local homology group only depends on the space near $p$.
+
+\begin{theorem}
+	[Invaniance of Dimension, Brouwer 1910]
+	Let $U \subseteq \RR^n$ and $V \subseteq \RR^m$ be nonempty open sets.
+	If $U$ and $V$ are homeomorphic, then $m = n$.
+\end{theorem}
+\begin{proof}
+	Consider a point $x \in U$ and its local homology groups. By Excision,
+	\[ H_k(\RR^n, \RR^n \setminus \{x\}) \cong
+		H_k(U, U \setminus \{x\}). \]
+	But since $\RR^n \setminus \{x\}$ is homotopic to $S^{n-1}$,
+	the long exact sequence of \Cref{thm:long_exact_rel} tells us
+	that 
+	\[
+		H_k(\RR^n, \RR^n \setminus \{x\}) 
+		\cong
+		\begin{cases}
+			\ZZ & k = n \\
+			0 & \text{otherwise}.
+		\end{cases}
+	\]
+	Analogously, given $y \in V$ we have
+	\[ H_k(\RR^m, \RR^m \setminus\{y\}) \cong H_k(V, V\setminus\{y\}). \]
+	If $U \cong V$, we thus
+	deduce that
+	\[ H_k(\RR^n, \RR^n\setminus\{x\}) \cong H_k(\RR^m, \RR^m\setminus\{y\}) \]
+	for all $k$.  This of course can only happen if $m=n$.
+\end{proof}
+
+\section\problemhead
+\begin{problem}
+	Let $X = S^1 \times S^1$ and $Y = S^1 \vee S^1 \vee S^2$.
+	Show that for every integer $n$, $H_n(X) \cong H_n(Y)$.
+\end{problem}
+
+\begin{problem}[Hatcher \S2.1 Exercise 18]
+	Consider $\QQ \subset \RR$.
+	Compute $\wt H_1(\RR, \QQ)$.
+	\begin{hint}
+		Use \Cref{thm:long_exact_rel}.
+	\end{hint}
+	\begin{sol}
+		We have an exact sequence
+		\[
+			\underbrace{\wt H_1(\RR)}_{=0}
+			\to \wt H_1(\RR, \QQ) \to \wt H_0(\QQ) \to 
+			\underbrace{\wt H_0(\RR)}_{=0}.
+		\]
+		Now, since $\QQ$ is path-disconnected
+		(i.e.\ no two of its points are path-connected)
+		it follows that $\wt H_0(\QQ)$ consists of
+		countably infinitely many copies of $\ZZ$.
+	\end{sol}
+\end{problem}
+
+%\begin{problem}
+%	A topological $n$-manifold $X$ is a (Hausdorff) space such that for
+%	every point $p \in X$, some neighborhood of $p$ is homeomorphic
+%	to an open set of $\RR^n$.
+%	What are the local homology groups of an $n$-manifold?
+%\end{problem}
+
+\begin{problem}
+	Let $X = \{(x,y) \mid x \ge 0\} \subseteq \RR^2$.
+	What are the local homology groups of points in $X$?
+	% http://math.stackexchange.com/questions/350667/local-homology-group-a-homeomorphism-takes-the-boundary-to-the-boundary
+\end{problem}

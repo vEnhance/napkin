@@ -213,16 +213,18 @@ so the notation $G \oplus H$ is customary in place of $G \times H$
 when $G$, $H$ are abelian.)
 
 Now let's investigate the first homology group.
-Formally, for $X$ path-connected,
-\begin{center}
-	$H_1(X)$ is the \emph{abelianization} of $\pi_1(X, x_0)$.
-\end{center}
-Roughly, as you can see from the example, $H_1(X)$ captures the same information
+\begin{theorem}[Hurewicz Theorem]
+	Let $X$ be path-connected.
+	Then $H_1(X)$ is the \emph{abelianization} of $\pi_1(X, x_0)$.
+\end{theorem}
+We won't prove this but you can see it roughly from the example.
+The group $H_1(X)$ captures the same information
 as $\pi_1(X, x_0)$: a cycle (in $Z_1(X)$) corresponds to the same thing
 as the loops we studied in $\pi_1(X, x_0)$,
 and the boundaries (in $B_1(X)$, i.e.\ the things we mod out by)
 are exactly the nulhomotopic loops in $\pi_1(X, x_0)$.
-The difference is that $H_1(X)$ allows loops to commute, whereas $\pi_1(X, x_0)$ does not.
+The difference is that $H_1(X)$ allows loops to commute,
+whereas $\pi_1(X, x_0)$ does not.
 \begin{example}
 	[The First Homology Group of the Annulus]
 	To give a concrete example, consider the annulus $X$ above.
@@ -661,13 +663,15 @@ and thus we won't have to keep fussing with the special $n=0$ case.
 \end{definition}
 \todo{can we give a nice example of this?}
 
-One n\"aive guess is that this might equal $H_n(X) / H_n(A)$.
+One na\"ive guess is that this might equal $H_n(X) / H_n(A)$.
 This is not true and in general doesn't even make sense;
-if we take $X$ to be $\RR^2$ and $A = S^1$ a circle inside it, we have $H_1(X) = H_1(\RR^2) = 0$
-and $H_1(S^1) = \ZZ$.
+if we take $X$ to be $\RR^2$ and $A = S^1$ a circle inside it,
+we have $H_1(X) = H_1(\RR^2) = 0$ and $H_1(S^1) = \ZZ$.
 
 Another guess is that $H_n(X,A)$ might just be $H_n(X/A)$.
-This will turn out to be true in some nice circumstances, which we describe later on.
+This will turn out to be true in some nice circumstances,
+which we describe when we discuss the Excision Theorem.
+For now it may be best to treat $H_n(X,A)$ as a formal object.
 
 \begin{example}
 	[Mayer-Vietoris Sequence]
@@ -680,7 +684,8 @@ This will turn out to be true in some nice circumstances, which we describe late
 	\[ \dots \taking\partial C_{n+1}(U+V) \taking\partial C_n(U+V)
 	\taking\partial C_{n-1}(U+V) \taking\partial \dots. \]
 \end{example}
-So once again, we can define homology groups for this complex; we denote them by $H_n(U+V)$.
+So once again, we can define homology groups for this complex;
+we denote them by $H_n(U+V)$.
 Miraculously, it will turn out that $H_n(U+V) \cong H_n(X)$.
 
 \section\problemhead
@@ -692,11 +697,11 @@ Miraculously, it will turn out that $H_n(U+V) \cong H_n(X)$.
 	\begin{hint}
 		Take the $n-1$st homology groups.
 	\end{hint}
-	\begin{soln}
+	\begin{sol}
 		Applying the functor $H_{n-1}$ we get
 		that the composition $\ZZ \to 0 \to \ZZ$ is the identity
 		which is clearly not possible.
-	\end{soln}
+	\end{sol}
 \end{problem}
 \begin{problem}
 	[Brouwer Fixed Point Theorem]
