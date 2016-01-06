@@ -22,14 +22,23 @@ Recall \Cref{thm:long_exact_rel}, which says that the sequences
 and
 \[ \dots \to \wt H_n(A) \to \wt H_n(X) \to H_n(X,A) \to \wt H_{n-1}(A) \to \dots \]
 are long exact.
-
-This is already enough to deduce:
+By \Cref{prob:triple_long_exact} we even have a long exact sequence
+\[
+	\dots
+	\to H_n(B,A)
+	\to H_n(X,A)
+	\to H_n(X,B)
+	\to H_{n-1}(B,A)
+	\to \dots.
+\]
+for $A \subset B \subset X$.
+An application of the second long exact sequence above gives:
 \begin{lemma}
 	[Homology Relative to Contractible Spaces]
 	\label{lem:rel_contractible}
 	Let $X$ be a topological space,
-	and let $A$ be a contractible subspace of $X$.
-	Then for all $n$, \[ H_n(X, A) \cong \wt H_n(X). \]
+	and let $A \subset X$ be contractible.
+	For all $n$, \[ H_n(X, A) \cong \wt H_n(X). \]
 \end{lemma}
 \begin{proof}
 	Since $A$ is contractible, we have $\wt H_n(A) = 0$ for every $n$.
@@ -40,22 +49,18 @@ This is already enough to deduce:
 	this means $H_n(X,A) \cong \wt H_n(X)$.
 \end{proof}
 
-In particular, if $A$ is a point we obtain that
-\begin{moral}
-	$H_n(X, \{\ast\})$ is just the reduced homology group $\wt H_n(X)$.
-\end{moral}
-
-Finally, by \Cref{prob:triple_long_exact}
-we even have a long exact sequence
-\[
-	\dots
-	\to H_n(B,A)
-	\to H_n(X,A)
-	\to H_n(X,B)
-	\to H_{n-1}(B,A)
-	\to \dots.
-\]
-for any $A \subset B \subset X$.
+In particular, the theorem applies if $A$ is a single point.
+The case $A = \varnothing$ is also worth noting.
+We compile these results in the following lemma.
+\begin{lemma}
+	[Relative Homology Generalizes Absolute Homology]
+	Let $X$ be any space, and $\ast \in X$ a point. Then for all $n$,
+	\[
+		H_n(X, \{\ast\}) \cong \wt H_n(X)
+		\qquad\text{and}\qquad
+		H_n(X, \varnothing) = H_n(X).
+	\]
+\end{lemma}
 
 \section{The Category of Pairs}
 Since we now have an $H_n(X,A)$ instead of just $H_n(X)$,
@@ -320,7 +325,7 @@ Thus this local homology group only depends on the space near $p$.
 \section\problemhead
 \begin{problem}
 	Let $X = S^1 \times S^1$ and $Y = S^1 \vee S^1 \vee S^2$.
-	Show that for every integer $n$, $H_n(X) \cong H_n(Y)$.
+	Show that \[ H_n(X) \cong H_n(Y) \] for every integer $n$.
 \end{problem}
 
 \begin{problem}[Hatcher \S2.1 Exercise 18]
@@ -351,7 +356,7 @@ Thus this local homology group only depends on the space near $p$.
 %\end{problem}
 
 \begin{problem}
-	Let $X = \{(x,y) \mid x \ge 0\} \subseteq \RR^2$.
+	Let \[ X = \{(x,y) \mid x \ge 0\} \subseteq \RR^2. \]
 	What are the local homology groups of points in $X$?
 	% http://math.stackexchange.com/questions/350667/local-homology-group-a-homeomorphism-takes-the-boundary-to-the-boundary
 \end{problem}

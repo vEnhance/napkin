@@ -262,7 +262,7 @@ Intuitively, a CW complex is built as follows:
 The resulting space $X$ is the CW-complex.
 The set $X^n$ is called the \vocab{$n$-skeleton} of $X$.
 Each $D^k$ is called a \vocab{$k$-cell}; it is customary to
-denote it by $e_i^k$ where $i$ is some index.
+denote it by $e_\alpha^k$ where $\alpha$ is some index.
 \begin{abuse}
 	Technically, most sources (like \cite{ref:hatcher}) allow one to
 	repeat the process infinitely, giving infinite-dimensional spaces.
@@ -336,8 +336,16 @@ denote it by $e_i^k$ where $i$ is some index.
 	\end{enumerate}
 \end{example}
 
-Anyone who wants the formal definition of a CW complex can refer
-to \cite[page 5]{ref:hatcher}.
+\begin{definition}
+	Formally, for each $k$-cell $e^k_\alpha$ we want to add to $X^k$,
+	we take its boundary $S^{k-1}_\alpha$ and weld it onto
+	$X^{k-1}$ via an \vocab{attaching map} $S^{k-1}_\alpha \to X^{k-1}$.
+	Then
+	\[ X^k = X^{k-1} \amalg \left(\coprod_\alpha e^k_\alpha\right) / {\sim} \]
+	where $\sim$ identifies each boundary point of $e_k^\alpha$
+	with its image in $X^{k-1}$.
+\end{definition}
+
 
 \section{The Torus, Klein Bottle, $\RP^n$, $\CP^n$}
 We now present four of the most import examples of CW complexes.
@@ -412,6 +420,8 @@ The torus can be realized as a CW complex with
 		\end{asy}
 	\end{center}
 \end{itemize}
+We say that $aba\inv b\inv$ is the \vocab{attaching word};
+this shorthand will be convenient later on.
 
 \subsection*{The Klein Bottle}
 The \vocab{Klein bottle} is defined similarly to
@@ -460,7 +470,7 @@ Like the torus, the Klein bottle is realized as a CW complex with
 \begin{itemize}
 	\ii One $0$-cell,
 	\ii Two $1$-cells $e^1_a$ and $e^1_b$, and
-	\ii A single $2$-cell attached this time ``via $abab\inv$''.
+	\ii A single $2$-cell attached this time via the word $abab\inv$.
 \end{itemize}
 
 \subsection*{Real Projective Space}
@@ -636,7 +646,7 @@ For example, in low dimensions:
 
 \subsection*{Complex Projective Space}
 The \vocab{complex projective space} $\CP^n$ is
-defined like $\RP^n$ with coordinates, via\
+defined like $\RP^n$ with coordinates, i.e.\
 \[ (z_0 : z_1 : \dots : z_n) \]
 under scaling.
 The difference is that, as the name suggests, the coordinates
