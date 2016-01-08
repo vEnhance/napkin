@@ -460,19 +460,46 @@ then any open arc is an open set, because you can view it as the intersection of
 Needless to say, for metric spaces it doesn't matter which of these definitions I choose.
 (Proving this turns out to be surprisingly annoying, so I won't do so.)
 
+\section{Hausdorff Spaces}
+\prototype{Every space that's not the Zariski topology.}
+In analysis, almost all topological spaces we encounter satisfy
+some additional hypotheses about their points.
+There is a whole hierarchy of such axioms, labelled $T_n$ for
+integers $n$ (with $n=0$ being the weakest and $n=6$ the strongest).
+These axioms are called \vocab{separation axioms}.
+
+By far the most common hypothesis is the $T_2$ axiom,
+which bears a special name.
+\begin{definition}
+	A topological space $X$ is \vocab{Hausdorff} if
+	for any two disjoint points $p$ and $q$ in $X$,
+	there exists a neighborhood $U$ of $p$
+	and a neighborhood $V$ of $q$ such that
+	\[ U \cap V \neq \varnothing. \]
+\end{definition}
+In other words, around any two distinct points we should be
+able to draw disjoint neighborhoods.
+
+\begin{ques}
+	Show that all metric spaces are Hausdorff.
+\end{ques}
+
+I just want to define this here so that I can use this word later.
+In any case, basically any space we will encounter other than
+the Zariski topology is Hausdorff.
+
 \section\problemhead
 
-\begin{sproblem}
+\begin{dproblem}
 	Let $X$ be a topological space.
 	Show that there exists a nonconstant continuous function $X \to \{0,1\}$ if and
 	only if $X$ is disconnected (here $\{0,1\}$ is given the discrete topology).
 	\label{prob:disconnected_better_def}
-\end{sproblem}
+\end{dproblem}
 
 \begin{sproblem}
 	Let $f : X \to Y$ be a continuous function,
-	and let $S \subset Y$ be the image of $f$,
-	i.e.\ define $S = f``(X)$.
+	with image $S \subset Y$.
 	\begin{enumerate}[(a)]
 		\ii Show that if $X$ is connected then so is $S$.
 		\ii Show that if $X$ is path-connected then so is $S$.
