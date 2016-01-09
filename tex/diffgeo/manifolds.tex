@@ -1,1 +1,345 @@
-\chapter{Manifolds}
+\chapter{A Bit of Manifolds}
+Last chapter, we stated Stoke's Theorem for cells.
+It turns out there is a much larger class of spaces,
+the so-called \emph{smooth manifolds}, for which this makes sense.
+
+Unfortunately, the definition of a smooth manifold is \emph{complete garbage},
+and so by the time I am done defining differential forms and orientations,
+I will be too lazy to actually define what the integral on it is,
+and just wave my hands and state Stoke's Theorem.
+
+\section{Topological Manifolds}
+\prototype{$S^2$: ``the Earth looks flat''.}
+
+Long ago, people thought the Earth was flat,
+i.e.\ homeomorphic to a plane, and in particular they thought that
+$\pi_2(\text{Earth}) = 0$.
+But in fact, as most of us know, the Earth is actually a sphere,
+which is not contractible and in particular $\pi_2(\text{Earth}) \cong \ZZ$.
+This observation underlies the definition of a manifold:
+\begin{moral}
+	An $n$-manifold is a space which locally looks like $\RR^n$.
+\end{moral}
+Actually there are two ways to think about a topological manifold $M$:
+\begin{itemize}
+	\ii ``Locally'': at every point $p \in M$,
+	some neighborhood of $p$ looks like an open set of $\RR^n$.
+	For example, to someone standing on the surface of the Earth,
+	the Earth looks much like $\RR^2$.
+	
+	\ii ``Globally'': there exists an open cover of $M$
+	by open sets $\{U_i\}_i$ (possibly infinite) such that each $U_i$
+	is homeomorphic to some open subset of $\RR^n$.
+	For example, from outer space, the Earth can be covered
+	by two hemispherical pancakes.
+\end{itemize}
+\begin{ques}
+	Check that these are equivalent.
+\end{ques}
+While the first one is the best motivation for examples,
+the second one is easier to use formally.
+
+\begin{definition}
+	A \vocab{topological $n$-manifold} $M$ is a Hausdorff space
+	with an open cover $\{U_i\}$ of sets
+	homeomorphic to subsets of $\RR^n$,
+	say by homeomorphisms
+	\[ \phi_i : U_i \taking\cong E_i \subset \RR^n \]
+	where each $E_i$ is an open subsets of $\RR^n$.
+	Each $\phi_i : U_i \to E_i$ is called a \vocab{chart},
+	and together they form a so-called \vocab{atlas}.
+\end{definition}
+\begin{remark}
+	Here ``$E$'' stands for ``Euclidean''.
+	I think this notation is not standard; usually 
+	people just write $\phi_i(U_i)$ instead.
+\end{remark}
+\begin{remark}
+	This definition is nice because it doesn't depend on embeddings:
+	a manifold is an \emph{intrinsic} space $M$,
+	rather than a subset of $\RR^N$ for some $N$.
+	Analogy: an abstract group $G$ is an intrinsic object
+	rather than a subgroup of $S_n$.
+\end{remark}
+
+\begin{example}[An Atlas on $S^1$]
+Here is a picture of an atlas for $S^1$, with two open sets.
+\begin{center}
+	\begin{asy}
+		size(8cm);
+		draw(unitcircle, black+2);
+		label("$S^1$", dir(45), dir(45));
+		real R = 0.1;
+		draw(arc(origin,1-R,-100,100), red);
+		label("$U_2$", (1-R)*dir(0), dir(180), red);
+		draw(arc(origin,1+R,80,280), blue);
+		label("$U_1$", (1+R)*dir(180), dir(180), blue);
+		dotfactor *= 2;
+		pair A = opendot( (-3, -2), blue );
+		pair B = opendot( (-1, -2), blue );
+		label("$E_1$", midpoint(A--B), dir(-90), blue);
+		draw(A--B, blue, Margins);
+		draw( (-1.25, -0.2)--(-2,-2), blue, EndArrow, Margins );
+		label("$\phi_1$", (-1.675, -1.1), dir(180), blue);
+
+		pair C = opendot( (1, -2), red );
+		pair D = opendot( (3, -2), red );
+		label("$E_2$", midpoint(C--D), dir(-90), red);
+		draw(C--D, red, Margins);
+		draw( (1.25, -0.2)--(2,-2), red, EndArrow, Margins );
+		label("$\phi_2$", (1.672, -1.1), dir(0), red);
+	\end{asy}
+\end{center}
+\end{example}
+
+\begin{ques}
+	Where do you think the words ``chart'' and ``atlas'' come from?
+\end{ques}
+
+\begin{example}
+	[Some Examples of Topological Manifolds]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii As discussed at length,
+		the sphere $S^2$ is a $2$-manifold: every point in the sphere has a
+		small neighborhood that looks like $D^2$.
+			One can cover the Earth with just two hemispheres,
+		and each hemisphere is homeomorphic to a disk.
+
+		\ii The circle $S^1$ is a $1$-manifold; every point has a neighborhood that looks
+		like an open interval.
+
+		\ii The torus, Klein bottle, $\RP^2$, $\CP^2$ are all $2$-manifolds.
+
+		\ii $\RR^n$ is trivially a manifold, as are its open sets.
+	\end{enumerate}
+	All these spaces are compact except $\RR^n$.
+
+	A non-example of a manifold is $D^n$, because it has a \emph{boundary};
+	points on the boundary do not have locally Euclidean neighborhoods.
+\end{example}
+
+\section{Smooth Manifolds}
+\prototype{All the topological manifolds.}
+
+Let $M$ be a topological $n$-manifold with atlas
+$\{U_i \taking{\phi_i} E_i\}$.
+\begin{definition}
+	For any $i$, $j$ such that $U_i \cap U_j \neq \varnothing$,
+	the map
+	\[
+		\phi_{ij} : E_i \cap \phi_i\pre(U_i \cap U_j)
+		\taking{\phi_i\inv \circ \phi_j} E_j \cap \phi_j``(U_i \cap U_j)
+	\]
+	is called a \vocab{transition map}.
+\end{definition}
+The intersection with the pre-image $\phi_i\pre(U_i \cap U_j)$
+and the image $\phi_``(U_i \cap U_j)$ is a notational annoyance
+to make the map well-defined and a homeomorphism.
+The transition map is just the natural way to go from $E_i \to E_j$,
+restricted to overlaps.
+Picture below, where the intersections are just the green portions
+of each $E_1$ and $E_2$:
+
+\begin{center}
+	\begin{asy}
+		size(8cm);
+		draw(unitcircle, black);
+		draw(arc(origin, 1, 80, 100), heavygreen+2);
+		draw(arc(origin, 1, -100, -80), heavygreen+2);
+		label("$S^1$", dir(45), dir(45));
+		real R = 0.1;
+		draw(arc(origin,1-R,-100,100), red);
+		label("$U_2$", (1-R)*dir(0), dir(180), red);
+		draw(arc(origin,1+R,80,280), blue);
+		label("$U_1$", (1+R)*dir(180), dir(180), blue);
+		dotfactor *= 2;
+		pair A = opendot( (-3, -2), blue );
+		pair B = opendot( (-1, -2), blue );
+		label("$E_1$", midpoint(A--B), dir(-90), blue);
+		draw(A--B, blue, Margins);
+		draw( (-1.25, -0.2)--(-2,-2), blue, EndArrow, Margins );
+		label("$\phi_1$", (-1.675, -1.1), dir(180), blue);
+
+		pair C = opendot( (1, -2), red );
+		pair D = opendot( (3, -2), red );
+		label("$E_2$", midpoint(C--D), dir(-90), red);
+		draw(C--D, red, Margins);
+		draw( (1.25, -0.2)--(2,-2), red, EndArrow, Margins );
+		label("$\phi_2$", (1.672, -1.1), dir(0), red);
+
+		draw(A--(0.7*A+0.3*B), heavygreen+2, Margins);
+		draw(B--(0.7*B+0.3*A), heavygreen+2, Margins);
+		draw(C--(0.7*C+0.3*D), heavygreen+2, Margins);
+		draw(D--(0.7*D+0.3*C), heavygreen+2, Margins);
+		draw(B--C, heavygreen, EndArrow, Margin(4,4));
+		label("$\phi_{12}$", B--C, dir(90), heavygreen);
+	\end{asy}
+\end{center}
+
+
+We want to add enough structure so that we can use differential forms.
+
+\begin{definition}
+	We say $M$ is a \vocab{smooth manifold} 
+	if all its transition maps are smooth.
+\end{definition}
+
+This definition makes sense, because we know what it means
+for a map between two open sets of $\RR^n$ to be differentiable.
+
+With smooth manifolds we can try to port over definitions that
+we built for $\RR^n$ onto our manifolds.
+So in general, all definitions involving smooth manifolds will reduce to 
+something on each of the coordinate charts, with a compatibility condition.
+\begin{example}
+	[Examples of Manifold Definitions]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii Let $M$ be a smooth manifold.
+		A continuous function $f : M \to \RR$ is called \vocab{smooth}
+		if the composition 
+		\[ E_i \taking{\phi_i\inv} U_i \injto M \taking f \RR \]
+		is smooth as a function $E_i \to \RR$.
+		\ii Let $M$ and $N$ be smooth
+		with atlases $\{ U_i^M \taking{\phi_i} E_i^M \}_i$
+		and $\{ U_j^N \taking{\phi_j} E_i^N \}_j$,
+		A map $f : M \to N$ is \vocab{smooth} if for every $i$ and $j$,
+		the composed map
+		\[ E_i \taking{\phi_i\inv} U_i \injto M
+			\taking f N \surjto U_j \taking{\phi_j} E_j \]
+		is smooth, as a function $E_i \to E_j$.
+	\end{enumerate}
+\end{example}
+
+
+\section{Differential Forms on Manifolds}
+We already know what a differential form is on an open set $U \subseteq \RR^n$.
+So, we naturally try to port over the definition of
+differentiable form on each subset, plus a compatibility condition.
+
+Let $M$ be a smooth manifold with atlas $\{ U_i \taking{\phi_i} E_i \}_i$.
+
+\begin{definition}
+	A \vocab{differential $k$-form} $\alpha$ on a smooth manifold $M$
+	is a collection $\{\alpha_i\}_i$ of differential $k$-forms on each $E_i$,
+	such that for any $j$ and $i$ we have that
+	\[ \alpha_j = \phi_{ij}^\ast(\alpha_i). \]
+\end{definition}
+Here the pullback.
+In English: we specify a differential form on each chart,
+which is compatible under pullbacks of the transition maps.
+
+\section{Orientations}
+\prototype{Left versus right, clockwise vs.\ counterclockwise.}
+
+This still isn't enough to integrate on manifolds.
+We need one more definition: that of an orientation.
+
+The main issue is the observation from standard calculus that
+\[ \int_a^b f(x) \; dx = - \int_b^a f(x) \; dx. \]
+Consider then a space $M$ which is homeomorphic to an interval.
+If we have a $1$-form $\alpha$, how do we integrate it over $M$?
+Since $M$ is just a topological space (rather than a subset of $\RR$),
+there is no default ``left'' or ``right'' that we can pick.
+As another example, if $M = S^1$ is a circle, there is
+no default ``clockwise'' or ``counterclockwise'' unless we decide
+to embed $M$ into $\RR^2$
+
+To work around this we have to actually have to
+make additional assumptions about our manifold.
+\begin{definition}
+	A smooth $n$-manifold is \vocab{orientable} if
+	there exists a differential $n$-form $\omega$ on $M$
+	such that for every $p \in M$,
+	\[ \omega_p \neq 0. \]
+\end{definition}
+Recall here that $\omega_p$ is an element of $\Lambda^n(V^\vee)$.
+In that case we say $\omega$ is a \vocab{volume form} of $M$.
+
+How do we picture this definition?
+If we recall that an differential form is supposed to take
+tangent vectors of $M$ and return real numbers.
+To this end, we can think of each point $p \in M$ as
+having a \vocab{tangent plane} $T_p(M)$ which is $n$-dimensional.
+Now since the volume form $\omega$ is $n$-dimensional,
+it takes an entire basis of the $T_p(M)$ and gives a real number.
+So a manifold is orientable if there exists a consistent choice of
+sign for the basis of tangent vectors at every point of the manifold.
+
+For ``embedded manifolds'', this just amounts to being able
+to pick a nonzero field of normal vectors to each point $p \in M$.
+For example, $S^1$ is orientable in this way.
+\begin{center}
+	\begin{asy}
+		size(5cm);
+		draw(unitcircle, blue+1);
+		label("$S^1$", dir(100), dir(100), blue);
+		void arrow(real theta) {
+			pair P = dir(theta);
+			dot(P);
+			pair delta = 0.5*P;
+			draw( P--(P+delta), EndArrow );
+		}
+		arrow(0);
+		arrow(50);
+		arrow(140);
+		arrow(210);
+		arrow(300);
+	\end{asy}
+\end{center}
+Similarly, one can orient a sphere $S^2$ by having
+a field of vectors pointing away (or towards) the center.
+This is all non-rigorous,
+because I haven't defined the tangent plane $T_p(M)$;
+since $M$ is in general an intrinsic object one has to be
+quite roundabout to define $T_p(M)$.
+In any event, the point is that guesses about the orientability
+of spaces are likely to be correct:
+\begin{example}
+	[Orientable Surfaces]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii Spheres, planes, and toruses are orientable.
+		\ii The M\"obius strip and Klein bottle are \emph{not} orientable:
+		they are ``one-sided''.
+	\end{enumerate}
+\end{example}
+
+\section{Stokes' Theorem for Manifolds}
+Stokes' Theorem in the general case is based on the idea
+of a \vocab{manifold with boundary} $M$, which I won't define,
+other than to say its boundary $\partial M$ is an $n-1$ dimensional manifold,
+and that it is oriented if $M$ is oriented.
+An example is $M = D^2$, which has boundary $\partial M = S^1$.
+
+Next,
+\begin{definition}
+	The \vocab{support} of a differential form $\alpha$ on $M$
+	is the closure of the following set of points $p \in M$:
+	\[ \left\{ p \in M \mid \alpha_p \neq 0 \right\}. \]
+	Thus the support is the closure of the nonvanishing of $p$.
+	If this support is compact as a topological space,
+	we say $\alpha$ is \vocab{compactly supported}.
+\end{definition}
+\begin{remark}
+	For example, volume forms are supported on all of $M$.
+\end{remark}
+
+Now, one can define integration on oriented manifolds,
+but I won't define this because the definition is truly awful.
+Then Stokes' Theorem says
+\begin{theorem}
+	[Stokes' Theorem for Manifolds]
+	Let $M$ be an smooth oriented $n$-manifold with boundary
+	and let $\alpha$ be a compactly supported $n$-form.
+	Then
+	\[ \int_M d\alpha = \int_{\partial M} \alpha. \]
+\end{theorem}
+All the omitted details are developed in full in \cite{ref:manifolds}.
+
+\section\problemhead
+\begin{problem}
+	Show that a differential $0$-form on a smooth manifold $M$
+	is the same thing as a smooth function $M \to \RR$.
+\end{problem}

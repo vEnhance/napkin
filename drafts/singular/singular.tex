@@ -15,6 +15,7 @@
 \label{thm:long_exact_rel}
 \label{thm:open_cover_homology}
 
+
 \chapter{Singular Cohomology}
 \section{Motivation}
 Here's the main way to motivate this chapter.
@@ -27,7 +28,7 @@ However, as it turns out $X$ and $Y$ are not homotopy equivalent --- so how can 
 In this chapter, we'll define a \emph{cohomology group} $H^n(X)$ and $H^n(Y)$.
 We will still have $H^n(X) \cong H^n(Y)$ for every $X$ and $Y$:
 in fact, the $H^n$'s are completely determined by the $H_n$'s
-by the so-called \emph{Universal Coefficient Theorem}
+by the so-called \emph{Universal Coefficient Theorem}.
 However, it turns out that one can take all the cohomology groups and put
 them together to form a \emph{cohomology ring} $H^\bullet$.
 We will then see that $H^\bullet(X) \not\cong H^\bullet(Y)$ as rings.
@@ -62,8 +63,7 @@ where $\delta(A_n \taking{f} G) = A_{n+1} \taking\partial A \taking{f} G$.
 \end{definition}
 This is admittedly horrible naming:
 the \emph{cohomology groups of a chain complex}
-are the \emph{homology groups of the cochain complex}
-dual to that chain complex.
+are the \emph{homology groups of the dual cochain complex}.
 
 \section{Cohomology of Spaces}
 \prototype{$C^0(X;G)$ all functions $X \to G$ while $H^0(X)$ are those functions $X \to G$
@@ -80,6 +80,10 @@ The case of interest is our usual geometric situation, with $C_\bullet(X)$.
 	of the space $X$ as 
 	\[ H^n(X; G) \defeq H^n(C_\bullet(X); G) = H_n(C^\bullet(X;G)). \]
 \end{definition}
+\begin{remark}
+	Note that if $G$ is also a ring (like $\ZZ$ or $\RR$),
+	then $H^n(X; G)$ is not only an abelian group but actually a $G$-module.
+\end{remark}
 
 \begin{example}
 	[$C^0(X; G)$, $C^1(X; G)$, and $H^0(X;G)$]
@@ -202,7 +206,7 @@ This is achieved by the \emph{Universal Coefficient Theorem}.
 		\taking{h} \Hom(H_n(A_\bullet), G) \to 0. \]
 	In addition, this exact sequence is \emph{split}
 	so in particular
-	\[ H^n(C_\bullet; G) \cong \Ext(H_{n-1}(A_\bullet, G)
+	\[ H^n(C_\bullet; G) \cong \Ext(H_{n-1}(A_\bullet, G))
 		\oplus \Hom(H_n(A_\bullet), G). \]
 \end{theorem}
 Fortunately, in our case of interest, $A_\bullet$ is $C_\bullet(X)$
@@ -221,8 +225,8 @@ Let $H$ be an abelian group, and consider a \vocab{free resolution} of $H$,
 by which we mean an exact sequence
 \[ \dots \taking{f_2} F_1 \taking{f_1} F_0 \taking{f_0} H \to 0. \]
 Then we can apply $\Hom(-,G)$ to get a cochain complex
-\[ \dots \xleftarrow{f_2^\vee} \Hom(F_1, G) \xleftarrow{f_1}
-	\Hom(F_0, G) \xleftarrow{f_0} \Hom(H,G) \to 0. \]
+\[ \dots \xleftarrow{f_2^\vee} \Hom(F_1, G) \xleftarrow{f_1^\vee}
+	\Hom(F_0, G) \xleftarrow{f_0^\vee} \Hom(H,G) \to 0. \]
 but \emph{this cochain complex need not be exact}
 (in categorical terms, $\Hom(-,G)$ does not preserve exactness).
 We define \[ \Ext(H,G) \defeq \ker(f_2^\vee) / \img(f_1^\vee) \]
@@ -248,7 +252,7 @@ you can pick any free resolution you want and compute the above.
 	[Computing the $\Ext$ Functor]
 	For any abelian groups $G$, $H$, $H'$ we have
 	\begin{enumerate}[(a)]
-		\ii $\Ext(H \oplus H, G) = \Ext(H, G) \oplus \Ext(H', G)$.
+		\ii $\Ext(H \oplus H', G) = \Ext(H, G) \oplus \Ext(H', G)$.
 		\ii $\Ext(H,G) = 0$ for $H$ free, and
 		\ii $\Ext(\Zc n, G) = G / nG$.
 	\end{enumerate}
@@ -392,6 +396,9 @@ From the previous example we can extract the following observation.
 		\wt H^n(X; G) \oplus \wt H^n(Y; G).
 	\]	
 \end{sproblem}
+
+duals for field $F$
+
 \begin{sproblem}[$\Zc2$-Cohomology of $\RP^n$]
 	Show that
 	\[
@@ -405,7 +412,108 @@ From the previous example we can extract the following observation.
 	\]
 \end{sproblem}
 
-\chapter{The Cup Product}
+
+\chapter{Bonus: Cohomology of Manifolds}
+In the previous chapter we defined cohomology groups abstractly.
+Thus underlies a story that unites algebraic topology and differential geometry.
+
+I haven't talked enough about manifolds to make this precise,
+so in this chapter I will mostly be waving my hands.
+
+\section{De Rham Cohomology}
+Let $M$ be a smooth manifold.
+We are interested in the homology and cohomology groups of $M$.
+
+We specialize to the case $G = \RR$, the additive group of real numbers.
+\begin{ques}
+	Check that $\Ext(H, \RR) = 0$ for any finitely generated abelian group $H$.
+\end{ques}
+Thus, with real coefficients the Universal Coefficient Theorem says that
+\[ H^k(M; \RR) \cong \Hom(H_k(M), \RR) = \left( H_k(M) \right)^\vee \]
+where we view $H_k(X)$ as a real vector space.
+So, we'd like to get a handle on either $H_k(M$) or $H^k(M; \RR)$.
+
+Well, the trick is as follows:
+\begin{definition}
+	Let $\Omega^k(M)$ denote the real vector space of $k$-forms on $M$.
+	For example, $\Omega^0(M)$ is the set of smooth functions $M \to \RR$.
+\end{definition}
+
+Now, we can define the exterior derivative $d$ as before, giving a map
+\[
+	0 \to \Omega^0(M)
+	\taking d \Omega^1(M)
+	\taking d \Omega^2(M)
+	\taking d \Omega^3(M)
+	\taking d \dots
+\]
+and, surprise, this is a chain complex! After all, we know $d^2 = 0$.
+So, we can define the homology groups of this chain complex,
+call them $\HdR(M)$.
+
+The language that's usually used here: a $k$-form $\alpha$
+is called \vocab{closed} if $d\alpha = 0$ (i.e. $\alpha$ is in the kernel),
+and \vocab{exact} if $\alpha = d\beta$ for some $\beta$
+(i.e.\ $\alpha$ is in the image).
+To draw the analogy with the singular case:
+\[
+	\text{Cochain} : \text{Cocycle} : \text{Coboundary}
+	= \text{$k$-form} : \text{Closed form} : \text{Exact form}. 
+\]
+Thus the de Rham cohomology is the closed forms modulo the exact forms.
+
+The whole punch line is:
+\begin{theorem}
+	[de Rham's Theorem]
+	For any smooth manifold $M$, we have a natural isomorphism
+	\[ H^k(M; \RR) \to \HdR(M). \]
+\end{theorem}
+So the theorem is that the real cohomology groups of manifolds $M$
+are actually just given by the behavior of differential forms.
+Thus, 
+\begin{moral}
+	One can think of elements of cohomology groups
+	as differential forms on the space.
+\end{moral}
+This metaphor can help even for general $H^k(X; G)$.
+
+Why does this happen?
+Here is a vague example that gives a sense of how differential
+forms can measure the same topological properties (``holes'')
+that homology groups were built to detect.
+\begin{example}
+	[de Rham Cohomology of $S^1$]
+	Let $M = S^1$ be a circle (a smooth $1$-manifold).
+	One can define the \vocab{angle form} $\alpha$, which measures
+	the change in the angle as we move in the circle.
+
+	To be precise, given a point $p \in M$ and a tangent vector $v$ to
+	the circle at $M$, $\alpha_p(v)$ gives the singed length of $v$.
+
+	\begin{enumerate}[(a)]
+		\ii This form is closed (it is a $1$-form on a one-dimensional space,
+		thus $d\alpha = 0$ is clear).
+
+		\ii But it is not exact: there is no function $\theta : M \to \RR$ 
+		such that $\alpha = d\theta$.
+		The reason is that we can ``integrate'' around the entire circle,
+		giving an increment of $2\pi$, and thus we see that it is
+		impossible to define $\theta$ globally on $M$.
+	\end{enumerate}
+	So the failure of $\alpha$ to be exact is signaling
+	the fact that $H_1(S^1) \cong \ZZ$.
+\end{example}
+
+\section{Poincar\'e Duality}
+In this case, the right definition of ``nice'' is 
+\emph{compact orientable topological $n$-manifold}.
+
+Since the definitions of cohomology groups I have given are somewhat abstract,
+I had better mention Poincar\'e duality, which will give us a sense of
+what the cohomology groups $H^k(M, \ZZ)$ look like in the case of a ``nice'' space $M$.
+
+
+\chapter{The Cohomology Ring}
 I won't do much more in this chapter other than
 introduce the cup product and say a few examples.
 For an actual treatise, see \cite{ref:hatcher} or \cite{ref:maxim752}.
