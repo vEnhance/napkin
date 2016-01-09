@@ -116,6 +116,11 @@ The fact that $\partial^2 = 0$ is of course not a coincidence.
 	this is just a matter of writing down a bunch of $\sum$ signs.
 	Diligent readers are welcome to try the computation.
 \end{proof}
+\begin{remark}
+	The eerie similarity between the chains used to integrate differential forms
+	and the chains in homology is not a coincidence.
+	The de Rham cohomology, discussed much later, will make the relation explicit.
+\end{remark}
 
 \section{The Singular Homology Groups}
 \prototype{Probably $H_n(S^m)$, especially the case $m = n =1$.}
@@ -661,17 +666,15 @@ and thus we won't have to keep fussing with the special $n=0$ case.
 	The homology groups of the relative chain complex are the
 	\vocab{relative homology groups} and denoted $H_n(X,A)$.
 \end{definition}
-\todo{can we give a nice example of this?}
 
 One na\"ive guess is that this might equal $H_n(X) / H_n(A)$.
 This is not true and in general doesn't even make sense;
 if we take $X$ to be $\RR^2$ and $A = S^1$ a circle inside it,
 we have $H_1(X) = H_1(\RR^2) = 0$ and $H_1(S^1) = \ZZ$.
 
-Another guess is that $H_n(X,A)$ might just be $H_n(X/A)$.
-This will turn out to be true in some nice circumstances,
-which we describe when we discuss the Excision Theorem.
-For now it may be best to treat $H_n(X,A)$ as a formal object.
+Another guess is that $H_n(X,A)$ might just be $\wt H_n(X/A)$.
+This will turn out to be true for most reasonable spaces $X$ and $A$,
+and we will discuss this when we reach the Excision Theorem.
 
 \begin{example}
 	[Mayer-Vietoris Sequence]

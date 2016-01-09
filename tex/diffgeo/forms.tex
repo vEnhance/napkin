@@ -431,9 +431,59 @@ In that sense, $d^2 = 0$ is saying something like
 We'll make this precise when we see Stokes' Theorem in the next chapter.
 
 \section{Closed and Exact Forms}
-\todo{define angle form}
+Let $\alpha$ be a $k$-form.
+\begin{definition}
+	We say $\alpha$ is \vocab{closed} if $d\alpha = 0$.
+\end{definition}
+\begin{definition}
+	We say $\alpha$ is \vocab{exact} if for some $(k-1)$-form $\beta$,
+	$d\beta = 0$.  If $k = 0$, $\alpha$ is exact only when $\alpha = 0$.
+\end{definition}
+\begin{ques}
+	Show that exact forms are closed.
+\end{ques}
+
+A natural question arises: are there closed forms
+which are not exact?
+Surprisingly, the answer to this question is tied to topology.
+Here is one important example.
+
+\begin{example}
+	Let $U = \RR^2 \setminus \{0\}$,
+	and let $\theta(p)$ be the angle formed by the $x$-axis
+	and the line from the origin to $p$.
+
+	The $1$-form $\alpha : U \to (\RR^2)^\vee$ defined by
+	\[ \alpha = \frac{-y \; dx + x \; dy}{x^2+y^2} \]
+	is called the \vocab{angle form}:
+	given $p \in U$ it measures the change in angle $\theta(p)$
+	along a tangent vector.
+	So intuitively, ``$\alpha = d\theta$''.
+	Indeed, one can check directly that the angle form is closed.
+
+	However, $\alpha$ is not exact: there is no global smooth
+	function $\theta : U \to \RR$ having $\alpha$ as a derivative.
+	This reflects the fact that one can actually perform
+	a full $2\pi$ rotation around the origin, i.e.\ $\theta$
+	only makes sense mod $2\pi$.
+	Thus existence of the angle form $\alpha$ reflects
+	the possibility of ``winding'' around the origin.
+\end{example}
+
+So the key idea is that the failure of a closed form to be exact
+corresponds quite well with ``holes'' in the space:
+the same information that homotopy and homology groups are trying to capture.
+To draw another analogy, in complex analysis Cauchy-Gorsat
+only works when $U$ is simply connected.
+The ``hole'' in $U$ is being detected by the existence of a form $\alpha$.
+The so-called de Rham cohomology will make this relation explicit.
+
 \section\problemhead
-\todo{maybe include some direct computation}
+\begin{problem}
+	Show directly that the angle form
+	\[ \alpha = \frac{-y \; dx + x \; dy}{x^2+y^2} \]
+	is closed.
+\end{problem}
   
 \begin{problem}
 	\label{prob:dd_zero}
