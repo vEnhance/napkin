@@ -257,15 +257,17 @@ Intuitively, a CW complex is built as follows:
 	and fusing the endpoints (copies of $S^0$) onto $X^0$.
 	\ii Define $X^2$ by taking copies of $D^2$ (a disk)
 	and welding its boundary (a copy of $S^1$) onto $X^1$.
-	\ii Repeat inductively up until a finite stage $n$.
+	\ii Repeat inductively up until a finite stage $n$;
+	we say $X$ is \vocab{$n$-dimensional}.
 \end{itemize}
 The resulting space $X$ is the CW-complex.
-The set $X^n$ is called the \vocab{$n$-skeleton} of $X$.
+The set $X^k$ is called the \vocab{$k$-skeleton} of $X$.
 Each $D^k$ is called a \vocab{$k$-cell}; it is customary to
 denote it by $e_\alpha^k$ where $\alpha$ is some index.
+We say that $X$ is \vocab{finite} if only finitely many cells were used.
 \begin{abuse}
 	Technically, most sources (like \cite{ref:hatcher}) allow one to
-	repeat the process infinitely, giving infinite-dimensional spaces.
+	construct infinite-dimensional CW complexes.
 	We will not encounter any such spaces in the Napkin.
 \end{abuse}
 
@@ -701,5 +703,16 @@ Thus we see that
 	$\{(x,x) \mid x \in X\}$ is closed in the product space $X \times X$.
 \end{problem}
 \begin{problem}
-	Realize the M\"obius strip as a CW complex.
+	Realize the following spaces as a CW complex:
+	\begin{enumerate}[(a)]
+		\ii M\"obius strip.
+		\ii $\RR$.
+		\ii $\RR^n$.
+	\end{enumerate}
 \end{problem}
+\begin{dproblem}
+	Show that a finite CW complex is compact.
+	\begin{hint}
+		Prove and use the fact that a quotients of compact spaces remain compact.
+	\end{hint}
+\end{dproblem}

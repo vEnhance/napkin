@@ -1,5 +1,5 @@
-\chapter{Singular Cohomology (Draft)}
-Here's the main way to motivate this chapter.
+\chapter{Singular Cohomology}
+Here's one way to motivate this chapter.
 Let $X = \CP^2$ and $Y = S^2 \wedge S^4$.
 \begin{exercise}
 	Show that $H_n(X) \cong H_n(Y)$ for every $n$.
@@ -16,17 +16,30 @@ We will then see that $H^\bullet(X) \not\cong H^\bullet(Y)$ as rings.
 
 \section{Cochain Complexes}
 \begin{definition}
-A \vocab{cochain complex} $A^\bullet$ is algebraically the same as a chain complex:
-it is a sequence of abelian groups
+A \vocab{cochain complex} $A^\bullet$ is algebraically the same as a chain complex, except that the indices increase.
+So it is a sequence of abelian groups
 \[ \dots \taking{\delta} A^{n-1} \taking\delta A^n \taking\delta A^{n+1} \taking\delta \dots. \]
 such that $\delta^2 = 0$.
 Notation-wise, we're now using subscripts, and use $\delta$ rather $\partial$.
-We can still define the homology groups by
-\[ H_n(A^\bullet) = \ker\left( A^n \taking\delta A^{n+1} \right)
+We define the \vocab{cohomology groups} by
+\[ H^n(A^\bullet) = \ker\left( A^n \taking\delta A^{n+1} \right)
 	/ \img\left( A^{n-1} \taking\delta A^n \right). \]
 \end{definition}
+0
+\begin{example}[de Rham Cohomology]
+	We have already met one example of a cochain complex:
+	let $M$ be a smooth manifold and $\Omega^k(M)$ be the
+	additive group of $k$-forms on $M$.
+	Then we have a cochain complex
+	\[ 0 \taking d \Omega^0(M)
+		\taking d \Omega^1(M) \taking d \Omega^2(M)
+		\taking d \dots. \]
+	The resulting cohomology is called \vocab{de Rham cohomology},
+	described later.
+\end{example}
 
-\textbf{The most common way to get a cochain complex
+Aside from de Rham's cochain complex,
+\textbf{the most common way to get a cochain complex
 is to \emph{dualize} a chain complex.}
 Specifically, pick an abelian group $G$;
 note that $\Hom(-, G)$ is a contravariant functor,
@@ -37,15 +50,15 @@ into a cochain complex: letting $A^n = \Hom(A_n, G)$ we obtain
 \[ \dots \taking\delta A^{n-1} \taking\delta
 	A^n \taking\delta A^{n+1} \taking\delta \dots. \]
 where $\delta(A_n \taking{f} G) = A_{n+1} \taking\partial A \taking{f} G$.
+
+These are the cohomology groups we study most in algebraic topology,
+so we give a special notation to them.
 \begin{definition}
-	Given a chain complex $A_\bullet$ of abelian groups and a group $G$,
-	we define the \vocab{cohomology groups} $H^n(A_\bullet; G)$ to be the
-	homology groups of the dual $A^\bullet$ obtained by applying $\Hom(-,G)$.
+	Given a chain complex $A_\bullet$ of abelian groups and another group $G$,
+	we let \[ H^n(A_\bullet; G) \] denote the cohomology groups
+	of the dual cochain complex $A^\bullet$ obtained by applying $\Hom(-,G)$.
+	In other words, $H^n(A_\bullet; G) = H^n(A^\bullet)$.
 \end{definition}
-This is admittedly horrible naming:
-the \emph{cohomology groups of a chain complex}
-are the \emph{homology groups of the cochain complex}
-dual to that chain complex.
 
 \section{Cohomology of Spaces}
 \prototype{$C^0(X;G)$ all functions $X \to G$ while $H^0(X)$ are those functions $X \to G$
@@ -54,7 +67,8 @@ constant on path components.}
 The case of interest is our usual geometric situation, with $C_\bullet(X)$.
 \begin{definition}
 	For a space $X$ and abelian group $G$,
-	we define $C^\bullet(X;G)$ to be the dual complex to $C_\bullet(X)$,
+	we define $C^\bullet(X;G)$ to be the dual to the
+	singular chain complex $C_\bullet(X)$,
 	called the \vocab{singular cochain complex} of $X$;
 	its elements are called \vocab{cochains}.
 
@@ -62,11 +76,14 @@ The case of interest is our usual geometric situation, with $C_\bullet(X)$.
 	of the space $X$ as 
 	\[ H^n(X; G) \defeq H^n(C_\bullet(X); G) = H_n(C^\bullet(X;G)). \]
 \end{definition}
+\begin{remark}
+	Note that if $G$ is also a ring (like $\ZZ$ or $\RR$),
+	then $H^n(X; G)$ is not only an abelian group but actually a $G$-module.
+\end{remark}
 
 \begin{example}
 	[$C^0(X; G)$, $C^1(X; G)$, and $H^0(X;G)$]
-	Of course the archetypal example is to dualize the singular chain complex
-	of a space $X$. In this situation, elements of $C^n$ are called \emph{cochains}.
+	Let $X$ be a topological space and consider $C^\bullet(X)$./
 	\begin{itemize}
 		\ii $C_0(X)$ is the free abelian group on $X$,
 		so $C^0(X) = \Hom(C_0(X), G)$ is a function that
@@ -184,7 +201,7 @@ This is achieved by the \emph{Universal Coefficient Theorem}.
 		\taking{h} \Hom(H_n(A_\bullet), G) \to 0. \]
 	In addition, this exact sequence is \emph{split}
 	so in particular
-	\[ H^n(C_\bullet; G) \cong \Ext(H_{n-1}(A_\bullet, G)
+	\[ H^n(C_\bullet; G) \cong \Ext(H_{n-1}(A_\bullet, G))
 		\oplus \Hom(H_n(A_\bullet), G). \]
 \end{theorem}
 Fortunately, in our case of interest, $A_\bullet$ is $C_\bullet(X)$
@@ -203,8 +220,8 @@ Let $H$ be an abelian group, and consider a \vocab{free resolution} of $H$,
 by which we mean an exact sequence
 \[ \dots \taking{f_2} F_1 \taking{f_1} F_0 \taking{f_0} H \to 0. \]
 Then we can apply $\Hom(-,G)$ to get a cochain complex
-\[ \dots \xleftarrow{f_2^\vee} \Hom(F_1, G) \xleftarrow{f_1}
-	\Hom(F_0, G) \xleftarrow{f_0} \Hom(H,G) \to 0. \]
+\[ \dots \xleftarrow{f_2^\vee} \Hom(F_1, G) \xleftarrow{f_1^\vee}
+	\Hom(F_0, G) \xleftarrow{f_0^\vee} \Hom(H,G) \to 0. \]
 but \emph{this cochain complex need not be exact}
 (in categorical terms, $\Hom(-,G)$ does not preserve exactness).
 We define \[ \Ext(H,G) \defeq \ker(f_2^\vee) / \img(f_1^\vee) \]
@@ -230,7 +247,7 @@ you can pick any free resolution you want and compute the above.
 	[Computing the $\Ext$ Functor]
 	For any abelian groups $G$, $H$, $H'$ we have
 	\begin{enumerate}[(a)]
-		\ii $\Ext(H \oplus H, G) = \Ext(H, G) \oplus \Ext(H', G)$.
+		\ii $\Ext(H \oplus H', G) = \Ext(H, G) \oplus \Ext(H', G)$.
 		\ii $\Ext(H,G) = 0$ for $H$ free, and
 		\ii $\Ext(\Zc n, G) = G / nG$.
 	\end{enumerate}
@@ -284,7 +301,7 @@ which are constant on path-connected components,
 modulo the functions which are constant on all of $X$.
 
 \begin{example}
-	[Cohomology Groups of $S^m$]
+	[Cohomolgy Groups of $S^m$]
 	It is straightforward to compute $H^n(S^m)$ now:
 	all the $\Ext$ terms vanish since $H_n(S^m)$ is always free,
 	and hence we obtain that 
@@ -305,11 +322,15 @@ modulo the functions which are constant on all of $X$.
 \end{example}
 
 \begin{example}
-	[Cohomology Groups of Torus]
+	[Cohomolgy Groups of Torus]
 	This example has no nonzero $\Ext$ terms either,
 	since this time $H^n(S^1 \times S^1)$ is always free.
 	So we obtain
-	\[ H^n(S^1 \times S^1) \cong \Hom(H_n(S^1 \times S^1), G)
+	\[ H^n(S^1 \times S^1) \cong \Hom(H_n(S^1 \times S^1), G). \]
+	Since $H_n(S^1 \times S^1)$ is $\ZZ$, $\ZZ^{\oplus 2}$, $\ZZ$
+	in dimensions $n=1,2,1$ we derive that
+	\[
+		H^n(S^1 \times S^1)
 		\cong
 		\begin{cases}
 			G & n = 0,2 \\
@@ -319,7 +340,7 @@ modulo the functions which are constant on all of $X$.
 \end{example}
 
 \begin{example}
-	[Cohomology Groups of Klein Bottle]
+	[Cohomolgy Groups of Klein Bottle]
 	This example will actually have $\Ext$ term.
 	Recall that if $K$ is a Klein Bottle then its homology groups are
 	$\ZZ$ in dimension $n=0$ and $\ZZ \oplus \Zc 2$ in $n=1$, and $0$ elsewhere.
@@ -364,6 +385,77 @@ From the previous example we can extract the following observation.
 	so the $\Ext$ term vanishes.
 \end{proof}
 
+\section{De Rham Cohomology}
+We now reveal the connection between
+differential forms and singular cohomology.
+
+Let $M$ be a smooth manifold.
+We are interested in the homology and cohomology groups of $M$.
+We specialize to the case $G = \RR$, the additive group of real numbers.
+\begin{ques}
+	Check that $\Ext(H, \RR) = 0$ for any finitely generated abelian group $H$.
+\end{ques}
+Thus, with real coefficients the Universal Coefficient Theorem says that
+\[ H^k(M; \RR) \cong \Hom(H_k(M), \RR) = \left( H_k(M) \right)^\vee \]
+where we view $H_k(X)$ as a real vector space.
+So, we'd like to get a handle on either $H_k(M$) or $H^k(M; \RR)$.
+
+Consider the cochain complex
+\[
+	0 \to \Omega^0(M)
+	\taking d \Omega^1(M)
+	\taking d \Omega^2(M)
+	\taking d \Omega^3(M)
+	\taking d \dots
+\]
+and let $\HdR^k(M)$ denote its cohomology groups.
+Thus the de Rham cohomology is the closed forms modulo the exact forms.
+\[
+	\text{Cochain} : \text{Cocycle} : \text{Coboundary}
+	= \text{$k$-form} : \text{Closed form} : \text{Exact form}. 
+\]
+
+The whole punch line is:
+\begin{theorem}
+	[de Rham's Theorem]
+	For any smooth manifold $M$, we have a natural isomorphism
+	\[ H^k(M; \RR) \cong \HdR(M). \]
+\end{theorem}
+So the theorem is that the real cohomology groups of manifolds $M$
+are actually just given by the behavior of differential forms.
+Thus, 
+\begin{moral}
+	One can metaphorically think of elements of cohomology groups
+	as $G$-valued differential forms on the space.
+\end{moral}
+
+Why does this happen?
+In fact, we observed already behavior of differential
+forms which reflects holes in the space.
+For example, let $M = S^1$ be a circle
+and consider the \textbf{angle form} $\alpha$
+(see \Cref{ex:angle_form}).
+The from $\alpha$ is closed, but not exact,
+because it is possible to run a full circle around $S^1$.
+So the failure of $\alpha$ to be exact is signaling
+that $H_1(S^1) \cong \ZZ$.
+
+\section{Poincar\'e Duality}
+One last cool result:
+you may have noticed symmetry in the (co)homology groups of
+``nice'' spaces like the torus or $S^n$.
+This is predicted by the following theorem:
+\begin{theorem}
+	[Poincar\'e Duality]
+	If $M$ is a smooth oriented compact $n$-manifold,
+	then we have a natural isomorphism
+	\[ H^k(M; \ZZ) \cong H_{n-k}(M) \]
+	for every $k$.
+	In particular, $H^k(M) = 0$ for $k > n$.
+\end{theorem}
+See also \Cref{prob:betti}.
+
+
 \section\problemhead
 \begin{sproblem}
 	[Wedge Product Cohomology]
@@ -374,8 +466,16 @@ From the previous example we can extract the following observation.
 		\wt H^n(X; G) \oplus \wt H^n(Y; G).
 	\]	
 \end{sproblem}
-\begin{sproblem}[$\Zc2$-Cohomology of $\RP^n$]
-	Show that
+
+\begin{dproblem}
+	Prove that for a field $F$ of characteristic zero and a space $X$
+	with finitely generated homology groups:
+	\[ H^k(X, F) \cong \left( H_k(X) \right)^\vee.  \]
+	Thus over fields cohomology is the dual of homology.
+\end{dproblem}
+
+\begin{problem}[$\Zc2$-Cohomology of $\RP^n$]
+	Prove that
 	\[
 		H^m(\RP^n, \Zc2)
 		\cong
@@ -385,5 +485,28 @@ From the previous example we can extract the following observation.
 			0 & \text{otherwise}.
 		\end{cases}
 	\]
-\end{sproblem}
+\end{problem}
+
+\begin{dproblem}
+	[Symmetry of Betti Numbers]
+	\label{prob:betti}
+	Let $M$ be a smooth oriented compact $n$-manifold,
+	and let $b_k$ denote its Betti number.
+	Prove that
+	\[ b_k = b_{n-k}. \]
+	For example, the Betti numbers of
+	the torus are $b_0 = 1$, $b_1 = 2$, $b_2 = 1$.
+	\begin{hint}
+		Write $H^k(M; \ZZ)$ in terms of $H_k(M)$
+		using the UCT, and analyze the ranks.
+	\end{hint}
+\end{dproblem}
+
+\begin{problem}
+	Show that $\RP^n$ is not orientable for even $n$.
+	\begin{hint}
+		Use the previous result on Betti numbers.
+	\end{hint}
+\end{problem}
+
 

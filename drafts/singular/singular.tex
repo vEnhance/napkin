@@ -17,8 +17,7 @@
 
 
 \chapter{Singular Cohomology}
-\section{Motivation}
-Here's the main way to motivate this chapter.
+Here's one way to motivate this chapter.
 Let $X = \CP^2$ and $Y = S^2 \wedge S^4$.
 \begin{exercise}
 	Show that $H_n(X) \cong H_n(Y)$ for every $n$.
@@ -35,17 +34,30 @@ We will then see that $H^\bullet(X) \not\cong H^\bullet(Y)$ as rings.
 
 \section{Cochain Complexes}
 \begin{definition}
-A \vocab{cochain complex} $A^\bullet$ is algebraically the same as a chain complex:
-it is a sequence of abelian groups
+A \vocab{cochain complex} $A^\bullet$ is algebraically the same as a chain complex, except that the indices increase.
+So it is a sequence of abelian groups
 \[ \dots \taking{\delta} A^{n-1} \taking\delta A^n \taking\delta A^{n+1} \taking\delta \dots. \]
 such that $\delta^2 = 0$.
 Notation-wise, we're now using subscripts, and use $\delta$ rather $\partial$.
-We can still define the homology groups by
-\[ H_n(A^\bullet) = \ker\left( A^n \taking\delta A^{n+1} \right)
+We define the \vocab{cohomology groups} by
+\[ H^n(A^\bullet) = \ker\left( A^n \taking\delta A^{n+1} \right)
 	/ \img\left( A^{n-1} \taking\delta A^n \right). \]
 \end{definition}
+0
+\begin{example}[de Rham Cohomology]
+	We have already met one example of a cochain complex:
+	let $M$ be a smooth manifold and $\Omega^k(M)$ be the
+	additive group of $k$-forms on $M$.
+	Then we have a cochain complex
+	\[ 0 \taking d \Omega^0(M)
+		\taking d \Omega^1(M) \taking d \Omega^2(M)
+		\taking d \dots. \]
+	The resulting cohomology is called \vocab{de Rham cohomology},
+	described later.
+\end{example}
 
-\textbf{The most common way to get a cochain complex
+Aside from de Rham's cochain complex,
+\textbf{the most common way to get a cochain complex
 is to \emph{dualize} a chain complex.}
 Specifically, pick an abelian group $G$;
 note that $\Hom(-, G)$ is a contravariant functor,
@@ -56,14 +68,15 @@ into a cochain complex: letting $A^n = \Hom(A_n, G)$ we obtain
 \[ \dots \taking\delta A^{n-1} \taking\delta
 	A^n \taking\delta A^{n+1} \taking\delta \dots. \]
 where $\delta(A_n \taking{f} G) = A_{n+1} \taking\partial A \taking{f} G$.
+
+These are the cohomology groups we study most in algebraic topology,
+so we give a special notation to them.
 \begin{definition}
-	Given a chain complex $A_\bullet$ of abelian groups and a group $G$,
-	we define the \vocab{cohomology groups} $H^n(A_\bullet; G)$ to be the
-	homology groups of the dual $A^\bullet$ obtained by applying $\Hom(-,G)$.
+	Given a chain complex $A_\bullet$ of abelian groups and another group $G$,
+	we let \[ H^n(A_\bullet; G) \] denote the cohomology groups
+	of the dual cochain complex $A^\bullet$ obtained by applying $\Hom(-,G)$.
+	In other words, $H^n(A_\bullet; G) = H^n(A^\bullet)$.
 \end{definition}
-This is admittedly horrible naming:
-the \emph{cohomology groups of a chain complex}
-are the \emph{homology groups of the dual cochain complex}.
 
 \section{Cohomology of Spaces}
 \prototype{$C^0(X;G)$ all functions $X \to G$ while $H^0(X)$ are those functions $X \to G$
@@ -72,7 +85,8 @@ constant on path components.}
 The case of interest is our usual geometric situation, with $C_\bullet(X)$.
 \begin{definition}
 	For a space $X$ and abelian group $G$,
-	we define $C^\bullet(X;G)$ to be the dual complex to $C_\bullet(X)$,
+	we define $C^\bullet(X;G)$ to be the dual to the
+	singular chain complex $C_\bullet(X)$,
 	called the \vocab{singular cochain complex} of $X$;
 	its elements are called \vocab{cochains}.
 
@@ -87,8 +101,7 @@ The case of interest is our usual geometric situation, with $C_\bullet(X)$.
 
 \begin{example}
 	[$C^0(X; G)$, $C^1(X; G)$, and $H^0(X;G)$]
-	Of course the archetypal example is to dualize the singular chain complex
-	of a space $X$. In this situation, elements of $C^n$ are called \emph{cochains}.
+	Let $X$ be a topological space and consider $C^\bullet(X)$./
 	\begin{itemize}
 		\ii $C_0(X)$ is the free abelian group on $X$,
 		so $C^0(X) = \Hom(C_0(X), G)$ is a function that
@@ -331,7 +344,11 @@ modulo the functions which are constant on all of $X$.
 	This example has no nonzero $\Ext$ terms either,
 	since this time $H^n(S^1 \times S^1)$ is always free.
 	So we obtain
-	\[ H^n(S^1 \times S^1) \cong \Hom(H_n(S^1 \times S^1), G)
+	\[ H^n(S^1 \times S^1) \cong \Hom(H_n(S^1 \times S^1), G). \]
+	Since $H_n(S^1 \times S^1)$ is $\ZZ$, $\ZZ^{\oplus 2}$, $\ZZ$
+	in dimensions $n=1,2,1$ we derive that
+	\[
+		H^n(S^1 \times S^1)
 		\cong
 		\begin{cases}
 			G & n = 0,2 \\
@@ -386,6 +403,77 @@ From the previous example we can extract the following observation.
 	so the $\Ext$ term vanishes.
 \end{proof}
 
+\section{De Rham Cohomology}
+We now reveal the connection between
+differential forms and singular cohomology.
+
+Let $M$ be a smooth manifold.
+We are interested in the homology and cohomology groups of $M$.
+We specialize to the case $G = \RR$, the additive group of real numbers.
+\begin{ques}
+	Check that $\Ext(H, \RR) = 0$ for any finitely generated abelian group $H$.
+\end{ques}
+Thus, with real coefficients the Universal Coefficient Theorem says that
+\[ H^k(M; \RR) \cong \Hom(H_k(M), \RR) = \left( H_k(M) \right)^\vee \]
+where we view $H_k(X)$ as a real vector space.
+So, we'd like to get a handle on either $H_k(M$) or $H^k(M; \RR)$.
+
+Consider the cochain complex
+\[
+	0 \to \Omega^0(M)
+	\taking d \Omega^1(M)
+	\taking d \Omega^2(M)
+	\taking d \Omega^3(M)
+	\taking d \dots
+\]
+and let $\HdR^k(M)$ denote its cohomology groups.
+Thus the de Rham cohomology is the closed forms modulo the exact forms.
+\[
+	\text{Cochain} : \text{Cocycle} : \text{Coboundary}
+	= \text{$k$-form} : \text{Closed form} : \text{Exact form}. 
+\]
+
+The whole punch line is:
+\begin{theorem}
+	[de Rham's Theorem]
+	For any smooth manifold $M$, we have a natural isomorphism
+	\[ H^k(M; \RR) \cong \HdR(M). \]
+\end{theorem}
+So the theorem is that the real cohomology groups of manifolds $M$
+are actually just given by the behavior of differential forms.
+Thus, 
+\begin{moral}
+	One can metaphorically think of elements of cohomology groups
+	as $G$-valued differential forms on the space.
+\end{moral}
+
+Why does this happen?
+In fact, we observed already behavior of differential
+forms which reflects holes in the space.
+For example, let $M = S^1$ be a circle
+and consider the \textbf{angle form} $\alpha$
+(see \Cref{ex:angle_form}).
+The from $\alpha$ is closed, but not exact,
+because it is possible to run a full circle around $S^1$.
+So the failure of $\alpha$ to be exact is signaling
+that $H_1(S^1) \cong \ZZ$.
+
+\section{Poincar\'e Duality}
+One last cool result:
+you may have noticed symmetry in the (co)homology groups of
+``nice'' spaces like the torus or $S^n$.
+This is predicted by the following theorem:
+\begin{theorem}
+	[Poincar\'e Duality]
+	If $M$ is a smooth oriented compact $n$-manifold,
+	then we have a natural isomorphism
+	\[ H^k(M; \ZZ) \cong H_{n-k}(M) \]
+	for every $k$.
+	In particular, $H^k(M) = 0$ for $k > n$.
+\end{theorem}
+See also \Cref{prob:betti}.
+
+
 \section\problemhead
 \begin{sproblem}
 	[Wedge Product Cohomology]
@@ -397,10 +485,15 @@ From the previous example we can extract the following observation.
 	\]	
 \end{sproblem}
 
-duals for field $F$
+\begin{dproblem}
+	Prove that for a field $F$ of characteristic zero and a space $X$
+	with finitely generated homology groups:
+	\[ H^k(X, F) \cong \left( H_k(X) \right)^\vee.  \]
+	Thus over fields cohomology is the dual of homology.
+\end{dproblem}
 
-\begin{sproblem}[$\Zc2$-Cohomology of $\RP^n$]
-	Show that
+\begin{problem}[$\Zc2$-Cohomology of $\RP^n$]
+	Prove that
 	\[
 		H^m(\RP^n, \Zc2)
 		\cong
@@ -410,107 +503,29 @@ duals for field $F$
 			0 & \text{otherwise}.
 		\end{cases}
 	\]
-\end{sproblem}
+\end{problem}
 
+\begin{dproblem}
+	[Symmetry of Betti Numbers by Poincar\'e Duality]
+	\label{prob:betti}
+	Let $M$ be a smooth oriented compact $n$-manifold,
+	and let $b_k$ denote its Betti number.
+	Prove that
+	\[ b_k = b_{n-k}. \]
+	For example, the Betti numbers of
+	the torus are $b_0 = 1$, $b_1 = 2$, $b_2 = 1$.
+	\begin{hint}
+		Write $H^k(M; \ZZ)$ in terms of $H_k(M)$
+		using the UCT, and analyze the ranks.
+	\end{hint}
+\end{dproblem}
 
-\chapter{Bonus: Cohomology of Manifolds}
-In the previous chapter we defined cohomology groups abstractly.
-Thus underlies a story that unites algebraic topology and differential geometry.
-
-I haven't talked enough about manifolds to make this precise,
-so in this chapter I will mostly be waving my hands.
-
-\section{De Rham Cohomology}
-Let $M$ be a smooth manifold.
-We are interested in the homology and cohomology groups of $M$.
-
-We specialize to the case $G = \RR$, the additive group of real numbers.
-\begin{ques}
-	Check that $\Ext(H, \RR) = 0$ for any finitely generated abelian group $H$.
-\end{ques}
-Thus, with real coefficients the Universal Coefficient Theorem says that
-\[ H^k(M; \RR) \cong \Hom(H_k(M), \RR) = \left( H_k(M) \right)^\vee \]
-where we view $H_k(X)$ as a real vector space.
-So, we'd like to get a handle on either $H_k(M$) or $H^k(M; \RR)$.
-
-Well, the trick is as follows:
-\begin{definition}
-	Let $\Omega^k(M)$ denote the real vector space of $k$-forms on $M$.
-	For example, $\Omega^0(M)$ is the set of smooth functions $M \to \RR$.
-\end{definition}
-
-Now, we can define the exterior derivative $d$ as before, giving a map
-\[
-	0 \to \Omega^0(M)
-	\taking d \Omega^1(M)
-	\taking d \Omega^2(M)
-	\taking d \Omega^3(M)
-	\taking d \dots
-\]
-and, surprise, this is a chain complex! After all, we know $d^2 = 0$.
-So, we can define the homology groups of this chain complex,
-call them $\HdR(M)$.
-
-The language that's usually used here: a $k$-form $\alpha$
-is called \vocab{closed} if $d\alpha = 0$ (i.e. $\alpha$ is in the kernel),
-and \vocab{exact} if $\alpha = d\beta$ for some $\beta$
-(i.e.\ $\alpha$ is in the image).
-To draw the analogy with the singular case:
-\[
-	\text{Cochain} : \text{Cocycle} : \text{Coboundary}
-	= \text{$k$-form} : \text{Closed form} : \text{Exact form}. 
-\]
-Thus the de Rham cohomology is the closed forms modulo the exact forms.
-
-The whole punch line is:
-\begin{theorem}
-	[de Rham's Theorem]
-	For any smooth manifold $M$, we have a natural isomorphism
-	\[ H^k(M; \RR) \to \HdR(M). \]
-\end{theorem}
-So the theorem is that the real cohomology groups of manifolds $M$
-are actually just given by the behavior of differential forms.
-Thus, 
-\begin{moral}
-	One can think of elements of cohomology groups
-	as differential forms on the space.
-\end{moral}
-This metaphor can help even for general $H^k(X; G)$.
-
-Why does this happen?
-Here is a vague example that gives a sense of how differential
-forms can measure the same topological properties (``holes'')
-that homology groups were built to detect.
-\begin{example}
-	[de Rham Cohomology of $S^1$]
-	Let $M = S^1$ be a circle (a smooth $1$-manifold).
-	One can define the \vocab{angle form} $\alpha$, which measures
-	the change in the angle as we move in the circle.
-
-	To be precise, given a point $p \in M$ and a tangent vector $v$ to
-	the circle at $M$, $\alpha_p(v)$ gives the singed length of $v$.
-
-	\begin{enumerate}[(a)]
-		\ii This form is closed (it is a $1$-form on a one-dimensional space,
-		thus $d\alpha = 0$ is clear).
-
-		\ii But it is not exact: there is no function $\theta : M \to \RR$ 
-		such that $\alpha = d\theta$.
-		The reason is that we can ``integrate'' around the entire circle,
-		giving an increment of $2\pi$, and thus we see that it is
-		impossible to define $\theta$ globally on $M$.
-	\end{enumerate}
-	So the failure of $\alpha$ to be exact is signaling
-	the fact that $H_1(S^1) \cong \ZZ$.
-\end{example}
-
-\section{Poincar\'e Duality}
-In this case, the right definition of ``nice'' is 
-\emph{compact orientable topological $n$-manifold}.
-
-Since the definitions of cohomology groups I have given are somewhat abstract,
-I had better mention Poincar\'e duality, which will give us a sense of
-what the cohomology groups $H^k(M, \ZZ)$ look like in the case of a ``nice'' space $M$.
+\begin{problem}
+	Show that $\RP^n$ is not orientable for even $n$.
+	\begin{hint}
+		Use the previous result on Betti numbers.
+	\end{hint}
+\end{problem}
 
 
 \chapter{The Cohomology Ring}

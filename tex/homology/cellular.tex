@@ -195,10 +195,11 @@ want $\chi(X)$ to only depend on the space $X$ itself
 	\[ \chi(X) = \sum_n (-1)^n \rank H_n(X). \]
 \end{theorem}
 Thus $\chi(X)$ does not depend on the choice of CW decomposition.
-The numbers $\rank H_n(X)$ are called the \vocab{Betti numbers} of $X$.
+The numbers 
+\[ b_n = \rank H_n(X) \]
+are called the \vocab{Betti numbers} of $X$.
 In fact, we can use this to define $\chi(X)$ for any reasonable space;
 we are happy because in the (frequent) case that $X$ is a CW complex,
-
 
 \begin{proof}
 	We quote the fact that if $0 \to A \to B \to C \to D \to 0$
@@ -222,6 +223,26 @@ we are happy because in the (frequent) case that $X$ is a CW complex,
 	gives the conclusion.
 \end{proof}
 
+\begin{example}
+	[Examples of Betti Numbers]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii The Betti numbers of $S^n$ are $b_0 = b_n = 1$,
+		and zero elsewhere. The Euler characteristic is $1 + (-1)^n$.
+		\ii The Betti numbers of a torus $S^1 \times S^1$
+		are $b_0 = 1$, $b_1 = 2$, $b_2 = 1$, and zero elsewhere.
+		Thus the Euler characteristic is $0$.
+		\ii The Betti numbers of $\CP^n$ are $b_0 = b_2 = \dots = b_{2n} = 1$,
+		and zero elsewhere. Thus the Euler characteristic is $n+1$.
+		\ii The Betti numbers of the Klein bottle
+		are $b_0 = 1$, $b_1 = 1$ and zero elsewhere. 
+		Thus the Euler characteristic is $0$, the same as the sphere
+		(also since their CW structures use the same number of cells).
+	\end{enumerate}
+	One notices that in the ``nice'' spaces $S^n$, $S^1 \times S^1$ and $\CP^n$
+	there is a nice symmetry in the Betti numbers, namely $b_k = b_{n-k}$.
+	This is true more generally; see Poincar\'e duality and \Cref{prob:betti}.
+\end{example}
 
 \section{The Cellular Boundary Formula}
 In fact, one can describe explicitly what the maps $d_n$ are.
