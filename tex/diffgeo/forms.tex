@@ -1,0 +1,234 @@
+\chapter{Differential Forms}
+\section{Differential Forms}
+\prototype{Algebraically,
+	something that looks like $f \ee_1^\vee \wedge \ee_2^\vee + \dots$,
+	and geometrically, see the picture.}
+
+\begin{remark}
+	This section and the next one on exterior derivatives
+	are sort of convoluted.
+	The reason is that differential forms, despite their name,
+	are really meant to be integrated (not differentiated):
+	\begin{quote}
+		\noindent ``The definition of a differential form is:
+		something you can integrate.'' \\ --- Joe Harris
+	\end{quote}
+	Unfortunately, I sort of have to talk about the exterior
+	derivative before I can talk about Stoke's Theorem.
+	So much of this will seem quite unmotivated until later.
+
+	It may be helpful to skim the first section of the next chapter,
+	just so you have a sense for what is coming.
+\end{remark}
+
+Let's now get a handle on what $dx$ means.
+This turns out to be a special case of a so-called \emph{differential form}.
+Fix a real vector space $V$ of dimension $n$,
+and let $\ee_1$, \dots, $\ee_n$ be a standard basis.
+
+\begin{definition}
+	We define a \vocab{differential $k$-form} $\alpha$ to be a smooth (infinitely differentiable)
+	map $\alpha : V \to \Lambda^k(V^\vee)$.
+	(Here $\Lambda^k(V^\vee)$ is the wedge product.)
+\end{definition}
+
+Like with $Df$, we'll use $\alpha_p$ instead of $\alpha(p)$.
+
+\begin{example}
+	[$k$-forms for $k=0,1$]
+	\listhack
+	\begin{enumerate}[(a)]
+		\item A $0$-form is just a function $V \to \RR$.
+		\item A $1$-form is a function $V \to V^\vee$.
+		For example, the total derivative $Df$ of a function $V \to \RR$ is a $1$-form.
+		\item Let $V = \RR^3$ with standard basis $\ee_1$, $\ee_2$, $\ee_3$.
+		Then a typical $2$-form is given by
+		\[
+			\alpha_p
+			=
+			f(p) \ee_1^\vee \wedge \ee_2^\vee
+			+ g(p) \ee_1^\vee \wedge \ee_3^\vee
+			+ h(p) \ee_2^\vee \wedge \ee_3^\vee
+			\in \Lambda^2(V)
+		\]
+		where $f,g,h : V \to \RR$ are smooth functions.
+	\end{enumerate}
+\end{example}
+
+Now, by the projection principle (\Cref{thm:project_principle}) we only have to specify
+a function on each of $\binom nk$ basis elements of $\Lambda^k(V^\vee)$.
+So, take any basis $\{e_i\}$ of $V$, and 
+take the usual basis for $\Lambda^k(V^\vee)$ of elements
+\[ e_{i_1}^\vee \wedge e_{i_2}^\vee \wedge \dots \wedge e_{i_k}^\vee. \]
+Thus, a general $k$-form takes the shape
+\[ \alpha_p = \sum_{1 \le i_1 < \dots < i_k \le n} 
+	f_{i_1, \dots, i_k}(p)
+	e_{i_1}^\vee \wedge e_{i_2}^\vee \wedge \dots \wedge e_{i_k}^\vee. \]
+Since this is a huge nuisance to write, we will abbreviate this to just
+\[ \alpha = \sum_I f_I de_I \]
+where we understand the sum runs over $I = (i_1, \dots, i_k)$,
+and $de_I$ represents $e_{i_1}^\vee \wedge \dots \wedge e_{i_k}^\vee$.
+
+Now that we have an element $\Lambda^k(V^\vee)$, what can it do?
+Well, first let me get the definition on the table, then tell you what it's doing.
+\begin{definition}
+	For linear functions $\xi_1, \dots, \xi_k \in V^\vee$
+	and vectors $v_1, \dots, v_k \in V$, set
+	\[
+		(\xi_1 \wedge \dots \wedge \xi_k)(v_1, \dots, v_k)
+		\defeq
+		\det
+		\left(
+		\begin{array}{ccc}
+			\xi_1(v_1) & \dots & \xi_1(v_k) \\
+			\vdots & \ddots & \vdots \\
+			\xi_k(v_1) & \dots & \xi_k(v_k)
+		\end{array}
+		\right).
+	\]
+	You can check that this is well-defined
+	under e.g. $v \wedge w = -w \wedge v$ and so on.
+\end{definition}
+
+\begin{example}
+	[Evaluation of a Differential Form]
+	Set $V = \RR^3$.
+	Suppose that at some point $p$, the $2$-form $\alpha$ returns
+	\[ \alpha_p = 2 \ee_1^\vee \wedge \ee_2^\vee + \ee_1^\vee \wedge \ee_3^\vee. \]
+	Let $v_1 = 3\ee_1 + \ee_2 + 4\ee_3$ and $v_2 = 8\ee_1 + 9\ee_2 + 5\ee_3$.
+	Then
+	\[
+		\alpha_p(v_1, v_2)
+		=
+		2\det \left( \begin{array}{cc}
+			3 & 1 \\ 8 & 9 \end{array} \right)
+		+
+		\det \left( \begin{array}{cc}
+			3 & 4 \\ 8 & 5 \end{array} \right)
+		= 21.
+	\]
+\end{example}
+
+What does this definition mean?
+One way to say it is that
+\begin{moral}
+	If I walk to a point $p \in U$,
+	a $k$-form $\alpha$ will take in $k$ vectors $v_1, \dots, v_k$
+	and spit out a number, which is to be interpreted as a (signed) volume.
+\end{moral}
+
+Picture:
+\begin{center}
+	\begin{asy}
+		bigblob("$U$");
+		pair p = (-2,-2);
+		dot("$p$", p, dir(225), red);
+		pair p1 = p + 1.4*dir(120);
+		pair p2 = p + 1.7*dir(10);
+		draw(p--p1, red, EndArrow);
+		draw(p--p2, red, EndArrow);
+		label("$v_1$", p1, dir(p1-p), red);
+		label("$v_2$", p2, dir(p2-p), red);
+		label("$\alpha_p(v_1, v_2) \in \mathbb R$", p+dir(45)*3);
+	\end{asy}
+\end{center}
+
+In other words, at every point $p$, we get a function $\alpha_p$.
+Then I can feed in $k$ vectors to $\alpha_p$ and get a number,
+which I interpret as a signed volume of the parallelpiped spanned by the $\{v_i\}$'s
+in some way (e.g.\ the flux of a force field).
+That's why $\alpha_p$ as a ``function'' is contrived to lie in the wedge product:
+this ensures that the notion of ``volume'' makes sense, so that for example,
+the equality $\alpha_p(v_1, v_2) = -\alpha_p(v_2, v_1)$ holds.
+
+This is what makes differential forms so fit for integration.
+
+
+\section{Exterior Derivatives}
+\prototype{Possibly $dx_1 = \ee_1^\vee$.}
+First, given a function $f : V \to \RR$,
+we define 
+\[ df \defeq Df = \sum_i f_i e_i^\vee \]
+In particular, suppose $V = \RR^n$ and $f(x_1, \dots, x_n) = x_1$ (i.e.\ $f = \ee_1^\vee$). Then:
+\begin{ques}
+	Show that for any $p \in U$, \[ \left( d(\ee_1^\vee) \right)_p = \ee_1^\vee. \]
+\end{ques}
+\begin{abuse}
+	Unfortunately, someone somewhere decided it would be a good idea to use ``$x_1$'' to denote $\ee_1^\vee$
+	(because \emph{obviously}\footnote{Sarcasm.} $x_1$ means
+	``the function that takes $(x_1, \dots, x_n) \in \RR^n$ to $x_1$'')
+	and then decided that \[ dx_1 \defeq \ee_1^\vee. \]
+	This notation is so entrenched that I have no choice but to grudgingly accept it.
+	Note that it's not even right, since technically it's $(dx_1)_p = \ee_1^\vee$; $dx_1$ is a $1$-form.
+	\label{abuse:dx}
+\end{abuse}
+\begin{remark}
+	This is the reason why we use the notation $\frac{df}{dx}$ in calculus now:
+	given, say, $f : \RR \to \RR$ by $f(x) = x^2$, it is indeed true that
+	\[ df = 2x \cdot \ee_1^\vee = 2x \cdot dx \]
+	and so by abuse of notation we write $df/dx = 2x$.
+\end{remark}
+
+More generally, we can define the \vocab{exterior derivative} in terms of our basis $e_1$, \dots, $e_n$ as follows:
+if $\alpha = \sum_I f_I de_I$ then we set
+\[ d\alpha \defeq \sum_I df_I \wedge de_I = \sum_I \sum_j \fpartial{f_I}{e_j} de_j \wedge de_I. \]
+We'll show this doesn't depend on the choice of basis in a moment.
+
+\begin{example}[Computing some exterior derivatives]
+	Let $V = \RR^3$ with standard basis $\ee_1$, $\ee_2$, $\ee_3$.
+	Let $f(x,y,z) = x^4 + y^3 + 2xz$.
+	Then we compute
+	\[ df = Df = (4x^3+2z) \; dx + 3y^2 \; dy + 2x \; dz. \]
+	Next, we can evaluate $d(df)$ as prescribed: it is
+	\begin{align*}
+		d^2f &= (12x^2 \; dx + 2 dz) \wedge dx + (6y \; dy) \wedge dy
+		+ 2(dx \wedge dz) \\
+		&= 12x^2 (dx \wedge dx) + 4(dz \wedge dx) + 6y (dy \wedge dy) + 4(dx \wedge dz) \\
+		&= 4(dz \wedge dx) + 4(dx \wedge dz) \\
+		&= 0.
+	\end{align*}
+	So surprisingly, $d^2f$ is the zero map.
+	Here, we have exploited \Cref{abuse:dx} for the first time,
+	in writing $dx$, $dy$, $dz$.
+\end{example}
+And in fact, this is always true in general:
+\begin{theorem}[Exterior Derivative Vanishes]
+	\label{thm:dd_zero}
+	Let $\alpha$ be any $k$-form.
+	Then $d^2(\alpha) = 0$.
+	Even more succinctly, \[ d^2 = 0. \]
+\end{theorem}
+The proof is left as \Cref{prob:dd_zero}.
+
+Here are some other properties of $d$:
+\begin{itemize}
+	\ii As we just saw, $d^2 = 0$.
+	\ii It is bilinear; $d(c\alpha+\beta) = c \cdot d\alpha + d\beta$.
+	\ii For a $k$-form $\alpha$ and $\ell$-form $\beta$, one can show that
+	\[ d(\alpha \wedge \beta) = d\alpha \wedge \beta + (-1)^k (\alpha \wedge d\beta). \]
+\end{itemize}
+In fact, one can show that $df$ as defined in terms of bases above is
+the \emph{unique} map sending $k$-forms to $(k+1)$-forms.
+Actually, one way to define $df$ is to take as axioms the bulleted properties above
+and then declare $d$ to be the unique solution to this functional equation.
+In any case, this tells us that our definition of $d$
+does not depend on the basis chosen.
+
+According to Wikipedia, ``if a $k$-form $\alpha$ is thought of as
+measuring the flux through a $k$-parallelpiped,
+then $d\alpha$ measures the flux through the boundary of a $(k+1)$-parallelpiped''.
+In that sense, $d^2 = 0$ is saying something like
+``the boundary of the boundary is empty''.
+We'll make this precise when we see Stokes' Theorem in the next chapter.
+
+\section\problemhead
+  
+\begin{problem}
+	\label{prob:dd_zero}
+	Establish \Cref{thm:dd_zero}, which states that $d^2 = 0$.
+	\begin{hint}
+		This is just a summation.
+		You will need the fact that mixed partials are symmetric.
+	\end{hint}
+\end{problem}
+
