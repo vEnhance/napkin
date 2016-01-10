@@ -90,7 +90,8 @@ So the failure of $\alpha$ to be exact is signaling
 that $H_1(S^1) \cong \ZZ$.
 
 \section{Graded Rings}
-\prototype{Polynomial rings are graded rings.}
+\prototype{Polynomial rings are commutative graded rings,
+while $\Lambda^\bullet(V)$ is anticommutative.}
 In the de Rham cohomology, the differential forms can interact in another way:
 given a $k$-form $\alpha$ and an $\ell$-form $\beta$, we can consider
 a $(k+\ell)$-form
@@ -100,31 +101,48 @@ $\beta \wedge \alpha = (-1)^{k\ell} \alpha \wedge \beta$
 This is a special case of a more general structure:
 
 \begin{definition}
-	A \vocab{graded ring} $R$ is an abelian group
+	A \vocab{graded pseudo-ring} $R$ is an abelian group
 	\[ R = \bigoplus_{d \ge 0} R_d \]
 	where $R_0$, $R_1$, \dots, are abelian groups,
 	with an additional associative binary operation $\times : R \to R$.
 	This multiplication is required to satisfy the following property:
-	if $r \in R_d$ and $s \in R_e$,
-	we have $rs \in R_{d+e}$.
-
-	Elements of an $R_d$ are called \vocab{homogeneous elements}.
-	If $r \in R_d$ and $r \neq 0$, we write $|r| = d$.
+	if $r \in R_d$ and $s \in R_e$, we have $rs \in R_{d+e}$.
+	Elements of an $R_d$ are called \vocab{homogeneous elements};
+	if $r \in R_d$ and $r \neq 0$, we write $|r| = d$.
 \end{definition}
-\begin{remark}
-	Note that we do \emph{not} assume that graded rings are commutative.
-	In fact, these graded rings may not even have an identity $1$.
+Note that we do \emph{not} assume commutativity.
+In fact, these ``rings'' may not even have an identity $1$.
+We use other words if there are additional properties:
+\begin{definition}
+	A \vocab{graded ring} is a graded pseudo-ring with $1$.
+	If it is commutative we say it is a \vocab{commutative graded ring}.
+\end{definition}
+\begin{definition}
+	A graded (pseudo-)ring $R$ is \vocab{anticommutative} if
+	for any homogeneous $r$ and $s$ we have
+	\[ rs = (-1)^{|r| |s|} sr. \]
+\end{definition}
 
-	Other than these differences, one can also think of this as a
-	``ring with a notion of degree''.
-\end{remark}
+Thus we have the following table.
+
+\begin{center}
+	\small
+	\begin{tabular}[h]{|c|cc|}
+		\hline
+		\textbf{Flavors of graded rings} &
+		Need not have $1$ & Must have a $1$ \\ \hline
+		No Assumption & graded pseudo-ring & graded ring \\
+		Anticommutative & anticommutative pseudo-ring & anticommutative ring \\
+		Commutative &  & commutative graded ring \\ \hline
+	\end{tabular}
+\end{center}
 
 \begin{example}[Examples of Graded Rings]
 	\listhack
 	\begin{enumerate}[(a)]
-		\ii The ring $R = \ZZ[x]$ is a graded ring,
+		\ii The ring $R = \ZZ[x]$ is a \textbf{commutative graded ring},
 		with the $d$th component being the multiples of $x^d$.
-		\ii The ring $R = \ZZ[x,y,z]$ is a graded ring,
+		\ii The ring $R = \ZZ[x,y,z]$ is a \textbf{commutative graded ring},
 		with the $d$th component being the abelian group
 		of homogeneous degree $d$ polynomials (and $0$).
 		\ii Let $V$ be a vector space, and consider
@@ -132,20 +150,13 @@ This is a special case of a more general structure:
 		\[ \Lambda^\bullet(V) = \bigoplus_{d \ge 0} \Lambda^d(V). \]
 		For example, $e_1 + (e_2 \wedge e_3) \in \Lambda^\bullet(V)$, say.
 		We endow $\Lambda^\bullet(V)$ with the product $\wedge$,
-		which makes it into a graded ring.
-		\ii The set of differential forms of a manifold $M$,
+		which makes it into an \textbf{anticommutative ring}.
+		\ii Consider the set of differential forms of a manifold $M$,
 		say \[ \Omega^\bullet(M) = \bigoplus_{d \ge 0} \Omega^d(M) \]
-		endowed with formal addition and the product $\wedge$,
-		forms a non-commutative graded ring.
+		endowed with the product $\wedge$.
+		This is an \textbf{anticommutative ring}.
 	\end{enumerate}
-\end{example}
-\begin{definition}
-	A graded ring $R$ is \vocab{anticommutative} if
-	for any homogeneous $r$ and $s$ we have
-	\[ rs = (-1)^{|r| |s|} sr \]
-\end{definition}
-\begin{example}[Anticommutative Graded Ring]
-	Both $\Lambda^\bullet(V)$ and $\Omega^\bullet(M)$ are anticommutative.
+	All four examples have a multiplicative identity.
 \end{example}
 
 Let's return to the situation of $\Omega^\bullet(M)$.
@@ -175,16 +186,16 @@ We claim that:
 	giving the theorem above.
 \end{proof}
 
-Therefore, we can obtain a \emph{anticommutative graded ring}
+Therefore, we can obtain a \emph{anticommutative ring}
 \[ \HdR^\bullet(M) = \bigoplus_{k \ge 0} \HdR^k(M) \]
-with $\wedge$ as a product.
+with $\wedge$ as a product, and $1 \in \Lambda^0(\RR) = \RR$ as the identity
 
 \section{Cup Products}
 Inspired by this, we want to see if we can construct a similar product
-on $\bigoplus_{k \ge 0} H^k(X; R)$ for any topological space $X$ and ring $R$.
+on $\bigoplus_{k \ge 0} H^k(X; R)$ for any topological space $X$ and ring $R$
+(where $R$ is commutative with $1$ as always).
 The way to do this is via the \emph{cup product}.
 
-Suppose now we replace our abelian group $G$ by a commutative ring $R$ with identity.
 Then this gives us a way to multiply two cochains, as follows.
 \begin{definition}
 	Suppose $\phi \in C^k(X;R)$ and $\psi \in C^\ell(X;R)$.
@@ -201,7 +212,7 @@ Then this gives us a way to multiply two cochains, as follows.
 \end{definition}
 
 \begin{ques}
-	Which $0$-cochain is the identity for $\smile$?
+	Assuming $R$ has a $1$, which $0$-cochain is the identity for $\smile$?
 \end{ques}
 
 First, we prove an analogous result as before:
@@ -216,13 +227,15 @@ First, we prove an analogous result as before:
 Thus, by the same routine we used for de Rham cohomology, we get
 an induced map
 \[ \smile : H^k(X;R) \times H^\ell(X;R) \to H^{k+\ell}(X;R).  \]
-We then define the \vocab{singular cohomology ring} 
+We then define the \vocab{singular cohomology ring}
 whose elements are finite sums in 
 \[ H^\bullet(X;R) = \bigoplus_{k \ge 0} H^k(X;R) \]
 and with multiplication given by $\smile$.
-In fact, it turns out that:
+Thus it is a graded ring (with $1_R \in R$ the identity)
+and is in fact anticommutative:
 \begin{proposition}[Cohomology is Anticommutative]
-	$H^\bullet(X; R)$ is an anticommutative graded ring.
+	$H^\bullet(X; R)$ is an anticommutative ring,
+	meaning $\phi \smile \psi = (-1)^{k\ell} \psi \smile \phi$.
 \end{proposition}
 For a proof, see \cite[Theorem 3.11, pages 210-212]{ref:hatcher}.
 Moreover, we have the de Rham isomorphism
@@ -232,7 +245,7 @@ Moreover, we have the de Rham isomorphism
 	of de Rham cohomology groups to singular cohomology
 	groups in facts gives an isomorphism
 	\[ H^\bullet(M; \RR) \cong \HdR^\bullet(M) \]
-	of anticommutative graded rings.
+	of anticommutative rings.
 \end{theorem}
 
 Therefore, if ``differential forms'' are the way to visualize
@@ -241,30 +254,6 @@ correct way to visualize the cup product.
 
 We now present (mostly without proof)
 the cohomology rings of some common spaces.
-
-\begin{example}[Cohomology Ring of $S^n$]
-	Consider $S^n$ for $n \ge 1$.
-	The nontrivial cohomology groups are given by
-	$H^0(S^n; \ZZ) \cong H^n(S^n; \ZZ) \cong \ZZ$.
-	So as an abelian group
-	\[ H^\bullet(S^n; \ZZ) \cong \ZZ \oplus \alpha \ZZ \]
-	where $\alpha$ is the generator of $H^n(S^n, \ZZ)$.
-	
-	Now, observe that $|\alpha\smile\alpha| = 2n$, but
-	since $H^{2n}(S^n; \ZZ) = 0$ we must have $\alpha\smile\alpha=0$.
-	So even more succinctly,
-	\[ H^\bullet(S^n; \ZZ) \cong \ZZ[\alpha]/(\alpha^2). \]
-\end{example}
-
-\begin{example}[Cohmology Ring of Real and Complex Projective Space]
-	It turns out that
-	\begin{align*}
-		H^\bullet(\RP^n; \Zc2) &\cong \Zc2[\alpha]/(\alpha^{n+1}) \\
-		H^\bullet(\CP^n; \ZZ) &\cong \ZZ[\beta]/(\beta^{n+1})
-	\end{align*}
-	where $|\alpha| = 1$ is a generator of $H^1(\RP^n; \Zc2)$
-	and $|\beta| = 2$ is a generator of $H^2(\CP^n; \ZZ)$.
-\end{example}
 
 \begin{example}
 	[Cohomology of Torus]
@@ -279,29 +268,64 @@ the cohomology rings of some common spaces.
 		\cong \ZZ \oplus \left[ \alpha \ZZ \oplus \beta \ZZ \right]
 		\oplus (\alpha \smile \beta) \ZZ. \]
 	This gives the expected dimensions $1+2+1=4$.
+	It is anti-commutative.
+\end{example}
+
+\begin{example}[Cohomology Ring of $S^n$]
+	Consider $S^n$ for $n \ge 1$.
+	The nontrivial cohomology groups are given by
+	$H^0(S^n; \ZZ) \cong H^n(S^n; \ZZ) \cong \ZZ$.
+	So as an abelian group
+	\[ H^\bullet(S^n; \ZZ) \cong \ZZ \oplus \alpha \ZZ \]
+	where $\alpha$ is the generator of $H^n(S^n, \ZZ)$.
+	
+	Now, observe that $|\alpha\smile\alpha| = 2n$, but
+	since $H^{2n}(S^n; \ZZ) = 0$ we must have $\alpha\smile\alpha=0$.
+	So even more succinctly,
+	\[ H^\bullet(S^n; \ZZ) \cong \ZZ[\alpha]/(\alpha^2). \]
+	Confusingly enough, this graded ring is both
+	commutative \emph{and} anti-commutative.
+	The reason is that $\alpha \smile \alpha = 0 = -(\alpha \smile \alpha)$.
+\end{example}
+
+\begin{example}[Cohmology Ring of Real and Complex Projective Space]
+	It turns out that
+	\begin{align*}
+		H^\bullet(\RP^n; \Zc2) &\cong \Zc2[\alpha]/(\alpha^{n+1}) \\
+		H^\bullet(\CP^n; \ZZ) &\cong \ZZ[\beta]/(\beta^{n+1})
+	\end{align*}
+	where $|\alpha| = 1$ is a generator of $H^1(\RP^n; \Zc2)$
+	and $|\beta| = 2$ is a generator of $H^2(\CP^n; \ZZ)$.
+
+	Confusingly enough, both graded rings are commutative \emph{and} anti-commutative.
+	In the first case it is because we work in $\Zc 2$, for which $1 = -1$,
+	so anticommutative is actually equivalent to commutative.
+	In the second case, all nonzero homogeneous elements have degree $2$.
 \end{example}
 
 
-\section{Relative Cohomology Rings}
+\section{Relative Cohomology Pseudo-Rings}
 For $A \subseteq X$, one can also define a relative cup product
 \[ H^k(X,A;R) \times H^\ell(X,A;R) \to H^{k+\ell}(X,A;R). \]
 After all, if either cochain vanishes on chains in $A$,
 then so does their cup product.
-This lets us define \vocab{relative cohomology ring}
-and \vocab{reduced cohomology ring} (by $A = \{\ast\}$), say
+This lets us define \vocab{relative cohomology pseudo-ring}
+and \vocab{reduced cohomology pseudo-ring} (by $A = \{\ast\}$), say
 \begin{align*}
-\wt H^\bullet(X,A;R) &= \bigoplus_{k \ge 0} \wt H^k(X,A; R) \\
+H^\bullet(X,A;R) &= \bigoplus_{k \ge 0} H^k(X,A; R) \\
 \wt H^\bullet(X;R) &= \bigoplus_{k \ge 0} \wt H^k(X;R).
 \end{align*}
+These are both \textbf{anticommutative pseudo-rings}.
+Indeed, often we have $\wt H^0(X;R) = 0$ and thus there is no identity at all.
 
 Once again we have functoriality:
 \begin{theorem}
-	[Cohomology Rings are Functorial]
-	Fix a ring $R$.
+	[Cohomology (Pseudo-)Rings are Functorial]
+	Fix a ring $R$ (commutative with $1$).
 	Then we have functors
 	\begin{align*}
 		H^\bullet(-; R) &: \catname{hTop}\op \to \catname{GradedRings} \\
-		H^\bullet(-,-; R) &: \catname{hPairTop}\op \to \catname{GradedRings}.
+		H^\bullet(-,-; R) &: \catname{hPairTop}\op \to \catname{GradedPseudoRings}.
 	\end{align*}
 \end{theorem}
 
@@ -312,20 +336,25 @@ So we will not do much in the way of computation.
 However, there is a little progress we can make.
 
 \section{Wedge Sums}
-
 Our goal is to now compute $\wt H^\bullet(X \wedge Y)$.
-To do this, we need to define the product of two rings:
+To do this, we need to define the product of two graded pseudo-rings:
 \begin{definition}
-	Let $R$ and $S$ be two rings.
-	The product ring $R \times S$ is defined by
-	taking the underlying abelian group as $R \oplus S$,
-	and then declaring $r \cdot s = 0$ for $r \in R$, $s \in S$.
+	Let $R$ and $S$ be two graded pseudo-rings.
+	The \vocab{product pseudo-ring} $R \times S$ is the graded pseudo-ring
+	defined by taking the underlying abelian group as 
+	\[ R \oplus S = \bigoplus_{d \ge 0} (R_d \oplus S_d). \]
+	Multiplication comes from $R$ and $S$, followed by
+	declaring $r \cdot s = 0$ for $r \in R$, $s \in S$.
 \end{definition}
+\begin{exercise}
+	Show that if $R$ and $S$ are graded rings (meaning they have $1_R$ and $1_S$),
+	then so is $R \times S$.
+\end{exercise}
 
 Now, the theorem is that:
 \begin{theorem}
-	[Cohomology Rings of Wedge Sums]
-	We have
+	[Cohomology Pseudo-Rings of Wedge Sums]
+	We have the following isomorphism of graded pseudo-rings:
 	\[
 		\wt H^\bullet(X \wedge Y; R)
 		\cong \wt H^\bullet(X;R)
@@ -337,28 +366,28 @@ This allows us to resolve the first question posed at the beginning.
 Let $X = \CP^2$ and $Y = S^2 \vee S^4$.
 We have that
 \[ H^\bullet(\CP^2; \ZZ) \cong \ZZ[\alpha] / (\alpha^3). \]
-Hence this ring is generated by there elements:
+Hence this is a graded ring generated by there elements:
 \begin{itemize}
 	\ii $1$, in dimension $0$.
 	\ii $\alpha$, in dimension $2$.
 	\ii $\alpha^2$, in dimension $4$.
 \end{itemize}
-Next, consider the reduced ring
+Next, consider the reduced cohomology pseudo-ring
 \[ \wt H^\bullet(S^2 \vee S^4; \ZZ) \cong
 	\wt H^\bullet(S^2; \ZZ)
 	\oplus \wt H^\bullet(S^4 ; \ZZ).
 \]
-Thus the ordinary cohomology ring $H^\bullet(S^2 \vee S^4 \; \ZZ)$
-is also generated by three elements.
+Thus the absolute cohomology ring $H^\bullet(S^2 \vee S^4 \; \ZZ)$
+is a graded ring also generated by three elements.
 \begin{itemize}
 	\ii $1$, in dimension $0$ (once we add back in the $0$th dimension).
 	\ii $a_2$, in dimension $2$ (from $H^\bullet(S^2 ; \ZZ)$).
 	\ii $a_4$, in dimension $4$ (from $H^\bullet(S^4 ; \ZZ)$).
 \end{itemize}
-These rings are isomorphic as abelian groups, as we expected.
-However, in the first ring, the product of two degree $2$ generators is
+Each graded component is isomorphic, like we expected.
+However, in the former, the product of two degree $2$ generators is
 \[ \alpha \cdot \alpha = \alpha^2. \]
-In the second ring, the product of two degree $2$ generators is
+In the latter, the product of two degree $2$ generators is
 \[ a_2 \cdot a_2 = a_2^2 = 0 \]
 since $a_2 \smile a_2 = 0 \in H^\bullet(S^2; \ZZ)$.
 
@@ -370,16 +399,20 @@ In order to do this, we will need a formula
 for $H^n(X \times Y; R)$ in terms of $H^n(X;R)$ and $H^n(Y;R)$.
 Thus formulas are called \vocab{K\"unneth formulas}.
 In this section we will only use a very special case,
-which involves the tensor product of two rings.
+which involves the tensor product of two graded rings.
 
 \begin{definition}
-	Let $S_1$ and $S_2$ be two rings which are also $R$-modules.
-	We define the tensor product $S_1 \otimes_R S_2$ as follows.
-	As an abelian group, it is $S_1 \otimes_R S_2$.
-	The ring multiplication is given on basis elements by
-	\[ (s_1 \otimes s_2)(s_1' \otimes s_2')
-		= (s_1s_1') \otimes (s_2s_2').
+	Let $A$ and $B$ be two graded rings which are also $R$-modules
+	(where $R$ is a commutative ring with $1$).
+	We define the \vocab{tensor product} $A \otimes_R B$ as follows.
+	As an abelian group, it is 
+	\[ A \otimes_R B = \bigoplus_{d \ge 0}
+		\left( \bigoplus_{k=0}^{d} A_k \otimes_R B_{d-k}  \right). \]
+	The multiplication is given on basis elements by
+	\[ \left( a_1 \otimes b_1 \right)\left( a_2 \otimes b_2 \right)
+		= (a_1a_2) \otimes (b_1b_2).
 	\]
+	Of course the multiplicative identity is $1_A \otimes 1_B$.
 \end{definition}
 
 Now let $X$ and $Y$ be topological spaces, and take the product:
@@ -389,7 +422,7 @@ we have a diagram
 	X &\ldTo(2,1)^{\pi_X} && \rdTo(2,1)^{\pi_Y} & Y \\
 \end{diagram}
 where $\pi_X$ and $\pi_Y$ are projections.
-As $H^k(-; R)$ is functiorial, this gives induced maps
+As $H^k(-; R)$ is functorial, this gives induced maps
 \begin{align*}
 	\pi_X^\ast &: H^k(X \times Y; R) \to H^k(X; R) \\
 	\pi_Y^\ast &: H^k(X \times Y; R) \to H^k(Y; R)
@@ -417,9 +450,9 @@ on the product space $X \times Y$.
 
 \begin{theorem}
 	[K\"unneth Formula]
-	Let $X$ and $Y$ be arbitrary spaces such that $H^k(Y;R)$
+	Let $X$ and $Y$ be CW complexes such that $H^k(Y;R)$
 	is a finitely generated free $R$-module for every $k$.
-	Then the cross product is an isomorphism
+	Then the cross product is an isomorphism of anticommutative rings
 	\[
 		H^\bullet(X;R) \otimes_R H^\bullet(Y;R)
 		\to H^\bullet(X \times Y; R). 
@@ -435,7 +468,7 @@ But now let us look at the cohomology rings. First, we have
 \[ H^\bullet(\CP^3; \RR) \cong \ZZ[\alpha] / (\alpha^3)
 	\cong \ZZ \oplus \alpha\ZZ \oplus \alpha^2\ZZ \oplus \alpha^3\ZZ
 \] 
-where $|\alpha| = 2$; hence this group is generated by
+where $|\alpha| = 2$; hence this is a graded ring generated by
 \begin{itemize}
 	\ii $1$, in degree $0$.
 	\ii $\alpha$, in degree $2$.
@@ -449,22 +482,21 @@ Now let's analyze
 	\otimes
 	\ZZ[\gamma] / (\gamma^2).
 \]
-It is generated thus by the following elements:
+It is thus generated thus by the following elements:
 \begin{itemize}
 	\ii $1 \otimes 1$, in degree $0$.
 	\ii $\beta \otimes 1$, in degree $2$.
 	\ii $1 \otimes \gamma$, in degree $4$.
 	\ii $\beta \otimes \gamma$, in degree $6$.
 \end{itemize}
-Again equal as abelian groups.
+Again in each dimension we have the same abelian group.
 But notice that if we square $\beta \otimes 1$ we get
 \[ (\beta \otimes 1)(\beta \otimes 1) = \beta^2 \otimes 1 = 0. \]
 Yet the degree $2$ generator of $H^\bullet(\CP^3; \ZZ)$
 does not have this property.
-Hence the rings are not isomorphic.
+Hence these two graded rings are not isomorphic.
 
 So it follows that $\CP^3$ and $S^2 \times S^4$ are not homotopy equivalent.
-
 
 	
 % Borsuk Ulam

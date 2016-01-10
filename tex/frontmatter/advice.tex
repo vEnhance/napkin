@@ -180,10 +180,27 @@ I may emphasize this sometimes by writing $f : X \injto Y$ or $f : X \surjto Y$,
 
 \subsection*{Rings}
 All rings have a multiplicative identity $1$ unless otherwise specified.
-
-Rings are almost always commutative, and you should assume rings are
-commutative unless the chapter explicitly says otherwise.
 We allow $0=1$ in general rings but not in integral domains.
+
+All rings are commutative unless otherwise specified.
+There is an elaborate scheme for naming rings which are not commutative,
+used only in the chapter on cohomology rings:
+
+\begin{center}
+	\small
+	\begin{tabular}[h]{|c|cc|}
+		\hline
+		& Graded & Not Graded \\ \hline
+		$1$ not required & graded psuedo-ring & pseudo-ring \\
+		Anticommutative, $1$ not required & anticommutative pseudo-ring & N/A \\ 
+		Has $1$ & graded ring & N/A \\ 
+		Anticommutative with $1$ & anticommutative ring & N/A \\ 
+		Commutative with $1$ & commutative graded ring & ring \\ \hline
+	\end{tabular}
+\end{center}
+
+On the other hand, an \emph{algebra} always has $1$,
+but it need not be commutative.
 
 % Vector spaces are assumed to be finite-dimensional unless otherwise specified.
 
