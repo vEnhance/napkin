@@ -18,15 +18,18 @@
 
 \chapter{Singular Cohomology}
 Here's one way to motivate this chapter.
-Let $X = \CP^2$ and $Y = S^2 \wedge S^4$.
-\begin{exercise}
-	Show that $H_n(X) \cong H_n(Y)$ for every $n$.
-\end{exercise}
-However, as it turns out $X$ and $Y$ are not homotopy equivalent --- so how can we tell them apart?
+The following two statements hold:
+\begin{itemize}
+	\ii $H_n(\CP^2) \cong H_n(S^2 \vee S^4)$ for every $n$.
+	\ii $H_n(\CP^3) \cong H_n(S^2 \times S^4)$ for every $n$.
+\end{itemize}
+This is unfortunate, because if possible we would like
+to be able to tell these spaces apart (as they are
+in fact not homotopy equivalent), but the homology groups 
+cannot tell the difference between them.
 
 In this chapter, we'll define a \emph{cohomology group} $H^n(X)$ and $H^n(Y)$.
-We will still have $H^n(X) \cong H^n(Y)$ for every $X$ and $Y$:
-in fact, the $H^n$'s are completely determined by the $H_n$'s
+In fact, the $H^n$'s are completely determined by the $H_n$'s
 by the so-called \emph{Universal Coefficient Theorem}.
 However, it turns out that one can take all the cohomology groups and put
 them together to form a \emph{cohomology ring} $H^\bullet$.
@@ -43,7 +46,7 @@ We define the \vocab{cohomology groups} by
 \[ H^n(A^\bullet) = \ker\left( A^n \taking\delta A^{n+1} \right)
 	/ \img\left( A^{n-1} \taking\delta A^n \right). \]
 \end{definition}
-0
+
 \begin{example}[de Rham Cohomology]
 	We have already met one example of a cochain complex:
 	let $M$ be a smooth manifold and $\Omega^k(M)$ be the
@@ -101,21 +104,24 @@ The case of interest is our usual geometric situation, with $C_\bullet(X)$.
 
 \begin{example}
 	[$C^0(X; G)$, $C^1(X; G)$, and $H^0(X;G)$]
-	Let $X$ be a topological space and consider $C^\bullet(X)$./
+	Let $X$ be a topological space and consider $C^\bullet(X)$.
 	\begin{itemize}
 		\ii $C_0(X)$ is the free abelian group on $X$,
-		so $C^0(X) = \Hom(C_0(X), G)$ is a function that
+		and $C^0(X) = \Hom(C_0(X), G)$.
+		So a $0$-cochain is a function that
 		takes every point of $X$ to an element of $G$.
 		\ii $C_1(X)$ is the free abelian group on $1$-simplices in $X$.
 		So $C^1(X)$ needs to take every $1$-simplex to an element of $G$.
 	\end{itemize}
-	Let's now try to understand $\delta : C^1(X) \to C^0(X)$.
-
-	Now given a cochain $\phi \in C^0(X)$, i.e.\ a homomorphism $\phi : C^0(X) \to G$,
+	Let's now try to understand $\delta : C^0(X) \to C^1(X)$.
+	Given a $0$-cochain $\phi \in C^0(X)$,
+	i.e.\ a homomorphism $\phi : C^0(X) \to G$,
 	what is $\delta\phi : C^1(X) \to G$?
 	Answer: 
 	\[ \delta\phi : [v_0, v_1] \mapsto \phi([v_0]) - \phi([v_1]). \]
-	Hence, elements of $\ker(C^0 \taking\partial C^1)$ are those cochains
+	Hence, elements of 
+	$\ker(C^0 \taking\partial C^1) \cong H^0(X;G)$
+	are those cochains
 	that are \emph{constant on path-connected components}.
 \end{example}
 In particular, much like $H_0(X)$, we have \[ H^0(X) \cong G^{\oplus r} \]
@@ -205,7 +211,7 @@ Then in exact analog to our result that $H_n : \catname{hTop} \to \catname{Grp}$
 \end{proof}
 
 
-\section{Universal Coefficient Theorem}
+fsection{Universal Coefficient Theorem}
 We now wish to show that the cohomology groups are determined up to isomorphism
 by the homology groups: given $H_n(A_\bullet)$, we can extract $H^n(A_\bullet; G)$.
 This is achieved by the \emph{Universal Coefficient Theorem}.
@@ -292,31 +298,9 @@ you can pick any free resolution you want and compute the above.
 
 \section{Example Computation of Cohomology Groups}
 \prototype{Possibly $H^n(S^m)$.}
-Before we start doing some computations, we take the time
-to define reduced cohomology groups as well.
-For $X$ nonempty we define the \vocab{reduced cohomology groups} by $\wt H^n(X;G)$
-by $H^n(\wt C_\bullet(X); G)$.
-To be concrete, the augmented singular chain complex is
-\[ \dots \taking\partial C_1(X) \taking\partial C_0(X) \taking\eps \ZZ \to 0 \]
-dualizes to
-\[
-	\dots \xleftarrow\delta C^1(X;G) \xleftarrow\delta C^0(X;G)
-	\xleftarrow{\eps^\vee} \underbrace{\Hom(\ZZ, G)}_{\cong G}
-	\leftarrow 0.
-\]
-Since the $\ZZ$ we add is also free,
-the Universal Coefficient Theorem still applies.
 
-\begin{ques}
-	For each $n \ge 1$, $\wt H^n(X;G) \cong H^n(X;G)$.
-\end{ques}
-
-As for $\wt H^0(X;G)$ we use the Universal Coefficient Theorem;
-since the homology at $\ZZ$ is trivial, the $\Ext$ term vanishes and
-$\wt H^0(X;G) \cong \Hom(\wt H_0(X), G)$.
-Geometrically, $\wt H^0(X;G)$ consists of functions $X \to G$
-which are constant on path-connected components,
-modulo the functions which are constant on all of $X$.
+The Universal Coefficient Theorem gives us a direct way to compute
+any cohomology groups, provided we know the homology ones.
 
 \begin{example}
 	[Cohomolgy Groups of $S^m$]
@@ -329,14 +313,14 @@ modulo the functions which are constant on all of $X$.
 			0 & \text{otherwise}.
 		\end{cases}
 	\]
-	By UCT for reduced groups, we also have
-	\[ \wt H^n(S^m) \cong \Hom(\wt H_n(S^m), G) \cong
-		\begin{cases}
-			G & n=m \\
-			0 & \text{otherwise}.
-		\end{cases}
-	\]
-	since $\Hom(\ZZ, G)$.
+%	By UCT for reduced groups, we also have
+%	\[ \wt H^n(S^m) \cong \Hom(\wt H_n(S^m), G) \cong
+%		\begin{cases}
+%			G & n=m \\
+%			0 & \text{otherwise}.
+%		\end{cases}
+%	\]
+%	since $\Hom(\ZZ, G)$.
 \end{example}
 
 \begin{example}
@@ -356,6 +340,18 @@ modulo the functions which are constant on all of $X$.
 		\end{cases}
 	\]
 \end{example}
+
+From these examples one might notice that:
+\begin{lemma}
+	[$0$th Homology Groups are just Duals]
+	For $n = 0$ and $n = 1$, we have
+	\[ H^n(X;G) \cong \Hom(H_n(X), G). \]
+\end{lemma}
+\begin{proof}
+	It's already been shown for $n=0$.
+	For $n=1$, notice that $H_0(X)$ is free,
+	so the $\Ext$ term vanishes.
+\end{proof}
 
 \begin{example}
 	[Cohomolgy Groups of Klein Bottle]
@@ -388,20 +384,112 @@ modulo the functions which are constant on all of $X$.
 	\]
 \end{example}
 
-From the previous example we can extract the following observation.
-\begin{lemma}
-	[$0$th and $1$st Homology Groups are just Duals]
-	For $n = 0$ and $n = 1$, we have
-	\begin{align*}
-		H^n(X;G) &\cong \Hom(H_n(X), G) \\
-		\wt H^n(X;G) &\cong \Hom(\wt H_n(X), G).
-	\end{align*}
-\end{lemma}
+
+\section{Relative Cohomology Groups}
+One can also define relative cohomology groups in the obvious way:
+dualize the chain complex
+\[ \dots \taking\partial C_1(X,A) \taking\partial C_0(X,A) \to 0 \]
+to obtain a cochain complex
+\[
+	\dots \xleftarrow\delta C^1(X,A;G) \xleftarrow\delta C^0(X,A;G)
+	\leftarrow 0.
+\]
+We can take the cohomology groups ofthis.
+\begin{definition}
+	The groups thus obtained are the \vocab{relative cohomology groups}
+	are denoted $H^n(X,A;G)$.
+\end{definition}
+
+In addition, we can define reduced cohomology groups as well.
+One way to do it is to take the augmented singular chain complex
+\[ \dots \taking\partial C_1(X) \taking\partial C_0(X) \taking\eps \ZZ \to 0 \]
+and dualize it to obtain
+\[
+	\dots \xleftarrow\delta C^1(X;G) \xleftarrow\delta C^0(X;G)
+	\xleftarrow{\eps^\vee} \underbrace{\Hom(\ZZ, G)}_{\cong G}
+	\leftarrow 0.
+\]
+Since the $\ZZ$ we add is also free,
+the Universal Coefficient Theorem still applies.
+So this will give us reduced cohomology groups.
+
+However, since we already defined the relative cohomology groups,
+it is easiest to simply do the following.
+\begin{definition}
+	The \vocab{reduced cohomology groups} of a nonempty space $X$,
+	denoted $\wt H^n(X; G)$,
+	are defined to be $H^n(X, \{\ast\} ; G)$
+	for some point $\ast \in X$.
+\end{definition}
+
+
+\section\problemhead
+\begin{sproblem}
+	[Wedge Product Cohomology]
+	For any $G$ and $n$ we have
+	\[
+		\wt H^n(X \vee Y; G)
+		\cong
+		\wt H^n(X; G) \oplus \wt H^n(Y; G).
+	\]	
+\end{sproblem}
+
+\begin{dproblem}
+	Prove that for a field $F$ of characteristic zero and a space $X$
+	with finitely generated homology groups:
+	\[ H^k(X, F) \cong \left( H_k(X) \right)^\vee.  \]
+	Thus over fields cohomology is the dual of homology.
+\end{dproblem}
+
+\begin{problem}[$\Zc2$-Cohomology of $\RP^n$]
+	Prove that
+	\[
+		H^m(\RP^n, \Zc2)
+		\cong
+		\begin{cases}
+			\ZZ & \text{$m=0$, or $m$ is odd and $m=n$} \\
+			\Zc2 & \text{$0 < m < n$ and $m$ is odd} \\
+			0 & \text{otherwise}.
+		\end{cases}
+	\]
+\end{problem}
+
+
+\chapter{Application of Cohomology}
+In this final chapter on topology, I'll state (mostly without proof)
+some nice properties of cohomology groups, and in particular
+introduce the soc-called cup product.
+For an actual treatise on the cup product,
+see \cite{ref:hatcher} or \cite{ref:maxim752}.
+
+\section{Poincar\'e Duality}
+First cool result:
+you may have noticed symmetry in the (co)homology groups of
+``nice'' spaces like the torus or $S^n$.
+In fact this is predicted by the following theorem:
+\begin{theorem}
+	[Poincar\'e Duality]
+	If $M$ is a smooth oriented compact $n$-manifold,
+	then we have a natural isomorphism
+	\[ H^k(M; \ZZ) \cong H_{n-k}(M) \]
+	for every $k$.
+	In particular, $H^k(M) = 0$ for $k > n$.
+\end{theorem}
+So for smooth oriented compact manifolds,
+cohomology and homology groups are not so different.
+
+From this follows the symmetry that we mentioned
+when we first defined the Betti numbers:
+\begin{corollary}
+	[Symmetry of Betti Numbers]
+	Let $M$ be a smooth oriented compact $n$-manifold,
+	and let $b_k$ denote its Betti number.
+	Then \[ b_k = b_{n-k}. \]
+\end{corollary}
 \begin{proof}
-	It's already been shown for $n=0$.
-	For $n=1$, notice that $H_0(X)$ and $\wt H_0(X)$ are free,
-	so the $\Ext$ term vanishes.
+	\Cref{prob:betti}.
 \end{proof}
+
 
 \section{De Rham Cohomology}
 We now reveal the connection between
@@ -437,7 +525,7 @@ The whole punch line is:
 \begin{theorem}
 	[de Rham's Theorem]
 	For any smooth manifold $M$, we have a natural isomorphism
-	\[ H^k(M; \RR) \cong \HdR(M). \]
+	\[ H^k(M; \RR) \cong \HdR^k(M). \]
 \end{theorem}
 So the theorem is that the real cohomology groups of manifolds $M$
 are actually just given by the behavior of differential forms.
@@ -458,62 +546,394 @@ because it is possible to run a full circle around $S^1$.
 So the failure of $\alpha$ to be exact is signaling
 that $H_1(S^1) \cong \ZZ$.
 
-\section{Poincar\'e Duality}
-One last cool result:
-you may have noticed symmetry in the (co)homology groups of
-``nice'' spaces like the torus or $S^n$.
-This is predicted by the following theorem:
-\begin{theorem}
-	[Poincar\'e Duality]
-	If $M$ is a smooth oriented compact $n$-manifold,
-	then we have a natural isomorphism
-	\[ H^k(M; \ZZ) \cong H_{n-k}(M) \]
-	for every $k$.
-	In particular, $H^k(M) = 0$ for $k > n$.
-\end{theorem}
-See also \Cref{prob:betti}.
+\section{Graded Rings}
+\prototype{Polynomial rings are graded rings.}
+In the de Rham cohomology, the differential forms can interact in another way:
+given a $k$-form $\alpha$ and an $\ell$-form $\beta$, we can consider
+a $(k+\ell)$-form
+\[ \alpha \wedge \beta. \]
+So we can equip the set of forms with a ``product'', satisfying
+$\beta \wedge \alpha = (-1)^{k\ell} \alpha \wedge \beta$
+This is a special case of a more general structure:
 
+\begin{definition}
+	A \vocab{graded ring} $R$ is an abelian group
+	\[ R = \bigoplus_{d \ge 0} R_d \]
+	where $R_0$, $R_1$, \dots, are abelian groups,
+	with an additional associative binary operation $\times : R \to R$.
+	This multiplication is required to satisfy the following property:
+	if $r \in R_d$ and $s \in R_e$,
+	we have $rs \in R_{d+e}$.
+
+	Elements of an $R_d$ are called \vocab{homogeneous elements}.
+	If $r \in R_d$ and $r \neq 0$, we write $|r| = d$.
+\end{definition}
+\begin{remark}
+	Note that we do \emph{not} assume that graded rings are commutative.
+	In fact, these graded rings may not even have an identity $1$.
+
+	Other than these differences, one can also think of this as a
+	``ring with a notion of degree''.
+\end{remark}
+
+\begin{example}[Examples of Graded Rings]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii The ring $R = \ZZ[x]$ is a graded ring,
+		with the $d$th component being the multiples of $x^d$.
+		\ii The ring $R = \ZZ[x,y,z]$ is a graded ring,
+		with the $d$th component being the abelian group
+		of homogeneous degree $d$ polynomials (and $0$).
+		\ii Let $V$ be a vector space, and consider
+		the abelian group
+		\[ \Lambda^\bullet(V) = \bigoplus_{d \ge 0} \Lambda^d(V). \]
+		For example, $e_1 + (e_2 \wedge e_3) \in \Lambda^\bullet(V)$, say.
+		We endow $\Lambda^\bullet(V)$ with the product $\wedge$,
+		which makes it into a graded ring.
+		\ii The set of differential forms of a manifold $M$,
+		say \[ \Omega^\bullet(M) = \bigoplus_{d \ge 0} \Omega^d(M) \]
+		endowed with formal addition and the product $\wedge$,
+		forms a non-commutative graded ring.
+	\end{enumerate}
+\end{example}
+\begin{definition}
+	A graded ring $R$ is \vocab{anticommutative} if
+	for any homogeneous $r$ and $s$ we have
+	\[ rs = (-1)^{|r| |s|} sr \]
+\end{definition}
+\begin{example}[Anticommutative Graded Ring]
+	Both $\Lambda^\bullet(V)$ and $\Omega^\bullet(M)$ are anticommutative.
+\end{example}
+
+Let's return to the situation of $\Omega^\bullet(M)$.
+Consider again the de Rham cohomology groups $\HdR^k(M)$,
+whose elements are closed forms modulo exact forms.
+We claim that:
+\begin{lemma}
+	[Wedge Product Respects de Rham Cohomology]
+	The wedge product induces a map
+	\[ \wedge : \HdR^k(M) \times \HdR^\ell(M) \to \HdR^{k+\ell}(M). \]
+\end{lemma}
+\begin{proof}
+	First, we recall that the operator $d$ satisfies
+	\[
+		d(\alpha \wedge \beta)
+		= (d\alpha) \wedge \beta + \alpha \wedge (d\beta).
+	\]
+	Now suppose $\alpha$ and $\beta$ are closed forms.
+	Then from the above, $\alpha \wedge \beta$ is clearly closed.
+	Also if $\alpha$ is closed and $\beta = d\omega$ is exact,
+	then $\alpha \wedge \beta$ is exact, from the identity
+	\[ d(\alpha \wedge \omega)
+		= d\alpha \wedge\omega + \alpha \wedge d\omega = \alpha \wedge \beta. \]
+	Similarly if $\alpha$ is exact and $\beta$ is closed
+	then $\alpha \wedge \beta$ is exact.
+	Thus it makes sense to take the product modulo exact forms,
+	giving the theorem above.
+\end{proof}
+
+Therefore, we can obtain a \emph{anticommutative graded ring}
+\[ \HdR^\bullet(M) = \bigoplus_{k \ge 0} \HdR^k(M) \]
+with $\wedge$ as a product.
+
+\section{Cup Products}
+Inspired by this, we want to see if we can construct a similar product
+on $\bigoplus_{k \ge 0} H^k(X; R)$ for any topological space $X$ and ring $R$.
+The way to do this is via the \emph{cup product}.
+
+Suppose now we replace our abelian group $G$ by a commutative ring $R$ with identity.
+Then this gives us a way to multiply two cochains, as follows.
+\begin{definition}
+	Suppose $\phi \in C^k(X;R)$ and $\psi \in C^\ell(X;R)$.
+	Then we can define their \vocab{cup product}
+	$\phi\smile\psi \in C^{k+\ell}(X;R)$ to be
+	\[
+		(\phi\smile\psi)([v_0, \dots, v_{k+\ell}])
+		= 
+		\phi\left( [v_0, \dots, v_k] \right)
+		\cdot
+		\psi\left( [v_k, \dots, v_{k+\ell}] \right)
+	\]
+	where the multiplication is in $R$.
+\end{definition}
+
+\begin{ques}
+	Which $0$-cochain is the identity for $\smile$?
+\end{ques}
+
+First, we prove an analogous result as before:
+\begin{lemma}[$\delta$ with Cup Products]
+	We have
+	$\delta(\phi\smile\psi) = \delta\phi\smile\psi
+	+ (-1)^k\phi\smile\delta\psi$.
+\end{lemma}
+\begin{proof}
+	Direct $\sum$ computations.
+\end{proof}
+Thus, by the same routine we used for de Rham cohomology, we get
+an induced map
+\[ \smile : H^k(X;R) \times H^\ell(X;R) \to H^{k+\ell}(X;R).  \]
+We then define the \vocab{singular cohomology ring} 
+whose elements are finite sums in 
+\[ H^\bullet(X;R) = \bigoplus_{k \ge 0} H^k(X;R) \]
+and with multiplication given by $\smile$.
+In fact, it turns out that:
+\begin{proposition}[Cohomology is Anticommutative]
+	$H^\bullet(X; R)$ is an anticommutative graded ring.
+\end{proposition}
+For a proof, see \cite[Theorem 3.11, pages 210-212]{ref:hatcher}.
+Moreover, we have the de Rham isomorphism
+\begin{theorem}
+	[de Rham Extends to Ring Isomorphism]
+	For any smooth manifold $M$, the isomorphism
+	of de Rham cohomology groups to singular cohomology
+	groups in facts gives an isomorphism
+	\[ H^\bullet(M; \RR) \cong \HdR^\bullet(M) \]
+	of anticommutative graded rings.
+\end{theorem}
+
+Therefore, if ``differential forms'' are the way to visualize
+the elements of a cohomology group, the wedge product is the
+correct way to visualize the cup product.
+
+We now present (mostly without proof)
+the cohomology rings of some common spaces.
+
+\begin{example}[Cohomology Ring of $S^n$]
+	Consider $S^n$ for $n \ge 1$.
+	The nontrivial cohomology groups are given by
+	$H^0(S^n; \ZZ) \cong H^n(S^n; \ZZ) \cong \ZZ$.
+	So as an abelian group
+	\[ H^\bullet(S^n; \ZZ) \cong \ZZ \oplus \alpha \ZZ \]
+	where $\alpha$ is the generator of $H^n(S^n, \ZZ)$.
+	
+	Now, observe that $|\alpha\smile\alpha| = 2n$, but
+	since $H^{2n}(S^n; \ZZ) = 0$ we must have $\alpha\smile\alpha=0$.
+	So even more succinctly,
+	\[ H^\bullet(S^n; \ZZ) \cong \ZZ[\alpha]/(\alpha^2). \]
+\end{example}
+
+\begin{example}[Cohmology Ring of Real and Complex Projective Space]
+	It turns out that
+	\begin{align*}
+		H^\bullet(\RP^n; \Zc2) &\cong \Zc2[\alpha]/(\alpha^{n+1}) \\
+		H^\bullet(\CP^n; \ZZ) &\cong \ZZ[\beta]/(\beta^{n+1})
+	\end{align*}
+	where $|\alpha| = 1$ is a generator of $H^1(\RP^n; \Zc2)$
+	and $|\beta| = 2$ is a generator of $H^2(\CP^n; \ZZ)$.
+\end{example}
+
+\begin{example}
+	[Cohomology of Torus]
+	The cohomology ring $H^\bullet(S^1 \times S^1; \ZZ)$
+	of the torus is generated by elements $|\alpha| = |\beta| = 1$
+	which satisfy the relations
+	$\alpha \smile \alpha = \beta \smile \beta = 0$,
+	and $\alpha \smile \beta = -\beta \smile \alpha$.
+	(It also includes an identity $1$.)
+	Thus as a $\ZZ$-module it is
+	\[ H^\bullet(S^1 \times S^1; \ZZ)
+		\cong \ZZ \oplus \left[ \alpha \ZZ \oplus \beta \ZZ \right]
+		\oplus (\alpha \smile \beta) \ZZ. \]
+	This gives the expected dimensions $1+2+1=4$.
+\end{example}
+
+
+\section{Relative Cohomology Rings}
+For $A \subseteq X$, one can also define a relative cup product
+\[ H^k(X,A;R) \times H^\ell(X,A;R) \to H^{k+\ell}(X,A;R). \]
+After all, if either cochain vanishes on chains in $A$,
+then so does their cup product.
+This lets us define \vocab{relative cohomology ring}
+and \vocab{reduced cohomology ring} (by $A = \{\ast\}$), say
+\begin{align*}
+\wt H^\bullet(X,A;R) &= \bigoplus_{k \ge 0} \wt H^k(X,A; R) \\
+\wt H^\bullet(X;R) &= \bigoplus_{k \ge 0} \wt H^k(X;R).
+\end{align*}
+
+Once again we have functoriality:
+\begin{theorem}
+	[Cohomology Rings are Functorial]
+	Fix a ring $R$.
+	Then we have functors
+	\begin{align*}
+		H^\bullet(-; R) &: \catname{hTop}\op \to \catname{GradedRings} \\
+		H^\bullet(-,-; R) &: \catname{hPairTop}\op \to \catname{GradedRings}.
+	\end{align*}
+\end{theorem}
+
+Unfortunately, unlike with (co)homology groups,
+it is a nontrivial task to determine the cup product
+for even nice spaces like CW complexes.
+So we will not do much in the way of computation.
+However, there is a little progress we can make.
+
+\section{Wedge Sums}
+
+Our goal is to now compute $\wt H^\bullet(X \wedge Y)$.
+To do this, we need to define the product of two rings:
+\begin{definition}
+	Let $R$ and $S$ be two rings.
+	The product ring $R \times S$ is defined by
+	taking the underlying abelian group as $R \oplus S$,
+	and then declaring $r \cdot s = 0$ for $r \in R$, $s \in S$.
+\end{definition}
+
+Now, the theorem is that:
+\begin{theorem}
+	[Cohomology Rings of Wedge Sums]
+	We have
+	\[
+		\wt H^\bullet(X \wedge Y; R)
+		\cong \wt H^\bullet(X;R)
+		\times \wt H^\bullet(Y;R).
+	\]
+\end{theorem}
+
+This allows us to resolve the first question posed at the beginning.
+Let $X = \CP^2$ and $Y = S^2 \vee S^4$.
+We have that
+\[ H^\bullet(\CP^2; \ZZ) \cong \ZZ[\alpha] / (\alpha^3). \]
+Hence this ring is generated by there elements:
+\begin{itemize}
+	\ii $1$, in dimension $0$.
+	\ii $\alpha$, in dimension $2$.
+	\ii $\alpha^2$, in dimension $4$.
+\end{itemize}
+Next, consider the reduced ring
+\[ \wt H^\bullet(S^2 \vee S^4; \ZZ) \cong
+	\wt H^\bullet(S^2; \ZZ)
+	\oplus \wt H^\bullet(S^4 ; \ZZ).
+\]
+Thus the ordinary cohomology ring $H^\bullet(S^2 \vee S^4 \; \ZZ)$
+is also generated by three elements.
+\begin{itemize}
+	\ii $1$, in dimension $0$ (once we add back in the $0$th dimension).
+	\ii $a_2$, in dimension $2$ (from $H^\bullet(S^2 ; \ZZ)$).
+	\ii $a_4$, in dimension $4$ (from $H^\bullet(S^4 ; \ZZ)$).
+\end{itemize}
+These rings are isomorphic as abelian groups, as we expected.
+However, in the first ring, the product of two degree $2$ generators is
+\[ \alpha \cdot \alpha = \alpha^2. \]
+In the second ring, the product of two degree $2$ generators is
+\[ a_2 \cdot a_2 = a_2^2 = 0 \]
+since $a_2 \smile a_2 = 0 \in H^\bullet(S^2; \ZZ)$.
+
+Thus $S^2 \vee S^4$ and $\CP^2$ are not homotopy equivalent.
+
+\section{K\"unneth Formula}
+We now wish to tell apart the spaces $S^2 \times S^4$ and $\CP^3$.
+In order to do this, we will need a formula
+for $H^n(X \times Y; R)$ in terms of $H^n(X;R)$ and $H^n(Y;R)$.
+Thus formulas are called \vocab{K\"unneth formulas}.
+In this section we will only use a very special case,
+which involves the tensor product of two rings.
+
+\begin{definition}
+	Let $S_1$ and $S_2$ be two rings which are also $R$-modules.
+	We define the tensor product $S_1 \otimes_R S_2$ as follows.
+	As an abelian group, it is $S_1 \otimes_R S_2$.
+	The ring multiplication is given on basis elements by
+	\[ (s_1 \otimes s_2)(s_1' \otimes s_2')
+		= (s_1s_1') \otimes (s_2s_2').
+	\]
+\end{definition}
+
+Now let $X$ and $Y$ be topological spaces, and take the product:
+we have a diagram
+\begin{diagram}
+	&& X \times Y && \\
+	X &\ldTo(2,1)^{\pi_X} && \rdTo(2,1)^{\pi_Y} & Y \\
+\end{diagram}
+where $\pi_X$ and $\pi_Y$ are projections.
+As $H^k(-; R)$ is functiorial, this gives induced maps
+\begin{align*}
+	\pi_X^\ast &: H^k(X \times Y; R) \to H^k(X; R) \\
+	\pi_Y^\ast &: H^k(X \times Y; R) \to H^k(Y; R)
+\end{align*}
+for every $k$.
+
+By using this, we can define a so-called cross product.
+\begin{definition}
+	Let $R$ be a ring, and $X$ and $Y$ spaces.
+	Let $\pi_X$ and $\pi_Y$ be the projections of $X \times Y$
+	onto $X$ and $Y$.
+	Then the \vocab{cross product} is the map
+	\[
+		H^\bullet(X; R) \otimes_R H^\bullet(Y;R)
+		\taking{\times} H^\bullet(X \times Y; R)
+	\]
+	acting on cocycles as follows:
+	$\phi \times \psi = \pi_X^\ast(\phi) \smile \pi_Y^\ast(\phi)$.
+\end{definition}
+
+This is just the most natural way to take a $k$-cycle
+on $X$ and an $\ell$-cycle on $Y$, and create a $(k+\ell)$-cycle
+on the product space $X \times Y$.
+
+
+\begin{theorem}
+	[K\"unneth Formula]
+	Let $X$ and $Y$ be arbitrary spaces such that $H^k(Y;R)$
+	is a finitely generated free $R$-module for every $k$.
+	Then the cross product is an isomorphism
+	\[
+		H^\bullet(X;R) \otimes_R H^\bullet(Y;R)
+		\to H^\bullet(X \times Y; R). 
+	\]
+\end{theorem}
+
+In any case, this finally lets us resolve the question
+set out at the beginning.
+We saw that $H_n(\CP^3) \cong H_n(S^2 \times S^4)$ for every $n$,
+and thus it follows that $H^n(\CP^3; \ZZ) \cong H^n(S^2 \times S^4; \ZZ)$ too.
+
+But now let us look at the cohomology rings. First, we have
+\[ H^\bullet(\CP^3; \RR) \cong \ZZ[\alpha] / (\alpha^3)
+	\cong \ZZ \oplus \alpha\ZZ \oplus \alpha^2\ZZ \oplus \alpha^3\ZZ
+\] 
+where $|\alpha| = 2$; hence this group is generated by
+\begin{itemize}
+	\ii $1$, in degree $0$.
+	\ii $\alpha$, in degree $2$.
+	\ii $\alpha^2$, in degree $4$.
+	\ii $\alpha^3$, in degree $6$.
+\end{itemize}
+
+Now let's analyze
+\[ H^\bullet(S^2 \times S^4; \RR) \cong 
+	\ZZ[\beta] / (\beta^2)
+	\otimes
+	\ZZ[\gamma] / (\gamma^2).
+\]
+It is generated thus by the following elements:
+\begin{itemize}
+	\ii $1 \otimes 1$, in degree $0$.
+	\ii $\beta \otimes 1$, in degree $2$.
+	\ii $1 \otimes \gamma$, in degree $4$.
+	\ii $\beta \otimes \gamma$, in degree $6$.
+\end{itemize}
+Again equal as abelian groups.
+But notice that if we square $\beta \otimes 1$ we get
+\[ (\beta \otimes 1)(\beta \otimes 1) = \beta^2 \otimes 1 = 0. \]
+Yet the degree $2$ generator of $H^\bullet(\CP^3; \ZZ)$
+does not have this property.
+Hence the rings are not isomorphic.
+
+So it follows that $\CP^3$ and $S^2 \times S^4$ are not homotopy equivalent.
+
+
+	
+% Borsuk Ulam
 
 \section\problemhead
-\begin{sproblem}
-	[Wedge Product Cohomology]
-	For any $G$ and $n$ we have
-	\[
-		\wt H^n(X \vee Y; G)
-		\cong
-		\wt H^n(X; G) \oplus \wt H^n(Y; G).
-	\]	
-\end{sproblem}
-
-\begin{dproblem}
-	Prove that for a field $F$ of characteristic zero and a space $X$
-	with finitely generated homology groups:
-	\[ H^k(X, F) \cong \left( H_k(X) \right)^\vee.  \]
-	Thus over fields cohomology is the dual of homology.
-\end{dproblem}
-
-\begin{problem}[$\Zc2$-Cohomology of $\RP^n$]
-	Prove that
-	\[
-		H^m(\RP^n, \Zc2)
-		\cong
-		\begin{cases}
-			\ZZ & \text{$m=0$, or $m$ is odd and $m=n$} \\
-			\Zc2 & \text{$0 < m < n$ and $m$ is odd} \\
-			0 & \text{otherwise}.
-		\end{cases}
-	\]
-\end{problem}
 
 \begin{dproblem}
 	[Symmetry of Betti Numbers by Poincar\'e Duality]
 	\label{prob:betti}
 	Let $M$ be a smooth oriented compact $n$-manifold,
 	and let $b_k$ denote its Betti number.
-	Prove that
-	\[ b_k = b_{n-k}. \]
-	For example, the Betti numbers of
-	the torus are $b_0 = 1$, $b_1 = 2$, $b_2 = 1$.
+	Prove that $b_k = b_{n-k}$.
 	\begin{hint}
 		Write $H^k(M; \ZZ)$ in terms of $H_k(M)$
 		using the UCT, and analyze the ranks.
@@ -527,96 +947,27 @@ See also \Cref{prob:betti}.
 	\end{hint}
 \end{problem}
 
+\begin{problem}
+	Show that $\RP^3$ is not homotopy equivalent to $\RP^2 \wedge S^3$.
+	\begin{hint}
+		Use the $\Zc2$ cohomologies, and find the cup product.
+	\end{hint}
+\end{problem}
 
-\chapter{The Cohomology Ring}
-I won't do much more in this chapter other than
-introduce the cup product and say a few examples.
-For an actual treatise, see \cite{ref:hatcher} or \cite{ref:maxim752}.
-
-\section{Graded Rings}
-\prototype{Polynomial rings are graded rings.}
-In this chapter, the ring $R$ is commutative with identity;
-but the remaining rings need not be commutative.
-However, the word ``ring'' refers to a ring with identity,
-or else we will use \vocab{pseudo-ring} to denote a ring that need not possess $1$.
-
-\todo{define graded ring}
-
-\todo{graded commutative}
-
-\section{Cup Products}
-Suppose now we replace our abelian group $G$ by a commutative ring $R$ with identity.
-Then this gives us a way to multiply two cochains, as follows.
-Suppose $\phi \in C^k(X;R)$ and $\psi \in C^\ell(X;R)$.
-Then we can define their \vocab{cup product}
-$\phi\smile\psi \in C^{k+\ell}(X;R)$ to be
-\[
-	(\phi\smile\psi)([v_0, \dots, v_{k+\ell}])
-	= 
-	\phi\left( [v_0, \dots, v_k] \right)
-	\cdot
-	\psi\left( [v_k, \dots, v_{k+\ell}] \right)
-\]
-where the multiplication is in $R$.
-
-\begin{ques}
-	Which $0$-cochain is the identity for $\smile$?
-\end{ques}
-
-This behaves well with respect to $\delta$:
-\begin{lemma}[$\delta$ with Cup Products]
-	We have
-	$\delta(\phi\smile\psi) = \delta\phi\smile\psi + (-1)^k\phi\smile\delta\psi$.
-\end{lemma}
-\begin{proof}
-	Direct $\sum$ computations.
-\end{proof}
-From this, it is not hard to see that we get an induced map
-\[ H^k(X;R) \times H^\ell(X;R) \taking\smile H^{k+\ell}(X;R).  \]
-We then define the \vocab{cohomology ring} $H^\bullet(X;R)$
-whose elements are finite sums in 
-\[ \bigoplus_{k \ge 0} H^k(X;R) \]
-and with multiplication given by $\smile$.
-
-Observe that $H^\bullet(X;R)$ is a \emph{graded ring}.
-We say that an element $\alpha \in H^k(X;R)$ has dimension $k$,
-and write $|\alpha|=k$.
-It turns out (though we won't prove it; see \cite{ref:hatcher})
-that the cup product is in fact graded commutative.
-
-\begin{example}[Cohomology Ring of $S^n$]
-	Consider $S^n$ for $n \ge 1$.
-	The nontrivial cohomology groups are given by
-	$H^0(S^n; \ZZ) \cong H^n(S^n, \ZZ) \cong \ZZ$.
-	So as an abelian group
-	\[ H^\bullet(S^n, \ZZ) \cong \ZZ \oplus \alpha \ZZ \]
-	where $\alpha$ is the generator of $H^n(S^n, \ZZ)$.
-	
-	Now, observe that $|\alpha\smile\alpha| = 2n$, but
-	since $H^{2n}(S^n, \ZZ) = 0$ we must have $\alpha\smile\alpha=0$.
-	So even more succinctly,
-	\[ H^\bullet(S^n, \ZZ) \cong \ZZ[\alpha]/(\alpha^2). \]
-\end{example}
-
-\begin{example}[Real and Complex Projective Space]
-	Though we won't prove it, it turns out that
-	\begin{align*}
-		H^\bullet(\RP^n, \Zc2) \cong \Zc2[\alpha]/(\alpha^{n+1}) \\
-		H^\bullet(\CP^n, \ZZ) \cong \ZZ[\beta]/(\beta^{n+1})
-	\end{align*}
-	where $|\alpha|=1$ is a generator of $H^1(\RP^n; \Zc2)$
-	and $|\beta|=2$ is a generator of $H^2(\CP^n; \ZZ)$.
-\end{example}
-
-\section{Cup Product Structure}
-In general, it's not so easy to figure out what the cup product looks like
-for an arbitrary space.
-\todo{wtf was being planned here}
-\section{The Borsuk-Ulam Theorem}
-
-\section\problemhead
-
-
-
+\begin{problem}
+	\gim
+	Show that $S^m \wedge S^n$ is not a deformation retract
+	of $S^m \times S^n$ for any $m,n \ge 1$.
+	\begin{hint}
+		Assume that $r : S^m \times S^n \to S^m \wedge S^n$ is such a map.
+		Show that the induced map
+		$H^\bullet(S^m \wedge S^n; \ZZ) \to H^\bullet(S^m \times S^n; \ZZ)$
+		between their cohomology rings is monic
+		(since there exists an inverse map $i$).
+	\end{hint}
+	\begin{sol}
+		See \cite[Example 3.3.14, pages 68-69]{ref:maxim752}.
+	\end{sol}
+\end{problem}
 
 \end{document}
