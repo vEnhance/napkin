@@ -2,44 +2,61 @@
 Took long enough.
 
 \section{Motivation}
-Suppose we're interested in solutions to the Diophantine equation $n = x^2 + 5y^2$ for a given $n$.
-The idea is to try and ``factor'' $n$ in $\ZZ[\sqrt{-5}]$, for example \[ 6 = (1+\sqrt{-5})(1-\sqrt{-5}). \]
-Unfortunately, this is not so simple, because as I've said before we don't have unique factorization of elements.
+Suppose we're interested in solutions to the
+Diophantine equation $n = x^2 + 5y^2$ for a given $n$.
+The idea is to try and ``factor'' $n$ in $\ZZ[\sqrt{-5}]$,
+for example \[ 6 = (1+\sqrt{-5})(1-\sqrt{-5}). \]
+Unfortunately, this is not so simple, because as I've said before
+we don't have unique factorization of elements.
 \[ 6 = 2 \cdot 3 = \left( 1+\sqrt{-5} \right)\left( 1-\sqrt{-5} \right). \]
-One reason this doesn't work is that we don't have a notion of a \emph{greatest common divisor}.
+One reason this doesn't work is that we don't have a notion of a
+\emph{greatest common divisor}.
 We can write $(35, 77) = 7$, but what do we make of $(3, 1+\sqrt{-5})$?
 
 The trick is to use ideals as a ``generalized GCD''.
 Recall that by $(a,b)$ I mean the ideal $\{ax + by \mid x,y \in \ZZ[\sqrt{-5}] \}$.
-You can see that $(35, 77) = (7)$, but $(3, 1+\sqrt{-5})$ will be left ``unsimplified'' because it doesn't
+You can see that $(35, 77) = (7)$,
+but $(3, 1+\sqrt{-5})$ will be left ``unsimplified'' because it doesn't
 represent an actual value in the ring.
-Using these \emph{sets} (ideals) as elements, it turns out that we can develop a full theory
+Using these \emph{sets} (ideals) as elements,
+it turns out that we can develop a full theory
 of prime factorization, and we do so in this chapter.
 
-In other words, we use the ideal $(a_1, \dots, a_m)$ to interpret a ``generalized GCD'' of $a_1$, \dots, $a_m$.
-In particular, if we have a particular number $x$ we want to represent, we encode it as just $(x)$.
+In other words, we use the ideal $(a_1, \dots, a_m)$
+to interpret a ``generalized GCD'' of $a_1$, \dots, $a_m$.
+In particular, if we have a particular number $x$ we want to represent,
+we encode it as just $(x)$.
 
-Going back to our example of $6$, \[ (6) = (2) \cdot (3) = \left( 1+\sqrt{-5} \right) \cdot \left( 1-\sqrt{-5} \right). \]
-Please take my word for it that in fact, the complete prime factorization of $(6)$ into prime ideals is
+Going back to our example of $6$,
+\[ (6) = (2) \cdot (3)
+	= \left( 1+\sqrt{-5} \right) \cdot \left( 1-\sqrt{-5} \right). \]
+Please take my word for it that in fact,
+the complete prime factorization of $(6)$ into prime ideals is
 \[
 	(6)
 	= (2,1-\sqrt{-5})^2 (3,1+\sqrt{5})(3,1-\sqrt{-5})
 	= \pp^2 \qq_1 \qq_2. \]
 In fact, $(2) = \pp^2$, $(3) = \qq_1 \qq_2$,
 $(1+\sqrt{-5}) = \pp \qq_1$, $(1-\sqrt{-5}) = \pp \qq_2$.
-So $6$ indeed factorizes uniquely into ideals, even though it doesn't factor into elements.
+So $6$ indeed factorizes uniquely into ideals,
+even though it doesn't factor into elements.
 
 As one can see above,
-ideal factorization is more refined than element factorization -- once you have the factorization into \emph{ideals},
+ideal factorization is more refined than element factorization.
+Once you have the factorization into \emph{ideals},
 you can from there recover all the factorizations into \emph{elements}.
-The upshot of this is that if we want to write $n$ as $x^2+5y^2$, we just have to factor $n$ into ideals,
-and from there we can recover all factorizations into elements, and finally all ways to write $n$ as $x^2+5y^2$.
-Since we can already break $n$ into rational prime factors (for example $6 = 2 \cdot 3$ above)
+The upshot of this is that if we want to write $n$ as $x^2+5y^2$,
+we just have to factor $n$ into ideals,
+and from there we can recover all factorizations into elements,
+and finally all ways to write $n$ as $x^2+5y^2$.
+Since we can already break $n$ into rational prime factors
+(for example $6 = 2 \cdot 3$ above)
 we just have to figure out how each rational prime $p \mid n$ breaks down.
 There's a recipe for this, \Cref{thm:factor_alg}!
 In fact, I'll even tell you what is says in this special case:
 \begin{itemize}
-	\ii If $t^2+5$ factors as $(t+c)(t-c) \pmod p$, then $(p) = (p, c+\sqrt{-5})(p, c-\sqrt{-5})$.
+	\ii If $t^2+5$ factors as $(t+c)(t-c) \pmod p$,
+	then $(p) = (p, c+\sqrt{-5})(p, c-\sqrt{-5})$.
 	\ii Otherwise, $(p)$ is a prime ideal.
 \end{itemize}
 In this chapter we'll develop this theory of unique factorization in full generality.
@@ -145,9 +162,9 @@ You can prove if you want that this indeed a field, but
 considering how comfortable we are that $\QQ$ is well-defined,
 I wouldn't worry about it\dots
 
-\begin{exercise}
+\begin{ques}
 	Show that the ring of integers $\OO_K$ has field of fractions $K$.
-\end{exercise}
+\end{ques}
 
 \section{Dedekind Domains}
 \prototype{Any $\OO_K$ is a Dedekind domain.}
@@ -477,6 +494,15 @@ The analogue of a rational number is as follows.
 	\[ J = \frac{1}{x} \cdot \aa \quad \text{where $x \in \mathcal A$, and $\aa$ is an integral ideal.} \]
 	For emphasis, ideals of $\mathcal A$ will be sometimes referred to as \vocab{integral ideals}.
 \end{definition}
+
+You might be a little surprised by this definition:
+one would expect that a fractional ideal should be of the form $\frac{\aa}{\bb}$
+for some integral ideals $\aa$, $\bb$.
+But in fact, it suffices to just take $x \in \mathcal A$ in the denominator.
+The analogy is that when we looked at $\OO_K$, we found that we only needed
+integer denominators: $\frac{1}{4-\sqrt3} = \frac{1}{13}(4+\sqrt3)$.
+Similarly here, it will turn out that we only need to look at $\frac1x \cdot \aa$
+rather than $\frac{\aa}{\bb}$, and so we define it this way from the beginning.
 See \Cref{prob:fractional_ideal_alt_def} for a different equivalent definition.
 
 \begin{example}[$\frac52\ZZ$ is a Fractional Ideal]
@@ -484,21 +510,18 @@ See \Cref{prob:fractional_ideal_alt_def} for a different equivalent definition.
 	is a fractional ideal of $\ZZ$.
 \end{example}
 
-It turns out that fractional ideals form a multiplicative group,
-just like $\QQ$.
-\begin{theorem}[The Class Group]
-	Let $\mathcal A$ be a Dedekind domain and $K$ its group of fractions.
-	For any ideal $\aa\inv$, the set
-	\[ \aa\inv = \left\{ x \mid x\aa \subseteq (1) = \mathcal A  \right\} \]
+Now, as we prescribed, the fractional ideals form a multiplicative group:
+\begin{theorem}[Fractional Ideals Form a Group]
+	Let $\mathcal A$ be a Dedekind domain and $K$ its field of fractions.
+	For any integral ideal $\aa$, the set
+	\[ \aa\inv = \left\{ x \in \mathcal A
+			\mid x\aa \subseteq (1) = \mathcal A \right\} \]
 	is a fractional ideal with $\aa \aa\inv = (1)$.
+\end{theorem}
+\begin{definition}
 	Thus nonzero fractional ideals of $K$ form a group under multiplication
 	with identity $(1) = \mathcal A$.
-\end{theorem}
-This is kind of cool.
-One might expect, a priori, that we need a notion of ``$\aa / \bb$'' for all integral ideals $\aa$, $\bb$.
-But the theorem says that it's sufficient to just consider  $\aa / x$ for $x \in \mathcal A$.
-\begin{definition}
-	This group is denoted $J_K$.
+	This \vocab{ideal group} is denoted $J_K$.
 \end{definition}
 
 \begin{example}[$(3)\inv$ in $\ZZ$]
@@ -506,11 +529,13 @@ But the theorem says that it's sufficient to just consider  $\aa / x$ for $x \in
 	\[ (3)\inv = \left\{ \frac 13 n \mid n \in \ZZ \right\} = \frac 13 \ZZ. \]
 \end{example}
 
-Evidently it follows that every fractional ideal $J$ can be uniquely written as
+It follows that every fractional ideal $J$ can be uniquely written as
 \[ J = \prod_i \pp_i^{n_i} \cdot \prod \qq_i^{-m_i} \]
 where $n_i$ and $m_i$ are positive integers.
 In fact, $\aa$ is an integral ideal if and only if all its exponents are nonnegative,
 just like the case with integers.
+So, a perhaps better way to think about fractional ideals is
+as products of prime ideals, possibly with negative exponents.
 
 \section{The Ideal Norm}
 One last tool is the following:
@@ -594,11 +619,29 @@ Thus $\Norm$ is a natural group homomorphism $J_K \to \QQ \setminus \{0\}$.
 	Find the factorization of $(5)$ in $\OO_K$.
 \end{problem}
 
+\begin{problem}
+	[Fermat's Little Theorem]
+	Let $\pp$ be a prime ideal in some ring of integers $\OO_K$.
+	Show that for $\alpha \in \OO_K$,
+	\[ \alpha^{\Norm(\pp)} \equiv \alpha \pmod{\pp}. \]
+	\begin{hint}
+		Copy the proof of the usual Fermat's Little Theorem.
+	\end{hint}
+	\begin{sol}
+		If $\alpha \equiv 0 \pmod{\pp}$ it's clear, so assume this isn't the case.
+		Then $\OO_K/\pp$ is a finite field with $\Norm(\pp)$ elements.
+		Looking at $(\OO_K/\pp)^\ast$, it's a multiplicative group with $\Norm(\pp)-1$ elements,
+		so $\alpha^{\Norm(\pp)-1} \equiv 1 \pmod{\pp}$, as desired.
+	\end{sol}
+\end{problem}
+
 \begin{dproblem}
-	Let $\mathcal A$ be a Dedekind domain with field of fractions $K$, and pick $J \subseteq K$.
+	Let $\mathcal A$ be a Dedekind domain with field of fractions $K$,
+	and pick $J \subseteq K$.
 	Show that $J$ is a fractional ideal if and only if
 	\begin{enumerate}[(i)]
-		\ii $J$ is closed under addition and multiplication by elements of $\mathcal A$, and
+		\ii $J$ is closed under addition and multiplication
+		by elements of $\mathcal A$, and
 		\ii $J$ is finitely generated as an abelian group.
 	\end{enumerate}
 	More succinctly: $J$ is a fractional ideal $\iff$ $J$ is a finitely generated $\mathcal A$-module.
@@ -616,21 +659,6 @@ Thus $\Norm$ is a natural group homomorphism $J_K \to \QQ \setminus \{0\}$.
 		and show that $\alpha I$ is an integral ideal.
 	\end{sol}
 \end{dproblem}
-
-\begin{problem}
-	[Fermat's Little Theorem]
-	Let $\pp$ be a prime ideal in some ring of integers $\OO_K$.
-	Show that \[ \alpha^{\Norm(\pp)} \equiv \alpha \pmod{\pp}. \]
-	\begin{hint}
-		Copy the proof of the usual Fermat's Little Theorem.
-	\end{hint}
-	\begin{sol}
-		If $\alpha \equiv 0 \pmod{\pp}$ it's clear, so assume this isn't the case.
-		Then $\OO_K/\pp$ is a finite field with $\Norm(\pp)$ elements.
-		Looking at $(\OO_K/\pp)^\ast$, it's a multiplicative group with $\Norm(\pp)-1$ elements,
-		so $\alpha^{\Norm(\pp)-1} \equiv 1 \pmod{\pp}$, as desired.
-	\end{sol}
-\end{problem}
 
 \begin{problem}
 	\label{prob:prove_factoring_algorithm}
