@@ -310,17 +310,19 @@ and want to know how these are related.
 \begin{theorem}
 	[Restrictions of Frobenius Elements]
 	Assume $L/\QQ$ and $K/\QQ$ are both Galois.
-	The restriction of $\Frob_{\mathfrak P}$ to $K$ is $\Frob_{\pp}$,
+	Then $\Frob_{\mathfrak P} \restrict{K} = \Frob_{\pp}$,
 	i.e.\ for every $\alpha \in K$,
 	\[ \Frob_\pp(\alpha) = \Frob_{\mathfrak P}(\alpha). \]
 \end{theorem}
 \begin{proof}
 	We know
-	\[ \Frob_{\mathfrak P}(\alpha) \equiv \alpha^p \pmod{\mathfrak P} \quad \forall \alpha \in \OO_L \]
+	\[ \Frob_{\mathfrak P}(\alpha) \equiv \alpha^p \pmod{\mathfrak P}
+		\quad \forall \alpha \in \OO_L \]
 	from the definition.
 	\begin{ques}
 		Deduce that
-		\[ \Frob_{\mathfrak P}(\alpha) \equiv \alpha^p \pmod{\pp} \quad \forall \alpha \in \OO_K. \]
+		\[ \Frob_{\mathfrak P}(\alpha) \equiv \alpha^p \pmod{\pp}
+			\quad \forall \alpha \in \OO_K. \]
 		(This is weaker than the previous statement in two ways!)
 	\end{ques}
 	Thus $\Frob_{\mathfrak P}$ restricted to $\OO_K$ satisfies the
@@ -407,7 +409,7 @@ We claim that
 \[ \Frob_{\mathfrak P} \in H \iff \text{$p$ splits in $K$}. \]
 To see this, note that $\Frob_{\mathfrak P}$ is in $H$ if and only if it acts
 as the identity on $K$.
-But $\Frob_{\mathfrak P}$ restricted to $K$ is $\Frob_\pp$!
+But $\Frob_{\mathfrak P} \restrict{K}$ is $\Frob_\pp$!
 So \[ \Frob_{\mathfrak P} \in H \iff \Frob_\pp = \id_K. \]
 So we simply note that $\Frob_\pp$ has order $1$ if $p$ splits (and $\pp$ has inertial degree $1$)
 and order $2$ if $p$ is inert (hence $\pp = p \cdot \OO_K$ has inertial degree $2$).

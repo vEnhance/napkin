@@ -201,9 +201,8 @@ to prove the result.
 	as before, and so breaking down $T$ over its subspaces we know
 	\[
 		\det T
-		= \prod_{i=1}^r \left( \det T|_{V_i}  \right)^{\dim V_i}.
+		= \prod_{i=1}^r \left( \det (T \restrict{V_i})  \right)^{\dim V_i}.
 	\]
-	where $T|_{V_i}$ is the restricted map $T : V_i \to V_i$.
 	So we only have to show two things:
 	the polynomials $\det T_{V_i}$ are irreducible,
 	and they are pairwise different for different $i$.
@@ -216,10 +215,10 @@ to prove the result.
 		\[
 			M = \sum_{g \in G} x_g
 			\cdot \rho_i(g)
-			= T|_{V_i}(\{x_g\}).
+			= (T \restrict{V_i})(\{x_g\}).
 		\]
 		View $\rho_i(g)$ as a $k \times k$ matrix with complex coefficients.
-		Thus the ``generic'' $T|_{V_i}(\{x_g\})$, viewed as a matrix with
+		Thus the ``generic'' $(T \restrict{V_i})(\{x_g\})$, viewed as a matrix with
 		polynomial entries, must have linearly independent entries
 		(or there would be some matrix in $\Mat(V_i)$ that we can't achieve).
 
