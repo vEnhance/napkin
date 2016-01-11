@@ -387,8 +387,8 @@ The answer is in the affirmative. It's equivalent to the following result.
 	Let $I \subsetneq \CC[x_1, \dots, x_n]$ be a proper ideal.
 	Then the variety $\VV(I) \neq \varnothing$.
 \end{theorem}
-Unfortunately, the proof of this is surprisingly pernicious.
-We won't include it here \todo{but link it somewhere}.
+The proof of this is surprisingly pernicious, so
+we won't include it here \todo{but link it somewhere}.
 
 From this we can deduce that all maximal ideals are of the above form.
 \begin{theorem}
@@ -404,20 +404,22 @@ From this we can deduce that all maximal ideals are of the above form.
 	vanishing at $p$, so necessarily $J \subseteq I \subsetneq \CC[x_1, \dots, x_n]$.
 	Then by maximality of $J$ we have $J=I$.
 \end{proof}
-Both of these facts again use the fact that \emph{$\CC$ is algebraically closed}
-in a crucial way.
-In summary,
+Again this uses the fact that $\CC$ is algebraically closed. Thus:
 \begin{moral}
-	Maximal ideals correspond to single points.
+	Over $\CC$, maximal ideals correspond to single points.
 \end{moral}
 
-\section{Summary}
-Consequently, our various ideals correspond to various flavors of affine varieties as follows.
-\begin{itemize}
-	\ii Semiprime ideals correspond to any affine varieties.
-	\ii Prime ideals correspond to irreducible affine varieties.
-	\ii Maximal ideals correspond to single points.
-\end{itemize}
+Consequently, our various ideals over $\CC$ correspond to various flavors
+of affine varieties according to the following table:
+\begin{center}
+	\begin{tabular}[h]{|cc|}
+		\hline
+		Algebraic Flavor & Geometric Flavor \\ \hline
+		semiprime ideal & affine variety \\
+		prime ideal & irreducible variety \\
+		maximal ideal & single point \\ \hline
+	\end{tabular}
+\end{center}
 
 \section\problemhead
 
@@ -433,11 +435,6 @@ Consequently, our various ideals correspond to various flavors of affine varieti
 		then we can take $f = f_1^2 + \dots + f_m^2$.
 	\end{sol}
 \end{problem}
-
-\begin{dproblem}
-	Show that for any $n \ge 1$ the Zariski topology of $\Aff^n$
-	is \emph{not} Hausdorff.
-\end{dproblem}
 
 \begin{problem}
 	\kurumi
