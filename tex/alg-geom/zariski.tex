@@ -18,6 +18,31 @@ Specifically, for us an affine variety will become a \emph{topological space}
 equipped with a \emph{ring of functions} for each of its open sets:
 this is why we call it a \vocab{ringed space}.
 
+The bit about the topological space is not too drastic.
+The key insight is the addition of the ring of functions.
+For example, consider the double point from last chapter.
+
+\begin{center}
+	\begin{asy}
+		import graph;
+		size(5cm);
+
+		real f(real x) { return x*x; }
+		graph.xaxis("$x$", red);
+		graph.yaxis("$y$");
+		draw(graph(f,-2,2,operator ..), blue, Arrows);
+		label("$\mathcal V(y-x^2)$", (0.8, f(0.8)), dir(-45), blue);
+		label("$\mathbb A^2$", (2,3), dir(45));
+		dotfactor *= 1.5;
+		dot(origin, heavygreen);
+	\end{asy}
+\end{center}
+
+As a set, it is a single point,
+and thus it can have only one possible topology.
+But the addition of the function ring will let us tell it apart
+from just a single point.
+
 This construction is quite involved, so we'll proceed as follows:
 we'll define the structure bit by bit onto our existing affine varieties in $\Aff^n$,
 until we have all the data of a ringed space.
@@ -36,9 +61,9 @@ However, rather than putting the standard Euclidean topology on $\Aff^n$,
 we put a much more bizarre topology.
 \begin{definition}
 	In the \vocab{Zariski topology} on $\Aff^n$,
-	the \emph{closed sets} are those of the form $\VV(I)$;
-	i.e.\ the vanishing loci of some ideal $I \subseteq \CC[x_1, \dots, x_n]$.
-	Naturally, the open sets are complements.
+	the \emph{closed sets} are those of the form 
+	\[ \VV(I) \qquad\text{where}\quad I \subset \CC[x_1, \dots, x_n]. \]
+	Of course, the open sets are complements of such sets.
 \end{definition}
 
 \begin{example}
@@ -52,7 +77,7 @@ we put a much more bizarre topology.
 	There are a few flavors of polynomials $f$:
 	\begin{itemize}
 		\ii The zero polynomial $0$ which vanishes everywhere:
-		this implies that $\Aff^1$ is a closed set.
+		this implies that the entire space $\Aff^1$ is a closed set.
 		\ii The constant polynomial $1$ which vanishes nowhere.
 		This implies that $\varnothing$ is a closed set.
 		\ii A polynomial $c(x-t_1)(x-t_2)\dots(x-t_n)$ of degree $n$.
@@ -227,35 +252,38 @@ Thus properties of a variety $V$ correspond to properties of the ring $\CC[V]$.
 \prototype{Let $V = \Aff^1$, $U = V \setminus \{0\}$. Then $1/x \in \OO_V(U)$ is regular on $U$.}
 
 Let $V$ be an affine variety and let $\CC[V]$ be its coordinate ring.
-We want to define a notion of $\OO_V(U)$ for any open set $U$: the ``nice'' functions on any open subset.
+We want to define a notion of $\OO_V(U)$ for any open set $U$:
+the ``nice'' functions on any open subset.
 Obviously, any function is the $\CC[V]$ will work as a function on $\OO_V(U)$.
-However, to capture more of the structure we want to loosen our definition slightly of ``nice'' function slightly
+However, to capture more of the structure we want to
+loosen our definition slightly of ``nice'' function slightly
 by allowing \emph{rational} functions.
 
-The chief example is that $1/x$ should be a regular function on $\Aff^1 \setminus \{0\}$.
-However, the definition is slightly more convoluted than that: we have to allow for multiple representations
-in the following way:
+The chief example is that $1/x$ should be a regular function
+on $\Aff^1 \setminus \{0\}$.
+The first natural guess is:
+\begin{definition}
+	Let $U \subseteq V$ be an open set of the variety $V$.
+	A \vocab{rational function} on $U$
+	is a quotient $g(x) / h(x)$ of two elements $g$ and $h$ in $\CC[V]$,
+	where we require that $h(x) \neq 0$ for $x \in U$.
+\end{definition}
+However, the definition is slightly too restrictive;
+we have to allow for multiple representations in the following way.
 \begin{definition}
 	Let $U \subseteq V$ be open.
-	We say a function $\phi : U \to \CC$ is \vocab{regular} if
+	We say a function $\phi : U \to \CC$ is a \vocab{regular function} if
 	for every point $p$, we can find an open set $U_p$ containing $p$
-	and polynomials $g_p, h_p \in \CC[V]$ such that
+	and a rational function $g_p/h_p$ on $U_p$ such that
 	\[ \phi(x) = \frac{g_p(x)}{h_p(x)} \qquad \forall x \in U_p. \]
-	In particular, $h_p(x) \neq 0$ on $U_p$.
-	We denote the set of all regular functions by $\OO_V(U)$.
+	% In particular, we require $h_p(x) \neq 0$ on the set $U_p$.
+	We denote the set of all regular functions on $U$ by $\OO_V(U)$.
 \end{definition}
 
-%\begin{abuse}
-%	There is a tiny abuse of notation here:
-%	I defined the coordinate ring $R$ last section
-%	and then define $\OO_V(U)$ for any open subset $U \subseteq V$ in terms of $R$.
-%	So $\OO_V(V)$ could refer to two things:
-%	the original coordinate ring $R$ of polynomial functions,
-%	or the regular functions for $U = V$.
-%	Fortunately, we'll see in a moment that these coincide.
-%\end{abuse}
-
-Thus, $\phi$ should be ``locally'' a quotient of two polynomials.
+Thus,
+\begin{moral}
+	$\phi$ is regular on $U$ if it is locally a rational function.
+\end{moral}
 
 This definition is misleadingly complicated,
 and the examples should illuminate it significantly.
@@ -299,9 +327,12 @@ The ``local'' clause with $p$'s is still necessary, though.
 	we have to allow multiple representations.
 \end{example}
 
-The division-by-zero, as one would expect, essentially prohibits regular functions on the entire space $V$;
-i.e.\ there are no regular functions in $\OO_V(V)$ that were not already in $\CC[V]$.
-Actually, we have the following more general result which computes the regular functions on distinguished open sets.
+The division-by-zero, as one would expect,
+essentially prohibits regular functions on the entire space $V$;
+i.e.\ there are no regular functions in $\OO_V(V)$
+that were not already in $\CC[V]$.
+Actually, we have the following more general result which computes the
+regular functions on distinguished open sets.
 
 \begin{theorem}
 	[Regular Functions on Distinguished Open Sets]
@@ -312,23 +343,28 @@ Actually, we have the following more general result which computes the regular f
 		=
 		\left\{ \frac{g}{f^n} \mid g \in \CC[V] \text{ and } n \in \ZZ \right\}.
 	\]
-	In particular, $\OO_V(V) = \OO_V(D(1)) = \CC[V]$.
+	In particular, $\OO_V(V) = \OO_V(D(1)) \cong \CC[V]$.
 \end{theorem}
+The proof of this theorem requires the Nullstellensatz,
+so it relies on $\CC$ being algebraically closed.
+In fact, a counter-example is easy to find if we replace $\CC$ by $\RR$:
+consider $\frac{1}{x^2+1}$.
 \begin{proof}
-	Omitted.
-	The proof of this theorem requires the Nullstellensatz, so it relies on $\CC$ being algebraically closed.
-	In fact, a counter-example is easy to find if we replace $\CC$ by $\RR$: consider $\frac{1}{x^2+1}$.
+	This is long, so you may want to omit this on a first reading.
+	\todo{write this out}
 \end{proof}
-This means that the global regular functions are just the same as those in the coordinate ring:
+This means that the \emph{global} regular functions
+are just the same as those in the coordinate ring:
 you don't gain anything new by allowing it to be locally a quotient.
 (The same goes for distinguished open sets.)
 
 \begin{example}[Regular Functions on Distinguished Open Sets]
 	\listhack
 	\begin{enumerate}[(a)]
-		\ii Taking $f=1$ we recover $\OO_V(V) = \CC[V]$ for any affine variety $V$.
+		\ii Taking $f=1$ we recover $\OO_V(V) \cong \CC[V]$ for any affine variety $V$.
 		\ii Let $V = \Aff^1$, $U_0 = V \setminus \{0\}$. Then
-		\[ \OO_V(U_0) = \left\{ \frac{P(x)}{x^n} \mid P \in \CC[x], \quad n \in \ZZ \right\}. \]
+		\[ \OO_V(U_0)
+			= \left\{ \frac{P(x)}{x^n} \mid P \in \CC[x], \quad n \in \ZZ \right\}. \]
 		So more examples are $1/x$ and $(x+1)/x^3$.
 	\end{enumerate}
 \end{example}

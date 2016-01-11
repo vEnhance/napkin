@@ -204,13 +204,20 @@ style=thmbluebox,name=Theorem,numberwithin=section]{theorem}
 \newcommand{\Ctriv}{\CC_{\mathrm{triv}}}
 \newcommand{\Csign}{\CC_{\mathrm{sign}}}
 
+% Alg geom macros
 \newcommand{\VV}{\mathcal V}
 \newcommand{\Aff}{\mathbb A}
 % \newcommand{\II}{\mathbb I}
 \newcommand{\RP}{\mathbb{RP}}
 \newcommand{\CP}{\mathbb{CP}}
 \newcommand{\Cl}{\mathrm{Cl}}
-\newcommand{\restrict}[1]{\restriction #1}
+\newcommand{\restrict}[1]{\bgroup\restriction_{#1}\egroup}
+\DeclareMathOperator{\Opens}{OpenSets}
+\DeclareMathOperator{\res}{res}
+\newcommand{\mm}{\mathfrak m}
+\newcommand{\SF}{\mathscr F}
+\newcommand{\SG}{\mathscr G}
+\newcommand{\sh}{^\mathrm{sh}}
 
 \renewcommand{\Re}{\opname{Re}}
 \renewcommand{\Im}{\opname{Im}}

@@ -1,0 +1,615 @@
+\chapter{Sheaves and Ringed Spaces}
+Most of the complexity of the affine variety $V$ earlier comes from $\OO_V$.
+This is a type of object called a ``sheaf''.
+The purpose of this chapter is to completely define what this sheaf is,
+and just what it is doing.
+
+The typical example to keep in mind is a sheaf of
+``functions with property $P$'' on a topological space $X$:
+for every open set $U$, $\SF(U)$ gives us the ring of functions on $X$.
+However, we will work very abstractly and only assume $\SF(U)$
+is a ring, without an interpretation as ``functions''.
+
+The payoff for this abstraction is that it will
+allow us to define an arbitrary scheme in the next chapter.
+Varieties use $\CC[x_1, x_2, \dots, x_n] / I$ as their ``ring of functions'',
+and by using the fully general sheaf we will be replace this
+with \emph{any} commutative ring.
+In particular, we can use the case where $I$ is not semiprime, such as
+$\CC[x] / (x^2)$; this gives the ``multiplicity''
+behavior that we sought after all along.  
+
+\section{Pre-Sheaves}
+\prototype{The sheaf of holomorphic (or regular, continuous,
+differentiable, constant, whatever) functions.}
+
+The proper generalization of our $\OO_V$ is a so-called sheaf of rings.
+Recall that $\OO_V$ was a took \emph{open sets of $V$} to \emph{rings},
+with the interpretation that $\OO_V(U)$ was a ``ring of functions''.
+
+In light of this, we first make the following definition
+for the general construct, in the language of categories.
+
+\begin{definition}
+	For a topological space $X$ let $\Opens(X)$ denote
+	its open sets of $X$.
+\end{definition}
+\begin{definition}
+	A \vocab{pre-sheaf} of rings on a space $X$ is a function
+	\[ \SF : \Opens(X) \to \catname{Rings} \]
+	meaning each open set gets associated with a ring $\SF(U)$.
+	Each individual element of $\SF(U)$ is called a \vocab{section}.
+	An element of $\SF(X)$ is called a \vocab{global section}.
+
+	It is also equipped with the following information:
+	for any $U_1 \subseteq U_2$ there is a \vocab{restriction map}
+	\[ \res_{U_1,U_2} : \SF(U_2) \to \SF(U_1) \]
+	such that $\res_{U,U}$ is the identity and
+	whenever $U_1 \subseteq U_2 \subseteq U_3$ the diagram
+	\begin{diagram}
+		\SF(U_3) & \rTo^{\res_{U_2,U_3}} & \SF(U_2) \\
+		& \rdTo_{\res_{U_1,U_3}} & \dTo_{\res_{U_1,U_2}} \\
+		&& \SF(U_1)
+	\end{diagram}
+	commutes. (Restricting ``big to medium to small''
+	is the same as ``big to small''.)
+\end{definition}
+
+\begin{abuse}
+	If $s \in \mathscr F(U_2)$ is some section and $U_1 \subseteq U_2$,
+	then rather than write $\res_{U_1,U_2}(s)$
+	I will write $s\restrict{U_1}$ instead:
+	``$s$ restricted to $U_1$''.
+	This is abuse of notation because the section $s$ is just
+	an element of some ring, and in the most abstract of cases
+	may not have a natural interpretation as function.
+\end{abuse}
+
+\begin{example}[Examples of Sheaves]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii For an affine variety $V$, $\OO_V$ is of course a sheaf,
+		with $\OO_V(U)$ being the ring of regular functions on $U$.
+		The restriction map just says that if $U_1 \subseteq U_2$,
+		then a function $s \in \OO_V(U_2)$ can also be thought of as
+		a function $s \restrict{U_1} \in \OO_V(U_1)$,
+		hence the name ``restriction''.
+		The commutativity of the diagram then follows.
+		
+		\ii Let $X \subseteq \RR^n$ be an open set.
+		Then there is a sheaf of smooth/differentiable/etc.\ functions on $X$.
+		In fact, one can do the same construction for any manifold $M$.
+
+		\ii Similarly, if $X \subseteq \CC$ is open,
+		we can construct a sheaf of holomorphic functions on $X$.
+	\end{enumerate}
+	In all these examples, the sections $s \in \SF(U)$
+	are really functions on the space, but in general they need not be.
+\end{example}
+
+Now, we give a second, equivalent and far shorter definition of pre-sheaf:
+\begin{abuse}
+	By abuse of notation, $\Opens(X)$ will also be thought of as a
+	posetal category by inclusion. Thus $\varnothing$ is an initial object
+	and the entire space $X$ is a terminal object.
+\end{abuse}
+\begin{definition}
+	A \vocab{pre-sheaf} of rings on $X$ is a contravariant functor
+	\[ \SF : \Opens(X)\op \to \catname{Rings}. \]
+\end{definition}
+\begin{ques}
+	Check that these definitions are equivalent.
+\end{ques}
+It is now clear that we can actually replace $\catname{Rings}$
+with any category we want.
+
+So we should think:
+\begin{moral}
+	Pre-sheaves should be thought of as
+	``returning the ring of functions with a property $P$''.
+\end{moral}
+
+\section{Sheaves}
+\prototype{Constant functions aren't pre-sheaves,
+	but locally constant ones are.}
+
+Now, the main idea next is that
+\begin{moral}
+	Sheaves are pre-sheaves for which $P$ is a \emph{local} property.
+\end{moral}
+
+The formal definition doesn't illuminate this as much as the examples
+do, but I have to give it first for the examples to make sense.
+
+\begin{definition}
+	A \vocab{sheaf} $\mathscr F$ is a pre-sheaf satisfying the following
+	two additional axioms:
+	Suppose $U$ is covered by open sets $U_\alpha \subseteq U$. Then:
+	\begin{enumerate}
+		\ii (Identity) If $s, t \in \mathscr F(U)$ are sections,
+		and $s\restrict{U_\alpha} = t\restrict{U_\alpha}$
+		for all $\alpha$, then $s = t$.
+		\ii (Collation) Consider sections
+		$s_\alpha \in \mathscr(U_\alpha)$ for each $\alpha$.
+		Suppose that 
+		\[ s_\alpha \restrict{U_\alpha \cap U_\beta}
+			= s_\beta \restrict{U_\alpha \cap U_\beta} \]
+		for each $U_\alpha$ and $U_\beta$.
+		Then we can find $s \in U$ such that
+		$s \restrict{U_\alpha}  = s_\alpha$.
+	\end{enumerate}
+\end{definition}
+This is best illustrated by picture: consider an open cover $U_1 \cup U_2$.
+\begin{center}
+	\begin{asy}
+		size(4cm);
+		filldraw(shift(-0.5,0)*unitcircle, lightred+opacity(0.3), red);
+		filldraw(shift( 0.5,0)*unitcircle, lightblue+opacity(0.3), blue);
+		label("$U_1$", (-0.5,0)+dir(135), dir(135), red);
+		label("$U_2$", ( 0.5,0)+dir(45), dir(45), blue);
+	\end{asy}
+\end{center}
+Then for a sheaf of functions, the axioms are saying that:
+\begin{itemize}
+	\ii If $s$ and $t$ are functions (with property $P$)
+	on the whole space $U = U_1 \cup U_2$,
+	and $s \restrict{U_1} = t \restrict{U_1}$,
+	$s \restrict{U_2} = t \restrict{U_2}$,
+	then $s = t$ on the entire union.
+	This is clear.
+
+	\ii If $s_1$ is a function with property $P$ on $U_1$
+	and $s_2$ is a function with property $P$ on $U_2$,
+	and the two functions agree on the overlap,
+	then one can collate them to obtain a function $s$
+	on the whole space:
+	this is obvious, but \textbf{the catch is that the collated function
+	needs to have property $P$ as well.}
+	That's why it matters that $P$ is local.
+\end{itemize}
+
+The reason we need these axioms is that in our abstract definition of a sheaf,
+the output of the sheaf is an abstract ring, which need not actually
+have a concrete interpretation as ``functions on $X$'', even though
+our examples will usually have this property.
+
+Now for the examples, which are more enlightening:
+\begin{example}
+	[Examples and Non-Examples of Sheaves]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii Pre-sheaves of arbitrary / continuous / differentiable / smooth
+		/ holomorphic functions are still sheaves.
+		This is because to verify a function is continuous,
+		one only needs to look at small neighborhoods at once.
+		
+		\ii For a complex variety $V$, $\OO_V$ is a sheaf,
+		precisely because our definition was \emph{locally} quotients
+		of polynomials.
+
+		\ii The pre-sheaf of \emph{constant} real functions on a space $X$
+		is \emph{not} a sheaf, because it fails the collation axiom.
+		Namely, suppose that $U_1 \cap U_2 = \varnothing$.
+		Then if $s_1$ is the constant function $1$ on $U_1$
+		while $s_2$ is the constant function $2$ on $U_2$,
+		then we cannot collate these to a constant function on $U_1 \cup U_2$.
+
+		\ii On the other hand, \emph{locally constant} functions
+		do produce a sheaf. (A function is locally constant
+		if for every point it is constant on some neighborhood.)
+	\end{enumerate}
+	In fact, the sheaf in (c) is what is called a \emph{sheafification}
+	of the pre-sheaf constant functions, which we define momentarily.
+\end{example}
+
+\section{Stalks}
+\prototype{Germs of real smooth functions tell you the derivatives,
+but germs of holomorphic functions determine the entire function.}
+Let $\SF$ be a sheaf.
+If we have a function $s \in \SF(U)$ and a point $p \in U$,
+then in general it doesn't make sense to ask what $s(p)$ is
+(even though all our examples look like this),
+because $\SF(U)$ is an arbitrary ring.
+So, we will replace the notion of $s(p)$ with a so-called \emph{germ}.
+
+\begin{definition}
+	Let $\SF$ be a pre-sheaf of rings.
+	For every point $p$ we define the \vocab{stalk} $\SF_p$ to be the set
+	\[ \left\{ (s, U) \mid s \in \SF(U), p \in U \right\} \]
+	modulo the relation $\sim$ that 
+	\[ (s_1,U_1) \sim (s_2, U_2) \text{ if }
+		s_1 \restrict{U_1 \cap U_2} = s_2 \restrict{U_1 \cap U_2}. \]
+	The equivalence classes themselves are called \vocab{germs}.
+\end{definition}
+So what's happening is:
+\begin{moral}
+	We consider functions $s$ defined near $p$
+	and, since we only care about local behavior,
+	we identify any two functions agreeing on a neighborhood of $p$,
+	no matter how small.
+\end{moral}
+
+Notice that the stalk is itself a ring as well:
+for example, addition is done by
+\[ 
+	\left( s_1, U_1 \right) + \left( s_2, U_2 \right)
+	=
+	\left( s_1 \restrict{U_1 \cap U_2} + s_2 \restrict{U_1 \cap U_2},
+	U_1 \cap U_2 \right).
+\]
+
+\begin{definition}
+	The germ of a given $s \in \SF(U)$ at a point $p$
+	is the equivalence class for $(s,U) \in \SF_p$.
+	We denote this by $[s]_p$.
+\end{definition}
+
+So the germ $[s]_p$ now plays the role of the ``value'' $s(p)$.
+But actually, it carries much more information than that.
+
+\begin{example}
+	[Germs of Real Smooth Functions]
+	Let $X = \RR$ and let $\SF$ be the sheaf on $X$ of smooth functions
+	(i.e.\ $\SF(U)$ is the set of smooth real-valued functions on $U$).
+
+	Consider a global section, $s : \RR \to \RR$ (thus $s \in \SF(X)$)
+	and its germ at $0$.
+	\begin{enumerate}[(a)]
+		\ii From the germ we can read off $s(0)$, obviously.
+		\ii We can also find $s'(0)$, because the germ carries enough
+		information to compute the limit $\lim_{h \to 0} \frac1h[s(h)-s(0)]$.
+		\ii Similarly, we can compute the second derivative and so on.
+		\ii However, we can't read off, say, $s(3)$ from the germ.
+		For example, take
+		\[
+			s(x) = \begin{cases}
+				e^{-\frac{1}{x-1}} & x > 1 \\
+				0 & x \le 1.
+			\end{cases}
+		\]
+		Note $s(3) = e^{-\half}$, but $[\text{zero function}]_0 = [s]_0$.
+		So germs can't distinguish between the zero function and $s$.
+	\end{enumerate}
+\end{example}
+\begin{example}
+	[Germs of Holomorphic Functions]
+	Holomorphic functions are very strange in this respect.
+	Consider the sheaf $\SF$ on $\CC$ of holomorphic functions $\CC \to \CC$.
+
+	Take $s : \CC \to \CC$ a global section.
+	Given the germ of $s$ at $0$, we can read off $s(0)$, $s'(0)$, et cetera.
+	The miracle of complex analysis is that just knowing
+	the derivatives of $s$ at zero is enough to reconstruct all of $s$:
+	we can compute the Taylor series of $s$ now.
+	\textbf{Thus germs of holomorphic functions determine the function};
+	they carry much more information than their real counterparts.
+	
+	In particular, we can concretely describe the sheaf:
+	\[
+		\SF_p = \left\{
+			\sum_{k \ge 0} c_k (z-p)^k,
+			\text{ convergent near $p$}
+		\right\}.
+	\]
+	In particular, this includes germs of meromorphic functions,
+	so long as there is no pole at $p$ itself.
+\end{example}
+
+And of course, our algebraic geometry example.
+\begin{abuse}
+	Rather than writing $(\OO_V)_p$ we will write $\OO_{V,p}$.
+\end{abuse}
+\begin{example}
+	[Stalks of the Sheaf on an Affine Variety]
+	Let $V \subseteq \Aff^n$ be a variety, and assume $p \in V$.
+	Then, a regular function $\varphi$ on $U \subseteq V$
+	is supposed to be a function on $U$ that ``locally'' is a quotient
+	of two functions in $\CC[V]$.
+
+	However, \textbf{as far as the germ is concerned, we only care about
+	whichever quotient applies near the point $p$}.
+	In light of this, we only think about the representation at $p$,
+	and ignore the local clause completely:
+	thus the entire stalk can be thought of as
+	\[
+		\OO_{V,p} = 
+		\left\{ \left( \tfrac fg , U \right) \mid 
+			p \in U, \; f,g \in \CC[V], \;
+			\text{$g \neq 0$ on $U$} \right\}
+	\]
+	modulo the usual relations.
+
+	Now, since we happen to be working with complex polynomials,
+	we know that a rational function is determined by its
+	behavior on any neighborhood of $p$
+	(complex analysis forever!).
+	Thus 
+	\[
+		\OO_{V,p} =
+		\left\{ \tfrac fg \mid f,g \in \CC[V], \; g(p) \neq 0 \right\}.
+	\]
+	which don't vanish on $p$.
+\end{example}
+
+\begin{remark}
+	[For category lovers]
+	You may notice that $\SF_p$ seems to be
+	``all the $\SF_p(U)$ coming together'', where $p \in U$.
+	And in fact, $\SF_p(U)$ is the categorical \emph{limit}
+	of the diagram formed by all the $\SF(U)$ such that $p \in U$.
+	This is often written
+	\[ \SF_p = \varinjlim_{U \ni p} \SF(U) \]
+	Thus we can define stalks in any category with limits,
+	though to be able to talk about germs the category needs
+	to be concrete.
+\end{remark}
+
+\section{Sheafification}
+\prototype{The pre-sheaf of locally constant functions
+	becomes the sheaf of constant functions.}
+Now that we have the language of germs,
+we can define the so-called sheafification.
+The idea is that if $\SF$ is the pre-sheaf of ``functions with property $P$''
+then we want to associate a sheaf $\SF\sh$ of
+``functions which are locally $P$'', which makes them into a sheaf.
+We have already seen two examples of this:
+\begin{example}
+	[Sheafification]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii If $X$ is a topological space,
+		and $\SF$ is the pre-sheaf of constant functions on $X$,
+		then $\SF\sh$ is the sheaf of locally constant functions.
+
+		\ii If $V$ is an affine variety,
+		and $\SF$ is the pre-sheaf of rational functions,
+		then $\SF\sh$ is the sheaf of regular functions
+		(which are locally rational).
+	\end{enumerate}
+\end{example}
+
+So how do we encode ``locally $P$''?
+The way we do this is by considering a sequence of germs,
+one at every point, such that at any point they can locally be put
+together to form a section.
+
+\begin{definition}
+	Let $\SF$ be pre-sheaf.
+	For an open set $U$, a sequence $(g_p)_{p \in U}$ of germs
+	($g_p \in \SF_p$) is said to be \vocab{compatible} if
+	they can be ``locally collated'':
+	\begin{quote}
+		For any $p \in U$ there exists a $s \in \SF(U_p)$
+		such that $[s]_q = g_q$ for each $q \in U_p$.
+		(Here $U_p$ is any neighborhood of $p$.)
+	\end{quote}
+	Intuitively, the germs should ``collate together'' to some section.
+	Then we define the \vocab{sheafification} $\SF\sh$ by setting
+	\[ \SF\sh(U) =
+		\left\{ \text{sequences of compatible
+		germs $(g_p)_{p \in U}$} \right\}.  \]
+\end{definition}
+\begin{exercise}
+	Reconcile this definition with the two examples we gave.
+\end{exercise}
+The construction is contrived so that given a section
+$(g_p)_{p \in U} \in \SF\sh(U)$ the germ at a point $p$ is $g_p$:
+\begin{lemma}
+	[Pre-Sheaves and Sheaves Have the Same Stalk]
+	Let $\SF$ be a pre-sheaf and $\SF\sh$ its sheafification.
+	Let $q \in U$ with $U$ an open set.
+	Then there is an isomorphism
+	\[ (\SF\sh)_q \cong \SF_q. \]
+\end{lemma}
+\begin{proof}
+	A germ in $(\SF\sh)_q$ looks like 
+	$\left( U, (g_p)_{p \in U} \right)$, where $g_p$ are germs of $\SF_p$.
+	Then the isomorphism is given by
+	\[ \left( U, (g_p)_{p \in U} \right) \mapsto g_q \in \SF_q. \]
+	The inverse map is given by for each $g = (s,U) \in \SF_q$ by
+	\[ g \mapsto \left( (g)_{p \in U}, U \right) \]
+	i.e.\ the sequence of germs is the constant sequence.
+\end{proof}
+
+\section{Local Rings}
+\prototype{Smooth functions $f$ on $X \subseteq \RR^n$ have invertible
+germs at $p$ unless $f(p) = 0$.}
+The stalks of the examples we produced above are special types
+of rings, called \emph{local rings}.
+Algebraically, the definition of these is:
+\begin{definition}
+	A \vocab{local ring} $R$ is a ring with exactly one maximal ideal.
+\end{definition}
+
+% Wikipedia has a good explanatio nhere
+To see why this definition applies to the stalks above,
+we need to identify what the maximal ideal is.
+Let's go back to the example of $X = \RR$ and $\SF(U)$ the smooth functions,
+and consider the stalk $\SF_{p}$, where $p \in X$.
+Define the ideal $\mm_p$ to be the set of germs $(s,U)$ for which $s(p) = 0$.
+
+Then $\mm_p$ is maximal: we have an exact sequence
+\[ 0 \to \mm_p \to \SF(U) \taking{(s,U) \mapsto s(p)} \RR \to 0 \]
+and so $\SF(U) / \mm_p \cong \RR$, which is a field.
+
+It remains to check there are no nonzero maximal ideals.
+Now note that if $s \notin \mm_p$,
+then $s$ is nonzero in some neighborhood of $p$,
+then one can construct the function $1/s$ in a neighborhood of $p$.
+So \textbf{every element of $\SF_p \setminus \mm_p$ is a unit};
+$\mm_p$ is in fact the only maximal ideal!
+
+More generally, any time a sheaf $\SF$ is of the form
+``nice field-valued functions'',
+the stalk $\SF_p$ usually has a maximal ideal
+consisting of the germs vanishing at $p$.
+The discussion above implies, for example, the following.
+\begin{proposition}
+	[Stalks Are Often Local Rings]
+	The stalks of each of the following types of sheaves are local rings:
+	\begin{enumerate}[(a)]
+		\ii Sheaves of continuous real/complex functions on a topological space
+		\ii Sheaves of smooth functions on any manifold
+		\ii Regular functions on an algebraic variety $V$.
+	\end{enumerate}
+\end{proposition}
+
+\section{Locally Ringed Space}
+We can now define:
+\begin{definition}
+	A \vocab{ringed space} is a topological space $X$ equipped
+	with a sheaf $\OO_X$ of rings.
+	Suppose that for every point $p$, the stalk $\OO_{X,p}$
+	is a local ring.
+	Then we say that $\OO_X$ is a \vocab{locally ringed space}.
+	We denote the maximal ideals by $\mm_{X,p}$.
+\end{definition}
+
+In particular, in the previous chapter we showed that every
+affine variety could be built into a locally ringed space. Hooray!
+\begin{abuse}
+	A ringed space $(X, \OO_X)$ is abbreviated to just $X$,
+	while $p \in X$ means ``$p$ is in the topological space $X$''.
+\end{abuse}
+
+
+\section{(Optional) Defining the Morphisms}
+Finally, it remains to define a morphism of locally ringed space.
+To do this we have to build up in several steps.
+
+\begin{remark}
+	This is marked as optional because it involves a \emph{lot}
+	of definitions, and because we will more or less
+	ignore the actual definition later on when we start applying
+	schemes to things. One can probably get away with just
+	suspending belief and knowing ``there is a reasonable definition
+	of morphisms of locally ringed spaces''.
+\end{remark}
+
+\subsection*{Morphisms of Pre-Sheaves and Sheaves}
+First, recall that a sheaf is a contravariant functor (pre-sheaf)
+with extra conditions. In light of this, it is not hard to guess
+the definition of a morphism of pre-sheaves:
+\begin{definition}
+	A \vocab{morphism of (pre-)sheaves} $\phi : \SF \to \SG$ on the same
+	space $X$ is a \textbf{natural transformation} of the underlying functors.
+	Isomorphism of sheaves is defined in the usual way.
+\end{definition}
+\begin{ques}
+	Show that this amounts to: for each $U \subseteq X$ we need to specify
+	a morphism $\phi : \SF(U) \to \SG(U)$ such that the diagram
+	\begin{diagram}
+		\SF(U_2) & \rTo^{\phi_{U_2}} & \SG(U_2) \\
+		\dTo^{\res_{U_1, U_2}} && \dTo_{\res_{U_1, U_2}} \\
+		\SF(U_1) & \rTo_{\phi_{U_1}} & \SG(U_1)
+	\end{diagram}
+	commutes any time that $U_1 \subseteq U_2$.
+\end{ques}
+
+%Now, note that
+%\begin{proposition}
+%	[Morphisms of Sheaves Induce Stalk Morphisms]
+%	Given a morphism $\phi : \SF \to \SG$ of sheaves on $X$, we get
+%	for every point $p \in X$ an induced morphism
+%	\[ \phi_p : \SF_p \to \SG_p. \]
+%\end{proposition}
+%\begin{proof}
+%	We have $\phi_U : \SF(U) \to \SG(U)$ for every $U$
+%	and hence construct the map $(U, f) \mapsto (U, \phi_U(f))$.
+%\end{proof}
+
+\subsection*{Morphisms of Ringed Spaces}
+This is more involved.
+Suppose we have ringed spaces $X = (X, \OO_X)$ and $Y = (Y, \OO_Y)$,
+and we want to define a map
+\[ f : X \to Y. \]
+
+On the level of spaces, $f : X \to Y$ should of course be a continuous map.
+But we also want to $f$ to do something with $\OO_X$ and $\OO_Y$.
+However, we only defined how to take a morphism of sheaves
+that act on the \emph{same} space!
+Thus we impose the following definition,
+which lets us \emph{push} the sheaf on $X$ to a sheaf on $Y$.
+Picture:
+\begin{diagram}
+	X && \rTo^f & Y && X && \rTo^f & Y \\
+	\Opens(X)\op && \lTo^{f\pre} & \Opens(Y)\op
+	&& f\pre(U) && \lMapsto^{f\pre} & U & \\
+	& \rdMapsto(3,2)_{\SF} && \dMapsto_{f_\ast \SF}
+		&& & \rdMapsto(3,2)_{\SF} && \dMapsto_{f_\ast \SF} & \\
+	&&& \catname{Rings}
+		&& && \SF(f\pre(U)) & = (f_\ast \SF)(U) & \in \catname{Rings}
+\end{diagram}
+
+\begin{definition}
+	Let $\SF$ be a sheaf on $X$, and $f : X \to Y$ a continuous map.
+	The \vocab{pushforward sheaf} $f_\ast \SF$ on $Y$ is defined by
+	\[ (f_\ast \SF)(U) = \SF(f\pre(U)) \qquad \forall U \subseteq Y. \]
+	This makes sense, since $f\pre(U)$ is open in $X$.
+\end{definition}
+As $f\pre$ is a functor $\Opens(Y)\op \to \Opens(X)\op$,
+\textbf{the pushforward $f_\ast\SF$ is
+just the composition of these two functors}.
+
+\begin{ques}
+	Technically $f_\ast\SF$ is supposed to be a
+	functor $\Opens(Y)\op \to \catname{Rings}$, so it also needs
+	to come with restriction arrows. What are they?
+\end{ques}
+
+I haven't actually checked that $f_\ast \SF$ is a sheaf
+(as opposed to a pre-sheaf), but this isn't hard to do.
+
+Now we can define a morphism of ringed spaces.
+In addition to the topological spaces,
+we also include a natural transformation between
+the two structure sheafs, after pushing the one on $X$ forward.
+\begin{definition}
+	A \vocab{morphism of ringed spaces} $f : (X, \OO_X) \to (Y, \OO_Y)$
+	consists of a continuous map of topological spaces $f : X \to Y$,
+	as well as a morphism of sheaves $f^\ast : \OO_Y \to (f_\ast \OO_X)$.
+\end{definition}
+The latter is thus a map
+$f^\ast_U : \OO_Y(U) \to (f_\ast \OO_X)(U) = \OO_X(f\pre(U))$
+for every $U \subseteq Y$, satisfying
+the axioms for a natural transformation.
+
+\subsection*{Morphisms of Locally Ringed Spaces}
+Last step!
+Suppose now that $(X, \OO_X)$ and $(Y, \OO_Y)$ are locally ringed spaces.
+Thus we need to deal with some information about the stalks.
+
+Given a morphism of ringed spaces $f : (X, \OO_X) \to (Y, \OO_Y)$,
+we can actually use the $f^\ast_U$ above to induce maps on the stalks,
+as follows. For a point $p \in X$, construct the map
+\begin{diagram}
+	f^\ast_P :& \OO_{Y, f(p)} & \rTo && \OO_{X, f(p)} \\
+	& (s, U) & \rMapsto && (f^\ast_U(s), f\pre(U)).
+\end{diagram}
+where $s \in \OO_Y(U)$.
+
+\begin{definition}
+	Let $R$ and $S$ be local rings with maximal ideals $\mm_R$ and $\mm_S$.
+	A \vocab{morphism of local rings} is a homomorphism of rings
+	$\psi : R \to S$ such that $\psi\pre(\mm_S) = \mm_R$.
+\end{definition}
+\begin{definition}
+	A \vocab{morphism of locally ringed spaces}
+	is a morphism of ringed spaces $f : (X, \OO_X) \to (Y, \OO_Y)$ such that
+	for every point $p$ the induced map of stalks is a morphism of local rings.
+\end{definition}
+Recalling that $\mm_{X,p}$ is the maximal ideal of $\OO_X$ at $p$,
+the new condition is saying that
+\[ (f^\ast_P)\pre (\mm_{X,p}) = \mm_{Y,f(p)}. \]
+Concretely, if $g$ is a function which vanishes on $f(p)$,
+then its ``pullback'' $f^\ast_U(g)$ vanishes on $p$.
+
+This completes the definition of a morphism of locally ringed spaces.
+Isomorphisms of (locally) ringed spaces are defined in the usual way.
+
+\section\problemhead
+\begin{problem}
+	Prove that if $\SF$ is a sheaf, then $\SF \cong \SF\sh$.
+\end{problem}
+
+

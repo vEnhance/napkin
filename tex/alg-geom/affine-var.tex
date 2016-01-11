@@ -33,7 +33,7 @@ For example, a parabola is the zero locus of the polynomial $\VV(y-x^2)$. Pictur
 		graph.xaxis("$x$");
 		graph.yaxis("$y$");
 		draw(graph(f,-2,2,operator ..), blue, Arrows);
-		label("$\mathcal V(y-x^2)$", (0.8, f(0.8)), dir(-45));
+		label("$\mathcal V(y-x^2)$", (0.8, f(0.8)), dir(-45), blue);
 		label("$\mathbb A^2$", (2,3), dir(45));
 	\end{asy}
 \end{center}
@@ -411,15 +411,56 @@ Again this uses the fact that $\CC$ is algebraically closed. Thus:
 
 Consequently, our various ideals over $\CC$ correspond to various flavors
 of affine varieties according to the following table:
+
 \begin{center}
 	\begin{tabular}[h]{|cc|}
 		\hline
 		Algebraic Flavor & Geometric Flavor \\ \hline
 		semiprime ideal & affine variety \\
 		prime ideal & irreducible variety \\
-		maximal ideal & single point \\ \hline
+		maximal ideal & single point \\
+		any ideal & scheme \\ \hline
 	\end{tabular}
 \end{center}
+
+There's one thing I haven't talked about: what's the last entry?
+
+\section{Why Schemes?}
+One of the most elementary motivations for the scheme
+is that we would like to use them to count multiplicity.
+That is, consider the intersection
+\[ \VV(y-x^2) \cap \VV(y) \subseteq \Aff^2 \] 
+This is the intersection of the parabola with the tangent $x$-axis,
+this is the green dot below.
+
+\begin{center}
+	\begin{asy}
+		import graph;
+		size(5cm);
+
+		real f(real x) { return x*x; }
+		graph.xaxis("$x$", red);
+		graph.yaxis("$y$");
+		draw(graph(f,-2,2,operator ..), blue, Arrows);
+		label("$\mathcal V(y-x^2)$", (0.8, f(0.8)), dir(-45), blue);
+		label("$\mathbb A^2$", (2,3), dir(45));
+		dotfactor *= 1.5;
+		dot(origin, heavygreen);
+	\end{asy}
+\end{center}
+
+Unfortunately, as a variety, it is just a single point!
+However, we want to think of this as a ``double point'':
+after all, in the obvious sense it has multiplicity $2$.
+You can detect this when you look at the ideals:
+\[ (y-x^2) + (y) = (x^2,y) \]
+and thus, if we blithely ignore taking the radical, we get
+\[ \CC[x,y] / (x^2,y) \cong \CC[\eps] / (\eps^2). \]
+So the ideals in question are noticing the presence of a double point.
+
+In order to encapsulate this, we need a more refined object than
+a variety, which (at the end of the day) is really a bunch of points.
+This refined object is the \emph{scheme}.
 
 \section\problemhead
 
@@ -475,4 +516,3 @@ of affine varieties according to the following table:
 		It follows that $f^N \in I$.
 	\end{sol}
 \end{problem}
-
