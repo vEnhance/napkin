@@ -935,6 +935,9 @@ independent of any particular embedding in $\Aff^n$.
 	Let $V = \Aff^2$ and let $U = \Aff^2 \setminus \{(0,0)\}$ be the punctured plane.
 	Compute $\OO_V(U)$.
 \end{sproblem}
+\chapter{Projective Varieties}
+\chapter{Bezout's Theorem}
+
 \chapter{Sheaves and Ringed Spaces}
 Most of the complexity of the affine variety $V$ earlier comes from $\OO_V$.
 This is a type of object called a ``sheaf''.
@@ -1564,28 +1567,80 @@ of $\CC^n$ corresponded to the maximal ideals of $\CC[x_1, \dots, x_n]$.
 
 In an \emph{affine scheme}, we will take an \emph{arbitrary} ring $R$,
 and generate the entire structure from just $R$ itself.
+The final result is called $\Spec R$, the \vocab{spectrum} of $R$.
 The affine varieties $\VV(I)$ we met earlier will just be
 $\CC[x_1, \dots, x_n] / I$, but now we will be able to take
 \emph{any} ideal $I$, thus finally completing the table at the end
 of the ``affine variety'' chapter.
 
+In particular, $\Spec \CC[x] / (x^2)$ will be the double we sought for so long.
+
 \section{The Set of Points}
 \prototype{$\Spec \CC[x_1, \dots, x_n] / I$.}
+
+First surprise, for a commutative ring $R$:
+\begin{moral}
+	$\Spec R$ is defined as the set of prime ideals of $R$.
+\end{moral}
+
+This might be a little surprising, since we might have guessed
+that $\Spec R$ should just have the maximal ideals.
+What do the remaining ideals correspond to?
+The answer is that they will be so-called \emph{generic points}
+points which are ``somewhere'' in the space, but nowhere in particular.
+
+\begin{remark}
+	As usual $R$ itself is not a prime ideal, but $(0)$
+	does if $R$ is an integral domain.
+\end{remark}
+
+\begin{example}
+	[Examples of Spectrums]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii $\Spec \CC[x]$ consists of a point $(x-a)$ for every $a \in \CC$,
+		which correspond to what we geometrically think of as $\Aff^1$.
+		In additionally consists of a point $(0)$,
+		which we think of as a ``generic point'', nowhere in particular.
+
+		\ii $\Spec \CC[x,y]$ consists of points $(x-a,y-b)$
+		(which are the maximal ideals) as well as $(0)$ again, a generic
+		point that is thought of as ``somewhere in $\CC^2$,
+		but nowhere in particular''.
+		It also consists of generic points corresponding to irreducible
+		polynomials $f(x,y)$, for example $(y-x^2)$,
+		which is a ``generic point on the parabola''.
+
+		\ii If $k$ is a field, $\Spec k$ is a single point,
+		since the only maximal ideal of $k$ is $(0)$.
+
+	\end{enumerate}
+\end{example}
+\begin{example}
+	[More Examples of Spectrums]
+	\begin{enumerate}[(a)]
+		\ii $\Spec \CC[x] / (x^2)$ has only $(x)$ as a prime ideal.
+		The ideal $(0)$ is not prime since $0 = x \cdot x$.
+		Thus $\Spec \CC[x] / (x^2)$ is a single point.
+
+		\ii $\Spec \ZZ$ consists of a point for every prime $p$,
+		plus a generic point that is somewhere, but no where in particular.
+	\end{enumerate}
+\end{example}<++>
+
+
 
 \section{Scheme}
 
 
-\chapter{Bezout's Theorem}
-\chapter{Divisors}
 \chapter{More on Sheaves and Schemes}
 sheafification
 
-\chapter{Line Bundles on Curves}
+\chapter{Divisors and Line Bundles}
 
 \end{document}
 
 
-\chapter{Projective Varieties}
 
 \section{(Aside) Which rings are coordinate rings?}
 As an aside, we might ask: which rings are the coordinate ring of some affine variety?
