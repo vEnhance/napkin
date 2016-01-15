@@ -82,7 +82,7 @@ Let's formalize the motivation we began with.
 			\ii The arrows of $\catname{Grp}$ are the homomorphisms between these groups.
 			\ii The composition $\circ$ in $\catname{Grp}$ is function composition.
 		\end{itemize}
-		\ii In the same way we can conceive a category $\catname{Ring}$ of rings.
+		\ii In the same way we can conceive a category $\catname{CRing}$ of (commutative) rings.
 		\ii Similarly, there is a category $\catname{Top}$ of topological spaces,
 		whose arrows are the continuous maps.
 		\ii There is a category $\catname{Top}_\ast$ of topological spaces with a \emph{distinguished basepoint};
@@ -160,7 +160,7 @@ This illustrates the point that
 \end{moral}
 In fact, in a way that can be made precise, the term ``concrete category'' refers
 to one where the arrows really are ``structure-preserving maps between sets'',
-like $\catname{Grp}$, $\catname{Top}$, or $\catname{Ring}$.
+like $\catname{Grp}$, $\catname{Top}$, or $\catname{CRing}$.
 
 \begin{ques}
 	Check that no two distinct objects of a poset are isomorphic.
@@ -242,7 +242,7 @@ Here are a couple examples.
 	\begin{enumerate}[(a)]
 		\ii The initial object of $\catname{Set}$ is the empty set $\varnothing$.
 		\ii The initial object of $\catname{Grp}$ is the trivial group $\{1\}$.
-		\ii The initial object of $\catname{Ring}$ is the ring $\ZZ$
+		\ii The initial object of $\catname{CRing}$ is the ring $\ZZ$
 		(recall that ring homomorphisms $R \to S$ map $1_R$ to $1_S$).
 		\ii The initial object of $\catname{Top}$ is the empty space.
 		\ii The initial object of a partially ordered set is its smallest element, if one exists.
@@ -279,7 +279,7 @@ One can take the ``dual'' notion, a terminal object.
 		\ii The terminal object of $\catname{Set}$ is the singleton set $\{\ast\}$.
 		(There are many singleton sets, of course, but \emph{as sets} they are all isomorphic!)
 		\ii The terminal object of $\catname{Grp}$ is the trivial group $\{1\}$.
-		\ii The terminal object of $\catname{Ring}$ is the zero ring (a ring with element $0=1$).
+		\ii The terminal object of $\catname{CRing}$ is the zero ring (a ring with element $0=1$).
 		(Recall that ring homomorphisms $R \to S$ must map $1_R$ to $1_S$).
 		\ii The terminal object of $\catname{Top}$ is the single-point space.
 		\ii The terminal object of a partially ordered set is its maximal element, if one exists.
@@ -306,7 +306,7 @@ but I will offer you the following advice:
 	\ii In $\catname{Set}$, arrows from $\{\ast\}$ to $S$ correspond to elements of $S$.
 	\ii In $\catname{Top}$, arrows from $\{\ast\}$ to $X$ correspond to points of $X$.
 	\ii In $\catname{Grp}$, arrows from $\ZZ$ to $G$ correspond to elements of $G$.
-	\ii In $\catname{Ring}$, arrows from $\ZZ[x]$ to $R$ correspond to elements of $R$.
+	\ii In $\catname{CRing}$, arrows from $\ZZ[x]$ to $R$ correspond to elements of $R$.
 \end{itemize}
 and so on.
 So in most concrete categories, you can think of elements as functions from special sets to the set in question.
@@ -554,7 +554,7 @@ The correct categorical notion is:
 \end{ques}
 In most situations, the converse is also true:
 \begin{exercise}
-	Show that in $\catname{Set}$, $\catname{Grp}$, $\catname{Ring}$,
+	Show that in $\catname{Set}$, $\catname{Grp}$, $\catname{CRing}$,
 	monic implies injective. (Take $A = \{\ast\}$, $A = \{1\}$, $A = \ZZ[x]$.)
 \end{exercise}
 More generally, as we said before there are many categories
@@ -591,7 +591,7 @@ Most notably:
 	[Epic but not Surjective]
 	\listhack
 	\begin{enumerate}[(a)]
-		\ii In $\catname{Ring}$, for instance, the inclusion $\ZZ \injto \QQ$ is epic
+		\ii In $\catname{CRing}$, for instance, the inclusion $\ZZ \injto \QQ$ is epic
 		(and not surjective)..
 		Indeed, if two homomorphisms $\QQ \to A$ agree on
 		every integer then they agree everywhere (why?),
