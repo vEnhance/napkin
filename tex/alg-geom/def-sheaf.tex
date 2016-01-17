@@ -1,4 +1,4 @@
-\chapter{Sheaves and Ringed Spaces}
+\chapter{Sheaves and Ringed Spaces (In Progress)}
 Most of the complexity of the affine variety $V$ earlier comes from $\OO_V$.
 This is a type of object called a ``sheaf''.
 The purpose of this chapter is to completely define what this sheaf is,
@@ -383,8 +383,12 @@ together to form a section.
 		such that $[s]_q = g_q$ for each $q \in U_p$.
 		(Here $U_p$ is any neighborhood of $p$.)
 	\end{quote}
-	Intuitively, the germs should ``collate together'' to some section.
-	Then we define the \vocab{sheafification} $\SF\sh$ by setting
+	Intuitively, the germs should ``collate together'' to some section near
+	each \emph{individual} point $p$
+	(but not necessarily to a section in $\SF(U)$).
+\end{definition}
+\begin{definition}
+	The \vocab{sheafification} $\SF\sh$ of a pre-sheaf $\SF$ is defined by
 	\[ \SF\sh(U) =
 		\left\{ \text{sequences of compatible
 		germs $(g_p)_{p \in U}$} \right\}.  \]
@@ -392,10 +396,18 @@ together to form a section.
 \begin{exercise}
 	Reconcile this definition with the two examples we gave.
 \end{exercise}
+\begin{abuse}
+	Technically I haven't told you what the restriction morphisms of $\SF(U)$
+	are but, they are not hard to guess.
+	I'll usually be equally sloppy in the future:
+	when defining a sheaf $\FF$, I'll only say what $\FF(U)$ is,
+	with the restriction morphisms $\FF(U_2) \to \FF(U_1)$ being implicit.
+\end{abuse}
 The construction is contrived so that given a section
 $(g_p)_{p \in U} \in \SF\sh(U)$ the germ at a point $p$ is $g_p$:
 \begin{lemma}
 	[Pre-Sheaves and Sheaves Have the Same Stalk]
+	\label{lem:pre_sheaf_stalk}
 	Let $\SF$ be a pre-sheaf and $\SF\sh$ its sheafification.
 	Let $q \in U$ with $U$ an open set.
 	Then there is an isomorphism
@@ -497,32 +509,20 @@ First, recall that a sheaf is a contravariant functor (pre-sheaf)
 with extra conditions. In light of this, it is not hard to guess
 the definition of a morphism of pre-sheaves:
 \begin{definition}
-	A \vocab{morphism of (pre-)sheaves} $\phi : \SF \to \SG$ on the same
+	A \vocab{morphism of (pre-)sheaves} $\alpha : \SF \to \SG$ on the same
 	space $X$ is a \textbf{natural transformation} of the underlying functors.
 	Isomorphism of sheaves is defined in the usual way.
 \end{definition}
 \begin{ques}
 	Show that this amounts to: for each $U \subseteq X$ we need to specify
-	a morphism $\phi : \SF(U) \to \SG(U)$ such that the diagram
+	a morphism $\alpha_U : \SF(U) \to \SG(U)$ such that the diagram
 	\begin{diagram}
-		\SF(U_2) & \rTo^{\phi_{U_2}} & \SG(U_2) \\
+		\SF(U_2) & \rTo^{\alpha_{U_2}} & \SG(U_2) \\
 		\dTo^{\res_{U_1, U_2}} && \dTo_{\res_{U_1, U_2}} \\
-		\SF(U_1) & \rTo_{\phi_{U_1}} & \SG(U_1)
+		\SF(U_1) & \rTo_{\alpha_{U_1}} & \SG(U_1)
 	\end{diagram}
 	commutes any time that $U_1 \subseteq U_2$.
 \end{ques}
-
-%Now, note that
-%\begin{proposition}
-%	[Morphisms of Sheaves Induce Stalk Morphisms]
-%	Given a morphism $\phi : \SF \to \SG$ of sheaves on $X$, we get
-%	for every point $p \in X$ an induced morphism
-%	\[ \phi_p : \SF_p \to \SG_p. \]
-%\end{proposition}
-%\begin{proof}
-%	We have $\phi_U : \SF(U) \to \SG(U)$ for every $U$
-%	and hence construct the map $(U, f) \mapsto (U, \phi_U(f))$.
-%\end{proof}
 
 \subsection*{Morphisms of Ringed Spaces}
 This is more involved.
@@ -617,5 +617,15 @@ Isomorphisms of (locally) ringed spaces are defined in the usual way.
 \begin{problem}
 	Prove that if $\SF$ is a sheaf, then $\SF \cong \SF\sh$.
 \end{problem}
-
+\begin{sproblem}
+	[Global Section Functor]
+	We consider the category $\catname{ShRing}_X$ of sheaves of rings on a space $X$.
+	The \vocab{global section functor}, denoted $\Gamma(X,-)$,
+	which sends each sheaf $\SF$ to the ring $\SF(X)$.
+	How does the global section functor behave on arrows?
+	\begin{hint}
+		Given a morphism of sheaves $\alpha : \SF \to \SG$
+		read off a map $\SF(X) \to \SG(X)$.
+	\end{hint}
+\end{sproblem}
 

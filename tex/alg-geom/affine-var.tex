@@ -1,4 +1,4 @@
-\chapter{Affine Varieties}
+\chapter{Affine Varieties (Draft)}
 In this chapter we introduce affine varieties.
 We introduce them in the context of coordinates,
 but over the course of the other chapters
@@ -129,7 +129,7 @@ We want an operation which takes the ideal $(x^2)$ and makes it into the ideal $
 The way to do so is using the radical of an ideal.
 
 \begin{definition}
-	Let $R$ be a (commutative) ring.
+	Let $R$ be a ring.
 	The \vocab{radical} of an ideal $I \subseteq R$, denoted $\sqrt I$,
 	is defined by
 	\[
@@ -159,20 +159,21 @@ And that's true in general.
 	As the name suggests, prime ideals are semiprime.
 	You're welcome to try and prove this (easy exercise).
 \end{remark}
-\begin{remark}
-	In fact, for commutative rings $R$ it turns out that $\sqrt I$
-	can also be defined as the intersection of all the prime ideals that contain $I$.
-	This is surprisingly tricky to show, so we won't do so here.
-\end{remark}
+Sometimes useful equivalent definition
+(which is more in line with the number theory definition):
+\begin{theorem}[Radical is Intersection of Prime Ideals]
+	For any ideal $I$, we have
+	\[ \sqrt I = \bigcap_{I \subseteq \pp \text{ prime}} \pp. \]
+\end{theorem}
 
-Thus we have the following.
+In any case, we have the following.
 \begin{ques}
 	Verify that $\VV(I) = \VV(\sqrt I)$.
 \end{ques}
 This makes sense: you would never refer to $x=0$ as $x^2=0$.
 With this, we obtain a theorem called Hilbert's Nullstellensatz.
 \begin{theorem}[Hilbert's Nullstellensatz]
-	Given a variety $V = \VV(I)$, the set of polynomials which vanish
+	Given an affine variety $V = \VV(I)$, the set of polynomials which vanish
 	on all points of $V$ is precisely $\sqrt I$.
 	Thus if $I$ and $J$ are ideals in $\CC[x_1, \dots, x_n]$,
 	then \[ \VV(I) = \VV(J) \text{ if and only if $\sqrt I = \sqrt J$}. \]
@@ -516,3 +517,5 @@ This refined object is the \emph{scheme}.
 		It follows that $f^N \in I$.
 	\end{sol}
 \end{problem}
+
+

@@ -1,4 +1,4 @@
-\chapter{Affine Varieties as Ringed Spaces}
+\chapter{Affine Varieties as Ringed Spaces (In Progress)}
 As in the previous chapter, we are working only over affine varieties in $\CC$ for simplicity.
 
 \section{Synopsis}
@@ -265,8 +265,8 @@ The first natural guess is:
 \begin{definition}
 	Let $U \subseteq V$ be an open set of the variety $V$.
 	A \vocab{rational function} on $U$
-	is a quotient $g(x) / h(x)$ of two elements $g$ and $h$ in $\CC[V]$,
-	where we require that $h(x) \neq 0$ for $x \in U$.
+	is a quotient $f(x) / g(x)$ of two elements $f$ and $g$ in $\CC[V]$,
+	where we require that $g(x) \neq 0$ for $x \in U$.
 \end{definition}
 However, the definition is slightly too restrictive;
 we have to allow for multiple representations in the following way.
@@ -274,9 +274,9 @@ we have to allow for multiple representations in the following way.
 	Let $U \subseteq V$ be open.
 	We say a function $\phi : U \to \CC$ is a \vocab{regular function} if
 	for every point $p$, we can find an open set $U_p$ containing $p$
-	and a rational function $g_p/h_p$ on $U_p$ such that
-	\[ \phi(x) = \frac{g_p(x)}{h_p(x)} \qquad \forall x \in U_p. \]
-	% In particular, we require $h_p(x) \neq 0$ on the set $U_p$.
+	and a rational function $f_p/g_p$ on $U_p$ such that
+	\[ \phi(x) = \frac{f_p(x)}{g_p(x)} \qquad \forall x \in U_p. \]
+	In particular, we require $g_p(x) \neq 0$ on the set $U_p$.
 	We denote the set of all regular functions on $U$ by $\OO_V(U)$.
 \end{definition}
 
@@ -296,9 +296,10 @@ For example:
 	\listhack
 	\begin{enumerate}[(a)]
 		\ii Any function in $f \in \CC[V]$ is clearly regular,
-		since we can take $h_p = 1$, $g_p = f$ for every $p$.
+		since we can take $g_p = 1$, $f_p = f$ for every $p$.
 		So $R \subseteq \OO_V(U)$ for any open set $U$.
-		\ii Let $V = \Aff^1$, $U_0 = V \setminus \{0\}$. Then $1/x \in \OO_V(U_0)$ is regular on $U$.
+		\ii Let $V = \Aff^1$, $U_0 = V \setminus \{0\}$.
+		Then $1/x \in \OO_V(U_0)$ is regular on $U$.
 		\ii Let $V = \Aff^1$, $U_{12} = V \setminus \{1,2\}$. Then 
 		\[ \frac{1}{(x-1)(x-2)} \in \OO_V(U_{12}) \]
 		is regular on $U$.
@@ -327,6 +328,14 @@ The ``local'' clause with $p$'s is still necessary, though.
 	we have to allow multiple representations.
 \end{example}
 
+In fact, we will see later on that the definition
+of a regular function is a special case of a more
+general construction called \emph{sheafification},
+in which ``sheaves of functions which are $P$'' are transformed
+into ``sheaves of functions which are \emph{locally} $P$''.
+
+\section{Regular Functions on Distinguished Open Sets}
+\prototype{Regular functions on $\Aff^1 \setminus \{0\}$ are $P(x) / x^n$.}
 The division-by-zero, as one would expect,
 essentially prohibits regular functions on the entire space $V$;
 i.e.\ there are no regular functions in $\OO_V(V)$
@@ -336,12 +345,14 @@ regular functions on distinguished open sets.
 
 \begin{theorem}
 	[Regular Functions on Distinguished Open Sets]
-	Let $V \subset \Aff^n$ be an affine variety and $D(f)$ a distinguished open subset of it.
+	\label{thm:reg_func_distinguish_open}
+	Let $V \subset \Aff^n$ be an affine variety
+	and $D(g)$ a distinguished open subset of it.
 	Then
 	\[
-		\OO_V( D(f) )
+		\OO_V( D(g) )
 		=
-		\left\{ \frac{g}{f^n} \mid g \in \CC[V] \text{ and } n \in \ZZ \right\}.
+		\left\{ \frac{f}{g^n} \mid f \in \CC[V] \text{ and } n \in \ZZ \right\}.
 	\]
 	In particular, $\OO_V(V) = \OO_V(D(1)) \cong \CC[V]$.
 \end{theorem}
@@ -350,8 +361,46 @@ so it relies on $\CC$ being algebraically closed.
 In fact, a counter-example is easy to find if we replace $\CC$ by $\RR$:
 consider $\frac{1}{x^2+1}$.
 \begin{proof}
-	This is long, so you may want to omit this on a first reading.
-	\todo{write this out}
+	Obviously, every function of the form $f/g^n$ works,
+	so we want the reverse direction.
+	% This is long, and perhaps should be omitted on a first reading.
+
+	Here's the situation.
+	Let $U = D(g)$.
+	We're given a regular function $\phi$, meaning at every point $p \in D(g)$,
+	there is a neighborhood $U_p$ on which $\phi$ can be expressed
+	as $f_p / g_p$ (where $f_p, g_p \in \CC[V]$).
+	Then, we want to construct an $f \in \CC[V]$ and an integer $n$
+	such that $\phi = f/g^n$.
+
+	First, look at a particular $U_p$ and $f_p / g_p$.
+	Shrink $U_p$ to a distinguished open set $D(h_p)$.
+	Then, let $\wt f_p = f_p h_p$ and $\wt g_p = g_p h_p$.
+	Thus we have that
+	\[ \frac{\wt f_p}{\wt g_p} \text{ is correct on }
+		D(h_p) \subseteq U \subseteq X. \]
+	The upshot of using the modified $f_p$ and $g_p$ is that:
+	\[ \wt f_p \wt g_q = \wt f_q \wt g_p \qquad \forall p,q \in U. \]
+	Indeed, it is correct on $D(h_p) \cap D(h_q)$ by definition,
+	and outside this set both the left-hand side and right-hand side are zero.
+
+	Now, we know that $D(g) = \bigcup_{p \in U} D(\wt g_p)$, i.e.\
+	\[ \VV(g) = \bigcap_{p \in U} \VV(\wt g_p). \]
+	So by the Nullstellensatz we know that
+	\[ g \in \sqrt{(\wt g_p : p \in U)}
+		\implies \exists n : g^n \in (\wt g_p : p \in U). \]
+	In other words, for some $n$ and $k_p \in \CC[V]$ we have
+	\[ g^n = \sum_p k_p \wt g_p \]
+	where only finitely many $k_p$ are not zero.
+	Now, we claim that
+	\[ f \defeq \sum_p k_p \wt f_p \]
+	works.
+	This just observes by noting that for any $q \in U$, we have
+	\[
+		f \wt g_q - g^n \wt f_q
+		= \sum_p k_p(\wt f_p \wt g_q - \wt g_p \wt f_q)
+		= 0. \qedhere
+	\]
 \end{proof}
 This means that the \emph{global} regular functions
 are just the same as those in the coordinate ring:
@@ -361,7 +410,7 @@ you don't gain anything new by allowing it to be locally a quotient.
 \begin{example}[Regular Functions on Distinguished Open Sets]
 	\listhack
 	\begin{enumerate}[(a)]
-		\ii Taking $f=1$ we recover $\OO_V(V) \cong \CC[V]$ for any affine variety $V$.
+		\ii Taking $g=1$ we recover $\OO_V(V) \cong \CC[V]$ for any affine variety $V$.
 		\ii Let $V = \Aff^1$, $U_0 = V \setminus \{0\}$. Then
 		\[ \OO_V(U_0)
 			= \left\{ \frac{P(x)}{x^n} \mid P \in \CC[x], \quad n \in \ZZ \right\}. \]
