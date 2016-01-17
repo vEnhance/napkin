@@ -102,13 +102,13 @@ This is a special case of a more general structure:
 
 \begin{definition}
 	A \vocab{graded pseudo-ring} $R$ is an abelian group
-	\[ R = \bigoplus_{d \ge 0} R_d \]
-	where $R_0$, $R_1$, \dots, are abelian groups,
+	\[ R = \bigoplus_{d \ge 0} R^d \]
+	where $R^0$, $R^1$, \dots, are abelian groups,
 	with an additional associative binary operation $\times : R \to R$.
 	This multiplication is required to satisfy the following property:
-	if $r \in R_d$ and $s \in R_e$, we have $rs \in R_{d+e}$.
-	Elements of an $R_d$ are called \vocab{homogeneous elements};
-	if $r \in R_d$ and $r \neq 0$, we write $|r| = d$.
+	if $r \in R^d$ and $s \in R^e$, we have $rs \in R^{d+e}$.
+	Elements of an $R^d$ are called \vocab{homogeneous elements};
+	if $r \in R^d$ and $r \neq 0$, we write $|r| = d$.
 \end{definition}
 Note that we do \emph{not} assume commutativity.
 In fact, these ``rings'' may not even have an identity $1$.
@@ -342,7 +342,7 @@ To do this, we need to define the product of two graded pseudo-rings:
 	Let $R$ and $S$ be two graded pseudo-rings.
 	The \vocab{product pseudo-ring} $R \times S$ is the graded pseudo-ring
 	defined by taking the underlying abelian group as 
-	\[ R \oplus S = \bigoplus_{d \ge 0} (R_d \oplus S_d). \]
+	\[ R \oplus S = \bigoplus_{d \ge 0} (R^d \oplus S^d). \]
 	Multiplication comes from $R$ and $S$, followed by
 	declaring $r \cdot s = 0$ for $r \in R$, $s \in S$.
 \end{definition}
@@ -407,7 +407,7 @@ which involves the tensor product of two graded rings.
 	We define the \vocab{tensor product} $A \otimes_R B$ as follows.
 	As an abelian group, it is 
 	\[ A \otimes_R B = \bigoplus_{d \ge 0}
-		\left( \bigoplus_{k=0}^{d} A_k \otimes_R B_{d-k}  \right). \]
+		\left( \bigoplus_{k=0}^{d} A^k \otimes_R B^{d-k}  \right). \]
 	The multiplication is given on basis elements by
 	\[ \left( a_1 \otimes b_1 \right)\left( a_2 \otimes b_2 \right)
 		= (a_1a_2) \otimes (b_1b_2).
