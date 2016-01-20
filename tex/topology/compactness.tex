@@ -263,25 +263,37 @@ Next, an important result about maps between compact spaces.
 	(This is even easier.)
 \end{ques}
 
-A nice application of this is:
-\begin{corollary}[Extreme Value Theorem and Intermediate Value Theorem]
+Some nice corollaries of this:
+\begin{corollary}
+	[Extreme Value Theorem]
+	Let $X$ be compact and consider a continuous function $f : X \to \RR$.
+	Then $f$ achieves a \emph{maximum value} at some point,
+	i.e.\ there is a point $p \in X$ such that $f(p) \ge f(q)$ for any
+	other $q \in X$.
+\end{corollary}
+\begin{corollary}
+	[Intermediate Value Theorem]
 	Consider a continuous function $f: [0,1] \to \RR$.
 	Then the image of $f$ is of the form $[a,b]$ for some real numbers $a \le b$.
-	In particular, $f$ obtains a maximum value $f(x) = b$
-	for some $x \in [0,1]$ (possibly not unique).
 \end{corollary}
 The typical counterexample given for $(0,1) \to \RR$ is the function $\frac 1x$.
 
 \begin{proof}[Sketch of Proof]
-	The point is that the image $S = f``([0,1])$ is compact in $\RR$, and hence closed and bounded.
+	The point is that the image of $f$ is compact in $\RR$,
+	and hence closed and bounded.
 	You can convince yourself that the closed sets are just unions of closed intervals.
-	Because the image is also connected, there should only be one closed interval in $S$.
-	And the fact that $S$ is bounded implies that it's really of the form $[a,b]$ for some $a \le b$.
-	(To give a full proof, you would use the so-called \emph{least upper bound} property,
-	but that's a little involved for a bedtime story; also, I think $\RR$ is boring.)
+	That implies the Extreme Value Theorem.
+
+	When $X=[0,1]$, the image is also connected,
+	so there should only be one closed interval in $f``([0,1])$.
+	Since the image is bounded, we then know it's of the form $[a,b]$.
+	(To give a full proof, you would use the so-called \emph{least upper bound}
+	property, but that's a little involved for a bedtime story;
+	also, I think $\RR$ is boring.)
 \end{proof}
 
-One last application: if $M$ is a compact metric space, then continuous functions $f : M \to N$
+One last application: if $M$ is a compact metric space,
+then continuous functions $f : M \to N$
 are continuous in an especially ``nice'' way:
 \begin{definition}
 	A function $f : M \to N$ of metric spaces is called \vocab{uniformly continuous}
@@ -289,7 +301,7 @@ are continuous in an especially ``nice'' way:
 	whenever $d_M(x,y) < \delta$ we also have $d_N(fx, fy) < \eps$.	
 \end{definition}
 The name means that for $\eps > 0$,
-we have to pick a $\delta$ that works for \emph{every point} of $M$.
+we need a $\delta$ that works for \emph{every point} of $M$.
 \begin{example}[Uniform Continuity]
 	\listhack
 	\begin{enumerate}[(a)]
@@ -313,11 +325,11 @@ Now, as promised:
 	then $f$ is uniformly continuous.
 \end{proposition}
 \begin{proof}[Proof Using Sequences]
-	Fix $\eps > 0$, and assume for contradiction
-	that for every $\delta = 1/k$ there exists points $x_k$ and $y_k$ with $\delta$ of each
+	Fix $\eps > 0$, and assume for contradiction that for every $\delta = 1/k$
+	there exists points $x_k$ and $y_k$ within $\delta$ of each
 	other but with images $\eps > 0$ apart.
 	By compactness, take a convergent subsequence $x_{i_k} \to p$.
-	Then $y_{i_k} \to p$ as well since the $x_k$'s and $y_k$'s are close to each other.
+	Then $y_{i_k} \to p$ as well, since the $x_k$'s and $y_k$'s are close to each other.
 	So both sequences $f(x_{i_k})$ and $f(y_{i_k})$ should converge to $f(p)$ by sequential continuity,
 	but this can't be true since the two sequences are always $\eps$ apart.
 \end{proof}
@@ -342,7 +354,8 @@ the idea of the proof is much in the spirit of \Cref{thm:interval_compact}.
 	\end{lemma}
 	\missingfigure{Lebesgue Numbers}
 	\begin{subproof}[Proof of Lemma]
-		Assume for contradiction that for every $\delta = 1/k$ there is a point $x_k \in M$
+		Assume for contradiction that for every $\delta = 1/k$
+		there is a point $x_k \in M$
 		such that its $1/k$-neighborhood isn't contained in any $U_\alpha$.
 		In this way we construct a sequence $x_1$, $x_2$, \dots;
 		thus we're allowed to take a subsequence which converges to some $x$.
@@ -393,16 +406,24 @@ Of these \Cref{thm:heine_borel} is definitely my favorite.
 	\end{sol}
 \end{problem}
 
-\begin{sproblem}[Compact Implies Bounded]
-	Let $f : X \to \RR$ be a continuous function,
-	where $X$ is a compact topological space.
-	Show that $f$ is bounded.
-	\begin{hint}
-		Immediate by the fact that the image of $f$ is compact,
-		and hence bounded.
-		Remember this!
-	\end{hint}
-\end{sproblem}
+\begin{problem}
+	[Cantor's Intersection Theorem]
+	Let $X$ be a compact space, and suppose
+	\[ X = K_0 \supseteq K_1 \supseteq K_2 \supseteq \dots \]
+	is an infinite sequence of nested closed subsets.
+	Show that $\bigcap_{n \ge 0} K_n \neq \varnothing$.
+\end{problem}
+
+%\begin{sproblem}[Compact Implies Bounded]
+%	Let $f : X \to \RR$ be a continuous function,
+%	where $X$ is a compact topological space.
+%	Show that $f$ is bounded.
+%	\begin{hint}
+%		Immediate by the fact that the image of $f$ is compact,
+%		and hence bounded.
+%		Remember this!
+%	\end{hint}
+%\end{sproblem}
 
 \begin{problem}
 	[Tychonoff's Theorem]
@@ -431,7 +452,8 @@ Of these \Cref{thm:heine_borel} is definitely my favorite.
 \begin{dproblem}
 	[Heine-Borel Theorem]
 	\gim
-	Prove that a metric space $M$ is compact if and only if it is complete and totally bounded.
+	Prove that a metric space $M$ is (sequentially) compact
+	if and only if it is complete and totally bounded.
 	\label{thm:heine_borel}
 	\begin{hint}
 		Mimic the proof of \Cref{thm:interval_compact}.
@@ -444,10 +466,16 @@ Of these \Cref{thm:heine_borel} is definitely my favorite.
 	\gim
 	Let 
 	$f_1, f_2, \dots : [0,1] \to [-100,100]$
-	be an \vocab{equicontinuous} sequence of functions,
-	meaning for every $\eps > 0$, there's a $\delta > 0$ such that
-	whenever $\left\lvert x-y \right\rvert < \delta$,
-	we have $\left\lvert f_n(x)-f_n(y) \right\rvert < \eps$ (for all $n$).
-	Show that we can extract a subsequence $f_{i_1}, f_{i_2}, \dots$ of these functions such that
-	$f_{i_1}(x)$, $f_{i_2}(x)$, \dots\ converges for every $x$.
+	be an \vocab{equicontinuous} sequence of functions, meaning
+	\[
+		\forall \eps > 0 \quad
+		\exists \delta > 0 \quad
+		\forall n \; 
+		\forall x,y \quad
+		\left( \left\lvert x-y \right\rvert <\delta
+		\implies \left\lvert f_n(x) - f_n(y) \right\rvert < \eps \right)
+	\]
+	Show that we can extract a subsequence $f_{i_1}, f_{i_2}, \dots$
+	of these functions such that for every $x \in [0,1]$,
+	the sequence $f_{i_1}(x)$, $f_{i_2}(x)$, \dots\ converges.
 \end{problem}

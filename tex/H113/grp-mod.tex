@@ -587,15 +587,17 @@ is an \emph{embedding} of $G$ into $H$.
 \end{problem}
 
 \begin{problem}
+	\gim
 	Let $p$ be a prime and $F_1 = F_2 = 1$, $F_{n+2} = F_{n+1} + F_n$
 	be the Fibonacci sequence.
 	Show that $F_{2p(p^2-1)}$ is divisible by $p$.
 	\begin{hint}
-		Look at the group of $2 \times 2$ invertible matrices mod $p$.
+		Look at the group of $2 \times 2$ matrices mod $p$
+		with determinant $\pm 1$.
 	\end{hint}
 	\begin{sol}
-		Look at the group $G$ of invertible $2 \times 2$ matrices whose entries
-		are the integers mod $p$.
+		Look at the group $G$ of $2 \times 2$ matrices mod $p$
+		with determinant $\pm 1$ (whose entries are the integers mod $p$).
 		Let $g = \begin{pmatrix} 1 & 1 \\ 1 & 0 \end{pmatrix}$
 		and then use $g^{\left\lvert G \right\rvert} = 1_G$.
 	\end{sol}

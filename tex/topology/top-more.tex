@@ -5,9 +5,10 @@ The chapter is admittedly a bit disconnected (pun not intended, but hey, why not
 
 I should say a little about metric spaces vs general topological spaces here.
 In most of the sections we only really talk about continuous maps or open sets,
-so it doesn't make a difference whether we restrict our attention to metric spaces or not.
+so it doesn't make a difference whether we restrict our attention
+to metric spaces or not.
 But when we talk about completeness, we consider \emph{sequences} of points,
-and in particular to the distances between them.
+and in particular the distances between them.
 This notion doesn't make sense for general spaces, so for that section one must
 keep in mind we are only working in metric spaces.
 
@@ -319,7 +320,7 @@ That seems to be a shame.
 Let's set up a new definition to describe these sequences whose terms
 get close to each other,
 even if they don't approach any particular point in the space.
-Thus, we want to make this definition in terms of just the given points.
+Thus, we only want to mention the given points in the definition.
 This is hard to do in a general topological space,
 but such a notion does exist for metric spaces.
 
@@ -391,14 +392,16 @@ For example, the completion of $\QQ$ is $\RR$ (in fact, this is often taken as t
 %\end{definition}
 
 \section{Subspacing}
-Earlier in this chapter, I declared that all the adjectives we defined were used to describe spaces.
-However, I now want to be more flexible and describes how they can be used to define subsets of spaces as well.
+Earlier in this chapter,
+I declared that all the adjectives we defined were used to describe spaces.
+However, I now want to be more flexible and describe
+how they can be used to define subsets of spaces as well.
 
 We've talked about some properties that a space can have;
-say, a space is \emph{path-connected}, or \emph{simply-connected}, or \emph{complete}.
-If you think about, it would make sense to use the same adjectives on sets.
-You'd say a set $S$ is path-connected if there's a path between every pair of points in $S$
-through points in $S$. And so on.
+say, a space is \emph{path-connected}, or \emph{simply connected}, or \emph{complete}.
+If you think about it, it would make sense to use the same adjectives on sets.
+You'd say a set $S$ is path-connected if there's a path between
+every pair of points in $S$ through points in $S$. And so on.
 
 The reason you can do this is that for a metric space $M$,
 \begin{moral}
@@ -406,7 +409,8 @@ The reason you can do this is that for a metric space $M$,
 \end{moral}
 To see this, we just use the same distance function;
 this is called the \vocab{subspace topology}.
-For example, you can think of a circle $S^1$ as a connected set by viewing it as a subspace of $\RR^2$.
+For example, you can think of a circle $S^1$ as a connected set
+by viewing it as a subspace of $\RR^2$.
 Thus,
 \begin{abuse}
 	Any adjective used to describe a space can equally be used for a subset of a space,
@@ -461,7 +465,7 @@ Needless to say, for metric spaces it doesn't matter which of these definitions 
 (Proving this turns out to be surprisingly annoying, so I won't do so.)
 
 \section{Hausdorff Spaces}
-\prototype{Every space that's not the Zariski topology.}
+\prototype{Every space that's not the Zariski topology (defined much later).}
 In analysis, almost all topological spaces we encounter satisfy
 some additional hypotheses about their points.
 There is a whole hierarchy of such axioms, labelled $T_n$ for
@@ -475,7 +479,7 @@ which bears a special name.
 	for any two disjoint points $p$ and $q$ in $X$,
 	there exists a neighborhood $U$ of $p$
 	and a neighborhood $V$ of $q$ such that
-	\[ U \cap V \neq \varnothing. \]
+	\[ U \cap V = \varnothing. \]
 \end{definition}
 In other words, around any two distinct points we should be
 able to draw disjoint neighborhoods.
