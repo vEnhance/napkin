@@ -959,7 +959,7 @@ you don't gain anything new by allowing it to be locally a quotient.
 The regular functions will become of crucial importance
 once we begin defining a scheme in the next chapter.
 
-\section{Baby's Ringed Spaces}
+\section{Baby Ringed Spaces}
 In summary, given an affine variety $V$ we have
 added the following structure to it:
 \begin{itemize}
@@ -971,18 +971,18 @@ added the following structure to it:
 \end{itemize}
 Let us agree that:
 \begin{definition}
-	A \vocab{baby's ringed space} is a topological space $X$
+	A \vocab{baby ringed space} is a topological space $X$
 	equipped with a ring $\OO_X(U)$ for every open set $U$.
 	It is required that elements of the ring $\OO_X(U)$
 	are functions $f : U \to \CC$;
 	we call these the \emph{regular functions} of $X$ on $U$.
 \end{definition}
-Therefore, affine varieties are baby's ringed spaces.
+Therefore, affine varieties are baby ringed spaces.
 \begin{remark}
 	This is not a standard definition. Hehe.
 \end{remark}
 
-The reason this is called a ``baby's ringed space''
+The reason this is called a ``baby ringed space''
 is that in a \emph{ringed space},
 the rings $\OO_V(U)$ can actually be \emph{any rings},
 but they have to satisfy a set of fairly technical conditions.
@@ -990,15 +990,15 @@ When this happens, it's the $\OO_V$ that does all the work;
 we think of $\OO_V$ as a type of functor called a \emph{sheaf}.
 
 Since we are only studying affine/projective/quasi-projective varieties
-for the next chapters, we will just refer to these as baby's ringed spaces
+for the next chapters, we will just refer to these as baby ringed spaces
 so that we don't have to deal with the entire definition.
 The key concept is that we want to think of these varieties
 as \emph{intrinsic objects}, free of any embedding.
-A baby's ringed space is philosophically the correct thing to do.
+A baby ringed space is philosophically the correct thing to do.
 
-Anyways, affine varieties are baby's ringed spaces $(V, \OO_V)$.
+Anyways, affine varieties are baby ringed spaces $(V, \OO_V)$.
 In the next chapter we'll meet projective and quasi-projective
-varieties, which give more such examples of (baby's) ringed spaces.
+varieties, which give more such examples of (baby) ringed spaces.
 With these examples in mind, we will finally lay down
 the complete definition of a ringed space,
 and use this to define a scheme.
@@ -1019,7 +1019,7 @@ and use this to define a scheme.
 \end{sproblem}
 \chapter{Projective Varieties}
 Having studied affine varieties in $\Aff^n$, we now consider $\CP^n$.
-We will also make it into a baby's ringed space
+We will also make it into a baby ringed space
 in the same way as with $\Aff^n$.
 
 \section{Graded Rings}
@@ -1248,7 +1248,7 @@ However, other than the irrelavant ideal.
 \section{As Ringed Spaces}
 \prototype{The regular functions on $\CP^1$ minus a point
 are exactly those of the form $P(s/t)$.}
-Now, let us make every projective variety $V$ into a baby's ringed space.
+Now, let us make every projective variety $V$ into a baby ringed space.
 We already have the set of points, a subset of $\CP^n$.
 
 The topology is defined as follows.
@@ -1312,7 +1312,7 @@ Then we can repeat the same definition as before:
 Of course, the rational functions from the previous example
 are examples of regular functions as well.
 This completes the definition of a projective variety $V$
-as a baby's ringed space.
+as a baby ringed space.
 
 \section{Examples of Regular Functions}
 Naturally, I ought to tell you what the regular functions
@@ -1394,12 +1394,12 @@ Let $I \subseteq \CC[x_0, \dots, x_n]$ be homogeneous.
 
 \chapter{Quasi-Projective Varieties and Regular Maps}
 \section{Quasi-Projective Varieties}
-Here is yet another type of baby's ringed space,
+Here is yet another type of baby ringed space,
 which will turn out to generalize both affine and projective varieties.
 \begin{definition}
 	A \vocab{quasi-projective variety} is
 	an open set $X$ of a projective variety $V$.
-	It is a baby's ringed space $(X, \OO_X)$ too,
+	It is a baby ringed space $(X, \OO_X)$ too,
 	because for any open set $U \subseteq X$
 	we simply define $\OO_X(U) = \OO_V(U)$.
 \end{definition}
@@ -1409,15 +1409,15 @@ as a quasi-projective variety by noticing that
 \[ V \subseteq \Aff^n \to U_0 \subset \CP^n \]
 where $U_0$ is the standard affine chart, isomorphic to $\Aff^n$.
 
-\section{Maps of baby's ringed spaces}
+\section{Maps of baby ringed spaces}
 In order to make this precise I have to define
 what the arrow $\Aff^n \to U_0$ means,
 because they are different types of objects;
 the former is an affine variety and the latter is a quasi-projective variety.
-So, let me actually define a map between \emph{any} baby's ringed spaces:
+So, let me actually define a map between \emph{any} baby ringed spaces:
 \begin{definition}
 	Let $(X, \OO_X)$ and $(Y, \OO_Y)$
-	be baby's ringed spaces.
+	be baby ringed spaces.
 	A continuous map of topological spaces $f: X \to Y$
 	is a \vocab{regular map} if the following condition holds:
 	if $U$ is an open subset of $Y$.
@@ -1427,7 +1427,7 @@ So, let me actually define a map between \emph{any} baby's ringed spaces:
 	\end{diagram}
 	is a regular function in $\OO_X(f\pre(U))$.
 
-	Two baby's ringed spaces are \vocab{isomorphic}
+	Two baby ringed spaces are \vocab{isomorphic}
 	if there are mutually inverse regular maps between them.
 \end{definition}
 This is great.
@@ -1437,7 +1437,7 @@ Before this definition, we had three different types of varieties:
 	\ii Projective varieties, and
 	\ii Quasi-projective varieties.
 \end{itemize}
-But all three are baby's ringed spaces, now they can
+But all three are baby ringed spaces, now they can
 talk to each other, and even be isomorphic.
 In particular, let's now finally prove:
 \begin{proposition}
