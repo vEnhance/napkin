@@ -194,7 +194,8 @@ We'll finish by giving a nice basis of the Zariski topology.
 	\listhack
 	\begin{enumerate}[(a)]
 		\ii If $V = \Aff^1$ then $D(x)$ corresponds to a line minus a point.
-		\ii If $V = \VV(y-x^2)$, then $D(x)$ corresponds to the parabola minus $(1,1)$.
+		\ii If $V = \VV(y-x^2) \subseteq \Aff^2$,
+		then $D(x)$ corresponds to the parabola minus $(1,1)$.
 		\ii If $V = \Aff^2$, then $D(x) \cup D(y) = \Aff^2 \setminus \{ (0,0) \}$ is the punctured plane.
 	\end{enumerate}
 \end{example}
@@ -425,18 +426,49 @@ you don't gain anything new by allowing it to be locally a quotient.
 The regular functions will become of crucial importance
 once we begin defining a scheme in the next chapter.
 
-\section{A Glimpse of Ringed Spaces}
-In summary, given an affine variety $V$ we have added the following structure to it:
+\section{Baby Ringed Spaces}
+In summary, given an affine variety $V$ we have
+added the following structure to it:
 \begin{itemize}
 	\ii It has a structure of a set of points,
 	\ii It has a structure of a topological space $V$ on these points, and
-	\ii For every open set $U \subseteq V$ we have associated a ring $\OO_V(U)$ to it.
+	\ii For every open set $U \subseteq V$
+	we have associated a ring $\OO_V(U)$ to it.
+	Elements of the rings are functions $U \to \CC$.
 \end{itemize}
-It turns out that the function $\OO_V$ taking open sets and returning rings is something called a \emph{sheaf}.
-In the next chapter we'll define an abstract \emph{ringed space},
-which is \emph{any} topological space $X$ together with a sheaf $\OO_X$.
-In this way, we will have made our affine varieties into abstract ringed spaces,
-independent of any particular embedding in $\Aff^n$.
+Let us agree that:
+\begin{definition}
+	A \vocab{baby ringed space} is a topological space $X$
+	equipped with a ring $\OO_X(U)$ for every open set $U$.
+	It is required that elements of the ring $\OO_X(U)$
+	are functions $f : U \to \CC$;
+	we call these the \emph{regular functions} of $X$ on $U$.
+\end{definition}
+Therefore, affine varieties are baby ringed spaces.
+\begin{remark}
+	This is not a standard definition. Hehe.
+\end{remark}
+
+The reason this is called a ``baby ringed space''
+is that in a \emph{ringed space},
+the rings $\OO_V(U)$ can actually be \emph{any rings},
+but they have to satisfy a set of fairly technical conditions.
+When this happens, it's the $\OO_V$ that does all the work;
+we think of $\OO_V$ as a type of functor called a \emph{sheaf}.
+
+Since we are only studying affine/projective/quasi-projective varieties
+for the next chapters, we will just refer to these as baby ringed spaces
+so that we don't have to deal with the entire definition.
+The key concept is that we want to think of these varieties
+as \emph{intrinsic objects}, free of any embedding.
+A baby ringed space is philosophically the correct thing to do.
+
+Anyways, affine varieties are baby ringed spaces $(V, \OO_V)$.
+In the next chapter we'll meet projective and quasi-projective
+varieties, which give more such examples of (baby) ringed spaces.
+With these examples in mind, we will finally lay down
+the complete definition of a ringed space,
+and use this to define a scheme.
 
 \section\problemhead
 \begin{problem}
