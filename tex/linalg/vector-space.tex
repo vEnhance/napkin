@@ -424,7 +424,7 @@ between vector spaces. Can you guess the definition?
 
 \begin{definition}
 	Let $V$ and $W$ be vector spaces over the same field $k$.
-	A \vocab{linear map} is a map $T : V \to W$ which obeys the following rules.
+	A \vocab{linear map} is a map $T : V \to W$ which obeys the following rules:
 	\begin{enumerate}[(i)]
 		\ii $T$ is a homomorphism $(V,+) \to (W,+)$ of abelian groups, meaning $T(v_1 + v_2) = T(v_1) + T(v_2)$.
 		\ii For any $a \in k$ and $v \in V$, $T(a \cdot v) = a \cdot T(v)$.
@@ -485,7 +485,7 @@ and a vector space $W$ with basis $w_1, \dots, w_n$.
 I also have a map $T : V \to W$ and I want to tell you what $T$ is.
 It would be awfully inconsiderate of me to try and tell you what $T(v)$
 is at every point $v$.
-In fact, I only have to tell you what $T(e_1)$, \dots, $T(e_m)$ is,
+In fact, I only have to tell you what $T(e_1)$, \dots, $T(e_m)$ are,
 because from there you can work out $T(a_1e_1 + \dots + a_me_m)$ for yourself:
 \[ T(a_1e_1 + \dots + a_me_m) = a_1T(e_1) + \dots + a_mT(e_m). \]
 Since the $e_i$ are a basis, that tells you all you need to know about $T$.
@@ -534,7 +534,7 @@ Matrix multiplication is defined exactly so that the matrix $ST$
 is the same thing we get from interpreting the composed function $S \circ T$ as a matrix.
 \begin{exercise}
 	Check this for yourself!
-	For a concrete example $\RR^2 \taking{T} \RR^2 \taking{S} T$
+	For a concrete example let $\RR^2 \taking{T} \RR^2 \taking{S} T$
 	by $T(\ee_1) = 2\ee_1+3\ee_2$ and $T(\ee_2) = 4\ee_1+5\ee_2$,
 	$S(\ee_1) = 6\ee_1+7\ee_2$ and $S(\ee_2) = 8\ee_1+9\ee_2$.
 	Compute $S(T(\ee_1))$ and $S(T(\ee_2))$ and see how it compares

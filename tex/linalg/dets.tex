@@ -342,8 +342,8 @@ of $V$ and $W$ itself and not which basis we choose to express the vector spaces
 
 The above is perhaps a bit dense, so here is a concrete example.
 \begin{example}[Explicit Example]
-	Let $V = \RR^2$ and suppose we've picked a basis $e_1$, $e_2$ of $V$.
-	Then let $T : V \to V$ by
+	Let $V = \RR^2$ and take a basis $e_1$, $e_2$ of $V$.
+	Then define $T : V \to V$ by
 	\[ T = \left(
 		\begin{array}{cc}
 			1 & 2 \\ 3 & 4
@@ -351,8 +351,8 @@ The above is perhaps a bit dense, so here is a concrete example.
 		\right). \]
 	Then the isomorphism sends $T$ to the following (pre)-image in
 	$V^\vee \otimes V$:
-	\[ T \mapsto e_1^\vee \otimes e_1 + 2e_1^\vee \otimes e_2
-		+ 3e_2^\vee \otimes e_1 + 4e_2^\vee \otimes e_2. \]
+	\[ T \mapsto e_1^\vee \otimes e_1 + 2e_2^\vee \otimes e_1
+		+ 3e_1^\vee \otimes e_2 + 4e_2^\vee \otimes e_2. \]
 	The beauty of the basis-free definition is that even if we change the basis,
 	the above expression will look completely different, but
 	the actual element in $V^\vee \otimes V$ doesn't change.
@@ -375,8 +375,8 @@ This result is called the \vocab{trace} of a matrix $T$.
 
 \begin{example}[Example of a Trace]
 	Continuing the previous example,
-	\[ \Tr T = e_1^\vee(e_1) + 2e_1^\vee(e_2) 
-		+ 3e_2^\vee(e_1)  +4e_2^\vee(e_2)
+	\[ \Tr T = e_1^\vee(e_1) + 2e_2^\vee(e_1) 
+		+ 3e_1^\vee(e_2) + 4e_2^\vee(e_2)
 		= 1 + 0 + 0 + 4 = 5. \]
 	And that is why the trace is the sum of the diagonal entries.
 \end{example}
@@ -429,7 +429,7 @@ This result is called the \vocab{trace} of a matrix $T$.
 		\right).
 	\]
 	But once again, the definition $T^\vee(f) = f \circ T$
-	has the nice property that it doesn't depend on a choice of a basis.
+	has the nice property that it doesn't depend on the choice of a basis.
 	That shows that $T^\vee$ really is well defined, depending only on $T : V \to W$.
 	And in particular, this definition works even if $V$ or $W$
 	is infinite-dimensional.
@@ -648,7 +648,7 @@ Hence $\Lambda^n(T)$ is multiplication by some constant.
 	Now let's consider $\Lambda^2(V)$.
 	It has a basis $e_1 \wedge e_2$.
 	Now $\Lambda^2(T)$ sends it to
-	\[ e_1 \wedge e_2 \overset{\Lambda^2{T}}{\longmapsto} T(e_1) \wedge T(e_2) =
+	\[ e_1 \wedge e_2 \xmapsto{\Lambda^2(T)} T(e_1) \wedge T(e_2) =
 		(ae_1 + be_2) \wedge (ce_1 + de_2) 
 		= (ad-bc)(e_1 \wedge e_2). 
 	\]
@@ -717,7 +717,7 @@ and do a full expansion.
 	\gim
 	Let $T : V \to W$ and $S : W \to V$ be linear maps
 	between finite-dimensional vector spaces $V$ and $W$.
-	Prove that $\Tr(T \circ S) = \Tr(S \circ T)$.
+	Show that \[ \Tr(T \circ S) = \Tr(S \circ T). \]
 	\begin{hint}
 		One solution is to just take a basis.
 		Otherwise, interpret $T \otimes S \mapsto \Tr(T \circ S)$ as a
@@ -747,9 +747,9 @@ and do a full expansion.
 \begin{dproblem}
 	[Product of Traces]
 	Let $T : V \to V$ and $S : W \to W$ be linear maps
-	of finite-dimensional vector spaces $V$ and $W$,
+	of finite-dimensional vector spaces $V$ and $W$.
 	Consider $T \otimes S : V \otimes W \to V \otimes W$.
-	Prove that $\Tr(T \otimes S) = \Tr(T) \Tr(S)$.
+	Prove that \[ \Tr(T \otimes S) = \Tr(T) \Tr(S). \]
 	\begin{hint}
 		Again one can just take a basis.
 	\end{hint}
