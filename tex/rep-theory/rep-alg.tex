@@ -1,4 +1,4 @@
-\chapter{Representations of Algebras}
+\chapter{Representations of algebras}
 In the 19th century, a group was literally defined
 as a subset of $\GL(n)$ or of $S_n$: the word ``group'' hadn't been invented yet.
 Only much later did the abstract definition of a group was given,
@@ -75,7 +75,7 @@ I'll present examples before the definition:
 \end{abuse}
 
 \begin{example}
-	[Group Algebra]
+	[Group algebra]
 	The \vocab{group algebra} $k[G]$ is the $k$-vector space
 	whose \emph{basis elements} are the elements of a group $G$,
 	and where the product of two basis elements is the group multiplication.
@@ -184,7 +184,7 @@ From this perspective, what we are really trying to do is:
 \end{example}
 
 \begin{example}
-	[Representations of Polynomial Algebras]
+	[Representations of polynomial algebras]
 	\listhack
 	\begin{enumerate}[(a)]
 		\ii Let $A = k$.
@@ -209,7 +209,7 @@ From this perspective, what we are really trying to do is:
 
 
 \begin{example}
-	[Representations of Groups]
+	[Representations of groups]
 	\listhack
 	\begin{enumerate}[(a)]
 		\ii Let $A = \RR[S_3]$.
@@ -239,13 +239,13 @@ From this perspective, what we are really trying to do is:
 	From now on, we will often shorten ``representation of $k[G]$''
 	to ``representation of $G$''.
 \end{abuse}
-\begin{example}[Regular Representation]
+\begin{example}[Regular representation]
 	Any $k$-algebra $A$ is a representation $(A, \rho)$ over itself,
 	with $a \cdot b = \rho(a)(b) = ab$ (i.e.\ multiplication given by $A$).
 	This is called the \vocab{regular representation}, denoted $\Reg(A)$.
 \end{example}
 
-\section{Direct Sums}
+\section{Direct sums}
 \prototype{The example with $\RR[S_3]$ seems best.}
 \begin{definition}
 	Let $A$ be $k$-algebra and let $V = (V, \rho_V)$ and $W = (W, \rho_W)$
@@ -305,7 +305,7 @@ Direct sums also come up when we play with algebras.
 	and similarly for the other side.
 \end{proof}
 
-\section{Irreducible and Indecomposable Representations}
+\section{Irreducible and indecomposable representations}
 \prototype{$k[S_3]$ decomposes as the sum of two spaces.}
 
 One of the goals of representation theory will be to classify
@@ -386,7 +386,7 @@ and the ``prototypical example'' that you should keep in mind.
 	(This is obvious if you understand the definitions well enough.)
 \end{exercise}
 
-\section{Morphisms of Representations}
+\section{Morphisms of representations}
 We now proceed to define the morphisms between representations.
 
 \begin{definition}
@@ -403,7 +403,7 @@ We now proceed to define the morphisms between representations.
 	and we say $V \cong W$.
 \end{definition}
 \begin{remark}
-	[For Commutative Diagram Lovers]
+	[For commutative diagram lovers]
 	The condition $T(a \cdot v) = a \cdot T(v)$ can be read as saying that
 	\begin{diagram}
 		V & \rTo^{\rho_1(a)} & V \\
@@ -414,7 +414,7 @@ We now proceed to define the morphisms between representations.
 \end{remark}
 
 \begin{remark}
-	[For Category Lovers]
+	[For category lovers]
 	A representation is just a ``bilinear'' functor from an
 	abelian one-object category $\{\ast\}$ (so $\Hom(\ast, \ast) \cong A$)
 	to the abelian category $\catname{Vect}_k$.
@@ -422,7 +422,7 @@ We now proceed to define the morphisms between representations.
 \end{remark}
 
 Here are some examples of intertwining operators.
-\begin{example}[Intertwining Operators]
+\begin{example}[Intertwining operators]
 	\listhack
 	\begin{enumerate}[(a)]
 		\ii For any $\lambda \in k$, the scalar map $T(v) = \lambda v$
@@ -448,9 +448,9 @@ Here are some examples of intertwining operators.
 	\end{enumerate}
 \end{exercise}
 
-This gives us the famous Schur's Lemma.
+This gives us the famous Schur's lemma.
 \begin{theorem}
-	[Schur's Lemma]
+	[Schur's lemma]
 	Let $V$ and $W$ be representations of a $k$-algebra $A$.
 	Let $T : V \to W$ be a \emph{nonzero} intertwining operator.
 	Then
@@ -465,21 +465,21 @@ An important special case is if $k$ is algebraically closed:
 then the only intertwining operators $V \to V$
 are the trivial constant ones.
 \begin{theorem}
-	[Schur's Lemma for Algebraically Closed Fields]
+	[Schur's lemma for algebraically closed fields]
 	Let $k$ be an algebraically closed field.
 	Let $V$ be an irrep of a $k$-algebra $A$.
 	Then any intertwining operator $T : V \to V$ is multiplication by a scalar.
 \end{theorem}
 \begin{exercise}
 	Use the fact that $T$ has an eigenvalue $\lambda$ to
-	deduce this from Schur's Lemma.
+	deduce this from Schur's lemma.
 	(Consider $T - \lambda \cdot \id_V$, and use Schur to deduce it's zero.)
 \end{exercise}
 We have already seen the counterexample of rotation by $90\dg$ for $k = \RR$;
 this was the same counterexample we gave to the assertion that all linear maps
 have eigenvalues.
 
-\section{The Representations of $\Mat_d(k)$}
+\section{The representations of $\Mat_d(k)$}
 To give an example of the kind of progress already possible,
 we prove the following theorem.
 \begin{theorem}
@@ -577,7 +577,7 @@ of smaller dimension at all!
 \end{dproblem}
 
 \begin{dproblem}
-	[Schur's Lemma for Commutative Algebras]
+	[Schur's lemma for commutative algebras]
 	Let $A$ be a \emph{commutative} algebra
 	over an algebraically closed field $k$.
 	Prove that any irrep of $A$ is one-dimensional.
@@ -617,4 +617,3 @@ of smaller dimension at all!
 		$T(a) = T(a \cdot 1_A) = a \cdot T(1_A)$ for any $a \in A$.
 	\end{sol}
 \end{sproblem}
-

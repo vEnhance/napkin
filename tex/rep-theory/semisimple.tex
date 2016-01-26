@@ -1,4 +1,4 @@
-\chapter{Semisimple Algebras}
+\chapter{Semisimple algebras}
 In what follows, assume the field $k$ is algebraically closed.
 
 A \vocab{completely reducible} representation is one which
@@ -18,7 +18,7 @@ The goal for the chapter is to examine these in more detail:
 we'll find conditions on algebras $A$ which cause all its representations
 to be completely reducible.
 
-\section{Schur's Lemma Continued}
+\section{Schur's lemma continued}
 \prototype{For $V$ irreducible,
 	$\Homrep(V^{\oplus 2}, V^{\oplus 2}) \cong k^{\oplus 4}$.}
 \begin{definition}
@@ -27,7 +27,7 @@ to be completely reducible.
 	(It is also a $k$-algebra.)
 \end{definition}
 
-By Schur's Lemma, we already know that if $V$ and $W$ are irreps, then
+By Schur's lemma, we already know that if $V$ and $W$ are irreps, then
 \[
 	\Homrep(V,W) \cong
 	\begin{cases}
@@ -50,7 +50,7 @@ $T : V^{\oplus m} \to V^{\oplus n}$ by the $mn$ choices of compositions
 where the first arrow is inclusion to the $i$th component of $V^{\oplus m}$
 (for $1 \le i \le m$) and the second arrow is inclusion to the $j$th
 component of $V^{\oplus n}$ (for $1 \le j \le n$).
-However, by Schur's Lemma on each of these compositions,
+However, by Schur's lemma on each of these compositions,
 we know they must be constant.
 
 Thus, $\Homrep(V^{\oplus n}, V^{\oplus m})$ consist of $n \times m$ ``matrices''
@@ -71,7 +71,7 @@ rather, the outputs are $m$ \emph{linear combinations} of the inputs.
 
 More generally, we have the following result.
 \begin{theorem}
-	[Schur's Lemma for Completely Reducible Representations]
+	[Schur's lemma for completely reducible representations]
 	\label{thm:compred_schur}
 	Let $V$ and $W$ be completely reducible representations,
 	and set $V = \bigoplus V_i^{\oplus n_i}$, $W = \bigoplus V_i^{\oplus m_i}$
@@ -85,7 +85,7 @@ More generally, we have the following result.
 \end{theorem}
 
 \begin{corollary}
-	[Subrepresentations of Completely Reducible Representations]
+	[Subrepresentations of completely reducible representations]
 	\label{cor:subrep_schur}
 	Let $V = \bigoplus V_i^{\oplus n_i}$ be completely reducible.
 	Then any subrepresentation $W$ of $V$ is isomorphic
@@ -95,17 +95,17 @@ More generally, we have the following result.
 	which are $n_i \times m_i$ matrices.
 \end{corollary}
 \begin{proof}
-	Apply Schur's Lemma to the inclusion $W \injto V$.
+	Apply Schur's lemma to the inclusion $W \injto V$.
 \end{proof}
 
 
 
-\section{Density Theorem}
+\section{Density theorem}
 We are going to take advantage of the previous result to prove that
 finite-dimensional algebras have finitely many irreps.
 
 \begin{theorem}
-	[Jacobson Density Theorem]
+	[Jacobson density theorem]
 	Let $(V_1, \rho_1)$, \dots, $(V_r, \rho_r)$ be pairwise nonisomorphic
 	finite-dimensional representations of $A$.
 	Then the map of vector spaces
@@ -114,10 +114,10 @@ finite-dimensional algebras have finitely many irreps.
 \end{theorem}
 The right way to think about this theorem is that
 \begin{moral}
-	The Density Theorem is the ``Chinese Remainder Theorem''
+	The density theorem is the ``Chinese remainder theorem''
 	for irreps of $A$.
 \end{moral}
-Recall that in number theory, the Chinese Remainder Theorem tells us
+Recall that in number theory, the Chinese remainder theorem tells us
 that given lots of ``unrelated'' congruences, we can find a single $N$
 which simultaneously satisfies them all.
 Similarly, given lots of different nonisomorphic representations of $A$,
@@ -134,7 +134,7 @@ since even the $r=1$ case is not obvious at all!
 
 This also gives us the non-obvious corollary
 \begin{corollary}
-	[Finiteness of Number of Representations]
+	[Finiteness of number of representations]
 	Any finite-dimensional algebra $A$ has at most $\dim A$ irreps.
 	\label{cor:finiteness}
 \end{corollary}
@@ -144,7 +144,7 @@ This also gives us the non-obvious corollary
 	hence we have the inequality $\sum (\dim V_i)^2 \le \dim A$.
 \end{proof}
 
-\begin{proof}[Proof of Density Theorem]
+\begin{proof}[Proof of density theorem]
 	Let $V = V_1 \oplus \dots \oplus V_r$, so $A$
 	acts on $V = (V, \rho)$ by $\rho = \bigoplus_i \rho_i$.
 	Thus by \Cref{prob:reg_mat}, we can instead consider $\rho$
@@ -190,7 +190,7 @@ This also gives us the non-obvious corollary
 	and by the above $r_i = \dim V_i$ for each $i$.
 \end{proof}
 
-\section{Semisimple Algebras}
+\section{Semisimple algebras}
 
 \begin{definition}
 	A finite-dimensional algebra $A$ is a \vocab{semisimple}
@@ -198,7 +198,7 @@ This also gives us the non-obvious corollary
 \end{definition}
 
 \begin{theorem}
-	[Semisimple Algebras]
+	[Semisimple algebras]
 	Let $A$ be a finite-dimensional algebra.
 	Then the following are equivalent:
 	\begin{enumerate}[(i)]
@@ -229,9 +229,9 @@ This also gives us the non-obvious corollary
 \end{proof}
 
 In fact, if we combine the above result with
-the Density Theorem (and \Cref{cor:finiteness}), we also have the following.
+the density theorem (and \Cref{cor:finiteness}), we also have the following.
 \begin{theorem}
-	[Sum of Squares Formula]
+	[Sum of squares formula]
 	For a finite-dimensional algebra $A$ we have
 	\[ \sum_{i} \dim(V_i)^2 \le \dim A \]
 	where the $V_i$ are the irreps of $A$;
@@ -256,10 +256,10 @@ the Density Theorem (and \Cref{cor:finiteness}), we also have the following.
 	this Jacobson radical is trivial.
 \end{remark}
 
-\section{Maschke's Theorem}
+\section{Maschke's theorem}
 We now prove that the representation theory of groups is as nice as possible.
 \begin{theorem}
-	[Maschke's Theorem]
+	[Maschke's theorem]
 	Let $G$ be a finite group, and $k$ an algebraically closed
 	field whose characteristic does not divide $|G|$.
 	Then $k[G]$ is semisimple.
@@ -295,7 +295,7 @@ all representations are completely reducible.
 	but both $\ker P$ and $\img P$ are subrepresentations as desired.
 \end{proof}
 
-\section{Example: The Representations of $\CC[S_3]$}
+\section{Example: the representations of $\CC[S_3]$}
 We compute all irreps of $\CC[S_3]$.
 I'll take for granted right now there are exactly three such representations
 (which will be immediate by the first theorem in the next chapter:
@@ -374,4 +374,3 @@ we just get that $V = \refl_0 \oplus \CC_{\text{triv}}$.
 		So the remaining ones are two-dimensional.
 	\end{hint}
 \end{problem}
-

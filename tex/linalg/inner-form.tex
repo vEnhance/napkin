@@ -1,4 +1,4 @@
-\chapter{Inner Product Spaces}
+\chapter{Inner product spaces}
 It will often turn out that our vector spaces which look more like $\RR^n$
 not only have the notion of addition, but also a notion of \emph{orthogonality}
 and the notion of \emph{distance}.
@@ -29,7 +29,7 @@ like we saw in the chapter on spectral theory, $\CC$ is algebraically closed
 in a nice way that $\RR$ is not,
 and moreover every real matrix can be thought of as a matrix with complex entries as well.
 
-\section{Defining the Norm}
+\section{Defining the norm}
 \prototype{Dot product in $\RR^n$.}
 
 First, let's define the inner form for real spaces.
@@ -152,7 +152,7 @@ The inner form equips our vector space with a notion of distance, which we call 
 	This definition makes sense because we assumed our form to be positive definite.
 \end{definition}
 
-\begin{example}[$\RR^n$ and $\CC^n$ Are Normed Vector Spaces]
+\begin{example}[$\RR^n$ and $\CC^n$ are normed vector spaces]
 	When $V = \RR^n$ or $V = \CC^n$ with the standard dot product norm,
 	then the norm of $v$ corresponds to the absolute value that we are used to.
 \end{example}
@@ -194,7 +194,7 @@ Let's now prove something we all know and love:
 \end{proof}
 Thus:
 \begin{theorem}
-	[Triangle Inequality]
+	[Triangle inequality]
 	We always have
 	\[ \norm v + \norm w \ge \norm{v+w} \]
 	with equality if and only if $v$ and $w$ are linearly dependent.
@@ -259,7 +259,7 @@ This is no loss of generality:
 Thus, we can generally assume our bases are orthonormal.
 
 Worth remarking:
-\begin{example}[The Dot Product is the ``Only'' Inner Form]
+\begin{example}[The dot product is the ``only'' inner form]
 	Let $V$ be a finite-dimensional inner product space,
 	and consider \emph{any} orthonormal basis $e_1, \dots, e_n$.
 	Then we have that
@@ -274,7 +274,7 @@ we ought to have norm $1$ and pairwise orthogonality;
 this is enough to obtain the dot product by extending linearly.
 
 
-\section{Identifying with the Dual Space}
+\section{Identifying with the dual space}
 Earlier I complained that there was no natural isomorphism $V \cong V^\vee$.
 But in fact, given an inner form we can actually make such an identification:
 that is we can naturally associate every linear map $\xi : V \to k$ with a vector $v \in V$.
@@ -313,7 +313,7 @@ Thus
 	Once $V$ is given an inner form, $V$ and $V^\vee$ are canonically isomorphic.
 \end{moral}
 
-\section{The Transpose of a Matrix}
+\section{The transpose of a matrix}
 Let $V$ be a finite-dimensional inner product space and let $T : V \to V$.
 The \vocab{adjoint} or \vocab{conjugate transpose} of $T$, denoted $T^\dagger$,
 is defined as follows: for every vector $w \in V$, we let $T^\dagger(w)$ be the unique vector with
@@ -325,7 +325,7 @@ for some $x \in V$; we then let $T^\dagger(w) = x$.
 
 Of course, the name conjugate transpose suggests something else:
 \begin{theorem}
-	[Adjoints are Conjugate Transposes]
+	[Adjoints are conjugate transposes]
 	Fix an orthonormal basis of a finite-dimensional inner product $V$.
 	If we write $T$ as a matrix in this basis, then $T^\dagger$ is the conjugate transpose.
 \end{theorem}
@@ -351,7 +351,7 @@ Of course, the name conjugate transpose suggests something else:
 
 In this way we can talk about the transpose of a matrix in a meaningful way.
 
-\section{Spectral Theory of Normal Maps}
+\section{Spectral theory of normal maps}
 The world would be a very beautiful place if it turned out
 that we could pick a basis of eigenvectors that was also orthonormal.
 This is of course far too much to hope for; even without the orthonormal condition,
@@ -362,7 +362,7 @@ However, it turns out that there is a good characterization of this:
 	We say $T$ is \vocab{normal} if $TT^\dagger = T^\dagger T$.
 \end{definition}
 \begin{theorem}
-	[Normal $\iff$ Diagonalizable in Inner Form]
+	[Normal $\iff$ diagonalizable in inner form]
 	Let $V$ be a finite-dimensional inner product space.
 	A linear map $T : V \to V$ is normal
 	if and only if one can pick an orthonormal basis of eigenvectors.
@@ -409,12 +409,12 @@ Then we have that
 
 \section\problemhead
 \begin{problem}
-	[Pythagorean Theorem]
+	[Pythagorean theorem]
 	Show that if $\left< v,w \right> = 0$ in an inner product space,
 	then $\norm{v}^2 + \norm{w}^2 = \norm{v+w}^2$.
 \end{problem}
 
-\begin{problem}[Taiwan IMO Camp]
+\begin{problem}[Taiwan IMO camp]
 	\gim
 	In a town there are $n$ people and $k$ clubs. Each club has an odd number of members, and any two clubs have an even number of common members. Prove that $k \le n$.
 	\begin{hint}
@@ -427,7 +427,7 @@ Then we have that
 	\end{sol}
 \end{problem}
 
-\begin{sproblem}[Inner Product Structure of Tensors]
+\begin{sproblem}[Inner product structure of tensors]
 	\label{prob:inner_prod_tensor}
 	Let $V$ and $W$ be finite-dimensional inner product spaces over $k$,
 	where $k$ is either $\RR$ or $\CC$.

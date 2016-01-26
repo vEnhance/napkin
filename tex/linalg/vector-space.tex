@@ -1,9 +1,9 @@
-\chapter{What is a Vector Space?}
+\chapter{What is a vector space?}
 This is a pretty light chapter.
 The point of it is to just define what a vector space and a basis are.
 These are very intuitive concepts that you likely already know.
 
-\section{The Definitions of a Ring and Field}
+\section{The definitions of a ring and field}
 \prototype{$\ZZ$, $\RR$, or $\CC$ are rings; the latter two are fields.}
 I'll very informally define a ring/field here; if you're interested in the actual definition,
 you can consult the first part of the chapter on ideals.
@@ -21,7 +21,7 @@ For now you can just remember
 In fact, if you replace ``field'' by ``$\RR$'' everywhere in what follows, you probably won't lose much.
 It's customary to use the letter $R$ for rings and $k$ for fields.
 
-\section{Modules and Vector Spaces}
+\section{Modules and vector spaces}
 \prototype{Polynomials of degree at most $n$.}
 You intuitively know already that $\RR^n$ is a ``vector space'':
 its elements can be added together,
@@ -42,7 +42,7 @@ I'll give you the full definition in a moment,
 but first, examples\dots
 
 \begin{example}
-	[Quadratic Polynomials, aka My Favorite Example]
+	[Quadratic polynomials, aka my favorite example]
 	My favorite example of an $\RR$-vector space is the
 	set of polynomials of degree at most two, namely
 	\[ \left\{ ax^2+bx+c \mid a,b,c \in \RR \right\}. \]
@@ -55,14 +55,14 @@ but first, examples\dots
 	But I hope you can see why this is kind of true!
 	\label{example:quadratic_vector_space}
 \end{example}
-\begin{example}[All Polynomials]
+\begin{example}[All polynomials]
 	The set of \emph{all} polynomials with real coefficients is an
 	$\RR$-vector space, because you can \emph{add any two polynomials}
 	and \emph{scale by constants}.
 \end{example}
 
 \begin{example}
-	[Euclidean Space]
+	[Euclidean space]
 	\listhack
 	\begin{enumerate}[(a)]
 		\ii The complex numbers
@@ -79,7 +79,7 @@ but first, examples\dots
 \end{example}
 
 \begin{example}
-	[More Examples of Vector Spaces]
+	[More examples of vector spaces]
 	\listhack
 	\begin{enumerate}[(a)]
 		\ii The set \[ \QQ[\sqrt 2] = \left\{ a + b \sqrt 2 , a, b \in \QQ \right\} \]
@@ -134,7 +134,7 @@ Now let me write the actual rules for how this multiplication behaves.
 \end{ques}
 
 A couple less intuitive but somewhat important examples\dots
-\begin{example}[Abelian Groups are $\ZZ$-modules]
+\begin{example}[Abelian groups are $\ZZ$-modules]
 	\listhack
 	\begin{enumerate}[(a)]
 		\ii The example of real polynomials
@@ -162,7 +162,7 @@ A couple less intuitive but somewhat important examples\dots
 	\end{enumerate}
 \end{example}
 
-\section{Direct Sums}
+\section{Direct sums}
 \prototype{$\{ax^2+bx+c\} = \RR \oplus x\RR \oplus x^2\RR$, and
 $\RR^2$ is the sum of its axes.}
 Let's return to \Cref{example:quadratic_vector_space}, and consider
@@ -197,7 +197,7 @@ The notion which captures this formally is the \vocab{direct sum}.
 	if every element from $M$ can be written uniquely as the sum
 	of an element from $M_1$ and $M_2$.
 \end{definition}
-\begin{example}[Euclidean Plane]
+\begin{example}[Euclidean plane]
 	Take the vector space $\RR^2 = \left\{ (x,y) \mid x \in \RR, y \in \RR \right\}$.
 	We can consider it as a direct sum of its $x$-axis and $y$-axis:
 	\[ X = \left\{ (x,0) \mid x \in \RR  \right\} 
@@ -248,7 +248,7 @@ and each of the summands is really just a copy of $\RR$ at heart.
 		\defeq \underbrace{M \oplus M \oplus \dots \oplus M}_{\text{$n$ times}}. \]
 \end{definition}
 
-\section{Linear Independence, Spans, and Basis}
+\section{Linear independence, spans, and basis}
 \prototype{%
 	$\left\{ 1,x,x^2 \right\}$ is a basis of
 	$\left\{ ax^2 + bx + c \mid a,b,c \in \RR \right\}$.}
@@ -305,7 +305,7 @@ it fails for the following two reasons.
 \end{itemize}
 With these new terms, we can just say a basis is a linearly independent and spanning set.
 
-\begin{example}[More Example of Bases]
+\begin{example}[More example of bases]
 	\listhack
 	\begin{enumerate}[(a)]
 		\ii Regard $\QQ[\sqrt2]$ as a $\QQ$-vector space. Then $\{1, \sqrt 2\}$ is a basis.
@@ -338,7 +338,7 @@ With these new terms, we can just say a basis is a linearly independent and span
 
 Now we state a few results which assert
 that bases in vector spaces behave as nicely as possible.
-\begin{theorem}[Maximality and Minimality of Bases]
+\begin{theorem}[Maximality and minimality of bases]
 	\label{thm:vector_best}
 	Let $V$ be a vector space over some field $k$
 	and take $e_1, \dots, e_n \in V$. The following are equivalent:
@@ -361,7 +361,7 @@ that bases in vector spaces behave as nicely as possible.
 \end{proof}
 
 \begin{theorem}
-	[Dimension Theorem for Vector Spaces]
+	[Dimension theorem for vector spaces]
 	Any two bases of a vector space have the same size.
 \end{theorem}
 \begin{proof}
@@ -388,7 +388,7 @@ that bases in vector spaces behave as nicely as possible.
 	to the case of a vector space.
 \end{remark}
 
-The Dimension Theorem, true to its name, lets us define the \vocab{dimension} of
+The dimension theorem, true to its name, lets us define the \vocab{dimension} of
 a vector space as the size of any finite basis, if one exists.
 When it does exist we say $V$ is \vocab{finite-dimensional}.
 So for example,
@@ -417,7 +417,7 @@ unless otherwise specified}.
 Infinite-dimensional vector spaces make my eyes glaze over.
 \todo{darn it's really annoying to remember FD}
 
-\section{Linear Maps}
+\section{Linear maps}
 We've seen homomorphisms and continuous maps.
 Now we're about to see linear maps, the structure preserving maps
 between vector spaces. Can you guess the definition?
@@ -434,7 +434,7 @@ between vector spaces. Can you guess the definition?
 	We say $V$ and $W$ are \vocab{isomorphic} vector spaces and write $V \cong W$.
 \end{definition}
 
-\begin{example}[Examples of Linear Maps]
+\begin{example}[Examples of linear maps]
 	\listhack
 	\begin{enumerate}[(a)]
 		\ii For any vector spaces $V$ and $W$ there is a trivial linear map sending everything to $0_W \in W$.
@@ -477,7 +477,7 @@ Note that this notion of isomorphism really only cares about the size of the bas
 \label{rem:vector_spaces_have_essence}
 \end{remark}
 
-\section{What is a Matrix?}
+\section{What is a matrix?}
 % Now I get to tell you what a matrix is: it's a way of writing a linear map in terms of bases.
 
 Suppose we have a vector space $V$ with basis $e_1, \dots, e_m$
@@ -552,7 +552,7 @@ This means you can define concepts like the determinant or the trace of a matrix
 both in terms of an ``intrinsic'' map $T : V \to W$ and in terms of the entries of the matrix.
 Since the map $T$ itself doesn't refer to any basis,
 the abstract definition will imply that the numerical definition doesn't depend on the choice of a basis.
-\section{Subspaces and Picking Convenient Bases}
+\section{Subspaces and picking convenient bases}
 \prototype{Any two linearly independent vectors in $\RR^3$.}
 % A submodule is exactly what you think it is.
 \begin{definition}
@@ -579,7 +579,7 @@ the abstract definition will imply that the numerical definition doesn't depend 
 \end{ques}
 
 Subspaces behave nicely with respect to bases.
-\begin{theorem}[Basis Completion]
+\begin{theorem}[Basis completion]
 	Let $V$ be an $n$-dimensional space, and $V'$ a subspace of $V$.
 	Then 
 	\begin{enumerate}[(a)]
@@ -596,7 +596,7 @@ This means that given $V'$ a subspace of $V$,
 you can always interpret $V'$ as the span of some subset of a basis of $V$.
 
 The same goes for maps, using $\ker T$:
-\begin{theorem}[Picking A Basis for Linear Maps]
+\begin{theorem}[Picking a basis for linear maps]
 	Let $T:V\to W$ be a map of finite-dimensional vector spaces. 
 	Then there exists a basis $v_1, \dots, v_n$ of $V$
 	and a basis $w_1, \dots, w_m$ of $W$,
@@ -633,22 +633,22 @@ one can write $V = \ker T \oplus V'$,
 so that $T$ annihilates its kernel while sending $V'$
 to an isomorphic copy in $W$.
 
-A corollary of this (which you should have expected anyways) is the so called Rank-Nullity Theorem,
-which is just the analog of the First Isomorphism Theorem.
+A corollary of this (which you should have expected anyways) is the so called rank-nullity theorem,
+which is just the analog of the first isomorphism theorem.
 \begin{theorem}
-	[Rank-Nullity Theorem]
+	[Rank-nullity theorem]
 	\label{thm:rank_nullity}
 	If $T : V \to W$, then 
 	\[ \dim V = \dim \ker T + \dim \img T. \]
 	% (Here $\img T = T``(V) \subseteq W$ is the image of $T$.)
 \end{theorem}
 
-\section{A Cute Application: Lagrange Interpolation}
+\section{A cute application: Lagrange interpolation}
 Here's a cute application\footnote{Source: Communicated to me
 by Joe Harris at the first Harvard-MIT Undegraduate Math Symposium.}
 of linear algebra to a theorem from high school we all know.
 \begin{theorem}
-	[Lagrange Interpolation]
+	[Lagrange interpolation]
 	Let $x_1, \dots, x_{n+1}$ be distinct real numbers
 	and $y_1, \dots, y_{n+1}$ any real numbers.
 	Then there exists a \emph{unique} polynomial $P$ of degree at most $n$
@@ -671,7 +671,7 @@ of linear algebra to a theorem from high school we all know.
 	Thus it is actually a bijection, which is exactly what we wanted.
 \end{proof}
 
-\section{(Digression) Arrays of Numbers Are Evil}
+\section{(Digression) Arrays of numbers are evil}
 \label{sec:basis_evil}
 As I'll stress repeatedly, a matrix represents a \emph{linear map between two vector spaces}.
 Writing it in the form of an $m \times n$ matrix is merely a very convenient way to see the map concretely.
@@ -702,7 +702,7 @@ You're told that the trace of a matrix $\Tr T$ is the sum of the diagonal entrie
 Somehow this doesn't change if you look at a similar matrix, but you're not sure why.
 Then you define the characteristic polynomial as \[ p_T = \det (XI - T). \]
 Somehow this also doesn't change if you take a similar matrix, but now you really don't know why.
-And then you have the Cayley-Hamilton Theorem in all its black magic: $p_T(T)$ is the zero map.
+And then you have the Cayley-Hamilton theorem in all its black magic: $p_T(T)$ is the zero map.
 Out of curiosity you Google the proof, and you find some ad-hoc procedure which still leaves you with no idea why it's true.
 
 This is terrible. Who gives a damn about $T_2 = ST_1S\inv$?
@@ -741,7 +741,7 @@ But I would just like to say for the record that,
 if I had to pick between the high school approach and the 55a approach,
 I would pick 55a in a heartbeat.
 
-\section{A Word on General Modules}
+\section{A word on general modules}
 \prototype{$\ZZ[\sqrt2]$ is a $\ZZ$-module of rank two.}
 I focused mostly on vector fields (aka modules over a field) in this chapter
 for simplicity, so I want to make a few remarks about
@@ -764,11 +764,11 @@ Nonetheless, there are still analogs of some of the definitions above.
 \end{definition}
 \begin{definition}
 	An $R$-module $M$ is called \vocab{free} if it has a basis.
-	As said before, the analogue of the Dimension Theorem holds,
+	As said before, the analogue of the dimension theorem holds,
 	and we use the word \vocab{rank} to denote the size of the basis.
 	As before, there's an isomorphism $M \cong R^{\oplus n}$ where $n$ is the rank.
 \end{definition}
-\begin{example}[An Example of a $\ZZ$-module]
+\begin{example}[An example of a $\ZZ$-module]
 	The $\ZZ$-module
 	\[ \ZZ[\sqrt2] = \left\{ a + b\sqrt 2 \mid a,b \in \ZZ \right\} \]
 	has a basis $\{1, \sqrt 2\}$, so we say it is
@@ -815,7 +815,7 @@ This will happen when we study algebraic number theory and homology groups.
 \end{problem}
 
 \begin{sproblem}
-	[Idempotents are Projection Maps]
+	[Idempotents are projection maps]
 	\label{prob:idempotent}
 	Let $TP: V \to V$ be a linear map, where $V$ is a vector space
 	(not necessarily finite-dimensional).
@@ -854,4 +854,3 @@ This will happen when we study algebraic number theory and homology groups.
 %When this happens, $\ker S^N \bigcap \img S^N = \{0\}$ (why?), and 
 %thus for dimension reasons $V_1 = \ker S^N \oplus \img S^N$.\footnote{%
 %	Recall here that for \emph{any} map $T : V \to W$, $\dim \ker T + \dim \img T = \dim V$.}
-

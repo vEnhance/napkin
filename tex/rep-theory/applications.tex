@@ -1,10 +1,10 @@
-\chapter{Some Applications}
+\chapter{Some applications}
 With all this setup, we now take the time to develop some nice
 results which are of independent interest.
 
-\section{Frobenius Divisibility}
+\section{Frobenius divisibility}
 \begin{theorem}
-	[Frobenius Divisibility]
+	[Frobenius divisibility]
 	Let $V$ be a complex irrep of a finite group $G$.
 	Then $\dim V$ divides $|G|$.
 \end{theorem}
@@ -33,7 +33,7 @@ First, we prove the following lemma.
 \end{proof}
 
 \begin{proof}
-	[Proof of Frobenius Divisibility]
+	[Proof of Frobenius divisibility]
 	Let $C_1$, \dots, $C_m$ denote the conjugacy classes of $G$.
 	Then consider the rational number \[ \frac{|G|}{\dim V}; \]
 	we will show it is an algebraic integer, which will prove the theorem.
@@ -56,7 +56,7 @@ First, we prove the following lemma.
 	where \[ T_i \defeq \rho\left(\sum_{h \in C_i} h\right). \]
 	To see this, note that $T_i$ commutes with elements of $G$,
 	and hence is an intertwining operator $T_i : V \to V$.
-	Thus by Schur's Lemma, $T_i = \lambda_i \cdot \id_V$
+	Thus by Schur's lemma, $T_i = \lambda_i \cdot \id_V$
 	and $\Tr T = \lambda_i \dim V$.
 	By \Cref{lem:group_ring_integral}, $\lambda_i \in \ol\ZZ$, as desired.
 	
@@ -66,7 +66,7 @@ First, we prove the following lemma.
 	hence itself an algebraic integer.
 \end{proof}
 
-\section{Burnside's Theorem}
+\section{Burnside's theorem}
 We now prove a group-theoretic result.
 This is the famous poster child for representation theory
 (in the same way that RSA is the poster child of number theory)
@@ -102,7 +102,7 @@ In what follows $p$ and $q$ will always denote prime numbers.
 \end{proof}
 
 \begin{lemma}
-	[Simple Groups Don't Have Prime Power Conjugacy Classes]
+	[Simple groups don't have prime power conjugacy classes]
 	Let $G$ be a finite simple group.
 	Then $G$ cannot have a conjugacy class of order $p^k$ (where $k > 0$).
 \end{lemma}
@@ -131,7 +131,7 @@ In what follows $p$ and $q$ will always denote prime numbers.
 	This contradicts the assumption that $G$ was simple.
 \end{proof}
 
-With this lemma, Burnside's Theorem follows by partitioning
+With this lemma, Burnside's theorem follows by partitioning
 the $|G|$ elements of our group into conjugacy classes.
 Assume for contradiction $G$ is simple.
 Each conjugacy class must have order either $1$ (of which there are $|Z(G)|$)
@@ -143,13 +143,13 @@ contradicting the assumption that $G$ was simple.
 
 
 
-\section{Frobenius Determinant}
+\section{Frobenius determinant}
 We finish with the following result,
 the problem that started the branch of representation theory.
 Given a finite group $G$,
 we create $n$ variables $\{x_g\}_{g \in G}$,
 and an $n \times n$ matrix $X_G$ whose $(g,h)$th entry is $x_{gh}$.
-\begin{example}[Frobenius Determinants]
+\begin{example}[Frobenius determinants]
 	\listhack
 	\begin{enumerate}[(a)]
 	\ii If $G = \Zc 2 = \left< T \mid T^2 = 1\right>$
@@ -168,7 +168,7 @@ and an $n \times n$ matrix $X_G$ whose $(g,h)$th entry is $x_{gh}$.
 	\end{enumerate}
 \end{example}
 \begin{theorem}
-	[Frobenius Determinant]
+	[Frobenius determinant]
 	The polynomial $\det X_G$ (in $|G|$ variables) factors
 	into a product of irreducible polynomials such that
 	\begin{enumerate}[(i)]
@@ -210,7 +210,7 @@ to prove the result.
 	Let $V_i = (V_i, \rho)$, and pick $k = \dim V_i$.
 	\begin{itemize}
 		\ii \emph{Irreducible}:
-		By Density, for any $M \in \Mat(V_i)$ there exists
+		By the density theorem, for any $M \in \Mat(V_i)$ there exists
 		a \emph{particular} choice of complex numbers $x_g \in G$ such that
 		\[
 			M = \sum_{g \in G} x_g
@@ -242,5 +242,3 @@ to prove the result.
 		Thus, we are done. \qedhere
 	\end{itemize}
 \end{proof}
-
-

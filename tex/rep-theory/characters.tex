@@ -25,7 +25,7 @@ Thus we often think of $\chi_V$ as a function $G \to k$,
 called a character of the group $G$.
 Here is the case $G = S_3$:
 \begin{example}
-	[Character Table of $S_3$]
+	[Character table of $S_3$]
 	Let's consider the three irreps of $G = S_3$ from before.
 	For $\CC_{\text{triv}}$ all traces are $1$;
 	for $\CC_{\text{sign}}$ the traces are $\pm 1$ depending on sign
@@ -67,7 +67,7 @@ which we will prove as the chapter progresses.
 	from the leftmost column of a character table.
 \end{ques}
 
-\section{The Dual Space Modulo the Commutator}
+\section{The dual space modulo the commutator}
 For any algebra, we first observe that since $\Tr(TS) = \Tr(ST)$,
 we have for any $V$ that
 \[ \chi_V(ab) = \chi_V(ba). \]
@@ -92,7 +92,7 @@ Thus $[A,A]$ is contained in the kernel of each $\chi_V$.
 So we can think of each character $\chi_V$ as an element of $(A\ab)^\vee$.
 
 \begin{example}
-	[Examples of Abelianizations]
+	[Examples of abelianizations]
 	\listhack
 	\begin{enumerate}[(a)]
 		\ii If $A$ is commutative, then $[A,A] = \{0\}$
@@ -112,7 +112,7 @@ So we can think of each character $\chi_V$ as an element of $(A\ab)^\vee$.
 \end{example}
 
 \begin{theorem}
-	[Character of Representations of Algebras]
+	[Character of representations of algebras]
 	Let $A$ be an algebra over an algebraically closed field. Then
 	\begin{enumerate}[(a)]
 		\ii Characters of pairwise non-isomorphic irreps are
@@ -124,12 +124,12 @@ So we can think of each character $\chi_V$ as an element of $(A\ab)^\vee$.
 	In particular, in (b) the number of irreps of $A$ equals $\dim A\ab$.
 \end{theorem}
 \begin{proof}
-	Part (a) is more or less obvious by the Density Theorem.
+	Part (a) is more or less obvious by the density theorem.
 	Suppose there is a linear dependence, so that for every $a$ we have
 	\[ c_1 \chi_{V_1}(a) + c_2 \chi_{V_2}(a) + \dots + c_r \chi_{V_r} (a) = 0\]
 	for some integer $r$.
 	\begin{ques}
-		Deduce that $c_1 = \dots = c_r = 0$ from Density.
+		Deduce that $c_1 = \dots = c_r = 0$ from the density theorem.
 	\end{ques}
 	For part (b), assume there are $r$ irreps
 	we may assume that \[ A = \bigoplus_{i=1}^r \Mat(V_i) \]
@@ -142,7 +142,7 @@ So we can think of each character $\chi_V$ as an element of $(A\ab)^\vee$.
 Since $\dim \CC[G]\ab$ is the number of conjugacy classes of $G$,
 this completes the proof of (II).
 
-\section{Orthogonality of Characters}
+\section{Orthogonality of characters}
 Now we specialize to the case of finite groups $G$, represented over $\CC$.
 \begin{definition}
 	Let $\Classes(G)$ denote the set conjugacy classes of $G$.
@@ -184,7 +184,7 @@ which will imply (III) and (IV) from earlier.
 		\end{cases}
 	\]
 \end{theorem}
-\begin{corollary}[Irreps Give an Orthonormal Basis]
+\begin{corollary}[Irreps give an orthonormal basis]
 	The characters associated to irreps
 	form an \emph{orthonormal} basis of $\FunCl(G)$.
 \end{corollary}
@@ -211,7 +211,7 @@ which give a natural way to deal with the quantity $\chi_V(g)\ol{\chi_W(g)}$.
 \end{definition}
 
 \begin{theorem}
-	[Character Traces]
+	[Character traces]
 	If $V$ and $W$ are finite-dimensional representations of $G$,
 	then for any $g \in G$.
 	\begin{enumerate}[(a)]
@@ -226,7 +226,7 @@ which give a natural way to deal with the quantity $\chi_V(g)\ol{\chi_W(g)}$.
 	and $\Tr(S \otimes T) = \Tr(S) \Tr(T)$.
 	However, part (c) is trickier.
 	As $(\rho(g))^{|G|} = \rho(g^{|G|}) = \rho(1_G) = \id_V$
-	by Lagrange's Theorem, we can diagonalize $\rho(g)$,
+	by Lagrange's theorem, we can diagonalize $\rho(g)$,
 	say with eigenvalues $\lambda_1$, \dots, $\lambda_n$
 	which are $|G|$th roots of unity,
 	corresponding to eigenvectors $e_1$, \dots, $e_n$.
@@ -250,7 +250,7 @@ which give a natural way to deal with the quantity $\chi_V(g)\ol{\chi_W(g)}$.
 
 With this, we can now prove the orthogonality relation.
 \begin{proof}
-	[Proof of Orthogonality Relation]
+	[Proof of orthogonality relation]
 	The key point is that we can now reduce
 	the sums of products to just a single character by
 	\[ \chi_V(g) \ol{\chi_W(g)} = \chi_{V \otimes W^\vee} (g). \]
@@ -298,10 +298,10 @@ $S_3$ that we found were irreps directly from the character table.
 In other words, we can now efficiently verify any time we have
 a complete set of irreps.
 
-\section{Examples of Character Tables}
+\section{Examples of character tables}
 We give another example with $D_{10}$ again.
 \begin{example}
-	[Dihedral Group on $10$ Elements]
+	[Dihedral group on $10$ elements]
 	Let $D_{10} = \left< r,s \mid r^5 = s^2 = 1, rs = sr\inv \right>$.
 	Let $\omega = \exp(\frac{2\pi i}{5})$.
 	We write the following four representations of $D_{10}$.
@@ -334,7 +334,7 @@ We give another example with $D_{10}$ again.
 \end{example}
 
 \begin{example}
-	[Character Table of $S_4$]
+	[Character table of $S_4$]
 	We now have enough machinery to to compute the character
 	table of $S_4$, which has five conjugacy classes
 	(corresponding to cycle types $\id$, $2$, $3$, $4$ and $2+2$).
@@ -406,7 +406,7 @@ We give another example with $D_{10}$ again.
 \section\problemhead
 
 \begin{dproblem}
-	[Reading Decompsitions from Characters]
+	[Reading decompsitions from characters]
 	Let $W$ be a complex representation of a finite group $G$.
 	Let $V_1$, \dots, $V_r$ be the complex irreps of $G$
 	and set $n_i = \left< \chi_W, \chi_{V_i} \right>$.
@@ -437,7 +437,7 @@ We give another example with $D_{10}$ again.
 \end{problem}
 
 \begin{problem}
-	[Tensoring by One-Dimensional Irreps]
+	[Tensoring by one-dimensional irreps]
 	Let $V$ and $W$ be irreps of $G$, with $\dim W = 1$.
 	Show that $V \otimes W$ is irreducible.
 	\begin{hint}
@@ -488,7 +488,7 @@ We give another example with $D_{10}$ again.
 \end{problem}
 
 \begin{sproblem}
-	[Second Orthogonality Formula]
+	[Second orthogonality formula]
 	\label{prob:second_orthog}
 	\gim
 	Let $g$ and $h$ be elements of a finite group $G$,
@@ -512,4 +512,3 @@ We give another example with $D_{10}$ again.
 		Now look at the usual basis for $\CC[G]$.
 	\end{hint}
 \end{sproblem}
-

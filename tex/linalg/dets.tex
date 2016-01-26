@@ -1,4 +1,4 @@
-\chapter{Trace and Determinant}
+\chapter{Trace and determinant}
 You may have learned in high school that given a matrix
 \[ \left(
 	\begin{array}{cc}
@@ -21,7 +21,7 @@ Fair warning that this makes this one of the harder chapters.
 
 In what follows, all vector spaces are finite-dimensional.
 
-\section{Tensor Product}
+\section{Tensor product}
 Note that $\dim (V \oplus W) = \dim V + \dim W$, even though as sets $V \oplus W$ looks like $V \times W$.
 What if we wanted a real ``product'' of spaces,
 with multiplication of dimensions?
@@ -106,7 +106,7 @@ $\dim (V \otimes W) = \dim V \cdot \dim W$.
 	Omitted; it's easy at least to see that this basis is spanning.
 \end{proof}
 
-\begin{example}[Explicit Computation]
+\begin{example}[Explicit computation]
 	Let $V$ have basis $e_1$, $e_2$ and $W$ have basis $f_1, f_2$.
 	Let $v = 3e_1 + 4e_2 \in V$ and $w = 5f_1 + 6f_2 \in W$.
 	Let's write $v \otimes w$ in this basis for $V \otimes_k W$:
@@ -148,7 +148,7 @@ $\dim (V \otimes W) = \dim V \cdot \dim W$.
 	just like $(g,1_G) \neq (1_G,g)$ in the group $G \times G$.
 \end{remark}
 
-\section{Dual Module}
+\section{Dual module}
 \prototype{Rotate a column matrix by $90$ degrees.}
 
 Consider the following vector space:
@@ -214,7 +214,7 @@ In the above example, $f$ sends $e_1$ to $3$, $e_2$ to $4$, and $e_3$ to $5$.
 So $f$ sends \[ 2e_1 + 5e_2 + 9e_3 \mapsto 2 \cdot 3 + 5 \cdot 4 + 9 \cdot 5 = 71. \]
 
 Let's make all this precise.
-\begin{proposition}[The Dual Basis for $V^\vee$]
+\begin{proposition}[The dual basis for $V^\vee$]
 	Let $V$ be a finite-dimensional vector space with basis $e_1, \dots, e_n$.
 	For each $i$ consider the function $e_i^\vee : V \to k$ by
 	\[
@@ -231,7 +231,7 @@ Let's make all this precise.
 I want to emphasize that this choice of basis for $V^\vee$ is absolutely not canonical, and depends very heavily on which basis of $V$ is originally selected.
 It is not ``God-given'', in other words.
 
-\begin{example}[Explicit Example of Element in $V^\vee$]
+\begin{example}[Explicit example of element in $V^\vee$]
 	In this notation, $f = 3e_1^\vee + 4e_2^\vee + 5e_3^\vee$.
 	Do you see why the ``sum'' notation works as expected here?
 	Indeed
@@ -260,7 +260,7 @@ I want to point out again that
 	\ii If $V$ is infinite-dimensional it is no longer necessarily true that $V \cong V^\vee$.
 \end{itemize}
 
-\section{The Trace}
+\section{The trace}
 The point of introducing both the tensor product and the dual module is that together
 we can use them to get an algebraic way of thinking about ``matrices''.
 Here's the intuition.
@@ -305,7 +305,7 @@ First, for notational convenience,
 In this notation, $V^\vee \defeq \Hom(V,k)$.
 
 We can now write down something that's more true generally.
-\begin{theorem}[$V^\vee \otimes W$ $\iff$ Linear Maps $V \to W$]
+\begin{theorem}[$V^\vee \otimes W$ $\iff$ linear maps $V \to W$]
 	Let $V$ and $W$ be finite-dimensional vector spaces.
 	We described a map
 	\[ \Psi : V^\vee \otimes W \to \Hom(V,W) \]
@@ -341,7 +341,7 @@ fact that the isomorphism is ``God-given'', depending only on the spirit
 of $V$ and $W$ itself and not which basis we choose to express the vector spaces in.
 
 The above is perhaps a bit dense, so here is a concrete example.
-\begin{example}[Explicit Example]
+\begin{example}[Explicit example]
 	Let $V = \RR^2$ and take a basis $e_1$, $e_2$ of $V$.
 	Then define $T : V \to V$ by
 	\[ T = \left(
@@ -373,7 +373,7 @@ So this gives us a composed map
 \end{diagram}
 This result is called the \vocab{trace} of a matrix $T$.
 
-\begin{example}[Example of a Trace]
+\begin{example}[Example of a trace]
 	Continuing the previous example,
 	\[ \Tr T = e_1^\vee(e_1) + 2e_2^\vee(e_1) 
 		+ 3e_1^\vee(e_2) + 4e_2^\vee(e_2)
@@ -462,7 +462,7 @@ This result is called the \vocab{trace} of a matrix $T$.
 
 
 
-\section{Wedge Product}
+\section{Wedge product}
 \prototype{$\Lambda^2(\RR^2)$.}
 We're now going to define something called the wedge product.
 It will look a ton like the tensor product, but we'll have one extra relation.
@@ -500,7 +500,7 @@ It seems kind of weird.
 
 I'll give you a hint.
 \begin{example}
-	[Wedge Product Explicit Compuation]
+	[Wedge product explicit compuation]
 	Let $V = \RR^2$, and let $v = ae_1 + be_2$, $w = ce_1 + de_2$.
 	Now let's compute $v \wedge w$ in $\Lambda^2(V)$.
 	\begin{align*}
@@ -580,7 +580,7 @@ should still be zero.
 
 Just like $e_1 \wedge e_2$ was a basis earlier, we can find the basis
 for general $m$ and $n$.
-\begin{proposition}[Basis of the Wedge Product]
+\begin{proposition}[Basis of the wedge product]
 	Let $V$ be a vector space with basis $e_1, \dots, e_n$.
 	A basis for $\Lambda^m(V)$ consists of the elements
 	\[ e_{i_1} \wedge e_{i_2} \wedge \dots \wedge e_{i_m} \]
@@ -596,7 +596,7 @@ for general $m$ and $n$.
 \end{proof}
 
 
-\section{The Determinant}
+\section{The determinant}
 \prototype{$(ae_1+be_2)\wedge(ce_1+de_2) = (ad-bc)e_1\wedge e_2$.}
 Now we're ready to define the determinant.
 Suppose $T : V \to V$ is a square matrix.
@@ -634,7 +634,7 @@ Hence $\Lambda^n(T)$ is multiplication by some constant.
 	we define the \vocab{determinant} of $T$ as $c = \det T$.
 \end{definition}
 
-\begin{example}[The Determinant of a $2 \times 2$ Matrix]
+\begin{example}[The determinant of a $2 \times 2$ matrix]
 	Let $V = \RR^2$ again with basis $e_1$ and $e_2$.
 	Let
 	\[ T = \left(
@@ -713,7 +713,7 @@ and do a full expansion.
 \end{problem}
 
 \begin{dproblem}
-	[Traces Kind of Commute]
+	[Traces kind of commute]
 	\gim
 	Let $T : V \to W$ and $S : W \to V$ be linear maps
 	between finite-dimensional vector spaces $V$ and $W$.
@@ -745,7 +745,7 @@ and do a full expansion.
 \end{dproblem}
 
 \begin{dproblem}
-	[Product of Traces]
+	[Product of traces]
 	Let $T : V \to V$ and $S : W \to W$ be linear maps
 	of finite-dimensional vector spaces $V$ and $W$.
 	Consider $T \otimes S : V \otimes W \to V \otimes W$.
@@ -895,4 +895,3 @@ and do a full expansion.
 %	that the mathematicians may be split between the two rooms is a power of two.
 %	% http://www.artofproblemsolving.com/Forum/viewtopic.php?p=3338962#p3338962
 %\end{problem}
-

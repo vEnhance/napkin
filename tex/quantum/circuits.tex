@@ -1,10 +1,10 @@
-\chapter{Quantum Circuits}
+\chapter{Quantum circuits}
 Now that we've discussed qubits, we can talk about how to use them in circuits.
 The key change --- and the reason that quantum circuits can do things that
 classical circuits cannot --- is the fact that we are allowing
 linear combinations of $0$ and $1$.
 
-\section{Classical Logic Gates}
+\section{Classical logic gates}
 In classical logic, we build circuits which take in some bits for input,
 and output some more bits for input.
 These circuits are built out of individual logic gates.
@@ -76,7 +76,7 @@ We also have a so-called \vocab{COPY gate}, which duplicates a bit.
 \]
 Of course, the first theorem you learn about these gates is that:
 \begin{theorem}
-	[AND, OR, NOT, COPY Are Universal]
+	[AND, OR, NOT, COPY are universal]
 	The set of four gates AND, OR, NOT, COPY is universal in the sense that
 	any boolean function $f : \{0,1\}^n \to \{0,1\}$ 
 	can be implemented as a circuit using only these gates.
@@ -102,14 +102,14 @@ Of course, the first theorem you learn about these gates is that:
 	it follows that in fact, we can dispense with the AND gate.
 \end{remark}
 
-\section{Reversible Classical Logic}
+\section{Reversible classical logic}
 \prototype{CNOT gate, Toffoli gate.}
 
 For the purposes of quantum mechanics, this is not enough.
 To carry through the analogy we in fact need gates that are \vocab{reversible},
 meaning the gates are bijections from the input space to the output space.
 In particular, such gates must take the same number of input and output gates.
-\begin{example}[Reversible Gates]
+\begin{example}[Reversible gates]
 	\listhack
 	\begin{enumerate}[(a)]
 		\ii None of the gates AND, OR, COPY are reversible for dimension reasons.
@@ -118,7 +118,7 @@ In particular, such gates must take the same number of input and output gates.
 	\end{enumerate}
 \end{example}
 \begin{example}
-	[The CNOT Gate]
+	[The CNOT gate]
 	The controlled-NOT gate, or the \vocab{CNOT} gate,
 	is a reversible $2$-bit gate with the following truth table.
 	\[
@@ -179,7 +179,7 @@ according to the following circuit.
 \]
 Unfortunately, it is not universal.
 \begin{proposition}
-	[CNOT $\not\Rightarrow$ AND]
+	[CNOT $\not\Rightarrow$ aND]
 	The CNOT gate cannot simulate the boolean function ``$x \text{ and } y$''.
 \end{proposition}
 \begin{proof}[Sketch of Proof]
@@ -207,7 +207,7 @@ The most commonly used one is the following.
 \end{definition}
 This replacement is sufficient.
 \begin{theorem}
-	[Toffoli Gate is Universal]
+	[Toffoli gate is universal]
 	The Toffoli gate is universal.
 \end{theorem}
 \begin{proof}
@@ -242,7 +242,7 @@ simplest of functions.
 Fortunately, this is NO BIG DEAL because I'm a math major,
 and having $2^n$ gates is a problem best left for the CS majors.
 
-\section{Quantum Logic Gates}
+\section{Quantum logic gates}
 In quantum mechanics, since we can have \emph{linear combinations} of basis
 elements, our logic gates will instead consist of \emph{linear maps}.
 Moreover, in quantum computation, gates are always reversible,
@@ -330,7 +330,7 @@ the outputs are often entangled states,
 even when the original inputs are not entangled.
 
 \begin{example}
-	[More Examples of Quantum Gates]
+	[More examples of quantum gates]
 	\listhack
 	\begin{enumerate}[(a)]
 		\ii Every reversible classical gate that we encountered before
@@ -422,12 +422,12 @@ Thus we can copy $\ket0$ and $\ket1$.
 But as we've already seen if we input $\xdown \otimes \ket0$ into $U$,
 we end up with the entangled state $\ket{\Psi_-}$
 which is decisively \emph{not} the $\xdown \otimes \xdown$ we wanted.
-And in fact, the so-called \vocab{No-Cloning Theorem} implies
+And in fact, the so-called \vocab{no-cloning theorem} implies
 that it's impossible to duplicate an arbitrary $\ket\psi$;
 the best we can do is copy specific orthogonal states as in the classical case.
 See also \Cref{prob:baby_no_clone}.
 
-\section{Deutsch-Jozsa Algorithm}
+\section{Deutsch-Jozsa algorithm}
 The Deutsch-Jozsa algorithm is the first example of a nontrivial
 quantum algorithm which cannot be performed classically:
 it is a ``proof of concept'' that would later inspire Grover's search algorithm
@@ -543,7 +543,7 @@ However,
 
 
 \section\problemhead
-\begin{problem}[Fredkin Gate]
+\begin{problem}[Fredkin gate]
 	The \vocab{Fredkin gate} (also called the controlled swap, or CSWAP gate)
 	is the three-bit gate with the following truth table:
 	\[
@@ -582,7 +582,7 @@ However,
 \end{problem}
 
 \begin{problem}
-	[Baby No-Cloning Theorem]
+	[Baby no-cloning theorem]
 	\label{prob:baby_no_clone}
 	Show that there is no unitary map $U$ on two qubits
 	which sends $U(\ket\psi \otimes \ket0) = \ket\psi \otimes \ket\psi$

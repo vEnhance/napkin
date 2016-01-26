@@ -1,9 +1,9 @@
-\chapter{Spectral Theory}
+\chapter{Spectral theory}
 This chapter will develop the theory of eigenvalues and eigenvectors, the so-called
 ``Jordan canonical form'', and from it the characteristic polynomial.
 In what follows, $V$ is a finite-dimensional vector space over a ground field $k$.
 
-\section{Why You Should Care}
+\section{Why you should care}
 We know that a square matrix $T$ is really just
 a linear map from $V$ to $V$.
 What's the simplest type of linear map?
@@ -52,7 +52,7 @@ So our completely random-looking map, under a suitable change of basis,
 looks like the very nice maps we described before!
 That's the motivation for this chapter.
 
-\section{Eigenvectors and Eigenvalues}
+\section{Eigenvectors and eigenvalues}
 Let $k$ be a field and $V$ a vector space over it.
 In the above example, we saw that there were two very nice
 vectors, $e_1$ and $e_1+e_2$, for which $V$ did something very simple.
@@ -103,10 +103,10 @@ So in general we like to consider algebraically closed fields.
 This is not a big loss: any real matrix can be interpreted as a complex matrix
 whose entries just happen to be real, for example.
 
-\section{The Jordan Form}
+\section{The Jordan form}
 So that you know exactly where I'm going, I'm now going to state the main theorem.
 \begin{theorem}
-	[Jordan Canonical Form]
+	[Jordan canonical form]
 	Let $T : V \to V$ be a linear map over an algebraically closed field $k$.
 	Then we can choose a basis of $V$ such that the matrix $T$ has the following form:
 	\begin{center}
@@ -170,7 +170,7 @@ the next part deals with breaking generalized eigenspaces into Jordan blocks,
 and the part after that is the one where we break down $V$ into
 generalized eigenspaces.
 
-\section{Nilpotent Maps}
+\section{Nilpotent maps}
 First, let's consider the following --- bear with me for a moment.
 \begin{definition}
 	A map $T: V \to V$ is \vocab{nilpotent} if $T^m$ is the zero map for some integer $m$.
@@ -178,7 +178,7 @@ First, let's consider the following --- bear with me for a moment.
 \end{definition}
 What's an example of a nilpotent map?
 \begin{example}
-	[The ``Descending Staircase'']
+	[The ``Descending staircase'']
 	Let $V = k^3$ have basis $e_1$, $e_2$, $e_3$.
 	Then the map $T$ which sends
 	\[ e_3 \mapsto e_2 \mapsto e_1 \mapsto 0 \]
@@ -187,7 +187,7 @@ What's an example of a nilpotent map?
 \end{example}
 That's a pretty nice example. As another example, we can have multiple such staircases.
 \begin{example}
-	[Double Staircase]
+	[Double staircase]
 	Let $V = k^5$ have basis $e_1$, $e_2$, $e_3$, $e_4$, $e_5$.
 	Then the map 
 	\[ e_3 \mapsto e_2 \mapsto e_1 \mapsto 0 \text{ and } e_5 \mapsto e_4 \mapsto 0 \]
@@ -239,7 +239,7 @@ This gives us a plan to proceed: we need to break $V$ into
 a bunch of subspaces such that $T - \lambda \id$ is nilpotent over each subspace.
 Then Nilpotent Jordan will finish the job.
 
-\section{Reducing to the Nilpotent Case}
+\section{Reducing to the nilpotent case}
 \begin{definition}
 	Let $T : V \to V$. A subspace of $W$ is \vocab{$T$-invariant}
 	if $T(w) \in W$ for any $w \in W$.
@@ -289,7 +289,7 @@ Hence $S$ is nilpotent, so it's a collection of staircases.
 In fact, since $V_1$ is irreducible, there is only one staircase.
 Hence $V_1$ is a Jordan block, as desired.
 
-\section{(Optional) Proof of Nilpotent Jordan}
+\section{(Optional) proof of nilpotent Jordan}
 The proof is just induction on $\dim V$.
 Assume $\dim V \ge 1$, and let $W = T``(V)$ be the image of $V$.
 Since $T$ is nilpotent, we must have $W \subsetneq V$.
@@ -331,7 +331,7 @@ Check that there are exactly $\ell + \dim W + (\dim \ker T - \ell) = \dim V$ ele
 Hence $\mathcal B$ is a basis of the desired form.
 
 
-\section{Characteristic Polynomials, and Cayley-Hamilton}
+\section{Characteristic polynomials, and Cayley-Hamilton}
 Take a map $T : V \to V$, where $V$ is $n$-dimensional, and suppose its eigenvalues
 are $a_1$, $a_2$, \dots, $a_n$ (with repetition).
 Then the \vocab{characteristic polynomial} is given by
@@ -380,7 +380,7 @@ But what a \emph{terrible} way to define the characteristic polynomial.
 
 In particular, it obscures the following theorem, which is actually a completely triviality.
 
-\begin{theorem}[Cayley-Hamilton Theorem]
+\begin{theorem}[Cayley-Hamilton theorem]
 	For any $T : V \to V$,
 	the map $p_T(T)$ is the zero map.
 \end{theorem}
@@ -388,7 +388,7 @@ Here, by $p_T(T)$ we mean that if \[ p_T(X) = X^n + c_{n-1} X^{n-1} + \dots + c_
 then \[ p_T(T) = T^n + c_{n-1} T^{n-1} + \dots + c_1 T +  c_0 I \] is the zero map,
 where $T^k$ denotes $T$ applied $k$ times.
 
-\begin{example}[Example of Cayley-Hamilton, Immorally]
+\begin{example}[Example of cayley-Hamilton, immorally]
 	Suppose $T = \left(
 	\begin{array}{cc}
 		1 & 2 \\ 3 & 4
@@ -455,7 +455,7 @@ Suppose $T : \RR^2 \to \RR^2$ has a basis of eigenvectors $e_1$ and $e_2$
 with eigenvalues $4$ and $5$; hence $T(e_1) = 4e_1$ and $T(e_2) = 5e_2$,
 and so of course we would say that $T$ stretches areas by a factor of $20$!
 
-\section{(Digression) Tensoring Up}
+\section{(Digression) Tensoring up}
 Earlier I said that we'll generally just work over algebraically closed fields,
 because, for example, a real matrix can be interpreted as a complex matrix whose
 entries just happen to be real numbers.
@@ -578,7 +578,7 @@ You'll see this written sometimes as $T_\CC = \id \otimes T$.
 \end{problem}
 
 \endinput
-\section{Reducing to the Nilpotent Case}
+\section{Reducing to the nilpotent case}
 \begin{definition}
 	Let $T : V \to V$. A subspace of $W$ is \vocab{$T$-invariant}
 	if $T(w) \in W$ for any $w \in W$.

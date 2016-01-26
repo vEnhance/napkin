@@ -1,4 +1,4 @@
-\chapter{Quantum States and Measurements}
+\chapter{Quantum states and measurements}
 In this chapter we'll explain how to set up quantum states using
 linear algebra. This will allow me to talk about quantum \emph{circuits}
 in the next chapter, which will set the stage for Shor's algorithm.
@@ -9,7 +9,7 @@ of linear algebras, and defer the philosophy of why this is true
 to your neighborhood ``Philosophy of Quantum Mechanics'' class
 (which is a ``social science'' class at MIT!).
 
-\section{Bra-Ket Notation}
+\section{Bra-ket notation}
 Physicists have their own notation for vectors:
 whereas I previously used something like $v$, $e_1$, and so on,
 in this chapter you'll see the infamous \vocab{bra-ket} notation:
@@ -62,7 +62,7 @@ In particular, the squared norm of $\ket\psi$ is just $\braket{\psi|\psi}$.
 Concretely, for $\dim H = 2$ we have
 $\braket{\psi|\psi} = |\alpha^2| + |\beta|^2$.
 
-\section{The State Space}
+\section{The state space}
 If you think that's weird, well, it gets worse.
 
 In classical computation, a bit is either $0$ or $1$.
@@ -196,7 +196,7 @@ In other words,
 Why does this happen? Beats me\dots physics (and hence real life) is weird.
 But anyways, an example.
 \begin{example}
-	[Quantum Measurement of a state $\ket\psi$]
+	[Quantum measurement of a state $\ket\psi$]
 	Let $H = \CC^{\oplus 2}$ with orthonormal basis $\ket0$ and $\ket1$
 	and consider the state
 	\[
@@ -316,7 +316,7 @@ and the eigenspace for $\lambda$ will be the $H_A \otimes (H_B)_\lambda$,
 so when we take the projection the $A$ qubit will be unaffected.
 
 This does what you would hope for pure tensors in $H$:
-\begin{example}[Two Non-Entangled Qubits]
+\begin{example}[Two non-entangled qubits]
 	Suppose we have qubit $A$ in the state
 	$\frac{i}{\sqrt5}\ket0_A + \frac{2}{\sqrt5}\ket1_A$
 	and qubit $B$ in the state
@@ -374,7 +374,7 @@ we make the following abbreviation.
 \end{abuse}
 
 \begin{example}
-	[Simultaneously Measuring A General $2$-Qubit State]
+	[Simultaneously measuring a general $2$-Qubit state]
 	\label{ex:simult_measurement}
 	Consider a normalized state $\ket\psi$ in
 	$H = \CC^{\oplus 2} \otimes \CC^{\oplus 2}$, say
@@ -393,7 +393,7 @@ we make the following abbreviation.
 \end{example}
 
 However, some states behave very weirdly.
-\begin{example}[The Singlet State]
+\begin{example}[The singlet state]
 	Consider the state
 	\[
 		\ket{\Psi_-}
@@ -461,7 +461,7 @@ That's what entangled states mean: the qubits somehow depend on each other.
 \end{problem}
 
 \begin{problem}
-	[Greenberger-Horne-Zeilinger Paradox]
+	[Greenberger-Horne-Zeilinger paradox]
 	Consider the state in $(\CC^{\oplus2})^{\otimes 3}$
 	\[
 		\ket{\Psi}_{\text{GHZ}}
@@ -488,4 +488,3 @@ That's what entangled states mean: the qubits somehow depend on each other.
 		and not prepared in advance.
 	\end{hint}
 \end{problem}
-
