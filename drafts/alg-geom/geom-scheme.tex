@@ -1192,63 +1192,62 @@ The complete the obvious analogy:
 	= 
 	\frac{\text{Affine scheme}}{\text{Projective scheme}}.
 \]
-Let $R$ be \emph{any} (commutative) graded ring, like $\CC[x_0, \dots, x_n]$.
+Let $S$ be \emph{any} (commutative) graded ring, like $\CC[x_0, \dots, x_n]$.
 \begin{definition}
-	We define $\Proj R$, the \vocab{projective scheme over $R$}:
+	We define $\Proj S$, the \vocab{projective scheme over $S$}:
 	\begin{itemize}
-		\ii As a set, $\Proj R$ consists of \emph{homogeneous prime ideals}
-		$\pp$ which do not contain $R^+$.
-		\ii If $I \subseteq R$ is homogeneous, then
-		we let $\VV(I) = \{ \pp \in \Proj R \mid \pp \subseteq I \}$.
+		\ii As a set, $\Proj S$ consists of \emph{homogeneous prime ideals}
+		$\pp$ which do not contain $S^+$.
+		\ii If $I \subseteq S$ is homogeneous, then
+		we let $\VV(I) = \{ \pp \in \Proj S \mid \pp \subseteq I \}$.
 		Then the \vocab{Zariski topology} is imposed by declaring 
 		sets of the form $\VV(I)$ to be closed.
-		\ii We now define a pre-sheaf $\SF$ on $\Proj R$ by
+		\ii We now define a pre-sheaf $\SF$ on $\Proj S$ by
 		\[ \SF(U) = 
 			\left\{ \frac{f}{g} \mid 
 			g(\pp) \neq 0 \; \forall \pp \in U \text{ and }
-			f,g \in R^d \text{ for some $d$}
-			\right\}.
+			\deg f = \deg g \right\}.
 		\]
 		In other words, the rational functions are quotients $f/g$
 		where $f$ and $g$ are \emph{homogeneous of the same degree}.
-		Then we let \[ \OO_{\Proj R} = \SF\sh \] be the sheafification.
+		Then we let \[ \OO_{\Proj S} = \SF\sh \] be the sheafification.
 	\end{itemize}
 \end{definition}
 \begin{definition}
-	The \vocab{distinguished open sets} $D(f)$ of the $\Proj R$
-	are defined as $\left\{ \pp \in \Proj R : f(\pp) \neq 0 \right\}$,
-	as before; these form a basis for the Zariski topology of $\Proj R$.
+	The \vocab{distinguished open sets} $D(f)$ of the $\Proj S$
+	are defined as $\left\{ \pp \in \Proj S : f(\pp) \neq 0 \right\}$,
+	as before; these form a basis for the Zariski topology of $\Proj S$.
 \end{definition}
 Now, we want analogous results as we did for affine structure sheaf.
 So, we define a slightly modified localization:
 \begin{definition}
-	Let $R$ be a graded ring.
+	Let $S$ be a graded ring.
 	\begin{enumerate}[(i)]
 		\ii For a prime ideal $\pp$, let
-		\[ R_{(\pp)} = \left\{ \frac fg \mid g(\pp) \neq 0 \text{ and }
-			f, g \in R^d \text{ for some $d$} \right\} \]
-		denote the elements of $R_\pp$ with ``degree zero''.
-		\ii For any homogeneous $g \in R$ of degree $d$, let
-		\[ R_{(g)} = \left\{ \frac{f}{g^r} \mid 
-			f \in R^{rd} \text{ for some $r$, $d$} \right\} \]
-		denote the elements of $R_g$ with ``degree zero''.
+		\[ S_{(\pp)} = \left\{ \frac fg \mid g(\pp) \neq 0 \text{ and }
+			\deg f = \deg g \right\} \]
+		denote the elements of $S_\pp$ with ``degree zero''.
+		\ii For any homogeneous $g \in S$ of degree $d$, let
+		\[ S_{(g)} = \left\{ \frac{f}{g^r} \mid 
+			\deg f = r \deg g \right\} \]
+		denote the elements of $S_g$ with ``degree zero''.
 	\end{enumerate}
 \end{definition}
 
 \begin{theorem}
 	[On the Projective Structure Sheaf]
-	Let $R$ be a graded ring and let $\Proj R$ the associated projective scheme.
+	Let $S$ be a graded ring and let $\Proj S$ the associated projective scheme.
 	\begin{enumerate}[(a)]
-		\ii Let $\pp \in \Proj R$.
-		Then $\OO_{\Proj R, \pp} \cong R_{(\pp)}$.
-		\ii Let $g \in R^d$ be homogeneous of degree $d > 0$. Then
-		\[ D(g) \cong \Spec R_{(g)} \]
+		\ii Let $\pp \in \Proj S$.
+		Then $\OO_{\Proj S, \pp} \cong S_{(\pp)}$.
+		\ii Suppose $g$ is homogeneous with $\deg g > 0$. Then
+		\[ D(g) \cong \Spec S_{(g)} \]
 		as locally ringed spaces.
-		In particular, $\OO_{\Proj R}(D(g)) \cong R_{(g)}$.
+		In particular, $\OO_{\Proj S}(D(g)) \cong S_{(g)}$.
 	\end{enumerate}
 \end{theorem}
 \begin{ques}
-	Conclude that $\Proj R$ is a scheme.
+	Conclude that $\Proj S$ is a scheme.
 \end{ques}
 
 Of course, the archetypal example is that
@@ -1259,12 +1258,156 @@ In the general case of an arbitrary ideal $I$, we
 call such schemes \vocab{projective subscheme} of $\CP^n$
 For example, the ``double point'' is given by $\Proj[x_0,x_1]/(x_0^2)$.
 
-\chapter{More on Sheaves and Schemes}
-Make sheaves into a category, define their morphisms
+\begin{remark}
+	No comment yet on what the global sections of $\OO_{\Proj S}(\Proj S)$ are.
+	(The theorem above requires $\deg g > 0$, so we cannot just take $g=1$.)
+	One might hope that in general $\OO_{\Proj S}(\Proj S) \cong S^0$
+	in analogy to our complex projective varieties, but
+	one needs some additional assumptions on $S$ for this to hold.
+\end{remark}
 
-Sum, product, dual
+\chapter{More on Sheaves}
+Previously, we defined a sheaf so that we could equip
+it onto a scheme and thus produce a ringed space.
+However, we will now proceed to define some additional sheaves on a scheme $X$,
+and study the relations between them.
 
-Quasi-coherent sheaves
+\section{Sheaves of $\OO_X$-Modules}
+\prototype{Twisting Sheaves}
+Up until now we have mostly been working with sheaves of rings,
+but now we want to instead think about sheaves of modules related
+to a scheme $X$. 
+\begin{definition}
+	Let $(X, \OO_X)$ be a ringed space.
+	A \vocab{sheaf of $\OO_X$-modules} is a sheaf $\SF$
+	of abelian groups such that $\SF(U)$ is also an $\OO_X(U)$-module.
+	The module structures are also required to be compatible
+	with the restriction maps.
+\end{definition}
+\begin{example}
+	[Twisting Sheaves]
+	Let $X = \Proj S$ be a projective scheme for a graded ring $S$
+	(e.g.\ a projective subscheme).
+	For any integer $m$ we consider a pre-sheaf
+	\[ \SF^n = \left\{ \frac fg \mid g(\pp)\neq 0 \;\forall p \in X 
+		\text{ and } \deg f - \deg g = n \right\}.
+	\]
+	Intuitively, these are degree $n$ ``functions''.
+	Then $\OO_X(n) = (\SF^n)\sh$;
+	we call these the \vocab{twisting sheaves}.
+
+	For example, if $S = \CC[x_0, \dots, x_n]$ then
+	\begin{enumerate}[(a)]
+		\ii $\OO_X(0) \cong \OO_X$, by definition.
+		\ii A degree $n$ polynomial defines a global section of $\OO_X(n)$.
+		\ii $\OO_X(m)$ has no nonzero global sections if $m < 0$.
+		\ii Suppose $X = \CP^1$ has coordinates $(s:t)$. Then
+		\[ \frac 1s \in \OO_X(-1)(U_0) \]
+		is an example of a (non-global) section of $\OO_X(-3)$.
+		\ii Suppose $X = \CP^2$ has coordinates $(x:y:z)$. Then
+		\[ \frac{1}{xyz} \in \OO_X(-1)(U_0 \cap U_1 \cap U_2) \]
+		is an example of a (non-global) section of $\OO_X(-3)$.
+	\end{enumerate}
+\end{example}
+
+Observe that the stalks of such a sheaf are abelian groups.
+
+\section{Sheaves of $\OO_X$-Modules Make an Abelian Category}
+I won't take the time to do this properly,
+since I won't really use much of it.
+See \cite{ref:vakil} for a proper exposition.
+
+Fix a ringed space $(X, \OO_X)$.
+It's easy to see there is a category of sheaves of $\OO_X$-modules.
+(the objects are sheaves and the morphisms are, well, morphisms of sheaves).
+To see that it is abelian, we need to do the following:
+\begin{itemize}
+	\ii Identify the zero object of the category.
+	This is constant sheaf $0$, which gives $\SF(U) = \{0\}$ for every $U$.
+	(This more or less follows from the fact that $\{0\}$
+	is the zero object of the abelian category $\catname{AbGrp}$.)
+	\ii Show that we can add two morphisms.
+	This is done in the obvious manner.
+	\ii Show that any morphism has a ``kernel sheaf'' and ``cokernel sheaf''.
+	The definition is not too bad: given $\alpha : \SF \to \SG$ we define the
+	pre-sheaves $\ker\alpha$ and $\coker'\alpha$ by
+	\begin{align*}
+		\ker(\alpha)(U) &= \ker(\alpha_U) \\
+		\coker'(\alpha)(U) &= \coker(\alpha_U).
+	\end{align*}
+	It turns out that $\ker(\alpha)$ is already a sheaf.
+	But $\coker'(\alpha)$ is only a pre-sheaf and in general not a sheaf.
+	(Again, see \cite{ref:vakil} or \cite{ref:gathmann} for why.)
+	Thus we have to define $\coker(\alpha) = \coker'(\alpha) \sh$.
+	
+	The tricky part, done in \cite{ref:vakil} and the one which I'm omitting,
+	is showing that this kernel and cokernel sheaf satisfy
+	the correct universal properties.
+\end{itemize}
+
+From this we deduce
+\begin{theorem}
+	[Sheaves Form an Abelian Category]
+	Let $(X, \OO_X)$ be a ringed space.
+	The category of sheaves of $\OO_X$-modules forms an abelian category.
+\end{theorem}
+
+In particular, we can talk about whether a sequence of sheaves
+$\SF \to \SG \to \SH$ is exact: just use the categorical definition.
+However, if possible we want to avoid using the long-winded definition.
+So, I will just quote the relevant results:
+\begin{theorem}
+	[Exactness Can Be Checked at Stalks]
+	A sequence of sheaves of $\OO_X$-modules
+	$\SF \to \SG \to \SH$ is exact if and only if
+	for every point $p \in X$,
+	the induced map of stalks $\SF_p \to \SG_p \to \SH_p$ is exact.
+\end{theorem}
+Thus, we \emph{really} like stalks; they behave as nicely as possible.
+\begin{ques}
+	Deduce that $\SF \to \SG$ is injective / surjective / an isomorphism
+	if and only if $\SF_p \to \SG_p$ is injective / surjective / an isomorphism
+	for every point $p$.
+\end{ques}
+
+If we insist on sections, the only useful result we have is:
+\begin{theorem}
+	[Monic/Epic on Sections]
+	Let $\alpha : \SF \to \SG$ be a morphism of $\OO_X$-modules.
+	\begin{enumerate}[(a)]
+		\ii The map $\alpha$ is monic if and only if $\SF(U) \to \SG(U)$
+		is injective for every open $U$.
+		\ii The map $\alpha$ is epic if $\SF(U) \to \SG(U)$
+		is surjective for every open $U$,
+		but the converse is not true in general.
+	\end{enumerate}
+\end{theorem}
+
+In addition, we can do the following constructions.
+\begin{definition}
+	If $\SF$ and $\SG$ are sheaves of $\OO_X$-modules, then
+	\begin{enumerate}[(a)]
+		\ii The \vocab{direct sum} $\SF \oplus \SG$ is defined
+		on open sets by \[ U \mapsto \SF(U) \oplus \SG(U). \]
+		(This is already a sheaf, so we don't need to sheafify.)
+		\ii The \vocab{tensor product} $\SF \otimes \SG$ is defined
+		by taking the sheafification of the pre-sheaf
+		\[ U \mapsto \SF(U) \otimes_{\OO_X(U)} \SG(U). \]
+		\ii The \vocab{dual} $\SF^\vee$ of $\SF$ is defined
+		by taking the sheafification of the pre-sheaf
+		\[ U \mapsto \Hom_{\OO_X(U) \text{ module}} (\SF(U), \OO_X(U)). \]
+	\end{enumerate}
+\end{definition}
+\begin{example}[More on Twisting Sheaves]
+	Consider the twisting sheaves of $X = \CP^N$.
+	\begin{enumerate}[(a)]
+		\ii $\OO_X(n) \otimes \OO_X(m) \cong \OO_X(m+n)$.
+		What do you think the isomorphism is?
+		\ii $\OO_X(n)^\vee \cong \OO_X(-n)$.
+	\end{enumerate}
+\end{example}
+
+\section{Quasi-coherent sheaves}
 
 \chapter{Divisors and Line Bundles}
 
