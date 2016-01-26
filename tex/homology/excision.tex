@@ -1,4 +1,4 @@
-\chapter{Excision and Relative Homology}
+\chapter{Excision and relative homology}
 We have already seen how to use the Mayer-Vietoris sequence:
 we started with a sequence
 \[ \dots \to H_n(U \cap V) \to H_n(U) \oplus H_n(V) \to H_n(U+V) \to H_{n-1}(U \cap V) \to \dots \]
@@ -16,7 +16,7 @@ which takes a pair $(X,A)$ to $H_n(X,A)$.
 Then, we state (again without proof) the key geometric result,
 and use this to make deductions.
 
-\section{The Long Exact Sequences}
+\section{The long exact sequences}
 Recall \Cref{thm:long_exact_rel}, which says that the sequences
 \[ \dots \to H_n(A) \to H_n(X) \to H_n(X,A) \to H_{n-1}(A) \to \dots. \]
 and
@@ -34,7 +34,7 @@ By \Cref{prob:triple_long_exact} we even have a long exact sequence
 for $A \subset B \subset X$.
 An application of the second long exact sequence above gives:
 \begin{lemma}
-	[Homology Relative to Contractible Spaces]
+	[Homology relative to contractible spaces]
 	\label{lem:rel_contractible}
 	Let $X$ be a topological space,
 	and let $A \subset X$ be contractible.
@@ -53,7 +53,7 @@ In particular, the theorem applies if $A$ is a single point.
 The case $A = \varnothing$ is also worth noting.
 We compile these results in the following lemma.
 \begin{lemma}
-	[Relative Homology Generalizes Absolute Homology]
+	[Relative homology generalizes absolute homology]
 	Let $X$ be any space, and $\ast \in X$ a point. Then for all $n$,
 	\[
 		H_n(X, \{\ast\}) \cong \wt H_n(X)
@@ -62,7 +62,7 @@ We compile these results in the following lemma.
 	\]
 \end{lemma}
 
-\section{The Category of Pairs}
+\section{The category of pairs}
 Since we now have an $H_n(X,A)$ instead of just $H_n(X)$,
 a natural next step is to create a suitable category of \emph{pairs}
 and give ourselves the same functorial setup as before.
@@ -121,7 +121,7 @@ The correct definition is:
 	which is a pair homotopy equivalence.
 \end{definition}
 \begin{example}
-	[Examples of Deformation Retracts]
+	[Examples of deformation retracts]
 	\listhack
 	\begin{enumerate}[(a)]
 		\ii If a single point $p$ is a deformation retract of a space $X$,
@@ -164,12 +164,12 @@ This should intuitively make sense:
 since we are ``modding out by points in $A$'',
 the internals of the point $A$ should not matter so much.
 
-The main application of Excision is to decide
+The main application of excision is to decide
 when $H_n(X,A) \cong \wt H_n(X/A)$.
 Answer:
 
 \begin{theorem}
-	[Relative Homology $\implies$ Quotient Space]
+	[Relative homology $\implies$ quotient space]
 	\label{thm:good_pair}
 	Let $X$ be a space and $A$ be a subspace such that
 	$A$ is a deformation retract of some neighborhood $V \subset X$.
@@ -208,16 +208,16 @@ Answer:
 	and observe that the rightmost arrow $\widehat{q}_\ast$ is an isomorphism,
 	because outside of $A$ the map $\widehat q$ is the identity.
 	We know $f$ and $g$ are isomorphisms,
-	as are the two arrows marked with ``Excise'' (by Excision).
+	as are the two arrows marked with ``Excise'' (by excision).
 	From this we conclude that $q_\ast$ is an isomorphism.
 	Of course we already know that homology relative to a point
 	is just the relative homology groups
 	(this is the important case of \Cref{lem:rel_contractible}).
 \end{proof}
 
-\section{Some Applications}
-One nice application of Excision is to compute $\wt H_n(X \vee Y)$.
-\begin{theorem}[Homology of Wedge Sums]
+\section{Some applications}
+One nice application of excision is to compute $\wt H_n(X \vee Y)$.
+\begin{theorem}[Homology of wedge sums]
 	Let $X$ and $Y$ be spaces with basepoints $x_0 \in X$ and $y_0 \in Y$,
 	and assuming each point is a deformation retract of some neighborhood.
 	Then for every $n$ we have
@@ -259,7 +259,7 @@ which is what we wanted.
 
 To prove the claim, let's consider the exact sequence
 formed by the pair $X = D^2$ and $A = S^1$.
-\begin{example}[The Long Exact Sequence for $(X,A) = (D^2, S^1)$]
+\begin{example}[The long exact sequence for $(X,A) = (D^2, S^1)$]
 	Consider $D^2$ (which is contractible) with boundary $S^1$.
 	Clearly $S^1$ is a deformation retraction of $D^2 \setminus \{0\}$,
 	and if we fuse all points on the boundary together we get $D^2 / S^1 \cong S^2$.
@@ -283,24 +283,24 @@ More generally, the exact sequence for the pair $(X,A) = (D^m, S^{m-1})$
 shows that $\wt H_n(S^m) \cong \wt H_{n-1}(S^{m-1})$,
 which is the desired conclusion.
 
-\section{Invariance of Dimension}
-Here is one last example of an application of Excision.
+\section{Invariance of dimension}
+Here is one last example of an application of excision.
 \begin{definition}
 	Let $X$ be a space and $p \in X$ a point.
 	The $k$t \vocab{local homology group} of $p$ at $X$ is defined as
 	\[ H_k(X, X \setminus \{p\}). \]
 \end{definition}
-Note that for any neighborhood $U$ of $p$, we have by Excision that
+Note that for any neighborhood $U$ of $p$, we have by excision that
 \[ H_k(X, X \setminus \{p\}) \cong H_k(U, U \setminus \{p\}). \]
 Thus this local homology group only depends on the space near $p$.
 
 \begin{theorem}
-	[Invaniance of Dimension, Brouwer 1910]
+	[Invaniance of dimension, Brouwer 1910]
 	Let $U \subseteq \RR^n$ and $V \subseteq \RR^m$ be nonempty open sets.
 	If $U$ and $V$ are homeomorphic, then $m = n$.
 \end{theorem}
 \begin{proof}
-	Consider a point $x \in U$ and its local homology groups. By Excision,
+	Consider a point $x \in U$ and its local homology groups. By excision,
 	\[ H_k(\RR^n, \RR^n \setminus \{x\}) \cong
 		H_k(U, U \setminus \{x\}). \]
 	But since $\RR^n \setminus \{x\}$ is homotopic to $S^{n-1}$,
@@ -328,7 +328,7 @@ Thus this local homology group only depends on the space near $p$.
 	Show that \[ H_n(X) \cong H_n(Y) \] for every integer $n$.
 \end{problem}
 
-\begin{problem}[Hatcher \S2.1 Exercise 18]
+\begin{problem}[Hatcher \S2.1 exercise 18]
 	Consider $\QQ \subset \RR$.
 	Compute $\wt H_1(\RR, \QQ)$.
 	\begin{hint}

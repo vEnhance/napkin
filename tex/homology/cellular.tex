@@ -1,4 +1,4 @@
-\chapter{Bonus: Cellular Homology}
+\chapter{Bonus: Cellular homology}
 We now introduce cellular homology, which essentially lets us compute
 the homology groups of any CW complex we like.
 
@@ -32,7 +32,7 @@ anytime $\deg f = \deg g$, we have that $f$ and $g$ are homotopic.
 
 One nice application of this:
 \begin{theorem}
-	[Hairy Ball Theorem]
+	[Hairy ball theorem]
 	If $n > 0$ is even, then $S^n$ doesn't have a continuous field
 	of nonzero tangent vectors.
 \end{theorem}
@@ -67,10 +67,10 @@ For example, when $n=1$ such a vector field is drawn below.
 \end{center}
 
 
-\section{Cellular Chain Complex}
+\section{Cellular chain complex}
 Before starting, we state the following lemma.
 \begin{lemma}
-	[CW Homology Groups]
+	[CW homology groups]
 	Let $X$ be a CW complex. Then
 	\begin{align*}
 		H_k(X^n, X^{n-1}) &\cong
@@ -171,7 +171,7 @@ In other words, the $H_k(X^k, X^{k-1})$ are especially nice ``concrete'' free gr
 that one can actually work with.
 
 The other reason we care is that in fact:
-\begin{theorem}[Cellular Chain Complex Gives $H_n(X)$]
+\begin{theorem}[Cellular chain complex gives $H_n(X)$]
 	\label{thm:cellular_chase}
 	The $k$th homology group of the cellular chain complex
 	is isomorphic to $H_k(X)$.
@@ -190,7 +190,7 @@ depends on the choice of CW complex, while we actually
 want $\chi(X)$ to only depend on the space $X$ itself
 (and not how it was built). In light of this, we prove that:
 \begin{theorem}
-	[Euler Characteristic via Betti Numbers]
+	[Euler characteristic via Betti numbers]
 	For any finite CW complex $X$ we have
 	\[ \chi(X) = \sum_n (-1)^n \rank H_n(X). \]
 \end{theorem}
@@ -224,7 +224,7 @@ we are happy because in the (frequent) case that $X$ is a CW complex,
 \end{proof}
 
 \begin{example}
-	[Examples of Betti Numbers]
+	[Examples of Betti numbers]
 	\listhack
 	\begin{enumerate}[(a)]
 		\ii The Betti numbers of $S^n$ are $b_0 = b_n = 1$,
@@ -244,16 +244,16 @@ we are happy because in the (frequent) case that $X$ is a CW complex,
 	This is true more generally; see Poincar\'e duality and \Cref{prob:betti}.
 \end{example}
 
-\section{The Cellular Boundary Formula}
+\section{The cellular boundary formula}
 In fact, one can describe explicitly what the maps $d_n$ are.
 Recalling that $H_k(X^k, X^{k-1})$ has a basis the $k$-cells of $X$, we
 can write the following formula.
 \begin{theorem}
-	[Cellular Boundary Formula for $k=1$]
+	[Cellular boundary formula for $k=1$]
 	For $k=1$, \[ d_1 : \Cells_1(X) \to \Cells_0(X) \] is just the boundary map.
 \end{theorem}
 \begin{theorem}
-	[Cellular Boundary for $k > 1$]
+	[Cellular boundary for $k > 1$]
 	Let $k > 1$ be a positive integer.
 	Let $e^k$ be an $k$-cell, and let $\{e_\beta^{k-1}\}_\beta$
 	denote all $(k-1)$-cells of $X$.
@@ -292,7 +292,7 @@ We can use this for example to compute the homology groups of the torus again,
 as well as the Klein bottle and other spaces.
 
 \begin{example}
-	[Cellular Homology of a Torus]
+	[Cellular homology of a torus]
 	Consider the torus built from $e^0$, $e^1_a$, $e^1_b$ and $e^2$ as before,
 	where $e^2$ is attached via the word $aba\inv b\inv$.
 	For example, $X^1$ is
@@ -333,7 +333,7 @@ as well as the Klein bottle and other spaces.
 	So the homology groups are $\ZZ$, $\ZZ^{\oplus 2}$, $\ZZ$.
 \end{example}
 \begin{example}
-	[Cellular Homology of the Klein Bottle]
+	[Cellular homology of the Klein bottle]
 	Let $X$ be a Klein bottle.
 	Consider cells $e^0$, $e^1_a$, $e^1_b$ and $e^2$ as before,
 	but this time $e^2$ is attached via the word $abab\inv$.
@@ -377,7 +377,7 @@ as well as the Klein bottle and other spaces.
 	\end{hint}
 \end{problem}
 
-\begin{problem}[Moore Spaces]
+\begin{problem}[Moore spaces]
 	\gim
 	Let $G_1$, $G_2$, \dots, $G_N$ be a sequence of
 	finitely generated abelian groups.
@@ -437,4 +437,3 @@ as well as the Klein bottle and other spaces.
 		on whether $k$ is even or odd.
 	\end{hint}
 \end{dproblem}
-

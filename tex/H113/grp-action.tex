@@ -1,4 +1,4 @@
-\chapter{Group Actions Overkill AIME problems}
+\chapter{Group actions overkill AIME problems}
 Consider the following problem, from the 1996 AIME.
 
 \begin{quote}
@@ -12,7 +12,7 @@ Intuitively we're just saying that two configurations are the same if they can b
 
 We can make all of this precise using the idea of a group action.
 
-\section{Definition of a Group Action}
+\section{Definition of a group action}
 \prototype{The AIME problem.}
 
 \begin{definition}
@@ -28,7 +28,7 @@ We can make all of this precise using the idea of a group action.
 \end{definition}
 
 Here are some more examples of group actions.
-\begin{example}[Examples of Group Actions]
+\begin{example}[Examples of group actions]
 	Let $G=(G,\star)$ be a group.
 	Here are some examples of group actions.
 	\begin{enumerate}[(a)]
@@ -51,7 +51,7 @@ Here are some more examples of group actions.
 
 
 
-\section{Stabilizers and Orbits}
+\section{Stabilizers and orbits}
 \prototype{Again the AIME problem.}
 
 Given a group action $G$ on $X$,
@@ -110,7 +110,7 @@ It turns out that a very closely related concept is the following.
 \end{ques}
 
 Once we realize the stabilizer is a group, this leads us to what I privately call the ``fundamental theorem of how big an orbit is''.
-\begin{theorem}[Orbit-Stabilizer Theorem]
+\begin{theorem}[Orbit-stabilizer theorem]
 	Let $\OO$ be an orbit, and pick any $x \in \OO$.
 	Let $S = \Stab_G(x)$ be a subgroup of $G$.
 	There is a natural bijection between $\OO$ and left cosets.
@@ -145,10 +145,10 @@ Once we realize the stabilizer is a group, this leads us to what I privately cal
 	each of size $\left\lvert S \right\rvert$, we obtain the second result.
 \end{proof}
 
-\section{Burnside's Lemma}
+\section{Burnside's lemma}
 Now for the crux of this chapter: a way to count the number of orbits.
 \begin{theorem}
-	[The Lemma That Is Not Burnside's]
+	[The lemma that is not burnside's]
 	Let $G$ act on a set $X$.
 	The number of orbits of the action is equal to
 	\[ \frac{1}{\left\lvert G \right\rvert}
@@ -165,7 +165,8 @@ Consult \cite{ref:aops_burnside}
 for some more examples of ``hands-on'' applications.
 Here is one:
 \begin{example}
-	[AIME 1996] Two of the squares of a $7 \times 7$ checkerboard are painted yellow, and the rest are painted green. Two color schemes are equivalent if one can be obtained from the other by applying a rotation in the plane of the board. How many inequivalent color schemes are possible?
+	[AIME 1996]
+	Two of the squares of a $7 \times 7$ checkerboard are painted yellow, and the rest are painted green. Two color schemes are equivalent if one can be obtained from the other by applying a rotation in the plane of the board. How many inequivalent color schemes are possible?
 
 	We know that $G = \Zc4$ acts on the set $X$ of $\binom{49}{2}$ possible coloring schemes.
 	Now we can compute $\opname{FixPt} g$ explicitly for each $g \in \Zc4$.
@@ -187,7 +188,7 @@ Here is one:
 \end{exercise}
 % The group in question is $\Zc7$; the answer should be $20$.
 
-\section{Conjugation of Elements}
+\section{Conjugation of elements}
 \prototype{In $S_n$, conjugacy classes are ``cycle types''.}
 A particularly common type of action is the so-called \vocab{conjugation}.
 We let $G$ act on itself as follows:
@@ -230,7 +231,7 @@ Let me try to convince you this definition is not so unnatural.
 But wait, you say.
 That's just a very particular type of group behaving nicely under conjugation.
 Why does this mean anything more generally?
-All I have to say is: remember Cayley's Theorem!
+All i have to say is: remember Cayley's theorem!
 (This was \Cref{thm:cayley_theorem}.)
 
 In any case, we may now define:
@@ -241,7 +242,7 @@ In any case, we may now define:
 
 Let's see what the conjugacy classes of $S_n$ are, for example.
 \begin{example}
-	[Conjugacy Classes of $S_n$ Correspond to Cycle Types]
+	[Conjugacy classes of $S_n$ correspond to cycle types]
 	Intuitively, the discussion above says that two elements of $S_n$ should
 	be conjugate if they have the same ``shape'', regardless of what the elements are named.
 	The right way to make the notion of ``shape'' rigorous is cycle notation.
@@ -295,7 +296,7 @@ You can check this is indeed a subgroup of $G$.
 \end{figure}
 
 A trivial result that gets used enough that I should explicitly call it out:
-\begin{corollary}[Conjugacy in Abelian Groups is Trivial]
+\begin{corollary}[Conjugacy in abelian groups is trivial]
 	If $G$ is abelian, then the conjugacy classes all have size one.
 \end{corollary}
 
@@ -307,7 +308,7 @@ A trivial result that gets used enough that I should explicitly call it out:
 	(The bracelet can be rotated and reflected in space.)
 	Find the number of possible bracelets.
 	\begin{hint}
-		Just apply Burnside's Lemma directly to get the answer of $198$
+		Just apply Burnside's lemma directly to get the answer of $198$
 		(the relevant group is $D_{14}$).
 	\end{hint}
 \end{problem}
@@ -318,20 +319,20 @@ A trivial result that gets used enough that I should explicitly call it out:
 	\begin{hint}
 		There are multiple ways to see this.
 		One is to just do the algebraic manipulation.
-		Another is to use Cayley's Theorem to embed $G$ into a symmetric group.
+		Another is to use Cayley's theorem to embed $G$ into a symmetric group.
 	\end{hint}
 \end{problem}
 
 \begin{problem}
 	\gim
-	Prove Burnside's Lemma. 
+	Prove Burnside's lemma. 
 	\begin{hint}
 		Double-count pairs $(g,x)$ with $g \cdot x = x$.
 	\end{hint}
 \end{problem}
 
 \begin{problem}
-	[The ``Class Equation'']
+	[The ``class equation'']
 	Let $G$ be a finite group.
 	We define the \vocab{centralizer} $C_G(g) = \{ x \in G \mid xg = gx \}$
 	for each $g \in G$.

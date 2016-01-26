@@ -1,4 +1,4 @@
-\chapter{Find All Groups}
+\chapter{Find all groups}
 The following problem will hopefully never be proposed at the IMO.
 \begin{quote}
 	Let $n$ be a positive integer and let $S = \left\{ 1,\dots,n \right\}$.
@@ -13,11 +13,11 @@ Nonetheless, it's remarkable how much progress we've made on this ``problem''.
 In this chapter I'll try to talk about some things we have accomplished.
 %\todo{this chapter kind of sucks}
 
-\section{Sylow Theorems}
+\section{Sylow theorems}
 Here we present the famous Sylow theorems, some of the most
 general results we have about finite groups.
 
-\begin{theorem}[The Sylow Theorems]
+\begin{theorem}[The sylow theorems]
 	Let $G$ be a group of order $p^n m$,
 	where $\gcd(p,m)=1$ and $p$ is a prime.
 	A \vocab{Sylow $p$-subgroup} is a subgroup of order $p^n$.
@@ -38,7 +38,7 @@ general results we have about finite groups.
 \end{figure}
 
 
-Sylow's Theorem is really huge for classifying groups;
+Sylow's theorem is really huge for classifying groups;
 in particular, the conditions $n_p \equiv 1 \pmod p$ and $n_p \mid m$
 can often pin down the value of $n_p$ to just a few values.
 Here are some results which follow from the Sylow theorems.
@@ -52,12 +52,12 @@ Here are some results which follow from the Sylow theorems.
 	for every $p$ dividing its order.
 	\ii If $p \neq q$, the intersection of a Sylow $p$-subgroup and a Sylow $q$-subgroup is just $\{1_G\}$.
 	That's because the intersection of any two subgroups is also a subgroup,
-	and Lagrange's Theorem tells us that its order must divide both a power of $p$
+	and Lagrange's theorem tells us that its order must divide both a power of $p$
 	and a power of $q$; this can only happen if the subgroup is trivial.
 \end{itemize}
 
 Here's an example of another ``practical'' application.
-\begin{proposition}[Triple Product of Primes]
+\begin{proposition}[Triple product of primes]
 	If $\left\lvert G \right\rvert = pqr$ is the product of distinct primes,
 	then $G$ must have a normal Sylow subgroup.
 \end{proposition}
@@ -75,7 +75,7 @@ Here's an example of another ``practical'' application.
 		Show that $\left\lvert H_1 \cap H_2 \right\rvert = 1$
 		as follows:
 		check that $H_1 \cap H_2$ is a subgroup of both $H_1$ and $H_2$,
-		and then use Lagrange's Theorem.
+		and then use Lagrange's theorem.
 	\end{ques}
 
 	We claim that there are too many elements now.
@@ -87,15 +87,15 @@ Here's an example of another ``practical'' application.
 \end{proof}
 
 
-\section{(Optional) Proving Sylow's Theorem}
-The proof of Sylow's Theorem is somewhat involved,
+\section{(Optional) Proving Sylow's theorem}
+The proof of Sylow's theorem is somewhat involved,
 and in fact many proofs exist.  I'll present one below here.
 It makes extensive use of group actions,
 so I want to recall the following facts first.
 If $G$ acts on $X$, then
 \begin{itemize}
 	\ii The orbits of the action form a partition of $X$.
-	\ii If $\OO$ is any orbit, then the Orbit-Stabilizer Theorem says that
+	\ii if $\OO$ is any orbit, then the orbit-Stabilizer theorem says that
 	\[ \left\lvert \OO \right\rvert = \left\lvert G \right\rvert / \left\lvert \Stab_G(x) \right\rvert \]
 	for any $x \in \OO$.
 	\ii In particular: suppose in the above that $G$ is a group of order $p^t$.
@@ -139,7 +139,7 @@ We are now ready to present the proof.
 What follows is something like the probabilistic method.
 By considering the set $X$ of ALL subsets of size $p^n$ at once, we can exploit the ``deep number theoretic fact'' that 
 \[ \left\lvert X \right\rvert = \binom{p^n m}{p^n} \not\equiv 0 \pmod p. \]
-(It's not actually deep: use Lucas' Theorem.)
+(It's not actually deep: use Lucas' theorem.)
 
 Here is the proof.
 \begin{itemize}
@@ -147,7 +147,7 @@ Here is the proof.
 	\ii Take an orbit $\OO$ with size not divisible by $p$.
 	(This is possible because of our deep number theoretic fact.
 	Since $\left\lvert X \right\rvert$ is nonzero mod $p$ and the orbits partition $X$, the claimed orbit must exist. )
-	\ii Let $S \in \OO$, $H = \Stab_G(S)$. Then $p^n$ divides $\left\lvert H \right\rvert$, by the Orbit-Stabilizer Theorem.
+	\ii let $S \in \OO$, $H = \Stab_G(S)$. then $p^n$ divides $\left\lvert H \right\rvert$, by the orbit-Stabilizer theorem.
 	\ii Consider a second action: let $H$ act on $S$ by 
 	$h \cdot s \defeq hs$ (we know $hs \in S$ since $H = \Stab_G(S)$).
 	\ii
@@ -202,7 +202,7 @@ Step 2 says this action has only one orbit, so the Orbit-Stabilizer theorem
 implies $n_p$ divides $\left\lvert G \right\rvert$.
 
 
-\section{(Optional) Simple Groups and Jordan-H\"older}
+\section{(Optional) simple groups and Jordan-H\"older}
 \prototype{Decomposition of $\Zc{12}$ is $1 \normalin \Zc 2 \normalin \Zc 4 \normalin \Zc{12}$.}
 % Fortunately, there is at least a way to ``break down'' $G$.
 Just like every integer breaks down as the product of primes,
@@ -244,7 +244,7 @@ Then it turns out that the following theorem \emph{is} true.
 \end{theorem}
 
 \begin{example}
-	[Fundamental Theorem of Arithmetic when $n=12$]
+	[Fundamental theorem of arithmetic when $n=12$]
 	Let's consider the group $\Zc{12}$.
 	It's not hard to check that the possible composition series are
 	\begin{align*}
@@ -299,10 +299,10 @@ Math is weird.
 
 
 \begin{sproblem}
-	[Cauchy's Theorem]
+	[Cauchy's theorem]
 	Let $G$ be a group and let $p$ be a prime dividing $\left\lvert G \right\rvert$.
 	Prove\footnote{
-		Cauchy's Theorem can be proved without the Sylow Theorems,
+		Cauchy's theorem can be proved without the Sylow theorems,
 		and in fact can often be used to give alternate proofs of Sylow.}
 	that $G$ has an element of order $p$.
 	\label{thm:cauchy_group}
@@ -370,7 +370,7 @@ Math is weird.
 		This breaks $G$ into a bunch of orbits $\OO_0 = \{1_G\}$, $\OO_1$, $\OO_2$, \dots,
 		and since $1_G$ is the only fixed point by definition, all other orbits
 		have size greater than $1$.
-		The Orbit-Stabilizer Theorem says that each orbit now has size dividing $p^n$,
+		The Orbit-stabilizer theorem says that each orbit now has size dividing $p^n$,
 		so they must all have size zero mod $p$.
 
 		But then summing across all orbits (which partition $G$),
@@ -437,4 +437,3 @@ Math is weird.
 %Unfortunately, even this isn't enough to capture all possible values of $G$.
 %This only works if there's a natural way that you can view $K$ as a subgroup of $G$, since this construction also causes $K$ to appear as a subgroup of $G$.
 %Alas, this is not always possible.
-

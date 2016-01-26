@@ -1,4 +1,4 @@
-\chapter{The Long Exact Sequence}
+\chapter{The long exact sequence}
 In this chapter we introduce the key fact about chain complexes that will allow us to compute
 the homology groups of any space: the so-called ``long exact sequence''.
 
@@ -14,7 +14,7 @@ In particular,
 (On that note: what do you call a chain complex whose homology groups are all trivial?)
 A short exact sequence is one of the form $0 \to A \injto B \surjto C \to 0$.
 
-\section{Short Exact Sequences and Four Examples}
+\section{Short exact sequences and four examples}
 \prototype{Relative sequence and Mayer-Vietoris sequence.}
 Let $\AA = \catname{AbGrp}$.
 Recall that we defined a morphism of chain complexes in $\AA$ already.
@@ -36,7 +36,7 @@ It is said to be \vocab{short exact} if \emph{each row} of the diagram below is 
 \end{definition}
 
 \begin{example}
-	[Mayer-Vietoris Short Exact Sequence and its Augmentation]
+	[Mayer-Vietoris short exact sequence and its augmentation]
 	\label{ex:mayer_short_exact}
 	Let $X = U \cup V$ be an open cover.
 	For each $n$ consider
@@ -53,7 +53,7 @@ It is said to be \vocab{short exact} if \emph{each row} of the diagram below is 
 	\surjto C_\bullet(U + V) \to 0. \]
 \end{example}
 \begin{example}
-	[Augemented Mayer-Vietoris Sequence]
+	[Augemented Mayer-Vietoris sequence]
 	We can \emph{augment} each of the chain complexes in the Mayer-Vietoris
 	sequence as well, by appending the following to the bottom of the diagram.
 	\begin{diagram}
@@ -69,7 +69,7 @@ It is said to be \vocab{short exact} if \emph{each row} of the diagram below is 
 \end{example}
 
 \begin{example}
-	[Relative Chain Short Exact Sequence]
+	[Relative chain short exact sequence]
 	\label{ex:rel_short_exact}
 	Since $C_n(X,A) \defeq C_n(X) / C_n(A)$, we have a short exact sequence
 	\[ 0 \to C_\bullet(A) \injto C_\bullet(X) \surjto C_\bullet(X,A) \to 0 \]
@@ -87,7 +87,7 @@ It is said to be \vocab{short exact} if \emph{each row} of the diagram below is 
 	\end{diagram}
 \end{example}
 
-\section{The Long Exact Sequence of Homology Groups}
+\section{The long exact sequence of homology groups}
 Consider a short exact sequence $0 \to A_\bullet \taking f B_\bullet \taking g C_\bullet \to 0$.
 Now, we know that we get induced maps of homology groups, i.e.\ we have
 \begin{diagram}
@@ -100,7 +100,7 @@ Now, we know that we get induced maps of homology groups, i.e.\ we have
 But the theorem is that we can string these all together,
 taking each $H_{n+1}(C_\bullet)$ to $H_n(A_\bullet)$.
 
-\begin{theorem}[Short Exact $\implies$ Long Exact]
+\begin{theorem}[Short exact $\implies$ long exact]
 	\label{thm:long_exact}
 	Let $0 \to A_\bullet \taking f B_\bullet \taking g C_\bullet \to 0$ 
 	be \emph{any} short exact sequence of chain complexes we like.
@@ -119,7 +119,7 @@ taking each $H_{n+1}(C_\bullet)$ to $H_n(A_\bullet)$.
 \end{theorem}
 \begin{proof}
 	A very long diagram chase, valid over any abelian category.
-	(Alternatively, it's actually possible to use the Snake Lemma twice.)
+	(Alternatively, it's actually possible to use the snake lemma twice.)
 \end{proof}
 
 \begin{remark}
@@ -161,7 +161,7 @@ The final word is that:
 	long exact sequences of homology groups.
 \end{moral}
 In particular, let us take the four examples given earlier.
-\begin{example}[Mayer-Vietoris Long Exact Sequence, Provisional Version]
+\begin{example}[Mayer-Vietoris long exact sequence, provisional version]
 	The Mayer-Vietoris ones give, for $X = U \cup V$ an open cover,
 	\[ \dots \to H_n(U \cap V) \to H_n(U) \oplus H_n(V) \to H_n(U+V) \to H_{n-1}(U \cap V) \to \dots. \]
 	and its reduced version
@@ -171,7 +171,7 @@ In particular, let us take the four examples given earlier.
 This version is ``provisional'' because in the next section
 we will replace $H_n(U+V)$ and $\wt H_n(U+V)$ with something better.
 As for the relative homology sequences, we have:
-\begin{theorem}[Long Exact Sequence for Relative Homology]
+\begin{theorem}[Long exact sequence for relative homology]
 	\label{thm:long_exact_rel}
 	Let $X$ be a space, and let $A \subset X$ be a subspace.
 	There are long exact sequences
@@ -183,12 +183,12 @@ The exactness of these sequences will give \textbf{tons of information}
 about $H_n(X)$ if only we knew something about what $H_n(U+V)$
 or $H_n(X,A)$ looked like.  This is the purpose of the next chapter.
 
-\section{The Mayer-Vietoris Sequence}
+\section{The Mayer-Vietoris sequence}
 \prototype{The computation of $H_n(S^m)$ by splitting $S^m$ into two hemispheres.}
 
 Now that we have done so much algebra, we need to invoke some geometry.
 There are two major geometric results in the Napkin.
-One is the Excision Theorem, which we discuss next chapter.
+One is the excision theorem, which we discuss next chapter.
 The other we present here, which will let us take advantage of the
 Mayer-Vietoris sequence.
 The proofs are somewhat involved and are thus omitted;
@@ -196,7 +196,7 @@ see \cite{ref:hatcher} for details.
 
 The first theorem is that the notation $H_n(U+V)$ that we have kept until now
 is redundant, and can be replaced with just $H_n(X)$:
-\begin{theorem}[Open Cover Homology Theorem]
+\begin{theorem}[Open cover homology theorem]
 	\label{thm:open_cover_homology}
 	Consider the inclusion $\iota : C_\bullet(U+V) \injto C_\bullet(X)$.
 	Then $\iota$ induces an isomorphism
@@ -213,7 +213,7 @@ is redundant, and can be replaced with just $H_n(X)$:
 \end{remark}
 So, \Cref{ex:mayer_short_exact} together with the above theorem implies,
 after replacing all the $H_n(U+V)$'s with $H_n(X)$'s:
-\begin{theorem}[Mayer-Vietoris Long Exact Sequence]
+\begin{theorem}[Mayer-Vietoris long exact sequence]
 	If $X = U \cup V$ is an open cover, then we have long exact sequences
 	\[ \dots \to H_n(U \cap V) \to H_n(U) \oplus H_n(V)
 		\to H_n(X) \to H_{n-1}(U \cap V) \to \dots. \]
@@ -223,7 +223,7 @@ after replacing all the $H_n(U+V)$'s with $H_n(X)$'s:
 \end{theorem}
 
 At long last, we can compute the homology groups of the spheres.
-\begin{theorem}[The Homology Groups of $S^m$]
+\begin{theorem}[The homology groups of $S^m$]
 	\label{thm:reduced_homology_sphere}
 	For integers $m$ and $n$,
 	\[ \wt H_n(S^m) \cong
@@ -321,7 +321,7 @@ Thus, the key idea in Mayer-Vietoris is that
 \end{moral}
 
 Here are some more examples.
-\begin{proposition}[The Homology Groups of the Figure Eight]
+\begin{proposition}[The homology groups of the figure eight]
 	Let $X = S^1 \wedge S^1$ be the figure eight.
 	Then
 	\[
@@ -372,7 +372,7 @@ This is not always the case, and in the next example we will have to
 actually understand the maps in question to complete the solution.
 
 \begin{proposition}
-	[Homology Groups of the Torus]
+	[Homology groups of the torus]
 	Let $X = S^1 \times S^1$ be the torus.
 	Then
 	\[
@@ -509,7 +509,7 @@ and explicitly compute the generators of $\wt H_1(S^1 \times S^1)$,
 but to avoid getting bogged down in detail I won't do so here.
 
 Finally, to fully justify the last step, we present the following lemma.
-\begin{lemma}[Splitting Lemma]
+\begin{lemma}[Splitting lemma]
 	\label{lem:split_exact}
 	For a short exact sequence $0 \to A \taking f B \taking g C \to 0$
 	of abelian groups, the following are equivalent:
@@ -592,7 +592,7 @@ we were done.
 \end{sproblem}
 
 \begin{sproblem}
-	[Triple Long Exact Sequence]
+	[Triple long exact sequence]
 	\label{prob:triple_long_exact}
 	Let $B \subset A \subset X$ be subspaces.
 	Show that there is a long exact sequence
@@ -610,7 +610,7 @@ we were done.
 	\end{sol}
 \end{sproblem}
 
-\begin{sproblem}[Klein Bottle]
+\begin{sproblem}[Klein bottle]
 	\gim
 	Show that the reduced homology groups of the Klein bottle $K$ are given by
 	\[

@@ -1,16 +1,16 @@
-\chapter{What is a Group?}
+\chapter{What is a group?}
 A group is one of the most basic structures in higher mathematics.
 In this chapter I will tell you only the bare minimum:
 what a group is, and when two groups are the same.
 
-\section{Definition and Examples of Groups}
+\section{Definition and examples of groups}
 \prototype{The additive group of integers $(\ZZ,+)$ and the cyclic group $\Zc m$.
 Just don't let yourself forget that most groups are non-commutative.}
 
 A group consists of two pieces of data: a set $G$, and an associative binary operation $\star$ with some properties.
 Before I write down the definition of a group, let me give two examples.
 
-\begin{example}[Additive Integers]
+\begin{example}[Additive integers]
 	The pair $(\ZZ, +)$ is a group:
 	$\ZZ = \left\{ \dots,-2,-1,0,1,2,\dots \right\}$ is the set
 	and the associative operation is \emph{addition}.
@@ -22,7 +22,7 @@ Before I write down the definition of a group, let me give two examples.
 	\end{itemize}
 	We call this group $\ZZ$.
 \end{example}
-\begin{example}[Nonzero Rationals]
+\begin{example}[Nonzero rationals]
 	Let $\QQ^\times$ be the set of \emph{nonzero rational numbers}.
 	The pair $(\QQ^\times, \cdot)$ is a group:
 	the set is $\QQ^\times$
@@ -60,7 +60,7 @@ From this I bet you can already guess what the definition of a group is.
 
 Now that I've made clear what the criteria of a group are, let us write down some non-examples of groups.
 
-\begin{example}[Non-Examples of Groups]
+\begin{example}[Non-Examples of groups]
 	\listhack
 	\begin{itemize}
 		\ii The pair $(\QQ, \cdot)$ is NOT a group.
@@ -90,7 +90,7 @@ Now that I've made clear what the criteria of a group are, let us write down som
 Let's resume writing down examples of groups.
 
 \begin{example}
-	[General Linear Group]
+	[General linear group]
 	Let $n$ be a positive integer.
 	Then $\GL_n(\RR)$ is defined as the set of $n \times n$ real matrices which have nonzero determinant.
 	It turns out that with this condition, every matrix does indeed have an inverse, so $(\GL_n(\RR), \times)$ is a group, called the
@@ -98,7 +98,7 @@ Let's resume writing down examples of groups.
 	(The fact that $\GL_n(\RR)$ is closed under $\times$ follows from the linear algebra fact that $\det (AB) = \det A \det B$.)
 \end{example}
 \begin{example}
-	[Special Linear Group]
+	[Special linear group]
 	Following the example above, let $\SL_n(\RR)$ denote 
 	the set of $n \times n$ matrices whose determinant is actually $1$.
 	Again, for linear algebra reasons
@@ -106,7 +106,7 @@ Let's resume writing down examples of groups.
 \end{example}
 
 \begin{example}
-	[Complex Unit Circle]
+	[Complex unit circle]
 	Let $S^1$ denote the set of complex numbers $z$ with absolute value one; that is
 	\[ S^1 \defeq \left\{ z \in \CC \mid \left\lvert z \right\rvert = 1 \right\}. \]
 	Then $(S^1, \times)$ is a group because
@@ -143,7 +143,7 @@ Let's resume writing down examples of groups.
 The next two examples are fairly important ones:
 
 \begin{example}
-	[Symmetric Groups]
+	[Symmetric groups]
 	Let $S_n$ be the set of permutations of $\left\{ 1,\dots,n \right\}$.
 	By viewing these permutations as functions from $\left\{ 1,\dots,n \right\}$ to itself, we can consider \emph{compositions} of permutations.
 	Then the pair $(S_n, \circ)$ (here $\circ$ is function composition)
@@ -156,7 +156,7 @@ The next two examples are fairly important ones:
 \end{example}
 
 \begin{example}
-	[Dihedral Group]
+	[Dihedral group]
 	The \vocab{dihedral group of order $2n$}, denoted $D_{2n}$,
 	is the group of symmetries of a regular $n$-gon $A_1A_2 \dots A_n$,
 	which includes rotations and reflections.
@@ -209,7 +209,7 @@ We say that a group is \vocab{abelian} if the operation is commutative and \voca
 \end{definition}
 
 \begin{example}
-	[Products of Groups]
+	[Products of groups]
 	Let $(G, \star)$ and $(H, \ast)$ be groups.
 	We can define a \vocab{product group} $(G \times H, {\cdot})$, as follows.
 	The elements of the group will be ordered pairs $(g,h) \in G \times H$.
@@ -224,7 +224,7 @@ We say that a group is \vocab{abelian} if the operation is commutative and \voca
 \end{ques}
 
 \begin{example}
-	[Trivial Group]
+	[Trivial group]
 	The \vocab{trivial group}, often denoted $0$ or $1$,
 	is the group with only an identity element.
 	I will use the notation $\{1\}$.
@@ -242,7 +242,7 @@ We say that a group is \vocab{abelian} if the operation is commutative and \voca
 \end{exercise}
 
 
-\section{Properties of Groups}
+\section{Properties of groups}
 \prototype{$\Zm p$ is possibly best.}
 \begin{abuse}
 	From now on, we'll often refer to a group $(G, \star)$ by just $G$.
@@ -287,7 +287,7 @@ It is a law in Guam and 37 other states that I now state the following propositi
 \end{proof}
 
 Now we state a slightly more useful proposition.
-\begin{proposition}[Inverse of Products]
+\begin{proposition}[Inverse of products]
 	Let $G$ be a group, and $a,b \in G$.
 	Then $(ab)\inv = b\inv a\inv$.
 \end{proposition}
@@ -362,7 +362,7 @@ Now, let's do the general definition.
 Note that in this definition, the left-hand side $\phi(g_1 \star g_2)$ uses the operation of $G$ while the right-hand side uses the operation of $H$.
 
 \begin{example}
-	[Examples of Isomorphims]
+	[Examples of isomorphims]
 	Let $G$ and $H$ be groups.  We have the following isomorphisms.
 	\begin{enumerate}[(a)]
 		\ii $\ZZ \cong 10 \ZZ$, as above.
@@ -375,7 +375,7 @@ Note that in this definition, the left-hand side $\phi(g_1 \star g_2)$ uses the 
 	\end{enumerate}
 \end{example}
 \begin{example}
-	[Primitive Roots Modulo $7$]
+	[Primitive roots modulo $7$]
 	As a nontrivial example, we claim that $\Zc 6 \cong \Zm 7$.
 	The bijection is
 	\[ \phi(\text{$a$ mod $6$}) = \text{$3^a$ mod $7$}. \]
@@ -383,7 +383,7 @@ Note that in this definition, the left-hand side $\phi(g_1 \star g_2)$ uses the 
 	\begin{itemize}
 		\ii First, we need to check this map actually makes sense:
 		why is it the case that if $a \equiv b \pmod 6$, then $3^a \equiv 3^b \pmod 7$?
-		The reason is that Fermat's Little Theorem guarantees that $3^6 \equiv 1 \pmod 7$.
+		The reason is that Fermat's little theorem guarantees that $3^6 \equiv 1 \pmod 7$.
 		\ii Next, we need to check that this map is a bijection.
 		You can do this explicitly:
 		\[ (3^1, 3^2, 3^3, 3^4, 3^5, 3^6)
@@ -398,7 +398,7 @@ Note that in this definition, the left-hand side $\phi(g_1 \star g_2)$ uses the 
 	\end{itemize}
 \end{example}
 \begin{example}
-	[Primitive Roots] More generally, for any prime $p$,
+	[Primitive roots] more generally, for any prime $p$,
 	there exists an element $g \in \Zm p$ called a \vocab{primitive root} modulo $p$ such that $1, g, g^2, \dots, g^{p-2}$ are all different modulo $p$.
 	One can show by copying the above proof that
 	\[ \Zc {p-1} \cong \Zm p \text{ for all primes $p$}. \]
@@ -414,7 +414,7 @@ Moreover, because we really only care about the structure of groups,
 we'll usually consider two groups to be the same when they are isomorphic.
 So phrases such as ``find all groups'' really means ``find all groups up to isomorphism''.
 
-\section{Orders of Groups, and Lagrange's Theorem}
+\section{Orders of groups, and Lagrange's theorem}
 \prototype{$\Zm p$.}
 
 As is typical in math, we use the word ``order'' for way too many things.
@@ -425,7 +425,7 @@ In groups, there are two notions of order.
 	Note that the order may not be finite, as in $\ZZ$.
 	We say $G$ is a \vocab{finite group} just to mean that $\left\lvert G \right\rvert$ is finite.
 \end{definition}
-\begin{example}[Orders of Groups]
+\begin{example}[Orders of groups]
 	For a prime $p$, $\left\lvert \Zm p \right\rvert = p-1$.
 	In other words, the order of $\Zm p$ is $p-1$.
 	As another example,
@@ -438,7 +438,7 @@ In groups, there are two notions of order.
 	such that $g^n = 1_G$, or $\infty$ if no such $n$ exists.
 	We denote this by $\ord g$.
 \end{definition}
-\begin{example}[Examples of Orders]
+\begin{example}[Examples of orders]
 	The order of $-1$ in $\QQ^\times$ is $2$,
 	while the order of $1$ in $\ZZ$ is infinite.
 \end{example}
@@ -447,7 +447,7 @@ In groups, there are two notions of order.
 	the cyclic group on six elements.
 	(See \Cref{def:cyclic_group} if you've forgotten what $\Zc 6$ means.)
 \end{ques}
-\begin{example}[Primitive Roots]
+\begin{example}[Primitive roots]
 	If you know olympiad number theory, this coincides with the definition of an order of a residue mod $p$.
 	That's why we use the term ``order'' there as well.
 	In particular, a primitive root is precisely an element $g \in \Zm p$
@@ -467,13 +467,13 @@ The proof is just an olympiad-style pigeonhole argument: consider the infinite s
 \end{fact}
 
 What's the last property of $\Zm p$ that you know from olympiad math?
-We have Fermat's Little Theorem: for any $a \in \Zm p$,
+We have Fermat's little theorem: for any $a \in \Zm p$,
 we have $a^{p-1} \equiv 1 \pmod p$.
 This is no coincidence:
 exactly the same thing is true in a more general setting.
 
 \begin{theorem}
-	[Lagrange's Theorem for Orders]
+	[Lagrange's theorem for orders]
 	Let $G$ be any finite group.
 	Then $x^{\left\lvert G \right\rvert} = 1_G$ for any $x \in G$.
 \end{theorem}
@@ -500,7 +500,7 @@ And this definition generalizes in exactly the way you expect.
 \end{remark}
 
 \begin{example}
-	[Examples of Subgroups]
+	[Examples of subgroups]
 	\listhack
 	\begin{enumerate}[(a) ]
 		\ii $2\ZZ$ is a subgroup of $\ZZ$, which is isomorphic to $\ZZ$ itself!
@@ -516,7 +516,7 @@ And this definition generalizes in exactly the way you expect.
 	\end{enumerate}
 \end{example}
 \begin{example}
-	[Stupid Examples of Subgroups]
+	[Stupid examples of subgroups]
 	For any group $G$, the trivial group $\{1_G\}$
 	and the entire group $G$ are subgroups of $G$.
 \end{example}
@@ -530,7 +530,7 @@ And this definition generalizes in exactly the way you expect.
 %You can check the center is indeed a group (some boring details\dots).
 
 Next is an especially important example that we'll talk about more in later chapters.
-\begin{example}[Subgroup Generated by an Element]
+\begin{example}[Subgroup generated by an element]
 	Let $x$ be an element of a group $G$.
 	Consider the set
 	\[ \left<x\right> = \left\{ \dots, x^{-2}, x^{-1}, 1, x, x^2, \dots \right\}. \]
@@ -542,7 +542,7 @@ Next is an especially important example that we'll talk about more in later chap
 \end{exercise}
 
 Finally, we present some non-examples of subgroups.
-\begin{example}[Non-Examples of Subgroups]
+\begin{example}[Non-Examples of subgroups]
 	Consider the group $\ZZ = (\ZZ, +)$.
 	\begin{enumerate}[(a)]
 		\ii The set $\left\{ 0,1,2,\dots \right\}$ is
@@ -556,7 +556,7 @@ Finally, we present some non-examples of subgroups.
 	\end{enumerate}
 \end{example}
 
-\section{Groups of Small Orders}
+\section{Groups of small orders}
 Just for fun, here is a list of all groups of order less than or equal to ten
 (up to isomorphism, of course).
 \begin{enumerate}
@@ -576,7 +576,7 @@ Just for fun, here is a list of all groups of order less than or equal to ten
 		This is the first non-abelian group.
 	\end{itemize}
 	Some of you might wonder where $\Zc 2 \times \Zc 3$ is.
-	All I have to say is: Chinese Remainder Theorem!
+	All I have to say is: Chinese remainder theorem!
 
 	You might wonder where $D_6$ is in this list.
 	It's actually isomorphic to $S_3$.
@@ -598,7 +598,7 @@ Just for fun, here is a list of all groups of order less than or equal to ten
 	\end{itemize}
 	\ii The groups of order $10$ are
 	\begin{itemize}
-		\ii $\Zc{10} \cong \Zc5 \times \Zc2$ (again Chinese Remainder Theorem).
+		\ii $\Zc{10} \cong \Zc5 \times \Zc2$ (again Chinese remainder theorem).
 		\ii $D_{10}$, the dihedral group with $10$ elements.
 		This group is non-abelian.
 	\end{itemize}
@@ -622,10 +622,10 @@ Just for fun, here is a list of all groups of order less than or equal to ten
 \end{problem}
 
 \begin{problem}
-	Prove Lagrange's Theorem for Orders in the special case
+	Prove Lagrange's theorem for orders in the special case
 	that $G$ is a finite abelian group.
 	\begin{hint}
-		Copy the proof of Fermat's Little Theorem, using
+		Copy the proof of Fermat's little theorem, using
 		\Cref{lem:group_mult_biject}.)
 	\end{hint}
 	\begin{sol}
@@ -660,19 +660,19 @@ Just for fun, here is a list of all groups of order less than or equal to ten
 	\end{hint}
 	\begin{sol}
 		Let $G$ be a group of order $p$, and $1 \neq g \in G$.
-		Look at the group $H$ generated by $g$ and use Lagrange's Theorem.
+		Look at the group $H$ generated by $g$ and use Lagrange's theorem.
 	\end{sol}
 \end{sproblem}
 
 \begin{dproblem}
-	[Cayley's Theorem]
+	[Cayley's theorem]
 	\gim
 	Let $G$ be a finite group.\footnote{
 		In other words, permutation groups can be arbitrarily weird.
 		I remember being highly unsettled by this theorem when I first heard of it.}
 	Show that there exists a positive integer $n$ such that
 	\begin{enumerate}[(a)]
-		\ii (Cayley's Theorem) $G$ is isomorphic to some subgroup of the symmetric group $S_n$.
+		\ii (Cayley's theorem) $G$ is isomorphic to some subgroup of the symmetric group $S_n$.
 		\ii (Representation Theory) $G$ is isomorphic to some subgroup of
 		of the general linear group $\GL_n(\RR)$.
 		(This is the group of invertible $n \times n$ matrices.)

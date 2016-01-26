@@ -1,4 +1,4 @@
-\chapter{Singular Homology}
+\chapter{Singular homology}
 Now that we've defined $\pi_1(X)$,
 we turn our attention to a second way of capturing the same idea, $H_1(X)$.
 We'll then define $H_n(X)$ for $n \ge 2$.
@@ -7,7 +7,7 @@ they are much easier to compute in practice.
 The downside is that their definition will require quite a bit of setup,
 and the ``algebraic'' part of ``algebraic topology'' will become a lot more technical.
 
-\section{Simplices and Boundaries}
+\section{Simplices and boundaries}
 \prototype{$\partial[v_0, v_1, v_2] = [v_0,v_1]-[v_0,v_2]+[v_1,v_2]$.}
 First things first:
 \begin{definition}
@@ -20,7 +20,7 @@ First things first:
 	Given a topological space $X$, a \vocab{singular $n$-simplex} is a map $\sigma : \Delta^n \to X$.
 \end{definition}
 \begin{example}
-	[Singular Simplices]
+	[Singular simplices]
 	\listhack
 	\label{ex:simplex}
 	\begin{enumerate}[(a)]
@@ -69,7 +69,7 @@ First things first:
 	this will be useful in just a moment.
 \end{example}
 
-Now we're going to do something much like when we were talking about Stokes' Theorem:
+Now we're going to do something much like when we were talking about stokes' theorem:
 we'll put a boundary $\partial$ operator on the singular $n$-simplices.
 This will give us a formal linear sums of $n$-simplices $\sum_k a_k \sigma_k$,
 which we call an \vocab{$n$-chain}.
@@ -86,7 +86,7 @@ In that case,
 	By convention, a $0$-chain has empty boundary.
 \end{definition}
 \begin{example}
-	[Boundary Operator]
+	[Boundary operator]
 	Consider the chains depicted in \Cref{ex:simplex}. Then
 	\begin{enumerate}[(a)]
 		\ii $\partial\sigma^0 = 0$.
@@ -122,7 +122,7 @@ The fact that $\partial^2 = 0$ is of course not a coincidence.
 	The de Rham cohomology, discussed much later, will make the relation explicit.
 \end{remark}
 
-\section{The Singular Homology Groups}
+\section{The singular homology groups}
 \prototype{Probably $H_n(S^m)$, especially the case $m = n =1$.}
 Let $X$ be a topological space, and let $C_n(X)$ be the free abelian group
 of $n$-chains of $X$ that we defined earlier.
@@ -191,7 +191,7 @@ The key point is that we can now define:
 	defined as \[ H_n(X) \defeq Z_n(X) / B_n(X). \]
 \end{definition}
 \begin{example}
-	[The Zeroth Homology Group]
+	[The zeroth homology group]
 	Let's compute $H_0(X)$ for a topological space $X$.
 	We take $C_0(X)$, which is just formal linear sums of points of $X$.
 
@@ -207,7 +207,7 @@ The key point is that we can now define:
 	\[ \text{$X$ path connected} \implies H_0(X) \cong \ZZ. \]
 \end{example}
 More generally, we have
-\begin{proposition}[Homology Groups Split Into Path-Connected Components]
+\begin{proposition}[Homology groups split into path-connected components]
 	If $X = \bigcup_\alpha X_\alpha$ is a decomposition into path-connected components,
 	then we have \[ H_n(X) \cong \bigoplus_\alpha H_n(X_\alpha). \]
 	In particular, if $X$ has $r$ path-connected components, then $H_0(X) \cong \ZZ^{\oplus r}$.
@@ -218,7 +218,7 @@ so the notation $G \oplus H$ is customary in place of $G \times H$
 when $G$, $H$ are abelian.)
 
 Now let's investigate the first homology group.
-\begin{theorem}[Hurewicz Theorem]
+\begin{theorem}[Hurewicz theorem]
 	Let $X$ be path-connected.
 	Then $H_1(X)$ is the \emph{abelianization} of $\pi_1(X, x_0)$.
 \end{theorem}
@@ -231,7 +231,7 @@ are exactly the nulhomotopic loops in $\pi_1(X, x_0)$.
 The difference is that $H_1(X)$ allows loops to commute,
 whereas $\pi_1(X, x_0)$ does not.
 \begin{example}
-	[The First Homology Group of the Annulus]
+	[The first homology group of the annulus]
 	To give a concrete example, consider the annulus $X$ above.
 	We found a chain $c$ that wrapped once around the hole of $X$.
 	The point is that in fact,
@@ -241,7 +241,7 @@ whereas $\pi_1(X, x_0)$ does not.
 	This captures the fact that $X$ is really just $S^1$.
 \end{example}
 \begin{example}
-	[An Explicit Boundary in $S^1$]
+	[An explicit boundary in $S^1$]
 	\label{ex:S1_c_minus_d}
 	In $X = S^1$, let $a$ be the uppermost point and $b$ the lowermost point.
 	Let $c$ be the simplex from $a$ to $b$ along the left half of the circle,
@@ -286,7 +286,7 @@ whereas $\pi_1(X, x_0)$ does not.
 \end{example}
 
 \begin{example}
-	[The First Homology Group of the Figure Eight]
+	[The first homology group of the figure eight]
 	Consider $X_8$ (see \Cref{ex:figure8}).
 	Both homology and homotopy see the two loops in $X_8$, call them $a$ and $b$.
 	The difference is that in $\pi_1(X_8, x_0)$,
@@ -298,7 +298,7 @@ whereas $\pi_1(X, x_0)$ does not.
 \end{example}
 
 \begin{example}
-	[The Homology Groups of $S^2$]
+	[The homology groups of $S^2$]
 	Consider $S^2$, the two-dimensional sphere.
 	Since it's path connected, we have $H_0(S^2) = \ZZ$.
 	We also have $H_1(S^2) = 0$, for the same reason that $\pi_1(S^2)$ is trivial as well.
@@ -317,7 +317,7 @@ Actually, more generally it turns out that we will have
 \]
 
 \begin{example}
-	[Contractible Spaces]
+	[Contractible spaces]
 	Given any contractible space $X$, it turns out that
 	\[
 		H_n(X)
@@ -335,7 +335,7 @@ Actually, more generally it turns out that we will have
 \end{example}
 
 \begin{example}
-	[Homology Groups of the Torus]
+	[Homology groups of the torus]
 	While we won't be able to prove it for a while, it turns out that
 	\[
 		H_n(S^1 \times S^1)
@@ -357,7 +357,7 @@ before we're really able to compute any homology groups.
 In what follows, it will often be helpful to keep track of which things are purely algebraic
 (work for any chain complex), and which parts are actually stating something which is geometrically true.
 
-\section{The Homology Functor and Chain Complexes}
+\section{The homology functor and chain complexes}
 As I mentioned before, the homology groups are homotopy invariant.
 This will be a similar song and dance as the work we did to
 create a functor $\pi_1 : \catname{hTop}_\ast \to \catname{Grp}$.
@@ -376,7 +376,7 @@ we'll instead start with the category theory right from the start just to save s
 You'll notice this is the same as $\catname{hTop}_\ast$,
 except without the basepoints.
 
-\begin{theorem}[Homology is a Functor $\catname{hTop} \to \catname{Grp}$]
+\begin{theorem}[Homology is a functor $\catname{hTop} \to \catname{Grp}$]
 	\label{thm:Hn_functor}
 	For any particular $n$, $H_n$ is a functor $\catname{hTop} \to \catname{Grp}$.
 	In particular,
@@ -396,7 +396,7 @@ Then we have to show that this map doesn't depend on the choice of homotopy.
 It turns out that this time around, proving this is much more tricky,
 and we will have to go back to the chain complex $C_\bullet(X)$ that we built at the beginning.
 
-\subsection*{Algebra of Chain Complexes}
+\subsection*{Algebra of chain complexes}
 Let's start with the algebra.
 First, I'll define the following abstraction of the complex to any sequence of abelian groups.
 Actually, though, it works in any category (not just $\catname{AbGrp}$).
@@ -492,7 +492,7 @@ Now, the point of this definition is that
 \end{proof}
 
 
-\subsection*{Geometry of Chain Complexes}
+\subsection*{Geometry of chain complexes}
 Now let's fill in the geometric details of the picture above.
 This will follow from the following two lemmas.
 \begin{lemma}[Map of Space $\implies$ Map of Singular Chain Complexes]
@@ -613,12 +613,12 @@ that the above identity holds.
 
 So that gives the chain homotopy from $f$ to $g$, completing the proof of \Cref{thm:Hn_functor}.
 
-\section{More Examples of Chain Complexes}
+\section{More examples of chain complexes}
 We now end this chapter by providing some more examples of chain complexes,
 which we'll use in the next chapter to finally compute topological homology groups.
 
 \begin{example}
-	[Reduced Homology Groups]
+	[Reduced homology groups]
 	Suppose $X$ is a (nonempty) topological space.
 	One can augment the standard singular complex as follows:
 	do the same thing as before, but augment the end by adding a $\ZZ$,
@@ -650,7 +650,7 @@ and thus we won't have to keep fussing with the special $n=0$ case.
 \end{ques}
 
 \begin{example}
-	[Relative Chain Groups]
+	[Relative chain groups]
 	Suppose $X$ is a topological space, and $A \subset X$ a subspace.
 	We can ``mod out'' by $A$ in the following manner: define
 	\[ C_n(X,A) \defeq C_n(X) / C_n(A) \]
@@ -674,10 +674,10 @@ we have $H_1(X) = H_1(\RR^2) = 0$ and $H_1(S^1) = \ZZ$.
 
 Another guess is that $H_n(X,A)$ might just be $\wt H_n(X/A)$.
 This will turn out to be true for most reasonable spaces $X$ and $A$,
-and we will discuss this when we reach the Excision Theorem.
+and we will discuss this when we reach the excision theorem.
 
 \begin{example}
-	[Mayer-Vietoris Sequence]
+	[Mayer-Vietoris sequence]
 	Suppose a space $X$ is covered by two open sets $U$ and $V$.
 	We can define $C_n(U+V)$ as follows:
 	it consists of chains such that each simplex is either entirely contained in $U$,
@@ -707,7 +707,7 @@ Miraculously, it will turn out that $H_n(U+V) \cong H_n(X)$.
 	\end{sol}
 \end{problem}
 \begin{problem}
-	[Brouwer Fixed Point Theorem]
+	[Brouwer fixed point theorem]
 	Use the previous problem to prove that any
 	continuous function $f : D^n \to D^n$ has a fixed point.
 	\begin{hint}

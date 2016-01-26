@@ -1,4 +1,4 @@
-\chapter{Singular Cohomology}
+\chapter{Singular cohomology}
 Here's one way to motivate this chapter.
 The following two statements hold:
 \begin{itemize}
@@ -12,12 +12,12 @@ cannot tell the difference between them.
 
 In this chapter, we'll define a \emph{cohomology group} $H^n(X)$ and $H^n(Y)$.
 In fact, the $H^n$'s are completely determined by the $H_n$'s
-by the so-called \emph{Universal Coefficient Theorem}.
+by the so-called \emph{universal coefficient theorem}.
 However, it turns out that one can take all the cohomology groups and put
 them together to form a \emph{cohomology ring} $H^\bullet$.
 We will then see that $H^\bullet(X) \not\cong H^\bullet(Y)$ as rings.
 
-\section{Cochain Complexes}
+\section{Cochain complexes}
 \begin{definition}
 A \vocab{cochain complex} $A^\bullet$ is algebraically the same as a chain complex, except that the indices increase.
 So it is a sequence of abelian groups
@@ -29,7 +29,7 @@ We define the \vocab{cohomology groups} by
 	/ \img\left( A^{n-1} \taking\delta A^n \right). \]
 \end{definition}
 
-\begin{example}[de Rham Cohomology]
+\begin{example}[de Rham cohomology]
 	We have already met one example of a cochain complex:
 	let $M$ be a smooth manifold and $\Omega^k(M)$ be the
 	additive group of $k$-forms on $M$.
@@ -63,7 +63,7 @@ so we give a special notation to them.
 	In other words, $H^n(A_\bullet; G) = H^n(A^\bullet)$.
 \end{definition}
 
-\section{Cohomology of Spaces}
+\section{Cohomology of spaces}
 \prototype{$C^0(X;G)$ all functions $X \to G$ while $H^0(X)$ are those functions $X \to G$
 constant on path components.}
 
@@ -139,7 +139,7 @@ To the best of my knowledge, the higher cohomology groups $H^n(X; G)$
 	by applying $\Hom(-,G)$ to $A_\bullet$.
 \end{abuse}
 
-\section{Cohomology of Spaces is Functorial}
+\section{Cohomology of spaces is functorial}
 We now check that the cohomology groups still exhibit the same nice functorial behavior.
 First, let's categorize the previous results we had:
 
@@ -193,12 +193,12 @@ Then in exact analog to our result that $H_n : \catname{hTop} \to \catname{Grp}$
 \end{proof}
 
 
-fsection{Universal Coefficient Theorem}
+\section{Universal coefficient theorem}
 We now wish to show that the cohomology groups are determined up to isomorphism
 by the homology groups: given $H_n(A_\bullet)$, we can extract $H^n(A_\bullet; G)$.
-This is achieved by the \emph{Universal Coefficient Theorem}.
+This is achieved by the \emph{universal coefficient theorem}.
 \begin{theorem}
-	[Universal Coefficient Theorem]
+	[Universal coefficient theorem]
 	Let $A_\bullet$ be a chain complex of \emph{free} abelian groups,
 	and let $G$ be another abelian group.
 	Then there is a natural short exact sequence
@@ -250,7 +250,7 @@ you can pick any free resolution you want and compute the above.
 %where $f_\ast$ is the induced arrow $H_n(A_\bullet) \to H_n(B_\bullet)$.
 
 \begin{lemma}
-	[Computing the $\Ext$ Functor]
+	[Computing the $\Ext$ functor]
 	For any abelian groups $G$, $H$, $H'$ we have
 	\begin{enumerate}[(a)]
 		\ii $\Ext(H \oplus H', G) = \Ext(H, G) \oplus \Ext(H', G)$.
@@ -278,14 +278,14 @@ you can pick any free resolution you want and compute the above.
 	$\Ext(\ZZ^{\oplus 2015}, G)$ and $\Ext(\Zc{30}, \Zc 4)$.
 \end{ques}
 
-\section{Example Computation of Cohomology Groups}
+\section{Example computation of cohomology groups}
 \prototype{Possibly $H^n(S^m)$.}
 
-The Universal Coefficient Theorem gives us a direct way to compute
+The universal coefficient theorem gives us a direct way to compute
 any cohomology groups, provided we know the homology ones.
 
 \begin{example}
-	[Cohomolgy Groups of $S^m$]
+	[Cohomolgy groups of $S^m$]
 	It is straightforward to compute $H^n(S^m)$ now:
 	all the $\Ext$ terms vanish since $H_n(S^m)$ is always free,
 	and hence we obtain that 
@@ -306,7 +306,7 @@ any cohomology groups, provided we know the homology ones.
 \end{example}
 
 \begin{example}
-	[Cohomolgy Groups of Torus]
+	[Cohomolgy groups of torus]
 	This example has no nonzero $\Ext$ terms either,
 	since this time $H^n(S^1 \times S^1)$ is always free.
 	So we obtain
@@ -325,7 +325,7 @@ any cohomology groups, provided we know the homology ones.
 
 From these examples one might notice that:
 \begin{lemma}
-	[$0$th Homology Groups are just Duals]
+	[$0$th homology groups are just duals]
 	For $n = 0$ and $n = 1$, we have
 	\[ H^n(X;G) \cong \Hom(H_n(X), G). \]
 \end{lemma}
@@ -336,7 +336,7 @@ From these examples one might notice that:
 \end{proof}
 
 \begin{example}
-	[Cohomolgy Groups of Klein Bottle]
+	[Cohomolgy groups of Klein bottle]
 	This example will actually have $\Ext$ term.
 	Recall that if $K$ is a Klein Bottle then its homology groups are
 	$\ZZ$ in dimension $n=0$ and $\ZZ \oplus \Zc 2$ in $n=1$, and $0$ elsewhere.
@@ -367,7 +367,7 @@ From these examples one might notice that:
 \end{example}
 
 
-\section{Relative Cohomology Groups}
+\section{Relative cohomology groups}
 One can also define relative cohomology groups in the obvious way:
 dualize the chain complex
 \[ \dots \taking\partial C_1(X,A) \taking\partial C_0(X,A) \to 0 \]
@@ -392,7 +392,7 @@ and dualize it to obtain
 	\leftarrow 0.
 \]
 Since the $\ZZ$ we add is also free,
-the Universal Coefficient Theorem still applies.
+the universal coefficient theorem still applies.
 So this will give us reduced cohomology groups.
 
 However, since we already defined the relative cohomology groups,
@@ -407,7 +407,7 @@ it is easiest to simply do the following.
 
 \section\problemhead
 \begin{sproblem}
-	[Wedge Product Cohomology]
+	[Wedge product cohomology]
 	For any $G$ and $n$ we have
 	\[
 		\wt H^n(X \vee Y; G)
@@ -423,7 +423,7 @@ it is easiest to simply do the following.
 	Thus over fields cohomology is the dual of homology.
 \end{dproblem}
 
-\begin{problem}[$\Zc2$-Cohomology of $\RP^n$]
+\begin{problem}[$\Zc2$-cohomology of $\RP^n$]
 	Prove that
 	\[
 		H^m(\RP^n, \Zc2)

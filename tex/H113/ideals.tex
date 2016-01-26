@@ -1,7 +1,7 @@
-\chapter{Rings and Ideals}
+\chapter{Rings and ideals}
 This is a typical chapter on commutative algebra.
 
-\section{Number Theory Motivation}
+\section{Number theory motivation}
 Commutative algebra is closely tied to algebraic geometry:
 lots of the ideas in commutative algebra have nice ``geometric'' interpretations that motivate the definitions.
 Unfortunately, algebraic geometry also has commutative algebra as a prerequisite, leading to a
@@ -21,7 +21,7 @@ I assure you that trying to solve $x^n+y^n = z^n$ (for $n > 2$) requires going i
 
 For all the sections that follow, keep $\ZZ$ in mind as your prototype.
 
-\section{Definition and Examples of Rings}
+\section{Definition and examples of rings}
 \prototype{$\ZZ$ all the way! Also $R[x]$ and various fields.}
 
 Well, I guess I'll define a ring\footnote{%
@@ -54,7 +54,7 @@ Well, I guess I'll define a ring\footnote{%
 
 These definitions are just here for completeness.
 The examples are much more important.
-\begin{example}[Typical Rings and Fields]
+\begin{example}[Typical rings and fields]
 	\listhack
 	\begin{enumerate}[(a)]
 		\ii The sets $\ZZ$, $\QQ$, $\RR$ and $\CC$ are all rings
@@ -73,7 +73,7 @@ Since I've defined this structure, I may as well state the obligatory facts abou
 \end{fact}
 
 Here are some more examples of rings.
-\begin{example}[Polynomial Ring]
+\begin{example}[Polynomial ring]
 	Given any ring $R$,
 	the ring $R[x]$ is defined as the set of polynomials
 	with coefficients in $R$:
@@ -81,7 +81,7 @@ Here are some more examples of rings.
 	Addition and multiplication are done exactly in the way you would expect.
 \end{example}
 \begin{remark}
-	[Digression] Happily, polynomial division also does what we expect: if $p(x) \in R[x]$
+	[Digression] happily, polynomial division also does what we expect: if $p(x) \in R[x]$
 	and $p(a) = 0$, then $(x-a)q(x) = p(x)$ for some polynomial $q$.
 	Proof: just do polynomial long division.
 	With that, note the caveat that 
@@ -95,19 +95,19 @@ Here are some more examples of rings.
 	(I'll say this all again next section.)
 \end{remark}
 \begin{example}
-	[Multi-variable Polynomial Ring]
+	[Multi-variable polynomial ring]
 	We can consider polynomials in $n$ variables with coefficients in $R$,
 	denoted \[ R[x_1, \dots, x_n]. \]
 	(We can even adjoin infinitely many $x$'s if we like, but alas\dots)
 \end{example}
 \begin{example}
-	[Gaussian Integers are a Ring]
+	[Gaussian integers are a ring]
 	The \vocab{Gaussian integers} are the set of complex numbers
 	with integer real and imaginary parts, that is
 	\[ \ZZ[i] = \left\{ a+bi \mid a,b \in \ZZ \right\}. \]
 \end{example}
 
-\section{Integral Domains and Fields}
+\section{Integral domains and fields}
 \prototype{$\ZZ$ is an integral domain; $\QQ$ is a field.}
 
 As you already know, if the multiplication is invertible,
@@ -120,7 +120,7 @@ To be explicit, let me write the relevant definitions.
 	for some $x \in R$ we have $ux = 1_R$.
 \end{definition}
 \begin{example}
-	[Examples of Units]
+	[Examples of units]
 	\listhack
 	\begin{enumerate}[(a)]
 	\ii The units of $\ZZ$ are $\pm 1$,
@@ -176,7 +176,7 @@ So we give a name to such rings.
 \end{definition}
 
 \begin{example}
-	[Integral Domains and Fields]
+	[Integral domains and fields]
 	\listhack
 	\begin{enumerate}[(a)]
 		\ii $\QQ$, $\RR$, $\CC$ are fields, since the notion $\frac 1c$ makes sense in them.
@@ -267,7 +267,7 @@ So this is stronger than just saying $R$ is closed under multiplication.
 \end{figure}
 
 \begin{example}
-	[Prototypical Example of an Ideal]
+	[Prototypical example of an ideal]
 	Consider the set $I = 5\ZZ = \{\dots,-10,-5,0,5,10,\dots\}$ as an ideal in $\ZZ$.
 	We indeed see $I$ is the kernel of the ``take mod $5$'' homomorphism:
 	\[ \ZZ \surjto \ZZ/5\ZZ. \]
@@ -290,7 +290,7 @@ So this is stronger than just saying $R$ is closed under multiplication.
 Now we claim that these conditions are sufficient.
 More explicitly,
 \begin{theorem}
-	[Ring Analog of Normal Subgroups]
+	[Ring analog of normal subgroups]
 	Let $R$ be a ring and $I \subsetneq R$.
 	Then $I$ is the kernel of some homomorphism if and only if it's an ideal.
 \end{theorem}
@@ -343,7 +343,7 @@ all elements in $\ZZ$ divisible by $5$ to be zero.
 This gives you the usual modular arithmetic!
 
 
-\section{Generating Ideals}
+\section{Generating ideals}
 Let's give you some practice with ideals.
 
 \begin{exercise}
@@ -380,7 +380,7 @@ In particular, if $I = (x)$ then $I$ consists of exactly the
 	don't make sense in general).
 \end{remark}
 
-\begin{example}[Examples of Generated Ideals]
+\begin{example}[Examples of generated ideals]
 	\listhack
 	\begin{enumerate}[(a)]
 		\ii As $(n) = n\ZZ$ for all $ \in \ZZ$,
@@ -408,7 +408,7 @@ According to what I said at the end of the last section,
 it's what happens when we ``mod out'' by each of the elements $x_i$.
 For example\dots
 \begin{example}
-	[Modding Out by Generated Ideals]
+	[Modding out by generated ideals]
 	\listhack
 	\begin{enumerate}[(a)]
 		\ii Let $R = \ZZ$ and $I = (5)$. Then $R/I$ is literally
@@ -435,7 +435,7 @@ By the way, given an ideal $I$ of a ring $R$, it's totally legit to write
 to mean that $x-y \in I$.
 Everything you learned about modular arithmetic carries over.
 
-\section{Principal Ideal Domains and Noetherian Rings}
+\section{Principal ideal domains and Noetherian rings}
 \prototype{$\ZZ$ is a PID, $\ZZ[x]$ is not but is at least Noetherian. $\ZZ[x_1, x_2, \dots]$ is not Noetherian.}
 
 What happens if we put multiple generators in an ideal, like $(10,15) \subseteq \ZZ$?
@@ -451,7 +451,7 @@ We call such an ideal (one generated by a single element) a \vocab{principal ide
 So, in $\ZZ$, every ideal is principal.
 But the same is not true in more general rings.
 \begin{example}
-	[A Non-Principal Ideal]
+	[A non-principal ideal]
 	In $\ZZ[x]$, $I = (x,2015)$ is \emph{not} a principal ideal.
 	For if $I = (p)$ for some polynomial $p \in I$
 	then $p$ divides $x$ and $2015$.
@@ -467,7 +467,7 @@ If it's too much to ask that an ideal is generated by \emph{one} element,
 perhaps we can at least ask that our ideals are generated by \emph{finitely many} elements.
 Unfortunately, in certain weird rings this is also not the case.
 \begin{example}
-	[Non-Noetherian Ring]
+	[Non-Noetherian ring]
 	Consider the ring $R = \ZZ[x_1, x_2, x_3, \dots]$
 	which has \emph{infinitely} many free variables.
 	Then the ideal $I = (x_1, x_2, \dots) \subseteq R$
@@ -475,7 +475,7 @@ Unfortunately, in certain weird rings this is also not the case.
 \end{example}
 Nonetheless, most ``sane'' rings we work in \emph{do} have the property that their ideals are finitely generated.
 We now name such rings and give two equivalent definitions:
-\begin{proposition}[The Equvialent Definitions of a Noetherian Ring]
+\begin{proposition}[The equvialent definitions of a Noetherian ring]
 	For a ring $R$, the following are equivalent.
 	\begin{enumerate}[(a)]
 		\ii Every ideal $I$ of $R$ is finitely generated (i.e.\ can be written with a finite generating set).
@@ -486,7 +486,7 @@ We now name such rings and give two equivalent definitions:
 	Such rings are called \vocab{Noetherian}.
 \end{proposition}
 \begin{example}
-	[Non-Noetherian Ring Breaks ACC]
+	[Non-Noetherian ring breaks ACC]
 	In the ring $R = \ZZ[x_1, x_2, x_3, \dots]$ we have
 	an infinite ascending chain
 	\[ (x_1) \subsetneq (x_1, x_2) \subsetneq (x_1,x_2,x_3) \subsetneq \dots. \]
@@ -504,8 +504,8 @@ This leaves the question:
 is our prototypical non-example of a PID,
 $\ZZ[x]$, a Noetherian ring?
 The answer is a glorious yes,
-according to the celebrated Hilbert Basis Theorem.
-\begin{theorem}[Hilbert Basis Theorem]
+according to the celebrated Hilbert basis theorem.
+\begin{theorem}[Hilbert basis theorem]
 	Given a Noetherian ring $R$,
 	the ring $R[x]$ is also Noetherian.
 	Thus by induction, $R[x_1, x_2, \dots, x_n]$ is Noetherian
@@ -520,11 +520,11 @@ and it's a bit hard for me to motivate them right now,
 other than to just say ``almost all rings you'll ever care about are Noetherian''.
 Please bear with me!
 
-\section{Prime Ideals}
+\section{Prime ideals}
 We know that every integer can be factored (up to sign)
 as a unique product of primes; for example $15 = 3 \cdot 5$
 and $-10 = -2 \cdot 5$.
-You might remember the proof involves the so-called Bezout's Lemma,
+You might remember the proof involves the so-called B\'ezout's lemma,
 which essentially says that $(a,b) = (\gcd(a,b))$;
 in other words we've carefully used the fact that $\ZZ$ is a PID.
 
@@ -556,7 +556,7 @@ We port over this definition to our world of ideals.
 The condition that $I$ is proper is analogous to the
 fact that we don't consider $1$ to be a prime number.
 
-\begin{example}[Examples of Prime Ideals]
+\begin{example}[Examples of prime ideals]
 	\listhack
 	\begin{enumerate}[(a)]
 		\ii The ideal $(7)$ of $\ZZ$ is prime.
@@ -577,7 +577,7 @@ fact that we don't consider $1$ to be a prime number.
 \end{exercise}
 
 We also have the following result.
-\begin{theorem}[Prime Ideal $\iff$ Quotient is Integral Domain]
+\begin{theorem}[Prime ideal $\iff$ quotient is integral domain]
 	An ideal $I$ is prime if and only if $R/I$ is an integral domain.
 \end{theorem}
 \begin{exercise}
@@ -591,14 +591,14 @@ not true even with the notion of a ``prime'' ideal
 But it will become true with some additional assumptions,
 namely that we have a Dedekind domain.
 
-\section{Maximal Ideals}
+\section{Maximal ideals}
 Here's another flavor of an ideal.
 \begin{definition}
 	A proper ideal $I$ of a ring $R$ is \vocab{maximal} if
 	no proper ideal $J$ contains it.
 \end{definition}
 \begin{example}
-	[Examples of Maximal Ideals]
+	[Examples of maximal ideals]
 	\listhack
 	\begin{enumerate}[(a)]
 		\ii The ideal $I = (7)$ of $\ZZ$ is maximal, because
@@ -639,7 +639,7 @@ There's an analogous theorem to the one for prime ideals.
 In practice, because modding out by generated ideals is pretty convenient,
 this is a very efficient way to check whether an ideal is maximal.
 \begin{example}
-	[Modding Out In $\ZZ{[x]}$]
+	[Modding out in $\ZZ{[x]}$]
 	\listhack
 	\begin{enumerate}[(a)]
 		\ii This instantly implies that $(x,5)$ is a maximal ideal
@@ -668,7 +668,7 @@ to what you might see in an olympiad.
 	\label{prob:finite_domain_field}
 \end{sproblem}
 \begin{problem}
-	Prove the Hilbert Basis Theorem.
+	Prove the Hilbert basis theorem.
 \end{problem}
 \begin{sproblem}
 	Prove that any nonzero prime ideal of $\ZZ[\sqrt 2]$ is maximal.
@@ -678,7 +678,7 @@ to what you might see in an olympiad.
 \end{sproblem}
 
 \begin{problem}
-	[Krull's Theorem]
+	[Krull's theorem]
 	Let $R$ be a ring and $J$ an ideal.
 	Then $J$ is contained in some maximal ideal $I$.
 	\begin{hint}
@@ -686,12 +686,12 @@ to what you might see in an olympiad.
 	\end{hint}
 	\begin{sol}
 		Look at the poset of \emph{proper} ideals.
-		Apply Zorn's Lemma (again using a union trick to verify the condition;
+		Apply Zorn's lemma (again using a union trick to verify the condition;
 		be sure to verify that the union is proper!).
 	\end{sol}
 \end{problem}
 
-\begin{problem}[BC] % From Brian Chen
+\begin{problem}[BC] % from Brian Chen
 	\gim
 	Let $A \subseteq B \subseteq C$ be rings.
 	Suppose $C$ is a finitely generated $A$-module.
@@ -715,5 +715,4 @@ to what you might see in an olympiad.
 \end{problem}
 
 %\bigskip\noindent
-%Bonus problem if you've read the appendix on Zorn's Lemma: prove the following.
-
+%Bonus problem if you've read the appendix on Zorn's lemma: prove the following.
