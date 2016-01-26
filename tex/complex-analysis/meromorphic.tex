@@ -1,5 +1,5 @@
-\chapter{Meromorphic Functions}
-\section{The Second Nicest Functions on Earth}
+\chapter{Meromorphic functions}
+\section{The second nicest functions on earth}
 If holomorphic functions are like polynomials,
 then \emph{meromorphic} functions are like rational functions.
 Basically, a meromorphic function is a function of the form
@@ -11,7 +11,7 @@ We are going to see that meromorphic functions behave
 like ``almost-holomorphic'' functions.
 Specifically, a meromorphic function $A/B$ will be holomorphic at all points
 except the zeros of $B$ (called \emph{poles}).
-By the Identity Theorem, there cannot be too many zeros of $B$!
+By the identity theorem, there cannot be too many zeros of $B$!
 So meromorphic functions can be thought of as ``almost holomorphic''
 (like $\frac 1z$, which is holomorphic everywhere but the origin).
 We saw that
@@ -25,7 +25,7 @@ the contour integrals will actually be used to
 \emph{count the number of poles} inside the loop $\gamma$.
 It's ridiculous, I know.
 
-\section{Meromorphic Functions}
+\section{Meromorphic functions}
 \prototype{$\frac 1z$, with a pole of order $1$ and residue $1$ at $z=0$.}
 
 Let $U$ be an open subset of $\CC$ again.
@@ -81,7 +81,7 @@ By ``isolated set'', I mean that we can draw neighborhoods around each pole in $
 in such a way that no two neighborhoods intersect.
 
 \begin{example}
-	[Example of a Meromorphic Function]
+	[Example of a meromorphic function]
 	Consider the function \[ \frac{z+1}{\sin z}. \]
 	It is meromorphic, because it is holomorphic everywhere except at the zeros of $\sin z$.
 	At each of these points we can put a Laurent series: for example at $z=0$ we have
@@ -157,7 +157,7 @@ Metaphorically, poles can be thought of as ``negative zeros''.
 
 We can now give many more examples.
 \begin{example}
-	[Examples of Meromorphic Functions]
+	[Examples of meromorphic functions]
 	\listhack
 	\begin{enumerate}[(a)]
 		\ii Any holomorphic function is a meromorphic function which happens to have no poles.
@@ -179,7 +179,7 @@ We can now give many more examples.
 \end{example}
 
 \begin{example}
-	[A Rational Meromorphic Functions]
+	[A rational meromorphic functions]
 	Consider the function $\CC \to \CC$ given by
 	\begin{align*}
 		z &\mapsto \frac{z^4+1}{z^2-1} = z^2 + 1 + \frac{1}{z-1} \cdot \frac{2}{z+1} \\
@@ -191,7 +191,7 @@ We can now give many more examples.
 	(It also has a pole of order $1$ at $z=-1$; you are invited to compute the residue.)
 \end{example}
 \begin{example}
-	[Function with Infinitely Many Poles]
+	[Function with infinitely many poles]
 	The function $\CC \to \CC$ by \[ z \mapsto \frac{1}{\sin(z)} \]
 	has infinitely many poles: the numbers $z = 2\pi k$, where $k$ is an integer.
 	Let's compute the Laurent series at just $z=0$:
@@ -216,7 +216,7 @@ and the rest of the series $c_0 + c_1(z-p) + \dots$ is called the \vocab{analyti
 
 
 
-\section{Winding Numbers and the Residue Theorem}
+\section{Winding numbers and the residue theorem}
 Recall that for a counterclockwise circle $\gamma$ and a point $p$ inside it, we had
 \[
 	\oint_{\gamma} (z-p)^m \; dz =
@@ -256,9 +256,9 @@ In the simplest case the winding numbers are either $0$ or $1$.
 	if $\gamma$ is a counterclockwise circle).
 \end{definition}
 
-With all these ingredients we get the following stunning generalization of the Cauchy-Goursat Theorem.
+With all these ingredients we get the following stunning generalization of the Cauchy-Goursat theorem.
 \begin{theorem}
-	[Cauchy's Residue Theorem]
+	[Cauchy's residue theorem]
 	Let $f : \Omega \to \CC$ be meromorphic, where $\Omega$ is simply connected.
 	Then for any loop $\gamma$ not passing through any of its poles, we have
 	\[
@@ -310,7 +310,7 @@ done in our statements about the winding number.
 	which gives the conclusion.
 \end{proof}
 
-\section{Argument Principle}
+\section{Argument principle}
 One tricky application is as follows.
 Given a polynomial $P(x) = (x-a_1)^{e_1}(x-a_2)^{e_2}\dots(x-a_n)^{e_n}$, you might know that we have
 \[ \frac{P'(x)}{P(x)} = \frac{e_1}{x-a_1} + \frac{e_2}{x-a_2} + \dots + \frac{e_n}{x-a_n}. \]
@@ -320,7 +320,7 @@ moreover the residues of these poles are the multiplicities of the roots.
 
 In an analogous fashion, we can obtain a similar result for any meromorphic function $f$.
 \begin{proposition}
-	[The Logarithmic Derivative]
+	[The logarithmic derivative]
 	Let $f : U \to \CC$ be a meromorphic function.
 	Then the logarithmic derivative $f'/f$ is meromorphic as a function from $U$ to $\CC$;
 	its zeros and poles are:
@@ -351,7 +351,7 @@ Using this trick you can determine the number of zeros and poles inside a regula
 using the so-called Argument Principle.
 
 \begin{theorem}
-	[Argument Principle]
+	[Argument principle]
 	\label{thm:arg_principle}
 	Let $\gamma$ be a regular curve.
 	Suppose $f : U \to \CC$ is meromorphic inside and on $\gamma$, and
@@ -365,7 +365,7 @@ using the so-called Argument Principle.
 	and $P$ is the number of poles inside $\gamma$ (again with multiplicity).
 \end{theorem}
 \begin{proof}
-	Immediate by applying Cauchy's Residue Theorem alongside the preceding proposition.
+	Immediate by applying Cauchy's residue theorem alongside the preceding proposition.
 	In fact you can generalize to any curve $\gamma$ via the winding number:
 	the integral is
 	\[ \frac{1}{2\pi i} \oint_\gamma \frac{f'}{f} \; dz
@@ -391,7 +391,7 @@ we can decide how many zeros are in any given circle.
 Numerical evidence for the Riemann Hypothesis (concerning the zeros of the Riemann zeta function)
 can be obtained in this way.
 
-\section{Philosophy: Why are holomorphic functions so nice?}
+\section{Philosophy: why are holomorphic functions so nice?}
 All the fun we've had with holomorphic and meromorphic functions comes down to the fact that
 complex differentiability is such a strong requirement.
 It's a small miracle that $\CC$, which \emph{a priori} looks only like $\RR^2$,
@@ -406,16 +406,16 @@ you find yourself with just linear functions.
 
 
 \section\problemhead
-% Looman-Menchoff Theorem?
+% Looman-Menchoff theorem?
 
 \begin{problem}
-	[Fundamental Theorem of Algebra]
+	[Fundamental theorem of algebra]
 	Prove that if $f$ is a nonzero polynomial of degree $n$
 	then it has $n$ roots.
 \end{problem}
 
 \begin{dproblem}
-	[Rouch\'e's Theorem]
+	[Rouch\'e's theorem]
 	Let $f, g : U \to \CC$ be holomorphic functions, where $U$ contains the unit disk.
 	Suppose that $\left\lvert f(z) \right\rvert > \left\lvert g(z) \right\rvert$
 	for all $z$ on the unit circle.
@@ -444,7 +444,7 @@ you find yourself with just linear functions.
 	\gim
 	Let $f : U \to \CC$ be a nonconstant holomorphic function.
 	\begin{enumerate}[(a)]
-		\ii (Open Mapping Theorem)
+		\ii (Open mapping theorem)
 		Prove that $f``(U)$ is open in $\CC$.\footnote{%
 			Thus the image of \emph{any}
 			open set $V \subseteq U$ is open in $\CC$

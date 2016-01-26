@@ -1,11 +1,11 @@
-\chapter{Integrating Differential Forms}
+\chapter{Integrating differential forms}
 We now show how to integrate differential forms over cells,
-and state Stokes' Theorem in this context.
+and state Stokes' theorem in this context.
 In this chapter, all vector spaces are finite-dimensional and real.
 
-\section{Motivation: Line Integrals}
+\section{Motivation: line integrals}
 Given a function $g : [a,b] \to \RR$,
-we know by the Fundamental Theorem of Calculus that
+we know by the fundamental theorem of calculus that
 \[
 	\int_{[a,b]} g(t) \; dt = f(b) - f(a)
 \]
@@ -171,7 +171,7 @@ Then, we define
 \]
 A diligent reader can check these definitions are equivalent.
 \begin{example}
-	[Computation of a Pullback]
+	[Computation of a pullback]
 	Let $V = \RR^2$ with basis $\ee_1$ and $\ee_2$,
 	and suppose $\phi : V \to V'$ is given by sending
 	\[ \phi(a\ee_1 + b\ee_2) = (a^2+b^2)w_1 + \log(a^2+1) w_2 + b^3 w_3 \]
@@ -204,7 +204,7 @@ Specifically, to generalize the notion of integrals we had before:
 	A \vocab{$k$-cell} is a smooth function $c : [a_1, b_1] \times [a_2,b_2] \times \dots [a_k, b_k] \to V$.
 \end{definition}
 \begin{example}
-	[Examples of Cells]
+	[Examples of cells]
 	Let $V = \RR^2$ for convenience.
 	\begin{enumerate}[(a)]
 		\ii A $0$-cell consists of a single point.
@@ -224,7 +224,7 @@ it can be written as $f(x_1, \dots, x_n) \; dx_1 \wedge \dots \wedge dx_n$,
 so the above integral can be written as
 \[ \int_0^1 \dots \int_0^1 f(x_1, \dots, x_n) \; dx_1 \wedge \dots \wedge dx_n \]
 
-\begin{example}[Area of a Circle]
+\begin{example}[Area of a circle]
 	Consider $V = \RR^2$ and let $c : (r,\theta) \mapsto (r\cos\theta)\ee_1 + (r\sin\theta)\ee_2$
 	on $[0,R] \times [0,2\pi]$ as before.
 	Take the $2$-form $\alpha$ which gives $\alpha_p = \ee_1^\vee \wedge \ee_2^\vee$ at every point $p$.
@@ -274,7 +274,7 @@ and \vocab{reverse orientation} if $\det(D\phi)_p < 0$ for all $p$.
 \end{exercise}
 
 \begin{theorem}
-	[Changing Variables Doesn't Affect Integrals]
+	[Changing variables doesn't affect integrals]
 	Let $c$ be a $k$-cell, $\alpha$ a $k$-form, and $\phi$ a reparametrization.
 	Then
 	\[ \int_{c \circ \phi} \alpha
@@ -333,7 +333,7 @@ Here's how we do it in general.
 \end{ques}
 
 \begin{example}
-	[Examples of Boundaries]
+	[Examples of boundaries]
 	Consider the $2$-cell $c : [0,1]^2 \to \RR^2$ shown below.
 	\begin{center}
 		\begin{asy}
@@ -374,7 +374,7 @@ where each ``interval'' represents the $1$-cell shown by the reddish arrows on t
 \end{example}
 
 \begin{example}
-	[Boundary of a Unit Disk]
+	[Boundary of a unit disk]
 	Consider the unit disk given by
 	\[ c : [0,1] \times [0,2\pi] \to \RR^2 \quad\text{by}\quad
 	(r,\theta) \mapsto s\cos(2\pi t)\ee_1 + s\sin(2\pi t)\ee_2. \]
@@ -413,16 +413,16 @@ where each ``interval'' represents the $1$-cell shown by the reddish arrows on t
 \end{example}
 
 Obligatory theorem, analogous to $d^2=0$ and left as a problem.
-\begin{theorem}[The Boundary of the Boundary is Empty]
+\begin{theorem}[The boundary of the boundary is empty]
 	$\partial^2 = 0$, in the sense that for any $k$-chain $c$ we have $\partial^2(c) = 0$.
 \end{theorem}
 
-\section{Stokes' Theorem}
+\section{Stokes' theorem}
 \prototype{$\int_{[a,b]} dg = g(b) - g(a)$.}
 
-We now have all the ingredients to state Stokes' Theorem for cells.
+We now have all the ingredients to state Stokes' theorem for cells.
 \begin{theorem}
-	[Stokes' Theorem for Cells]
+	[Stokes' theorem for cells]
 	Take $U \subseteq V$ as usual, let $c : [0,1]^k \to U$ be a $k$-cell
 	and let $\alpha : U \to \Lambda^k(V^\vee)$ be a $k$-form.
 	Then
@@ -430,16 +430,16 @@ We now have all the ingredients to state Stokes' Theorem for cells.
 	In particular, if $d\alpha = 0$ then the left-hand side vanishes.
 \end{theorem}
 For example, if $c$ is the interval $[a,b]$ then $\partial c = \{b\} - \{a\}$,
-and thus we obtain the Fundamental Theorem of Calculus.
+and thus we obtain the fundamental theorem of calculus.
 
 \section\problemhead
-\begin{dproblem}[Green's Theorem]
+\begin{dproblem}[Green's theorem]
 	Let $f,g : \RR^2 \to \RR$ be smooth functions.
 	Prove that
 	\[ \int_c \left( \fpartial gx - \fpartial fy \right) \; dx \wedge dy
 	= \int_{\partial c} (f \; dx + g \; dy). \]
 	\begin{hint}
-		Direct application of Stokes' Theorem to $\alpha = f \; dx + g \; dy$.
+		Direct application of Stokes' theorem to $\alpha = f \; dx + g \; dy$.
 	\end{hint}
 \end{dproblem}
 
@@ -451,7 +451,7 @@ and thus we obtain the Fundamental Theorem of Calculus.
 	\end{hint}
 \end{problem}
 
-\begin{problem}[Pullback and $d$ Commute]
+\begin{problem}[Pullback and $d$ commute]
 	Let $U$ and $U'$ be open sets of vector spaces $V$ and $V'$
 	and let $\phi : U \to U'$ be a smooth map between them.
 	Prove that for any differential form $\alpha$ on $U'$ we have
@@ -461,7 +461,7 @@ and thus we obtain the Fundamental Theorem of Calculus.
 	\end{hint}
 \end{problem}
 
-\begin{problem}[Arc Length Isn't a Form]
+\begin{problem}[Arc length isn't a form]
 	Show that there does \emph{not} exist a $1$-form $\alpha$ on $\RR^2$ such that
 	for a curve $c : [0,1] \to \RR^2$,
 	the integral $\int_c \alpha$ gives the arc length of $c$.

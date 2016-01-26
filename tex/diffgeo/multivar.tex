@@ -1,4 +1,4 @@
-\chapter{Multivariable Calculus Done Correctly}
+\chapter{Multivariable calculus done correctly}
 As I have ranted about before, linear algebra is done wrong
 by the extensive use of matrices to obscure the structure of a linear map.
 Similar problems occur with multivariable calculus, so here I would like to set 
@@ -10,7 +10,7 @@ and in particular the dual space $V^\vee$ which we will repeatedly use.
 
 In this chapter, all vector spaces have norms and finite-dimensional over $\RR$.
 
-\section{The Total Derivative}
+\section{The total derivative}
 \prototype{If $f(x,y) = x^2+y^2$, then $(Df)_{(x,y)} = 2x\ee_1^\vee + 2y\ee_2^\vee$.}
 First, let $f : [a,b] \to \RR$.
 You might recall from high school calculus that for every point $p \in \RR$,
@@ -108,7 +108,7 @@ this we use the norm of the vector space.
 	Check if that $V = W = \RR$, this is equivalent to the single-variable definition.
 	(What are the linear maps from $V$ to $W$?)
 \end{ques}
-\begin{example}[Total Derivative of $f(x,y) = x^2+y^2$]
+\begin{example}[Total derivative of $f(x,y) = x^2+y^2$]
 	Let $V = \RR^2$ with standard basis $\ee_1$, $\ee_2$ and let $W = \RR$,
 	and let $f\left( x \ee_1 + y \ee_2 \right) = x^2+y^2$.  Let $p = a\ee_1 + b\ee_2$.
 	Then, we claim that \[ (Df)_p : \RR^2 \to \RR \quad\text{by}\quad
@@ -141,9 +141,9 @@ Thus, for $p = ae_1 + be_2$ we indeed have $(Df)_p = 2a \cdot e_1^\vee + 2b \cdo
 	For this reason, I deliberately try to use $p \in U$ and $v \in V$ when possible.
 \end{remark}
 
-\section{The Projection Principle}
+\section{The projection principle}
 Before proceeding I need to say something really important.
-\begin{theorem}[Projection Principle]
+\begin{theorem}[Projection principle]
 	\label{thm:project_principle}
 	Let $W$ be an $n$-dimensional real vector space with basis $w_1, \dots, w_n$.
 	Then there is a bijection between continuous functions $f : U \to W$ and
@@ -163,7 +163,7 @@ it suffices to think about each coordinate separately.
 For this reason, we'll most often be interested in functions $f : U \to \RR$.
 That's why the dual space $V^\vee$ is so important.
 
-\section{Total and Partial Derivatives}
+\section{Total and partial derivatives}
 \prototype{If $f(x,y) = x^2+y^2$, then $(Df) : (x,y) \mapsto 2x\ee_1^\vee + 2y\ee_2^\vee$, and
 $\fpartial fx = 2x$, $\fpartial fy = 2y$.}
 Let $U \subseteq V$ be open and let $V$ have a basis $e_1$, \dots, $e_n$.
@@ -227,7 +227,7 @@ That is to say,
 \end{remark}
 
 
-\begin{example}[Partial Derivatives of $f(x,y) = x^2+y^2$]
+\begin{example}[Partial derivatives of $f(x,y) = x^2+y^2$]
 	Let $f : \RR^2 \to \RR$ by $(x,y) \mapsto x^2+y^2$.
 	Then in our new language, 
 	\[ Df : (x,y) \mapsto 2x \cdot \ee_1^\vee + 2y \cdot \ee_2^\vee. \]
@@ -249,7 +249,7 @@ that horrible limit definition I told you about earlier.
 Fortunately, it turns out you already know how to compute partial derivatives,
 because you had to take AP Calculus at some point in your life.
 It turns out for most reasonable functions, this is all you'll ever need.
-\begin{theorem}[Continuous Partials Implies Differentiable]
+\begin{theorem}[Continuous partials implies differentiable]
 	Let $U \subset V$ be open and pick any basis $e_1, \dots, e_n$.
 	Let $f : U \to W$ and suppose that $\fpartial{f}{e_i}$ is defined
 	for each $i$ and moreover is \emph{continuous}.
@@ -280,7 +280,7 @@ It turns out for most reasonable functions, this is all you'll ever need.
 \end{remark}
 
 \begin{example}
-	[Actually Computing a Total Derivative]
+	[Actually computing a total derivative]
 	Let $f(x,y) = x \sin y + x^2y^4$. Then
 	\begin{align*}
 		\fpartial fx (x,y) &= \sin y + y^4 \cdot 2x \\
@@ -293,7 +293,7 @@ It turns out for most reasonable functions, this is all you'll ever need.
 The example $f(x,y) = x^2+y^2$ is the same thing.
 That being said, who cares about $x \sin y + x^2y^4$ anyways?
 
-\section{(Optional) A Word on Higher Derivatives}
+\section{(Optional) a word on higher derivatives}
 Let $U \subseteq V$ be open, and take $f : U \to W$, so that $Df : U \to \Hom(V,W)$.
 
 Well, $\Hom(V,W)$ can also be thought of as a normed vector space in its own right:
@@ -321,11 +321,11 @@ The most important property of the second derivative is that
 	If $(D^2f)_p$ exists at some $p \in U$, then it is symmetric, meaning
 	\[ (D^2f)_p(v_1, v_2) = (D^2f)_p(v_2, v_1). \]
 \end{theorem}
-I'll just quote this without proof (see e.g. \cite[\S5, Theorem 16]{ref:pugh}),
+I'll just quote this without proof (see e.g. \cite[\S5, theorem 16]{ref:pugh}),
 because double derivatives make my head spin.
 An important corollary of this theorem:
 \begin{corollary}
-	[Clairaut's Theorem: Mixed Partials are Symmetric]
+	[Clairaut's theorem: mixed partials are symmetric]
 	Let $f : U \to \RR$ with $U \subseteq V$ open be twice differentiable.
 	Then for any point $p$ such that the quantities are defined,
 	\[
@@ -339,7 +339,7 @@ An important corollary of this theorem:
 	\]
 \end{corollary}
 
-\section{Towards Differential Forms}
+\section{Towards differential forms}
 This concludes the exposition of what the derivative really is:
 the key idea I want to communicate in this chapter is that $Df$
 should be thought of as a map from $U \to V^\vee$.
@@ -350,7 +350,7 @@ you'll finally know what all those stupid $dx$'s and $dy$'s really mean.
 (They weren't just there for decoration!)
 
 \section\problemhead
-\begin{sproblem}[Chain Rule]
+\begin{sproblem}[Chain rule]
 	Let $U_1 \taking f U_2 \taking g U_3$ be differentiable maps
 	between open sets of normed vector spaces $V_i$, and let $h = g \circ f$.
 	Prove the Chain Rule: for any point $p \in U_1$, we have

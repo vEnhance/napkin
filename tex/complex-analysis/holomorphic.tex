@@ -1,9 +1,9 @@
-\chapter{Holomorphic Functions}
+\chapter{Holomorphic functions}
 Throughout this chapter, we denote by $U$ an open subset of the complex plane,
 and by $\Omega$ an open subset which is also simply connected.
 The main references for this chapter were \cite{ref:dartmouth,ref:bak_ca}.
 
-\section{The Nicest Functions on Earth}
+\section{The nicest functions on earth}
 In high school you were told how to differentiate and integrate real-valued functions.
 In this chapter on complex analysis, we'll extend it to differentiation and integration of complex-valued functions.
 
@@ -14,7 +14,7 @@ In real analysis, your input lives inside the real line $\RR$.
 This line is not terribly discerning -- you can construct a lot of unfortunate functions.
 Here are some examples.
 \begin{example}
-	[Optional: Evil Real Functions]
+	[Optional: evil real functions]
 	You can skim over these very quickly: they're just here to make a point.
 	\begin{enumerate}[(a)]
 		\ii The \vocab{Devil's Staircase} (or Cantor function)
@@ -92,7 +92,7 @@ Some of the resulting corollaries:
 As \cite{ref:pugh} writes: ``Complex analysis is the good twin and real analysis is the evil one: beautiful formulas and elegant theorems seem to blossom spontaneously in the complex domain, while toil and pathology rule the reals''.
 
 
-\section{Complex Differentiation}
+\section{Complex differentiation}
 \prototype{Polynomials are holomorphic; $\ol z$ is not.}
 Let $f : U \to \CC$ be a complex function.
 Then for some $z_0 \in U$, we define the \vocab{derivative} at $z_0$ to be
@@ -118,7 +118,7 @@ But the complex numbers form a \emph{plane}: $h$ can approach zero
 from many directions, and we need all the limits to be equal.
 
 \begin{example}
-	[Important: Conjugation is NOT Holomorphic]
+	[Important: conjugation is \emph{not} holomorphic]
 	Let $f(z) = \ol z$, $f : \CC \to \CC$.
 	This function, despite its simple nature, is not holomorphic!
 	Indeed, at $z=0$ we have,
@@ -154,7 +154,7 @@ In the special case of a holomorphic function with domain $U = \CC$,
 we call the function \vocab{entire}.\footnote{Sorry, I know the word ``holomorphic'' sounds so much cooler. I'll try to do things more generally for that sole reason.}
 
 \begin{example}
-	[Examples of Holomorphic Functions]
+	[Examples of holomorphic functions]
 	In all the examples below, the derivative of the function
 	is the same as in their real analogues
 	(e.g.\ the derivative of $e^z$ is $e^z$).
@@ -172,7 +172,7 @@ we call the function \vocab{entire}.\footnote{Sorry, I know the word ``holomorph
 \end{example}
 You are welcome to try and prove these results, but I won't bother to do so.
 
-\section{Contour Integrals}
+\section{Contour integrals}
 \prototype{$\oint_\gamma z^m \; dz$ around the unit circle.}
 In the real line we knew how to integrate a function across a line segment $[a,b]$:
 essentially, we'd ``follow along'' the line segment adding up the values of $f$ we see
@@ -270,7 +270,7 @@ The theorem says that even if we multiply by $z^m$ for $m \neq 1$, we get the sa
 This might seem a little boring.
 Things will get really cool really soon, I promise.
 
-\section{Cauchy-Goursat Theorem}
+\section{Cauchy-Goursat theorem}
 \prototype{$\oint_\gamma z^m \; dz = 0$ for $m \ge 0$. But if $m < 0$, Cauchy's theorem does not apply.}
 Let $\Omega \subseteq \CC$ be simply connected (for example, $\Omega = \CC$),
 and consider two paths $\alpha$, $\beta$ with the same start and end points.
@@ -325,18 +325,18 @@ More precisely,
 
 Now here's a miracle: for holomorphic functions, the two integrals are \emph{always equal}.
 Equivalently, (by considering $\alpha$ followed by $\ol\beta$) contour integrals of loops are always zero.
-This is the celebrated Cauchy-Goursat Theorem
-(also called the Cauchy Integral Theorem,
+This is the celebrated Cauchy-Goursat theorem
+(also called the Cauchy integral theorem,
 but later we'll have a ``Cauchy Integral Formula'' so blah).
 
 \begin{theorem}
-	[Cauchy-Goursat Theorem]
+	[Cauchy-Goursat theorem]
 	Let $\gamma$ be a loop, and $f : \Omega \to \CC$ a holomorphic function
 	where $\Omega$ is open in $\CC$ and simply connected.
 	Then
 	\[ \oint_\gamma f(z) \; dz = 0. \]
 \end{theorem}
-\begin{remark}[Sanity Check]
+\begin{remark}[Sanity check]
 	This might look surprising considering that we saw $\oint_\gamma z^{-1} \; dz = 2 \pi i$ earlier.
 	The subtlety is that $z^{-1}$ is not even defined at $z = 0$.
 	On the other hand, the function $\CC \setminus \{0\} \to \CC$ by $z \mapsto \frac 1z$ \emph{is} holomorphic!
@@ -346,12 +346,12 @@ but later we'll have a ``Cauchy Integral Formula'' so blah).
 
 The typical proof of Cauchy's Theorem assumes additionally
 that the partial derivatives of $f$ are continuous
-and then applies the so-called Green's Theorem.
+and then applies the so-called Green's theorem.
 But it was Goursat who successfully proved the fully general theorem we've stated above,
 which assumed only that $f$ was holomorphic.
 I'll only outline the proof, and very briefly.
 You can show that if $f : \Omega \to \CC$ has an antiderivative $F : \Omega \to \CC$ which is also holomorphic,
-and moreover $\Omega$ is simply connected, then you get a ``Fundamental Theorem of Calculus'', a la
+and moreover $\Omega$ is simply connected, then you get a ``fundamental theorem of calculus'', a la
 \[ \oint_\alpha f(z) \; dz = F(\alpha(b)) - F(\alpha(a)) \]
 where $\alpha : [a,b] \to \CC$ is some path.
 So to prove Cauchy-Gorsat, you just have to show this antiderivative $F$ exists.
@@ -366,7 +366,7 @@ But so far we've only played with circles.
 This theorem holds for \emph{any} contour which is a loop.
 So what else can we do?
 
-\section{Cauchy's Integral Theorem}
+\section{Cauchy's integral theorem}
 We now present a stunning application of Cauchy-Gorsat, a ``representation theorem'':
 essentially, it says that values of $f$ inside a disk
 are determined by just the values on the boundary!
@@ -376,7 +376,7 @@ As \cite{ref:dartmouth} says,
 it is likely that many more deep theorems will follow.''
 Let's pull back the curtain:
 
-\begin{theorem}[Cauchy's Integral Formula]
+\begin{theorem}[Cauchy's integral formula]
 	Let $\gamma : [0,2\pi] \to \CC$ be a circle in the plane given by $t \mapsto Re^{it}$,
 	which bounds a disk $D$.
 	Suppose $f : U \to \CC$ is holomorphic such that $U$ contains the circle and its interior.
@@ -397,7 +397,7 @@ In fact, that's the central result we're going to use to prove the result.
 
 \begin{proof}
 	There are several proofs out there, but I want to give the one that really
-	draws out the power of Cauchy's Theorem. Here's the picture we have:
+	draws out the power of Cauchy's theorem. Here's the picture we have:
 	there's a point $a$ sitting inside a circle $\gamma$,
 	and we want to get our hands on the value $f(a)$.
 	\begin{center}
@@ -436,7 +436,7 @@ In fact, that's the central result we're going to use to prove the result.
 		$\Gamma_{\delta,\eps}$ but does not contain the point $a$.
 	\end{ques}
 	Hence, the function $\frac{f(z)}{z-a}$ manages to be holomorphic on all of $\Omega$.
-	Thus Cauchy's Theorem applies and tells us that
+	Thus Cauchy's theorem applies and tells us that
 	\[
 		0 = \oint_{\Gamma_{\delta,\eps}} \frac{f(z)}{z-a} \; dz.
 	\]
@@ -471,7 +471,7 @@ In fact, that's the central result we're going to use to prove the result.
 	which I'll just cite without proof:
 	it just says ``bound the function everywhere by its maximum''.
 	\begin{lemma}
-		[$ML$ Estimation Lemma]
+		[$ML$ estimation lemma]
 		Let $f$ be a holomorphic function and $\alpha$ a path.
 		Suppose $M = \max_{z \text{ on } \alpha} \left\lvert f(z) \right\rvert$, and
 		let $L$ be the length of $\alpha$.
@@ -491,7 +491,7 @@ In fact, that's the central result we're going to use to prove the result.
 	as desired.
 \end{proof}
 
-\section{Holomorphic Functions Are Analytic}
+\section{Holomorphic functions are analytic}
 \prototype{Imagine a formal series!}
 In the setup of the previous problem, we have a circle $\gamma : [0,2\pi] \to \CC$
 and a holomorphic function $U \to \CC$ which contains the disk $D$.
@@ -517,7 +517,7 @@ Naturally, we can do this with any circle (not just one centered at zero).
 So let's state the full result below, with arbitrary center $p$.
 
 \begin{theorem}
-	[Cauchy's Differentiation Fomula]
+	[Cauchy's differentiation fomula]
 	Let $f : U \to C$ be a holomorphic function and let $D$ be a disk centered at point $p$
 	bounded by a circle $\gamma$.  Suppose $D$ is contained inside $U$.
 	Then $f$ is given everywhere in $D$ by a Taylor series
@@ -560,7 +560,7 @@ The first few results are the most important.
 
 
 \begin{sproblem}
-	[Liouville's Theorem]
+	[Liouville's theorem]
 	\gim
 	Let $f : \CC \to \CC$ be an entire function.
 	Suppose that $\left\lvert f(z) \right\rvert < 1000$ for all complex numbers $z$.
@@ -579,7 +579,7 @@ The first few results are the most important.
 \end{sproblem}
 
 
-\begin{sproblem}[Zeros are Isolated]
+\begin{sproblem}[Zeros are isolated]
 	An \vocab{isolated set} in the complex plane is a set of points $S$ such that
 	around each point in $S$, one can draw a neighborhood not intersecting any other point of $S$.
 
@@ -602,7 +602,7 @@ The first few results are the most important.
 \end{sproblem}
 
 \begin{sproblem}
-	[Identity Theorem]
+	[Identity theorem]
 	\gim
 	Let $f, g : U \to \CC$ be holomorphic, and assume that $U$ is connected.
 	Prove that if $f$ and $g$ agree on some small neighborhood, then $f = g$.
@@ -653,11 +653,11 @@ The first few results are the most important.
 \end{dproblem}
 
 \begin{problem}
-	[Harvard Quals]
+	[Harvard quals]
 	Let $f : \CC \to \CC$ be a nonconstant entire function.
 	Prove that $f``(\CC)$ is dense in $\CC$.
 	(In fact, a much stronger result is true:
-	Little Picard's Theorem says that the image of a nonconstant
+	Little Picard's theorem says that the image of a nonconstant
 	entire function omits at most one point.)
 	\begin{hint}
 		Liouville. Look at $\frac{1}{f(z)-w}$.
@@ -665,12 +665,12 @@ The first few results are the most important.
 	\begin{sol}
 		Suppose we want to show that there's a point
 		in the image within $\eps$ of a given a point $w \in \CC$.
-		Look at $\frac{1}{f(z) - w}$ and use Liouville's Theorem.
+		Look at $\frac{1}{f(z) - w}$ and use Liouville's theorem.
 	\end{sol}
 \end{problem}
 
 %\begin{dproblem}
-%	[Liouiville's Theorem Extended]
+%	[Liouiville's theorem extended]
 %	Let $f : \CC \to \CC$ be entire.
 %	\begin{enumerate}[(a)]
 %		\ii Show that if $\left\lvert f(z) \right\rvert < C \left\lvert z \right\rvert^{1000}$
@@ -679,7 +679,7 @@ The first few results are the most important.
 %		unless $f$ is constant.
 %	\end{enumerate}
 %	\begin{hint}
-%		Part (a) is the same proof of the original Louiville's Theorem.
+%		Part (a) is the same proof of the original Louiville's theorem.
 %
 %		For part (b), assume it's not dense and misses a circle at $w$
 %		with radius $\eps$. Look at $\frac{1}{f(z)-w}$ and show it's bounded.

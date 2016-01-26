@@ -1,4 +1,4 @@
-\chapter{Holomorphic Square Roots and Logarithms}
+\chapter{Holomorphic square roots and logarithms}
 \label{ch:complex_log}
 In this chapter we'll make sense of a holomorphic square root and logarithm.
 The main results are \Cref{thm:nth_root}, \Cref{thm:holomorphic_log},
@@ -13,7 +13,7 @@ such that $f(z) = e^{g(z)}$ for all $z \in U$.
 The main question we'll try to figure out is: when do these exist?
 In particular, what if $f = \id$?
 
-\section{Motivation: Square Root of a Complex Number}
+\section{Motivation: square root of a complex number}
 To start us off, can we define $\sqrt z$ for any complex number $z$?
 
 The first obvious problem that comes up is that for any $z$, there are
@@ -153,7 +153,7 @@ ray of death misses it.
 
 So, what exactly is going on?
 
-\section{Square Roots of Holomorphic Functions}
+\section{Square roots of holomorphic functions}
 To get a picture of what's happening, we would like to consider a more
 general problem: let $f: U \to \CC$ be holomorphic.
 Then we want to decide whether there is a $g : U \to \CC$
@@ -225,7 +225,7 @@ Nevertheless, we know that if we take $f(z) = z^2$, then we don't run into any p
 with our ``make it up as you go'' procedure.
 So, what exactly is going on?
 
-\section{Covering Projections}
+\section{Covering projections}
 By now, if you have read the part on algebraic topology,
 this should all seem quite familiar.
 The ``fudging'' procedure exactly describes the idea of a lifting.
@@ -264,7 +264,7 @@ since $f$ has no poles.
 
 Replacing $2$ with $n$ and carrying over the discussion gives the first main result.
 \begin{theorem}
-	[Existence of Holomorphic $n$th Roots]
+	[Existence of holomorphic $n$th roots]
 	\label{thm:nth_root}
 	Let $f : U \to \CC$ be holomorphic.  
 	Then $f$ has a holomorphic $n$th root if and only if 
@@ -273,7 +273,7 @@ Replacing $2$ with $n$ and carrying over the discussion gives the first main res
 \end{theorem}
 
 
-\section{Complex Logarithms}
+\section{Complex logarithms}
 The multivalued nature of the complex logarithm comes from the fact that
 \[ \exp(z+2\pi i) = \exp(z). \]
 So if $e^w = z$, then any complex number $w + 2\pi i k$ is also a solution.
@@ -295,7 +295,7 @@ Thus, $p``(\pi_1(\CC))$ is \emph{trivial}.
 So in addition to being zero-free, $f$ cannot have any winding number around $0 \in B$ at all.
 In other words:
 \begin{theorem}
-	[Existence of Logarithms]
+	[Existence of logarithms]
 	\label{thm:holomorphic_log}
 	Let $f : U \to \CC$ be holomorphic.  
 	Then $f$ has a logarithm if and only if 
@@ -303,10 +303,10 @@ In other words:
 	for every contour $\gamma$ in $U$.
 \end{theorem}
 
-\section{Some Special Cases}
+\section{Some special cases}
 The most common special case is
 \begin{corollary}
-	[Nonvanishing Functions from Simply Connected Domains]
+	[Nonvanishing functions from simply connected domains]
 	\label{cor:nonvanishing}
 	Let $f : \Omega \to \CC$ be continuous, where $\Omega$ is simply connected.
 	If $f(z) \neq 0$ for every $z \in \Omega$,
@@ -325,7 +325,7 @@ The usual choice is to delete negative half of the real axis, our very first ray
 we call this a \vocab{branch cut}, with \vocab{branch point} at $0 \in \CC$
 (the point which we cannot circle around).
 This gives
-\begin{theorem}[Branch Cut Functions]
+\begin{theorem}[Branch cut functions]
 	\label{cor:principal}
 	There exist holomorphic functions
 	\begin{align*}
@@ -359,4 +359,3 @@ Often, authors will write $\opname{Log} z$ to emphasize this choice.
 	by $z \mapsto z(z-1)$ has a holomorphic square root,
 	where $U$ is the entire complex plane minus the closed interval $[0,1]$.
 \end{problem}
-
