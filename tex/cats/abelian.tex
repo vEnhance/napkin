@@ -1,4 +1,4 @@
-\chapter{Abelian Categories}
+\chapter{Abelian categories}
 In this chapter I'll translate some more familiar concepts into categorical language;
 this will require some additional assumptions about our category,
 culminating in the definition of a so-called ``abelian category''.
@@ -6,7 +6,7 @@ Once that's done, I'll be able to tell you what this ``diagram chasing'' thing i
 
 Throughout this chapter, ``$\injto$'' will be used for monic maps and ``$\surjto$'' for epic maps.
 
-\section{Zero Objects, Kernels, Cokernels, and Images}
+\section{Zero objects, kernels, cokernels, and images}
 \prototype{In $\catname{Grp}$, the trivial group and homomorphism are the zero objects and morphisms.
 If $G$, $H$ are abelian then $\phi : G \to H$ is $H/\img \phi$.}
 
@@ -79,7 +79,7 @@ Picture:
 Note that by universality of $\Img f$,
 we find that there is a unique map $\img f : A \to \Img f$ that makes the entire diagram commute.
 
-\section{Additive and Abelian Categories}
+\section{Additive and abelian categories}
 \prototype{$\catname{Ab}$, $\catname{Vect}_k$ are abelian categories.}
 We can now define the notion of an additive and abelian category,
 which are the types of categories where this notion is most useful.
@@ -109,7 +109,7 @@ which are the types of categories where this notion is most useful.
 	\end{diagram}
 \end{definition}
 
-\begin{example}[Examples of Abelian Categories]
+\begin{example}[Examples of abelian categories]
 	\listhack
 	\begin{enumerate}[(a)]
 		\ii $\catname{Vect}_k$, $\catname{Ab}$ are abelian categories,
@@ -122,7 +122,7 @@ which are the types of categories where this notion is most useful.
 In general, once you assume a category is abelian, all the properties you would want
 of these kernels, cokernels, \dots\ that you would guess hold true.
 For example,
-\begin{proposition}[Monic $\iff$ Trival Kernel]
+\begin{proposition}[Monic $\iff$ trival kernel]
 	A map $A \taking f B$ is monic if and only if its kernel is $0 \to A$.
 	Dually, $A \taking f B$ is epic if and only if its cokernel is $B \to 0$.
 \end{proposition}
@@ -151,15 +151,15 @@ For example,
 	But since $0 \to A$ is a kernel it follows that $g-h$ factors through $0$,
 	so $g-h = 0 \implies g = h$, which is to say that $f$ is monic.
 \end{proof}
-\begin{proposition}[Isomorphism $\iff$ Monic and Epic]
+\begin{proposition}[Isomorphism $\iff$ monic and epic]
 	In an abelian category,
 	a map is an isomorphism if and only if it is monic and epic.
 \end{proposition}
 \begin{proof}
-	Omitted, because the Mitchell Embedding Theorem presented later will trivialize this.
+	Omitted, because the Mitchell embedding theorem presented later will trivialize this.
 \end{proof}
 
-\section{Exact Sequences}
+\section{Exact sequences}
 \prototype{$0 \to G \to G \times H \to H \to 0$ is exact.}
 Exact sequences will seem exceedingly unmotivated until you learn about homology groups,
 which is one of the most natural places that exact sequences appear.
@@ -172,7 +172,7 @@ A sequence of groups
 is \emph{exact} at $G_k$ if the image of $f_k$ is the kernel of $f_{k+1}$.
 We say the entire sequence is exact if it's exact at $k=1,\dots,n-1$.
 \begin{example}
-	[Exact Sequences]
+	[Exact sequences]
 	\listhack
 	\begin{enumerate}[(a)]
 		\ii The sequence
@@ -216,8 +216,8 @@ In short,
 	Show that, as before, $0 \to A \to B$ is exact $\iff$ $A \to B$ is monic.
 \end{exercise}
 
-\section{The Freyd-Mitchell Embedding Theorem}
-We now introduce the Freyd-Mitchell Embedding Theorem,
+\section{The Freyd-Mitchell embedding theorem}
+We now introduce the Freyd-Mitchell embedding theorem,
 which essentially says that any abelian category can be realized as a concrete one.
 
 \begin{definition}
@@ -227,7 +227,7 @@ which essentially says that any abelian category can be realized as a concrete o
 \end{definition}
 
 \begin{theorem}
-	[Freyd-Mitchell Embedding Theorem]
+	[Freyd-Mitchell embedding theorem]
 	Let $\AA$ be a small abelian category.
 	Then there exists a ring $R$ (with $1$ but possibly non-commutative)
 	and a full, faithful, exact functor onto the category of left $R$-modules.
@@ -252,7 +252,7 @@ A proof by this means is sometimes called \emph{diagram chasing}.
 
 For example, let's prove the following.
 \begin{lemma}
-	[Short Five Lemma]
+	[Short five lemma]
 	In an abelian category, consider the commutative diagram
 	\begin{diagram}
 		0 & \rTo & A & \rInj^p & B & \rSurj^q & C & \rTo & 0 \\
@@ -270,7 +270,7 @@ For example, let's prove the following.
 %	kernels, cokernels, et cetera.
 %	(Essentially, let $\BB_0$ be the diagram above and let $\BB_{i+1}$ add in any needed objects;
 %	then $\bigcup \BB_i$ is a set-sized category).
-	By the Embedding Theorem we can treat the category as $R$-modules over some $R$.
+	By the embedding theorem we can treat the category as $R$-modules over some $R$.
 	This lets us do a so-called ``diagram chase'' where we move elements around the picture,
 	using the concrete interpretation of our category of $R$-modules.
 
@@ -305,12 +305,12 @@ For example, let's prove the following.
 	so $b' \in \Img \beta$ which completes the proof that $\beta'$ is surjective.
 \end{proof}
 
-\section{Breaking Long Exact Sequences}
-\prototype{First Isomorphism Theorem}
+\section{Breaking long exact sequences}
+\prototype{First isomorphism theorem.}
 
 In fact, it turns out that any exact sequence, one can break it into short exact sequences.
 This relies on the following result.
-\begin{proposition}[``First Isomorphism Theorem'' in Abelian Categories]
+\begin{proposition}[``First isomorphism theorem'' in abelian categories]
 	\label{prop:break_exact}
 	Let $A \taking f B$ be an arrow of an abelian category.
 	Then there is an exact sequence
@@ -321,9 +321,9 @@ This relies on the following result.
 Let's analyze this theorem in our two examples of abelian categories:
 \begin{enumerate}[(a)]
 	\ii In the category of abelian groups, 
-	this is basically the First Isomorphism Theorem.
+	this is basically the first isomorphism theorem.
 	\ii In the category $\catname{Vect}_k$,
-	this amounts to the Rank-Nullity Theorem, \Cref{thm:rank_nullity}.
+	this amounts to the rank-nullity theorem, \Cref{thm:rank_nullity}.
 \end{enumerate}
 \end{example}
 Thus, any exact sequence can be broken into short exact sequences, as
@@ -340,7 +340,7 @@ where $C_k = \img f_{k-1} = \ker f_k$ for every $k$.
 \section\problemhead
 
 \begin{problem}
-	[Five Lemma]
+	[Five lemma]
 	\gim
 	In an abelian category, consider the commutative diagram
 	\begin{diagram}
@@ -355,7 +355,7 @@ where $C_k = \img f_{k-1} = \ker f_k$ for every $k$.
 \end{problem}
 
 \begin{sproblem}
-	[Snake Lemma]
+	[Snake lemma]
 	\yod
 	In an abelian category, consider the diagram
 	\begin{diagram}
@@ -367,6 +367,3 @@ where $C_k = \img f_{k-1} = \ker f_k$ for every $k$.
 	Prove that there is an exact sequence
 	\[ \Ker a \to \Ker b \to \Ker c \to \Coker a \to \Coker b \to \Coker c. \]
 \end{sproblem}
-
-
-

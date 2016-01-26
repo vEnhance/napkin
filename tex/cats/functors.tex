@@ -1,8 +1,8 @@
-\chapter{Functors and Natural Transformations}
+\chapter{Functors and natural transformations}
 \label{ch:functors}
 Functors are maps between categories; natural transformations are maps between functors.
 
-\section{Many Examples of Functors}
+\section{Many examples of functors}
 \prototype{Forgetful functors; fundamental groups; $-^\vee$.}
 Here's the point of a functor:
 \begin{moral}
@@ -44,7 +44,7 @@ Don't worry about those for now; you'll see why in a moment.)
 	\end{itemize}
 \end{itemize}
 
-\section{Covariant Functors}
+\section{Covariant functors}
 \prototype{Forgetful/free functors, \dots}
 Category theorists are always asking ``what are the maps?'',
 and so we can now think about maps between categories.
@@ -79,7 +79,7 @@ there should usually be a natural way to transform a map $A_1 \to A_2$ into a ma
 Let's see some examples of this.
 
 \begin{example}
-	[Free and Forgetful Functors]
+	[Free and forgetful functors]
 	Note that these are both informal terms.
 	\begin{enumerate}[(a)]
 		\ii We talked about a \vocab{forgetful functor} earlier,
@@ -133,7 +133,7 @@ Let's see some examples of this.
 Here's a more involved example.
 If you find it confusing, skip it and come back after reading about its contravariant version.
 \begin{example}
-	[Covariant Yoneda Functor]
+	[Covariant Yoneda functor]
 	\label{ex:covariant_yoneda}
 	Fix an $A \in \AA$.
 	For a category $\AA$, define the \vocab{covariant Yoneda functor} $H^A : \AA \to \catname{Set}$
@@ -168,7 +168,7 @@ this in fact works \emph{for any functors and categories},
 and the proof is done solely through arrows.
 
 \begin{theorem}
-	[Functors Preserve Isomorphism]
+	[Functors preserve isomorphism]
 	\label{thm:functor_isom}
 	If $A_1 \cong A_2$ are isomorphic objects in $\AA$
 	and $F : \AA \to \BB$ is a functor
@@ -205,7 +205,7 @@ While I'm here:
 	Verify this works; figure out the identity and compositions.
 \end{ques}
 
-\section{Contravariant Functors}
+\section{Contravariant functors}
 \prototype{Dual spaces, contravariant Yoneda functor, etc.}
 
 Now I have to explain what the opposite categories were doing earlier.
@@ -225,7 +225,7 @@ These functors have a name: a \vocab{contravariant functor}.  Pictorially:
 For emphasis, a usual functor is often called a \vocab{covariant functor}.
 
 Let's see why this might happen.
-\begin{example}[$V \mapsto V^\vee$ is Contravariant]
+\begin{example}[$V \mapsto V^\vee$ is contravariant]
 	Consider the functor $\catname{Vect}_k \to \catname{Vect}_k$ by $V \mapsto V^\vee$.
 
 	If we were trying to specify a covariant functor,
@@ -266,7 +266,7 @@ Let's see why this might happen.
 We can generalize the example above in any category by
 replacing the field $k$ with any chosen object $A \in \AA$.
 
-\begin{example}[Contravariant Yoneda Functor]
+\begin{example}[Contravariant Yoneda functor]
 	The \vocab{contravariant Yoneda functor} $H_A : \AA\op \to \catname{Set}$;
 	is used to describe how objects of $\AA$ see $A$.
 	For each $X \in \AA$ it puts \[ H_A(X) \defeq \Hom_{\AA}(X, A) \in \catname{Set}. \]
@@ -282,7 +282,7 @@ replacing the field $k$ with any chosen object $A \in \AA$.
 	by $(A_1, A_2) \mapsto \Hom(A_1, A_2)$ is in fact a functor.
 \end{exercise}
 
-\section{(Optional) Natural Transformations}
+\section{(Optional) natural transformations}
 We made categories to keep track of objects and maps, then went a little crazy and asked
 ``what are the maps between categories?'' to get functors.
 Now we'll ask ``what are the maps between functors?'' to get natural transformations.
@@ -456,7 +456,7 @@ where the component $\eps_V$ is given by $v \mapsto \opname{ev}_v$
 the fact that it is an isomorphism follows from the fact that $V$ and $(V^\vee)^\vee$
 have equal dimensions and $\eps_V$ is injective).
 
-\section{(Optional) The Yoneda Lemma}
+\section{(Optional) the Yoneda lemma}
 Now that I have natural transformations, I can define the following:
 \begin{definition}
 	The \vocab{functor category} of two categories $\AA$ and $\BB$,
@@ -500,7 +500,7 @@ and see if we can learn anything about it.
 In fact, this set can be written explicitly:
 
 \begin{theorem}
-	[Yoneda Lemma]
+	[Yoneda lemma]
 	\label{thm:yoneda}
 	Let $\AA$ be a category,
 	pick $A \in \AA$, and let $H_A$ be the contravariant Yoneda functor.
@@ -515,7 +515,7 @@ In fact, this set can be written explicitly:
 	\[ \AA\op \times [\AA\op, \catname{Set}] \to \catname{Set} \]
 	then this isomorphism is natural.
 \end{theorem}
-\begin{remark}[Technical Digression]
+\begin{remark}[Technical digression]
 	Technically, I should say that $\AA$ is ``locally small'',
 	meaning that $\Hom(A_1, A_2)$ is a set for every $A_1$ and $A_2$.
 	But without this restriction, $H_A$ doesn't even make sense.
@@ -531,9 +531,9 @@ Now to look at the set of natural transformations, we took a pair of elements $A
 and $X \in [\AA, \catname{Set}]$ and constructed a \emph{set} of natural transformations.
 Is there another way we can get a set from these two pieces of information?
 Yes: just look at $X(A)$.
-The Yoneda Lemma is telling us that our heuristic still holds true here.
+The Yoneda lemma is telling us that our heuristic still holds true here.
 
-Some consequences of the Yoneda Lemma are recorded in \cite{ref:msci}.
+Some consequences of the Yoneda lemma are recorded in \cite{ref:msci}.
 Since this chapter is already a bit too long, I'll just write down the statements,
 and refer you to \cite{ref:msci} for the proofs.
 
@@ -542,7 +542,7 @@ and refer you to \cite{ref:msci} for the proofs.
 	\[ \AA \to [\AA\op, \catname{Set}]. \]
 	It turns out this functor is in fact \emph{fully faithful};
 	it quite literally embeds the category $\AA$ into the functor category on the right
-	(much like Cayley's Theorem embeds every group into a permutation group).
+	(much like Cayley's theorem embeds every group into a permutation group).
 
 	\ii If $X, Y \in \AA$ then
 	\[ H_X \cong H_Y \iff X \cong Y \iff H^X \cong H^Y. \]
@@ -622,7 +622,7 @@ and refer you to \cite{ref:msci} for the proofs.
 
 
 \begin{problem}
-	[Proving the Yoneda Lemma]
+	[Proving the Yoneda lemma]
 	In the context of \Cref{thm:yoneda}:
 	\begin{enumerate}[(a)]
 	\ii Prove that the map described is in fact a bijection.
