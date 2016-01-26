@@ -2,7 +2,7 @@ import re, sys, os, string
 
 r = re.compile(r"^\t\[" + r"|" + \
 		r"^\\(chapter|section|subsection)\*?{" + r"|" + \
-		r"^\\begin\{(example|theorem|proposition|corollary|definition|problem|sproblem|remark)\}\[" + r"|" + \
+		r"^\\begin\{(example|lemma|theorem|proposition|corollary|definition|problem|sproblem|remark)\}\[" + r"|" + \
 		r"Theorem|Lemma")
 
 def guess(line):
