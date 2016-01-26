@@ -1,4 +1,4 @@
-\chapter{Unique Factorization (Finally!)}
+\chapter{Unique factorization (finally!)}
 Took long enough.
 
 \section{Motivation}
@@ -83,7 +83,7 @@ In this chapter we'll develop this theory of unique factorization in full genera
 	When fractional ideals arise, I'll use $I$ and $J$ for them.
 \end{remark}
 
-\section{Ideal Arithmetic}
+\section{Ideal arithmetic}
 \prototype{$(x)(y) = (xy)$. In any case, think in terms of generators.}
 First, I have to tell you how to add and multiply two ideals $\aa$ and $\bb$.
 \begin{definition}
@@ -98,7 +98,7 @@ we cut off the sum after some finite number of terms.)
 You can readily check these are actually ideals.
 This definition is more natural if you think about it in terms of 
 the generators of $\aa$ and $\bb$.
-\begin{proposition}[Ideal Arithmetic via Generators]
+\begin{proposition}[Ideal arithmetic via generators]
 	Suppose $\aa = \left( a_1, a_2, \dots, a_n \right)$
 	and $\bb = \left( b_1, \dots, b_m \right)$ are ideals in a ring $R$.
 	Then
@@ -141,7 +141,7 @@ This is compatible with the definition of divisibility:
 \end{exercise}
 
 
-\section{Field of Fractions}
+\section{Field of fractions}
 \prototype{The integral closure of $\ZZ$ is $\QQ$}
 As long as we're trying to get an analog of factoring things in $\ZZ$,
 we may as well try to extend it to $\QQ$: every rational number $\frac ab$ can be
@@ -166,7 +166,7 @@ I wouldn't worry about it\dots
 	Show that the ring of integers $\OO_K$ has field of fractions $K$.
 \end{ques}
 
-\section{Dedekind Domains}
+\section{Dedekind domains}
 \prototype{Any $\OO_K$ is a Dedekind domain.}
 We now define a Dedekind domain as follows.
 \begin{definition}
@@ -186,13 +186,13 @@ The \emph{interesting} condition in the definition
 of a Dedekind domain is the last one: prime ideals and maximal ideals
 are the same thing.
 The other conditions are just technicalities, but ``primes are maximal'' has real substance.
-\begin{example}[$\ZZ$ is a Dedekind Domain]
+\begin{example}[$\ZZ$ is a dedekind domain]
 	The ring $\ZZ$ is a Dedekind domain.
 	Note that
 	\begin{itemize}
 		\ii $\ZZ$ is Noetherian (for obvious reasons).
 		\ii $\ZZ$ has field of fractions $\QQ$.
-		If $f(x) \in \ZZ[x]$ is monic, then by the Rational Root Theorem
+		If $f(x) \in \ZZ[x]$ is monic, then by the rational root theorem
 		any rational roots are integers (this is the same as the proof that $\ol\ZZ \cap \QQ = \ZZ$).
 		Hence $\ZZ$ is integrally closed.
 		\ii The nonzero prime ideals of $\ZZ$ are $(p)$, which also happen to be maximal.
@@ -202,7 +202,7 @@ The other conditions are just technicalities, but ``primes are maximal'' has rea
 The case of interest is a ring $\OO_K$ in which we wish to do factorizing.
 We're now going to show that for any number field $K$, the ring $\OO_K$ is a Dedekind domain.
 First, the boring part.
-\begin{proposition}[$\OO_K$ Integrally Closed and Noetherian]
+\begin{proposition}[$\OO_K$ integrally closed and Noetherian]
 	For any number field $K$, the ring $\OO_K$ is integrally closed and Noetherian.
 \end{proposition}
 \begin{proof}
@@ -222,7 +222,7 @@ First, the boring part.
 \end{proof}
 Now let's do the fun part.
 We'll prove a stronger result, which will re-appear repeatedly.
-\begin{theorem}[Important: Prime Ideals Divide Rational Primes]
+\begin{theorem}[Important: prime ideals divide rational primes]
 	Let $\OO_K$ be a ring of integers and $\pp$ a nonzero prime ideal inside it.
 	Then $\pp$ contains a rational prime $p$. Moreover, $\pp$ is maximal.
 \end{theorem}
@@ -247,12 +247,12 @@ We'll prove a stronger result, which will re-appear repeatedly.
 Since every nonzero prime $\pp$ is maximal, we now know that $\OO_K$ is a Dedekind domain.
 Note that this tricky proof is essentially inspired by the solution to \Cref{prob:dedekind_sample}.
 
-\section{Unique Factorization Works}
+\section{Unique factorization works}
 Okay, I'll just say it now!
 \begin{moral}
 Unique factorization works perfectly in Dedekind domains!
 \end{moral}
-\begin{theorem}[Prime Factorization Works]
+\begin{theorem}[Prime factorization works]
 	Let $\aa$ be a nonzero proper ideal of a Dedekind domain $\mathcal A$.
 	Then $\aa$ can be written as a finite product of nonzero prime ideals $\pp_i$, say
 	\[ \aa = \pp_1^{e_1} \pp_2^{e_2} \dots \pp_g^{e_g} \]
@@ -266,7 +266,7 @@ Unique factorization works perfectly in Dedekind domains!
 
 I won't write out the proof, but I'll describe the basic method of attack.
 Section 3 of \cite{ref:ullery} does a nice job of explaining it.
-When we proved the Fundamental Theorem of Arithmetic, the basic plot was the following.
+When we proved the fundamental theorem of arithmetic, the basic plot was the following.
 \begin{enumerate}[(1)]
 	\ii Show that if $p$ is a rational prime\footnote{
 		Note that the kindergarten definition of a prime is that ``$p$ isn't the product of two smaller integers''.
@@ -314,7 +314,7 @@ This verbatim reads \[ a = p_1^{e_1} p_2^{e_2} \dots p_n^{e_n}. \]
 Hence, Dedekind domains which are PID's satisfy unique factorization for \emph{elements},
 just like in $\ZZ$. (In fact, the converse of this is true.)
 
-\section{The Factoring Algorithm}
+\section{The factoring algorithm}
 Let's look at some examples from quadratic fields.
 Recall that if $K = \QQ(\sqrt{d})$, then
 \[
@@ -423,7 +423,7 @@ In fact, it turns out this always works in general:
 given a rational prime $p$, there is an algorithm
 to factor $p$ in any $\OO_K$ of the form $\ZZ[\theta]$.
 
-\begin{theorem}[Factoring Algorithm / Dedekind-Kummer Theorem]
+\begin{theorem}[Factoring algorithm / Dedekind-Kummer theorem]
 	\label{thm:factor_alg}
 	Let $K$ be a number field.
 	Let $\theta \in \OO_K$ with $[\OO_K : \ZZ[\theta]] = j < \infty$,
@@ -477,7 +477,7 @@ Then your $(p) = \pp_1^{e_1} \dots \pp_g^{e_g}$.
 %	The formulation we presented above was the special case where $j=1$.
 %\end{remark}
 
-\section{Fractional Ideals}
+\section{Fractional ideals}
 \prototype{Analog to $\QQ$ for $\ZZ$, allowing us to take inverses of ideals.
 Prime factorization works in the nicest way possible.}
 We now have a neat theory of factoring ideals of $\mathcal A$,
@@ -505,13 +505,13 @@ Similarly here, it will turn out that we only need to look at $\frac1x \cdot \aa
 rather than $\frac{\aa}{\bb}$, and so we define it this way from the beginning.
 See \Cref{prob:fractional_ideal_alt_def} for a different equivalent definition.
 
-\begin{example}[$\frac52\ZZ$ is a Fractional Ideal]
+\begin{example}[$\frac52\ZZ$ is a fractional ideal]
 	The set \[ \frac52 \ZZ = \left\{ \frac52n \mid n \in \ZZ \right\} = \half (5) \]
 	is a fractional ideal of $\ZZ$.
 \end{example}
 
 Now, as we prescribed, the fractional ideals form a multiplicative group:
-\begin{theorem}[Fractional Ideals Form a Group]
+\begin{theorem}[Fractional ideals form a group]
 	Let $\mathcal A$ be a Dedekind domain and $K$ its field of fractions.
 	For any integral ideal $\aa$, the set
 	\[ \aa\inv = \left\{ x \in \mathcal A
@@ -537,7 +537,7 @@ just like the case with integers.
 So, a perhaps better way to think about fractional ideals is
 as products of prime ideals, possibly with negative exponents.
 
-\section{The Ideal Norm}
+\section{The ideal norm}
 One last tool is the following:
 the ideal norm gives us a notion of the ``size'' of an ideal.
 \begin{definition}
@@ -545,7 +545,7 @@ the ideal norm gives us a notion of the ``size'' of an ideal.
 	of a nonzero ideal $\aa \subseteq \OO_K$ is defined as
 	$\left\lvert \OO_K / \aa \right\rvert$ and denoted $\Norm(I)$.
 \end{definition}
-\begin{example}[Ideal Norm of $(5)$ in the Gaussian Integers]
+\begin{example}[Ideal norm of $(5)$ in the Gaussian integers]
 	Let $K = \QQ(i)$, $\OO_K = \ZZ[i]$.
 	Consider the ideal $(5)$ in $\OO_K$.
 	We have that 
@@ -554,7 +554,7 @@ the ideal norm gives us a notion of the ``size'' of an ideal.
 	corresponding to the fact that $\OO_K/(5)$ has $5^2=25$ elements.
 \end{example}
 
-\begin{example}[Ideal Norm of $(2+i)$ in the Gaussian Integers]
+\begin{example}[Ideal norm of $(2+i)$ in the Gaussian integers]
 	You'll notice that \[ \OO_K / (2+i) \cong \FF_5 \]
 	since mod $2+i$ we have both $5 \equiv 0$ and $i \equiv -2$.
 	(Indeed, since $(2+i)$ is prime we had better get a field!)
@@ -620,12 +620,12 @@ Thus $\Norm$ is a natural group homomorphism $J_K \to \QQ \setminus \{0\}$.
 \end{problem}
 
 \begin{problem}
-	[Fermat's Little Theorem]
+	[Fermat's little theorem]
 	Let $\pp$ be a prime ideal in some ring of integers $\OO_K$.
 	Show that for $\alpha \in \OO_K$,
 	\[ \alpha^{\Norm(\pp)} \equiv \alpha \pmod{\pp}. \]
 	\begin{hint}
-		Copy the proof of the usual Fermat's Little Theorem.
+		Copy the proof of the usual Fermat's little theorem.
 	\end{hint}
 	\begin{sol}
 		If $\alpha \equiv 0 \pmod{\pp}$ it's clear, so assume this isn't the case.
@@ -713,6 +713,3 @@ Thus $\Norm$ is a natural group homomorphism $J_K \to \QQ \setminus \{0\}$.
 %		As $e_i' \le e_i$ for each $i$, we can only have $e_i = e_i'$.
 	\end{sol}
 \end{problem}
-
-
-

@@ -1,4 +1,4 @@
-\chapter{Ramification Theory}
+\chapter{Ramification theory}
 We're very interested in how rational primes $p$ factor in a bigger number field $K$.
 Some examples of this behavior: in $\ZZ[i]$ (which is a UFD!), we have factorizations
 \begin{align*}
@@ -9,7 +9,7 @@ Some examples of this behavior: in $\ZZ[i]$ (which is a UFD!), we have factoriza
 In this chapter we'll learn more about how primes break down when they're thrown into bigger number fields.
 Using weapons from Galois Theory, this will culminate in a proof of Quadratic Reciprocity.
 
-\section{Ramified / Inert / Split Primes}
+\section{Ramified / inert / split primes}
 \prototype{In $\ZZ[i]$, $2$ is ramified, $3$ is inert, and $5$ splits.}
 
 Let $p$ be a rational prime, and toss it into $\OO_K$.
@@ -65,18 +65,18 @@ works if we replace $\Delta(f)$ by just the discriminant $\Delta_K$ of $K$;
 these are the same by \Cref{prob:root_discriminant}.
 That is,
 \begin{theorem}
-	[Discriminant Detects Ramification]
+	[Discriminant detects ramification]
 	Let $p$ be a rational prime and $K$ a number field.
 	Then $p$ is ramified if and only if $p$ divides $\Delta_K$.
 \end{theorem}
-\begin{example}[Ramification in the Gaussian Integers]
+\begin{example}[Ramification in the gaussian integers]
 	Let $K = \QQ(i)$ so $\OO_K = \ZZ[i]$ and $\Delta_K = 4$.
 	As predicted, the only prime ramifying in $\ZZ[i]$ is $2$,
 	the only prime factor of $\Delta_K$.
 \end{example}
 In particular, only finitely many primes ramify.
 
-\section{Inertial Degrees}
+\section{Inertial degrees}
 \prototype{$(7)$ has inertial degree $2$ in $\ZZ[i]$ and $(2+i)$ has inertial degree $1$ in $\ZZ[i]$.}
 
 Recall that we were able to define an ideal norm $\Norm(\aa) = \left\lvert \OO_K / \aa \right\rvert$
@@ -96,7 +96,7 @@ We conclude that $\pp_i = p^{f_i}$ for some integer $f_i \ge 1$, and moreover th
 	We say $f_i$ is the \vocab{inertial degree} of $\pp_i$,
 	and $e_i$ is the \vocab{ramification index}.
 \end{definition}
-\begin{example}[Examples of Inertial Degrees]
+\begin{example}[Examples of inertial degrees]
 	Work in $\ZZ[i]$, which is degree $2$.
 	The inertial degree detects how ``spacy'' the
 	given $\pp$ is when interpreted in $\OO_K$.
@@ -115,7 +115,7 @@ We conclude that $\pp_i = p^{f_i}$ for some integer $f_i \ge 1$, and moreover th
 	why the sum of the inertial degrees should equal $n$.
 \end{example}
 
-\section{The Magic of Galois Extensions}
+\section{The magic of Galois extensions}
 OK, that's all fine and well.
 But something \emph{really magical} happens when we add the
 additional hypothesis that $K/\QQ$ is \emph{Galois}:
@@ -160,7 +160,7 @@ it should come as no surprise that the prime ideals which are in the same
 orbit are closely related.
 But miraculously, it turns out there is only one orbit!
 \begin{theorem}
-	[Galois Group Acts Transitively]
+	[Galois group acts transitively]
 	Let $K/\QQ$ be Galois with $G = \Gal(K/\QQ)$.
 	Let $\{\pp_i\}$ be the set of distinct prime ideals in
 	the factorization of $p \cdot \OO_K$ (in $\OO_K$).
@@ -171,7 +171,7 @@ But miraculously, it turns out there is only one orbit!
 \begin{proof}
 	Fairly slick.
 	Suppose for contradiction that no $\sigma \in G$ sends $\pp_1$ to $\pp_2$, say.
-	By the Chinese Remainder Theorem, we can find an $x \in \OO_K$ such that
+	By the Chinese remainder theorem, we can find an $x \in \OO_K$ such that
 	\begin{align*}
 		x &\equiv 0 \pmod{\pp_1} \\
 		x &\equiv 1 \pmod{\pp_i} \text{ for $i \ge 2$}
@@ -187,7 +187,7 @@ But miraculously, it turns out there is only one orbit!
 	But by the way we selected $x$, we have $x \notin \sigma\inv\pp_2$ for every $\sigma \in G$!
 	So $\sigma(x) \notin \pp_2$ for any $\sigma$, which is a contradiction.
 \end{proof}
-\begin{theorem}[Inertial Degree and Ramification Indices Are All Equal]
+\begin{theorem}[Inertial degree and ramification indices are all equal]
 	Assume $K/\QQ$ is Galois.
 	Then for any rational prime $p$ we have
 	\[ p \cdot \OO_K = \left( \pp_1 \pp_2 \dots \pp_g \right)^e \]
@@ -210,7 +210,7 @@ But miraculously, it turns out there is only one orbit!
 \end{proof}
 
 Let's see an illustration of this.
-\begin{example}[Factoring $5$ in a Galois/Non-Galois Extension]
+\begin{example}[Factoring $5$ in a Galois/non-Galois extension]
 	Let $p = 5$ be a prime.
 	\begin{enumerate}[(a)]
 		\ii Let $E = \QQ(\cbrt2)$.
@@ -235,7 +235,7 @@ Let's see an illustration of this.
 	\end{enumerate}
 \end{example}
 
-\section{But Wait, There's More!}
+\section{But wait, there's more!}
 Let $p$ be a rational prime.
 Thus
 \[ p \cdot \OO_K = \left( \pp_1 \dots \pp_g \right)^e \]
@@ -273,7 +273,7 @@ by declaring $\theta(\sigma)$ to just be ``$\sigma \pmod \pp$''.
 The fact that $\sigma \in D_\pp$ (i.e.\ $\sigma$ fixes $\pp$)
 ensures this map is well-defined.
 
-\begin{theorem}[Decomposition Group and Galois Group]
+\begin{theorem}[Decomposition group and Galois group]
 	\label{thm:decomposition}
 	Define $\theta$ as above. Then
 	\begin{itemize}
@@ -303,7 +303,7 @@ We already have $ \OO_K / \pp \cong \FF_{p^f} $, and the Galois group is
 \]
 So $D_\pp \cong \Zc f$ as well.
 
-\section{(Optional) The Inertia Group}
+\section{(Optional) the inertia group}
 Let $p$ be above $\pp$ (with $p$ possibly ramified), and consider
 \[ D_\pp \taking\theta \Gal\left( (\OO_K/\pp) : \FF_p \right) \]
 as before.
@@ -313,7 +313,7 @@ and denoted $I_\pp \subseteq D_\pp$; it has order $e$.
 This gives us a pretty cool sequence of subgroups
 $\{1\} \subseteq I \subseteq D \subseteq G$
 where $G$ is the Galois group (I'm dropping the $\pp$-subscripts now).
-Let's look at the corresponding \emph{fixed fields} via the Fundamental Theorem of Galois Theory.
+Let's look at the corresponding \emph{fixed fields} via the Fundamental theorem of Galois theory.
 Picture:
 \begin{diagram}
 	\pp \subseteq \OO_K \subseteq & K & \rIsom & \{1\} \\
@@ -344,7 +344,7 @@ To draw this in the picture, we get
 In any case, in the ``typical'' case that there is no ramification,
 we just have $K^I = K$.
 
-\section{Tangential Remark: More General Galois Extensions}
+\section{Tangential remark: more general Galois extensions}
 All the discussion about Galois extensions
 carries over if we replace $K/\QQ$ by some different Galois extension $K/F$.
 Instead of a rational prime $p$ breaking down in $\OO_K$,

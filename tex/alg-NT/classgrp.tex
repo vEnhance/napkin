@@ -1,4 +1,4 @@
-\chapter{Minkowski Bound and Class Groups}
+\chapter{Minkowski bound and class groups}
 We now have a neat theory of unique factorization of ideals.
 In the case of a PID, this in fact gives us unique factorization of elements.
 (We call this a \vocab{unique factorization domain}.)
@@ -11,9 +11,9 @@ In particular, the $\OO_K$ is a PID if it has trivial class group.
 
 Then we will provide some inequalities which let us put restrictions on the class group;
 for instance, this will let us show in some cases that the class group must be trivial.
-Astonishingly, the proof will use Minkowski's Theorem, a result from geometry.
+Astonishingly, the proof will use Minkowski's theorem, a result from geometry.
 
-\section{The Class Group}
+\section{The class group}
 \prototype{PID's have trivial class group}
 Let $K$ be a number field,
 and let $J_K$ denote the multiplicative group of fractional ideals of $\OO_K$.
@@ -41,7 +41,7 @@ and the bulk of this chapter will build up to this result.
 It requires several ingredients.
 
 
-\section{The Discriminant of a Number Field}
+\section{The discriminant of a number field}
 \prototype{Quadratic fields.}
 Let's say I have $K = \QQ(\sqrt 2)$.
 As we've seen before, this means $\OO_K = \ZZ[\sqrt 2]$, meaning
@@ -215,7 +215,7 @@ Actually, let me point out something curious: recall that the polynomial discrim
 This is not a coincidence! \Cref{prob:root_discriminant} asserts that this is true in general;
 hence the name ``discriminant''.
 
-\section{The Signature of a Number Field}
+\section{The signature of a number field}
 \prototype{$\QQ(\sqrt[100]{2})$ has signature $(2, 49)$.}
 In the example of $K = \QQ(i)$, we more or less embedded $K$ into the space $\RR \times \CC$.
 However, $K$ is a degree two extension, so what we'd really like to do is embed it into $\RR^2$.
@@ -236,7 +236,7 @@ hence complex embeddings come in pairs.
 	The \vocab{signature} of $K$ is the pair $(r_1, r_2)$.
 	Observe that $r_1 + 2r_2 = n$.
 \end{definition}
-\begin{example}[Basic Examples of Signatures]
+\begin{example}[Basic examples of signatures]
 	\listhack
 	\begin{enumerate}[(a)]
 		\ii $\QQ$ has signature $(1,0)$.
@@ -257,7 +257,7 @@ hence complex embeddings come in pairs.
 		\sigma_3 : \cbrt 2 \mapsto \cbrt 2 \omega^2. \]
 	The last two are conjugate pairs, so the signature is $(1,1)$.
 \end{example}
-\begin{example}[Even More Signatures]
+\begin{example}[Even more signatures]
 	In the same vein $\QQ(\sqrt[99]{2})$ and $\QQ(\sqrt[100]{2})$
 	have signatures $(1,49)$ and $(2,49)$.
 \end{example}
@@ -298,7 +298,7 @@ by breaking each complex number into its real and imaginary part, as
 & \dots, \\
 & \Re \sigma_{r_1+r_2}(\alpha), \;\; \Im \sigma_{r_1+r_2}(\alpha) \big). 
 \end{align*}
-\begin{example}[Example of Canonical Embedding]
+\begin{example}[Example of canonical embedding]
 	Let $K = \QQ(\sqrt[3]{2})$ again and again set
 	\[ \sigma_1 : \cbrt 2 \mapsto \cbrt 2,
 		\quad
@@ -351,7 +351,7 @@ From this we can deduce the following.
 	But I hope you can see why this is intuitively true.
 \end{proof}
 
-\section{Minkowski's Theorem}
+\section{Minkowski's theorem}
 Now I can tell you why I insisted we move from $\RR^{r_1} \times \CC^{r_2}$ to $\RR^n$.
 In geometry, there's a really cool theorem of Minkowski's that goes as follows.
 \begin{theorem}
@@ -391,8 +391,8 @@ In geometry, there's a really cool theorem of Minkowski's that goes as follows.
 	So there has to be some point that's in $S_\eps$ for every $\eps > 0$ (why?), which implies it's in $S$.
 \end{proof}
 
-\section{The Trap Box}
-The last ingredient we need is a set to apply Minkowski's Theorem to.
+\section{The trap box}
+The last ingredient we need is a set to apply Minkowski's theorem to.
 I propose the following box.
 \begin{definition}
 	Let $M$ be a positive real.
@@ -470,10 +470,10 @@ This is again some geometry I won't do, but take my word for it:
 \end{ques}
 
 
-\section{The Minkowski Bound}
-We can now put everything we have together to obtain the great Minkowski Bound.
+\section{The Minkowski bound}
+We can now put everything we have together to obtain the great Minkowski bound.
 \begin{theorem}
-	[Minkowski Bound]
+	[Minkowski bound]
 	Let $\aa \subseteq \OO_K$ be any nonzero ideal.
 	Then there exists $0 \neq \alpha \in \aa$ such that
 	\[ \Norm_{K/\QQ}(\alpha) \le \left( \frac 4\pi \right)^{r_2} \frac{n!}{n^n} \sqrt{\left\lvert \Delta_K \right\rvert}
@@ -493,7 +493,7 @@ We can now put everything we have together to obtain the great Minkowski Bound.
 	\end{diagram}
 	Pick a value of $M$ such that the mesh of $L_\aa$
 	equals $2^n$ of the volume of the box.
-	Then Minkowski's Theorem gives that some $0 \neq \alpha \in \aa$ lands inside the box --
+	Then Minkowski's theorem gives that some $0 \neq \alpha \in \aa$ lands inside the box --
 	the mousetrap configured to force $\Norm_{K/\QQ}(\alpha) \le \frac{1}{n^n} M^n$.
 	The correct choice of $M$ is
 	\[
@@ -505,7 +505,7 @@ We can now put everything we have together to obtain the great Minkowski Bound.
 	which gives the bound after some arithmetic.
 \end{proof}
 
-\section{The Class Group is Finite}
+\section{The class group is finite}
 \begin{definition}
 	Let
 	$M_K = \left( \frac 4\pi \right)^{r_2} \frac{n!}{n^n} \sqrt{\left\lvert \Delta_K \right\rvert}$
@@ -514,7 +514,7 @@ We can now put everything we have together to obtain the great Minkowski Bound.
 \end{definition}
 So that's cool and all, but what we really wanted was to show that
 the class group is finite.
-How can the Minkowski Bound help?
+How can the Minkowski bound help?
 Well, you might notice that we can rewrite it to say
 \[ \Norm\left( (\alpha) \cdot \aa\inv \right) \le M_K \]
 where $M_K$ is some constant depending on $K$, and $\alpha \in \aa$.
@@ -541,7 +541,7 @@ The precise statement of this is
 	But $x\aa\inv \sim \aa\inv = (\alpha J\inv)\inv \sim J$.
 \end{proof}
 
-\begin{corollary}[Finiteness of Class Group]
+\begin{corollary}[Finiteness of class group]
 	Class groups are always finite.
 \end{corollary}
 \begin{proof}
@@ -574,7 +574,7 @@ The precise statement of this is
 	all this means that the number of ways to build $\aa$ is finite.
 \end{proof}
 
-\section{Shut Up and Compute II}
+\section{Shut up and compute II}
 \begin{definition}
 The order of $\Cl_K$ is called the \vocab{class number} of $K$.
 \end{definition}
@@ -616,7 +616,7 @@ Let's give an example how!
 	So $J$ is trivial in $\Cl_K$ too, as needed.
 \end{proof}
 Let's do a couple more.
-\begin{theorem}[Gaussian Integers have Unique Factorization]
+\begin{theorem}[Gaussian integers have unique factorization]
 	The Gaussian integers $\ZZ[i]$ form a unique factorization domain.
 \end{theorem}
 \begin{proof}
@@ -638,7 +638,7 @@ Let's do a couple more.
 
 Here's another example of something that still turns out to be unique factorization,
 but this time our cherry tree will actually have cherries that can be picked.
-\begin{proposition}[$\QQ(\sqrt7)$ Has Class Number $1$]
+\begin{proposition}[$\QQ(\sqrt7)$ has class number $1$]
 	The ring $\ZZ[\sqrt 7]$ is a unique factorization domain.
 \end{proposition}
 \begin{proof}
@@ -670,7 +670,7 @@ narrowing down the work in our cherry tree.
 (Obviously, replace $2015$ with your number of choice.)
 \begin{proof}
 	By definition, $2015 = \left\lvert \OO_K / \bb \right\rvert$.
-	Treating $\OO_K/\bb$ as an (additive) abelian group and using Lagrange's Theorem, we find
+	Treating $\OO_K/\bb$ as an (additive) abelian group and using Lagrange's theorem, we find
 	\[ 0 \equiv
 		\underbrace{\alpha + \dots + \alpha}_{2015\text{ times}} = 2015\alpha
 		\pmod \bb \qquad\text{for all } \alpha \in \OO_K. \]
@@ -678,7 +678,7 @@ narrowing down the work in our cherry tree.
 \end{proof}
 
 Now we can give such an example.
-\begin{proposition}[Class Group of $\QQ(\sqrt{-17})$]
+\begin{proposition}[Class group of $\QQ(\sqrt{-17})$]
 	The number field $K = \QQ(\sqrt{-17})$ has class group $\Zc 4$.
 \end{proposition}
 You are not obliged to read the entire proof in detail,
@@ -712,7 +712,7 @@ In particular, the class group has order at most $4$.
 
 From now on, let $[\aa]$ denote the class (member of the class group) that $\aa$ is in.
 Since $\pp$ isn't principal (so $[\pp] \neq [(1)]$), it follows that $\pp$ has order two.
-So Lagrange's Theorem says that $\Cl_K$ has order either $2$ or $4$.
+So Lagrange's theorem says that $\Cl_K$ has order either $2$ or $4$.
 
 Now we claim $[\qq_1]^2 \neq [(1)]$, which implies that $\qq_1$ has order greater than $2$.
 If not, $\qq_1^2$ is principal.
@@ -763,10 +763,12 @@ From this we deduce \[ \Cl_K \cong \Zc 4. \qedhere \]
 	\end{hint}
 \end{problem}
 
-\begin{problem}
-	[China TST 1998] Let $n$ be a positive integer. A polygon in the plane (not necessarily convex) has area greater than $n$. Prove that one can translate it so that it contains at least $n+1$ lattice points.
+\begin{problem}[China TST 1998]
+	Let $n$ be a positive integer.
+	A polygon in the plane (not necessarily convex) has area greater than $n$.
+	Prove that one can translate it so that it contains at least $n+1$ lattice points.
 	\begin{hint}
-		Mimic the proof of part (a) of Minkowski's Theorem.
+		Mimic the proof of part (a) of Minkowski's theorem.
 	\end{hint}
 \end{problem}
 
@@ -798,7 +800,7 @@ From this we deduce \[ \Cl_K \cong \Zc 4. \qedhere \]
 
 
 \begin{problem}
-	[Korea 2014] 
+	[Korea 2014]
 	Let $p$ be an odd prime and $k$ a positive integer such that $p \mid k^2+5$.
 	Prove that there exist positive integers $m$, $n$ such that $p = m^2+5n^2$.
 	\begin{hint}
@@ -816,5 +818,3 @@ From this we deduce \[ \Cl_K \cong \Zc 4. \qedhere \]
 		Thus $p^2$ is a nontrivial product of two elements of $\OO_K$; from this we can extract the desired factorization.
 	\end{sol}
 \end{problem}
-
-

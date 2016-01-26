@@ -17,7 +17,7 @@ and in particular it should fix $1$.
 \end{ques}
 
 \begin{example}
-	[Examples of Embeddings]
+	[Examples of embeddings]
 	\listhack
 	\begin{enumerate}[(a)]
 		\ii If $K = \QQ(i)$, the two embeddings of $K$ into $\CC$ are
@@ -86,7 +86,7 @@ This is an important theorem, \Cref{thm:n_embeddings}.
 
 In this chapter we'll develop these ideas in full generality, for any field other than $\QQ$.
 
-\section{Field Extensions, Algebraic Closures, and Splitting Fields}
+\section{Field extensions, algebraic closures, and splitting fields}
 \prototype{$\QQ(\cbrt 2)/\QQ$ is an extension, $\CC$ is an algebraic closure of any number field.}
 
 First, we define a notion of one field sitting inside another,
@@ -108,7 +108,7 @@ That's really all. There's nothing tricky at all.
 \end{ques}
 
 Degrees of finite extensions are multiplicative.
-\begin{theorem}[Field Extensions Have Multiplicative Degree]
+\begin{theorem}[Field extensions have multiplicative degree]
 	Let $F \subseteq K \subseteq L$ be fields with $L/K$, $K/F$ finite. Then
 	\[ [L:K][K:F] = [L:F]. \]
 \end{theorem}
@@ -118,7 +118,7 @@ Degrees of finite extensions are multiplicative.
 
 Next, given a field (like $\QQ$) we want something to embed it into (in our case $\CC$).
 So we just want a field that contains all the roots of all the polynomials:
-\begin{theorem}[Algebraic Closures]
+\begin{theorem}[Algebraic closures]
 	Let $F$ be a field.
 	Then there exists a field extension $\ol F$ containing $F$, called an \vocab{algebraic closure},
 	such that all polynomials in $\ol F[x]$ factor completely.
@@ -136,7 +136,7 @@ So we just want a field that contains all the roots of all the polynomials:
 	I like $\CC$, so I'll use the looser definition.
 \end{abuse}
 
-\section{Embeddings Into Algebraic Closures for Number Fields}
+\section{Embeddings into algebraic closures for number fields}
 Now that I've defined all these ingredients, I can give the following theorem.
 \begin{theorem}[The $n$ embeddings of a number field]
 	\label{thm:n_embeddings}
@@ -178,14 +178,14 @@ Now that I've defined all these ingredients, I can give the following theorem.
 	Multiplying these all together gives the desired $[K:\QQ]$.
 \end{proof}
 \begin{remark}
-	A shorter proof can be given using the Primitive Element Theorem.
+	A shorter proof can be given using the primitive element theorem.
 	Do you see how?
 \end{remark}
 
 It's common to see expressions like ``let $K$ be a number field of degree $n$,
 and $\sigma_1, \dots, \sigma_n$ its $n$ embeddings'' without further explanation.
 The relation between these embeddings and the Galois conjugates is given as follows.
-\begin{theorem}[Embeddings Are Evenly Distributed Over Conjugates]
+\begin{theorem}[Embeddings are evenly distributed over conjugates]
 	Let $K$ be a number field of degree $n$ with $n$ embeddings $\sigma_1$, \dots, $\sigma_n$,
 	and let $\alpha \in K$ have $m$ Galois conjugates over $\QQ$. 
 
@@ -205,7 +205,7 @@ given a number field $K$, we set
 \]
 where $\sigma_i$ are the $n$ embeddings of $K$ into $\CC$.
 
-\section{Everyone Hates Characteristic 2: Separable vs Irreducible}
+\section{Everyone hates characteristic 2: separable vs irreducible}
 \prototype{$\QQ$ has characteristic zero, hence irreducible polynomials are separable.}
 Now, we want a version of the above theorem for any field $F$.
 If you read the proof, you'll see that the only thing that ever uses anything about the field $\QQ$
@@ -234,7 +234,7 @@ We have to impose a condition that prevents something like this from happening.
 	or zero if no such integer $p$ exists.
 	Then we say $F$ has \vocab{characteristic} $p$.
 \end{definition}
-\begin{example}[Field Characteristics]
+\begin{example}[Field characteristics]
 	Old friends $\RR$, $\QQ$, $\CC$ all have characteristic zero.
 	But $\FF_p$, the integers modulo $p$, is a field of characteristic $p$.
 \end{example}
@@ -263,7 +263,7 @@ We can get this to work for any field extension in which separability is not an 
 	polynomial in $F$ is separable (for example, if $F$ has characteristic zero).
 \end{definition}
 Then, we can repeat the previous proof verbatim to obtain:
-\begin{theorem}[The $n$ Embeddings of Any Separable Extension]
+\begin{theorem}[The $n$ embeddings of any separable extension]
 	Let $K/F$ be a separable extension of degree $n$ and let $\ol F$ be an algebraic closure of $F$.
 	Then there are exactly $n$ field homomorphisms $K \injto \ol F$,
 	say $\sigma_1, \dots, \sigma_n$, which fix $F$.
@@ -282,7 +282,7 @@ When $F = \QQ$ and the algebraic closure is $\CC$, this coincides with our earli
 \end{definition}
 
 
-\section{Automorphism Groups and Galois Extensions}
+\section{Automorphism groups and Galois extensions}
 \prototype{$\QQ(\sqrt 2)$ is Galois but $\QQ(\cbrt 2)$ is not.}
 We now want to get back at the idea we stated at the beginning of
 this section that $\QQ(\cbrt 2)$ is deficient in a way that $\QQ(\sqrt 2)$ is not.
@@ -303,7 +303,7 @@ First, we define the ``internal'' automorphisms.
 Note that this time, we have a condition that $F$ is fixed by $\sigma$.
 (This was not there before when we considered $F = \QQ$, because we got it for free.)
 
-\begin{example}[Old Examples of Automorphism Groups]
+\begin{example}[Old examples of automorphism groups]
 	Reprising the example at the beginning of the chapter in the new notation, we have:
 	\begin{enumerate}[(a)]
 		\ii $\Aut(\QQ(i) / \QQ) \cong \Zc 2$, with elements $z \mapsto z$ and $z \mapsto \ol z$.
@@ -312,7 +312,7 @@ Note that this time, we have a condition that $F$ is fixed by $\sigma$.
 	\end{enumerate}
 \end{example}
 
-\begin{example}[Automorphism Group of $\QQ(\sqrt2,\sqrt3)$]
+\begin{example}[Automorphism group of $\QQ(\sqrt2,\sqrt3)$]
 	Here's a new example: let $K = \QQ(\sqrt2, \sqrt3)$.
 	It turns out that $\Aut(K/\QQ) = \{1, \sigma, \tau, \sigma\tau\}$, where
 	\[
@@ -334,7 +334,7 @@ Note that this time, we have a condition that $F$ is fixed by $\sigma$.
 First, let's repeat the proof of the observation that these embeddings shuffle around roots
 (akin to the first observation in the introduction):
 \begin{lemma}
-	[Root Shuffling in $\Aut(K/F)$]
+	[Root shuffling in $\Aut(K/F)$]
 	Let $f \in F[x]$, suppose $K/F$ a finite extension, and assume $\alpha \in K$ is a root of $f$.
 	Then for any $\sigma \in \Aut(K/F)$, $\sigma(\alpha)$ is also a root of $f$.
 	\label{lem:root_shuffle}
@@ -366,7 +366,7 @@ The way to capture the fact that there are missing Galois conjugates is the noti
 	The \vocab{splitting field} of $F$ is defined as $F(\alpha_1, \dots, \alpha_n)$.
 \end{definition}
 In other words, the splitting field is the smallest field in which $p(x)$ splits.
-\begin{example}[Examples of Splitting Fields]
+\begin{example}[Examples of splitting fields]
 	\listhack
 	\begin{enumerate}[(a)]
 		\ii The splitting field of $x^2 - 5$ over $\QQ$ is $\QQ(\sqrt 5)$.
@@ -380,7 +380,7 @@ In other words, the splitting field is the smallest field in which $p(x)$ splits
 	\end{enumerate}
 \end{example}
 \begin{example}
-	[Splitting Fields: A Cautionary Tale]
+	[Splitting fields: a cautionary tale]
 	The splitting field of $x^3 - 2$ over $\QQ$ is in fact
 	\[ \QQ\left( \cbrt 2, \omega \right) \]
 	and not just $\QQ(\cbrt 2)$!
@@ -403,7 +403,7 @@ The reason is that if $p(x)$ has $n$ roots and none of them are ``related'' to e
 then any permutation of the roots will work.
 
 Now, we get the following theorem:
-\begin{theorem}[Galois Extensions are Splitting]
+\begin{theorem}[Galois extensions are splitting]
 	For finite extensions $K/F$, 
 	$\left\lvert \Aut(K/F) \right\rvert$ divides $[K:F]$,
 	with equality if and only if $K$ is the \emph{splitting field}
@@ -417,7 +417,7 @@ In that case, we denote $\Aut(K/F)$ by $\Gal(K/F)$ instead
 and call this the \vocab{Galois group} of $K/F$.
 
 \begin{example}
-	[Examples and Non-Examples of Galois extensions]
+	[Examples and non-examples of galois extensions]
 	\listhack
 	\begin{enumerate}[(a)]
 		\ii The extension $\QQ(\sqrt2) / \QQ$ is Galois,
@@ -442,7 +442,7 @@ and call this the \vocab{Galois group} of $K/F$.
 
 To explore $\QQ(\cbrt 2)$ one last time:
 \begin{example}
-	[Galois Closures, and the Automorphism Group of $\QQ(\cbrt2, \omega)$]
+	[Galois closures, and the automorphism group of $\QQ(\cbrt2, \omega)$]
 	Let's return to the field $K = \QQ(\cbrt 2, \omega)$,
 	which is a field with $[K:\QQ] = 6$.
 	Consider the two automorphisms:
@@ -461,7 +461,7 @@ To explore $\QQ(\cbrt 2)$ one last time:
 	\]
 	Notice that $\sigma^3 = \tau^2 = \id$.
 	From this one can see that the automorphism group of $K$ must have order $6$
-	(it certainly has order $\le 6$; now use Lagrange's Theorem).
+	(it certainly has order $\le 6$; now use Lagrange's theorem).
 	So, $K/\QQ$ is Galois! Actually one can check explicitly that
 	\[ \Gal(K/\QQ) \cong S_3 \]
 	is the symmetric group on $3$ elements, with order $3! = 6$.
@@ -473,8 +473,8 @@ This example illustrates the fact that
 \end{moral}
 This is called taking a \vocab{Galois closure}.
 
-\section{Fundamental Theorem of Galois Theory}
-After all this stuff about Galois Theory, I might as well tell you the Fundamental Theorem,
+\section{Fundamental theorem of Galois theory}
+After all this stuff about Galois Theory, I might as well tell you the fundamental theorem,
 though I won't prove it.
 Basically, it says the following: let $K/F$ be Galois with Galois group $G$.
 Then: 
@@ -526,7 +526,7 @@ matches exactly with the subgroups of $G$, as follows:
 Here subgroups correspond to fixed field.
 That, and much more, holds in general.
 
-\begin{theorem}[Fundamental Theorem of Galois Theory]
+\begin{theorem}[Fundamental theorem of Galois theory]
 	Let $K/F$ be a Galois extension with Galois group $G = \Gal(K/F)$.
 	\begin{enumerate}[(a)]
 	\ii There is a bijection between field towers $K \subseteq E \subseteq F$ and subgroups $H \subseteq G$:
@@ -559,7 +559,7 @@ That, and much more, holds in general.
 
 
 \section\problemhead
-\begin{sproblem}[Galois Group of the Cyclotomic Field]
+\begin{sproblem}[Galois group of the cyclotomic field]
 	Let $p$ be an odd rational prime and $\zeta_p$ a primitive $p$th root of unity.
 	Let $K = \QQ(\zeta_p)$.
 	Show that \[ \Gal(K/\QQ) \cong (\ZZ/p\ZZ)^\ast. \]
@@ -572,7 +572,7 @@ That, and much more, holds in general.
 	\end{sol}
 \end{sproblem}
 
-\begin{problem}[Greek Constructions]
+\begin{problem}[Greek constructions]
 	Prove that the three Greek constructions
 	\begin{enumerate}[(a)]
 		\ii doubling the cube,
@@ -595,7 +595,7 @@ That, and much more, holds in general.
 	\end{hint}
 \end{problem}
 
-\begin{problem}[Artin's Primitive Element Theorem]
+\begin{problem}[Artin's primitive element theorem]
 	\yod
 	Let $K$ be a number field.
 	Show that $K \cong \QQ(\alpha)$ for some $\alpha$.
@@ -603,10 +603,10 @@ That, and much more, holds in general.
 	\label{prob:artin_primitive_elm}
 \end{problem}
 \pagebreak
-\section{(Optional) Proof that Galois Extensions are Splitting}
+\section{(Optional) Proof that Galois extensions are splitting}
 We prove \Cref{thm:Galois_splitting}.
-First, we extract a useful fragment from the Fundamental Theorem.
-\begin{theorem}[Fixed Field Theorem]
+First, we extract a useful fragment from the fundamental theorem.
+\begin{theorem}[Fixed field theorem]
 	\label{thm:fixed_field_theorem}
 	Let $K$ be a field and $G$ a subgroup of $\Aut(K)$.
 	Then $[K:K^G] = \left\lvert G \right\rvert$.
@@ -670,5 +670,3 @@ and let $p_i$ be their minimal polynomials; by the above, we don't get any roots
 Consider $P = p_1 \dots p_n$, removing any repeated factors.
 The roots of $P$ are $\omega_1$, \dots, $\omega_n$ and some other guys in $K$.
 So $K$ is the splitting field of $P$.
-
-

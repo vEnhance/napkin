@@ -1,4 +1,4 @@
-\chapter{Algebraic Integers}
+\chapter{Algebraic integers}
 Here's a first taste of algebraic number theory.
 
 This is really close to the border between olympiads and higher math.
@@ -10,7 +10,7 @@ You might have heard of minimal polynomials but not know much about them.
 This chapter will make all these vague notions precise.
 It's drawn largely from the first chapter of \cite{ref:oggier_NT}.
 
-\section{Motivation from High School Algebra}
+\section{Motivation from high school algebra}
 This is adapted from my blog, \emph{Power Overwhelming}\footnote{URL: \url{https://usamo.wordpress.com/2014/10/19/why-do-roots-come-in-conjugate-pairs/}}.
 
 In high school precalculus, you'll often be asked to find the roots of some polynomial with integer coefficients.
@@ -41,7 +41,7 @@ We define the \vocab{minimal polynomial} of $\alpha$ over $\QQ$ to be the polyno
 	\item The degree of $P$ is as small as possible.
 		This is called the \vocab{degree} of $\alpha$.
 \end{itemize}
-\begin{example}[Examples of Minimal Polynomials]
+\begin{example}[Examples of minimal polynomials]
 	\listhack
 	\begin{enumerate}[(a)]
 	\ii $\sqrt 2$ has minimal polynomial $x^2-2$.
@@ -76,7 +76,7 @@ As another example, the minimal polynomial of $\sqrt[3]{2}$ is $x^3-2$. So $\sqr
 	(This is tautological: the point is just to realize that ``minimal polynomials'' and ``irreducible polynomials'' are the same beasts.)
 \end{ques}
 
-\section{Algebraic Numbers and Algebraic Integers}
+\section{Algebraic numbers and algebraic integers}
 \prototype{$\sqrt2$ is an algebraic integer (root of $x^2-2$),
 $\half$ is an algebraic number but not an algebraic integer (root of $x-\half$).}
 Let's now work in much vaster generality.
@@ -105,7 +105,7 @@ First, let's give names to the new numbers we've discussed above.
 \end{remark}
 Sometimes for clarity, we refer to elements of $\ZZ$
 as \vocab{rational integers}.
-\begin{example}[Examples of Algebraic Integers]
+\begin{example}[Examples of algebraic integers]
 	The numbers
 	\[ 4, \; i = \sqrt{-1}, \; \sqrt[3]{2}, \; \sqrt2+\sqrt3 \]
 	are all algebraic integers, since they are the roots of the monic polynomials
@@ -113,10 +113,10 @@ as \vocab{rational integers}.
 
 	The number $\half$ has minimal polynomial $x - \half$,
 	so it's an algebraic number but not an algebraic integer.
-	(In fact, the Rational Root Theorem also directly implies
+	(In fact, the rational root theorem also directly implies
 	that any monic integer polynomial does not have $\half$ as a root!)
 \end{example}
-\begin{proposition}[Rational Algebraic Integers are Rational Integers]
+\begin{proposition}[Rational algebraic integers are rational integers]
 	An algebraic integer is rational if and only if it is a rational integer.
 	In symbols, \[ \ol\ZZ \cap \QQ = \ZZ. \]
 \end{proposition}
@@ -124,7 +124,7 @@ as \vocab{rational integers}.
 	(Important) Prove this.
 \end{ques}
 
-\section{Number Fields}
+\section{Number fields}
 \prototype{$\QQ(\sqrt2)$ is a typical number field.}
 Given any algebraic number $\alpha$, we're able to consider fields of the form $\QQ(\alpha)$. Let us write down the more full version.
 \begin{definition}
@@ -132,25 +132,25 @@ Given any algebraic number $\alpha$, we're able to consider fields of the form $
 	which is a \emph{finite-dimensional} $\QQ$-vector space.
 	The \vocab{degree} of $K$ is its dimension.
 \end{definition}
-\begin{example}[Prototypical Example]
+\begin{example}[Prototypical example]
 	Consider the field
 	\[ K = \QQ(\sqrt2) = \left\{ a+b\sqrt2 \mid a,b \in \QQ \right\}. \]
 	This is a field extension of $\QQ$,
 	and has degree $2$ (the basis being $1$ and $\sqrt2$).
 \end{example}
-\begin{example}[Adjoining An Algebraic Number]
+\begin{example}[Adjoining an algebraic number]
 	Let $\alpha$ be the root of some irreducible polynomial $P(x)$ in $\QQ$.
 	The field $\QQ(\alpha)$ is a field extension as well, and the basis
 	is $1, \alpha, \alpha^2, \dots, \alpha^{m-1}$,
 	where $m$ is the degree of $\alpha$.
 	In particular, the degree of $\QQ(\alpha)$ is just the degree of $\alpha$.
 \end{example}
-\begin{example}[Non-Examples of Number Fields]
+\begin{example}[Non-examples of number fields]
 	$\RR$ and $\CC$ are not number fields since there is no \emph{finite}
 	$\QQ$-basis of them.
 \end{example}
 
-\section{Norms and Traces}
+\section{Norms and traces}
 \prototype{$a+b\sqrt2$ as an element of $\QQ(\sqrt2)$ has norm $a^2-2b^2$ and trace $2a$.}
 Remember when you did olympiads and we had like $a^2+b^2$ was the ``norm'' of $a+bi$?
 Cool, let me tell you what's actually happening.
@@ -227,7 +227,7 @@ For a ``generic'' element of $K$, we expect $k = 1$.
 	Nicely, the formula $a^2-2b^2$ and $2a$ also works when $b=0$.
 \end{example}
 Of importance is the following.
-\begin{proposition}[Norms and Traces are Rational Integers]
+\begin{proposition}[Norms and traces are rational integers]
 	If $\alpha$ is an algebraic integer, its norm and trace are traces 
 	are rational integers.
 \end{proposition}
@@ -239,7 +239,7 @@ That's great, but it leaves a question unanswered:
 why is the norm multiplicatve?
 To do this, I have to give a new definition of norm and trace.
 
-\begin{theorem}[Morally Correct Definition of Norm and Trace]
+\begin{theorem}[Morally correct definition of norm and trace]
 	Let $K$ be a number field of degree $n$, and let $\alpha \in K$.
 	Let $\mu_\alpha : K \to K$ denote the map \[ x \mapsto \alpha x \]
 	viewed as a linear map of $\QQ$-vector spaces.
@@ -254,7 +254,7 @@ you can pick whatever basis you want
 and use whatever definition you got in high school.
 Fantastic, right?
 
-\begin{example}[Explicit Computation of Matrices for $a+b\sqrt2$]
+\begin{example}[Explicit computation of matrices for $a+b\sqrt2$]
 	Let $K = \QQ(\sqrt2)$, and let $1$, $\sqrt 2$ be the basis of $K$.
 	Let \[ \alpha = a + b \sqrt 2 \] (possibly even $b = 0$), and notice that
 	\[ \left( a+b\sqrt2 \right)\left( x+y\sqrt2 \right)
@@ -371,7 +371,7 @@ because by definition we have
 and that the determinant is multiplicative.
 In the same way, the trace is additive.
 
-\section{The Ring of Integers}
+\section{The ring of integers}
 \prototype{If $K = \QQ(\sqrt 2)$, then $\OO_K = \ZZ[\sqrt 2]$.
 	But if $K = \QQ(\sqrt 5)$, then $\OO_K = \ZZ[\frac{1+\sqrt5}{2}]$.}
 
@@ -401,7 +401,7 @@ Before proceeding, I need to write a silly number theory fact.
 \end{exercise}
 
 \begin{example}
-	[Ring of Integers of $K = \QQ(\sqrt3)$]
+	[Ring of integers of $K = \QQ(\sqrt3)$]
 	Let $K$ be as above.
 	We claim that \[ \OO_K = \ZZ[\sqrt 3] = \left\{ m + n\sqrt 3 \mid m,n \in \ZZ  \right\}. \]
 	We set $\alpha = a + b \sqrt 3$.
@@ -414,7 +414,7 @@ Before proceeding, I need to write a silly number theory fact.
 	From the exercise, this occurs exactly for $a,b \in \ZZ$.
 \end{example}
 \begin{example}
-	[Ring of Integers of $K = \QQ(\sqrt 5)$]
+	[Ring of integers of $K = \QQ(\sqrt 5)$]
 	We claim that in this case
 	\[ \OO_K = \ZZ\left[ \frac{1+\sqrt5}{2} \right]
 	= \left\{ m + n \cdot \frac{1+\sqrt5}{2} \mid m,n \in \ZZ \right\}. \]
@@ -436,7 +436,7 @@ What we're going to show is that $\OO_K$ behaves in $K$
 a lot like the integers do in $\QQ$.
 First we show $K$ consists of quotients of numbers in $\OO_K$.
 In fact, we can do better:
-\begin{example}[Rationalizing the Denominator]
+\begin{example}[Rationalizing the denominator]
 	For example, consider $K = \QQ(\sqrt3)$.
 	The number $x = \frac{1}{4+\sqrt3}$ is an element of $K$, but by
 	``rationalizing the denominator'' we can write
@@ -504,7 +504,7 @@ To do so, the easiest route is the following lemma.
 \end{ques}
 
 Now we can state the theorem.
-\begin{theorem}[Algebraic Integers Are Closed Under $+$ and $\times$]
+\begin{theorem}[Algebraic integers are closed under $+$ and $\times$]
 	The set $\ol\ZZ$ is closed under addition and multiplication;
 	i.e.\ it is a ring.
 	In particular, $\OO_K$ is also a ring for any number field $K$.
@@ -552,7 +552,7 @@ in $\OO_K$ such that
 \end{align*}
 as abelian groups.
 
-\section{Primitive Element Theorem, and Monogenic Extensions}
+\section{Primitive element theorem, and monogenic extensions}
 \prototype{$\QQ(\sqrt3,\sqrt5) \cong \QQ(\sqrt3+\sqrt5)$. Can you see why?}
 I'm only putting this theorem here because I was upset that no one
 told me it was true (it's a very natural conjecture),
@@ -560,7 +560,7 @@ and I hope to not do the same to the reader.
 However, I'm not going to use it in anything that follows.
 
 \begin{theorem}
-	[Artin's Primitive Element Theorem]
+	[Artin's primitive element theorem]
 	Every number field $K$ is isomorphic to $\QQ(\alpha)$
 	for some algebraic number $\alpha$.
 	\label{thm:artin_primitive_elm}
@@ -609,7 +609,8 @@ As we'll later see, monogenic extensions have a really nice factoring algorithm,
 % trivial
 
 \begin{problem}
-	[Black MOP 2010] There are $n > 2$ lamps arranged in a circle; initially one is on and the others are off.
+	[Black MOP 2010]
+	There are $n > 2$ lamps arranged in a circle; initially one is on and the others are off.
 	We may select any regular polygon whose vertices are among the lamps
 	and toggle the states of all the lamps simultaneously.
 	Show it is impossible to turn all lamps off.
@@ -678,8 +679,8 @@ As we'll later see, monogenic extensions have a really nice factoring algorithm,
 	\end{hint}
 \end{dproblem}
 
-\begin{problem}
-	[Kronecker's Theorem] \yod Let $x$ be an algebraic integer.
+\begin{problem}[Kronecker's theorem] \yod
+	Let $x$ be an algebraic integer.
 	Suppose all its conjugates have absolute value one.
 	Prove that $x^N=1$ for some positive integer $N$.
 \end{problem}
@@ -689,6 +690,5 @@ As we'll later see, monogenic extensions have a really nice factoring algorithm,
 	Consider $n$ roots of unity $\eps_1$, \dots, $\eps_n$.
 	Assume the average $\frac1n(\eps_1 + \dots + \eps_n)$ is an algebraic integer.
 	Prove that either the average is zero or $\eps_1 = \dots = \eps_n$.
-	(This lemma will be used when we prove Burnside's Theorem using representation theory.)
+	(This lemma will be used when we prove Burnside's theorem using representation theory.)
 \end{problem}
-
