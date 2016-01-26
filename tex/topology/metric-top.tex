@@ -1,11 +1,11 @@
-\chapter{What is a Space?}
+\chapter{What is a space?}
 At the time of writing, I'm convinced that metric topology is the morally correct way to motivate point-set topology as well as to generalize normal calculus.
 Also, ``metric'' is a fun word to say.
 So here is my best attempt.
 
 The concept of a metric space is very ``concrete'', and lends itself easily to visualization. Hence throughout this chapter you should draw lots of pictures as you learn about new objects, like convergent sequences, open sets, closed sets, and so on.
 
-\section{Definition and Examples of Metric Spaces}
+\section{Definition and examples of metric spaces}
 \prototype{$\RR^2$, with the Euclidean metric.}
 \begin{definition}
 	A \vocab{metric space} is a pair $(M, d)$ consisting of
@@ -23,7 +23,7 @@ The concept of a metric space is very ``concrete'', and lends itself easily to v
 \begin{abuse}
 	Just like with groups, we will abbreviate $(M,d)$ as just $M$.
 \end{abuse}
-\begin{example}[Metric Spaces of $\RR$]
+\begin{example}[Metric spaces of $\RR$]
 	\listhack
 	\begin{enumerate}[(a)]
 		\ii The real line $\RR$ is a metric space under the metric $d(x,y) = \left\lvert x-y \right\rvert$.
@@ -31,7 +31,7 @@ The concept of a metric space is very ``concrete'', and lends itself easily to v
 		\ii In fact, any subset $S$ of $\RR$ can be made into a metric space in this way.
 	\end{enumerate}
 \end{example}
-\begin{example}[Metric Spaces of $\RR^2$]
+\begin{example}[Metric spaces of $\RR^2$]
 	\listhack
 	\begin{enumerate}[(a)]
 		\ii We can make $\RR^2$ into a metric space by imposing the Euclidean distance function
@@ -49,7 +49,7 @@ The concept of a metric space is very ``concrete'', and lends itself easily to v
 	For now, we will use the more natural Euclidean metric.
 \end{example}
 
-\begin{example}[Metric Spaces of $\RR^n$]
+\begin{example}[Metric spaces of $\RR^n$]
 	We can generalize the above examples easily.
 	Let $n$ be a positive integer. We define the following metric spaces.
 	\begin{enumerate}[(a)]
@@ -76,14 +76,14 @@ The concept of a metric space is very ``concrete'', and lends itself easily to v
 	\end{enumerate}
 \end{example}
 \begin{example}
-	[Function Space] We can let $M$ be the space of
+	[Function space] we can let $M$ be the space of
 	integrable functions $f : [0,1] \to \RR$ and define the metric
 	by $d(f,g) = \int_0^1 \left\lvert f-g \right\rvert \; dx$.
 \end{example}
 
 Here is a slightly more pathological example.
 \begin{example}
-	[Discrete Space]
+	[Discrete space]
 	Let $S$ be any set of points (either finite or infinite).
 	We can make $S$ into a \vocab{discrete space} by declaring the following distance function.
 	\[
@@ -98,7 +98,7 @@ Here is a slightly more pathological example.
 	as the vertices of a regular tetrahedron, living in $\RR^3$.
 	But for larger $S$ it's not so easy to visualize\dots
 \end{example}
-\begin{example}[Graphs are Metric Spaces]
+\begin{example}[Graphs are metric spaces]
 	Any connected simple graph $G$ can be made into a metric space
 	by defining the distance between two vertices to be the
 	graph-theoretic distance between them.
@@ -116,7 +116,7 @@ Here is a slightly more pathological example.
 	with the inherited metric, we will just write $S$.
 \end{abuse}
 
-\section{Convergence in Metric Spaces}
+\section{Convergence in metric spaces}
 \prototype{The sequence $\frac1n$ (for $n=1,2,\dots$) in $\RR$.}
 
 Since we can talk about the distance between two points, we can talk about what it means for a sequence of points to converge.
@@ -169,7 +169,7 @@ You should check that this definition coincides with your intuitive notion of ``
 	What are the convergent sequences in a discrete metric space?
 \end{ques}
 
-\section{Continuous Maps}
+\section{Continuous maps}
 \begin{abuse}
 	For a function $f$ and its argument $x$,
 	we will begin abbreviating $f(x)$ to just $fx$
@@ -204,7 +204,7 @@ and the metric of $N$ for the other condition.
 This generalization is nice because it tells us immediately how we could carry over continuity arguments in $\RR$ to more general spaces (for example, replacing $\RR$ with $\CC$ to get complex analysis).
 Nonetheless, this definition is kind of cumbersome to work with, because it makes extensive use of the real numbers (epsilons and deltas).
 Here is an equivalent condition.
-\begin{theorem}[Sequential Continuity]
+\begin{theorem}[Sequential continuity]
 	\label{thm:seq_cont}
 	A function $f : M \to N$ of metric spaces is continuous at a point $p \in M$
 	if and only if the following property holds:
@@ -217,7 +217,7 @@ Here is an equivalent condition.
 \end{proof}
 
 The next example illustrates why this criterion can often be much easier to work with.
-\begin{proposition}[Composition of Continuous Functions is Continuous]
+\begin{proposition}[Composition of continuous functions is continuous]
 	Let $f : M \to N$ and $g : N \to L$ be continuous maps of metric spaces.
 	Then their composition $g \circ f$ is continuous.
 \end{proposition}
@@ -263,7 +263,7 @@ Note that this is the topologist's definition of ``same'' --
 homeomorphisms are ``continuous deformations''.
 Here are some examples.
 
-\begin{example}[Examples of Homeomorphisms]
+\begin{example}[Examples of homeomorphisms]
 	\listhack
 	\begin{enumerate}[(a)]
 		\ii Any space $M$ is homeomorphic to itself through the identity map.
@@ -287,7 +287,7 @@ Here are some examples.
 	\end{enumerate}
 \end{example}
 \begin{example}
-	[Metrics on the Unit Circle]
+	[Metrics on the unit circle]
 	It may have seemed strange that our metric function on $S^1$
 	was the one inherited from $\RR^2$, meaning the distance between two points
 	on the circle was defined to be the length of the chord.
@@ -300,7 +300,7 @@ Here are some examples.
 \end{example}
 
 \begin{example}
-	[Homeomorphisms Really Don't Preserve Size]
+	[Homeomorphisms really don't preserve size]
 	Surprisingly, the open interval $(0,1)$ is homeomorphic to the real line $\RR$!
 	This might come as a surprise, since $(0,1)$ doesn't look that much like $\RR$;
 	the former is ``bounded'' while the latter is ``unbounded''.
@@ -309,7 +309,7 @@ Here are some examples.
 	Write down a homeomorphism from $(0,1)$ to $\RR$.
 \end{exercise}
 
-\begin{example}[Product Topologies]
+\begin{example}[Product topologies]
 	Let $M = (M, d_M)$ and $N = (N, d_N)$ be metric spaces (say, $M = N = \RR$).
 	Let $p_i = (x_i,y_i) \in M \times N$ for $i=1,2$.
 	Consider the following metrics on the set of points $M \times N$:
@@ -339,7 +339,7 @@ Here are some examples.
 	and it will not be important which metric we select.
 \end{example}
 
-\section{Open Sets}
+\section{Open sets}
 \prototype{The open disk $x^2+y^2<r^2$ in $\RR^2$.}
 
 Continuity is really about what happens ``locally'': how a function behaves ``close to a certain point $p$''.
@@ -401,7 +401,7 @@ This motivates the following definition.
 	\label{fig:example_open}
 \end{figure}
 
-\begin{example}[Examples of Open Sets]
+\begin{example}[Examples of open sets]
 	\listhack
 	\begin{enumerate}[(a)]
 		\ii Any $r$-neighborhood of a point is open.
@@ -414,7 +414,7 @@ This motivates the following definition.
 	\end{enumerate}
 \end{example}
 \begin{example}
-	[Non-Examples of Open Sets]
+	[Non-Examples of open sets]
 	\listhack
 	\begin{enumerate}[(a)]
 		\ii The closed interval $[0,1]$ is not open in $\RR$.
@@ -444,7 +444,7 @@ Here are two quite important properties of open sets.
 \end{exercise}
 
 The whole upshot of this is the following theorem.
-\begin{theorem}[Open Set Condition]
+\begin{theorem}[Open set condition]
 	A function $f : M \to N$ of metric spaces is continuous
 	if and only if the pre-image of every open set in $N$ is open in $M$.
 \end{theorem}
@@ -503,7 +503,7 @@ which makes it clear why open sets are good things to consider.
 
 This leads us to the following\dots
 
-\section{Forgetting the Metric}
+\section{Forgetting the metric}
 Notice something interesting about the previous theorem -- it doesn't reference the metrics of $M$ and $N$ at all.
 Instead, it refers only to the open sets.
 
@@ -529,7 +529,7 @@ we instead start from just the open sets.
 	(Do you see a pattern here?)
 \end{abuse}
 
-\begin{example}[Examples of Topologies]
+\begin{example}[Examples of topologies]
 	\listhack
 	\begin{enumerate}[(a)]
 		\ii Given a metric space $M$, we can let $\mathcal T$ be
@@ -623,7 +623,7 @@ which can be expressed in terms of open sets.
 \end{remark}
 
 
-\section{Closed Sets}
+\section{Closed sets}
 \prototype{The closed unit disk $x^2+y^2 \le r^2$ in $\RR^2$.}
 It would be criminal for me to talk about open sets without talking about the dual concept, a closed set.
 The name ``closed'' comes from the definition in a metric space.
@@ -663,7 +663,7 @@ and denoted $\ol S$.  It is simply the smallest closed set which contains $S$.
 \end{figure}
 
 \begin{example}
-	[Examples of Closed Sets]
+	[Examples of closed sets]
 	\listhack
 	\begin{enumerate}[(a)]
 		\ii The empty set $\varnothing$ is closed in $M$ for vacuous reasons:
@@ -675,7 +675,7 @@ and denoted $\ol S$.  It is simply the smallest closed set which contains $S$.
 	\end{enumerate}
 \end{example}
 \begin{example}
-	[Non-Examples of Closed Sets]
+	[Non-Examples of closed sets]
 	Let $S=(0,1)$ denote the open interval.
 	Then $S$ is not closed in $\RR$
 	because the sequence of points
@@ -690,7 +690,7 @@ and denoted $\ol S$.  It is simply the smallest closed set which contains $S$.
 
 In what sense are these concepts ``dual''?
 Despite first impressions, most sets are neither open nor closed.
-\begin{example}[A Set Neither Open Nor Closed]
+\begin{example}[A set neither open nor closed]
 	The half-open interval $[0,1)$ is neither open nor closed in $\RR$.
 \end{example}
 \begin{remark}
@@ -699,7 +699,7 @@ Despite first impressions, most sets are neither open nor closed.
 \end{remark}
 
 Remarkably, though, the following \emph{is} true.
-\begin{theorem}[Closed Sets are Complements of Open Sets]
+\begin{theorem}[Closed sets are complements of open sets]
 	Let $M$ be a metric space, and $S \subseteq M$ any subset.
 	Then the following are equivalent:
 	\begin{itemize}
@@ -733,7 +733,7 @@ In particular,
 \end{ques}
 Mathematicians seem to have agreed that they like open sets better.
 
-\section{Common Pitfalls}
+\section{Common pitfalls}
 An important distinction to keep in mind is that
 \begin{moral}
 	Convergence and open/closed sets are defined \emph{relative to a parent space}.

@@ -1,4 +1,4 @@
-\chapter{Fundamental Groups}
+\chapter{Fundamental groups}
 Topologists can't tell the difference between a coffee cup and a doughnut.
 So how do you tell \emph{anything} apart?
 
@@ -20,7 +20,7 @@ Homotopy groups are easier to define but harder to compute.
 This chapter is about the fundamental group $\pi_1$.
 
 
-\section{Fusing Paths Together}
+\section{Fusing paths together}
 Recall that a \emph{path} in a space $X$ is a function $[0,1] \to X$.
 Suppose we have paths $\gamma_1$ and $\gamma_2$
 such that $\gamma_1(1) = \gamma_2(0)$.
@@ -130,7 +130,7 @@ Then it makes sense to talk about $[\alpha] \ast [\beta]$.
 Thus, \textbf{we can think of $\ast$ as an operation on homotopy classes}.
 
 
-\section{Fundamental Groups}
+\section{Fundamental groups}
 \prototype{$\pi_1(\RR^2)$ is trivial and $\pi_1(S^1) \cong \ZZ$.}
 
 At this point I'm a little annoyed at keeping track of endpoints,
@@ -216,7 +216,7 @@ Let's check it.
 
 Before going any further I had better give some examples.
 \begin{example}
-	[Examples of Fundamental Groups]
+	[Examples of fundamental groups]
 	Note that proving the following results is not at all trivial.
 	For now, just try to see intuitively why the claimed answer ``should'' be correct.
 	\begin{enumerate}[(a)]
@@ -255,7 +255,7 @@ as the meteor from last chapter.
 \end{ques}
 
 \begin{example}
-	[The Figure Eight]
+	[The figure eight]
 	\label{ex:figure8}
 	Consider a figure eight $S^1 \vee S^1$, and let $x_0$
 	be the center.
@@ -288,7 +288,7 @@ Indeed, you could imagine a space $X$ that consists of the objects on my desk (b
 
 But on the other hand we claim that in a path-connected space,
 the groups are very related!
-\begin{theorem}[Fundamental Groups Don't Depend on Basepoint]
+\begin{theorem}[Fundamental groups don't depend on basepoint]
 	Let $X$ be a path-connected space.
 	Then for any $x_1 \in X$ and $x_2 \in X$, we have
 	\[ \pi_1(X, x_1) \cong \pi_1(X, x_2). \]
@@ -353,7 +353,7 @@ fundamental groups.
 This is the ``usual'' definition of simply connected.
 
 
-\section{Fundamental Groups are Functorial}
+\section{Fundamental groups are functorial}
 One quick shorthand I will introduce to clean up the discussion:
 \begin{definition}
 	By $f : (X, x_0) \to (Y, y_0)$, we will mean that
@@ -412,7 +412,7 @@ between the groups (assuming $f(x_0) = y_0$ and $g(y_0) = x_0$).
 %	of the covariant Yoneda functor (\Cref{ex:covariant_yoneda}).
 %\end{remark}
 
-\section{Higher Homotopy Groups}
+\section{Higher homotopy groups}
 Why the notation $\pi_1$ for the fundamental group?
 And what are $\pi_2$, \dots?
 The answer lies in the following rephrasing:
@@ -474,7 +474,7 @@ then you can essentially compute \emph{any} homotopy classes.
 Thus, computing $\pi_n(S^m)$ is sort of a lost cause in general,
 and the mixture of chaos and pattern in the above table is a testament to this.
 
-\section{Homotopy Equivalent Spaces}
+\section{Homotopy equivalent spaces}
 \prototype{A disk is homotopy equivalent to a point, an annulus is homotopy equivalent to $S^1$.}
 Up to now I've abused notation and referred to ``path homotopy'' as just ``homotopy'' for two paths.
 I will unfortunately continue to do so (and so any time I say two paths are homotopic, you should assume I mean ``path-homotopic'').
@@ -567,7 +567,7 @@ I bring these up because it turns out that
 	Algebraic topology can't distinguish between homotopy equivalent spaces.
 \end{moral}
 More precisely,
-\begin{theorem}[Homotopy Equivalent Spaces Have Isomorphic Fundamental Groups]
+\begin{theorem}[Homotopy equivalent spaces have isomorphic fundamental groups]
 	\label{thm:fundgrp_homotopy_invariant}
 	Let $X$ and $Y$ be path-connected, homotopy-equivalent spaces.
 	Then $\pi_n(X) \cong \pi_n(Y)$ for every positive integer $n$.
@@ -595,7 +595,7 @@ That means, for example, that algebraic topology can't tell the following homoto
 	{\color{blue} \Huge \mars}
 \end{center}
 
-\section{The Pointed Homotopy Category}
+\section{The pointed homotopy category}
 This section is meant to be read by those who know some basic category theory.
 Those of you that don't should come back after reading \Cref{ch:cats,ch:functors}.
 Those of you that do will enjoy how succinctly, we can summarize
@@ -611,7 +611,7 @@ the content of this chapter using categorical notions.
 In particular, two path-connected spaces are isomorphic in this category exactly
 when they are homotopy equivalent.
 Then we can summarize many of the preceding results as follows:
-\begin{theorem}[Functorial Interpretation of Fundamental Groups]
+\begin{theorem}[Functorial interpretation of fundamental groups]
 	\label{thm:fundgrp_functor}
 	There is a functor
 	\[ \pi_1 : \catname{hTop}_\ast \to \catname{Gp} \]
@@ -646,7 +646,7 @@ This implies several things, like
 
 \section\problemhead
 
-\begin{problem}[Harmonic Fan]
+\begin{problem}[Harmonic fan]
 	Exhibit a subspace $X$ of the metric space $\RR^2$ which is
 	path-connected but for which a point $p$ can be found such that
 	any $r$-neighborhood of $p$ with $r < 1$ is not path-connected.
@@ -654,7 +654,7 @@ This implies several things, like
 \end{problem}
 
 \begin{dproblem}
-	[Special Case of Seifert van Kampen] \gim
+	[Special case of Seifert van Kampen] \gim
 	Let $X$ be a topological space.
 	Suppose $U$ and $V$ are connected open subsets of $X$, with $X = U \cup V$,
 	so that $U \cap V$ is nonempty and path-connected.

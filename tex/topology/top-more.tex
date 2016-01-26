@@ -1,4 +1,4 @@
-\chapter{Topological Notions}
+\chapter{Topological notions}
 \label{ch:top_more}
 Here I'm just talking about some various properties of general topological spaces.
 The chapter is admittedly a bit disconnected (pun not intended, but hey, why not).
@@ -25,7 +25,7 @@ Note that in contrast to the warning on open/closed sets I gave earlier,
 %but sequences in general topological spaces \emph{suck} (to the point where
 %I didn't bother to define convergence of general sequences).
 
-\section{Connected Spaces}
+\section{Connected spaces}
 It is possible for a set to be both open and closed (or \vocab{clopen}) in a
 topological space $X$;
 for example $\varnothing$ and the entire space are examples of clopen sets.
@@ -45,7 +45,7 @@ and \vocab{connected} otherwise.
 To see why this should be a reasonable definition, it might help
 to solve \Cref{prob:disconnected_better_def}.
 
-\begin{example}[Disconnected and Connected Spaces]
+\begin{example}[Disconnected and connected spaces]
 	\listhack
 	\begin{enumerate}[(a)]
 		\ii The metric space 
@@ -70,7 +70,7 @@ to solve \Cref{prob:disconnected_better_def}.
 %	But the converse of this statement no longer holds.
 %\end{remark}
 
-\section{Path-Connected Spaces}
+\section{Path-connected spaces}
 \prototype{Walking around in $\CC$.}
 A stronger and perhaps more intuitive notion of a connected space is a \emph{path-connected} space.
 The short description: ``walk around in the space''.
@@ -127,7 +127,7 @@ In fact, there exist path-connected spaces which are not connected
 (one is called the \emph{topologist's sine curve}).
 This shows that path-connected is stronger than connected.
 
-\begin{example}[Examples of Path-Connected Spaces]
+\begin{example}[Examples of path-connected spaces]
 	\listhack
 	\begin{itemize}
 		\ii $\RR^2$ is path-connected, since we can ``connect'' any two points with a straight line.
@@ -138,7 +138,7 @@ This shows that path-connected is stronger than connected.
 
 % Easy, right?
 
-\section{Homotopy and Simply Connected Spaces}
+\section{Homotopy and simply connected spaces}
 \prototype{$\CC$ and $\CC \setminus \{0\}$.}
 Now let's motivate the idea of homotopy.
 Consider the example of the complex plane $\CC$ (which you can
@@ -256,7 +256,7 @@ there's really only one way to walk. Hence the term ``simply'' connected.
 	\caption{Two disjoint topological spaces are certainly not path-connected.}
 \end{figure}
 
-\section{Bases of Spaces}
+\section{Bases of spaces}
 \prototype{$\RR$ has a basis of open intervals, and $\RR^2$ has a basis of open disks.}
 
 You might have noticed that the open sets of $\RR$ are a little annoying to describe:
@@ -288,7 +288,7 @@ And all we're doing is saying
 	The open intervals form a basis of $\RR$.
 \end{example}
 In fact, more generally we have the following result.
-\begin{theorem}[Basis of Metric Spaces]
+\begin{theorem}[Basis of metric spaces]
 	The $r$-neighborhoods form a basis of any metric space $M$.
 \end{theorem}
 \begin{proof}
@@ -343,7 +343,7 @@ Now we can define the following.
 \end{definition}
 
 \begin{example}
-	[Examples of Complete Spaces]
+	[Examples of complete spaces]
 	\listhack
 	\begin{enumerate}[(a)]
 		\ii $\RR$ is complete. (Depending on your definition of $\RR$, this either follows
@@ -354,7 +354,7 @@ Now we can define the following.
 	\end{enumerate}
 \end{example}
 \begin{example}
-	[Non-Examples of Complete Spaces]
+	[Non-Examples of complete spaces]
 	\listhack
 	\begin{enumerate}[(a)]
 		\ii The rationals $\QQ$ are not complete.
@@ -464,7 +464,7 @@ then any open arc is an open set, because you can view it as the intersection of
 Needless to say, for metric spaces it doesn't matter which of these definitions I choose.
 (Proving this turns out to be surprisingly annoying, so I won't do so.)
 
-\section{Hausdorff Spaces}
+\section{Hausdorff spaces}
 \prototype{Every space that's not the Zariski topology (defined much later).}
 In analysis, almost all topological spaces we encounter satisfy
 some additional hypotheses about their points.
@@ -517,7 +517,7 @@ the Zariski topology is Hausdorff.
 %	\label{prob:local_path_connected}
 %\end{problem}
 
-\begin{dproblem}[Banach Fixed Point Theorem]
+\begin{dproblem}[Banach fixed point theorem]
 	Let $M = (M,d)$ be a complete metric space.
 	Suppose $T : M \to M$ is a continuous map such that for any $p,q \in M$,
 	\[ d\left( T(p), T(q) \right) < 0.999 d(p,q). \]

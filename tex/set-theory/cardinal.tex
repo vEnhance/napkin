@@ -23,7 +23,7 @@ there is even a bijection between $\omega$ and $\omega^2$:
 So ordinals do not do a good job of keeping track of size.
 For this, we turn to the notion of a cardinal number.
 
-\section{Equinumerous Sets and Cardinals}
+\section{Equinumerous sets and cardinals}
 \begin{definition}
 	Two sets $A$ and $B$ are \vocab{equinumerous}, written $A \approx B$,
 	if there is a bijection between them.
@@ -33,13 +33,13 @@ For this, we turn to the notion of a cardinal number.
 	A \vocab{cardinal} is an ordinal $\kappa$ such that
 	for no $\alpha < \kappa$ do we have $\alpha \approx \kappa$.
 \end{definition}
-\begin{example}[Examples of Cardinals]
+\begin{example}[Examples of cardinals]
 	Every finite number is a cardinal.
 	Moreover, $\omega$ is a cardinal.
 	However, $\omega+1$, $\omega^2$, $\omega^{2015}$ are not,
 	because they are countable.
 \end{example}
-\begin{example}[$\omega^\omega$ is Countable]
+\begin{example}[$\omega^\omega$ is countable]
 	Even $\omega^\omega$ is not a cardinal,
 	since it is a countable union
 	\[ \omega^\omega = \bigcup_n \omega^n \]
@@ -72,13 +72,13 @@ of a set by linking it to a cardinal.
 	Why must $\left\lvert X \right\rvert$ be a cardinal?
 \end{ques}
 \begin{remark}
-	One needs the Well-Ordering Theorem (equivalently, Choice)
+	One needs the well-ordering theorem (equivalently, choice)
 	in order to establish that such an ordinal $\kappa$ actually exists.
 \end{remark}
 Since cardinals are ordinals, it makes sense to ask whether $\kappa_1 \le \kappa_2$,
 and so on.
 Our usual intuition works well here.
-\begin{proposition}[Restatement of Cardinality Properties]
+\begin{proposition}[Restatement of cardinality properties]
 	Let $X$ and $Y$ be sets.
 	\begin{enumerate}[(i)]
 		\ii $X \approx Y$ if and only $\left\lvert X \right\rvert = \left\lvert Y \right\rvert$,
@@ -91,7 +91,7 @@ Our usual intuition works well here.
 	Prove this.
 \end{ques}
 
-\section{Aleph Numbers}
+\section{Aleph numbers}
 \prototype{$\aleph_0$ is $\omega$, and $\aleph_1$ is the first uncountable}
 First, let us check that cardinals can get arbitrarily large:
 \begin{proposition}
@@ -161,7 +161,7 @@ We claim the aleph numbers constitute all the cardinals:
 \end{definition}
 
 
-\section{Cardinal Arithmetic}
+\section{Cardinal arithmetic}
 \prototype{$\aleph_0 \cdot \aleph_0 = \aleph_0 + \aleph_0 = \aleph_0$}
 Recall the way we set up ordinal arithmetic.
 Note that in particular, $\omega + \omega > \omega$ and $\omega^2 > \omega$.
@@ -175,7 +175,7 @@ because $\omega + \omega$ and $\omega \cdot \omega$ are countable.
 In the case of cardinals, we simply ``ignore order''.
 
 The definition of cardinal arithmetic is as expected:
-\begin{definition}[Cardinal Arithmetic]
+\begin{definition}[Cardinal arithmetic]
 	Given cardinals $\kappa$ and $\mu$, define
 	\[ \kappa + \mu
 		\defeq
@@ -219,7 +219,7 @@ More generally,
 However, as we've seen already we have that $\aleph_0 \cdot \aleph_0 = \aleph_0$.
 In fact, this holds even more generally:
 
-\begin{theorem}[Infinite Cardinals Squared]
+\begin{theorem}[Infinite cardinals squared]
 	Let $\kappa$ be an infinite cardinal.
 	Then $\kappa \cdot \kappa = \kappa$.
 \end{theorem}
@@ -276,7 +276,7 @@ In fact, this holds even more generally:
 \end{proof}
 
 From this it follows that cardinal addition and multiplication is really boring:
-\begin{theorem}[Infinite Cardinal Arithmetic is Trivial]
+\begin{theorem}[Infinite cardinal arithmetic is trivial]
 	Given cardinals $\kappa$ and $\mu$, one of which is infinite,
 	we have \[ \kappa \cdot \mu = \kappa + \mu = \max\left( \kappa, \mu \right).\]
 \end{theorem}
@@ -295,7 +295,7 @@ From this it follows that cardinal addition and multiplication is really boring:
 
 
 
-\section{Cardinal Exponentiation}
+\section{Cardinal exponentiation}
 \prototype{$2^\kappa = \left\lvert \PP(\kappa) \right\rvert$.}
 \begin{definition}
 	Suppose $\kappa$ and $\lambda$ are cardinals.
@@ -334,7 +334,7 @@ to prove or disprove this from the $\ZFC$ axioms.
 	In other words, the map reaches arbitrarily high into $\lambda$.
 \end{definition}
 \begin{example}
-	[Example of a Cofinal Map]
+	[Example of a cofinal map]
 	\listhack
 	\begin{enumerate}[(a)]
 		\ii The map $\omega \to \omega^\omega$ by $n \mapsto \omega^n$ is cofinal.
@@ -362,10 +362,10 @@ The cofinality is then the number of bullets you need to do this.
 
 We now observe that ``most'' of the time, the cofinality of a cardinal is itself.
 Such a cardinal is called \vocab{regular}.
-\begin{example}[$\aleph_0$ is Regular]
+\begin{example}[$\aleph_0$ is regular]
 	$\cof(\aleph_0) = \aleph_0$, because no finite subset of $\omega$ can reach arbitrarily high.
 \end{example}
-\begin{example}[$\aleph_1$ is Regular]
+\begin{example}[$\aleph_1$ is regular]
 	$\cof(\aleph_1) = \aleph_1$.
 	Indeed, assume for contradiction that some countable
 	set of ordinals $A = \{ \alpha_0, \alpha_1, \dots \} \subseteq \omega_1$
@@ -377,7 +377,7 @@ Such a cardinal is called \vocab{regular}.
 \end{example}
 On the other hand, there \emph{are} cardinals which are not regular;
 since these are the ``rare'' cases we call them \vocab{singular}.
-\begin{example}[$\aleph_\omega$ is Not Regular]
+\begin{example}[$\aleph_\omega$ is not regular]
 	Notice that $\aleph_0 < \aleph_1 < \aleph_2 < \dots$ reaches
 	arbitrarily high in $\aleph_\omega$, despite only having $\aleph_0$ terms.
 	It follows that $\cof(\aleph_\omega) = \aleph_0$.
@@ -385,7 +385,7 @@ since these are the ``rare'' cases we call them \vocab{singular}.
 
 We now confirm a suspicion you may have:
 \begin{theorem}
-	[Successor Cardinals Are Regular]
+	[Successor cardinals are regular]
 	If $\kappa = \ol\kappa^+$ is a successor cardinal,
 	then it is regular.
 \end{theorem}
@@ -404,12 +404,12 @@ We now confirm a suspicion you may have:
 	and hence $\left\lvert \Lambda \right\rvert \le \ol\kappa < \kappa$.
 \end{proof}
 
-\section{Inaccessible Cardinals}
+\section{Inaccessible cardinals}
 So, what about limit cardinals?
 It seems to be that most of them are singular: if $\aleph_\lambda \ne \aleph_0$ is a limit ordinal,
 then the sequence $\{\aleph_\alpha\}_{\alpha \in \lambda}$ (of length $\lambda$) is certainly cofinal.
 
-\begin{example}[Beth Fixed Point]
+\begin{example}[Beth fixed point]
 	Consider the monstrous cardinal
 	\[ \kappa = \aleph_{\aleph_{\aleph_{\ddots}}}. \]
 	This might look frighteningly huge, as $\kappa = \aleph_\kappa$,
@@ -452,13 +452,13 @@ is called \vocab{strongly inaccessible}.
 \end{problem}
 
 \begin{sproblem}
-	[Strongly Inaccessible Cardinals]
+	[Strongly inaccessible cardinals]
 	\label{prob:strongly_inaccessible}
 	Show that for any strongly inaccessible $\kappa$,
 	we have $\left\lvert V_\kappa \right\rvert = \kappa$.
 \end{sproblem}
 
 \begin{problem}
-	[Konig's Theorem]
+	[K\"onig's theorem]
 	Show that \[ \kappa^{\cof(\kappa)} > \kappa \] for every infinite cardinal $\kappa$.
 \end{problem}

@@ -1,4 +1,4 @@
-\chapter{Breaking the Continuum Hypothesis}
+\chapter{Breaking the continuum hypothesis}
 We now use the technique of forcing to break the Contiuum Hypothesis by choosing a good poset $\Po$.
 As I mentioned earlier, one can also build a model where the Continuum Hypothesis is true;
 this is called the \emph{constructible universe}, i.e.\ the model $V=L$.
@@ -22,7 +22,7 @@ However, I think it's more fun when things break\dots
 %Thus $M[G] \vDash \ZFC + (V \ne L)$ for any splitting poset $\Po$,
 %and we are one step closer to breaking $\CH$.
 
-\section{Adding in Reals}
+\section{Adding in reals}
 Starting with a \emph{countable} transitive model $M$.
 
 We want to choose $\Po \in M$ such that $(\aleph_2)^M$ many real numbers appear,
@@ -135,7 +135,7 @@ it follows that each $G_\alpha$ is in $M[G]$.
 So there are at least $\aleph_2^M$ real numbers in $M$.
 We are done once we can show there is no cardinal collapse.
 
-\section{The Countable Chain Condition}
+\section{The countable chain condition}
 It remains to show that with $\Po = \opname{Add}(\omega, \omega_2)$, we have that
 \[ \aleph_2^{M[G]} = \aleph_2^M. \]
 In that case, since $M[G]$ will have $\aleph_2^M = \aleph_2^{M[G]}$ many reals, we will be done.
@@ -146,7 +146,7 @@ To do this, we'll rely on the following combinatorial property of $\Po$:
 	We say that $A \subset \mathcal P$ is a \vocab{strong antichain}
 	if for any distinct $p$ and $q$ in $A$, we have $p \perp q$.
 \end{definition}
-\begin{example}[Example of an Antichain]
+\begin{example}[Example of an antichain]
 	In the infinite binary tree, 
 	the set $A = \{00, 01, 10, 11\}$ is a strong antichain
 	(in fact maximal by inclusion).
@@ -208,7 +208,7 @@ $M$ is still able to pin down the values of $f$ to at most $\kappa$ many values.
 	These are all possible values, and there are less than $\kappa$ of them.
 \end{proof}
 
-\section{Preserving Cardinals}
+\section{Preserving cardinals}
 As we saw earlier, cardinal collapse can still occur.
 For the Continuum Hypothesis we want to avoid this possible,
 so we can add in $\aleph_2^M$ many real numbers and have $\aleph_2^{M[G]} = \aleph_2^M$.
@@ -230,7 +230,7 @@ In still other words, ``$\kappa$ is a regular cardinal '' turns out to be a $\Pi
 
 Fortunately, each implies the other.
 We quote the following without proof.
-\begin{proposition}[Preserving Cardinals $\iff$ Preserving Regular Cardinals]
+\begin{proposition}[Preserving cardinals $\iff$ preserving regular cardinals]
 	Let $M$ be a transitive model of $\ZFC$.
 	Let $\Po \in M$ be a poset.
 	Then for any $\lambda$,
@@ -242,7 +242,7 @@ We quote the following without proof.
 
 Thus, to show that $\Po$ preserves cardinality and cofinalities it suffices to show that $\Po$ preserves regularity.
 The following theorem lets us do this:
-\begin{theorem}[Chain Conditions Preserve Regular Cardinals]
+\begin{theorem}[Chain conditions preserve regular cardinals]
 	Let $M$ be a transitive model of ZFC, and let $\Po \in M$ be a poset.
 	Suppose $M$ satisfies the sentence ``$\Po$ has the $\kappa$ chain condition and $\kappa$ is regular''.
 	Then $\Po$ preserves regularity greater than or equal to $\kappa$.
@@ -255,7 +255,7 @@ The following theorem lets us do this:
 In particular, if $\Po$ has the countable chain condition then $\Po$ preserves \emph{all} the cardinals (and cofinalities).
 Therefore, it remains to show that $\opname{Add}(\omega, \omega_2)$ satisfies the countable chain condition.
 
-\section{Infinite Combinatorics}
+\section{Infinite combinatorics}
 We now prove that $\opname{Add}(\omega, \omega_2)$ satisfies the countable chain condition.
 This is purely combinatorial, and so we work briefly.
 
@@ -267,7 +267,7 @@ This is purely combinatorial, and so we work briefly.
 \end{definition}
 
 \begin{lemma}
-	[$\Delta$-System Lemma] Suppose $C$ is an uncountable collection of finite sets.
+	[$\Delta$-System lemma] Suppose $C$ is an uncountable collection of finite sets.
 	Then $\exists \ol C \subseteq C$ such that $\ol C$ is an uncountable $\Delta$-system.
 \end{lemma}
 \begin{proof}
@@ -338,7 +338,3 @@ Thus, we have proven that the Continuum Hypothesis cannot be proven in $\ZFC$.
 		This is cofinal in $M$, contradiction.
 	\end{sol}
 \end{problem}
-
-
-
-

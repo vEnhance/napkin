@@ -1,5 +1,5 @@
 \chapter{Ordinals}
-\section{Counting for Preschoolers}
+\section{Counting for preschoolers}
 In preschoolers, we were told to count as follows.
 We defined a set of symbols $1$, $2$, $3$, $4$, \dots.
 Then the teacher would hold up three apples and say:
@@ -25,7 +25,7 @@ how many apples are in the following picture?
 Answer: $0$. There is nothing to say, and our method of counting has failed
 for the simplest set of all: the empty set.
 
-\section{Counting for Set Theorists}
+\section{Counting for set theorists}
 \prototype{$\omega+1 = \{0,1,2,\dots,\omega\}$ might work.}
 Rather than using the \emph{last} number listed, I propose the following:
 we start with a list of symbols $0$, $1$, $2$, \dots\ and our final answer
@@ -104,7 +104,7 @@ The first several ordinals can be illustrated in the following nice spiral.
 	More on that later.
 \end{remark}
 
-\section{Definition of an Ordinal}
+\section{Definition of an ordinal}
 Our informal description of ordinals gives us a chain
 \[ 0 \in 1 \in 2 \in \dots \in \omega \in \omega+1 \in \dots. \]
 To give the actual definition of an ordinal, I need to define two auxiliary terms first.
@@ -112,7 +112,7 @@ To give the actual definition of an ordinal, I need to define two auxiliary term
 	A set $x$ is \vocab{transitive} if whenever $z \in y \in x$, we have $z \in x$ also.
 \end{definition}
 \begin{example}
-	[$7$ is Transitive]
+	[$7$ is transitive]
 	The set $7$ is transitive: for example, $2 \in 5 \in 7 \implies 2 \in 7$.
 \end{example}
 \begin{ques}
@@ -157,14 +157,14 @@ We typically use Greek letters $\alpha$, $\beta$, etc.\ for ordinal numbers.
 	\end{itemize}
 \end{definition}
 
-\begin{theorem}[Ordinals are Strictly Ordered]
+\begin{theorem}[Ordinals are strictly ordered]
 	Given any two ordinal numbers $\alpha$ and $\beta$,
 	either $\alpha < \beta$, $\alpha = \beta$ or $\alpha > \beta$.
 \end{theorem}
 \begin{proof}
 	Surprisingly annoying, thus omitted.
 \end{proof}
-\begin{theorem}[Ordinals Represent All Order Types]
+\begin{theorem}[Ordinals represent all order types]
 	Suppose $<$ is a well-ordering on a set $X$.
 	Then there exists a unique ordinal $\alpha$
 	such that there is a bijection $\alpha \to X$
@@ -183,12 +183,12 @@ We now formalize the ``$+1$'' operation we were doing:
 	then we say $\lambda$ is a \vocab{limit ordinal}.
 \end{definition}
 \begin{example}
-	[Sucessor and Limit Ordinals]
+	[Sucessor and limit ordinals]
 	$7$, $\omega+3$, $\omega\cdot2+2015$ are successor ordinals,
 	but $\omega$ and $\omega \cdot 2$ are limit ordinals.
 \end{example}
 
-\section{Ordinals Are ``Tall''}
+\section{Ordinals are ``tall''}
 First, we note that:
 \begin{theorem}
 	[There is no set of all ordinals]
@@ -209,7 +209,7 @@ First, we note that:
 
 From this we deduce:
 \begin{theorem}
-	[Sets of Ordinals Are Bounded]
+	[Sets of ordinals are bounded]
 	Let $A \subseteq \On$.
 	Then there is some ordinal $\alpha$ such that $A \in \alpha$
 	(i.e.\ $A$ must be bounded).
@@ -233,9 +233,9 @@ which is the least upper bound. We denote this by $\sup A$.
 
 The pictorial ``tall'' will be explained in a few sections.
 
-\section{Transfinite Induction and Recursion}
+\section{Transfinite induction and recursion}
 The fact that $\in$ has no infinite descending chains means that induction and recursion still work verbatim.
-\begin{theorem}[Transfinite Induction]
+\begin{theorem}[Transfinite induction]
 	Given a statement $P(-)$, suppose that
 	\begin{itemize}
 		\ii $P(0)$ is true, and
@@ -244,7 +244,7 @@ The fact that $\in$ has no infinite descending chains means that induction and r
 	Then $P(\alpha)$ is true for every ordinal $\alpha$.
 \end{theorem}
 \begin{theorem}
-	[Transfinite Recursion]
+	[Transfinite recursion]
 	To define a sequence $x_\alpha$ for every ordinal $\alpha$,
 	it suffices to
 	\begin{itemize}
@@ -281,7 +281,7 @@ Similarly, transfinite recursion often is split into cases too.
 In both situations, finite induction only does the first two cases,
 but if we're able to do the third case we can climb above the barrier $\omega$.
 
-\section{Ordinal Arithmetic}
+\section{Ordinal arithmetic}
 \prototype{$1+\omega=\omega \neq \omega+1$.}
 To give an example of transfinite recursion, let's define addition of ordinals.
 Recall that we defined $\alpha+1 = \alpha \cup \{\alpha\}$.
@@ -316,7 +316,7 @@ This well-ordering is isomorphic to a unique ordinal,
 	which is isomorphic to $5$.
 \end{example}
 
-\begin{example}[Ordinal Arithmetic is Not Commutative]
+\begin{example}[Ordinal arithmetic is not commutative]
 	Note that $1 + \omega = \omega$!
 	Indeed, under the transfinite definition, we have
 	\[ 1 + \omega = \cup_n (1+n) = 2 \cup 3 \cup 4 \cup \dots = \omega. \]
@@ -344,7 +344,7 @@ By transfinite induction:
 We can also do an explicit construction: $\alpha \cdot \beta$
 is the order type of
 \[ \llex \text{ applied to } \beta \times \alpha. \]
-\begin{example}[Ordinal Multiplication is Not Commutative]
+\begin{example}[Ordinal multiplication is not commutative]
 	We have $\omega \cdot 2 = \omega + \omega$,
 	but $2 \cdot \omega = \omega$.
 \end{example}
@@ -368,7 +368,7 @@ Exponentiation can also be so defined, though the explicit construction is less 
 \end{exercise}
 
 
-\section{The Hierarchy of Sets}
+\section{The hierarchy of sets}
 We now define the \vocab{von Neumann Hierarchy} by transfinite recursion.
 \begin{definition}
 	By transfinite induction, we set
@@ -415,7 +415,7 @@ and that $V_\alpha \subseteq V_\beta$ for all $\alpha < \beta$.
 \end{ques}
 
 It's not yet clear that the rank of a set actually exists, so we prove:
-\begin{theorem}[The von Neumann Hierachy is Complete]
+\begin{theorem}[The von Neumann hierachy is complete]
 	The class $V$ is equal to $\bigcup_{\alpha \in \On} V_\alpha$.
 	In other words, every set appears in some $V_\alpha$.
 \end{theorem}

@@ -1,7 +1,7 @@
-\chapter{Zermelo--Fraenkel with Choice}
+\chapter{Zermelo-Fraenkel with choice}
 Chapter $2\half$ of \cite{ref:msci} has a nice description of this.
 
-\section{The Ultimate Functional Equation}
+\section{The ultimate functional equation}
 In abstract mathematics, we often define structures by what \emph{properties}
 they should have; for example, a group is a set and a binary operation
 satisfying so-and-so axioms, while a metric space is a set and a distance function
@@ -26,7 +26,7 @@ Loosely, $\ZFC$ can be thought of as the \emph{ultimate functional equation}.
 
 Before talking about what these axioms are, I should talk about the caveats.
 
-\section{Cantor's Paradox}
+\section{Cantor's paradox}
 Intuitively, a set is an unordered collection of elements.
 Two sets are equal if they share the same elements:
 \[
@@ -107,7 +107,7 @@ because then everything would blow up. Something more is necessary.
 
 
 
-\section{The Language of Set Theory}
+\section{The language of set theory}
 We need a way to refer to sets other
 than the informal description of ``collection of objects''.
 
@@ -152,7 +152,7 @@ That means that our axiom system had better find some way to let us show a lot o
 For if we prove this formula, then we have our ``bad'' set from that caused us to go down the rabbit hole in the first place.
 
 
-\section{The Axioms of $\ZFC$}
+\section{The axioms of $\ZFC$}
 I don't especially want to get into details about these axioms;
 if you're interested, read:
 \begin{itemize}
@@ -290,7 +290,7 @@ Ordered $k$-tuples can be defined recursively: a three-tuple $(a,b,c)$ means $(a
 
 Et cetera, et cetera.
 
-\section{Choice and Well-Ordering}
+\section{Choice and well-ordering}
 The Axiom of Choice states that given a collection $Y$ of nonempty sets,
 there is a function $g : Y \to \cup Y$ which ``picks'' an element of each member of $Y$.
 That means $g(y) \in y$ for every $y \in Y$.
@@ -315,7 +315,7 @@ There is an equivalent formulation which is often useful.
 \end{definition}
 Well-orderings on a set are very nice, because we can pick minimal elements:
 this lets us do induction, for example.
-\begin{example}[Examples and Non-Examples of Well-Orderings]
+\begin{example}[Examples and non-examples of well-orderings]
 	\listhack
 	\begin{enumerate}[(a)]
 		\ii The natural numbers $\omega = \{0,1,2,\dots\}$
@@ -331,12 +331,12 @@ this lets us do induction, for example.
 \end{example}
 
 \begin{theorem}
-	[Well-Ordering Theorem]
+	[Well-ordering theorem]
 	Assuming Choice, for every set we can place some well-ordering on it.
 \end{theorem}
-In fact, the Well-Ordering Theorem is actually equivalent to the Axiom of Choice.
+In fact, the well-ordering theorem is actually equivalent to the axiom of choice.
 
-\section{Sets vs Classes}
+\section{Sets vs classes}
 \prototype{The set of all sets is the standard example of a proper class.}
 We close the discussion of $\ZFC$ by mentioning ``classes''.
 
@@ -394,7 +394,7 @@ so for example we have:
 	where $\cdot$ is a function $G \times G \to G$.)
 \end{problem}
 \begin{problem}
-	Show that the Axiom of Choice follows from the Well-Ordering Theorem.
+	Show that the axiom of choice follows from the well-ordering theorem.
 \end{problem}
 
 \begin{dproblem}
@@ -402,11 +402,10 @@ so for example we have:
 \end{dproblem}
 
 \begin{problem}
-	[From Taiwan IMO Training Camp]
+	[From Taiwan IMO training camp]
 	Consider infinitely many people each wearing a hat,
 	which is either red, green, or blue.
 	Each person can see the hat color of everyone except themselves.
 	Simultaneously each person guesses the color of their hat.
 	Show that they can form a strategy such that at most finitely many people guess their color incorrectly. 
 \end{problem}
-

@@ -1,5 +1,5 @@
-\chapter{Bonus: Cauchy's Functional Equation and Zorn's Lemma}
-\emph{This is an informal chapter on Zorn's Lemma,
+\chapter{Bonus: Cauchy's functional equation and Zorn's lemma}
+\emph{This is an informal chapter on Zorn's lemma,
 which will give an overview of what's going to come in the last parts of the Napkin.
 It may be omitted, as all important terms used here will be defined in full later.}
 
@@ -15,7 +15,7 @@ Then there's also this family of\dots\ uh\dots\ noncontinuous solutions (mumble 
 	\emph{Don't worry, I know what I'm doing!}
 \end{center}
 
-There's also this thing called Zorn's Lemma. It sounds terrifying,
+There's also this thing called Zorn's lemma. It sounds terrifying,
 because it's equivalent to the Axiom of Choice, which is also terrifying because why not.
 
 In this post I will try to de-terrify these things,
@@ -25,7 +25,7 @@ I have yet to see an olympiad handout that explains how you would construct
 a pathological solution, even though it's really quite natural.
 So let me fix this problem now\dots
 
-\section{Let's Construct a Monster}
+\section{Let's construct a monster}
 Let us just see if we can try and construct a ``bad'' $f$ and see what happens.
 
 By scaling, let's assume WLOG that $f(1) = 1$.
@@ -60,7 +60,7 @@ might be able to guess already), but at the moment there's a bigger issue:
 no matter how many numbers we throw, it seems like we'll never finish.
 Let's address the second issue first.
 
-\section{Review of Finite Induction}
+\section{Review of finite induction}
 When you do induction, you get to count off $1$, $2$, $3$, \dots and so on.
 So for example, suppose we had a "problem" such as the following:
 \begin{quote}
@@ -85,7 +85,7 @@ The moral of the story is that induction doesn't let us reach infinity.
 Too bad, because we'd have loved to use induction to help us construct a monster.
 That's what we're doing, after all -- adding things in one by one.
 
-\section{Transfinite Induction}
+\section{Transfinite induction}
 Well, it turns out we can, but we need a new notion of number.
 
 For this we need a notion of an \emph{ordinal number}.
@@ -130,7 +130,7 @@ Meaning: if I start at an ordinal (like $2 \omega + 4$) and jump down, I can onl
 take finitely many jumps before I hit $0$.
 (To see this, try writing down a chain starting at $2 \omega + 4$ yourself.)
 Hence, induction and recursion still work verbatim:
-\begin{theorem}[Transfinite Induction]
+\begin{theorem}[Transfinite induction]
 	Given a statement $P(-)$, suppose that
 	\begin{itemize}
 		\ii $P(0)$ is true, and
@@ -172,7 +172,7 @@ Similarly, transfinite recursion often is split into cases too.
 In both situations, finite induction only does the first two cases,
 but if we're able to do the third case we can climb far above the barrier $\omega$.
 
-\section{Wrapping Up Functional Equations}
+\section{Wrapping up functional equations}
 Let's return to solving our problem.
 
 Let $S_n$ denote the set of ``base'' numbers we have at the $n$th step.
@@ -252,8 +252,8 @@ Thus this problem is dead, dead, dead. Any questions?
 \end{center}
 
 
-\section{Zorn's Lemma}
-Now I can tell you what Zorn's Lemma is:
+\section{Zorn's lemma}
+Now i can tell you what Zorn's lemma is:
 it lets us do the same thing in any poset.
 
 We can think of the above example as follows:
@@ -281,9 +281,9 @@ An \vocab{upper bound} to a chain is an element $\tilde p$ which is greater than
 to all elements of the chain;
 In particular, if $\gamma$ is a successor ordinal, then just taking the last element of the chain works.
 
-In this language, Zorn's Lemma states that
+In this language, Zorn's lemma states that
 \begin{theorem}
-	[Zorn's Lemma]
+	[Zorn's lemma]
 	Let $\mathcal P$ be a nonempty partially ordered set.
 	If every chain has an upper bound,
 	then $\mathcal P$ has a local maximum.
@@ -291,9 +291,9 @@ In this language, Zorn's Lemma states that
 
 Chains with length equal to a successor ordinal always have upper bounds,
 but this is not true in the limit case.
-So the hypothesis of Zorn's Lemma is exactly what
+So the hypothesis of Zorn's lemma is exactly what
 lets us ``jump'' up to define $p_\omega$ and other limit ordinals.
-And the proof of Zorn's Lemma is straightforward: keep climbing up the poset at successor stages,
+And the proof of Zorn's lemma is straightforward: keep climbing up the poset at successor stages,
 using Zorn's condition to jump up at limit stages, and thus building a really long chain.
 But we have to eventually stop, or we literally run out of elements of $\mathcal P$.
 And the only possible stopping point is a local maximum.
@@ -302,7 +302,7 @@ And the only possible stopping point is a local maximum.
 	\includegraphics[scale=0.5]{media/zornaholic.png}
 \end{center}
 
-If we want to phrase our previous solution in terms of Zorn's Lemma, we'd say:
+If we want to phrase our previous solution in terms of Zorn's lemma, we'd say:
 \begin{proof}
 	Look at the poset whose elements are sets of independent real numbers.
 	Every chain $S_0 \subset S_1 \subset \dots$ has an upper bound $\bigcup S_\alpha$
@@ -310,7 +310,7 @@ If we want to phrase our previous solution in terms of Zorn's Lemma, we'd say:
 	Thus by Zorn, there is a local maximum $S$.
 	Then $S$ must be spanning, because otherwise we could add an element to it.
 \end{proof}
-So really, Zorn's Lemma is encoding all of the work of climbing that I argued earlier.
+So really, Zorn's lemma is encoding all of the work of climbing that I argued earlier.
 It's a neat little package that captures all the boilerplate, and tells
 you exactly what you need to check.
 
@@ -319,7 +319,7 @@ where is the Axiom of Choice used?
 Well, the idea is that for any chain there could be lots of $\tilde p$'s,
 and you need to pick one of them.
 Since you are making arbitrary choices infinitely many times, you need the Axiom of Choice.
-(Actually, you also need Choice to talk about cardinalities as in Theorem 1.)
+(Actually, you also need choice to talk about cardinalities as in theorem 1.)
 But really, it's nothing special.
 
 \section{Conclusion}
@@ -328,7 +328,7 @@ In the words of \href{https://gowers.wordpress.com/2008/08/12/how-to-use-zorns-l
 If you are building a mathematical object in stages and find that (i) you have not finished even after infinitely many stages, and (ii) there seems to be nothing to stop you continuing to build, then Zorn's lemma may well be able to help you.
 \end{quote}
 Really, there's nothing tricky at all here.
-People seem scared of Zorn's Lemma,
+People seem scared of Zorn's lemma,
 and \href{http://math.stackexchange.com/questions/251726/simple-and-intuitive-example-for-zorns-lemma}{claim it's not intuitive or something}.
 But really, all we're doing is climbing up a poset.
 Nothing tricky at all.

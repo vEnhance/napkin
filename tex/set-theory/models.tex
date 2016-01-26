@@ -1,4 +1,4 @@
-\chapter{Inner Model Theory}
+\chapter{Inner model theory}
 Model theory is \emph{really} meta, so you will have to pay attention here.
 
 Roughly, a ``model of $\ZFC$'' is a set with a binary relation that satisfies the $\ZFC$ axioms,
@@ -22,7 +22,7 @@ If you have a model, you can ask certain things about it,
 such as ``does it satisfy $\EmptySet$?''.
 Let me give you an example of what I mean and then make it rigorous.
 \begin{example}
-	[A Stupid Model]
+	[A stupid model]
 	Let's take $\MM = (M,E) = \left( \omega, \in \right)$.
 	This is not a very good model of $\ZFC$, but let's see if we can
 	make sense of some of the first few axioms.
@@ -48,7 +48,7 @@ Let me give you an example of what I mean and then make it rigorous.
 	\end{enumerate}
 \end{example}
 \begin{example}
-	[Important: This Stupid Model Satisfies $\PowerSet$]
+	[Important: this stupid model satisfies $\PowerSet$]
 	Most incredibly of all: $\MM = (\omega, \in)$ satisfies $\PowerSet$.
 	This is a really important example.
 	
@@ -70,13 +70,13 @@ Let me give you an example of what I mean and then make it rigorous.
 \end{example}
 
 \begin{example}
-	[Sentences with Parameters]
+	[Sentences with parameters]
 	The sentences we ask of our model are allowed to have ``parameters'' as well.
 	For example, if $\MM = (\omega, \in)$ as before then $\MM$ satisfies the sentence
 	\[ \forall x \in 3 (x \in 5). \]
 \end{example}
 
-\section{Sentences and Satisfaction}
+\section{Sentences and satisfaction}
 With this intuitive notion, we can define what it means for a model to satisfy a sentence.
 \begin{definition}
 Note that any sentence $\phi$ can be written in one of the following five forms:
@@ -174,7 +174,7 @@ Such a model is called a \vocab{transitive model}.
 	An \vocab{inner model} of $\ZFC$ is a transitive model satisfying $\ZFC$.
 \end{definition}
 
-\section{The Levy Hierarchy}
+\section{The levy hierarchy}
 \prototype{$\mathtt{isSubset}(x,y)$ is absolute. The axiom
 $\EmptySet$ is $\Sigma_1$, $\mathtt{isPowerSetOf}(X,x)$ is $\Pi_1$.}
 A key point to remember is that the behavior of a model is largely determined by $\exists$ and $\forall$.
@@ -238,7 +238,7 @@ Specifically,
 use this except for $n=0$.)
 
 \begin{example}
-	[Examples of $\Delta_0$ Sentences]
+	[Examples of $\Delta_0$ sentences]
 	\listhack
 	\begin{enumerate}[(a)]
 		\ii The sentences $\mathtt{isEmpty}(x)$, $x \subseteq y$, as discussed above.
@@ -251,7 +251,7 @@ use this except for $n=0$.)
 	in a $\Delta_0$ form.
 \end{exercise}
 \begin{example}
-	[More Complex Formulas]
+	[More complex formulas]
 	\listhack
 	\begin{enumerate}[(a)]
 		\ii The axiom $\EmptySet$ is $\Sigma_1$; it is $\exists a (\mathtt{isEmpty}(a))$,
@@ -324,7 +324,7 @@ if every witness in $\MM_2$ can be replaced by one in $\MM_1$ then $\MM_1 \prec 
 	To formalize it, use induction on formula complexity.
 \end{proof}
 
-\section{Obtaining the Axioms of $\ZFC$}
+\section{Obtaining the axioms of $\ZFC$}
 Extending the above ideas, one can obtain without much difficulty the following.
 The idea is that almost all the $\ZFC$ axioms are just $\Sigma_1$ claims about certain desired sets,
 and so verifying an axiom reduces to checking some appropriate ``closure'' condition:
@@ -365,13 +365,13 @@ As a trivial example, $X = M$ is $M$-definable without parameters
 	are true for all claims other than (vii).
 \end{remark}
 
-\section{Mostowski Collapse}
+\section{Mostowski collapse}
 Up until now I have been only talking about transitive models,
 because they were easier to think about.
 Here's a second, better reason we might only care about transitive models.
 
 \begin{lemma}
-	[Mostowski Collapse]
+	[Mostowski collapse]
 	Let $\mathscr X = (X,E)$ be a model
 	such that $\mathscr X \vDash \Extensionality + \Foundation$.
 	Then there exists an isomorphism $\pi : \mathscr X \to M$ for
@@ -400,13 +400,13 @@ to the bottom of $V$, hence the name.
 \missingfigure{Picture of Mostowski collapse}
 
 
-\section{Adding an Inaccessible, Skolem Hulls, and Going Insane}
+\section{Adding an inaccessible, Skolem hulls, and going insane}
 \prototype{$V_\kappa$}
 At this point you might be asking, well, where's my model of $\ZFC$?
 
 I unfortunately have to admit now: $\ZFC$ can never prove that there is a model of $\ZFC$
 (unless $\ZFC$ is inconsistent, but that would be even worse).
-This is a result called G\"odel's Incompleteness Theorem.
+This is a result called G\"odel's incompleteness theorem.
 
 Nonetheless, with some very modest assumptions added, we can actually show that a model \emph{does} exist:
 for example, assuming that there exists a strongly inaccessible cardinal $\kappa$ would do the trick,
@@ -421,7 +421,7 @@ as a final axiom.
 So we now have a model $V_\kappa$ to play with. Joy!
 
 Great. Now we do something \emph{really} crazy.
-\begin{theorem}[Countable Transitive Model]
+\begin{theorem}[Countable transitive model]
 	Assume $\ZFC^+$. Then there exists a transitive model $M$ of $\ZFC$
 	such that $M$ is a \emph{countable} set.
 \end{theorem}
@@ -475,7 +475,7 @@ It hinges irrevocably on the fact that there are countably many sentences we can
 
 The trick we used in the proof works in more general settings:
 \begin{theorem}
-	[Downward L\"owenheim-Skolem Theorem]
+	[Downward L\"owenheim-Skolem theorem]
 	Let $\MM = (M,E)$ be a model, and $A \subseteq M$.
 	Then there exists a set $B$ (called the \vocab{Skolem hull} of $A$)
 	with $A \subseteq B \subseteq M$,
@@ -488,7 +488,7 @@ In our case, what we did was simply take $A$ to be the empty set.
 \end{ques}
 
 
-\section{FAQ's on Countable Models}
+\section{FAQ's on countable models}
 The most common one is ``how is this possible?'',
 with runner-up ``what just happened''.
 
@@ -534,7 +534,7 @@ However, we necessarily know that such a bijection is going to exist in the real
 Put another way, cardinalities in $M$ can look vastly different from those in the real world,
 because cardinality is measured by bijections, which I guess is inevitable, but leads to chaos.
 
-\section{Picturing Inner Models}
+\section{Picturing inner models}
 Here is a picture of a countable transitive model $M$.
 
 \begin{center}
@@ -668,7 +668,7 @@ the uncountable $\aleph_1^M$ is really just an ordinary countable cardinal.
 \end{dproblem}
 
 \begin{sproblem}
-	[Inaccessible Cardinal Produce Models]
+	[Inaccessible cardinal produce models]
 	\label{prob:inaccessible_model}
 	\gim
 	Let $\kappa$ be an inaccessible cardinal.

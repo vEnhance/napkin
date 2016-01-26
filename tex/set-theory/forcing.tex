@@ -77,7 +77,7 @@ any generic subset $G$ will ``encode'' $\aleph_2^M$ real numbers.
 We'll then show cardinal collapse does not occur, meaning $\aleph_2^{M[G]} = \aleph_2^M$.
 Thus $M[G]$ will have $\aleph_2^{M[G]}$ real numbers, as desired.
 
-\section{Setting Up Posets}
+\section{Setting up posets}
 \prototype{Infinite Binary Tree}
 Let $M$ be a transitive model of $\ZFC$.
 Let $\Po = (\Po, \le) \in M$ be a poset with a maximal element $1_\Po$
@@ -99,7 +99,7 @@ as any downwards ``slice''.
 	Otherwise, we say $p$ and $q$ are \vocab{incompatible}
 	and write $p \perp q$.
 \end{definition}
-\begin{example}[Infinite Binary Tree]
+\begin{example}[Infinite binary tree]
 	Let $\Po = 2^{<\omega}$ be the \vocab{infinite binary tree} shown below,
 	extended to infinity in the obvious way:
 	\begin{center}
@@ -160,7 +160,7 @@ Now, I can specify what it means to be ``generic''.
 \begin{ques}
 	Show that if $G$ is a filter then $1_\Po \in G$.
 \end{ques}
-\begin{example}[Generic Filters on the Infinite Binary Tree]
+\begin{example}[Generic filters on the infinite binary tree]
 	Let $\Po = 2^{<\omega}$.
 	The generic filters on $\Po$ are sets of the following form:
 	\[ \left\{ 0,\; b_1,\; b_1b_2,\; b_1b_2b_3,\; \dots \right\}. \]
@@ -226,10 +226,10 @@ since $G$ is upwards closed.
 	\snsd[height=7cm]{maximal-elm-nonempty-poset.png}
 \end{figure}
 
-\section{More Properties of Posets}
+\section{More properties of posets}
 We had better make sure that generic filters exist.
 In fact this is kind of tricky, but for countable models it works:
-\begin{lemma}[Rasiowa-Sikorski Lemma]
+\begin{lemma}[Rasiowa-Sikorski lemma]
 	Suppose $M$ is a \emph{countable} transitive model of $\ZFC$
 	and $\Po$ is a partial order.
 	Then there exists an $M$-generic filter $G$.
@@ -252,7 +252,7 @@ The condition that guarantees this is:
 	for all $p \in \Po$, there exists $q,r \le p$
 	such that $q \perp r$.
 \end{definition}
-\begin{example}[Infinite Binary Tree is (Very) Splitting]
+\begin{example}[Infinite binary tree is (Very) splitting]
 	The infinite binary tree is about as splitting as you can get.
 	Given $p \in 2^{<\omega}$, just consider the two elements right under it.
 \end{example}
@@ -275,7 +275,7 @@ The condition that guarantees this is:
 	\end{ques}
 \end{proof}
 
-\section{Names, and the Generic Extension}
+\section{Names, and the generic extension}
 We now define the \emph{names} associated to a poset $\Po$.
 
 \begin{definition}
@@ -320,7 +320,7 @@ The fuzzy sets with an element of $G$ attached to it materialize into the real w
 while the fuzzy sets with elements outside of $G$ fade from existence.
 The result is $M[G]$.
 
-\begin{example}[First Few Levels of the Name Hierarchy]
+\begin{example}[First few levels of the name hierarchy]
 	Let us compute
 	\begin{align*}
 		\Name_0 &= \varnothing \\
@@ -337,7 +337,7 @@ Compare the corresponding von Neuman universe.
 \[ V_0 = \varnothing, \; V_1 = \{\varnothing\}, \;
 V_2 = \left\{ \varnothing, \left\{ \varnothing \right\} \right\}. \]
 
-\begin{example}[Example of an Interpretation]
+\begin{example}[Example of an interpretation]
 	As we said earlier, $\Name_1 = \{\varnothing\}$.
 	Now suppose
 	\[ \tau =
@@ -427,9 +427,9 @@ $\left\{ \left<\sigma_1, 1_\Po\right>, \left<\sigma_2, 1_\Po\right> \right\}$
 to get the facts we wanted.
 But for the remaining axioms, we \emph{are} going to need this extra power
 are true in $M[G]$.
-For this, we have to introduce the Fundamental Theorem of Forcing.
+For this, we have to introduce the fundamental theorem of forcing.
 
-\section{Fundamental Theorem of Forcing}
+\section{Fundamental theorem of forcing}
 The model $M$ unfortunately has no idea what $G$ might be,
 only that it is some generic filter.\footnote{%
 	You might say this is a good thing, here's why.
@@ -462,7 +462,7 @@ And miraculously, we can define this relation in such a way that the converse is
 
 
 \begin{theorem}
-	[Fundamental Theorem of Forcing]
+	[Fundamental theorem of forcing]
 	Suppose $M$ is a transitive model of ZF.
 	Let $\Po \in M$ be a poset, and $G \subseteq \PP$ is an $M$-generic filter.
 	Then,
@@ -479,7 +479,7 @@ And miraculously, we can define this relation in such a way that the converse is
 
 I'll tell you how the definition works in the following.
 
-\section{(Optional) Defining the Relation}
+\section{(Optional) Defining the relation}
 Here's how we're going to go.
 We'll define the most generous condition possible such that
 the forcing works in one direction ($p \vDash \varphi(\sigma_1, \dots, \sigma_n)$ means
@@ -581,10 +581,10 @@ From this we get:
 \end{proof}
 And this gives the converse: the $M$-generic $G$ has to hit some condition
 that passes judgment, one way or the other.
-This completes the proof of the Fundamental Theorem.
+This completes the proof of the fundamental theorem.
 
-\section{The Remaining Axioms}
-\begin{theorem}[The Generic Extension Satisfies $\ZFC$]
+\section{The remaining axioms}
+\begin{theorem}[The generic extension satisfies $\ZFC$]
 	Suppose $M$ is a transitive model of $\ZFC$.
 	Let $\Po \in M$ be a poset, and $G \subseteq \PP$ is an $M$-generic filter.
 	Then \[ M[G] \vDash \ZFC. \]
@@ -605,7 +605,7 @@ This completes the proof of the Fundamental Theorem.
 	for some $\rho \in \dom(\sigma)$ (a bit of abuse here,
 	$\sigma$ is a bunch of pairs of names and $p$'s,
 	and the domain is just the set of names).
-	So by the Fundamental Theorem of Forcing, we may write
+	So by the fundamental theorem of forcing, we may write
 	\[ A = 
 		\left\{ \rho^G \mid \rho \in \dom(\sigma)
 			\text{ and }
@@ -632,7 +632,7 @@ This completes the proof of the Fundamental Theorem.
 	the ``content'' is showing that $\tau$ is in actually a name of $M$,
 	which follows from $M \vDash \Comprehension$.
 
-	So really, the point of the Fundamental Theorem of Forcing
+	So really, the point of the fundamental theorem of forcing
 	is just to let us write down this $\tau$;
 	it lets us show that $\tau$ is in $\Name^M$
 	without actually referencing $G$.
@@ -645,7 +645,7 @@ This completes the proof of the Fundamental Theorem.
 	show that $M[G] \vDash \Union$.
 \end{problem}
 
-\begin{problem}[Rasiowa-Sikorski Lemma]
+\begin{problem}[Rasiowa-Sikorski lemma]
 	\label{prob:rslemma}
 	Show that in a countable transitive model $M$ of $\ZFC$,
 	one can find an $M$-generic filter on any partial order.
@@ -680,6 +680,3 @@ This completes the proof of the Fundamental Theorem.
 %		\ii $(\dot G)^G = G$.
 %	\end{enumerate}
 %\end{exercise}
-
-
-

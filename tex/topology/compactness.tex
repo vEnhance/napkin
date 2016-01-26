@@ -13,7 +13,7 @@ but sequences in general topological spaces \emph{suck} (to the point where
 I didn't bother to define convergence of general sequences).
 So it's the second definition that will be used for general spaces.
 
-\section{Definition of Sequential Compactness}
+\section{Definition of sequential compactness}
 \prototype{$[0,1]$ is compact, but $(0,1)$ is not.}
 To emphasize, compactness is one of the
 \emph{best} possible properties that a metric space can have.
@@ -33,7 +33,7 @@ your glass is half empty or half full.
 \end{definition}
 This time, let me give some non-examples before the examples.
 \begin{example}
-	[Non-Examples of Compact Metric Spaces]
+	[Non-Examples of compact metric spaces]
 	\listhack
 	\begin{enumerate}[(a)]
 		\ii The space $\RR$ is not compact: consider the sequence $1,2,3,4,\dots$.
@@ -57,7 +57,7 @@ Now for the examples!
 	Show that a finite set is compact.
 	(Pigeonhole Principle.)
 \end{ques}
-\begin{example}[Examples of Compact Spaces]
+\begin{example}[Examples of compact spaces]
 	Here are some more examples of compact spaces.
 	I'll prove they're compact in just a moment;
 	for now just convince yourself they are.
@@ -82,7 +82,7 @@ Now for the examples!
 \end{figure}
 
 To aid in generating more examples, we make the following remark.
-\begin{proposition}[Closed Subsets of Compacts]
+\begin{proposition}[Closed subsets of compacts]
 	Closed subsets of sequentially compact sets are compact.
 \end{proposition}
 \begin{ques}
@@ -91,7 +91,7 @@ To aid in generating more examples, we make the following remark.
 
 We need to do a bit more work for these examples, which we do in the next section.
 
-\section{Criteria for Compactness}
+\section{Criteria for compactness}
 %Quick note: right now I've only defined compactness for metric spaces.
 %In the next section I'll define compactness for general spaces, but
 %all the results in this section will still remain true.
@@ -100,7 +100,7 @@ We need to do a bit more work for these examples, which we do in the next sectio
 %So you should assume all spaces in this section are metric spaces.
 
 \begin{theorem}
-	[Tychonoff's Theorem] 
+	[Tychonoff's theorem] 
 	\label{thm:tychonoff}
 	If $X$ and $Y$ are compact spaces, then so is $X \times Y$.
 \end{theorem}
@@ -109,7 +109,7 @@ We need to do a bit more work for these examples, which we do in the next sectio
 \end{proof}
 
 We also have the following result.
-\begin{theorem}[The Interval is Compact]
+\begin{theorem}[The interval is compact]
 	\label{thm:interval_compact}
 	$[0,1]$ is compact.
 \end{theorem}
@@ -138,23 +138,23 @@ in $\RR^n$, compactness is equivalent to being ``closed and bounded''.
 \begin{proof}
 	Well, look at a closed and bounded $S \subseteq \RR^n$.
 	Since it's bounded, it lives inside some box $[a_1, b_1] \times [a_2, b_2] \times \dots \times [a_n, b_n]$.
-	By Tychonoff's Theorem, since each $[a_i, b_i]$ is compact the entire box is.
+	By Tychonoff's theorem, since each $[a_i, b_i]$ is compact the entire box is.
 	Since $S$ is a closed subset of this compact box, we're done.
 \end{proof}
 
 One really has to work in $\RR^n$ for this to be true!
 In other spaces, this criteria can easily fail.
-\begin{example}[Closed and Bounded but not Compact]
+\begin{example}[Closed and bounded but not compact]
 	Let $S = \{s_1, s_2, \dots\}$ be any infinite set equipped with the discrete metric.
 	Then $S$ is closed (since all convergent sequences are constant sequences)
 	and $S$ is bounded (all points are a distance $1$ from each other)
 	but it's certainly not compact since the sequence $s_1, s_2, \dots$ doesn't converge.
 \end{example}
 
-The Heine-Borel Theorem, which is \Cref{thm:heine_borel}, tells you exactly
+The Heine-Borel theorem, which is \Cref{thm:heine_borel}, tells you exactly
 which sets are compact in metric spaces in a geometric way.
 
-\section{Compactness Using Open Covers}
+\section{Compactness using open covers}
 \prototype{$[0,1]$ is compact.}
 There's a second related notion of compactness which I'll now define.
 The following definitions might appear very unmotivated, but bear with me.
@@ -173,7 +173,7 @@ The following definitions might appear very unmotivated, but bear with me.
 \end{definition}
 
 What does this mean? Here's an example:
-\begin{example}[Example of a Finite Subcover]
+\begin{example}[Example of a finite subcover]
 	Suppose we cover the unit square $M = [0,1]^2$ by putting an open disk of diameter $1$ at every point
 	(trimming any overflow).
 	This is clearly an open cover because, well, every point lies in \emph{many} of the open sets,
@@ -197,12 +197,12 @@ What does this mean? Here's an example:
 
 Why do we care?
 Because of this:
-\begin{theorem}[Sequentially Compact $\iff$ Compact]
+\begin{theorem}[Sequentially compact $\iff$ compact]
 	A metric space $M$ is sequentially compact if and only if it is compact.
 	\label{thm:compactness_metric}
 \end{theorem}
 We defer the proof to the last section.
-\begin{example}[An Example of Non-Compactness]
+\begin{example}[An example of non-compactness]
 	The space $X = [0,1)$ is not compact in either sense.
 	We can already see it is not sequentially compact, because it is not even complete (look at $x_n = 1 - \frac 1n$).
 	To see it is not compact under the covering definition, consider the sets
@@ -225,7 +225,7 @@ So rather than port the sequential definition, we port this definition over for 
 	A topological space $X$ is \vocab{compact} if every open cover has finite subcover.
 \end{definition}
 
-\section{Applications of Compactness}
+\section{Applications of compactness}
 Compactness lets us reduce \emph{infinite} open covers to finite ones.
 Actually, it lets us do this even if the open covers are \emph{blithely stupid}.
 Very often one takes an open cover consisting of a neighborhood of $x \in X$
@@ -233,7 +233,7 @@ for every single point $x$ in the space; this is a huge number of open sets,
 and yet compactness lets us reduce to a finite set.
 
 To give an example of a typical usage:
-\begin{proposition}[Compact $\implies$ Totally Bounded]
+\begin{proposition}[Compact $\implies$ totally bounded]
 	Let $M$ be compact.
 	Then $M$ is \vocab{totally bounded}, meaning
 	that for any $\eps > 0$ we can cover $M$ with $\eps$-neighborhoods.
@@ -248,7 +248,7 @@ To give an example of a typical usage:
 \end{proof}
 
 Next, an important result about maps between compact spaces.
-\begin{theorem}[Images of Compacts are Compact]
+\begin{theorem}[Images of compacts are compact]
 	Let $f : X \to Y$ be a continuous function, where $X$ is compact.
 	Then the image \[ f``(X) \subseteq Y \] is compact.
 \end{theorem}
@@ -265,14 +265,14 @@ Next, an important result about maps between compact spaces.
 
 Some nice corollaries of this:
 \begin{corollary}
-	[Extreme Value Theorem]
+	[Extreme value theorem]
 	Let $X$ be compact and consider a continuous function $f : X \to \RR$.
 	Then $f$ achieves a \emph{maximum value} at some point,
 	i.e.\ there is a point $p \in X$ such that $f(p) \ge f(q)$ for any
 	other $q \in X$.
 \end{corollary}
 \begin{corollary}
-	[Intermediate Value Theorem]
+	[Intermediate value theorem]
 	Consider a continuous function $f: [0,1] \to \RR$.
 	Then the image of $f$ is of the form $[a,b]$ for some real numbers $a \le b$.
 \end{corollary}
@@ -282,7 +282,7 @@ The typical counterexample given for $(0,1) \to \RR$ is the function $\frac 1x$.
 	The point is that the image of $f$ is compact in $\RR$,
 	and hence closed and bounded.
 	You can convince yourself that the closed sets are just unions of closed intervals.
-	That implies the Extreme Value Theorem.
+	That implies the extreme value theorem.
 
 	When $X=[0,1]$, the image is also connected,
 	so there should only be one closed interval in $f``([0,1])$.
@@ -302,7 +302,7 @@ are continuous in an especially ``nice'' way:
 \end{definition}
 The name means that for $\eps > 0$,
 we need a $\delta$ that works for \emph{every point} of $M$.
-\begin{example}[Uniform Continuity]
+\begin{example}[Uniform continuity]
 	\listhack
 	\begin{enumerate}[(a)]
 		\ii The functions $\RR$ to $\RR$ of the form $x \mapsto ax+b$ are all uniformly continuous,
@@ -320,7 +320,7 @@ we need a $\delta$ that works for \emph{every point} of $M$.
 \end{example}
 
 Now, as promised:
-\begin{proposition}[Continuous on Compact $\implies$ Uniformly Continuous]
+\begin{proposition}[Continuous on compact $\implies$ uniformly continuous]
 	If $M$ is compact and $f : M \to N$ is continuous,
 	then $f$ is uniformly continuous.
 \end{proposition}
@@ -334,7 +334,7 @@ Now, as promised:
 	but this can't be true since the two sequences are always $\eps$ apart.
 \end{proof}
 
-\section{(Optional) Equivalence of Formulations of Compactness}
+\section{(Optional) equivalence of formulations of compactness}
 We'll prove that for a metric space $M$, the following are equivalent:
 \begin{enumerate}[(i)]
 	\ii Every sequence has a convergent subsequence,
@@ -347,13 +347,13 @@ the idea of the proof is much in the spirit of \Cref{thm:interval_compact}.
 	[Proof that (i) and (ii) $\implies$ (iii)]
 	We prove the following lemma, which is interesting in its own right.
 	\begin{lemma}
-		[Lebesgue Number Lemma]
+		[Lebesgue number lemma]
 		Let $M$ be a compact metric space and $\{U_\alpha\}$ an open cover.
 		Then there exists a real number $\delta > 0$, called a \vocab{Lebesgue number} for that covering,
 		such that the $\delta$-neighborhood of any point $p$ lies entirely in some $U_\alpha$.
 	\end{lemma}
 	\missingfigure{Lebesgue Numbers}
-	\begin{subproof}[Proof of Lemma]
+	\begin{subproof}[Proof of lemma]
 		Assume for contradiction that for every $\delta = 1/k$
 		there is a point $x_k \in M$
 		such that its $1/k$-neighborhood isn't contained in any $U_\alpha$.
@@ -407,7 +407,7 @@ Of these \Cref{thm:heine_borel} is definitely my favorite.
 \end{problem}
 
 \begin{problem}
-	[Cantor's Intersection Theorem]
+	[Cantor's intersection theorem]
 	Let $X$ be a compact space, and suppose
 	\[ X = K_0 \supseteq K_1 \supseteq K_2 \supseteq \dots \]
 	is an infinite sequence of nested closed subsets.
@@ -426,7 +426,7 @@ Of these \Cref{thm:heine_borel} is definitely my favorite.
 %\end{sproblem}
 
 \begin{problem}
-	[Tychonoff's Theorem]
+	[Tychonoff's theorem]
 	Let $X$ and $Y$ be compact metric spaces. Show that $X \times Y$ is compact.
 	(This is also true for general topological spaces, but the proof is surprisingly hard.)
 	\label{prob:tychonoff}
@@ -450,7 +450,7 @@ Of these \Cref{thm:heine_borel} is definitely my favorite.
 
 
 \begin{dproblem}
-	[Heine-Borel Theorem]
+	[Heine-Borel theorem]
 	\gim
 	Prove that a metric space $M$ is (sequentially) compact
 	if and only if it is complete and totally bounded.
@@ -462,7 +462,7 @@ Of these \Cref{thm:heine_borel} is definitely my favorite.
 \end{dproblem}
 
 \begin{problem}
-	[Almost Arzel\`a-Ascoli Theorem]
+	[Almost Arzel\`a-Ascoli theorem]
 	\gim
 	Let 
 	$f_1, f_2, \dots : [0,1] \to [-100,100]$

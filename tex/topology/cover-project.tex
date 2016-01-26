@@ -1,11 +1,11 @@
-\chapter{Covering Projections}
+\chapter{Covering projections}
 A few chapters ago we talked about what a fundamental group was,
 but we didn't actually show how to compute any of them
 except for the most trivial case of a simply connected space.
 In this chapter we'll introduce the notion of a \emph{covering projection},
 which will let us see how some of these groups can be found.
 
-\section{Even Coverings and Covering Projections}
+\section{Even coverings and covering projections}
 \prototype{$\RR$ covers $S^1$.}
 What we want now is a notion where a big space $E$, a ``covering space'',
 can be projected down onto a base space $B$ in a nice way.
@@ -33,7 +33,7 @@ is a bunch of copies of it. (Actually, a little more: each of the pancakes is ho
 \end{ques}
 
 Here is the most stupid example of a covering projection.
-\begin{example}[Tautological Covering Projection]
+\begin{example}[Tautological covering projection]
 	Let's take $n$ disconnected copies of any space $B$:
 	formally, $E = B \times \{1, \dots, n\}$ with the discrete topology
 	on $\{1, \dots, n\}$.
@@ -48,7 +48,7 @@ This is not really that interesting because $B \times [n]$ is not path-connected
 
 A much more interesting example is that of $\RR$ and $S^1$.
 
-\begin{example}[Covering Projection of $S^1$]
+\begin{example}[Covering projection of $S^1$]
 	Take $p : \RR \to S^1$ by $\theta \mapsto e^{2\pi i \theta}$.  This is essentially wrapping the real line into a single helix and projecting it down.
 \end{example}
 \missingfigure{helix}
@@ -99,7 +99,7 @@ Note that not all neighborhoods work this time: notably, $U = S^1$ does not work
 \end{example}
 
 \begin{example}
-	[Covering Projections of $\CC \setminus \{0\}$]
+	[Covering projections of $\CC \setminus \{0\}$]
 	For those comfortable with complex arithmetic,
 	\begin{enumerate}[(a)]
 		\ii The exponential map $\exp : \CC \to \CC \setminus \{0\}$
@@ -110,7 +110,7 @@ Note that not all neighborhoods work this time: notably, $U = S^1$ does not work
 	\end{enumerate}
 \end{example}
 
-\section{Lifting Theorem}
+\section{Lifting theorem}
 \prototype{$\RR$ covers $S^1$.}
 Now here's the key idea: we are going to try to interpret paths in $B$ as loops in $\RR$.
 This is often much simpler.
@@ -127,10 +127,10 @@ Picture:
 \begin{diagram}
 	&&& E \\
 	&& \ruTo(3,2)^{\tilde \gamma} & \dTo_p \\
-	[0,1] & \rTo^{\gamma} && B
+	[0,1] & \rTo^{\gamma} && b
 \end{diagram}
 
-\begin{example}[Typical Example of Lifting]
+\begin{example}[Typical example of lifting]
 	Take $p : \RR \to S^1 \subseteq \CC$ by $\theta \mapsto e^{2 \pi i \theta}$
 	(so $S^1$ is considered again as the unit circle).
 	Consider the path $\gamma$ in $S^1$ which starts at $1 \in \CC$
@@ -188,7 +188,7 @@ a corresponding path in $E$.
 \end{ques}
 
 It turns out this is true more generally.
-\begin{theorem}[Lifting Paths]
+\begin{theorem}[Lifting paths]
 	Suppose $\gamma : [0,1] \to B$ is a path with $\gamma(0) = \gamma(1) = b_0$, and 
 	$ p : (E,e_0) \to (B,b_0) $
 	is a covering projection.
@@ -227,7 +227,7 @@ The theorem can be generalized to a diagram
 	(Y,y_0) & \rTo^{f} & (B, b_0)
 \end{diagram}
 where $Y$ is some general path-connected space, as follows.
-\begin{theorem}[General Lifting Criterion]
+\begin{theorem}[General lifting criterion]
 	\label{thm:lifting}
 	Let $f: (Y,y_0) \to (B, b_0)$ be continuous and consider a covering projection $p : (E, e_0) \to (B, b_0)$.
 	(As usual, $Y$, $B$, $E$ are path-connected.)
@@ -243,7 +243,7 @@ But in this case we are interested in the actual elements, not just the isomorph
 	What happens if we put $Y= [0,1]$?
 \end{ques}
 
-\begin{remark}[Lifting Homotopies]
+\begin{remark}[Lifting homotopies]
 	Here's another cool special case:
 	Recall that a homotopy can be encoded as a continuous function $[0,1] \times [0,1] \to X$.
 	But $[0,1] \times [0,1]$ is also simply connected.
@@ -252,7 +252,7 @@ But in this case we are interested in the actual elements, not just the isomorph
 \end{remark}
 Another nice application of this result is \Cref{ch:complex_log}.
 
-\section{Lifting Correspondence}
+\section{Lifting correspondence}
 \prototype{$(\RR,0)$ covers $(S^1,1)$.}
 Let's return to the task of computing fundamental groups.
 Consider a covering projection $p : (E, e_0) \to (B, b_0)$.
@@ -317,7 +317,7 @@ This motivates the following definition.
 	When $p$ is understood, we sometimes just say $E$ is the universal cover.
 \end{abuse}
 
-\begin{example}[Fundamental Group of $S^1$]
+\begin{example}[Fundamental group of $S^1$]
 	Let's return to our standard $p : \RR \to S^1$.
 	Since $\RR$ is simply connected, this is a universal cover of $S^1$.
 	And indeed, the fiber of any point in $S^1$
@@ -330,7 +330,7 @@ This motivates the following definition.
 	Since it's a bijection, this leads us to conclude $\pi_1(S^1) \cong \ZZ$.
 \end{example}
 
-\section{Regular Coverings}
+\section{Regular coverings}
 I want to talk a little about a special type of covering now: those
 that arise from group actions.
 
@@ -385,7 +385,7 @@ by simply sending every point to the orbit it lives in.
 	is just our usual $\exp : \theta \mapsto e^{2i\pi \theta}$.
 \end{example}
 	
-\begin{example}[The Torus]
+\begin{example}[The torus]
 	Let $G = \ZZ \times \ZZ$ and $X = \RR^2$,
 	and define the group action of $G$ on $X$ by $(m,n) \cdot (x,y)
 	= (m+x, n+y)$.
@@ -431,7 +431,7 @@ by simply sending every point to the orbit it lives in.
 	of it on $S^2$.)
 \end{example}
 \begin{example}
-	[Fundamental Group of $\mathbb{RP}^2$]
+	[Fundamental group of $\mathbb{RP}^2$]
 	As above, we saw that there was a covering projection
 	$S^2 \to \mathbb{RP}^2$.
 	Moreover the fiber of any point has size two.
@@ -448,7 +448,7 @@ by simply sending every point to the orbit it lives in.
 \end{ques}
 % WOW I thought this was always a covering projection gg
 
-\section{The Algebra of Fundamental Groups}
+\section{The algebra of fundamental groups}
 \prototype{$S^1$, with fundamental group $\ZZ$.}
 Next up, we're going to turn functions between spaces into homomorphisms of fundamental groups.
 
@@ -515,7 +515,7 @@ two covering projections to be equivalent.
 	such that $f \circ g = \id_{E_1}$ and $g \circ f = \id_{E_2}$.
 \end{definition}
 \begin{remark}
-	[For Category Theorists]
+	[For category theorists]
 	The set of covering projections forms a category in this way.
 \end{remark}
 
@@ -531,13 +531,13 @@ Suppose a space $X$ has the following conditions.
 	there is a neighborhood $U$ such that all loops in $U$ are nulhomotopic.
 	(But the contraction need not take place in $U$.)
 \end{definition}
-\begin{example}[These Conditions Are Weak]
+\begin{example}[These conditions are weak]
 	Pretty much every space I've shown you has these two properties.
 	In other words, they are rather mild conditions, and you can think of them as just
 	saying ``the space is not too pathological''.
 \end{example}
 Then we get the following theorem.
-\begin{theorem}[Group Theory via Covering Spaces]
+\begin{theorem}[Group theory via covering spaces]
 	Suppose $B$ is a connected, locally connected, semi-locally simply connected space.
 	Then:
 	\begin{itemize}
