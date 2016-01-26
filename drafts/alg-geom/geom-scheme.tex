@@ -12,7 +12,7 @@
 
 \tableofcontents
 
-\chapter{Sheaves and Ringed Spaces}
+\chapter{Sheaves and ringed spaces}
 Most of the complexity of the affine variety $V$ earlier comes from $\OO_V$.
 This is a type of object called a ``sheaf''.
 The purpose of this chapter is to completely define what this sheaf is,
@@ -33,7 +33,7 @@ In particular, we can use the case where $I$ is not semiprime, such as
 $\CC[x] / (x^2)$; this gives the ``multiplicity''
 behavior that we sought after all along.  
 
-\section{Pre-Sheaves}
+\section{Pre-sheaves}
 \prototype{The sheaf of holomorphic (or regular, continuous,
 differentiable, constant, whatever) functions.}
 
@@ -79,7 +79,7 @@ for the general construct, in the language of categories.
 	may not have a natural interpretation as function.
 \end{abuse}
 
-\begin{example}[Examples of Pre-Sheaves]
+\begin{example}[Examples of pre-sheaves]
 	\listhack
 	\begin{enumerate}[(a)]
 		\ii For an affine variety $V$, $\OO_V$ is of course a sheaf,
@@ -189,7 +189,7 @@ our examples will usually have this property.
 
 Now for the examples, which are more enlightening:
 \begin{example}
-	[Examples and Non-Examples of Sheaves]
+	[Examples and non-examples of sheaves]
 	\listhack
 	\begin{enumerate}[(a)]
 		\ii Pre-sheaves of arbitrary / continuous / differentiable / smooth
@@ -260,7 +260,7 @@ So the germ $[s]_p$ now plays the role of the ``value'' $s(p)$.
 But actually, it carries much more information than that.
 
 \begin{example}
-	[Germs of Real Smooth Functions]
+	[Germs of real smooth functions]
 	Let $X = \RR$ and let $\SF$ be the sheaf on $X$ of smooth functions
 	(i.e.\ $\SF(U)$ is the set of smooth real-valued functions on $U$).
 
@@ -284,7 +284,7 @@ But actually, it carries much more information than that.
 	\end{enumerate}
 \end{example}
 \begin{example}
-	[Germs of Holomorphic Functions]
+	[Germs of holomorphic functions]
 	Holomorphic functions are very strange in this respect.
 	Consider the sheaf $\SF$ on $\CC$ of \emph{holomorphic} functions.
 
@@ -312,7 +312,7 @@ And of course, our algebraic geometry example.
 	Rather than writing $(\OO_V)_p$ we will write $\OO_{V,p}$.
 \end{abuse}
 \begin{example}
-	[Stalks of the Sheaf on an Affine Variety]
+	[Stalks of the sheaf on an affine variety]
 	Let $V \subseteq \Aff^n$ be a variety, and assume $p \in V$.
 	Then, a regular function $\varphi$ on $U \subseteq V$
 	is supposed to be a function on $U$ that ``locally'' is a quotient
@@ -356,7 +356,7 @@ And of course, our algebraic geometry example.
 	to be concrete.
 \end{remark}
 
-\section{Sections ``Are'' Sequences of Germs}
+\section{Sections ``are'' sequences of germs}
 \prototype{A real function on $U$ is a sequence of
 	real numbers $f(p)$ for each $p \in U$ satisfying some local condition.
 	Analogously, a section $s \in \SF(U)$ is a sequence of germs
@@ -372,7 +372,7 @@ Given $s \in \SF(U)$ we consider its germ $[s]_p$ above every for $p \in U$.
 To visualize, picture an open set $U \subseteq X$,
 and above every point $p \in P$ imagine there is a little speck $[s]_p$,
 which bundles the information of $s$ near $p$.
-\begin{example}[Real Functions vs.\ Germs]
+\begin{example}[Real functions vs.\ germs]
 	Let $X$ be a space and let $\SF$ be the sheaf of smooth functions 
 	Given a section $f \in \SF(U)$,
 	\begin{itemize}
@@ -395,7 +395,7 @@ From the above example it's obvious that if we know each germ $[s]_p$
 this should let us reconstruct the entire section $s$.
 Let's check this from the sheaf axioms:
 \begin{exercise}
-	[Sections are Determined by Stalks]
+	[Sections are determined by stalks]
 	Let $\SF$ be a sheaf.
 	Consider the natural map $\SF(U) \to \prod_{p \in U} \SF_p$ described above.
 	Show that this map is injective, i.e.\
@@ -436,7 +436,7 @@ We let the reader check this definition is what we want:
 
 Putting together the previous two exercise gives:
 \begin{theorem}
-	[Sections ``Are'' Just Compatible Germs]
+	[Sections ``are'' just compatible germs]
 	Let $\SF$ be a sheaf.
 	There is a natural bijection between
 	\begin{itemize}
@@ -505,7 +505,7 @@ So we \emph{force} this to be true by defining:
 The construction is contrived so that given a section
 $(g_p)_{p \in U} \in \SF\sh(U)$ the germ at a point $p$ is $g_p$:
 \begin{lemma}
-	[Pre-Sheaves and Sheaves Have the Same Stalk]
+	[Pre-sheaves and sheaves have the same stalk]
 	\label{lem:pre_sheaf_stalk}
 	Let $\SF$ be a pre-sheaf and $\SF\sh$ its sheafification.
 	Let $q \in U$ with $U$ an open set.
@@ -525,7 +525,7 @@ $(g_p)_{p \in U} \in \SF\sh(U)$ the germ at a point $p$ is $g_p$:
 
 We'll later see that if $\SF$ is already a sheaf, then $\SF\sh = \SF$.
 
-\section{Morphisms of Sheaves}
+\section{Morphisms of sheaves}
 First, recall that a sheaf is a contravariant functor (pre-sheaf)
 with extra conditions. In light of this, it is not hard to guess
 the definition of a morphism of pre-sheaves:
@@ -548,7 +548,7 @@ However, in the sheaf case we like stalks more than sections because
 they are theoretically easier to think about.
 And in fact:
 \begin{proposition}
-	[Morphisms Determined By Stalks]
+	[Morphisms determined by stalks]
 	A morphism of sheaves $\alpha : \SF \to \SG$ induces a morphism of stalks
 	\[ \alpha_p : \SF_p \to \SG_p \]
 	for every point $p \in X$.
@@ -572,7 +572,7 @@ Thus a morphism of sheaves can be instead modelled as a morphism
 of all the stalks. We will see later on that this viewpoint is quite useful.
 
 
-\section{Local Rings, and Locally Ringed Spaces}
+\section{Local rings, and locally ringed spaces}
 \prototype{Smooth functions $f$ on $X \subseteq \RR^n$ have invertible
 germs at $p$ unless $f(p) = 0$.}
 The stalks of the examples we produced above are special types
@@ -614,7 +614,7 @@ More generally,
 \end{moral}
 The discussion above implies, for example, the following.
 \begin{proposition}
-	[Stalks Are Often Local Rings]
+	[Stalks are often local rings]
 	The stalks of each of the following types of sheaves are local rings:
 	\begin{enumerate}[(a)]
 		\ii Sheaves of continuous real/complex functions on a topological space
@@ -641,7 +641,7 @@ affine variety could be built into a locally ringed space. Hooray!
 \end{abuse}
 
 
-\section{(Optional) Defining the Morphisms}
+\section{(Optional) Defining the morphisms}
 Finally, it remains to define a morphism of locally ringed space.
 To do this we have to build up in several steps.
 
@@ -654,7 +654,7 @@ To do this we have to build up in several steps.
 	of morphisms of locally ringed spaces''.
 \end{remark}
 
-\subsection*{Morphisms of Ringed Spaces}
+\subsection*{Morphisms of ringed spaces}
 Suppose we have ringed spaces $X = (X, \OO_X)$ and $Y = (Y, \OO_Y)$,
 and we want to define a map
 \[ f : X \to Y. \]
@@ -709,7 +709,7 @@ $f^\ast_U : \OO_Y(U) \to (f_\ast \OO_X)(U) = \OO_X(f\pre(U))$
 for every $U \subseteq Y$, satisfying
 the axioms for a natural transformation.
 
-\subsection*{Morphisms of Locally Ringed Spaces}
+\subsection*{Morphisms of locally ringed spaces}
 Last step!
 Suppose now that $(X, \OO_X)$ and $(Y, \OO_Y)$ are locally ringed spaces.
 Thus we need to deal with some information about the stalks.
@@ -747,7 +747,7 @@ Isomorphisms of (locally) ringed spaces are defined in the usual way.
 	Prove that if $\SF$ is a sheaf, then $\SF \cong \SF\sh$.
 \end{problem}
 \begin{sproblem}
-	[Global Section Functor]
+	[Global section functor]
 	We consider the category $\catname{ShRing}_X$ of sheaves of rings on a space $X$.
 	The \vocab{global section functor}, denoted $\Gamma(X,-)$,
 	which sends each sheaf $\SF$ to the ring $\SF(X)$.
@@ -781,7 +781,7 @@ of the ``affine variety'' chapter.
 
 In particular, $\Spec \CC[x] / (x^2)$ will be the double we sought for so long.
 
-\section{The Set of Points}
+\section{The set of points}
 \prototype{$\Spec \CC[x_1, \dots, x_n] / I$.}
 
 First surprise, for a ring $R$:
@@ -801,7 +801,7 @@ points which are ``somewhere'' in the space, but nowhere in particular.
 \end{remark}
 
 \begin{example}
-	[Examples of Spectrums]
+	[Examples of spectrums]
 	\listhack
 	\begin{enumerate}[(a)]
 		\ii $\Spec \CC[x]$ consists of a point $(x-a)$ for every $a \in \CC$,
@@ -822,7 +822,7 @@ points which are ``somewhere'' in the space, but nowhere in particular.
 	\end{enumerate}
 \end{example}
 \begin{example}
-	[Complex Affine Varieties]
+	[Complex affine varieties]
 	Let $I \subseteq \CC[x_1, \dots, x_n]$ be an ideal.
 	Then \[ \Spec \CC[x_1, \dots, x_n] /I \] contains a
 	point for every closed irreducible subvariety of $\VV(I)$.
@@ -830,7 +830,7 @@ points which are ``somewhere'' in the space, but nowhere in particular.
 	``generic points'' along each of the varieties.
 \end{example}
 \begin{example}
-	[More Examples of Spectrums]
+	[More examples of spectrums]
 	\listhack
 	\begin{enumerate}[(a)]
 		\ii $\Spec \ZZ$ consists of a point for every prime $p$,
@@ -846,7 +846,7 @@ points which are ``somewhere'' in the space, but nowhere in particular.
 	\end{enumerate}
 \end{example}
 
-\section{The Zariski Topology of the Spectrum}
+\section{The Zariski topology of the spectrum}
 \prototype{Still $\Spec \CC[x_1, \dots, x_n] / I$.}
 
 Now, we endow a topology on $\Spec R$.
@@ -858,7 +858,7 @@ the analogy by thinking of the points $f$ as functions on $\Spec R$. That is,
 	We denote it $f(\pp)$.
 \end{definition}
 \begin{example}
-	[Vanishing Locii in $\Aff^n$]
+	[Vanishing locii in $\Aff^n$]
 	Suppose $R = \CC[x_1, \dots, x_n]$,
 	and $\pp = (x_1-a_1, x_2-a_2, \dots, x_n-a_n)$ is a maximal ideal of $R$.
 	Then for a polynomial $f \in \CC$,
@@ -895,7 +895,7 @@ Now, the following topological notion will come in handy:
 Therefore the Zariski topology lets us refer back to the old ``geometric''
 as just the closed points.
 \begin{example}
-	[Generic Points, Continued]
+	[Generic points, continued]
 	Let $R = \CC[x,y]$ and let $\pp = (y-x^2) \in \Spec \RR$;
 	this is the ``generic point'' on a parabola.
 	It is not closed, but we can compute its closure:
@@ -925,7 +925,7 @@ The previous example illustrates the following important observation:
 \end{exercise}
 
 \begin{example}
-	[The Generic Point of the $y$-Axis Isn't on the $x$-Axis]
+	[The generic point of the $y$-axis isn't on the $x$-axis]
 	Let $R = \CC[x,y]$ again.
 	Consider $\VV(y)$, which is the $x$-axis of $\Spec R$.
 	Then consider $\pp = (x)$, which is the generic point on the $y$-axis.
@@ -944,7 +944,7 @@ which form a basis of the Zariski topology.
 	These open sets form a basis for the Zariski topology on $\Spec R$.
 \end{definition}
 
-\section{The Structure Sheaf}
+\section{The structure sheaf}
 \prototype{Still $\CC[x_1, \dots, x_n] / I$.}
 
 We have now endowed $\Spec R$ with the Zariski topology,
@@ -1065,7 +1065,7 @@ by viewing the germ at each point as an element of $R_\pp$.
 	$f_\qq = \frac fg \in R_\qq$ for all $\qq \in U_\pp$.
 \end{definition}
 
-\section{Properties of Affine Schemes}
+\section{Properties of affine schemes}
 Now that we're done defining an affine scheme,
 we state some important results about them.
 
@@ -1080,14 +1080,14 @@ while $R_g$ is the localization with multiplicative set $\{1,g,g^2,\dots\}$;
 these two are quite different beasts!
 
 \begin{example}
-	[Localization at an Element]
+	[Localization at an element]
 	Let $R = \CC[x,y,z]$ and let $g = x$.
 	Then
 	\[ R_g = \left\{ \frac{P(x,y,z)}{x^n} \mid
 		P \in \CC[x,y,z], \; n \ge 0 \right\}. \]
 \end{example}
 \begin{theorem}
-	[On the Affine Structure Sheaf]
+	[On the affine structure sheaf]
 	Let $R$ be a ring and $\Spec R$ the associated affine scheme.
 	\begin{enumerate}[(a)]
 		\ii Let $\pp$ be a prime ideal.
@@ -1111,7 +1111,7 @@ This matches the results that we've seen when $\Spec R$ is an affine variety.
 \end{proof}
 
 \begin{theorem}
-	[Affine Schemes and Commutative Rings are the Same Category]
+	[Affine schemes and commutative rings are the same category]
 	Let $R$ and $S$ be rings.
 	There is a natural bijection between maps of schemes $\Spec R \to \Spec S$	
 	and ring homomorphisms $\psi : S \to R$.
@@ -1182,7 +1182,7 @@ Now we can define a general scheme:
 \end{definition}
 Hooray!
 
-\section{Projective Scheme}
+\section{Projective scheme}
 \prototype{Projective varieties, in the same way.}
 The most important class of schemes which are not affine are
 \emph{projective} schemes.
@@ -1235,7 +1235,7 @@ So, we define a slightly modified localization:
 \end{definition}
 
 \begin{theorem}
-	[On the Projective Structure Sheaf]
+	[On the projective structure sheaf]
 	Let $S$ be a graded ring and let $\Proj S$ the associated projective scheme.
 	\begin{enumerate}[(a)]
 		\ii Let $\pp \in \Proj S$.
@@ -1266,13 +1266,13 @@ For example, the ``double point'' is given by $\Proj[x_0,x_1]/(x_0^2)$.
 	one needs some additional assumptions on $S$ for this to hold.
 \end{remark}
 
-\chapter{More on Sheaves}
+\chapter{More on sheaves}
 Previously, we defined a sheaf so that we could equip
 it onto a scheme and thus produce a ringed space.
 However, we will now proceed to define some additional sheaves on a scheme $X$,
 and study the relations between them.
 
-\section{Sheaves of $\OO_X$-Modules}
+\section{Sheaves of $\OO_X$-modules}
 \prototype{Twisting Sheaves}
 Up until now we have mostly been working with sheaves of rings,
 but now we want to instead think about sheaves of modules related
@@ -1285,7 +1285,7 @@ to a scheme $X$.
 	with the restriction maps.
 \end{definition}
 \begin{example}
-	[Twisting Sheaves]
+	[Twisting sheaves]
 	Let $X = \Proj S$ be a projective scheme for a graded ring $S$
 	(e.g.\ a projective subscheme).
 	For any integer $m$ we consider a pre-sheaf
@@ -1312,7 +1312,7 @@ to a scheme $X$.
 
 Observe that the stalks of such a sheaf are abelian groups.
 
-\section{Sheaves of $\OO_X$-Modules Make an Abelian Category}
+\section{Sheaves of $\OO_X$-modules make an abelian category}
 I won't take the time to do this properly,
 since I won't really use much of it.
 See \cite{ref:vakil} for a proper exposition.
@@ -1347,7 +1347,7 @@ To see that it is abelian, we need to do the following:
 
 From this we deduce
 \begin{theorem}
-	[Sheaves Form an Abelian Category]
+	[Sheaves form an abelian category]
 	Let $(X, \OO_X)$ be a ringed space.
 	The category of sheaves of $\OO_X$-modules forms an abelian category.
 \end{theorem}
@@ -1357,7 +1357,7 @@ $\SF \to \SG \to \SH$ is exact: just use the categorical definition.
 However, if possible we want to avoid using the long-winded definition.
 So, I will just quote the relevant results:
 \begin{theorem}
-	[Exactness Can Be Checked at Stalks]
+	[Exactness can be checked at stalks]
 	A sequence of sheaves of $\OO_X$-modules
 	$\SF \to \SG \to \SH$ is exact if and only if
 	for every point $p \in X$,
@@ -1372,7 +1372,7 @@ Thus, we \emph{really} like stalks; they behave as nicely as possible.
 
 If we insist on sections, the only useful result we have is:
 \begin{theorem}
-	[Monic/Epic on Sections]
+	[Monic/epic on sections]
 	Let $\alpha : \SF \to \SG$ be a morphism of $\OO_X$-modules.
 	\begin{enumerate}[(a)]
 		\ii The map $\alpha$ is monic if and only if $\SF(U) \to \SG(U)$
@@ -1398,7 +1398,7 @@ In addition, we can do the following constructions.
 		\[ U \mapsto \Hom_{\OO_X(U) \text{ module}} (\SF(U), \OO_X(U)). \]
 	\end{enumerate}
 \end{definition}
-\begin{example}[More on Twisting Sheaves]
+\begin{example}[More on twisting sheaves]
 	Consider the twisting sheaves of $X = \CP^N$.
 	\begin{enumerate}[(a)]
 		\ii $\OO_X(n) \otimes \OO_X(m) \cong \OO_X(m+n)$.
@@ -1409,6 +1409,6 @@ In addition, we can do the following constructions.
 
 \section{Quasi-coherent sheaves}
 
-\chapter{Divisors and Line Bundles}
+\chapter{Divisors and line bundles}
 
 \end{document}

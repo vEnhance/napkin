@@ -12,7 +12,7 @@
 
 \tableofcontents
 
-\chapter{Affine Varieties}
+\chapter{Affine varieties}
 In this chapter we introduce affine varieties.
 We introduce them in the context of coordinates,
 but over the course of the other chapters
@@ -23,7 +23,7 @@ rather than embedded in coordinates.
 For simplicity, we'll do almost everything over the field of complex numbers,
 but the discussion generalizes to any algebraically closed field.
 
-\section{Affine Varieties}
+\section{Affine varieties}
 \prototype{$\VV(y-x^2)$ is a parabola.}
 %An \vocab{affine variety} is just the zero locus of a set of polynomials.
 %We think of it as living in the $n$-dimensional space $\Aff^n$.
@@ -52,7 +52,7 @@ For example, a parabola is the zero locus of the polynomial $\VV(y-x^2)$. Pictur
 	\end{asy}
 \end{center}
 
-\begin{example}[Examples of Affine Varieties]
+\begin{example}[Examples of affine varieties]
 	These examples are in two-dimensional space $\Aff^2$,
 	whose points are pairs $(x,y)$.
 	\begin{enumerate}[(a)]
@@ -67,7 +67,7 @@ For example, a parabola is the zero locus of the polynomial $\VV(y-x^2)$. Pictur
 	\end{enumerate}
 \end{example}
 
-\section{Naming Affine Varieties via Ideals}
+\section{Naming affine varieties via ideals}
 \prototype{$\VV(I)$ is a parabola, where $I=(y-x^2)$.}
 As you might have already noticed, a variety can be named by $\VV(-)$ in multiple ways.
 For example, the set of solutions to
@@ -125,11 +125,11 @@ This is where the Noetherian condition really shines:
 it guarantees that every ideal $I \subseteq \CC[x_1, \dots, x_n]$
 can be written in the form above with \emph{finitely} many polynomials,
 because it is \emph{finitely generated}.
-(The fact that $\CC[x_1, \dots, x_n]$ is Noetherian follows from the Hilbert Basis Theorem,
+(The fact that $\CC[x_1, \dots, x_n]$ is Noetherian follows from the Hilbert basis theorem,
 which is \todo{link}).
 This is a relief, because dealing with infinite sets of polynomials is not much fun.
 
-\section{Radical Ideals and Hilbert's Nullstellensatz}
+\section{Radical ideals and Hilbert's Nullstellensatz}
 \prototype{$\sqrt{(x^2)} = (x)$ in $\CC[x]$, $\sqrt{(12)} = (6)$ in $\ZZ$.}
 You might ask whether the name is unique now:
 that is, if $\VV(I) = \VV(J)$, does it follow that $I=J$?
@@ -175,7 +175,7 @@ And that's true in general.
 \end{remark}
 Sometimes useful equivalent definition
 (which is more in line with the number theory definition):
-\begin{theorem}[Radical is Intersection of Prime Ideals]
+\begin{theorem}[Radical is intersection of prime ideals]
 	For any ideal $I$, we have
 	\[ \sqrt I = \bigcap_{I \subseteq \pp \text{ prime}} \pp. \]
 \end{theorem}
@@ -202,7 +202,7 @@ it \emph{relies essentially on the fact that $\CC$ is algebraically closed}.
 For example, it is false in $\RR[x]$,
 with $(x^2+1)$ being a maximal ideal with empty vanishing set.
 
-\section{Pictures of Varieties in $\Aff^1$}
+\section{Pictures of varieties in $\Aff^1$}
 \prototype{Finite sets of points (in fact these are the only nontrivial examples).}
 Let's first draw some pictures.
 In what follows I'll draw $\CC$ as a straight line\dots sorry.
@@ -254,7 +254,7 @@ In fact, you can convince yourself that these are the only affine varieties, wit
 \end{ques}
 
 As you might correctly guess, we have the following result.
-\begin{theorem}[Intersections and Unions of Varieties]
+\begin{theorem}[Intersections and unions of varieties]
 	\listhack
 	\begin{enumerate}[(a)]
 		\ii The intersection of several affine varieties (even infinitely many) is an affine variety.
@@ -285,7 +285,7 @@ Hence, the irreducible varieties of $\Aff^1$ are
 In a moment, we'll draw pictures in $\Aff^2$,
 but first let me point out something about irreducible affine varieties.
 
-\section{Prime Ideals Correspond To Irreducible Affine Varieties}
+\section{Prime ideals correspond to irreducible affine varieties}
 \prototype{$(xy)$ corresponds to the union of two lines in $\Aff^2$.}
 We have seen that the semiprime ideals are in one-to-one correspondence with affine varieties.
 In the next sections we answer the two questions:
@@ -299,7 +299,7 @@ Its vanishing set $\VV(I)$ is the union of two lines $x=0$ and $y=0$.
 So $\VV(I)$ is reducible.
 
 Let's make this work in general.
-\begin{theorem}[Prime $\iff$ Irreducible]
+\begin{theorem}[Prime $\iff$ irreducible]
 	Let $I$ be a semiprime ideal, and $V = \VV(I)$ a nonempty variety.
 	Then $I$ is prime if and only if $V$ is irreducible.
 \end{theorem}
@@ -380,7 +380,7 @@ Thus, as Ravi Vakil \cite{ref:vakil} says,
 	has a fundamentally geometric answer.
 \end{moral}
 
-\section{Maximal Ideals}
+\section{Maximal ideals}
 \prototype{All maximal ideals are $(x-a_1, \dots, x-a_n)$.}
 \begin{ques}
 	Show that if $I \subseteq J$ then $\VV(I) \supseteq \VV(J)$.
@@ -407,7 +407,7 @@ we won't include it here \todo{but link it somewhere}.
 
 From this we can deduce that all maximal ideals are of the above form.
 \begin{theorem}
-	[Maximal Ideals]
+	[Maximal ideals]
 	Every maximal ideal of $\CC[x_1, \dots, x_n]$
 	is of the form $\VV(x_1-a_1, \dots, x_n-a_n)$.
 \end{theorem}
@@ -440,7 +440,7 @@ of affine varieties according to the following table:
 
 There's one thing I haven't talked about: what's the last entry?
 
-\section{Why Schemes?}
+\section{Why schemes?}
 One of the most elementary motivations for the scheme
 is that we would like to use them to count multiplicity.
 That is, consider the intersection
@@ -498,7 +498,7 @@ This refined object is the \emph{scheme}.
 	follows from the Weak Nullstellensatz.
 	(This solution is called the \vocab{Rabinowitsch Trick}.)
 	\begin{hint}
-		Use the weak nullstellensatz on $n+1$ dimensions.
+		Use the weak Nullstellensatz on $n+1$ dimensions.
 		Given $f$ vanishing on everything,
 		consider $x_{n+1}f-1$. 
 	\end{hint}
@@ -508,7 +508,7 @@ This refined object is the \emph{scheme}.
 
 		Take a set of generators $f_1, \dots, f_m$,
 		in the original ring $\CC[x_1, \dots, x_n]$;
-		we may assume it's finite by the Hilbert Basis Theorem.
+		we may assume it's finite by the Hilbert basis theorem.
 
 		We're going to do a trick now:
 		consider $S = \CC[x_1, \dots, x_n, x_{n+1}]$ instead.
@@ -519,7 +519,7 @@ This refined object is the \emph{scheme}.
 		nor any point in the ``projection'' of $f$ through $\Aff^{n+1}$
 		(one can think of this as $\VV(I)$ in the smaller ring
 		direct multiplied with $\CC$).
-		Thus $\VV(I') = \varnothing$, and by the weak nullstellensatz
+		Thus $\VV(I') = \varnothing$, and by the weak Nullstellensatz
 		we in fact have $I' = \CC[x_1, \dots, x_{n+1}]$.
 		So
 		\[ 1 = g_1f_1 + \dots + g_mf_m + g_{m+1} \left( x_{n+1}f-1 \right). \]
@@ -533,7 +533,7 @@ This refined object is the \emph{scheme}.
 \end{problem}
 
 
-\chapter{Affine Varieties as Ringed Spaces}
+\chapter{Affine varieties as ringed spaces}
 As in the previous chapter, we are working only over affine varieties in $\CC$ for simplicity.
 
 \section{Synopsis}
@@ -584,7 +584,7 @@ until we have all the data of a ringed space.
 In later chapters, these ideas will grow up to
 become the core of modern algebraic geometry: the \emph{scheme}.
 
-\section{The Zariski Topology on $\Aff^n$}
+\section{The Zariski topology on $\Aff^n$}
 \prototype{In $\Aff^1$, closed sets are finite collections of points.
 In $\Aff^2$, a nonempty open set is the whole space minus some finite collection of curves/points.}
 
@@ -602,7 +602,7 @@ we put a much more bizarre topology.
 \end{definition}
 
 \begin{example}
-	[Zariski Topology on $\Aff^1$]
+	[Zariski topology on $\Aff^1$]
 	Let us determine the open sets of $\Aff^1$,
 	which as usual we picture as a straight line
 	(ignoring the fact that $\CC$ is two-dimensional).
@@ -644,7 +644,7 @@ Thus, the picture of a ``typical'' open set $\Aff^1$ might be
 \end{center}
 It's everything except a few marked points!
 
-\begin{example}[Zariski Topology on $\Aff^2$]
+\begin{example}[Zariski topology on $\Aff^2$]
 	Similarly, in $\Aff^2$, the interesting closed sets are going to consist of finite unions
 	(possibly empty) of the following:
 	\begin{itemize}
@@ -685,7 +685,7 @@ That is, I need to verify briefly that
 \end{itemize}
 Well, closed sets are the same as varieties, so we already know this!
 
-\section{The Zariski Topology on Affine Varieties}
+\section{The Zariski topology on affine varieties}
 \prototype{If $V = \VV(y-x^2)$ is a parabola, then $V$ minus $(1,1)$ is open in $V$.
 Also, the plane minus the origin is $D(x) \cup D(y)$.}
 
@@ -693,7 +693,7 @@ As we said before, by considering a variety $V$ as a subspace of $\Aff^n$
 it inherits the Zariski topology.
 One should think of an open subset of $V$ as ``$V$ minus a few Zariski-closed sets''.
 For example:
-\begin{example}[Open Set of a Variety]
+\begin{example}[Open set of a variety]
 	Let $V = \VV(y-x^2) \subseteq \Aff^2$ be a parabola,
 	and let $U = V \setminus \{(1,1)\}$. We claim $U$ is open in $V$.
 	\begin{center}
@@ -725,7 +725,7 @@ We'll finish by giving a nice basis of the Zariski topology.
 \end{definition}
 \cite{ref:vakil} suggests remembering the notation $D(f)$ as ``doesn't-vanish set''.
 \begin{example}
-	[Examples of (Unions of) Distinguished Open Sets]
+	[Examples of (unions of) distinguished open sets]
 	\listhack
 	\begin{enumerate}[(a)]
 		\ii If $V = \Aff^1$ then $D(x)$ corresponds to a line minus a point.
@@ -742,7 +742,7 @@ We'll finish by giving a nice basis of the Zariski topology.
 	Give an example of an open set of $\Aff^2$ which is not a distinguished open set.
 \end{exercise}
 
-\section{Coordinate Rings}
+\section{Coordinate rings}
 \prototype{If $V = \VV(y-x^2)$ then $\CC[V] = \CC[x,y]/(y-x^2)$.}
 
 The next thing we do is consider the functions from $V$ to the base field $\CC$.
@@ -773,7 +773,7 @@ Then the two functions
 are actually the same function!
 We have to ``mod out'' by the ideal $I$ which generates $V$.
 This leads us naturally to the following:
-\begin{theorem}[Coordinate Rings Correspond to Ideal]
+\begin{theorem}[Coordinate rings correspond to ideal]
 	Let $I$ be a semiprime ideal, and $V = \VV(I) \subseteq \Aff^n$.
 	Then \[ \CC[V] \cong \CC[x_1, \dots, x_n] / I.  \]
 \end{theorem}
@@ -784,7 +784,7 @@ This leads us naturally to the following:
 \end{proof}
 Thus properties of a variety $V$ correspond to properties of the ring $\CC[V]$.
 
-\section{The Sheaf of Regular Functions}
+\section{The sheaf of regular functions}
 \prototype{Let $V = \Aff^1$, $U = V \setminus \{0\}$. Then $1/x \in \OO_V(U)$ is regular on $U$.}
 
 Let $V$ be an affine variety and let $\CC[V]$ be its coordinate ring.
@@ -828,7 +828,7 @@ a ``global'' representation of a regular function as a quotient,
 and we will not need to fuss with the $p$'s.
 For example:
 \begin{example}
-	[Regular Functions]
+	[Regular functions]
 	\listhack
 	\begin{enumerate}[(a)]
 		\ii Any function in $f \in \CC[V]$ is clearly regular,
@@ -843,7 +843,7 @@ For example:
 \end{example}
 The ``local'' clause with $p$'s is still necessary, though.
 \begin{example}
-	[Requiring Local Representations]
+	[Requiring local representations]
 	\label{ex:local_rep}
 	Consider the variety
 	\[ V = \VV(ab-cd) \subseteq \Aff^4 \]
@@ -870,7 +870,7 @@ general construction called \emph{sheafification},
 in which ``sheaves of functions which are $P$'' are transformed
 into ``sheaves of functions which are \emph{locally} $P$''.
 
-\section{Regular Functions on Distinguished Open Sets}
+\section{Regular functions on distinguished open sets}
 \prototype{Regular functions on $\Aff^1 \setminus \{0\}$ are $P(x) / x^n$.}
 The division-by-zero, as one would expect,
 essentially prohibits regular functions on the entire space $V$;
@@ -880,7 +880,7 @@ Actually, we have the following more general result which computes the
 regular functions on distinguished open sets.
 
 \begin{theorem}
-	[Regular Functions on Distinguished Open Sets]
+	[Regular functions on distinguished open sets]
 	\label{thm:reg_func_distinguish_open}
 	Let $V \subset \Aff^n$ be an affine variety
 	and $D(g)$ a distinguished open subset of it.
@@ -943,7 +943,7 @@ are just the same as those in the coordinate ring:
 you don't gain anything new by allowing it to be locally a quotient.
 (The same goes for distinguished open sets.)
 
-\begin{example}[Regular Functions on Distinguished Open Sets]
+\begin{example}[Regular functions on distinguished open sets]
 	\listhack
 	\begin{enumerate}[(a)]
 		\ii Taking $g=1$ we recover $\OO_V(V) \cong \CC[V]$ for any affine variety $V$.
@@ -961,7 +961,7 @@ you don't gain anything new by allowing it to be locally a quotient.
 The regular functions will become of crucial importance
 once we define a scheme in the next chapter.
 
-\section{Baby Ringed Spaces}
+\section{Baby ringed spaces}
 In summary, given an affine variety $V$ we have
 added the following structure to it:
 \begin{itemize}
@@ -1019,12 +1019,12 @@ and use this to define a scheme.
 	Let $V = \Aff^2$ and let $U = \Aff^2 \setminus \{(0,0)\}$ be the punctured plane.
 	Compute $\OO_V(U)$.
 \end{sproblem}
-\chapter{Projective Varieties}
+\chapter{Projective varieties}
 Having studied affine varieties in $\Aff^n$, we now consider $\CP^n$.
 We will also make it into a baby ringed space
 in the same way as with $\Aff^n$.
 
-\section{Graded Rings}
+\section{Graded rings}
 \prototype{$\CC[x_0, \dots, x_n]$ is a graded ring.}
 We first take the time to state what a graded ring is,
 just so that we have this language to use (now and later).
@@ -1048,7 +1048,7 @@ just so that we have this language to use (now and later).
 	our graded rings will always have unit and be commutative.
 \end{remark}
 \begin{example}
-	[Examples of Graded Rings]
+	[Examples of graded rings]
 	\listhack
 	\begin{enumerate}[(a)]
 		\ii The ring $\CC[x]$ is graded by degree.
@@ -1076,7 +1076,7 @@ We will frequently refer to homogeneous ideals:
 Since these assertions are just algebra,
 we omit their proofs here.
 \begin{example}
-	[Example of a Graded Quotient Ring]
+	[Example of a graded quotient ring]
 	Let $R = \CC[x,y]$ and set $I = (x^3, y^2)$. Then
 	\begin{align*}
 		R^0 &= \CC \\
@@ -1089,7 +1089,7 @@ we omit their proofs here.
 \end{example}
 
 
-\section{The Ambient Space}
+\section{The ambient space}
 \prototype{Perhaps $\VV(x^2+y^2-z^2)$ work.}
 The set of points we choose to work with is $\CP^n$ this time,
 which for us can be thought of as the set of $n$-tuples
@@ -1155,7 +1155,7 @@ hence we can do the following.
 	collection of homogeneous polynomials in $n+1$ variables.
 \end{definition}
 
-\begin{example}[A Conic in $\CP^2$, or a Cone in $\CC^3$]
+\begin{example}[A conic in $\CP^2$, or a cone in $\CC^3$]
 	Let's try to picture the variety
 	\[ \VV(x^2+y^2-z^2) \subseteq \CP^2 \]
 	which consists of the points $[x:y:z]$ such that $x^2+y^2=z^2$.
@@ -1182,7 +1182,7 @@ hence we can do the following.
 	(This geometric picture will be crucial later.)
 \end{ques}
 
-\section{Homogeneous Ideals}
+\section{Homogeneous ideals}
 Now, the next thing we want to do is define $\VV(I)$ for an ideal $I$.
 Of course, we again run into an issue with things like $x_0-1$ not
 making sense. 
@@ -1196,11 +1196,11 @@ The way out of this is to use only \emph{homogeneous} ideals.
 	Show that the notion ``$f(x) = 0 \; \forall f \in I$''
 	is well-defined for a homogeneous ideal $I$.
 \end{exercise}
-So, we would hope for a nullstellensatz-like theorem
+So, we would hope for a Nullstellensatz-like theorem
 which bijects the homogeneous semiprime ideals to the ideals.
 Unfortunately:
 \begin{example}
-	[Irrelevant Ideal]
+	[Irrelevant ideal]
 	To crush some dreams and hopes, consider the ideal
 	\[ I = (x_0, x_1, \dots, x_n). \]
 	This is called the \vocab{irrelevant ideal};
@@ -1208,7 +1208,7 @@ Unfortunately:
 	and has the property that $\VV(I) = \varnothing$.
 \end{example}
 
-However, other than the irrelavant ideal.
+However, other than the irrelevant ideal.
 \begin{theorem}
 	[Homogeneous Nullstellensatz]
 	Let $I$ and $J$ be homogeneous ideals. 
@@ -1248,7 +1248,7 @@ However, other than the irrelavant ideal.
 \end{proof}
 
 
-\section{As Ringed Spaces}
+\section{As ringed spaces}
 \prototype{The regular functions on $\CP^1$ minus a point
 are exactly those of the form $P(s/t)$.}
 Now, let us make every projective variety $V$ into a baby ringed space.
@@ -1289,7 +1289,7 @@ a new requirement that the numerator and denominator are the same degree.
 	In this way we obtain a function $\phi : U \to \CC$.
 \end{definition}
 \begin{example}
-	[Examples of Rational Functions]
+	[Examples of rational functions]
 	Let $V = \CP^1$ have coordinates $(s:t)$.
 	\begin{enumerate}[(a)]
 		\ii If $U = V$, then constant functions $c/1$
@@ -1317,12 +1317,12 @@ are examples of regular functions as well.
 This completes the definition of a projective variety $V$
 as a baby ringed space.
 
-\section{Examples of Regular Functions}
+\section{Examples of regular functions}
 Naturally, I ought to tell you what the regular functions
 on distinguished open sets are; this is an analog to
 \Cref{thm:reg_func_distinguish_open} from last time.
 \begin{theorem}
-	[Regular Functions on Distinguished Open Sets for Projective Varieties]
+	[Regular functions on distinguished open sets for projective varieties]
 	Let $V$ be a variety, and let $g \in \CC[V]$ be homogeneous
 	of positive degree.
 	Then
@@ -1338,14 +1338,14 @@ A similar result holds, but we need the assumption that $V$ is irreducible.
 (This has the same definition as the affine case,
 since ``irreducible'' is an adjective of topological spaces.)
 \begin{theorem}
-	[Only Constant Regular Functions on Projective Space]
+	[Only constant regular functions on projective space]
 	Let $V$ be an \emph{irreducible} projective variety.
 	Then the only regular functions on $V$ are constant,
 	thus we have \[ \OO_V(V) \cong \CC. \]
 	This relies on the fact that $\CC$ is algebraically closed.
 \end{theorem}
 Proofs of these are omitted for now.
-\begin{example}[Regular Functions on $\CP^1$]
+\begin{example}[Regular functions on $\CP^1$]
 	Let $V = \CP^1$, with coordinates $(s:t)$.
 	\begin{enumerate}[(a)]
 		\ii By theorem, if $U_1$ is the standard affine chart
@@ -1362,7 +1362,7 @@ Proofs of these are omitted for now.
 \end{example}
 
 \begin{example}
-	[Regular Functions on $\CP^2$]
+	[Regular functions on $\CP^2$]
 	Let $\CP^2$ have coordinates $(x:y:z)$ and 
 	let $U_0 = \left\{ (x:y:1) \in \CP^2 \right\}$
 	be the distinguished open set $D(z)$.
@@ -1378,8 +1378,8 @@ Proofs of these are omitted for now.
 affine and irreducible projective variety not isomorphic unless point
 
 
-\chapter{Bonus: B\'ezout's Theorem}
-In this chapter we discuss B\'ezout's Theorem.
+\chapter{Bonus: B\'ezout's theorem}
+In this chapter we discuss B\'ezout's theorem.
 It makes precise the idea that two degree $d$ and $e$
 curves in $\CP^2$ should intersect at ``exactly'' $de$ points
 In order to make this vision come true:
@@ -1391,12 +1391,12 @@ In order to make this vision come true:
 	because we want to allow the possibility that $I$ is not semiprime.
 \end{itemize}
 
-\section{The Hilbert Function}
+\section{The Hilbert function}
 Let $I \subseteq \CC[x_0, \dots, x_n]$ be homogeneous.
 
 
-\chapter{Quasi-Projective Varieties and Regular Maps}
-\section{Quasi-Projective Varieties}
+\chapter{Quasi-projective varieties and regular maps}
+\section{Quasi-projective varieties}
 Here is yet another type of baby ringed space,
 which will turn out to generalize both affine and projective varieties.
 \begin{definition}
@@ -1412,7 +1412,7 @@ as a quasi-projective variety by noticing that
 \[ V \subseteq \Aff^n \to U_0 \subset \CP^n \]
 where $U_0$ is the standard affine chart, isomorphic to $\Aff^n$.
 
-\section{Maps of Baby Ringed Spaces}
+\section{Maps of baby ringed spaces}
 In order to make this precise I have to define
 what the arrow $\Aff^n \to U_0$ means,
 because they are different types of objects;
@@ -1444,7 +1444,7 @@ But all three are baby ringed spaces, now they can
 talk to each other, and even be isomorphic.
 In particular, let's now finally prove:
 \begin{proposition}
-	[Projective Space is Locally Affine]
+	[Projective space is locally affine]
 	The standard affine chart $U_0$ of $\CP^n$
 	is isomorphic to $\Aff^n$.
 \end{proposition}
@@ -1488,7 +1488,7 @@ Call a ring \vocab{reduced} if it has no nonzero nilpotent elements.
 
 Thus, the third requirement is that a coordinate ring must be reduced.
 Conveniently, it turns out that these three conditions are sufficient!
-\begin{theorem}[Coordinate Rings are Finitely Generated Reduced $\CC$-Algebras]
+\begin{theorem}[Coordinate rings are finitely generated reduced $\CC$-algebras]
 	Every finitely generated reduced $\CC$-algebra is the coordinate
 	ring of some complex affine variety.
 \end{theorem}
