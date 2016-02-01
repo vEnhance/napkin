@@ -1096,7 +1096,7 @@ we omit their proofs here.
 
 
 \section{The ambient space}
-\prototype{Perhaps $\VV(x^2+y^2-z^2)$ work.}
+\prototype{Perhaps $\VV(x^2+y^2-z^2)$.}
 The set of points we choose to work with is $\CP^n$ this time,
 which for us can be thought of as the set of $n$-tuples
 \[ \left( x_0 : x_1 : \dots : x_n \right) \]
@@ -1389,13 +1389,111 @@ It makes precise the idea that two degree $d$ and $e$
 curves in $\CP^2$ should intersect at ``exactly'' $de$ points.
 (We work in projective space so e.g.\ any two lines intersect.)
 
+\section{Non-radical ideals}
+\prototype{Tangent to the parabola.}
 We need to account for multiplicities.
 So we will whenever possible work with homogeneous ideals $I$,
+rather than varieties $V$,
 because we want to allow the possibility that $I$ is not radical.
+Let's see how we might do so.
+
+For a first example, suppose we intersect $y=x^2$ with the line $y=1$;
+or more accurately, in projective coordinates of $\CP^2$,
+the parabola $zy=x^2$ and $y=z$.
+The intersection of the ideals is 
+\[ (zy-x^2, y-z) = (x^2-z^2, y-z) \subseteq \CC[x,y,z]. \]
+So this corresponds to having two points;
+this gives two intersection points: $(1:1:1)$ and $(-1:1:1)$.
+Here is a picture of the two varieties in the affine $z=1$ chart:
+\begin{center}
+	\begin{asy}
+		import graph;
+		size(5cm);
+
+		real f(real x) { return x*x-1; }
+		graph.xaxis("$\mathcal V(y-z)$", red);
+		draw(graph(f,-2,2,operator ..), blue, Arrows);
+		label("$\mathcal V(zy-x^2)$", (1.4, f(1.4)), dir(45), blue);
+		label("$\mathbb{CP}^2$", (2,3), dir(45));
+		dotfactor *= 1.5;
+		dot(dir(0), heavygreen);
+		dot(dir(180), heavygreen);
+	\end{asy}
+\end{center}
+That's fine, but now suppose we intersect $zy=x^2$ with the line $x=0$ instead.
+Then we instead get a ``double point'':
+\begin{center}
+	\begin{asy}
+		import graph;
+		size(5cm);
+
+		real f(real x) { return x*x; }
+		graph.xaxis("$\mathcal V(y)$", red);
+		draw(graph(f,-2,2,operator ..), blue, Arrows);
+		label("$\mathcal V(zy-x^2)$", (1.4, f(1.4)), dir(45), blue);
+		label("$\mathbb{CP}^2$", (2,3), dir(45));
+		dotfactor *= 1.5;
+		dot(origin, heavygreen);
+	\end{asy}
+\end{center}
+The corresponding ideal is this time
+\[ (zy-x^2, y) = (x^2,y) \subseteq \CC[x,y,z]. \]
+This ideal is \emph{not} radical,
+and when we take $\sqrt{(x^2,y)} = (x,y)$ we get the ideal
+which corresponds to a single projective point $(0:0:1)$ of $\CP^2$.
+This is why we work with ideals rather than varieties:
+we need to tell the difference between $(x^2,y)$ and $(x,y)$.
 
 \section{The Hilbert function}
-Let $I \subseteq \CC[x_0, \dots, x_n]$ be homogeneous.
+\begin{definition}
+	Let $I \subseteq \CC[x_0, \dots, x_n]$ be homogeneous.
+	We define the \vocab{Hilbert function} of $I$,
+	denoted $h_I : \ZZ_{\ge 0} \to \ZZ_{\ge 0}$ by
+	\[ h_I(d) = \dim_{\CC} \left( \CC[x_0, \dots, x_n]/I \right)^d \]
+	i.e.\ $h_I(d)$ is the dimension of the $d$th graded part of
+	$\CC[x_0, \dots, x_n] / I$.
 
+	If $V$ is a projective variety, we set $h_V = h_I$,
+	where $I$ is radical ideal satisfying $V = \VV(I)$.
+	(If $V = \varnothing$, we choose $I = (1)$.)
+\end{definition}
+\begin{example}[Examples of Hilbert functions in zero dimensions]
+	For concreteness, let us use $\CP^2$.
+	\begin{enumerate}[(a)]
+		\ii If $V$ is the single point $(0:0:1)$,
+		with corresponding ideal $I = (x,y)$,
+		then 
+		\[ \CC[x,y,z] / (x,y) \cong \CC[z]
+		\cong \CC \oplus z\CC \oplus z^2\CC \oplus z^3\CC \dots \]
+		which has dimension $1$ in all degrees.
+		Consequently, we have 
+		\[ h_I(d) = 1 \text{ for every $d$}. \]
+		\ii Now suppose we use the ``double point'' ideal $I = (x^2,y)$.
+		This time, we have
+		\begin{align*}
+			\CC[x,y,z] / (x^2,y)
+			&\cong \CC[z] \oplus x\CC[z] \\
+			&\cong \CC \oplus (x\CC \oplus z\CC) \oplus (xz\CC \oplus z^2\CC)
+			\oplus (xz^2\CC \oplus z^3\CC) \oplus\dots.
+		\end{align*}
+		From this we deduce that
+		\[
+			h_I(d) =
+			\begin{cases}
+				2 & d = 1, 2, 3, \dots \\
+				1 & d = 0.
+			\end{cases}
+		\]
+		\ii Let's now take the variety $V = \{(1:1:1), (-1:1:1)\}$ from before,
+		which has ideal $I = (x^2-z^2, y-z)$.
+		\begin{align*}
+			\CC[x,y,z] / (x^2-z^2,y-z)
+			&\cong \CC[x,z] / (x^2-z^2) \\
+			&\cong \CC[z] \oplus x\CC[z].
+		\end{align*}
+		So this example has the same Hilbert function as the previous one.
+	\end{enumerate}
+\end{example}
 
 \chapter{Quasi-projective varieties and regular maps}
 \section{Quasi-projective varieties}
