@@ -1,0 +1,14 @@
+unitcircle 0.2 lightcyan / blue
+A = dir 110
+B = dir 210
+C = dir 40
+D = dir 270
+E = dir 130
+F = dir -30
+
+P .= extension A B D E R170
+X .= extension B C E F R-90
+Q .= extension C D F A R10
+
+A--B--C--D--E--F--cycle
+P--Q red dashed

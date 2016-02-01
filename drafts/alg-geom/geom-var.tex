@@ -172,8 +172,9 @@ And that's true in general.
 \begin{ques}
 	Prime ideals are radical.
 \end{ques}
-Sometimes useful equivalent definition
-(which is more in line with the number theory definition):
+Useful equivalent definition
+(which is more in line with the number theory definition),
+which we quote without proof:
 \begin{theorem}[Radical is intersection of prime ideals]
 	For any ideal $I$, we have
 	\[ \sqrt I = \bigcap_{I \subseteq \pp \text{ prime}} \pp. \]
@@ -254,15 +255,29 @@ In fact, you can convince yourself that these are the only affine varieties, wit
 
 As you might correctly guess, we have the following result.
 \begin{theorem}[Intersections and unions of varieties]
+	\label{thm:many_aff_variety}
 	\listhack
 	\begin{enumerate}[(a)]
-		\ii The intersection of several affine varieties (even infinitely many) is an affine variety.
-		\ii The union of two affine varieties (and by induction finitely many) is an affine variety.
+		\ii The intersection of affine varieties
+		(even infinitely many) is an affine variety.
+		\ii The union of finitely many affine varieties
+		is an affine variety.
 	\end{enumerate}
+	In fact we have
+	\[ \bigcap_\alpha \VV(I_\alpha)
+		= \VV\left( \sum_\alpha I_\alpha \right)
+		\qquad\text{and}\qquad
+		\bigcup_{k=1}^n \VV(I_k)
+		= \VV\left( \bigcap_{k=1}^n I_k \right). \]
 \end{theorem}
-\begin{exercise}
-	Prove this yourself.
-\end{exercise}
+You are welcome to prove this easy result yourself.
+\begin{remark}
+	Part (a) is a little misleading in that the sum $I+J$ need not be radical:
+	take for example $I = (y-x^2)$ and $J = (y)$ in $\CC[x,y]$,
+	where $x \in \sqrt{I+J}$ and $x \notin I+J$.
+	But in part (b) for radical ideals $I$ and $J$,
+	the intersection $I \cap J$ is radical.
+\end{remark}
 
 Now note that most of the affine varieties of $\Aff^1$, like $\{4,9\}$,
 are just unions of the simplest ``one-point'' ideals.
@@ -493,7 +508,7 @@ This refined object is the \emph{scheme}.
 \end{problem}
 
 \begin{problem}
-	\kurumi
+	\yod
 	Show that Hilbert's Nullstellensatz in $n$ dimensions
 	follows from the Weak Nullstellensatz.
 	(This solution is called the \vocab{Rabinowitsch Trick}.)
@@ -1096,7 +1111,7 @@ we omit their proofs here.
 
 
 \section{The ambient space}
-\prototype{Perhaps $\VV(x^2+y^2-z^2)$.}
+\prototype{Perhaps $\Vp(x^2+y^2-z^2)$.}
 The set of points we choose to work with is $\CP^n$ this time,
 which for us can be thought of as the set of $n$-tuples
 \[ \left( x_0 : x_1 : \dots : x_n \right) \]
@@ -1144,7 +1159,7 @@ well-defined if $F$ is homogeneous. Thus, we can say:
 \begin{definition}
 	If $f$ is homogeneous, we can then define its \vocab{vanishing locus} as
 	\[
-		\VV(f)
+		\Vp(f)
 		= \left\{ (x_0 : \dots : x_n) \mid f(x_0, \dots, x_n) = 0 \right\}.
 	\]
 \end{definition}
@@ -1163,7 +1178,7 @@ hence we can do the following.
 
 \begin{example}[A conic in $\CP^2$, or a cone in $\CC^3$]
 	Let's try to picture the variety
-	\[ \VV(x^2+y^2-z^2) \subseteq \CP^2 \]
+	\[ \Vp(x^2+y^2-z^2) \subseteq \CP^2 \]
 	which consists of the points $[x:y:z]$ such that $x^2+y^2=z^2$.
 	If we view this as subspace of $\CC^3$
 	(i.e.\ by thinking of $\CP^2$ as the set of lines through the origin),
@@ -1174,9 +1189,9 @@ hence we can do the following.
 
 	If we take the standard affine charts now, we obtain the following:
 	\begin{itemize}
-		\ii At $x=1$, we get a hyperbola $\VV(1+y^2-z^2)$.
-		\ii At $y=1$, we get a hyperbola $\VV(1+x^2-z^2)$.
-		\ii At $z=1$, we get a circle $\VV(x^2+y^2-1)$.
+		\ii At $x=1$, we get a hyperbola $\Vp(1+y^2-z^2)$.
+		\ii At $y=1$, we get a hyperbola $\Vp(1+x^2-z^2)$.
+		\ii At $z=1$, we get a circle $\Vp(x^2+y^2-1)$.
 	\end{itemize}
 	That said, over $\CC$ a hyperbola and circle
 	are the same thing; I'm cheating a little by drawing $\CC$
@@ -1189,14 +1204,14 @@ hence we can do the following.
 \end{ques}
 
 \section{Homogeneous ideals}
-Now, the next thing we want to do is define $\VV(I)$ for an ideal $I$.
+Now, the next thing we want to do is define $\Vp(I)$ for an ideal $I$.
 Of course, we again run into an issue with things like $x_0-1$ not
 making sense. 
 
 The way out of this is to use only \emph{homogeneous} ideals.
 \begin{definition}
 	If $I$ is a homogeneous ideal, we define
-	\[ \VV(I) = \{ x \mid f(x) = 0 \; \forall f \in I\}. \]
+	\[ \Vp(I) = \{ x \mid f(x) = 0 \; \forall f \in I\}. \]
 \end{definition}
 \begin{exercise}
 	Show that the notion ``$f(x) = 0 \; \forall f \in I$''
@@ -1210,7 +1225,7 @@ Unfortunately:
 	To crush some dreams and hopes, consider the ideal
 	\[ I = (x_0, x_1, \dots, x_n). \]
 	This is called the \vocab{irrelevant ideal};
-	it is homogeneous radical and satisfies $\VV(I) = \varnothing$.
+	it is homogeneous radical yet $\Vp(I) = \varnothing$.
 \end{example}
 
 However, other than the irrelevant ideal.
@@ -1218,8 +1233,8 @@ However, other than the irrelevant ideal.
 	[Homogeneous Nullstellensatz]
 	Let $I$ and $J$ be homogeneous ideals. 
 	\begin{enumerate}[(a)]
-		\ii If $\VV(I) = \VV(J) \neq \varnothing$ then $\sqrt I = \sqrt J$.
-		\ii If $\VV(I) = \varnothing$, then either $I = (1)$
+		\ii If $\Vp(I) = \Vp(J) \neq \varnothing$ then $\sqrt I = \sqrt J$.
+		\ii If $\Vp(I) = \varnothing$, then either $I = (1)$
 		or $\sqrt I = (x_0, x_1, \dots, x_n)$.
 	\end{enumerate}
 	Thus there is a natural bijection between:
@@ -1230,7 +1245,7 @@ However, other than the irrelevant ideal.
 	\end{itemize}
 \end{theorem}
 \begin{proof}
-	For the first part, let $V = \VV(I)$ and $W = \VV(J)$
+	For the first part, let $V = \Vp(I)$ and $W = \Vp(J)$
 	be projective varieties in $\CP^n$.
 	We can consider them as \emph{affine varieties} in $\Aff^{n+1}$
 	by using the interpretation of $\CP^n$
@@ -1251,6 +1266,9 @@ However, other than the irrelevant ideal.
 	so the Nullstellensatz implies either $I = (1)$
 	or $\sqrt I = (x_0, \dots, x_n)$ as desired.
 \end{proof}
+Projective analogues of \Cref{thm:many_aff_variety}
+(on intersections and unions of varieties) hold verbatim
+for projective varieties as well.
 
 
 \section{As ringed spaces}
@@ -1262,12 +1280,12 @@ We already have the set of points, a subset of $\CP^n$.
 The topology is defined as follows.
 \begin{definition}
 	We endow $\CP^n$ with the \vocab{Zariski topology}
-	by declaring the sets of the form $\VV(I)$,
+	by declaring the sets of the form $\Vp(I)$,
 	where $I$ is a homogeneous ideal, to be the closed sets.
 	
 	Every projective variety $V$ then inherits the Zariski
 	topology from its parent $\CP^n$.
-	The \vocab{distinguished open sets} $D(f)$ are $V \setminus \VV(f)$.
+	The \vocab{distinguished open sets} $D(f)$ are $V \setminus \Vp(f)$.
 \end{definition}
 
 Thus every projective variety $V$ is now a topological space.
@@ -1279,7 +1297,7 @@ that we could use to provide the numerator and denominators.
 So, it seems natural to then define the following:
 \begin{definition}
 	The \vocab{homogeneous coordinate ring} of a projective variety
-	$V = \VV(I) \subseteq \CP^n$, where $I$ is homogeneous radical,
+	$V = \Vp(I) \subseteq \CP^n$, where $I$ is homogeneous radical,
 	is defined as the ring
 	\[ \CC[V] = \CC[x_0, \dots, x_n] / I. \]
 \end{definition}
@@ -1290,7 +1308,7 @@ a new requirement that the numerator and denominator are the same degree.
 	A \vocab{rational function} $\phi$ on a projective variety $V$
 	is a quotient $f/g$, where $f,g \in \CC[V]$,
 	and $f$ and $g$ are homogeneous of the same degree,
-	and $\VV(g) \cap U = \varnothing$.
+	and $\Vp(g) \cap U = \varnothing$.
 	In this way we obtain a function $\phi : U \to \CC$.
 \end{definition}
 \begin{example}
@@ -1314,7 +1332,7 @@ Then we can repeat the same definition as before:
 	for every point $p$, we can find an open set $U_p$ containing $p$
 	and a rational function $f_p/g_p$ on $U_p$ such that
 	\[ \phi(x) = \frac{f_p(x)}{g_p(x)} \qquad \forall x \in U_p. \]
-	In particular, we require $U_p \cap \VV(g_p) = \varnothing$.
+	In particular, we require $U_p \cap \Vp(g_p) = \varnothing$.
 	We denote the set of all regular functions on $U$ by $\OO_V(U)$.
 \end{definition}
 Of course, the rational functions from the previous example
@@ -1408,12 +1426,11 @@ Here is a picture of the two varieties in the affine $z=1$ chart:
 \begin{center}
 	\begin{asy}
 		import graph;
-		size(5cm);
-
+		size(4cm);
 		real f(real x) { return x*x-1; }
 		graph.xaxis("$\mathcal V(y-z)$", red);
 		draw(graph(f,-2,2,operator ..), blue, Arrows);
-		label("$\mathcal V(zy-x^2)$", (1.4, f(1.4)), dir(45), blue);
+		label("$\mathcal V(zy-x^2)$", (1.4, f(1.4)), dir(15), blue);
 		label("$\mathbb{CP}^2$", (2,3), dir(45));
 		dotfactor *= 1.5;
 		dot(dir(0), heavygreen);
@@ -1425,12 +1442,11 @@ Then we instead get a ``double point'':
 \begin{center}
 	\begin{asy}
 		import graph;
-		size(5cm);
-
+		size(4cm);
 		real f(real x) { return x*x; }
 		graph.xaxis("$\mathcal V(y)$", red);
 		draw(graph(f,-2,2,operator ..), blue, Arrows);
-		label("$\mathcal V(zy-x^2)$", (1.4, f(1.4)), dir(45), blue);
+		label("$\mathcal V(zy-x^2)$", (1.4, f(1.4)), dir(15), blue);
 		label("$\mathbb{CP}^2$", (2,3), dir(45));
 		dotfactor *= 1.5;
 		dot(origin, heavygreen);
@@ -1444,7 +1460,16 @@ which corresponds to a single projective point $(0:0:1)$ of $\CP^2$.
 This is why we work with ideals rather than varieties:
 we need to tell the difference between $(x^2,y)$ and $(x,y)$.
 
-\section{The Hilbert function}
+\section{Hilbert functions of finitely many points}
+\prototype{The Hilbert function attached to the double point $(x^2,y)$
+	is eventually the constant $2$.}
+\begin{definition}
+	Given a nonempty projective variety $V$, there is a unique
+	radical ideal $I$ such that $V = \Vp(I)$.
+	In this chapter we denote it by $\II(V)$.
+	For an empty variety we set $\II(\varnothing) = (1)$
+	(rather than choosing the irrelevant ideal).
+\end{definition}
 \begin{definition}
 	Let $I \subseteq \CC[x_0, \dots, x_n]$ be homogeneous.
 	We define the \vocab{Hilbert function} of $I$,
@@ -1452,22 +1477,23 @@ we need to tell the difference between $(x^2,y)$ and $(x,y)$.
 	\[ h_I(d) = \dim_{\CC} \left( \CC[x_0, \dots, x_n]/I \right)^d \]
 	i.e.\ $h_I(d)$ is the dimension of the $d$th graded part of
 	$\CC[x_0, \dots, x_n] / I$.
-
-	If $V$ is a projective variety, we set $h_V = h_I$,
-	where $I$ is radical ideal satisfying $V = \VV(I)$.
-	(If $V = \varnothing$, we choose $I = (1)$.)
+\end{definition}
+\begin{definition}
+	If $V$ is a projective variety, we set $h_V = h_{\II(V)}$,
+	where $I$ is the \emph{radical} ideal satisfying $V = \Vp(I)$.
+	If $V = \varnothing$, we choose $I = (1)$.
 \end{definition}
 \begin{example}[Examples of Hilbert functions in zero dimensions]
+	\label{ex:hilbert_zero}
 	For concreteness, let us use $\CP^2$.
 	\begin{enumerate}[(a)]
 		\ii If $V$ is the single point $(0:0:1)$,
-		with corresponding ideal $I = (x,y)$,
+		with ideal $\II(V) = (x,y)$,
 		then 
 		\[ \CC[x,y,z] / (x,y) \cong \CC[z]
 		\cong \CC \oplus z\CC \oplus z^2\CC \oplus z^3\CC \dots \]
 		which has dimension $1$ in all degrees.
-		Consequently, we have 
-		\[ h_I(d) = 1 \text{ for every $d$}. \]
+		Consequently, we have \[ h_I(d) \equiv 1. \]
 		\ii Now suppose we use the ``double point'' ideal $I = (x^2,y)$.
 		This time, we have
 		\begin{align*}
@@ -1484,8 +1510,8 @@ we need to tell the difference between $(x^2,y)$ and $(x,y)$.
 				1 & d = 0.
 			\end{cases}
 		\]
-		\ii Let's now take the variety $V = \{(1:1:1), (-1:1:1)\}$ from before,
-		which has ideal $I = (x^2-z^2, y-z)$.
+		\ii Let's now take the variety $V = \{(1:1:1), (-1:1:1)\}$
+		consisting of two points, with $\II(V) = (x^2-z^2, y-z)$. Then
 		\begin{align*}
 			\CC[x,y,z] / (x^2-z^2,y-z)
 			&\cong \CC[x,z] / (x^2-z^2) \\
@@ -1494,6 +1520,395 @@ we need to tell the difference between $(x^2,y)$ and $(x,y)$.
 		So this example has the same Hilbert function as the previous one.
 	\end{enumerate}
 \end{example}
+\begin{abuse}
+	I'm abusing the isomorphism symbol
+	$\CC[z] \cong \CC \oplus z\CC \oplus z^2\CC$ and similarly
+	in other examples.
+	This is an isomorphism only on the level of $\CC$-vector spaces.
+	However, in computing Hilbert functions of other examples
+	I will continue using this abuse of notation.
+\end{abuse}
+\begin{example}
+	[Hilbert functions for empty varieties]
+	Suppose $I \subsetneq \CC[x_0, \dots, x_n]$
+	is an ideal, possibly not radical
+	but such that \[ \Vp(I) = \varnothing \]
+	hence $\sqrt I = (x_0, \dots, x_n)$ is the irrelevant ideal.
+	Thus there are integers $d_i$ for $i=0,\dots,n$ such that
+	$x^{d_i} \in I$ for every $i$; consequently, $h_I(d) = 0$
+	for any $d > d_0 + \dots + d_n$.
+	We summarize this by saying that
+	\[ h_I(d) = 0 \text{ for all $d \gg 0$}. \]
+\end{example}
+Here the notation $d\gg 0$ means ``all sufficiently large $d$''.
+
+From these examples we see that if $I$ is an ideal,
+then the Hilbert function appears to eventually be constant,
+with the desired constant equal to the size of $\Vp(I)$,
+``with multiplicity'' in the case that $I$ is not radical.
+
+Let's prove this.
+Before proceeding we briefly remind the reader of short exact sequences:
+a sequence of maps of $0 \to V \injto W \surjto X \to 0$
+is one such that the $\img(V \injto W) = \ker(W \surjto X)$
+(and of course the maps $V \injto W$ and $W \surjto X$ are
+injective and surjective).
+If $V$, $W$, $X$ are finite-dimensional vector spaces over $\CC$
+this implies that $\dim W = \dim V + \dim X$.
+
+\begin{proposition}
+	[Hilbert functions of $I \cap J$ and $I+J$]
+	Let $I$ and $J$ be homogeneous ideals in $\CC[x_0, \dots, x_n]$.
+	Then \[ h_{I \cap J} + h_{I+J} = h_I + h_J. \]
+\end{proposition}
+\begin{proof}
+	Consider any $d \ge 0$.
+	Let $S = \CC[x_0, \dots, x_n]$ for brevity.
+	Then
+	\begin{diagram}
+		0 & \rTo & \left[ S / (I \cap J) \right]^d
+			& \rInj & \left[ S / I \right]^d \oplus \left[ S / J \right]^d
+			& \rSurj & \left[ S / (I+J) \right]^d
+			& \rTo & 0 \\
+		&& f & \rMapsto & (f,f) &&&& \\
+		&&&& (f,g) & \rMapsto & f-g &&
+	\end{diagram}
+	is a short exact sequence of vector spaces.
+	Therefore, for every $d \ge 0$ we have that
+	\[
+		\dim \left[ S / I \right]^d \oplus \left[ S / J \right]^d
+		= \dim \left[ S / (I \cap J) \right]^d
+		+ \dim \left[ S / (I+J) \right]^d
+	\]
+	which gives the conclusion.
+\end{proof}
+\begin{example}
+	[Hilbert function of two points in $\CP^1$]
+	In $\CP^1$ with coordinate ring $\CC[s,t]$,
+	consider $I = (s)$ the ideal corresponding to the point $(0:1)$
+	and $J = (t)$ the ideal corresponding to the point $(1:0)$.
+	Then $I \cap J = (st)$ is the ideal corresponding
+	to the disjoint union of these two points,
+	while $I+J = (s,t)$ is the irrelevant ideal.
+	Consequently $h_{I+J}(d) = 0$ for $d \gg 0$.
+	Therefore, we get
+	\[ h_{I \cap J}(d) = h_I(d) + h_J(d) \text{ for $d \gg 0$} \]
+	so the Hilbert function of a two-point projective variety
+	is the constant $2$ for $d \gg 0$.
+\end{example}
+
+This example illustrates the content of the main result:
+\begin{theorem}
+	[Hilbert functions of zero-dimensional varieties]
+	Let $V$ be a projective variety consisting of $m$ points
+	(where $m \ge 0$ is an integer).
+	Then \[ h_V(d) = m \text{ for $d \gg 0$}. \]
+\end{theorem}
+\begin{proof}
+	We already did $m = 0$, so assume $m \ge 1$.
+	Let $I = \II(V)$ and for $k=1,\dots,m$
+	let $I_k = \II(\text{$k$th point of $V$})$.
+	\begin{ques}
+		Show that $h_{I_k} (d) = 1$ for every $d$.
+		(Modify \Cref{ex:hilbert_zero}(a).)
+		\label{ques:hilbert_always_one}
+	\end{ques}
+
+	Hence we can proceed by induction on $m \ge 2$,
+	with the base case $m=1$ already done above.
+	For the inductive step,
+	we use the projective analogues of \Cref{thm:many_aff_variety}.
+	We know that $h_{I_1 \cap \dots \cap I_{m-1}}(d) = m-1$ for $d \gg 0$
+	(this is the first $m-1$ points;
+	note that $I_1 \cap \dots \cap I_{m-1}$ is radical).
+	To add in the $m$th point we note that
+	\[
+		h_{I_1 \cap \dots \cap I_m}(d)
+		= h_{I_1 \cap \dots I_{m-1}}(d) + h_{I_m}(d)
+		- h_J(d)
+	\]
+	where $J = (I_1 \cap \dots \cap I_{m-1}) + I_m$.
+	The ideal $J$ may not be radical, but satisfies $\Vp(J) = \varnothing$
+	by an earlier example, hence $h_J = 0$ for $d \gg 0$.
+	This completes the proof.
+\end{proof}
+In exactly the same way we can prove that:
+\begin{corollary}[$h_I$ eventually constant when $\dim \Vp(I) = 0$]
+	Let $I$ be an ideal, not necessarily radical,
+	such that $\Vp(I)$ consists of finitely many points.
+	Then the Hilbert $h_I$ is eventually constant.
+\end{corollary}
+\begin{proof}
+	Induction on the number of points, $m \ge 1$.
+	The base case $m = 1$ was essentially done in \Cref{ex:hilbert_zero}(b)
+	and \Cref{ques:hilbert_always_one}.
+	The inductive step is literally the same as in the proof above,
+	except no fuss about radical ideals.
+\end{proof}
+
+\section{Hilbert polynomials}
+So far we have only talked about Hilbert functions
+of zero-dimensional varieties, and showed that
+they are eventually constant.
+Let's look at some more examples.
+\begin{example}
+	[Hilbert function of $\CP^n$]
+	The Hilbert function of $\CP^n$ is
+	\[ h_{\CP^n}(d) = \binom{d+n}{n}
+	= \frac{1}{n!} (d+n)(d+n-1) \dots (d+1) \]
+	by a ``balls and urns'' argument.
+	This is a polynomial of degree $n$.
+\end{example}
+\begin{example}
+	[Hilbert function of the parabola]
+	Consider the parabola $zy-x^2$ in $\CP^2$
+	with coordinates $\CC[x,y,z]$.
+	Then 
+	\[ \CC[x,y,z] / (zy-x^2) \cong \CC[y,z] \oplus x\CC[y,z]. \]
+	A combinatorial computation gives that
+	\begin{align*}
+		h_{(zy-x^2)}(0) &= 1 & \text{Basis $1$} \\
+		h_{(zy-x^2)}(1) &= 3 & \text{Basis $x,y,z$} \\
+		h_{(zy-x^2)}(2) &= 5 & \text{Basis $xy$, $xz$, $y^2$, $yz$, $z^2$}.
+	\end{align*}
+	We thus in fact see that $h_{(zy-x^2)}(d) = 2d-1$.
+\end{example}
+
+In fact, this behavior of ``eventually polynomial'' always works.
+\begin{theorem}
+	[Hilbert polynomial]
+	Let $I \subseteq \CC[x_0, \dots, x_n]$ be a homogeneous ideal,
+	not necessarily radical. Then
+	\begin{enumerate}[(a)]
+		\ii There exists a polynomial $\chi_I$ such that
+		$h_I(d) = \chi_I(d)$ for all $d \gg 0$.
+		\ii $\deg \chi_I = \dim\Vp(I)$ (if $\Vp(I) = \varnothing$
+		then $\chi_I = 0$).
+		\ii The polynomial $m! \cdot \chi_I$ has integer coefficients.
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	The base case was addressed in the previous section.
+
+	For the inductive step, consider $\Vp(I)$ with dimension $m$.
+	Consider a hyperplane $H$ such that no irreducible
+	component of $\Vp(I)$ is contained inside $H$
+	(we quote this fact without proof, as it is geometrically obvious).
+	For simplicity, assume WLOG that $H = \Vp(x_0)$.
+
+	Let $S = \CC[x_0, \dots, x_n]$ again.
+	Now, consider the following short exact sequence:
+	\begin{diagram}
+		0 & \rTo & [S/I]^{d-1} & \rInj^{\times x_0} & [S/I]^d & \rSurj &
+			[S/(I+(x_0))]^d & \rTo & 0 \\
+		&& f & \rMapsto & fx_0 &&&& \\
+		&&&& f & \rMapsto & f &&
+	\end{diagram}
+	(The injectivity of the first map follows from the assumption
+	about irreducible components of $\Vp(I)$.)
+	Now exactness implies that
+	\[ h_I(d) - h_I(d-1) = h_{I + (x_0)}(d). \]
+	The last term geometrically corresponds to $\Vp(I) \cap H$;
+	it has dimension $m-1$, so by the inductive hypothesis
+	we know that
+	\[ h_I(d) - h_I(d-1)
+		= \frac{c_0 d^{m-1} + c_1 d^{m-2} + \dots + c_{m-1}}{(m-1)!}
+		\qquad d \gg 0 \]
+	for some integers $c_0$, \dots, $c_{m-1}$.
+	Then we are done by the theory of
+	\textbf{finite differences} of polynomials.
+\end{proof}
+
+\section{B\'ezout's theorem}
+
+\begin{definition}
+	We call $\chi_I$ the \vocab{Hilbert polynomial} of $I$.
+	If $\chi_I$ is nonzero, we call the leading coefficient of
+	$m! \chi_I$ the \vocab{degree} of $I$, which is an integer,
+	denoted $\deg I$.
+
+	Of course for projective varieties $V$ we let $h_V = h_{\II(V)}$.
+\end{definition}
+
+\begin{example}[Examples of degrees]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii If $V$ is a finite set of $n \ge 1$ points, it has degree $n$.
+		\ii If $I$ corresponds to a double point, it has degree $2$.
+		\ii $\CP^n$ has degree $1$.
+		\ii The parabola has degree $2$.
+	\end{enumerate}
+\end{example}
+
+Now, you might guess that if $f$ is a homogeneous quadratic polynomial
+then the degree of the principal ideal $(f)$ is $2$, and so on.
+(Thus for example we expect a circle to have degree $2$.)
+This is true:
+
+\begin{theorem}
+	[B\'ezout's theorem]
+	Let $I$ be a homogeneous ideal of $\CC[x_0, \dots, x_n]$,
+	such that $\dim \Vp(I) \ge 1$.
+	Let $f \in \CC[x_0, \dots, x_n]$ be a homogeneous polynomial of degree $k$
+	which does not vanish on any irreducible component of $\Vp(I)$.
+	Then
+	\[ \deg\left( I + (f) \right) = k \deg I. \]
+\end{theorem}
+\begin{proof}
+	Let $S = \CC[x_0, \dots, x_n]$ again.
+	This time the exact sequence is
+	\begin{diagram}
+		0 & \rTo & [S/I]^{d-k} & \rInj^{\times f} & [S/I]^d & \rSurj &
+			[S/(I+(f))]^d & \rTo & 0
+	\end{diagram}
+	We leave this olympiad-esque exercise as \Cref{prob:bezout}.
+\end{proof}
+
+\section{Applications}
+First, we show that the notion of degree is what we expect.
+\begin{corollary}
+	[Hypersurfaces: the degree deserves its name]
+	Let $V$ be a hypersurface, i.e. $\II(V) = (f)$
+	for $f$ a homogeneous polynomial of degree $k$.
+	Then $\deg V = k$.
+\end{corollary}
+\begin{proof}
+	Recall $\deg(0) = \deg \CP^n = 1$.
+	Take $I = (0)$ in B\'ezout's theorem.
+\end{proof}
+
+The common special case in $\CP^2$ is:
+\begin{corollary}[B\'ezout's theorem for curves]
+	For any two curves $X$ and $Y$ in $\CP^2$ without
+	a common irreducible component,
+	\[ \left\lvert X \cap Y \right\rvert 
+		\le \deg X \cdot \deg Y. \]
+\end{corollary}
+
+Now, we use this to prove Pascal's theorem.
+\begin{theorem}
+	[Pascal's theorem]
+	Let $A$, $B$, $C$, $D$, $E$, $F$ be six
+	distinct points which lie on a conic $\mathscr C$ in $\CP^2$.
+	Then the points $AB \cap DE$, $BC \cap EF$, $CD \cap FA$ are collinear.
+\end{theorem}
+\begin{proof}
+	Let $X$ be the variety equal to the union of the
+	three lines $AB$, $CD$, $EF$, hence $X = \Vp(f)$
+	for some cubic polynomial $f$ (which is the product of three linear ones).
+	Similarly, let $Y = \Vp(g)$ be the variety
+	equal to the union of the three lines $BC$, $DE$, $FA$.
+
+	\begin{center}
+		\begin{asy}
+			filldraw(unitcircle, opacity(0.2)+lightcyan, blue);
+			pair A = dir(110);
+			pair B = dir(210);
+			pair C = dir(40);
+			pair D = dir(270);
+			pair E = dir(130);
+			pair F = dir(-30);
+
+			pair P = extension(A, B, D, E);
+			pair X = extension(B, C, E, F);
+			pair Q = extension(C, D, F, A);
+
+			draw(A--B--C--D--E--F--cycle);
+			draw(P--Q, red+dashed);
+
+			dot("$A$", A, dir(A));
+			dot("$B$", B, dir(B));
+			dot("$C$", C, dir(C));
+			dot("$D$", D, dir(D));
+			dot("$E$", E, dir(E));
+			dot("$F$", F, dir(F));
+			dot(P);
+			dot(X);
+			dot(Q);
+
+			/* Source generated by TSQ */
+		\end{asy}
+	\end{center}
+
+	Now let $P$ be an arbitrary point on the conic on $\mathscr C$,
+	distinct from the six points $A$, $B$, $C$, $D$, $E$, $F$.
+	Consider the projective variety
+	\[ V = \Vp(\alpha f + \beta g) \]
+	where the constants $\alpha$ and $\beta$ are chosen such that $P \in V$.
+	\begin{ques}
+		Show that $V$ also contains the six points $A$, $B$, $C$, $D$, $E$, $F$
+		as well as the three points $AB \cap DE$, $BC \cap EF$, $CD \cap FA$
+		regardless of which $\alpha$ and $\beta$ are chosen.
+	\end{ques}
+
+	Not, note that $|V \cap \mathscr C| \ge 7$.
+	But $\dim V = 3$ and $\dim \mathscr C = 2$.
+	This contradicts B\'ezout's theorem unless $V$ and $\mathscr C$
+	share an irreducible component.
+	This can only happen if $V$ is the union of a line and conic,
+	for degree reasons; i.e.\ we must have that
+	\[ V = \mathscr C \cup \text{line}. \]
+	Finally note that the three intersection points $AB \cap DE$,
+	$BC \cap EF$ and $CD \cap FA$ do not lie on $\mathscr C$,
+	so they must lie on this line.
+\end{proof}
+
+
+\section\problemhead
+\begin{problem}
+	\label{prob:bezout}
+	Complete the proof of B\'ezout's theorem from before.
+	\begin{sol}
+		From the exactness,
+		$h_I(d) = h_I(d-k) + h_{I+(f)}(d)$,
+		and it follows that
+		\[ \chi_{I+(f)}(d) = \chi_I(d) - \chi_I(d-k). \]
+		Let $m = \dim \Vp(I) \ge 1$.
+		Now $\dim \Vp(I+(f)) = m-1$, so
+		and $c_{\text{new}} = \deg I+(f)$ then we have
+		\[
+			\frac{\deg (I+(f)) d^{m-1} + \dots}{(m-1)!}
+			=
+			\frac{1}{m!}
+			\left( \deg I (d^m - (d-k)^m)
+			+ \text{lower order terms} \right)
+		\]
+		from which we read off
+		\[ \deg (I+(f)) = \frac{(m-1)!}{m!} \cdot k \binom m1 \deg I
+			= k \deg I \]
+		as needed.
+	\end{sol}
+\end{problem}
+
+\begin{problem}
+	[January TST for IMO 2016]
+	Let $ABC$ be an acute scalene triangle
+	and let $P$ be a point in its interior.
+	Let $A_1$, $B_1$, $C_1$ be projections of $P$ onto
+	triangle sides $BC$, $CA$, $AB$, respectively.
+	Find the locus of points $P$ such that $AA_1$, $BB_1$, $CC_1$
+	are concurrent and $\angle PAB + \angle PBC + \angle PCA = 90^{\circ}$.
+	\begin{hint}
+		You will need to know about complex numbers
+		in Euclidean geometry to solve this problem.
+	\end{hint}
+	\begin{sol}
+	In complex numbers with $ABC$ the unit circle,
+	it is equivalent to solving the following two cubic equations
+	in $p$ and $q = \overline p$:
+	\begin{align*}
+		(p-a)(p-b)(p-c) &= (abc)^2 (q -1/a)(q - 1/b)(q - 1/c) \\
+		0 &= \prod_{\text{cyc}} (p+c-b-bcq) + \prod_{\text{cyc}} (p+b-c-bcq).
+	\end{align*}
+	Viewing this as two cubic curves in $(p,q) \in \mathbb C^2$,
+	by Bezout's theorem it follows there are at most nine solutions
+	(unless both curves are not irreducible,
+	but it's easy to check the first one cannot be factored).
+	Moreover it is easy to name nine solutions (for $ABC$ scalene):
+	the three vertices, the three excenters, and $I$, $O$, $H$.
+	Hence the answer is just those three triangle centers $I$, $O$ and $H$.
+	\end{sol}
+\end{problem}
 
 \chapter{Quasi-projective varieties and regular maps}
 \section{Quasi-projective varieties}
@@ -1601,5 +2016,5 @@ Conveniently, it turns out that these three conditions are sufficient!
 	via $x_i \mapsto r_i$.
 	Let $I$ be the kernel of this map.
 	Since $R$ is reduced, $I$ is radical.
-	Then $R \cong \CC[V]$, where $V = \VV(I)$.
+	Then $R \cong \CC[V]$, where $V = \Vp(I)$.
 \end{proof}
