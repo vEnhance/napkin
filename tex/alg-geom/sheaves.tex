@@ -1,4 +1,4 @@
-\chapter{Sheaves and ringed spaces}
+\chapter{Sheaves and ringed spaces (draft)}
 Most of the complexity of the affine variety $V$ earlier comes from $\OO_V$.
 This is a type of object called a ``sheaf''.
 The purpose of this chapter is to completely define what this sheaf is,
@@ -732,6 +732,7 @@ Isomorphisms of (locally) ringed spaces are defined in the usual way.
 \begin{problem}
 	Prove that if $\SF$ is a sheaf, then $\SF \cong \SF\sh$.
 \end{problem}
+
 \begin{sproblem}
 	[Global section functor]
 	We consider the category $\catname{ShRing}_X$ of sheaves of rings on a space $X$.
@@ -741,5 +742,19 @@ Isomorphisms of (locally) ringed spaces are defined in the usual way.
 	\begin{hint}
 		Given a morphism of sheaves $\alpha : \SF \to \SG$
 		read off a map $\SF(X) \to \SG(X)$.
+	\end{hint}
+\end{sproblem}
+
+\begin{sproblem}
+	\label{prob:finite_sheaf}
+	Suppose $X$ is a finite topological space equipped with the discrete topology
+	(say, a finite set of points).
+	Let $\SF$ be a sheaf on $X$.
+	Show that for any open set $U$, we have a ring isomorphism
+	\[ \SF(U) \cong \prod_{p \in U} \SF_p. \]
+	Here the direct product ring has its operations defined component-wise.
+	\begin{hint}
+		We have $\SF_p \cong \SF(\{p\})$.
+		If $X$ is discrete, then all sequences of germs are compatible.
 	\end{hint}
 \end{sproblem}
