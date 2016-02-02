@@ -1,4 +1,4 @@
-\chapter{Affine Varieties (Draft)}
+\chapter{Affine varieties}
 In this chapter we introduce affine varieties.
 We introduce them in the context of coordinates,
 but over the course of the other chapters
@@ -9,7 +9,7 @@ rather than embedded in coordinates.
 For simplicity, we'll do almost everything over the field of complex numbers,
 but the discussion generalizes to any algebraically closed field.
 
-\section{Affine Varieties}
+\section{Affine varieties}
 \prototype{$\VV(y-x^2)$ is a parabola.}
 %An \vocab{affine variety} is just the zero locus of a set of polynomials.
 %We think of it as living in the $n$-dimensional space $\Aff^n$.
@@ -38,7 +38,7 @@ For example, a parabola is the zero locus of the polynomial $\VV(y-x^2)$. Pictur
 	\end{asy}
 \end{center}
 
-\begin{example}[Examples of Affine Varieties]
+\begin{example}[Examples of affine varieties]
 	These examples are in two-dimensional space $\Aff^2$,
 	whose points are pairs $(x,y)$.
 	\begin{enumerate}[(a)]
@@ -53,7 +53,7 @@ For example, a parabola is the zero locus of the polynomial $\VV(y-x^2)$. Pictur
 	\end{enumerate}
 \end{example}
 
-\section{Naming Affine Varieties via Ideals}
+\section{Naming affine varieties via ideals}
 \prototype{$\VV(I)$ is a parabola, where $I=(y-x^2)$.}
 As you might have already noticed, a variety can be named by $\VV(-)$ in multiple ways.
 For example, the set of solutions to
@@ -111,11 +111,11 @@ This is where the Noetherian condition really shines:
 it guarantees that every ideal $I \subseteq \CC[x_1, \dots, x_n]$
 can be written in the form above with \emph{finitely} many polynomials,
 because it is \emph{finitely generated}.
-(The fact that $\CC[x_1, \dots, x_n]$ is Noetherian follows from the Hilbert Basis Theorem,
+(The fact that $\CC[x_1, \dots, x_n]$ is Noetherian follows from the Hilbert basis theorem,
 which is \todo{link}).
 This is a relief, because dealing with infinite sets of polynomials is not much fun.
 
-\section{Radical Ideals and Hilbert's Nullstellensatz}
+\section{Radical ideals and Hilbert's Nullstellensatz}
 \prototype{$\sqrt{(x^2)} = (x)$ in $\CC[x]$, $\sqrt{(12)} = (6)$ in $\ZZ$.}
 You might ask whether the name is unique now:
 that is, if $\VV(I) = \VV(J)$, does it follow that $I=J$?
@@ -150,18 +150,18 @@ you don't squeeze out any new prime factors.
 And that's true in general.
 
 \begin{definition}
-	An ideal $I$ is called \vocab{semiprime} if $\sqrt I = I$.
+	An ideal $I$ is called \vocab{radical} if $\sqrt I = I$.
 \end{definition}
 \begin{ques}
-	Show that $\sqrt I$ is always semiprime.
+	Show that $\sqrt I$ is always radical.
 \end{ques}
-\begin{remark}
-	As the name suggests, prime ideals are semiprime.
-	You're welcome to try and prove this (easy exercise).
-\end{remark}
-Sometimes useful equivalent definition
-(which is more in line with the number theory definition):
-\begin{theorem}[Radical is Intersection of Prime Ideals]
+\begin{ques}
+	Prime ideals are radical.
+\end{ques}
+Useful equivalent definition
+(which is more in line with the number theory definition),
+which we quote without proof:
+\begin{theorem}[Radical is intersection of prime ideals]
 	For any ideal $I$, we have
 	\[ \sqrt I = \bigcap_{I \subseteq \pp \text{ prime}} \pp. \]
 \end{theorem}
@@ -180,7 +180,7 @@ With this, we obtain a theorem called Hilbert's Nullstellensatz.
 \end{theorem}
 In other words
 \begin{moral}
-	Semiprime ideals in $\CC[x_1, \dots, x_n]$ correspond
+	Radical ideals in $\CC[x_1, \dots, x_n]$ correspond
 	exactly to $n$-dimensional affine varieties.
 \end{moral}
 The proof of Hilbert's Nullestellensatz will be given later;
@@ -188,7 +188,7 @@ it \emph{relies essentially on the fact that $\CC$ is algebraically closed}.
 For example, it is false in $\RR[x]$,
 with $(x^2+1)$ being a maximal ideal with empty vanishing set.
 
-\section{Pictures of Varieties in $\Aff^1$}
+\section{Pictures of varieties in $\Aff^1$}
 \prototype{Finite sets of points (in fact these are the only nontrivial examples).}
 Let's first draw some pictures.
 In what follows I'll draw $\CC$ as a straight line\dots sorry.
@@ -240,16 +240,30 @@ In fact, you can convince yourself that these are the only affine varieties, wit
 \end{ques}
 
 As you might correctly guess, we have the following result.
-\begin{theorem}[Intersections and Unions of Varieties]
+\begin{theorem}[Intersections and unions of varieties]
+	\label{thm:many_aff_variety}
 	\listhack
 	\begin{enumerate}[(a)]
-		\ii The intersection of several affine varieties (even infinitely many) is an affine variety.
-		\ii The union of two affine varieties (and by induction finitely many) is an affine variety.
+		\ii The intersection of affine varieties
+		(even infinitely many) is an affine variety.
+		\ii The union of finitely many affine varieties
+		is an affine variety.
 	\end{enumerate}
+	In fact we have
+	\[ \bigcap_\alpha \VV(I_\alpha)
+		= \VV\left( \sum_\alpha I_\alpha \right)
+		\qquad\text{and}\qquad
+		\bigcup_{k=1}^n \VV(I_k)
+		= \VV\left( \bigcap_{k=1}^n I_k \right). \]
 \end{theorem}
-\begin{exercise}
-	Prove this yourself.
-\end{exercise}
+You are welcome to prove this easy result yourself.
+\begin{remark}
+	Part (a) is a little misleading in that the sum $I+J$ need not be radical:
+	take for example $I = (y-x^2)$ and $J = (y)$ in $\CC[x,y]$,
+	where $x \in \sqrt{I+J}$ and $x \notin I+J$.
+	But in part (b) for radical ideals $I$ and $J$,
+	the intersection $I \cap J$ is radical.
+\end{remark}
 
 Now note that most of the affine varieties of $\Aff^1$, like $\{4,9\}$,
 are just unions of the simplest ``one-point'' ideals.
@@ -271,9 +285,10 @@ Hence, the irreducible varieties of $\Aff^1$ are
 In a moment, we'll draw pictures in $\Aff^2$,
 but first let me point out something about irreducible affine varieties.
 
-\section{Prime Ideals Correspond To Irreducible Affine Varieties}
+\section{Prime ideals correspond to irreducible affine varieties}
 \prototype{$(xy)$ corresponds to the union of two lines in $\Aff^2$.}
-We have seen that the semiprime ideals are in one-to-one correspondence with affine varieties.
+We have seen that the radical ideals are in one-to-one correspondence
+with affine varieties.
 In the next sections we answer the two questions:
 \begin{itemize}
 	\ii What property of $\VV(I)$ corresponds to $I$ being prime?
@@ -285,8 +300,8 @@ Its vanishing set $\VV(I)$ is the union of two lines $x=0$ and $y=0$.
 So $\VV(I)$ is reducible.
 
 Let's make this work in general.
-\begin{theorem}[Prime $\iff$ Irreducible]
-	Let $I$ be a semiprime ideal, and $V = \VV(I)$ a nonempty variety.
+\begin{theorem}[Prime $\iff$ irreducible]
+	Let $I$ be a radical ideal, and $V = \VV(I)$ a nonempty variety.
 	Then $I$ is prime if and only if $V$ is irreducible.
 \end{theorem}
 \begin{proof}
@@ -366,7 +381,7 @@ Thus, as Ravi Vakil \cite{ref:vakil} says,
 	has a fundamentally geometric answer.
 \end{moral}
 
-\section{Maximal Ideals}
+\section{Maximal ideals}
 \prototype{All maximal ideals are $(x-a_1, \dots, x-a_n)$.}
 \begin{ques}
 	Show that if $I \subseteq J$ then $\VV(I) \supseteq \VV(J)$.
@@ -393,7 +408,7 @@ we won't include it here \todo{but link it somewhere}.
 
 From this we can deduce that all maximal ideals are of the above form.
 \begin{theorem}
-	[Maximal Ideals]
+	[Maximal ideals]
 	Every maximal ideal of $\CC[x_1, \dots, x_n]$
 	is of the form $\VV(x_1-a_1, \dots, x_n-a_n)$.
 \end{theorem}
@@ -416,8 +431,8 @@ of affine varieties according to the following table:
 \begin{center}
 	\begin{tabular}[h]{|cc|}
 		\hline
-		Algebraic Flavor & Geometric Flavor \\ \hline
-		semiprime ideal & affine variety \\
+		Algebraic flavor & Geometric flavor \\ \hline
+		radical ideal & affine variety \\
 		prime ideal & irreducible variety \\
 		maximal ideal & single point \\
 		any ideal & scheme \\ \hline
@@ -426,7 +441,7 @@ of affine varieties according to the following table:
 
 There's one thing I haven't talked about: what's the last entry?
 
-\section{Why Schemes?}
+\section{Why schemes?}
 One of the most elementary motivations for the scheme
 is that we would like to use them to count multiplicity.
 That is, consider the intersection
@@ -479,12 +494,12 @@ This refined object is the \emph{scheme}.
 \end{problem}
 
 \begin{problem}
-	\kurumi
+	\yod
 	Show that Hilbert's Nullstellensatz in $n$ dimensions
 	follows from the Weak Nullstellensatz.
 	(This solution is called the \vocab{Rabinowitsch Trick}.)
 	\begin{hint}
-		Use the weak nullstellensatz on $n+1$ dimensions.
+		Use the weak Nullstellensatz on $n+1$ dimensions.
 		Given $f$ vanishing on everything,
 		consider $x_{n+1}f-1$. 
 	\end{hint}
@@ -494,7 +509,7 @@ This refined object is the \emph{scheme}.
 
 		Take a set of generators $f_1, \dots, f_m$,
 		in the original ring $\CC[x_1, \dots, x_n]$;
-		we may assume it's finite by the Hilbert Basis Theorem.
+		we may assume it's finite by the Hilbert basis theorem.
 
 		We're going to do a trick now:
 		consider $S = \CC[x_1, \dots, x_n, x_{n+1}]$ instead.
@@ -505,7 +520,7 @@ This refined object is the \emph{scheme}.
 		nor any point in the ``projection'' of $f$ through $\Aff^{n+1}$
 		(one can think of this as $\VV(I)$ in the smaller ring
 		direct multiplied with $\CC$).
-		Thus $\VV(I') = \varnothing$, and by the weak nullstellensatz
+		Thus $\VV(I') = \varnothing$, and by the weak Nullstellensatz
 		we in fact have $I' = \CC[x_1, \dots, x_{n+1}]$.
 		So
 		\[ 1 = g_1f_1 + \dots + g_mf_m + g_{m+1} \left( x_{n+1}f-1 \right). \]
@@ -517,3 +532,5 @@ This refined object is the \emph{scheme}.
 		It follows that $f^N \in I$.
 	\end{sol}
 \end{problem}
+
+

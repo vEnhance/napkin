@@ -1,4 +1,4 @@
-\chapter{Sheaves and Ringed Spaces (In Progress)}
+\chapter{Sheaves and ringed spaces}
 Most of the complexity of the affine variety $V$ earlier comes from $\OO_V$.
 This is a type of object called a ``sheaf''.
 The purpose of this chapter is to completely define what this sheaf is,
@@ -15,11 +15,11 @@ allow us to define an arbitrary scheme in the next chapter.
 Varieties use $\CC[x_1, x_2, \dots, x_n] / I$ as their ``ring of functions'',
 and by using the fully general sheaf we will be replace this
 with \emph{any} commutative ring.
-In particular, we can use the case where $I$ is not semiprime, such as
+In particular, we can use the case where $I$ is not radical, such as
 $\CC[x] / (x^2)$; this gives the ``multiplicity''
 behavior that we sought after all along.  
 
-\section{Pre-Sheaves}
+\section{Pre-sheaves}
 \prototype{The sheaf of holomorphic (or regular, continuous,
 differentiable, constant, whatever) functions.}
 
@@ -65,7 +65,7 @@ for the general construct, in the language of categories.
 	may not have a natural interpretation as function.
 \end{abuse}
 
-\begin{example}[Examples of Sheaves]
+\begin{example}[Examples of pre-sheaves]
 	\listhack
 	\begin{enumerate}[(a)]
 		\ii For an affine variety $V$, $\OO_V$ is of course a sheaf,
@@ -175,7 +175,7 @@ our examples will usually have this property.
 
 Now for the examples, which are more enlightening:
 \begin{example}
-	[Examples and Non-Examples of Sheaves]
+	[Examples and non-examples of sheaves]
 	\listhack
 	\begin{enumerate}[(a)]
 		\ii Pre-sheaves of arbitrary / continuous / differentiable / smooth
@@ -205,7 +205,7 @@ Now for the examples, which are more enlightening:
 \section{Stalks}
 \prototype{Germs of real smooth functions tell you the derivatives,
 but germs of holomorphic functions determine the entire function.}
-Let $\SF$ be a sheaf.
+Let $\SF$ be a pre-sheaf.
 If we have a function $s \in \SF(U)$ and a point $p \in U$,
 then in general it doesn't make sense to ask what $s(p)$ is
 (even though all our examples look like this),
@@ -228,13 +228,10 @@ So, we will replace the notion of $s(p)$ with a so-called \emph{germ}.
 	We denote this by $[s]_p$.
 \end{definition}
 
-So what's happening is:
-\begin{moral}
-	We consider functions $s$ defined near $p$
-	and, since we only care about local behavior,
-	we identify any two functions agreeing on a neighborhood of $p$,
-	no matter how small.
-\end{moral}
+So what's happening is: We consider functions $s$ defined near $p$
+and, since we only care about local behavior,
+we identify any two functions agreeing on a neighborhood of $p$,
+no matter how small.
 
 Notice that the stalk is itself a ring as well:
 for example, addition is done by
@@ -249,7 +246,7 @@ So the germ $[s]_p$ now plays the role of the ``value'' $s(p)$.
 But actually, it carries much more information than that.
 
 \begin{example}
-	[Germs of Real Smooth Functions]
+	[Germs of real smooth functions]
 	Let $X = \RR$ and let $\SF$ be the sheaf on $X$ of smooth functions
 	(i.e.\ $\SF(U)$ is the set of smooth real-valued functions on $U$).
 
@@ -273,22 +270,22 @@ But actually, it carries much more information than that.
 	\end{enumerate}
 \end{example}
 \begin{example}
-	[Germs of Holomorphic Functions]
+	[Germs of holomorphic functions]
 	Holomorphic functions are very strange in this respect.
-	Consider the sheaf $\SF$ on $\CC$ of holomorphic functions $\CC \to \CC$.
+	Consider the sheaf $\SF$ on $\CC$ of \emph{holomorphic} functions.
 
 	Take $s : \CC \to \CC$ a global section.
 	Given the germ of $s$ at $0$, we can read off $s(0)$, $s'(0)$, et cetera.
 	The miracle of complex analysis is that just knowing
 	the derivatives of $s$ at zero is enough to reconstruct all of $s$:
 	we can compute the Taylor series of $s$ now.
-	\textbf{Thus germs of holomorphic functions determine the function};
-	they carry much more information than their real counterparts.
+	\textbf{Thus germs of holomorphic functions determine the entire function};
+	they ``carry much more information'' than their real counterparts.
 	
 	In particular, we can concretely describe the sheaf:
 	\[
 		\SF_p = \left\{
-			\sum_{k \ge 0} c_k (z-p)^k,
+			\sum_{k \ge 0} c_k (z-p)^k
 			\text{ convergent near $p$}
 		\right\}.
 	\]
@@ -301,7 +298,7 @@ And of course, our algebraic geometry example.
 	Rather than writing $(\OO_V)_p$ we will write $\OO_{V,p}$.
 \end{abuse}
 \begin{example}
-	[Stalks of the Sheaf on an Affine Variety]
+	[Stalks of the sheaf on an affine variety]
 	Let $V \subseteq \Aff^n$ be a variety, and assume $p \in V$.
 	Then, a regular function $\varphi$ on $U \subseteq V$
 	is supposed to be a function on $U$ that ``locally'' is a quotient
@@ -315,7 +312,7 @@ And of course, our algebraic geometry example.
 	\[
 		\OO_{V,p} = 
 		\left\{ \left( \tfrac fg , U \right) \mid 
-			p \in U, \; f,g \in \CC[V], \;
+			U \ni p, \; f,g \in \CC[V], \;
 			\text{$g \neq 0$ on $U$} \right\}
 	\]
 	modulo the usual relations.
@@ -345,9 +342,111 @@ And of course, our algebraic geometry example.
 	to be concrete.
 \end{remark}
 
+\section{Sections ``are'' sequences of germs}
+\prototype{A real function on $U$ is a sequence of
+	real numbers $f(p)$ for each $p \in U$ satisfying some local condition.
+	Analogously, a section $s \in \SF(U)$ is a sequence of germs
+	satisfying some local compatibility condiiton.
+}
+Let $\SF$ be a sheaf on a space $X$ now.
+The purpose of this section is to convince you that the correct way 
+think about a section $s \in \SF(U)$ is as a sequence of germs
+above every point $p \in U$.
+
+How do we do this?
+Given $s \in \SF(U)$ we consider its germ $[s]_p$ above every for $p \in U$.
+To visualize, picture an open set $U \subseteq X$,
+and above every point $p \in P$ imagine there is a little speck $[s]_p$,
+which bundles the information of $s$ near $p$.
+\begin{example}[Real functions vs.\ germs]
+	Let $X$ be a space and let $\SF$ be the sheaf of smooth functions 
+	Given a section $f \in \SF(U)$,
+	\begin{itemize}
+		\ii As a function, $f$ is just a choice of value $f(p) \in \RR$ at
+		every point $p$, subject to a local ``smooth'' condition.
+
+		\ii Let's now think of $f$ as a sequence of germs.
+		At every point $p$ the germ $[f]_p \in \SF_p$ gives us the value $f(p)$
+		as we described above. The germ packages even more data than this:
+		from the germ $[f]_p$ alone we can for example compute $f'(p)$.
+		Nonetheless we stretch the analogy and think of $f$
+		as a choice of germ $[f]_p \in \SF_p$ at each point $p$.
+	\end{itemize}
+	Thus we can replace the notion of the value $f(p)$ with germ $[f]_p$.
+	This is useful because in a general sheaf $\SF$, the notion $s(p)$
+	is not defined while the notion $[s]_p$ is.
+\end{example}
+
+From the above example it's obvious that if we know each germ $[s]_p$
+this should let us reconstruct the entire section $s$.
+Let's check this from the sheaf axioms:
+\begin{exercise}
+	[Sections are determined by stalks]
+	Let $\SF$ be a sheaf.
+	Consider the natural map $\SF(U) \to \prod_{p \in U} \SF_p$ described above.
+	Show that this map is injective, i.e.\
+	the germs of $s$ at every point $p \in U$ determine the section $s$.
+	(You will need the ``identity'' sheaf axiom, but not ``collating''.)
+\end{exercise}
+
+However, this map is clearly not surjective!
+\begin{ques}
+	Come up with a counterexample to break surjectivity.
+	(This is like asking ``come up with a non-smooth function''.)
+\end{ques}
+Nonetheless we can describe the image:
+we want a sequence of germs $(g_p)_{p \in U}$ such that near every germ $g_p$,
+the germs $g_q$ are ``compatible'' with $g_p$.
+We make this precise:
+\begin{definition}
+	Let $\SF$ be sheaf (or even a pre-sheaf) and $U$ open.
+	A sequence $(g_p)_{p \in U}$ of germs
+	($g_p \in \SF_p$) is said to be \vocab{compatible} if
+	they can be ``locally collated'':
+	\begin{quote}
+		For any $p \in U$ there exists a neighborhood $U_p \ni p$
+		and a section $s \in \SF(U_p)$ on it
+		such that $[s]_q = g_q$ for each $q \in U_p$.
+	\end{quote}
+	Intuitively, the germs should ``collate together'' to some section near
+	each \emph{individual} point $q$
+	(but not necessarily to a section on all of $U$).
+\end{definition}
+
+We let the reader check this definition is what we want:
+\begin{exercise}
+	Prove that any choice of compatible germs over $U$
+	collates together to a section of $U$.
+	(You will need the ``collating'' sheaf axiom, but not ``identity''.)
+\end{exercise}
+
+Putting together the previous two exercise gives:
+\begin{theorem}
+	[Sections ``are'' just compatible germs]
+	Let $\SF$ be a sheaf.
+	There is a natural bijection between
+	\begin{itemize}
+		\ii sections of $\SF(U)$, and
+		\ii sequences of compatible germs over $U$.
+	\end{itemize}
+\end{theorem}
+This is in exact analogy to the way that e.g.\
+a smooth real-valued function on $U$ is a choice
+of real number $f(p) \in \RR$ at each point $p \in U$
+satisfying a local smoothness condition.
+
+Thus the notion of stalks is what lets us recover the viewpoint
+that sections are ``functions''.  Therefore for theoretical purposes,
+\begin{moral}
+	You should usually think of a section $s \in \SF(U)$ as a sequence of germs.
+\end{moral}
+In particular, this makes restriction morphisms easy to deal with:
+just truncate the sequence of germs!
+
 \section{Sheafification}
 \prototype{The pre-sheaf of locally constant functions
 	becomes the sheaf of constant functions.}
+
 Now that we have the language of germs,
 we can define the so-called sheafification.
 The idea is that if $\SF$ is the pre-sheaf of ``functions with property $P$''
@@ -359,7 +458,7 @@ We have already seen two examples of this:
 	\listhack
 	\begin{enumerate}[(a)]
 		\ii If $X$ is a topological space,
-		and $\SF$ is the pre-sheaf of constant functions on $X$,
+		and $\SF$ is the pre-sheaf of constant functions on open sets of $X$,
 		then $\SF\sh$ is the sheaf of locally constant functions.
 
 		\ii If $V$ is an affine variety,
@@ -370,24 +469,9 @@ We have already seen two examples of this:
 \end{example}
 
 So how do we encode ``locally $P$''?
-The way we do this is by considering a sequence of germs,
-one at every point, such that at any point they can locally be put
-together to form a section.
-
-\begin{definition}
-	Let $\SF$ be pre-sheaf.
-	For an open set $U$, a sequence $(g_p)_{p \in U}$ of germs
-	($g_p \in \SF_p$) is said to be \vocab{compatible} if
-	they can be ``locally collated'':
-	\begin{quote}
-		For any $p \in U$ there exists a $s \in \SF(U_p)$
-		such that $[s]_q = g_q$ for each $q \in U_p$.
-		(Here $U_p$ is any neighborhood of $p$.)
-	\end{quote}
-	Intuitively, the germs should ``collate together'' to some section near
-	each \emph{individual} point $p$
-	(but not necessarily to a section in $\SF(U)$).
-\end{definition}
+Answer: we saw last time that for a sheaf $\SF$,
+compatible germs biject to sections.
+So we \emph{force} this to be true by defining:
 \begin{definition}
 	The \vocab{sheafification} $\SF\sh$ of a pre-sheaf $\SF$ is defined by
 	\[ \SF\sh(U) =
@@ -398,16 +482,16 @@ together to form a section.
 	Reconcile this definition with the two examples we gave.
 \end{exercise}
 \begin{abuse}
-	Technically I haven't told you what the restriction morphisms of $\SF(U)$
-	are but, they are not hard to guess.
+	Technically I haven't told you what the restriction morphisms
+	of $\SF\sh(U)$ are but, they are not hard to guess.
 	I'll usually be equally sloppy in the future:
-	when defining a sheaf $\FF$, I'll only say what $\FF(U)$ is,
-	with the restriction morphisms $\FF(U_2) \to \FF(U_1)$ being implicit.
+	when defining a sheaf $\SF$, I'll only say what $\SF(U)$ is,
+	with the restriction morphisms $\SF(U_2) \to \SF(U_1)$ being implicit.
 \end{abuse}
 The construction is contrived so that given a section
 $(g_p)_{p \in U} \in \SF\sh(U)$ the germ at a point $p$ is $g_p$:
 \begin{lemma}
-	[Pre-Sheaves and Sheaves Have the Same Stalk]
+	[Pre-sheaves and sheaves have the same stalk]
 	\label{lem:pre_sheaf_stalk}
 	Let $\SF$ be a pre-sheaf and $\SF\sh$ its sheafification.
 	Let $q \in U$ with $U$ an open set.
@@ -416,15 +500,65 @@ $(g_p)_{p \in U} \in \SF\sh(U)$ the germ at a point $p$ is $g_p$:
 \end{lemma}
 \begin{proof}
 	A germ in $(\SF\sh)_q$ looks like 
-	$\left( U, (g_p)_{p \in U} \right)$, where $g_p$ are germs of $\SF_p$.
+	$\left( (g_p)_{p \in U}, U \right)$,
+	where $g_p = (s_p, U_p)$ are themselves germs of $\SF_p$.
 	Then the isomorphism is given by
-	\[ \left( U, (g_p)_{p \in U} \right) \mapsto g_q \in \SF_q. \]
+	\[ \left( (g_p)_{p \in U}, U \right) \mapsto g_q \in \SF_q. \]
 	The inverse map is given by for each $g = (s,U) \in \SF_q$ by
-	\[ g \mapsto \left( (g)_{p \in U}, U \right) \]
+	\[ g \mapsto \left( (g)_{p \in U}, U \right) \in (\SF\sh)_q \]
 	i.e.\ the sequence of germs is the constant sequence.
 \end{proof}
 
-\section{Local Rings}
+We'll later see that if $\SF$ is already a sheaf, then $\SF\sh = \SF$.
+
+\section{Morphisms of sheaves}
+First, recall that a sheaf is a contravariant functor (pre-sheaf)
+with extra conditions. In light of this, it is not hard to guess
+the definition of a morphism of pre-sheaves:
+\begin{definition}
+	A \vocab{morphism of (pre-)sheaves} $\alpha : \SF \to \SG$ on the same
+	space $X$ is a \textbf{natural transformation} of the underlying functors.
+	Isomorphism of sheaves is defined in the usual way.
+\end{definition}
+\begin{ques}
+	Show that this amounts to: for each $U \subseteq X$ we need to specify
+	a morphism $\alpha_U : \SF(U) \to \SG(U)$ such that the diagram
+	\begin{diagram}
+		\SF(U_2) & \rTo^{\alpha_{U_2}} & \SG(U_2) \\
+		\dTo^{\res_{U_1, U_2}} && \dTo_{\res_{U_1, U_2}} \\
+		\SF(U_1) & \rTo_{\alpha_{U_1}} & \SG(U_1)
+	\end{diagram}
+	commutes any time that $U_1 \subseteq U_2$.
+\end{ques}
+However, in the sheaf case we like stalks more than sections because
+they are theoretically easier to think about.
+And in fact:
+\begin{proposition}
+	[Morphisms determined by stalks]
+	A morphism of sheaves $\alpha : \SF \to \SG$ induces a morphism of stalks
+	\[ \alpha_p : \SF_p \to \SG_p \]
+	for every point $p \in X$.
+	Moreover, the sequence $(\alpha_p)_{p \in X}$ determines $\alpha$ uniquely.
+\end{proposition}
+\begin{proof}
+	The morphism $\alpha_p$ itself is just
+	$(s, U) \xmapsto{\alpha_p} (\alpha_U(s), U)$.
+	\begin{ques}
+		Show this is well-defined.
+	\end{ques}
+	Now suppose $\alpha , \beta : \SF \to \SG$ satisfy $\alpha_p = \beta_p$
+	for every $p$. We want to show $\alpha_U(s) = \beta_U(s)$
+	for every $s \in U$.
+	\begin{ques}
+		Verify this using the description of sections
+		as sequences of germs. \qedhere
+	\end{ques}
+\end{proof}
+Thus a morphism of sheaves can be instead modelled as a morphism
+of all the stalks. We will see later on that this viewpoint is quite useful.
+
+
+\section{Local rings, and locally ringed spaces}
 \prototype{Smooth functions $f$ on $X \subseteq \RR^n$ have invertible
 germs at $p$ unless $f(p) = 0$.}
 The stalks of the examples we produced above are special types
@@ -458,13 +592,15 @@ then one can construct the function $1/s$ in a neighborhood of $p$.
 So \textbf{every element of $\SF_p \setminus \mm_p$ is a unit};
 $\mm_p$ is in fact the only maximal ideal!
 
-More generally, any time a sheaf $\SF$ is of the form
-``nice field-valued functions'',
-the stalk $\SF_p$ usually has a maximal ideal
-consisting of the germs vanishing at $p$.
+More generally,
+\begin{moral}
+	If $\SF$ consists of ``field-valued functions'',
+	the stalk $\SF_p$ probably has a maximal ideal
+	consisting of the germs vanishing at $p$.
+\end{moral}
 The discussion above implies, for example, the following.
 \begin{proposition}
-	[Stalks Are Often Local Rings]
+	[Stalks are often local rings]
 	The stalks of each of the following types of sheaves are local rings:
 	\begin{enumerate}[(a)]
 		\ii Sheaves of continuous real/complex functions on a topological space
@@ -473,7 +609,6 @@ The discussion above implies, for example, the following.
 	\end{enumerate}
 \end{proposition}
 
-\section{Locally Ringed Space}
 We can now define:
 \begin{definition}
 	A \vocab{ringed space} is a topological space $X$ equipped
@@ -492,7 +627,7 @@ affine variety could be built into a locally ringed space. Hooray!
 \end{abuse}
 
 
-\section{(Optional) Defining the Morphisms}
+\section{(Optional) Defining the morphisms}
 Finally, it remains to define a morphism of locally ringed space.
 To do this we have to build up in several steps.
 
@@ -505,28 +640,7 @@ To do this we have to build up in several steps.
 	of morphisms of locally ringed spaces''.
 \end{remark}
 
-\subsection*{Morphisms of Pre-Sheaves and Sheaves}
-First, recall that a sheaf is a contravariant functor (pre-sheaf)
-with extra conditions. In light of this, it is not hard to guess
-the definition of a morphism of pre-sheaves:
-\begin{definition}
-	A \vocab{morphism of (pre-)sheaves} $\alpha : \SF \to \SG$ on the same
-	space $X$ is a \textbf{natural transformation} of the underlying functors.
-	Isomorphism of sheaves is defined in the usual way.
-\end{definition}
-\begin{ques}
-	Show that this amounts to: for each $U \subseteq X$ we need to specify
-	a morphism $\alpha_U : \SF(U) \to \SG(U)$ such that the diagram
-	\begin{diagram}
-		\SF(U_2) & \rTo^{\alpha_{U_2}} & \SG(U_2) \\
-		\dTo^{\res_{U_1, U_2}} && \dTo_{\res_{U_1, U_2}} \\
-		\SF(U_1) & \rTo_{\alpha_{U_1}} & \SG(U_1)
-	\end{diagram}
-	commutes any time that $U_1 \subseteq U_2$.
-\end{ques}
-
-\subsection*{Morphisms of Ringed Spaces}
-This is more involved.
+\subsection*{Morphisms of ringed spaces}
 Suppose we have ringed spaces $X = (X, \OO_X)$ and $Y = (Y, \OO_Y)$,
 and we want to define a map
 \[ f : X \to Y. \]
@@ -581,7 +695,7 @@ $f^\ast_U : \OO_Y(U) \to (f_\ast \OO_X)(U) = \OO_X(f\pre(U))$
 for every $U \subseteq Y$, satisfying
 the axioms for a natural transformation.
 
-\subsection*{Morphisms of Locally Ringed Spaces}
+\subsection*{Morphisms of locally ringed spaces}
 Last step!
 Suppose now that $(X, \OO_X)$ and $(Y, \OO_Y)$ are locally ringed spaces.
 Thus we need to deal with some information about the stalks.
@@ -619,7 +733,7 @@ Isomorphisms of (locally) ringed spaces are defined in the usual way.
 	Prove that if $\SF$ is a sheaf, then $\SF \cong \SF\sh$.
 \end{problem}
 \begin{sproblem}
-	[Global Section Functor]
+	[Global section functor]
 	We consider the category $\catname{ShRing}_X$ of sheaves of rings on a space $X$.
 	The \vocab{global section functor}, denoted $\Gamma(X,-)$,
 	which sends each sheaf $\SF$ to the ring $\SF(X)$.

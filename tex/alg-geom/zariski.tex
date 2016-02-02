@@ -1,4 +1,4 @@
-\chapter{Affine Varieties as Ringed Spaces (In Progress)}
+\chapter{Affine varieties as ringed spaces}
 As in the previous chapter, we are working only over affine varieties in $\CC$ for simplicity.
 
 \section{Synopsis}
@@ -49,7 +49,7 @@ until we have all the data of a ringed space.
 In later chapters, these ideas will grow up to
 become the core of modern algebraic geometry: the \emph{scheme}.
 
-\section{The Zariski Topology on $\Aff^n$}
+\section{The Zariski topology on $\Aff^n$}
 \prototype{In $\Aff^1$, closed sets are finite collections of points.
 In $\Aff^2$, a nonempty open set is the whole space minus some finite collection of curves/points.}
 
@@ -67,7 +67,7 @@ we put a much more bizarre topology.
 \end{definition}
 
 \begin{example}
-	[Zariski Topology on $\Aff^1$]
+	[Zariski topology on $\Aff^1$]
 	Let us determine the open sets of $\Aff^1$,
 	which as usual we picture as a straight line
 	(ignoring the fact that $\CC$ is two-dimensional).
@@ -109,7 +109,7 @@ Thus, the picture of a ``typical'' open set $\Aff^1$ might be
 \end{center}
 It's everything except a few marked points!
 
-\begin{example}[Zariski Topology on $\Aff^2$]
+\begin{example}[Zariski topology on $\Aff^2$]
 	Similarly, in $\Aff^2$, the interesting closed sets are going to consist of finite unions
 	(possibly empty) of the following:
 	\begin{itemize}
@@ -150,7 +150,7 @@ That is, I need to verify briefly that
 \end{itemize}
 Well, closed sets are the same as varieties, so we already know this!
 
-\section{The Zariski Topology on Affine Varieties}
+\section{The Zariski topology on affine varieties}
 \prototype{If $V = \VV(y-x^2)$ is a parabola, then $V$ minus $(1,1)$ is open in $V$.
 Also, the plane minus the origin is $D(x) \cup D(y)$.}
 
@@ -158,7 +158,7 @@ As we said before, by considering a variety $V$ as a subspace of $\Aff^n$
 it inherits the Zariski topology.
 One should think of an open subset of $V$ as ``$V$ minus a few Zariski-closed sets''.
 For example:
-\begin{example}[Open Set of a Variety]
+\begin{example}[Open set of a variety]
 	Let $V = \VV(y-x^2) \subseteq \Aff^2$ be a parabola,
 	and let $U = V \setminus \{(1,1)\}$. We claim $U$ is open in $V$.
 	\begin{center}
@@ -190,7 +190,7 @@ We'll finish by giving a nice basis of the Zariski topology.
 \end{definition}
 \cite{ref:vakil} suggests remembering the notation $D(f)$ as ``doesn't-vanish set''.
 \begin{example}
-	[Examples of (Unions of) Distinguished Open Sets]
+	[Examples of (unions of) distinguished open sets]
 	\listhack
 	\begin{enumerate}[(a)]
 		\ii If $V = \Aff^1$ then $D(x)$ corresponds to a line minus a point.
@@ -207,7 +207,7 @@ We'll finish by giving a nice basis of the Zariski topology.
 	Give an example of an open set of $\Aff^2$ which is not a distinguished open set.
 \end{exercise}
 
-\section{Coordinate Rings}
+\section{Coordinate rings}
 \prototype{If $V = \VV(y-x^2)$ then $\CC[V] = \CC[x,y]/(y-x^2)$.}
 
 The next thing we do is consider the functions from $V$ to the base field $\CC$.
@@ -238,8 +238,8 @@ Then the two functions
 are actually the same function!
 We have to ``mod out'' by the ideal $I$ which generates $V$.
 This leads us naturally to the following:
-\begin{theorem}[Coordinate Rings Correspond to Ideal]
-	Let $I$ be a semiprime ideal, and $V = \VV(I) \subseteq \Aff^n$.
+\begin{theorem}[Coordinate rings correspond to ideal]
+	Let $I$ be a radical ideal, and $V = \VV(I) \subseteq \Aff^n$.
 	Then \[ \CC[V] \cong \CC[x_1, \dots, x_n] / I.  \]
 \end{theorem}
 \begin{proof}
@@ -249,7 +249,7 @@ This leads us naturally to the following:
 \end{proof}
 Thus properties of a variety $V$ correspond to properties of the ring $\CC[V]$.
 
-\section{The Sheaf of Regular Functions}
+\section{The sheaf of regular functions}
 \prototype{Let $V = \Aff^1$, $U = V \setminus \{0\}$. Then $1/x \in \OO_V(U)$ is regular on $U$.}
 
 Let $V$ be an affine variety and let $\CC[V]$ be its coordinate ring.
@@ -293,7 +293,7 @@ a ``global'' representation of a regular function as a quotient,
 and we will not need to fuss with the $p$'s.
 For example:
 \begin{example}
-	[Regular Functions]
+	[Regular functions]
 	\listhack
 	\begin{enumerate}[(a)]
 		\ii Any function in $f \in \CC[V]$ is clearly regular,
@@ -308,7 +308,7 @@ For example:
 \end{example}
 The ``local'' clause with $p$'s is still necessary, though.
 \begin{example}
-	[Requiring Local Representations]
+	[Requiring local representations]
 	\label{ex:local_rep}
 	Consider the variety
 	\[ V = \VV(ab-cd) \subseteq \Aff^4 \]
@@ -335,7 +335,7 @@ general construction called \emph{sheafification},
 in which ``sheaves of functions which are $P$'' are transformed
 into ``sheaves of functions which are \emph{locally} $P$''.
 
-\section{Regular Functions on Distinguished Open Sets}
+\section{Regular functions on distinguished open sets}
 \prototype{Regular functions on $\Aff^1 \setminus \{0\}$ are $P(x) / x^n$.}
 The division-by-zero, as one would expect,
 essentially prohibits regular functions on the entire space $V$;
@@ -345,7 +345,7 @@ Actually, we have the following more general result which computes the
 regular functions on distinguished open sets.
 
 \begin{theorem}
-	[Regular Functions on Distinguished Open Sets]
+	[Regular functions on distinguished open sets]
 	\label{thm:reg_func_distinguish_open}
 	Let $V \subset \Aff^n$ be an affine variety
 	and $D(g)$ a distinguished open subset of it.
@@ -408,7 +408,7 @@ are just the same as those in the coordinate ring:
 you don't gain anything new by allowing it to be locally a quotient.
 (The same goes for distinguished open sets.)
 
-\begin{example}[Regular Functions on Distinguished Open Sets]
+\begin{example}[Regular functions on distinguished open sets]
 	\listhack
 	\begin{enumerate}[(a)]
 		\ii Taking $g=1$ we recover $\OO_V(V) \cong \CC[V]$ for any affine variety $V$.
@@ -424,9 +424,9 @@ you don't gain anything new by allowing it to be locally a quotient.
 \end{ques}
 
 The regular functions will become of crucial importance
-once we begin defining a scheme in the next chapter.
+once we define a scheme in the next chapter.
 
-\section{Baby Ringed Spaces}
+\section{Baby ringed spaces}
 In summary, given an affine variety $V$ we have
 added the following structure to it:
 \begin{itemize}
