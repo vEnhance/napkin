@@ -61,7 +61,7 @@ The examples are much more important.
 		with the usual addition and multiplication.
 		\ii The integers modulo $n$ are also a ring
 		with the usual addition and multiplication.
-		We denote it by $\ZZ / n\ZZ$ for reasons that we'll explain momentarily.
+		We also denote it by $\Zc n$.
 		\ii The \vocab{trivial ring} is the ring $R$ with one element $0_R = 1_R$.
 	\end{enumerate}
 \end{example}
@@ -81,24 +81,26 @@ Here are some more examples of rings.
 	Addition and multiplication are done exactly in the way you would expect.
 \end{example}
 \begin{remark}
-	[Digression] happily, polynomial division also does what we expect: if $p(x) \in R[x]$
-	and $p(a) = 0$, then $(x-a)q(x) = p(x)$ for some polynomial $q$.
+	[Digression] Happily, polynomial division also does what we expect:
+	if $p(x) \in R[x]$ and $p(a) = 0$,
+	then $(x-a)q(x) = p(x)$ for some polynomial $q$.
 	Proof: just do polynomial long division.
 	With that, note the caveat that 
-	\[ x^2-1 \equiv (x-1)(x+1) \pmod 8 \] has \emph{four} roots $1$, $3$, $5$, $7$ in
-	$\ZZ/8\ZZ$!
+	\[ x^2-1 \equiv (x-1)(x+1) \pmod 8 \]
+	has \emph{four} roots $1$, $3$, $5$, $7$ in $\Zc8$.
 
 	The problem is that $2 \cdot 4 = 0$ even though $2$ and $4$ are not zero;
 	we call $2$ and $4$ \emph{zero divisors} for that reason.
-	In an \emph{integral domain} (a ring without zero divisors), this pathology goes away,
+	In an \emph{integral domain} (a ring without zero divisors),
+	this pathology goes away,
 	and just about everything you know about polynomials carries over.
 	(I'll say this all again next section.)
 \end{remark}
 \begin{example}
 	[Multi-variable polynomial ring]
 	We can consider polynomials in $n$ variables with coefficients in $R$,
-	denoted \[ R[x_1, \dots, x_n]. \]
-	(We can even adjoin infinitely many $x$'s if we like, but alas\dots)
+	denoted $R[x_1, \dots, x_n]$.
+	(We can even adjoin infinitely many $x$'s if we like!)
 \end{example}
 \begin{example}
 	[Gaussian integers are a ring]
@@ -106,6 +108,20 @@ Here are some more examples of rings.
 	with integer real and imaginary parts, that is
 	\[ \ZZ[i] = \left\{ a+bi \mid a,b \in \ZZ \right\}. \]
 \end{example}
+\begin{example}
+	[Product ring]
+	\label{ex:product_ring}
+	Given two rings $R$ and $S$ the \vocab{product ring},
+	denoted $R \times S$, is defined as ordered pairs $(r,s)$
+	with both operations done component-wise.
+	For example, the Chinese remainder theorem says
+	that $\Zc{15} \cong \Zc3 \times \Zc5$.
+\end{example}
+\begin{remark}
+	Equivalently, we can define $R \times S$ as the abelian group $R \oplus S$,
+	and endow it with the multiplication where $r \cdot s = 0$
+	for $r \in R$, $s \in S$.
+\end{remark}
 
 \section{Integral domains and fields}
 \prototype{$\ZZ$ is an integral domain; $\QQ$ is a field.}
@@ -166,7 +182,7 @@ then we can multiply by $b\inv$ to get $a = 0$.
 But many other rings we consider like $\ZZ$ and $\ZZ[x]$ also have this property,
 despite not being full-fledged fields.
 
-Not for all rings though: in $\ZZ/15\ZZ$, $3 \cdot 5 \equiv 0 \pmod{15}$.
+Not for all rings though: in $\Zc{15}$, $3 \cdot 5 \equiv 0 \pmod{15}$.
 If $a, b \neq 0$ but $ab=0$ then we say $a$ and $b$ are \vocab{zero divisors}
 of the ring $R$.
 So we give a name to such rings.
@@ -185,7 +201,7 @@ So we give a name to such rings.
 		of $P$ or $Q$ is zero.
 		\ii $\ZZ[x]$ is also an example of an integral domain.
 		In fact, $R[x]$ is an integral domain for any integral domain $R$ (why?).
-		\ii $\ZZ/n\ZZ$ is a field exactly when $n$ is prime.
+		\ii $\Zc n$ is a field exactly when $n$ is prime.
 		When $n$ is not prime, it is a ring but not an integral domain.
 	\end{enumerate}
 \end{example}
@@ -327,7 +343,7 @@ More explicitly,
 \end{definition}
 \begin{example}[$\ZZ/5\ZZ$]
 	The integers modulo $5$ formed by ``modding out additively by $5$''
-	are for this reason denoted $\ZZ / 5\ZZ$.
+	are the $\Zc 5$ we have already met.
 \end{example}
 But here's an important point:
 just as we don't actually think of $\ZZ/5\ZZ$ as consisting of
@@ -667,28 +683,37 @@ to what you might see in an olympiad.
 	Prove that a finite integral domain is in fact a field!
 	\label{prob:finite_domain_field}
 \end{sproblem}
-\begin{problem}
-	Prove the Hilbert basis theorem.
-\end{problem}
+
 \begin{sproblem}
-	Prove that any nonzero prime ideal of $\ZZ[\sqrt 2]$ is maximal.
-	(This is starred since the main idea of the solution will get used extensively in
-	the algebraic NT chapters, even though the problem itself won't.)
+	[Krull's theorem]
+	Let $R$ be a ring and $J$ an ideal.
+	\begin{enumerate}[(a)]
+		\ii Prove that if $R$ is Noetherian,
+		then $J$ is contained in a maximal ideal $I$.
+		\ii Use Zorn's lemma to prove the result if $R$ isn't Noetherian.
+	\end{enumerate}
+	\begin{hint}
+		Just keep on adding in elements to get an ascending chain.
+	\end{hint}
+	\begin{sol}
+		For part (b), look at the poset of \emph{proper} ideals.
+		Apply Zorn's lemma (again using a union trick to verify the condition;
+		be sure to verify that the union is proper!).
+		In part (a) we are given no ascending infinite chains,
+		so no need to use Zorn's lemma.
+	\end{sol}
+\end{sproblem}
+
+\begin{sproblem}
+	Prove that any nonzero prime ideal of $\ZZ[\sqrt 2]$ is also a maximal ideal.
+	%(This is starred since the main idea of the solution will get used extensively in
+	%the algebraic NT chapters, even though the problem itself won't.)
 	\label{prob:dedekind_sample}
 \end{sproblem}
 
 \begin{problem}
-	[Krull's theorem]
-	Let $R$ be a ring and $J$ an ideal.
-	Then $J$ is contained in some maximal ideal $I$.
-	\begin{hint}
-		Zorn.
-	\end{hint}
-	\begin{sol}
-		Look at the poset of \emph{proper} ideals.
-		Apply Zorn's lemma (again using a union trick to verify the condition;
-		be sure to verify that the union is proper!).
-	\end{sol}
+	\gim
+	Prove the Hilbert basis theorem.
 \end{problem}
 
 \begin{problem}[BC] % from Brian Chen

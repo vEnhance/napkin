@@ -13,6 +13,7 @@
 
 \section{Blah}
 \label{thm:reg_func_distinguish_open}
+\label{ex:product_ring}
 
 \chapter{Sheaves and ringed spaces}
 Most of the complexity of the affine variety $V$ earlier comes from $\OO_V$.
@@ -762,16 +763,17 @@ Isomorphisms of (locally) ringed spaces are defined in the usual way.
 \begin{sproblem}
 	\label{prob:finite_sheaf}
 	Suppose $X$ is a finite topological space equipped with the discrete topology
-	(say, a finite set of points).
+	(i.e.\ a finite set of points).
 	Let $\SF$ be a sheaf on $X$.
 	Show that for any open set $U$, we have a ring isomorphism
 	\[ \SF(U) \cong \prod_{p \in U} \SF_p. \]
-	Here the direct product ring has its operations defined component-wise.
+	Here the product is the product ring as defined in \Cref{ex:product_ring}.
 	\begin{hint}
 		We have $\SF_p \cong \SF(\{p\})$.
 		If $X$ is discrete, then all sequences of germs are compatible.
 	\end{hint}
 \end{sproblem}
+
 \chapter{Schemes}
 Now that we understand sheaves well, we can readily define the scheme.
 It will be a locally ringed space, so we need to define
