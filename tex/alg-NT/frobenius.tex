@@ -19,9 +19,9 @@ according to the string of isomorphisms
 	\Gal\left( (\OO_K/\pp) / \FF_p \right)
 	\cong \Gal\left( \FF_{p^f} / \FF_p \right)
 	\cong \left< x \mapsto x^p \right>
-	\cong \ZZ_{f} .
+	\cong \Zc{f} .
 \]
-If we take the generator of $\ZZ_f$, we get the so-called \emph{Frobenius element},
+If we take the generator of $\Zc f$, we get the so-called \emph{Frobenius element},
 which will turn out to be absurdly powerful.
 
 Throughout this chapter $K/\QQ$ is a Galois extension with Galois group $G$,
@@ -51,7 +51,7 @@ Let me draw the picture before I say what I'm going to do:
 		dot("$T$", (5,-1.5), dir(45));
 		dot("$T^2$", (5,-0.5), dir(45));
 		draw( (1,0)--(4,0), Arrows );
-		label("$\mathbb Z_f = \left<T \mid T^f=1\right>$", (5,1.8), dir(90));
+		label("$\left<T \mid T^f=1\right>$", (5,1.8), dir(90));
 
 		draw( (0.2,-1.5)--(4.8,-1.5), dashed, EndArrow);
 		label("$\theta(\operatorname{Frob}_{\mathfrak p}) = T$", (2.8,-1.5), dir(-90));
@@ -59,7 +59,7 @@ Let me draw the picture before I say what I'm going to do:
 		label("$\cong$", (2.5,0), dir(-90));
 	\end{asy}
 \end{center}
-The point is to take the generator in $\ZZ_f$ and see who it goes to in $G$ under $\theta$.
+The point is to take the generator in $\Zc f$ and see who it goes to in $G$ under $\theta$.
 We distinguish this element as $\Frob_\pp$.
 The following theorem makes this all precise:
 \begin{theorem}[The Frobenius element]
@@ -262,7 +262,7 @@ You should recall from various starred problems that
 	In other words, the automorphisms of $L/\QQ$ just shuffle around the $q$th roots of unity.
 	In fact the Galois group consists exactly of the elements $\{\sigma_n\}$, namely
 	\[ \Gal(L/\QQ) = \{ \sigma_n \mid n \not\equiv 0 \pmod q \}. \]
-	As a group, \[ \Gal(L/\QQ) = \Zm q \cong \ZZ_{q-1}. \]
+	As a group, \[ \Gal(L/\QQ) = \Zm q \cong \Zc{q-1}. \]
 \end{itemize}
 This is surprisingly nice, because \textbf{elements of $\Gal(L/\QQ)$ look
 a lot like Frobenius endomorphisms already}.
