@@ -248,21 +248,32 @@ With the assumption of characteristic zero, our earlier proof works.
 	Any irreducible polynomial in a characteristic zero field is separable.
 \end{lemma}
 Unfortunately, this lemma is false if the ``characteristic zero'' condition is dropped.
-So in what follows, I'll have the word ``separable'' attached to a lot of things.
 
-The reason it's called \emph{separable} is (I think) this picture:
-I have a polynomial and I want to break it into irreducible parts.
-Normally, if I have a double root in a polynomial, that means it's not irreducible.
-But in characteristic $p > 0$ this fails.
-So inseparable polynomials are strange when you think about them: somehow
-you have double roots that can't be separated from each other.
+\begin{remark}
+	The reason it's called \emph{separable} is (I think) this picture:
+	I have a polynomial and I want to break it into irreducible parts.
+	Normally, if I have a double root in a polynomial, that means it's not irreducible.
+	But in characteristic $p > 0$ this fails.
+	So inseparable polynomials are strange when you think about them: somehow
+	you have double roots that can't be separated from each other.
+\end{remark}
 
 We can get this to work for any field extension in which separability is not an issue.
 \begin{definition}
 	A \vocab{separable extension} $K/F$ is one in which every irreducible
 	polynomial in $F$ is separable (for example, if $F$ has characteristic zero).
+	A field $F$ is \vocab{perfect} if any finite field extension $K/F$ is separable.
 \end{definition}
-Then, we can repeat the previous proof verbatim to obtain:
+In fact, the following theorem holds (which we will see in the next chapter):
+\begin{theorem}
+	[Finite fields are perfect]
+	Suppose $F$ is a field with finitely many elements. Then it is perfect.
+\end{theorem}
+Thus, we will almost never have to worry about separability,
+since every field we see is perfect (either finite or characteristic $0$).
+So the inclusion of the word ``separable'' is mostly a formality.
+
+Proceeding onwards, we obtain
 \begin{theorem}[The $n$ embeddings of any separable extension]
 	Let $K/F$ be a separable extension of degree $n$ and let $\ol F$ be an algebraic closure of $F$.
 	Then there are exactly $n$ field homomorphisms $K \injto \ol F$,
