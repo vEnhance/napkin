@@ -26,7 +26,7 @@ Its corollaries include
 \begin{itemize}
 	\ii The classification theorem for finitely generated abelian groups,
 	\ii The Jordan decomposition of a matrix from before,
-	\ii Another canonical form for a matrix: ``rational canonical form''.
+	\ii Another canonical form for a matrix: ``Frobenius normal form''.
 \end{itemize}
 
 \section{Finitely generated abelian groups}
@@ -443,12 +443,48 @@ the PID condition more or less lets you perform a Euclidean algorithm.
 
 With the Smith normal form, we have in the original situation that
 \[ M \cong R^{\oplus d} / \img T \]
-where $T$ can be written in Smith normal form;
-this completes the proof of the structure theorem.
+and applying the theorem to $T$ completes the proof of the structure theorem.
 
 \section\problemhead
-Frobenius normal form
-
-Jordan normal form
+Now, we can apply our structure theorem!
+\begin{dproblem}
+	[Finite-dimensional vector spaces are all isomorphic]
+	A vector space $V$ over a field $k$ has a finite spanning set of vectors.
+	Show that $V \cong k^{\oplus n}$.
+	\begin{hint}
+		In the structure theorem, $k / (s_i) \in \{0,k\}$.
+	\end{hint}
+\end{dproblem}
+\begin{dproblem}
+	[Frobenius normal form]
+	Let $T : V \to V$ where $V$ is a finite-dimensional vector space
+	over an arbitrary field $k$ (not necessarily algebraically closed).
+	Show that one can write $T$ as a block-diagonal matrix whose blocks
+	are all of the form
+	\[ 
+		\begin{pmatrix}
+			0 & 0 & 0 & \dots & 0 & \ast  \\
+			1 & 0 & 0 & \dots & 0 & \ast  \\
+			0 & 1 & 0 & \dots & 0 & \ast  \\
+			\vdots&\vdots&\vdots&\ddots&\vdots&\vdots \\
+			0 & 0 & 0 & \dots & 1 & \ast  \\
+		\end{pmatrix}.
+	\]
+	(View $V$ as a $k[x]$-module with action $x \cdot v = T(v)$.)
+	\begin{hint}
+		By theorem $V \cong \bigoplus_i k[x] / (s_i)$ for some polynomials $s_i$.
+		Write each block in the form described.
+	\end{hint}
+\end{dproblem}
+\begin{dproblem}
+	[Jordan normal form]
+	Let $T : V \to V$ where $V$ is a finite-dimensional vector space
+	over an arbitrary field $k$ which is algebraically closed.
+	Prove that $T$ can be written in Jordan form.
+	\begin{hint}
+		Copy the previous proof, except using the other form of the structure theorem.
+		Since $k[x]$ is algebraically closed each $p_i$ is a linear factor.
+	\end{hint}
+\end{dproblem}
 
 \end{document}
