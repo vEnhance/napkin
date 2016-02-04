@@ -294,6 +294,7 @@ all representations are completely reducible.
 	so by \Cref{prob:idempotent} we have $V = \ker P \oplus \img P$,
 	but both $\ker P$ and $\img P$ are subrepresentations as desired.
 \end{proof}
+\todo{better proof from 18.757 for complex case}
 
 \section{Example: the representations of $\CC[S_3]$}
 We compute all irreps of $\CC[S_3]$.
@@ -346,6 +347,23 @@ we just get that $V = \refl_0 \oplus \CC_{\text{triv}}$.
 	\begin{hint}
 		They are all one-dimensional, $n$ of them.
 		What are the homomorphisms $\Zc n \to \CC^\times$?
+	\end{hint}
+\end{problem}
+
+\begin{problem}
+	[Maschke requires $|G|$ finite]
+	Consider the representation of the group $\RR$
+	on $\CC^{\oplus 2}$ under addition by a homomorphism
+	\[ 
+		\RR \to \Mat_2(\CC)
+		\quad\text{by}\quad
+		t \mapsto 
+		\begin{pmatrix} 1 & t \\ 0 & 1 \end{pmatrix}.
+	\]
+	Show that this representation is not irreducible,
+	but it is indecomposable.
+	\begin{hint}
+		The span of $(1,0)$ is a subrepresentation.
 	\end{hint}
 \end{problem}
 

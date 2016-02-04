@@ -552,9 +552,11 @@ Let $W_1 = M_1``(V)$ and $W_2 = M_2``(V)$ be the images of $M_1$ and $M_2$.
 	$W_1 \cong W_2$.
 \end{claim}
 \begin{proof}
-	Check that the maps $W_1 \taking{\times M_4} W_2$
-	and $W_2 \taking{\times M_3} W_1$ are
-	well-defined and mutually inverse.
+	Check that the maps 
+	\[ W_1 \taking{\times M_4} W_2
+		\quad\text{and}\quad
+		W_2 \taking{\times M_3} W_1 \]
+	are well-defined and mutually inverse.
 \end{proof}
 Now, let $e_1, \dots, e_n$ be basis elements of $W_1$;
 thus $M_4e_1$, \dots, $M_4e_n$ are basis elements of $W_2$.
@@ -569,11 +571,11 @@ of smaller dimension at all!
 \section\problemhead
 \begin{dproblem}
 	\label{prob:one_dim}
-	Suppose we have one-dimensional representations
+	Suppose we have \emph{one-dimensional} representations
 	$V_1 = (V_1, \rho_1)$ and $V_2 = (V_2, \rho_2)$ of $A$.
 	Show that $V_1 \cong V_2$ if and only if
-	$\det\rho_1(a) = \det\rho_2(a)$ for every $a \in A$
-	(intuitively, $\rho_1$ and $\rho_2$ are exactly the same).
+	$\rho_1(a)$ and $\rho_2(a)$ are multiplication
+	by the same constant for every $a \in A$.
 \end{dproblem}
 
 \begin{dproblem}
@@ -590,7 +592,9 @@ of smaller dimension at all!
 	\label{prob:reg_mat}
 	Let $(V, \rho)$ be a representation of $A$.
 	Then $\Mat(V)$ is a representation of $A$
-	with action given by $a \cdot T = \rho(a) \circ T$, for $T \in \Mat(V)$.
+	with action given by 
+	\[ a \cdot T = \rho(a) \circ T \]
+	for $T \in \Mat(V)$.
 	\begin{enumerate}[(a)]
 		\ii Show that $\rho : \Reg(A) \to \Mat(V)$ is an intertwining operator.
 		\ii If $V$ is $d$-dimensional, show that $\Mat(V) \cong V^{\oplus d}$
@@ -603,8 +607,9 @@ of smaller dimension at all!
 
 \begin{sproblem}
 	\label{prob:regA_intertwine}
-	Find all intertwining operators $T : \Reg(A) \to \Reg(A)$,
-	where $A$ is a fixed algebra.
+	Fix an algebra $A$.
+	Find all intertwining operators 
+	\[ T : \Reg(A) \to \Reg(A). \]
 	\begin{hint}
 		Right multiplication.
 	\end{hint}
