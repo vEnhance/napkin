@@ -253,12 +253,17 @@ Needless to say, homeomorphism is an equivalence relation.
 You might be surprised that we require $f\inv$ to also be continuous.
 Here's the reason: you can show that if $\phi$ is a homomorphism of groups
 which is a bijection, then so is $\phi\inv$.
-The same is not true for continuous bijections, which is why we need the new condition:
-\begin{exercise}
-	Exhibit a metric space $M$ and a continuous bijection $f : M \to \RR$
-	whose inverse function is not continuous.
-	(Hint: pick $M$ to be a \emph{very large} discrete space.)
-\end{exercise}
+The same is not true for continuous bijections, which is why we need the new condition.
+\begin{example}
+	[Homeomorphism $\neq$ continuous bijection]
+	\begin{enumerate}[(a)]
+		\ii There is a continuous bijection from $[0,1)$ to the circle,
+		but it has no continuous inverse.
+		\ii Let $M$ be a discrete space with size $|\RR|$.
+		Then there is a continuous function $M \to \RR$
+		which certainly has no inverse.
+	\end{enumerate}
+\end{example}
 
 Note that this is the topologist's definition of ``same'' --
 homeomorphisms are ``continuous deformations''.
