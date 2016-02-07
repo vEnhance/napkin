@@ -1,22 +1,35 @@
 \chapter{Semisimple algebras}
 In what follows, assume the field $k$ is algebraically closed.
 
-A \vocab{completely reducible} representation is one which
-can be written as a direct sum of irreducible representations.
-We like these types of representations, because they don't have the
-undesired behavior of being indecomposable while being reducible.
+Fix an algebra $A$ and suppose
+you want to study its representations.
+There's a ``direct sum'' operation that we have,
+so much like we want study prime numbers in particular,
+we want to study irreducible representations in particular
+and then build all the representations of $A$ from there.
 
-Now, we name the good algebras:
-a finite-dimensional algebra $A$ is \vocab{semisimple}
-if all its finite-dimensional representations are completely reducible.
-The culminating point of the chapter is when we
-prove that $A$ is semisimple if and only if
-$A \cong \bigoplus_i \Mat(V_i)$,
-where the $V_i$ are the irreps of $A$ (yes, there are only finitely many!).
+Unfortunately, we have seen (\Cref{exer:irred_not_indecomp})
+that there exists a representation which is not irreducible,
+and yet cannot be broken down as a direct sum (indecomposable).
+This is \emph{weird and bad}, so we want to give a name
+to representations which are more well-behaved.
+We say that a representation is \vocab{completely reducible}
+if it doesn't exhibit this bad behavior.
 
-The goal for the chapter is to examine these in more detail:
-we'll find conditions on algebras $A$ which cause all its representations
-to be completely reducible.
+Even better, we say a finite-dimensional algebra $A$
+is \vocab{semisimple} if all its finite-dimensional
+representations are completely reducible.
+So when we study finite-dimensional representations of
+semisimple algebras $A$, they exhibit the good property
+that we just have to figure out what the irreps are,
+and then piecing them together will give all
+the representations of $A$.
+
+In fact, semisimple algebras $A$ have even nicer properties.
+The culminating point of the chapter is when we prove that
+$A$ is semisimple if and only if $A \cong \bigoplus_i \Mat(V_i)$,
+where the $V_i$ are the irreps of $A$
+(yes, there are only finitely many!).
 
 \section{Schur's lemma continued}
 \prototype{For $V$ irreducible,
@@ -41,7 +54,7 @@ For example, it also tells us that
 The possible maps are $v \mapsto (c_1v_1, c_2v_2)$ for some choice of $c_1, c_2 \in k$.
 
 More generally, suppose $V$ is an irrep and consider
-\[ \Homrep(V^{\oplus m}, V^{\oplus n}). \]
+$\Homrep(V^{\oplus m}, V^{\oplus n})$.
 Intertwining operators are determined completely
 $T : V^{\oplus m} \to V^{\oplus n}$ by the $mn$ choices of compositions
 \begin{diagram}
@@ -108,13 +121,12 @@ finite-dimensional algebras have finitely many irreps.
 	[Jacobson density theorem]
 	Let $(V_1, \rho_1)$, \dots, $(V_r, \rho_r)$ be pairwise nonisomorphic
 	finite-dimensional representations of $A$.
-	Then the map of vector spaces
-	\[ \bigoplus_{i=1}^r \rho_i : A \surjto \bigoplus_{i=1}^r \Mat(V_i) \]
-	is surjective.
+	Then there is a surjective map of vector spaces
+	\[ \bigoplus_{i=1}^r \rho_i : A \surjto \bigoplus_{i=1}^r \Mat(V_i). \]
 \end{theorem}
 The right way to think about this theorem is that
 \begin{moral}
-	The density theorem is the ``Chinese remainder theorem''
+	Density is the ``Chinese remainder theorem''
 	for irreps of $A$.
 \end{moral}
 Recall that in number theory, the Chinese remainder theorem tells us
