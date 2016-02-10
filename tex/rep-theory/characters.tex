@@ -139,7 +139,7 @@ So we can think of each character $\chi_V$ as an element of $(A\ab)^\vee$.
 	which follows from the observation earlier that each $\Mat(V_i)$
 	has a one-dimensional abelianization.
 \end{proof}
-Since $\dim \CC[G]\ab$ is the number of conjugacy classes of $G$,
+Since $G$ has $\dim \CC[G]\ab$ conjugacy classes,
 this completes the proof of (II).
 
 \section{Orthogonality of characters}
@@ -172,7 +172,7 @@ when we looked at the character table of $S_3$.
 We now aim to prove the following orthogonality theorem,
 which will imply (III) and (IV) from earlier.
 \begin{theorem}[Orthogonality]
-	For any finite-dimenisonal complex representations $V$ and $W$
+	For any finite-dimensional complex representations $V$ and $W$
 	of $G$ we have
 	\[ \left< \chi_V, \chi_W \right> = \dim \Homrep(W, V). \]
 	In particular, if $V$ and $W$ are irreps then
@@ -209,6 +209,11 @@ which give a natural way to deal with the quantity $\chi_V(g)\ol{\chi_W(g)}$.
 		(\rho_V(g)(v)) \otimes (\rho_W(g)(w)) \]
 	which extends linearly to define the action of $G$ on all of $V \otimes W$.
 \end{definition}
+\begin{remark}
+	Warning: the above definition does \emph{not} extend to algebras.
+	We might hope that $a \cdot (v \otimes w) = (a \cdot v) \otimes (a \cdot w)$
+	would work, but this is not even linear in $a \in A$.
+\end{remark}
 
 \begin{theorem}
 	[Character traces]
@@ -234,11 +239,10 @@ which give a natural way to deal with the quantity $\chi_V(g)\ol{\chi_W(g)}$.
 	the action of $g$ on $V^\vee$ has eigenvalues
 	$\lambda_1\inv$, $\lambda_2\inv$, \dots, $\lambda_n\inv$.
 	So
-	\begin{align*}
-		\chi_V(g) &= \sum_{i=1}^n \lambda_i \\
-		\chi_{V^\vee}(g) &= \sum_{i=1}^n \lambda_i\inv
-		= \sum_{i=1}^n \ol{\lambda_i}
-	\end{align*}
+	\[
+		\chi_V(g) = \sum_{i=1}^n \lambda_i \quad\text{and}\quad
+		\chi_{V^\vee}(g) = \sum_{i=1}^n \lambda_i\inv = \sum_{i=1}^n \ol{\lambda_i}
+	\]
 	where the last step follows from the identity $|z|=1 \iff z\inv = \ol z$.
 \end{proof}
 \begin{remark}
@@ -247,8 +251,6 @@ which give a natural way to deal with the quantity $\chi_V(g)\ol{\chi_W(g)}$.
 	i.e.\ it is not true for example that $\chi_V(a) = \ol{\chi_V(a)}$
 	if we think of $\chi_V$ as a map $\CC[G] \to \CC$.
 \end{remark}
-
-With this, we can now prove the orthogonality relation.
 \begin{proof}
 	[Proof of orthogonality relation]
 	The key point is that we can now reduce
