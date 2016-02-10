@@ -322,11 +322,29 @@ From this, combined with some deep arithmetic,
 we deduce that we should have $d_1 = d_2 = 1$ and $d_3 = 2$
 or some permutation.
 
-In fact, we can describe these representations explicitly:
+In fact, we can describe these representations explicitly.
+First, we define:
+\begin{definition}
+	Let $G$ be a group.
+	The complex \vocab{trivial group representation} of a group $G$
+	is the one-dimensional representation $\Ctriv = (\CC, \rho)$
+	where $g \cdot v = v$ for all $g \in G$ and $v \in \CC$
+	(i.e.\ $\rho(g) = \id$ for all $g \in G$).
+\end{definition}
+\begin{remark}
+	[Warning] The trivial representation of an \emph{algebra} $A$
+	doesn't make sense for us:
+	we might want to set $a \cdot v = v$ but this isn't linear in $A$.
+	(You \emph{could} try to force it to work by
+	deleting the condition $1_A \cdot v = v$ from our definition;
+	then one can just set $a \cdot v = 0$.
+	But even then $\Ctriv$ would not be the trivial representation of $k[G]$.)
+\end{remark}
+
+Then the representations are:
 \begin{itemize}
-	\ii There is a trivial one-dimensional representation $\Ctriv$
-	where the map $S_3 \to \CC^\times$ is the identity.
-	Thus in $\Ctriv$ every $\sigma \in S_3$ acts as the identity.
+	\ii The one-dimensional $\Ctriv$;
+	each $\sigma \in S_3$ acts by the identity.
 
 	\ii There is a nontrivial one-dimensional representation
 	$\Csign$ where the map $S_3 \to \CC^\times$ is given

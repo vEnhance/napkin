@@ -150,8 +150,10 @@ From this perspective, what we are really trying to do is:
 	While a representation is a pair $(V, \rho)$
 	of both the vector space $V$ and the action $\rho$,
 	we frequently will just abbreviate it to ``$V$''.
-	This is probably one of the worst abuses I will commit.
+	This is probably one of the worst abuses I will commit,
+	but everyone does it so it's all good!
 \end{abuse}
+
 
 \begin{example}
 	[Representations of $\Mat(V)$]
@@ -207,7 +209,6 @@ From this perspective, what we are really trying to do is:
 	\end{enumerate}
 \end{example}
 
-
 \begin{example}
 	[Representations of groups]
 	\listhack
@@ -231,14 +232,12 @@ From this perspective, what we are really trying to do is:
 		\mapsto \begin{pmatrix} 0&1&0 \\ 1&0&0 \\ 0&0&1 \end{pmatrix}. \]
 		
 		\ii More generally, let $A = k[G]$.
-		Then a representation $(V, \rho)$ of $A$ amounts to 
-		a group homomorphism $\psi : G \to \GL(V)$.
+		Then a representation $(V, \rho)$ of $A$
+		amounts to a group homomorphism $\psi : G \to \GL(V)$.
+		(In particular, $\rho(1_G) = \id_V$.)
+		We call this a \vocab{group representation} of $G$.
 	\end{enumerate}
 \end{example}
-\begin{abuse}
-	From now on, we will often shorten ``representation of $k[G]$''
-	to ``representation of $G$''.
-\end{abuse}
 \begin{example}[Regular representation]
 	Any $k$-algebra $A$ is a representation $(A, \rho)$ over itself,
 	with $a \cdot b = \rho(a)(b) = ab$ (i.e.\ multiplication given by $A$).
