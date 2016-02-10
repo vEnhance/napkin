@@ -1,6 +1,6 @@
 \chapter{Representations of algebras}
 In the 19th century, a group was literally defined
-as a subset of $\GL(n)$ or of $S_n$: the word ``group'' hadn't been invented yet.
+as a subset of $\GL(n)$ or $S_n$: the word ``group'' hadn't been invented yet.
 Only much later did the abstract definition of a group was given,
 an abstract set $G$ which was an object in its own right.
 
@@ -28,7 +28,7 @@ Colloquially,
 	a possibly noncommutative ring with a copy of $k$ inside it.
 	It is thus a $k$-vector space.
 \end{moral}
-In particular this makes such an algebra it into a $k$-vector space.
+% In particular this makes such an algebra into a $k$-vector space.
 I'll present examples before the definition:
 \begin{example}
 	[Examples of $k$-Algebras]
@@ -59,7 +59,7 @@ I'll present examples before the definition:
 \end{definition}
 \begin{definition}
 	Equivalently, a \vocab{$k$-algebra} $A$ is a
-	$k$-\emph{vector space} which also has a associative,
+	$k$-\emph{vector space} which also has an associative,
 	bilinear multiplication operation (with an identity $1_A$).
 	The ``copy of $k$'' is obtained by considering elements
 	$\lambda 1_A$ for each $\lambda \in k$
@@ -68,8 +68,8 @@ I'll present examples before the definition:
 \end{definition}
 
 \begin{abuse}
-	Some authors don't require $A$ to be associative or have unit,
-	so to them what we have just defined is an
+	Some authors don't require $A$ to be associative or
+	an identity, so to them what we have just defined is an
 	``associative algebra with $1$''.
 	However, this is needlessly wordy for our purposes.
 \end{abuse}
@@ -249,7 +249,7 @@ From this perspective, what we are really trying to do is:
 \begin{definition}
 	Let $A$ be $k$-algebra and let $V = (V, \rho_V)$ and $W = (W, \rho_W)$
 	be two representations of $A$.
-	Then $V \oplus W$ is a representation, with action $\rho$ by
+	Then $V \oplus W$ is a representation, with action $\rho$ given by
 	\[ a \cdot (v,w) = (a \cdot v, a \cdot w). \]
 	This representation is called the \vocab{direct sum} of $V$ and $W$.
 \end{definition}
@@ -316,7 +316,7 @@ then we want to discard ``silly'' representations such as
 	\begin{pmatrix} a & b \\ c & d \end{pmatrix} 
 	\mapsto
 	\begin{pmatrix} a & b & 0 & 0 \\ c & d & 0 & 0 \\
-		0 & 0 & a & b \\ 0 & 0 & c & d \end{pmatrix} .
+		0 & 0 & a & b \\ 0 & 0 & c & d \end{pmatrix}
 \]
 and focus our attention instead on ``irreducible'' representations.
 This motivates the following definition.
@@ -337,8 +337,8 @@ then $W_1$ and $W_2$ are subrepresentations.
 	then we say it is \vocab{indecomposable}.
 \end{definition}
 \begin{definition}
-	For brevity, an \vocab{irrep} is a
-	finite-dimensional irreducible representation.
+	For brevity, an \vocab{irrep} of an algebra/group is a
+	\emph{finite-dimensional} irreducible representation.
 \end{definition}
 
 \begin{example}[Representation of $S_n$ decomposes]

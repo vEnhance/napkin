@@ -118,13 +118,23 @@ The definition of the discriminant is precisely this, except with an extra squar
 
 To make the next definition, we invoke the following theorem.
 \begin{theorem}[The $n$ embeddings of a number field]
-	Let $K$ be a number field.
+	Let $K$ be a number field of degree $n$.
 	Then there are exactly $n$ field homomorphisms $K \injto \CC$,
 	say $\sigma_1, \dots, \sigma_n$, which fix $\QQ$.
 \end{theorem}
 \begin{proof}
 	Deferred to \Cref{thm:n_embeddings}, once we have the tools of Galois theory.
 \end{proof}
+In fact, in \Cref{thm:conj_distrb} we see the following:
+for $\alpha \in K$, we have that $\sigma_i(\alpha)$
+runs over the conjugates of $\alpha$ as $i=1,\dots,n$.
+It follows that
+\[
+	\Tr_{K/\QQ}(\alpha) = \sum_{i=1}^n \sigma_i(\alpha)
+	\quad\text{and}\quad
+	\Norm_{K/\QQ}(\alpha) = \prod_{i=1}^n \sigma_i(\alpha).
+\]
+
 This allows us to define:
 \begin{definition}
 	Suppose $\alpha_1, \dots, \alpha_n$ is a $\ZZ$-basis of $\OO_K$.
@@ -192,7 +202,8 @@ we will not prove this here.
 	\]
 \end{example}
 \begin{exercise}
-	Extend all this to show that if $K = \QQ(\sqrt d)$ for $d \neq 1$ squarefree, we have
+	Extend all this to show that
+	if $K = \QQ(\sqrt d)$ for $d \neq 1$ squarefree, we have
 	\[
 		\Delta_K =
 		\begin{cases}
@@ -200,7 +211,6 @@ we will not prove this here.
 			4d & \text{if } d \equiv 2, 3 \pmod 4.
 		\end{cases}
 	\]
-	Once again we have the cases on $d \pmod 4$.
 \end{exercise}
 
 Actually, let me point out something curious: recall that the polynomial discriminant of $Ax^2+Bx+C$ is $B^2-4AC$. Then:
@@ -242,20 +252,17 @@ hence complex embeddings come in pairs.
 		\ii $\QQ$ has signature $(1,0)$.
 		\ii $\QQ(\sqrt 2)$ has signature $(2,0)$.
 		\ii $\QQ(i)$ has signature $(0,1)$.
+		\ii Let $K = \QQ(\sqrt[3]{2})$, and let $\omega$ be a cube root of unity.
+		The elements of $K$ are
+		\[ K = \left\{ a + b\cbrt2 + c\cbrt4 \mid a,b,c \in \QQ  \right\}. \]
+		Then the signature is $(1,1)$, because the three embeddings are
+		\[ \sigma_1 : \cbrt 2 \mapsto \cbrt 2,
+			\quad
+			\sigma_2 : \cbrt 2 \mapsto \cbrt 2 \omega,
+			\quad
+			\sigma_3 : \cbrt 2 \mapsto \cbrt 2 \omega^2. \]
+		The first of these is real and the latter two are conjugate pairs.
 	\end{enumerate}
-\end{example}
-
-\begin{example}[Signatures for $K = \QQ(\cbrt{2})$]
-	Let $K = \QQ(\sqrt[3]{2})$, and let $\omega$ be a cube root of unity.
-	The elements of $K$ are of the form
-	\[ K = \left\{ a + b\cbrt2 + c\cbrt4 \mid a,b,c \in \QQ  \right\}. \]
-	Now, there are exactly three different embeddings, 
-	\[ \sigma_1 : \cbrt 2 \mapsto \cbrt 2,
-		\quad
-		\sigma_2 : \cbrt 2 \mapsto \cbrt 2 \omega,
-		\quad
-		\sigma_3 : \cbrt 2 \mapsto \cbrt 2 \omega^2. \]
-	The last two are conjugate pairs, so the signature is $(1,1)$.
 \end{example}
 \begin{example}[Even more signatures]
 	In the same vein $\QQ(\sqrt[99]{2})$ and $\QQ(\sqrt[100]{2})$
@@ -453,8 +460,9 @@ So instead, we apply AM-GM to obtain the following result.
 	Let $\alpha \in \OO_K$, and suppose $\iota(\alpha)$ is in $S$
 	(where $\iota : K \injto \RR^{r_1} \times \CC^{r_2}$ as usual).
 	Then
-	\[ \Norm_{K/\QQ}(a) = \prod_{i=1}^n \left\lvert \sigma_i(\alpha) \right\rvert
-	\le \left( \frac Mn \right)^n. \]
+	\[ \Norm_{K/\QQ}(\alpha)
+		= \prod_{i=1}^n \left\lvert \sigma_i(\alpha) \right\rvert
+		\le \left( \frac Mn \right)^n. \]
 \end{lemma}
 The last step we need to do is compute the volume of the box.
 This is again some geometry I won't do, but take my word for it:
@@ -566,11 +574,13 @@ The precise statement of this is
 			label("$\dots$", (4,0), dir(90));
 		\end{asy}
 	\end{center}
-	To be more dramatic: imagine you have a \textbf{cherry tree}; each branch corresponds to a prime $(p)$
+	To be more dramatic: imagine you have a \emph{cherry tree};
+	each branch corresponds to a prime $(p)$
 	and contains as cherries (prime ideals) the factors of $(p)$ (finitely many).
-	Your bucket (the ideal $\aa$ you're building) can only hold a total weight (norm) of $M_K$.
-	So you can't even touch the branches higher than $M_K$.
-	You can repeat cherries (oops), but the weight of a cherry on branch $(p)$ is definitely $\ge p$;
+	Your bucket (the ideal $\aa$ you're building) can only hold a total weight
+	(norm) of $M_K$.  So you can't even touch the branches higher than $M_K$.
+	You can repeat cherries (oops),
+	but the weight of a cherry on branch $(p)$ is definitely $\ge p$;
 	all this means that the number of ways to build $\aa$ is finite.
 \end{proof}
 
@@ -686,7 +696,7 @@ as it is somewhat gory.
 The idea is just that there are some cherries which are not trivial in the class group.
 \begin{proof}
 Since $D_K = -68$, we compute
-the Minkowsi bound
+the Minkowski bound
 \[ M_K = \frac{4}{\pi} \sqrt{17} < 6. \]
 
 Now, it suffices to factor with $(2)$, $(3)$, $(5)$.
@@ -802,7 +812,7 @@ From this we deduce \[ \Cl_K \cong \Zc 4. \qedhere \]
 \begin{problem}
 	[Korea 2014]
 	Let $p$ be an odd prime and $k$ a positive integer such that $p \mid k^2+5$.
-	Prove that there exist positive integers $m$, $n$ such that $p = m^2+5n^2$.
+	Prove that there exist positive integers $m$, $n$ such that $p^2 = m^2+5n^2$.
 	\begin{hint}
 		Factor $p$, show that the class group of $\QQ(\sqrt{-5})$ has order two.
 	\end{hint}

@@ -186,11 +186,14 @@ It's common to see expressions like ``let $K$ be a number field of degree $n$,
 and $\sigma_1, \dots, \sigma_n$ its $n$ embeddings'' without further explanation.
 The relation between these embeddings and the Galois conjugates is given as follows.
 \begin{theorem}[Embeddings are evenly distributed over conjugates]
-	Let $K$ be a number field of degree $n$ with $n$ embeddings $\sigma_1$, \dots, $\sigma_n$,
+	\label{thm:conj_distrb}
+	Let $K$ be a number field of degree $n$
+	with $n$ embeddings $\sigma_1$, \dots, $\sigma_n$,
 	and let $\alpha \in K$ have $m$ Galois conjugates over $\QQ$. 
 
-	Then $\sigma_j(\alpha)$ is ``evenly distributed'' over each of these $m$ conjugates:
-	for every $i$, exactly $\frac nm$ of the embeddings send $\alpha$ to $\beta_i$.
+	Then $\sigma_j(\alpha)$ is ``evenly distributed''
+	over each of these $m$ conjugates: for any Galois conjugate $\beta$,
+	exactly $\frac nm$ of the embeddings send $\alpha$ to $\beta$.
 \end{theorem}
 \begin{proof}
 	In the previous proof, adjoin $\alpha_1 = \alpha$ first.
