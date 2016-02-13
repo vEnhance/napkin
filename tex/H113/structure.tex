@@ -167,6 +167,11 @@ Our structure theorem takes two forms:
 \end{remark}
 
 \section{Reduction to maps of free $R$-modules}
+\begin{definition}
+	A \vocab{free $R$-module} is a module of the form $R^{\oplus n}$
+	(or more generally, $\bigoplus_I R$ for some indexing set $I$,
+	just to allow an infinite basis).
+\end{definition}
 The proof of the structure theorem proceeds in two main steps.
 First, we reduce the problem to a \emph{linear algebra} problem
 involving free $R$-modules $R^{\oplus d}$.
@@ -199,7 +204,7 @@ To this end we prove that
 	Deduce that for $R$ a PID, $R^{\oplus d}$ is Noetherian.
 \end{ques}
 Hence $K$ is finitely generated as claimed.
-So we can find another surjective $R^{\oplus f} \surjto K$.
+So we can find another surjective map $R^{\oplus f} \surjto K$.
 Consequently, we have a composition
 \begin{diagram}
 	&& K && && \\
@@ -252,7 +257,7 @@ More generally,
 \end{moral}
 This corresponds to replacing 
 \[ (f_1, \dots, f_n) \mapsto (A(f_1), \dots, A(f_n)) \]
-(the investability condition just guarantees the latter is a basis).
+(the ``invertible'' condition just guarantees the latter is a basis).
 Of course similarly we can replace $X$ with $XB$
 where $B$ is an invertible $m \times m$ matrix;
 this corresponds to 
@@ -435,7 +440,7 @@ Now, we can apply our structure theorem!
 \begin{dproblem}
 	[Finite-dimensional vector spaces are all isomorphic]
 	A vector space $V$ over a field $k$ has a finite spanning set of vectors.
-	Show that $V \cong k^{\oplus n}$.
+	Show that $V \cong k^{\oplus n}$ for some $n$.
 	\begin{hint}
 		In the structure theorem, $k / (s_i) \in \{0,k\}$.
 	\end{hint}
