@@ -22,3 +22,5 @@ asy/*
 **/*.pre
 **/*.run.xml
 **/*.toc
+
+drafts/**/*.bib
