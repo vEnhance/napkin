@@ -14,9 +14,29 @@
 	\bfseries\color{green!70!black}}%
 	{\end{mdframed}}
 
-% Add \S to sections
-\usepackage{titlesec}
-\titleformat{\section}{\normalfont\Large\sffamily\bfseries}{\S\thesection}{0.5em}{}
+% Fancy section and chapter heads
+\addtokomafont{chapterprefix}{\raggedleft}
+\renewcommand*{\sectionformat}{\color{purple}\S\thesection\autodot\enskip}
+
+\RedeclareSectionCommand[beforeskip=0.5em]{chapter}
+\renewcommand*{\chapterformat}{%
+\mbox{\scalebox{1.5}{\chapappifchapterprefix{\nobreakspace}}%
+\scalebox{2.718}{\color{purple}\thechapter\autodot}\enskip}}
+
+\addtokomafont{partprefix}{\rmfamily}
+\renewcommand*{\partformat}{\color{purple}\scalebox{2.5}{\thepart\autodot}
+\enlargethispage{2em}}
+
+% Mini ToC
+\usepackage[tight]{minitoc}
+\noptcrule
+\mtcsetfont{parttoc}{section}{\small\rmfamily\upshape\mdseries}
+\renewcommand*{\partheadstartvskip}{}
+\renewcommand*{\partheadendvskip}{}
+\renewcommand\beforeparttoc{\hspace{\fill}\rule{0.95\linewidth}{2pt}
+\hspace{\fill}}
+\let\oldpart\part
+\renewcommand{\part}[1]{\oldpart{#1}\parttoc\cleardoublepage}
 
 %% SNSD
 \newcommand{\snsd}[2][]%
