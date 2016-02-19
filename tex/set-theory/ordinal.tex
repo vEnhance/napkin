@@ -371,7 +371,7 @@ Exponentiation can also be so defined, though the explicit construction is less 
 \section{The hierarchy of sets}
 We now define the \vocab{von Neumann Hierarchy} by transfinite recursion.
 \begin{definition}
-	By transfinite induction, we set
+	By transfinite recursion, we set
 	\begin{align*}
 		V_0 &= \varnothing \\
 		V_{\alpha + 1} &= \PP(V_\alpha) \\
@@ -468,7 +468,8 @@ This leads us to the following picture of the universe $V$.
 	\end{asy}
 \end{center}
 
-We can image the universe $V$ as a triangle, built in several stages or layers,
+We can imagine the universe $V$ as a triangle,
+built in several stages or layers,
 $V_0 \subset V_1 \subset V_2 \subset \dots$.
 This universe doesn't have a top: but each of the $V_i$ do.
 However, the universe has a very clear bottom.
@@ -504,9 +505,11 @@ This pales in comparison to the true magnitude of the whole universe.
 	Let $a_2$ be any positive integer.
 	We define the infinite sequence $a_2$, $a_3$, \dots recursively as follows.
 	If $a_{n} = 0$, then $a_{n+1} = 0$.
-	Otherwise, we write $a_{n+1}$ in base $n$, then write all exponents in base $n$, and so on until all
+	Otherwise, we write $a_n$ in base $n$,
+	then write all exponents in base $n$, and so on until all
 	numbers in the expression are at most $n$.
-	Then we replace all instances of $n$ by $n+1$ (including the exponents!), subtract $1$,
+	Then we replace all instances of $n$ by $n+1$
+	(including the exponents!), subtract $1$,
 	and set the result to $a_{n+1}$.
 	For example, if $a_2 = 11$ we have
 		\begin{align*}

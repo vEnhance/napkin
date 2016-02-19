@@ -42,7 +42,8 @@ Let me give you an example of what I mean and then make it rigorous.
 		\ii Miraculously, $\MM$ satisfies $\Union$, since for any $n \in \omega$,
 		$\cup n$ is $n-1$ (unless $n=0$).
 		The Union axiom statements that
-		\[ \forall a \exists z \quad \forall x \; (x \in z) \iff (\exists y : x \in y \in z). \]
+		\[ \forall a \exists U \quad \forall x \;
+		\left[ (x \in U) \iff (\exists y : x \in y \in a) \right]. \]
 		An important thing to notice is that the ``$\forall a$'' ranges only over
 		the sets in the model of the universe, $\MM$.
 	\end{enumerate}
@@ -84,7 +85,7 @@ Note that any sentence $\phi$ can be written in one of the following five forms:
 	\ii $x \in y$
 	\ii $x = y$
 	\ii $\neg \psi$ (``not $\psi$'') for some shorter sentence $\psi$
-	\ii $\psi_1 \lor \psi_2$ (```$\psi_1$ or $\psi_2$'')
+	\ii $\psi_1 \lor \psi_2$ (``$\psi_1$ or $\psi_2$'')
 	for some shorter sentences $\psi_1$, $\psi_2$
 	\ii $\exists x \psi$ (``exists $x$'') for some shorter sentence $\psi$.
 \end{itemize}
@@ -174,7 +175,7 @@ Such a model is called a \vocab{transitive model}.
 	An \vocab{inner model} of $\ZFC$ is a transitive model satisfying $\ZFC$.
 \end{definition}
 
-\section{The levy hierarchy}
+\section{The Levy hierarchy}
 \prototype{$\mathtt{isSubset}(x,y)$ is absolute. The axiom
 $\EmptySet$ is $\Sigma_1$, $\mathtt{isPowerSetOf}(X,x)$ is $\Pi_1$.}
 A key point to remember is that the behavior of a model is largely determined by $\exists$ and $\forall$.

@@ -92,7 +92,7 @@ Our usual intuition works well here.
 \end{ques}
 
 \section{Aleph numbers}
-\prototype{$\aleph_0$ is $\omega$, and $\aleph_1$ is the first uncountable}
+\prototype{$\aleph_0$ is $\omega$, and $\aleph_1$ is the first uncountable.}
 First, let us check that cardinals can get arbitrarily large:
 \begin{proposition}
 	We have $\left\lvert X \right\rvert < \left\lvert \PP(X) \right\rvert$ for every set $X$.
@@ -145,11 +145,11 @@ We claim the aleph numbers constitute all the cardinals:
 	If $\alpha = \ol\alpha + 1$ is a successor, then
 	\[ \aleph_{\ol\alpha} < \kappa < \aleph_{\alpha}
 		= (\aleph_{\ol\alpha})^+ \]
-	which contradicts the fact the definition of the successor cardinal.
+	which contradicts the definition of the successor cardinal.
 	
 	If $\alpha = \lambda$ is a limit ordinal, then $\aleph_\lambda$ is the
 	supremum $\bigcup_{\gamma < \lambda} \aleph_\gamma$.
-	So there must be some $\gamma < \lambda$ has $\aleph_\gamma > \kappa$,
+	So there must be some $\gamma < \lambda$ with $\aleph_\gamma > \kappa$,
 	which contradicts the minimality of $\alpha$.
 \end{proof}
 
@@ -227,8 +227,10 @@ In fact, this holds even more generally:
 	Obviously $\kappa \cdot \kappa \ge \kappa$,
 	so we want to show $\kappa \cdot \kappa \le \kappa$.
 
-	The idea is to repeat the same proof that we had for $\aleph_0 \cdot \aleph_0 = \aleph_0$,
-	so we re-iterate it here. We took the ``square'' of elements of $\aleph_0$, and then
+	The idea is to try to repeat the same proof
+	that we had for $\aleph_0 \cdot \aleph_0 = \aleph_0$,
+	so we re-iterate it here. We took the ``square'' of
+	elements of $\aleph_0$, and then
 	\emph{re-ordered} it according to the diagonal:
 	\[
 	\begin{array}{l|cccccc}
@@ -240,22 +242,36 @@ In fact, this holds even more generally:
 		4 & 14 & \dots & & & &
 	\end{array}
 	\]
-	Let's copy this idea for a general $\kappa$.
-
-	We proceed by transfinite induction on $\kappa$.
-	The base case is $\kappa = \aleph_0$, done above.
-	For the inductive step, first we put the ``diagonal'' ordering $<_{\text{diag}}$
+	We'd like to copy this idea for a general $\kappa$;
+	however, since addition is less well-behaved for infinite ordinals
+	it will be more convenient to use $\max(\alpha,\beta)$
+	rather than $\alpha+\beta$.
+	Specifically, we put the ordering $<_{\text{max}}$
 	on $\kappa \times \kappa$ as follows:
 	for $(\alpha_1, \beta_1)$ and $(\alpha_1, \beta_2)$ in $\kappa \times \kappa$
-	we declare $(\alpha_1, \beta_1) <_{\text{diag}} (\alpha_2, \beta_2)$ if
+	we declare $(\alpha_1, \beta_1) <_{\text{max}} (\alpha_2, \beta_2)$ if
 	\begin{itemize}
-		\ii $\max \left\{ \alpha_1, \beta_1 \right\} < \max \left\{ \alpha_2, \beta_2 \right\}$
-		(they are on different diagonals), or
-		\ii $\max \left\{ \alpha_1, \beta_1 \right\} = \max \left\{ \alpha_2, \beta_2 \right\}$
-		and $\alpha_1 < \alpha_2$ (same diagonal).
+		\ii $\max \left\{ \alpha_1, \beta_1 \right\} < \max \left\{ \alpha_2, \beta_2 \right\}$ or
+		\ii $\max \left\{ \alpha_1, \beta_1 \right\} = \max \left\{ \alpha_2, \beta_2 \right\}$ and $(\alpha_1, \beta_1)$
+		is lexicographically earlier than $(\alpha_2, \beta_2)$.
 	\end{itemize}
-	
-	Then $<_{\text{diag}}$ is a well-ordering of $\kappa \times \kappa$,
+	This alternate ordering (which deliberately avoids referring
+	to the addition) looks like:
+	\[
+	\begin{array}{l|cccccc}
+		  & 0 & 1 & 2 & 3 & 4 & \dots \\ \hline
+		0 & 0 & 1 & 4 & 9 & 16 & \dots \\
+		1 & 2 & 3 & 5 & 10 & 17 & \dots \\
+		2 & 6 & 7 & 8 & 11 & 18 & \dots \\
+		3 & 12 & 13 & 14 & 15 & 19 & \dots \\
+		4 & 20 & 21 & 22 & 23 & 24 & \dots \\
+		\vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \ddots \\
+	\end{array}
+	\]	
+
+	Now we proceed by transfinite induction on $\kappa$.
+	The base case is $\kappa = \aleph_0$, done above.
+	Now, $<_{\text{max}}$ is a well-ordering of $\kappa \times \kappa$,
 	so we know it is in order-preserving bijection with some ordinal $\gamma$.
 	Our goal is to show that $\left\lvert \gamma \right\rvert \le \kappa$.
 	To do so, it suffices to prove that for any $\ol\gamma \in \gamma$,
@@ -263,7 +279,8 @@ In fact, this holds even more generally:
 
 	Suppose $\ol\gamma$ corresponds to the point $(\alpha, \beta) \in \kappa$
 	under this bijection.
-	If $\alpha$ and $\beta$ are both finite, then certainly $\ol\gamma$ is finite too.
+	If $\alpha$ and $\beta$ are both finite
+	then certainly $\ol\gamma$ is finite too.
 	Otherwise, let $\ol\kappa = \max \{\alpha, \beta\} < \kappa$;
 	then the number of points below $\ol\gamma$ is at most
 	\[ 
@@ -320,7 +337,7 @@ In cardinal arithmetic $2^{\aleph_0} > \aleph_0$.)
 I have unfortunately not told you what $2^{\aleph_0}$ equals.
 A natural conjecture is that $2^{\aleph_0} = \aleph_1$; this is called the
 \vocab{Continuum Hypothesis}.
-It turns out to that this is \emph{undecidable} -- it is not possible
+It turns out that this is \emph{undecidable} -- it is not possible
 to prove or disprove this from the $\ZFC$ axioms.
 
 \section{Cofinality}
