@@ -80,7 +80,7 @@ Note that by universality of $\Img f$,
 we find that there is a unique map $\img f : A \to \Img f$ that makes the entire diagram commute.
 
 \section{Additive and abelian categories}
-\prototype{$\catname{Ab}$, $\catname{Vect}_k$ are abelian categories.}
+\prototype{$\catname{Ab}$, $\catname{Vect}_k$, or more generally $\catname{Mod}_R$.}
 We can now define the notion of an additive and abelian category,
 which are the types of categories where this notion is most useful.
 
@@ -114,6 +114,7 @@ which are the types of categories where this notion is most useful.
 	\begin{enumerate}[(a)]
 		\ii $\catname{Vect}_k$, $\catname{Ab}$ are abelian categories,
 		where $f+g$ takes its usual meaning.
+		\ii Generalizing this, the category $\catname{Mod}_R$ of $R$-modules is abelian.
 		\ii $\catname{Grp}$ is not even additive, because there is no way to assign
 		a commutative addition to pairs of morphisms.
 	\end{enumerate}
@@ -132,12 +133,10 @@ For example,
 		Show that if $A \taking f B$ is monic, then $0 \to A$ is a kernel.
 		(This holds even in non-abelian categories.)
 	\end{exercise}
-	Of course, since kernels are unique up to isomorphism, this establishes
-	monic $\implies$ $0$ kernel.
-	
+	Of course, since kernels are unique up to isomorphism, monic $\implies$ $0$ kernel.
 	On the other hand, assume that $0 \to A$ is a kernel of $A \taking f B$.
 	For this we can exploit the group structure of the underlying homomorphisms now.
-	Assume that the diagram
+	Assume the diagram
 	\begin{diagram}
 		Z & \pile{\rTo^g \\ \rTo_h} & A & \rTo^f & B
 	\end{diagram}
@@ -156,7 +155,7 @@ For example,
 	a map is an isomorphism if and only if it is monic and epic.
 \end{proposition}
 \begin{proof}
-	Omitted, because the Mitchell embedding theorem presented later will trivialize this.
+	Omitted, because the Mitchell embedding theorem presented later implies this.
 \end{proof}
 
 \section{Exact sequences}
