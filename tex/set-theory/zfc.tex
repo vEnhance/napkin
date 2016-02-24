@@ -82,16 +82,15 @@ This is bad, for the following reason:
 		\end{array}
 	\]
 	here for each $j(x) \subseteq X$, I'm writing ``$1$'' to mean that
-	the element is inside $j(x)$, and ``$0$'' otherwise.\footnote{
-		Technically, I don't know that $X$ is countable,
-		so it's not valid to write $x_1$, $x_2$, but whatever,
-		you get the idea.}
+	the element is inside $j(x)$, and ``$0$'' otherwise.
 	So $j(x_1) = \{x_2, x_3, x_5 \dots\}$.
+	(Here the indices are ordinals rather than integers
+	as $X$ may be uncountable.)
 
 	Then we can read off the diagonal to get a new set.
 	In our example, the diagonal specifies a set
 	$A = \{x_2, x_4, x_5 \dots\}$.
-	Then we invert it take a set $B = \{x_1, x_3, \dots\}$.
+	Then we invert it to get a set $B = \{x_1, x_3, \dots\}$.
 	In symbols, we consider the set
 	\[ B = \left\{ x \mid x \notin j(x) \right\} \]
 	By construction, $B \subseteq X$ is not in the image of $j$,

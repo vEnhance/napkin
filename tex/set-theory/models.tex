@@ -229,11 +229,12 @@ More generally, the \vocab{Levy hierarchy} keeps track of how bounded our
 quantifiers are.
 Specifically,
 \begin{itemize}
-	\ii Formulas which have only bounded quantifiers are $\Delta_0 = \Sigma_0 = \Pi_0$.
-	\ii Formulas of the form $\exists x_1 \dots \exists x_k \psi$ where $\psi$ is $\Pi_n$
-	are consider $\Sigma_{n+1}$.
-	\ii Formulas of the form $\forall x_1 \dots \forall x_k \psi$ where $\psi$ is $\Sigma_n$
-	are consider $\Pi_{n+1}$.
+	\ii Formulas which have only bounded quantifiers
+	are $\Delta_0 = \Sigma_0 = \Pi_0$.
+	\ii Formulas of the form $\exists x_1 \dots \exists x_k \psi$
+	where $\psi$ is $\Pi_n$ are considered $\Sigma_{n+1}$.
+	\ii Formulas of the form $\forall x_1 \dots \forall x_k \psi$
+	where $\psi$ is $\Sigma_n$ are considered $\Pi_{n+1}$.
 \end{itemize}
 (A formula which is both $\Sigma_n$ and $\Pi_n$ is called $\Delta_n$, but we won't
 use this except for $n=0$.)
@@ -306,8 +307,8 @@ This is true for $\MM_2$ because we can take the witness $x = \text{Math 55}$, s
 But it's false for $\MM_1$, because at MIT all courses are numbered $18.701$ or something similar.
 \begin{moral}
 	The issue is that the \emph{witness}
-	for statements in $\MM_2$ do not necessarily propagate up
-	down to witnesses for $\MM_1$, even though they do from $\MM_1$ to $\MM_2$.
+	for statements in $\MM_2$ do not necessarily propagate
+	down to witnesses for $\MM_1$.
 \end{moral}
 
 The Tarski-Vaught test says this is the only impediment:
@@ -315,9 +316,11 @@ if every witness in $\MM_2$ can be replaced by one in $\MM_1$ then $\MM_1 \prec 
 \begin{lemma}
 	[Tarski-Vaught]
 	Let $\MM_1 \subseteq \MM_2$.
-	Then $\MM_1 \prec \MM_2$ if and only if for
-	every sentence $\phi(x, x_1, \dots, x_n)$ and parameters $b_1, \dots, b_n \in M_1$:
-	if there is a witness $\tilde b \in M_2$ to $\MM_2 \vDash \phi(\tilde b, b_1 \dots, b_n)$
+	Then $\MM_1 \prec \MM_2$ if and only if:
+	For every sentence $\phi(x, x_1, \dots, x_n)$ and parameters
+	$b_1, \dots, b_n \in M_1$:
+	if there is a witness $\tilde b \in M_2$
+	to $\MM_2 \vDash \phi(\tilde b, b_1 \dots, b_n)$
 	then there is a witness $b \in M_1$ to $\MM_1 \vDash \phi(b, b_1, \dots, b_n)$.
 \end{lemma}
 \begin{proof}
@@ -326,8 +329,9 @@ if every witness in $\MM_2$ can be replaced by one in $\MM_1$ then $\MM_1 \prec 
 \end{proof}
 
 \section{Obtaining the axioms of $\ZFC$}
-Extending the above ideas, one can obtain without much difficulty the following.
-The idea is that almost all the $\ZFC$ axioms are just $\Sigma_1$ claims about certain desired sets,
+We now want to write down conditions for $M$ to satisfy $\ZFC$ axioms.
+The idea is that almost all the $\ZFC$ axioms are just $\Sigma_1$
+claims about certain desired sets,
 and so verifying an axiom reduces to checking some appropriate ``closure'' condition:
 that the witness to the axiom is actually in the model.
 
