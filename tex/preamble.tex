@@ -4,16 +4,6 @@
 \usepackage{multirow}
 \usepackage{prerex}
 
-%% Environments, meta-level stuff, etc.
-\newcommand{\problemhead}{Problems to think about}
-\newcommand{\prototype}[1]{
-	\emph{{\color{red} Prototypical example for this section:} #1} \par\medskip
-}
-\newenvironment{moral}{%
-	\begin{mdframed}[linecolor=green!70!black]%
-	\bfseries\color{green!70!black}}%
-	{\end{mdframed}}
-
 % Fancy section and chapter heads
 \addtokomafont{chapterprefix}{\raggedleft}
 \renewcommand*{\sectionformat}{\color{purple}\S\thesection\autodot\enskip}
@@ -26,6 +16,7 @@
 \addtokomafont{partprefix}{\rmfamily}
 \renewcommand*{\partformat}{\color{purple}\scalebox{2.5}{\thepart\autodot}
 \enlargethispage{2em}}
+\newcommand{\problemhead}{Problems to think about}
 
 % Mini ToC
 \usepackage[tight]{minitoc}
@@ -244,9 +235,6 @@ style=thmbluebox,name=Theorem,numberwithin=section]{theorem}
 \DeclareMathOperator{\Proj}{Proj}
 \DeclareMathOperator{\res}{res}
 \newcommand{\mm}{\mathfrak m}
-\newcommand{\SF}{\mathscr F}
-\newcommand{\SG}{\mathscr G}
-\newcommand{\SH}{\mathscr H}
 \newcommand{\sh}{^\mathrm{sh}}
 
 \renewcommand{\Re}{\opname{Re}}
@@ -282,7 +270,6 @@ style=thmbluebox,name=Theorem,numberwithin=section]{theorem}
 \newcommand\nattfm[5]{\xymatrix@C+2pc{#1 \rtwocell<4>^{#2}_{#4}{\; #3} & #5}}
 
 %% Alg Top macros
-\DeclareMathOperator{\Ext}{Ext}
 \DeclareMathOperator{\Cells}{Cells}
 \newcommand{\HdR}{H_{\mathrm{dR}}}
 
@@ -292,7 +279,6 @@ style=thmbluebox,name=Theorem,numberwithin=section]{theorem}
 \newcommand{\pp}{\mathfrak p}
 \newcommand{\qq}{\mathfrak q}
 
-\newcommand{\OO}{\mathcal O}
 \newcommand{\Frob}{\mathrm{Frob}}
 \DeclareMathOperator{\Norm}{N}
 \newcommand{\TrK}{\Tr_{K/\QQ}}
