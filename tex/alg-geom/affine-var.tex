@@ -173,18 +173,22 @@ In any case, we have the following.
 This makes sense: you would never refer to $x=0$ as $x^2=0$.
 With this, we obtain a theorem called Hilbert's Nullstellensatz.
 \begin{theorem}[Hilbert's Nullstellensatz]
-	Given an affine variety $V = \VV(I)$, the set of polynomials which vanish
+	Given an affine variety $V = \VV(I)$,
+	the set of polynomials which vanish
 	on all points of $V$ is precisely $\sqrt I$.
 	Thus if $I$ and $J$ are ideals in $\CC[x_1, \dots, x_n]$,
-	then \[ \VV(I) = \VV(J) \text{ if and only if $\sqrt I = \sqrt J$}. \]
+	then
+	\[ \VV(I) = \VV(J) \text{ if and only if $\sqrt I = \sqrt J$}. \]
 \end{theorem}
 In other words
 \begin{moral}
 	Radical ideals in $\CC[x_1, \dots, x_n]$ correspond
 	exactly to $n$-dimensional affine varieties.
 \end{moral}
-The proof of Hilbert's Nullestellensatz will be given later;
-it \emph{relies essentially on the fact that $\CC$ is algebraically closed}.
+The proof of Hilbert's Nullestellensatz will be given in
+\Cref{prob:hilbert_from_weak}; for now it is worth remarking that
+it relies essentially on the fact that $\CC$ is 
+\emph{algebraically closed}.
 For example, it is false in $\RR[x]$,
 with $(x^2+1)$ being a maximal ideal with empty vanishing set.
 
@@ -388,16 +392,19 @@ Thus, as Ravi Vakil \cite{ref:vakil} says,
 	Thus $\VV(-)$ is \emph{inclusion-reversing}.
 \end{ques}
 Thus, bigger ideals correspond to smaller varieties.
-As the above pictures might have indicated, the smallest varieties are \emph{single points}.
-Moreover, as you might guess from the name, the biggest ideals are the \emph{maximal ideals},
-which by the Nullstellensatz are all of the form
-\[ \left( x_1-a_1, \dots, x_n-a_n \right). \]
-Certainly, all such ideals are indeed maximal since
+As the above pictures might have indicated,
+the smallest varieties are \emph{single points}.
+Moreover, as you might guess from the name,
+the biggest ideals are the \emph{maximal ideals}.
+As an example, all ideals of the form
+\[ \left( x_1-a_1, \dots, x_n-a_n \right) \]
+are maximal, since the quotient
 \[ \CC[x_1, \dots, x_n] / \left( x-a_1, \dots, x-a_n \right) \cong \CC \]
 is a field.
 The question is: are all maximal ideals of this form?
 
-The answer is in the affirmative. It's equivalent to the following result.
+The answer is in the affirmative.
+It's equivalent to the following result.
 \begin{theorem}
 	[Weak Nullestellensatz]
 	Let $I \subsetneq \CC[x_1, \dots, x_n]$ be a proper ideal.
@@ -495,6 +502,7 @@ This refined object is the \emph{scheme}.
 
 \begin{problem}
 	\yod
+	\label{prob:hilbert_from_weak}
 	Show that Hilbert's Nullstellensatz in $n$ dimensions
 	follows from the Weak Nullstellensatz.
 	(This solution is called the \vocab{Rabinowitsch Trick}.)

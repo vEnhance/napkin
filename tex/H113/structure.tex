@@ -45,7 +45,7 @@ Its corollaries include
 You might notice that these examples are not very diverse.
 That's because they are actually the only examples:
 \begin{theorem}
-	[Funadmental theorem of finitely generated abelian groups]
+	[Fundamental theorem of finitely generated abelian groups]
 	Let $G$ be a finitely generated abelian group.
 	Then there exists an integer $r$,
 	prime powers $q_1$, \dots, $q_m$ (not necessarily distinct) such that
@@ -157,7 +157,7 @@ Our structure theorem takes two forms:
 \end{corollary}
 \begin{proof}
 	[Proof of corollary]
-	Factoring each $s_i$ into prime factors (since $R$ is a UFD),
+	Factor each $s_i$ into prime factors (since $R$ is a UFD),
 	then use the Chinese remainder theorem.
 \end{proof}
 \begin{remark}
@@ -246,8 +246,8 @@ what operations are permitted?  Here are some examples:
 	this is equivalent to replacing the basis 
 	\[ (e_1, e_2, e_3, \dots, e_m) \mapsto (e_1, e_2+3e_1, e_3, \dots, e_m). \]
 	\ii Adding a multiple of a row to another row.
-	One can see that adding $3$ times the first row to the second row,
-	this is equivalent to replacing the basis 
+	One can see that adding $3$ times the first row to the second row
+	is equivalent to replacing the basis 
 	\[ (f_1, f_2, f_3, \dots, f_n) \mapsto (f_1-3f_2, f_2, f_3, \dots, f_n). \]
 \end{itemize}
 More generally,
@@ -286,7 +286,7 @@ So if $m > n$, the matrix should take the form
 \]
 and similarly when $m \le n$.
 \begin{ques}
-	Show that Smith normal from implies the structure theorem.
+	Show that Smith normal form implies the structure theorem.
 \end{ques}
 
 \begin{remark}
@@ -307,7 +307,7 @@ and similarly when $m \le n$.
 	let's work through a concrete example with the following
 	matrix with entries from $\ZZ$:
 	\[ \begin{pmatrix} 
-			18 & 38 & 50 \\
+			18 & 38 & 48 \\
 			14 & 30 & 38
 		\end{pmatrix}.  \]
 	The GCD of all the entries is $2$, and so motivated by this,
@@ -316,17 +316,17 @@ and similarly when $m \le n$.
 	then three times the first row from the second:
 	\[ 
 		\begin{pmatrix} 
-			18 & 38 & 50 \\
+			18 & 38 & 48 \\
 			14 & 30 & 38
 		\end{pmatrix} 
 		\mapsto
 		\begin{pmatrix} 
-			4 & 8 & 12 \\
+			4 & 8 & 10 \\
 			14 & 30 & 38
 		\end{pmatrix}
 		\mapsto
 		\begin{pmatrix} 
-			4 & 8 & 12 \\
+			4 & 8 & 10 \\
 			2 & 6 & 2
 		\end{pmatrix}.
 	\]
@@ -336,18 +336,18 @@ and similarly when $m \le n$.
 	since $2$ was the GCD all along, we isolate $2$ completely:
 	\[
 		\begin{pmatrix} 
-			4 & 8 & 12 \\
+			4 & 8 & 10 \\
 			2 & 6 & 2
 		\end{pmatrix}
 		\mapsto
 		\begin{pmatrix} 
 			2 & 6 & 2 \\
-			4 & 8 & 12
+			4 & 8 & 10
 		\end{pmatrix}
 		\mapsto 
 		\begin{pmatrix} 
 			2 & 6 & 2 \\
-			0 & -4 & 8 \\
+			0 & -4 & 6 \\
 		\end{pmatrix}
 		\mapsto
 		\begin{pmatrix} 
@@ -356,7 +356,7 @@ and similarly when $m \le n$.
 		\end{pmatrix}.
 	\]
 	This reduces the problem to a $1 \times 2$ matrix.
-	So we just the Euclidean algorithm again there:
+	So we just apply the Euclidean algorithm again there:
 	\[
 		\begin{pmatrix} 
 			2 & 0 & 0 \\
