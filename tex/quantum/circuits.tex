@@ -179,7 +179,7 @@ according to the following circuit.
 \]
 Unfortunately, it is not universal.
 \begin{proposition}
-	[CNOT $\not\Rightarrow$ aND]
+	[CNOT $\not\Rightarrow$ AND]
 	The CNOT gate cannot simulate the boolean function ``$x \text{ and } y$''.
 \end{proposition}
 \begin{proof}[Sketch of Proof]
@@ -211,15 +211,17 @@ This replacement is sufficient.
 	The Toffoli gate is universal.
 \end{theorem}
 \begin{proof}
-	We will show it can reversibly simulate AND, NOT, hence OR,
+	We will show it can \emph{reversibly} simulate
+	AND, NOT, hence OR,
 	which we know is enough to show universality.
+	(We don't need COPY because of reversibility.)
 
 	For the AND gate, we draw the circuit
 	\[
 		\Qcircuit @C=1em @R=.7em {
 			\lstick{x} & \ctrl{1} & \rstick{x} \qw \\
 			\lstick{y} & \ctrl{1} & \rstick{y} \qw \\
-			\lstick{1} & \targ & \rstick{x \text{ and } y} \qw
+			\lstick{0} & \targ & \rstick{x \text{ and } y} \qw
 		}
 	\]
 	with one ancilla bit, and no garbage bits.
@@ -228,8 +230,8 @@ This replacement is sufficient.
 	\[
 		\Qcircuit @C=1em @R=.7em {
 			\lstick{1} & \ctrl{1} & \rstick{1} \qw \\
-			\lstick{1} & \ctrl{1} & \rstick{1} \qw \\
-			\lstick{z} & \targ & \rstick{\text{not } z} \qw
+			\lstick{z} & \ctrl{1} & \rstick{z} \qw \\
+			\lstick{1} & \targ & \rstick{\text{not } z} \qw
 		}
 	\]
 	This completes the proof.
@@ -247,7 +249,7 @@ In quantum mechanics, since we can have \emph{linear combinations} of basis
 elements, our logic gates will instead consist of \emph{linear maps}.
 Moreover, in quantum computation, gates are always reversible,
 which was why we took the time in the previous section to show
-that we can still do simulate any function when restricted to reversible gates
+that we can still simulate any function when restricted to reversible gates
 (e.g.\ using the Toffoli gate).
 
 First, some linear algebra:

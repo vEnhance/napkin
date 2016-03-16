@@ -81,10 +81,10 @@ orthonormal basis $\ket0$, $\ket1$, \dots, $\ket{N-1}$
 
 \begin{definition}
 	Consider an $n$-qubit state
-	\[ \ket\psi = \sum_{x=0}^{N-1} x_k \ket{k}. \]
+	\[ \ket\psi = \sum_{k=0}^{N-1} x_k \ket{k}. \]
 	The \vocab{quantum Fourier transform} is defined by
 	\[
-		\UQFT(\ket\psi) = \frac{1}{\sqrt N}\sum_{k=0}^{N-1}
+		\UQFT(\ket\psi) = \frac{1}{\sqrt N}\sum_{j=0}^{N-1}
 		\left( \sum_{k=0}^{N-1} \omega_N^{jk} \right) \ket{j}.
 	\]
 	In other words, using the basis $\ket0$, \dots, $\ket{N-1}$,
@@ -170,7 +170,7 @@ which is enormously better than the classical $O(N^2)$ operations (where $N=2^n$
 The Quantum Fourier Transform is the key piece of Shor's algorithm.
 Now that we have it, we can solve the factoring problem.
 
-Let $p,q > 3$ be odd primes.
+Let $p,q > 3$ be odd primes, and assume $p \neq q$.
 The main idea is to turn factoring an integer $M = pq$ into a problem
 about finding the order of $x \pmod M$; the latter is a ``periodicity''
 problem that the Quantum Fourier Transform will let us solve.
@@ -178,7 +178,7 @@ Specifically, say that an $x \pmod M$ is \emph{good} if
 \begin{enumerate}[(i)]
 	\ii $\gcd(x,M) = 1$,
 	\ii The order $r$ of $x \pmod M$ is even, and
-	\ii Factoring $0 \equiv (x^{r/2}-1)(x^{r/2+1}) \pmod M$,
+	\ii Factoring $0 \equiv (x^{r/2}-1)(x^{r/2}+1) \pmod M$,
 	neither of the two factors is $0 \pmod M$.
 	Thus one of them is divisible by $p$, and the other
 	is divisible by $q$.
@@ -223,7 +223,7 @@ In general, the operation is:
 	\ii Apply it to get a state
 	$\frac{1}{\sqrt N} \sum_{k=0}^{2^n-1} \ket k \otimes \ket{x^k \mod M}$.
 	\ii Measure the second qubit to cause the first qubit to
-	collapse to something which is periodic modulo $M$.
+	collapse to something which is periodic modulo $r$.
 	Let $\ket\phi$ denote the left qubit.
 \end{itemize}
 

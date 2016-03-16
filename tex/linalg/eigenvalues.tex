@@ -188,9 +188,10 @@ What's an example of a nilpotent map?
 That's a pretty nice example. As another example, we can have multiple such staircases.
 \begin{example}
 	[Double staircase]
-	Let $V = k^5$ have basis $e_1$, $e_2$, $e_3$, $e_4$, $e_5$.
+	Let $V = k^{\oplus 5}$ have basis $e_1$, $e_2$, $e_3$, $e_4$, $e_5$.
 	Then the map 
-	\[ e_3 \mapsto e_2 \mapsto e_1 \mapsto 0 \text{ and } e_5 \mapsto e_4 \mapsto 0 \]
+	\[ e_3 \mapsto e_2 \mapsto e_1 \mapsto 0 \text{ and }
+		e_5 \mapsto e_4 \mapsto 0 \]
 	is nilpotent.
 \end{example}
 However this isn't really that different from the previous example;
@@ -200,10 +201,11 @@ And in fact we now claim that \emph{all} nilpotent maps have essentially that fo
 \begin{theorem}
 	[Nilpotent Jordan]
 	Let $T : V \to V$ be a nilpotent map.
-	Then there exists $v_1$, $v_2$, \dots, $v_m$ such that
-	\[ v_1, T(v_1), T(T(v_1)), \dots, v_m, T(v_m), T(T(v_m)), \dots \]
-	is a basis of $V$.
-	In other words, every nilpotent map can be viewed as $m$ independent staircases.
+	Then we can write $V = \bigoplus_{i=1}^m V_i$
+	where each $V_i$ has a basis of the form
+	$v_i$, $T(v_i)$, \dots, $T^{\dim V_i - 1}(v_i)$
+	for some $v_i \in V_i$.
+	Hence every nilpotent map can be viewed as independent staircases.
 \end{theorem}
 Each chain $v_i$, $T(v_i)$, $T(T(v_i))$, \dots is just one staircase.
 The proof is given later, but first let me point out where this is going.
