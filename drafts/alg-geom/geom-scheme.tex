@@ -756,21 +756,9 @@ Isomorphisms of (locally) ringed spaces are defined in the usual way.
 \end{problem}
 
 \begin{sproblem}
-	[Global section functor]
-	We consider the category $\catname{ShRing}_X$ of sheaves of rings on a space $X$.
-	The \vocab{global section functor}, denoted $\Gamma(X,-)$,
-	which sends each sheaf $\SF$ to the ring $\SF(X)$.
-	How does the global section functor behave on arrows?
-	\begin{hint}
-		Given a morphism of sheaves $\alpha : \SF \to \SG$
-		read off a map $\SF(X) \to \SG(X)$.
-	\end{hint}
-\end{sproblem}
-
-\begin{sproblem}
 	\label{prob:finite_sheaf}
 	Suppose $X$ is a finite topological space equipped with the discrete topology
-	(i.e.\ a finite set of points).
+	(i.e.\ $X$ is a finite set of points).
 	Let $\SF$ be a sheaf on $X$.
 	Show that for any open set $U$, we have a ring isomorphism
 	\[ \SF(U) \cong \prod_{p \in U} \SF_p. \]
@@ -780,6 +768,36 @@ Isomorphisms of (locally) ringed spaces are defined in the usual way.
 		If $X$ is discrete, then all sequences of germs are compatible.
 	\end{hint}
 \end{sproblem}
+
+\begin{dproblem}
+	[Skyscraper sheaf]
+	Let $Y$ be a \emph{Hausdorff} topological space
+	and let $p \in Y$ be a point.
+	Fix a ring $R$.
+	Construct a sheaf $\SF$ on $Y$ by
+	\[
+		\SF(U) = \begin{cases}
+			R & p \in U \\
+			0 & \text{otherwise}
+		\end{cases}
+	\]
+	with restriction maps in the obvious manner.
+	We call $\SF$ a \vocab{skyscraper sheaf} at $p$.
+	Compute all the stalks of $\SF$.
+\end{dproblem}
+
+\begin{dproblem}
+	[Pushforward sheaf]
+	Suppose $f : X \to Y$ is a continuous map of spaces
+	and $\SF$ is a sheaf on $X$.
+	Define a sheaf $f_\ast \SF$ on $Y$ from $\SF$;
+	we call this the pushforward of $\SF$ onto $Y$.
+\end{dproblem}
+
+\begin{problem}
+	Interpret the skyscraper sheaf as the pushforward
+	of a constant sheaf on a one-point space.
+\end{problem}
 
 \chapter{Schemes}
 Now that we understand sheaves well, we can readily define the scheme.
@@ -1118,6 +1136,7 @@ these two are quite different beasts!
 		\ii Let $D(g)$ be a distinguished open set.
 		Then $\OO_{\Spec S}(D(g)) \cong R_g$.
 	\end{enumerate}
+	\label{thm:affine_struct_master}
 \end{theorem}
 This matches the results that we've seen when $\Spec R$ is an affine variety.
 \begin{proof}
@@ -1132,6 +1151,20 @@ This matches the results that we've seen when $\Spec R$ is an affine variety.
 	\end{ques}
 	Then we can repeat the proof of \Cref{thm:reg_func_distinguish_open}.
 \end{proof}
+
+\begin{example}
+	[Examples of structure sheaves]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii Let $X = \Spec \CC[x]$.
+		Then $\OO_X(U)$ is the set of regular functions on $U$
+		in the sense that we've seen before.
+		\ii Let $X = \Spec \ZZ$.
+		Let $U = X \setminus \{ (7), (11) \}$.
+		Then $\OO_X(U)$ can be identified with the set of rational numbers
+		which have denominator not divisible by $7$ or $11$.
+	\end{enumerate}
+\end{example}
 
 We now state the most important theorem.
 In fact, this theorem is the justification that our definition
@@ -1153,9 +1186,6 @@ of a scheme is the correct one.
 	If we take $U$ to be the entire space $\Spec S$ we now have a ring homomorphism
 	\[ S = \OO_{\Spec S} (\Spec S) \to \OO_{\Spec R} (\Spec R) = R. \]
 	which is one part of the construction.
-
-	In fact, this is just the global section functor
-	applied to $\OO_{\Spec S} \to f_\ast \OO_{\Spec R}$.
 
 	The more involved direction is building from a homomorphism
 	$\psi : S \to R$ a map $f : \Spec R \to \Spec S$.
@@ -1185,10 +1215,9 @@ of a scheme is the correct one.
 \end{proof}
 \begin{remark}
 	Categorically, this says that the ``global section functor''
-	on the category $\catname{AffSch}$ of affine schemes is a
-	fully faithful functor to $\catname{CRing}$.
-	Moreover, it is surjective on objects
-	(the correct term here is ``essentially surjective on objects'').
+	$\Spec R \mapsto \OO_{\Spec R}(R) = R$ is a fully faithful functor
+	from the category $\catname{AffSch}$ to the category $\catname{CRing}$.
+	(It is also essentially surjective on objects.)
 \end{remark}
 To be more philosophical,
 \begin{moral}
@@ -1200,7 +1229,7 @@ To be more philosophical,
 \section{Schemes}
 \begin{definition}
 	A \vocab{scheme} is a locally ringed space $(X, \OO_X)$
-	with an open affine cover $\{U_\alpha\}$ of $X$
+	with an open cover $\{U_\alpha\}$ of $X$
 	such that each pair $(U_\alpha, \OO_X \restrict{U_\alpha})$
 	is isomorphic to an affine scheme.
 \end{definition}
@@ -1327,7 +1356,7 @@ However, we will now proceed to define some additional sheaves on a scheme $X$,
 and study the relations between them.
 
 \section{Sheaves of $\OO_X$-modules}
-\prototype{Twisting Sheaves}
+\prototype{Twisting sheaves.}
 Up until now we have mostly been working with sheaves of rings,
 but now we want to instead think about sheaves of modules related
 to a scheme $X$. 
@@ -1408,7 +1437,7 @@ From this we deduce
 
 In particular, we can talk about whether a sequence of sheaves
 $\SF \to \SG \to \SH$ is exact: just use the categorical definition.
-However, if possible we want to avoid using the long-winded definition.
+However, if possible we want to avoid unwinding all these definitions.
 So, I will just quote the relevant results:
 \begin{theorem}
 	[Exactness can be checked at stalks]
@@ -1417,6 +1446,8 @@ So, I will just quote the relevant results:
 	for every point $p \in X$,
 	the induced map of stalks $\SF_p \to \SG_p \to \SH_p$ is exact.
 \end{theorem}
+
+
 Thus, we \emph{really} like stalks; they behave as nicely as possible.
 \begin{ques}
 	Deduce that $\SF \to \SG$ is injective / surjective / an isomorphism
@@ -1424,7 +1455,14 @@ Thus, we \emph{really} like stalks; they behave as nicely as possible.
 	for every point $p$.
 \end{ques}
 
-If we insist on sections, the only useful result we have is:
+\begin{remark}
+	In fact, one can show that the section functor is \vocab{left exact}:
+	if $0 \to \SF \to \SG \to \SH \to 0$ is exact then
+	$0 \to \SF(U) \to \SG(U) \to \SH(U)$ is exact but the
+	last arrow need not be surjective.
+\end{remark}
+
+We also have the following result:
 \begin{theorem}
 	[Monic/epic on sections]
 	Let $\alpha : \SF \to \SG$ be a morphism of $\OO_X$-modules.
@@ -1436,6 +1474,30 @@ If we insist on sections, the only useful result we have is:
 		but the converse is not true in general.
 	\end{enumerate}
 \end{theorem}
+
+\begin{example}
+	[Exponential exact sequence]
+	Here is an example of an exact sequence of sheaves:
+	we write
+	\[ 0 \to \ZZ \taking{\cdot 2\pi i} \SF \taking{\exp} \SF^\ast \to 0 \]
+	where
+	\begin{itemize}
+		\ii $\ZZ$ is the sheaf of locally constant integer-valued functions.
+		\ii $\SF$ is the sheaf of holomorphic functions on $\CC$.
+		\ii $\SF^\ast$ is the sheaf of nonvanishing
+			holomorphic functions on $\CC$.
+	\end{itemize}
+	You should convince yourself that this sequence is exact
+	(try taking the stalk at $0$).
+	But if we pick $U = \CC \setminus \{0\}$, then we only have exactness of
+	\[ 0 \to \ZZ(U) \taking{\cdot 2\pi i} \SF(U) \taking{\exp} \SF^\ast(U) \]
+	with the last arrow not being surjective:
+	take the identity function $\id \in \SF^\ast(U)$.
+\end{example}
+\begin{exercise}
+	Compute $\coker'(\exp)$ and $\coker(\exp) = \coker'(\exp)\sh$
+	in the above example.
+\end{exercise}
 
 In addition, we can do the following constructions.
 \begin{definition}
@@ -1461,13 +1523,124 @@ In addition, we can do the following constructions.
 	\end{enumerate}
 \end{example}
 
-\section{Quasi-coherent sheaves}
-Example: exponential sequence
+\section{Sheaves associated to modules}
+As the previous section shows, sheaves are rather than complicated objects
+and perhaps not the easiest things to work with.
+So we want a way to simplify our work a little,
+and specialize our attention to a ``simpler'' class of sheaves.
 
-Define quasi-coherent (easier to work with)
+We're going to work instead with general $R$-modules.
+For this to work, we have to understand ``localization of a module'',
+generalizing the localization of $R$ from before.
+\begin{definition}
+	Let $S \subseteq R$, where $R$ is a ring,
+	and assume $S$ is closed under multiplication.
+	Let $M$ be an $R$-module.
+	Then the \vocab{localization of $M$ at $S$}, denoted $S\inv M$,
+	is defined as the set of fractions
+	\[ \left\{ m/s \mid m \in M, s \in S \right\} \]
+	where we declare two fractions $m_1 / s_1 = m_2 / s_2$ 
+	to be equal if 
+	\[ \exists s \in S : \quad s(s_2m_1 - s_1m_2) = 0. \]
+	Finally, we define $M_\pp = (R\setminus\pp)\inv M$
+	and $M_f = \left\{ 1, f, f^2, \dots \right\}\inv M$.
+\end{definition}
+Now for every module $M$ we can construct a sheaf of $\OO_X$-modules.
+\begin{definition}
+	Let $M$ be an $R$-module.
+	Then we construct the sheaf $\wt M$ on $X = \Spec R$ as follows:
+	it is the sheafication of the pre-sheaf
+	\[ U \mapsto 
+		\left\{ \frac{m}{g} \mid m \in M, f \in R,
+			\text{ and }
+			g(\pp) \neq 0 \;\forall \pp \in U \right\}.
+	\]
+	Thus, in terms of germs,
+	\[
+		\wt M(U)
+		= \left\{ (m_\pp \in M_\pp)_{\pp \in U} \text{ which are locally $m/f$} \right\}.
+	\]
+	This becomes a sheaf of $\OO_X$ modules.
+	We say $\wt M$ is the \vocab{sheaf associated to $M$}.
+\end{definition}
+\begin{example}
+	[Examples of sheaves associated to modules]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii If we set $M = R$ then $\wt M = \OO_X$.
+		\ii If we let $M = R \oplus R$ then $\wt M = \OO_X^{\oplus 2}$.
+		\ii Suppose $R = \CC[x]$, so $X = \Spec R = \Aff^1$.
+		Then we define a module $M$ as follows:
+		\begin{itemize}
+			\ii As a set $M = \{ \lambda \in \CC \}$.
+			\ii The action of $R$ on $M$ is
+			given by $f \cdot \lambda = f(2016)\lambda$.
+		\end{itemize}
+		Then we obtain skyscraper sheaf at $(2016)$ (see \Cref{prob:module_sky})
+		\[ 
+			\wt M(U) 
+			=
+			\begin{cases}
+				\CC & (2016) \in U \\
+				0 & (2016) \notin U.
+			\end{cases}
+		\]
+	\end{enumerate}
+\end{example}
+These sheaves have the usual properties we like:
+\begin{theorem}
+	[Properties of sheaves associated to modules]
+	Let $X = \Spec R$ and a let $M$ be an $R$-module.
+	\begin{enumerate}[(a)]
+		\ii If $\pp \in X$ then $\wt M_\pp \cong M_\pp$;
+		the stalk of $\wt M$ is the localization of $M$.
+		\ii For $f \in R$, we have $\wt M(D(f)) = M_f$.
+	\end{enumerate}
+\end{theorem}
+The proof is identical to \Cref{thm:affine_struct_master}.
+
+\section{Quasi-coherent sheaves}
+Then we define:
+\begin{definition}
+	A sheaf $\SF$ on a scheme $X$ is \vocab{quasi-coherent} if
+	on any open set $U = \Spec R$, the restriction of $\SF$ to $U$
+	is isomorphic to $\wt M$ for some module $M$.
+\end{definition}
+Many sheaves which arise in practice are quasi-coherent.
 
 Kahler differential module, show the Euler sequence
+
+\section{Locally free sheaves}
+\section\problemhead
+\begin{problem}
+	\label{prob:module_sky}
+	Suppose $R = \CC[x]$, so $X = \Spec R = \Aff^1$.
+	Then we define a $R$-module $M = \CC$ with action
+	$f \cdot \lambda = f(2016)\lambda$ for $f \in R$, $\lambda \in M$.
+	\begin{enumerate}[(a)]
+		\ii Let $\pp \in X$.  Show that $M_\pp = \CC$
+		if $\pp = (x-2016)$ and $M_\pp = 0$ otherwise.
+		\ii Show that $\wt M$ is a skyscraper sheaf.
+	\end{enumerate}
+\end{problem}
+
 
 \chapter{Divisors and line bundles}
 
 \end{document}
+
+
+
+	In fact, this is just the global section functor
+	applied to $\OO_{\Spec S} \to f_\ast \OO_{\Spec R}$.
+
+	We consider the category $\catname{ShRing}_X$ of sheaves of rings on a space $X$.
+	Define the \vocab{global section functor}, denoted $\Gamma(X,-)$,
+	which sends each sheaf $\SF$ to the ring $\SF(X)$.
+	How does the global section functor behave on arrows?
+	\begin{hint}
+		Given a morphism of sheaves $\alpha : \SF \to \SG$
+		read off a map $\SF(X) \to \SG(X)$.
+	\end{hint}
+
+
