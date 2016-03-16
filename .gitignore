@@ -23,4 +23,9 @@ asy/*
 **/*.run.xml
 **/*.toc
 
+**/*.maf
+**/*.mtc
+**/*.mtc0
+**/*.ptc*
+
 drafts/**/*.bib
