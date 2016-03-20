@@ -1,68 +1,20 @@
 \chapter{The Frobenius element}
-We keep our setup: $\pp$ lies above $p$ in $\OO_K$.
+Throughout this chapter $K/\QQ$ is a Galois extension with Galois group $G$,
+$p$ is an \emph{unramified} rational prime in $K$, and $\pp$ is a prime above it.
 Picture:
 \begin{diagram}
 	K & \supset & \OO_K & \pp & & \OO_K / \pp \cong \FF_{p^f} \\
 	\dLine && \dLine & \dLine & & \dLine \\
 	\QQ & \supset & \ZZ & (p) & & \FF_p
 \end{diagram}
-
-Assume now that $p$ is unramified, so we have our isomorphism
-\[ D_\pp \taking\theta \Gal\left( (\OO_K/\pp) / \FF_p \right). \]
-Recall that $\theta$ sends $\sigma \in D_\pp$
-to the map \[ \theta(\sigma) : \alpha \pmod\pp \mapsto \sigma(\alpha) \pmod\pp. \]
-Since $\sigma$ is supposed to fix $\pp$, this is well-defined.
-
-Again, we already know $\Gal\left( (\OO_K/\pp)/\FF_p \right)$,
-according to the string of isomorphisms
-\[
-	\Gal\left( (\OO_K/\pp) / \FF_p \right)
-	\cong \Gal\left( \FF_{p^f} / \FF_p \right)
-	\cong \left< x \mapsto x^p \right>
-	\cong \Zc{f} .
-\]
-If we take the generator of $\Zc f$, we get the so-called \emph{Frobenius element},
-which will turn out to be absurdly powerful.
-
-Throughout this chapter $K/\QQ$ is a Galois extension with Galois group $G$,
-$p$ is an \emph{unramified} rational prime in $K$, and $\pp$ is a prime above it.
+If $p$ is unramified, then one can show there
+is a unique $\sigma \in \Gal(L/K)$ such that
+$\sigma(\alpha) \equiv \alpha^p \pmod{\pp}$ for every prime $p$.
 
 \section{Frobenius elements}
 \prototype{$\Frob_\pp$ in $\ZZ[i]$ depends on $p \pmod 4$.}
-Let me draw the picture before I say what I'm going to do:
-\begin{center}
-	\begin{asy}
-		size(12cm);
-		filldraw( (-4,-2)--(-4,2)--(1.5,2)--(1.5,-2)--cycle, lightblue+opacity(0.2), black);
-		label("$G = \operatorname{Gal}(K/\mathbb Q)$", (-1,2), dir(90));
-		dot( (-1.1,-1.2) );
-		dot( (-1.4,0.9) );
-		dot( (-2,1.4) );
-		dot( (-2.7,-0.4) );
-		dot( (-3.1,0.2) );
-		dot( (-3.4,-1.6) );
 
-		filldraw(scale(0.8,1.8)*unitcircle, lightcyan+opacity(0.4), black);
-		label("$D_{\mathfrak p}$", (0.8,2), dir(-90));
-		for (real y=-1.5; y<2; ++y) { dot( (0,y) ); }
-		label("$\operatorname{Frob}_{\mathfrak p}$", (0,-1.5), dir(90));
-
-		filldraw(shift(5,0)*scale(0.8,1.8)*unitcircle, lightcyan+opacity(0.4), black);
-		for (real y=0.5; y<2; ++y) { dot( (5,y) ); }
-		dot("$T$", (5,-1.5), dir(45));
-		dot("$T^2$", (5,-0.5), dir(45));
-		draw( (1,0)--(4,0), Arrows );
-		label("$\left<T \mid T^f=1\right>$", (5,1.8), dir(90));
-
-		draw( (0.2,-1.5)--(4.8,-1.5), dashed, EndArrow);
-		label("$\theta(\operatorname{Frob}_{\mathfrak p}) = T$", (2.8,-1.5), dir(-90));
-		label("$\theta$", (2.5,0), dir(90));
-		label("$\cong$", (2.5,0), dir(-90));
-	\end{asy}
-\end{center}
-The point is to take the generator in $\Zc f$ and see who it goes to in $G$ under $\theta$.
-We distinguish this element as $\Frob_\pp$.
-The following theorem makes this all precise:
+Here is the theorem statement again:
 \begin{theorem}[The Frobenius element]
 	Assume $K/\QQ$ is Galois with Galois group $G$.
 	Let $p$ be a rational prime unramified in $K$, and $\pp$ a prime above it.
@@ -71,31 +23,18 @@ The following theorem makes this all precise:
 	\[ \Frob_\pp(\alpha) \equiv \alpha^{p} \pmod{\pp}. \]
 	It is called the \vocab{Frobenius element} at $\pp$, and has order $f$.
 \end{theorem}
-\begin{proof}
-	First, observe:
-	\begin{ques}
-	Show that such an element must be in $D_\pp$.
-	\end{ques}
-	Now $\theta(\sigma)$ has the property if and only if it equals $T$,
-	so everything is clear from the isomorphism $\theta$.
-\end{proof}
-
 The \emph{uniqueness} part is pretty important:
 it allows us to show that a given $\sigma \in \Gal(L/K)$
 is the Frobenius element by just observing that it satisfies
 the above functional equation.
-Thus there are \textbf{two ways to think about $\Frob_\pp$}:
-using the abstract picture above,
-and through the concrete relation $\Frob_\pp(\alpha) \equiv \alpha^p \pmod{\pp}$.
 
-
+Let's see an example of this:
 \begin{example}[Frobenius elements of the Gaussian integers]
 	Let's actually compute some Frobenius elements for $K = \QQ(i)$,
 	which has $\OO_K = \ZZ[i]$.
 	This is a Galois extension, with $G = \Zm2$,
 	corresponding to the identity and complex conjugation.
 
-	For this computation we use the concrete relation.
 	If $p$ is an odd prime with $\pp$ above it,
 	then $\Frob_\pp$ is the unique element such that
 	\[ (a+bi)^p \equiv \Frob_\pp(a+bi) \pmod{\pp} \]
@@ -109,6 +48,82 @@ and through the concrete relation $\Frob_\pp(\alpha) \equiv \alpha^p \pmod{\pp}$
 	From this we see that $\Frob_\pp$ is the identity when $p \equiv 1 \pmod 4$
 	and $\Frob_\pp$ is complex conjugation when $p \equiv 3 \pmod 4$.
 \end{example}
+Note that we really only needed to compute $\Frob_\pp$ on $i$.
+If this seems too good to be true,
+a philosophical reason is ``freshman's dream''
+where $(x+y)^p \equiv x^p + y^p \pmod{p}$ (and hence mod $\pp$).
+So if $\sigma$ satisfies the functional equation on generators,
+it satisfies the functional equation everywhere.
+
+We also have the following important lemma:
+\begin{lemma}
+	[Order of the Frobenius element]
+	Let $\Frob_\pp$ be a Frobenius element from an extension $K/\QQ$.
+	Then the order of $\pp$ is equal to the inertial degree $f_\pp$.
+	In particular, $(p)$ splits completely in $\OO_K$
+	if and only if $\Frob_\pp = \id$.
+\end{lemma}
+\begin{exercise}
+	Prove this lemma as by using the fact that $\OO_K / \pp$
+	is the finite field of order $f_\pp$,
+	and the Frobenius element is just $x \mapsto x^p$ on this field.
+\end{exercise}
+
+Let us now prove the main theorem.
+This will only make sense in the context of decomposition groups,
+so readers which skipped that part should omit this proof.
+\begin{proof}
+	[Proof of existence of Frobenius element]
+	The entire theorem is just a rephrasing of the fact
+	that the map $\theta$ defined in the last section
+	is an isomorphism when $p$ is unramified.
+	Picture:
+	\begin{center}
+		\begin{asy}
+			size(12cm);
+			filldraw( (-4,-2)--(-4,2)--(1.5,2)--(1.5,-2)--cycle, lightblue+opacity(0.2), black);
+			label("$G = \operatorname{Gal}(K/\mathbb Q)$", (-1,2), dir(90));
+			dot( (-1.1,-1.2) );
+			dot( (-1.4,0.9) );
+			dot( (-2,1.4) );
+			dot( (-2.7,-0.4) );
+			dot( (-3.1,0.2) );
+			dot( (-3.4,-1.6) );
+
+			filldraw(scale(0.8,1.8)*unitcircle, lightcyan+opacity(0.4), black);
+			label("$D_{\mathfrak p}$", (0.8,2), dir(-90));
+			for (real y=-1.5; y<2; ++y) { dot( (0,y) ); }
+			label("$\operatorname{Frob}_{\mathfrak p}$", (0,-1.5), dir(90));
+
+			filldraw(shift(5,0)*scale(0.8,1.8)*unitcircle, lightcyan+opacity(0.4), black);
+			for (real y=0.5; y<2; ++y) { dot( (5,y) ); }
+			dot("$T$", (5,-1.5), dir(45));
+			dot("$T^2$", (5,-0.5), dir(45));
+			draw( (1,0)--(4,0), Arrows );
+			label("$\left<T \mid T^f=1\right>$", (5,1.8), dir(90));
+
+			draw( (0.2,-1.5)--(4.8,-1.5), dashed, EndArrow);
+			label("$\theta(\operatorname{Frob}_{\mathfrak p}) = T$", (2.8,-1.5), dir(-90));
+			label("$\theta$", (2.5,0), dir(90));
+			label("$\cong$", (2.5,0), dir(-90));
+		\end{asy}
+	\end{center}
+	In here we can restrict our attention to $D_\pp$
+	since we need to have $\sigma(\alpha) \equiv 0 \pmod \pp$
+	when $\alpha \equiv 0 \pmod \pp$.
+	Thus we have the isomorphism
+	\[ D_\pp \taking\theta \Gal\left( (\OO_K/\pp) / \FF_p \right). \]
+	But we already know $\Gal\left( (\OO_K/\pp)/\FF_p \right)$,
+	according to the string of isomorphisms
+	\[
+		\Gal\left( (\OO_K/\pp) / \FF_p \right)
+		\cong \Gal\left( \FF_{p^f} / \FF_p \right)
+		\cong \left< T = x \mapsto x^p \right>
+		\cong \Zc{f} .
+	\]
+	So the unique such element is the pre-image of $T$ under $\theta$.
+\end{proof}
+
 
 \section{Conjugacy classes}
 Now suppose $\pp_1$ and $\pp_2$ are \emph{two} primes above an unramified rational prime $p$.
@@ -166,15 +181,13 @@ really just comes from the more friendly-looking rational prime $p$.
 	Let's consider the prime $5$ which factors (trust me here) as
 	\[ (5) = (5, \eps^2+\eps+2)(5, \eps^2+3\eps+3)(5, \eps^2+4\eps+1)
 		= \pp_1 \pp_2 \pp_3. \]
-	We use the abstract picture to compute the Frobenius elements.
-	Take the first prime ideal, $\pp_1 = (5, \eps^2+\eps+2)$.
-	It follows that \[ \OO_K / \pp_1 \cong \FF_5[\eps] / (\eps^2+\eps+2). \]
-	As this field has $5^2=25$ elements,
-	the Galois group of this $\OO_K/\pp_1$ over $\FF_5$ is order $2$.
-	Thus $D_{\pp_1} \cong \Zm 2$ and $\Frob_{\pp_1}$ will have order $2$.
+	Note that all the prime ideals have inertial degree $2$.
+	Thus $\Frob_{\pp_i}$ will have order $2$ for each $i$.
 
-	Note that $\Gal(K/\QQ) \cong S_3$ is just the $3!=6$
-	permutations of $\{\cbrt2,\omega\cbrt2,\omega^2\cbrt2\}$.
+	Note that 
+	\[ \Gal(K/\QQ) =
+		\text{permutations of } \{\cbrt2,\omega\cbrt2,\omega^2\cbrt2\}
+		\cong S_3.  \]
 	In this $S_3$ there are $3$ elements of order three:
 	fixing one root and swapping the other two.
 	These correspond to each of $\Frob_{\pp_1}$, $\Frob{\pp_2}$, $\Frob_{\pp_3}$.
@@ -278,17 +291,19 @@ Specifically:
 
 \begin{lemma}[Cyclotomic Frobenius elements]
 	\label{lem:cyclo_frob}
-	In the cyclotomic setting, let $p$ be a rational unramified prime
+	In the cyclotomic setting $L = \QQ(\zeta_q)$,
+	let $p$ be a rational unramified prime
 	and $\pp$ above it. Then \[ \Frob_\pp = \sigma_p. \]
 \end{lemma}
 \begin{proof}
-	We know that $\sigma_p$ satisfies the functional equation for $\Frob_\pp$.
-	Done by uniqueness of Frobenius element.
+	Observe that $\sigma_p$ satisfies the functional equation
+	(check on generators).
+	Done by uniqueness.
 %	We know $\Frob_\pp(\alpha) \equiv \alpha^p \pmod{\pp}$ by definition,
 %	but also that $\Frob_\pp = \sigma_n$ for some $n$
 %	We want $n=p$; since $\sigma_n(\zeta_q)^n = \zeta_q^n$ by definition
 %	it would be very weird if this wasn't true!
-%	
+%
 %	Given $\zeta_q^n \equiv \zeta_q^p \pmod{\pp}$, it suffices to
 %	prove that the $q$th roots of unity are distinct mod $\pp$.
 %	Look at the polynomial $F(x) = x^q-1$ in $\ZZ[\zeta_p]/\pp \cong \FF_{p^f}$.
@@ -296,6 +311,11 @@ Specifically:
 %	(since $\FF_{p^f}$ has characteristic $p \nmid q$).
 %	The only root of $F'$ is zero, hence $F$ has no double roots mod $\pp$.
 \end{proof}
+
+\begin{ques}
+	Conclude that a rational prime $p$
+	splits completely in $\OO_L$ if and only if $p \equiv 1 \pmod m$.
+\end{ques}
 
 \section{Frobenius elements behave well with restriction}
 Consider the following setup, where $L/\QQ$ and $K/\QQ$ are both Galois extensions:
@@ -418,11 +438,10 @@ To see this, note that $\Frob_{\mathfrak P}$ is in $H$ if and only if it acts
 as the identity on $K$.
 But $\Frob_{\mathfrak P} \restrict{K}$ is $\Frob_\pp$!
 So \[ \Frob_{\mathfrak P} \in H \iff \Frob_\pp = \id_K. \]
-So we simply note that $\Frob_\pp$ has order $1$ if $p$ splits (and $\pp$ has inertial degree $1$)
-and order $2$ if $p$ is inert (hence $\pp = p \cdot \OO_K$ has inertial degree $2$).
-After all, $\Frob_\pp$ corresponds to the generator of
-\[ \Gal( (\OO_K/\pp) / \FF_p) \cong \Gal(\FF_p/\FF_p) \text{ or } \Gal(\FF_{p^2}/\FF_p) \]
-according to whether $p$ splits or is inert, respectively.
+Finally note that $\Frob_\pp$ has order $1$ if $p$ splits
+($\pp$ has inertial degree $1$)
+and order $2$ if $p$ is inert.
+This completes the proof of the claim.
 
 \subsection*{Finishing up}
 We already know by \Cref{lem:cyclo_frob} that $\Frob_{\mathfrak P} = \sigma_p \in H$
