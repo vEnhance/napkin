@@ -28,6 +28,7 @@ Throughout this chapter $K/\QQ$ is a Galois extension with Galois group $G$,
 $p$ is an \emph{unramified} rational prime in $K$, and $\pp$ is a prime above it.
 
 \section{Frobenius elements}
+\prototype{$\Frob_\pp$ in $\ZZ[i]$ depends on $p \pmod 4$.}
 Let me draw the picture before I say what I'm going to do:
 \begin{center}
 	\begin{asy}
@@ -80,34 +81,33 @@ The following theorem makes this all precise:
 \end{proof}
 
 The \emph{uniqueness} part is pretty important:
-it allows us to show that a given $\sigma$ is actually \emph{equal}
-to the generator of $\Gal(K/\QQ)$ by just observing that it satisfies
+it allows us to show that a given $\sigma \in \Gal(L/K)$
+is the Frobenius element by just observing that it satisfies
 the above functional equation.
-We'll use this more than once in the proof of quadratic reciprocity.
+Thus there are \textbf{two ways to think about $\Frob_\pp$}:
+using the abstract picture above,
+and through the concrete relation $\Frob_\pp(\alpha) \equiv \alpha^p \pmod{\pp}$.
+
 
 \begin{example}[Frobenius elements of the Gaussian integers]
 	Let's actually compute some Frobenius elements for $K = \QQ(i)$,
 	which has $\OO_K = \ZZ[i]$.
-	This is a Galois extension, with $G = \Zm2$, corresponding to the identity
-	and complex conjugation.
-	\begin{enumerate}[(a)]
-		\ii Let $p \equiv 1 \pmod 4$.
-		Then $(p) = (a+bi)(a-bi)$ in $\ZZ[i]$; set $\pp = a + bi$.
-		so $\OO_K / \pp \cong \FF_p$.
-		So in this case the Galois group $\Gal( (\OO_K/\pp) / \FF_p )$
-		is trivial, and as predicted we have $D_\pp$ trivial as well.
-		Thus $\Frob_\pp = \id$.
-		\ii Now let $p \equiv 3 \pmod 4$, and let $\pp = (p)$.
-		Then $\OO_K / \pp \cong \FF_p[i] \cong \FF_{p^2}$, and the Galois group has order $2$;
-		accordingly, $D_\pp$ has order $2$, and its generator is $\Frob_\pp$.
+	This is a Galois extension, with $G = \Zm2$,
+	corresponding to the identity and complex conjugation.
 
-		So $\sigma = \Frob_\pp$ has order $2$, and it must be complex conjugation.
-		We can see this directly as well: $\sigma$ is the unique element such that
-		\[ (a+bi)^p \equiv \sigma(a+bi) \pmod{\pp} \]
-		in $\ZZ[i]$.
-		For $a=0$ and $b=1$, we get $\sigma(i) \equiv i^p \equiv -i \pmod{\pp}$,
-		and so $\sigma$ must be complex conjugation.
-	\end{enumerate}
+	For this computation we use the concrete relation.
+	If $p$ is an odd prime with $\pp$ above it,
+	then $\Frob_\pp$ is the unique element such that
+	\[ (a+bi)^p \equiv \Frob_\pp(a+bi) \pmod{\pp} \]
+	in $\ZZ[i]$. In particular,
+	\[ \Frob_\pp(i) = i^p = 
+		\begin{cases}
+			i & p \equiv 1 \pmod 4 \\
+			-i & p \equiv 3 \pmod 4.
+		\end{cases}
+	\]
+	From this we see that $\Frob_\pp$ is the identity when $p \equiv 1 \pmod 4$
+	and $\Frob_\pp$ is complex conjugation when $p \equiv 3 \pmod 4$.
 \end{example}
 
 \section{Conjugacy classes}
@@ -159,25 +159,30 @@ really just comes from the more friendly-looking rational prime $p$.
 	With those remarks, here is a more involved example of a Frobenius map.
 	Let $K = \QQ(\cbrt2, \omega)$ be the splitting field of 
 	\[ t^3-2 = (t-\cbrt2)(t-\omega\cbrt2)(t-\omega^2\cbrt2). \]
+	Thus $K/\QQ$ is Galois.
 	We've seen in an earlier example that
 	\[ \OO_K = \ZZ[\eps] \quad\text{where}\quad \eps \text { is a root of } t^6+3t^5-5t^3+3t+1. \]
-	We factor $5$ as the prime
-	\[ (5) = (5, \eps^2+\eps+2)(5, \eps^2+3\eps+3)(5, \eps^2+4\eps+1). \]
 
-	Take the first one, $\mathfrak P = (5, \eps^2+\eps+2)$.
-	It follows that \[ \OO_K / {\mathfrak P} \cong \FF_5[\eps] / (\eps^2+\eps+2). \]
+	Let's consider the prime $5$ which factors (trust me here) as
+	\[ (5) = (5, \eps^2+\eps+2)(5, \eps^2+3\eps+3)(5, \eps^2+4\eps+1)
+		= \pp_1 \pp_2 \pp_3. \]
+	We use the abstract picture to compute the Frobenius elements.
+	Take the first prime ideal, $\pp_1 = (5, \eps^2+\eps+2)$.
+	It follows that \[ \OO_K / \pp_1 \cong \FF_5[\eps] / (\eps^2+\eps+2). \]
 	As this field has $5^2=25$ elements,
-	the Galois group of this guy over $\FF_5$ is order $2$.
-	Thus $D_\pp \cong \Zm 2$ as well and $\sigma = \Frob_{\mathfrak P}$ will have order $2$.
+	the Galois group of this $\OO_K/\pp_1$ over $\FF_5$ is order $2$.
+	Thus $D_{\pp_1} \cong \Zm 2$ and $\Frob_{\pp_1}$ will have order $2$.
 
 	Note that $\Gal(K/\QQ) \cong S_3$ is just the $3!=6$
-	permutations of the three roots $\{\cbrt2,\omega\cbrt2,\omega^2\cbrt2\}$.
-	Exactly three of these have order $2$,
-	and they correspond to the three prime ideals of $5$;
-	each of the three Frobenius elements from $5$ correspond to
-	fixing one of the roots and swapping the other two.
-	In still other words, the conjugacy class associated to $5$
-	is the cycle type $(\bullet)(\bullet \; \bullet)$ in $S_3$.
+	permutations of $\{\cbrt2,\omega\cbrt2,\omega^2\cbrt2\}$.
+	In this $S_3$ there are $3$ elements of order three:
+	fixing one root and swapping the other two.
+	These correspond to each of $\Frob_{\pp_1}$, $\Frob{\pp_2}$, $\Frob_{\pp_3}$.
+
+	In conclusion, the conjugacy class
+	$\left\{ \Frob_{\pp_1}, \Frob_{\pp_2}, \Frob_{\pp_3} \right\}$
+	associated to $(5)$ is the
+	cycle type $(\bullet)(\bullet \; \bullet)$ in $S_3$.
 \end{example}
 
 
@@ -208,7 +213,7 @@ By density, I mean that the proportion of primes $p \le x$ that work
 approaches $\frac{\left\lvert C \right\rvert}{\left\lvert G \right\rvert}$ as $x \to \infty$.
 Note that I'm throwing out the primes that ramify in $K$.
 This is no issue, since the only primes that ramify are those dividing $\Delta_K$,
-and we can throw those out.
+of which there are only finitely many.
 
 In other words, if I pick a random prime $p$ and look at the resulting conjugacy class,
 it's a lot like throwing a dart at $G$:
@@ -245,7 +250,8 @@ the probability of hitting any conjugacy class depends just on the size of the c
 \end{center}
 
 \begin{remark}
-Happily, this theorem also works if we replace $K/\QQ$ with any Galois extension $K/F$;
+Happily, this theorem (and preceding discussion)
+also works if we replace $K/\QQ$ with any Galois extension $K/F$;
 in that case we replace ``$\pp$ over $p$'' with ``$\mathfrak P$ over $\pp$''.
 In that case, we use $\Norm(\pp) \le x$ rather than $p \le x$ as the way
 to define density.
@@ -257,38 +263,38 @@ You should recall from various starred problems that
 \begin{itemize}
 	\ii $\Delta_L = \pm q^{q-2}$,
 	\ii $\OO_L = \ZZ[\zeta_q]$, and
-	\ii The map $\sigma_n : \zeta_q \mapsto \zeta_q^n$ is an automorphism of $L$ whenever $\gcd(n,q)=1$,
+	\ii The map \[ \sigma_n : L \to L \quad\text{by}\quad \zeta_q \mapsto \zeta_q^n \]
+	is an automorphism of $L$ whenever $\gcd(n,q)=1$,
 	and depends only on $n \pmod q$.
 	In other words, the automorphisms of $L/\QQ$ just shuffle around the $q$th roots of unity.
 	In fact the Galois group consists exactly of the elements $\{\sigma_n\}$, namely
 	\[ \Gal(L/\QQ) = \{ \sigma_n \mid n \not\equiv 0 \pmod q \}. \]
 	As a group, \[ \Gal(L/\QQ) = \Zm q \cong \Zc{q-1}. \]
 \end{itemize}
-This is surprisingly nice, because \textbf{elements of $\Gal(L/\QQ)$ look
-a lot like Frobenius element already}.
-So we shouldn't be surprised if the Frobenius element of $\Gal(L/\QQ)$
-have a concrete description.
-
-Let $p$ be a rational prime other than $q$, so $p$ doesn't ramify (since $p \nmid \Delta_L$).
-Then $\pp$ is above it, and there is a Frobenius element $\Frob_\pp$ uniquely determined by the property
-\[ \Frob_\pp(\alpha) \equiv \alpha^p \pmod{\pp}. \]
+This is surprisingly nice,
+because \textbf{elements of $\Gal(L/\QQ)$ look a lot
+like Frobenius elements already}.
+Specifically:
 
 \begin{lemma}[Cyclotomic Frobenius elements]
 	\label{lem:cyclo_frob}
-	In the cyclotomic setting, \[ \Frob_\pp = \sigma_p. \]
+	In the cyclotomic setting, let $p$ be a rational unramified prime
+	and $\pp$ above it. Then \[ \Frob_\pp = \sigma_p. \]
 \end{lemma}
 \begin{proof}
-	We know $\Frob_\pp(\alpha) \equiv \alpha^p \pmod{\pp}$ by definition,
-	but also that $\Frob_\pp = \sigma_n$ for some $n$
-	We want $n=p$; since $\sigma_n(\zeta_q)^n = \zeta_q^n$ by definition
-	it would be very weird if this wasn't true!
-	
-	Given $\zeta_q^n \equiv \zeta_q^p \pmod{\pp}$, it suffices to
-	prove that the $q$th roots of unity are distinct mod $\pp$.
-	Look at the polynomial $F(x) = x^q-1$ in $\ZZ[\zeta_p]/\pp \cong \FF_{p^f}$.
-	Its derivative is \[ F'(x) = qx^{q-1} \not\equiv 0 \pmod{\pp} \]
-	(since $\FF_{p^f}$ has characteristic $p \nmid q$).
-	The only root of $F'$ is zero, hence $F$ has no double roots mod $\pp$.
+	We know that $\sigma_p$ satisfies the functional equation for $\Frob_\pp$.
+	Done by uniqueness of Frobenius element.
+%	We know $\Frob_\pp(\alpha) \equiv \alpha^p \pmod{\pp}$ by definition,
+%	but also that $\Frob_\pp = \sigma_n$ for some $n$
+%	We want $n=p$; since $\sigma_n(\zeta_q)^n = \zeta_q^n$ by definition
+%	it would be very weird if this wasn't true!
+%	
+%	Given $\zeta_q^n \equiv \zeta_q^p \pmod{\pp}$, it suffices to
+%	prove that the $q$th roots of unity are distinct mod $\pp$.
+%	Look at the polynomial $F(x) = x^q-1$ in $\ZZ[\zeta_p]/\pp \cong \FF_{p^f}$.
+%	Its derivative is \[ F'(x) = qx^{q-1} \not\equiv 0 \pmod{\pp} \]
+%	(since $\FF_{p^f}$ has characteristic $p \nmid q$).
+%	The only root of $F'$ is zero, hence $F$ has no double roots mod $\pp$.
 \end{proof}
 
 \section{Frobenius elements behave well with restriction}
@@ -308,8 +314,9 @@ We may define
 and want to know how these are related.
 
 \begin{theorem}
-	[Restrictions of frobenius elements]
+	[Restrictions of Frobenius elements]
 	Assume $L/\QQ$ and $K/\QQ$ are both Galois.
+	Let $\PP$ and $\pp$ be unramified as above.
 	Then $\Frob_{\mathfrak P} \restrict{K} = \Frob_{\pp}$,
 	i.e.\ for every $\alpha \in K$,
 	\[ \Frob_\pp(\alpha) = \Frob_{\mathfrak P}(\alpha). \]
@@ -333,7 +340,7 @@ In short, the point of this section is that
 	Frobenius elements upstairs restrict to Frobenius elements downstairs.
 \end{moral}
 
-\section{Application: quadratic reciprocity}
+\section{Application: Quadratic reciprocity}
 We now aim to prove the following result from elementary number theory.
 (See, e.g. \cite{ref:holden} for an exposition on quadratic reciprocity,
 if you're not familiar with it.)
@@ -345,7 +352,7 @@ if you're not familiar with it.)
 		= (-1)^{\frac{p-1}{2} \cdot \frac{q-1}{2}}. \]
 \end{theorem}
 
-\subsection*{Step 1: setup}
+\subsection*{Step 1: Setup}
 For this proof, we first define
 \[ L = \QQ(\zeta_q) \]
 where $\zeta_q$ is a primitive $q$th root of unity.
@@ -367,15 +374,15 @@ Call it $\QQ(\sqrt{q^\ast})$, for $q^\ast$ squarefree:
 \end{diagram}
 \begin{exercise}
 	Note that if a rational prime $\ell$ ramifies in $K$,
-	then it ramifies in $L$.\footnote{
-		Actually, it is true in general that given a tower $L/K/\QQ$,
-		we have $\Delta_K$ divides $\Delta_L$.}
+	then it ramifies in $L$.
 	Use this to show that
 	\[ q^\ast = \pm q \text{ and } q^\ast \equiv 1 \pmod 4. \]
 	Together these determine the value of $q^\ast$.
 \end{exercise}
+(Actually, it is true in general 
+$\Delta_K$ divides $\Delta_L$ in a tower $L/K/\QQ$.)
 
-\subsection*{Step 2: reformulation}
+\subsection*{Step 2: Reformulation}
 Now we are going to prove:
 \begin{theorem}
 	[Quadratic reciprocity, equivalent formulation]
@@ -402,7 +409,7 @@ It could possibly also split in $K$: the picture looks like
 	Why is $p$ not ramified in either $K$ or $L$?
 \end{ques}
 
-\subsection*{Step 3: introducing the Frobenius}
+\subsection*{Step 3: Introducing the Frobenius}
 Now, we take the Frobenius 
 \[ \sigma_p = \Frob_{\mathfrak P} \in \Gal(L/\QQ). \]
 We claim that
@@ -672,7 +679,7 @@ such that $X^p-p$ is irreducible modulo $q$.
 	Intuitively this edge case seems highly unlikely (are we really so unlucky
 	that $f$ factors into \emph{linear} factors when we want it to be irreducible?).
 	And indeed this is easy to see: this means that $\sigma$ fixes all
-	of the roots of $f$ in $f$, but that means $\sigma$ fixes $K$,
+	of the roots of $f$ in $K$, but that means $\sigma$ fixes $K$ altogether,
 	and hence is the identity of $G$, contradiction.
 \end{proof}
 \begin{remark}
