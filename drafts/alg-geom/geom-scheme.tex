@@ -663,16 +663,34 @@ To do this we have to build up in several steps.
 \end{remark}
 
 \subsection*{Morphisms of ringed spaces}
-Suppose we have ringed spaces $X = (X, \OO_X)$ and $Y = (Y, \OO_Y)$,
-and we want to define a map
-\[ f : X \to Y. \]
+We talked about the morphisms of locally ringed spaces
+when we discussed projective varieties.
+We want to copy the same construction here.
 
-On the level of spaces, $f : X \to Y$ should of course be a continuous map.
-But we also want to $f$ to do something with $\OO_X$ and $\OO_Y$.
-However, we only defined how to take a morphism of sheaves
-that act on the \emph{same} space!
-Thus we impose the following definition,
-which lets us \emph{push} the sheaf on $X$ to a sheaf on $Y$.
+The idea was as follows: to ``preserve'' the structure via $f : X \to Y$,
+we took every regular function on $Y$ and made it into a function on $X$
+by composing it with $f$.
+This gave us a ring homomorphism $f^\ast : \OO_Y(U) \to \OO_X(f\pre(U))$
+for every open set $U$ in $Y$.
+
+Unfortunately, in the general case we don't have a notion of function,
+so ``composing by $f$'' doesn't make sense.
+The solution to this is to \emph{include all the ring homomorphisms $f^\ast$}
+in the data for a morphism $f : X \to Y$;
+we package this information using the morphism of sheaves.
+
+Here are the full details.
+Up above we only defined a morphism of sheaves on the same space,
+while right now we have a sheaf on $X$ and $Y$.
+So we have to first ``push'' the sheaf on $X$ into a sheaf on $Y$ by
+\[ U \mapsto \OO_X\left( f\pre(U) \right). \]
+This is important enough to have a name:
+\begin{definition}
+	Let $\SF$ be a sheaf on $X$, and $f : X \to Y$ a continuous map.
+	The \vocab{pushforward sheaf} $f_\ast \SF$ on $Y$ is defined by
+	\[ (f_\ast \SF)(U) = \SF(f\pre(U)) \qquad \forall U \subseteq Y. \]
+	This makes sense, since $f\pre(U)$ is open in $X$.
+\end{definition}
 Picture:
 \begin{diagram}
 	X && \rTo^f & Y && X && \rTo^f & Y \\
@@ -683,39 +701,29 @@ Picture:
 	&&& \catname{Rings}
 		&& && \SF(f\pre(U)) & = (f_\ast \SF)(U) & \in \catname{Rings}
 \end{diagram}
-
-\begin{definition}
-	Let $\SF$ be a sheaf on $X$, and $f : X \to Y$ a continuous map.
-	The \vocab{pushforward sheaf} $f_\ast \SF$ on $Y$ is defined by
-	\[ (f_\ast \SF)(U) = \SF(f\pre(U)) \qquad \forall U \subseteq Y. \]
-	This makes sense, since $f\pre(U)$ is open in $X$.
-\end{definition}
-As $f\pre$ is a functor $\Opens(Y)\op \to \Opens(X)\op$,
-\textbf{the pushforward $f_\ast\SF$ is
-just the composition of these two functors}.
-
+I haven't actually checked that $f_\ast \SF$ is a sheaf
+(as opposed to a pre-sheaf), but this isn't hard to do.
+Also, as $f\pre$ is a functor $\Opens(Y)\op \to \Opens(X)\op$,
+the pushforward $f_\ast\SF$ is
+just the composition of these two functors.
 \begin{ques}
 	Technically $f_\ast\SF$ is supposed to be a
 	functor $\Opens(Y)\op \to \catname{Rings}$, so it also needs
 	to come with restriction arrows. What are they?
 \end{ques}
 
-I haven't actually checked that $f_\ast \SF$ is a sheaf
-(as opposed to a pre-sheaf), but this isn't hard to do.
-
-Now we can define a morphism of ringed spaces.
-In addition to the topological spaces,
-we also include a natural transformation between
-the two structure sheafs, after pushing the one on $X$ forward.
+Now that we moved both sheaves onto $Y$,
+we mimic the construction with quasi-projective varieties
+by asking for a sheaf morphism from $\OO_Y$ to $f_\ast \OO_X$:
 \begin{definition}
 	A \vocab{morphism of ringed spaces} $f : (X, \OO_X) \to (Y, \OO_Y)$
 	consists of a continuous map of topological spaces $f : X \to Y$,
-	as well as a morphism of sheaves $f^\ast : \OO_Y \to (f_\ast \OO_X)$.
+	plus additionally a morphism of sheaves $f^\ast : \OO_Y \to f_\ast \OO_X$.
 \end{definition}
-The latter is thus a map
-$f^\ast_U : \OO_Y(U) \to (f_\ast \OO_X)(U) = \OO_X(f\pre(U))$
-for every $U \subseteq Y$, satisfying
-the axioms for a natural transformation.
+\begin{exercise}
+	(Mandatory) Check that this coincides with our work
+	on baby ringed spaces if we choose $f^\ast$ to be the pullback.
+\end{exercise}
 
 \subsection*{Morphisms of locally ringed spaces}
 Last step!
@@ -744,8 +752,8 @@ where $s \in \OO_Y(U)$.
 Recalling that $\mm_{X,p}$ is the maximal ideal of $\OO_X$ at $p$,
 the new condition is saying that
 \[ (f^\ast_P)\pre (\mm_{X,p}) = \mm_{Y,f(p)}. \]
-Concretely, if $g$ is a function which vanishes on $f(p)$,
-then its ``pullback'' $f^\ast_U(g)$ vanishes on $p$.
+Concretely, if $g$ is a function vanishing on $f(p)$,
+then its pullback $f^\ast_U(g)$ vanishes on $p$.
 
 This completes the definition of a morphism of locally ringed spaces.
 Isomorphisms of (locally) ringed spaces are defined in the usual way.
