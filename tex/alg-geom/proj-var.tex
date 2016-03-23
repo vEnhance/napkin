@@ -311,8 +311,8 @@ on distinguished open sets are; this is an analog to
 \Cref{thm:reg_func_distinguish_open} from last time.
 \begin{theorem}
 	[Regular functions on distinguished open sets for projective varieties]
-	Let $V$ be a variety, and let $g \in \CC[V]$ be homogeneous
-	of positive degree.
+	Let $V$ be a projective variety, and let $g \in \CC[V]$ be homogeneous
+	of \emph{positive degree} (thus $g$ is nonconstant).
 	Then
 	\[
 		\OO_V(D(g))
@@ -333,6 +333,20 @@ since ``irreducible'' is an adjective of topological spaces.)
 	This relies on the fact that $\CC$ is algebraically closed.
 \end{theorem}
 Proofs of these are omitted for now.
+
+The reason we need $V$ irreducible is otherwise
+we could, for example, take $V$ to be the union of two points;
+in this case $\OO_V(V) \cong \CC^{\oplus 2}$.
+
+It might seem strange that $\OO_V(D(g))$ behaves so differently
+when $g = 1$. One vague explanation is that in a projective variety,
+a distinguished open $D(g)$ looks much like an affine variety if $\deg g > 0$.
+For example, in $\CP^1$ we have $\CP^1 \setminus \{0\} \cong \Aff^1$
+(where $\cong$ is used in a sense that I haven't made precise).
+Thus the claim becomes related to the corresponding affine result.
+But if $\deg g = 0$ and $g \neq 0$, then $D(g)$ is the entire projective variety,
+which does not look affine, and thus the analogy breaks down.
+
 \begin{example}[Regular functions on $\CP^1$]
 	Let $V = \CP^1$, with coordinates $(s:t)$.
 	\begin{enumerate}[(a)]
