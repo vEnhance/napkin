@@ -386,7 +386,7 @@ Thus, as Ravi Vakil \cite{ref:vakil} says,
 \end{moral}
 
 \section{Maximal ideals}
-\prototype{All maximal ideals are $(x-a_1, \dots, x-a_n)$.}
+\prototype{All maximal ideals are $(x_1-a_1, \dots, x_n-a_n)$.}
 \begin{ques}
 	Show that if $I \subseteq J$ then $\VV(I) \supseteq \VV(J)$.
 	Thus $\VV(-)$ is \emph{inclusion-reversing}.
@@ -399,7 +399,7 @@ the biggest ideals are the \emph{maximal ideals}.
 As an example, all ideals of the form
 \[ \left( x_1-a_1, \dots, x_n-a_n \right) \]
 are maximal, since the quotient
-\[ \CC[x_1, \dots, x_n] / \left( x-a_1, \dots, x-a_n \right) \cong \CC \]
+\[ \CC[x_1, \dots, x_n] / \left( x_1-a_1, \dots, x_n-a_n \right) \cong \CC \]
 is a field.
 The question is: are all maximal ideals of this form?
 
@@ -423,7 +423,7 @@ From this we can deduce that all maximal ideals are of the above form.
 	[WN implies MI]
 	Let $J$ be a maximal ideal, and consider the corresponding variety $V = \VV(J)$.
 	By WN, it contains some point $p=(a_1, \dots, a_n)$.
-	Now, define $I = (x-a_1, \dots, x-a_n)$; this ideal contains all polynomials
+	Now, define $I = (x_1-a_1, \dots, x_n-a_n)$; this ideal contains all polynomials
 	vanishing at $p$, so necessarily $J \subseteq I \subsetneq \CC[x_1, \dots, x_n]$.
 	Then by maximality of $J$ we have $J=I$.
 \end{proof}
