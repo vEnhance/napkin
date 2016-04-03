@@ -509,23 +509,19 @@ That's where the matrix $T$ comes from!
 It's just a concise way of writing down all $mn$ numbers I need to tell you.
 To be explicit, the matrix for $T$ is defined as the array
 \[ T =  \underbrace{%
-	\left(
-	\begin{array}{cccc}
+	\begin{pmatrix}
 		\mid & \mid & & \mid \\	
 		T(e_1) & T(e_2) & \dots & T(e_{m}) \\
 		\mid & \mid & & \mid \\	
-	\end{array}
-	\right)
+	\end{pmatrix}
 	}_m \Bigg\} n
 	=
-	\left(
-	\begin{array}{cccc}
+	\begin{pmatrix}
 		a_{11} & a_{12} & \dots & a_{1m} \\
 		a_{21} & a_{22} & \dots & a_{2m} \\
 		\vdots & \vdots & \ddots & \vdots \\
 		a_{n1} & a_{n2} & \dots & a_{nm}
-	\end{array}
-	\right).
+	\end{pmatrix}.
 	\]
 From here you can actually work out for yourself what it means to multiply two matrices.
 Suppose we have picked a basis for three spaces $U$, $V$, $W$.
@@ -680,31 +676,37 @@ But it obfuscates the fact that this map is, well, a map, not an array of number
 
 If you took high school precalculus, you'll see everything done in terms of matrices.
 To any typical high school student, a matrix is an array of numbers.
-No one is sure what exactly these numbers represent, but they're told how to magically multiply these arrays to get more arrays. 
+No one is sure what exactly these numbers represent,
+but they're told how to magically multiply these arrays to get more arrays. 
 They're told that the matrix
-\[
-	\left(
-	\begin{array}{cccc}
+\[ \begin{pmatrix}
 		1 & 0 & \dots & 0 \\
 		0 & 1 & \dots & 0 \\
 		\vdots & \vdots & \ddots & \vdots \\
 		0 & 0 & \dots & 1 \\
-	\end{array}
-	\right)
-\]
-is an ``identity matrix'', because when you multiply by another matrix it doesn't change.
-Then they're told that the determinant is some magical combination of these numbers formed by this weird multiplication rule.
-No one knows what this determinant does, other than the fact that $\det(AB) = \det A \det B$, and something about areas and row operations and Cramer's rule.
+	\end{pmatrix} \]
+is an ``identity matrix'', because when you multiply
+by another matrix it doesn't change.
+Then they're told that the determinant is some magical combination of these
+numbers formed by this weird multiplication rule.
+No one knows what this determinant does,
+other than the fact that $\det(AB) = \det A \det B$,
+and something about areas and row operations and Cramer's rule.
 
 Then you go into linear algebra in college, and you do more magic
 with these arrays of numbers.
-You're told that two matrices $T_1$ and $T_2$ are similar if \[ T_2 = ST_1S\inv \] for some invertible matrix $S$.
+You're told that two matrices $T_1$ and $T_2$ are similar if
+\[ T_2 = ST_1S\inv \] for some invertible matrix $S$.
 You're told that the trace of a matrix $\Tr T$ is the sum of the diagonal entries.
-Somehow this doesn't change if you look at a similar matrix, but you're not sure why.
+Somehow this doesn't change if you look at a similar matrix,
+but you're not sure why.
 Then you define the characteristic polynomial as \[ p_T = \det (XI - T). \]
-Somehow this also doesn't change if you take a similar matrix, but now you really don't know why.
-And then you have the Cayley-Hamilton theorem in all its black magic: $p_T(T)$ is the zero map.
-Out of curiosity you Google the proof, and you find some ad-hoc procedure which still leaves you with no idea why it's true.
+Somehow this also doesn't change if you take a similar matrix,
+but now you really don't know why.
+And then you have the Cayley-Hamilton theorem in all its black magic:
+$p_T(T)$ is the zero map.  Out of curiosity you Google the proof,
+and you find some ad-hoc procedure which still leaves you
+with no idea why it's true.
 
 This is terrible. Who gives a damn about $T_2 = ST_1S\inv$?
 Only if you know that the matrices are linear maps does this make sense:
@@ -733,9 +735,10 @@ What's wrong with a basis?
 I didn't appreciate until later that this approach was the
 morally correct way to treat the subject: it made it clear what was happening.
 
-Throughout this project, I've tried to strike a balance between these two approaches,
-using matrices when appropriate to illustrate the maps and to simplify proofs,
-but ultimately writing theorems and definitions in their \emph{morally correct} form.
+Throughout this project, I've tried to strike a balance between these
+two approaches, using matrices when appropriate to illustrate
+the maps and to simplify proofs, but ultimately writing
+theorems and definitions in their \emph{morally correct} form.
 I hope that this has both the advantage of giving the ``right'' definitions
 while being concrete enough to be digested.
 But I would just like to say for the record that,

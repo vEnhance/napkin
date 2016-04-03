@@ -105,12 +105,11 @@ is defined as the hypervolume of the ``fundamental parallelepiped'' I've colored
 For this particular case, it ought to be equal to to the area of that parallelogram, which is
 \[
 	\det
-	\left(
-	\begin{array}{cc}
+	\begin{pmatrix}
 		1 & \sqrt 2 \\
 		1 & -\sqrt 2
-	\end{array}
-	\right) = -2\sqrt 2.
+	\end{pmatrix}
+	= -2\sqrt 2.
 \]
 The definition of the discriminant is precisely this, except with an extra square factor
 (since permutation of rows could lead to changes in sign in the matrix above).
@@ -140,13 +139,12 @@ This allows us to define:
 	Suppose $\alpha_1, \dots, \alpha_n$ is a $\ZZ$-basis of $\OO_K$.
 	The \vocab{discriminant} of the number field $K$ is defined by
 	\[
-	\Delta_K \defeq \det \left(
-	\begin{array}{ccc}
+	\Delta_K \defeq \det 
+	\begin{pmatrix}
 		\sigma_1(\alpha_1) & \dots & \sigma_n(\alpha_1) \\
 		\vdots & \ddots & \vdots \\
 		\sigma_1(\alpha_n) & \dots & \sigma_n(\alpha_n) \\
-	\end{array}
-	\right)^2.
+	\end{pmatrix}^2.
 	\]
 \end{definition}
 This does not depend on the choice of the $\{\alpha_i\}$;
@@ -166,12 +164,11 @@ we will not prove this here.
 	So
 	\[
 		\Delta_K = 
-		\det \left(
-		\begin{array}{cc}
+		\det 
+		\begin{pmatrix}
 			1 & 1 \\
 			i & -i
-		\end{array}
-		\right)^2
+		\end{pmatrix}^2
 		=
 		(-2i)^2 = -4.
 	\]
@@ -192,12 +189,10 @@ we will not prove this here.
 		\Delta_K^2
 		=
 		\det
-		\left(
-		\begin{array}{cc}
+		\begin{pmatrix}
 			1 & \frac{1+\sqrt5}{2} \\
 			1 & \frac{1-\sqrt5}{2}
-		\end{array}
-		\right)^2
+		\end{pmatrix}^2
 		= (-\sqrt 5)^2 = 5.
 	\]
 \end{example}

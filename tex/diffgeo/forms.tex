@@ -278,13 +278,11 @@ Well, first let me get the definition on the table, then tell you what it's doin
 		(\xi_1 \wedge \dots \wedge \xi_k)(v_1, \dots, v_k)
 		\defeq
 		\det
-		\left(
-		\begin{array}{ccc}
+		\begin{pmatrix}
 			\xi_1(v_1) & \dots & \xi_1(v_k) \\
 			\vdots & \ddots & \vdots \\
 			\xi_k(v_1) & \dots & \xi_k(v_k)
-		\end{array}
-		\right).
+		\end{pmatrix}.
 	\]
 	You can check that this is well-defined
 	under e.g. $v \wedge w = -w \wedge v$ and so on.
@@ -300,11 +298,11 @@ Well, first let me get the definition on the table, then tell you what it's doin
 	\[
 		\alpha_p(v_1, v_2)
 		=
-		2\det \left( \begin{array}{cc}
-			3 & 1 \\ 8 & 9 \end{array} \right)
+		2\det \begin{pmatrix}
+			3 & 1 \\ 8 & 9 \end{pmatrix}
 		+
-		\det \left( \begin{array}{cc}
-			3 & 4 \\ 8 & 5 \end{array} \right)
+		\det \begin{pmatrix}
+			3 & 4 \\ 8 & 5 \end{pmatrix}
 		= 21.
 	\]
 \end{example}

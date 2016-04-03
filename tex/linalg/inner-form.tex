@@ -333,14 +333,11 @@ Of course, the name conjugate transpose suggests something else:
 	One-line version: take $v$ and $w$ to be basis elements, and this falls right out.
 
 	Full proof: let
-	\[ T = \left(
-		\begin{array}{ccc}
+	\[ T = \begin{pmatrix}
 			a_{11} & \dots & a_{1n} \\
 			\vdots & \ddots & \vdots \\
 			a_{n1} & \dots & a_{nn}
-		\end{array}
-		\right)
-	\]
+		\end{pmatrix} \]
 	in this basis $e_1$, \dots, $e_n$.
 	Then, letting $w = e_i$ and $v = e_j$ we deduce that
 	\[ \left< e_i, T^\dagger(e_j) \right> = \left< T(e_i) , e_j\right> = a_{ji}
@@ -375,14 +372,12 @@ However, it turns out that there is a good characterization of this:
 	\todo{remove snarky note}
 \end{proof}
 This means that not only can we write
-\[ T = \left(
-	\begin{array}{cccc}
+\[ T = \begin{pmatrix}
 		\lambda_1 & \dots & \dots & 0 \\
 		0 & \lambda_2 & \dots & 0 \\
 		\vdots & \vdots & \ddots & \vdots \\
 		0 & 0 & \dots & \lambda_n
-	\end{array}
-	\right)
+	\end{pmatrix}
 \]
 but moreover that the basis associated with this matrix happens to be orthonormal vectors.
 
