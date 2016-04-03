@@ -69,13 +69,13 @@ we know they must be constant.
 Thus, $\Homrep(V^{\oplus n}, V^{\oplus m})$ consist of $n \times m$ ``matrices''
 of constants, and the map is provided by
 \[
-	\begin{pmatrix}
+	\begin{bmatrix}
 		c_{11} & c_{12} & \dots & c_{1(n-1)} & c_{1n} \\
 		c_{21} & c_{22} & \dots & c_{2(n-1)} & c_{1n} \\
 		\vdots & \vdots & \ddots & \vdots & \vdots \\
 		c_{m1} & c_{m2} & \dots & c_{m(n-1)} & c_{mn}
-	\end{pmatrix}
-	\begin{pmatrix} v_1 \\ v_2 \\ \vdots \\ v_n \end{pmatrix}
+	\end{bmatrix}
+	\begin{bmatrix} v_1 \\ v_2 \\ \vdots \\ v_n \end{bmatrix}
 	\in V^{\oplus n}
 \]
 where the $c_{ij} \in k$ but $v_i \in V$; note the type mismatch!
@@ -186,12 +186,12 @@ This also gives us the non-obvious corollary
 	\[
 		\sum_{i=1}^n c_ie_i
 		=
-		\begin{pmatrix} c_1 & \dots & c_n \end{pmatrix}
-		\begin{pmatrix} e_1 \\ \vdots \\ e_n \end{pmatrix}
+		\begin{bmatrix} c_1 & \dots & c_n \end{bmatrix}
+		\begin{bmatrix} e_1 \\ \vdots \\ e_n \end{bmatrix}
 		=
-		\begin{pmatrix} c_1 & \dots & c_n \end{pmatrix}
+		\begin{bmatrix} c_1 & \dots & c_n \end{bmatrix}
 		X
-		\begin{pmatrix} v_1 \\ \vdots \\ v_m \end{pmatrix}
+		\begin{bmatrix} v_1 \\ \vdots \\ v_m \end{bmatrix}
 		= 0
 	\]
 	contradicting the fact that $e_i$ are linearly independent.
@@ -388,7 +388,7 @@ we just get that $V = \refl_0 \oplus \CC_{\text{triv}}$.
 		\RR \to \Mat_2(\CC)
 		\quad\text{by}\quad
 		t \mapsto 
-		\begin{pmatrix} 1 & t \\ 0 & 1 \end{pmatrix}.
+		\begin{bmatrix} 1 & t \\ 0 & 1 \end{bmatrix}.
 	\]
 	Show that this representation is not irreducible,
 	but it is indecomposable.

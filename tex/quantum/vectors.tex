@@ -45,11 +45,11 @@ Now for any $\ket\psi \in H$,
 we can consider the canonical dual element in $H^\vee$
 (since $H$ has an inner form), which we denote by $\bra\psi$ (a ``bra'').
 For example, if $\dim H = 2$ then we can write
-\[ \ket\psi = \begin{pmatrix} \alpha \\ \beta \end{pmatrix} \]
+\[ \ket\psi = \begin{bmatrix} \alpha \\ \beta \end{bmatrix} \]
 in an orthonormal basis, in which case
-\[ \bra\psi = \begin{pmatrix} \ol\alpha & \ol\beta \end{pmatrix}. \]
+\[ \bra\psi = \begin{bmatrix} \ol\alpha & \ol\beta \end{bmatrix}. \]
 We even can write dot products succinctly in this notation:
-if $\ket\phi = \begin{pmatrix} \gamma \\ \delta \end{pmatrix}$,
+if $\ket\phi = \begin{bmatrix} \gamma \\ \delta \end{bmatrix}$,
 then the dot product of $\ket\phi$ and $\ket\psi$ is given by
 \[
 	\braket{\psi|\phi}
@@ -120,12 +120,12 @@ Thus, we know that $T$ is diagonalizable
 with respect to the inner form, so for a suitable basis we
 can write it in an orthonormal basis as
 \[
-	T = \begin{pmatrix}
+	T = \begin{bmatrix}
 		\lambda_0 & 0 & \dots & 0 \\
 		0 & \lambda_1 & \dots & 0 \\
 		\vdots & \vdots & \ddots & \vdots \\
 		0 & 0 & \dots & \lambda_{n-1}
-	\end{pmatrix}.
+	\end{bmatrix}.
 \]
 As we've said, this is fantastic:
 not only do we have a basis of eigenvectors,
@@ -206,7 +206,7 @@ But anyways, an example.
 		= \pair{i/\sqrt5}{2/\sqrt5} \in H.
 	\]
 	\begin{enumerate}[(a)]
-		\ii Let \[ T = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}. \]
+		\ii Let \[ T = \begin{bmatrix} 1 & 0 \\ 0 & -1 \end{bmatrix}. \]
 		This has eigenvectors $\ket0 = \ket0_T$ and $\ket1 = \ket1_T$,
 		with eigenvalues $+1$ and $-1$.  So if we measure $\ket\psi$ to $T$,
 		we get $+1$ with probability $1/5$ and $-1$ with probability $4/5$.
@@ -223,7 +223,7 @@ But anyways, an example.
 		because none of the coefficients get destroyed.
 
 		\ii Now consider
-		\[ T = \begin{pmatrix} 0 & 7 \\ 7 & 0 \end{pmatrix}. \]
+		\[ T = \begin{bmatrix} 0 & 7 \\ 7 & 0 \end{bmatrix}. \]
 		The two normalized eigenvectors are
 		\[ \ket0_T = \frac{1}{\sqrt2}\pair11
 		\qquad \ket1_T = \frac{1}{\sqrt2}\pair1{-1} \]
@@ -245,11 +245,11 @@ For $H = \CC^{\oplus 2}$ we can come up with more classes of examples using
 the so-called \vocab{Pauli matrices}.
 These are the three Hermitian matrices
 \[
-	\sigma_z = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}
+	\sigma_z = \begin{bmatrix} 1 & 0 \\ 0 & -1 \end{bmatrix}
 	\qquad
-	\sigma_x = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}
+	\sigma_x = \begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}
 	\qquad
-	\sigma_y = \begin{pmatrix} 0 & i \\ -i & 0 \end{pmatrix}.
+	\sigma_y = \begin{bmatrix} 0 & i \\ -i & 0 \end{bmatrix}.
 \]
 \begin{ques}
 	Show that these three matrices, plus the identity matrix,

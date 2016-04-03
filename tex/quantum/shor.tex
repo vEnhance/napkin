@@ -18,16 +18,16 @@ Let $N$ be a positive integer, and let $\omega_N = \exp\left( \frac{2\pi i}{N} \
 	\[ y_k = \frac1N \sum_{j=0}^{N-1} \omega_N^{jk} x_i. \]
 	Equivalently, one is applying the matrix
 	\[
-		\begin{pmatrix} 
+		\begin{bmatrix} 
 			1 & 1 & 1 & \dots & 1 \\
 			1 & \omega_N & \omega_N^2 & \dots & \omega_N^{N-1} \\
 			1 & \omega_N^2 & \omega_N^4 & \dots & \omega_N^{2(N-1)} \\
 			\vdots & \vdots & \vdots & \ddots & \vdots \\
 			1 & \omega_N^{N-1} & \omega_N^{2(N-1)} & \dots & \omega_N^{(N-1)^2}
-		\end{pmatrix}
-		\begin{pmatrix} x_0 \\ x_1 \\ \vdots \\ x_N \end{pmatrix}
+		\end{bmatrix}
+		\begin{bmatrix} x_0 \\ x_1 \\ \vdots \\ x_N \end{bmatrix}
 		=
-		\begin{pmatrix} y_0 \\ y_1 \\ \vdots \\ y_N \end{pmatrix}.
+		\begin{bmatrix} y_0 \\ y_1 \\ \vdots \\ y_N \end{bmatrix}.
 	\]
 \end{definition}
 The reason this operation is important is because it lets
@@ -91,13 +91,13 @@ orthonormal basis $\ket0$, $\ket1$, \dots, $\ket{N-1}$
 	$\UQFT$ is given by the matrix
 	\[
 		\UQFT = \frac{1}{\sqrt N}
-		\begin{pmatrix} 
+		\begin{bmatrix} 
 			1 & 1 & 1 & \dots & 1 \\
 			1 & \omega_N & \omega_N^2 & \dots & \omega_N^{N-1} \\
 			1 & \omega_N^2 & \omega_N^4 & \dots & \omega_N^{2(N-1)} \\
 			\vdots & \vdots & \vdots & \ddots & \vdots \\
 			1 & \omega_N^{N-1} & \omega_N^{2(N-1)} & \dots & \omega_N^{(N-1)^2}
-		\end{pmatrix}
+		\end{bmatrix}
 	\]
 \end{definition}
 This is the exactly the same definition as before,
@@ -126,7 +126,7 @@ using this ``multiplication by tensor product'' trick that isn't possible classi
 
 Now, without further ado, here's the circuit.
 Define the rotation matrices
-\[ R_k = \begin{pmatrix} 1 & 0 \\ 0 & \exp(2\pi i/2^k) \end{pmatrix}. \]
+\[ R_k = \begin{bmatrix} 1 & 0 \\ 0 & \exp(2\pi i/2^k) \end{bmatrix}. \]
 Then, for $n=3$ the circuit is given by by using controlled $R_k$'s as follows:
 \[
 	\Qcircuit @C=1em @R=.7em {

@@ -2,11 +2,11 @@
 I'll remind you that the discriminant of a number field $K$ is given by
 \[
 \Delta_K \defeq \det 
-\begin{pmatrix}
+\begin{bmatrix}
 	\sigma_1(\alpha_1) & \dots & \sigma_n(\alpha_1) \\
 	\vdots & \ddots & \vdots \\
 	\sigma_1(\alpha_n) & \dots & \sigma_n(\alpha_n) \\
-\end{pmatrix}^2
+\end{bmatrix}^2
 \]
 where $\alpha_1$, \dots, $\alpha_n$ is a $\ZZ$-basis for $K$,
 and the $\sigma_i$ are the $n$ embeddings of $K$ into $\CC$.
@@ -31,12 +31,12 @@ Several examples, properties, and equivalent definitions follow.
 	\[ \Delta_K
 		=
 		\det 
-		\begin{pmatrix}
+		\begin{bmatrix}
 			\TrK(\alpha_1^2) & \TrK(\alpha_1\alpha_2) & \dots & \TrK(\alpha_1\alpha_n) \\
 			\TrK(\alpha_2\alpha_1) & \TrK(\alpha_2^2) & \dots & \TrK(\alpha_2\alpha_n) \\
 			\qquad\vdots & \qquad\vdots & \ddots & \qquad\vdots \\
 			\TrK(\alpha_n\alpha_1) & \TrK(\alpha_n\alpha_2) & \dots & \TrK(\alpha_n\alpha_n) \\
-		\end{pmatrix}.
+		\end{bmatrix}.
 	\]
 	In particular, $\Delta_K$ is an integer.
 	\label{prob:trace_discriminant}

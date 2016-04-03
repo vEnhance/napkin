@@ -509,19 +509,19 @@ That's where the matrix $T$ comes from!
 It's just a concise way of writing down all $mn$ numbers I need to tell you.
 To be explicit, the matrix for $T$ is defined as the array
 \[ T =  \underbrace{%
-	\begin{pmatrix}
+	\begin{bmatrix}
 		\mid & \mid & & \mid \\	
 		T(e_1) & T(e_2) & \dots & T(e_{m}) \\
 		\mid & \mid & & \mid \\	
-	\end{pmatrix}
+	\end{bmatrix}
 	}_m \Bigg\} n
 	=
-	\begin{pmatrix}
+	\begin{bmatrix}
 		a_{11} & a_{12} & \dots & a_{1m} \\
 		a_{21} & a_{22} & \dots & a_{2m} \\
 		\vdots & \vdots & \ddots & \vdots \\
 		a_{n1} & a_{n2} & \dots & a_{nm}
-	\end{pmatrix}.
+	\end{bmatrix}.
 	\]
 From here you can actually work out for yourself what it means to multiply two matrices.
 Suppose we have picked a basis for three spaces $U$, $V$, $W$.
@@ -679,12 +679,12 @@ To any typical high school student, a matrix is an array of numbers.
 No one is sure what exactly these numbers represent,
 but they're told how to magically multiply these arrays to get more arrays. 
 They're told that the matrix
-\[ \begin{pmatrix}
+\[ \begin{bmatrix}
 		1 & 0 & \dots & 0 \\
 		0 & 1 & \dots & 0 \\
 		\vdots & \vdots & \ddots & \vdots \\
 		0 & 0 & \dots & 1 \\
-	\end{pmatrix} \]
+	\end{bmatrix} \]
 is an ``identity matrix'', because when you multiply
 by another matrix it doesn't change.
 Then they're told that the determinant is some magical combination of these

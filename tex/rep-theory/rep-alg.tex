@@ -176,10 +176,10 @@ From this perspective, what we are really trying to do is:
 		A silly example is the representation $(\RR^{\oplus 4}, \rho)$ given by
 		\[
 			\rho : 
-			\begin{pmatrix} a & b \\ c & d \end{pmatrix} 
+			\begin{bmatrix} a & b \\ c & d \end{bmatrix} 
 			\mapsto
-			\begin{pmatrix} a & b & 0 & 0 \\ c & d & 0 & 0 \\
-				0 & 0 & a & b \\ 0 & 0 & c & d \end{pmatrix} .
+			\begin{bmatrix} a & b & 0 & 0 \\ c & d & 0 & 0 \\
+				0 & 0 & a & b \\ 0 & 0 & c & d \end{bmatrix} .
 		\]
 		More abstractly, viewing $\RR^{\oplus 4}$ as
 		$(\RR^{\oplus 2}) \oplus (\RR^{\oplus 2})$,
@@ -231,7 +231,7 @@ From this perspective, what we are really trying to do is:
 		is representing the permutations in $S_3$
 		as permutation matrices on $k^{\oplus 3}$, like
 		\[ (1 \; 2)
-		\mapsto \begin{pmatrix} 0&1&0 \\ 1&0&0 \\ 0&0&1 \end{pmatrix}. \]
+		\mapsto \begin{bmatrix} 0&1&0 \\ 1&0&0 \\ 0&0&1 \end{bmatrix}. \]
 		
 		\ii More generally, let $A = k[G]$.
 		Then a representation $(V, \rho)$ of $A$
@@ -259,19 +259,19 @@ From this perspective, what we are really trying to do is:
 	Earlier we let $\Mat_2(\RR)$ act on $\RR^{\oplus 4}$ by
 	\[
 		\rho : 
-		\begin{pmatrix} a & b \\ c & d \end{pmatrix} 
+		\begin{bmatrix} a & b \\ c & d \end{bmatrix} 
 		\mapsto
-		\begin{pmatrix} a & b & 0 & 0 \\ c & d & 0 & 0 \\
-			0 & 0 & a & b \\ 0 & 0 & c & d \end{pmatrix} .
+		\begin{bmatrix} a & b & 0 & 0 \\ c & d & 0 & 0 \\
+			0 & 0 & a & b \\ 0 & 0 & c & d \end{bmatrix} .
 	\]
 	So this is just a direct sum of two two-dimensional representations.
 \end{example}
 More generally, given representations $(V, \rho_V)$ and $(W, \rho_W)$
 the representation $\rho$ of $V \oplus W$ looks like
 \[ \rho(a) =
-	\begin{pmatrix}
+	\begin{bmatrix}
 		\rho_V(a) & 0 \\ 0 & \rho_W(a)
-	\end{pmatrix}.
+	\end{bmatrix}.
 \]
 \begin{example}[Representation of $S_n$ decomposes]
 	Let $A = \RR[S_3]$ again,
@@ -315,10 +315,10 @@ If we want to have a hope of doing this,
 then we want to discard ``silly'' representations such as
 \[
 	\rho : 
-	\begin{pmatrix} a & b \\ c & d \end{pmatrix} 
+	\begin{bmatrix} a & b \\ c & d \end{bmatrix} 
 	\mapsto
-	\begin{pmatrix} a & b & 0 & 0 \\ c & d & 0 & 0 \\
-		0 & 0 & a & b \\ 0 & 0 & c & d \end{pmatrix}
+	\begin{bmatrix} a & b & 0 & 0 \\ c & d & 0 & 0 \\
+		0 & 0 & a & b \\ 0 & 0 & c & d \end{bmatrix}
 \]
 and focus our attention instead on ``irreducible'' representations.
 This motivates the following definition.
@@ -374,7 +374,7 @@ Here is a standard counterexample:
 \begin{exercise}
 	\label{exer:irred_not_indecomp}
 	Let $A = \RR[x]$, and $V = \RR^{\oplus 2}$ the representation with action
-	\[ \rho(x) = \begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}. \]
+	\[ \rho(x) = \begin{bmatrix} 1 & 1 \\ 0 & 1 \end{bmatrix}. \]
 	Show that the only subrepresentation is $W = \{ (t,0) \mid t \in \RR \}$.
 	So $V$ is not irreducible, but it is indecomposable.
 \end{exercise}
@@ -435,7 +435,7 @@ Here are some examples of intertwining operators.
 		is an intertwining operator.
 		\ii Let $V  = \RR^{\oplus 2}$ 
 		and represent $A = k[x]$ by $(V, \rho)$ where
-		\[ \rho(x) = \begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix}. \]
+		\[ \rho(x) = \begin{bmatrix} 0 & 1 \\ -1 & 0 \end{bmatrix}. \]
 		Thus $\rho(x)$ is rotation by $90\dg$ around the origin.
 		Let $T$ be rotation by $30\dg$.
 		Then $T : V \to V$ is intertwining (the rotations commute).
@@ -502,13 +502,13 @@ we gave earlier are the only ones.
 As we've said this is essentially a functional equation.
 The algebra $A = \Mat_2(k)$ has basis given by four matrices
 \[
-	E_1 = \begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix},
+	E_1 = \begin{bmatrix} 1 & 0 \\ 0 & 0 \end{bmatrix},
 	\qquad
-	E_2 = \begin{pmatrix} 0 & 0 \\ 0 & 1 \end{pmatrix},
+	E_2 = \begin{bmatrix} 0 & 0 \\ 0 & 1 \end{bmatrix},
 	\qquad
-	E_3 = \begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix},
+	E_3 = \begin{bmatrix} 0 & 1 \\ 0 & 0 \end{bmatrix},
 	\qquad
-	E_4 = \begin{pmatrix} 0 & 0 \\ 1 & 0 \end{pmatrix}
+	E_4 = \begin{bmatrix} 0 & 0 \\ 1 & 0 \end{bmatrix}
 \]
 satisfying relations like $E_1 + E_2 = \id$, $E_i^2 = E_i$, $E_1E_2 = 0$, etc.
 So let $V$ be a representation of $A$, and let $M_i = \rho(E_i)$ for each $i$;

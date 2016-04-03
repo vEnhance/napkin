@@ -261,23 +261,23 @@ Fantastic, right?
 		= (ax+2yb) + (bx+ay)\sqrt2. \]
 	We can rewrite this in matrix form as
 	\[ 
-		\begin{pmatrix}
+		\begin{bmatrix}
 			a & 2b \\
 			b & a
-		\end{pmatrix}
-		\begin{pmatrix}
+		\end{bmatrix}
+		\begin{bmatrix}
 			x \\ y
-		\end{pmatrix}
+		\end{bmatrix}
 		=
-		\begin{pmatrix}
+		\begin{bmatrix}
 			ax+2yb \\ bx+ay
-		\end{pmatrix}.
+		\end{bmatrix}.
 	\]
 	Consequently, we can interpret $\mu_\alpha$ as the matrix
 	\[ \mu_\alpha = 
-		\begin{pmatrix}
+		\begin{bmatrix}
 			a & 2b \\ b & a
-		\end{pmatrix}. \]
+		\end{bmatrix}. \]
 	Of course, the matrix will change if we pick a different basis,
 	but the determinant and trace do not: they are always given by
 	\[ \det \mu_\alpha = a^2-2b^2 \text{ and }
@@ -304,13 +304,13 @@ The proof is split into two parts, depending on whether or not $k=1$.
 	Therefore, $\mu_\alpha$ is given by the matrix
 	\[
 		M = 
-		\begin{pmatrix}
+		\begin{bmatrix}
 			0 & 0 & 0 & \dots & 0 & -c_0 \\
 			1 & 0 & 0 & \dots & 0 & -c_1 \\
 			0 & 1 & 0 & \dots & 0 & -c_2 \\
 			\vdots & \vdots & \vdots & \ddots & 0 & -c_{n-2} \\
 			0 & 0 & 0 & \dots & 1 & -c_{n-1}
-		\end{pmatrix}.
+		\end{bmatrix}.
 	\]
 	Thus \[ \det M = (-1)^n c_0 \] and we're done by Vieta's formulas.
 \end{subproof}
@@ -322,12 +322,12 @@ The proof is split into two parts, depending on whether or not $k=1$.
 	Since $\{1, \alpha, \dots, \alpha^{n-1}\}$ is a $\QQ$ basis for $\QQ(\alpha)$,
 	the elements
 	\[
-		\begin{pmatrix}
+		\begin{bmatrix}
 		e_1, & e_1\alpha, & \dots, & e_1\alpha^{n-1} \\
 		e_2, & e_2\alpha, & \dots, & e_2\alpha^{n-1} \\
 		\vdots & \vdots & \ddots & \vdots \\
 		e_k, & e_k\alpha, & \dots, & e_k\alpha^{n-1}
-		\end{pmatrix}
+		\end{bmatrix}
 	\]
 	where $M$ is the same matrix as above:
 	we just end up with one copy of our old matrix for each $e_k$.

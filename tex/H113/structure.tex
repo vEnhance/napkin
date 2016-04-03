@@ -231,11 +231,11 @@ So it suffices to understand the map $T$ well.
 The idea is now that we have reduced our problem to studying
 linear maps $T : R^{\oplus m} \to R^{\oplus n}$,
 which can be thought of as a generic matrix
-\[ T = \begin{pmatrix}
+\[ T = \begin{bmatrix}
 		a_{11} & \dots & a_{1m} \\
 		\vdots & \ddots & \vdots \\
 		a_{n1} & \dots & a_{nm}
-	\end{pmatrix} \]
+	\end{bmatrix} \]
 for the standard basis $e_1$, \dots, $e_m$ of $R^{\oplus m}$
 and $f_1$, \dots, $f_n$ of $N$.
 
@@ -288,12 +288,12 @@ Armed with this knowledge, we can now approach the following result.
 \end{theorem}
 So if $m > n$, the matrix should take the form
 \[
-	\begin{pmatrix} 
+	\begin{bmatrix} 
 		s_1 & 0 & 0 & 0 & \dots & 0 \\
 		0 & s_2 & 0 & 0 & \dots & 0 \\
 		\vdots & \vdots & \ddots & \vdots & \dots & \vdots \\
 		0 & 0 & 0 & s_n & \dots & 0
-	\end{pmatrix}.
+	\end{bmatrix}.
 \]
 and similarly when $m \le n$.
 \begin{ques}
@@ -317,77 +317,77 @@ and similarly when $m \le n$.
 	To give a flavor of the idea of the proof,
 	let's work through a concrete example with the following
 	matrix with entries from $\ZZ$:
-	\[ \begin{pmatrix} 
+	\[ \begin{bmatrix} 
 			18 & 38 & 48 \\
 			14 & 30 & 38
-		\end{pmatrix}.  \]
+		\end{bmatrix}.  \]
 	The GCD of all the entries is $2$, and so motivated by this,
 	we perform the \textbf{Euclidean algorithm on the left column}:
 	subtract the second row from the first row,
 	then three times the first row from the second:
 	\[ 
-		\begin{pmatrix} 
+		\begin{bmatrix} 
 			18 & 38 & 48 \\
 			14 & 30 & 38
-		\end{pmatrix} 
+		\end{bmatrix} 
 		\mapsto
-		\begin{pmatrix} 
+		\begin{bmatrix} 
 			4 & 8 & 10 \\
 			14 & 30 & 38
-		\end{pmatrix}
+		\end{bmatrix}
 		\mapsto
-		\begin{pmatrix} 
+		\begin{bmatrix} 
 			4 & 8 & 10 \\
 			2 & 6 & 2
-		\end{pmatrix}.
+		\end{bmatrix}.
 	\]
 	Now that the GCD of $2$ is present, we move it to the upper-left
 	by switching the two rows,
 	and then kill off all the entries in the same row/column;
 	since $2$ was the GCD all along, we isolate $2$ completely:
 	\[
-		\begin{pmatrix} 
+		\begin{bmatrix} 
 			4 & 8 & 10 \\
 			2 & 6 & 2
-		\end{pmatrix}
+		\end{bmatrix}
 		\mapsto
-		\begin{pmatrix} 
+		\begin{bmatrix} 
 			2 & 6 & 2 \\
 			4 & 8 & 10
-		\end{pmatrix}
+		\end{bmatrix}
 		\mapsto 
-		\begin{pmatrix} 
+		\begin{bmatrix} 
 			2 & 6 & 2 \\
 			0 & -4 & 6 \\
-		\end{pmatrix}
+		\end{bmatrix}
 		\mapsto
-		\begin{pmatrix} 
+		\begin{bmatrix} 
 			2 & 0 & 0 \\
 			0 & -4 & 6
-		\end{pmatrix}.
+		\end{bmatrix}.
 	\]
 	This reduces the problem to a $1 \times 2$ matrix.
 	So we just apply the Euclidean algorithm again there:
 	\[
-		\begin{pmatrix} 
+		\begin{bmatrix} 
 			2 & 0 & 0 \\
 			0 & -4 & 6
-		\end{pmatrix}
+		\end{bmatrix}
 		\mapsto
-		\begin{pmatrix} 
+		\begin{bmatrix} 
 			2 & 0 & 0 \\
 			0 & -4 & 2
-		\end{pmatrix}
+		\end{bmatrix}
 		\mapsto
-		\begin{pmatrix} 
+		\begin{bmatrix} 
 			2 & 0 & 0 \\
 			0 & 0 & 2
-		\end{pmatrix}
+		\end{bmatrix}
 		\mapsto
-		\begin{pmatrix} 
+		\begin{bmatrix} 
 			2 & 0 & 0 \\
 			0 & 2 & 0
-		\end{pmatrix}.
+		\end{bmatrix}.
 	\]
 \end{example}
 
@@ -398,11 +398,11 @@ the PID condition more or less lets you perform a Euclidean algorithm.
 \begin{proof}
 	[Proof of Smith normal form]
 	Begin with a generic matrix
-	\[ T = \begin{pmatrix}
+	\[ T = \begin{bmatrix}
 		a_{11} & \dots & a_{1m} \\
 		\vdots & \ddots & \vdots \\
 		a_{n1} & \dots & a_{nm}
-	\end{pmatrix} \]
+	\end{bmatrix} \]
 	We want to show, by a series of operations (gradually changing the given basis)
 	that we can rearrange the matrix into Smith normal form.
 
@@ -419,9 +419,9 @@ the PID condition more or less lets you perform a Euclidean algorithm.
 		So there are $u$ and $v$ such that $xu + yv = 1$.
 		Then
 		\[
-			\begin{pmatrix} x & y \\ -v & u \end{pmatrix}
-			\begin{pmatrix} a \\ b  \end{pmatrix}
-			= \begin{pmatrix} \gcd(a,b) \\ \text{something} \end{pmatrix}
+			\begin{bmatrix} x & y \\ -v & u \end{bmatrix}
+			\begin{bmatrix} a \\ b  \end{bmatrix}
+			= \begin{bmatrix} \gcd(a,b) \\ \text{something} \end{bmatrix}
 		\]
 		and the first matrix is invertible (check this!), as desired.
 	\end{subproof}
@@ -430,13 +430,13 @@ the PID condition more or less lets you perform a Euclidean algorithm.
 	we can cause $s$ to appear in the upper left hand corner.
 	Then, we use it to kill off all the entries in the first
 	row and the first column, thus arriving at a matrix
-	\[ \begin{pmatrix}
+	\[ \begin{bmatrix}
 		s_1 & 0 & 0 & \dots & 0 \\
 		0 & a_{22}' & a_{23}' & \dots & a_{2n}' \\
 		0 & a_{32}' & a_{33}' & \dots & a_{3n}' \\
 		\vdots&\vdots&\vdots&\ddots&\vdots \\
 		0 & a_{m2}' & a_{m3}' & \dots & a_{mn}' \\
-	\end{pmatrix}. \]
+	\end{bmatrix}. \]
 	Now we repeat the same procedure with this lower-right
 	$(m-1) \times (n-1)$ matrix, and so on.
 	This gives the Smith normal form.
@@ -463,13 +463,13 @@ Now, we can apply our structure theorem!
 	Show that one can write $T$ as a block-diagonal matrix whose blocks
 	are all of the form
 	\[ 
-		\begin{pmatrix}
+		\begin{bmatrix}
 			0 & 0 & 0 & \dots & 0 & \ast  \\
 			1 & 0 & 0 & \dots & 0 & \ast  \\
 			0 & 1 & 0 & \dots & 0 & \ast  \\
 			\vdots&\vdots&\vdots&\ddots&\vdots&\vdots \\
 			0 & 0 & 0 & \dots & 1 & \ast  \\
-		\end{pmatrix}.
+		\end{bmatrix}.
 	\]
 	(View $V$ as a $k[x]$-module with action $x \cdot v = T(v)$.)
 	\begin{hint}

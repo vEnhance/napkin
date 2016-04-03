@@ -1,10 +1,10 @@
 \chapter{Trace and determinant}
 You may have learned in high school that given a matrix
 \[ 
-	\begin{pmatrix}
+	\begin{bmatrix}
 		a & c \\
 		b & d
-	\end{pmatrix}
+	\end{bmatrix}
 \]
 the trace is the sum along the diagonals $a+d$ and the determinant is $ad-bc$.
 But we know that a matrix is somehow just encoding a linear map using a choice of basis.
@@ -179,24 +179,24 @@ Let's try to find a basis for $V^\vee$.
 First, here is a very concrete interpretation of the vector space.
 Suppose for example $V = \RR^3$.
 We can think of elements of $V$ as column matrices, like
-\[ v = \begin{pmatrix}
+\[ v = \begin{bmatrix}
 		2 \\ 5 \\ 9
-	\end{pmatrix}
+	\end{bmatrix}
 	\in V. \]
 Then a linear map $f : V \to k$ can be interpreted as a \emph{row matrix}:
 \[
-	f = \begin{pmatrix}
+	f = \begin{bmatrix}
 		3 & 4 & 5
-	\end{pmatrix}
+	\end{bmatrix}
 	\in V^\vee. \]
 Then
 \[
-	f(v) = \begin{pmatrix}
+	f(v) = \begin{bmatrix}
 		3 & 4 & 5
-	\end{pmatrix}
-	\begin{pmatrix}
+	\end{bmatrix}
+	\begin{bmatrix}
 		2 \\ 5 \\ 9
-	\end{pmatrix}
+	\end{bmatrix}
 	= 71. \]
 
 More precisely: \textbf{to specify a linear map $V \to k$,
@@ -335,9 +335,9 @@ The above is perhaps a bit dense, so here is a concrete example.
 \begin{example}[Explicit example]
 	Let $V = \RR^2$ and take a basis $e_1$, $e_2$ of $V$.
 	Then define $T : V \to V$ by
-	\[ T = \begin{pmatrix}
+	\[ T = \begin{bmatrix}
 			1 & 2 \\ 3 & 4
-		\end{pmatrix}. \]
+		\end{bmatrix}. \]
 	Then the isomorphism sends $T$ to the following (pre)-image in
 	$V^\vee \otimes V$:
 	\[ T \mapsto e_1^\vee \otimes e_1 + 2e_2^\vee \otimes e_1
@@ -382,29 +382,29 @@ This result is called the \vocab{trace} of a matrix $T$.
 	row vectors in $W^\vee$ \emph{on the right} to get row vectors in $V$.
 	Here is an explicit example: if $V = \RR^3$ and $W = \RR^2$ then
 	\[
-		\begin{pmatrix}
+		\begin{bmatrix}
 			1 & 2 & 3 \\
 			4 & 5 & 6
-		\end{pmatrix}
-		\begin{pmatrix}
+		\end{bmatrix}
+		\begin{bmatrix}
 			v_1 \\ v_2 \\ v_3 
-		\end{pmatrix}
+		\end{bmatrix}
 		= 
-		\begin{pmatrix}
+		\begin{bmatrix}
 			w_1 \\ w_2
-		\end{pmatrix} 
+		\end{bmatrix} 
 		\text{ and }
-		\begin{pmatrix}
+		\begin{bmatrix}
 			w_1' & w_2'
-		\end{pmatrix}
-		\begin{pmatrix}
+		\end{bmatrix}
+		\begin{bmatrix}
 			1 & 2 & 3 \\
 			4 & 5 & 6
-		\end{pmatrix}
+		\end{bmatrix}
 		=
-		\begin{pmatrix}
+		\begin{bmatrix}
 			v_1' & v_2' & v_3'
-		\end{pmatrix}.
+		\end{bmatrix}.
 	\]
 	But once again, the definition $T^\vee(f) = f \circ T$
 	has the nice property that it doesn't depend on the choice of a basis.
@@ -494,7 +494,7 @@ What is $ad-bc$? You might already recognize it:
 \begin{itemize}
 	\ii  You might know that the area of the parallelogram formed by $v$ and $w$ is $ad-bc$.
 	\ii You might recognize it as the determinant of
-	$ \begin{pmatrix} a & c \\ b & d \end{pmatrix}$.
+	$ \begin{bmatrix} a & c \\ b & d \end{bmatrix}$.
 	In fact, you might even know that the determinant
 	is meant to interpret hypervolumes.
 \end{itemize}
@@ -611,9 +611,9 @@ Hence $\Lambda^n(T)$ is multiplication by some constant.
 \begin{example}[The determinant of a $2 \times 2$ matrix]
 	Let $V = \RR^2$ again with basis $e_1$ and $e_2$.
 	Let
-	\[ T = \begin{pmatrix}
+	\[ T = \begin{bmatrix}
 			a & c \\ b & d
-		\end{pmatrix}.
+		\end{bmatrix}.
 	\]
 	In other words, $T(e_1) = ae_1 + be_2$ and $T(e_2) = ce_1 + de_2$.
 
@@ -656,20 +656,20 @@ and do a full expansion.
 	Show that for any real numbers $x_{ij}$ (here $1 \le i,j \le n$) we have
 	\[
 		\det 
-		\begin{pmatrix}
+		\begin{bmatrix}
 			x_{11} & x_{12} & \dots & x_{1n} \\
 			x_{21} & x_{22} & \dots & x_{2n} \\
 			\vdots & \vdots & \ddots & \vdots \\
 			x_{n1} & x_{n2} & \dots & x_{nn} \\
-		\end{pmatrix}
+		\end{bmatrix}
 		=
 		\det 
-		\begin{pmatrix}
+		\begin{bmatrix}
 			x_{11} + x_{12} & x_{12} & \dots & x_{1n} \\
 			x_{21} + x_{22} & x_{22} & \dots & x_{2n} \\
 			\vdots & \vdots & \ddots & \vdots \\
 			x_{n1} + x_{n2} & x_{n2} & \dots & x_{nn} \\
-		\end{pmatrix}.
+		\end{bmatrix}.
 	\]
 	\begin{hint}
 		The point is that 
