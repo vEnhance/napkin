@@ -484,7 +484,11 @@ You'll see this written sometimes as $T_\CC = \id \otimes T$.
 	an arithmetic progression in that order.
 	Find all $M \in S$ such that for some integer $k > 1$, $M^k \in S$.
 	\begin{hint}
-		Show the matrix is invertible (unless $a=b=c=d$)
+		There is a family of solutions other than just $a=b=c=d$.
+
+		One can solve the problem using Cayley-Hamilton.
+		A more ``bare-hands'' approach is to
+		show the matrix is invertible (unless $a=b=c=d$)
 		and then diagonalize the matrix as
 		$
 		M =
@@ -497,7 +501,6 @@ You'll see this written sometimes as $T_\CC = \id \otimes T$.
 			pr(\lambda_2-\lambda_1) & ps\lambda_2 - qr\lambda_1
 		\end{bmatrix} 
 		$.
-		There is a family of solutions other than just $a=b=c=d$.
 	\end{hint}
 	\begin{sol}
 		The answer is 
@@ -506,9 +509,10 @@ You'll see this written sometimes as $T_\CC = \id \otimes T$.
 			\begin{bmatrix} -3t&-t\\t&3t \end{bmatrix} \]
 		for $t \in \RR$.
 		These work by taking $k=3$.
+
 		Now to see these are the only ones, consider an arithmetic matrix
 		\[ M = \begin{bmatrix} a & a+e \\ a+2e & a+3e \end{bmatrix}. \]
-		which is not zero everywhere.
+		with $e \neq 0$.
 		Its characteristic polynomial is $t^2 - (2a+3e)t - 2e^2$,
 		with discriminant $(2a+3e)^2 + 8e^2$,
 		so it has two distinct real roots; moreover, since $-2e^2 \le 0$
@@ -537,8 +541,14 @@ You'll see this written sometimes as $T_\CC = \id \otimes T$.
 			\implies x = x^k \implies x = -1 \text{ or } x = 0 \]
 		and $k$ odd. If $x=0$ we get $e=0$ and if $x=-1$ we get $2a+3e=0$,
 		which gives the curve of solutions that we claimed.
-		(Unfortunately, during the test I neglected to address $x=-1$,
-		which probably means I will get null marks.)
+
+		A slicker approach is to note that by Cayley-Hamilton.
+		Assume that $e \neq 0$, so $M$ has two distinct real eigenvalues as above.
+		We have $M^k = cM + d\id$ for some constants $c$ and $d$
+		(since $M$ satisfies some quadratic polynomial).
+		Since $M \in S$, $M^k \in S$ we obtain $d=0$.
+		Thus $M^k = cM$, so it follows the eigenvalues of $M$ are negatives of each other.
+		That means $\Tr M = 0$, and the rest is clear.
 	\end{sol}
 \end{problem}
 
