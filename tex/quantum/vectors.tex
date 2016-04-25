@@ -249,7 +249,7 @@ These are the three Hermitian matrices
 	\qquad
 	\sigma_x = \begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}
 	\qquad
-	\sigma_y = \begin{bmatrix} 0 & i \\ -i & 0 \end{bmatrix}.
+	\sigma_y = \begin{bmatrix} 0 & -i \\ i & 0 \end{bmatrix}.
 \]
 \begin{ques}
 	Show that these three matrices, plus the identity matrix,
@@ -263,12 +263,15 @@ Their normalized eigenvectors are
 	\qquad \ydown = \frac{1}{\sqrt2}\pair1{-i} \]
 which we call ``$z$-up'', ``$z$-down'',
 ``$x$-up'', ``$x$-down'', ``$y$-up'', ``$y$-down''.
+(The eigenvalues are $+1$ for ``up'' and $-1$ for ``down''.)
 So, given a state $\ket\psi \in \CC^{\oplus 2}$
 we can make a measurement with respect to any of these three bases
 by using the corresponding Pauli matrix.
 
-In light of this, the previous examples were (a) measuring along $\sigma_z$,
-(b) measuring along $\id$, and (c) measuring along $7\sigma_x$.
+In light of this, the previous examples were
+(a) measuring along $\sigma_z$,
+(b) measuring along $\id$,
+and (c) measuring along $7\sigma_x$.
 
 Notice that if we are given a state $\ket\psi$,
 and are told in advance that it is either $\xup$ or $\xdown$
