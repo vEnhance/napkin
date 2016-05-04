@@ -19,14 +19,14 @@
 \reqhalfcourse 20,0:{Chapters 30-35}{Alg Top 2}{}
 \reqhalfcourse 42,10:{Chapters 36-40}{Alg NT 1}{}
 \reqhalfcourse 42,0:{Chapter 41-44}{Alg NT 2}{}
-\reqhalfcourse 48,25:{Chapters 45-48}{Rep Theory}{}
+\reqhalfcourse 35,45:{Chapters 45-48}{Rep Theory}{}
 \reqhalfcourse 16,10:{Chapters 49-53}{Alg Geom 1}{}
 \reqhalfcourse 6,0:{Chapters 54-57}{Alg Geom 2}{}
-\reqhalfcourse 30,45:{Chapters 58-64}{Set Theory}{}
+\reqhalfcourse 65,0:{Chapters 58-64}{Set Theory}{}
 
-\prereqc 30,35,48,25;20:  % Ideals -> Rep Th
-\prereqc 63,35,48,25;0:   % Lin Alg -> Rep Th
-\coreqc  30,22,48,25;0:   % Cats -> Rep Th
+\prereqc 30,35,35,45;0:   % Ideals -> Rep Th
+\prereqc 63,35,35,45;0:   % Lin Alg -> Rep Th
+\coreqc  30,22,35,45;50: % Cats -> Rep Th
 \prereqc 63,35,58,19;30:  % Lin Alg -> Quantum
 \prereqc 48,45,65,25;-20: % Spaces -> Diff Geo
 
