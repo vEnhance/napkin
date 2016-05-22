@@ -1,11 +1,192 @@
-\usepackage[nothm,diagrams,patchasy]{evan}
+%%fakesection Load packages
+% These are evan.sty
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathrsfs}
+\usepackage[usenames,svgnames,dvipsnames]{xcolor}
+\usepackage{hyperref}
+\usepackage[nameinlink]{cleveref}
+\usepackage{textcomp}
+\usepackage{enumerate}
+\usepackage[obeyFinal,textsize=scriptsize,shadow]{todonotes}
+\usepackage{mathtools}
+\usepackage{microtype}
+
 \usepackage[normalem]{ulem}
 \usepackage{stmaryrd}
 \usepackage{wasysym}
 \usepackage{multirow}
 \usepackage{prerex}
 
-% Fancy section and chapter heads
+%%fakesection evan.sty macros
+%Small commands
+\newcommand{\cbrt}[1]{\sqrt[3]{#1}}
+\newcommand{\floor}[1]{\left\lfloor #1 \right\rfloor}
+\newcommand{\ceiling}[1]{\left\lceil #1 \right\rceil}
+\newcommand{\mailto}[1]{\href{mailto:#1}{\texttt{#1}}}
+\newcommand{\ol}{\overline}
+\newcommand{\ul}{\underline}
+\newcommand{\wt}{\widetilde}
+\newcommand{\wh}{\widehat}
+\newcommand{\eps}{\varepsilon}
+%\renewcommand{\iff}{\Leftrightarrow}
+%\renewcommand{\implies}{\Rightarrow}
+\newcommand{\vocab}[1]{\textbf{\color{blue} #1}}
+\newcommand{\catname}{\mathsf}
+\newcommand{\hrulebar}{
+  \par\hspace{\fill}\rule{0.95\linewidth}{.7pt}\hspace{\fill}
+  \par\nointerlineskip \vspace{\baselineskip}
+}
+\newcommand{\half}{\frac{1}{2}}
+
+%For use in author command
+\newcommand{\plusemail}[1]{\\ \normalfont \texttt{\mailto{#1}}}
+
+%More commands and math operators
+\DeclareMathOperator{\cis}{cis}
+\DeclareMathOperator*{\lcm}{lcm}
+\DeclareMathOperator*{\argmin}{arg min}
+\DeclareMathOperator*{\argmax}{arg max}
+
+%Convenient Environments
+\newenvironment{soln}{\begin{proof}[Solution]}{\end{proof}}
+\newenvironment{parlist}{\begin{inparaenum}[(i)]}{\end{inparaenum}}
+\newenvironment{gobble}{\setbox\z@\vbox\bgroup}{\egroup}
+
+%Inequalities
+\newcommand{\cycsum}{\sum_{\mathrm{cyc}}}
+\newcommand{\symsum}{\sum_{\mathrm{sym}}}
+\newcommand{\cycprod}{\prod_{\mathrm{cyc}}}
+\newcommand{\symprod}{\prod_{\mathrm{sym}}}
+
+%From H113 "Introduction to Abstract Algebra" at UC Berkeley
+\newcommand{\CC}{\mathbb C}
+\newcommand{\FF}{\mathbb F}
+\newcommand{\NN}{\mathbb N}
+\newcommand{\QQ}{\mathbb Q}
+\newcommand{\RR}{\mathbb R}
+\newcommand{\ZZ}{\mathbb Z}
+\newcommand{\charin}{\text{ char }}
+\DeclareMathOperator{\sign}{sign}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Inn}{Inn}
+\DeclareMathOperator{\Syl}{Syl}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\GL}{GL} % General linear group
+\DeclareMathOperator{\SL}{SL} % Special linear group
+
+%From Kiran Kedlaya's "Geometry Unbound"
+\newcommand{\abs}[1]{\left\lvert #1 \right\rvert}
+\newcommand{\norm}[1]{\left\lVert #1 \right\rVert}
+\newcommand{\dang}{\measuredangle} %% Directed angle
+\newcommand{\ray}[1]{\overrightarrow{#1}} 
+\newcommand{\seg}[1]{\overline{#1}}
+\newcommand{\arc}[1]{\wideparen{#1}}
+
+%From M275 "Topology" at SJSU
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\taking}[1]{\xrightarrow{#1}}
+\newcommand{\inv}{^{-1}}
+
+%From M170 "Introduction to Graph Theory" at SJSU
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\ord}{ord}
+\newcommand{\defeq}{\overset{\mathrm{def}}{=}}
+
+%From the USAMO .tex filse
+\newcommand{\st}{^{\text{st}}}
+\newcommand{\nd}{^{\text{nd}}}
+\renewcommand{\th}{^{\text{th}}}
+\newcommand{\dg}{^\circ}
+\newcommand{\ii}{\item}
+
+% From Math 55 and Math 145 at Harvard
+\newenvironment{subproof}[1][Proof]{%
+\begin{proof}[#1] \renewcommand{\qedsymbol}{$\blacksquare$}}%
+{\end{proof}}
+
+\newcommand{\liff}{\leftrightarrow}
+\newcommand{\lthen}{\rightarrow}
+\newcommand{\opname}{\operatorname}
+\newcommand{\surjto}{\twoheadrightarrow}
+\newcommand{\injto}{\hookrightarrow}
+\newcommand{\On}{\mathrm{On}} % ordinals
+\DeclareMathOperator{\img}{im} % Image
+\DeclareMathOperator{\Img}{Im} % Image
+\DeclareMathOperator{\coker}{coker} % Cokernel
+\DeclareMathOperator{\Coker}{Coker} % Cokernel
+\DeclareMathOperator{\Ker}{Ker} % Kernel
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\Spec}{Spec} % spectrum
+\DeclareMathOperator{\Tr}{Tr} % trace
+\DeclareMathOperator{\pr}{pr} % projection
+\DeclareMathOperator{\ext}{ext} % extension
+\DeclareMathOperator{\pred}{pred} % predecessor
+\DeclareMathOperator{\dom}{dom} % domain
+\DeclareMathOperator{\ran}{ran} % range
+\DeclareMathOperator{\Hom}{Hom} % homomorphism
+\DeclareMathOperator{\End}{End} % endomorphism
+
+% Things Lie
+\newcommand{\kb}{\mathfrak b}
+\newcommand{\kg}{\mathfrak g}
+\newcommand{\kh}{\mathfrak h}
+\newcommand{\kn}{\mathfrak n}
+\newcommand{\ku}{\mathfrak u}
+\newcommand{\kz}{\mathfrak z}
+\DeclareMathOperator{\Ext}{Ext} % Ext functor
+\DeclareMathOperator{\Tor}{Tor} % Tor functor
+\newcommand{\gl}{\opname{\mathfrak{gl}}} % frak gl group
+\renewcommand{\sl}{\opname{\mathfrak{sl}}} % frak gl group
+
+% More script letters etc.
+\newcommand{\SA}{\mathscr A}
+\newcommand{\SB}{\mathscr B}
+\newcommand{\SC}{\mathscr C}
+\newcommand{\SD}{\mathscr D}
+\newcommand{\SF}{\mathscr F}
+\newcommand{\SG}{\mathscr G}
+\newcommand{\SH}{\mathscr H}
+\newcommand{\OO}{\mathcal O}
+
+%% Napkin commands
+\newcommand{\prototype}[1]{
+	\emph{{\color{red} Prototypical example for this section:} #1} \par\medskip
+}
+\newenvironment{moral}{%
+	\begin{mdframed}[linecolor=green!70!black]%
+	\bfseries\color{green!70!black}}%
+	{\end{mdframed}}
+
+%%% END EXCERPT OF EVAN.STY
+%%fakesection Commutative diagrams
+\usepackage{diagrams}
+\newarrow{Inj}C--->
+\newarrow{Surj}----{>>}
+\newarrow{Proj}----{>>}
+\newarrow{Embed}>--->
+\newarrow{Incl}C--->
+\newarrow{Mapsto}|--->
+\newarrow{Isom}<--->
+\newarrow{Dotted}....>
+\newarrow{Dashed}{}{dash}{}{dash}>
+\newarrow{Line}-----
+\usepackage{tikz-cd}
+\usetikzlibrary{decorations.pathmorphing}
+\tikzcdset{row sep/normal=3.14em,column sep/normal=3.14em}
+
+%%fakesection Page layout
+\usepackage[headsepline]{scrlayer-scrpage}
+\renewcommand{\headfont}{}
+\addtolength{\textheight}{3.14cm}
+\setlength{\footskip}{0.5in}
+\setlength{\headsep}{10pt}
+\ihead{Evan Chen}
+\automark{section}
+\chead{}
+\ohead{\headmark}
+\cfoot{\pagemark}
+
+%%fakesection Fancy section and chapter heads
 \addtokomafont{chapterprefix}{\raggedleft}
 \renewcommand*{\sectionformat}{\color{purple}\S\thesection\autodot\enskip}
 
@@ -19,7 +200,7 @@
 \enlargethispage{2em}}
 \newcommand{\problemhead}{Problems to think about}
 
-% Mini ToC
+%%fakesection Mini ToC
 \usepackage[tight]{minitoc}
 \noptcrule
 \mtcsetfont{parttoc}{section}{\small\rmfamily\upshape\mdseries}
@@ -30,11 +211,11 @@
 \let\oldpart\part
 \renewcommand{\part}[1]{\oldpart{#1}\parttoc\cleardoublepage}
 
-%% SNSD
+%%fakesection SNSD
 \newcommand{\snsd}[2][]%
 {\includegraphics[#1]{/home/evan/Pictures/TopologicalGG/#2}}
 
-%% Theorems
+%%fakesection Theorems
 \usepackage{thmtools}
 \usepackage[framemethod=TikZ]{mdframed}
 
@@ -119,14 +300,14 @@ style=thmbluebox,name=Theorem,numberwithin=section]{theorem}
 \renewcommand{\thedproblem}{\theproblem$^{\dagger}$}
 \newcommand{\listhack}{$\empty$\vspace{-2em}}
 
-% Answers
+%%fakesection Answers
 \usepackage{answers}
 \Newassociation{hint}{answeritem}{tex/backmatter/all-hints}
 \Newassociation{sol}{answeritem}{tex/backmatter/all-solns}
 \renewcommand{\solutionextension}{out}
 \renewenvironment{answeritem}[1]{\item[\bf #1.]}{}
 
-% Hot chili peppers
+%%fakesection Hot chili peppers
 \reversemarginpar
 \newcommand{\prechili}{\vspace*{0.3em}\hspace*{1.5em}}
 \newcommand{\nochili}{\hspace*{1.5em}}
@@ -135,7 +316,8 @@ style=thmbluebox,name=Theorem,numberwithin=section]{theorem}
 \newcommand{\yod}{\marginpar{\prechili\nochili\chili\chili}}
 \newcommand{\kurumi}{\marginpar{\prechili\chili\chili\chili}}
 
-% Add ToC to PDF bookmarks
+%%fakesection Table of contents
+% First add ToC to ToC
 \makeatletter
 \usepackage{etoolbox}
 \pretocmd{\tableofcontents}{%
@@ -144,14 +326,20 @@ style=thmbluebox,name=Theorem,numberwithin=section]{theorem}
 }{}{}%
 \makeatother
 \setcounter{tocdepth}{1}
-% Fix spacing issues
+% Fix spacing issues in To
 \usepackage[tocindentauto]{tocstyle}
 \usetocstyle{KOMAlike}
 
-%% Asymptote definitions
+%%fakesection Asymptote definitions
+\usepackage{patch-asy}
 \numberwithin{asy}{chapter}
 \renewcommand{\theasy}{\thechapter\Alph{asy}}
 \begin{asydef}
+	import olympiad;
+	import cse5;
+	size(6cm);
+	usepackage("amsmath");
+	usepackage("amssymb");
 	defaultpen(fontsize(11pt));
 	pointfontsize=11;
 	void bigbox(string L) {
@@ -184,7 +372,7 @@ style=thmbluebox,name=Theorem,numberwithin=section]{theorem}
 \end{asydef}
 \def\asydir{asy}
 
-%% Bibliography
+%%fakesection Bibliography
 \usepackage[backend=biber,style=alphabetic]{biblatex}
 \DeclareLabelalphaTemplate{
 	\labelelement{
@@ -201,7 +389,7 @@ style=thmbluebox,name=Theorem,numberwithin=section]{theorem}
 
 
 
-%% Macros
+%%fakesection Napkin Macros
 \newcommand{\Zc}[1]{\ZZ_{#1}}
 \newcommand{\Zm}[1]{\ZZ_{#1}^\times}
 \newcommand{\pre}{^{\text{pre}}}
@@ -330,3 +518,5 @@ style=thmbluebox,name=Theorem,numberwithin=section]{theorem}
 \newcommand{\ydown}{\ket\odot}
 \newcommand{\UCNOT}{U_{\mathrm{CNOT}}}
 \newcommand{\UQFT}{U_{\mathrm{QFT}}}
+
+
