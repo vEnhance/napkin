@@ -1,1 +1,390 @@
-\chapter{Quasi-projective varieties (TODO)}
+\chapter{Morphisms of varieties}
+Now that we've taken all the time to define affine and projective varieties,
+we want to take the time to define the \emph{morphisms} between these objects.
+Fortunately, we know both affine and projective varieties are special
+cases of baby ringed spaces, so in fact we will just define a morphism
+between \emph{any} two baby ringed spaces.
+
+\section{Defining morphisms of baby ringed spaces}
+\prototype{See next section.}
+Let $(X, \OO_X)$ and $(Y, \OO_Y)$ be baby ringed spaces, and think
+about how to define a morphism between them.
+
+The guiding principle in algebra is that we want morphisms
+to be functions on underlying structure, but also respect
+the enriched additional data on top.
+To give some examples from the very beginning of time:
+\begin{example}
+	[How to define a morphism]
+	\listhack
+	\begin{itemize}
+	\ii Consider groups.
+	A group $G$ has an underlying set (of elements),
+	which we then enrich with a multiplication operation.
+	So a homomorphism is a map of the underlying sets,
+	plus it has to respect the group multiplication.
+	\ii Consider $R$-modules.
+	Each $R$-module has an underlying abelian group,
+	which we then enrich with scalar multiplication.
+	So we require that a linear map respects the scalar multiplication as well,
+	in addition to being a homomorphism of abelian groups.
+	\ii Consider topological spaces.
+	A space $X$ has an underlying set (of points),
+	which we then enrich with a topology of open sets
+	So we consider amps of the set of points
+	which respect the topology (pre-images of open sets are open).
+	\end{itemize}
+\end{example}
+This time, the ringed spaces $(X, \OO_X)$ have an underlying
+\emph{topological space}, which we have enriched with a structure sheaf.
+So, we want a continuous map $f : X \to Y$ of these topological spaces,
+which we then need to respect the sheaf of regular functions.
+
+How might we do this? Well, if we let $\psi : Y \to \CC$
+be a regular function, then there's a natural way to get
+then composition gives us a way to write a map $X \to Y \to \CC$.
+We then want to require that this is also a regular function.
+
+More generally, we can take any regular function on $Y$
+and obtain some function on $X$, which we call a pullback.
+We then require that all the pullbacks are regular on $X$.
+\begin{definition}
+	Let $(X, \OO_X)$ and $(Y, \OO_Y)$ be baby ringed spaces.
+	Given a map $f : X \to Y$ and a regular function $\phi \in \OO_Y(U)$,
+	we define the \vocab{pullback} of $\phi$, denoted $f^\ast\phi$,
+	to be the composed function
+	\begin{diagram}
+		f\pre(U) &\rTo^f & U & \rTo^\phi & \CC.
+	\end{diagram}
+\end{definition}
+The use of the word ``pullback'' is the same as in our study
+of differential forms.
+
+\begin{definition}
+	Let $(X, \OO_X)$ and $(Y, \OO_Y)$ be baby ringed spaces.
+	A continuous map of topological spaces $f: X \to Y$
+	is a \vocab{morphism} if every pullback of a regular function on $Y$
+	is a regular function on $X$.
+
+	Two baby ringed spaces are \vocab{isomorphic}
+	if there are mutually inverse morphisms between them,
+	which we then call \vocab{isomorphisms}.
+\end{definition}
+
+In particular, the pullback gives us a (reversed) \emph{ring homomorphism}
+\[ f^\ast : \OO_Y(U) \to \OO_X(f\pre(U)) \] for \emph{every} $U$;
+thus our morphisms package a lot of information.
+Here's a picture of a morphism $f$,
+and the pullback of $\phi : U \to \CC$ (where $U \subseteq Y$).
+\begin{center}
+	\begin{asy}
+		size(13cm);
+		bigblob("$X$");
+		pair p = (0.5,0);
+		filldraw(CR(p, 1), opacity(0.2)+lightgreen, deepgreen+dashed);
+		label("$f^{\text{pre}}(U)$", p+dir(135), dir(135), deepgreen);
+
+		transform t = scale(0.8) * shift(14*dir(180));
+		add(t * CC());
+		p = t*p;
+
+		bigblob("$Y$");
+		pair q = (0,0.5);
+		filldraw(CR(q, 1.2), opacity(0.2)+lightred, red+dashed);
+		label("$U$", q+1.2*dir(45), dir(45), red);
+		
+		draw( (-9,0.5)--(-3,0.5), EndArrow);
+		label("$f$", (-6,0.5), dir(90));
+	
+		draw(q--(0,-8), red, EndArrow);
+		label("$\phi \in \mathcal O_Y(U)$", (0,-6), dir(0), red);
+		label(scale(2.718)*"$\mathbb C$", (0,-9), black);
+
+		draw( p--(-0.5,-8), deepgreen, EndArrow);
+		label("$\phi^\ast f \in \mathcal O_X(f^{\text{pre}}(U))$",
+			(p+(-0.5,-8))/2, dir(225), deepgreen);
+	\end{asy}
+\end{center}
+
+On a more philosophical point, we like this definition because
+it adheres to our philosophy of treating our
+varieties as intrinsic objects, rather than embedded ones,
+However, it is somewhat of a nuisance to actually verify it,
+and it what follows I will wave my hands a lot in claiming
+that something is a morphism, since doing so is mostly detail checking.
+The theorems which follow will give us alternative definitions
+of morphism which are more coordinate-based
+and easier to use for actual computations.
+
+\section{Examples}
+\begin{example}
+	[The pullback of $\frac{1}{x-25}$ under $t \mapsto t^2$]
+	The map 
+	\[ f : X / \Aff^1 \to Y = \Aff^1 \quad\text{by}\quad t \mapsto t^2 \]
+	is a morphism of varieties.
+	For example, consider the regular function $\varphi = \frac{1}{x-25}$ on
+	the open set $Y \setminus \{25\} \subseteq Y$.
+	The $f$-inverse image is $X \setminus \{\pm5\}$.
+	Thus the pullback is
+	\[ f^\ast\varphi : X \setminus \{\pm5\} \to Y \setminus \{25\}
+		\quad\text{by}\quad x \mapsto \frac{1}{x^2-25} \]
+	which is regular on $X \setminus \{\pm5\}$.
+
+	More generally, given any polynomial $P(t)$,
+	the map $t \mapsto P(t)$ will work.
+\end{example}
+\begin{exercise}
+	Let $X = \Aff^1$, $Y = \Aff^1$.
+	By considering $\id \in \OO_Y(Y)$, show that no other
+	regular functions exist.
+\end{exercise}
+
+In fact, let's generalize the previous exercise:
+\begin{theorem}
+	[Regular maps of affine varieties are globally polynomials]
+	Let $X \subseteq \Aff^m$ and $Y \subseteq \Aff^n$ be affine varieties.
+	Every morphism $f : X \to Y$ of varieties is given by
+	\[
+		x = \left( x_1, \dots, x_m \right)
+		\xmapsto{f} \left( P_1(x), \dots, P_n(x) \right)
+	\]
+	where $P_1$, \dots, $P_n$ are polynomials.
+	\label{thm:affine_global_polynomial}
+\end{theorem}
+\begin{proof}
+	It's not too hard to see that all such functions work,
+	so let's go the other way.
+	Let $f : X \to Y$ be a morphism.
+
+	First, remark that $f\pre(Y) = X$.
+	Now consider the regular function $\pi_1 \in \OO_Y(Y)$,
+	given by the projection $(y_1, \dots, y_n) \mapsto y_1$.
+	Thus we need $f \circ \pi_1$ to be regular on $X$.
+
+	But for affine varieties $\OO_X(X)$ is just the coordinate ring $\CC[X]$
+	and so we know there is a polynomial $P_1$ such that $f \circ \pi_1 = P_1$.
+	Similarly for the other coordinates.
+\end{proof}
+Unfortunately, the situation is a little weirder in the projective setting.
+If $X \subseteq \CP^m$ and $Y \subseteq \CP^n$ are projective varieties,
+then every function
+\[
+	x = \left( x_0 : x_1 : \dots : x_m \right)
+	\mapsto \left( P_0(x) : P_1(x) : \dots : P_n(x) \right)
+\]
+is a valid morphism, provided the $P_i$ are homogeneous
+of the same degree and don't all vanish simultaneously.
+However if we try to repeat the proof for affine varieties
+we run into an issue: there is no $\pi_1$ morphism.
+(Would we send $(1:1) = (2:2)$ to $1$ or $2$?)
+
+And unfortunately, there is no way to repair this.
+Counterexample:
+\begin{example}
+	[Projective map which is not globally polynomial]
+	Let $V = \Vp(xy-z^2) \subseteq \CP^2$.
+	Then the map
+	\[
+		V \to \CP^1
+		\quad\text{by}\quad
+		(x:y:z)
+		\mapsto
+		\begin{cases}
+			(x:z) & x \neq 0 \\
+			(z:y) & y \neq 0
+		\end{cases}
+	\]
+	turns out to be a morphism of projective varieties.
+	This is well defined just because $(x:z) = (z:y)$ if $x,y \neq 0$;
+	this should feel reminiscent of the definition of regular function.
+\end{example}
+The good news is that ``local'' issues are the only limiting factor.
+\begin{theorem}
+	[Regular maps of projective varieties are locally polynomials]
+	Let $X \subseteq \CP^m$ and $Y \subseteq \CP^n$ be projective varieties
+	and let $f : X \to Y$ be a morphism.
+	Then at every point $p \in X$ there exists an neighborhood $U_p \ni p$
+	and polynomials $P_0$, $P_1$, \dots, $P_n$ (which depend on $U$) so that
+	\[ f(x) = \left( P_0(x) : P_1(x) : \dots : P_n(x) \right)
+		\quad \forall x = (x_0 : \dots : x_n) \in U_p. \]
+	Of course the polynomials $P_i$ must be homogeneous of the same degree
+	and cannot vanish simultaneously on any point of $U_p$.
+\end{theorem}
+\begin{example}
+	[Example of an isomorphism]
+	In fact, the map $V = \Vp(xy-z)^2 \to \CP^1$ is an isomorphism.
+	The inverse map $\CP^1 \to V$ is given by 
+	\[ (s:t) \mapsto (s^2:st:t^2). \]
+	Thus actually $V \cong \CP^1$.
+\end{example}
+
+\begin{remark}
+Note also that if $X \cong Y$ as quasi-projective varieties,
+then we get a lot of information.
+For one thing, we know that $X$ and $Y$ are homeomorphic topological spaces.
+But moreover, we get bijections between all the rings $\OO_X(f\pre(U))$
+and $\OO_Y(U)$; in particular, we have $\OO_X(X) \cong \OO_Y(Y)$.
+\end{remark}
+
+One last useful example:
+we can have maps from affine spaces to projective spaces.
+\begin{example}
+	[Embedding $\Aff^1 \injto \CP^1$]
+	Consider a morphism
+	\[ f : \Aff^1 \injto \CP^1 \quad\text{by}\quad t \mapsto (t:1).  \]
+	This is also a morphism of varieties.
+	(Can you see what the pullbacks look like?)
+	This reflects the fact that $\CP^1$ is ``$\Aff^1$ plus a point at infinity''.
+\end{example}
+
+\section{Quasi-projective varieties}
+\prototype{$\Aff^1 \setminus \{0\}$ might be best.}
+In light of the previous example, we saw $\Aff^1$ is in some
+sense a subset of $\CP^1$.
+However, $\Aff^1$ is not itself a projective variety,
+and so we want to loosen our definition a little:
+\begin{definition}
+	A \vocab{quasi-projective variety} is
+	an open set $X$ of a projective variety $V$.
+	It is a baby ringed space $(X, \OO_X)$ too,
+	because for any open set $U \subseteq X$
+	we simply define $\OO_X(U) = \OO_V(U)$.
+\end{definition}
+Every projective variety is quasi-projective by taking $X = V$.
+But since we have a definition of morphism, we can now show:
+\begin{proposition}
+	[Affine $\subseteq$ quasi-projective]
+	Every affine variety is isomorphic to a quasi-projective one.
+\end{proposition}
+\begin{proof}
+	[Sketch of proof]
+	We'll just do the example $V = \VV(y-x^2)$.
+	We take the projective variety $W = \Vp(zy-x^2)$,
+	and look at the corresponding standard open set $D(z)$.
+	Then there is an isomorphism $V \to D(z)$ by $(x,y) \mapsto (x:y:1)$,
+	with inverse map given by $(x:y:z) \mapsto (x/z, y/z)$.
+\end{proof}
+
+In summary, we have three different types of varieties:
+\begin{itemize}
+	\ii Affine varieties,
+	\ii Projective varieties, and
+	\ii Quasi-projective varieties.
+\end{itemize}
+These are baby ringed spaces, and so the notion of isomorphism
+shows that the last type subsumes the first two.
+
+The reason quasi-projective varieties are interesting is that
+almost all varieties which occur in real life are quasi-projective.
+In fact, it is tricky even to exhibit a single example
+of a variety which is not quasi-projective.
+I certainly don't know one.
+
+\section{Some applications}
+Here are two fun applications motivated by the following question:
+are there quasi-projective varieties which are neither affine nor projective?
+
+Our first guess might be to take the simplest projective variety,
+say $\CP^1$, and delete a point (to get an open set).
+This is quasi-projective, but it's isomorphic to $\Aff^1$.
+So instead we start with the simplest affine variety,
+say $\Aff^1$, and delete a point.
+
+Surprisingly, this doesn't work.
+\begin{example}
+	[$\Aff^1 \setminus \{0\}$ is affine]
+	Let $X = \Aff^1 \setminus \{0\}$ be an quasi-projective variety.
+	We claim that in fact we have an isomorphism
+	\[ X \cong V = \VV(xy-1) \subseteq \Aff^2 \]
+	which shows that $X$ is still isomorphic to an affine variety.
+	The maps are
+	\begin{align*}
+		X & \leftrightarrow V \\
+		t &\mapsto (t, 1/t) \\
+		x &\mapsfrom (x, y).
+	\end{align*}
+	Intuitively, the ``hyperbola $y=1/x$'' in $\Aff^2$ can be projected
+	onto the $x$-axis.
+\end{example}
+In fact, deleting any number of points from $\Aff^1$ fails
+if we delete $\{1,2,3\}$, the resulting open set
+is isomorphic as a baby ringed space to $\VV(y(x-1)(x-2)(x-3)-1)$,
+which colloquially might be called $y = \frac{1}{(x-1)(x-2)(x-3)}$.
+
+More generally, we have the following phenomenon.
+\begin{theorem}
+	[Distinguished open subsets of affines are affine]
+	Consider $X = D(f) \subseteq V = \VV(f_1, \dots, f_m) \subseteq \Aff^n$,
+	where $V$ is an affine variety,
+	and the distinguished open set $X$ is thought of as
+	a quasi-projective variety.
+	Define
+	\[ W = \VV(f_1, \dots, f_m, y \cdot f-1) \subseteq \Aff^{n+1} \]
+	where $y$ is the $(n+1)$st coordinate of $\Aff^{n+1}$.
+
+	Then $X \cong W$.
+\end{theorem}
+
+Fortunately, the true example is not too far away.
+First, check the following:
+\begin{ques}
+	Let $f : X \to Y$ be a morphism of quasi-projective varieties.
+	Take a point $p \in X$ and let $q = f(p) \in Y$.
+	Let $\varphi$ be a regular function on $Y$.
+
+	Prove that if $\varphi(q) = 0$ then $(f^\ast\varphi)(p) = 0$.
+\end{ques}
+\begin{example}[Punctured plane is not affine]
+	We claim that $X = \Aff^2 \setminus \{ (0,0) \}$ is not affine.
+	This is confusing, so you will have to pay attention.
+
+	Assume for contradiction there is an affine variety $V$
+	and an isomorphism
+	\[ f : X \to V. \]
+	Then taking the pullback we get a ring isomorphism
+	\[ f^\ast : \OO_V(V) \to \OO_X(X) = \CC[x,y]. \]
+	Now let $\OO_V(V) = \CC[a,b]$ where $f^\ast(a) = x$, $f^\ast(b) = y$.
+	In particular, we actually have to have $V \cong \Aff^2$.
+
+	Now in the \emph{affine} variety $V$ we can take $\VV(a)$ and $\VV(b)$.
+	These have nonempty intersection since $(a,b)$
+	is a maximal ideal in $\OO_V(V)$.
+	Call this point $q$.  Now let $p = f\inv(q)$.
+	Then by the previous question, $p$ should have vanish
+	on both the regular functions $x$ and $y$ in $\OO_X(X)$.
+	But there is no point in $X$ with this property, which is a contradiction.
+\end{example}
+
+\section\problemhead
+\begin{problem}
+	Consider the map 
+	\[ \Aff^1 \to \VV(y^2-x^3) \subseteq \Aff^2
+		\quad\text{by}\quad t \mapsto (t^2, t^3). \]
+	Show that it is a morphism of varieties, but it is not an isomorphism.
+\end{problem}
+
+\begin{dproblem}
+	Show that every projective variety has a neighborhood
+	which is isomorphic to an affine variety.
+	In this way, ``projective varieties are locally affine''.
+	\begin{hint}
+		Use the standard affine charts.
+	\end{hint}
+\end{dproblem}
+
+\begin{problem}
+	Let $V$ be a affine variety
+	and let $W$ be a irreducible projective variety.
+	Prove that $V \cong W$ if and only
+	if $V$ and $W$ are a single point.
+	\begin{hint}
+		Examine the global regular functions.
+	\end{hint}
+	\begin{sol}
+		If they were isomorphic, we would have $\OO_V(V) \cong \OO_W(W)$.
+		For irreducible projective varieties, $\OO_W(W) \cong \CC$,
+		while for affine varieties $\OO_V(V) \cong \CC[V]$.
+		Thus we conclude $V$ must be a single point.
+	\end{sol}
+\end{problem}
+
