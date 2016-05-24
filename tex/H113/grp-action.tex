@@ -147,7 +147,7 @@ Once we realize the stabilizer is a group, this leads us to what I privately cal
 \section{Burnside's lemma}
 Now for the crux of this chapter: a way to count the number of orbits.
 \begin{theorem}
-	[The lemma that is not burnside's]
+	[Burnside's lemma]
 	Let $G$ act on a set $X$.
 	The number of orbits of the action is equal to
 	\[ \frac{1}{\left\lvert G \right\rvert}
@@ -155,9 +155,11 @@ Now for the crux of this chapter: a way to count the number of orbits.
 	where $\opname{FixPt} g$ is the set of points $x \in X$
 	such that $g \cdot x = x$.
 \end{theorem}
-The proof is deferred as a bonus problem, since it has a very olympiad-flavored solution.
+The proof is deferred as a bonus problem,
+since it has a very olympiad-flavored solution.
 As usual, this lemma was not actually proven by Burnside;
-it is sometimes also called the Poly\'a-Burnside enumeration formula.
+Cauchy got there first, and thus it is sometimes called
+\emph{the lemma that is not Burnside's}.
 
 The point of this is that it lets us destroy the AIME-like problems by simply considering the average of the number of fixed points.
 Consult \cite{ref:aops_burnside} 

@@ -4,7 +4,7 @@ how to factor $M = pq$ in $O\left( (\log M)^2 \right)$ time.
 
 \section{The classical (inverse) Fourier transform}
 The ``crux move'' in Shor's algorithm is the so-called
-Quantum Fourier transform.
+quantum Fourier transform.
 The Fourier transform is used to extract \emph{periodicity} in data,
 and it turns out the quantum analogue is a lot faster than the classical one.
 
@@ -18,6 +18,7 @@ Let $N$ be a positive integer, and let $\omega_N = \exp\left( \frac{2\pi i}{N} \
 	\[ y_k = \frac1N \sum_{j=0}^{N-1} \omega_N^{jk} x_i. \]
 	Equivalently, one is applying the matrix
 	\[
+		\frac 1N
 		\begin{bmatrix} 
 			1 & 1 & 1 & \dots & 1 \\
 			1 & \omega_N & \omega_N^2 & \dots & \omega_N^{N-1} \\
@@ -39,12 +40,12 @@ us detect if the $x_i$ are periodic, as the following example shows.
 	(hence $x_i$ is periodic modulo $2$).
 	Thus,
 	\begin{align*}
-		y_0 &= \omega^0 + \omega^0+ \omega^0 = 3 \\
-		y_1 &= \omega^1 + \omega^3 + \omega^5 = 0 \\
-		y_2 &= \omega^2 + \omega^{6} + \omega^{10} = 0 \\
-		y_3 &= \omega^3 + \omega^9 + \omega^{15} = -3 \\
-		y_4 &= \omega^4 + \omega^{12} + \omega^{20} = 0 \\
-		y_5 &= \omega^5 + \omega^{15} + \omega^{25} = 0.
+		y_0 &= \tfrac13\left(\omega^0 + \omega^0+ \omega^0\right) = 1 \\
+		y_1 &= \tfrac13\left(\omega^1 + \omega^3 + \omega^5\right) = 0 \\
+		y_2 &= \tfrac13\left( \omega^2 + \omega^{6} + \omega^{10} \right) = 0 \\
+		y_3 &= \tfrac13\left( \omega^3 + \omega^9 + \omega^{15} \right) = -1 \\
+		y_4 &= \tfrac13\left( \omega^4 + \omega^{12} + \omega^{20} \right) = 0 \\
+		y_5 &= \tfrac13\left( \omega^5 + \omega^{15} + \omega^{25} \right) = 0.
 	\end{align*}
 	Thus, in the inverse transformation the ``amplitudes''
 	are all concentrated at multiples of $3$;
@@ -60,6 +61,12 @@ the amplitudes will peak at inputs which are divisible by $\frac{N}{\gcd(N,r)}$.
 	Confusingly, the corresponding quantum operation is the
 	(not-inverted) Fourier transform.
 \end{remark}
+If we apply the definition as written, computing the transform takes $O(N^2)$ time.
+It turns out that by an algorithm called the \vocab{fast Fourier transform}
+(whose details we won't discuss), one can reduce this to $O(N \log N)$ time.
+However, for Shor's algorithm this is also insufficient;
+we need something like $O\left( (\log N)^2 \right)$ instead.
+This is where the quantum Fourier transform comes in.
 
 \section{The quantum Fourier transform}
 Note that to compute a Fourier transform, we need to multiply an $N \times N$ matrix
@@ -121,7 +128,7 @@ But the trick is that in the quantum setup, the matrix can be rewritten:
 	In short, expand everything.
 \end{proof}
 
-So by using mixed states, we can deal with the Quantum Fourier Transform
+So by using mixed states, we can deal with the quantum Fourier transform
 using this ``multiplication by tensor product'' trick that isn't possible classically.
 
 Now, without further ado, here's the circuit.
@@ -130,9 +137,9 @@ Define the rotation matrices
 Then, for $n=3$ the circuit is given by by using controlled $R_k$'s as follows:
 \[
 	\Qcircuit @C=1em @R=.7em {
-		\lstick{\ket{x_3}} & \gate{H} & \gate{R_2} & \gate{R_3} & \qw & \qw & \qw & \rstick{\ket{y_1}} \\
-		\lstick{\ket{x_2}} & \qw & \ctrl{-1} & \qw & \gate{H} & \gate{R_3} & \qw & \rstick{\ket{y_2}} \\
-		\lstick{\ket{x_1}} & \qw & \qw & \ctrl{-2} & \qw & \ctrl{-1} & \gate{H} & \rstick{\ket{y_3}} \\
+		\lstick{\ket{x_3}} & \gate{H} & \gate{R_2} & \qw & \gate{R_3}  & \qw & \qw & \rstick{\ket{y_1}} \\
+		\lstick{\ket{x_2}} & \qw & \ctrl{-1} & \gate{H} & \qw & \gate{R_2} & \qw & \rstick{\ket{y_2}} \\
+		\lstick{\ket{x_1}} & \qw & \qw & \qw & \ctrl{-2} & \ctrl{-1} & \gate{H} & \rstick{\ket{y_3}} \\
 	}
 \]
 \begin{exercise}
@@ -158,22 +165,22 @@ For general $n$, we can write this as inductively as
   \lstick{\ket{x_1}}     & \qw                             & \ctrl{-6}               & \ctrl{-5}               & \qw & \cdots & & \ctrl{-3}               & \qw & \cdots & & \ctrl{-1}         & \gate{H} & \rstick{\ket{y_n}} \qw
  }
 \]
-where we have rearranged some of the wires which commute.
 \begin{ques}
 	Convince yourself that when $n=3$ the two circuits displayed are equivalent.
 \end{ques}
 
 Thus, the quantum Fourier transform is achievable with $O(n^2)$ gates,
-which is enormously better than the classical $O(N^2)$ operations (where $N=2^n$).
+which is enormously better than the $O(N \log N)$ operations achieved by
+the classical fast Fourier transform (where $N=2^n$).
 
 \section{Shor's algorithm}
-The Quantum Fourier Transform is the key piece of Shor's algorithm.
+The quantum Fourier transform is the key piece of Shor's algorithm.
 Now that we have it, we can solve the factoring problem.
 
 Let $p,q > 3$ be odd primes, and assume $p \neq q$.
 The main idea is to turn factoring an integer $M = pq$ into a problem
 about finding the order of $x \pmod M$; the latter is a ``periodicity''
-problem that the Quantum Fourier Transform will let us solve.
+problem that the quantum Fourier transform will let us solve.
 Specifically, say that an $x \pmod M$ is \emph{good} if
 \begin{enumerate}[(i)]
 	\ii $\gcd(x,M) = 1$,
@@ -227,7 +234,7 @@ In general, the operation is:
 	Let $\ket\phi$ denote the left qubit.
 \end{itemize}
 
-Suppose we apply the Quantum Fourier Transform to the left qubit $\ket\phi$ now:
+Suppose we apply the quantum Fourier transform to the left qubit $\ket\phi$ now:
 since the left bit is periodic modulo $r$, we expect the transform
 will tell us what $r$ is.
 Unfortunately, this doesn't quite work out, since $N$ is a power of two,
@@ -236,7 +243,7 @@ but we don't expect $r$ to be.
 Nevertheless, consider a state
 \[ \ket\phi = \ket{k_0} + \ket{k_0+r} + \dots \]
 so for example previously we had $k_0=7$ if we measured $128$ on $x=2$.
-Applying the Quantum Fourier transform, we see that the
+Applying the quantum Fourier transform, we see that the
 coefficient of $\ket j$ in the transformed image is equal to
 \[
 	\omega_N^{k_0j} \cdot

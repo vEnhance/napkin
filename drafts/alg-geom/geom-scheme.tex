@@ -7,6 +7,7 @@
 
 \begin{document}
 \title{Algebraic Geometry II: Schemes}
+\author{Evan Chen}
 \maketitle
 
 \tableofcontents
@@ -1380,7 +1381,7 @@ to a scheme $X$.
 	Let $X = \Proj S$ be a projective scheme for a graded ring $S$
 	(e.g.\ a projective subscheme).
 	For any integer $m$ we consider a pre-sheaf
-	\[ \SF^n = \left\{ \frac fg \mid g(\pp)\neq 0 \;\forall p \in X 
+	\[ \SF^n = \left\{ \frac fg \mid g(\pp)\neq 0 \;\forall \pp \in X 
 		\text{ and } \deg f - \deg g = n \right\}.
 	\]
 	Intuitively, these are degree $n$ ``functions''.
@@ -1394,7 +1395,7 @@ to a scheme $X$.
 		\ii $\OO_X(m)$ has no nonzero global sections if $m < 0$.
 		\ii Suppose $X = \CP^1$ has coordinates $(s:t)$. Then
 		\[ \frac 1s \in \OO_X(-1)(U_0) \]
-		is an example of a (non-global) section of $\OO_X(-3)$.
+		is an example of a (non-global) section of $\OO_X(-1)$.
 		\ii Suppose $X = \CP^2$ has coordinates $(x:y:z)$. Then
 		\[ \frac{1}{xyz} \in \OO_X(-1)(U_0 \cap U_1 \cap U_2) \]
 		is an example of a (non-global) section of $\OO_X(-3)$.
@@ -1414,9 +1415,9 @@ It's easy to see there is a category of sheaves of $\OO_X$-modules.
 To see that it is abelian, we need to do the following:
 \begin{itemize}
 	\ii Identify the zero object of the category.
-	This is constant sheaf $0$, which gives $\SF(U) = \{0\}$ for every $U$.
-	(This more or less follows from the fact that $\{0\}$
-	is the zero object of the abelian category $\catname{AbGrp}$.)
+	This is constant sheaf giving the trivial group everywhere.
+	(This more or less follows from the fact that it's 
+	the zero object of the abelian category $\catname{AbGrp}$.)
 	\ii Show that we can add two morphisms.
 	This is done in the obvious manner.
 	\ii Show that any morphism has a ``kernel sheaf'' and ``cokernel sheaf''.
@@ -1445,8 +1446,10 @@ From this we deduce
 
 In particular, we can talk about whether a sequence of sheaves
 $\SF \to \SG \to \SH$ is exact: just use the categorical definition.
-However, if possible we want to avoid unwinding all these definitions.
-So, I will just quote the relevant results:
+However, if possible we want to avoid unwinding all these definitions
+(take a moment and think what doing that would entail).
+So, I will just quote the relevant result.
+The best one is:
 \begin{theorem}
 	[Exactness can be checked at stalks]
 	A sequence of sheaves of $\OO_X$-modules
@@ -1611,10 +1614,32 @@ The proof is identical to \Cref{thm:affine_struct_master}.
 Then we define:
 \begin{definition}
 	A sheaf $\SF$ on a scheme $X$ is \vocab{quasi-coherent} if
-	on any open set $U = \Spec R$, the restriction of $\SF$ to $U$
-	is isomorphic to $\wt M$ for some module $M$.
+	on any affine open set $U = \Spec R$, the restriction of $\SF$ to $U$
+	is isomorphic to $\wt{M_U}$ for some module $M_U$.
 \end{definition}
-Many sheaves which arise in practice are quasi-coherent.
+We like this definition because, in practice, most sheaves which occur
+are quasi-coherent: which is good because modules are easier to think about
+than entire sheaves. The condition is hard to check as stated,
+but in fact we have the following nice result (whose proof we omit).
+\begin{theorem}
+	[Quasi-coherence can be checked on any particular cover]
+	Let $\SF$ be a sheaf on a scheme $X$,
+	and suppose there exists some \emph{particular} affine open cover
+	$\{U_i\}_i$ of $X$ such that $\SF$ is isomorphic to some $\wt M_{U_i}$
+	when restricted to any $U_i$.
+	Then $\SF$ is quasi-coherent.
+\end{theorem}
+
+\begin{example}
+	[Examples of quasi-coherent sheaves]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii If $X$ is a scheme, then $\OO_X$ is quasi-coherent,
+		almost by definition.
+		\ii The twisting sheaves $\OO_X(n)$ are always quasi-coherent
+		when $X$ is a projective.
+	\end{enumerate}
+\end{example}
 
 Kahler differential module, show the Euler sequence
 
@@ -1634,6 +1659,7 @@ Kahler differential module, show the Euler sequence
 
 
 \chapter{Divisors and line bundles}
+$K(X)$ 
 
 \end{document}
 

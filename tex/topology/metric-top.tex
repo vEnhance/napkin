@@ -214,7 +214,7 @@ Here is an equivalent condition.
 \end{theorem}
 \begin{proof}
 	It's not too hard to see that $\eps$-$\delta$ continuity implies sequential continuity.
-	The other direction is trickier and left as \Cref{prob:sequential}.
+	The reverse direction is trickier and left as \Cref{prob:sequential}.
 \end{proof}
 
 The next example illustrates why this criterion can often be much easier to work with.
@@ -251,9 +251,11 @@ For topological spaces, we do exactly the same thing, but replace ``structure-pr
 Needless to say, homeomorphism is an equivalence relation.
 
 You might be surprised that we require $f\inv$ to also be continuous.
-Here's the reason: you can show that if $\phi$ is a homomorphism of groups
-which is a bijection, then so is $\phi\inv$.
-The same is not true for continuous bijections, which is why we need the new condition.
+Here's the reason: you can show that if $\phi$ is
+an isomorphism of groups, then $\phi\inv$ also preserves the group operation,
+hence $\phi\inv$ is itself an isomorphism.
+The same is not true for continuous bijections,
+which is why we need the new condition.
 \begin{example}
 	[Homeomorphism $\neq$ continuous bijection]
 	\begin{enumerate}[(a)]
@@ -467,7 +469,7 @@ The whole upshot of this is the following theorem.
 	\begin{center}
 		\begin{asy}
 			size(12cm);
-			bigblob("$Y$");
+			bigblob("$N$");
 			pair Y = Drawing("y", origin, dir(75));
 			real eps = 1.5;
 			draw(CR(Y, eps), dotted);
@@ -477,7 +479,7 @@ The whole upshot of this is the following theorem.
 			add(shift( (13,0) ) * CC());
 			label("$f$", D( (4.5,0)--(8,0), EndArrow));
 
-			bigblob("$X$");
+			bigblob("$M$");
 			real delta = 1.1;
 			pair X = Drawing("x", (-1.5,-0.5), dir(-45));
 			label("$\delta$", D(X--(X+delta*dir(155))));
@@ -716,7 +718,7 @@ Remarkably, though, the following \emph{is} true.
 \begin{exercise}
 	Prove this theorem!
 	You'll want to draw a picture to make it clear what's happening: for example,
-	you might take $M = \RR^2$ and $S$ to be the open unit disk.
+	you might take $M = \RR^2$ and $S$ to be the closed unit disk.
 \end{exercise}
 
 This leads us to a definition for a general topological space.
