@@ -729,8 +729,26 @@ and do a full expansion.
 	[Sweden 2010, edited]
 	\gim
 	A herd of $1000$ cows of nonzero weight is given.
-	Prove that we can remove one cow such that the remaining $999$ cows cannot be split
+	Prove that we can remove one cow such that the
+	remaining $999$ cows cannot be split
 	into two halves of equal weights.
+	\begin{hint}
+		Consider $1000 \times 1000$ matrix $M$
+		with entries $0$ on diagonal and $\pm 1$ off-diagonal.
+		Mod $2$.
+	\end{hint}
+	\begin{sol}
+		We proceed by contradiction.
+		Let $v$ be a vector of length $1000$
+		whose entries are weight of cows.
+		Assume the existence of a matrix $M$ such that $Mv = 0$,
+		with entries $0$ on diagonal and $\pm 1$ off-diagonal.
+		But $\det M \pmod 2$ is equal to the number of derangements
+		of $\{1, \dots, 1000\}$, which is odd.
+		Thus $\det M$ is odd and in particular not zero,
+		so $M$ is invertible.
+		Thus $Mv = 0 \implies v = 0$, contradiction.
+	\end{sol}
 \end{problem}
 
 \begin{problem}
