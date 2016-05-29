@@ -1,0 +1,303 @@
+\chapter{More on sheaves}
+Previously, we defined a sheaf so that we could equip
+it onto a scheme and thus produce a ringed space.
+However, we will now proceed to define some additional sheaves on a scheme $X$,
+and study the relations between them.
+
+\section{Sheaves of $\OO_X$-modules}
+\prototype{Twisting sheaves.}
+Up until now we have mostly been working with sheaves of rings,
+but now we want to instead think about sheaves of modules related
+to a scheme $X$. 
+\begin{definition}
+	Let $(X, \OO_X)$ be a ringed space.
+	A \vocab{sheaf of $\OO_X$-modules} is a sheaf $\SF$
+	of abelian groups such that $\SF(U)$ is also an $\OO_X(U)$-module.
+	The module structures are also required to be compatible
+	with the restriction maps.
+\end{definition}
+\begin{example}
+	[Twisting sheaves]
+	Let $X = \Proj S$ be a projective scheme for a graded ring $S$
+	(e.g.\ a projective subscheme).
+	For any integer $m$ we consider a pre-sheaf
+	\[ \SF^n = \left\{ \frac fg \mid g(\pp)\neq 0 \;\forall \pp \in X 
+		\text{ and } \deg f - \deg g = n \right\}.
+	\]
+	Intuitively, these are degree $n$ ``functions''.
+	Then $\OO_X(n) = (\SF^n)\sh$;
+	we call these the \vocab{twisting sheaves}.
+
+	For example, if $S = \CC[x_0, \dots, x_n]$ then
+	\begin{enumerate}[(a)]
+		\ii $\OO_X(0) \cong \OO_X$, by definition.
+		\ii A degree $n$ polynomial defines a global section of $\OO_X(n)$.
+		\ii $\OO_X(m)$ has no nonzero global sections if $m < 0$.
+		\ii Suppose $X = \CP^1$ has coordinates $(s:t)$. Then
+		\[ \frac 1s \in \OO_X(-1)(U_0) \]
+		is an example of a (non-global) section of $\OO_X(-1)$.
+		\ii Suppose $X = \CP^2$ has coordinates $(x:y:z)$. Then
+		\[ \frac{1}{xyz} \in \OO_X(-1)(U_0 \cap U_1 \cap U_2) \]
+		is an example of a (non-global) section of $\OO_X(-3)$.
+	\end{enumerate}
+\end{example}
+
+Observe that the stalks of such a sheaf are abelian groups.
+
+\section{Sheaves of $\OO_X$-modules make an abelian category}
+I won't take the time to do this properly,
+since I won't really use much of it.
+See \cite{ref:vakil} for a proper exposition.
+
+Fix a ringed space $(X, \OO_X)$.
+It's easy to see there is a category of sheaves of $\OO_X$-modules.
+(the objects are sheaves and the morphisms are, well, morphisms of sheaves).
+To see that it is abelian, we need to do the following:
+\begin{itemize}
+	\ii Identify the zero object of the category.
+	This is constant sheaf giving the trivial group everywhere.
+	(This more or less follows from the fact that it's 
+	the zero object of the abelian category $\catname{AbGrp}$.)
+	\ii Show that we can add two morphisms.
+	This is done in the obvious manner.
+	\ii Show that any morphism has a ``kernel sheaf'' and ``cokernel sheaf''.
+	The definition is not too bad: given $\alpha : \SF \to \SG$ we define the
+	pre-sheaves $\ker\alpha$ and $\coker'\alpha$ by
+	\begin{align*}
+		\ker(\alpha)(U) &= \ker(\alpha_U) \\
+		\coker'(\alpha)(U) &= \coker(\alpha_U).
+	\end{align*}
+	It turns out that $\ker(\alpha)$ is already a sheaf.
+	But $\coker'(\alpha)$ is only a pre-sheaf and in general not a sheaf.
+	(Again, see \cite{ref:vakil} or \cite{ref:gathmann} for why.)
+	Thus we have to define $\coker(\alpha) = \coker'(\alpha) \sh$.
+	
+	The tricky part, done in \cite{ref:vakil} and the one which I'm omitting,
+	is showing that this kernel and cokernel sheaf satisfy
+	the correct universal properties.
+\end{itemize}
+
+From this we deduce
+\begin{theorem}
+	[Sheaves form an abelian category]
+	Let $(X, \OO_X)$ be a ringed space.
+	The category of sheaves of $\OO_X$-modules forms an abelian category.
+\end{theorem}
+
+In particular, we can talk about whether a sequence of sheaves
+$\SF \to \SG \to \SH$ is exact: just use the categorical definition.
+However, if possible we want to avoid unwinding all these definitions
+(take a moment and think what doing that would entail).
+So, I will just quote the relevant result.
+The best one is:
+\begin{theorem}
+	[Exactness can be checked at stalks]
+	A sequence of sheaves of $\OO_X$-modules
+	$\SF \to \SG \to \SH$ is exact if and only if
+	for every point $p \in X$,
+	the induced map of stalks $\SF_p \to \SG_p \to \SH_p$ is exact.
+\end{theorem}
+
+
+Thus, we \emph{really} like stalks; they behave as nicely as possible.
+\begin{ques}
+	Deduce that $\SF \to \SG$ is injective / surjective / an isomorphism
+	if and only if $\SF_p \to \SG_p$ is injective / surjective / an isomorphism
+	for every point $p$.
+\end{ques}
+
+\begin{remark}
+	In fact, one can show that the section functor is \vocab{left exact}:
+	if $0 \to \SF \to \SG \to \SH \to 0$ is exact then
+	$0 \to \SF(U) \to \SG(U) \to \SH(U)$ is exact but the
+	last arrow need not be surjective.
+\end{remark}
+
+We also have the following result:
+\begin{theorem}
+	[Monic/epic on sections]
+	Let $\alpha : \SF \to \SG$ be a morphism of $\OO_X$-modules.
+	\begin{enumerate}[(a)]
+		\ii The map $\alpha$ is monic if and only if $\SF(U) \to \SG(U)$
+		is injective for every open $U$.
+		\ii The map $\alpha$ is epic if $\SF(U) \to \SG(U)$
+		is surjective for every open $U$,
+		but the converse is not true in general.
+	\end{enumerate}
+\end{theorem}
+
+\begin{example}
+	[Exponential exact sequence]
+	Here is an example of an exact sequence of sheaves:
+	we write
+	\[ 0 \to \ZZ \taking{\cdot 2\pi i} \SF \taking{\exp} \SF^\ast \to 0 \]
+	where
+	\begin{itemize}
+		\ii $\ZZ$ is the sheaf of locally constant integer-valued functions.
+		\ii $\SF$ is the sheaf of holomorphic functions on $\CC$.
+		\ii $\SF^\ast$ is the sheaf of nonvanishing
+			holomorphic functions on $\CC$.
+	\end{itemize}
+	You should convince yourself that this sequence is exact
+	(try taking the stalk at $0$).
+	But if we pick $U = \CC \setminus \{0\}$, then we only have exactness of
+	\[ 0 \to \ZZ(U) \taking{\cdot 2\pi i} \SF(U) \taking{\exp} \SF^\ast(U) \]
+	with the last arrow not being surjective:
+	take the identity function $\id \in \SF^\ast(U)$.
+\end{example}
+\begin{exercise}
+	Compute $\coker'(\exp)$ and $\coker(\exp) = \coker'(\exp)\sh$
+	in the above example.
+\end{exercise}
+
+In addition, we can do the following constructions.
+\begin{definition}
+	If $\SF$ and $\SG$ are sheaves of $\OO_X$-modules, then
+	\begin{enumerate}[(a)]
+		\ii The \vocab{direct sum} $\SF \oplus \SG$ is defined
+		on open sets by \[ U \mapsto \SF(U) \oplus \SG(U). \]
+		(This is already a sheaf, so we don't need to sheafify.)
+		\ii The \vocab{tensor product} $\SF \otimes \SG$ is defined
+		by taking the sheafification of the pre-sheaf
+		\[ U \mapsto \SF(U) \otimes_{\OO_X(U)} \SG(U). \]
+		\ii The \vocab{dual} $\SF^\vee$ of $\SF$ is defined
+		by taking the sheafification of the pre-sheaf
+		\[ U \mapsto \Hom_{\OO_X(U) \text{ module}} (\SF(U), \OO_X(U)). \]
+	\end{enumerate}
+\end{definition}
+\begin{example}[More on twisting sheaves]
+	Consider the twisting sheaves of $X = \CP^N$.
+	\begin{enumerate}[(a)]
+		\ii $\OO_X(n) \otimes \OO_X(m) \cong \OO_X(m+n)$.
+		What do you think the isomorphism is?
+		\ii $\OO_X(n)^\vee \cong \OO_X(-n)$.
+	\end{enumerate}
+\end{example}
+
+\section{Sheaves associated to modules}
+As the previous section shows, sheaves are rather than complicated objects
+and perhaps not the easiest things to work with.
+So we want a way to simplify our work a little,
+and specialize our attention to a ``simpler'' class of sheaves.
+
+We're going to work instead with general $R$-modules.
+For this to work, we have to understand ``localization of a module'',
+generalizing the localization of $R$ from before.
+\begin{definition}
+	Let $S \subseteq R$, where $R$ is a ring,
+	and assume $S$ is closed under multiplication.
+	Let $M$ be an $R$-module.
+	Then the \vocab{localization of $M$ at $S$}, denoted $S\inv M$,
+	is defined as the set of fractions
+	\[ \left\{ m/s \mid m \in M, s \in S \right\} \]
+	where we declare two fractions $m_1 / s_1 = m_2 / s_2$ 
+	to be equal if 
+	\[ \exists s \in S : \quad s(s_2m_1 - s_1m_2) = 0. \]
+	Finally, we define $M_\pp = (R\setminus\pp)\inv M$
+	and $M_f = \left\{ 1, f, f^2, \dots \right\}\inv M$.
+\end{definition}
+Now for every module $M$ we can construct a sheaf of $\OO_X$-modules.
+\begin{definition}
+	Let $M$ be an $R$-module.
+	Then we construct the sheaf $\wt M$ on $X = \Spec R$ as follows:
+	it is the sheafication of the pre-sheaf
+	\[ U \mapsto 
+		\left\{ \frac{m}{g} \mid m \in M, f \in R,
+			\text{ and }
+			g(\pp) \neq 0 \;\forall \pp \in U \right\}.
+	\]
+	Thus, in terms of germs,
+	\[
+		\wt M(U)
+		= \left\{ (m_\pp \in M_\pp)_{\pp \in U} \text{ which are locally $m/f$} \right\}.
+	\]
+	This becomes a sheaf of $\OO_X$ modules.
+	We say $\wt M$ is the \vocab{sheaf associated to $M$}.
+\end{definition}
+\begin{example}
+	[Examples of sheaves associated to modules]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii If we set $M = R$ then $\wt M = \OO_X$.
+		\ii If we let $M = R \oplus R$ then $\wt M = \OO_X^{\oplus 2}$.
+		\ii Suppose $R = \CC[x]$, so $X = \Spec R = \Aff^1$.
+		Then we define a module $M$ as follows:
+		\begin{itemize}
+			\ii As a set $M = \{ \lambda \in \CC \}$.
+			\ii The action of $R$ on $M$ is
+			given by $f \cdot \lambda = f(2016)\lambda$.
+		\end{itemize}
+		Then we obtain skyscraper sheaf at $(2016)$ (see \Cref{prob:module_sky})
+		\[ 
+			\wt M(U) 
+			=
+			\begin{cases}
+				\CC & (2016) \in U \\
+				0 & (2016) \notin U.
+			\end{cases}
+		\]
+	\end{enumerate}
+\end{example}
+These sheaves have the usual properties we like:
+\begin{theorem}
+	[Properties of sheaves associated to modules]
+	Let $X = \Spec R$ and a let $M$ be an $R$-module.
+	\begin{enumerate}[(a)]
+		\ii If $\pp \in X$ then $\wt M_\pp \cong M_\pp$;
+		the stalk of $\wt M$ is the localization of $M$.
+		\ii For $f \in R$, we have $\wt M(D(f)) = M_f$.
+	\end{enumerate}
+\end{theorem}
+The proof is identical to \Cref{thm:affine_struct_master}.
+
+\section{Quasi-coherent sheaves}
+Then we define:
+\begin{definition}
+	A sheaf $\SF$ on a scheme $X$ is \vocab{quasi-coherent} if
+	on any affine open set $U = \Spec R$, the restriction of $\SF$ to $U$
+	is isomorphic to $\wt{M_U}$ for some module $M_U$.
+\end{definition}
+We like this definition because, in practice, most sheaves which occur
+are quasi-coherent: which is good because modules are easier to think about
+than entire sheaves. The condition is hard to check as stated,
+but in fact we have the following nice result (whose proof we omit).
+\begin{theorem}
+	[Quasi-coherence can be checked on any particular cover]
+	Let $\SF$ be a sheaf on a scheme $X$,
+	and suppose there exists some \emph{particular} affine open cover
+	$\{U_i\}_i$ of $X$ such that $\SF$ is isomorphic to some $\wt M_{U_i}$
+	when restricted to any $U_i$.
+	Then $\SF$ is quasi-coherent.
+\end{theorem}
+
+\begin{example}
+	[Examples of quasi-coherent sheaves]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii If $X$ is a scheme, then $\OO_X$ is quasi-coherent,
+		almost by definition.
+		\ii The twisting sheaves $\OO_X(n)$ are always quasi-coherent
+		when $X$ is a projective.
+	\end{enumerate}
+\end{example}
+
+Kahler differential module, show the Euler sequence
+
+\section{Locally free sheaves}
+\section\problemhead
+\begin{problem}
+	\label{prob:module_sky}
+	Suppose $R = \CC[x]$, so $X = \Spec R = \Aff^1$.
+	Then we define a $R$-module $M = \CC$ with action
+	$f \cdot \lambda = f(2016)\lambda$ for $f \in R$, $\lambda \in M$.
+	\begin{enumerate}[(a)]
+		\ii Let $\pp \in X$.  Show that $M_\pp = \CC$
+		if $\pp = (x-2016)$ and $M_\pp = 0$ otherwise.
+		\ii Show that $\wt M$ is a skyscraper sheaf.
+	\end{enumerate}
+\end{problem}
+
+
+\chapter{Divisors and line bundles}
+$K(X)$ 
+
