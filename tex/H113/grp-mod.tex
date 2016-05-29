@@ -614,7 +614,53 @@ is an \emph{embedding} of $G$ into $H$.
 	\end{sol}
 \end{problem}
 
+\begin{problem}
+	[Homophony group]
+	\yod
+    The homophony group (of English) is the group with $26$ generators $a$, $b$, \dots, $z$
+	and one relation for every pair of English words which sound the same.
+	For example $knight = night$ (and hence $k=1$).
+	Prove that the group is trivial.
+	\begin{hint}
+		Get yourself a list of English homophones, I guess.
+		Don't try too hard.
+		Letter $v$ is the worst; maybe $felt = veldt$?
+	\end{hint}
+	\begin{sol}
+		One possible solution is
+		\url{http://andrew.gibiansky.com/blog/linguistics/homophony-groups/}.
+	\end{sol}
+\end{problem}
+
 % TODO Brian: 3D and 3E are hard
 
-% TODO look at
-% http://www.artofproblemsolving.com/Forum/viewtopic.php?p=3657213#p3657213
+\endinput
+		Start with
+		$aid=aide \implies e=1$,
+		$aisle = isle \implies a=1$,
+		$ant = aunt \implies u=1$,
+		$but = butt \implies t=1$,
+		$cannon = canon \implies n=1$,
+		$cent = scent \implies s=1$,
+		$choral = coral \implies h=1$,
+		$doc = dock \implies k=1$,
+		$filet = fillet \implies l=1$,
+		$hole = whole \implies w=1$,
+		$plum = plumb  \implies b=1$,
+		$reign = rein \implies g=1$,
+		$scent = sent \implies c=1$,
+		$to = too \implies o=1$,
+		$waive = wave \implies i=1$.
+		Using this, we then get
+		$air = err \implies r=1$,
+		$awed = odd \implies d=1$,
+		$bite = byte \implies y=1$,
+		$boos = booze \implies z=1$,
+		$cask = casque \implies q=1$,
+		$coax = cokes \implies x=1$,
+		$coo = coup \implies p=1$,
+		$draft = draught \implies f=1$,
+		$damned = dammed \implies m=1$,
+		$genes = jeans \implies j=1$.
+		The last letter $v$ is always dubious:
+		$felt=veldt$ seems the best.

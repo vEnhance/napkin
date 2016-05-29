@@ -757,3 +757,53 @@ such that $X^p-p$ is irreducible modulo $q$.
 	irreducible modulo \emph{any} rational prime.
 	% http://mathoverflow.net/questions/12366/how-many-primes-stay-inert-in-a-finite-non-cyclic-extension-of-number-fields
 \end{problem}
+
+\begin{problem}
+	[Putnam 2012 B6]
+	\yod
+	Let $p$ be an odd prime such that $p \equiv 2 \pmod 3$.
+	Let $\pi$ be a permutation of $\FF_p$ by $\pi(x) = x^3 \pmod p$.
+	Show that $\pi$ is even if and only if $p \equiv 3 \pmod 4$.
+	\begin{hint}
+		By primitive roots, it's the same as the action of $\times 3$ on $\Zc{p-1}$.
+		Let $\zeta$ be a $(p-1)$st root of unity.
+		Take $d = \prod_{i < j} (\zeta^i - \zeta^j)$, think about $\QQ(d)$,
+		and figure out how to act on it by $x \mapsto x^3$.
+	\end{hint}
+	\begin{sol}
+		This solution is by David Corwin.
+		By primitive roots, it's the same as the action of $\times 3$ on $\Zc{p-1}$.
+		Let $\zeta$ be a $(p-1)$st root of unity.
+
+		Consider 
+		\[ d = \prod_{0 \le i < j < p-1} (\zeta^i - \zeta^j). \]
+		This is the square root of the discriminant of 
+		the polynomial $X^{p-1}-1$; in other words $d^2 \in \ZZ$.
+		In fact, by elementary methods one can compute
+		\[ (-1)^{\binom{p-1}{2}} d^2 = -(p-1)^{p-1} \]
+
+		Now take the extension $K = \QQ(d)$, noting that
+		\begin{itemize}
+			\ii If $p \equiv 3 \pmod 4$, then $d = (p-1)^{\half(p-1)}$, so $K = \QQ$.
+			\ii If $p \equiv 1 \pmod 4$, then $d = i(p-1)^{\half(p-1)}$, so $K = \QQ(i)$.
+		\end{itemize}
+		Either way, in $\OO_K$, let $\pp$ be a prime ideal above $(3) \subseteq \OO_K$.
+		Let $\sigma = \Frob_\pp$ then be the unique element such that
+		$\sigma(x) = x^3 \pmod{\pp}$ for all $x$.
+		Then, we observe that
+		\[
+			\sigma(d) \equiv \prod_{0 \le i < j < p-1} (\zeta^{3i} - \zeta^{3j})
+			\equiv \begin{cases}
+				+d & \text{if $\pi$ is even} \\
+				-d & \text{if $\pi$ is odd}
+			\end{cases} \pmod{\pp}.
+		\]
+		Now if $K = \QQ$, then $\sigma$ is the identity, thus $\sigma$ even.
+		Conversely, if $K = \QQ(i)$, then $3$ does not split, so $\sigma(d) = -d$
+		(actually $\sigma$ is complex conjugation) thus $\pi$ is odd.
+
+		Note the condition that $p \equiv 2 \pmod 3$ is used only
+		to guarantee that $\pi$ is actually a permutation (and thus $d \neq 0$);
+		it does not play any substantial role in the solution.
+	\end{sol}
+\end{problem}

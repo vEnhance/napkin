@@ -542,6 +542,32 @@ the Zariski topology is Hausdorff.
 	\end{sol}
 \end{problem}
 
+\begin{problem}
+	\yod
+	From the plane $\RR^2$ we delete two distinct points $p$ and $q$.
+	Is it possible to partition the remaining points into
+	non-overlapping circumferences of nonzero radius?
+	\begin{hint}
+		Color a circle magenta if it contains $p$ but not $q$ and color a circle cyan if it contains $q$ but not $p$. Color $p$ itself magenta and $q$ itself cyan as well. Finally, color a circle neon yellow if it contains both $p$ and $q$. 
+	\end{hint}
+	\begin{sol}
+		Color a circle magenta if it contains $p$ but not $q$ and color a circle cyan if it contains $q$ but not $p$. Color $p$ itself magenta and $q$ itself cyan as well. Finally, color a circle neon yellow if it contains both $p$ and $q$. By repeating the argument in (1) there are no circles enclosing neither $p$ nor $q$. Hence every point is either magenta, cyan, or neon yellow.
+		Now note that given any magenta circle, its interior is completely magenta. Actually, the magenta circles can be totally ordered by inclusion (since they can't intersect). So we consider two cases: 
+		\begin{itemize}
+		 \ii If there is a maximal magenta circle (i.e. a magenta circle not contained in any other magenta circle) then the set of all magenta points is just a closed disk.
+		 \ii If there is no maximal magenta circle, then the set of magenta points can also be expressed as the union over all magenta circles of their interiors. This is a union of open sets, so it is itself open.
+		 \end{itemize}
+
+		We conclude the set of magenta points is either a closed disk or an open set. Similarly for the set of cyan points. Moreover, the set of such points is convex.
+
+		To finish the problem:
+		\begin{itemize}
+		\ii Suppose there are no neon yellow points. If the magenta points form a closed disk, then the cyan points are $\mathbb R^2$ minus a disk which is not convex. Contradiction. So the magenta points must be open. Similarly the cyan points must be open. But $\mathbb R^2$ is connected, so it can't be written as the union of two open sets.
+		\ii Now suppose there are neon yellow points. We claim there is a neon yellow circle minimal by inclusion. If not, then repeat the argument of (1) to get a contradiction, since any neon yellow circle must have diameter the distance from $p$ to $q$. So we can find a neon yellow circle $\mathscr C$ whose interior is all magenta and cyan. Now repeat the argument of the previous part, replacing $\mathbb R^2$ by the interior of $\mathscr C$.
+		 \end{itemize}
+	\end{sol}
+\end{problem}
+
 \begin{dproblem}[Completion]
 	\yod
 	Let $M$ be a metric space.
