@@ -261,7 +261,7 @@ We can think of the above example as follows:
 consider all sets of independent elements.
 These form a partially ordered set by inclusion, and what we did
 was quite literally climb up a chain
-\[ S_0 \subset S_1 \subset S_2 \subset \dots. \]
+\[ S_0 \subsetneq S_1 \subsetneq S_2 \subsetneq \dots. \]
 It's not quite climbing since we weren't just going one step at a time:
 we had to do ``jumps'' to get up to $S_\omega$ and resume climbing.
 But the main idea is to climb up a poset until we're at the very top;
@@ -306,7 +306,7 @@ And the only possible stopping point is a local maximum.
 If we want to phrase our previous solution in terms of Zorn's lemma, we'd say:
 \begin{proof}
 	Look at the poset whose elements are sets of independent real numbers.
-	Every chain $S_0 \subset S_1 \subset \dots$ has an upper bound $\bigcup S_\alpha$
+	Every chain $S_0 \subsetneq S_1 \subsetneq \dots$ has an upper bound $\bigcup S_\alpha$
 	(which you have to check is actually an element of the poset).
 	Thus by Zorn, there is a local maximum $S$.
 	Then $S$ must be spanning, because otherwise we could add an element to it.

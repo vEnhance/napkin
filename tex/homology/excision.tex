@@ -31,13 +31,13 @@ By \Cref{prob:triple_long_exact} we even have a long exact sequence
 	\to H_{n-1}(B,A)
 	\to \dots.
 \]
-for $A \subset B \subset X$.
+for $A \subseteq B \subseteq X$.
 An application of the second long exact sequence above gives:
 \begin{lemma}
 	[Homology relative to contractible spaces]
 	\label{lem:rel_contractible}
 	Let $X$ be a topological space,
-	and let $A \subset X$ be contractible.
+	and let $A \subseteq X$ be contractible.
 	For all $n$, \[ H_n(X, A) \cong \wt H_n(X). \]
 \end{lemma}
 \begin{proof}
@@ -68,7 +68,7 @@ a natural next step is to create a suitable category of \emph{pairs}
 and give ourselves the same functorial setup as before.
 
 \begin{definition}
-	Let $\varnothing \neq A \subset X$ and $\varnothing \neq B \subset X$
+	Let $\varnothing \neq A \subseteq X$ and $\varnothing \neq B \subseteq X$
 	be subspaces, and consider a map $f : X \to Y$.
 	If $f``(A) \subseteq B$ we write
 	\[ f : (X,A) \to (Y,B). \]
@@ -115,7 +115,7 @@ Now, we want an analog of contractible spaces for our pairs:
 i.e.\ pairs of spaces $(X,A)$ such that $H_n(X,A) = 0$.
 The correct definition is:
 \begin{definition}
-	Let $A \subset X$.
+	Let $A \subseteq X$.
 	We say that $A$ is a \vocab{deformation retract} of $X$
 	if there is a map of pairs $r : (X, A) \to (A, A)$
 	which is a pair homotopy equivalence.
@@ -140,7 +140,7 @@ Of course in this situation we have that
 \[ H_n(X,A) \cong H_n(A,A) = 0. \]
 
 \begin{exercise}
-	Show that if $A \subset V \subset X$,
+	Show that if $A \subseteq V \subseteq X$,
 	and $A$ is a deformation retract of $V$,
 	then $H_n(X,A) \cong H_n(X,V)$ for all $n$.
 	(Use \Cref{prob:triple_long_exact}. Solution in next section.)
@@ -151,7 +151,7 @@ Now for the key geometric result, which is the analog of
 \Cref{thm:open_cover_homology} for our relative homology groups.
 \begin{theorem}
 	[Excision]
-	Let $Z \subset A \subset X$ be subspaces such that
+	Let $Z \subseteq A \subseteq X$ be subspaces such that
 	the closure of $Z$ is contained in the interior of $A$.
 	Then the inclusion $\iota (X \setminus Z, A \setminus Z) \injto (X,A)$
 	(viewed as a map of pairs) induces an isomorphism of
@@ -172,7 +172,7 @@ Answer:
 	[Relative homology $\implies$ quotient space]
 	\label{thm:good_pair}
 	Let $X$ be a space and $A$ be a subspace such that
-	$A$ is a deformation retract of some neighborhood $V \subset X$.
+	$A$ is a deformation retract of some neighborhood $V \subseteq X$.
 	Then the quotient map $q : X \to X/A$ induces an isomorphism
 	\[ H_n(X,A) \cong H_n(X/A, A/A) \cong \wt H_n(X/A). \]
 \end{theorem}
