@@ -151,8 +151,8 @@ Now for the crux of this chapter: a way to count the number of orbits.
 	Let $G$ act on a set $X$.
 	The number of orbits of the action is equal to
 	\[ \frac{1}{\left\lvert G \right\rvert}
-		\sum_{g \in G} \left\lvert \opname{FixPt} g \right\rvert \]
-	where $\opname{FixPt} g$ is the set of points $x \in X$
+		\sum_{g \in G} \left\lvert \FixPt g \right\rvert \]
+	where $\FixPt g$ is the set of points $x \in X$
 	such that $g \cdot x = x$.
 \end{theorem}
 The proof is deferred as a bonus problem,
@@ -170,7 +170,7 @@ Here is one:
 	Two of the squares of a $7 \times 7$ checkerboard are painted yellow, and the rest are painted green. Two color schemes are equivalent if one can be obtained from the other by applying a rotation in the plane of the board. How many inequivalent color schemes are possible?
 
 	We know that $G = \Zc4$ acts on the set $X$ of $\binom{49}{2}$ possible coloring schemes.
-	Now we can compute $\opname{FixPt} g$ explicitly for each $g \in \Zc4$.
+	Now we can compute $\FixPt g$ explicitly for each $g \in \Zc4$.
 	\begin{itemize}
 		\ii If $g = 1_G$, then every coloring is fixed, for a count of $\binom{49}{2} = 1176$.
 		\ii If $g = r^2$ there are exactly $24$ coloring schemes fixed by $g$:

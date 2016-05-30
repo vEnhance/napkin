@@ -230,7 +230,8 @@ Then we can try to define what it means to ``break down a group''.
 	$H_0$, $H_1$, \dots, $H_n$ such that
 	\[ \{1\} = H_0 \normalin H_1 \normalin H_2 \normalin \dots \normalin H_n
 		\normalin G \]
-	of maximal length (i.e.\ $n$ is as large as possible).
+	of maximal length (i.e.\ $n$ is as large as possible,
+	but all $H_i$ are of course distinct).
 	The \vocab{composition factors} are the groups
 	$H_1/H_0$, $H_2/H_1$, \dots, $H_n/H_{n-1}$.
 \end{definition}
@@ -378,62 +379,3 @@ Math is weird.
 		which is a contradiction.
 	\end{sol}
 \end{problem}
-
-
-\endinput
-
-%\section{Semidirect Products}
-%\prototype{$D_{12} \cong C_6 \rtimes C_2$.}
-%(Semidirect products are a little heavy and I won't use them other than to illustrate a point in this section.
-%So you might skip this section on a first read.)
-%
-%Let $G$ be a group and $N$ a normal subgroup.
-%Let $Q = G/N$.
-%Is there a way we can recover $G$ as a ``product'' of $Q$ and $N$?
-%
-%Our first guess would be $G \cong N \times Q$, the Cartesian product.
-%Unfortunately, this fails.
-%For example, let $G = D_{12}$, and let $N = \left\{ 1,r,\dots,r^5 \right\}$.
-%You can check that $N$ is indeed normal in $D_{12}$; however, $D_{12}/N \cong C_2$ while $N \cong C_6$.
-%And it's certainly not the case that $D_{12} \cong C_6 \times C_2$, since
-%$D_{12}$ is not abelian!
-%
-%In fact, we have that
-%\[ C_{12} / C_6 \cong C_2 \text{ and } D_{12} / C_6 \cong C_2 \]
-%so we can't even determine $G$ uniquely.
-%But can we at least find all possible $G$?
-%
-%You can define another type of product, called a semidirect product, as follows.
-%\begin{definition}
-%	An \vocab{automorphism} is an isomorphism from a group to itself.
-%	Given a group $G$, let $\Aut(G)$ be the set of automorphisms of $G$.
-%	Then $\Aut(G)$ forms a group, called the \vocab{automorphism group} of $G$.
-%\end{definition}
-%\begin{definition}
-%	Let $H = (H, \star)$ and $K = (K, \ast)$ be groups.
-%	Let $\phi : K \to \opname{Aut}(H)$ be a homomorphism.
-%	Then we define the \vocab{semidirect product} $H \rtimes_\phi K$ as follows.
-%	\begin{itemize}
-%		\ii The elements of $H \rtimes K$ are ordered pairs $(h,k) \in H \times K$.
-%		\ii The group operation will be
-%		\[ (h_1, k_1)(h_2, k_2)
-%			= \left( h_1 \star \phi_{k_1}(h_2), k_1 \ast k_2 \right). \]
-%	\end{itemize}
-%\end{definition}
-%In the above, I've let $\phi_k$ denote the image of $k \in K$ under $\phi$.
-%It's not hard to check that this actually makes $H \rtimes_\phi K$ into a group.
-%\begin{ques}
-%	Convince yourself that $H' = \left\{ (1,k) \mid k \in K \right\}$
-%	is a subgroup of $H \rtimes_\phi K$ which is isomorphic to $H$.
-%	Also, show that $H' \normalin H \rtimes_\phi K$.
-%\end{ques}
-%\begin{example}[Dihedral Group]
-%	Let $H = C_n = \left<x \mid x^n=1\right>$ and $K = C_2 = \left<y \mid y^2=1\right>$.
-%	Let $\phi : C_2 \to \Aut(C_n)$ by sending $x$ to the map $y \mapsto y\inv$.
-%	In other words, $\phi_x(y) = y\inv$.
-%	Then \[ D_{2n} = C_n \rtimes_\phi C_2. \]
-%\end{example}
-%
-%Unfortunately, even this isn't enough to capture all possible values of $G$.
-%This only works if there's a natural way that you can view $K$ as a subgroup of $G$, since this construction also causes $K$ to appear as a subgroup of $G$.
-%Alas, this is not always possible.

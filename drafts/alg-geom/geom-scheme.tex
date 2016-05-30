@@ -320,7 +320,7 @@ But actually, it carries much more information than that.
 
 And of course, our algebraic geometry example.
 \begin{abuse}
-	Rather than writing $(\OO_V)_p$ we will write $\OO_{V,p}$.
+	Rather than writing $(\OO_X)_p$ we will write $\OO_{X,p}$.
 \end{abuse}
 \begin{example}
 	[Stalks of the sheaf on an affine variety]
@@ -735,7 +735,7 @@ Given a morphism of ringed spaces $f : (X, \OO_X) \to (Y, \OO_Y)$,
 we can actually use the $f^\ast_U$ above to induce maps on the stalks,
 as follows. For a point $p \in X$, construct the map
 \begin{diagram}
-	f^\ast_P :& \OO_{Y, f(p)} & \rTo && \OO_{X, f(p)} \\
+	f^\ast_p :& \OO_{Y, f(p)} & \rTo && \OO_{X, f(p)} \\
 	& (s, U) & \rMapsto && (f^\ast_U(s), f\pre(U)).
 \end{diagram}
 where $s \in \OO_Y(U)$.
@@ -752,7 +752,7 @@ where $s \in \OO_Y(U)$.
 \end{definition}
 Recalling that $\mm_{X,p}$ is the maximal ideal of $\OO_X$ at $p$,
 the new condition is saying that
-\[ (f^\ast_P)\pre (\mm_{X,p}) = \mm_{Y,f(p)}. \]
+\[ (f^\ast_p)\pre (\mm_{X,p}) = \mm_{Y,f(p)}. \]
 Concretely, if $g$ is a function vanishing on $f(p)$,
 then its pullback $f^\ast_U(g)$ vanishes on $p$.
 
