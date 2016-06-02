@@ -265,7 +265,7 @@ the probability of hitting any conjugacy class depends just on the size of the c
 \begin{remark}
 Happily, this theorem (and preceding discussion)
 also works if we replace $K/\QQ$ with any Galois extension $K/F$;
-in that case we replace ``$\pp$ over $p$'' with ``$\mathfrak P$ over $\pp$''.
+in that case we replace ``$\pp$ over $p$'' with ``$\kP$ over $\pp$''.
 In that case, we use $\Norm(\pp) \le x$ rather than $p \le x$ as the way
 to define density.
 \end{remark}
@@ -320,39 +320,39 @@ Specifically:
 \section{Frobenius elements behave well with restriction}
 Consider the following setup, where $L/\QQ$ and $K/\QQ$ are both Galois extensions:
 \begin{diagram}
-	L & \supseteq & \mathfrak P & \rDotted & \Frob_{\mathfrak P} \in \Gal(L/\QQ)\\
+	L & \supseteq & \kP & \rDotted & \Frob_{\kP} \in \Gal(L/\QQ)\\
 	\dLine && \dLine && \\
-	K & \supseteq & \mathfrak p & \rDotted & \Frob_\pp \in \Gal(K/\QQ) \\
+	K & \supseteq & \pp & \rDotted & \Frob_\pp \in \Gal(K/\QQ) \\
 	\dLine && \dLine && \\
 	\QQ & \supseteq & (p) &&
 \end{diagram}
-Here $\mathfrak p$ is above $(p)$ and $\mathfrak P$ is above $\mathfrak p$.
+Here $\pp$ is above $(p)$ and $\kP$ is above $\pp$.
 We may define
 \[ \Frob_\pp : K \to K
 \quad\text{and}\quad
-\Frob_{\mathfrak P} : L \to L \]
+\Frob_{\kP} : L \to L \]
 and want to know how these are related.
 
 \begin{theorem}
 	[Restrictions of Frobenius elements]
 	Assume $L/\QQ$ and $K/\QQ$ are both Galois.
-	Let $\mathfrak P$ and $\pp$ be unramified as above.
-	Then $\Frob_{\mathfrak P} \restrict{K} = \Frob_{\pp}$,
+	Let $\kP$ and $\pp$ be unramified as above.
+	Then $\Frob_{\kP} \restrict{K} = \Frob_{\pp}$,
 	i.e.\ for every $\alpha \in K$,
-	\[ \Frob_\pp(\alpha) = \Frob_{\mathfrak P}(\alpha). \]
+	\[ \Frob_\pp(\alpha) = \Frob_{\kP}(\alpha). \]
 \end{theorem}
 \begin{proof}
 	We know
-	\[ \Frob_{\mathfrak P}(\alpha) \equiv \alpha^p \pmod{\mathfrak P}
+	\[ \Frob_{\kP}(\alpha) \equiv \alpha^p \pmod{\kP}
 		\quad \forall \alpha \in \OO_L \]
 	from the definition.
 	\begin{ques}
 		Deduce that
-		\[ \Frob_{\mathfrak P}(\alpha) \equiv \alpha^p \pmod{\pp}
+		\[ \Frob_{\kP}(\alpha) \equiv \alpha^p \pmod{\pp}
 			\quad \forall \alpha \in \OO_K. \]
 		(This is weaker than the previous statement in two ways!)
 	\end{ques}
-	Thus $\Frob_{\mathfrak P}$ restricted to $\OO_K$ satisfies the
+	Thus $\Frob_{\kP}$ restricted to $\OO_K$ satisfies the
 	characterizing property of $\Frob_\pp$.
 \end{proof}
 In short, the point of this section is that
@@ -418,10 +418,10 @@ We look at the rational prime $p$ in $\ZZ$.
 Either it splits into two in $K$ or is inert; either way let $\pp$ be a prime factor
 in the resulting decomposition (so $\pp$ is either $p \cdot \OO_K$ in the inert case,
 or one of the primes in the split case).
-Then let ${\mathfrak P}$ be above $\pp$.
+Then let ${\kP}$ be above $\pp$.
 It could possibly also split in $K$: the picture looks like
 \begin{diagram}
-	\OO_L = \ZZ[\zeta_q] & \supset {\mathfrak P} & \rDotted & \ZZ[\zeta_p]/{\mathfrak P} \cong \FF_{p^f} \\
+	\OO_L = \ZZ[\zeta_q] & \supset {\kP} & \rDotted & \ZZ[\zeta_p]/{\kP} \cong \FF_{p^f} \\
 	\OO_K = \ZZ[\frac{1+\sqrt{q^\ast}}{2}] & \supseteq \pp & \rDotted & \FF_p \text{ or } \FF_{p^2} \\
 	\ZZ & \supseteq (p) & \rDotted & \FF_p
 \end{diagram}
@@ -431,20 +431,20 @@ It could possibly also split in $K$: the picture looks like
 
 \subsection*{Step 3: Introducing the Frobenius}
 Now, we take the Frobenius 
-\[ \sigma_p = \Frob_{\mathfrak P} \in \Gal(L/\QQ). \]
+\[ \sigma_p = \Frob_{\kP} \in \Gal(L/\QQ). \]
 We claim that
-\[ \Frob_{\mathfrak P} \in H \iff \text{$p$ splits in $K$}. \]
-To see this, note that $\Frob_{\mathfrak P}$ is in $H$ if and only if it acts
+\[ \Frob_{\kP} \in H \iff \text{$p$ splits in $K$}. \]
+To see this, note that $\Frob_{\kP}$ is in $H$ if and only if it acts
 as the identity on $K$.
-But $\Frob_{\mathfrak P} \restrict{K}$ is $\Frob_\pp$!
-So \[ \Frob_{\mathfrak P} \in H \iff \Frob_\pp = \id_K. \]
+But $\Frob_{\kP} \restrict{K}$ is $\Frob_\pp$!
+So \[ \Frob_{\kP} \in H \iff \Frob_\pp = \id_K. \]
 Finally note that $\Frob_\pp$ has order $1$ if $p$ splits
 ($\pp$ has inertial degree $1$)
 and order $2$ if $p$ is inert.
 This completes the proof of the claim.
 
 \subsection*{Finishing up}
-We already know by \Cref{lem:cyclo_frob} that $\Frob_{\mathfrak P} = \sigma_p \in H$
+We already know by \Cref{lem:cyclo_frob} that $\Frob_{\kP} = \sigma_p \in H$
 if and only if $p$ is a quadratic residue.
 On the other hand,
 \begin{exercise}
@@ -482,20 +482,20 @@ For example, in the quadratic reciprocity proof we had $n = 2$,
 with possible partitions $1 + 1$ (if $p$ split) and $2$ (if $p$ was inert).
 We call this the \vocab{factorization pattern} of $p$ in $E$.
 
-Next, we introduce a Frobenius $\Frob_{\mathfrak P}$ above $(p)$, all the way in $K$;
+Next, we introduce a Frobenius $\Frob_{\kP}$ above $(p)$, all the way in $K$;
 this is an element of $G = \Gal(K/\QQ)$.
 Then let $H$ be the group corresponding to the field $E$.
 Diagram:
 \begin{diagram}
-	K & \rIsom & \{1\} && \Frob_{\mathfrak P} & \\
+	K & \rIsom & \{1\} && \Frob_{\kP} & \\
 	\dLine && \dLine &&& \\
 	E & \rIsom & H && \pp_1 \dots \pp_g & \qquad f_1 + \dots + f_g = n \\
 	\dLine^n && \dLine_n && \dLine & \\
 	\QQ & \rIsom & G && (p) &
 \end{diagram}
-Then $\Frob_{\mathfrak P}$ induces a \emph{permutation}
+Then $\Frob_{\kP}$ induces a \emph{permutation}
 of the $n$ left cosets $gH$ by left multiplication
-(after all, $\Frob_{\mathfrak P}$ is an element of $G$ too!).
+(after all, $\Frob_{\kP}$ is an element of $G$ too!).
 Just as with any permutation, we may look at the resulting cycle decomposition,
 which has a natural ``cycle structure'': a partition of $n$.
 \begin{center}
@@ -548,10 +548,10 @@ The theorem is that these coincide:
 	and assume $K/\QQ$ is Galois (though $E/\QQ$ need not be).
 	Pick an unramified rational prime $p$; let $G = \Gal(K/\QQ)$
 	and $H$ the corresponding intermediate subgroup.
-	Finally, let $\mathfrak P$ be a prime above $p$ in $K$.
+	Finally, let $\kP$ be a prime above $p$ in $K$.
 
 	Then the \emph{factorization pattern} of $p$ in $E$ is given by
-	the \emph{cycle structure} of $\Frob_{\mathfrak P}$ acting on the left cosets of $H$.
+	the \emph{cycle structure} of $\Frob_{\kP}$ acting on the left cosets of $H$.
 \end{theorem}
 Often, we take $E = K$, in which case this is just asserting
 that the decomposition of the prime $p$ is controlled by a Frobenius element over it.
@@ -595,8 +595,8 @@ And it turns out these coincide even without the assumption that $E$ is monogeni
 		\ii The factorization pattern of $p$ in $E$.
 		\ii The factorization pattern of $f \pmod p$.
 		\ii The cycle structure associated to the action
-		of $\Frob_{\mathfrak P} \in \Gal(K/\QQ)$ on the roots of $f$,
-		where $\mathfrak P$ is above $p$ in $K$.
+		of $\Frob_{\kP} \in \Gal(K/\QQ)$ on the roots of $f$,
+		where $\kP$ is above $p$ in $K$.
 	\end{enumerate}
 \end{theorem}
 \begin{example}[Factoring $x^3-2 \pmod 5$]
@@ -604,7 +604,7 @@ And it turns out these coincide even without the assumption that $E$ is monogeni
 	Set $p=5$ and let finally, let $K = \QQ(\cbrt2, \omega)$ be the splitting field.
 	Setup:
 	\begin{diagram}
-		K = \QQ(\cbrt2, \omega) && \mathfrak P && x^3-2 = (x-\cbrt2)(x-\cbrt2\omega)(x-\cbrt2\omega^2) \\
+		K = \QQ(\cbrt2, \omega) && \kP && x^3-2 = (x-\cbrt2)(x-\cbrt2\omega)(x-\cbrt2\omega^2) \\
 		\dLine~2 && \dLine \\
 		E = \QQ(\sqrt[3]{2}) && \pp && x^3-2 = (x-\cbrt2)(x^2+\cbrt2x+\cbrt4) \\
 		\dLine~3 && \dLine \\
@@ -615,7 +615,7 @@ And it turns out these coincide even without the assumption that $E$ is monogeni
 		\ii By the Factoring Algorithm, we have
 		$(5) = (5, \cbrt2-3)(5, 9+3\cbrt2+\cbrt4)$.
 		\ii We have $x^3-2 \equiv (x-3)(x^2+3x+9) \pmod 5$.
-		\ii We saw before that $\Frob_{\mathfrak P} = (\bullet)(\bullet \; \bullet)$.
+		\ii We saw before that $\Frob_{\kP} = (\bullet)(\bullet \; \bullet)$.
 	\end{enumerate}
 \end{example}
 
@@ -624,7 +624,7 @@ And it turns out these coincide even without the assumption that $E$ is monogeni
 	Let $H$ be the subgroup of $G = \Gal(K/\QQ)$ corresponding to $E$, so $[G:E] = n$.
 	Pictorially, we have
 	\begin{diagram}
-		K && \{1\} && \mathfrak P \\
+		K && \{1\} && \kP \\
 		\dLine && \dLine && \dLine \\
 		E = \QQ(\alpha) && H && \pp \\
 		\dLine && \dLine && \dLine \\
@@ -632,7 +632,7 @@ And it turns out these coincide even without the assumption that $E$ is monogeni
 	\end{diagram}
 	We claim that (i), (ii), (iii) are all equivalent to
 	\begin{center}
-		(iv) The pattern of the action of $\Frob_{\mathfrak P}$ on the $G/H$.
+		(iv) The pattern of the action of $\Frob_{\kP}$ on the $G/H$.
 	\end{center}
 	In other words we claim the cosets correspond to the $n$ roots of $f$ in $K$.
 	Indeed $H$ is just the set of $\tau \in G$ such that $\tau(\alpha)=\alpha$,
@@ -680,14 +680,14 @@ such that $X^p-p$ is irreducible modulo $q$.
 	Hence by Cauchy's theorem (\Cref{thm:cauchy_group}, which is a purely group-theoretic fact)
 	we can find a $\sigma \in G$ of order $p$.
 	By Cheboratev, there exist infinitely many rational (unramified) primes $q \neq p$
-	and primes $\mathfrak Q \subseteq \OO_K$ above $q$
-	such that $\Frob_{\mathfrak Q} = \sigma$.
+	and primes $\kQ \subseteq \OO_K$ above $q$
+	such that $\Frob_\kQ = \sigma$.
 	(Yes, that's an uppercase Gothic $Q$. Sorry.)
 
 	We claim that all these $q$ work.
 
 	By \Cref{thm:factor_poly_frob}, the factorization of $f \pmod q$ is
-	controlled by the action of $\sigma = \Frob_{\mathfrak Q}$ on the roots of $f$.
+	controlled by the action of $\sigma = \Frob_\kQ$ on the roots of $f$.
 	But $\sigma$ has prime order $p$ in $G$!
 	So all the lengths in the cycle structure have to divide $p$.
 	Thus the possible factorization patterns of $f$ are

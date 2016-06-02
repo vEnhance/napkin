@@ -196,8 +196,8 @@
 \scalebox{2.718}{\color{purple}\thechapter\autodot}\enskip}}
 
 \addtokomafont{partprefix}{\rmfamily}
-\renewcommand*{\partformat}{\color{purple}\scalebox{2.5}{\thepart\autodot}
-\enlargethispage{2em}}
+\renewcommand*{\partformat}{\color{purple}\scalebox{2.5}{\thepart}%
+	\enlargethispage{2em}}
 \newcommand{\problemhead}{Problems to think about}
 
 %%fakesection Mini ToC
@@ -206,8 +206,7 @@
 \mtcsetfont{parttoc}{section}{\small\rmfamily\upshape\mdseries}
 \renewcommand*{\partheadstartvskip}{}
 \renewcommand*{\partheadendvskip}{}
-\renewcommand\beforeparttoc{\hspace{\fill}\rule{0.95\linewidth}{2pt}
-\hspace{\fill}}
+\renewcommand\beforeparttoc{\hspace{\fill}\rule{0.95\linewidth}{2pt}\hspace{\fill}}
 \let\oldpart\part
 \renewcommand{\part}[1]{\oldpart{#1}\parttoc\cleardoublepage}
 
@@ -474,8 +473,12 @@ style=thmbluebox,name=Theorem,numberwithin=section]{theorem}
 
 \newcommand{\Frob}{\mathrm{Frob}}
 \DeclareMathOperator{\Norm}{N}
+\DeclareMathOperator{\Ram}{Ram}
 \newcommand{\TrK}{\Tr_{K/\QQ}}
 \newcommand{\NK}{\Norm_{K/\QQ}}
+\newcommand{\kf}{\mathfrak f}
+\newcommand{\kP}{\mathfrak P}
+\newcommand{\kQ}{\mathfrak Q}
 
 %% Diff geo macros
 \newcommand{\ee}{\mathbf e}
