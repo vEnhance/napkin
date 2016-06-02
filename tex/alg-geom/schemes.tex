@@ -1,4 +1,4 @@
-\chapter{Schemes (in progress)}
+\chapter{Schemes}
 Now that we understand sheaves well, we can readily define the scheme.
 It will be a locally ringed space, so we need to define
 \begin{itemize}
@@ -335,6 +335,7 @@ these two are quite different beasts!
 		\ii Let $D(g)$ be a distinguished open set.
 		Then $\OO_{\Spec S}(D(g)) \cong R_g$.
 	\end{enumerate}
+	\label{thm:affine_struct_master}
 \end{theorem}
 This matches the results that we've seen when $\Spec R$ is an affine variety.
 \begin{proof}
@@ -350,6 +351,23 @@ This matches the results that we've seen when $\Spec R$ is an affine variety.
 	Then we can repeat the proof of \Cref{thm:reg_func_distinguish_open}.
 \end{proof}
 
+\begin{example}
+	[Examples of structure sheaves]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii Let $X = \Spec \CC[x]$.
+		Then $\OO_X(U)$ is the set of regular functions on $U$
+		in the sense that we've seen before.
+		\ii Let $X = \Spec \ZZ$.
+		Let $U = X \setminus \{ (7), (11) \}$.
+		Then $\OO_X(U)$ can be identified with the set of rational numbers
+		which have denominator not divisible by $7$ or $11$.
+	\end{enumerate}
+\end{example}
+
+We now state the most important theorem.
+In fact, this theorem is the justification that our definition
+of a scheme is the correct one.
 \begin{theorem}
 	[Affine schemes and commutative rings are the same category]
 	Let $R$ and $S$ be rings.
@@ -367,9 +385,6 @@ This matches the results that we've seen when $\Spec R$ is an affine variety.
 	If we take $U$ to be the entire space $\Spec S$ we now have a ring homomorphism
 	\[ S = \OO_{\Spec S} (\Spec S) \to \OO_{\Spec R} (\Spec R) = R. \]
 	which is one part of the construction.
-
-	In fact, this is just the global section functor
-	applied to $\OO_{\Spec S} \to f_\ast \OO_{\Spec R}$.
 
 	The more involved direction is building from a homomorphism
 	$\psi : S \to R$ a map $f : \Spec R \to \Spec S$.
@@ -394,15 +409,14 @@ This matches the results that we've seen when $\Spec R$ is an affine variety.
 		and then map it via the map $\psi_\qq$ above.
 	\end{itemize}
 	One then has to check that everything is well-defined.
-	This is left as an exercise to the overzealous reader;
+	This is left as an exercise to the diligent reader;
 	for an actual proof see \cite[Proposition 6.3.2]{ref:vakil}.
 \end{proof}
 \begin{remark}
 	Categorically, this says that the ``global section functor''
-	on the category $\catname{AffSch}$ of affine schemes is a
-	fully faithful functor to $\catname{CRing}$.
-	Moreover, it is surjective on objects
-	(the correct term here is ``essentially surjective on objects'').
+	$\Spec R \mapsto \OO_{\Spec R}(R) = R$ is a fully faithful functor
+	from the category $\catname{AffSch}$ to the category $\catname{CRing}$.
+	(It is also essentially surjective on objects.)
 \end{remark}
 To be more philosophical,
 \begin{moral}
@@ -411,12 +425,10 @@ To be more philosophical,
 	down to the morphisms between two pairs of objects.
 \end{moral}
 
-
 \section{Schemes}
-Now we can define a general scheme:
 \begin{definition}
 	A \vocab{scheme} is a locally ringed space $(X, \OO_X)$
-	with an open affine cover $\{U_\alpha\}$ of $X$
+	with an open cover $\{U_\alpha\}$ of $X$
 	such that each pair $(U_\alpha, \OO_X \restrict{U_\alpha})$
 	is isomorphic to an affine scheme.
 \end{definition}
@@ -506,8 +518,44 @@ For example, the ``double point'' is given by $\Proj[x_0,x_1]/(x_0^2)$.
 	one needs some additional assumptions on $S$ for this to hold.
 \end{remark}
 
-\section{Fun application: Chinese remainder theorem}
-\todo{write me}
+\section{Where to go from here}
+This chapter concludes the long setup for the definition of a scheme.
+Unfortunately, with respect to algebraic geometry this is as much as I have
+the patience or knowledge to write about.
+So, if you want to actually see how schemes are used in ``real life'',
+you'll have to turn elsewhere.
+
+A good introduction I happily recommend is \cite{ref:gathmann}.
+See \Cref{ch:refs} for further remarks.
 
 \section\problemhead
+\begin{problem}
+	Describe the points of $\Spec \RR[x,y]$.
+	\begin{hint}
+		Galois conjugates.
+	\end{hint}
+\end{problem}
 
+\begin{dproblem}
+	[Chinese remainder theorem]
+	Consider $X = \Spec \Zc{60}$, which as a topological space has three points.
+	By considering $\OO_X(X)$ prove the Chinese theorem
+	\[ \Zc{60} \cong \Zc{4} \times \Zc{3} \times \Zc{5}. \]
+	\begin{hint}
+		Appeal to \Cref{prob:finite_sheaf}.
+	\end{hint}
+\end{dproblem}
+
+\begin{problem}
+	Given an affine scheme $X = \Spec R$,
+	show that there is a unique morphism of schemes $X \to \Spec \ZZ$,
+	and describe where it sends points of $X$.
+	\begin{hint}
+		Use the proof that $\catname{AffSch} \simeq \catname{CRing}$.
+	\end{hint}
+	\begin{sol}
+		$\pp$ gets sent to the characteristic of the field $\OO_{X,\pp} / \mm_{X,\pp}$.
+	\end{sol}
+\end{problem}
+
+\todo{Critch stalk-local detection}

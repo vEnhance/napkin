@@ -1,4 +1,4 @@
-\chapter{Sheaves and ringed spaces (draft)}
+\chapter{Sheaves and ringed spaces}
 Most of the complexity of the affine variety $V$ earlier comes from $\OO_V$.
 This is a type of object called a ``sheaf''.
 The purpose of this chapter is to completely define what this sheaf is,
@@ -228,6 +228,13 @@ So, we will replace the notion of $s(p)$ with a so-called \emph{germ}.
 	We denote this by $[s]_p$.
 \end{definition}
 
+\begin{remark}
+	It is almost never useful to think of a germ as an ordered pair,
+	since the set $U$ can get arbitrarily small.
+	Instead, one should think of a germ as a
+	``shred'' of some section near $p$.
+\end{remark}
+
 So what's happening is: We consider functions $s$ defined near $p$
 and, since we only care about local behavior,
 we identify any two functions agreeing on a neighborhood of $p$,
@@ -295,7 +302,7 @@ But actually, it carries much more information than that.
 
 And of course, our algebraic geometry example.
 \begin{abuse}
-	Rather than writing $(\OO_V)_p$ we will write $\OO_{V,p}$.
+	Rather than writing $(\OO_X)_p$ we will write $\OO_{X,p}$.
 \end{abuse}
 \begin{example}
 	[Stalks of the sheaf on an affine variety]
@@ -627,30 +634,46 @@ affine variety could be built into a locally ringed space. Hooray!
 \end{abuse}
 
 
-\section{(Optional) Defining the morphisms}
+\section{Morphisms of (locally) ringed spaces}
 Finally, it remains to define a morphism of locally ringed space.
 To do this we have to build up in several steps.
 
 \begin{remark}
-	This is marked as optional because it involves a \emph{lot}
-	of definitions, and because we will more or less
-	ignore the actual definition later on when we start applying
-	schemes to things. One can probably get away with just
+	I always secretly felt that one can probably get away with just
 	suspending belief and knowing ``there is a reasonable definition
 	of morphisms of locally ringed spaces''.
+	Daring readers are welcome to try this approach.
 \end{remark}
 
 \subsection*{Morphisms of ringed spaces}
-Suppose we have ringed spaces $X = (X, \OO_X)$ and $Y = (Y, \OO_Y)$,
-and we want to define a map
-\[ f : X \to Y. \]
+We talked about the morphisms of locally ringed spaces
+when we discussed projective varieties.
+We want to copy the same construction here.
 
-On the level of spaces, $f : X \to Y$ should of course be a continuous map.
-But we also want to $f$ to do something with $\OO_X$ and $\OO_Y$.
-However, we only defined how to take a morphism of sheaves
-that act on the \emph{same} space!
-Thus we impose the following definition,
-which lets us \emph{push} the sheaf on $X$ to a sheaf on $Y$.
+The idea was as follows: to ``preserve'' the structure via $f : X \to Y$,
+we took every regular function on $Y$ and made it into a function on $X$
+by composing it with $f$.
+This gave us a ring homomorphism $f^\ast : \OO_Y(U) \to \OO_X(f\pre(U))$
+for every open set $U$ in $Y$.
+
+Unfortunately, in the general case we don't have a notion of function,
+so ``composing by $f$'' doesn't make sense.
+The solution to this is to \emph{include all the ring homomorphisms $f^\ast$}
+in the data for a morphism $f : X \to Y$;
+we package this information using the morphism of sheaves.
+
+Here are the full details.
+Up above we only defined a morphism of sheaves on the same space,
+while right now we have a sheaf on $X$ and $Y$.
+So we have to first ``push'' the sheaf on $X$ into a sheaf on $Y$ by
+\[ U \mapsto \OO_X\left( f\pre(U) \right). \]
+This is important enough to have a name:
+\begin{definition}
+	Let $\SF$ be a sheaf on $X$, and $f : X \to Y$ a continuous map.
+	The \vocab{pushforward sheaf} $f_\ast \SF$ on $Y$ is defined by
+	\[ (f_\ast \SF)(U) = \SF(f\pre(U)) \qquad \forall U \subseteq Y. \]
+	This makes sense, since $f\pre(U)$ is open in $X$.
+\end{definition}
 Picture:
 \begin{diagram}
 	X && \rTo^f & Y && X && \rTo^f & Y \\
@@ -661,39 +684,29 @@ Picture:
 	&&& \catname{Rings}
 		&& && \SF(f\pre(U)) & = (f_\ast \SF)(U) & \in \catname{Rings}
 \end{diagram}
-
-\begin{definition}
-	Let $\SF$ be a sheaf on $X$, and $f : X \to Y$ a continuous map.
-	The \vocab{pushforward sheaf} $f_\ast \SF$ on $Y$ is defined by
-	\[ (f_\ast \SF)(U) = \SF(f\pre(U)) \qquad \forall U \subseteq Y. \]
-	This makes sense, since $f\pre(U)$ is open in $X$.
-\end{definition}
-As $f\pre$ is a functor $\Opens(Y)\op \to \Opens(X)\op$,
-\textbf{the pushforward $f_\ast\SF$ is
-just the composition of these two functors}.
-
+I haven't actually checked that $f_\ast \SF$ is a sheaf
+(as opposed to a pre-sheaf), but this isn't hard to do.
+Also, as $f\pre$ is a functor $\Opens(Y)\op \to \Opens(X)\op$,
+the pushforward $f_\ast\SF$ is
+just the composition of these two functors.
 \begin{ques}
 	Technically $f_\ast\SF$ is supposed to be a
 	functor $\Opens(Y)\op \to \catname{Rings}$, so it also needs
 	to come with restriction arrows. What are they?
 \end{ques}
 
-I haven't actually checked that $f_\ast \SF$ is a sheaf
-(as opposed to a pre-sheaf), but this isn't hard to do.
-
-Now we can define a morphism of ringed spaces.
-In addition to the topological spaces,
-we also include a natural transformation between
-the two structure sheafs, after pushing the one on $X$ forward.
+Now that we moved both sheaves onto $Y$,
+we mimic the construction with quasi-projective varieties
+by asking for a sheaf morphism from $\OO_Y$ to $f_\ast \OO_X$:
 \begin{definition}
 	A \vocab{morphism of ringed spaces} $f : (X, \OO_X) \to (Y, \OO_Y)$
 	consists of a continuous map of topological spaces $f : X \to Y$,
-	as well as a morphism of sheaves $f^\ast : \OO_Y \to (f_\ast \OO_X)$.
+	plus additionally a morphism of sheaves $f^\ast : \OO_Y \to f_\ast \OO_X$.
 \end{definition}
-The latter is thus a map
-$f^\ast_U : \OO_Y(U) \to (f_\ast \OO_X)(U) = \OO_X(f\pre(U))$
-for every $U \subseteq Y$, satisfying
-the axioms for a natural transformation.
+\begin{exercise}
+	(Mandatory) Check that this coincides with our work
+	on baby ringed spaces if we choose $f^\ast$ to be the pullback.
+\end{exercise}
 
 \subsection*{Morphisms of locally ringed spaces}
 Last step!
@@ -704,7 +717,7 @@ Given a morphism of ringed spaces $f : (X, \OO_X) \to (Y, \OO_Y)$,
 we can actually use the $f^\ast_U$ above to induce maps on the stalks,
 as follows. For a point $p \in X$, construct the map
 \begin{diagram}
-	f^\ast_P :& \OO_{Y, f(p)} & \rTo && \OO_{X, f(p)} \\
+	f^\ast_p :& \OO_{Y, f(p)} & \rTo && \OO_{X, f(p)} \\
 	& (s, U) & \rMapsto && (f^\ast_U(s), f\pre(U)).
 \end{diagram}
 where $s \in \OO_Y(U)$.
@@ -721,9 +734,9 @@ where $s \in \OO_Y(U)$.
 \end{definition}
 Recalling that $\mm_{X,p}$ is the maximal ideal of $\OO_X$ at $p$,
 the new condition is saying that
-\[ (f^\ast_P)\pre (\mm_{X,p}) = \mm_{Y,f(p)}. \]
-Concretely, if $g$ is a function which vanishes on $f(p)$,
-then its ``pullback'' $f^\ast_U(g)$ vanishes on $p$.
+\[ (f^\ast_p)\pre (\mm_{X,p}) = \mm_{Y,f(p)}. \]
+Concretely, if $g$ is a function vanishing on $f(p)$,
+then its pullback $f^\ast_U(g)$ vanishes on $p$.
 
 This completes the definition of a morphism of locally ringed spaces.
 Isomorphisms of (locally) ringed spaces are defined in the usual way.
@@ -734,21 +747,9 @@ Isomorphisms of (locally) ringed spaces are defined in the usual way.
 \end{problem}
 
 \begin{sproblem}
-	[Global section functor]
-	We consider the category $\catname{ShRing}_X$ of sheaves of rings on a space $X$.
-	The \vocab{global section functor}, denoted $\Gamma(X,-)$,
-	which sends each sheaf $\SF$ to the ring $\SF(X)$.
-	How does the global section functor behave on arrows?
-	\begin{hint}
-		Given a morphism of sheaves $\alpha : \SF \to \SG$
-		read off a map $\SF(X) \to \SG(X)$.
-	\end{hint}
-\end{sproblem}
-
-\begin{sproblem}
 	\label{prob:finite_sheaf}
 	Suppose $X$ is a finite topological space equipped with the discrete topology
-	(i.e.\ a finite set of points).
+	(i.e.\ $X$ is a finite set of points).
 	Let $\SF$ be a sheaf on $X$.
 	Show that for any open set $U$, we have a ring isomorphism
 	\[ \SF(U) \cong \prod_{p \in U} \SF_p. \]
@@ -758,3 +759,34 @@ Isomorphisms of (locally) ringed spaces are defined in the usual way.
 		If $X$ is discrete, then all sequences of germs are compatible.
 	\end{hint}
 \end{sproblem}
+
+\begin{dproblem}
+	[Skyscraper sheaf]
+	Let $Y$ be a \emph{Hausdorff} topological space
+	and let $p \in Y$ be a point.
+	Fix a ring $R$.
+	Construct a sheaf $\SF$ on $Y$ by
+	\[
+		\SF(U) = \begin{cases}
+			R & p \in U \\
+			0 & \text{otherwise}
+		\end{cases}
+	\]
+	with restriction maps in the obvious manner.
+	We call $\SF$ a \vocab{skyscraper sheaf} at $p$.
+	Compute all the stalks of $\SF$.
+\end{dproblem}
+
+\begin{dproblem}
+	[Pushforward sheaf]
+	Suppose $f : X \to Y$ is a continuous map of spaces
+	and $\SF$ is a sheaf on $X$.
+	Define a sheaf $f_\ast \SF$ on $Y$ from $\SF$;
+	we call this the pushforward of $\SF$ onto $Y$.
+\end{dproblem}
+
+\begin{problem}
+	Interpret the skyscraper sheaf as the pushforward
+	of a constant sheaf on a one-point space.
+\end{problem}
+
