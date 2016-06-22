@@ -98,7 +98,8 @@ If $G$ acts on $X$, then
 	\ii if $\OO$ is any orbit, then the orbit-Stabilizer theorem says that
 	\[ \left\lvert \OO \right\rvert = \left\lvert G \right\rvert / \left\lvert \Stab_G(x) \right\rvert \]
 	for any $x \in \OO$.
-	\ii In particular: suppose in the above that $G$ is a group of order $p^t$.
+	\ii In particular: suppose in the above that $G$ is a \vocab{$p$-group},
+	meaning $|G| = p^t$ for some $t$.
 	Then either $\left\lvert \OO \right\rvert = 1$ or $p$ divides $\left\lvert \OO \right\rvert$.
 	In the case $\OO = \{x\}$, then by definition, $x$ is a \vocab{fixed point} of every element of $G$: we have $g \cdot x = x$ for every $x$.
 \end{itemize}
@@ -188,7 +189,7 @@ Then:
 	\ii Because $P$ is a $p$-group, $n_p \pmod p$ is the number of fixed points
 	of this action.
 	Now we claim $P$ is the only fixed point of this action.
-	\ii Let $Q$ be any other fixed point, meaning $xQx\inv = Q$ for any $x \in G$.
+	\ii Let $Q$ be any other fixed point, meaning $xQx\inv = Q$ for any $x \in P$.
 	\ii Define the normalizer $N_G(Q) = \left\{ g \in G \mid gQg\inv = Q \right\}$.  It contains both $P$ and $Q$.
 	\ii Now for the crazy part: apply Step 2 to $N_G(Q)$.
 	Since $P$ and $Q$ are Sylow $p$-subgroups of it, they must be conjugate.
