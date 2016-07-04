@@ -23,7 +23,7 @@ From earlier chapters let's recall the definition of an \emph{isomorphism} of tw
 	which is a linear map.
 	Again, this can be re-cast as saying that $T$ and $T\inv$ are continuous maps.
 	\ii Two rings $R$ and $S$ are isomorphic if there is a bijective ring homomorphism $\phi$;
-	again, we can recast this as two mutually inverse ring homomorphisms.
+	again, we can re-cast this as two mutually inverse ring homomorphisms.
 \end{itemize}
 
 In each case we have some collections of objects and some maps,
@@ -100,8 +100,8 @@ Let's formalize the motivation we began with.
 And of course, we can now define what an isomorphism is!
 \begin{definition}
 	An arrow $A_1 \taking{f} A_2$ is an \vocab{isomorphism}
-	if there exists $A_2 \taking{g} A_1$ such that $f \circ g = \id_{A_1}$
-	and $g \circ f = \id_{A_2}$.
+	if there exists $A_2 \taking{g} A_1$ such that $f \circ g = \id_{A_2}$
+	and $g \circ f = \id_{A_1}$.
 	In that case we say $A_1$ and $A_2$ are \vocab{isomorphic}, hence $A_1 \cong A_2$.
 \end{definition}
 \begin{remark}
@@ -117,7 +117,7 @@ We're able to define whether two groups (rings, spaces, etc.) are isomorphic
 solely by the functions between the objects.
 Indeed, one of the key themes in category theory (and even algebra) is that
 \begin{moral}
-	One can learn about objects by the functions betweens them.
+	One can learn about objects by the functions between them.
 	Category theory takes this to the extreme by \emph{only} looking at arrows,
 	and ignoring what the objects themselves are.
 \end{moral}
@@ -343,11 +343,12 @@ Now how do I add $A$ to this diagram?
 The point is that there is a bijection between functions $A \taking f X \times Y$
 and pairs $(g,h)$ of functions.
 Thus for every pair $A \taking g X$ and $A \taking h Y$ there is a \emph{unique} function
-$A \taking f X \times Y$. Picture:
+$A \taking f X \times Y$.
 
 But $X \times Y$ is special in that it is ``universal'':
 for any \emph{other} set $A$, if you give me functions $A \to X$ and $A \to Y$, I can use it
 build a \emph{unique} function $A \to X \times Y$.
+Picture:
 \begin{diagram}
 	&& && X \\
 	A & \rDotted~{\exists! f} & X \times Y & \ruTo(4,1)^g \ruSurj(2,1)_{\pi_X} & \\
@@ -357,7 +358,8 @@ We can do this in any general category, defining a so-called product.
 \begin{definition}
 	Let $X$ and $Y$ be objects in any category $\AA$.
 	The \vocab{product} consists of an object $X \times Y$ and projection maps $\pi_X$, $\pi_Y$
-	for any object $A$ and maps $A \taking g X$, $A \taking h Y$, there
+	onto $X$ and $Y$.
+	We require that for any object $A$ and maps $A \taking g X$, $A \taking h Y$, there
 	is a \emph{unique} function $A \taking f X \times Y$ such that the diagram
 	\begin{diagram}
 		&& && X \\

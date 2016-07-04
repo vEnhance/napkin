@@ -95,14 +95,14 @@ The points of $K$ cover the entire $\RR^2$, but the points of $\OO_K$ cut out a 
 
 To see how big the lattice is, we look at how $\{1, \sqrt2\}$, the generators
 of $\OO_K$, behave.
-The point corresponding to this in the lattice is
+The point corresponding to $a+b\sqrt2$ in the lattice is
 \[ a \cdot (1,1) + b \cdot (\sqrt 2, -\sqrt 2). \]
 The \vocab{mesh} of the lattice\footnote{Most authors call this the volume, but I
 think this is not the right word to use -- lattices have ``volume'' zero since they
 are just a bunch of points! In contrast, the English word ``mesh'' really
 does refer to the width of a ``gap''.}
 is defined as the hypervolume of the ``fundamental parallelepiped'' I've colored blue above.
-For this particular case, it ought to be equal to to the area of that parallelogram, which is
+For this particular case, it ought to be equal to the area of that parallelogram, which is
 \[
 	\det
 	\begin{bmatrix}
@@ -124,7 +124,7 @@ To make the next definition, we invoke the following theorem.
 \begin{proof}
 	Deferred to \Cref{thm:n_embeddings}, once we have the tools of Galois theory.
 \end{proof}
-In fact, in \Cref{thm:conj_distrb} we see the following:
+In fact, in \Cref{thm:conj_distrb} we see that
 for $\alpha \in K$, we have that $\sigma_i(\alpha)$
 runs over the conjugates of $\alpha$ as $i=1,\dots,n$.
 It follows that
@@ -190,8 +190,8 @@ we will not prove this here.
 		=
 		\det
 		\begin{bmatrix}
-			1 & \frac{1+\sqrt5}{2} \\
-			1 & \frac{1-\sqrt5}{2}
+			1 & 1 \\
+			\frac{1+\sqrt5}{2} & \frac{1-\sqrt5}{2}
 		\end{bmatrix}^2
 		= (-\sqrt 5)^2 = 5.
 	\]
@@ -296,7 +296,7 @@ by breaking each complex number into its real and imaginary part, as
 \begin{align*}
 \alpha \mapsto  \big(& \sigma_1(\alpha), \dots, \sigma_{r_1}(\alpha), \\
 & \Re \sigma_{r_1+1}(\alpha), \;\; \Im \sigma_{r_1+1}(\alpha), \\
-& \Re \sigma_{r_1+1}(\alpha), \;\; \Im \sigma_{r_1+1}(\alpha), \\
+& \Re \sigma_{r_1+2}(\alpha), \;\; \Im \sigma_{r_1+2}(\alpha), \\
 & \dots, \\
 & \Re \sigma_{r_1+r_2}(\alpha), \;\; \Im \sigma_{r_1+r_2}(\alpha) \big). 
 \end{align*}
@@ -349,7 +349,7 @@ From this we can deduce the following.
 	Then in the lattice $L_\aa$, we somehow only take $\frac 1d$th of the points
 	which appear in the lattice $L$, which is why the area increases by a factor of $\Norm(\aa)$.
 	To make this all precise I would need to do a lot more with lattices and geometry
-	than I have space for this in the chapter, so I will omit the details.
+	than I have space for this in this chapter, so I will omit the details.
 	But I hope you can see why this is intuitively true.
 \end{proof}
 
@@ -358,8 +358,8 @@ Now I can tell you why I insisted we move from $\RR^{r_1} \times \CC^{r_2}$ to $
 In geometry, there's a really cool theorem of Minkowski's that goes as follows.
 \begin{theorem}
 	[Minkowski]
-	Let $S \subseteq \RR^n$ be a convex set which is centrally symmetric (meaning $x \in S \implies -x \in S$)
-	such that $0 \in S$.
+	Let $S \subseteq \RR^n$ be a convex set containing $0$
+	which is centrally symmetric (meaning that $x \in S \iff -x \in S$).
 	Let $L$ be a lattice with mesh $d$.
 	If either
 	\begin{enumerate}[(a)]
@@ -374,7 +374,7 @@ In geometry, there's a really cool theorem of Minkowski's that goes as follows.
 \end{ques}
 
 \begin{proof}[Sketch of Proof]
-	Part (a) is surprisingly simple and has a very olympaid-esque solution: it's basically Pigeonhole on areas.
+	Part (a) is surprisingly simple and has a very olympiad-esque solution: it's basically Pigeonhole on areas.
 	We'll prove point (a) in the special case $n=2$, $L = \ZZ^2$ for simplicity as the proof
 	can easily be generalized to any lattice and any $n$.
 	Thus we want to show that any such convex set $S$ with area more than $4$ contains a lattice point.
@@ -386,7 +386,7 @@ In geometry, there's a really cool theorem of Minkowski's that goes as follows.
 	Since $S$ is symmetric, $-q \in S$. Then $\half (p-q) \in S$ (convexity) and is a nonzero lattice point.
 
 	I'll briefly sketch part (b): the idea is to consider $(1+\eps) S$ for $\eps > 0$
-	(this is ``$S$ magnified by a small factor $1+\eps$).
+	(this is ``$S$ magnified by a small factor $1+\eps$'').
 	This satisfies condition (a). So for each $\eps > 0$ the set of nonzero lattice points in $(1+\eps) S$,
 	say $S_\eps$, is a \emph{finite nonempty set} of (discrete) points
 	(the ``finite'' part follows from the fact that $(1+\eps)S$ is bounded).
@@ -441,12 +441,12 @@ and our goal is to use Minkowski to lure some nonzero element into it.
 	\end{asy}
 \end{center}
 
-That is, suppose we have $\alpha \in \aa$, and it falls into the box I've defined above, which means
+That is, suppose $\alpha \in \aa$ falls into the box I've defined above, which means
 \[
 	M \ge
 	\sum_{i=1}^{r_1} \left\lvert \sigma_i(\alpha) \right\rvert
 	+ 2 \sum_{i=r_1+1}^{r_1+r_2} \left\lvert \sigma_i(\alpha) \right\rvert
-	= \sum_{i=1}^{n} \left\lvert \sigma_i(\alpha) \right\rvert
+	= \sum_{i=1}^{n} \left\lvert \sigma_i(\alpha) \right\rvert,
 \]
 where we are remembering that the last few $\sigma$'s come in conjugate pairs.
 This looks like the trace, but the absolute values are in the way.
@@ -495,13 +495,13 @@ We can now put everything we have together to obtain the great Minkowski bound.
 		& \quad\text{with mesh } 2^{-r_2} \sqrt{\left\lvert \Delta_K \right\rvert} \Norm(\aa)
 	\end{diagram}
 	Pick a value of $M$ such that the mesh of $L_\aa$
-	equals $2^n$ of the volume of the box.
-	Then Minkowski's theorem gives that some $0 \neq \alpha \in \aa$ lands inside the box --
-	the mousetrap configured to force $\Norm_{K/\QQ}(\alpha) \le \frac{1}{n^n} M^n$.
+	equals $2^{-n}$ of the volume of the box.
+	Then Minkowski's theorem gives that some $0 \neq \alpha \in \aa$ lands inside the box ---
+	the mousetrap is configured to force $\Norm_{K/\QQ}(\alpha) \le \frac{1}{n^n} M^n$.
 	The correct choice of $M$ is
 	\[
 		M^n
-		= 2^n \cdot \frac{\text{mesh}}{\text{vol box}}
+		= M^n \cdot 2^n \cdot \frac{\text{mesh}}{\text{vol box}}
 		= 2^n \cdot \frac{n!}{2^{r_1} \cdot \left( \frac \pi 2 \right)^{r_2}}
 		\cdot 2^{-r_2} \sqrt{\left\lvert \Delta_K \right\rvert} \Norm(\aa) 
 	\]
@@ -525,7 +525,7 @@ where $M_K$ is some constant depending on $K$, and $\alpha \in \aa$.
 	Show that $(\alpha) \cdot \aa\inv$ is an integral ideal.
 	(Unwind definitions.)
 \end{ques}
-But in the class group we \emph{mod out} by principal ideals like $\alpha$.
+But in the class group we \emph{mod out} by principal ideals like $(\alpha)$.
 If we shut our eyes for a moment and mod out, the above statement becomes ``$\Norm(\aa\inv)\le M_K$''.
 The precise statement of this is
 \begin{corollary}
@@ -669,17 +669,16 @@ How about some nontrivial class groups?
 First, we use a lemma that will help us with
 narrowing down the work in our cherry tree.
 \begin{lemma}[Ideals divide their norms]
-	Let $\bb$ be an integral ideal with $\Norm(\bb) = 2015$.
-	Then $\bb$ divides the ideal $(2015)$.
+	Let $\bb$ be an integral ideal with $\Norm(\bb) = n$.
+	Then $\bb$ divides the ideal $(n)$.
 \end{lemma}
-(Obviously, replace $2015$ with your number of choice.)
 \begin{proof}
-	By definition, $2015 = \left\lvert \OO_K / \bb \right\rvert$.
+	By definition, $n = \left\lvert \OO_K / \bb \right\rvert$.
 	Treating $\OO_K/\bb$ as an (additive) abelian group and using Lagrange's theorem, we find
 	\[ 0 \equiv
-		\underbrace{\alpha + \dots + \alpha}_{2015\text{ times}} = 2015\alpha
+		\underbrace{\alpha + \dots + \alpha}_{n\text{ times}} = n\alpha
 		\pmod \bb \qquad\text{for all } \alpha \in \OO_K. \]
-	Thus $(2015) \subseteq \bb$, done.
+	Thus $(n) \subseteq \bb$, done.
 \end{proof}
 
 Now we can give such an example.

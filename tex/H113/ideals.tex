@@ -25,8 +25,8 @@ For all the sections that follow, keep $\ZZ$ in mind as your prototype.
 \prototype{$\ZZ$ all the way! Also $R[x]$ and various fields.}
 
 Well, I guess I'll define a ring\footnote{%
-	Or, according to some authors, a ``ring with unit''.
-	You see, some authors don't require rings to have multiplicative units.
+	Or, according to some authors, a ``ring with identity''.
+	You see, some authors don't require rings to have multiplicative identity.
 	But I've never seen a ring without identity that I care about.
 	So, just be warned that some authors have different definitions of ring.
 	For us, ``ring'' always means ``ring with $1$''.}.
@@ -131,6 +131,7 @@ then we call the ring a field.
 To be explicit, let me write the relevant definitions.
 
 \begin{definition}
+	\label{def:unit}
 	A \vocab{unit} of a ring $R$
 	is an element $u \in R$ which is invertible:
 	for some $x \in R$ we have $ux = 1_R$.
@@ -568,6 +569,7 @@ We port over this definition to our world of ideals.
 	or equivalently, $I$ contains no units.
 \end{definition}
 \begin{definition}
+	\label{def:prime_ideal}
 	A proper ideal $I \subsetneq R$ is a \vocab{prime ideal}
 	if whenever $xy \in I$, either $x \in I$ or $y \in I$.
 \end{definition}
@@ -585,9 +587,14 @@ fact that we don't consider $1$ to be a prime number.
 	\end{enumerate}
 \end{example}
 \begin{remark}
+	\label{rem:unit_sign_issue}
 	Ideals have the nice property that they get rid of ``sign issues''.
 	For example, in $\ZZ$, do we consider $-3$ to be a prime?
 	When phrased with ideals, this annoyance goes away: $(-3) = (3)$.
+	
+	More generally, for a ring $R$, talking about ideals
+	lets us ignore multiplication by a unit.
+	(Note that $-1$ is a unit in $\ZZ$.)
 \end{remark}
 
 \begin{exercise}

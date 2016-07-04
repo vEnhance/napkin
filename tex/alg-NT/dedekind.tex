@@ -7,7 +7,7 @@ Diophantine equation $n = x^2 + 5y^2$ for a given $n$.
 The idea is to try and ``factor'' $n$ in $\ZZ[\sqrt{-5}]$,
 for example \[ 6 = (1+\sqrt{-5})(1-\sqrt{-5}). \]
 Unfortunately, this is not so simple, because as I've said before
-we don't have unique factorization of elements.
+we don't have unique factorization of elements:
 \[ 6 = 2 \cdot 3 = \left( 1+\sqrt{-5} \right)\left( 1-\sqrt{-5} \right). \]
 One reason this doesn't work is that we don't have a notion of a
 \emph{greatest common divisor}.
@@ -24,7 +24,7 @@ of prime factorization, and we do so in this chapter.
 
 In other words, we use the ideal $(a_1, \dots, a_m)$
 to interpret a ``generalized GCD'' of $a_1$, \dots, $a_m$.
-In particular, if we have a particular number $x$ we want to represent,
+In particular, if we have a number $x$ we want to represent,
 we encode it as just $(x)$.
 
 Going back to our example of $6$,
@@ -112,26 +112,28 @@ the generators of $\aa$ and $\bb$.
 \end{proof}
 In other words, for sums you append the two sets of generators together,
 and for products you take products of the generators.
-Note that for principal ideals, this coincides with ``normal'' multiplication:
-\[ (3) \cdot (5) = (15). \]
+Note that for principal ideals, this coincides with ``normal'' multiplication,
+for example
+\[ (3) \cdot (5) = (15) \]
+in $\ZZ$.
 \begin{remark}
-	Observe that for an ideal $\aa$ and an element $c$,
-	the set \[ c \aa = \left\{ ca \mid a \in \aa \right\} \]
-	is equal to $(c) \cdot \aa$.
-	So ``scaling'' and ``multiplying by principal ideals'' are the same thing.
-	This is important, since we'll be using the two notions interchangably.
+Note that for an ideal $\aa$ and an element $c$,
+the set \[ c \aa = \left\{ ca \mid a \in \aa \right\} \]
+is equal to $(c) \cdot \aa$.
+So ``scaling'' and ``multiplying by principal ideals'' are the same thing.
+This is important, since we'll be using the two notions interchangably.
 \end{remark}
 
 Finally, since we want to do factorization we better have some notion of divisibility.
-So we give the following.
+So we give the following:
 \begin{definition}
 	We say $\aa$ divides $\bb$ and write $\aa \mid \bb$ if $\aa \supseteq \bb$.
 \end{definition}
 Note the reversal of inclusions!
 So $(3)$ divides $(15)$, because $(15)$ is contained in $(3)$;
-every multiple of $15$ is a multiple of $(3)$.
+every multiple of $15$ is a multiple of $3$.
 
-Finally, the prime ideals hold the same definition as before;
+Finally, the \vocab{prime ideals} are defined as in \Cref{def:prime_ideal}:
 $\pp$ is prime if $xy \in \pp$ implies $x \in \pp$ or $y \in \pp$.
 This is compatible with the definition of divisibility:
 \begin{exercise}
@@ -139,7 +141,8 @@ This is compatible with the definition of divisibility:
 	if and only if whenever $\pp$ divides $\aa \bb$,
 	$\pp$ divides one of $\aa$ or $\bb$.
 \end{exercise}
-
+As mentioned in \Cref{rem:unit_sign_issue},
+this also lets us ignore multiplication by units: $(-3) = (3)$.
 
 \section{Field of fractions}
 \prototype{The integral closure of $\ZZ$ is $\QQ$}
@@ -185,7 +188,8 @@ Here there's one new word I have to define for you, but we won't make much use o
 The \emph{interesting} condition in the definition
 of a Dedekind domain is the last one: prime ideals and maximal ideals
 are the same thing.
-The other conditions are just technicalities, but ``primes are maximal'' has real substance.
+The other conditions are just technicalities,
+but ``primes are maximal'' has real substance.
 \begin{example}[$\ZZ$ is a dedekind domain]
 	The ring $\ZZ$ is a Dedekind domain.
 	Note that
@@ -193,9 +197,11 @@ The other conditions are just technicalities, but ``primes are maximal'' has rea
 		\ii $\ZZ$ is Noetherian (for obvious reasons).
 		\ii $\ZZ$ has field of fractions $\QQ$.
 		If $f(x) \in \ZZ[x]$ is monic, then by the rational root theorem
-		any rational roots are integers (this is the same as the proof that $\ol\ZZ \cap \QQ = \ZZ$).
+		any rational roots are integers
+		(this is the same as the proof that $\ol\ZZ \cap \QQ = \ZZ$).
 		Hence $\ZZ$ is integrally closed.
-		\ii The nonzero prime ideals of $\ZZ$ are $(p)$, which also happen to be maximal.
+		\ii The nonzero prime ideals of $\ZZ$ are $(p)$,
+		which also happen to be maximal.
 	\end{itemize}
 \end{example}
 
@@ -213,7 +219,8 @@ First, the boring part.
 	Now we show that $\OO_K$ is integrally closed.
 	Suppose that $\eta \in K$ is the root of some polynomial with coefficients in $\OO_K$.
 	Thus
-	\[ \eta^n = \alpha_{n-1} \cdot \eta^{n-1} + \alpha_{n-2} \cdot \eta^{n-2} + \dots + \beta_0 \] 
+	\[ \eta^n = \alpha_{n-1} \cdot \eta^{n-1} + \alpha_{n-2} \cdot \eta^{n-2}
+		+ \dots + \alpha_0 \] 
 	where $\alpha_i \in \OO_K$. We want to show that $\eta \in \OO_K$ as well.
 
 	Well, from the above, $\OO_K[\eta]$ is finitely generated\dots
@@ -227,22 +234,24 @@ We'll prove a stronger result, which will re-appear repeatedly.
 	Then $\pp$ contains a rational prime $p$. Moreover, $\pp$ is maximal.
 \end{theorem}
 \begin{proof}
-	Take any $\alpha \neq 0$ in $\pp$, and consider the product of all of its conjugates.
+	Take any $\alpha \neq 0$ in $\pp$, and consider the product of all its conjugates.
 	This is the norm $\Norm(\alpha)$, which is contained in $\pp$.
 	Hence $\pp$ contains some integer; pick the smallest one, say $p$.
 	We must have that $p$ is a rational prime, since otherwise $\pp \ni p = xy$
 	implies one of $x,y \in \pp$.
-	
 	This shows the first part.
+
 	We now do something pretty tricky to show $\pp$ is maximal.
-	Look at $\OO_K / \pp$; since $\pp$ is prime it's supposed to be an integral domain\dots\ 
-	but we claim that it's actually finite! Since finite integral domains are fields (\Cref{prob:finite_domain_field})
-	we'll be done.
-	To do this, we literally have to forget that we can multiply on $\OO_K$.
-	Recalling that $\OO_K \cong \ZZ^{\oplus n}$ as an abelian group, we have the following map of
-	additive abelian groups:
+	Look at $\OO_K / \pp$;
+	since $\pp$ is prime it's supposed to be an integral domain\dots\ 
+	but we claim that it's actually finite!
+	To do this, we forget that we can multiply on $\OO_K$.
+	Recalling that $\OO_K \cong \ZZ^{\oplus n}$ as an abelian group,
+	we have the following map of additive abelian groups:
 	\[ {\FF_p}^{\oplus n} \cong \OO_K / (p) \surjto \OO_K / \pp. \]
-	Hence $\left\lvert \OO_K / \pp \right\rvert \le p^n$ is \emph{finite}, as needed.
+	Hence $\left\lvert \OO_K / \pp \right\rvert \le p^n$ is \emph{finite}.
+	Since finite integral domains are fields (\Cref{prob:finite_domain_field})
+	we are done.
 \end{proof}
 Since every nonzero prime $\pp$ is maximal, we now know that $\OO_K$ is a Dedekind domain.
 Note that this tricky proof is essentially inspired by the solution to \Cref{prob:dedekind_sample}.
@@ -250,7 +259,7 @@ Note that this tricky proof is essentially inspired by the solution to \Cref{pro
 \section{Unique factorization works}
 Okay, I'll just say it now!
 \begin{moral}
-Unique factorization works perfectly in Dedekind domains!
+	Unique factorization works perfectly in Dedekind domains!
 \end{moral}
 \begin{theorem}[Prime factorization works]
 	Let $\aa$ be a nonzero proper ideal of a Dedekind domain $\mathcal A$.
@@ -261,7 +270,7 @@ Unique factorization works perfectly in Dedekind domains!
 	Moreover, $\aa$ divides $\bb$ if and only if for every prime ideal $\pp$,
 	the exponent of $\pp$ in $\aa$ is less than the corresponding exponent in $\bb$.
 \end{theorem}
-\todo{Ofer joke}
+%\todo{Ofer joke}
 % As ideals, you and I are coprime because together we are (1).
 
 I won't write out the proof, but I'll describe the basic method of attack.
@@ -269,12 +278,14 @@ Section 3 of \cite{ref:ullery} does a nice job of explaining it.
 When we proved the fundamental theorem of arithmetic, the basic plot was the following.
 \begin{enumerate}[(1)]
 	\ii Show that if $p$ is a rational prime\footnote{
-		Note that the kindergarten definition of a prime is that ``$p$ isn't the product of two smaller integers''.
-		This isn't the correct definition of a prime: the definition of a prime is that $p \mid bc$
+		Note that the kindergarten definition of a prime is
+		that ``$p$ isn't the product of two smaller integers''.
+		This isn't the correct definition of a prime:
+		the definition of a prime is that $p \mid bc$
 		means $p \mid b$ or $p \mid c$.
 		The kindergarten definition is something called ``irreducible''.
-		Fortunately, in $\ZZ$, primes and irreducible are the same thing,
-		so no one ever told you that your definition of ``prime'' is wrong.}
+		Fortunately, in $\ZZ$, primes and irreducibles are the same thing,
+		so no one ever told you that your definition of ``prime'' was wrong.}
 	then $p \mid bc$ means $p \mid b$ or $p \mid c$.  (This is called Euclid's Lemma.)
 	\ii Use strong induction to show that every $N > 1$ can be written as the product of primes (easy).
 	\ii Show that if $p_1 \dots p_m = q_1 \dots q_n$ for some primes (not necessarily unique),
@@ -297,9 +308,10 @@ and then prove that this is true.
 Moreover, $\aa\inv$ is not actually an ideal, so you need to
 work in the field of fractions $K$ instead of $\mathcal A$.
 
-So the three main steps in the new situation are as follows.
+So the main steps in the new situation are as follows:
 \begin{enumerate}[(1)]
-	\ii First, show that every ideal $\aa$ divides $\pp_1 \dots \pp_g$ for some finite collection of primes.
+	\ii First, show that every ideal $\aa$ divides $\pp_1 \dots \pp_g$
+	for some finite collection of primes.
 	(This is an application of Zorn's Lemma.)
 	\ii Define $\pp\inv$ and show that $\pp \pp\inv = (1)$.
 	\ii Show that a factorization exists (again using Zorn's Lemma).
@@ -308,9 +320,10 @@ So the three main steps in the new situation are as follows.
 
 Finally, let me comment on how nice this is if $\mathcal A$ is a PID (like $\ZZ$).
 Thus every element $a \in \mathcal A$ is in direct correspondence with an ideal $(a)$.
-Now if $(a)$ factors as a product of ideals $\pp_i = (p_i)$, say,
+Now suppose $(a)$ factors as a product of ideals $\pp_i = (p_i)$, say,
 \[ (a) = (p_1)^{e_1} (p_2)^{e_2} \dots (p_n)^{e_n} . \]
-This verbatim reads \[ a = p_1^{e_1} p_2^{e_2} \dots p_n^{e_n}. \]
+This verbatim reads \[ a = u p_1^{e_1} p_2^{e_2} \dots p_n^{e_n} \]
+where $u$ is some unit (recall \Cref{def:unit}).
 Hence, Dedekind domains which are PID's satisfy unique factorization for \emph{elements},
 just like in $\ZZ$. (In fact, the converse of this is true.)
 
@@ -351,7 +364,7 @@ How do we know in this example that $\pp$ is prime/maximal?
 (Again, these are the same since we're in a Dedekind domain.)
 Answer: look at $\OO_K / \pp$ and see if it's a field.
 There is a trick to this: we can express
-\[ \OO_K = \ZZ[\sqrt5] \cong \ZZ[x] / (x^2+5). \]
+\[ \OO_K = \ZZ[\sqrt{-5}] \cong \ZZ[x] / (x^2+5). \]
 %\begin{ques}
 %	Convince yourself this is true.
 %	(More generally, if $\theta \in \ol\ZZ$ has minimal polynomial $p$,
@@ -390,7 +403,7 @@ Since $\pp \neq (1)$, $x$ cannot be a unit, so its norm must be $2$.
 But there are no elements of norm $2 = a^2+5b^2$ in $\OO_K$.
 
 \begin{example}[Factoring $3$ in the integers of $\QQ(\sqrt{-17})$]
-	Let $\OO_K = \ZZ(\sqrt{-17})$ arise from $K = \QQ(\sqrt{-17})$.
+	Let $\OO_K = \ZZ[\sqrt{-17}]$ arise from $K = \QQ(\sqrt{-17})$.
 	We know $\OO_K \cong \ZZ[x] / (x^2+17)$.
 	Now 
 	\[
@@ -457,7 +470,8 @@ This algorithm gives us a concrete way to compute prime factorizations of $(p)$
 in any monogenic number field with $\OO_K = \ZZ[\theta]$. To summarize the recipe:
 \begin{enumerate}
 	\ii Find the minimal polynomial of $\theta$, say $f \in \ZZ[x]$.
-	\ii Factor $f$ mod $p$ into irreducible polynomials ${\ol f_1}^{e_1} {\ol f_2}^{e_2} \dots {\ol f_g}^{e_g}$.
+	\ii Factor $f$ mod $p$ into irreducible polynomials
+	${\ol f_1}^{e_1} {\ol f_2}^{e_2} \dots {\ol f_g}^{e_g}$.
 	\ii Compute $\pp_i = (f_i(\theta), p)$ for each $i$.
 \end{enumerate}
 Then your $(p) = \pp_1^{e_1} \dots \pp_g^{e_g}$.

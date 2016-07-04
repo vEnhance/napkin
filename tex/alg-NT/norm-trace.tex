@@ -228,7 +228,7 @@ For a ``generic'' element of $K$, we expect $k = 1$.
 \end{example}
 Of importance is the following.
 \begin{proposition}[Norms and traces are rational integers]
-	If $\alpha$ is an algebraic integer, its norm and trace are traces 
+	If $\alpha$ is an algebraic integer, its norm and trace
 	are rational integers.
 \end{proposition}
 \begin{ques}
@@ -322,15 +322,27 @@ The proof is split into two parts, depending on whether or not $k=1$.
 	Since $\{1, \alpha, \dots, \alpha^{n-1}\}$ is a $\QQ$ basis for $\QQ(\alpha)$,
 	the elements
 	\[
-		\begin{bmatrix}
-		e_1, & e_1\alpha, & \dots, & e_1\alpha^{n-1} \\
-		e_2, & e_2\alpha, & \dots, & e_2\alpha^{n-1} \\
-		\vdots & \vdots & \ddots & \vdots \\
-		e_k, & e_k\alpha, & \dots, & e_k\alpha^{n-1}
-		\end{bmatrix}
+			\begin{array}{cccc}
+			e_1, & e_1\alpha, & \dots, & e_1\alpha^{n-1} \\
+			e_2, & e_2\alpha, & \dots, & e_2\alpha^{n-1} \\
+			\vdots & \vdots & \ddots & \vdots \\
+			e_k, & e_k\alpha, & \dots, & e_k\alpha^{n-1}
+			\end{array}
+	\]
+	constitute a $\QQ$-basis of $K$.
+	Using \emph{this} basis, the map $\mu_\alpha$ looks like
+	\[
+			\underbrace{
+			\begin{bmatrix}
+					M & & & \\
+					& M & & \\
+					& & \ddots & \\
+					& & & M
+			\end{bmatrix}
+			}_{\text{$k$ times}}
 	\]
 	where $M$ is the same matrix as above:
-	we just end up with one copy of our old matrix for each $e_k$.
+	we just end up with one copy of our old matrix for each $e_i$.
 	Thus $\det \mu_\alpha = (\det M)^k$, as needed. \qedhere
 \end{subproof}
 \begin{ques}
@@ -557,7 +569,7 @@ We might hope that something similar is true of the ring of integers:
 that we can write \[ \OO_K = \ZZ[\theta] \]
 in which case $\{1, \theta, \dots, \theta^{n-1}\}$
 serves both as a basis of $K$ and as the $\ZZ$-basis for $\OO_K$ (here $n = [K:\QQ]$).
-In other words, we hope that the basis of $\OO_K$is actually a ``power basis''.
+In other words, we hope that the basis of $\OO_K$ is actually a ``power basis''.
 
 This is true for the most common examples we use:
 \begin{itemize}
