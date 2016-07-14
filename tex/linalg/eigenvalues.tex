@@ -103,12 +103,22 @@ So that you know exactly where I'm going, I'm now going to state the main theore
 	[Jordan canonical form]
 	Let $T : V \to V$ be a linear map over an algebraically closed field $k$.
 	Then we can choose a basis of $V$ such that the matrix $T$ has the form
-	\begin{center}
-		\includegraphics[scale=0.25]{media/jordan.png}
-	\end{center}
+	\[
+	\begin{bmatrix}
+		\lambda_1 & 1 \\
+		0 & \lambda_1 \\
+		&& \lambda_2 \\
+		&&& \lambda_3 & 1 & 0 \\
+		&&& 0 & \lambda_3 & 1 \\
+		&&& 0 & 0 & \lambda_3 \\
+		&&&&&& \ddots \\
+		&&&&&&& \lambda_m & 1 \\
+		&&&&&&& 0 & \lambda_m
+	\end{bmatrix}
+	\]
 	Each of the blocks is called a \vocab{Jordan block}.
+	(The blank entries are all zero.)
 \end{theorem}
-\todo{get better image, change $n$ to $m$.}
 What does this mean?
 Basically, it means our dream is almost true.
 What happens is that $V$ can get broken down as a direct sum
