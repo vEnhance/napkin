@@ -13,7 +13,8 @@ Then there's also this family of\dots\ uh\dots\ noncontinuous solutions (mumble 
 
 \begin{center}
 	\includegraphics[width=12cm]{media/xkcd-fundamental-forces.png} \\[1em]
-	\emph{Don't worry, I know what I'm doing!}
+	\emph{Don't worry, I know what I'm doing!} \\
+	\tiny Image from \cite{img:xkcd}
 \end{center}
 
 There's also this thing called Zorn's lemma. It sounds terrifying,
@@ -117,6 +118,7 @@ The list goes on:
 Pictorially, it kind of looks like this:
 \begin{center}
 	\includegraphics[scale=0.70]{media/500px-Omega-exp-omega-labeled.png}
+	\\ \tiny Image from \cite{img:omega500}
 \end{center}
 Anyways, in the same way that natural numbers dominate all finite sets,
 the ordinals dominate \emph{all the sets}.
@@ -244,14 +246,13 @@ Hence if we don't stop we will quite literally reach a point where we have used 
 Clearly that's impossible, because by then the elements can't possibly be independent!
 
 So by transfinite recursion, we eventually hit some $S_\gamma$ which is spanning:
-the elements are all independent, but every real number can be expressed using it.  Done!
+the elements are all independent, but every real number can be expressed using it.
+Done!
 
-
-Thus this problem is dead, dead, dead. Any questions?
-\begin{center}
-	\includegraphics[width=4cm]{media/squidzilla.png}
-\end{center}
-
+%Thus this problem is dead, dead, dead. Any questions?
+%\begin{center}
+%	\includegraphics[width=4cm]{media/squidzilla.png}
+%\end{center}
 
 \section{Zorn's lemma}
 Now I can tell you what Zorn's lemma is:
@@ -301,6 +302,7 @@ And the only possible stopping point is a local maximum.
 
 \begin{center}
 	\includegraphics[scale=0.5]{media/zornaholic.png}
+	\\ \tiny Image from \cite{img:zornaholic}
 \end{center}
 
 If we want to phrase our previous solution in terms of Zorn's lemma, we'd say:
@@ -322,14 +324,3 @@ and you need to pick one of them.
 Since you are making arbitrary choices infinitely many times, you need the Axiom of Choice.
 (Actually, you also need choice to talk about cardinalities as in theorem 1.)
 But really, it's nothing special.
-
-\section{Conclusion}
-In the words of \href{https://gowers.wordpress.com/2008/08/12/how-to-use-zorns-lemma/}{Timothy Gowers},
-\begin{quote}
-If you are building a mathematical object in stages and find that (i) you have not finished even after infinitely many stages, and (ii) there seems to be nothing to stop you continuing to build, then Zorn's lemma may well be able to help you.
-\end{quote}
-Really, there's nothing tricky at all here.
-People seem scared of Zorn's lemma,
-and \href{http://math.stackexchange.com/questions/251726/simple-and-intuitive-example-for-zorns-lemma}{claim it's not intuitive or something}.
-But really, all we're doing is climbing up a poset.
-Nothing tricky at all.
