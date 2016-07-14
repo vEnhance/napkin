@@ -42,14 +42,6 @@ Here are some more examples of group actions.
 	\end{enumerate}
 \end{example}
 
-\begin{figure}[ht]
-	\centering
-	\snsd[height=6cm]{group-action.png}
-	\caption{Group actions arise from binary operations.}
-\end{figure}
-
-
-
 \section{Stabilizers and orbits}
 \prototype{Again the AIME problem.}
 
@@ -159,14 +151,10 @@ since it has a very olympiad-flavored solution.
 As usual, this lemma was not actually proven by Burnside;
 Cauchy got there first, and thus it is sometimes called
 \emph{the lemma that is not Burnside's}.
-
-The point of this is that it lets us destroy the AIME-like problems by simply considering the average of the number of fixed points.
-Consult \cite{ref:aops_burnside} 
-for some more examples of ``hands-on'' applications.
-Here is one:
+Example application:
 \begin{example}
 	[AIME 1996]
-	Two of the squares of a $7 \times 7$ checkerboard are painted yellow, and the rest are painted green. Two color schemes are equivalent if one can be obtained from the other by applying a rotation in the plane of the board. How many inequivalent color schemes are possible?
+	{ \footnotesize Two of the squares of a $7 \times 7$ checkerboard are painted yellow, and the rest are painted green. Two color schemes are equivalent if one can be obtained from the other by applying a rotation in the plane of the board. How many inequivalent color schemes are possible?  }
 
 	We know that $G = \Zc4$ acts on the set $X$ of $\binom{49}{2}$ possible coloring schemes.
 	Now we can compute $\FixPt g$ explicitly for each $g \in \Zc4$.
@@ -180,6 +168,7 @@ Here is one:
 	As $\left\lvert G \right\rvert = 4$, the average is
 	\[ \frac{1176 + 24 + 0 + 0}{4} = 300. \]
 \end{example}
+
 \begin{exercise}[MathCounts Chapter Target Round]
 	A circular spinner has seven sections of equal size,
 	each of which is colored either red or blue.
@@ -187,6 +176,9 @@ Here is one:
 	In how many ways can the spinner be colored? (Answer: 20)
 \end{exercise}
 % The group in question is $\Zc7$; the answer should be $20$.
+
+Consult \cite{ref:aops_burnside} 
+for some more examples of ``hands-on'' applications.
 
 \section{Conjugation of elements}
 \prototype{In $S_n$, conjugacy classes are ``cycle types''.}
@@ -265,7 +257,7 @@ Let's see what the conjugacy classes of $S_n$ are, for example.
 \begin{figure}[ht]
 	\centering
 	\snsd[height=6cm]{invariant-under-conjugation.jpg}
-	\caption{An element in a conjugacy class of size one.}
+	\caption{An element in a conjugacy class of size one. (Source: \cite{img:snsd}.)}
 	\label{fig:snsd_conjugation}
 \end{figure}
 \begin{ques}
@@ -288,12 +280,6 @@ You can check this is indeed a subgroup of $G$.
 \begin{ques}
 	What are the conjugacy classes of elements in the center?
 \end{ques}
-
-\begin{figure}[ht]
-	\centering
-	\snsd[height=6cm]{my-love-center-abelian-group.png}
-	\caption{When $Z(G)=G$.}
-\end{figure}
 
 A trivial result that gets used enough that I should explicitly call it out:
 \begin{corollary}[Conjugacy in abelian groups is trivial]
