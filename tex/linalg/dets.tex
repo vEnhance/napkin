@@ -613,18 +613,21 @@ Hence $\Lambda^n(T)$ is multiplication by some constant.
 			a & c \\ b & d
 		\end{bmatrix}.
 	\]
-	In other words, $T(e_1) = ae_1 + be_2$ and $T(e_2) = ce_1 + de_2$.
+	In other words, $T(\ee_1) = a\ee_1 + b\ee_2$
+	and $T(\ee_2) = c\ee_1 + d\ee_2$.
 
 	Now let's consider $\Lambda^2(V)$.
-	It has a basis $e_1 \wedge e_2$.
+	It has a basis $\ee_1 \wedge \ee_2$.
 	Now $\Lambda^2(T)$ sends it to
-	\[ e_1 \wedge e_2 \xmapsto{\Lambda^2(T)} T(e_1) \wedge T(e_2) =
-		(ae_1 + be_2) \wedge (ce_1 + de_2) 
-		= (ad-bc)(e_1 \wedge e_2). 
+	\[ \ee_1 \wedge \ee_2 \xmapsto{\Lambda^2(T)}
+		T(\ee_1) \wedge T(\ee_2) =
+		(a\ee_1 + b\ee_2) \wedge (c\ee_1 + d\ee_2) 
+		= (ad-bc)(\ee_1 \wedge \ee_2). 
 	\]
 	So $\Lambda^2(T) : \Lambda^2(V) \to \Lambda^2(V)$
 	is multiplication by $\det T = ad-bc$,
-	because it sent $e_1 \wedge e_2$ to $(ad-bc)(e_1 \wedge e_2)$.
+	because it sent $\ee_1 \wedge \ee_2$ to
+	$(ad-bc)(\ee_1 \wedge \ee_2)$.
 \end{example}
 And that is the definition of a determinant.
 Once again, since we defined it in terms of $\Lambda^n(T)$,
