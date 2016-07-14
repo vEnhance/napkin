@@ -55,12 +55,13 @@ It is said to be \vocab{short exact} if \emph{each row} of the diagram below is 
 \begin{example}
 	[Augemented Mayer-Vietoris sequence]
 	We can \emph{augment} each of the chain complexes in the Mayer-Vietoris
-	sequence as well, by appending the following to the bottom of the diagram.
+	sequence as well, by appending
 	\begin{diagram}
 		0 & \rTo & C_0(U \cap V) & \rInj & C_0(U) \oplus C_0(V) & \rSurj & C_0(U+V) & \rTo & 0\\
 		&& \dSurj^{\eps} && \dSurj^{\eps \oplus \eps} && \dTo^\eps && \\
 		0 & \rTo & \ZZ & \rTo & \ZZ \oplus \ZZ & \rTo & \ZZ & \rTo & 0
 	\end{diagram}
+	to the bottom of the diagram.
 	In other words we modify the above short exact sequence into
 	\[ 0 \to  \wt C_\bullet(U \cap V) 
 		\injto \wt C_\bullet(U) \oplus \wt C_\bullet(V) 
@@ -272,11 +273,11 @@ At long last, we can compute the homology groups of the spheres.
 	It remains to analyze the generators of $\wt H_1(S^1)$.
 	Note that the isomorphism was given by the connecting homomorphism $\partial$,
 	which is given by a ``left, down, left'' procedure (\Cref{rem:leftdownleft})
-	in the following diagram.
+	in the diagram
 	\begin{diagram}
 		&& C_1(U) \oplus C_1(V) & \rTo & C_1(U+V) \\
 		&& \dTo^{\partial \oplus \partial} && \\
-		C_0(U \cap V) & \rTo & C_0(U) \oplus C_0(V) &&
+		C_0(U \cap V) & \rTo & C_0(U) \oplus C_0(V). &&
 	\end{diagram}
 	Mark the points $a$ and $b$ as shown in the two disjoint paths of $U \cap V$.
 	\begin{center}
@@ -508,7 +509,7 @@ In principle, you could also figure out all the isomorphisms in the previous pro
 and explicitly compute the generators of $\wt H_1(S^1 \times S^1)$,
 but to avoid getting bogged down in detail I won't do so here.
 
-Finally, to fully justify the last step, we present the following lemma.
+Finally, to fully justify the last step, we present:
 \begin{lemma}[Splitting lemma]
 	\label{lem:split_exact}
 	For a short exact sequence $0 \to A \taking f B \taking g C \to 0$

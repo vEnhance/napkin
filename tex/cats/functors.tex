@@ -61,7 +61,7 @@ and so we can now think about maps between categories.
 		& A_2 & & B_2 & = F(A_2) &
 	\end{diagram}
 	(I'll try to use dotted arrows for functors, which cross different categories, for emphasis.)
-	It needs to satisfy the following ``naturality'' requirements:
+	It needs to satisfy the ``naturality'' requirements:
 	\begin{itemize}
 		\ii Identity arrows get sent to identity arrows:
 		for each identity arrow $\id_A$, we have $F(\id_A) = \id_{F(A)}$.
@@ -484,7 +484,7 @@ So for what follows, we'll prefer to use $H_\bullet$.
 
 The main observation now is that given a category $\AA$, $H_\bullet$ provides some \emph{special}
 functors $\AA\op \to \catname{Set}$ which are already ``built'' in to the category $A$.
-In light of this, we make the following definitions:
+In light of this, we define:
 \begin{definition}
 	A \vocab{presheaf} $X$ is just a contravariant functor $\AA\op \to \catname{Set}$.
 	It is called \vocab{representable} if $X \cong H_A$ for some $A$.

@@ -120,10 +120,9 @@ OK, that's all fine and well.
 But something \emph{really magical} happens when we add the
 additional hypothesis that $K/\QQ$ is \emph{Galois}:
 all the inertial degrees and ramification degrees are equal.
+We set about proving this.
 
-This falls out of the following key result.
 Let $K/\QQ$ be Galois with $G = \Gal(K/\QQ)$.
-
 Note that if $\pp \subseteq \OO_K$ is prime above $p$,
 then the image $\sigma``(\pp)$ is also prime for any $\sigma \in G$
 (since $\sigma$ is an automorphism!).
@@ -149,8 +148,9 @@ Picture:
 	\end{asy}
 \end{center}
 
-The $\sigma``(\pp)$ is hideous in this context, since we're really thinking
-of $\sigma$ as just doing a group action, and so we give the following shorthand:
+The notation $\sigma``(\pp)$ is hideous in this context,
+since we're really thinking of $\sigma$ as just doing a group action,
+and so we give the shorthand:
 \begin{abuse}
 	Let $\sigma\pp$ be shorthand for $\sigma``(\pp)$.
 \end{abuse}
@@ -244,11 +244,11 @@ Let $\pp$ denote a choice of the $\pp_1$.
 
 We can look at both the fields $\OO_K / \pp$ and $\ZZ / p = \mathbb F_p$.
 Naturally, since $\OO_K / \pp$ is a finite field we can view it as a field extension of $\OO_K$.
-So we can get the following diagram:
+So we can get the diagram
 \begin{diagram}
 	K & \supset & \OO_K & \pp & & \OO_K / \pp \cong \FF_{p^f} \\
 	\dLine && \dLine & \dLine & & \dLine \\
-	\QQ & \supset & \ZZ & (p) & & \FF_p
+	\QQ & \supset & \ZZ & (p) & & \FF_p.
 \end{diagram}
 At the far right we have finite field extensions, which we know are \emph{really} well behaved.
 So we ask:

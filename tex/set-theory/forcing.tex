@@ -162,7 +162,7 @@ Now, I can specify what it means to be ``generic''.
 \end{ques}
 \begin{example}[Generic filters on the infinite binary tree]
 	Let $\Po = 2^{<\omega}$.
-	The generic filters on $\Po$ are sets of the following form:
+	The generic filters on $\Po$ are sets of the form
 	\[ \left\{ 0,\; b_1,\; b_1b_2,\; b_1b_2b_3,\; \dots \right\}. \]
 	So every generic filter on $\Po$ correspond to a binary number $b = 0.b_1b_2b_3\dots$.
 
@@ -448,7 +448,7 @@ only that it is some generic filter.\footnote{%
 Nonetheless, we are going to define a relation $\Vdash$, called the \emph{forcing} relation.
 Roughly, we are going to write
 \[ p \Vdash \varphi(\sigma_1, \dots, \sigma_n) \]
-where $p \in \Po$, $\sigma_1, \dots, \sigma_n \in M[G]$, if and only if the following holds:
+where $p \in \Po$, $\sigma_1, \dots, \sigma_n \in M[G]$, if and only if:
 \begin{quote}
 	For \emph{any} generic $G$,
 	if $p \in G$,
@@ -553,7 +553,7 @@ But in the atomic cases (1) and (2) we are doing induction on the ranks of the n
 So, the construction above gives us one direction (I've omitted tons of details, but\dots).
 
 Now, how do we get the converse: that a sentence is true if and only if something forces it?
-Well, by induction, we can actually show the following result:
+Well, by induction, we can actually show:
 \begin{lemma}[Consistency and Persistence]
 	We have
 	\begin{enumerate}[(1)]

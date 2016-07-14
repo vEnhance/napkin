@@ -10,7 +10,7 @@ What happens if we put two elements $x$, $y$ in the box?
 Among the elements that get produced are things like
 \[ xyxyx, \quad x^2y^9x^{-5}y^3, \quad y^{-2015}, \quad \dots\]
 Essentially, I can create any finite product of $x$, $y$, $x\inv$, $y\inv$.
-This leads us to the following definition.
+This leads us to define:
 \begin{definition}
 	Let $S$ be a subset of $G$.  The subgroup \vocab{generated} by $S$, denoted $\left<S\right>$, is the set of elements which can be written as a finite product of elements in $S$ (and their inverses).
 	If $\left<S\right> = G$ then we say $S$ is a set of \vocab{generators} for $G$,
@@ -236,7 +236,7 @@ And now you know why the integers modulo $n$ are often written $\ZZ/n\ZZ$!
 
 \textbf{Now we try to write a more concrete definition of the quotient group.}
 Let $N = 100\ZZ$ be our subgroup of $G$.
-Consider the following sets:
+Consider the sets
 \begin{align*}
 	N &= \left\{ \dots, -200, -100, 0, 100, 200, \dots \right\} \\
 	1+N &= \left\{ \dots, -199, -99, 1, 101, 201, \dots \right\} \\
@@ -316,8 +316,7 @@ Now we claim that we can write these equivalence classes very explicitly.
 \end{center}
 
 Anyways, viewed as equivalence classes of $\sim_N$, there is one left coset of $N$ for each element of $Q$.
-Using this bijection, we can define the quotient group in the following more concrete manner.
-
+Using this bijection, we can define the quotient group more concretely:
 \begin{definition}
 	A subgroup $N$ of $G$ is called \vocab{normal} if it is the
 	kernel of some homomorphism.
@@ -401,7 +400,7 @@ $g_1$ and $g_2$ of the cosets we wanted, because they all had the same $\phi$-va
 
 We want some conditions which force this to be true without referencing $\phi$ at all.
 Suppose $\phi : G \to K$ is a homomorphism of groups with $H = \ker\phi$.
-Aside from the fact $H$ is a group, we can get the following ``obvious'' property.
+Aside from the fact $H$ is a group, we can get an ``obvious'' property:
 \begin{ques}
 	Show that if $h \in H$, $g \in G$,
 	then $ghg\inv \in H$.
@@ -442,7 +441,7 @@ make any external references to $\phi$.
 
 	For the other direction, we need to build a homomorphism with kernel $H$.
 	So we simply \emph{define} the group $G/H$ as the cosets.
-	To put a group operation, we need to verify the following claim.
+	To put a group operation, we need to verify:
 	\begin{claim}
 		If $g_1' \sim_H g_1$ and $g_2' \sim_H g_2$ then $g_1'g_2' \sim_H g_1g_2$.
 	\end{claim}

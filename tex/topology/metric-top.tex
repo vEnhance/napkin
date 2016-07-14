@@ -11,7 +11,7 @@ The concept of a metric space is very ``concrete'', and lends itself easily to v
 	A \vocab{metric space} is a pair $(M, d)$ consisting of
 	a set of points $M$
 	and a \vocab{metric} $d : M \times M \to \mathbb R_{\ge 0}$.
-	The distance function must obey the following axioms.
+	The distance function must obey:
 	\begin{itemize}
 		\ii For any $x,y \in M$, we have $d(x,y) = d(y,x)$; i.e.\ $d$ is symmetric.
 		\ii The function $d$ must be \vocab{positive definite}
@@ -42,7 +42,7 @@ The concept of a metric space is very ``concrete'', and lends itself easily to v
 	\end{enumerate}
 \end{example}
 \begin{example}[Taxicab on $\RR^2$]
-	It is also possible to place the following \vocab{taxicab distance} on $\RR^2$:
+	It is also possible to place the \vocab{taxicab distance} on $\RR^2$:
 	\[ d\left( (x_1, y_1), (x_2, y_2) \right) = 
 		\left\lvert x_1-x_2 \right\rvert + \left\lvert y_1-y_2 \right\rvert.
 		\]
@@ -51,7 +51,7 @@ The concept of a metric space is very ``concrete'', and lends itself easily to v
 
 \begin{example}[Metric spaces of $\RR^n$]
 	We can generalize the above examples easily.
-	Let $n$ be a positive integer. We define the following metric spaces.
+	Let $n$ be a positive integer.
 	\begin{enumerate}[(a)]
 		\ii We let $\RR^n$ be the metric space whose points are points in $n$-dimensional Euclidean space,
 		and whose metric is the Euclidean metric
@@ -86,7 +86,7 @@ Here is a slightly more pathological example.
 \begin{example}
 	[Discrete space]
 	Let $S$ be any set of points (either finite or infinite).
-	We can make $S$ into a \vocab{discrete space} by declaring the following distance function.
+	We can make $S$ into a \vocab{discrete space} by declaring
 	\[
 		d(x,y)
 		=
@@ -384,8 +384,7 @@ Let's try to do the same with functions.
 
 Essentially, we require that the pre-image of every $\eps$-neighborhood has
 the property that some $\delta$-neighborhood exists inside it.
-This motivates the following definition.
-
+This motivates:
 \begin{definition}
 	A set $U \subseteq M$ is \emph{open} in $M$ if for each $p \in U$, some $r$-neighborhood of $p$
 	is contained inside $U$.
@@ -451,7 +450,7 @@ Here are two quite important properties of open sets.
 	This implies that infinite intersections of open sets are not necessarily open.
 \end{exercise}
 
-The whole upshot of this is the following theorem.
+The whole upshot of this is:
 \begin{theorem}[Open set condition]
 	A function $f : M \to N$ of metric spaces is continuous
 	if and only if the pre-image of every open set in $N$ is open in $M$.
@@ -509,13 +508,13 @@ which makes it clear why open sets are good things to consider.
 	\end{enumerate}
 \end{theorem}
 
-This leads us to the following\dots
+This leads us to\dots
 
 \section{Forgetting the metric}
 Notice something interesting about the previous theorem -- it doesn't reference the metrics of $M$ and $N$ at all.
 Instead, it refers only to the open sets.
 
-This leads us to consider the following idea: what if we could refer to spaces \emph{only} by their open sets, forgetting about the fact that we had a metric to begin with?
+This leads us to consider: what if we could refer to spaces \emph{only} by their open sets, forgetting about the fact that we had a metric to begin with?
 That's exactly what we do in point-set topology.
 
 \begin{definition}
@@ -647,8 +646,7 @@ The name ``closed'' comes from the definition in a metric space.
 	if the parent space $M$ is understood.
 \end{abuse}
 Here's another way to phrase it.
-The \vocab{limit points} of a subset $S \subseteq M$ are the points
-in the following set:
+The \vocab{limit points} of a subset $S \subseteq M$ are defined by
 \[ \lim S \defeq \left\{ p \in M : \exists (x_n) \in S \text{ such that } x_n \to p \right\}. \]
 Thus $S$ is closed if and only if $S = \lim S$.
 
@@ -774,7 +772,7 @@ For example, here are some gotchas:
 	It is closed \emph{in $\RR$} and \emph{in itself} (but every space is closed in itself, anyways).
 \end{itemize}
 
-To make sure you understand the above, you should convince yourself the following exercise is true.
+To make sure you understand the above, you should convince yourself that:
 \begin{exercise}
 	Let $M = [0,1] \cup (2,3)$.
 	Show that $[0,1]$ and $(2,3)$ are both open and closed in $M$.

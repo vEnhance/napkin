@@ -133,7 +133,7 @@ Our work above gives us a boundary operator $\partial$, so we have a sequence of
 We'll call this the \vocab{singular chain complex}.
 
 Now, how does this let us detect holes in the space?
-To see why, let's consider the following annulus, with a $1$-chain $c$ drawn into it in red:
+To see why, let's consider an annulus, with a $1$-chain $c$ drawn in red:
 \begin{center}
 	\begin{asy}
 		size(6cm);
@@ -419,7 +419,7 @@ rid of all its original geometric context.
 
 \begin{definition}
 	A \vocab{morphism of chain complexes} $f : A_\bullet \to B_\bullet$ is
-	a sequence of maps $f_n$ for every $n$ such that the following diagram commutes:
+	a sequence of maps $f_n$ for every $n$ such that the diagram
 	\begin{diagram}
 		\dots &\rTo^{\partial_A} & A_{n+1} & \rTo^{\partial_A} &
 		A_n & \rTo^{\partial_A} & A_{n-1} & \rTo^{\partial_A} & \dots \\
@@ -427,17 +427,19 @@ rid of all its original geometric context.
 		\dots & \rTo^{\partial_B} & B_{n+1} & \rTo^{\partial_B} &
 		B_n & \rTo^{\partial_B} & B_{n-1} & \rTo^{\partial_B} & \dots \\
 	\end{diagram}
+	commutes.
 	Under this definition, the set of chain complexes becomes a category,
 	which we denote $\catname{Cmplx}$.
 \end{definition}
 
 Note that given a morphism of chain complexes $f : A_\bullet \to B_\bullet$,
-every cycle in $A_n$ gets sent to a cycle in $B_n$, since the following square commutes:
+every cycle in $A_n$ gets sent to a cycle in $B_n$, since the square
 \begin{diagram}
 	A_n & \rTo^{\partial_A} & A_{n-1} \\
 	\dTo^{f_n} & & \dTo \\
 	B_n & \rTo_{\partial_B} & B_{n-1} \\
 \end{diagram}
+commutes.
 Similarly, every boundary in $A_n$ gets sent to a boundary in $B_n$. Thus,
 \begin{moral}
 	Every map of $f : A_\bullet \to B_\bullet$ gives a
@@ -457,7 +459,7 @@ Here's the answer:
 	and $f$ and $g$ are \vocab{chain homotopic}.
 \end{definition}
 
-We can draw the following picture to illustrate this (warning: the diagonal dotted arrows do NOT commute
+We can draw a picture to illustrate this (warning: the diagonal dotted arrows do NOT commute
 with all the other arrows):
 \begin{diagram}
 	\dots &\rTo^{\partial_A} & A_{n+1} & \rTo^{\partial_A} &
@@ -494,7 +496,7 @@ Now, the point of this definition is that
 
 \subsection*{Geometry of chain complexes}
 Now let's fill in the geometric details of the picture above.
-This will follow from the following two lemmas.
+First:
 \begin{lemma}[Map of space $\implies$ map of singular chain complexes]
 	Each $f : X \to Y$ induces a map $C_n(X) \to C_n(Y)$.
 \end{lemma}
@@ -652,7 +654,7 @@ and thus we won't have to keep fussing with the special $n=0$ case.
 \begin{example}
 	[Relative chain groups]
 	Suppose $X$ is a topological space, and $A \subseteq X$ a subspace.
-	We can ``mod out'' by $A$ in the following manner: define
+	We can ``mod out'' by $A$ by defining
 	\[ C_n(X,A) \defeq C_n(X) / C_n(A) \]
 	for every $n$. Thus chains contained entirely in $A$ are trivial.
 

@@ -27,9 +27,7 @@ The proper generalization of our $\OO_V$ is a so-called sheaf of rings.
 Recall that $\OO_V$ was a took \emph{open sets of $V$} to \emph{rings},
 with the interpretation that $\OO_V(U)$ was a ``ring of functions''.
 
-In light of this, we first make the following definition
-for the general construct, in the language of categories.
-
+In light of this, we first define:
 \begin{definition}
 	For a topological space $X$ let $\Opens(X)$ denote
 	its open sets of $X$.
@@ -41,8 +39,8 @@ for the general construct, in the language of categories.
 	Each individual element of $\SF(U)$ is called a \vocab{section}.
 	An element of $\SF(X)$ is called a \vocab{global section}.
 
-	It is also equipped with the following information:
-	for any $U_1 \subseteq U_2$ there is a \vocab{restriction map}
+	It is also equipped with a \vocab{restriction map}
+	for any $U_1 \subseteq U_2$; this is a map
 	\[ \res_{U_1,U_2} : \SF(U_2) \to \SF(U_1) \]
 	such that $\res_{U,U}$ is the identity and
 	whenever $U_1 \subseteq U_2 \subseteq U_3$ the diagram
@@ -122,8 +120,7 @@ The formal definition doesn't illuminate this as much as the examples
 do, but I have to give it first for the examples to make sense.
 
 \begin{definition}
-	A \vocab{sheaf} $\mathscr F$ is a pre-sheaf satisfying the following
-	two additional axioms:
+	A \vocab{sheaf} $\mathscr F$ is a pre-sheaf obeying two additional axioms:
 	Suppose $U$ is covered by open sets $U_\alpha \subseteq U$. Then:
 	\begin{enumerate}
 		\ii (Identity) If $s, t \in \mathscr F(U)$ are sections,

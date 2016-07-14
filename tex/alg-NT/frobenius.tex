@@ -55,7 +55,7 @@ where $(x+y)^p \equiv x^p + y^p \pmod{p}$ (and hence mod $\pp$).
 So if $\sigma$ satisfies the functional equation on generators,
 it satisfies the functional equation everywhere.
 
-We also have the following important lemma:
+We also have an important lemma:
 \begin{lemma}
 	[Order of the Frobenius element]
 	Let $\Frob_\pp$ be a Frobenius element from an extension $K/\QQ$.
@@ -318,7 +318,7 @@ Specifically:
 \end{ques}
 
 \section{Frobenius elements behave well with restriction}
-Consider the following setup, where $L/\QQ$ and $K/\QQ$ are both Galois extensions:
+Let $L/\QQ$ and $K/\QQ$ be Galois extensions, and consider the setup
 \begin{diagram}
 	L & \supseteq & \kP & \rDotted & \Frob_{\kP} \in \Gal(L/\QQ)\\
 	\dLine && \dLine && \\
@@ -361,9 +361,7 @@ In short, the point of this section is that
 \end{moral}
 
 \section{Application: Quadratic reciprocity}
-We now aim to prove the following result from elementary number theory.
-(See, e.g. \cite{ref:holden} for an exposition on quadratic reciprocity,
-if you're not familiar with it.)
+We now aim to prove:
 \begin{theorem}
 	[Quadratic reciprocity]
 	Let $p$ and $q$ be distinct odd primes.
@@ -371,6 +369,8 @@ if you're not familiar with it.)
 	\[ \left( \frac pq \right)\left( \frac qp \right)
 		= (-1)^{\frac{p-1}{2} \cdot \frac{q-1}{2}}. \]
 \end{theorem}
+(See, e.g. \cite{ref:holden} for an exposition on quadratic reciprocity,
+if you're not familiar with it.)
 
 \subsection*{Step 1: Setup}
 For this proof, we first define

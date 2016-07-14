@@ -67,7 +67,7 @@ and corresponds to a real number.
 \end{center}
 
 We want to do something similar, but with $\omega_2$ many real numbers instead of just one.
-In light of this, consider in $M$ the following poset:
+In light of this, consider in $M$ the poset
 \[
 	\Po = 
 	\opname{Add} \left( \omega_2, \omega \right)
@@ -140,8 +140,7 @@ It remains to show that with $\Po = \opname{Add}(\omega, \omega_2)$, we have tha
 \[ \aleph_2^{M[G]} = \aleph_2^M. \]
 In that case, since $M[G]$ will have $\aleph_2^M = \aleph_2^{M[G]}$ many reals, we will be done.
 
-To do this, we'll rely on the following combinatorial property of $\Po$:
-
+To do this, we'll rely on a combinatorial property of $\Po$:
 \begin{definition}
 	We say that $A \subseteq \mathcal P$ is a \vocab{strong antichain}
 	if for any distinct $p$ and $q$ in $A$, we have $p \perp q$.
@@ -175,7 +174,7 @@ In particular, the countable chain condition will show that $\Po$ preserves all 
 Then, we'll show that $\opname{Add}(\omega, \omega_2)$ does indeed have this property.
 This will complete the proof.
 
-We isolate the following lemma.
+We isolate a useful lemma:
 \begin{lemma}[Possible values argument]
 	Suppose $M$ is a transitive model of $\ZFC$ and $\Po$ is a partial order
 	such that $\Po$ has the $\kappa$-chain condition in $M$.
@@ -240,7 +239,8 @@ We quote the following without proof.
 	by ``greater than or equal to''.
 \end{proposition}
 
-Thus, to show that $\Po$ preserves cardinality and cofinalities it suffices to show that $\Po$ preserves regularity.
+Thus, to show that $\Po$ preserves cardinality and cofinalities
+it suffices to show that $\Po$ preserves regularity.
 The following theorem lets us do this:
 \begin{theorem}[Chain conditions preserve regular cardinals]
 	Let $M$ be a transitive model of ZFC, and let $\Po \in M$ be a poset.

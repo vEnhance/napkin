@@ -68,7 +68,7 @@ For example, when $n=1$ such a vector field is drawn below.
 
 
 \section{Cellular chain complex}
-Before starting, we state the following lemma.
+Before starting, we state:
 \begin{lemma}
 	[CW homology groups]
 	Let $X$ be a CW complex. Then
@@ -246,8 +246,7 @@ we are happy because in the (frequent) case that $X$ is a CW complex,
 
 \section{The cellular boundary formula}
 In fact, one can describe explicitly what the maps $d_n$ are.
-Recalling that $H_k(X^k, X^{k-1})$ has a basis the $k$-cells of $X$, we
-can write the following formula.
+Recalling that $H_k(X^k, X^{k-1})$ has a basis the $k$-cells of $X$, we obtain:
 \begin{theorem}
 	[Cellular boundary formula for $k=1$]
 	For $k=1$, \[ d_1 : \Cells_1(X) \to \Cells_0(X) \] is just the boundary map.
@@ -267,8 +266,7 @@ can write the following formula.
 	and the second arrow is the quotient of collapsing
 	$X^{k-1} \setminus e^{k-1}_\beta$ to a point.
 \end{theorem}
-This gives us the following algorithm for computing
-homology groups of a CW complex:
+This gives us an algorithm for computing homology groups of a CW complex:
 \begin{itemize}
 	\ii Construct the cellular chain complex,
 	where $\Cells_k(X)$ is $\ZZ^{\oplus \# \text{$k$-cells}}$.
@@ -276,7 +274,7 @@ homology groups of a CW complex:
 	(so $d_1(e^1)$ is the difference of the two endpoints).
 	\ii For any $k > 1$, we compute $d_k : \Cells_k(X) \to \Cells_{k-1}(X)$
 	on basis elements as follows.
-	Repeat the following for each $k$-cell $e^k$.
+	Repeat the following for each $k$-cell $e^k$:
 	\begin{itemize}
 		\ii For every $k-1$ cell $e^{k-1}_\beta$,
 		compute the degree of the boundary of $e^k$ welded onto 

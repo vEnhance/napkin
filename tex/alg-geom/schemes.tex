@@ -124,7 +124,7 @@ then everything will be clear.
 	by declaring that the sets of the form $\VV(I)$ are closed.
 \end{definition}
 
-Now, the following topological notion will come in handy:
+We now define a useful topological notion:
 \begin{definition}
 	A point $p \in X$ is a \vocab{closed point} if the set $\{p\}$ is closed.
 \end{definition}
@@ -155,7 +155,7 @@ as just the closed points.
 	we get the entire parabola,
 	since $\pp$ ``could have been'' any of those points.
 \end{example}
-The previous example illustrates the following important observation:
+The previous example illustrates an important observation:
 \begin{exercise}
 	Let $I \subsetneq R$ be a proper ideal.
 	Construct a bijection between the maximal ideals of $R$ containing $I$,
@@ -257,8 +257,7 @@ then this is precisely the definition of rational function from before!
 Now, we can define the sheaf as ``locally rational'' functions.
 This is done by a sheafification.
 First, let $\SF$ be the pre-sheaf of ``globally rational'' functions:
-i.e.\ we define $\SF(U)$ to be the following localization of $R$
-to the functions vanishing outside $U$:
+i.e.\ we define $\SF(U)$ to be
 \[
 	\SF(U) = \left\{ 
 		\frac fg \mid f, g \in R
@@ -266,6 +265,7 @@ to the functions vanishing outside $U$:
 	\right\}
 	= \left(R \setminus \bigcup_{\pp \in U} \pp \right)\inv R.
 \]
+This is the localization of $R$ to the functions vanishing outside $U$.
 For every $\pp \in U$ we can view $f/g$ as an element in $R_\pp$
 (since $g(\pp) \ne 0$).
 As one might expect this is an isomorphism

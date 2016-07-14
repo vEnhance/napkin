@@ -9,7 +9,7 @@ see \cite{ref:hatcher} or \cite{ref:maxim752}.
 First cool result:
 you may have noticed symmetry in the (co)homology groups of
 ``nice'' spaces like the torus or $S^n$.
-In fact this is predicted by the following theorem:
+In fact this is predicted by:
 \begin{theorem}
 	[Poincar\'e duality]
 	If $M$ is a smooth oriented compact $n$-manifold,
@@ -105,8 +105,7 @@ This is a special case of a more general structure:
 	\[ R = \bigoplus_{d \ge 0} R^d \]
 	where $R^0$, $R^1$, \dots, are abelian groups,
 	with an additional associative binary operation $\times : R \to R$.
-	This multiplication is required to satisfy the following property:
-	if $r \in R^d$ and $s \in R^e$, we have $rs \in R^{d+e}$.
+	We require that if $r \in R^d$ and $s \in R^e$, we have $rs \in R^{d+e}$.
 	Elements of an $R^d$ are called \vocab{homogeneous elements};
 	if $r \in R^d$ and $r \neq 0$, we write $|r| = d$.
 \end{definition}
@@ -123,8 +122,7 @@ We use other words if there are additional properties:
 	\[ rs = (-1)^{|r| |s|} sr. \]
 \end{definition}
 
-Thus we have the following table.
-
+To summarize:
 \begin{center}
 	\small
 	\begin{tabular}[h]{|c|cc|}
@@ -356,12 +354,13 @@ defined in \Cref{ex:product_ring}.
 Now, the theorem is that:
 \begin{theorem}
 	[Cohomology pseudo-rings of wedge sums]
-	We have the following isomorphism of graded pseudo-rings:
+	We have
 	\[
 		\wt H^\bullet(X \wedge Y; R)
 		\cong \wt H^\bullet(X;R)
-		\times \wt H^\bullet(Y;R).
+		\times \wt H^\bullet(Y;R)
 	\]
+	as graded pseudo-rings.
 \end{theorem}
 
 This allows us to resolve the first question posed at the beginning.

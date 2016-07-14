@@ -294,12 +294,12 @@ In fact, this behavior of ``eventually polynomial'' always works.
 	For simplicity, assume WLOG that $H = \Vp(x_0)$.
 
 	Let $S = \CC[x_0, \dots, x_n]$ again.
-	Now, consider the following short exact sequence:
+	Now, consider the short exact sequence
 	\begin{diagram}
 		0 & \rTo & [S/I]^{d-1} & \rInj^{\times x_0} & [S/I]^d & \rSurj &
 			[S/(I+(x_0))]^d & \rTo & 0 \\
 		&& f & \rMapsto & fx_0 &&&& \\
-		&&&& f & \rMapsto & f &&
+		&&&& f & \rMapsto & f. &&
 	\end{diagram}
 	(The injectivity of the first map follows from the assumption
 	about irreducible components of $\Vp(I)$.)
@@ -491,12 +491,12 @@ Now, we use this to prove Pascal's theorem.
 	\end{hint}
 	\begin{sol}
 	In complex numbers with $ABC$ the unit circle,
-	it is equivalent to solving the following two cubic equations
-	in $p$ and $q = \overline p$:
+	it is equivalent to solving the two cubic equations
 	\begin{align*}
 		(p-a)(p-b)(p-c) &= (abc)^2 (q -1/a)(q - 1/b)(q - 1/c) \\
-		0 &= \prod_{\text{cyc}} (p+c-b-bcq) + \prod_{\text{cyc}} (p+b-c-bcq).
+		0 &= \prod_{\text{cyc}} (p+c-b-bcq) + \prod_{\text{cyc}} (p+b-c-bcq)
 	\end{align*}
+	in $p$ and $q = \overline p$.
 	Viewing this as two cubic curves in $(p,q) \in \mathbb C^2$,
 	by Bezout's theorem it follows there are at most nine solutions
 	(unless both curves are not irreducible,

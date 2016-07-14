@@ -103,7 +103,7 @@ So that you know exactly where I'm going, I'm now going to state the main theore
 \begin{theorem}
 	[Jordan canonical form]
 	Let $T : V \to V$ be a linear map over an algebraically closed field $k$.
-	Then we can choose a basis of $V$ such that the matrix $T$ has the following form:
+	Then we can choose a basis of $V$ such that the matrix $T$ has the form
 	\begin{center}
 		\includegraphics[scale=0.25]{media/jordan.png}
 	\end{center}
@@ -163,7 +163,7 @@ and the part after that is the one where we break down $V$ into
 generalized eigenspaces.
 
 \section{Nilpotent maps}
-First, let's consider the following --- bear with me for a moment.
+Bear with me for a moment.  First, define:
 \begin{definition}
 	A map $T: V \to V$ is \vocab{nilpotent} if $T^m$ is the zero map for some integer $m$.
 	(Here $T^m$ means ``$T$ applied $m$ times''.)
@@ -337,7 +337,7 @@ Note that if we've written $T$ in Jordan form, i.e.\
 	\end{bmatrix}
 \]
 (here each $\ast$ is either $0$ or $1$),
-then we can ``hack'' together the following ``immoral'' definition:
+then we can ``hack'' together the ``immoral'' definition
 \[
 	p_T(X) \defeq \det \begin{bmatrix}
 		X - a_1 & \ast & 0 & \dots & 0 \\
@@ -358,7 +358,6 @@ compute the eigenvalues.
 But what a \emph{terrible} way to define the characteristic polynomial.
 
 In particular, it obscures the following theorem, which is actually a completely triviality.
-
 \begin{theorem}[Cayley-Hamilton theorem]
 	For any $T : V \to V$,
 	the map $p_T(T)$ is the zero map.

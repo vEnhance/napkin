@@ -56,7 +56,7 @@ is itself an element of $V$ (i.e. $S \in V$).
 If we let $\PP(V)$ denote the \vocab{power set} of $V$
 (i.e.\ all the subsets of $V$), then we have an inclusion
 \[ \PP(V) \injto V. \]
-This is bad, for the following reason:
+This is bad, since:
 \begin{lemma}[Cantor's diagonal argument]
 	\label{lem:cantor_diag}
 	For \emph{any} set $X$, it's impossible to construct an injective
@@ -153,7 +153,7 @@ In other words, we've rephrased the problem of deciding whether something
 is a set to whether it exists,
 which makes it easier to deal with in our formal language.
 That means that our axiom system had better find some way to let us
-show a lot of things exist, without letting us prove the following formula:
+show a lot of things exist, without letting us prove
 \[ \exists S \forall x : x \in S. \]
 For if we prove this formula,
 then we have our ``bad'' set that caused us to go down the
@@ -271,8 +271,7 @@ Ordered $k$-tuples can be defined recursively: a three-tuple $(a,b,c)$ means $(a
 
 \begin{definition}
 	A \vocab{function} $f : X \to Y$ 
-	is defined as a collection of ordered pairs
-	with the following properties:
+	is defined as a collection of ordered pairs such that
 	\begin{itemize}
 		\ii If $(x,y) \in f$, then $x \in X$ and $y \in Y$.
 		\ii For every $x \in X$, there is a unique $y \in Y$

@@ -298,7 +298,7 @@ So by definition, $\left\{ 1,x,x^2 \right\}$ is a basis for $V$.
 It's not the only one: $\{2, x, x^2\}$ and $\{x+4, x-2, x^2+x\}$
 are other examples of bases, though not as natural.
 However, the set $S = \{3+x^2, x+1, 5+2x+x^2\}$ is not a basis;
-it fails for the following two reasons.
+it fails for two reasons:
 \begin{itemize}
 	\ii Note that
 	$0 = (3+x^2) + 2(x+1) - (5+2x+x^2)$.
@@ -427,7 +427,7 @@ between vector spaces. Can you guess the definition?
 
 \begin{definition}
 	Let $V$ and $W$ be vector spaces over the same field $k$.
-	A \vocab{linear map} is a map $T : V \to W$ which obeys the following rules:
+	A \vocab{linear map} is a map $T : V \to W$ such that:
 	\begin{enumerate}[(i)]
 		\ii $T$ is a homomorphism $(V,+) \to (W,+)$ of abelian groups, meaning $T(v_1 + v_2) = T(v_1) + T(v_2)$.
 		\ii For any $a \in k$ and $v \in V$, $T(a \cdot v) = a \cdot T(v)$.
