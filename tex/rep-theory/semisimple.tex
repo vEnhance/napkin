@@ -306,7 +306,18 @@ all representations are completely reducible.
 	so by \Cref{prob:idempotent} we have $V = \ker P \oplus \img P$,
 	but both $\ker P$ and $\img P$ are subrepresentations as desired.
 \end{proof}
-\todo{better proof from 18.757 for complex case}
+\begin{remark}
+	In the case where $k = \CC$, there is a shorter proof.
+	Suppose $B : V \times V \to \CC$ is an arbitrary bilinear form.
+	Then by considering
+	\[ \left< v,w \right> = \sum_{g \in G} \left< g \cdot v, g \cdot w \right> \]
+	we obtain a bilinear form $\left< -,- \right>$
+	which is $G$-invariant, in the sense that
+	$\left< v,w \right> = \left< g \cdot v, g \cdot w\right>$.
+	Then, one sees that if $W \subseteq V$ is a subrepresentation,
+	so is its orthogonal complement $W^\perp$.
+	This implies the result.
+\end{remark}
 
 \section{Example: the representations of $\CC[S_3]$}
 We compute all irreps of $\CC[S_3]$.

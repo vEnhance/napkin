@@ -68,31 +68,30 @@ Unfortunately, it's not exactly true that eigenvalues always exist.
 
 However, it is true if we replace $k$ with an algebraically closed field.
 \begin{theorem}[Eigenvalues always exist over algebraically closed fields]
-	Let $k$ be an algebraically closed field and $T : V \to V$ a linear map.
-	Then there exists an eigenvalue $\lambda \in k$.
+	Suppose $k$ is also algebraically closed field.
+	Then if $T : V \to V$ is a linear map,
+	there exists an eigenvalue $\lambda \in k$.
 \end{theorem}
 \begin{proof}
-	I'm going to cheat a little here:
-	\todo{Cite Axler, put in good proof here.}
-	% http://www.maa.org/sites/default/files/images/upload_library/22/Ford/Axler139-154.pdf
-	It's a theorem that if $\det S = 0$ for some linear map $S$,
-	then $\ker S$ has a nonzero element (i.e.\ has dimension at least one).%
-	\footnote{
-		If you read the chapter on determinants:
-		This follows from the fact that a wedge product
-		$v_1 \wedge v_2 \wedge \dots \wedge v_m$ is zero
-		if and only if the $v_i$ are linearly dependent.
-		One direction of this is obvious; the converse is intuitive
-		but somewhat annoying to prove.
-	}
+	(From \cite{ref:axler})
+	The idea behind this proof is to consider ``polynomials'' in $T$.
+	For example, $2T^2-4T+5$ would be shorthand for $T(T(v)) - 4T(v) + 5$.
+	In this way we can consider ``polynomials'' $P(T)$;
+	this lets us tie in the ``algebraically closed'' condition.
+	These polynomial behave nicely:
+	\begin{ques}
+		Show that $P(T)+Q(T) = (P+Q)(T)$ and $P(T) \circ Q(T) = (P \cdot Q)(T)$.
+	\end{ques}
 
-	Basically, we want to show that for some $\lambda$, we have
-	$\lambda v = T(v)$.
-	Letting $\id$ be the identity matrix, it's equivalent to showing that
-	$(\lambda \cdot \id - T)(v) = 0$, i.e.\
-	\[ \det \left( \lambda \id - T \right) = 0. \]
-	The left-hand side is a polynomial in $\lambda$ when you expand it fully,
-	so it has a root, as needed.
+	Let $n = \dim V < \infty$ and fix any nonzero vector $v \in V$,
+	and consider vectors $v$, $T(v)$, \dots, $T^n (v)$.
+	They must be linearly dependent for dimension reasons;
+	thus there is a nonzero polynomial $P$ such that $P(T)$ vanishes at $v$.
+	WLOG $P$ is monic, and thus $P(z) = (z-r_1)\dots(z-r_n)$ say.
+	Then we get
+	\[ 0 = (T - r_1 \id) \circ (T - r_2 \id) \circ \dots
+		\circ (T - r_k \id)(v) \]
+	which means at least one of $T - r_j \id$ is not injective, done.
 \end{proof}
 So in general we like to consider algebraically closed fields.
 This is not a big loss: any real matrix can be interpreted as a complex matrix
@@ -581,7 +580,6 @@ and moreover $T-\lambda \id$ is nilpotent on it.
 (As I said earlier, each $V^\lambda$ is called a \emph{generalized eigenspace}.)
 If we succeed in doing so, then we can use Nilpotent Jordan to finish.
 
-For this, I'll proceed in the spirit of Terrence Tao.\todo{link?}
 The idea behind this proof is to consider ``polynomials'' in $T$.
 For example, $2T^2-4T+5$ would be shorthand for $T(T(v)) - 4T(v) + 5$.
 In this way we can consider ``polynomials'' $P(T)$;

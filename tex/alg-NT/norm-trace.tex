@@ -660,14 +660,19 @@ As we'll later see, monogenic extensions have a really nice factoring algorithm,
 		Show that for any $\alpha \in \OO_K$, the trace of $\alpha(1-\zeta_p)$ is divisible by $p$.
 		Given $x = a_0 + a_1\zeta_p + \dots + a_{p-2}\zeta^{p-2} \in \OO_K$ (where $a_i \in \QQ$),
 		consider $(1-\zeta_p)x$.
-		\todo{add solution from math 129 notes}
 	\end{hint}
 \end{dproblem}
 
-\begin{problem}[Kronecker's theorem] \yod
-	Let $x$ be an algebraic integer.
-	Suppose all its conjugates have absolute value one.
-	Prove that $x^N=1$ for some positive integer $N$.
+\begin{problem}[Kronecker's theorem]
+	\yod
+	Let $\alpha$ be an algebraic integer.
+	Suppose all its Galois conjugates have absolute value one.
+	Prove that $\alpha^N=1$ for some positive integer $N$.
+	\begin{hint}
+		Let $\alpha = \alpha_1$, $\alpha_2$, \dots, $\alpha_n$ be its conjugates.
+		Look at the polynomial $(x-\alpha_1^e) \dots (x-\alpha_n^e)$ across $e \in \NN$.
+		Pigeonhole principle on all possible polynomials.
+	\end{hint}
 \end{problem}
 
 \begin{sproblem}
@@ -676,4 +681,7 @@ As we'll later see, monogenic extensions have a really nice factoring algorithm,
 	Assume the average $\frac1n(\eps_1 + \dots + \eps_n)$ is an algebraic integer.
 	Prove that either the average is zero or $\eps_1 = \dots = \eps_n$.
 	(Used in \Cref{lem:burnside_ant_lemma}.)
+	\begin{hint}
+		$\left\lvert \frac 1n(\eps_1 + \dots + \eps_n) \right\rvert \le 1$.
+	\end{hint}
 \end{sproblem}

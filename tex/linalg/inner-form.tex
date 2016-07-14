@@ -26,8 +26,8 @@ Throughout this chapter, \emph{all vector spaces are over $\CC$ or $\RR$},
 unless otherwise specified.
 We'll generally prefer working over $\CC$ instead of $\RR$ since,
 like we saw in the chapter on spectral theory, $\CC$ is algebraically closed
-in a nice way that $\RR$ is not,
-and moreover every real matrix can be thought of as a matrix with complex entries as well.
+in a nice way that $\RR$ is not.
+Every real matrix can be thought of as a matrix with complex entries anyways.
 
 \section{Defining the norm}
 \prototype{Dot product in $\RR^n$.}
@@ -316,12 +316,18 @@ Thus
 \section{The transpose of a matrix}
 Let $V$ be a finite-dimensional inner product space and let $T : V \to V$.
 The \vocab{adjoint} (soon \vocab{conjugate transpose}) of $T$, denoted $T^\dagger$,
-is defined as follows: for every vector $w \in V$, we let $T^\dagger(w)$ be the unique vector with
+is defined as follows: for every vector $w \in V$,
+we let $T^\dagger(w)$ be the unique vector with
 \[ \left< v, T^\dagger(w) \right> = \left< T(v), w \right> \]
 for every $v \in V$.
-This is well-defined, because $v \mapsto \left< T(v), w \right>$ is some function in $V^\vee$,
-and hence by the isomorphism we described earlier it can be written uniquely in the form $\left< v, x \right>$
+This is well-defined,
+because $v \mapsto \left< T(v), w \right>$ is some function in $V^\vee$,
+and hence by the isomorphism we described earlier it can be written
+uniquely in the form $\left< v, x \right>$
 for some $x \in V$; we then let $T^\dagger(w) = x$.
+
+By symmetry, of course, we also have
+$\left< T^\dagger(v), w \right> = \left< v, T(w)\right>$.
 
 Of course, the name conjugate transpose suggests something else:
 \begin{theorem}
@@ -353,23 +359,84 @@ The world would be a very beautiful place if it turned out
 that we could pick a basis of eigenvectors that was also orthonormal.
 This is of course far too much to hope for; even without the orthonormal condition,
 we saw in the previous chapter that we could still have $1$'s off the diagonal.
-However, it turns out that there is a good characterization of this:
+However, it turns out that there is a good characterization anyways.
 
 \begin{definition}
 	We say $T$ is \vocab{normal} if $TT^\dagger = T^\dagger T$.
+
+	We say a complex $T$ is \vocab{self-adjoint} or \vocab{Hermitian} if $T = T^\dagger$;
+	i.e.\ as a matrix in any orthonormal basis, $T$ is its own conjugate transpose.
+	For real $T$ we say ``self-adjoint'', ``Hermitian'' or \vocab{symmetric}.
 \end{definition}
 \begin{theorem}
 	[Normal $\iff$ diagonalizable in inner form]
-	Let $V$ be a finite-dimensional inner product space.
+	Let $V$ be a finite-dimensional complex inner product space.
 	A linear map $T : V \to V$ is normal
 	if and only if one can pick an orthonormal basis of eigenvectors.
 \end{theorem}
 \begin{proof}
-	One direction is trivial (figure out which one).
-	For the other, see the last page of 
-	\url{math.ucla.edu/~mikehill/Math5651/Lecture28.pdf} until
-	I get bored enough to actually write down the proof again.
-	\todo{remove snarky note}
+	This is long, and maybe should be omitted on a first reading.
+	If $T$ has an orthonormal basis of eigenvectors,
+	this result is immediate.
+
+	Now assume $T$ is normal.
+	We first prove $T$ is diagonalizable; this is the hard part.
+	\begin{claim*}
+		If $T$ is normal, then $\ker T = \ker T^r = \ker T^\dagger$ for $r \ge 1$.
+		(Here $T^r$ is $T$ applied $r$ times.)
+	\end{claim*}
+	\begin{subproof}
+		[Proof of Claim]
+		Let $S = T^\dagger \circ T$, which is self-adjoint.
+		We first note that $S$ is Hermitian and $\ker S = \ker T$.
+		To see it's Hermitian, note
+		$\left<Sv, w \right> = \left<Tv, Tw \right> = \left<v, S T w \right>$.
+		Taking $v = w$ also implies $\ker S \subseteq \ker T$
+		(and hence equality since obviously $\ker T \subseteq \ker S$).
+
+		First, since we have $\left< S^r(v), S^{r-2}(v) \right>
+		= \left< S^{r-1}(v), S^{r-1}(v)\right>$,
+		an induction shows that $\ker S = \ker S^r$ for $r \ge 1$.
+		Now, since $T$ is normal, we have $S^r = (T^\dagger)^r \circ T^r$,
+		and thus we have the inclusion
+		\[ \ker T \subseteq \ker T^r \subseteq \ker S^r = \ker S = \ker T \]
+		where the last equality follows from the first claim.
+		Thus in fact $\ker T = \ker T^r$.
+
+		Finally, to show equality with $\ker T^\dagger$ we 
+		\begin{align*}
+			\left< Tv, Tv\right> &= \left< v, T^\dagger T v\right> \\
+			&= \left< v, T T^\dagger v \right> \\
+			&= \left< T^\dagger v, T^\dagger v \right>. \qedhere
+		\end{align*}
+	\end{subproof}
+
+	Now consider the given $T$, and any $\lambda$.
+	\begin{ques}
+		Show that $(T - \lambda\id)^\dagger = T^\dagger - \ol\lambda \id$.
+		Thus if $T$ is normal, so is $T - \lambda \id$.
+	\end{ques}
+	In particular, for any eigenvalue $\lambda$ of $T$,
+	we find that $\ker (T-\lambda\id) = \ker(T-\lambda\id)^r$.
+	This implies that all the Jordan blocks of $T$ have size $1$;
+	i.e.\ that $T$ is in fact diagonalizable.
+	Finally, we conclude that the eigenvectors of $T$ and $T^\dagger$ match,
+	and the eigenvalues are complex conjugates.
+
+	So, diagonalize $T$.
+	We just need to show that if $v$ and $w$ are eigenvectors of $T$
+	with distinct eigenvalues, then they are orthogonal.
+	(We can use Gram-Schmidt on any eigenvalue that appears multiple times.)
+	To do this, suppose $T(v) = \lambda v$ and $T(w) = \mu w$
+	(thus $T^\dagger(w) = \ol\mu w $).
+	Then
+	\[ \lambda \left< v,w\right>
+		= \left< \lambda v, w\right>
+		= \left< Tv, w\right>
+		= \left< v, T^\dagger(w)\right>
+		= \left< v, \ol \mu w \right> 
+		= \mu \left< v, w\right>. \]		
+	Since $\lambda \neq \mu$, we conclude $\left< v,w \right> = 0$.
 \end{proof}
 This means that not only can we write
 \[ T = \begin{bmatrix}
@@ -382,16 +449,7 @@ This means that not only can we write
 but moreover that the basis associated with this matrix happens to be orthonormal vectors.
 
 
-In particular,
-\begin{definition}
-	A matrix over a complex finite-dimensional inner product space
-	is said to be \vocab{self-adjoint} or \vocab{Hermitian} if $T = T^\dagger$;
-	i.e.\ as a matrix in any orthonormal basis, $T$ is its own conjugate transpose.
-	For real finite-dimensional inner product spaces
-	we say ``self-adjoint'', ``Hermitian'' or \vocab{symmetric}.
-\end{definition}
-
-Then we have that
+As a corollary:
 \begin{theorem}[Hermitian matrices have real eigenvalues]
 	A Hermitian matrix $T$ is diagonalizable, and all its eigenvalues are real.
 \end{theorem}

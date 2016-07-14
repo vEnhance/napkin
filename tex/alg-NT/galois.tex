@@ -609,11 +609,21 @@ That, and much more, holds in general.
 \begin{problem}[Artin's primitive element theorem]
 	\yod
 	Let $K$ be a number field.
-	Show that $K \cong \QQ(\alpha)$ for some $\alpha$.
-	\todo{add solution} % \url{http://www.math.cornell.edu/~kbrown/6310/primitive.pdf}}
+	Show that $K \cong \QQ(\gamma)$ for some $\gamma$.
 	\label{prob:artin_primitive_elm}
+	\begin{hint}
+		By induction, suffices to show $\QQ(\alpha, \beta) = \QQ(\gamma)$
+		for some $\gamma$ in terms of $\alpha$ and $\beta$.
+		For all but finitely many rational $\lambda$,
+		the choice $\gamma = \alpha + \lambda \beta$ will work.
+	\end{hint}
+	\begin{sol}
+		\url{http://www.math.cornell.edu/~kbrown/6310/primitive.pdf}
+	\end{sol}
 \end{problem}
+
 \pagebreak
+
 \section{(Optional) Proof that Galois extensions are splitting}
 We prove \Cref{thm:Galois_splitting}.
 First, we extract a useful fragment from the fundamental theorem.
