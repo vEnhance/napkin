@@ -1,5 +1,7 @@
 \chapter{What is a space?}
-At the time of writing, I'm convinced that metric topology is the morally correct way to motivate point-set topology as well as to generalize normal calculus.
+At the time of writing, I'm convinced that metric topology is
+the morally correct way to motivate point-set topology
+as well as to generalize normal calculus.
 Also, ``metric'' is a fun word to say.
 So here is my best attempt.
 
@@ -239,7 +241,7 @@ I hope you'll agree this is much cleaner than having to deal with $\eps$'s and $
 \section{Homeomorphisms}
 When do we consider two groups to be the same?
 Answer: if there's a structure-preserving map between them which is also a bijection.
-For topological spaces, we do exactly the same thing, but replace ``structure-preserving'' with ``continuous''.
+For metric spaces, we do exactly the same thing, but replace ``structure-preserving'' with ``continuous''.
 
 \begin{definition}
 	Let $M$ and $N$ be metric spaces.
@@ -275,8 +277,10 @@ Here are some examples.
 	\listhack
 	\begin{enumerate}[(a)]
 		\ii Any space $M$ is homeomorphic to itself through the identity map.
-		\ii A doughnut (torus) is homeomorphic to a coffee cup.
-		\ii The unit circle $S^1$ is homeomorphic to the boundary of the unit square. Here's one bijection between them, after an appropriate scaling:
+		\ii The old saying: a doughnut (torus) is homeomorphic to a coffee cup.
+		(Look this up if you haven't heard of it.)
+		\ii The unit circle $S^1$ is homeomorphic to the boundary of the unit square.
+		Here's one bijection between them, after an appropriate scaling:
 		\begin{center}
 			\begin{asy}
 				size(2cm);
@@ -317,7 +321,7 @@ Here are some examples.
 	Write down a homeomorphism from $(0,1)$ to $\RR$.
 \end{exercise}
 
-\begin{example}[Product topologies]
+\begin{example}[Product metrics]
 	Let $M = (M, d_M)$ and $N = (N, d_N)$ be metric spaces (say, $M = N = \RR$).
 	Let $p_i = (x_i,y_i) \in M \times N$ for $i=1,2$.
 	Consider the following metrics on the set of points $M \times N$:
@@ -342,8 +346,8 @@ Here are some examples.
 	\]
 	are homeomorphic,
 	with the homeomorphism being just the identity map.
-	Hence we will usually simply refer to \emph{the} topology $M \times N$,
-	called the \vocab{product topology},
+	Hence we will usually simply refer to \emph{the} metric on $M \times N$,
+	called the \vocab{product metric},
 	and it will not be important which metric we select.
 \end{example}
 
@@ -511,11 +515,14 @@ which makes it clear why open sets are good things to consider.
 This leads us to\dots
 
 \section{Forgetting the metric}
-Notice something interesting about the previous theorem -- it doesn't reference the metrics of $M$ and $N$ at all.
+Notice something interesting about the previous theorem --
+it doesn't reference the metrics of $M$ and $N$ at all.
 Instead, it refers only to the open sets.
 
-This leads us to consider: what if we could refer to spaces \emph{only} by their open sets, forgetting about the fact that we had a metric to begin with?
-That's exactly what we do in point-set topology.
+This leads us to consider:
+what if we could refer to spaces \emph{only} by their open sets,
+forgetting about the fact that we had a metric to begin with?
+That's exactly what we do in ``point-set topology''.
 
 \begin{definition}
 	A \vocab{topological space} is a pair $(X, \mathcal T)$,

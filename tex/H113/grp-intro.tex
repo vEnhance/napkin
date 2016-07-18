@@ -41,12 +41,15 @@ Before I write down the definition of a group, let me give two examples.
 From this I bet you can already guess what the definition of a group is.
 \begin{definition}
 	A \vocab{group} is a pair $G = (G, \star)$
-	consisting of a set of elements $G$, and an associative
-	binary operation $\star$ on $G$, such that:
+	consisting of a set of elements $G$, and a binary operation $\star$ on $G$, such that:
 	\begin{itemize}
 		\ii $G$ has an \vocab{identity element}, usually denoted $1_G$
 		or just $1$, with the property that
 		\[ 1_G \star g = g \star 1_G = g \text{ for all $g \in G$}. \]
+		\ii The operation is \vocab{associative}, meaning
+		$(a \star b) \star c = a \star (b \star c)$
+		for any $a,b,c \in G$.
+		Consequently we generally don't write the parentheses.
 		\ii Each element $g \in G$ has an \vocab{inverse}, that is, an element $h \in G$ such that \[ g \star h = h \star g = 1_G. \]
 	\end{itemize}
 	\label{def:group}
@@ -55,6 +58,12 @@ From this I bet you can already guess what the definition of a group is.
 i.e.\ to say explicitly that $g \star h \in G$.
 But this is implied already by the fact that $\star$
 is a binary operation on $G$.)
+
+\begin{remark}
+	It is not required that $\star$ is commutative ($a \star b = b \star a$).
+	So we say that a group is \vocab{abelian} if the operation is
+	commutative and \vocab{non-abelian} otherwise.
+\end{remark}
 
 %\begin{figure}[ht]
 %	\centering
@@ -69,6 +78,7 @@ is a binary operation on $G$.)
 	\listhack
 	\begin{itemize}
 		\ii The pair $(\QQ, \cdot)$ is NOT a group.
+		(Here $\QQ$ is rational numbers.)
 		While there is an identity element, the element $0 \in \QQ$
 		does not have an inverse.
 		\ii The pair $(\ZZ, \cdot)$ is also NOT a group. (Why?)
@@ -92,26 +102,46 @@ is a binary operation on $G$.)
 	\end{itemize}
 \end{example}
 
-Let's resume writing down examples of groups.
 
-\begin{example}
-	[General linear group]
-	Let $n$ be a positive integer.
-	Then $\GL_n(\RR)$ is defined as the set of $n \times n$ real matrices which have nonzero determinant.
-	It turns out that with this condition, every matrix does indeed have an inverse, so $(\GL_n(\RR), \times)$ is a group, called the
-	\vocab{general linear group}
-	(The fact that $\GL_n(\RR)$ is closed under $\times$ follows
-	from the linear algebra fact that $\det (AB) = \det A \det B$,
-	proved in later chapters.)
-\end{example}
-\begin{example}
-	[Special linear group]
-	Following the example above, let $\SL_n(\RR)$ denote 
-	the set of $n \times n$ matrices whose determinant is actually $1$.
-	Again, for linear algebra reasons
-	it turns out that $(\SL_n(\RR), \times)$ is also a group, called the \vocab{special linear group}.
-\end{example}
+\begin{remark}
+	[Digression]
+	A common question is: why these axioms
+	(for example, why associative but not commutative)?
+	This answer will likely not make sense until later,
+	but here are some comments that may help.
 
+	One general heuristics is:
+	Whenever you define a new type of general object,
+	there's always a balancing act going on.
+	On the one hand, you want to include enough constraints that your
+	objects are ``nice''.
+	On the other hand, if you include too many constraints,
+	then your definition applies to too few objects.
+	So, for example, we include ``associative'' because that makes our lives easier
+	and most operations we run into are associative.
+	We don't include ``commutative'' though, because examples below
+	show that there are lots of non-abelian groups we care about.
+	(But we introduce the name ``abelian'' because we still want to keep track of it.)
+
+	Another comment: a good motivation for the inverse axioms
+	is that you get a large amount of \emph{symmetry}.
+	The set of positive integers with addition is not a group,
+	for example, because you can't subtract $6$ from $3$:
+	some elements are ``larger'' than others.
+	By requiring an inverse element to exist, you get rid of this issue.
+	(You also need identity for this;
+	it's hard to define inverses without it.)
+
+	Even more abstruse comment:
+	\Cref{thm:cayley_theorem} shows that groups are actually shadows of
+	the so-called symmetric groups (defined later, also called permutation groups).
+	This makes rigorous the notion that ``groups are very symmetric''.
+\end{remark}
+
+
+
+Let's resume writing down examples.
+Here are some more \textbf{abelian examples}:
 \begin{example}
 	[Complex unit circle]
 	Let $S^1$ denote the set of complex numbers $z$ with absolute value one; that is
@@ -147,7 +177,29 @@ Let's resume writing down examples of groups.
 	Why do we need the fact that $p$ is prime?
 \end{ques}
 
-The next two examples are fairly important ones:
+Here are some \textbf{non-abelian examples}:
+\begin{example}
+	[General linear group]
+	Let $n$ be a positive integer.
+	Then $\GL_n(\RR)$ is defined as the set of $n \times n$ real matrices
+	which have nonzero determinant.
+	It turns out that with this condition,
+	every matrix does indeed have an inverse,
+	so $(\GL_n(\RR), \times)$ is a group, called the
+	\vocab{general linear group}.
+
+	(The fact that $\GL_n(\RR)$ is closed under $\times$ follows
+	from the linear algebra fact that $\det (AB) = \det A \det B$,
+	proved in later chapters.)
+\end{example}
+\begin{example}
+	[Special linear group]
+	Following the example above, let $\SL_n(\RR)$ denote 
+	the set of $n \times n$ matrices whose determinant is actually $1$.
+	Again, for linear algebra reasons
+	it turns out that $(\SL_n(\RR), \times)$ is also a group,
+	called the \vocab{special linear group}.
+\end{example}
 
 \begin{example}
 	[Symmetric groups]
@@ -161,7 +213,6 @@ The next two examples are fairly important ones:
 	\end{itemize}
 	The group $S_n$ is called the \vocab{symmetric group} on $n$ elements.
 \end{example}
-
 \begin{example}
 	[Dihedral group]
 	The \vocab{dihedral group of order $2n$}, denoted $D_{2n}$,
@@ -208,13 +259,7 @@ Here is a picture of some elements of $D_{10}$.
 	\end{asy}
 \end{center}
 
-
-Note that the last two groups all share a non-property: the group operation is not in general commutative!
-We leave these as a warning for the reader.
-\begin{definition}
-We say that a group is \vocab{abelian} if the operation is commutative and \vocab{non-abelian} otherwise.
-\end{definition}
-
+More examples:
 \begin{example}
 	[Products of groups]
 	Let $(G, \star)$ and $(H, \ast)$ be groups.
@@ -310,13 +355,12 @@ Finally, we state a very important lemma about groups,
 which highlights why having an inverse is so valuable.
 \begin{lemma}[Left multiplication is a bijection]
 	Let $G$ be a group, and pick a $g \in G$. 
-	Then the map $G \to G$ given by
-	$x \mapsto gx$
-	is a bijection.
+	Then the map $G \to G$ given by $x \mapsto gx$ is a bijection.
 	\label{lem:group_mult_biject}
 \end{lemma}
 \begin{exercise}
-	Check this. (Show injectivity and surjectivity directly.)
+	Check this by showing injectivity and surjectivity directly.
+	(If you don't know what these words mean, consult \Cref{ch:sets_functions}.)
 \end{exercise}
 \begin{example}
 	Let $G = \Zm 7$ (as in \Cref{def:mult_mod_p}) and pick $g=3$.
