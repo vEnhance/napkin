@@ -1,0 +1,221 @@
+\chapter{Terminology on sets and functions}
+\label{ch:sets_functions}
+This appendix will cover some notions on sets and functions
+such as ``bijections'', ``equivalence classes'', and so on.
+It is likely that many readers can skip this section;
+in any case everyone is encouraged to read this as quickly as they can get away with.
+
+Remark for experts: I am not dealing with foundational issues in this chapter.
+See \Cref{ch:zfc} (and onwards) if that's what you're interested in.
+Consequently I will not prove most assertions.
+
+\section{Sets}
+A \vocab{set} for us will just be a collection of elements (whatever they may be).
+For example, the set $\NN = \{1, 2, 3, 4, \dots\}$ is the positive integers,
+and $\ZZ = \{ \dots, -2, -1, 0, 1, 2, \dots\}$ is the set of all integers.
+As another example, we have a set of humans:
+\[ H = \left\{ x \mid \text{$x$ is a featherless biped} \right\}. \]
+(Here the ``$\mid$'' means ``such that''.)
+
+There's also a set with no elements, which we call the \vocab{empty set}.
+It's denoted by $\varnothing$.
+
+It's conventional to use capital letters for sets (like $H$),
+and lowercase letters for elements of sets (like $x$).
+
+\begin{definition}
+We write $x \in S$ to mean ``$x$ is in $S$'', for example $3 \in \NN$.
+\end{definition}
+
+\begin{definition}
+	If every element of a set $A$ is also in a set $B$,
+	then we say $A$ is a \vocab{subset} of $B$, and denote this by $A \subseteq B$.
+	If moreover $A \neq B$, we say $A$ is a \vocab{proper subset}
+	and write $A \subsetneq B$.
+	(This is analogous to $\le$ and $<$.)
+\end{definition}
+\begin{example}
+	[Examples of subsets]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii $\{1,2,3\} \subseteq \NN \subseteq \ZZ$.
+		\ii $\varnothing \subseteq A$ for any set $A$. (Why?)
+		\ii $A \subseteq A$ for any set $A$.
+	\end{enumerate}
+\end{example}
+
+\begin{definition}
+	We write
+	\begin{itemize}
+		\ii $A \cup B$ for the set of elements in
+		\emph{either} $A$ or $B$ (possibly both),
+		called the \vocab{union} of $A$ and $B$.
+		\ii $A \cap B$ for the set of elements in \emph{both} $A$ and $B$, and
+		called the \vocab{intersection} of $A$ and $B$.
+		\ii $A \setminus B$ for the set of elements in $A$ but \emph{not} in $B$.
+	\end{itemize}
+\end{definition}
+
+\begin{example}
+	[Examples of set operations]
+	Let $A = \{1,2,3\}$ and $B = \{3,4,5\}$. Then
+	\begin{align*}
+		A \cup B &= \{1,2,3,4,5\} \\
+		A \cap B &= \{3\} \\
+		A \setminus B &= \{1,2\}.
+	\end{align*}
+\end{example}
+
+\begin{exercise}
+	Convince yourself: for any sets $A$ and $B$,
+	we have $A \cap B \subseteq A \subseteq A \cup B$.
+\end{exercise}
+
+\section{Functions}
+Given two sets $A$ and $B$, a \vocab{function} $f$ from $A$ to $B$
+is a mapping of every element of $A$ to some element of $B$.
+
+We call $A$ the \vocab{domain} of $f$, and $B$ the \vocab{codomain}.
+We write this as $f : A \to B$ or $A \taking f B$.
+\begin{abuse}
+	If the name $f$ is not important, we will often just write $A \to B$.
+\end{abuse}
+We write $f(a) = b$ or $a \mapsto b$ to signal that $f$ takes $a$ to $b$.
+
+\subsection{Injective / surjective / bijective functions}
+\begin{definition}
+	A function $f$ is:
+	\begin{itemize}
+		\ii \vocab{injective} if whenever $a_1 \neq a_2$, we have $f(a_1) = a_2$.
+		Often, we will write $f : A \injto B$ to emphasize this.
+		\ii \vocab{surjective} if whenever $b \in B$, there exists some $a \in A$
+		such that $f(a) = b$.
+		Often, we will write $f : A \surjto B$ to emphasize this.
+		\ii \vocab{bijection} if both, i.e.\ $f$ is a ``one-to-one correspondence'':
+		for every $b \in B$ there is a \emph{unique} $a \in A$
+		such that $f(a) = b$.
+	\end{itemize}
+\end{definition}
+
+\begin{example}
+	[Examples of functions]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii There's a function taking every human to their
+		age in years (rounded to the nearest integer).
+		This function is \textbf{not injective},
+		because for example there are many people with age $20$.
+		This function is also \textbf{not surjective}: no one has age $10000$.
+
+		\ii There's a function taking every
+		USA citizen to their social security number.
+		This is also \textbf{not surjective} (no one has SSN equal to $3$),
+		but at least it \textbf{is injective} (no two people have the same SSN).
+	\end{enumerate}
+\end{example}
+
+\begin{example}
+	[Examples of bijections]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii Let $A = \{1,2,3,4,5\}$ and $B = \{6,7,8,9,10\}$.
+		Then the function $f : A \to B$ by $a \mapsto a+5$ is a bijection.
+		\ii In a classroom with $30$ seats,
+		there is exactly one student in every seat.
+		Thus the function taking each student to the seat they're in
+		is a bijection; in particular, there are exactly $30$ students.
+	\end{enumerate}
+\end{example}
+
+\begin{remark}
+	Assume for convenience that $A$ and $B$ are finite sets. Then:
+	\begin{itemize}
+		\ii If $f : A \injto B$ is injective, then the size of $A$ is at most the size of $B$.
+		\ii If $f : A \surjto B$ is surjective, then the size of $A$ is at least the size of $B$.
+		\ii If $f : A \to B$ is a bijection, then the size of $A$ equals the size of $B$.
+	\end{itemize}
+\end{remark}
+
+Now, notice that if $f : A \to B$ is a bijection,
+then we can ``apply $f$ backwards'':
+(for example, rather than mapping each student to the seat they're in,
+we map each seat to the student sitting in it).
+This is called an \vocab{inverse function}; we denote it $f\inv : B \to A$.
+
+\subsection{Images and pre-images}
+Let $X \taking f Y$ be a function.
+
+\begin{definition}
+	Suppose $T \subseteq Y$.
+	The \vocab{pre-image} $f\pre(T)$ is the set of all
+	$x \in X$ such that $f(x) \in T$.
+	Thus, $f\pre(T)$ is a subset of $X$.
+\end{definition}
+\begin{example}
+	[Examples of pre-image]
+	Let $f : H \to \ZZ$ be the age function from earlier.
+	Then
+	\begin{enumerate}[(a)]
+		\ii $f\pre(\{13, 14, 15, 16, 17, 18, 19\})$ is the set of teenagers.
+		\ii $f\pre(\{0\})$ is the set of newborns.
+		\ii $f\pre(\{1000, 1001, 1002, \dots \}) = \varnothing$,
+		as I don't think anyone is that old.
+	\end{enumerate}
+\end{example}
+
+\begin{abuse}
+	By abuse of notation, we may abbreviate $f\pre(\{y\})$ to $f\pre(y)$.
+	So for example, $f\pre(\{0\})$ above becomes shortened to $f\pre(0)$.
+\end{abuse}
+
+The dual notion is:
+\begin{definition}
+	Suppose $S \subseteq X$.
+	The \vocab{image} $f``(S)$ is the set of all things of the form $f(s)$.
+\end{definition}
+\begin{example}
+	[Examples of images]
+	Let $A = \{1,2,3,4,5\}$ and $B = \ZZ$.
+	Consider a function $f : A \to B$ given by
+	\[
+		f(1) = 17 \quad
+		f(2) = 17 \quad
+		f(3) = 19 \quad
+		f(4) = 30 \quad
+		f(5) = 234.
+	\]
+	\begin{enumerate}[(a)]
+		\ii The image $f``(\{1,2,3\})$ is the set $\{17, 19\}$.
+		\ii The image $f``(A)$ is the set $\{17, 19, 30, 234\}$.
+	\end{enumerate}
+\end{example}
+\begin{ques}
+	Suppose $f : A \surjto B$ is surjective.
+	What is $f``(A)$?
+\end{ques}
+
+\section{Equivalence relations}
+Let $X$ be a fixed set now.
+An \vocab{equivalence relation} $\sim$ on $X$ is a binary relation
+which satisfies the following axioms:
+\begin{itemize}
+	\ii Reflexive: we have $x \sim x$.
+	\ii Symmetric: if $x \sim y$ then $y \sim x$
+	\ii Transitive: if $x \sim y$ and $y \sim z$ then $x \sim z$.
+\end{itemize}
+An \vocab{equivalence class} is then a
+set of all things equivalent to each other.
+One can show that $X$ becomes partitioned by these equivalence classes:
+
+\begin{example}
+	[Example of an equivalence relation]
+	Let $\NN$ denote the set of positive integers.
+	Then suppose we declare $a \sim b$ if $a$ and $b$ have the same last digit,
+	for example $131 \sim 211$, $45 \sim 125$, and so on.
+
+	Then $\sim$ is an equivalence relation.
+	It partitions $\NN$ into ten equivalence classes,
+	one for each trailing digit.
+\end{example}
+
+Often, the set of equivalence classes will be denoted $X/{\sim}$.
