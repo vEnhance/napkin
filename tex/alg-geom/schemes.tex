@@ -7,8 +7,9 @@ It will be a locally ringed space, so we need to define
 	\ii The structure sheaf on it.
 \end{itemize}
 
-In the case of $\Aff^n$, we used $\CC^N$ as the set of points
-and $\CC[x_1, \dots, x_n]$ but then remarked that the set of points
+In the case of $\Aff^n$, we used $\CC^n$ as the set of points
+and $\CC[x_1, \dots, x_n]$ as the ring of functions
+but then remarked that the set of points
 of $\CC^n$ corresponded to the maximal ideals of $\CC[x_1, \dots, x_n]$.
 
 In an \emph{affine scheme}, we will take an \emph{arbitrary} ring $R$,
@@ -19,7 +20,8 @@ $\CC[x_1, \dots, x_n] / I$, but now we will be able to take
 \emph{any} ideal $I$, thus finally completing the table at the end
 of the ``affine variety'' chapter.
 
-In particular, $\Spec \CC[x] / (x^2)$ will be the double we sought for so long.
+In particular, $\Spec \CC[x] / (x^2)$ will be the double point
+we sought for so long.
 
 \section{The set of points}
 \prototype{$\Spec \CC[x_1, \dots, x_n] / I$.}
@@ -37,7 +39,7 @@ points which are ``somewhere'' in the space, but nowhere in particular.
 
 \begin{remark}
 	As usual $R$ itself is not a prime ideal, but $(0)$
-	does if $R$ is an integral domain.
+	is prime if $R$ is an integral domain.
 \end{remark}
 
 \begin{example}
@@ -118,7 +120,7 @@ then everything will be clear.
 	\begin{align*}
 		\VV(I) &= \left\{ \pp \in \Spec R \mid f(\pp)=0 \forall f \in I \right\} \\
 		&= \left\{ \pp \in \Spec R \mid f \in \pp \; \forall f \in I \right\} \\
-		&= \left\{ p \in \Spec R \mid I \subseteq \pp \right\}.
+		&= \left\{ \pp \in \Spec R \mid I \subseteq \pp \right\}.
 	\end{align*}
 	Finally, we define the \vocab{Zariski topology} on $\Spec R$
 	by declaring that the sets of the form $\VV(I)$ are closed.
@@ -226,7 +228,7 @@ So we usually only take situations where $0 \notin S$.
 	rather than the simpler $r_1s_2 - r_2s_1 = 0$ is that
 	otherwise the equivalence relation may fail to be transitive.
 	Here is a counterexample: take
-	\[ R = \Zc{12} \qquad S = \{ 0, 4, 8 \}. \]
+	\[ R = \Zc{12} \qquad S = \{ 2, 4, 8 \}. \]
 	Then we have for example
 	\[ \frac12 = \frac24 = \frac64 = \frac32. \]
 	So we need to have $\frac12=\frac32$ which is only true
@@ -305,6 +307,52 @@ by viewing the germ at each point as an element of $R_\pp$.
 	$f_\qq = \frac fg \in R_\qq$ for all $\qq \in U_\pp$.
 \end{definition}
 
+\section{Example: fat points}
+So, let me elaborate a little on the ``double point'' scheme
+\[ X_2 = \Spec \CC[x] / (x^2) \]
+since it is such an important motivating example.
+How it does differ from the ``one-point'' scheme $X_1 = \Spec \CC[x] / (x)$?
+
+The difference can only be seen on the level of the structure sheaves.
+Indeed,
+\begin{itemize}
+	\ii As a set of points, $X_2$ has only one point, call it $p_2 = (x)$.
+	Similarly, $X_1$ has only one point, call it $p_1 = (0)$.
+	\ii The two Zariski topologies are the same
+	(at any rate there is only one topology on a one-point space).
+	\ii But at the structure sheaf level, $X_2$ has a ``bigger'' sheaf:
+	the ring of functions on the single point $p_2$ is instead
+	a \emph{two-dimensional} $\CC$-vector space $\CC[x]/(x^2)$.
+	This formalizes the notion that this point is ``fat'':
+	specifying a function from $p_2$ to $\CC$ now gives you
+	\emph{two} degrees of freedom instead of just one.
+\end{itemize}
+
+Another way to think about is in terms of functions.
+Consider polynomials $f = a_0 + a_1x + a_2x^2 + \dots$ on $\CC[x]$.
+Then we have a sequence of maps
+\begin{diagram}
+	\CC[x] & \rTo & \CC[x]/(x^2) & \rTo & \CC[x] / (x) \\
+	f & \rMapsto & a_0 + a_1x & \rMapsto & a_0
+\end{diagram}
+So $p_1$ only remembers the value of $f$, i.e.\ it remembers $f(0)$.
+But the point $p_2$ remembers more than just the value of $f$:
+it also remembers the first derivative of $f$.
+In \cite{ref:vakil} one draws a picture of this by taking $0 \in \CC$
+and adding a little bit of ``infinitesimal fuzz'' around it.
+
+One can play the analogy more.
+There's a ``triple point'' $X_3 = \Spec \CC[x] / (x^3) = \{p_3\}$
+whose ring of functions has three degrees of freedom:
+specifying a ``function'' on $p_3$ gives you three degrees of freedom.
+Analogously, it remembers both the first and second derivatives 
+of any polynomial in $\CC[x]$.
+In \cite{ref:vakil}, this is ``the point $0$ with even more fuzz''.
+Going even further,
+$\CC[x,y] / (x^2,y)$ is ``the origin with fuzz in the $x$-direction'',
+$\CC[x,y] / (x,y)^2$ is ``the origin with fuzz in all directions'',
+and so on and so forth.
+
 \section{Properties of affine schemes}
 Now that we're done defining an affine scheme,
 we state some important results about them.
@@ -361,7 +409,7 @@ This matches the results that we've seen when $\Spec R$ is an affine variety.
 		\ii Let $X = \Spec \ZZ$.
 		Let $U = X \setminus \{ (7), (11) \}$.
 		Then $\OO_X(U)$ can be identified with the set of rational numbers
-		which have denominator not divisible by $7$ or $11$.
+		which have denominator of the form $7^x 11^y$.
 	\end{enumerate}
 \end{example}
 
@@ -451,7 +499,7 @@ Let $S$ be \emph{any} (commutative) graded ring, like $\CC[x_0, \dots, x_n]$.
 		\ii As a set, $\Proj S$ consists of \emph{homogeneous prime ideals}
 		$\pp$ which do not contain $S^+$.
 		\ii If $I \subseteq S$ is homogeneous, then
-		we let $\Vp(I) = \{ \pp \in \Proj S \mid \pp \subseteq I \}$.
+		we let $\Vp(I) = \{ \pp \in \Proj S \mid I \subseteq \pp \}$.
 		Then the \vocab{Zariski topology} is imposed by declaring 
 		sets of the form $\Vp(I)$ to be closed.
 		\ii We now define a pre-sheaf $\SF$ on $\Proj S$ by
@@ -507,8 +555,9 @@ Of course, the archetypal example is that
 corresponds to the projective subvariety of $\CP^n$
 cut out by $I$ (when $I$ is radical).
 In the general case of an arbitrary ideal $I$, we
-call such schemes \vocab{projective subscheme} of $\CP^n$
-For example, the ``double point'' is given by $\Proj[x_0,x_1]/(x_0^2)$.
+call such schemes \vocab{projective subscheme} of $\CP^n$.
+For example, the ``double point'' in  $\CP^1$
+is given by $\Proj[x_0,x_1]/(x_0^2)$.
 
 \begin{remark}
 	No comment yet on what the global sections of $\OO_{\Proj S}(\Proj S)$ are.
@@ -525,7 +574,8 @@ the patience or knowledge to write about.
 So, if you want to actually see how schemes are used in ``real life'',
 you'll have to turn elsewhere.
 
-A good introduction I happily recommend is \cite{ref:gathmann}.
+A good reference I happily recommend is \cite{ref:gathmann}.
+More intense is \cite{ref:vakil}.
 See \Cref{ch:refs} for further remarks.
 
 \section\problemhead
@@ -559,10 +609,10 @@ See \Cref{ch:refs} for further remarks.
 \end{problem}
 
 \begin{problem}
-	[Andrew Critch]
+	[From Andrew Critch]
 	\gim
 	Let $R$ be a Noetherian ring.
-	Then $R$ is an integral domain if and only if it has no idempotents,
+	Show that $R$ is an integral domain if and only if it has no idempotents,
 	and $R_\pp$ is an integral domain for every prime $\pp$.
 	\begin{hint}
 		Show that if $\Spec R$ is connected and its stalks are irreducible,

@@ -205,11 +205,11 @@ This example illustrates the content of the main result:
 	We already did $m = 0$, so assume $m \ge 1$.
 	Let $I = \II(V)$ and for $k=1,\dots,m$
 	let $I_k = \II(\text{$k$th point of $V$})$.
-	\begin{ques}
+	\begin{exercise}
 		Show that $h_{I_k} (d) = 1$ for every $d$.
 		(Modify \Cref{ex:hilbert_zero}(a).)
 		\label{ques:hilbert_always_one}
-	\end{ques}
+	\end{exercise}
 
 	Hence we can proceed by induction on $m \ge 2$,
 	with the base case $m=1$ already done above.
@@ -290,7 +290,8 @@ In fact, this behavior of ``eventually polynomial'' always works.
 	For the inductive step, consider $\Vp(I)$ with dimension $m$.
 	Consider a hyperplane $H$ such that no irreducible
 	component of $\Vp(I)$ is contained inside $H$
-	(we quote this fact without proof, as it is geometrically obvious).
+	(we quote this fact without proof, as it is geometrically obvious,
+	but the last time I tried to write the proof I messed up).
 	For simplicity, assume WLOG that $H = \Vp(x_0)$.
 
 	Let $S = \CC[x_0, \dots, x_n]$ again.
@@ -479,6 +480,7 @@ Now, we use this to prove Pascal's theorem.
 
 \begin{problem}
 	[January TST for IMO 2016]
+	\gim
 	Let $ABC$ be an acute scalene triangle
 	and let $P$ be a point in its interior.
 	Let $A_1$, $B_1$, $C_1$ be projections of $P$ onto

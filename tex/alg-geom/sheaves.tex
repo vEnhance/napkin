@@ -24,7 +24,7 @@ behavior that we sought after all along.
 differentiable, constant, whatever) functions.}
 
 The proper generalization of our $\OO_V$ is a so-called sheaf of rings.
-Recall that $\OO_V$ was a took \emph{open sets of $V$} to \emph{rings},
+Recall that $\OO_V$ took \emph{open sets of $V$} to \emph{rings},
 with the interpretation that $\OO_V(U)$ was a ``ring of functions''.
 
 In light of this, we first define:
@@ -99,7 +99,7 @@ Now, we give a second, equivalent and far shorter definition of pre-sheaf:
 	Check that these definitions are equivalent.
 \end{ques}
 It is now clear that we can actually replace $\catname{Rings}$
-with any category we want.
+with any (concrete) category we want.
 
 So we should think:
 \begin{moral}
@@ -195,7 +195,7 @@ Now for the examples, which are more enlightening:
 		do produce a sheaf. (A function is locally constant
 		if for every point it is constant on some neighborhood.)
 	\end{enumerate}
-	In fact, the sheaf in (c) is what is called a \emph{sheafification}
+	In fact, the sheaf in (d) is what is called a \emph{sheafification}
 	of the pre-sheaf constant functions, which we define momentarily.
 \end{example}
 
@@ -498,14 +498,14 @@ $(g_p)_{p \in U} \in \SF\sh(U)$ the germ at a point $p$ is $g_p$:
 	[Pre-sheaves and sheaves have the same stalk]
 	\label{lem:pre_sheaf_stalk}
 	Let $\SF$ be a pre-sheaf and $\SF\sh$ its sheafification.
-	Let $q \in U$ with $U$ an open set.
-	Then there is an isomorphism
+	Then for any point $q$, there is an isomorphism
 	\[ (\SF\sh)_q \cong \SF_q. \]
 \end{lemma}
 \begin{proof}
 	A germ in $(\SF\sh)_q$ looks like 
 	$\left( (g_p)_{p \in U}, U \right)$,
-	where $g_p = (s_p, U_p)$ are themselves germs of $\SF_p$.
+	where $g_p = (s_p, U_p)$ are themselves germs of $\SF_p$,
+	and $q \in U$.
 	Then the isomorphism is given by
 	\[ \left( (g_p)_{p \in U}, U \right) \mapsto g_q \in \SF_q. \]
 	The inverse map is given by for each $g = (s,U) \in \SF_q$ by
@@ -552,7 +552,7 @@ And in fact:
 	\end{ques}
 	Now suppose $\alpha , \beta : \SF \to \SG$ satisfy $\alpha_p = \beta_p$
 	for every $p$. We want to show $\alpha_U(s) = \beta_U(s)$
-	for every $s \in U$.
+	for every $s \in \SF(U)$.
 	\begin{ques}
 		Verify this using the description of sections
 		as sequences of germs. \qedhere
@@ -586,8 +586,8 @@ and consider the stalk $\SF_{p}$, where $p \in X$.
 Define the ideal $\mm_p$ to be the set of germs $(s,U)$ for which $s(p) = 0$.
 
 Then $\mm_p$ is maximal: we have an exact sequence
-\[ 0 \to \mm_p \to \SF(U) \taking{(s,U) \mapsto s(p)} \RR \to 0 \]
-and so $\SF(U) / \mm_p \cong \RR$, which is a field.
+\[ 0 \to \mm_p \to \SF_p \taking{(s,U) \mapsto s(p)} \RR \to 0 \]
+and so $\SF_p / \mm_p \cong \RR$, which is a field.
 
 It remains to check there are no nonzero maximal ideals.
 Now note that if $s \notin \mm_p$,
@@ -619,7 +619,7 @@ We can now define:
 	with a sheaf $\OO_X$ of rings.
 	Suppose that for every point $p$, the stalk $\OO_{X,p}$
 	is a local ring.
-	Then we say that $\OO_X$ is a \vocab{locally ringed space}.
+	Then we say that $(X, \OO_X)$ is a \vocab{locally ringed space}.
 	We denote the maximal ideals by $\mm_{X,p}$.
 \end{definition}
 
