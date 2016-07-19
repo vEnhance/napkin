@@ -1,6 +1,11 @@
 %\chapter*{Graph of Chapter Dependencies}
 %\addcontentsline{toc}{chapter}{Graph of Chapter Dependencies}
 
+\bgroup
+\renewcommand{\href}[1]{} % temp disable links
+\renewcommand{\solidwidth}{0.7pt}
+\renewcommand{\boldwidth}{1.5pt}
+
 \setcounter{diagheight}{50}
 \begin{chart}
 \halfcourse 10,45:{Chapters 1,3}{Groups}{}
@@ -12,7 +17,7 @@
 \halfcourse 5,20:{Chapter 11}{Grp Classif}{}
 \halfcourse 30,35:{Chapter 12-13}{Ideals}{}
 \reqhalfcourse 55,10:{Chapters 14-16}{Cmplx Ana}{}
-\reqhalfcourse 58,19:{Chapters 17-19}{Quantum}{}
+\halfcourse 58,19:{Chapters 17-19}{Quantum}{}
 \reqhalfcourse 30,10:{Chapters 20-22}{Alg Top 1}{}
 \reqhalfcourse 30,22:{Chapters 23-25}{Cat Th}{}
 \halfcourse 65,25:{Chapters 26-29}{Diff Geo}{}
@@ -21,7 +26,7 @@
 \reqhalfcourse 42,0:{Chapter 41-45}{Alg NT 2}{}
 \reqhalfcourse 35,45:{Chapters 46-49}{Rep Theory}{}
 \reqhalfcourse 16,10:{Chapters 50-53}{Alg Geom 1}{}
-\reqhalfcourse 6,0:{Chapters 54-56}{Alg Geom 2}{}
+\halfcourse 6,0:{Chapters 54-56}{Alg Geom 2}{}
 \reqhalfcourse 65,0:{Chapters 57-63}{Set Theory}{}
 
 \prereqc 30,35,35,45;0:   % Ideals -> Rep Th
@@ -61,3 +66,4 @@
 \prereqc 30,22,6,0;80:     % Cat -> AG2
 \prereqc  5,35,42,0;-30:  % Grp Act -> ANT2
 \end{chart}
+\egroup
