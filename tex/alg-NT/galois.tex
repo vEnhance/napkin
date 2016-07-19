@@ -8,7 +8,7 @@
 The key idea in Galois theory is that of \emph{embeddings},
 which give us another way to get at the idea of the ``conjugate'' we described earlier.
 
-Let $K/\QQ$ be a number field.
+Let $K$ be a number field.
 An \vocab{embedding} $\sigma : K \injto \CC$, is an \emph{injective field homomorphism}:
 it needs to preserve addition and multiplication,
 and in particular it should fix $1$.
@@ -67,7 +67,7 @@ could just as well have looked at $K \to K$ rather than looking at $K \to \CC$.
 However, this is not true in (c): indeed $\QQ(\cbrt 2) \subset \RR$,
 but the non-identity embeddings have complex outputs!
 
-The key difference is to again to think about conjugates.
+The key difference is to again think about conjugates.
 Key observation:
 \begin{moral}
 	The field $K = \QQ(\cbrt 2)$ is ``deficient'' because the minimal polynomial $x^3-2$
@@ -90,7 +90,7 @@ In this chapter we'll develop these ideas in full generality, for any field othe
 \prototype{$\QQ(\cbrt 2)/\QQ$ is an extension, $\CC$ is an algebraic closure of any number field.}
 
 First, we define a notion of one field sitting inside another,
-in order to generalize the notion of number field.
+in order to generalize the notion of a number field.
 \begin{definition}
 	Let $K$ and $F$ be fields.
 	If $F \subseteq K$, we write $K/F$ and say $K$ is a
@@ -113,7 +113,9 @@ Degrees of finite extensions are multiplicative.
 	\[ [L:K][K:F] = [L:F]. \]
 \end{theorem}
 \begin{proof}
-	Basis bash: you can find a basis of $L$ over $K$, and then expand that into a basis $K$ over $F$.
+	Basis bash: you can find a basis of $L$ over $K$,
+	and then expand that into a basis $L$ over $F$.
+	(Diligent readers can fill in details.)
 \end{proof}
 
 Next, given a field (like $\QQ$) we want something to embed it into (in our case $\CC$).
@@ -148,7 +150,7 @@ Now that I've defined all these ingredients, I can prove:
 	Note that a nontrivial homomorphism of fields is necessarily injective
 	(the kernel is an ideal).
 	This justifies the use of ``$\injto$'', and we call each $\sigma_i$ an
-	\vocab{embedding} of $\QQ$ into $\CC$.
+	\vocab{embedding} of $K$ into $\CC$.
 \end{remark}
 \begin{proof}
 	This is actually kind of fun!

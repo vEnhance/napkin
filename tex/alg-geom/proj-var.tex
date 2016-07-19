@@ -182,7 +182,7 @@ The way out of this is to use only \emph{homogeneous} ideals.
 	is well-defined for a homogeneous ideal $I$.
 \end{exercise}
 So, we would hope for a Nullstellensatz-like theorem
-which bijects the homogeneous radical ideals to the ideals.
+which bijects the homogeneous radical ideals to projective ideals.
 Unfortunately:
 \begin{example}
 	[Irrelevant ideal]
@@ -204,7 +204,7 @@ However, other than the irrelevant ideal:
 	Thus there is a natural bijection between:
 	\begin{itemize}
 		\ii projective varieties in $\CP^n$, and
-		\ii homogeneous radical ideas of $\CC[x_1, \dots, x_n]$ 
+		\ii homogeneous radical ideals of $\CC[x_1, \dots, x_n]$ 
 		except for the irrelevant ideal. 
 	\end{itemize}
 \end{theorem}
@@ -255,7 +255,7 @@ The topology is defined as follows.
 
 Thus every projective variety $V$ is now a topological space.
 It remains to endow it with a sheaf of regular functions $\OO_V$.
-To do this we had to be a little careful.
+To do this we have to be a little careful.
 In the affine case we had a nice little ring of functions,
 the coordinate ring $\CC[x_0,\dots,x_n] / I$,
 that we could use to provide the numerator and denominators.
@@ -266,7 +266,7 @@ So, it seems natural to then define:
 	is defined as the ring
 	\[ \CC[V] = \CC[x_0, \dots, x_n] / I. \]
 \end{definition}
-However, when we define rational function we must impose
+However, when we define a rational function we must impose
 a new requirement that the numerator and denominator are the same degree.
 \begin{definition}
 	Let $U \subseteq V$ be an open set of a projective variety $V$.
@@ -311,6 +311,7 @@ on distinguished open sets are; this is an analog to
 \Cref{thm:reg_func_distinguish_open} from last time.
 \begin{theorem}
 	[Regular functions on distinguished open sets for projective varieties]
+	\label{thm:proj_reg_func_dist_open}
 	Let $V$ be a projective variety, and let $g \in \CC[V]$ be homogeneous
 	of \emph{positive degree} (thus $g$ is nonconstant).
 	Then
@@ -350,7 +351,8 @@ which does not look affine, and thus the analogy breaks down.
 \begin{example}[Regular functions on $\CP^1$]
 	Let $V = \CP^1$, with coordinates $(s:t)$.
 	\begin{enumerate}[(a)]
-		\ii By theorem, if $U_1$ is the standard affine chart
+		\ii By \Cref{thm:proj_reg_func_dist_open},
+		if $U_1$ is the standard affine chart
 		omitting the point $(1:0)$, we have
 		$ \OO_V(U_1) = \left\{ \frac{f}{t^n} \mid \deg f = n \right\} $.
 		One can write this as

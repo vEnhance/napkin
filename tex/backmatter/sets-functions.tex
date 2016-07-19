@@ -1,8 +1,8 @@
 \chapter{Terminology on sets and functions}
 \label{ch:sets_functions}
+\todo{this chapter still in progress}
 This appendix will cover some notions on sets and functions
 such as ``bijections'', ``equivalence classes'', and so on.
-\todo{add in more to this chapter}
 
 Remark for experts: I am not dealing with foundational issues in this chapter.
 See \Cref{ch:zfc} (and onwards) if that's what you're interested in.
@@ -28,7 +28,8 @@ We write $x \in S$ to mean ``$x$ is in $S$'', for example $3 \in \NN$.
 
 \begin{definition}
 	If every element of a set $A$ is also in a set $B$,
-	then we say $A$ is a \vocab{subset} of $B$, and denote this by $A \subseteq B$.
+	then we say $A$ is a \vocab{subset} of $B$,
+	and denote this by $A \subseteq B$.
 	If moreover $A \neq B$, we say $A$ is a \vocab{proper subset}
 	and write $A \subsetneq B$.
 	(This is analogous to $\le$ and $<$.)
@@ -72,15 +73,14 @@ We write $x \in S$ to mean ``$x$ is in $S$'', for example $3 \in \NN$.
 
 Here are some commonly recurring sets:
 \begin{itemize}
-	\ii $\CC$: set of complex numbers, like $3.2 + \sqrt 2 i$.
-	\ii $\RR$: set of real numbers, like $\sqrt 2$ or $\pi$.
-	\ii $\NN$: set of positive integers, like $5$ or $9$.
-	\ii $\QQ$: set of rational numbers, like $7/3$.
-	\ii $\ZZ$: set of integers, like $-2$ or $8$.
+	\ii $\CC$ is the set of complex numbers, like $3.2 + \sqrt 2 i$.
+	\ii $\RR$ is the set of real numbers, like $\sqrt 2$ or $\pi$.
+	\ii $\NN$ is the set of positive integers, like $5$ or $9$.
+	\ii $\QQ$ is the set of rational numbers, like $7/3$.
+	\ii $\ZZ$ is the set of integers, like $-2$ or $8$.
 \end{itemize}
 (These are pronounced in the way you would expect:
 ``see'', ``are'', ``en'', ``cue'', ``zed''.)
-
 
 \section{Functions}
 Given two sets $A$ and $B$, a \vocab{function} $f$ from $A$ to $B$
@@ -229,4 +229,5 @@ One can show that $X$ becomes partitioned by these equivalence classes:
 	one for each trailing digit.
 \end{example}
 
-Often, the set of equivalence classes will be denoted $X/{\sim}$.
+Often, the set of equivalence classes will be denoted $X/{\sim}$
+(pronounced ``$X$ mod sim'').

@@ -20,7 +20,7 @@ Here are some examples.
 	\begin{enumerate}[(a)]
 		\ii The \vocab{Devil's Staircase} (or Cantor function)
 		is a continuous function $H : [0,1] \to [0,1]$
-		which has derivative zero almost everywhere,
+		which has derivative zero ``almost everywhere'',
 		yet $H(0) = 0$ and $H(1) = 1$.
 		\ii The \vocab{Weierstra\ss\ function}
 		\[ x \mapsto \sum_{n=0}^\infty \left( \half \right)^n \cos \left( 2015^n \pi x \right) \]
@@ -120,7 +120,7 @@ from many directions, and we need all the limits to be equal.
 
 \begin{example}
 	[Important: conjugation is \emph{not} holomorphic]
-	Let $f(z) = \ol z$, $f : \CC \to \CC$.
+	Let $f(z) = \ol z$ be complex conjugation, $f : \CC \to \CC$.
 	This function, despite its simple nature, is not holomorphic!
 	Indeed, at $z=0$ we have,
 	\[ \frac{f(h)-f(0)}{h} = \frac{\ol h}{h}. \]
@@ -261,9 +261,13 @@ The theorem says that even if we multiply by $z^m$ for $m \neq 1$, we get the sa
 	\end{asy}
 \end{center}
 
+\begin{definition}
+	Given $\alpha : [0,1] \to \CC$,
+	we denote by $\ol\alpha$ the ``backwards'' contour
+	$\ol\alpha(t) = \alpha(1-t)$.
+\end{definition}
+
 \begin{ques}
-	Suppose $\alpha : [0,1] \to \CC$ is a contour.
-	Let $\ol\alpha$ be the ``backwards'' contour, given by $\ol\alpha(t) = \alpha(1-t)$.
 	What's the relation between $\oint_\alpha f \; dz$ and $\oint_{\ol\alpha} f \; dz$?
 	Prove it.
 \end{ques}
@@ -479,7 +483,7 @@ In fact, that's the central result we're going to use to prove the result.
 		Then
 		\[ \left\lvert \oint_\alpha f(z) \; dz \right\rvert \le ML. \]
 	\end{lemma}
-	(This is trivial to prove if you know the definition of length:
+	(This is straightforward to prove if you know the definition of length:
 	$L = \int_a^b \alpha'(t) \; dt$, where $\alpha : [a,b] \to \CC$.)
 
 	Anyways, as $\eps \to 0$, the quantity $\frac{f(z)-f(a)}{z-a}$ just approaches $f'(a)$,
@@ -493,7 +497,7 @@ In fact, that's the central result we're going to use to prove the result.
 \end{proof}
 
 \section{Holomorphic functions are analytic}
-\prototype{Imagine a formal series!}
+\prototype{Imagine a formal series $\sum_k c_kx^k$!}
 In the setup of the previous problem, we have a circle $\gamma : [0,2\pi] \to \CC$
 and a holomorphic function $U \to \CC$ which contains the disk $D$.
 We can write

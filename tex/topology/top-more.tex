@@ -136,16 +136,17 @@ This shows that path-connected is stronger than connected.
 \prototype{$\CC$ and $\CC \setminus \{0\}$.}
 Now let's motivate the idea of homotopy.
 Consider the example of the complex plane $\CC$ (which you can
-think of just as $\RR^2$) with two points $A$ and $B$.
-There's a whole bunch of paths from $A$ to $B$ but somehow they're not very different from one another.
-If I told you ``walk from $A$ to $B$'' you wouldn't have too many questions.
+think of just as $\RR^2$) with two points $p$ and $q$.
+There's a whole bunch of paths from $p$ to $q$ but somehow
+they're not very different from one another.
+If I told you ``walk from $p$ to $q$'' you wouldn't have too many questions.
 
 \begin{center}
 	\begin{asy}
 		unitsize(0.8cm);
 		bigbox("$\mathbb C$");
-		pair A = Drawing("A", (-3,0), dir(180));
-		pair B = Drawing("B", (3,0), dir(0));
+		pair A = Drawing("p", (-3,0), dir(180));
+		pair B = Drawing("q", (3,0), dir(0));
 		draw(A..(-2,0.5)..(0,2)..(1,1.2)..B, red, EndArrow);
 		draw(A--B, mediumgreen, EndArrow);
 		draw(A--(-1,-1)--(2,-1)--B, blue, EndArrow);
@@ -155,14 +156,15 @@ If I told you ``walk from $A$ to $B$'' you wouldn't have too many questions.
 
 So we're living happily in $\CC$ until a meteor strikes the origin,
 blowing it out of existence.
-Then suddenly to get from $A$ to $B$, people might tell you two different things: ``go left around the meteor'' or ``go right around the meteor''.
+Then suddenly to get from $p$ to $q$, people might tell you two different things:
+``go left around the meteor'' or ``go right around the meteor''.
 
 \begin{center}
 	\begin{asy}
 		unitsize(0.8cm);
 		bigbox("$\mathbb C \setminus \{0\}$");
-		pair A = Drawing("A", (-3,0), dir(180));
-		pair B = Drawing("B", (3,0), dir(0));
+		pair A = Drawing("p", (-3,0), dir(180));
+		pair B = Drawing("q", (3,0), dir(0));
 		draw(A..(-2,0.5)..(0,2)..(1,1.2)..B, red, EndArrow);
 		draw(A--(-1,-1)--(2,-1)--B, blue, EndArrow);
 		filldraw(scale(0.5)*unitcircle, grey, black);
@@ -171,7 +173,8 @@ Then suddenly to get from $A$ to $B$, people might tell you two different things
 
 So what's happening?
 In the first picture, the red, green, and blue paths somehow all looked
-the same: if you imagine them as pieces of elastic string pinned down at $A$ and $B$, you can stretch each one to any other one.
+the same: if you imagine them as pieces of elastic string pinned down
+at $p$ and $q$, you can stretch each one to any other one.
 
 But in the second picture, you can't move the red string to match with the blue string: there's a meteor in the way.
 The paths are actually different.
@@ -204,7 +207,7 @@ And the idea is just continuous deformation.
 	Similarly I will shorten ``path homotopic'' to ``homotopic''.
 \end{abuse}
 Picture: \url{https://commons.wikimedia.org/wiki/File:HomotopySmall.gif}.
-And needless to say, $\simeq$ is an equivalence relation.
+Needless to say, $\simeq$ is an equivalence relation.
 
 What this definition is doing is taking $\alpha$ and ``continuously deforming'' it to $\beta$, while keeping the endpoints fixed.
 Note that for each particular $s$, $F_s$ is itself a function.
@@ -215,8 +218,8 @@ it goes from $0$ to $1$, starting at $\alpha$ and ending at $\beta$.
 	\begin{asy}
 		size(9cm);
 		bigbox("$\mathbb C$");
-		pair A = Drawing("A", (-3,0), dir(180));
-		pair B = Drawing("B", (3,0), dir(0));
+		pair A = Drawing("p", (-3,0), dir(180));
+		pair B = Drawing("q", (3,0), dir(0));
 		draw(A..MP("F_{0} = \alpha", (0,2), dir(45))..B, heavygreen);
 		draw(A..MP("F_{0.25}", (0,1), dir(45))..B, mediumgreen);
 		draw(A..MP("F_{0.5}", (0,0), dir(90))..B, palecyan);
@@ -234,9 +237,9 @@ it goes from $0$ to $1$, starting at $\alpha$ and ending at $\beta$.
 So now I can tell you what makes $\CC$ special:
 \begin{definition}
 	A space $X$ is \vocab{simply connected} if it's path-connected and
-	for any points $A$ and $B$, all paths from $A$ to $B$ are homotopic.
+	for any points $p$ and $q$, all paths from $p$ to $q$ are homotopic.
 \end{definition}
-That's why you don't ask questions when walking from $A$ to $B$ in $\CC$:
+That's why you don't ask questions when walking from $p$ to $q$ in $\CC$:
 there's really only one way to walk. Hence the term ``simply'' connected.
 
 \begin{ques}
