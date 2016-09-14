@@ -88,10 +88,13 @@ in such a way that no two neighborhoods intersect.
 	\begin{align*}
 		\frac{z+1}{\sin z}
 		&= (z+1) \cdot \frac{1}{z - \frac{z^3}{3!} + \frac{z^5}{5!} + \dots} \\
-		&= \frac 1z \cdot \frac{z+1}{1 - \left( \frac{z^2}{3!} - \frac{z^4}{5!} + \frac{z^6}{7!} - \dots \right)} \\
-		&= \frac 1z \cdot (z+1) \sum_{k \ge 0} \left( \frac{z^2}{3!}-\frac{z^4}{5!}+\frac{z^6}{7!} \right)^k.
+		&= \frac 1z \cdot \frac{z+1}{1 - \left(%
+			\frac{z^2}{3!} - \frac{z^4}{5!} + \frac{z^6}{7!} - \dots \right)} \\
+		&= \frac 1z \cdot (z+1) \sum_{k \ge 0} \left( %
+			\frac{z^2}{3!}-\frac{z^4}{5!}+\frac{z^6}{7!}-\dots \right)^k.
 	\end{align*}
-	If we expand out the horrible sum (which I won't do), then you get $\frac 1z$ times a perfectly
+	If we expand out the horrible sum (which I won't do),
+	then you get $\frac 1z$ times a perfectly
 	fine Taylor series, i.e.\ a Laurent series.
 \end{example}
 
@@ -182,10 +185,9 @@ We can now give many more examples.
 	[A rational meromorphic functions]
 	Consider the function $\CC \to \CC$ given by
 	\begin{align*}
-		z &\mapsto \frac{z^4+1}{z^2-1} = z^2 + 1 + \frac{1}{z-1} \cdot \frac{2}{z+1} \\
-		&= z^2 + 1 + \frac1{z-1} 
-		\left( 1 - \half(z-1) + \frac14(z-1)^2 - \frac18(z-1)^3 + \dots \right) \\
-		&= \frac{1}{z-1} + \frac32 + \frac94(z-1)^2 + \frac{1}{16}(z-1)^3 - \dots
+		z &\mapsto \frac{z^4+1}{z^2-1} = z^2 + 1 + \frac{2}{(z-1)(z+1)} \\
+		&= z^2 + 1 + \frac1{z-1} \cdot \frac{1}{1+\frac{z-1}{2}} \\
+		&= \frac{2}{z-1} + \frac32 + \frac94(z-1) + \frac{7}{8}(z-1)^2 - \dots
 	\end{align*}
 	It has a pole of order $1$ and residue $2$ at $z=1$.
 	(It also has a pole of order $1$ at $z=-1$; you are invited to compute the residue.)
