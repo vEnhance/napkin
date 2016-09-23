@@ -414,7 +414,7 @@ to the bottom of $V$, hence the name.
 %\missingfigure{Picture of Mostowski collapse}
 
 
-\section{Adding an inaccessible, Skolem hulls, and going insane}
+\section{Adding an inaccessible}
 \prototype{$V_\kappa$}
 At this point you might be asking, well, where's my model of $\ZFC$?
 
@@ -422,28 +422,30 @@ I unfortunately have to admit now: $\ZFC$ can never prove that there is a model 
 (unless $\ZFC$ is inconsistent, but that would be even worse).
 This is a result called G\"odel's incompleteness theorem.
 
-Nonetheless, with some very modest assumptions added, we can actually show that a model \emph{does} exist:
+Nonetheless, with some very modest assumptions added,
+we can actually show that a model \emph{does} exist:
 for example, assuming that there exists a strongly inaccessible cardinal $\kappa$ would do the trick,
 $V_\kappa$ will be such a model (\Cref{prob:inaccessible_model}).
 Intuitively you can see why: $\kappa$ is so big that any set of rank lower than it can't escape it
 even if we take their power sets, or any other method that $\ZFC$ lets us do.
-I encourage you to try \Cref{prob:inaccessible_model} now.
 
-More pessimistically, this shows that it's impossible to prove in $\ZFC$ that such a $\kappa$ exists.
-Nonetheless, we now proceed under $\ZFC^+$ for convenience, which adds the existence of such a $\kappa$
+More pessimistically,
+this shows that it's impossible to prove in $\ZFC$ that such a $\kappa$ exists.
+Nonetheless, we now proceed under $\ZFC^+$ for convenience,
+which adds the existence of such a $\kappa$
 as a final axiom.
 So we now have a model $V_\kappa$ to play with. Joy!
 
 Great. Now we do something \emph{really} crazy.
 \begin{theorem}[Countable transitive model]
-	Assume $\ZFC^+$. Then there exists a transitive model $M$ of $\ZFC$
-	such that $M$ is a \emph{countable} set.
+	Assume $\ZFC^+$. Then there exists a transitive model $X$ of $\ZFC$
+	such that $X$ is a \emph{countable} set.
 \end{theorem}
 \begin{proof}
 	Fasten your seat belts.
 
-	First, since $\ZFC^+$ we can take $M = V_\kappa$ as a \emph{set}
-	which is a model of $\ZFC$.
+	First, since $\ZFC^+$ we can take $M = (V_\kappa, \in)$
+	as our model of $\ZFC$.
 	Start with the set $X_0 = \varnothing$.
 	Then for every integer $n$, we do the following to get $X_{n+1}$.
 	\begin{itemize}

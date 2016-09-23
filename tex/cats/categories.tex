@@ -59,15 +59,23 @@ Let's use this to motivate the definition of a general \emph{category}.
 		similarly, if $g : A \to A'$ is an arrow then $g \circ \id_A = g$.}
 	\end{itemize}
 \end{definition}
-\begin{remark}
+\begin{abuse}
+	From now on, by $A \in \AA$ we'll mean $A \in \obj(\AA)$.
+\end{abuse}
+\begin{abuse}
 	You can think of ``class'' as just ``set''.
-	The reason we can't use the word ``set'' is because of some paradoxical issues with
+	The reason we can't use the word ``set'' is
+	because of some paradoxical issues with
 	collections which are too large;
 	Cantor's Paradox says there is no set of all sets.
 	So referring to these by ``class'' is a way of sidestepping these issues.
-\end{remark}
-\begin{abuse}
-	From now on, by $A \in \AA$ we'll mean $A \in \obj(\AA)$.
+
+	Now and forever I'll be sloppy and assume all my categories
+	are \vocab{locally small}, meaning that $\Hom_{\AA} (A_1, A_2)$
+	is a set for any $A_1, A_2 \in \AA$.
+	So elements of $\AA$ may not be a set and even the objects of $\AA$
+	might not together be a set, but the set of morphisms between
+	two \emph{given} objects will always assumed to be a set.
 \end{abuse}
 
 Let's formalize the motivation we began with.
@@ -357,9 +365,9 @@ Picture:
 We can do this in any general category, defining a so-called product.
 \begin{definition}
 	Let $X$ and $Y$ be objects in any category $\AA$.
-	The \vocab{product} consists of an object $X \times Y$ and projection maps $\pi_X$, $\pi_Y$
-	onto $X$ and $Y$.
-	We require that for any object $A$ and maps $A \taking g X$, $A \taking h Y$, there
+	The \vocab{product} consists of an object $X \times Y$
+	and arrows $\pi_X$, $\pi_Y$ to $X$ and $Y$ (thought of as projection).
+	We require that for any object $A$ and arrows $A \taking g X$, $A \taking h Y$, there
 	is a \emph{unique} function $A \taking f X \times Y$ such that the diagram
 	\begin{diagram}
 		&& && X \\
@@ -367,22 +375,24 @@ We can do this in any general category, defining a so-called product.
 		& \rdTo(4,1)_h && \rdProj(2,1)^{\pi_Y} & Y
 	\end{diagram}
 	commutes.
-	In other words, if $A \taking g X$ and $A \taking h Y$,
-	then each of $g$ and $h$ \emph{factors uniquely} through $X \times Y$.
 \end{definition}
 \begin{abuse}
-	Strictly speaking, the product should consist of \emph{both} the object $X \times Y$
+	Strictly speaking, the product should consist of \emph{both}
+	the object $X \times Y$
 	and the projection maps $\pi_X$ and $\pi_Y$.
-	However, if $\pi_X$ and $\pi_Y$ are understood, then we just refer to the object $X \times Y$
-	as the product.
+	However, if $\pi_X$ and $\pi_Y$ are understood,
+	then we often use $X \times Y$ to refer to the object,
+	and refer to it also as the product.
+	\label{abuse:object}
 \end{abuse}
 
-Products do not always exist; for example, take a category with just two objects and no non-identity morphisms.
+Products do not always exist; for example,
+take a category with just two objects and no non-identity morphisms.
 Nonetheless:
 \begin{proposition}[Uniqueness of products]
 	When they exist, products are unique up to isomorphism:
 	given two products $P_1$ and $P_2$ of $X$ and $Y$
-	there is an isomorphism between the two.
+	there is an isomorphism between the two objects.
 \end{proposition}
 \begin{proof}
 	This is very similar to the proof that initial objects are unique up to unique isomorphism.
@@ -405,17 +415,26 @@ Nonetheless:
 	Thus $\id_{P_1} = g \circ f$.
 	Similarly, $f \circ g = \id_{P_2}$ so $f$ and $g$ are isomorphisms.
 \end{proof}
+\begin{abuse}
+	Actually, this is not really the morally correct theorem;
+	since we've only showed the objects $P_1$ and $P_2$ are isomorphic
+	and have not made any assertion about the projection maps.
+	But I haven't (and won't) define isomorphism of the entire product,
+	and so in what follows if I say ``$P_1$ and $P_2$ are isomorphic''
+	I really just mean the objects are isomorphic.
+\end{abuse}
 \begin{exercise}
 	In fact, show the products are unique up to \emph{unique} isomorphism:
-	the $f$ and $g$ above are the only isomorphisms between $P_1$ and $P_2$.
+	the $f$ and $g$ above are the only isomorphisms between
+	the objects $P_1$ and $P_2$.
 \end{exercise}
 
-This is a bit mystical:
-normally, when we want to construct an object with certain properties,
-we give, well, a construction.
-The ``universal property'' allows us to bypass all this work by saying
+The nice fact about this ``universal property'' mindset
+is that we don't have to give explicit constructions; assuming existence,
+the ``universal property'' allows us to bypass all this work by saying
 ``the object with these properties is unique up to unique isomorphism'',
-thus allowing us to use its properties without ever understanding its internal workings.
+thus we don't need to understand the internal workings of the object
+to use its properties.
 
 Of course, that's not to say we can't give concrete examples.
 \begin{example}
@@ -439,7 +458,7 @@ Of course, that's not to say we can't give concrete examples.
 Of course, we can define products of more than just one object.
 Consider a set of objects $(X_i)_{i \in I}$ in a category $\AA$.
 We define a \vocab{cone} on the $X_i$ to be an object $A$
-with some ``projection'' maps onto each $X_i$.
+with some ``projection'' maps to each $X_i$.
 Then the \vocab{product} is a cone $P$ which is ``universal'' in the same sense as before:
 given any other cone $A$ there is a unique map $A \to P$ making the diagram commute.
 In short, a product is a ``universal cone''.
@@ -454,7 +473,8 @@ The picture of this is
 \end{diagram}
 See also \Cref{prob:associative_product}.
 
-One can also do the dual construction to get a \vocab{coproduct}: given $X$ and $Y$, it's the object $X+Y$
+One can also do the dual construction to get a \vocab{coproduct}:
+given $X$ and $Y$, it's the object $X+Y$
 together with maps $X \taking{\iota_X} X+Y$ and $Y \taking{\iota_Y} X+Y$
 (that's Greek iota, think inclusion)
 such that for any object $A$ and maps $X \taking g A$, $Y \taking h A$
@@ -467,7 +487,11 @@ there is a unique $f$ for which
 	Y &&&&
 \end{diagram}
 commutes.
-We'll leave some of the concrete examples as an exercise this time.
+We'll leave some of the concrete examples as an exercise this time,
+for example:
+\begin{exercise}
+	Describe the coproduct in $\catname{Set}$.
+\end{exercise}
 Predictable terminology: a coproduct is a universal \vocab{cocone}.
 
 \section{Equalizers}
@@ -476,7 +500,7 @@ Given two sets $X$ and $Y$, and maps $X \taking{f,g} Y$, we define their \vocab{
 \[ \left\{ x \in X \mid f(x) = g(x) \right\}. \]
 We would like a categorical way of defining this, too.
 
-Consider two objects $X$ and $Y$ with two parallel maps $f$ and $g$ between them.
+Consider two objects $X$ and $Y$ with two maps $f$ and $g$ between them.
 Stealing a page from \cite{ref:msci}, we call this a \vocab{fork}:
 \begin{diagram}
 	X & \pile{\rTo^f \\ \rTo_g} & Y
@@ -489,19 +513,23 @@ A cone over this fork is an object $A$ and arrows over $X$ and $Y$ which make th
 \end{diagram}
 Effectively, the arrow over $Y$ is just forcing $f \circ q = g \circ q$.
 In any case, the \vocab{equalizer} of $f$ and $g$ is a ``universal cone'' over this fork:
-a map $E \taking{e} X$ such that $\exists ! h : A \to E$ such that
+it is an object $E$ and a map $E \taking{e} X$ such that
+for each $A \taking q X$ the diagram
 \begin{diagram}
 	& A & \\
 	\ldTo(1,3)^q & \dTo~{!\exists h} & \rdDashed(1,3) \\
 	& E & \\
 	X \ldTo(1,1)^e & \pile{\rTo^f \\ \rTo_g} & \rdDashed(1,1) Y \\
 \end{diagram}
-commutes; in other words, any map $A \taking{q} X$ equalizing $X \taking{f,g} Y$
+commutes for a unique $A \taking h E$.
+In other words, any map $A \taking{q} X$ as above
 must factor uniquely through $E$.
-Again, the dotted arrows can be omitted, and as before equalizers may not exist.
+Again, the dotted arrows can be omitted,
+and as before equalizers may not exist.
 But when they do exist:
 \begin{exercise}
-	Show uniqueness of equalizers up to unique isomorphism.
+	If $E \taking{e} X$ and $E' \taking{e'} X$ are equalizers,
+	show that $E \cong E'$.
 \end{exercise}
 
 \begin{example}
@@ -533,8 +561,9 @@ We'll flesh this idea out in the chapter on abelian categories.
 	It turns out you can also define a cone over any general \vocab{diagram} of objects and arrows;
 	we specify a projection from $A$ to each object and
 	require that the projections from $A$ commute with the arrows in the diagram.
-	(For example, a fork is a diagram with two edges and two parallel arrows.)
-	If you then demand the cone be universal, you have the extremely general definition of a \vocab{limit}.
+	(For example, a cone over a fork is a diagram with two edges and two arrows.)
+	If you then demand the cone be universal,
+	you have the extremely general definition of a \vocab{limit}.
 	As always, these are unique up to unique isomorphism.
 	We can also define the dual notion of a \vocab{colimit} in the same way.
 \end{remark}
@@ -551,24 +580,32 @@ The correct categorical notion is:
 	In other words, $f \circ g = f \circ h \implies g = h$.
 \end{definition}
 \begin{ques}
-	Verify that in a concrete category,
-	injective $\implies$ monic.
+	Verify that in a \emph{concrete} category, injective $\implies$ monic.
 \end{ques}
-In most situations, the converse is also true:
+\begin{ques}
+	Show that the composition of two monic maps is monic.
+\end{ques}
+In most but not all situations, the converse is also true.
 \begin{exercise}
 	Show that in $\catname{Set}$, $\catname{Grp}$, $\catname{CRing}$,
 	monic implies injective. (Take $A = \{\ast\}$, $A = \{1\}$, $A = \ZZ[x]$.)
 \end{exercise}
 More generally, as we said before there are many categories
-with a free object that you can use to think of as elements.
-An element of a set is a function $1 \to S$, and element of a ring is a function $\ZZ[x] \to R$, et cetera.
-In all these categories, the definition of monic literally reads ``$f$ is injective on $\Hom_\AA(A, X)$''.
+with a ``free'' object that you can use to think of as elements.
+An element of a set is a function $1 \to S$,
+and element of a ring is a function $\ZZ[x] \to R$, et cetera.
+In all these categories,
+the definition of monic literally reads
+``$f$ is injective on $\Hom_\AA(A, X)$''.
 So in these categories, ``monic'' and ``injective'' coincide.
-(But there are some examples of categories without free objects where one can have monic,
-non-injective maps.)
-\begin{ques}
-	Show that the composition of two monic maps is monic.
-\end{ques}
+
+That said, here is the standard counterexample.
+An additive abelian group $G = (G,+)$ is called \emph{divisible}
+if for every $x \in G$ and $n \in \ZZ$ there exists $y \in G$ with $ny = x$.
+Let $\catname{DivAbGrp}$ be the category of such groups.
+\begin{exercise}
+	Show that the projection $\QQ \to \QQ/\ZZ$ is monic but not injective.
+\end{exercise}
 
 Of course, we can also take the dual notion.
 \begin{definition}
@@ -614,6 +651,7 @@ Most notably:
 	In any category $\AA$ where all products exist,
 	show that \[ (X \times Y) \times Z \cong X \times (Y \times Z) \]
 	where $X$, $Y$, $Z$ are arbitrary objects.
+	(Here both sides refer to the objects, as in \Cref{abuse:object}.)
 	\label{prob:associative_product}
 \end{problem}
 
@@ -626,5 +664,6 @@ Most notably:
 	\gim
 	Consider a category $\AA$ with a \vocab{zero object},
 	meaning an object which is both initial and terminal. 
-	Given objects $X$ and $Y$ in $A$, prove that the projection $X \times Y \to X$ is epic.
+	Given objects $X$ and $Y$ in $A$,
+	prove that the projection $X \times Y \to X$ is epic.
 \end{problem}
