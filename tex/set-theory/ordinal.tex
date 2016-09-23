@@ -134,8 +134,10 @@ with no infinite descending chains.
 	to make an infinite descending chain.
 \end{example}
 \begin{exercise}
-	(Important) Convince yourself there are no infinite descending chains of ordinals at all
-	(which must be true by $\Foundation$!).
+	(Important)
+	Convince yourself there are no infinite
+	descending chains of ordinals at all,
+	even without the $\Foundation$ axiom (which certainly implies this).
 \end{exercise}
 
 \begin{definition}
@@ -200,12 +202,15 @@ First, we note that:
 	Then $\On$ is well-ordered by $\in$ and transitive, so $\On$ is an ordinal,
 	i.e.\ $\On \in \On$, which violates $\Foundation$.
 \end{proof}
+\begin{exercise}
+	[Unimportant] Give a proof without $\Foundation$ by considering $\On+1$.
+\end{exercise}
 
 From this we deduce:
 \begin{theorem}
 	[Sets of ordinals are bounded]
 	Let $A \subseteq \On$.
-	Then there is some ordinal $\alpha$ such that $A \in \alpha$
+	Then there is some ordinal $\alpha$ such that $A \subseteq \alpha$
 	(i.e.\ $A$ must be bounded).
 \end{theorem}
 \begin{proof}

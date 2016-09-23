@@ -376,10 +376,9 @@ because they were easier to think about.
 Here's a second, better reason we might only care about transitive models.
 
 \begin{lemma}
-	[Mostowski collapse]
-	Let $\mathscr X = (X,E)$ be a model
-	such that $\mathscr X \vDash \Extensionality + \Foundation$.
-	Then there exists an isomorphism $\pi : \mathscr X \to M$ for
+	[Mostowski collapse lemma]
+	Let $X = (X, \in)$ be a model, where $X$ is a set (possibly not transitive).
+	Then there exists an isomorphism $\pi : X \to M$ for
 	a transitive model $M = (M,\in)$.
 \end{lemma}
 
@@ -388,21 +387,31 @@ In fact, both $\pi$ and $M$ are unique.
 
 \begin{proof}
 	The idea behind the proof is very simple.
-	Since $E$ is well-founded and extensional, we can look at the
-	$E$-minimal element $x_\varnothing$ of $X$ with respect to $E$.
+	Since $\in$ is well-founded and extensional, we can look at the
+	$\in$-minimal element $x_\varnothing$ of $X$ with respect to $\in$.
 	Clearly, we want to send that to $0 = \varnothing$.
 
-	Then we take the next-smallest set under $E$, and send it to $1 = \{\varnothing\}$.
+	Then we take the next-smallest set under $\in$, and send it to $1 = \{\varnothing\}$.
 	We ``keep doing this''; it's not hard to see this does exactly what we want.
 
 	To formalize, define $\pi$ by transfinite recursion:
-	\[ \pi(x) \defeq \left\{ \pi(y) \mid y \; E \; x \right\}. \]
+	\[ \pi(x) \defeq \left\{ \pi(y) \mid y \in x \right\}. \]
 	This $\pi$, by construction, does the trick.
 \end{proof}
 
+\begin{remark}
+	[Digression for experts]
+	Earlier versions of Napkin claimed this was true for general models
+	$\mathscr X = (X, E)$ with $\mathscr X \vDash \Foundation + \Extensionality$.
+	This is false; it does not even imply $E$ is well-founded,
+	because there may be infinite descending chains of subsets of $X$
+	which do not live in $X$ itself.
+	Another issue is that $E$ may not be set-like.
+\end{remark}
+
 The picture of this is quite ``collapsing'' the elements of $M$ down
 to the bottom of $V$, hence the name.
-\missingfigure{Picture of Mostowski collapse}
+%\missingfigure{Picture of Mostowski collapse}
 
 
 \section{Adding an inaccessible, Skolem hulls, and going insane}
@@ -433,6 +442,8 @@ Great. Now we do something \emph{really} crazy.
 \begin{proof}
 	Fasten your seat belts.
 
+	First, since $\ZFC^+$ we can take $M = V_\kappa$ as a \emph{set}
+	which is a model of $\ZFC$.
 	Start with the set $X_0 = \varnothing$.
 	Then for every integer $n$, we do the following to get $X_{n+1}$.
 	\begin{itemize}
