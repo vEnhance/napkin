@@ -98,7 +98,7 @@ This is not a big loss: any real matrix can be interpreted as a complex matrix
 whose entries just happen to be real, for example.
 
 \section{The Jordan form}
-So that you know exactly where I'm going, I'm now going to state the main theorem.
+So that you know exactly where I'm going, here's the main theorem.
 \begin{theorem}
 	[Jordan canonical form]
 	Let $T : V \to V$ be a linear map over an algebraically closed field $k$.
@@ -248,7 +248,8 @@ In this way, the Jordan form is a decomposition of $V$ into invariant subspaces.
 
 Now I'm going to be cheap, and define:
 \begin{definition}
-	A map $T : V \to V$ is called \vocab{irreducible} if it's impossible to write $V = W_1 \oplus W_2$
+	A map $T : V \to V$ is called \vocab{indecomposable}
+	if it's impossible to write $V = W_1 \oplus W_2$
 	where both $W_1$ and $W_2$ are $T$-invariant.
 \end{definition}
 Picture of a \emph{reducible} map:
@@ -261,18 +262,20 @@ Picture of a \emph{reducible} map:
 		0 & 0 & \multicolumn{3}{|c}{} 
 	\end{bmatrix}
 \]
-As you might expect, we can break a space apart into ``irreducible'' parts.
+As you might expect, we can break a space apart into ``indecomposable'' parts.
 \begin{proposition}
 	Given any map $T: V \to V$, we can write
 	\[ V = V_1 \oplus V_2 \oplus \dots \oplus V_m \]
-	where each $V_i$ is $T$-invariant, and for any $i$ the map $T : V_i \to V_i$ is irreducible.
+	where each $V_i$ is $T$-invariant,
+	and for any $i$ the map $T : V_i \to V_i$ is indecomposable.
 \end{proposition}
 \begin{proof}
 	Same as the proof that every integer is the product of primes.
 \end{proof}
 
 Incredibly, with just that we're almost done!
-Consider a decomposition as above, so that $T : V_1 \to V_1$ is an irreducible map.
+Consider a decomposition as above,
+so that $T : V_1 \to V_1$ is an indecomposable map.
 Then $T$ has an eigenvalue $\lambda_1$, so let $S = T - \lambda_1 \id$; hence $\ker S \neq \{0\}$.
 \begin{ques}
 	Show that $V_1$ is also $S$-invariant, so we can consider $S : V_1 \to V_1$.
@@ -280,10 +283,11 @@ Then $T$ has an eigenvalue $\lambda_1$, so let $S = T - \lambda_1 \id$; hence $\
 By \Cref{prob:endomorphism_eventual_lemma}, we have
 \[ V_1 = \ker S^N \oplus \img S^N \]
 for some $N$.
-But we assumed $V_1$ was irreducible, so this can only happen if $\img S^N = \{0\}$ and $\ker S^N = V$
+But we assumed $T$ was indecomposable,
+so this can only happen if $\img S^N = \{0\}$ and $\ker S^N = V$
 (since $\ker S^N$ contains our eigenvector).
 Hence $S$ is nilpotent, so it's a collection of staircases.
-In fact, since $V_1$ is irreducible, there is only one staircase.
+In fact, since $T$ is indecomposable, there is only one staircase.
 Hence $V_1$ is a Jordan block, as desired.
 
 \section{(Optional) Proof of nilpotent Jordan}
@@ -629,5 +633,5 @@ Finally, $V_1$ and $V_2$ are $T$-invariant, as $(A_1(T) \cdot T)(v) = (T \cdot A
 
 Thus, we deduce
 \[ V = V_1 \oplus V_2 \]
-is an irreducible representation.
+is an indecomposable representation.
 We can repeat this procedure on $\ker A_1$
