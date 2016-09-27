@@ -309,11 +309,10 @@ all representations are completely reducible.
 \begin{remark}
 	In the case where $k = \CC$, there is a shorter proof.
 	Suppose $B : V \times V \to \CC$ is an arbitrary bilinear form.
-	Then by considering
-	\[ \left< v,w \right> = \sum_{g \in G} \left< g \cdot v, g \cdot w \right> \]
-	we obtain a bilinear form $\left< -,- \right>$
-	which is $G$-invariant, in the sense that
-	$\left< v,w \right> = \left< g \cdot v, g \cdot w\right>$.
+	Then we can ``average'' it to obtain a new bilinear form
+	\[ \left< v,w \right> \defeq \frac{1}{|G|} \sum_{g \in G} B(g \cdot v, g \cdot w). \]
+	The averaged form $\left< -,- \right>$ is $G$-invariant,
+	in the sense that $\left< v,w \right> = \left< g \cdot v, g \cdot w\right>$.
 	Then, one sees that if $W \subseteq V$ is a subrepresentation,
 	so is its orthogonal complement $W^\perp$.
 	This implies the result.
