@@ -834,22 +834,26 @@ This will happen when we study algebraic number theory and homology groups.
 		Use the fact that the infinite chain of subspaces
 		\[ \ker T \subseteq \ker T^2 \subseteq \ker T^3 \subseteq \dots \]
 		and the similar chain for $\img T$ must eventually stabilize
-		(look at the dimension of the spaces).
+		(for dimension reasons.).
 	\end{hint}
+	\begin{sol}
+		Consider
+		\[
+			\{0\} \subsetneq \ker S \subseteq \ker S^2 \subseteq \ker S^3 \subseteq \dots
+			\text{  and  }
+			V \supsetneq \img S \supseteq \img S^2 \supseteq \img S^3 \supseteq \dots.
+		\]
+		For dimension reasons, these subspaces must eventually stabilize:
+		for some large integer $N$,
+		$\ker T^N = \ker T^{N+1} = \dots$
+		and $\img T^N = \img T^{N+1} = \img T^{N+2} = \dots$.
+		When this happens, $\ker T^N \bigcap \img T^N = \{0\}$,
+		since $T^N$ is an automorphism of $\img T^N$.
+		On the other hand, by Rank-Nullity we also have
+		$\dim \ker T^N + \dim \img T^n = \dim V$.
+		Thus for dimension reasons, $V = \ker T^N \oplus \img T^N$.
+	\end{sol}
 \end{sproblem}
 
 %Now consider the sequences
-%\[
-%	\{0\} \subsetneq \ker S \subseteq \ker S^2 \subseteq \ker S^3 \subseteq \dots
-%	\text{  and  }
-%	V \supsetneq \img S \supseteq \img S^2 \supseteq \img S^3 \supseteq \dots.
-%\]
-%\begin{ques}
-%	Show that these spaces are all $S$-invariant.
-%	Why do these inclusions happen?
-%\end{ques}
-%For dimension reasons, these subspaces must eventually stabilize: for some large integer $N$,
-%$\ker S^N = \ker S^{N+1} = \dots$ and $\img S^N = \img S^{N+1} = \img S^{N+2} = \dots$.
-%When this happens, $\ker S^N \bigcap \img S^N = \{0\}$ (why?), and 
-%thus for dimension reasons $V_1 = \ker S^N \oplus \img S^N$.\footnote{%
-%	Recall here that for \emph{any} map $T : V \to W$, $\dim \ker T + \dim \img T = \dim V$.}
+
