@@ -180,10 +180,12 @@
 \addtolength{\textheight}{3.14cm}
 \setlength{\footskip}{0.5in}
 \setlength{\headsep}{10pt}
-\ihead{Evan Chen (\today)}
+\def\shortdate{\leavevmode\hbox{\the\year-\twodigits\month-\twodigits\day}}
+\def\twodigits#1{\ifnum#1<10 0\fi\the#1}
+\ihead{\footnotesize \textbf{Evan Chen} (\shortdate)}
 \automark{section}
 \chead{}
-\ohead{\headmark}
+\ohead{\footnotesize \textbf{\headmark}}
 \cfoot{\pagemark}
 
 %%fakesection Fancy section and chapter heads
