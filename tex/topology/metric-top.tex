@@ -759,11 +759,13 @@ For example, here are some gotchas:
 	that ``should'' converge (called \emph{Cauchy}) actually do.
 
 	\ii In general, it makes no sense to ask a question like ``is $[0,1]$ open?''.
-	The questions ``is $[0,1]$ open in $\RR$?'' and ``is $[0,1]$ open in $[0,1]$?'' do make sense, however.
-	The answer to the first question is ``no'' but the answer to the second question is ``yes'';
+	The questions ``is $[0,1]$ open in $\RR$?''
+	and ``is $[0,1]$ open in $[0,1]$?'' do make sense, however.
+	The answer to the first question is ``no''
+	but the answer to the second question is ``yes'';
 	indeed, every space is open in itself.
-	If $M = [0,1]$ the ball of radius $\half$ around $0 \in M$ is indeed contained in $M$,
-	because the $\half$-neighborhood of $0$ \emph{in $M$} is exactly $[0,\half)$.
+	Similarly, $[0, \half)$ is an open set in the space $M = [0,1]$
+	because it is the ball \emph{in $M$} of radius $\half$ centered at $0$.
 
 	\ii Dually, it doesn't make sense to ask ``is $[0,1]$ closed''?
 	It is closed \emph{in $\RR$} and \emph{in itself} (but every space is closed in itself, anyways).
@@ -864,9 +866,11 @@ examples look quite like the one we've given above.)
 	which makes $\ZZ$ into a metric space whose open sets are those described above.
 	% https://teratologicmuseum.wordpress.com/2009/05/05/a-metric-for-the-evenly-spaced-integer-topology/
 	\begin{hint}
-		The balls at $0$ should be of the form $n!\ZZ$.
+		The balls at $0$ should be of the form $n! \cdot \ZZ$.
 	\end{hint}
 	\begin{sol}
-		Let $d(x,y) = 2015^{-n}$, where $n$ is the largest integer such that $n! \mid x-y$.
+		Let $d(x,y) = 2017^{-n}$,
+		where $n$ is the largest integer
+		such that $n!$ divides $\left\lvert x-y \right\rvert$.
 	\end{sol}
 \end{problem}

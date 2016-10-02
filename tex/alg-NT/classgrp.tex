@@ -64,7 +64,7 @@ This leads us to consider the set of points
 \[ \left( \sigma_1(\alpha), \sigma_2(\alpha) \right) \in \RR^2
 \quad\text{as}\quad \alpha \in K. \]
 This lets us visualize what $\OO_K$ looks like in $\RR^2$.
-The points of $K$ cover the entire $\RR^2$, but the points of $\OO_K$ cut out a lattice.
+The points of $K$ are dense in $\RR^2$, but the points of $\OO_K$ cut out a lattice.
 
 \begin{center}
 	\begin{asy}
@@ -102,14 +102,15 @@ think this is not the right word to use -- lattices have ``volume'' zero since t
 are just a bunch of points! In contrast, the English word ``mesh'' really
 does refer to the width of a ``gap''.}
 is defined as the hypervolume of the ``fundamental parallelepiped'' I've colored blue above.
-For this particular case, it ought to be equal to the area of that parallelogram, which is
+For this particular case, it ought to be equal to the
+area of that parallelogram, which is
 \[
 	\det
 	\begin{bmatrix}
-		1 & \sqrt 2 \\
-		1 & -\sqrt 2
+		1 & -\sqrt 2 \\
+		1 & \sqrt 2
 	\end{bmatrix}
-	= -2\sqrt 2.
+	= 2\sqrt 2.
 \]
 The definition of the discriminant is precisely this, except with an extra square factor
 (since permutation of rows could lead to changes in sign in the matrix above).
@@ -158,9 +159,10 @@ we will not prove this here.
 	\]
 \end{example}
 \begin{example}[Discriminant of $\QQ(i)$]
+	Let $K = \QQ(i)$.
 	We have $\OO_K = \ZZ[i] = \ZZ \oplus i \ZZ$.
 	The embeddings are the identity and complex conjugation
-	hence they take $1$ to $(1,1)$ and $i$ to $(i, -i)$.
+	which take $1$ to $(1,1)$ and $i$ to $(i, -i)$.
 	So
 	\[
 		\Delta_K = 
@@ -180,6 +182,7 @@ we will not prove this here.
 \end{example}
 \begin{example}
 	[Discriminant of $\QQ(\sqrt 5)$]
+	Let $K = \QQ(\sqrt5)$.
 	This time, $\OO_K = \ZZ \oplus \frac{1+\sqrt5}{2} \ZZ$, and so the discriminant
 	is going to look a little bit different.
 	The embeddings are still $a+b\sqrt 5 \mapsto a+b\sqrt5, a-b\sqrt5$.
@@ -211,8 +214,9 @@ we will not prove this here.
 Actually, let me point out something curious: recall that the polynomial discriminant of $Ax^2+Bx+C$ is $B^2-4AC$. Then:
 \begin{itemize}
 	\ii In the $d \equiv 1 \pmod 4$ case,
-	$\Delta_K$ is the discriminant of $x^2 + x - \frac{d-1}{4}$,
-	which is the minimal polynomial of $\half(1+\sqrt d)$. Of course, $\OO_K = \ZZ[\half(1+\sqrt d)]$.
+	$\Delta_K$ is the discriminant of $x^2 - x - \frac{d-1}{4}$,
+	which is the minimal polynomial of $\half(1+\sqrt d)$.
+	Of course, $\OO_K = \ZZ[\half(1+\sqrt d)]$.
 	\ii In the $d \equiv 2,3 \pmod 4$ case,
 	$\Delta_K$ is the discriminant of $x^2 - d$
 	which is the minimal polynomial of $\sqrt d$. Once again, $\OO_K = \ZZ[\sqrt d]$.
@@ -222,14 +226,19 @@ hence the name ``discriminant''.
 
 \section{The signature of a number field}
 \prototype{$\QQ(\sqrt[100]{2})$ has signature $(2, 49)$.}
-In the example of $K = \QQ(i)$, we more or less embedded $K$ into the space $\RR \times \CC$.
-However, $K$ is a degree two extension, so what we'd really like to do is embed it into $\RR^2$.
+In the example of $K = \QQ(i)$,
+we more or less embedded $K$ into the space $\CC$.
+However, $K$ is a degree two extension,
+so what we'd really like to do is embed it into $\RR^2$.
 To do so, we're going to take advantage of complex conjugation.
 
 Let $K$ be a number field and $\sigma_1, \dots, \sigma_n$ be its embeddings.
-We distinguish between the \vocab{real embeddings} -- those that map all of $K$ into $\RR$ --
-and the \vocab{complex embeddings} -- those which map some part of $K$ outside $\RR$.
-Notice that if $\sigma$ is a complex embedding, then so is the conjugate $\ol{\sigma} \ne \sigma$;
+We distinguish between the \vocab{real embeddings}
+(which map all of $K$ into $\RR$)
+and the \vocab{complex embeddings} 
+(which map some part of $K$ outside $\RR$)
+Notice that if $\sigma$ is a complex embedding,
+then so is the conjugate $\ol{\sigma} \ne \sigma$;
 hence complex embeddings come in pairs.
 
 \begin{definition}
@@ -277,7 +286,7 @@ while
 	\sigma_{r_1+r_2} = \ol{\sigma_{r_1+2r_2}}.
 \]
 are the $r_2$ pairs of complex embeddings.
-We define the \vocab{canonical embedding} of $K$ by
+We define the \vocab{canonical embedding} of $K$ as
 \[
 	K \overset\iota\injto \RR^{r_1} \times \CC^{r_2} \
 	\quad\text{by}\quad
@@ -301,7 +310,7 @@ by breaking each complex number into its real and imaginary part, as
 & \Re \sigma_{r_1+r_2}(\alpha), \;\; \Im \sigma_{r_1+r_2}(\alpha) \big). 
 \end{align*}
 \begin{example}[Example of canonical embedding]
-	Let $K = \QQ(\sqrt[3]{2})$ again and again set
+	As before let $K = \QQ(\sqrt[3]{2})$ and set
 	\[ \sigma_1 : \cbrt 2 \mapsto \cbrt 2,
 		\quad
 		\sigma_2 : \cbrt 2 \mapsto \cbrt 2 \omega,
@@ -374,10 +383,13 @@ In geometry, there's a really cool theorem of Minkowski's that goes as follows.
 \end{ques}
 
 \begin{proof}[Sketch of Proof]
-	Part (a) is surprisingly simple and has a very olympiad-esque solution: it's basically Pigeonhole on areas.
-	We'll prove point (a) in the special case $n=2$, $L = \ZZ^2$ for simplicity as the proof
+	Part (a) is surprisingly simple and has a very olympiad-esque solution:
+	it's basically Pigeonhole on areas.
+	We'll prove part (a) in the special case $n=2$,
+	$L = \ZZ^2$ for simplicity as the proof
 	can easily be generalized to any lattice and any $n$.
-	Thus we want to show that any such convex set $S$ with area more than $4$ contains a lattice point.
+	Thus we want to show that any such convex set $S$
+	with area more than $4$ contains a lattice point.
 
 	Dissect the plane into $2 \times 2$ squares 
 	\[ [2a-1, 2a+1] \times [2b-1, 2b+1] \]
@@ -401,7 +413,7 @@ The last ingredient we need is a set to apply Minkowski's theorem to.  I propose
 	set of points $(x_1, \dots, x_{r_1}, z_1, \dots, z_{r_2})$ such that
 	\[
 		\sum_{i=1}^{r_1} \left\lvert x_i \right\rvert
-		+ 2 \sum_{j=1}^{r_2} \left\lvert z_i \right\rvert
+		+ 2 \sum_{j=1}^{r_2} \left\lvert z_j \right\rvert
 		\le M. 
 	\]
 	Note that this depends on the value of $M$.
@@ -578,59 +590,64 @@ The precise statement of this is
 	all this means that the number of ways to build $\aa$ is finite.
 \end{proof}
 
-\section{Shut up and compute II}
+\section{Shut up and compute (again)}
 \begin{definition}
 The order of $\Cl_K$ is called the \vocab{class number} of $K$.
 \end{definition}
+\begin{remark}
+	If $\Cl_K = 1$, then $\OO_K$ is a PID, hence a UFD.
+\end{remark}
 
 By computing the actual value of $M_K$,
 we can quite literally build the entire ``cherry tree'' mentioned in the previous proof.
 Let's give an example how!
 \begin{proposition}
-	The field $K = \QQ(\sqrt{-67})$ has class number $1$.
+	The field $\QQ(\sqrt{-67})$ has class number $1$.
 \end{proposition}
 \begin{proof}
-	Since $K$ has signature $(0,1)$ and discriminant $\Delta_K = -67$ (since $-67 \equiv 1 \pmod 4$)
+	Since $K = \QQ(\sqrt{-67})$ has signature $(0,1)$
+	and discriminant $\Delta_K = -67$ (since $-67 \equiv 1 \pmod 4$)
 	we can compute
 	\[ M_K = \left( \frac 4\pi \right)^{1} \cdot \frac{2!}{2^2} \sqrt{67} \approx 5.2. \]
 	That means we can cut off the cherry tree after $(2)$, $(3)$, $(5)$, since any
 	cherries on these branches will necessarily have norm $\ge M_K$.
 	We now want to factor each of these in $\OO_K = \ZZ[\theta]$, where $\theta = \frac{1+\sqrt{-67}}{2}$
-	has minimal polynomial $x^2 + x + 17$.
+	has minimal polynomial $x^2 - x + 17$.
 	But something miraculous happens:
 	\begin{itemize}
-		\ii When we try to reduce $x^2+x+17 \pmod 2$, we get an irreducible polynomial $x^2+x+1$.
+		\ii When we try to reduce $x^2-x+17 \pmod 2$, we get an irreducible polynomial $x^2-x+1$.
 		By the factoring algorithm (\Cref{thm:factor_alg}) this means $(2)$ is prime.
-		\ii Similarly, reducing mod $3$ gives $x^2+x+2$, which is irreducible.
+		\ii Similarly, reducing mod $3$ gives $x^2-x+2$, which is irreducible.
 		This means $(3)$ is prime.
 		\ii Finally, for the same reason, $(5)$ is prime.
 	\end{itemize}
-	It's our lucky day; all of the ideals $(2)$, $(3)$, $(5)$ are prime (already principal).
-	To put it another way, each of the three branches has only one (large) cherry on it.
+	It's our lucky day;
+	all of the ideals $(2)$, $(3)$, $(5)$ are prime (already principal).
+	To put it another way,
+	each of the three branches has only one (large) cherry on it.
 	That means any time we put together an integral ideal with norm $\le M_K$,
 	it is actually principal.
-	In fact, these guys have norm $4$, $9$, $25$ respectively\dots\ so we can't even touch $(3)$ and $(5)$,
+	In fact, these guys have norm $4$, $9$, $25$ respectively\dots
+	so we can't even touch $(3)$ and $(5)$,
 	and the only ideals we can get are $(1)$ and $(2)$ (with norms $1$ and $4$).
 
 	Now we claim that's all.
 	Pick a fractional ideal $J$.
-	By \Cref{cor:class_rep_minkowski}, we can find an integral ideal $\bb \sim J$ with $\Norm(\bb) \le M_K$.
+	By \Cref{cor:class_rep_minkowski},
+	we can find an integral ideal $\bb \sim J$ with $\Norm(\bb) \le M_K$.
 	But by the above, either $\bb = (1)$ or $\bb = (4)$, both of which are principal,
 	and hence trivial in $\Cl_K$.
 	So $J$ is trivial in $\Cl_K$ too, as needed.
 \end{proof}
 Let's do a couple more.
-\begin{theorem}[Gaussian integers have unique factorization]
-	The Gaussian integers $\ZZ[i]$ form a unique factorization domain.
+\begin{theorem}[Gaussian integers {$\ZZ[i]$} form a UFD]
+	The field $\QQ(i)$ has class number $1$.
 \end{theorem}
 \begin{proof}
 	This is $\OO_K$ where $K = \QQ(i)$, so we just want $\Cl_K$ to be trivial.
-	\begin{ques}
-		Check that $M_K \approx 1.273$.
-	\end{ques}
-	Same as above, but this time $M_K = \frac{2}{\pi}\sqrt{4} < 2$.
+	We have $M_K = \frac{2}{\pi}\sqrt{4} < 2$.
 	So every class
-	has an integral ideal of norm $\bb$ at most 
+	has an integral ideal of norm $\bb$ satisfying
 	\[ 
 		\Norm(\bb)
 		\left( \frac4\pi \right)^{1} \cdot \frac{2!}{2^2} \cdot \sqrt{4}
@@ -642,13 +659,13 @@ Let's do a couple more.
 
 Here's another example of something that still turns out to be unique factorization,
 but this time our cherry tree will actually have cherries that can be picked.
-\begin{proposition}[$\QQ(\sqrt7)$ has class number $1$]
-	The ring $\ZZ[\sqrt 7]$ is a unique factorization domain.
+\begin{proposition}[{$\ZZ[\sqrt7]$} is a UFD]
+	The field $\QQ(\sqrt7)$ has class number $1$.
 \end{proposition}
 \begin{proof}
 	First we compute the Minkowski bound.
 	\begin{ques}
-		Check that $M_K \approx 2.664$.
+		Check that $M_K \approx 2.646$.
 	\end{ques}
 	So this time, the only branch is $(2)$. Let's factor $(2)$ as usual: the polynomial $x^2+7$
 	reduces as $(x-1)(x+1) \pmod 2$, and hence
@@ -660,7 +677,7 @@ but this time our cherry tree will actually have cherries that can be picked.
 		Prove this.
 	\end{ques}
 	So both the cherries are principal ideals, and as before we conclude that $\Cl_K$ is trivial.
-	But note that this time, the prime $(2)$ actually split; we got lucky
+	But note that this time, the prime ideal $(2)$ actually splits; we got lucky
 	that the two cherries were principal but this won't always work.
 \end{proof}
 
@@ -688,7 +705,7 @@ You are not obliged to read the entire proof in detail,
 as it is somewhat gory.
 The idea is just that there are some cherries which are not trivial in the class group.
 \begin{proof}
-Since $D_K = -68$, we compute
+Since $\Delta_K = -68$, we compute
 the Minkowski bound
 \[ M_K = \frac{4}{\pi} \sqrt{17} < 6. \]
 
@@ -719,7 +736,7 @@ So Lagrange's theorem says that $\Cl_K$ has order either $2$ or $4$.
 
 Now we claim $[\qq_1]^2 \neq [(1)]$, which implies that $\qq_1$ has order greater than $2$.
 If not, $\qq_1^2$ is principal.
-We know $\Norm(\qq) = 3$,
+We know $\Norm(\qq_1) = 3$,
 so this can only occur if $\qq_1^2 = (3)$;
 this would force $\qq_1 = \qq_2$.
 This is impossible since $\qq_1 + \qq_2 = (1)$.

@@ -220,7 +220,7 @@ For a ``generic'' element of $K$, we expect $k = 1$.
 \begin{example}[Norm of $a+b\sqrt2$]
 	Let $\alpha = a+b\sqrt2 \in \QQ(\sqrt2)$.
 	If $b \neq 0$, then $\alpha$ and $K$ have the degree $2$.
-	Thus the only conjugate of $\alpha$ is $a-b\sqrt2$, which gives
+	Thus the only conjugates of $\alpha$ are $a \pm b\sqrt2$, which gives
 	the norm \[ (a+b\sqrt2)(a-b\sqrt2) = a^2-2b^2, \]
 	The trace is $(a-b\sqrt2) + (a+b\sqrt2) = 2a$.
 
@@ -594,6 +594,15 @@ As we'll later see, monogenic extensions have a really nice factoring algorithm,
 % trivial
 
 \begin{problem}
+	[Russia 1984]
+	Find all integers $m$ and $n$ such that
+	\[ \left( 5+3\sqrt2 \right)^m = \left( 3+5\sqrt2 \right)^n. \]
+	\begin{hint}
+		Taking the standard norm on $\QQ(\sqrt2)$ will destroy it.
+	\end{hint}
+\end{problem}
+
+\begin{problem}
 	[Black MOP 2010]
 	There are $n > 2$ lamps arranged in a circle; initially one is on and the others are off.
 	We may select any regular polygon whose vertices are among the lamps
@@ -611,6 +620,18 @@ As we'll later see, monogenic extensions have a really nice factoring algorithm,
 		Norm in $\QQ(\sqrt[3]2)$.
 	\end{hint}
 \end{problem}
+
+
+\begin{sproblem}
+	\label{prob:rep_lemma}
+	Consider $n$ roots of unity $\eps_1$, \dots, $\eps_n$.
+	Assume the average $\frac1n(\eps_1 + \dots + \eps_n)$ is an algebraic integer.
+	Prove that either the average is zero or $\eps_1 = \dots = \eps_n$.
+	(Used in \Cref{lem:burnside_ant_lemma}.)
+	\begin{hint}
+		$\left\lvert \frac 1n(\eps_1 + \dots + \eps_n) \right\rvert \le 1$.
+	\end{hint}
+\end{sproblem}
 
 \begin{problem}
 	\label{prob:OK_free_Z_module}
@@ -675,13 +696,3 @@ As we'll later see, monogenic extensions have a really nice factoring algorithm,
 	\end{hint}
 \end{problem}
 
-\begin{sproblem}
-	\label{prob:rep_lemma}
-	Consider $n$ roots of unity $\eps_1$, \dots, $\eps_n$.
-	Assume the average $\frac1n(\eps_1 + \dots + \eps_n)$ is an algebraic integer.
-	Prove that either the average is zero or $\eps_1 = \dots = \eps_n$.
-	(Used in \Cref{lem:burnside_ant_lemma}.)
-	\begin{hint}
-		$\left\lvert \frac 1n(\eps_1 + \dots + \eps_n) \right\rvert \le 1$.
-	\end{hint}
-\end{sproblem}

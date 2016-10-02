@@ -118,7 +118,8 @@ Degrees of finite extensions are multiplicative.
 	(Diligent readers can fill in details.)
 \end{proof}
 
-Next, given a field (like $\QQ$) we want something to embed it into (in our case $\CC$).
+Next, given a field (like $\QQ(\cbrt2)$)
+we want something to embed it into (in our case $\CC$).
 So we just want a field that contains all the roots of all the polynomials:
 \begin{theorem}[Algebraic closures]
 	Let $F$ be a field.
@@ -206,7 +207,7 @@ given a number field $K$, we set
 \[
 	\Tr_{K/\QQ}(\alpha) = \sum_{i=1}^n \sigma_i(\alpha)
 	\quad\text{and}\quad
-	\Norm_{K/\QQ}(\alpha) = \prod_{i=1}^n \sigma_i(\alpha).
+	\Norm_{K/\QQ}(\alpha) = \prod_{i=1}^n \sigma_i(\alpha)
 \]
 where $\sigma_i$ are the $n$ embeddings of $K$ into $\CC$.
 
@@ -228,16 +229,16 @@ Nope.
 Suppose we took the derivative of some polynomial like $2x^3 + 24x + 9$,
 namely $6x^2 + 24$.
 In $\CC$ it's obvious that the derivative of a nonconstant polynomial $f'$ isn't zero.
-But suppose we considered the above as a polynomial in $\FF_3$, i.e.\ modulo three.
+But suppose we considered the above as a polynomial in $\FF_3$, i.e.\ modulo $3$.
 Then the derivative is zero.
 Oh, no!
 
 We have to impose a condition that prevents something like this from happening.
 \begin{definition}
-	For a field $F$, let $p$ be the smallest positive integer such that
-	\[ \underbrace{1+\dots+1}_{\text{$p$ times}} = 0 \]
+	For a field $F$, the \vocab{characteristic} of $F$ is the smallest
+	positive integer $p$ such that,
+	\[ \underbrace{1_F + \dots + 1_F}_{\text{$p$ times}} = 0 \]
 	or zero if no such integer $p$ exists.
-	Then we say $F$ has \vocab{characteristic} $p$.
 \end{definition}
 \begin{example}[Field characteristics]
 	Old friends $\RR$, $\QQ$, $\CC$ all have characteristic zero.
@@ -274,8 +275,8 @@ In fact, as we see in the next chapter:
 	[Finite fields are perfect]
 	Suppose $F$ is a field with finitely many elements. Then it is perfect.
 \end{theorem}
-Thus, we will almost never have to worry about separability,
-since every field we see is perfect (either finite or characteristic $0$).
+Thus, we will almost never have to worry about separability
+since every field we see in the Napkin is either finite or characteristic $0$.
 So the inclusion of the word ``separable'' is mostly a formality.
 
 Proceeding onwards, we obtain
@@ -351,7 +352,8 @@ First, let's repeat the proof of the observation that these embeddings shuffle a
 (akin to the first observation in the introduction):
 \begin{lemma}
 	[Root shuffling in $\Aut(K/F)$]
-	Let $f \in F[x]$, suppose $K/F$ a finite extension, and assume $\alpha \in K$ is a root of $f$.
+	Let $f \in F[x]$, suppose $K/F$ is a finite extension,
+	and assume $\alpha \in K$ is a root of $f$.
 	Then for any $\sigma \in \Aut(K/F)$, $\sigma(\alpha)$ is also a root of $f$.
 	\label{lem:root_shuffle}
 \end{lemma}
@@ -363,7 +365,7 @@ First, let's repeat the proof of the observation that these embeddings shuffle a
 \end{proof}
 In particular, taking $f$ to be the minimal polynomial of $\alpha$ we deduce
 \begin{moral}
-	An embedding $\sigma \in \Aut(K/F)$ sends an $\alpha \in F$
+	An embedding $\sigma \in \Aut(K/F)$ sends an $\alpha \in K$
 	to one of its various Galois conjugates (over $F$).
 \end{moral}
 
@@ -377,7 +379,7 @@ Secondly, $K$ is missing some Galois conjugates ($\omega \cbrt 2$ and $\omega^2 
 
 The way to capture the fact that there are missing Galois conjugates is the notion of a splitting field.
 \begin{definition}
-	Let $F$ be a field and $p(x) \in F$ a polynomial of degree $n$.
+	Let $F$ be a field and $p(x) \in F[x]$ a polynomial of degree $n$.
 	Then $p(x)$ has roots $\alpha_1, \dots, \alpha_n$ in an algebraic closure of $F$.
 	The \vocab{splitting field} of $F$ is defined as $F(\alpha_1, \dots, \alpha_n)$.
 \end{definition}
@@ -398,7 +400,7 @@ In other words, the splitting field is the smallest field in which $p(x)$ splits
 \begin{example}
 	[Splitting fields: a cautionary tale]
 	The splitting field of $x^3 - 2$ over $\QQ$ is in fact
-	\[ \QQ\left( \cbrt 2, \omega \right) \]
+	\[ \QQ( \cbrt 2, \omega ) \]
 	and not just $\QQ(\cbrt 2)$!
 	One must really adjoin \emph{all} the roots, and it's not necessarily the case that
 	these roots will generate each other.
@@ -407,10 +409,12 @@ In other words, the splitting field is the smallest field in which $p(x)$ splits
 	\begin{itemize}
 	\ii For $x^2-5$, we adjoin $\sqrt 5$ and this will automatically include $-\sqrt 5$.
 	\ii For $x^2+x+1$, we adjoin $\omega$ and get the other root $\omega^2$ for free.
-	\ii But if we adjoin $\cbrt 2$, we do NOT get $\omega\cbrt2$ and $\omega^2\cbrt2$ for free:
-	indeed, $\QQ(\cbrt 2) \subset \RR$!
+	\ii But for $x^3-2$, if we adjoin $\cbrt 2$,
+	we do NOT get $\omega\cbrt2$ and $\omega^2\cbrt2$ for free.
+	Indeed, $\QQ(\cbrt 2) \subset \RR$!
 	\end{itemize}
-	Note that in particular, the splitting field of $x^3-2$ over $\QQ$ is \emph{degree six}.
+	Note that in particular, the splitting field of $x^3-2$ over $\QQ$ is \emph{degree six},
+	not just degree htree.
 \end{example}
 
 In general,
@@ -465,13 +469,13 @@ To explore $\QQ(\cbrt 2)$ one last time:
 	\[
 		\sigma:
 		\begin{cases}
-			\cbrt 2 &\to \omega \cbrt 2 \\
+			\cbrt 2 &\mapsto \omega \cbrt 2 \\
 			\omega &\mapsto \omega
 		\end{cases}
 		\quad\text{and}\quad
 		\tau:
 		\begin{cases}
-			\cbrt 2 &\to \cbrt 2 \\
+			\cbrt 2 &\mapsto \cbrt 2 \\
 			\omega &\mapsto \omega^2.
 		\end{cases}
 	\]
@@ -499,7 +503,7 @@ To tell you how the bijection goes, I have to define a fixed field.
 \begin{definition}
 	Let $K$ be a field and $H$ a subgroup of $\Aut(K/F)$.
 	We define the \vocab{fixed field} of $H$, denoted $K^H$, as
-	\[ K^H \defeq \left\{ x \in K : \sigma(x) \in K \; \forall \sigma \in H \right\}. \]
+	\[ K^H \defeq \left\{ x \in K : \sigma(x)=xK \; \forall \sigma \in H \right\}. \]
 \end{definition}
 \begin{ques}
 	Verify quickly that $K^H$ is actually a field.
@@ -536,13 +540,13 @@ matches exactly with the subgroups of $G$, as follows:
 	\end{diagram}
 \end{minipage}
 \end{center}
-Here subgroups correspond to fixed field.
+We see that subgroups correspond to fixed fields.
 That, and much more, holds in general.
 
 \begin{theorem}[Fundamental theorem of Galois theory]
 	Let $K/F$ be a Galois extension with Galois group $G = \Gal(K/F)$.
 	\begin{enumerate}[(a)]
-	\ii There is a bijection between field towers $K \subseteq E \subseteq F$ and subgroups $H \subseteq G$:
+	\ii There is a bijection between field towers $F \subseteq E \subseteq K$ and subgroups $H \subseteq G$:
 	\[
 		\left\{
 		\begin{array}{c}
@@ -597,6 +601,17 @@ That, and much more, holds in general.
 	\begin{hint}
 		Repeated quadratic extensions have degree $2$, so one can
 		only get powers of two.
+	\end{hint}
+\end{problem}
+
+\begin{problem}
+	[Hong Kong Olympiad]
+	Prove that there are no rational numbers $p$, $q$, $r$ satisfying
+	\[ \cos\left( \frac{2\pi}{7} \right)
+		= p + \sqrt{q} + \sqrt[3]{r}.  \]
+	\begin{hint}
+		Left-hand side has minimal polynomial of degree $7$,
+		but the right-hand side lives in a degree six extension.
 	\end{hint}
 \end{problem}
 

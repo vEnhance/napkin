@@ -1,7 +1,7 @@
 \chapter{Representations of algebras}
-In the 19th century, a group was literally defined
-as a subset of $\GL(n)$ or $S_n$: the word ``group'' hadn't been invented yet.
-Only much later did the abstract definition of a group was given,
+In the 19th century, the word ``group'' hadn't been invented yet;
+all work was done with subsets of $\GL(n)$ or $S_n$.
+Only much later was the abstract definition of a group was given,
 an abstract set $G$ which was an object in its own right.
 
 While this abstraction is good for some reasons,
@@ -32,9 +32,9 @@ Colloquially,
 I'll present examples before the definition:
 \begin{example}
 	[Examples of $k$-Algebras]
-	Let $k$ be any field.
+	Let $k$ be any field. The following are examples of $k$-algebras:
 	\begin{enumerate}[(a)]
-		\ii The field $k$ itself is a $k$-algebra.
+		\ii The field $k$ itself.
 		\ii The polynomial ring $k[x_1, \dots, x_n]$.
 		\ii The set of $n \times n$ matrices with entries in $k$,
 		which we denote by $\Mat_n(k)$.
@@ -48,7 +48,7 @@ I'll present examples before the definition:
 \begin{definition}
 	Let $k$ be a field.
 	A \vocab{$k$-algebra} $A$ is a \emph{possibly noncommutative} ring,
-	equipped with a ring homomorphism $k \to A$
+	equipped with an injective ring homomorphism $k \injto A$
 	(whose image is the ``copy of $k$'').
 	In particular, $1_k \mapsto 1_A$.
 
@@ -70,7 +70,7 @@ I'll present examples before the definition:
 \end{definition}
 
 \begin{abuse}
-	Some authors don't require $A$ to be associative or
+	Some other authors don't require $A$ to be associative or to have
 	an identity, so to them what we have just defined is an
 	``associative algebra with $1$''.
 	However, this is needlessly wordy for our purposes.
@@ -115,7 +115,7 @@ It is worth mentioning at this point that:
 
 \begin{definition}
 	A \vocab{representation} of a $k$-algebra $A$
-	(also called a \vocab{left $A$-module}) is:
+	(also a \vocab{left $A$-module}) is:
 	\begin{enumerate}[(i)]
 		\ii A $k$-vector space $V$, and
 		\ii An \emph{action} $\cdot$ of $A$ on $V$: thus, for every $a \in A$
@@ -123,7 +123,8 @@ It is worth mentioning at this point that:
 		This satisfies the usual axioms:
 		\begin{itemize}
 			\ii $(a+b) \cdot v = a \cdot v + b \cdot v$,
-			and $(ab) \cdot v = a(b \cdot v)$.
+			$a \cdot (v+w) = a \cdot v + a \cdot w$,
+			and $(ab) \cdot v = a \cdot (b \cdot v)$.
 			\ii $\lambda \cdot v = \lambda v$ for $\lambda \in k$.
 			In particular, $1_A \cdot v = v$.
 		\end{itemize}
@@ -137,10 +138,8 @@ It is worth mentioning at this point that:
 	Thus we can also define a \vocab{representation} of $A$ as a pair
 	\[ \left( V, \rho : A \to \Mat(V) \right). \]
 \end{definition}
-\begin{remark}
-	This is completely analogous to how a group action $G$ on a set $X$
-	with $n$ elements just amounts to a group homomorphism $G \to S_n$.
-\end{remark}
+This is completely analogous to how a group action $G$ on a set $X$
+with $n$ elements just amounts to a group homomorphism $G \to S_n$.
 From this perspective, what we are really trying to do is:
 \begin{moral}
 	If $A$ is an algebra,
@@ -150,12 +149,14 @@ From this perspective, what we are really trying to do is:
 
 \begin{abuse}
 	While a representation is a pair $(V, \rho)$
-	of both the vector space $V$ and the action $\rho$,
+	of \emph{both} the vector space $V$ and the action $\rho$,
 	we frequently will just abbreviate it to ``$V$''.
 	This is probably one of the worst abuses I will commit,
-	but everyone does it so it's all good!
+	but everyone else does it and I fear the mob.
 \end{abuse}
-
+\begin{abuse}
+	Rather than $\rho(a)(v)$ we will just write $\rho(a)v$.
+\end{abuse}
 
 \begin{example}
 	[Representations of $\Mat(V)$]
@@ -372,7 +373,7 @@ but a decomposition requires \emph{two} subrepresentations.
 Here is a standard counterexample:
 \begin{exercise}
 	\label{exer:irred_not_indecomp}
-	Let $A = \RR[x]$, and $V = \RR^{\oplus 2}$ the representation with action
+	Let $A = \RR[x]$, and $V = \RR^{\oplus 2}$ be the representation with action
 	\[ \rho(x) = \begin{bmatrix} 1 & 1 \\ 0 & 1 \end{bmatrix}. \]
 	Show that the only subrepresentation is $W = \{ (t,0) \mid t \in \RR \}$.
 	So $V$ is not irreducible, but it is indecomposable.
@@ -391,13 +392,13 @@ and the ``prototypical example'' that you should keep in mind.
 We now proceed to define the morphisms between representations.
 
 \begin{definition}
-	Let $(V, \rho_1)$ and $(W, \rho_2)$ be representations of $A$.
+	Let $(V, \rho_V)$ and $(W, \rho_W)$ be representations of $A$.
 	An \vocab{intertwining operator}, or \vocab{morphism}, is a
 	linear map $T : V \to W$ such that
 	\[ T(a \cdot v) = a \cdot T(v) \]
 	for any $a \in A$, $v \in V$.
-	(Note the first $\cdot$ is the action $\rho_1$
-	and the second $\cdot$ is the action of $\rho_2$.)
+	(Note that the first $\cdot$ is the action of $\rho_V$
+	and the second $\cdot$ is the action of $\rho_W$.)
 	This is exactly what you expect if you think that $V$ and $W$
 	are ``left $A$-modules''.
 	If $T$ is invertible, then it is an \vocab{isomorphism} of representations
@@ -441,7 +442,7 @@ Here are some examples of intertwining operators.
 	\end{enumerate}
 \end{example}
 
-\begin{exercise}[Kernel and Image Are Subrepresentations]
+\begin{exercise}[Kernel and image are subrepresentations]
 	Let $T : V \to W$ be an intertwining operator.
 	\begin{enumerate}[(a)]
 		\ii Show that $\ker T \subseteq V$ is a subrepresentation of $V$.
@@ -460,11 +461,11 @@ The previous lemma gives us the famous Schur's lemma.
 		\ii If $W$ is irreducible, then $T$ is surjective.
 	\end{enumerate}
 	In particular if both $V$ and $W$ are irreducible then $T$
-	is either zero or an isomorphism.
+	is an isomorphism.
 \end{theorem}
 An important special case is if $k$ is algebraically closed:
-then the only intertwining operators $V \to V$
-are the trivial constant ones.
+then the only intertwining operators $T : V \to V$
+are multiplication by a constant.
 \begin{theorem}
 	[Schur's lemma for algebraically closed fields]
 	Let $k$ be an algebraically closed field.
@@ -509,7 +510,7 @@ The algebra $A = \Mat_2(k)$ has basis given by four matrices
 	\qquad
 	E_4 = \begin{bmatrix} 0 & 0 \\ 1 & 0 \end{bmatrix}
 \]
-satisfying relations like $E_1 + E_2 = \id$, $E_i^2 = E_i$, $E_1E_2 = 0$, etc.
+satisfying relations like $E_1 + E_2 = \id_A$, $E_i^2 = E_i$, $E_1E_2 = 0$, etc.
 So let $V$ be a representation of $A$, and let $M_i = \rho(E_i)$ for each $i$;
 we want to classify the possible matrices $M_i$ on $V$
 satisfying the same functional equations.

@@ -30,7 +30,7 @@ We can now define:
 	The \vocab{kernel} is defined as the equalizer of this map and the map $A \taking 0 B$.
 	Thus, it's a map $\ker f : \Ker f \injto A$ such that
 	\begin{diagram}
-		\Ker A && \\
+		\Ker f && \\
 		\dInj^{\ker f} & \rdDashed^0 & \\
 		A & \rTo_f & B
 	\end{diagram}
@@ -43,15 +43,15 @@ Notice that we're using $\ker f$ to represent the map and $\Ker f$ to represent 
 Similarly, we define the cokernel, the dual notion:
 \begin{definition}
 	Consider a map $A \taking f B$.
-	The \vocab{cokernel} is defined as the coequalizer of this map and the map $A \taking 0 B$.
-	Thus, it's a map $\coker f: B \surjto \Coker f$ such that
+	The \vocab{cokernel} of $f$ is a map $\coker f: B \surjto \Coker f$ such that
 	\begin{diagram}
 		A & \rTo^f & B \\
 		& \rdDashed_0 & \dSurj_{\coker f} \\
 		&& \Coker f
 	\end{diagram}
-	commutes, and moreover any other map with the same property factors uniquely through $\Ker f$
-	(so it is universal with this property).
+	commutes, and moreover any other map with the same property factors
+	uniquely through $\Coker f$ (so it is universal with this property).
+	Thus it is the ``coequalizer'' of this map and the map $A \taking 0 B$.
 	By the dual of \Cref{prob:equalizer_monic}, $\coker f$ is an epic morphism,
 	which justifies the use of ``$\surjto$''.
 \end{definition}
@@ -207,8 +207,8 @@ In short,
 	\[ \dots \to A_{n-1} \taking{f_n} A_n \taking{f_{n+1}} A_{n+1} \to \dots \]
 	is \vocab{exact} at $A_n$ if $f_n \circ f_{n+1} = 0$ and
 	the canonical map $\Img f_n \to \Ker f_{n+1}$ is an isomorphism.
-	The entire sequence is exact if it is exact at each $A_i$ ($1 \le i \le n-1$).
-	(We allow infinite sequences as well.)
+	The entire sequence is exact if it is exact at each $A_i$.
+	(For finite sequences we don't impose condition on the very first and very last object.)
 \end{definition}
 
 \begin{exercise}
@@ -263,7 +263,7 @@ For example, let's prove:
 \end{lemma}
 
 \begin{proof}
-	We prove that $\beta$ is epic (with a dual proof to get monic).
+	We prove that $\beta$ is epic (with a similar proof to get monic).
 %	One can show that it's possible to take a small subcategory of $\AA$
 %	containing the $10$ elements and $13$ arrows above, as well as all necessary
 %	kernels, cokernels, et cetera.
@@ -271,7 +271,7 @@ For example, let's prove:
 %	then $\bigcup \BB_i$ is a set-sized category).
 	By the embedding theorem we can treat the category as $R$-modules over some $R$.
 	This lets us do a so-called ``diagram chase'' where we move elements around the picture,
-	using the concrete interpretation of our category of $R$-modules.
+	using the concrete interpretation of our category as $R$-modules.
 
 	Let $b'$ be an element of $B'$.
 	Then $q'(b') \in C'$, and since $\gamma$ is surjective, we have a $c$ such that $\gamma(c) = b'$,
@@ -307,7 +307,7 @@ For example, let's prove:
 \section{Breaking long exact sequences}
 \prototype{First isomorphism theorem.}
 
-In fact, it turns out that any exact sequence, one can break it into short exact sequences.
+In fact, it turns out that any exact sequence breaks into short exact sequences.
 This relies on:
 \begin{proposition}[``First isomorphism theorem'' in abelian categories]
 	\label{prop:break_exact}

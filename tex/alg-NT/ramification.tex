@@ -48,8 +48,8 @@ Just like we don't expect a randomly selected polynomial to have a double root,
 we don't expect a randomly selected prime to be ramified.
 In fact, the key to understanding ramification is the discriminant.
 
-For the sake of discussion, let's suppose that $K$ is monogenic, $O_K = \ZZ[\theta]$,
-where $\theta$ has minimal polynomial $f$.
+For the sake of discussion, let's suppose that $K$ is monogenic,
+$\OO_K = \ZZ[\theta]$, where $\theta$ has minimal polynomial $f$.
 Let $p$ be a rational prime we'd like to factor.
 If $f$ factors as $f_1^{e_1} \dots f_g^{e_g}$, then we know that
 the prime factorization of $(p)$ is given by
@@ -60,7 +60,7 @@ namely
 \[ \Delta(f) = \prod_{i<j} (z_i - z_j)^2 \]
 and see whether it is zero mod $p$ -- thus $p$ ramifies if and only if this is true.
 
-It turns out that the na\"ive generalization to any number fields
+It turns out that the na\"ive generalization to any number field
 works if we replace $\Delta(f)$ by just the discriminant $\Delta_K$ of $K$;
 these are the same by \Cref{prob:root_discriminant}.
 That is,
@@ -69,7 +69,7 @@ That is,
 	Let $p$ be a rational prime and $K$ a number field.
 	Then $p$ is ramified if and only if $p$ divides $\Delta_K$.
 \end{theorem}
-\begin{example}[Ramification in the gaussian integers]
+\begin{example}[Ramification in the Gaussian integers]
 	Let $K = \QQ(i)$ so $\OO_K = \ZZ[i]$ and $\Delta_K = 4$.
 	As predicted, the only prime ramifying in $\ZZ[i]$ is $2$,
 	the only prime factor of $\Delta_K$.
@@ -79,14 +79,15 @@ In particular, only finitely many primes ramify.
 \section{Inertial degrees}
 \prototype{$(7)$ has inertial degree $2$ in $\ZZ[i]$ and $(2+i)$ has inertial degree $1$ in $\ZZ[i]$.}
 
-Recall that we were able to define an ideal norm $\Norm(\aa) = \left\lvert \OO_K / \aa \right\rvert$
+Recall that we were able to define an ideal norm
+$\Norm(\aa) = \left\lvert \OO_K / \aa \right\rvert$
 measuring how ``roomy'' the ideal $\aa$ is.
 For example, $(5)$ has ideal norm $5^2 = 25$ in $\ZZ[i]$, since
 \[ \ZZ[i] / (5) \cong \left\{ a+bi \mid a,b \in \Zc5 \right\} \]
-has $25$ elements.
+has $5^2 = 25$ elements.
 
 Now, let's look at
-\[ p\OO_K = \pp_1^{e_1} \dots \pp_g^{e_g} \]
+\[ p \cdot \OO_K = \pp_1^{e_1} \dots \pp_g^{e_g} \]
 in $\OO_K$, where $K$ has degree $n$.
 Taking the ideal norms of both sides, we have that
 \[ p^n = \Norm(\pp_1)^{e_1} \dots \Norm(\pp_g)^{e_g}. \]
@@ -102,7 +103,7 @@ We conclude that $\pp_i = p^{f_i}$ for some integer $f_i \ge 1$, and moreover th
 	given $\pp$ is when interpreted in $\OO_K$.
 	\begin{enumerate}[(a)]
 		\ii The prime $7 \cdot \ZZ[i]$ has inertial degree $2$.
-		Indeed, $\ZZ[i]/ (7)$ is has $7^2=49$ elements,
+		Indeed, $\ZZ[i]/ (7)$ has $7^2=49$ elements,
 		those of the form $a+bi$ for $a$, $b$ modulo $7$.
 		It gives ``two degrees'' of space.
 		\ii Let $(5) = (2+i)(2-i)$.
@@ -112,7 +113,7 @@ We conclude that $\pp_i = p^{f_i}$ for some integer $f_i \ge 1$, and moreover th
 		and there are only $5^1=5$ elements.
 	\end{enumerate}
 	If you understand this, it should be intuitively clear
-	why the sum of the inertial degrees should equal $n$.
+	why the sum of $e_if_i$ should equal $n$.
 \end{example}
 
 \section{The magic of Galois extensions}
@@ -123,7 +124,7 @@ all the inertial degrees and ramification degrees are equal.
 We set about proving this.
 
 Let $K/\QQ$ be Galois with $G = \Gal(K/\QQ)$.
-Note that if $\pp \subseteq \OO_K$ is prime above $p$,
+Note that if $\pp \subseteq \OO_K$ is a prime above $p$,
 then the image $\sigma``(\pp)$ is also prime for any $\sigma \in G$
 (since $\sigma$ is an automorphism!).
 Moreover, since $p \in \pp$ and $\sigma$ fixes $\QQ$,

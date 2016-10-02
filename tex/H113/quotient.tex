@@ -81,7 +81,7 @@ Such an expression is appropriately called a \vocab{group presentation}.
 Presentations are nice because they provide a compact way to write down groups.
 They do have some shortcomings, though.\footnote{
 Actually, determining whether two elements of a presentation are isomorphic is undecidable.
-In fact, I believe it is undecidable to even determine if a group is finite from its presentation.}
+In fact, it is undecidable to even determine if a group is finite from its presentation.}
 
 \begin{example}
 	[Presentations can look very different]
@@ -236,7 +236,7 @@ Consider the sets
 	1+N &= \left\{ \dots, -199, -99, 1, 101, 201, \dots \right\} \\
 	2+N &= \left\{ \dots, -198, -98, 2, 102, 202, \dots \right\} \\
 	&\vdots \\
-	99+N &= \left\{ \dots, -100, -1, 99, 199, 299, \dots \right\}.
+	99+N &= \left\{ \dots, -101, -1, 99, 199, 299, \dots \right\}.
 \end{align*}
 The elements of each set all have the same image when we apply $\phi$,
 and moreover any two elements in different sets have different images.
@@ -347,6 +347,8 @@ Using this bijection, we can define the quotient group more concretely:
 	Take a moment to digest the above definition.
 \end{ques}
 By the way we've built it, the resulting group $G/N$ is isomorphic to $Q$.
+In a sense we think of $G/N$ as ``$G$ modulo the condition that $n=1$
+for all $n \in N$''.
 
 \section{(Optional) Proof of Lagrange's theorem}
 We can now show Lagrange's theorem in the general case.
@@ -367,6 +369,11 @@ Hence if $n$ is the number of cosets, then $n \cdot \left\lvert H \right\rvert =
 	by taking $H = \left<x\right> \subseteq G$.
 \end{ques}
 
+\begin{remark}
+	It should be mentioned at this point that
+	in general, if $G$ is a finite group and $N$ is normal,
+	then $|G/N| = |G| / |N|$.
+\end{remark}
 
 \section{Eliminating the homomorphism}
 \prototype{Again $\ZZ/n\ZZ \cong \Zc n$.}
@@ -379,10 +386,11 @@ The short version is:
 	\ii Given cosets $g_1N$ and $g_2N$ the group operation is 
 	\[ g_1N \cdot g_2N \defeq (g_1g_2)N. \]
 \end{itemize}
-Where do we actually use the fact that $N$ is normal?
+Question: where do we actually use the fact that $N$ is normal?
 We don't talk about $\phi$ or $Q$ anywhere in this definition.
 
-The answer is in \Cref{remark:coset_warning}. The group operation takes in two cosets, so it doesn't know what $g_1$ and $g_2$.
+The answer is in \Cref{remark:coset_warning}.
+The group operation takes in two cosets, so it doesn't know what $g_1$ and $g_2$.
 But behind the scenes,
 \textbf{the normal condition guarantees that the group operation can pick
 any $g_1$ and $g_2$ it wants and still end up with the same coset.}
@@ -410,14 +418,11 @@ Well, duh -- so what?
 Amazingly it turns out that that this is the \emph{sufficient} condition we want.
 Specifically, it makes the nice ``coset multiplication'' we wanted work out.
 \begin{remark}
-This coincidence is really a lot like functional equations at the IMO.
-Of course we all know $f(x) = x$ satisfies the identity 
-\[ f(x+f(y)) = f(y-x)+2x; \]
-who cares?
-The surprise is that doing a series of ad-hoc manipulations,
-one can show from the identity that $f(x) = x$.
-In this case, we all know that normal subgroups $H$ satisfy $ghg\inv \in H$;
-the surprise is that from the latter we can deduce $H$ is normal.
+	[For math contest enthusiasts]
+	This coincidence is really a lot like functional equations at the IMO.
+	We all know that normal subgroups $H$ satisfy $ghg\inv \in H$;
+	the surprise is that from the latter seemingly weaker condition,
+	we can deduce $H$ is normal.
 \end{remark}
 
 Thus we have a new criterion for ``normal'' subgroups which does not
@@ -490,10 +495,12 @@ make any external references to $\phi$.
 	Why does it follow that any subgroup of $G$ is normal?
 \end{ques}
 
+
 Finally here's some food for thought:
 suppose one has a group presentation for a group $G$
 that uses $n$ generators.
-Can you write it as a quotient of the form $F_n / N$, where $N$ is a normal subgroup of $F_n$?
+Can you write it as a quotient of the form $F_n / N$,
+where $N$ is a normal subgroup of $F_n$?
 
 % TODO Brian:
 % Useful to mention that $|G/N| = |G|/|N|$.
