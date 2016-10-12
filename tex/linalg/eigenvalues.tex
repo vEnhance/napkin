@@ -88,11 +88,11 @@ However, it is true if we replace $k$ with an algebraically closed field.
 	They must be linearly dependent for dimension reasons;
 	thus there is a nonzero polynomial $P$ such that $P(T)$ vanishes at $v$.
 	WLOG suppose $P$ is a monic polynomial,
-	and thus $P(z) = (z-r_1)\dots(z-r_k)$ say.
+	and thus $P(z) = (z-r_1)\dots(z-r_m)$ say.
 	Then we get
 	\[ 0 = (T - r_1 \id) \circ (T - r_2 \id) \circ \dots
-		\circ (T - r_k \id)(v) \]
-	which means at least one of $T - r_j \id$ is not injective, done.
+		\circ (T - r_m \id)(v) \]
+	which means at least one of $T - r_i \id$ is not injective, done.
 \end{proof}
 So in general we like to consider algebraically closed fields.
 This is not a big loss: any real matrix can be interpreted as a complex matrix
@@ -241,7 +241,8 @@ Then Nilpotent Jordan will finish the job.
 
 \section{Reducing to the nilpotent case}
 \begin{definition}
-	Let $T : V \to V$. A subspace of $V$ is \vocab{$T$-invariant}
+	Let $T : V \to V$. A subspace $W \subseteq V$
+	is called \vocab{$T$-invariant}
 	if $T(w) \in W$ for any $w \in W$.
 	In this way, $T$ can be thought of as a map $W \to W$.
 \end{definition}
@@ -253,7 +254,7 @@ Now I'm going to be cheap, and define:
 	if it's impossible to write $V = W_1 \oplus W_2$
 	where both $W_1$ and $W_2$ are $T$-invariant.
 \end{definition}
-Picture of a \emph{reducible} map:
+Picture of a \emph{decomposable} map:
 \[ 
 	\begin{bmatrix}
 		\multicolumn{2}{c|}{\multirow{2}{*}{$W_1$}} & 0 & 0 & 0  \\ 
