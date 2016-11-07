@@ -190,7 +190,7 @@ This does exactly what you think it would.
 \end{example}
 
 \section{Disjoint union and wedge sum}
-\prototype{$S^1 \wedge S^1$ is the figure eight.}
+\prototype{$S^1 \vee S^1$ is the figure eight.}
 
 The disjoint union of two spaces is geometrically exactly
 what it sounds like: you just imagine the two spaces side by side.
@@ -199,8 +199,8 @@ For completeness, here is the formal definition.
 	Let $X$ and $Y$ be two topological spaces.
 	The \vocab{disjoint union}, denoted $X \amalg Y$, is defined by
 	\begin{itemize}
-		\ii The points are the disjoint union $X \sqcup Y$, and
-		\ii A subset $U \subseteq X \sqcup Y$ is open if
+		\ii The points are the disjoint union $X \amalg Y$, and
+		\ii A subset $U \subseteq X \amalg Y$ is open if
 		and only if $U \cap X$ and $U \cap Y$ are open.
 	\end{itemize}
 \end{definition}
@@ -538,7 +538,7 @@ Indeed, there are several possible geometric interpretations:
 	This means that we add some lines ``infinitely far away'',
 	one for each possible direction of a line.
 	Thus in $\RP^2$, any two lines indeed intersect
-	(at a Euclidean point if they are not parallel, and at a line
+	(at a Euclidean point if they are not parallel, and at a point
 	at infinity if they do).
 
 	This gives an interpretation of $\RP^2$,
@@ -583,24 +583,7 @@ As a possibly helpful example, we draw all three pictures of $\RP^1$.
 	a copy of $\RR$ plus a single point at infinity, corresponding
 	to the parallel line (drawn in cyan below).
 	\begin{center}
-		\begin{asy}
-			size(8cm);
-			filldraw(unitcircle, lightblue+opacity(0.2), heavyblue+opacity(0.4));
-			label("$S^1$", dir(225), dir(225), lightblue);
-			dot("$\vec 0$", origin, dir(45));
-			pair X1 = (-2.1,1);
-			pair X2 = (1.9,1);
-			draw(X1--X2, heavyred, Arrows);
-			dot("$0$", (0,1), dir(90), heavyred);
-			dot("$1$", (1,1), dir(90), heavyred);
-			pair P = extension( (0,1), (1,1), dir(250), dir(70) );
-			dot("$0.36$", P, dir(90), heavyred);
-			label("$\mathbb R$", X2, dir(105), heavyred);
-			draw(L(dir(130),-dir(130),0.2,0.2), gray);
-			draw(L(dir(250),-dir(250),0.2,0.2), gray);
-			draw(L(dir(-20),-dir(-20),0.2,0.2), gray);
-			draw(L(dir(0), -dir(0), 0.4,0.4), heavycyan+1);
-		\end{asy}
+		\includegraphics[width=8cm]{media/S2-simply.png}
 	\end{center}
 	Thus, the points of $\RP^1$ have two forms:
 	\begin{itemize}

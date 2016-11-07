@@ -218,7 +218,7 @@ first we generate a sequence which is periodic modulo $r$.
 	That tells us that the collapsed state now, up to scaling, is
 	\[ (\ket{7} + \ket{7+r} + \ket{7+2r} + \dots) \otimes \ket{128}. \]
 \end{example}
-The bottleneck is actually the circuit $f$;
+The bottleneck is actually the circuit $U_x$;
 one can compute $2^k \pmod M$ by using repeated squaring,
 but it's still the clumsy part of the whole operation.
 
@@ -252,7 +252,7 @@ coefficient of $\ket j$ in the transformed image is equal to
 \]
 As this is a sum of roots of unity, we realize we have
 destructive interference unless $\omega_N^{jr} = 1$ (since $N$ is large).
-In other words, up to scaling we approximately have
+In other words, we approximately have
 \[
 	\UQFT(\ket\phi)
 	\approx
@@ -274,7 +274,7 @@ to extract the value of $r$.
 	$\ket\phi = \ket7 + \ket{7+r} + \dots$.
 	Now we make a measurement and obtain $j = 4642$, which means that
 	for some integer $s$ we have
-	\[ \frac{4642j}{2^{13}} \approx s. \]
+	\[ \frac{4642r}{2^{13}} \approx s. \]
 	Now, we analyze the continued fraction of $\frac{4642}{2^{13}}$;
 	we find the first few convergents are
 	\[

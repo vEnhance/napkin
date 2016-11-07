@@ -114,11 +114,13 @@ Note that not all neighborhoods work this time: notably, $U = S^1$ does not work
 
 \section{Lifting theorem}
 \prototype{$\RR$ covers $S^1$.}
-Now here's the key idea: we are going to try to interpret paths in $B$ as loops in $\RR$.
+Now here's the key idea: we are going to try to interpret
+loops in $B$ as paths in $\RR$.
 This is often much simpler.
 For example, we had no idea how to compute the fundamental group of $S^1$,
 but the fundamental group of $\RR$ is just the trivial group.
-So if we can interpret loops in $S^1$ as loops in $\RR$, that might (and indeed it does!) make computing $\pi_1(S^1)$ tractable.
+So if we can interpret loops in $S^1$ as paths in $\RR$,
+that might (and indeed it does!) make computing $\pi_1(S^1)$ tractable.
 
 \begin{definition}
 	Let $\gamma : [0,1] \to B$ be a path and $p : E \to B$ a covering projection.
@@ -191,7 +193,7 @@ a corresponding path in $E$.
 
 It turns out this is true more generally.
 \begin{theorem}[Lifting paths]
-	Suppose $\gamma : [0,1] \to B$ is a path with $\gamma(0) = \gamma(1) = b_0$, and 
+	Suppose $\gamma : [0,1] \to B$ is a path with $\gamma(0) = b_0$, and 
 	$ p : (E,e_0) \to (B,b_0) $
 	is a covering projection.
 	Then there exists a \emph{unique} lifting $\tilde\gamma : [0,1] \to E$
@@ -307,7 +309,7 @@ The below proposition summarizes this and more.
 	But then consider the composition of maps
 	\[ [0,1] \times [0,1] \taking{F} E \taking{p} B. \]
 	You can check this is a homotopy from $\gamma_1$ to $\gamma_2$.
-	Hence $[\gamma_1] \simeq [\gamma_2]$, done.
+	Hence $[\gamma_1] = [\gamma_2]$, done.
 \end{proof}
 
 This motivates:
@@ -333,22 +335,21 @@ This motivates:
 \end{example}
 
 \section{Regular coverings}
-I want to talk a little about a special type of covering now: those
-that arise from group actions.
+\prototype{$\RR \to S^1$ comes from $n \cdot x = n + x$}
 
+Here's another way to generate some coverings.
 Let $X$ be a topological space and $G$ a group acting on its points.
 Thus for every $g$, we get a map $X \to X$ by 
 \[ x \mapsto g \cdot x. \]
-We require that this map is continuous for every $g \in G$.\footnote{%
+We require that this map is continuous\footnote{%
 	Another way of phrasing this: the action,
 	interpreted as a map $X \times G \to X$, should be continuous,
 	where $G$ on the left-hand side is interpreted as a set with
 	the discrete topology.}
-
-Then we can consider a topological space $X/G$ defined by fusing any points
+for every $g \in G$, and that the stabilizer of each point in $X$ is trivial.
+Then we can consider a quotient space $X/G$ defined by fusing any points
 in the same orbit of this action.
-(The open sets of $X/G$ are just the open sets of $X$ after this identification.)
-In other words, the points of $X/G$ are the orbits of the action.
+Thus the points of $X/G$ are identified with the orbits of the action.
 Then we get a natural ``projection''
 \[ X \to X/G \]
 by simply sending every point to the orbit it lives in.
