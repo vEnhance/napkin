@@ -574,7 +574,7 @@ $\RP^n$ for any $n$, as either
 	which themselves form a copy of $\RP^{n-1}$.
 \end{enumerate}
 
-As a possibly helpful example, we draw all three pictures of $\RP^1$.
+As a possibly helpful example, we give all three pictures of $\RP^1$.
 \begin{example}
 	[Real projective $1$-Space]
 	$\RP^1$ can be thought of as $S^1$ modulo the relation
@@ -583,8 +583,26 @@ As a possibly helpful example, we draw all three pictures of $\RP^1$.
 	a copy of $\RR$ plus a single point at infinity, corresponding
 	to the parallel line (drawn in cyan below).
 	\begin{center}
-		\includegraphics[width=8cm]{media/S2-simply.png}
+		\begin{asy}
+			size(7cm);
+			filldraw(unitcircle, lightblue+opacity(0.2), heavyblue+opacity(0.4));
+			label("$S^1$", dir(225), dir(225), lightblue);
+			dot("$\vec 0$", origin, dir(45));
+			pair X1 = (-2.1,1);
+			pair X2 = (1.9,1);
+			draw(X1--X2, heavyred, Arrows);
+			dot("$0$", (0,1), dir(90), heavyred);
+			dot("$1$", (1,1), dir(90), heavyred);
+			pair P = extension( (0,1), (1,1), dir(250), dir(70) );
+			dot("$0.36$", P, dir(90), heavyred);
+			label("$\mathbb R$", X2, dir(105), heavyred);
+			draw(L(dir(130),-dir(130),0.2,0.2), gray);
+			draw(L(dir(250),-dir(250),0.2,0.2), gray);
+			draw(L(dir(-20),-dir(-20),0.2,0.2), gray);
+			draw(L(dir(0), -dir(0), 0.4,0.4), heavycyan+1);
+		\end{asy}
 	\end{center}
+
 	Thus, the points of $\RP^1$ have two forms:
 	\begin{itemize}
 		\ii $(x:1)$, which we think of as $x \in \RR$ (in dark red above), and
