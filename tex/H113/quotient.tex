@@ -192,6 +192,7 @@ To make this concrete, let's compute the kernel of each of our examples.
 	\end{enumerate}
 \end{example}
 \begin{exercise}
+	Fix any $g \in G$.
 	Suppose we have a homomorphism $\ZZ \to G$ by $n \mapsto g^n$.
 	What is the kernel?
 \end{exercise}
@@ -209,7 +210,8 @@ If this exposition doesn't work for you, try \cite{ref:gowers}.}
 
 Let $G$ and $Q$ be groups, and suppose there exists
 a \emph{surjective} homomorphism \[ \phi : G \surjto Q. \]
-In other words, if $\phi$ is injective then $\phi : G \to Q$ is a bijection, and hence an isomorphism.
+In other words, if $\phi$ is injective then $\phi : G \to Q$ is a bijection,
+and hence an isomorphism.
 But suppose we're not so lucky and $\ker\phi$ is bigger than just $\{1_G\}$.
 What is the correct interpretation of a more general homomorphism?
 
@@ -225,11 +227,15 @@ So $\Zc{100}$ is what we get when we ``mod out by $100$''. Cool.
 
 In other words, let $G$ be a group and $\phi : G \surjto Q$
 be a surjective homomorphism with kernel $N \subseteq G$.
-Then $Q$ is the \vocab{quotient group} $G/N$, read ``$G$ mod $N$''.
-And now you know why the integers modulo $n$ are often written $\ZZ/n\ZZ$!
+\begin{moral}
+	We claim that $Q$ should be thought of as the quotient of $G$ by $N$.
+\end{moral}
+To formalize this, we will define a so-called \vocab{quotient group} $G/N$
+in terms of $G$ and $N$ only (without referencing $Q$)
+which will be naturally isomorphic to $Q$.
 
-\textbf{Now we try to write a more concrete definition of the quotient group.}
-Let $N = 100\ZZ$ be our subgroup of $G$.
+For motivation, let's give a concrete description of $Q$ using just $\phi$ and $G$.
+Continuing our previous example, let $N = 100\ZZ$ be our subgroup of $G$.
 Consider the sets
 \begin{align*}
 	N &= \left\{ \dots, -200, -100, 0, 100, 200, \dots \right\} \\
@@ -246,8 +252,7 @@ Then the main idea is to notice that
 	whose \emph{elements} are the \emph{sets} above.
 \end{moral}
 
-To recap: let $\phi : G \surjto Q$ be surjective, with kernel $N$.
-Given $\phi$ we can define an equivalence relation $\sim_N$
+Thus, given $\phi$ we define an equivalence relation $\sim_N$
 on $G$ by saying $x \sim_N y$ for $\phi(x) = \phi(y)$.
 This $\sim_N$ divides $G$ into several equivalence classes in $G$
 which are in obvious bijection with $Q$, as above.
@@ -267,16 +272,19 @@ Now we claim that we can write these equivalence classes very explicitly.
 %Hence another way to describe $\ol x$ is
 %\[ \ol g = gN = \left\{ gn \mid n \in N \right\}. \]
 
+Here's the word that describes the types of sets we're running into now.
 \begin{definition}
 	Let $H$ be any subgroup of $G$ (not necessarily the kernel of some homomorphism).
 	A set of the form $gH$ is called a \vocab{left coset} of $H$.
 \end{definition}
 \begin{remark}
-	Although the notation might not suggest it, keep in mind that $g_1N$ is often equal to $g_2N$ even if $g_1 \neq g_2$.
-	In the ``mod $100$'' example, $3+N = 103+N$. In other words, these cosets are \emph{sets}.
+	Although the notation might not suggest it,
+	keep in mind that $g_1N$ is often equal to $g_2N$ even if $g_1 \neq g_2$.
+	In the ``mod $100$'' example, $3+N = 103+N$.
+	In other words, these cosets are \emph{sets}.
 
 	This means that if I write ``let $gH$ be a coset'' without telling you what $g$ is,
-	you can't figure out which $g$ I chose from just the coset.
+	you can't figure out which $g$ I chose from just the coset itself.
 	If you don't believe me, here's an example of what I mean:
 	\[ x+100\ZZ = \left\{ \dots, -97, 3, 103, 203, \dots \right\} \implies x = {?}. \]
 	There's no reason to think I picked $x=3$. (I actually picked $x=-13597$.)
@@ -286,10 +294,19 @@ Now we claim that we can write these equivalence classes very explicitly.
 	Given cosets $g_1H$ and $g_2H$,
 	you can check that the map $x \mapsto g_2g_1\inv x$ is a bijection between them.
 	So actually, all cosets have the same cardinality.
-	Thus, to picture the case where $H=N$ is the kernel of $\phi$,
-	you might draw $G$ as a bunch of equally tall fibers (the cosets),
-	where $\phi$ collapses each of these fibers onto $Q$.
 \end{remark}
+
+So, long story short,
+\begin{moral}
+	Elements of the group $Q$ are naturally identified with left cosets of $G$.
+\end{moral}
+In practice, people often still prefer to picture elements of $Q$ as single points
+(for example it's easier to think of $\Zc2$ as $\{0,1\}$
+rather than $\{ \{\dots,-2,0,2,\dots\}, \{\dots,-1,1,3,\dots\}$).
+If you like this picture,
+then you might then draw $G$ as a bunch of equally tall fibers (the cosets),
+which are then ``collapsed'' onto $Q$.
+
 \begin{center}
 	\begin{asy}
 		size(9cm);
@@ -309,8 +326,8 @@ Now we claim that we can write these equivalence classes very explicitly.
 	\end{asy}
 \end{center}
 
-Anyways, viewed as equivalence classes of $\sim_N$, there is one left coset of $N$ for each element of $Q$.
-Using this bijection, we can define the quotient group more concretely:
+Now that we've done this, we can give an \emph{intrinsic}
+definition for the quotient group we alluded to earlier.
 \begin{definition}
 	A subgroup $N$ of $G$ is called \vocab{normal} if it is the
 	kernel of some homomorphism.
@@ -318,7 +335,7 @@ Using this bijection, we can define the quotient group more concretely:
 \end{definition}
 \begin{definition}
 	Let $N \normalin G$.
-	Then the \vocab{quotient group} $G/N$ is the group defined as follows.
+	Then the \vocab{quotient group}, denoted $G/N$, is the group defined as follows.
 	\begin{itemize}
 		\ii The elements of $G/N$ will be the left cosets of $N$.
 		\ii We want to define the product of two cosets $C_1$ and $C_2$ in $G/N$.
@@ -343,6 +360,7 @@ Using this bijection, we can define the quotient group more concretely:
 		\[ (g_1N) \cdot (g_2N) \defeq (g_1g_2)N. \]
 	\end{itemize}
 \end{definition}
+And now you know why the integers modulo $n$ are often written $\ZZ/n\ZZ$!
 \begin{ques}
 	Take a moment to digest the above definition.
 \end{ques}
@@ -351,8 +369,8 @@ In a sense we think of $G/N$ as ``$G$ modulo the condition that $n=1$
 for all $n \in N$''.
 
 \section{(Optional) Proof of Lagrange's theorem}
-We can now show Lagrange's theorem in the general case.
-Here is a more general statement.
+As an aside, with the language of cosets
+we can now show Lagrange's theorem in the general case.
 \begin{theorem}
 	[Lagrange's theorem]
 	\label{thm:lagrange_grp}
@@ -360,9 +378,11 @@ Here is a more general statement.
 	Then $\left\lvert H \right\rvert$ divides $\left\lvert G \right\rvert$.
 \end{theorem}
 
-The proof is very simple: note that the cosets of $H$ all have the same size and
-form a partition of $G$ (even when $H$ is not necessarily normal).
-Hence if $n$ is the number of cosets, then $n \cdot \left\lvert H \right\rvert = \left\lvert G \right\rvert$.
+The proof is very simple: note that the cosets of $H$
+all have the same size and form a partition of $G$
+(even when $H$ is not necessarily normal).
+Hence if $n$ is the number of cosets,
+then $n \cdot \left\lvert H \right\rvert = \left\lvert G \right\rvert$.
 
 \begin{ques}
 	Conclude that $x^{\left\lvert G \right\rvert}=1$
@@ -390,7 +410,8 @@ Question: where do we actually use the fact that $N$ is normal?
 We don't talk about $\phi$ or $Q$ anywhere in this definition.
 
 The answer is in \Cref{remark:coset_warning}.
-The group operation takes in two cosets, so it doesn't know what $g_1$ and $g_2$.
+The group operation takes in two cosets,
+so it doesn't know what $g_1$ and $g_2$ are.
 But behind the scenes,
 \textbf{the normal condition guarantees that the group operation can pick
 any $g_1$ and $g_2$ it wants and still end up with the same coset.}
@@ -453,7 +474,7 @@ make any external references to $\phi$.
 		which is fine since $h_3h_2 \in H$.
 	\end{subproof}
 	With that settled we can just \emph{define} the
-	product of two cosets by \[ (g_1H) \cdot (g_2H) = (g_1g_2)H. \]
+	product of two cosets (of normal subgroups) by \[ (g_1H) \cdot (g_2H) = (g_1g_2)H. \]
 
 	Thus the claim above shows that this multiplication is well-defined
 	(this verification is the ``content'' of the theorem).
@@ -539,10 +560,11 @@ of $G$ inside the group $H$.
 This is a pattern we'll often see in other branches of mathematics:
 whenever we have an \emph{injective structure-preserving map},
 often the image of this map will be some ``copy'' of $G$.
+(Here ``structure'' refers to the group multiplication,
+but we'll see some more other examples of ``types of objects'' later!)
 
 In that sense an injective homomorphism $\phi : G \injto H$
 is an \emph{embedding} of $G$ into $H$.
-
 
 \section\problemhead
 \begin{problem}

@@ -8,18 +8,28 @@ These are very intuitive concepts that you likely already know.
 I'll very informally define a ring/field here; if you're interested in the actual definition,
 you can consult the first part of the chapter on ideals.
 For now you can just remember:
-\begin{quote}
-	A commutative ring is a structure with a \emph{commutative}
+\begin{itemize}
+	\ii A \textbf{commutative ring} is a structure with a \emph{commutative}
 	addition and multiplication, as well as subtraction, like $\ZZ$. 
 	It also has an additive identity $0$ and multiplicative identity $1$.
 	(Yes, I'm considering only commutative rings.)
 
-	If the multiplication is invertible like in $\RR$ or $\CC$,
+	\ii If the multiplication is invertible like in $\RR$ or $\CC$,
 	(meaning $\frac 1x$ makes sense for any $x \neq 0$),
-	then the ring is called a \emph{field}.
-\end{quote}
-In fact, if you replace ``field'' by ``$\RR$'' everywhere in what follows, you probably won't lose much.
+	then the ring is called a \textbf{field}.
+\end{itemize}
+In fact, if you replace ``field'' by ``$\RR$'' everywhere in what follows,
+you probably won't lose much.
 It's customary to use the letter $R$ for rings, and $k$ or $K$ for fields.
+
+Finally, in case you skipped the chapter on groups, I should also mention:
+\begin{itemize}
+	\ii An \textbf{additive abelian group} is a structure
+	with a commutative addition, as well as subtraction,
+	plus an additive identity $0$.
+	It doesn't have to have multiplication.
+	A good example is $\RR^3$ (with addition componentwise).
+\end{itemize}
 
 \section{Modules and vector spaces}
 \prototype{Polynomials of degree at most $n$.}
@@ -51,8 +61,9 @@ but first, examples\dots
 	but that's irrelevant -- in a vector space there need not
 	be a notion of multiplying two vectors together.
 
-	In a sense we'll describe later, this vector space has dimension $3$.
-	But I hope you can see why this is kind of true!
+	In a sense we'll define later, this vector space
+	has dimension $3$ (as expected!).
+	% But I hope you can see why this is kind of true!
 	\label{example:quadratic_vector_space}
 \end{example}
 \begin{example}[All polynomials]
@@ -96,8 +107,8 @@ but first, examples\dots
 Now let me write the actual rules for how this multiplication behaves.
 \begin{definition}
 	Let $R$ be a commutative ring.
-	An $R$-\vocab{module} is an additive abelian group $M = (M,+)$
-	equipped with a left multiplication by elements of $R$.
+	An $R$-\vocab{module} is an additive abelian group
+	$M = (M,+)$ equipped with a left multiplication by elements of $R$.
 	This multiplication must satisfy the following properties
 	for every $r_1, r_2 \in R$ and $m \in M$:
 	\begin{enumerate}[(i)]
@@ -107,9 +118,8 @@ Now let me write the actual rules for how this multiplication behaves.
 			\text{ and }
 			r \cdot (m_1 + m_2) = r \cdot m_1 + r \cdot m_2. \]
 		\ii $1_R \cdot m = m$.
-		\ii $0_R \cdot m = 0_M$.\footnote{This condition is 
-			extraneous; you can actually deduce it
-			from the first three rules.}
+		\ii $0_R \cdot m = 0_M$. (This is actually extraneous;
+		one can deduce it from the first three.)
 	\end{enumerate}
 	If $R$ is a field we say $M$ is an $R$-\vocab{vector space};
 	its elements are called \vocab{vectors}
@@ -136,7 +146,7 @@ Now let me write the actual rules for how this multiplication behaves.
 
 A couple less intuitive but somewhat important examples\dots
 \begin{example}[Abelian groups are $\ZZ$-modules]
-	\listhack
+	(Skip this example if you're not comfortable with groups.)
 	\begin{enumerate}[(a)]
 		\ii The example of real polynomials
 		\[ \left\{ ax^2+bx+c \mid a,b,c \in \RR \right\} \]
@@ -422,7 +432,8 @@ between vector spaces. Can you guess the definition?
 	Let $V$ and $W$ be vector spaces over the same field $k$.
 	A \vocab{linear map} is a map $T : V \to W$ such that:
 	\begin{enumerate}[(i)]
-		\ii $T$ is a homomorphism $(V,+) \to (W,+)$ of abelian groups, meaning $T(v_1 + v_2) = T(v_1) + T(v_2)$.
+		\ii We have  $T(v_1 + v_2) = T(v_1) + T(v_2)$ for $v_1, v_2 \in V$
+		(in group language, $T$ is a homomorphism $(V,+) \to (W,+)$).
 		\ii For any $a \in k$ and $v \in V$, $T(a \cdot v) = a \cdot T(v)$.
 	\end{enumerate}
 	If this map is a bijection (equivalently, if it has an inverse),
@@ -775,14 +786,15 @@ Nonetheless, there are still analogs of some of the definitions above.
 	a free $\ZZ$-module of rank $2$.
 \end{example}
 
-Finally, recall that an abelian group can be viewed a $\ZZ$-module
-(and in fact vice-versa!), so we can (and will) apply these words to abelian groups.
-Thus:
 \begin{abuse}
-We'll use the notation $G \oplus H$ for two abelian groups $G$ and $H$
-for their Cartesian product, emphasizing the fact that $G$ and $H$ are abelian.
+	[Notation for groups]
+	Recall that an abelian group
+	can be viewed a $\ZZ$-module (and in fact vice-versa!),
+	so we can (and will) apply these words to abelian groups.
+	We'll use the notation $G \oplus H$ for two abelian groups $G$ and $H$
+	for their Cartesian product, emphasizing the fact that $G$ and $H$ are abelian.
+	This will happen when we study algebraic number theory and homology groups.
 \end{abuse}
-This will happen when we study algebraic number theory and homology groups.
 
 \section\problemhead
 \begin{problem}[TSTST 2014]
@@ -797,10 +809,13 @@ This will happen when we study algebraic number theory and homology groups.
 		Interpret as $V \oplus V \to W$ for suitable $V$, $W$.
 	\end{hint}
 	\begin{sol}
-		Let $V$ be the space of real polynomials with degree at most $d/2$ (which has dimension $1 + \left\lfloor d/2 \right\rfloor$), and $W$ be the space of real polynomials modulo $P$ (which has dimension $d$).
+		Let $V$ be the space of real polynomials with degree at most $d/2$
+		(which has dimension $1 + \left\lfloor d/2 \right\rfloor$),
+		and $W$ be the space of real polynomials modulo $P$ (which has dimension $d$).
 		Then $\dim (V \oplus V) > \dim W$.
-		So the linear map $V \times V \to W$ by $(A,B) \mapsto A + Q \cdot B$
-		cannot be injective.
+		So the linear map $V \oplus V \to W$ by $(A,B) \mapsto A + Q \cdot B$
+		has a kernel of positive dimension
+		(by rank-nullity, for example).
 	\end{sol}
 \end{problem}
 

@@ -282,12 +282,12 @@ so that we have
 \[ \Frob_{\sigma(\kP)} = \sigma \circ (\Frob_{\pp}) \circ \sigma\inv.  \]
 Thus $\Frob_\kP$ is determined by its underlying $\pp$ up to conjugation.
 
-In class field theory, we are interested in \emph{abelian} extensions,
-(which just means that $\Gal(L/K)$ is Galois)
-in which case the theory becomes extra nice:
+In class field theory, we are interested in \vocab{abelian extensions},
+i.e.\ those for which $\Gal(L/K)$ is Galois.
+Here the theory becomes extra nice:
 the conjugacy classes have size one.
 \begin{definition}
-	Assume $L/K$ is an \emph{abelian} extension.
+	Assume $L/K$ is an \textbf{abelian} extension.
 	Then for a given unramified prime $\pp$ in $K$,
 	the element $\Frob_\kP$ doesn't depend on the choice of $\kP$.
 	We denote the resulting $\Frob_\kP$ by the \vocab{Artin symbol}.
@@ -336,7 +336,7 @@ For brevity, in what follows let $\Ram(L/K)$ denote the primes of $K$
 (either finite or infinite) which ramify in $L$.
 
 \begin{definition}
-	Let $L/K$ be an \emph{abelian extension} and let $\mm$ be
+	Let $L/K$ be an abelian extension and let $\mm$ be
 	divisible by every prime in $\Ram(L/K)$.
 	Then since $L/K$ is abelian we can extend the Artin symbol
 	multiplicatively to a map
@@ -362,7 +362,7 @@ We can now present the long-awaited Artin reciprocity theorem.
 	\[ 
 		P_K(\mm) \subseteq H_{L/K}(\mm) \subseteq I_K(\mm)
 		\quad\text{if and only if}\quad
-		\kf \mid \mm
+		\kf \mid \mm.
 	\]
 	We call $\kf$ the \vocab{conductor} of $L/K$.
 \end{theorem}
@@ -407,7 +407,8 @@ always a subgroup some subgroup $C_K(\kf)$.
 \end{example}
 
 
-In fact, a much stronger result is true than just ``the bounds are sharp'' is true:
+In fact, a much stronger result is true than
+just ``the bounds are sharp'' is true.
 The ``existence theorem'' is a surjectivity result:
 every congruence subgroup appears uniquely once we fix $\mm$.
 \begin{theorem}
@@ -424,11 +425,9 @@ Finally, such subgroups reverse inclusion in the best way possible:
 	Let $L/K$ and $M/K$ be abelian extensions 
 	and suppose $\mm$ is divisible by the conductors of $L/K$ and $M/K$.
 	Then 
-	\[
-		L \subseteq M
+	\[ L \subseteq M
 		\quad\text{if and only if}\quad
-		H_{M/K}(\mm) \subseteq H_{L/K}(\mm) 
-	\]
+		H_{M/K}(\mm) \subseteq H_{L/K}(\mm).  \]
 \end{lemma}
 Here by $L \subseteq M$ we mean that $L$ is isomorphic to some subfield of $M$.
 \begin{proof}

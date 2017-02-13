@@ -69,7 +69,8 @@ Now for the examples!
 	\centering
 	\begin{asy}
 		size(4cm);
-		for (int n=1; n<=30; ++n) draw(CP(dir(0)/n, origin));
+		for (int n=1; n<=40; ++n) draw(CP(dir(0)/n, origin));
+		fill(CP(dir(0)/40, origin), black);
 	\end{asy}
 	\caption{Hawaiian Earring.}
 	\label{fig:hawaiian}
@@ -300,15 +301,25 @@ we need a $\delta$ that works for \emph{every point} of $M$.
 \begin{example}[Uniform continuity]
 	\listhack
 	\begin{enumerate}[(a)]
-		\ii The functions $\RR$ to $\RR$ of the form $x \mapsto ax+b$ are all uniformly continuous,
+		\ii The functions $\RR$ to $\RR$ of the form
+		$x \mapsto ax+b$ are all uniformly continuous,
 		since one can always take $\delta = \eps/|a|$ (or $\delta=1$ if $a=0$).
 		\ii Actually, it is true that a differentiable function $\RR \to \RR$
 		with a bounded derivative is uniformly continuous.
-		(The converse is false for the reason that uniformly continuous doesn't imply differentiable at all.)
+		(The converse is false for the reason that uniformly continuous
+		doesn't imply differentiable at all.)
 		\ii The function $f : \RR \to \RR$ by $x \mapsto x^2$
-		is \emph{not} uniformly continuous, since for really large $x$,
+		is \emph{not} uniformly continuous, since for large $x$,
 		tiny $\delta$ changes to $x$ lead to fairly large changes in $x^2$.
-		\ii However, when restricted to $(0,1)$ or $[0,1]$ the function $x \mapsto x^2$ is uniformly continuous.
+		(If you like, you can try to prove this formally now.)
+		
+		Think $f(2017.01) - f(2017) > 40$;
+		even when $\delta = 0.01$, one can still cause large changes in $f$.
+
+		\ii However, when restricted to $(0,1)$ or $[0,1]$
+		the function $x \mapsto x^2$ becomes uniformly continuous.
+		(For $\eps > 0$ one can now pick for example $\delta = \min(1,\eps)/3$.)
+
 		\ii The function $(0,1) \to \RR$ by $x \mapsto 1/x$ is \emph{not} uniformly continuous
 		(same reason as before).
 	\end{enumerate}

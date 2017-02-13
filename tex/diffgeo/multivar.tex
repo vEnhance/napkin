@@ -8,7 +8,10 @@ Since we are doing this chapter using morally correct linear algebra,
 it's imperative you're comfortable with linear maps,
 and in particular the dual space $V^\vee$ which we will repeatedly use.
 
-In this chapter, all vector spaces have norms and finite-dimensional over $\RR$.
+In this chapter, all vector spaces have norms and
+are finite-dimensional over $\RR$.
+So in particular every vector space is also a metric space
+(with norm given by the metric), and we can talk about open sets as usual.
 
 \section{The total derivative}
 \prototype{If $f(x,y) = x^2+y^2$, then $(Df)_{(x,y)} = 2x\ee_1^\vee + 2y\ee_2^\vee$.}
@@ -59,17 +62,17 @@ That means I want a linear map $T : \RR^2 \to \RR$ such that
 \[ f(p + v) \approx f(p) + T(v) \]
 for small displacements $v \in \RR^2$.
 
-Even more generally, if $f : U \to W$ with $U \subseteq V$ open,
+Even more generally, if $f : U \to W$ with $U \subseteq V$ open
+(in the $\norm{\bullet}_V$ metric as usual),
 then the derivative at $p \in U$ ought to be so that
 \[ f(p + v) \approx f(p) + T(v) \in W. \]
 (We need $U$ open so that for small enough $v$, $p+v \in U$ as well.)
-In fact this is exactly what we're doing earlier with $f'(p)$ in high school.
+In fact this is exactly what we were doing earlier with $f'(p)$ in high school.
 
 \begin{center}
 	\includegraphics{media/tangent.pdf}
 	\\ \scriptsize Image derived from \cite{img:tangentplane}
 \end{center}
-
 
 The only difference is that, by an unfortunate coincidence,
 a linear map $\RR \to \RR$ can be represented by just its slope.
@@ -99,7 +102,7 @@ this we use the norm of the vector space.
 	Let $f : U \to W$ be a continuous function, and $p \in U$.
 	Suppose there exists a linear map $T : V \to W$ such that
 	\[
-		\lim_{\norm{v} \to 0}
+		\lim_{\norm{v}_V \to 0}
 		\frac{\norm{f(p + v) - f(p) - T(v)}_W}{\norm{v}_V} = 0.
 	\]
 	Then $T$ is the \vocab{total derivative} of $f$ at $p$.
@@ -149,6 +152,7 @@ Thus, for $p = ae_1 + be_2$ we indeed have $(Df)_p = 2a \cdot e_1^\vee + 2b \cdo
 Before proceeding I need to say something really important.
 \begin{theorem}[Projection principle]
 	\label{thm:project_principle}
+	Let $U$ be an open subset of the vector space $V$.
 	Let $W$ be an $n$-dimensional real vector space with basis $w_1, \dots, w_n$.
 	Then there is a bijection between continuous functions $f : U \to W$ and
 	$n$-tuples of continuous $f_1, f_2, \dots, f_n : U \to \RR$
@@ -168,7 +172,8 @@ For this reason, we'll most often be interested in functions $f : U \to \RR$.
 That's why the dual space $V^\vee$ is so important.
 
 \section{Total and partial derivatives}
-\prototype{If $f(x,y) = x^2+y^2$, then $(Df) : (x,y) \mapsto 2x\ee_1^\vee + 2y\ee_2^\vee$, and
+\prototype{If $f(x,y) = x^2+y^2$, then
+$(Df) : (x,y) \mapsto 2x \cdot \ee_1^\vee + 2y \cdot \ee_2^\vee$, and
 $\fpartial fx = 2x$, $\fpartial fy = 2y$.}
 Let $U \subseteq V$ be open and let $V$ have a basis $e_1$, \dots, $e_n$.
 Suppose $f : U \to \RR$ is a function which is differentiable everywhere,
@@ -178,9 +183,11 @@ In that case, one can consider $Df$ as \emph{itself} a function:
 	Df : U &\to V^\vee \\
 	p &\mapsto (Df)_p.
 \end{align*}
-This is a little crazy: to every \emph{point} in $U$ we associate a \emph{function} in $V^\vee$.
-We say $Df$ is the \vocab{total derivative} of $f$ at $p$,
+This is a little crazy: to every \emph{point} in $U$
+we associate a \emph{function} in $V^\vee$.
+We say $Df$ is the \vocab{total derivative} of $f$,
 to reflect how much information we're dealing with.
+We say $(Df)_p$ is the total derivative at $p$.
 
 Let's apply the projection principle now to $Df$.
 Since we picked a basis $e_1$, \dots, $e_n$ of $V$,
@@ -254,11 +261,12 @@ Fortunately, it turns out you already know how to compute partial derivatives,
 because you had to take AP Calculus at some point in your life.
 It turns out for most reasonable functions, this is all you'll ever need.
 \begin{theorem}[Continuous partials implies differentiable]
+	\label{thm:apcalc_partials}
 	Let $U \subseteq V$ be open and pick any basis $e_1, \dots, e_n$.
-	Let $f : U \to W$ and suppose that $\fpartial{f}{e_i}$ is defined
+	Let $f : U \to \RR$ and suppose that $\fpartial{f}{e_i}$ is defined
 	for each $i$ and moreover is \emph{continuous}.
-	Then $f$ is differentiable and given by
-	\[ Df = \sum \fpartial{f}{e_i} \cdot e_i^\vee. \]
+	Then $f$ is differentiable and $Df$ is given by
+	\[ Df = \sum_{i=1}^n \fpartial{f}{e_i} \cdot e_i^\vee. \]
 \end{theorem}
 \begin{proof}
 	Not going to write out the details, but\dots
@@ -272,9 +280,8 @@ It turns out for most reasonable functions, this is all you'll ever need.
 \begin{remark}
 	The continuous condition cannot be dropped. The function
 	\[
-			f(x,y)
-		=
-		\begin{cases}
+		f(x,y)
+		= \begin{cases}
 			\frac{xy}{x^2+y^2} & (x,y) \neq (0,0) \\
 			0 & (x,y) = (0,0).
 		\end{cases}
@@ -290,7 +297,8 @@ It turns out for most reasonable functions, this is all you'll ever need.
 		\fpartial fx (x,y) &= \sin y + y^4 \cdot 2x \\
 		\fpartial fy (x,y) &= x \cos y + x^2 \cdot 4y^3.
 	\end{align*}
-	Then $Df = \fpartial fx \ee_1^\vee + \fpartial fy \ee_2^\vee$,
+	So \Cref{thm:apcalc_partials} applies,
+	and $Df = \fpartial fx \ee_1^\vee + \fpartial fy \ee_2^\vee$,
 	which I won't bother to write out.
 \end{example}
 
