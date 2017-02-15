@@ -346,11 +346,11 @@ For brevity, in what follows let $\Ram(L/K)$ denote the primes of $K$
 	\]
 	This is called the \vocab{Artin map},
 	and it is surjective (for example by Chebotarev Density).
+	Thus we denote its kernel by 
+	\[ H(L/K, \mm) \subseteq I_K(\mm). \]
 \end{definition}
-Since the map above is surjective,
-we denote its kernel by $H_{L/K}(\mm) \subseteq I_K(\mm)$.
-Thus we have
-\[ \Gal(L/K) \cong I_K(\mm) / H(\mm). \]
+In particular we have
+$\Gal(L/K) \cong I_K(\mm) / H(\mm)$.
 
 We can now present the long-awaited Artin reciprocity theorem.
 \begin{theorem}
@@ -360,7 +360,7 @@ We can now present the long-awaited Artin reciprocity theorem.
 	divisible by exactly the primes of $\Ram(L/K)$, such that:
 	for any modulus $\mm$ divisible by all primes of $\Ram(L/K)$, we have
 	\[ 
-		P_K(\mm) \subseteq H_{L/K}(\mm) \subseteq I_K(\mm)
+		P_K(\mm) \subseteq H(L/K, \mm) \subseteq I_K(\mm)
 		\quad\text{if and only if}\quad
 		\kf \mid \mm.
 	\]
@@ -371,18 +371,54 @@ So the conductor $\kf$ plays a similar role to the discriminant
 and when $\mm$ is divisible by the conductor,
 $H(L/K, \mm)$ is a \emph{congruence subgroup}.
 
-Note that for example, if we pick $L$ such that $H(L/K, \mm) \cong P_K(\mm)$
-then Artin reciprocity means that there is an isomorphism
-\[ \Gal(L/K) \cong I_K(\mm) / P_K(\mm) \cong C_K(\mm). \]
-More generally, we see that $\Gal(L/K)$ is
-always a subgroup some subgroup $C_K(\kf)$.
+Here's the reason this is called a ``reciprocity'' theorem.
+Recalling that $C_K(\kf) = I_K(\kf) / P_K(\kf)$,
+the above theorem tells us we get a sequence of maps
+\begin{center}
+\begin{tikzcd}
+	I_K(\kf) \ar[r, two heads] & C_K(\kf) \ar[rd, two heads]
+		\ar[rr, "\left( \frac{L/K}{\bullet} \right)", two heads]
+		&& \Gal(L/K) \\
+	&& I_K(\kf) / H(L/K, \kf) \ar[ru, "\cong", swap] & 
+\end{tikzcd}
+\end{center}
+Consequently:
+\begin{moral}
+	For primes $\pp \in I_K(\kf)$,
+	$\left( \frac{L/K}{\pp} \right)$ depends
+	only on ``$\pp \pmod \kf$''.
+\end{moral}
 
+Let's see how this result relates to quadratic reciprocity.
+\begin{example}
+	[Artin reciprocity implies quadratic reciprocity]
+	The big miracle of quadratic reciprocity states that:
+	for a fixed (squarefree) $a$,
+	the Legendre symbol $\left( \frac ap \right)$
+	should only depend the residue of $p$ modulo something.
+	Let's see why Artin reciprocity tells us this \emph{a priori}.
+
+	Let $L = \QQ(\sqrt a)$, $K = \QQ$.
+	Then we've already seen that the Artin symbol
+	\[ \left( \frac{\QQ(\sqrt a)/\QQ}{\bullet} \right) \]
+	is the correct generalization of the Legendre symbol.
+	Thus, Artin reciprocity tells us that there is a conductor
+	$\kf = \kf(\QQ(\sqrt a)/\QQ)$ such that
+	$\left( \frac{\QQ(\sqrt a)/\QQ}{p} \right)$ depends only on 
+	the residue of $p$ modulo $\kf$, which is what we wanted.
+\end{example}
+
+Here is an example along the same lines.
 \begin{example}
 	[Cyclotomic field]
 	Let $\zeta$ be a primitive $m$th root of unity.
-	We show in this example that
+	For primes $p$, we know that $\Frob_p \in \Gal(\QQ(\zeta)/\QQ)$
+	is ``exactly'' $p \pmod m$.
+	Let's translate this idea into the notation of Artin reciprocity.
+
+	We are going to prove
 	\[ 
-		H_{\QQ(\zeta) / \QQ} (m\infty)
+		H(\QQ(\zeta) / \QQ,  m\infty)
 		= P_\QQ(m\infty)
 		= \left\{ \frac ab \ZZ \mid a/b \equiv 1 \pmod m \right\}.
 	\]
@@ -406,16 +442,14 @@ always a subgroup some subgroup $C_K(\kf)$.
 	so we have the desired equality.
 \end{example}
 
-
-In fact, a much stronger result is true than
-just ``the bounds are sharp'' is true.
-The ``existence theorem'' is a surjectivity result:
+In fact, we also have the following ``existence theorem'':
 every congruence subgroup appears uniquely once we fix $\mm$.
 \begin{theorem}
 	[Tagaki existence theorem]
-	Let $\mm$ be a modulus, and let $H$ be a congruence subgroup, i.e.\
+	Fix $K$ and let $\mm$ be a modulus. 
+	Consider any congruence subgroup $H$, i.e.\
 	\[ P_K(\mm) \subseteq H \subseteq I_K(\mm). \]
-	Then $H = H_{L/K}(\mm)$ for a \emph{unique} abelian extension $L/K$.
+	Then $H = H(L/K, \mm)$ for a \emph{unique} abelian extension $L/K$.
 \end{theorem}
 
 Finally, such subgroups reverse inclusion in the best way possible:
@@ -427,7 +461,7 @@ Finally, such subgroups reverse inclusion in the best way possible:
 	Then 
 	\[ L \subseteq M
 		\quad\text{if and only if}\quad
-		H_{M/K}(\mm) \subseteq H_{L/K}(\mm).  \]
+		H(M/K, \mm) \subseteq H(L/K, \mm).  \]
 \end{lemma}
 Here by $L \subseteq M$ we mean that $L$ is isomorphic to some subfield of $M$.
 \begin{proof}
