@@ -356,38 +356,42 @@ Note that if we've written $T$ in Jordan form, i.e.\
 	\end{bmatrix}
 \]
 (here each $\ast$ is either $0$ or $1$),
-then we can ``hack'' together the ``immoral'' definition
+then we can hack together the definition
 \[
-	p_T(X) \defeq \det \begin{bmatrix}
+	p_T(X) \defeq
+	\det \left( X \cdot \id_n - T \right).
+	=
+	\det \begin{bmatrix}
 		X - a_1 & \ast & 0 & \dots & 0 \\
 		0 & X - a_2 & \ast & \dots & 0 \\
 		0 & 0 & X - a_3 & \dots & 0 \\
 		\vdots & \vdots & \vdots & \ddots & \vdots \\
 		0 & 0 & 0 & \dots & X - a_n
-	\end{bmatrix}
-	= \det \left( X \cdot \id_n - T \right).
+	\end{bmatrix}.
 \]
-The latter definition is what you'll see in most linear algebra books because
-it lets you define the characteristic polynomial without having to say anything,
-and more importantly it lets you construct the characteristic polynomial
-even if you use the evil ``array of numbers'' way of teaching linear algebra.
+The latter definition is what you'll see in most
+linear algebra books because it lets you define the characteristic polynomial
+without mentioning the word ``eigenvalue''
+(i.e.\ entirely in terms of arrays of numbers).
 I'll admit it does have the merit that it means that given any matrix,
 it's easy to compute the characteristic polynomial and hence
-compute the eigenvalues.
-But what a \emph{terrible} way to define the characteristic polynomial.
-
-In particular, it obscures the following theorem, which is actually a completely triviality.
+compute the eigenvalues;
+but I still think the definition should be done in terms of
+eigenvalues to begin with.
+For instance the determinant definition obscures the following theorem,
+which is actually a completely triviality.
 \begin{theorem}[Cayley-Hamilton theorem]
 	For any $T : V \to V$,
 	the map $p_T(T)$ is the zero map.
 \end{theorem}
 Here, by $p_T(T)$ we mean that if \[ p_T(X) = X^n + c_{n-1} X^{n-1} + \dots + c_0 \]
-then \[ p_T(T) = T^n + c_{n-1} T^{n-1} + \dots + c_1 T +  c_0 I \] is the zero map,
+then \[ p_T(T) = T^n + c_{n-1} T^{n-1} + \dots + c_1 T +  c_0 I \]
+is the zero map,
 where $T^k$ denotes $T$ applied $k$ times.
 
-\begin{example}[Example of Cayley-Hamilton, immorally]
+\begin{example}[Example of Cayley-Hamilton using determinant definition]
 	Suppose $T = \begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix}$.
-	Using the immoral definition of characteristic polynomial,
+	Using the determinant definition of characteristic polynomial,
 	we find that $p_T(X) = (X-1)(X-4)-(-2)(-3) = X^2 - 5X - 2$.
 	Indeed, you can verify that
 	\[ T^2 - 5T - 2
@@ -409,11 +413,13 @@ where $T^k$ denotes $T$ applied $k$ times.
 		\end{bmatrix}.
 	\]
 \end{example}
-If you are only told the immoral definition of $p_T$ and the evil view that matrices are
-arrays of numbers, then this looks like a complete miracle.
-Indeed, just look at the terrible proofs on Wikipedia.
+If you define $p_T$ without the word eigenvalue,
+and adopt the evil view that matrices are arrays of numbers,
+then this looks like a complete miracle.
+(Indeed, just look at the terrible proofs on Wikipedia.)
 
-But if you use the abstract viewpoint of $T$ as a map, then it is a total tautology:
+But if you use the abstract viewpoint of $T$ as a linear map,
+then the theorem is a total tautology:
 \begin{proof}[Proof of Cayley-Hamilton]
 	Suppose we write $V$ in Jordan normal form as
 	\[ V = J_1 \oplus \dots \oplus J_m \]
@@ -466,9 +472,7 @@ If $T : V \to W$, is a map, then $T_\CC : V_\CC \to W_\CC$
 is just the map $z \otimes v \mapsto z \otimes T(v)$.
 You'll see this written sometimes as $T_\CC = \id \otimes T$.
 
-
 \section\problemhead
-
 \begin{problem}
 	For a matrix $X$, we define the exponential map by
 	\[ \exp(X) = 1 + X + \frac{X^2}{2!} + \frac{X^3}{3!} + \dots \]
