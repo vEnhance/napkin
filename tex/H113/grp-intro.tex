@@ -7,7 +7,8 @@ what a group is, and when two groups are the same.
 \prototype{The additive group of integers $(\ZZ,+)$ and the cyclic group $\Zc m$.
 Just don't let yourself forget that most groups are non-commutative.}
 
-A group consists of two pieces of data: a set $G$, and an associative binary operation $\star$ with some properties.
+A group consists of two pieces of data: a set $G$,
+and an associative binary operation $\star$ with some properties.
 Before I write down the definition of a group, let me give two examples.
 
 \begin{example}[Additive integers]
@@ -226,10 +227,10 @@ Here are some \textbf{non-abelian examples}:
 	The element $r$ corresponds to rotating the $n$-gon by $\frac{2\pi}{n}$,
 	while $s$ corresponds to reflecting it across the line $OA_1$
 	(here $O$ is the center of the polygon).
-	So $rs$ mean ``reflect then rotate'' (like with function composition,
-	we read from right to left).
+	So $rs$ mean ``reflect then rotate''
+	(like with function composition, we read from right to left).
 
-	In particular, $r^n = s^2 = 1$. You can also see that $r^ks = sr^{-k}$.
+	In particular, $r^n = s^2 = 1$. You can also see that $r^k s = sr^{-k}$.
 \end{example}
 
 Here is a picture of some elements of $D_{10}$.
@@ -413,7 +414,10 @@ Now, let's do the general definition.
 	If there exists an isomorphism from $G$ to $H$,
 	then we say $G$ and $H$ are \vocab{isomorphic} and write $G \cong H$.
 \end{definition}
-Note that in this definition, the left-hand side $\phi(g_1 \star g_2)$ uses the operation of $G$ while the right-hand side uses the operation of $H$.
+Note that in this definition, the left-hand side
+$\phi(g_1 \star g_2)$ uses the operation of $G$
+while the right-hand side $\phi(g_1) \ast \phi(g_2)$
+uses the operation of $H$.
 
 \begin{example}
 	[Examples of isomorphisms]
@@ -687,7 +691,7 @@ Just for fun, here is a list of all groups of order less than or equal to ten
 	that $G$ is a finite abelian group.
 	\begin{hint}
 		Copy the proof of Fermat's little theorem, using
-		\Cref{lem:group_mult_biject}.)
+		\Cref{lem:group_mult_biject}.
 	\end{hint}
 	\begin{sol}
 		Let $\{g_1, g_2, \dots, g_n\}$ denote the elements of $G$.

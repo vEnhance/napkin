@@ -666,10 +666,11 @@ of linear algebra to a theorem from high school we all know.
 	\end{ques}
 	Then consider the linear map $T : V \to W$ given by
 	\[ P \mapsto \left( P(x_1), \dots, P(x_{n+1}) \right). \]
-	This is indeed a linear map because, well, $T(P+Q) = T(P)+T(Q)$ and $T(cP) = cT(P)$.
+	This is indeed a linear map because,
+	well, $T(P+Q) = T(P)+T(Q)$ and $T(cP) = cT(P)$.
 	It also happens to be injective: if $P \in \ker T$,
 	then $P(x_1) = \dots = P(x_{n+1}) = 0$,
-	but $\deg P = n$ and so $P$ can only be the zero polynomial.
+	but $\deg P \le n$ and so $P$ can only be the zero polynomial.
 	
 	So $T$ is an injective map between vector spaces of the same dimension.
 	Thus it is actually a bijection, which is exactly what we wanted.
