@@ -81,7 +81,7 @@ Here's an example of another ``practical'' application.
 	\[ n_p(p-1) + n_q(q-1) + n_r(r-1)
 		\ge (1+p)(p-1) + (1+q)(q-1) + pq(r-1) > pqr 
 	\]
-	which is more elements than $\left\lvert G \right\rvert$ has!
+	which is more elements than $G$ has!
 \end{proof}
 
 
@@ -144,8 +144,10 @@ Here is the proof.
 	\ii Let $G$ act on $X$ by $g \cdot X \defeq \left\{ gx \mid x \in X \right\}$.
 	\ii Take an orbit $\OO$ with size not divisible by $p$.
 	(This is possible because of our deep number theoretic fact.
-	Since $\left\lvert X \right\rvert$ is nonzero mod $p$ and the orbits partition $X$, the claimed orbit must exist. )
-	\ii let $S \in \OO$, $H = \Stab_G(S)$. then $p^n$ divides $\left\lvert H \right\rvert$, by the orbit-Stabilizer theorem.
+	Since $\left\lvert X \right\rvert$ is nonzero mod $p$ and the orbits partition $X$,
+	the claimed orbit must exist.)
+	\ii Let $S \in \OO$, $H = \Stab_G(S)$.
+	Then $p^n$ divides $\left\lvert H \right\rvert$, by the orbit-Stabilizer theorem.
 	\ii Consider a second action: let $H$ act on $S$ by 
 	$h \cdot s \defeq hs$ (we know $hs \in S$ since $H = \Stab_G(S)$).
 	\ii

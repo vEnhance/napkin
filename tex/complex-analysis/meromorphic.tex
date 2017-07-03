@@ -49,14 +49,12 @@ Then we can write
 But the fraction on the right is a holomorphic function in this neighborhood!
 So all that's happened is that we have an extra $z^{-k}$ kicking around.
 
-
 %We want to consider functions $f$ defined on all points in $U$
 %except for a set of ``isolated'' singularities;
 %for example, something like \[ \frac{1}{z(z+1)(z^2+1)} \] which is defined
 %for all $z$ other than $z=0$, $z=-1$ and $z=i$.
 %Or even \[ \frac{1}{\sin(2\pi z)}, \] which is defined at every $z$ which is \emph{not} an integer.
 %% Even though there's infinitely many points, they are not really that close together.
-
 
 This gives us an equivalent way of viewing meromorphic functions:
 
@@ -87,7 +85,7 @@ in such a way that no two neighborhoods intersect.
 	At each of these points we can put a Laurent series: for example at $z=0$ we have
 	\begin{align*}
 		\frac{z+1}{\sin z}
-		&= (z+1) \cdot \frac{1}{z - \frac{z^3}{3!} + \frac{z^5}{5!} + \dots} \\
+		&= (z+1) \cdot \frac{1}{z - \frac{z^3}{3!} + \frac{z^5}{5!} - \dots} \\
 		&= \frac 1z \cdot \frac{z+1}{1 - \left(%
 			\frac{z^2}{3!} - \frac{z^4}{5!} + \frac{z^6}{7!} - \dots \right)} \\
 		&= \frac 1z \cdot (z+1) \sum_{k \ge 0} \left( %
@@ -123,7 +121,7 @@ in such a way that no two neighborhoods intersect.
 \end{remark}
 
 \begin{definition}
-	Let $p$ be a pole of a meromorphic function $f$, with Laurent seires
+	Let $p$ be a pole of a meromorphic function $f$, with Laurent series
 	\[ 
 		f(z) =
 		\frac{c_{-m}}{(z-p)^m}
@@ -182,7 +180,7 @@ We can now give many more examples.
 \end{example}
 
 \begin{example}
-	[A rational meromorphic functions]
+	[A rational meromorphic function]
 	Consider the function $\CC \to \CC$ given by
 	\begin{align*}
 		z &\mapsto \frac{z^4+1}{z^2-1} = z^2 + 1 + \frac{2}{(z-1)(z+1)} \\
@@ -267,7 +265,8 @@ With all these ingredients we get a stunning generalization of the Cauchy-Goursa
 		\frac{1}{2\pi i} \oint_{\gamma} f(z) \; dz
 		= \sum_{\text{pole $p$}} \Wind(\gamma, p) \Res(f; p).
 	\]
-	In particular, if $\gamma$ is regular then the countour integral is the sum of all the residues, in the form
+	In particular, if $\gamma$ is regular then the contour integral
+	is the sum of all the residues, in the form
 	\[
 		\frac{1}{2\pi i} \oint_{\gamma} f(z) \; dz
 		= \sum_{\substack{\text{pole $p$} \\ \text{inside $\gamma$}}}  \Res(f; p).
