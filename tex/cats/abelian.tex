@@ -7,10 +7,12 @@ Once that's done, I'll be able to tell you what this ``diagram chasing'' thing i
 Throughout this chapter, ``$\injto$'' will be used for monic maps and ``$\surjto$'' for epic maps.
 
 \section{Zero objects, kernels, cokernels, and images}
-\prototype{In $\catname{Grp}$, the trivial group and homomorphism are the zero objects and morphisms.
-If $G$, $H$ are abelian then $\phi : G \to H$ is $H/\img \phi$.}
+\prototype{In $\catname{Grp}$, the trivial group and homomorphism
+are the zero objects and morphisms.
+If $G$, $H$ are abelian then the cokernel
+of $\phi : G \to H$ is $H/\img \phi$.}
 
-A \vocab{zero object} of a category is an object $0$ which is both final and terminal;
+A \vocab{zero object} of a category is an object $0$ which is both initial and terminal;
 of course, it's unique up to unique isomorphism.
 For example, in $\catname{Grp}$ the zero object is the trivial group, 
 in $\catname{Vect}_k$ it's the zero-dimensional vector space consisting of one point, and so on.
@@ -239,7 +241,8 @@ This theorem is good because it means
 \end{moral}
 Any time you're faced with a statement about an abelian category,
 it suffices to just prove it for a ``concrete'' category
-where injective/surjective/kernel/image/exact/etc. agree with your previous notions.
+where injective/surjective/kernel/image/exact/etc.\
+agree with your previous notions.
 A proof by this means is sometimes called \emph{diagram chasing}.
 
 \begin{remark}

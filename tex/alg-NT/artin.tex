@@ -11,11 +11,15 @@ using solely information intrinsic to $K$:
 namely, the ray class groups (generalizing ideal class groups).
 
 \section{Infinite primes}
-\prototype{$\QQ(\sqrt{-5})$ has a complex infinite prime, $\QQ(\sqrt5)$ has two real infinite ones.}
+\prototype{$\QQ(\sqrt{-5})$ has a complex infinite prime,
+$\QQ(\sqrt5)$ has two real infinite ones.}
 Let $K$ be a number field of degree $n$ and signature $(r,s)$.
 We know what a prime ideal of $\OO_K$ is,
 but we now allow for the so-called infinite primes,
-which I'll describe using the embeddings.
+which I'll describe using the embeddings.\footnote{This is
+	not really the right definition; the ``correct'' way to think of
+	primes, finite or infinite, is in terms of valuations.
+	But it'll be sufficient for me to state the theorems I want.}
 Recall there are $n$ embeddings $\sigma : K \to \CC$, which consist of
 \begin{itemize}
 	\ii $r$ real embeddings where $\img\sigma \subseteq \RR$, and
@@ -290,7 +294,7 @@ the conjugacy classes have size one.
 	Assume $L/K$ is an \textbf{abelian} extension.
 	Then for a given unramified prime $\pp$ in $K$,
 	the element $\Frob_\kP$ doesn't depend on the choice of $\kP$.
-	We denote the resulting $\Frob_\kP$ by the \vocab{Artin symbol}.
+	We denote the resulting $\Frob_\kP$ by the \vocab{Artin symbol},
 	\[ \left( \frac{L/K}{\pp} \right). \]
 \end{definition}
 The definition of the Artin symbol is written deliberately to
@@ -350,7 +354,7 @@ For brevity, in what follows let $\Ram(L/K)$ denote the primes of $K$
 	\[ H(L/K, \mm) \subseteq I_K(\mm). \]
 \end{definition}
 In particular we have
-$\Gal(L/K) \cong I_K(\mm) / H(\mm)$.
+$\Gal(L/K) \cong I_K(\mm) / H(L/K, \mm)$.
 
 We can now present the long-awaited Artin reciprocity theorem.
 \begin{theorem}
