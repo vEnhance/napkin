@@ -414,6 +414,7 @@ Of these \Cref{thm:heine_borel} is definitely my favorite.
 
 \begin{problem}
 	[Cantor's intersection theorem]
+	\label{prob:cantor_intersect}
 	Let $X$ be a compact space, and suppose
 	\[ X = K_0 \supseteq K_1 \supseteq K_2 \supseteq \dots \]
 	is an infinite sequence of nested nonempty closed subsets.
@@ -484,4 +485,90 @@ Of these \Cref{thm:heine_borel} is definitely my favorite.
 	Show that we can extract a subsequence $f_{i_1}, f_{i_2}, \dots$
 	of these functions such that for every $x \in [0,1]$,
 	the sequence $f_{i_1}(x)$, $f_{i_2}(x)$, \dots\ converges.
+\end{problem}
+
+\begin{problem}
+	\yod
+	In this problem a ``circle''
+	refers to the boundary of a disk with \emph{nonzero} radius.
+	\begin{enumerate}[(a)]
+		\ii Is it possible to partition the plane $\RR^2$
+		into disjoint circles?
+		\ii From the plane $\RR^2$ we delete two distinct points $p$ and $q$.
+		Is it possible to partition the remaining points into disjoint circles?
+	\end{enumerate}
+	\begin{hint}
+		The answer to both parts is no.
+
+		For (a) use \Cref{prob:cantor_intersect}.
+
+		For (b), color each circle in the partition
+		based on whether it contains $p$ but not $q$,
+		$q$ but not $p$, or both.
+	\end{hint}
+	\begin{sol}
+		Part (a) follows by the Cantor intersection theorem
+		(\Cref{prob:cantor_intersect}).
+		Assume for contradiction such a partition existed.
+		Take any of the circles $C_0$, and let $K_0$ denote the closed disk
+		with boundary $C_0$.
+		Now take the circle $C_1$ passing through the center of $C_0$,
+		and let $K_1$ denote the closed disk with boundary $C_1$.
+		If we repeat in this way,
+		we get a nested sequence $K_0 \supseteq K_1 \supseteq \dots$
+		and the radii of $C_i$ approach zero
+		(since each is at most half the previous once).
+		Thus some point $p$ lies in $\bigcap_n K_n$ which is impossible.
+
+		Now for part (b),
+		again assume for contradiction a partition into circles exists.
+		Color a circle magenta if it contains $p$ but not $q$
+		and color a circle cyan if it contains $q$ but not $p$.
+		Color $p$ itself magenta and $q$ itself cyan as well.
+		Finally, color a circle neon yellow if it contains both $p$ and $q$.
+		(When we refer to coloring a circle,
+		we mean to color all the points on it.)
+
+		By repeating the argument in (a) there are no circles
+		enclosing neither $p$ nor $q$.
+		Hence every point is either magenta, cyan, or neon yellow.
+		Now note that given any magenta circle,
+		its interior is completely magenta.
+		Actually, the magenta circles can be totally ordered
+		by inclusion (since they can't intersect).
+		So we consider two cases:
+		\begin{itemize}
+		 \ii If there is a maximal magenta circle
+		 (i.e.\ a magenta circle not contained in any other magenta circle)
+		 then the set of all magenta points is just a closed disk.
+		 \ii If there is no maximal magenta circle,
+		 then the set of magenta points can also be expressed
+		 as the union over all magenta circles of their interiors.
+		 This is a union of open sets, so it is itself open.
+		 \end{itemize}
+
+		We conclude the set of magenta points is
+		either a closed disk or an open set.
+		Similarly for the set of cyan points.
+		Moreover, the set of such points is convex.
+
+		To finish the problem:
+		\begin{itemize}
+		\ii Suppose there are no neon yellow points.
+		If the magenta points form a closed disk,
+		then the cyan points are $\mathbb R^2$ minus a disk which is not convex.
+		Contradiction. So the magenta points must be open.
+		Similarly the cyan points must be open.
+		But $\mathbb R^2$ is connected,
+		so it can't be written as the union of two open sets.
+		\ii Now suppose there are neon yellow points.
+		We claim there is a neon yellow circle minimal by inclusion.
+		If not, then repeat the argument of (a) to get a contradiction,
+		since any neon yellow circle must have diameter the distance from $p$ to $q$.
+		So we can find a neon yellow circle $\mathscr C$ whose
+		interior is all magenta and cyan.
+		Now repeat the argument of the previous part,
+		replacing $\mathbb R^2$ by the interior of $\mathscr C$.
+		 \end{itemize}
+	\end{sol}
 \end{problem}
