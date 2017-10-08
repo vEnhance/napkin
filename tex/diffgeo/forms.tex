@@ -138,14 +138,14 @@ to write it in the former.
 \section{Pictures of exterior derivatives}
 Next question:
 \begin{moral}
-	How can we build a $0$-form from a $1$-form?
+	How can we build a $1$-form from a $0$-form?
 \end{moral}
 Let $f$ be a $0$-form on $U$; thus, we have a function $f : U \to \RR$.
 Then in fact there is a very natural $1$-form on $U$ arising
 from $f$, appropriately called $df$.
 Namely, given a point $p$ and a tangent vector $v$,
 the differential form $(df)_p$ returns the \emph{change in $f$ along $v$}.
-In other words, it's juts the total derivative $(Df)_p(v)$.
+In other words, it's just the total derivative $(Df)_p(v)$.
 \begin{center}
 	\begin{asy}
 		bigblob("$U$");
@@ -438,7 +438,7 @@ Let $\alpha$ be a $k$-form.
 \end{definition}
 \begin{definition}
 	We say $\alpha$ is \vocab{exact} if for some $(k-1)$-form $\beta$,
-	$d\beta = 0$.  If $k = 0$, $\alpha$ is exact only when $\alpha = 0$.
+	$d\beta = \alpha$.  If $k = 0$, $\alpha$ is exact only when $\alpha = 0$.
 \end{definition}
 \begin{ques}
 	Show that exact forms are closed.

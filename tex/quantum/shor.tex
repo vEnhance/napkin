@@ -13,7 +13,7 @@ Let $N$ be a positive integer, and let $\omega_N = \exp\left( \frac{2\pi i}{N} \
 \begin{definition}
 	Given a tuple of complex numbers
 	\[ \left( x_0, x_1, \dots, x_{N-1} \right) \]
-	its \vocab{discrete inverse Fourier transform} is 
+	its \vocab{discrete inverse Fourier transform} is
 	the sequence $(y_0, y_1, \dots, y_{N-1})$ defined by
 	\[ y_k = \frac1N \sum_{j=0}^{N-1} \omega_N^{jk} x_i. \]
 	Equivalently, one is applying the matrix
@@ -40,12 +40,12 @@ us detect if the $x_i$ are periodic:
 	(hence $x_i$ is periodic modulo $2$).
 	Thus,
 	\begin{align*}
-		y_0 &= \tfrac13\left(\omega^0 + \omega^0+ \omega^0\right) = 1 \\
-		y_1 &= \tfrac13\left(\omega^1 + \omega^3 + \omega^5\right) = 0 \\
-		y_2 &= \tfrac13\left( \omega^2 + \omega^{6} + \omega^{10} \right) = 0 \\
-		y_3 &= \tfrac13\left( \omega^3 + \omega^9 + \omega^{15} \right) = -1 \\
-		y_4 &= \tfrac13\left( \omega^4 + \omega^{12} + \omega^{20} \right) = 0 \\
-		y_5 &= \tfrac13\left( \omega^5 + \omega^{15} + \omega^{25} \right) = 0.
+		y_0 &= \tfrac16\left(\omega^0 + \omega^0+ \omega^0\right) = 1/2 \\
+		y_1 &= \tfrac16\left(\omega^1 + \omega^3 + \omega^5\right) = 0 \\
+		y_2 &= \tfrac16\left( \omega^2 + \omega^{6} + \omega^{10} \right) = 0 \\
+		y_3 &= \tfrac16\left( \omega^3 + \omega^9 + \omega^{15} \right) = -1/2 \\
+		y_4 &= \tfrac16\left( \omega^4 + \omega^{12} + \omega^{20} \right) = 0 \\
+		y_5 &= \tfrac16\left( \omega^5 + \omega^{15} + \omega^{25} \right) = 0.
 	\end{align*}
 	Thus, in the inverse transformation the ``amplitudes''
 	are all concentrated at multiples of $3$;

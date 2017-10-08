@@ -98,14 +98,11 @@ This is bad, since:
 	which is a contradiction since $j$ was supposed to be surjective.
 \end{proof}
 
-
 Now if you're not a set theorist, you could probably just brush this off,
 saying ``oh well, I guess you can't look at certain sets''.
 But if you're a set theorist, this worries you,
 because you realize it means that you can't just define a set as ``a collection of objects'',
 because then everything would blow up. Something more is necessary.
-
-
 
 \section{The language of set theory}
 We need a way to refer to sets other
@@ -134,16 +131,19 @@ The trick is that we're not going to actually ``construct'' any sets,
 but rather refer to them indirectly, like so:
 \[ \exists S : x \in S \iff \left( (x=1) \lor (x=2) \right). \]
 This reads: ``there exists an $S$ such that $x$ is in $S$ if
-and only if either $1$ is in $S$ or $2$ is in $S$''.
-We don't have to refer to sets as objects in and of themselves anymore -- we now have a way to ``create'' our sets, by writing formulas for exactly what they contain. This is something a machine can parse.
+and only if either $x=1$ or $x=2$''.
+We don't have to refer to sets as objects in and of
+themselves anymore --- we now have a way to ``create'' our sets,
+by writing formulas for exactly what they contain.
+This is something a machine can parse.
 
-Well, what are we going to do with things like $1$ and $2$, which are not sets? 
+Well, what are we going to do with things like $1$ and $2$, which are not sets?
 Answer:
 \begin{moral}
 	Elements of sets are themselves sets.
 \end{moral}
 We're going to make \textbf{everything} into a set.
-Natural numbers will be sets. Ordered pairs will be sets. Functions will be sets. 
+Natural numbers will be sets. Ordered pairs will be sets. Functions will be sets.
 Later, I'll tell you exactly how we manage to do something like encode $1$ as a set.
 For now, all you need to know is that that sets don't just hold objects;
 they hold other sets.
@@ -159,7 +159,6 @@ show a lot of things exist, without letting us prove
 For if we prove this formula,
 then we have our ``bad'' set that caused us to go down the
 rabbit hole in the first place.
-
 
 \section{The axioms of $\ZFC$}
 I don't especially want to get into details about these axioms;
@@ -271,7 +270,7 @@ Note that $(x,y) = (a,b)$ if and only if $x=a$ and $y=b$.
 Ordered $k$-tuples can be defined recursively: a three-tuple $(a,b,c)$ means $(a,(b,c))$.
 
 \begin{definition}
-	A \vocab{function} $f : X \to Y$ 
+	A \vocab{function} $f : X \to Y$
 	is defined as a collection of ordered pairs such that
 	\begin{itemize}
 		\ii If $(x,y) \in f$, then $x \in X$ and $y \in Y$.
