@@ -49,7 +49,7 @@ In this book, there are three hierarchies:
 	It is usually just a chance to help you internalize definitions.
 	You really ought to answer almost all of these.
 	\ii An \emph{exercise} is marginally harder.
-	The difficulty is like something you might see on an AIME.
+	The difficulty is like something you might see on a high-school math contest.
 	Often I leave proofs of theorems and propositions as exercises
 	if they are instructive and at least somewhat interesting.
 	\ii Each chapter features several \emph{problems} at the end.
@@ -63,7 +63,7 @@ In this book, there are three hierarchies:
 		which are (usually interesting) results that one should know,
 		but won't be used directly later.
 		\ii \textbf{Starred problems},
-		indicating results which will be used later on.\footnote{%
+		which are results which will be used later on.\footnote{%
 			A big nuisance in college for me was that,
 			every so often, the professor
 			would invoke some nontrivial result from the homework:
@@ -124,9 +124,9 @@ If the example is a good prototype, it should be immediately clear
 why this definition is intuitive, or why the theorem should be true,
 or why the theorem is interesting, et cetera.
 
-Let me tell you a secret.  When I wrote a definition or a theorem in this book,
-I would have to recall the exact statement from my (quite poor) memory. 
-So instead I have to consider the prototypical example,
+Let me tell you a secret.  Whenever I wrote a definition or a theorem in this book,
+I would have to recall the exact statement from my (quite poor) memory.
+So instead I often consider the prototypical example,
 and then only after that do I remember what the definition or the theorem is.
 Incidentally, this is also how I learned all the definitions in the first place.
 I hope you'll find it useful as well.
@@ -153,8 +153,6 @@ A full glossary of notation used can be found in the appendix.
 \subsection*{Sets and equivalence relations}
 This is brief, intended as a reminder for experts.
 Consult \Cref{ch:sets_functions} for full details.
-
-The set $\NN$ is the set of \emph{positive} integers, not including $0$.
 
 An \vocab{equivalence relation} on a set $X$ is a relation $\sim$
 which is symmetric, reflexive, and transitive.
@@ -192,7 +190,7 @@ We call $f\pre(y)$ a \vocab{fiber}.
 The notation {``} is from set theory, and is meant to indicate ``point-wise''.
 Most authors use $f(S)$, but this is abuse of notation,
 and I prefer $f``(S)$ for emphasis.
-\emph{This is probably the least standard notation in the whole Napkin}.
+\textbf{This image notation is probably the least standard in the whole Napkin}.
 
 \ii If $S \subseteq X$, then the \vocab{restriction} of $f$ to $S$
 is denoted $f \restrict{S}$,
@@ -206,7 +204,7 @@ I may emphasize this sometimes by writing $f : X \injto Y$ or $f : X \surjto Y$,
 All rings have a multiplicative identity $1$ unless otherwise specified.
 We allow $0=1$ in general rings but not in integral domains.
 
-All rings are commutative unless otherwise specified.
+\textbf{All rings are commutative unless otherwise specified.}
 There is an elaborate scheme for naming rings which are not commutative,
 used only in the chapter on cohomology rings:
 
@@ -216,8 +214,8 @@ used only in the chapter on cohomology rings:
 		\hline
 		& Graded & Not Graded \\ \hline
 		$1$ not required & graded pseudo-ring & pseudo-ring \\
-		Anticommutative, $1$ not required & anticommutative pseudo-ring & N/A \\ 
-		Has $1$ & graded ring & N/A \\ 
+		Anticommutative, $1$ not required & anticommutative pseudo-ring & N/A \\
+		Has $1$ & graded ring & N/A \\
 		Anticommutative with $1$ & anticommutative ring & N/A \\ 
 		Commutative with $1$ & commutative graded ring & ring \\ \hline
 	\end{tabular}
@@ -226,7 +224,13 @@ used only in the chapter on cohomology rings:
 On the other hand, an \emph{algebra} always has $1$,
 but it need not be commutative.
 
+\subsection*{Natural numbers are nonzero}
+The set $\NN$ is the set of \emph{positive} integers, not including $0$.
+In the set theory chapters, we use $\omega = \{0, 1, \dots\}$
+instead, for consistency with the rest of the book.
+
 \subsection*{Choice}
-We accept the Axiom of Choice.
+We accept the Axiom of Choice, and use it freely.
+
 \section{Further reading}
 Recommendations for other reading can be found in \Cref{ch:refs}.
