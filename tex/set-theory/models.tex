@@ -289,7 +289,7 @@ Note that the $b_i$ have to come from $\MM_1$; if the $b_i$ came from $\MM_2$ th
 asking something of $\MM_1$ wouldn't make sense.
 
 Let's ask now: how would $\MM_1 \prec \MM_2$ fail to be true?
-If we look at the possibly sentences, none of the atomic formulas,
+If we look at the possible sentences, none of the atomic formulas,
 nor the ``$\land$'' and ``$\neg$'', are going to cause issues.
 
 The intuition you should be getting by now is that things go
@@ -303,10 +303,12 @@ If $\MM_1$ thinks there exist hackers at MIT,
 certainly there exist hackers in Massachusetts.
 Where things go wrong is something like:
 \[ \MM_2 \vDash \text{``$\exists x$ : $x$ is a course numbered $> 50$''}. \]
-This is true for $\MM_2$ because we can take the witness $x = \text{Math 55}$, say.
-But it's false for $\MM_1$, because at MIT all courses are numbered $18.701$ or something similar.
+This is true for $\MM_2$ because we can
+take the witness $x = \text{Math 55}$, say.
+But it's false for $\MM_1$,
+because at MIT all courses are numbered $18.701$ or something similar.
 \begin{moral}
-	The issue is that the \emph{witness}
+	The issue is that the \emph{witnesses}
 	for statements in $\MM_2$ do not necessarily propagate
 	down to witnesses for $\MM_1$.
 \end{moral}
@@ -367,7 +369,7 @@ As a trivial example, $X = M$ is $M$-definable without parameters
 \end{exercise}
 \begin{remark}
 	Converses to the statements of \Cref{lem:transitive_ZFC}
-	are true for all claims other than (vii).
+	are true for all claims other than (vi).
 \end{remark}
 
 \section{Mostowski collapse}

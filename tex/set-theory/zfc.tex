@@ -46,7 +46,7 @@ The trouble is that this definition actually isn't good enough, and here's why.
 If we just say ``a set is any collection of objects'',
 then we can consider a really big set $V$, the set of all sets.
 So far no problem, right?
-$V$ has the oddity that it has to contain itself $V \in V$,
+We would have the oddity that $V \in V$,
 but oh well, no big deal.
 
 Unfortunately, this existence of this $V$ leads immediately to a paradox.
@@ -66,7 +66,8 @@ This is bad, since:
 \begin{proof}
 	Assume for contradiction $\iota$ exists.
 	\begin{exercise}
-		Show that there exists a surjective map $j : X \to \PP(X)$.
+		Show that if, $\iota$ exists,
+		then there exists a surjective map $j : X \to \PP(X)$.
 		(This is easier than it appears, just ``invert $\iota$'').
 	\end{exercise}
 	We now claim that $j$ can't exist.
@@ -101,8 +102,10 @@ This is bad, since:
 Now if you're not a set theorist, you could probably just brush this off,
 saying ``oh well, I guess you can't look at certain sets''.
 But if you're a set theorist, this worries you,
-because you realize it means that you can't just define a set as ``a collection of objects'',
-because then everything would blow up. Something more is necessary.
+because you realize it means that you can't
+just define a set as ``a collection of objects'',
+because then everything would blow up.
+Something more is necessary.
 
 \section{The language of set theory}
 We need a way to refer to sets other

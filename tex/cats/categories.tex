@@ -21,7 +21,7 @@ From earlier chapters let's recall the definition of an \emph{isomorphism} of tw
 	if there is a continuous bijection $f : X \to Y$ such that $f\inv$ is also continuous.
 	\ii Two vector spaces $V$ and $W$ are isomorphic if there is a bijection $T : V \to W$
 	which is a linear map.
-	Again, this can be re-cast as saying that $T$ and $T\inv$ are continuous maps.
+	Again, this can be re-cast as saying that $T$ and $T\inv$ are linear maps.
 	\ii Two rings $R$ and $S$ are isomorphic if there is a bijective ring homomorphism $\phi$;
 	again, we can re-cast this as two mutually inverse ring homomorphisms.
 \end{itemize}
@@ -441,16 +441,22 @@ Of course, that's not to say we can't give concrete examples.
 	[Examples of products]
 	\listhack
 	\begin{enumerate}[(a)]
-		\ii In $\catname{Set}$, the product of two sets $X$ and $Y$ is their Cartesian product.
-		\ii In $\catname{Grp}$, the product of $G$, $H$ is the group product $G \times H$.
-		\ii In $\catname{Vect}_k$, the product of $V$ and $W$ is $V \oplus W$.
-		\ii Let $\mathcal P$ be a poset interpreted as a product.
-		Then the product of two objects $x$ and $y$ is the \vocab{greatest lower bound};
-		for example,
+		\ii In $\catname{Set}$, the product of two sets
+		$X$ and $Y$ is their Cartesian product.
+		\ii In $\catname{Grp}$, the product of $G$, $H$
+		is the group product $G \times H$.
+		\ii In $\catname{Vect}_k$, the product
+		of $V$ and $W$ is $V \oplus W$.
+		\ii Let $\mathcal P$ be a poset interpreted as a category.
+		Then the product of two objects $x$ and $y$
+		is the \vocab{greatest lower bound}; for example,
 		\begin{itemize}
 			\ii If the poset is $(\RR, \le)$ then it's $\min\{x,y\}$.
-			\ii If the poset is the subsets of a finite set by inclusion, then it's $x \cap y$.
-			\ii If the poset is the positive integers ordered by division, then it's $\gcd(x,y)$.
+			\ii If the poset is the subsets
+			of a finite set by inclusion,
+			then it's $x \cap y$.
+			\ii If the poset is the positive integers ordered by division,
+			then it's $\gcd(x,y)$.
 		\end{itemize}
 	\end{enumerate}
 \end{example}
@@ -543,7 +549,7 @@ But when they do exist:
 
 		\ii Ditto in $\catname{Top}$, $\catname{Grp}$.
 		One has to check that the appropriate structures are preserved
-		(e.g. one should check that $\{\phi(g) = \psi(g) \mid g \in G\}$ is a group).
+		(e.g.\ one should check that $\{\phi(g) = \psi(g) \mid g \in G\}$ is a group).
 
 		\ii In particular, given a homomorphism $\phi : G \to H$, the inclusion
 		$ \ker\phi \injto G $
