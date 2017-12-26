@@ -8,6 +8,9 @@ The whole point of this chapter is to prove:
 \begin{itemize}
 	\ii A finite field $F$ must have order $p^n$, with $p$ prime and $n$ an integer.
 	\ii In this case, $F$ has characteristic $p$.
+	\ii All such fields are isomorphic,
+	so it's customary to use the notation $\FF_{p^n}$
+	for ``the'' finite field of order $p^n$ if we only care up to isomorphism.
 	\ii The extension $F/\FF_p$ is Galois, and $\Gal(F/\FF_p)$ is a cyclic group of order $n$.
 	The generator is the automorphism \[ \sigma : F \to F \quad\text{by}\quad x \mapsto x^p. \]
 \end{itemize}
@@ -39,7 +42,8 @@ or $0$ if no such integer $p$ exists.
 
 \section{Finite fields have prime power order}
 \begin{lemma}
-	If the characteristic of $F$ isn't zero, it must be a prime number.
+	If the characteristic of a field $F$ isn't zero,
+	it must be a prime number.
 \end{lemma}
 \begin{proof}
 	Assume not, so $n = ab$ for $a,b < n$.
@@ -55,13 +59,13 @@ we are doomed to have nonzero characteristic.
 
 \begin{lemma}
 	[Finite fields have prime power orders]
-	Let $F$ be a finite field of characteristic $p$.
+	Let $F$ be a finite field.
 	Then
 	\begin{enumerate}[(a)]
-		\ii $p$ is not zero, and hence prime.
-		\ii $F$ is a finite extension of $\FF_p$,
+		\ii Its characteristic is nonzero, and hence some prime $p$.
+		\ii The field $F$ is a finite extension of $\FF_p$,
 		and in particular it is an $\FF_p$-vector space.
-		\ii $\left\lvert F \right\rvert = p^n$ for some prime $p$, integer $n$.
+		\ii We have $\left\lvert F \right\rvert = p^n$ for some prime $p$, integer $n$.
 	\end{enumerate}
 \end{lemma}
 \begin{proof}
@@ -69,9 +73,10 @@ we are doomed to have nonzero characteristic.
 	\begin{enumerate}[(a)]
 		\ii Apply Lagrange's theorem (or pigeonhole principle!)
 		to $(F, +)$ to get the characteristic isn't zero.
-		\ii The additive subgroup of $(F,+)$ generated 
+		\ii The additive subgroup of $(F,+)$ generated
 		by $1_F$ is an isomorphic copy of $\FF_p$.
-		\ii Since it's a field extension, $F$ is a finite-dimensional vector space over $\FF_p$,
+		\ii Since it's a field extension,
+		$F$ is a finite-dimensional vector space over $\FF_p$,
 		with some basis $e_1, \dots, e_n$.
 		It follows that there are $p^n$ elements of $F$. \qedhere
 	\end{enumerate}
@@ -100,7 +105,7 @@ We want to refer a lot to this copy of $\FF_p$, so in what follows:
 	Note that (as expected) this depends only on $n \pmod p$.
 \end{abuse}
 
-Convince yourself that this gives:
+This notation makes it easier to think about statements like the following.
 \begin{theorem}
 	[Freshman's dream]
 	For any $a,b \in F$ we have
@@ -126,7 +131,9 @@ We next proceed to prove ``Fermat's little theorem'':
 	on the abelian group $(F, \times)$ to get $x^{p^n-1} = 1_F$.
 \end{proof}
 
-We can now prove:
+We can now prove the following result,
+which is the ``main surprise'' about finite fields:
+that there is a unique one up to isomorphism for each size.
 \begin{theorem}[Complete classification of finite fields]
 	A field $F$ is a finite field with $p^n$ elements if and only if
 	it is a splitting field of $x^{p^n}-x$ over $\FF_p$.
@@ -141,6 +148,11 @@ We can now prove:
 	which has no roots at all, so the polynomial cannot have any double roots. \qedhere
 \end{proof}
 
+\begin{definition}
+	For this reason, it's customary to denote \emph{the}
+	field with $p^n$ elements by $\FF_{p^n}$.
+\end{definition}
+
 Note that the polynomial $x^{p^n}-x \pmod p$ is far from irreducible, but
 the computation above shows that it's separable.
 \begin{example}[The finite field of order nine again]
@@ -152,27 +164,26 @@ the computation above shows that it's separable.
 	$\pm i$, $1 \pm i$, $2 \pm i$.
 	Indeed, that's the example we had at the beginning of this chapter.
 
-	This is a little imprecise since the complex number $i$ doesn't really make sense
-	(just what does ``$i \pmod 3$'' mean?), but it carries the right idea.
+	(Here $i$ denotes \emph{an} element of $\FF_9$ satisfying $i^2=-1$.
+	The notation is deliberately similar to the usual imaginary unit.)
 \end{example}
 
-
 \section{The Galois theory of finite fields}
-Let $F$ be a finite field of $p^n$ elements.
+Retain the notation $\FF_{p^n}$ now (instead of $F$ like before).
 By the above theorem, it's the splitting field of a separable polynomial,
-hence we know that $F/\FF_p$ is a Galois extension.
+hence we know that $\FF_{p^n} /\FF_p$ is a Galois extension.
 We would like to find the Galois group.
 
 In fact, we are very lucky: it is cyclic.
-First, we exhibit one such element $\sigma_p \in \Gal(F/\FF_p)$:
+First, we exhibit one such element $\sigma_p \in \Gal(\FF_{p^n} /\FF_p)$:
 
 \begin{theorem}[The $p$th power automorphism]
-	The map $\sigma_p : F \to F$ defined by
-	\[ \sigma_p(x) : x \mapsto x^p \]
+	The map $\sigma_p : \FF_{p^n} \to \FF_{p^n}$ defined by
+	\[ \sigma_p(x) = x^p \]
 	is an automorphism, and moreover fixes $\FF_p$.
 \end{theorem}
 \begin{proof}
-	It's a homomorphism since it fixes $1_F$,
+	It's a homomorphism since it fixes $1$,
 	respects multiplication,
 	and respects addition.
 	\begin{ques}
@@ -185,22 +196,22 @@ First, we exhibit one such element $\sigma_p \in \Gal(F/\FF_p)$:
 		\iff x=y.
 	\]
 	Here we have again used the Freshman's Dream.
-	Since $F$ is finite, this injective map is automatically bijective.
+	Since $\FF_{p^n}$ is finite, this injective map is automatically bijective.
 	The fact that it fixes $\FF_p$ is Fermat's little theorem.
 \end{proof}
 
 Now we're done:
 \begin{theorem}
-	[Galois group of the extension $F/\FF_p$]
-	Let $F$ have size $p^n$. Then $\Gal(F/\FF_p) \cong \Zc n$
-	with generator $\sigma_p$.
+	[Galois group of the extension $\FF_{p^n}/\FF_p$]
+	We have $\Gal(\FF_{p^n}/\FF_p) \cong \Zc n$ with generator $\sigma_p$.
 \end{theorem}
 \begin{proof}
-	Since $[F:\FF_p] = n$, the Galois group $G$ has order $n$.
+	Since $[\FF_{p^n}:\FF_p] = n$, the Galois group $G$ has order $n$.
 	So we just need to show $\sigma_p \in G$ has order $n$.
 
 	Note that $\sigma_p$ applied $k$ times gives $x \mapsto x^{p^k}$.
-	Hence, $\sigma_p$ applied $n$ times is the identity, as all elements of $F$ satisfy $x^{p^n}=x$.
+	Hence, $\sigma_p$ applied $n$ times is the identity,
+	as all elements of $\FF_{p^n}$ satisfy $x^{p^n}=x$.
 	But if $k < n$, then $\sigma_p$ applied $k$ times
 	cannot be the identity or $x^{p^k}-x$ would have too many roots.
 \end{proof}
@@ -208,8 +219,10 @@ Now we're done:
 We can see an example of this again with the finite field of order $9$.
 \begin{example}
 	[Galois group of finite field of order $9$]
-	Let $F$ be the finite field of order $9$, represented as $K = \ZZ[i]/(3)$.
-	Let $\sigma_3 : F \to F$ be $x \mapsto x^3$. We can witness the fate of all nine elements:
+	Let $\FF_9$ be the finite field of order $9$,
+	and represent it concretely by $\FF_9 = \ZZ[i]/(3)$.
+	Let $\sigma_3 : \FF_9 \to \FF_9$ be $x \mapsto x^3$.
+	We can witness the fate of all nine elements:
 	\begin{diagram}
 		0 & 1 & 2 & i & 1+i & 2+i \\
 		&&& \dIsom^\sigma & \dIsom^\sigma & \dIsom^\sigma \\
@@ -217,10 +230,73 @@ We can see an example of this again with the finite field of order $9$.
 	\end{diagram}
 	(As claimed, $0$, $1$, $2$ are the fixed points, so I haven't drawn arrows for them.)
 	As predicted, the Galois group has order two:
-	\[ \Gal(K/\FF_3) = \left\{ \id, \sigma_3 \right\} \cong \Zc 2. \]
+	\[ \Gal(\FF_9/\FF_3) = \left\{ \id, \sigma_3 \right\} \cong \Zc 2. \]
 \end{example}
 
 This concludes the proof of all results stated at the beginning of this chapter.
 
 \section\problemhead
-\todo{Problems}
+\begin{dproblem}[HMMT 2017]
+	\gim
+	What is the period of the Fibanocci sequence modulo $127$?
+	\begin{hint}
+	The Fibonacci sequence is given by
+	$F_n = \frac{\alpha^n - \beta^n}{\alpha - \beta}$
+	where $\alpha = \frac{1 + \sqrt5}{2}$ and $\beta = \frac{1 - \sqrt5}{2}$
+	are the two roots of $P(X) \overset{\text{def}}{=} X^2-X-1$.
+	Show the polynomial $P(X)$ is irreducible modulo $127$;
+	then work in the splitting field of $P$, namely $\FF_{p^2}$.
+
+	Show that $\FF_p=-1$, $\FF_{p+1}=0$, $\FF_{2p+1}=1$, $\FF_{2p+2}=0$.
+	(Look at the action of $\Gal(\FF_{p^2}/\FF_p)$
+	on the roots of $P$.)
+	\end{hint}
+	\begin{sol}
+	Recall that the Fibonacci sequence is given by
+	\[ F_n = \frac{\alpha^n - \beta^n}{\alpha - \beta} \]
+	where $\alpha = \frac{1 + \sqrt5}{2}$ and $\beta = \frac{1 - \sqrt5}{2}$
+	are the two roots of $P(X) \defeq X^2-X-1$.
+
+	Let $p = 127$ and work modulo $p$.
+	As \[ \left( \frac5p \right) = \left( \frac p5 \right) = \left( \frac 25
+		\right) = -1 \]
+	we see $5$ is not a quadratic residue mod $127$.
+	Thus the polynomial $P(X)$,
+	viewed as a polynomial in $\FF_p[X]$, is irreducible
+	(intuitively, $\alpha$ and $\beta$ are not elements of $\FF_p$).
+	Accordingly we will work in the finite field $\FF_{p^2}$,
+	which is the $\FF_p$-splitting field of $P(X)$.
+	In other words we interpret $\alpha$ and $\beta$ as elements
+	of $\FF_{p^2}$ which do not lie in $\FF_p$.
+
+	Let $\sigma \colon \FF_{p^2} \to \FF_{p^2}$ by $t \mapsto t^p$
+	be the nontrivial element of
+	$\opname{Gal}\left( \FF_{p^2} / \FF_p \right)$;
+	in other words, $\sigma$ is the non-identity automorphism of $\FF_{p^2}$.
+	Since the fixed points of $\sigma$ are the elements of $\FF_p$,
+	this means $\sigma$ does not fix either root of $P$; thus we must have
+	\begin{align*}
+		\alpha^p = \sigma(\alpha) &= \beta \\
+		\beta^p = \sigma(\beta) &= \alpha.
+	\end{align*}
+	Now, compute
+	\begin{align*}
+		F_{p} &= \frac{\alpha^{p} - \beta^{p}}{\alpha-\beta} =
+		\frac{\beta-\alpha}{\alpha-\beta} = -1. \\
+		F_{p+1} &= \frac{\alpha^{p+1} - \beta^{p+1}}{\alpha-\beta} =
+		\frac{\alpha\beta-\beta\alpha}{\alpha-\beta} = 0. \\
+		F_{2p+1} &= \frac{\alpha^{2p+1} - \beta^{2p+1}}{\alpha-\beta}
+			= \frac{\beta^2\alpha-\alpha^2\beta}{\alpha-\beta}
+			= - \alpha \beta = 1.  \\
+		F_{2p+2} &= \frac{\alpha^{2p+2} - \beta^{2p+2}}{\alpha-\beta}
+			= \frac{\beta^2\alpha^2-\alpha^2\beta^2}{\alpha-\beta} = 0.
+	\end{align*}
+	Consequently, the period must divide $2p+2$ but not $p+1$.
+
+	We now use for the first time the exact numerical value $p=127$
+	to see the period divides $2p+2 = 256 = 2^8$,
+	but not $p+1 = 128 = 2^7$.
+	(Previously we only used the fact that $(5/p)=-1$.)
+	Thus the period must be exactly $256$.
+	\end{sol}
+\end{dproblem}
