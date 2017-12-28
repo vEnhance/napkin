@@ -156,13 +156,13 @@ Now that I've defined all these ingredients, I can prove:
 \begin{proof}
 	This is actually kind of fun!
 	Recall that any irreducible polynomial over $\QQ$ has distinct roots (\Cref{lem:irred_complex}).
-	We'll adjoin elements $\alpha_1, \alpha_2, \dots, \alpha_n$ one at a time to $\QQ$,
-	until we eventually get all of $K$, that is, 
+	We'll adjoin elements $\alpha_1, \alpha_2, \dots, \alpha_m$ one at a time to $\QQ$,
+	until we eventually get all of $K$, that is,
 	\[ K = \QQ(\alpha_1, \dots, \alpha_n). \]
 	Diagrammatically, this is
 	\begin{diagram}
 		\QQ & \rInj & \QQ(\alpha_1) & \rInj & \QQ(\alpha_1, \alpha_2) & \rInj & \dots & \rInj & K \\
-		\dInj^\id && \dInj^{\tau_1} && \dInj^{\tau_2} && \dots && \dInj_{\tau_n = \sigma} \\
+		\dInj^\id && \dInj^{\tau_1} && \dInj^{\tau_2} && \dots && \dInj_{\tau_m = \sigma} \\
 		\CC & \rTo & \CC & \rTo & \CC & \rTo & \dots & \rTo & \CC \\
 	\end{diagram}
 
@@ -181,8 +181,9 @@ Now that I've defined all these ingredients, I can prove:
 	Multiplying these all together gives the desired $[K:\QQ]$.
 \end{proof}
 \begin{remark}
-	A shorter proof can be given using the primitive element theorem.
-	Do you see how?
+	The primitive element theorem actually implies that $m = 1$
+	is sufficient; we don't need to build a whole tower.
+	This simplifies the proof somewhat.
 \end{remark}
 
 It's common to see expressions like ``let $K$ be a number field of degree $n$,
@@ -358,8 +359,8 @@ First, let's repeat the proof of the observation that these embeddings shuffle a
 	\label{lem:root_shuffle}
 \end{lemma}
 \begin{proof}
-	Let $f(x) = c_nx^n + c_{n-1}x^{n-1} + \dots + c_0$, where $c_i \in F$.
-	Thus,
+	Let $f(x) = c_n x^n + c_{n-1}x^{n-1} + \dots + c_0$,
+	where $c_i \in F$. Thus,
 	\[ 0 = \sigma(f(\alpha)) = \sigma\left( c_n\alpha^n + \dots + c_0 \right)
 	= c_n\sigma(\alpha)^n + \dots + c_0 = f(\sigma(\alpha)). \qedhere \]
 \end{proof}
