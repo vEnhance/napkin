@@ -198,10 +198,10 @@ Because of this:
 \end{theorem}
 We defer the proof to the last section.
 \begin{example}[An example of non-compactness]
-	The space $X = [0,1)$ is not compact in either sense.
+	The space $X = [0,1)$ is not compact in either sense. % chktex 9
 	We can already see it is not sequentially compact, because it is not even complete (look at $x_n = 1 - \frac 1n$).
 	To see it is not compact under the covering definition, consider the sets
-	\[ U_m = \left[0, 1 - \frac{1}{m+1} \right) \]
+	\[ U_m = \left[0, 1 - \frac{1}{m+1} \right) \] % chktex 9
 	for $m = 1, 2, \dots$. Then $X = \bigcup U_i$; hence the $U_i$ are indeed a cover.
 	But no finite collection of the $U_i$'s will cover $X$.
 \end{example}
@@ -250,12 +250,14 @@ Next, an important result about maps between compact spaces.
 \end{theorem}
 \begin{proof}[Proof Using Covers]
 	Take any open cover $\{V_\alpha\}$ in $Y$ of $f``(X)$.
-	By continuity of $f$, it pulls back to an open cover $\{U_\alpha\}$ of $X$.
+	By continuity of $f$,
+	it pulls back to an open cover $\{U_\alpha\}$ of $X$.
 	Thus some finite subcover of this covers $X$.
 	The corresponding $V$'s cover $f``(X)$.
 \end{proof}
 \begin{ques}
-	Solve this using the sequential definition of continuity too.
+	Give another proof using the sequential definitions
+	of continuity and compactness.
 	(This is even easier.)
 \end{ques}
 
