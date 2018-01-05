@@ -389,8 +389,10 @@ In fact, both $\pi$ and $M$ are unique.
 
 \begin{proof}
 	The idea behind the proof is very simple.
-	Since $\in$ is well-founded and extensional, we can look at the
-	$\in$-minimal element $x_\varnothing$ of $X$ with respect to $\in$.
+	Since $\in$ is well-founded and extensional
+	(satisfies $\Foundation$ and $\Extensionality$, respectively),
+	we can look at the $\in$-minimal element $x_\varnothing$
+	of $X$ with respect to $\in$.
 	Clearly, we want to send that to $0 = \varnothing$.
 
 	Then we take the next-smallest set under $\in$, and send it to $1 = \{\varnothing\}$.
@@ -411,7 +413,7 @@ In fact, both $\pi$ and $M$ are unique.
 	Another issue is that $E$ may not be set-like.
 \end{remark}
 
-The picture of this is quite ``collapsing'' the elements of $M$ down
+The picture of this is ``collapsing'' the elements of $M$ down
 to the bottom of $V$, hence the name.
 \missingfigure{Picture of Mostowski collapse}
 
@@ -446,15 +448,15 @@ Great. Now we do something \emph{really} crazy.
 \begin{proof}
 	Fasten your seat belts.
 
-	First, since $\ZFC^+$ we can take $M = (V_\kappa, \in)$
-	as our model of $\ZFC$.
+	First, since we assumed $\ZFC^+$,
+	we can take $M = (V_\kappa, \in)$ as our model of $\ZFC$.
 	Start with the set $X_0 = \varnothing$.
 	Then for every integer $n$, we do the following to get $X_{n+1}$.
 	\begin{itemize}
-		\ii Start with $X_{n+1}$ containing very element of $X_n$.
+		\ii Start with $X_{n+1}$ containing every element of $X_n$.
 		\ii Consider a formula $\phi(x, x_1, \dots, x_n)$
 		and $b_1, \dots, b_n$ in $X_n$.
-		Suppose that $M$ thinks there is an $b \in M$ for which
+		Suppose that $M$ thinks there is a $b \in M$ for which
 		\[ M \vDash \phi[b, b_1, \dots, b_n]. \]
 		We then add in the element $b$ to $X_{n+1}$.
 		\ii We do this for \emph{every possible formula in the language of set theory}.
@@ -466,7 +468,8 @@ Great. Now we do something \emph{really} crazy.
 	at each step.
 	This exhibits an infinite nested sequence of countable sets
 	\[ X_0 \subseteq X_1 \subseteq X_2 \subseteq \dots \]
-	None of these is a substructure of $M$, because each $X_n$ by relies on witnesses in $X_{n+1}$.
+	None of these is a substructure of $M$,
+	because each $X_n$ relies on witnesses in $X_{n+1}$.
 	So we instead \emph{take the union}:
 	\[ X = \bigcup_n X_n. \]
 	This satisfies the Tarski-Vaught test, and is countable.
@@ -500,7 +503,8 @@ The trick we used in the proof works in more general settings:
 	Then there exists a set $B$ (called the \vocab{Skolem hull} of $A$)
 	with $A \subseteq B \subseteq M$,
 	such that $(B,E) \prec \MM$, and
-	\[ \left\lvert B \right\rvert < \max \left\{ \omega, \left\lvert A \right\rvert \right\}. \]
+	\[ \left\lvert B \right\rvert =
+		\max \left\{ \omega, \left\lvert A \right\rvert \right\}. \]
 \end{theorem}
 In our case, what we did was simply take $A$ to be the empty set.
 \begin{ques}
@@ -688,7 +692,7 @@ the uncountable $\aleph_1^M$ is really just an ordinary countable cardinal.
 \end{dproblem}
 
 \begin{sproblem}
-	[Inaccessible cardinal produce models]
+	[Inaccessible cardinals produce models]
 	\label{prob:inaccessible_model}
 	\gim
 	Let $\kappa$ be an inaccessible cardinal.

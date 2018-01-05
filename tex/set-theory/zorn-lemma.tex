@@ -1,8 +1,10 @@
-\chapter{Bonus: Cauchy's functional equation and Zorn's lemma}
+\chapter{Interlude: Cauchy's functional equation and Zorn's lemma}
 \label{ch:zorn}
 \emph{This is an informal chapter on Zorn's lemma,
 which will give an overview of what's going to come in the last parts of the Napkin.
-It may be omitted, as all important terms used here will be defined in full later.}
+It can be omitted without loss of continuity.}
+
+\medskip
 
 In the world of olympiad math, there's a famous functional equation that goes as follows: 
 \[ f : \RR \to \RR \qquad f(x+y) = f(x) + f(y). \]
@@ -88,17 +90,17 @@ Too bad, because we'd have loved to use induction to help us construct a monster
 That's what we're doing, after all -- adding things in one by one.
 
 \section{Transfinite induction}
-Well, it turns out we can, but we need a new notion of number.
+Well, it turns out we can, but we need a new notion of number,
+the so-called \emph{ordinal number}.
+I define these in their full glory in the first two sections of \Cref{ch:ordinal}
+(and curious readers are even invited to jump ahead to those two sections),
+but for this chapter I won't need that full definition yet.
 
-For this we need a notion of an \emph{ordinal number}.
-I defined these in their full glory
-\href{https://usamo.wordpress.com/2014/11/18/set-theory-part-2-constructing-the-ordinals/}%
-{a previous blog post}, but I don't need the full details of that.
-Here's what I want to say:
-after all the natural numbers 
+Here's what I want to say: after all the natural numbers
 \[ 0, \; 1, \; \dots, \]
-I'll put a \emph{new number} called $\omega$, representing how large the natural numbers are.
-After that there's a number called 
+I'll put a \emph{new number} called $\omega$,
+the first ordinal greater than all the natural numbers.
+After that there's more numbers called
 \[\omega+1, \; \omega+2, \; \dots \]
 and eventually a number called $2\omega$.
 
@@ -120,12 +122,14 @@ Pictorially, it kind of looks like this:
 	\includegraphics[scale=0.70]{media/500px-Omega-exp-omega-labeled.png}
 	\\ \scriptsize Image from \cite{img:omega500}
 \end{center}
-Anyways, in the same way that natural numbers dominate all finite sets,
-the ordinals dominate \emph{all the sets}.
-\begin{theorem}
-	Assume the Axiom of Choice.
-	Then for every set $S$ there's some ordinal $\alpha$ which is bigger than it.
-\end{theorem}
+(Note that the diagram only shows an initial segment;
+there are still larger ordinals like $\omega^{\omega^{\omega}}+1000$ and so on).
+
+Anyways, in the same way that natural numbers ``dominate'' all finite sets,
+the ordinals dominate \emph{all the sets}, in the following sense.
+Essentially, assuming the Axiom of Choice,
+it follows that for every set $S$ there's some ordinal $\alpha$
+which is larger than $S$ (in a sense I won't make precise until later chapters).
 
 But it turns out (and you can intuitively see) that as large as the ordinals grow,
 there is no \emph{infinite descending chain}.
@@ -195,7 +199,7 @@ Intuitively, this construction is working because
 \[ a + b \sqrt 2 + c \sqrt 3 + d \pi \]
 is never going to equal zero for rational numbers $a$, $b$, $c$, $d$ (other than all zeros).
 In general, a set $X$ of numbers is ``independent'' if the combination
-\[ c_1x_1 + c_2x_2 + \dots + c_mx_m = 0 \]
+\[ c_1 x_1 + c_2 x_2 + \dots + c_m x_m = 0 \]
 never occurs for rational numbers $\QQ$ unless $c_1 = c_2 = \dots = c_m = 0$.
 Here $x_i \in X$ are distinct. Note that even if $X$ is infinite,
 I can only take finite sums!

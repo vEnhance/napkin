@@ -67,34 +67,37 @@ This is bad, since:
 	Assume for contradiction $\iota$ exists.
 	\begin{exercise}
 		Show that if, $\iota$ exists,
-		then there exists a surjective map $j : X \to \PP(X)$.
+		then there exists a surjective map $j : X \surjto \PP(X)$.
 		(This is easier than it appears, just ``invert $\iota$'').
 	\end{exercise}
 	We now claim that $j$ can't exist.
-	The idea is contained inside the picture:
+
+	Let me draw a picture for $j$ to give the idea first:
 	\[
 		\begin{array}{cccccccc}
 			&& x_1 & x_2 & x_3 & x_4 & x_5 & \dots \\ \cline{3-8}
-			x_1 & \mapsto & \mathbf0 & 1 & 1 & 0 & 1 & \dots \\
-			x_2 & \mapsto & 1 & \mathbf1 & 0 & 1 & 1 & \dots \\
-			x_3 & \mapsto & 0 & 1 & \mathbf0 & 0 & 1 & \dots \\
-			x_4 & \mapsto & 1 & 0 & 0 & \mathbf1 & 0 & \dots \\
-			x_5 & \mapsto & 0 & 1 & 1 & 1 & \mathbf1 & \dots \\
+			x_1 & \xmapsto{j} & \mathbf0 & 1 & 1 & 0 & 1 & \dots \\
+			x_2 & \xmapsto{j} & 1 & \mathbf1 & 0 & 1 & 1 & \dots \\
+			x_3 & \xmapsto{j} & 0 & 1 & \mathbf0 & 0 & 1 & \dots \\
+			x_4 & \xmapsto{j} & 1 & 0 & 0 & \mathbf1 & 0 & \dots \\
+			x_5 & \xmapsto{j} & 0 & 1 & 1 & 1 & \mathbf1 & \dots \\
 			\vdots && \vdots & \vdots & \vdots & \vdots & \vdots & \ddots
 		\end{array}
 	\]
-	here for each $j(x) \subseteq X$, I'm writing ``$1$'' to mean that
+	Here, for each $j(x) \subseteq X$, I'm writing ``$1$'' to mean that
 	the element is inside $j(x)$, and ``$0$'' otherwise.
 	So $j(x_1) = \{x_2, x_3, x_5 \dots\}$.
 	(Here the indices are ordinals rather than integers
-	as $X$ may be uncountable.)
-
+	as $X$ may be uncountable.
+	Experts may notice I've tacitly assumed a well-ordering of $X$;
+	but this picture is for motivation only so I won't dwell on the point.)
 	Then we can read off the diagonal to get a new set.
 	In our example, the diagonal specifies a set
 	$A = \{x_2, x_4, x_5 \dots\}$.
-	Then we invert it to get a set $B = \{x_1, x_3, \dots\}$.
-	In symbols, we consider the set
-	\[ B = \left\{ x \mid x \notin j(x) \right\} \]
+	Then we ``invert'' it to get a set $B = \{x_1, x_3, \dots\}$.
+
+	Back to the formal proof. As motivated above, we define
+	\[ B = \left\{ x \mid x \notin j(x) \right\}. \]
 	By construction, $B \subseteq X$ is not in the image of $j$,
 	which is a contradiction since $j$ was supposed to be surjective.
 \end{proof}
@@ -326,6 +329,8 @@ There is an equivalent formulation which is often useful.
 \end{definition}
 Well-orderings on a set are very nice, because we can pick minimal elements:
 this lets us do induction, for example.
+(And the Foundation axiom tells us $\in$ is a well-ordering itself.)
+
 \begin{example}[Examples and non-examples of well-orderings]
 	\listhack
 	\begin{enumerate}[(a)]

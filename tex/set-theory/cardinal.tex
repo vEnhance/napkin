@@ -90,7 +90,7 @@ Our usual intuition works well here.
 Diligent readers are invited to try and prove this.
 
 \section{Aleph numbers}
-\prototype{$\aleph_0$ is $\omega$, and $\aleph_1$ is the first uncountable.}
+\prototype{$\aleph_0 = \omega$, and $\aleph_1$ is the first uncountable ordinal.}
 First, let us check that cardinals can get arbitrarily large:
 \begin{proposition}
 	We have $\left\lvert X \right\rvert < \left\lvert \PP(X) \right\rvert$ for every set $X$.
@@ -379,16 +379,17 @@ The cofinality is then the number of bullets you need to do this.
 We now observe that ``most'' of the time, the cofinality of a cardinal is itself.
 Such a cardinal is called \vocab{regular}.
 \begin{example}[$\aleph_0$ is regular]
-	$\cof(\aleph_0) = \aleph_0$, because no finite subset of $\omega$ can reach arbitrarily high.
+	$\cof(\aleph_0) = \aleph_0$, because no finite subset of
+	$\aleph_ 0 = \omega$ can reach arbitrarily high.
 \end{example}
 \begin{example}[$\aleph_1$ is regular]
 	$\cof(\aleph_1) = \aleph_1$.
 	Indeed, assume for contradiction that some countable
-	set of ordinals $A = \{ \alpha_0, \alpha_1, \dots \} \subseteq \omega_1$
-	reaches arbitrarily high inside $\omega_1$.
+	set of ordinals $A = \{ \alpha_0, \alpha_1, \dots \} \subseteq \aleph_1$
+	reaches arbitrarily high inside $\aleph_1$.
 	Then $\Lambda = \cup A$ is a \emph{countable} ordinal,
 	because it is a countable union of countable ordinals.
-	In other words $\Lambda \in \omega_1$.
+	In other words $\Lambda \in \aleph_1$.
 	But $\Lambda$ is an upper bound for $A$, contradiction.
 \end{example}
 On the other hand, there \emph{are} cardinals which are not regular;

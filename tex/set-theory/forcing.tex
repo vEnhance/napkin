@@ -95,7 +95,7 @@ as any downwards ``slice''.
 \begin{definition}
 	For $p,q \in \Po$ we write $p \parallel q$,
 	saying ``$p$ is \vocab{compatible} with $q$'',
-	if there is exists $r \in \Po$ with $r \le p$ and $r \le q$.
+	if there exists $r \in \Po$ with $r \le p$ and $r \le q$.
 	Otherwise, we say $p$ and $q$ are \vocab{incompatible}
 	and write $p \perp q$.
 \end{definition}
@@ -531,8 +531,8 @@ In what follows, the $\Vdash$ omits the $M$ and $\Po$.
 		\ii $p \Vdash \neg \varphi$ means $\forall q \le p$, $q \not\Vdash \varphi$.
 		\ii $p \Vdash \exists x \varphi(x, \sigma_1, \dots, \sigma_n)$ means that the set
 		\[
-			\left\{ q \mid \exists \tau
-				\left( q \Vdash \varphi(\tau, \sigma_1, \dots, \sigma_n \right)
+			\left\{ q \mid \exists \tau \left( q \Vdash
+				\varphi(\tau, \sigma_1, \dots, \sigma_n \right) \right)
 			\right\}
 		\]
 		is dense below $p$.
