@@ -126,14 +126,16 @@ Let $M$ be a topological $n$-manifold with atlas
 $\{U_i \taking{\phi_i} E_i\}$.
 \begin{definition}
 	For any $i$, $j$ such that $U_i \cap U_j \neq \varnothing$,
-	the map
+	the \vocab{transition map} $\phi_{ij}$ is the composed map
 	\[
-		\phi_{ij} : E_i \cap \phi_i\pre(U_i \cap U_j)
-		\taking{\phi_i\inv \circ \phi_j} E_j \cap \phi_j``(U_i \cap U_j)
+		\phi_{ij} : E_i \cap \phi_i``(U_i \cap U_j)
+		\taking{\phi_i\inv}
+		U_i \cap U_j
+		\taking{\phi_j} E_j \cap \phi_j``(U_i \cap U_j).
 	\]
-	is called a \vocab{transition map}.
 \end{definition}
-The intersection with the pre-image $\phi_i\pre(U_i \cap U_j)$
+Sorry for the dense notation, let me explain.
+The intersection with the image $\phi_i``(U_i \cap U_j)$
 and the image $\phi_j``(U_i \cap U_j)$ is a notational annoyance
 to make the map well-defined and a homeomorphism.
 The transition map is just the natural way to go from $E_i \to E_j$,
@@ -226,7 +228,6 @@ Let $M$ be a smooth manifold with atlas $\{ U_i \taking{\phi_i} E_i \}_i$.
 	such that for any $j$ and $i$ we have that
 	\[ \alpha_j = \phi_{ij}^\ast(\alpha_i). \]
 \end{definition}
-Here the pullback.
 In English: we specify a differential form on each chart,
 which is compatible under pullbacks of the transition maps.
 

@@ -184,7 +184,7 @@ A diligent reader can check these definitions are equivalent.
 
 It turns out that the pullback basically behaves nicely as possible, e.g.\
 \begin{itemize}
-	\ii $\phi^\ast(c\alpha + \beta) = c\phi^\ast \alpha + \phi^\ast\beta$ (bilinearity)
+	\ii $\phi^\ast(c\alpha + \beta) = c\phi^\ast \alpha + \phi^\ast\beta$ (linearity)
 	\ii $\phi^\ast(\alpha\wedge\beta)
 	= (\phi^\ast \alpha)\wedge(\phi^\ast \beta)$
 	\ii $\phi_1^\ast(\phi_2^\ast(\alpha)) 
@@ -210,14 +210,15 @@ Specifically, to generalize the notion of integrals we had before:
 		\ii A $0$-cell consists of a single point.
 		\ii As we saw, a $1$-cell is an arbitrary curve.
 		\ii A $2$-cell corresponds to a $2$-dimensional surface.
-		For example, the map $c : [0,R] \times [0,2\pi]$ by
+		For example, the map $c : [0,R] \times [0,2\pi] \to V$ by
 		\[ c : (r,\theta) \mapsto (r\cos\theta, r\sin\theta) \]
 		can be thought of as a disk of radius $R$.
 	\end{enumerate}
 \end{example}
 Then, to define an integral
 \[ \int_c \alpha \]
-for a differential $k$-form $\alpha$ and a $k$-cell $c : [0,1]^k$, we simply take the pullback
+for a differential $k$-form $\alpha$ and a $k$-cell $c : [0,1]^k \to V$,
+we simply take the pullback
 \[ \int_{[0,1]^k} c^\ast \alpha \]
 Since $c^\ast \alpha$ is a $k$-form on the $k$-dimensional unit box,
 it can be written as $f(x_1, \dots, x_n) \; dx_1 \wedge \dots \wedge dx_n$,
@@ -304,7 +305,7 @@ First, I introduce a technical term that lets us consider multiple cells at once
 	where each $a_i \in \RR$ and $c_i$ is a $k$-cell.
 	We define $\int_c \alpha = \sum_i a_i \int c_i$.
 \end{definition}
-In particular, a $0$-cell consists of several points, each with a given weight.
+In particular, a $0$-chain consists of several points, each with a given weight.
 
 Now, how do we define the boundary?
 For a $1$-cell $[a,b] \to U$, as I hinted earlier we want the answer to be the $0$-chain $\{c(b)\}-\{c(a)\}$.

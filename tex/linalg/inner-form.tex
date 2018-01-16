@@ -173,6 +173,12 @@ Let's now prove something we all know and love:
 	with equality if and only if $v$ and $w$ are linearly dependent.
 \end{lemma}
 \begin{proof}
+	The theorem is immediate if $\left< v,w\right> = 0$.
+	It is also immediate if $\norm{v} \norm{w} = 0$,
+	since then one of $v$ or $w$ is the zero vector.
+	So henceforth we assume all these quantities are nonzero
+	(as we need to divide by them later).
+
 	The key to the proof is to think about the equality case:
 	we'll use the inequality $\left< cv-w, cv-w\right> \ge 0$.
 	Deferring the choice of $c$ until later, we compute
@@ -252,7 +258,7 @@ This is no loss of generality:
 		u_2 &= e_2 - \opname{proj}_{u_1}(e_2) \\
 		u_3 &= e_3 - \opname{proj}_{u_1}(e_3) - \opname{proj}_{u_2}(e_3) \\
 		&\vdotswithin{=} \\
-		u_n &= e_n - \opname{proj}_{u_1}(e_n) - \dots - \opname{proj}_{u_{n-1}}(e_{n-1}).
+		u_n &= e_n - \opname{proj}_{u_1}(e_n) - \dots - \opname{proj}_{u_{n-1}}(e_n).
 	\end{align*}
 	One can show the $u_i$ are pairwise orthogonal and not zero.
 \end{proof}

@@ -69,7 +69,8 @@ First things first:
 	this will be useful in just a moment.
 \end{example}
 
-Now we're going to do something much like when we were talking about stokes' theorem:
+Now we're going to do something much like
+when we were talking about Stokes' theorem:
 we'll put a boundary $\partial$ operator on the singular $n$-simplices.
 This will give us a formal linear sums of $n$-simplices $\sum_k a_k \sigma_k$,
 which we call an \vocab{$n$-chain}.
@@ -394,7 +395,8 @@ and obtain a map $H_n(f) : H_n(X) \to H_n(Y)$.
 Then we have to show that this map doesn't depend on the choice of homotopy.
 (This is the analog of the work we did with $f_\sharp$ before.)
 It turns out that this time around, proving this is much more tricky,
-and we will have to go back to the chain complex $C_\bullet(X)$ that we built at the beginning.
+and we will have to go back to the chain complex
+$C_\bullet(X)$ that we built at the beginning.
 
 \subsection*{Algebra of chain complexes}
 Let's start with the algebra.
@@ -585,7 +587,7 @@ We split this up into two triangles; and that's our $2$-chain.
 
 We can make this formal by taking $\Delta^1 \times [0,1]$ (which \emph{is} a square)
 and splitting it into two triangles.
-Then, if we apply $\sigma \times \id$, we'll get an $(n+1)$-cell in $X \times [0,1]$,
+Then, if we apply $\sigma \times \id$, we'll get an $2$-chain in $X \times [0,1]$,
 and then finally applying $F$ will map everything into our space $Y$.
 In our example, the final image is the $2$-chain, consisting of two triangles,
 which in our picture can be written as $[v_0, v_1, w_1] - [v_0, w_0, w_1]$;
@@ -608,7 +610,7 @@ In the picture, $\partial_Y \circ P_n$ is the boundary of the entire prism
 (in the figure, this becomes the red, green, and grey lines, not including diagonal grey,
 which is cancelled out).
 The $g-f$ is the green minus the red,
-and the $P_{n-1} \circ \partial X$ represents the grey edges of the prism
+and the $P_{n-1} \circ \partial_X$ represents the grey edges of the prism
 (not including the diagonal line from $v_1$ to $w_0$).
 Indeed, one can check (just by writing down several $\sum$ signs)
 that the above identity holds.
