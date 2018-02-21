@@ -191,7 +191,8 @@ We say the entire sequence is exact if it's exact at $k=1,\dots,n-1$.
 
 Now, we want to mimic this definition in a general \emph{abelian} category $\AA$.
 So, let's write down a criterion for when $A \taking f B \taking g C$ is exact.
-First, we had better have that $g \circ f = 0$, which encodes the fact that $\img(g) \subseteq \ker(f)$.
+First, we had better have that $g \circ f = 0$,
+which encodes the fact that $\img(f) \subseteq \ker(g)$.
 Adding in all the relevant objects, we get the commutative diagram below.
 \begin{diagram}
 	A && \rDashed^0 && C \\
@@ -317,7 +318,7 @@ This relies on:
 	\label{prop:break_exact}
 	Let $A \taking f B$ be an arrow of an abelian category.
 	Then there is an exact sequence
-	\[ 0 \to \Ker f \taking{\ker f} A \to \taking{\img f} \Img f \to 0. \]
+	\[ 0 \to \Ker f \taking{\ker f} A \taking{\img f} \Img f \to 0. \]
 \end{proposition}
 
 \begin{example}

@@ -131,7 +131,7 @@ Picture:
 \begin{diagram}
 	&&& E \\
 	&& \ruTo(3,2)^{\tilde \gamma} & \dTo_p \\
-	[0,1] & \rTo^{\gamma} && b
+	[0,1] & \rTo^{\gamma} && B
 \end{diagram}
 
 \begin{example}[Typical example of lifting]
@@ -264,7 +264,7 @@ Consider a covering projection $p : (E, e_0) \to (B, b_0)$.
 A loop $\gamma$ can be lifted uniquely to $\tilde\gamma$ in $E$
 which starts at $e_0$ and ends at some point $e$ in the fiber $p\pre(b_0)$.
 You can easily check that this $e \in E$ does not change if we
-pick a different path $\gamma'$ homotopic to $E$.
+pick a different path $\gamma'$ homotopic to $\tilde\gamma$.
 \begin{ques}
 	Look at the picture in \Cref{example:lifting_circle}.
 
@@ -343,7 +343,7 @@ Thus for every $g$, we get a map $X \to X$ by
 \[ x \mapsto g \cdot x. \]
 We require that this map is continuous\footnote{%
 	Another way of phrasing this: the action,
-	interpreted as a map $X \times G \to X$, should be continuous,
+	interpreted as a map $G \times X \to X$, should be continuous,
 	where $G$ on the left-hand side is interpreted as a set with
 	the discrete topology.}
 for every $g \in G$, and that the stabilizer of each point in $X$ is trivial.
@@ -541,7 +541,7 @@ Suppose a space $X$ satisfies some nice conditions, like:
 \end{example}
 Then we get:
 \begin{theorem}[Group theory via covering spaces]
-	Suppose $B$ is a connected, locally connected, semi-locally simply connected space.
+	Suppose $B$ is a locally connected, semi-locally simply connected space.
 	Then:
 	\begin{itemize}
 		\ii Every subgroup $H \subseteq \pi_1(B)$ corresponds
