@@ -15,7 +15,7 @@ Let $N$ be a positive integer, and let $\omega_N = \exp\left( \frac{2\pi i}{N} \
 	\[ \left( x_0, x_1, \dots, x_{N-1} \right) \]
 	its \vocab{discrete inverse Fourier transform} is
 	the sequence $(y_0, y_1, \dots, y_{N-1})$ defined by
-	\[ y_k = \frac1N \sum_{j=0}^{N-1} \omega_N^{jk} x_i. \]
+	\[ y_k = \frac1N \sum_{j=0}^{N-1} \omega_N^{jk} x_j. \]
 	Equivalently, one is applying the matrix
 	\[
 		\frac 1N
@@ -26,9 +26,9 @@ Let $N$ be a positive integer, and let $\omega_N = \exp\left( \frac{2\pi i}{N} \
 			\vdots & \vdots & \vdots & \ddots & \vdots \\
 			1 & \omega_N^{N-1} & \omega_N^{2(N-1)} & \dots & \omega_N^{(N-1)^2}
 		\end{bmatrix}
-		\begin{bmatrix} x_0 \\ x_1 \\ \vdots \\ x_N \end{bmatrix}
+		\begin{bmatrix} x_0 \\ x_1 \\ \vdots \\ x_{N-1} \end{bmatrix}
 		=
-		\begin{bmatrix} y_0 \\ y_1 \\ \vdots \\ y_N \end{bmatrix}.
+		\begin{bmatrix} y_0 \\ y_1 \\ \vdots \\ y_{N-1} \end{bmatrix}.
 	\]
 \end{definition}
 The reason this operation is important is because it lets
@@ -219,14 +219,14 @@ first we generate a sequence which is periodic modulo $r$.
 	\[ (\ket{7} + \ket{7+r} + \ket{7+2r} + \dots) \otimes \ket{128}. \]
 \end{example}
 The bottleneck is actually the circuit $U_x$;
-one can compute $2^k \pmod M$ by using repeated squaring,
+one can compute $x^k \pmod M$ by using repeated squaring,
 but it's still the clumsy part of the whole operation.
 
 In general, the operation is:
 \begin{itemize}
 	\ii Pick a sufficiently large $N = 2^n$ (say, $N \ge M^2$).
 	\ii Generate $\ket\psi = \sum_{k=0}^{2^n-1} \ket{k}$.
-	\ii Build a circuit $U_x$ which computes $\ket{2^k \mod M}$.
+	\ii Build a circuit $U_x$ which computes $\ket{x^k \mod M}$.
 	\ii Apply it to get a state
 	$\frac{1}{\sqrt N} \sum_{k=0}^{2^n-1} \ket k \otimes \ket{x^k \mod M}$.
 	\ii Measure the second qubit to cause the first qubit to
