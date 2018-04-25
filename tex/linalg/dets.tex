@@ -579,8 +579,8 @@ Suppose $T : V \to V$ is a square matrix.
 We claim that the map $\Lambda^m(V) \to \Lambda^m(V)$ given on wedges by
 \[ v_1 \wedge v_2 \wedge \dots \wedge v_m
 	\mapsto T(v_1) \wedge T(v_2) \wedge \dots \wedge T(v_m) \]
-is a linear map.
-You can check this yourself if you like.
+and extending linearly to all of $\Lambda^m(V)$ is a linear map.
+(You can check this yourself if you like.)
 We call that map $\Lambda^m(T)$.
 \begin{example}
 	[Example of $\Lambda^m(T)$]
@@ -758,7 +758,7 @@ and do a full expansion.
 
 \begin{problem}
 	\yod
-	Let $V$ be a vector space over $K$ and $T : V \to V$.
+	Let $V$ be a finite-dimensional vector space over $K$ and $T : V \to V$.
 	Show that
 	\[
 		\det(a \cdot \id_V - T) =
@@ -813,7 +813,7 @@ and do a full expansion.
 			\cdot \left( \prod_{i \in \NoFix(\sigma)} -x_{i \sigma(i)} \right)
 			\left( \sum_{t=0}^{\left\lvert \Fix(\sigma) \right\rvert}
 			a^{\left\lvert \Fix(\sigma) \right\rvert - t} \cdot \sum_{i_1 < \dots < i_t \in \Fix(\sigma)}
-			\prod_{k=1}^t -x_{i_ki_k} \right)
+			\prod_{k=1}^t -x_{i_k i_k} \right)
 			\right) \\
 			% -----------------------
 			&=
@@ -864,7 +864,7 @@ and do a full expansion.
 			&= \sum_{1 \le i_1 < \dots < i_n \le m}
 			\left( \bigwedge_{k=1}^n e_{i_k} \right)^\vee
 			\left(  \bigwedge_{k=1}^n 
-			\left( \sum_{j=1}^m x_{i_kj} e_j \right)
+			\left( \sum_{j=1}^m x_{i_k j} e_j \right)
 			\right) \\
 			&= \sum_{1 \le i_1 < \dots < i_n \le m}
 			\sum_{\pi \in S_n} \sign(\pi) \prod_{k=1}^n x_{i_{\pi(k)}k} \\
