@@ -224,7 +224,7 @@ which give a natural way to deal with the quantity $\chi_V(g)\ol{\chi_W(g)}$.
 	\begin{enumerate}[(a)]
 		\ii $\chi_{V \oplus W}(g) = \chi_V(g) + \chi_W(g)$.
 		\ii $\chi_{V \otimes W}(g) = \chi_V(g) \cdot \chi_W$.
-		\ii $\chi_{V}(g) = \ol{\chi_V(g)}$.
+		\ii $\chi_{V^\vee}(g) = \ol{\chi_V(g)}$.
 	\end{enumerate}
 \end{theorem}
 \begin{proof}
@@ -308,7 +308,7 @@ a complete set of irreps.
 	We write four representations of $D_{10}$:
 	\begin{itemize}
 		\ii $\Ctriv$, all elements of $D_{10}$ act as the identity.
-		\ii $\Csign$, all elements of $D_{10}$ act as the identity.
+		\ii $\Csign$, $r$ acts as the identity while $s$ acts by negation.
 		\ii $V_1$, which is two-dimensional and given by
 		$r \mapsto \begin{bmatrix} \omega & 0 \\ 0 & \omega^4 \end{bmatrix}$
 		and $s \mapsto \begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}$.
@@ -407,15 +407,12 @@ a complete set of irreps.
 \section\problemhead
 
 \begin{dproblem}
-	[Reading decompsitions from characters]
+	[Reading decompositions from characters]
 	Let $W$ be a complex representation of a finite group $G$.
 	Let $V_1$, \dots, $V_r$ be the complex irreps of $G$
 	and set $n_i = \left< \chi_W, \chi_{V_i} \right>$.
 	Prove that each $n_i$ is a positive integer and
-	\[
-		W = \bigoplus_{i=1}^r 
-		V_i^{\oplus n_i}
-	\]
+	\[ W = \bigoplus_{i=1}^r V_i^{\oplus n_i}. \]
 	\begin{hint}
 		Obvious.
 		Let $W = \bigoplus V_i^{m_i}$ (possible since $\CC[G]$ semisimple)
