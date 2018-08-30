@@ -13,24 +13,31 @@ Here is the notion of ``nice'':
 \begin{definition}
 	Let $p : E \to B$ be a continuous function.
 	Let $U$ be an open set of $B$.
-	We call $U$ \vocab{evenly covered} (by $p$) if $p\pre(U)$ is a disjoint union of open sets (possibly infinite) such that $p$ restricted to any of these sets is a homeomorphism.  
+	We call $U$ \vocab{evenly covered} (by $p$) if $p\pre(U)$ is a disjoint union of open sets (possibly infinite) such that $p$ restricted to any of these sets is a homeomorphism.
 \end{definition}
 Picture:
 \begin{center}
 	\includegraphics[width=4cm]{media/even-covering.png}
-	\scriptsize Image from \cite{img:even_covering}
+	\\ \scriptsize Image from \cite{img:even_covering}
 \end{center}
 All we're saying is that $U$ is evenly covered if its pre-image
 is a bunch of copies of it. (Actually, a little more: each of the pancakes is homeomorphic to $U$, but we also require that $p$ is the homeomorphism.)
 
 \begin{definition}
 	A \vocab{covering projection} $p : E \to B$
-	is a continuous map such that every base point $b \in B$
+	is a surjective continuous map such that every base point $b \in B$
 	has a neighborhood $U \ni b$ which is evenly covered by $p$.
 \end{definition}
-\begin{ques}
-	Why must a covering projection be surjective?
-\end{ques}
+\begin{exercise}
+	[On requiring surjectivity of $p$]
+	Let $p \colon E \to B$ be satisfying this definition,
+	except that $p$ need not be surjective.
+	Show that the image of $p$ is a connected component of $B$.
+	Thus if $B$ is connected and $E$ is nonempty,
+	then $p \colon E \to B$ is already surjective.
+	For this reason, some authors omit the surjectivity hypothesis
+	as usually $B$ is path-connected.
+\end{exercise}
 
 Here is the most stupid example of a covering projection.
 \begin{example}[Tautological covering projection]
@@ -570,4 +577,4 @@ corresponding to $H_1$.
 % about covering projections''.
 
 \section\problemhead
-\todo{problems}
+TODO\todo{problems}
