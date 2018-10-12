@@ -204,8 +204,10 @@ Notice that, just like in our definition of an isomorphism of a group,
 we use the metric of $M$ for one condition
 and the metric of $N$ for the other condition.
 
-This generalization is nice because it tells us immediately how we could carry over continuity arguments in $\RR$ to more general spaces (for example, replacing $\RR$ with $\CC$ to get complex analysis).
-Nonetheless, this definition is kind of cumbersome to work with, because it makes extensive use of the real numbers (epsilons and deltas).
+This generalization is nice because it tells us immediately how we could carry over continuity arguments in $\RR$ to more general spaces like $\CC$.
+Nonetheless, this definition is kind of cumbersome to work with,
+because it makes extensive use of the real numbers
+(epsilons and deltas).
 Here is an equivalent condition.
 \begin{theorem}[Sequential continuity]
 	\label{thm:seq_cont}
@@ -219,7 +221,7 @@ Here is an equivalent condition.
 	The reverse direction is trickier and left as \Cref{prob:sequential}.
 \end{proof}
 
-The next example illustrates why this criterion can often be much easier to work with.
+Example application showcasing the niceness of sequential continuity:
 \begin{proposition}[Composition of continuous functions is continuous]
 	Let $f : M \to N$ and $g : N \to L$ be continuous maps of metric spaces.
 	Then their composition $g \circ f$ is continuous.
@@ -229,7 +231,6 @@ The next example illustrates why this criterion can often be much easier to work
 	Let $p \in M$ be arbitrary and let $x_n \to p$ in $M$.
 	Then $fx_n \to fp$ in $N$ and $gfx_n \to gfp$ in $L$, QED.
 \end{proof}
-I hope you'll agree this is much cleaner than having to deal with $\eps$'s and $\delta$'s.
 
 \begin{ques}
 	Let $M$ be any metric space and $D$ a discrete space.
@@ -240,13 +241,15 @@ I hope you'll agree this is much cleaner than having to deal with $\eps$'s and $
 
 \section{Homeomorphisms}
 When do we consider two groups to be the same?
-Answer: if there's a structure-preserving map between them which is also a bijection.
-For metric spaces, we do exactly the same thing, but replace ``structure-preserving'' with ``continuous''.
+Answer: if there's a structure-preserving map
+between them which is also a bijection.
+For metric spaces, we do exactly the same thing,
+but replace ``structure-preserving'' with ``continuous''.
 
 \begin{definition}
 	Let $M$ and $N$ be metric spaces.
 	A function $f : M \to N$ is a
-	\vocab{homeomorphism} or \vocab{bi-continuous function} if it is a bijection,
+	\vocab{homeomorphism} if it is a bijection,
 	and both $f : M \to N$ and its inverse $f\inv : N \to M$ are continuous.
 	We say $M$ and $N$ are \vocab{homeomorphic}.
 \end{definition}
@@ -260,6 +263,7 @@ The same is not true for continuous bijections,
 which is why we need the new condition.
 \begin{example}
 	[Homeomorphism $\neq$ continuous bijection]
+	\listhack
 	\begin{enumerate}[(a)]
 		\ii There is a continuous bijection from $[0,1)$ to the circle,
 		but it has no continuous inverse.
@@ -276,14 +280,17 @@ Here are some examples.
 \begin{example}[Examples of homeomorphisms]
 	\listhack
 	\begin{enumerate}[(a)]
-		\ii Any space $M$ is homeomorphic to itself through the identity map.
-		\ii The old saying: a doughnut (torus) is homeomorphic to a coffee cup.
+		\ii Any space $M$ is homeomorphic to itself
+		through the identity map.
+		\ii The old saying: a doughnut (torus) is
+		homeomorphic to a coffee cup.
 		(Look this up if you haven't heard of it.)
-		\ii The unit circle $S^1$ is homeomorphic to the boundary of the unit square.
+		\ii The unit circle $S^1$ is homeomorphic
+		to the boundary of the unit square.
 		Here's one bijection between them, after an appropriate scaling:
 		\begin{center}
 			\begin{asy}
-				size(2cm);
+				size(1.5cm);
 				draw(unitcircle);
 				pair A = (1.4, 1.4);
 				pair B = rotate(90)*A;
