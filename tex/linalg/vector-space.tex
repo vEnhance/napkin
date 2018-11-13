@@ -380,7 +380,8 @@ that bases in vector spaces behave as nicely as possible.
 	\end{ques}
 
 	Let $A_0 = \{v_1, \dots, v_n\}$ be the spanning set.
-	Throw in $w_1$: by the spanning condition, so $w_1 = c_1v_1 + \dots + c_nv_n$.
+	Throw in $w_1$: by the spanning condition,
+	so $w_1 = c_1 v_1 + \dots + c_n v_n$.
 	There's some nonzero coefficient, say $c_n$.
 	Thus \[ v_n = \frac{1}{c_n} w_1 - \frac{c_1}{c_n}v_1 - \frac{c_2}{c_n}v_2 - \dots. \]
 	Thus $A_1 = \{v_1, \dots, v_{n-1}, w_1\}$ is spanning.
@@ -412,11 +413,11 @@ On the other hand, the set of all polynomials is \emph{infinite-dimensional}
 (which should be intuitively clear).
 
 A basis $e_1, \dots, e_n$ of $V$ is really cool because it means that to specify $v \in V$, I just have to specify $a_1, \dots, a_n \in k$,
-and then let $v = a_1e_1 + \dots + a_ne_n$.
+and then let $v = a_1 e_1 + \dots + a_n e_n$.
 You can even think of $v$ as just $\left( a_1, \dots, a_n \right)$.
 % In a way I'll make precise in a moment, $V$ is actually isomorphic to just $k^{\oplus n}$.
 To put it another way, if $V$ is a $k$-vector space we always have
-\[ V = e_1k \oplus e_2k \oplus \dots \oplus e_nk. \]
+\[ V = e_1 k \oplus e_2 k \oplus \dots \oplus e_n k. \]
 
 For the remainder of this chapter,
 \textbf{assume all vector spaces are finite-dimensional
@@ -493,8 +494,9 @@ I also have a map $T : V \to W$ and I want to tell you what $T$ is.
 It would be awfully inconsiderate of me to try and tell you what $T(v)$
 is at every point $v$.
 In fact, I only have to tell you what $T(e_1)$, \dots, $T(e_m)$ are,
-because from there you can work out $T(a_1e_1 + \dots + a_me_m)$ for yourself:
-\[ T(a_1e_1 + \dots + a_me_m) = a_1T(e_1) + \dots + a_mT(e_m). \]
+because from there you can work out
+$T(a_1 e_1 + \dots + a_m e_m)$ for yourself:
+\[ T(a_1 e_1 + \dots + a_m e_m) = a_1 T(e_1) + \dots + a_m T(e_m). \]
 Since the $e_i$ are a basis, that tells you all you need to know about $T$.
 \begin{example}
 	Let $V = \left\{ ax^2+bx+c \mid a,b,c \in \RR \right\}$.
@@ -573,7 +575,7 @@ the abstract definition will imply that the numerical definition doesn't depend 
 \begin{example}[Spans]
 	Let $V$ be a vector space and $v_1, \dots, v_m$ be any vectors of $V$.
 	The \vocab{span} of these vectors is defined as the set
-	\[ \left\{ a_1v_1 + \dots + a_mv_m \mid a_1, \dots, a_m \in k \right\}. \]
+	\[ \left\{ a_1 v_1 + \dots + a_m v_m \mid a_1, \dots, a_m \in k \right\}. \]
 	Note that it is a subspace of $V$ as well!
 \end{example}
 \begin{ques}

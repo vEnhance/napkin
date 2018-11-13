@@ -135,8 +135,6 @@
 \newcommand{\kz}{\mathfrak z}
 \DeclareMathOperator{\Ext}{Ext} % Ext functor
 \DeclareMathOperator{\Tor}{Tor} % Tor functor
-\newcommand{\gl}{\opname{\mathfrak{gl}}} % frak gl group
-\renewcommand{\sl}{\opname{\mathfrak{sl}}} % frak gl group
 
 % More script letters etc.
 \newcommand{\SA}{\mathscr A}
@@ -338,38 +336,13 @@ style=thmbluebox,name=Theorem,numberwithin=section]{theorem}
 \begin{asydef}
 	import olympiad;
 	import cse5;
+	import extras;
+
 	size(6cm);
 	usepackage("amsmath");
 	usepackage("amssymb");
 	defaultpen(fontsize(11pt));
 	pointfontsize=11;
-	void bigbox(string L) {
-		filldraw((-4,3)--(4,3)--(4,-3)--(-4,-3)--cycle,
-			lightblue+opacity(0.2), black);
-		label(L, (4,3), dir(-45));
-	}
-	void bigblob(string L) {
-		filldraw((-4,3)..(-5,1)..(-4.7,0)..(-4.1,-2)..(-4,-3)
-			..(-1,-3.3)..(1,-3.2)..(4,-3)
-			..(4.3,-1)..(4.1,0.5)..(4,3)
-			..(2,3.3)..(0,3.1)..(-3,2.9)..cycle,
-			lightblue+opacity(0.2), black);
-		label(L, (4,3), dir(5));
-	}
-
-	real[] default_ticks = {-4,-3,-2,-1,0,1,2.3,4};
-	void cplane(real theta=-45, real[] T = default_ticks, real xmin = -4.5, real xmax = 4.5, real S = 3) {
-		graph.xaxis("Re", xmin, xmax, graph.Ticks(format="%", Ticks=T, Size=S), Arrows);
-		graph.yaxis("Im", xmin, xmax, graph.Ticks(format="%", Ticks=T, Size=S), Arrows);
-		Drawing("0", origin, dir(theta));
-		markscalefactor *= xmax;
-	}
-
-	pair opendot(pair P, pen p = defaultpen) {
-		dot(P, p, UnFill);
-		dot(P, p, Draw);
-		return P;
-	}
 	settings.tex="latex";
 	settings.outformat="pdf";
 \end{asydef}

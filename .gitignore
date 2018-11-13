@@ -8,6 +8,7 @@ asy/*
 .dropbox
 
 **/*.asy
+!extras.asy
 **/*.out
 **/*.pdf
 

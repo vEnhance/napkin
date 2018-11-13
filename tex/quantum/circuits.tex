@@ -184,7 +184,8 @@ Unfortunately, it is not universal.
 \end{proposition}
 \begin{proof}[Sketch of Proof]
 	One can see that any function simulated using only CNOT gates
-	must be of the form \[ a_1x_1 + a_2x_2 + \dots + a_nx_n \pmod 2 \]
+	must be of the form
+	\[ a_1 x_1 + a_2 x_2 + \dots + a_n x_n \pmod 2 \]
 	because CNOT is the map $(x,y) \mapsto (x, x+y)$.
 	Thus, even with ancilla bits, we can only create functions
 	of the form $ax+by+c \pmod 2$ for fixed $a$, $b$, $c$.
@@ -588,7 +589,8 @@ However,
 	\label{prob:baby_no_clone}
 	Show that there is no unitary map $U$ on two qubits
 	which sends $U(\ket\psi \otimes \ket0) = \ket\psi \otimes \ket\psi$
-	for any qubit $\ket\psi$, i.e. the following circuit diagram is impossible.
+	for any qubit $\ket\psi$, i.e.\
+	the following circuit diagram is impossible.
 	\[
 	\Qcircuit @C=0.8em @R=.7em {
 		\lstick{\ket\psi} & \multigate{1}{U} & \rstick{\ket\psi} \qw \\
@@ -649,14 +651,14 @@ However,
 			\left(
 			2^{-n/2}
 			\sum_{y_1, \dots, y_n}
-			(-1)^{x_1y_1 + \dots + x_ny_n}
+			(-1)^{x_1 y_1 + \dots + x_n y_n}
 			\ket{y_1} \ket{y_2} \dots \ket{y_n}
 			\right)
 		\]
 		since $H\ket0 = \frac{1}{\sqrt2}(\ket0+\ket1)$
 		while $H\ket1 = \frac{1}{\sqrt2}(\ket0-\ket1)$,
 		so minus signs arise exactly if $x_i = 0$ and $y_i = 0$ simultaneously,
-		hence the term $(-1)^{x_1y_1 + \dots + x_ny_n}$.
+		hence the term $(-1)^{x_1 y_1 + \dots + x_n y_n}$.
 		Swapping the order of summation, we get
 		\[ 
 			2^{-n}
@@ -664,7 +666,9 @@ However,
 			C(y_1, \dots, y_n)
 			\ket{y_1} \ket{y_2} \dots \ket{y_n}
 		\]
-		where $C_{y_1, \dots, y_n}  = \sum_{x_1, \dots, x_n} (-1)^{f(x_1, \dots, x_n)+x_1y_1 + \dots + x_ny_n}$.
+		where $C_{y_1, \dots, y_n} 
+		= \sum_{x_1, \dots, x_n} (-1)^{f(x_1, \dots, x_n)
+			+x_1 y_1 + \dots + x_n y_n}$.
 		Now, we finally consider two cases.
 		\begin{itemize}
 			\ii If $f$ is the constant function, then we find that

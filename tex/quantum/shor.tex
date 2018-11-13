@@ -79,7 +79,7 @@ First, some more notation:
 \begin{abuse}
 	In what follows, $\ket{x}$ will refer to
 	$\ket{x_n} \otimes \ket{x_{n-1}} \otimes \dots \otimes \ket{x_1}$
-	where $x = x_nx_{n-1} \dots x_1$ in binary.
+	where $x = x_n x_{n-1} \dots x_1$ in binary.
 	For example, if $n = 3$
 	then $\ket{6}$ really means $\ket1 \otimes \ket1 \otimes \ket 0$.
 \end{abuse}
@@ -112,10 +112,10 @@ except we have a $\sqrt N$ factor added so that $\UQFT$ is unitary.
 But the trick is that in the quantum setup, the matrix can be rewritten:
 \begin{proposition}
 	[Tensor representation]
-	Let $\ket x = \ket{x_nx_{n-1} \dots x_1}$.
+	Let $\ket x = \ket{x_n x_{n-1} \dots x_1}$.
 	Then
 	\begin{align*}
-		\UQFT( \ket{x_nx_{n-1} \dots x_1} )
+		\UQFT( \ket{x_n x_{n-1} \dots x_1} )
 		= \frac{1}{\sqrt N} &
 		\left( \ket0 +\exp(2\pi i \cdot 0.x_1) \ket 1 \right) \\
 		&\otimes \left( \ket0 +\exp(2\pi i \cdot 0.x_2x_1) \ket 1 \right) \\
