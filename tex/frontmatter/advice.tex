@@ -1,11 +1,13 @@
 \addtocounter{chapter}{-1}
-\chapter{Advice for reading this book}
+\chapter{The README (advice for reading the Napkin)}
 \section{Prerequisites}
-The main prerequisite is some amount of mathematical maturity:
-the ability to read/write proofs, and follow mathematical arguments, etc.
+As explained in the preface,
+the main prerequisite is some amount of mathematical maturity.
+This means I expect the reader to know how
+to read and write a proof, follow logical arguments, and so on.
 
-I also assume the reader is familiar with foundational notions such
-as sets and functions (e.g.\ ``what is a bijection?'').
+I also assume the reader is familiar with basic terminology
+about sets and functions (e.g.\ ``what is a bijection?'').
 If not, one should consult \Cref{ch:sets_functions}.
 
 \section{Graph of chapter dependencies}
@@ -46,20 +48,24 @@ Several hints and solutions can be found in \Cref{app:hints,app:sol}.
 \section{Questions, exercises, and problems}
 In this book, there are three hierarchies:
 \begin{itemize}
-	\ii A \emph{question} is intended to be offensively easy,
+	\ii An inline \vocab{question} is intended to be offensively easy,
 	mostly a chance to help you internalize definitions.
 	If you find yourself unable to answer one or two of them,
 	it probably means I explained it badly and you should complain to me.
 	But if you can't answer many,
 	you likely missed something important: read back.
-	\ii An \emph{exercise} is marginally harder.
-	The difficulty is like something you might see on a high-school math contest.
+	\ii An inline \vocab{exercise} is more meaty than a question,
+	but shouldn't have any ``tricky'' steps.
 	Often I leave proofs of theorems and propositions as exercises
 	if they are instructive and at least somewhat interesting.
-	\ii Each chapter features several \emph{problems} at the end.
-	Some of these are easy, while others are
-	legitimately difficult olympiad-style problems.
-	There are three types:
+	\ii Each chapter features several trickier \vocab{problems} at the end.
+	Some are reasonable, but others are legitimately
+	difficult olympiad-style problems.
+	\gim Harder problems are marked with up to
+	three chili peppers (\scalebox{0.7}{\chili}), like this paragraph.
+
+	In addition to difficulty annotations,
+	the problems are also marked by how important they are to the big picture.
 	\begin{itemize}
 		\ii \textbf{Normal problems},
 		which are hopefully fun but non-central.
@@ -67,7 +73,7 @@ In this book, there are three hierarchies:
 		which are (usually interesting) results that one should know,
 		but won't be used directly later.
 		\ii \textbf{Starred problems},
-		which are results which will be used later on.\footnote{%
+		which are results which will be used later on in the book.\footnote{%
 			A big nuisance in college for me was that,
 			every so often, the professor
 			would invoke some nontrivial result from the homework:
@@ -80,9 +86,6 @@ In this book, there are three hierarchies:
 \end{itemize}
 Several hints and solutions can be found in \Cref{app:hints,app:sol}.
 
-\gim
-Harder problems are marked with \chili's, like this paragraph.
-For problems that have three chili's you should probably read the hint.
 
 \begin{center}
 	\includegraphics[width=14cm]{media/abstruse-goose-exercise.png}
@@ -135,17 +138,6 @@ and then only after that do I remember what the definition or the theorem is.
 Incidentally, this is also how I learned all the definitions in the first place.
 I hope you'll find it useful as well.
 
-\section{Topic choices}
-The appendix contains a list of resources I like,
-and explanations of pedagogical choices that I made for each chapter.
-I encourage you to check it out.
-
-In particular, this is where you should go for further reading!
-There are some topics that should be covered in the Napkin,
-but are not, due to my own ignorance or laziness.
-The references provided in this appendix should hopefully help partially
-atone for my omissions.
-
 \section{Conventions and notations}
 This part describes some of the less familiar notations and definitions
 and settles for once and for all some annoying issues (``is zero a natural number?'').
@@ -194,7 +186,7 @@ We call $f\pre(y)$ a \vocab{fiber}.
 The notation {``} is from set theory, and is meant to indicate ``point-wise''.
 Most authors use $f(S)$, but this is abuse of notation,
 and I prefer $f``(S)$ for emphasis.
-\textbf{This image notation is probably the least standard in the whole Napkin}.
+This image notation is probably the least standard in the whole Napkin.
 
 \ii If $S \subseteq X$, then the \vocab{restriction} of $f$ to $S$
 is denoted $f \restrict{S}$,
@@ -237,4 +229,12 @@ instead, for consistency with the rest of the book.
 We accept the Axiom of Choice, and use it freely.
 
 \section{Further reading}
-Recommendations for other reading can be found in \Cref{ch:refs}.
+The appendix \Cref{ch:refs} contains a list of resources I like,
+and explanations of pedagogical choices that I made for each chapter.
+I encourage you to check it out.
+
+In particular, this is where you should go for further reading!
+There are some topics that should be covered in the Napkin,
+but are not, due to my own ignorance or laziness.
+The references provided in this appendix should hopefully help partially
+atone for my omissions.
