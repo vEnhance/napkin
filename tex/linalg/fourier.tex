@@ -1,0 +1,764 @@
+\chapter{Bonus: Fourier Analysis}
+Now that we've worked hard to define abstract inner product spaces,
+I want to give an (optional) application:
+how to set up Fourier analysis correctly,
+using this language.
+
+As a bonus, I also prove a form of Arrow's Impossibility Theorem
+using binary Fourier analysis,
+and then talk about the fancier generalizations using Pontryagin duality
+and the Peter-Weyl theorem.
+
+In what follows, we let $\TT = \RR/\ZZ$ denote the ``circle group'',
+thought of as the additive group of ``real numbers modulo $1$''.
+There is a canonical map $e : \TT \to \CC$ sending $\TT$ to the
+complex unit circle, given by $e(\theta) = \exp(2\pi i \theta)$.
+
+(Disclaimer: I will deliberately be sloppy with convergence issues,
+in part because I don't fully understand them myself,
+and in part because I don't care.)
+
+\section{Synopsis}
+Suppose we have a domain $Z$ and are interested in functions $f \colon Z \to \CC$.
+Naturally, the set of such functions form a complex vector space.
+We like to equip the set of such functions
+with an positive definite \emph{inner product}.
+% usually something like $\left< f,g \right> = \EE_{x \in Z} f(x) \ol{g(x)}$.
+%which makes the set of such functions into a normed vector space.
+%(Here $\EE$ is an ``average'', which is a finite sum if $|Z| < \infty$
+%but otherwise is usually an integral.)
+%In particular, $\left< f,f\right>$ is the average of $|f(x)|^2$;
+%and thus gives a positive definite inner form.
+
+The idea of Fourier analysis is to then select an \emph{orthonormal basis}
+for this set of functions, say $(e_\xi)_{\xi}$,
+which we call the \vocab{characters};
+the indexing $\xi$ are called \vocab{frequencies}.
+In that case, since we have a basis, every function $f : Z \to \CC$
+becomes a sum
+\[ f(x) = \sum_{\xi} \wh f(\xi) e_\xi \]
+where $\wh f(\xi)$ are complex coefficients of the basis;
+appropriately we call $\wh f$ the \vocab{Fourier coefficients}.
+The variable $x \in Z$ is referred to as the \vocab{physical} variable.
+This is generally good because the characters are deliberately chosen
+to be nice ``symmetric'' functions,
+like sine or cosine waves or other periodic functions.
+Thus $we$ decompose an arbitrarily complicated function into a sum on nice ones.
+
+\section{Hilbert spaces}
+\prototype{Any complex inner product space, really.}
+\todo{WRITE ME}
+In this case, an orthonormal basis must allow
+infinite linear combinations,
+as long as the sum of squares is finite.
+
+For convenience, we record a few facts about orthonormal bases.
+\begin{proposition}
+	[Facts about orthonormal bases]
+	\label{prop:orthonormal}
+	Let $V$ be a complex Hilbert space
+	with inner form $\left< -,-\right>$
+	and suppose $x = \sum_\xi a_\xi e_\xi$ and $y = \sum_\xi b_\xi e_\xi$
+	where $e_\xi$ are an orthonormal basis.
+	Then
+	\begin{align*}
+		\left< x,x \right> &= \sum_\xi |a_\xi|^2 \\
+		a_\xi &= \left< x, e_\xi \right> \\
+		\left< x,y \right> &= \sum_\xi a_\xi \ol{b_\xi}.
+	\end{align*}
+\end{proposition}
+\begin{ques}
+	Prove all of these.
+	(You don't need any of the preceding discussion,
+	it's only there to motivate the notation with lots of scary $\xi$'s.)
+\end{ques}
+
+\section{Common examples}
+\subsection{Binary Fourier analysis on $\{\pm1\}^n$}
+Let $Z = \{\pm 1\}^n$ for some positive integer $n$,
+so we are considering functions $f(x_1, \dots, x_n)$ accepting binary values.
+Then the functions $Z \to \CC$ form a $2^n$-dimensional vector space $\CC^Z$,
+and we endow it with the inner form
+\[ \left< f,g \right> = \frac{1}{2^n} \sum_{x \in Z} f(x) \ol{g(x)}. \]
+In particular,
+\[ \left< f,f \right>
+	= \frac{1}{2^n} \sum_{x \in Z} \left\lvert f(x) \right\rvert^2 \]
+is the average of the squares;
+this establishes also that $\left< -,-\right>$ is positive definite.
+
+In that case, the \vocab{multilinear polynomials} form a basis of $\CC^Z$,
+that is the polynomials
+\[ \chi_S(x_1, \dots, x_n) = \prod_{s \in S} x_s. \]
+\begin{exercise}
+	Show that they're actually orthonormal under $\left< -,-\right>$.
+	This proves they form a basis, since there are $2^n$ of them.
+\end{exercise}
+Thus our frequency set is actually the subsets $S \subseteq \{1, \dots, n\}$.
+Thus, we have a decomposition
+\[ f = \sum_{S \subseteq \{1, \dots, n\}} \wh f(S) \chi_S. \]
+\begin{example}
+	[An example of binary Fourier analysis]
+	Let $n = 2$.
+	Then binary functions $\{ \pm 1\}^2 \to \CC$ have a basis
+	given by the four polynomials
+	\[ 1, \quad x_1, \quad x_2, \quad x_1x_2. \]
+	For example, consider the function $f$
+	which is $1$ at $(1,1)$ and $0$ elsewhere.
+	Then we can put
+	\[ f(x_1, x_2) = \frac{x_1+1}{2} \cdot \frac{x_2+1}{2}
+		= \frac14 \left( 1 + x_1 + x_2 + x_1x_2 \right). \]
+	So the Fourier coefficients are $\wh f(S) = \frac 14$
+	for each of the four $S$'s.
+\end{example}
+This notion is useful in particular for
+binary functions $f : \{\pm1\}^n \to \{\pm1\}$;
+for these functions (and products thereof),
+we always have $\left< f,f \right> = 1$.
+
+It is worth noting that the frequency $\varnothing$ plays a special role:
+\begin{exercise}
+	Show that
+	\[ \wh f(\varnothing) = \frac{1}{|Z|} \sum_{x \in Z} f(x). \]
+\end{exercise}
+
+\subsection{Fourier analysis on finite groups $Z$}
+This time, suppose we have a finite abelian group $Z$,
+and consider functions $Z \to \CC$;
+this is a $|Z|$-dimensional vector space.
+The inner product is the same as before:
+\[ \left< f,g \right> = \frac{1}{|Z|} \sum_{x \in Z} f(x) \ol{g(x)}. \]
+
+To proceed, we'll need to be able to multiply two elements of $Z$.
+This is a bit of a nuisance since it actually won't really
+matter what map I pick, so I'll move briskly;
+feel free to skip most or all of the remaining paragraph.
+\begin{definition}
+We select a \emph{symmetric non-degenerate bilinear form}
+\[ \cdot \colon Z \times Z \to \TT \]
+satisfying the following properties:
+\begin{itemize}
+	\ii $\xi \cdot (x_1 + x_2) = \xi \cdot x_1 + \xi \cdot x_2$
+	and $(\xi_1 + \xi_2) \cdot x = \xi_1 \cdot x + \xi_2 \cdot x$
+	(this is the word ``bilinear'')
+	\ii $\cdot$ is symmetric,
+	\ii For any $\xi \neq 0$, there is an $x$ with $\xi \cdot x \neq 0$
+	(this is the word ``nondegenerate'').
+\end{itemize}
+\end{definition}
+\begin{example}
+	If $Z = \Zm3$ then $\xi \cdot x = (\xi x)/3$ satisfies the above.
+\end{example}
+In general, it turns out finite abelian groups
+decompose as the sum of cyclic groups (see \Cref{sec:FTFGAG}),
+which makes it relatively easy to find such a $\cdot$;
+but as I said the choice won't matter, so let's move on.
+
+Now for the fun part: defining the characters.
+the characters are given by
+In this way, the set of frequencies is also $Z$,
+but the $\xi \in Z$ play very different roles from the ``physical'' $x \in Z$.
+\begin{proposition}
+	[$e_\xi$ are orthonormal]
+	For each $\xi \in Z$ we define the character
+	\[ e_\xi(x) = e(\xi \cdot x). \]
+	The $|Z|$ characters form an orthonormal basis.
+\end{proposition}
+We won't prove this here, since it requires too
+much detail about the $\cdot$ that
+I'm deliberately trying to avoid.
+Instead, the following example might be enlightening.
+%\begin{proof}
+%	Compute
+%	\begin{align*}
+%		\left< e_{\xi}, e_{\xi'} \right>
+%		&= \frac{1}{|Z|} \sum_{x \in Z} e(\xi \cdot x) \ol{e(\xi' \cdot x)} \\
+%		&= \frac{1}{|Z|} \sum_{x \in Z} e(\xi \cdot x) e(-\xi' \cdot x) \\
+%		&= \frac{1}{|Z|} \sum_{x \in Z} e\left( (\xi-\xi') \cdot x \right).
+%	\end{align*}
+%\end{proof}
+
+\begin{example}
+	[Cube roots of unity filter]
+	Suppose $Z = \Zm3$, with the inner form given by $\xi \cdot x = (\xi x)/3$.
+	Let $\omega = \exp(\frac 23 \pi i)$ be a primitive cube root of unity.
+	Note that
+	\[ e_\xi(x) = \begin{cases}
+			1 & \xi = 0 \\
+			\omega^x & \xi = 1 \\
+			\omega^{2x} & \xi = 2.
+		\end{cases} \]
+	Then given $f \colon Z \to \CC$ with $f(0) = a$, $f(1) = b$, $f(2) = c$,
+	we obtain
+	\[ f(x) = \frac{a+b+c}{3} \cdot 1
+		+ \frac{a + \omega^2 b + \omega c}{3} \cdot \omega^x
+		+ \frac{a + \omega b + \omega^2 c}{3} \cdot \omega^{2x}.  \]
+	In this way we derive that the transforms are
+	\begin{align*}
+		\wh f(0) &= \frac{a+b+c}{3} \\
+		\wh f(1) &= \frac{a+\omega^2 b+ \omega c}{3} \\
+		\wh f(2) &= \frac{a+\omega b+\omega^2c}{3}.
+	\end{align*}
+\end{example}
+\begin{exercise}
+	Show that in analogy to $\wh f(\varnothing)$
+	for binary Fourier analysis, we now have
+	\[ \wh f(0) = \frac{1}{|Z|} \sum_{x \in Z} f(x). \]
+\end{exercise}
+Olympiad contestants may recognize the previous example
+as a ``roots of unity filter'', which is exactly the point.
+For concreteness, suppose one wants to compute
+\[ \binom{1000}{0} + \binom{1000}{3} + \dots + \binom{1000}{999}. \]
+In that case, we can consider the function
+\[ w : \ZZ/3 \to \CC. \]
+such that $w(0) = 1$ but $w(1) = w(2) = 0$.
+By abuse of notation we will also think of $w$
+as a function $w : \ZZ \surjto \ZZ/3 \to \CC$.
+Then the sum in question is
+\begin{align*}
+	\sum_n \binom{1000}{n} w(n)
+	&= \sum_n \binom{1000}{n} \sum_{k=0,1,2} \wh w(k) \omega^{kn} \\
+	&= \sum_{k=0,1,2} \wh w(k) \sum_n \binom{1000}{n} \omega^{kn} \\
+	&= \sum_{k=0,1,2} \wh w(k) (1+\omega^k)^n.
+\end{align*}
+In our situation, we have $\wh w(0) = \wh w(1) = \wh w(2) = \frac13$,
+and we have evaluated the desired sum.
+More generally, we can take any periodic weight $w$
+and use Fourier analysis in order to interchange the order of summation.
+
+\begin{example}
+	[Binary Fourier analysis]
+	Suppose $Z = \{\pm 1\}^n$, viewed as an abelian group
+	under pointwise multiplication
+	hence isomorphic to $(\ZZ/2\ZZ)^{\oplus n}$.
+	Assume we pick the dot product defined by
+	\[ \xi \cdot x = \half \sum_i \xi_i x_i \]
+	where $\xi = (\xi_1, \dots, \xi_n)$ and $x = (x_1, \dots, x_n)$.
+
+	We claim this coincides with the first example we gave.
+	Indeed, let $S \subseteq \{1, \dots, n\}$
+	and let $\xi \in \{\pm1\}^n$ which is $-1$ at positions in $S$,
+	and $+1$ at positions not in $S$.
+	Then the character $\chi_S$ form the previous example
+	coincides with the character $e_\xi$ in the new notation.
+	In particular, $\wh f(S) = \wh f(\xi)$.
+
+	Thus Fourier analysis on a finite group $Z$ subsumes
+	binary Fourier analysis.
+\end{example}
+
+\subsection{Fourier series for functions $L^2([-\pi, \pi])$}
+Now we consider the space $L^2([-\pi, \pi])$ of
+square-integrable functions $[-\pi, \pi] \to \CC$, with inner form
+\[ \left< f,g \right> = \frac{1}{2\pi} \int_{[-\pi, \pi]} f(x) \ol{g(x)}. \]
+Sadly, this is infinite-dimensional now,
+but it turns out to be a Hilbert space, and we'll treat it this way.
+
+Now, it turns out in this case that
+\begin{theorem}
+	For each integer $n$, define
+	\[ e_n(x) = \exp(inx). \]
+	Then $e_n$ form an orthonormal basis
+	of the Hilbert space $L^2([-\pi, \pi])$.
+\end{theorem}
+Thus this time the frequency set $\ZZ$ is infinite.
+So every function $f \in L^2([-\pi, \pi])$ decomposes as
+\[ f(x) = \sum_n \wh f(n) \exp(inx) \]
+for $\wh f(n)$.
+
+This is a little worse than our finite examples:
+instead of a finite sum on the right-hand side,
+we actually have an infinite sum.
+This is because our set of frequencies is now $\ZZ$, which isn't finite.
+In this case the $\wh f$ need not be finitely supported,
+but do satisfy $\sum_n |\wh f(n)|^2 < \infty$.
+
+Since the frequency set is indexed by $\ZZ$,
+we call this a \vocab{Fourier series}
+to reflect the fact that the index is $n \in \ZZ$.
+
+\begin{exercise}
+	Show once again 
+	\[ \wh f(0) = \frac{1}{2\pi} \int_{[-\pi, \pi]} f(x). \]
+\end{exercise}
+
+Often we require that the function $f$ satisfies $f(-\pi) = f(\pi)$,
+so that $f$ becomes a periodic function,
+and we can think of it as $f : \TT \to \CC$.
+
+\subsection{Summary}
+We summarize our various flavors of Fourier analysis in the following table.
+\[
+	\begin{array}{llll}
+		\hline
+		\text{Type} & \text{Physical var} & \text{Frequency var}
+			& \text{Basis functions} \\ \hline
+		\text{Binary} & \{\pm1\}^n
+			& \text{Subsets } S \subseteq \left\{ 1, \dots, n \right\}
+			& \prod_{s \in S} x_s \\
+		\text{Finite group} & Z & \xi \in Z, \text{ choice of } \cdot,
+			& e(\xi \cdot x) \\
+		\text{Fourier series} & \TT \text{ or } [-\pi, \pi] & n \in \ZZ
+			& \exp(inx) \\
+		% \textbf{Fourier transf} & \RR & \xi \in \RR
+		% 	& \exp(2\pi i x \xi)
+	\end{array}
+\]
+
+\section{Parseval and friends}
+The notion of an orthonormal basis makes several ``big-name'' results
+in Fourier analysis quite lucid.
+Basically, we can take every result from Proposition~\ref{prop:orthonormal},
+translate it into the context of our Fourier analysis,
+and get a big-name result.
+
+\begin{corollary}
+	[Parseval theorem]
+	Let $f : Z \to \CC$, where $Z$ is a finite abelian group.
+	Then \[ \sum_\xi |\wh f(\xi)|^2 = \frac{1}{|Z|} \sum_{x \in Z} |f(x)|^2. \]
+	Similarly, if $f : [-\pi, \pi] \to \CC$ is square-integrable then
+	its Fourier series satisfies
+	\[ \sum_n |\wh f(n)|^2 = \frac{1}{2\pi} \int_{[-\pi, \pi]} |f(x)|^2. \]
+\end{corollary}
+\begin{proof}
+Recall that $\left< f,f\right>$ is equal to the
+square sum of the coefficients.
+\end{proof}
+
+\begin{corollary}
+	[Formulas for $\wh f$]
+	Let $f : Z \to \CC$, where $Z$ is a finite abelian group.
+	Then \[ \wh f(\xi) = \frac{1}{|Z|} \sum_{x \in Z} f(x) \ol{e_\xi(x)}. \]
+	Similarly, if $f : [-\pi, \pi] \to \CC$ is square-integrable then
+	its Fourier series is given by
+	\[ \wh f(n) = \frac{1}{2\pi} \int_{[-\pi, \pi]} f(x) \exp(-inx). \]
+\end{corollary}
+\begin{proof}
+Recall that in an orthonormal basis $(e_\xi)_\xi$,
+the coefficient of $e_\xi$ in $f$ is $\left< f, e_\xi\right>$.
+\end{proof}
+\begin{ques}
+	What happens when $\xi = 0$ above?
+\end{ques}
+
+\begin{corollary}
+	[Plancherel theorem]
+	Let $f : Z \to \CC$, where $Z$ is a finite abelian group.
+	Then \[ \left< f,g \right> = \sum_{\xi \in Z} \wh f(\xi) \ol{\wh g(\xi)}. \]
+	Similarly, if $f : [-\pi, \pi] \to \CC$ is square-integrable then
+	\[ \left< f,g \right> = \sum_n \wh f(\xi) \ol{\wh g(\xi)}. \]
+\end{corollary}
+\begin{ques}
+	Prove this one in one line (like before).
+\end{ques}
+
+\section{(Optional) Arrow's Impossibility Theorem}
+As an application, of binary Fourier analysis,
+we now prove a form of
+\href{https://en.wikipedia.org/wiki/Arrow's_impossibility_theorem}{Arrow's theorem}.
+Consider $n$ voters voting among $3$ candidates $A$, $B$, $C$.
+Each voter specifies a tuple $v_i = (x_i, y_i, z_i) \in \{\pm1\}^3$ as follows:
+\begin{itemize}
+	\ii $x_i = 1$ if person $i$ ranks $A$ ahead of $B$, and $x_i = -1$ otherwise.
+	\ii $y_i = 1$ if person $i$ ranks $B$ ahead of $C$, and $y_i = -1$ otherwise.
+	\ii $z_i = 1$ if person $i$ ranks $C$ ahead of $A$, and $z_i = -1$ otherwise.
+\end{itemize}
+Tacitly, we only consider $3! = 6$ possibilities for $v_i$:
+we forbid ``paradoxical'' votes of the form $x_i = y_i = z_i$
+by assuming that people's votes are consistent
+(meaning the preferences are transitive).
+
+Then, we can consider a voting mechanism
+\begin{align*}
+	f \colon \{\pm1\}^n &\to \{\pm1\} \\
+	g \colon \{\pm1\}^n &\to \{\pm1\} \\
+	h \colon \{\pm1\}^n &\to \{\pm1\}
+\end{align*}
+such that $f(x_\bullet)$ is the global preference of $A$ vs.\ $B$,
+$g(y_\bullet)$ is the global preference of $B$ vs.\ $C$,
+and $h(z_\bullet)$ is the global preference of $C$ vs.\ $A$.
+We'd like to avoid situations where the global preference
+$(f(x_\bullet), g(y_\bullet), h(z_\bullet))$
+is itself paradoxical.
+
+In fact, we will prove the following theorem:
+\begin{theorem}
+	[Arrow Impossibility Theorem]
+	Assume that $(f,g,h)$ always avoids paradoxical outcomes,
+	and assume $\EE f = \EE g = \EE h = 0$.
+	Then $(f,g,h)$ is either a dictatorship or anti-dictatorship:
+	there exists a ``dictator'' $k$ such that
+	\[ f(x_\bullet) = \pm x_k, \qquad g(y_\bullet) = \pm y_k,
+		\qquad h(z_\bullet) = \pm z_k \]
+	where all three signs coincide.
+\end{theorem}
+The assumption $\EE f = \EE g = \EE h = 0$ provides symmetry
+(and e.g.\ excludes the possibility that $f$, $g$, $h$
+are constant functions which ignore voter input).
+Unlike the usual Arrow theorem, we do \emph{not} assume
+that $f(+1, \dots, +1) = +1$ (hence possibility of anti-dictatorship).
+
+\begin{proof}
+	Suppose the voters each randomly select one of the $3!=6$
+	possible consistent votes.
+	In \Cref{prob:arrow_lemma} it is shown
+	that the exact probability of a paradoxical outcome
+	for any functions $f$, $g$, $h$ is given exactly by
+	\[ \frac14 + \frac14 \sum_{S \subseteq \{1, \dots, n\}}
+		\left( -\frac13 \right)^{\left\lvert S \right\rvert} 
+		\left( \wh f(S) \wh g(S) + \wh g(S) \wh h(S) + \wh h(S) \wh f(S) \right).
+		\]
+	Assume for contradiction this equals $0$.
+	Then, we derive
+	\[ 1 = \sum_{S \subseteq \{1, \dots, n\}}
+		-\left( -\frac13 \right)^{\left\lvert S \right\rvert} 
+		\left( \wh f(S) \wh g(S) + \wh g(S) \wh h(S) + \wh h(S) \wh f(S) \right). \]
+	But now we can just use weak inequalities.
+	We have $\wh f(\varnothing) = \EE f = 0$ and similarly for $\wh g$ and $\wh h$,
+	so we restrict attention to $|S| \ge 1$.
+	We then combine the famous inequality $|ab+bc+ca| \le a^2+b^2+c^2$
+	(which is true across all real numbers) to deduce that
+	\begin{align*}
+		1 &= \sum_{S \subseteq \{1, \dots, n\}}
+		-\left( -\frac13 \right)^{\left\lvert S \right\rvert} 
+		\left( \wh f(S) \wh g(S) + \wh g(S) \wh h(S) + \wh h(S) \wh f(S) \right) \\
+		&\le \sum_{S \subseteq \{1, \dots, n\}}
+		\left( \frac13 \right)^{\left\lvert S \right\rvert} 
+		\left( \wh f(S)^2 + \wh g(S)^2 + \wh h(S)^2 \right) \\
+		&\le \sum_{S \subseteq \{1, \dots, n\}} \left( \frac13 \right)^1
+		\left( \wh f(S)^2 + \wh g(S)^2 + \wh h(S)^2 \right) \\
+		&= \frac13 (1+1+1) = 1.
+	\end{align*}
+	with the last step by Parseval.
+	So all inequalities must be sharp, and in particular $\wh f$, $\wh g$, $\wh h$
+	are supported on one-element sets, i.e.\ they are linear in inputs.
+	As $f$, $g$, $h$ are $\pm 1$ valued, each $f$, $g$, $h$ is itself
+	either a dictator or anti-dictator function.
+	Since $(f,g,h)$ is always consistent, this implies the final result.
+\end{proof}
+
+
+\section{A glimpse of Pontryagin duality}
+In fact all the examples we have covered can be subsumed
+as special cases of \emph{Pontryagin duality},
+where we replace the domain with a general group $G$.
+This is mostly beyond the scope of Napkin,
+but I'll outline what's going on.
+
+\subsection{LCA groups}
+Some hypotheses are necessary here:
+\begin{definition}
+	A \vocab{locally compact abelian (LCA) group}
+	consists of two pieces of data:
+	\begin{itemize}
+		\ii A Hausdorff topological space $G$
+		which is \emph{locally compact}:
+		every point of $G$ has a compact neighborhood.
+		\ii $G$ should also have an \emph{abelian group} operation on it,
+		which is continuous\footnote{I haven't (and will not)
+			define what this means, but you can try to guess.}
+		with respect to the topology.
+	\end{itemize}
+\end{definition}
+Our previous examples fall into this category:
+\begin{example}
+	[Examples of locally compact abelian groups]
+	\listhack
+	\begin{itemize}
+		\ii Any finite group $Z$ with the discrete topology is LCA.
+		\ii The circle group $\TT$ is LCA and also in fact compact.
+		\ii The real numbers $\RR$ are an example of an LCA group
+		which is \emph{not} compact.
+	\end{itemize}
+\end{example}
+It turns out that for an LCA group,
+it's possible to define an integral $\int_G f$
+for functions $f \colon G \to \CC$.
+The relevant buzz-word is
+\href{https://en.wikipedia.org/wiki/Haar_measure}{Haar measure},
+which we won't work in detail here.
+
+\subsection{The Pontryagin dual}
+The key definition is:
+\begin{definition}
+	Let $G$ be an LCA group.
+	Then its \vocab{Pontryagin dual} is the abelian group
+	\[ \wh G \defeq \left\{ \text{continuous group homomorphisms }
+			\xi : G \to \TT \right\}. \]
+	The maps $\xi$ are called \vocab{characters}.
+	It can itself be made into an LCA group
+	using the so-called
+	\href{https://en.wikipedia.org/wiki/Compact-open_topology}{compact-open topology},
+	which we don't define here.
+\end{definition}
+\begin{example}
+	[Examples of Pontryagin duals]
+	\listhack
+	\begin{itemize}
+		\ii $\wh{\ZZ} \cong \TT$,
+		since group homomorphisms $\ZZ \to \TT$ are determined by the image of $1$.
+		\ii $\wh{\TT} \cong \ZZ$.
+		The characters are given by $\theta \mapsto n\theta$ for $n \in \ZZ$.
+		\ii $\wh{\RR} \cong \RR$.
+		This is because a nonzero continuous homomorphism
+		$\RR \to S^1$ is determined by the fiber above $1 \in S^1$.
+		(Algebraic topologists might see covering projections here.)
+		\ii $\wh{\ZZ/n\ZZ} \cong \ZZ/n\ZZ$,
+		characters $\xi$ being determined by the image $\xi(1) \in \TT$.
+		\ii $\wh{G \times H} \cong \wh G \times \wh H$.
+	\end{itemize}
+\end{example}
+\begin{exercise}
+	[$\wh Z \cong Z$, for those knowing \Cref{thm:FTFGAG}]
+	If $Z$ is a finite abelian group, show that $\wh Z \cong Z$,
+	using the results of the previous example.
+	You may now recognize that the bilinear form
+	$\cdot : Z \times Z \to \TT$
+	is exactly a choice of isomorphism $Z \to \wh Z$.
+	It is not ``canonical''.
+\end{exercise}
+
+
+True to its name as the dual,
+and in analogy with $(V^\vee)^\vee \cong V$ for vector spaces $V$, we have:
+\begin{theorem}
+	[Pontryagin duality theorem]
+	For any group $G$, there is an isomorphism
+	\[ G \cong \wh{\wh G} \qquad \text{by} \qquad
+		x \mapsto \left( \xi \mapsto \xi(x) \right). \]
+	This is the \vocab{Pontryagin duality theorem}.
+\end{theorem}
+
+\subsection{The orthonormal basis in the compact case}
+If $G$ is LCA and compact,
+then it turns out it's possible to integrate over $G$
+Thus we may let $L^2(G)$ be the space of square-integrable functions to $\CC$, i.e.
+\[ L^2(G) = \left\{ f : G \to \CC
+	\quad\text{such that}\quad \int_G |f|^2 < \infty \right\}. \]
+Thus we can equip it with the inner form
+\[ \left< f,g \right> = \int_G f \cdot \ol{g}. \]
+In that case, we get all the results we wanted before:
+\begin{theorem}
+	[Characters of $\wh G$ forms an orthonormal basis]
+	\label{thm:god}
+	Assume $G$ is LCA and compact.
+	Then $\wh G$ is \emph{discrete}, and the characters
+	\[ (e_\xi)_{\xi \in \wh G}
+		\qquad\text{by}\qquad e_\xi(x) = e(\xi(x)) = \exp(2\pi i \xi(x)) \]
+	form an orthonormal basis of $L^2(G)$.
+	Thus for each $f \in L^2(G)$ we have
+	\[ f = \sum_{\xi \in \wh G} \wh f(\xi) e_\xi \]
+	where
+	\[ \wh f(\xi) = \left< f, e_\xi \right>
+		= \int_G f(x) \exp(-2\pi i \xi(x)) \; d\mu. \]
+\end{theorem}
+The sum $\sum_{\xi \in \wh G}$ makes sense since $\wh G$ is discrete.
+In particular,
+\begin{itemize}
+	\ii Letting $G = Z$ gives ``Fourier transform on finite groups''.
+	\ii The special case $G = \ZZ/n\ZZ$ has its
+	\href{https://en.wikipedia.org/wiki/Discrete-time_Fourier_transform}%
+	{own Wikipedia page}.
+	\ii Letting $G = \TT$ gives the ``Fourier series'' earlier.
+\end{itemize}
+
+\subsection{The Fourier transform of the non-compact case}
+If $G$ is LCA but not compact, then Theorem~\ref{thm:god} becomes false.
+On the other hand, it's still possible to define $\wh G$
+and then try to write
+\[ \wh f(\xi) = \int_G f \cdot \ol{e_\xi} \]
+for functions $f$.
+The results are less fun in this case,
+though, and we won't discuss them further.
+
+Despite the fact that the $e_\xi$ no longer form an orthonormal basis,
+the transformed function $\wh f : \wh G \to \CC$ is still often useful.
+In particular, they have special names for a few special $G$:
+\begin{itemize}
+	\ii If $G = \RR$, then $\wh G = \RR$,
+	and this construction gives the poorly named
+	``\href{https://en.wikipedia.org/wiki/Fourier_transform}{(continuous) Fourier transform}''.
+	\ii If $G = \ZZ$, then $\wh G = \TT$,
+	and this construction gives the poorly named
+	``\href{https://en.wikipedia.org/wiki/Discrete-time_Fourier_transform}{discrete time Fourier transform}.
+\end{itemize}
+
+\section{Summary}
+We summarize our various flavors of Fourier analysis
+from the previous sections in the following table.
+In the first part $G$ is compact,
+in the second half $G$ is not.
+\[
+	\begin{array}{llll}
+		\hline
+		\text{Name} & \text{Domain }G & \text{Dual }\wh G 
+			& \text{Characters} \\ \hline
+		\text{Binary Fourier analysis} & \{\pm1\}^n
+			& S \subseteq \left\{ 1, \dots, n \right\}
+			& \prod_{s \in S} x_s \\
+		\text{Fourier transform on finite groups} & Z
+			& \xi \in \wh Z \cong Z & e( i \xi \cdot x) \\
+		\text{Discrete Fourier transform} & \ZZ/n\ZZ & \xi \in \ZZ/n\ZZ
+			& e(\xi x / n) \\
+		\text{Fourier series} & \TT \cong [-\pi, \pi]  & n \in \ZZ
+			& \exp(inx) \\ \hline
+		\text{Continuous Fourier transform} & \RR & \xi \in \RR
+		 	& e(\xi x) \\
+		\text{Discrete time Fourier transform} & \ZZ & \xi \in \TT \cong [-\pi, \pi]
+		 	& \exp(i \xi n) \\
+	\end{array}
+\]
+You might notice that the \textbf{various names are awful}.
+This is part of the reason I got confused as a high school student:
+every type of Fourier series above has its own Wikipedia article.
+If it were up to me, we would just use the term ``$G$-Fourier transform'',
+and that would make everyone's lives a lot easier.
+
+\section{\problemhead}
+
+\begin{problem}
+	\gim
+	\label{prob:arrow_lemma}
+	Let $f,g,h \colon \{\pm1\}^n \to \{\pm1\}$
+	be any three functions.
+	For each $i$, we randomly select $(x_i, y_i, z_i) \in \{\pm1\}^3$
+	subject to the constraint that not all are equal
+	(hence, choosing among $2^3-2=6$ possibilities).
+	Prove that the probability that
+	\[ f(x_1, \dots, x_n) = g(y_1, \dots, y_n) = h(z_1, \dots, z_n) \]
+	is given by the formula
+	\[ \frac14 + \frac14 \sum_{S \subseteq \{1, \dots, n\}}
+		\left( -\frac13 \right)^{\left\lvert S \right\rvert} 
+		\left( \wh f(S) \wh g(S) + \wh g(S) \wh h(S) + \wh h(S) \wh f(S) \right)
+		\]
+	\begin{hint}
+		Define the Boolean function $D : \{\pm 1\}^3 \to \RR$ by
+		$D(a,b,c) = ab+bc+ca$.
+		Write out the value of $D(a,b,c)$ for each $(a,b,c)$.
+		Then, evaluate its expected value.
+	\end{hint}
+	\begin{sol}
+	Define the Boolean function $D : \{\pm 1\}^3 \to \RR$ by
+	\[ D(a,b,c) = ab + bc + ca
+		= \begin{cases}
+			3 & a,b,c \text{ all equal} \\
+			-1 & a,b,c \text{ not all equal}.
+		\end{cases}.
+	\]
+	Thus paradoxical outcomes arise when
+	$D(f(x_\bullet), g(y_\bullet), h(z_\bullet)) = 3$.
+	Now, we compute that for randomly selected
+	$x_\bullet$, $y_\bullet$, $z_\bullet$ that
+	\begin{align*}
+		\EE D(f(x_\bullet), g(y_\bullet), h(z_\bullet))
+		&= \EE \sum_S \sum_T
+			\left( \wh f(S) \wh g(T) + \wh g(S) \wh h(T) + \wh h(S) \wh f(T) \right)
+			\left( \chi_S(x_\bullet)\chi_T(y_\bullet) \right) \\
+		&= \sum_S \sum_T
+			\left( \wh f(S) \wh g(T) + \wh g(S) \wh h(T) + \wh h(S) \wh f(T) \right)
+			\EE\left( \chi_S(x_\bullet)\chi_T(y_\bullet) \right).
+	\end{align*}
+	Now we observe that:
+	\begin{itemize}
+		\ii If $S \neq T$, then $\EE \chi_S(x_\bullet) \chi_T(y_\bullet) = 0$,
+		since if say $s \in S$, $s \notin T$ then $x_s$ affects
+		the parity of the product with 50\% either way,
+		and is independent of any other variables in the product.
+		\ii On the other hand, suppose $S = T$.
+		Then 
+		\[ \chi_S(x_\bullet) \chi_T(y_\bullet)
+			= \prod_{s \in S} x_sy_s. \]
+		Note that $x_sy_s$ is equal to $1$ with probability $\frac13$
+		and $-1$ with probability $\frac23$
+		(since $(x_s, y_s, z_s)$ is uniform from $3!=6$ choices,
+		which we can enumerate).
+		From this an inductive calculation on $|S|$ gives that
+		\[
+			\prod_{s \in S} x_sy_s
+			=
+			\begin{cases}
+				+1 & \text{ with probability } \half(1+(-1/3)^{|S|}) \\
+				-1 & \text{ with probability } \half(1-(-1/3)^{|S|}).
+			\end{cases}
+		\]
+		Thus
+		\[ \EE \left( \prod_{s \in S} x_sy_s \right) = \left( -\frac13 \right)^{|S|}.  \]
+	\end{itemize}
+	Piecing this altogether, we now have that
+	\[
+		\EE D(f(x_\bullet), g(y_\bullet), h(z_\bullet))
+		=
+		\left( \wh f(S) \wh g(T) + \wh g(S) \wh h(T) + \wh h(S) \wh f(T) \right)
+		\left( -\frac13 \right)^{|S|}.
+	\]
+	Then, we obtain that
+	\begin{align*}
+		&\EE \frac14 \left( 1 + D(f(x_\bullet), g(y_\bullet), h(z_\bullet)) \right) \\
+		=& \frac14 + \frac14\sum_S
+		\left( \wh f(S) \wh g(T) + \wh g(S) \wh h(T) + \wh h(S) \wh f(T) \right)
+		\wh f(S)^2 \left( -\frac13 \right)^{|S|}.
+	\end{align*}
+	Comparing this with the definition of $D$ gives the desired result.
+	\end{sol}
+\end{problem}
+
+\endinput
+\section{Peter-Weyl}
+In fact, if $G$ is a Lie group, even if $G$ is not abelian
+we can still give an orthonormal basis of $L^2(G)$
+(the square-integrable functions on $G$).
+It turns out in this case the characters are attached to complex
+irreducible representations of $G$
+(and in what follows all representations are complex).
+
+The result is given by the Peter-Weyl theorem.
+First, we need the following result:
+\begin{lemma}
+	[Compact Lie groups have unitary reps]
+	Any finite-dimensional (complex) representation $V$ of a compact Lie group $G$
+	is unitary, meaning it can be equipped with a $G$-invariant inner form.
+	Consequently, $V$ is completely reducible:
+	it splits into the direct sum of irreducible representations of $G$.
+\end{lemma}
+\begin{proof}
+	Suppose $B : V \times V \to \CC$ is any inner product.
+	Equip $G$ with a right-invariant Haar measure $dg$.
+	Then we can equip it with an ``averaged'' inner form
+	\[ \wt B(v,w) = \int_G B(gv, gw) \; dg. \]
+	Then $\wt B$ is the desired $G$-invariant inner form.
+	Now, the fact that $V$ is completely reducible follows from the fact
+	that given a subrepresentation of $V$, its orthogonal complement
+	is also a subrepresentation.
+\end{proof}
+
+The Peter-Weyl theorem then asserts that the finite-dimensional irreducible
+unitary representations essentially give an orthonormal basis for $L^2(G)$,
+in the following sense.  Let $V = (V, \rho)$ be such a representation of $G$,
+and fix an orthonormal basis of $e_1$, \dots, $e_d$ for $V$ (where $d = \dim V$).
+The $(i,j)$th \vocab{matrix coefficient} for $V$ is then given by 
+\[ G \taking{\rho} \GL(V) \taking{\pi_{ij}} \CC \]
+where $\pi_{ij}$ is the projection onto the $(i,j)$th entry of the matrix.
+We abbreviate $\pi_{ij} \circ \rho$ to $\rho_{ij}$.
+Then the theorem is:
+\begin{theorem}
+	[Peter-Weyl]
+	Let $G$ be a compact Lie group.
+	Let $\Sigma$ denote the (pairwise non-isomorphic) irreducible finite-dimensional
+	unitary representations of $G$.
+	Then
+	\[ \left\{ \sqrt{\dim V} \rho_{ij}
+			\; \Big\vert \; (V, \rho) \in \Sigma,
+			\text{ and } 1 \le i,j \le \dim V \right\}  \]
+	is an orthonormal basis of $L^2(G)$.
+\end{theorem}
+Strictly, I should say $\Sigma$ is a set of representatives of 
+the isomorphism classes of irreducible unitary representations,
+one for each isomorphism class.
+
+In the special case $G$ is abelian,
+all irreducible representations are one-dimensional.
+A one-dimensional representation of $G$ is a map
+$G \injto \GL(\CC) \cong \CC^\times$,
+but the unitary condition implies it is actually a map $G \injto S^1 \cong \TT$,
+i.e.\ it is an element of $\wh G$.
+
+

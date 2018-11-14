@@ -180,9 +180,9 @@
 \setlength{\headsep}{10pt}
 \def\shortdate{\leavevmode\hbox{\the\year-\twodigits\month-\twodigits\day}}
 \def\twodigits#1{\ifnum#1<10 0\fi\the#1}
-\ihead{\footnotesize \textbf{Napkin}, by Evan Chen (\shortdate)}
+\ihead{\footnotesize \textbf{\sffamily Napkin}, by \emph{Evan Chen}}
 \automark{section}
-\chead{}
+\chead{\footnotesize (\shortdate)}
 \ohead{\footnotesize \headmark}
 \cfoot{\pagemark}
 
@@ -203,12 +203,14 @@
 %%fakesection Mini ToC
 \usepackage[tight]{minitoc}
 \noptcrule
-\mtcsetfont{parttoc}{section}{\small\rmfamily\upshape\mdseries}
+\mtcsetfont{parttoc}{chapter}{\large\sffamily\bfseries}
+\mtcsetfont{parttoc}{section}{\scriptsize\rmfamily\upshape\mdseries}
 \renewcommand*{\partheadstartvskip}{}
 \renewcommand*{\partheadendvskip}{}
 \renewcommand\beforeparttoc{\hspace{\fill}\rule{0.95\linewidth}{2pt}\hspace{\fill}}
 \let\oldpart\part
-\renewcommand{\part}[1]{\oldpart{#1}\parttoc\cleardoublepage}
+\renewcommand{\part}[1]{\oldpart{#1}
+\setcounter{parttocdepth}{1}\parttoc\cleardoublepage}
 
 %%fakesection SNSD
 \newcommand{\snsd}[2][]%
@@ -368,6 +370,8 @@ style=thmbluebox,name=Theorem,numberwithin=section]{theorem}
 \newcommand{\Zc}[1]{\ZZ/#1\ZZ}
 \newcommand{\Zcc}[1]{\ZZ/(#1)\ZZ}
 \newcommand{\Zm}[1]{(\ZZ/#1\ZZ)^\times}
+\newcommand{\EE}{\mathbb E}
+\newcommand{\TT}{\mathbb T}
 \newcommand{\im}{^{\text{img}}} % or ``?
 \newcommand{\pre}{^{\text{pre}}}
 \newcommand{\normalin}{\trianglelefteq}
