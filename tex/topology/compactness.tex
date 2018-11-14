@@ -246,14 +246,14 @@ To give an example of a typical usage:
 Next, an important result about maps between compact spaces.
 \begin{theorem}[Images of compacts are compact]
 	Let $f : X \to Y$ be a continuous function, where $X$ is compact.
-	Then the image \[ f``(X) \subseteq Y \] is compact.
+	Then the image \[ f\im(X) \subseteq Y \] is compact.
 \end{theorem}
 \begin{proof}[Proof Using Covers]
-	Take any open cover $\{V_\alpha\}$ in $Y$ of $f``(X)$.
+	Take any open cover $\{V_\alpha\}$ in $Y$ of $f\im(X)$.
 	By continuity of $f$,
 	it pulls back to an open cover $\{U_\alpha\}$ of $X$.
 	Thus some finite subcover of this covers $X$.
-	The corresponding $V$'s cover $f``(X)$.
+	The corresponding $V$'s cover $f\im(X)$.
 \end{proof}
 \begin{ques}
 	Give another proof using the sequential definitions
@@ -283,7 +283,7 @@ The typical counterexample given for $(0,1) \to \RR$ is the function $\frac 1x$.
 	That implies the extreme value theorem.
 
 	When $X=[0,1]$, the image is also connected,
-	so there should only be one closed interval in $f``([0,1])$.
+	so there should only be one closed interval in $f\im([0,1])$.
 	Since the image is bounded, we then know it's of the form $[a,b]$.
 	(To give a full proof, you would use the so-called \emph{least upper bound}
 	property, but that's a little involved for a bedtime story;

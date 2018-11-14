@@ -214,7 +214,7 @@ It turns out this is true more generally.
 	As $[0,1]$ is compact we can take a finite subcover.
 	Thus we can chop $[0,1]$ into finitely many disjoint closed intervals
 	$[0,1] = I_1 \sqcup I_2 \sqcup \dots \sqcup I_N$ in that order,
-	such that for every $I_k$, $\gamma``(I_k)$ is contained
+	such that for every $I_k$, $\gamma\im(I_k)$ is contained
 	in some $U_b$.
 
 	We'll construct $\tilde\gamma$ interval by interval now,
@@ -243,12 +243,12 @@ where $Y$ is some general path-connected space, as follows.
 	Let $f: (Y,y_0) \to (B, b_0)$ be continuous and consider a covering projection $p : (E, e_0) \to (B, b_0)$.
 	(As usual, $Y$, $B$, $E$ are path-connected.)
 	Then a lifting $\tilde f$ with $\tilde f(y_0) = e_0$ exists if and only if
-	\[ f_\ast``(\pi_1(Y, y_0)) \subseteq p_\ast``(\pi_1(E, e_0)), \]
+	\[ f_\ast\im(\pi_1(Y, y_0)) \subseteq p_\ast\im(\pi_1(E, e_0)), \]
 	i.e.\ the image of $\pi_1(Y, y_0)$ under $f$ is contained in
 	the image of $\pi_1(E, e_0)$ under $p$ (both viewed as subgroups of $\pi_1(B, b_0)$).
 	If this lifting exists, it is unique.
 \end{theorem}
-As $p$ is injective, we actually have $p_\ast``(\pi_1(E, e_0)) \cong \pi_1(E, e_0)$.
+As $p$ is injective, we actually have $p_\ast\im(\pi_1(E, e_0)) \cong \pi_1(E, e_0)$.
 But in this case we are interested in the actual elements, not just the isomorphism classes of the groups.
 \begin{ques}
 	What happens if we put $Y= [0,1]$?
@@ -473,7 +473,7 @@ More importantly, we have:
 \begin{proposition}
 	Let $p : (E,e_0) \to (B,b_0)$ be a covering projection of path-connected spaces.
 	Then the homomorphism $p_\sharp : \pi_1(E, e_0) \to \pi_1(B, b_0)$ is \emph{injective}.
-	Hence $p_\sharp ``(\pi_1(E, e_0))$ is an isomorphic copy of $\pi_1(E, e_0)$ 
+	Hence $p_\sharp \im(\pi_1(E, e_0))$ is an isomorphic copy of $\pi_1(E, e_0)$ 
 	as a subgroup of $\pi_1(B, b_0)$.
 \end{proposition}
 \begin{proof}

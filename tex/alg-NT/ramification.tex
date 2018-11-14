@@ -125,10 +125,10 @@ We set about proving this.
 
 Let $K/\QQ$ be Galois with $G = \Gal(K/\QQ)$.
 Note that if $\pp \subseteq \OO_K$ is a prime above $p$,
-then the image $\sigma``(\pp)$ is also prime for any $\sigma \in G$
+then the image $\sigma\im(\pp)$ is also prime for any $\sigma \in G$
 (since $\sigma$ is an automorphism!).
 Moreover, since $p \in \pp$ and $\sigma$ fixes $\QQ$,
-we know that $p \in \sigma``(\pp)$ as well.
+we know that $p \in \sigma\im(\pp)$ as well.
 
 Thus, by the pointwise mapping, \textbf{the Galois group acts
 on the prime ideals above a rational prime $p$}.
@@ -149,11 +149,11 @@ Picture:
 	\end{asy}
 \end{center}
 
-The notation $\sigma``(\pp)$ is hideous in this context,
+The notation $\sigma\im(\pp)$ is hideous in this context,
 since we're really thinking of $\sigma$ as just doing a group action,
 and so we give the shorthand:
 \begin{abuse}
-	Let $\sigma\pp$ be shorthand for $\sigma``(\pp)$.
+	Let $\sigma\pp$ be shorthand for $\sigma\im(\pp)$.
 \end{abuse}
 
 Since the $\sigma$'s are all bijections (they are automorphisms!),
@@ -176,7 +176,7 @@ But miraculously, it turns out there is only one orbit!
 	\begin{align*}
 		x &\equiv 0 \pmod{\pp_1} \\
 		x &\equiv 1 \pmod{\pp_i} \text{ for $i \ge 2$}
-		% \pmod{(\sigma\inv)``(\pp_2)} \text{ for $\sigma \in G$.}
+		% \pmod{(\sigma\inv)\im(\pp_2)} \text{ for $\sigma \in G$.}
 	\end{align*}
 	Then, compute the norm
 	\[ \NK(x) = \prod_{\sigma \in \Gal(K/\QQ)} \sigma(x). \]
@@ -203,7 +203,7 @@ But miraculously, it turns out there is only one orbit!
 	Because the action is transitive, all $f_i$ are equal.
 	\begin{exercise}
 		Using the fact that $\sigma \in \Gal(K/\QQ)$,
-		show that \[ \sigma``(p \cdot \OO_K) = p \cdot \sigma``(\OO_K) = p \cdot \OO_K. \]
+		show that \[ \sigma\im(p \cdot \OO_K) = p \cdot \sigma\im(\OO_K) = p \cdot \OO_K. \]
 	\end{exercise}
 	So for every $\sigma$, we have that
 	$p \cdot \OO_K = \prod \pp_i^{e_i} = \prod (\sigma\pp_i)^{e_i}$.

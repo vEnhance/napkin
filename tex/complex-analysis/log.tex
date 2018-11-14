@@ -246,7 +246,7 @@ Then essentially, what we are trying to do is construct a lifting $g$ in the dia
 
 Our map $p$ can be described as ``winding around twice''.
 Our \Cref{thm:lifting} now tells us that this lifting exists if and only if
-\[ f_\ast``(\pi_1(V)) \subseteq p_\ast``(\pi_1(E)) \]
+\[ f_\ast\im(\pi_1(V)) \subseteq p_\ast\im(\pi_1(E)) \]
 is a subset of the image of $\pi_1(E)$ by $p$.
 Since $B$ and $E$ are both punctured planes, we can identify them with $S^1$.
 \begin{ques}
@@ -291,14 +291,14 @@ There is no longer a need to work with a separate $V$ since:
 \end{ques}
 In fact, the map $\exp : \CC \to \CC\setminus\{0\}$ is a universal cover,
 since $\CC$ is simply connected.
-Thus, $p``(\pi_1(\CC))$ is \emph{trivial}.
+Thus, $p\im(\pi_1(\CC))$ is \emph{trivial}.
 So in addition to being zero-free, $f$ cannot have any winding number around $0 \in B$ at all.
 In other words:
 \begin{theorem}
 	[Existence of logarithms]
 	\label{thm:holomorphic_log}
-	Let $f : U \to \CC$ be holomorphic.  
-	Then $f$ has a logarithm if and only if 
+	Let $f : U \to \CC$ be holomorphic.
+	Then $f$ has a logarithm if and only if
 	\[ \frac{1}{2\pi i}\oint_\gamma \frac{f'}{f} \; dz  = 0 \]
 	for every contour $\gamma$ in $U$.
 \end{theorem}
