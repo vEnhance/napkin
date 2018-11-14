@@ -1,6 +1,10 @@
-\chapter*{Preface: Why this exists}
+\chapter*{Preface}
 \addcontentsline{toc}{chapter}{Preface}
-I'll be eating a quick lunch with some friends of mine who are still in high school.
+
+\begin{quote}
+\small
+I'll be eating a quick lunch with some friends of mine
+who are still in high school.
 They'll ask me what I've been up to the last few weeks,
 and I'll tell them that I've been learning category theory.
 They'll ask me what category theory is about.
@@ -13,70 +17,60 @@ but then I'll remember that they haven't learned what a group is.
 So then I'll start trying to explain what a group is,
 but by the time I finish writing the group axioms on my napkin,
 they've already forgotten why I was talking about groups in the first place.
-And then it's 1PM, people need to go places, and I can't help but think:
-\begin{quote}
-	``Man, if I had forty hours instead of forty minutes, I bet I could actually have explained this all''.
+And then it's 1PM, people need to go places, and I can't help but think: \\
+``Man, if I had forty hours instead of forty minutes,
+I bet I could actually have explained this all''.
 \end{quote}
-This book is my attempt at those forty hours.
-(Or was; it's grown considerably since then.)
+This book was my attempt at those forty hours,
+but has grown considerably since then.
+This explains the origin of the name ``Napkin''.
 
-\section*{Olympians}
-What do you do if you're a talented high school student
-who wants to learn higher math?
+\section*{About this book}
+The \emph{Infinitely Large Napkin} is a light
+but self-contained introduction to a large
+amount of higher math.
 
-To my knowledge, there aren't actually that many possible things to do.
-One obvious route is to try to negotiate with your school to
-let you take math classes from a local college.
-But this option isn't available to many people,
-and even when it is, more than likely you'll still be the
-best student in your class at said local college.
-Plus it's a huge logistical pain in the rare cases where it's at all possible.
+I should say at once that this book is not intended
+as a replacement for dedicated books or courses;
+the amount of depth is not comparable.\footnote{On the other hand,
+	I think it could be a helpful first tour of a subject
+	before starting a serious study.
+	I personally find it helpful to be able to get
+	a high-level overview of any topic before really diving in.}
+On the flip side, the benefit of this ``light'' approach
+is that it becomes accessible to a larger audience,
+since the goal is merely to give the reader a feeling for
+any particular topic rather than to emulate a full semester of lectures.
 
-Then you have another very popular route --- the world of math contests.
-Suddenly you're connected to this peer group of other kids who are insanely smart.
-You start training for these contests,
-you get really good at solving hard problems,
-and before you know it you're in Lincoln, Nebraska, taking the
-IMO\footnote{IMO is short for ``International Mathematical Olympiad'',
-	the premier high school mathematical olympiad.
-	See \url{imo-official.org} for more details.} Team Selection Test.
-Finally you're feeling challenged, you have clear goals to work towards,
-and a group of like-minded peers to support and encourage you.
-You gradually learn all about symmedians, quadratic reciprocity, Muirhead, \dots
+I initially wrote this book with talented high-school students in mind,
+particularly those with math-olympiad type backgrounds.
+Some remnants of that cultural bias can still be felt throughout the book,
+particularly in assorted challenge problems which
+taken from mathematical competitions.
+However, in general I think this would be a good reference
+for anyone with some amount of mathematical maturity and curiosity.
+(Examples include but certainly not limited to:
+math undergraduate majors, physics/CS majors,
+high school students who like math but not contests,
+and unusually intelligent kittens.)
 
-And yet math olympiads have a weird quirk to them:
-they restrict themselves to only elementary problems,
-leaving analysis, group theory, linear algebra, etc.\ all off limits.
-
-So now suppose you're curious what category theory is all about.
-Not too many of your friends know, since it's not a contest topic.
-You could try taking a course from a local college, but that's just going back to square one again.
-You could try chats with friends or talks or whatever, but that's like the napkin at lunch again:
-I can tell you category theory is about looking at arrows instead of the objects themselves,
-but if I don't tell you what a functor is, or about the Yoneda lemma,
-or what a limit is, I haven't showed you anything.
-
-So you finally do what any sensible person would do --- search ``category theory'' on Wikipedia.
-You scroll through the page, realize that you don't know what half the words are,
-give up, and go back to doing geometry problems from the IMO Shortlist.
-
-\section*{Verbum sapienti satis est}
-Higher math for high school students typically comes in two flavors:
+\section*{Philosophy behind the Napkin approach}
+As far as I can tell, higher math for high-school students
+comes in two flavors:
 \begin{itemize}
 	\ii Someone tells you about the hairy ball theorem in the form
 	``you can't comb the hair on a spherical cat''
 	then doesn't tell you anything about why it should be true,
-	what it means to actually ``comb the hair'', 
+	what it means to actually ``comb the hair'',
 	or any of the underlying theory,
 	leaving you with just some vague notion in your head.
 
 	\ii You take a class and prove every result in full detail,
-	and at some point
-	you stop caring about what the professor is saying.
+	and at some point you stop caring about what the professor is saying.
 \end{itemize}
 Presumably you already know how unsatisfying the first approach is.
 So the second approach seems to be the default,
-but in general I find it to be quite unsatisfying as well.
+but I really think there should be some sort of middle ground here.
 
 I was talking to a friend of mine one day who described briefly
 what the Israel IMO training looked like.
@@ -89,20 +83,19 @@ and your students have substantially more mathematical maturity
 relative to their knowledge (e.g.\ are IMO medalists),
 it seems like you really could make a lot of headway.
 
-For example: often classes like to prove things for the sake of proving them.
-I personally find that many proofs don't really teach you anything,
-and that it is often better to say ``you could work this out if you wanted to,
+For example: often classes like to prove things for completeness.
+I personally find that many proofs don't really teach anything,
+and that it is often better to say
+``you could work this out if you wanted to,
 but it's not worth your time''.
-Unlike some of the classes you might take in college,
-it is not the purpose of this book to train you to solve exercises
-or write proofs\footnote{%
-	Which is not to say problem-solving isn't valuable;
-	that's why we do contest math.
+Unlike university, it is not the purpose of this book to
+train you to solve exercises or write proofs\footnote{Which is
+	not to say problem-solving isn't valuable;
+	I myself am a math olympiad coach at heart.
 	It's just not the point of this book.},
 or prepare you for research in the field,
 but rather to just show you some interesting math.
-The things that are presented should be memorable,
-or something worth caring about.
+The things that are presented should be memorable and worth caring about.
 
 In particular, I place a strong emphasis over explaining
 why a theorem \emph{should} be true rather than writing down its proof.
@@ -111,57 +104,71 @@ This is a recurrent theme of this book:
 	Natural explanations supersede proofs.
 \end{moral}
 
-\section*{Presentation of specific topics}
-See \Cref{ch:refs} for some general comments on why I chose
-to present certain topics in the way that I did.
+
+\Cref{ch:refs} contains some comments on my presentation
+of particular topics.
 At the end of said appendix are pointers to
 several references for further reading.
 
-\section*{Obligatory disclaimer}
-Apparently this wasn't obvious, so let me add:
+\section*{Historical and personal notes}
+I began writing this book in December of 2014,
+after having finished my first semester of undergraduate.
+It became my main focus for about 18 months after that,
+as I became immersed in higher math and essentially took only math classes,
+gleefully ignoring all my other graduation requirements,
+and merged as much of it as I could
+(as well as lots of other math I learned on my own time) into the Napkin.
 
-As a corollary of what I've mentioned earlier in this preface,
-this book is not primarily intended as a replacement for other books or coursework.
-The amount of depth is not comparable.
-(I have accidentally implied this in earlier versions of this draft,
-so let me set that record straight now.)
+Towards August of 2016, though, I finally lost steam.
+The first public versions went online then,
+and I decided to declare Napkin as essentially content-complete.
+Having burnt out slightly,
+I then decided to take a break from higher math,
+and spent the remaining two undergraduate years\footnote{Alternatively:
+	`` \dots and spent the next two years forgetting everything
+	I had painstakingly learned''.
+	Which made me grateful for all the past notes in the Napkin!}
+working extensively as a coach for the American math olympiad team,
+and trying to spend as much time with my friends as I could
+before they graduated and went their own ways.
+It was also at this time I started to get into Korean pop dance,
+which was the first (and only) extracurricular activity
+I did during my entire undergraduate stay.
 
-This is especially true if you plan on doing serious research
-in any of the subjects covered here.
-If you're just a curious ex-IMO medalist ``what is algebraic number theory all about?'',
-then this Napkin may fit you quite well.
-If you're currently taking an algebraic number theory class and are confused
-about something, then this Napkin can also be a helpful second reference.
-But if you're an undergraduate at Harvard hoping that these notes
-will cover the equivalent of the graduate course Math 223a,
-you will be sorely disappointed.
-
-More succinctly, Napkin is meant to satisfy your curiosity
-rather than to give you a mastery of any topic.
+It was not until November of 2018,
+some weeks into my first semester as a math PhD student,
+that I finally began to work on the Napkin again.
 
 \section*{Acknowledgements}
-\todo{more acknowledgments}
+\todo{add more acknowledgments}
 I am indebted to countless people for this work.
 Here is a partial (surely incomplete) list.
 
-Thanks to all my teachers and professors for teaching me much of the
+\begin{itemize}
+\ii Thanks to all my teachers and professors for teaching me much of the
 material covered in these notes,
 as well as the authors of all the references I have cited here.
 A special call-out to \cite{ref:55a}, \cite{ref:msci},
 \cite{ref:manifolds}, \cite{ref:gathmann}, \cite{ref:18-435},
 \cite{ref:etingof}, \cite{ref:145a}, which were especially influential.
 
-Thanks also to dozens of friends and strangers
+\ii Thanks also to dozens of friends and strangers
 who read through preview copies of my draft,
 and pointed out errors and gave other suggestions.
 Special mention to Andrej Vukovi\'c and Alexander Chua
 for together catching over a thousand errors.
 Thanks also to Brian Gu and Tom Tseng for many corrections.
-I'd also like to express my gratitude for the many kind words I received
-during the development of this project;
-these generous comments led me to keep working on this.
 
-Finally, a huge thanks to the math olympiad community.
+\ii I'd also like to express my gratitude for
+many, many kind words I received
+during the development of this project.
+These generous comments led me to keep working on this,
+and were largely responsible for my decision in November 2018
+to begin updating the Napkin again.
+\end{itemize}
+
+Finally, a huge thanks to the math olympiad community,
+from which the Napkin (and me) has its roots.
 All the enthusiasm, encouragement, and thank-you notes I have received
 over the years led me to begin writing this in the first place.
 I otherwise would never have the arrogance to dream a project like this
