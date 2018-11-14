@@ -132,7 +132,7 @@ Here are some more \textbf{abelian examples} of groups:
 	and consider the residues (remainders) modulo $n$.
 	These form a group under addition.
 	We call this the \vocab{cyclic group of order $n$},
-	and abbreviate it as $\Zc n$, with elements $\ol 0, \ol 1, \dots$.
+	and denote it as $\Zc n$, with elements $\ol 0, \ol 1, \dots$.
 	\label{def:cyclic_group}
 \end{example}
 \begin{example}
@@ -146,6 +146,10 @@ Here are some more \textbf{abelian examples} of groups:
 \begin{ques}
 	Why do we need the fact that $p$ is prime?
 \end{ques}
+(Digression: the notation $\Zc n$ and $\Zm p$ may seem strange
+but will make sense when we talk about rings and ideals.
+Set aside your worry for now.)
+
 
 Here are some \textbf{non-abelian examples}:
 \begin{example}
@@ -422,7 +426,7 @@ uses the operation of $H$.
 	\end{itemize}
 \end{example}
 \begin{example}
-	[Primitive roots] 
+	[Primitive roots]
 	More generally, for any prime $p$, there exists
 	an element $g \in \Zm p$ called a \vocab{primitive root} modulo $p$
 	such that $1, g, g^2, \dots, g^{p-2}$ are all different modulo $p$.
@@ -432,7 +436,7 @@ uses the operation of $H$.
 \end{example}
 \begin{exercise}
 	Assuming the existence of primitive roots,
-	establish the isomorphism $\Zc {p-1} \cong \Zm p$ as above.
+	establish the isomorphism $\Zcc{p-1} \cong \Zm p$ as above.
 \end{exercise}
 
 It's not hard to see that $\cong$ is an equivalence relation (why?).
@@ -572,7 +576,7 @@ Next is an especially important example that we'll talk about more in later chap
 \end{exercise}
 
 Finally, we present some non-examples of subgroups.
-\begin{example}[Non-Examples of subgroups]
+\begin{example}[Non-examples of subgroups]
 	Consider the group $\ZZ = (\ZZ, +)$.
 	\begin{enumerate}[(a)]
 		\ii The set $\left\{ 0,1,2,\dots \right\}$ is
