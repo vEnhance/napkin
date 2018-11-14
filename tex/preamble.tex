@@ -365,9 +365,10 @@ style=thmbluebox,name=Theorem,numberwithin=section]{theorem}
 \addbibresource{images.bib}
 
 %%fakesection Napkin Macros
-\newcommand{\Zc}[1]{\ZZ_{#1}}
-\newcommand{\Zm}[1]{\ZZ_{#1}^\times}
-\newcommand{\im}{^{\text{img}}}
+\newcommand{\Zc}[1]{\ZZ/#1\ZZ}
+\newcommand{\Zcc}[1]{\ZZ/(#1)\ZZ}
+\newcommand{\Zm}[1]{(\ZZ/#1\ZZ)^\times}
+\newcommand{\im}{^{\text{img}}} % or ``?
 \newcommand{\pre}{^{\text{pre}}}
 \newcommand{\normalin}{\trianglelefteq}
 \newcommand{\triv}{\mathrm{triv}}

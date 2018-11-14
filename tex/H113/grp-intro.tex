@@ -56,6 +56,7 @@ From this you might already have a guess what the definition of a group is.
 	\label{def:group}
 \end{definition}
 \begin{remark}
+	[Unimportant pedantic point]
 	Some authors like to add a ``closure'' axiom,
 	i.e.\ to say explicitly that $g \star h \in G$.
 	This is implied already by the fact that $\star$
@@ -106,41 +107,6 @@ From this you might already have a guess what the definition of a group is.
 	\end{itemize}
 \end{example}
 
-
-\begin{remark}
-	[Digression]
-	A common question is: why these axioms?
-	For example, why associative but not commutative?
-	This answer will likely not make sense until later,
-	but here are some comments that may help.
-
-	One general heuristic is:
-	Whenever you define a new type of general object,
-	there's always a balancing act going on.
-	On the one hand, you want to include enough constraints that your
-	objects are ``nice''.
-	On the other hand, if you include too many constraints,
-	then your definition applies to too few objects.
-	So, for example, we include ``associative'' because that makes our lives easier
-	and most operations we run into are associative.
-	We don't include ``commutative'' though, because examples below
-	show that there are lots of non-abelian groups we care about.
-	(But we introduce the name ``abelian'' because we still want to keep track of it.)
-
-	Another comment: a good motivation for the inverse axioms
-	is that you get a large amount of \emph{symmetry}.
-	The set of positive integers with addition is not a group,
-	for example, because you can't subtract $6$ from $3$:
-	some elements are ``larger'' than others.
-	By requiring an inverse element to exist, you get rid of this issue.
-	(You also need identity for this;
-	it's hard to define inverses without it.)
-
-	Even more abstruse comment:
-	\Cref{thm:cayley_theorem} shows that groups are actually shadows of
-	the so-called symmetric groups (defined later, also called permutation groups).
-	This makes rigorous the notion that ``groups are very symmetric''.
-\end{remark}
 
 
 
@@ -461,7 +427,7 @@ uses the operation of $H$.
 	an element $g \in \Zm p$ called a \vocab{primitive root} modulo $p$
 	such that $1, g, g^2, \dots, g^{p-2}$ are all different modulo $p$.
 	One can show by copying the above proof that
-	\[ \Zc {p-1} \cong \Zm p \text{ for all primes $p$}. \]
+	\[ \Zcc{p-1} \cong \Zm p \text{ for all primes $p$}. \]
 	The example above was the special case $p=7$ and $g=3$.
 \end{example}
 \begin{exercise}
@@ -667,6 +633,39 @@ Just for fun, here is a list of all groups of order less than or equal to ten
 		This group is non-abelian.
 	\end{itemize}
 \end{enumerate}
+
+\section{Unimportant long digression}
+A common question is: why these axioms?
+For example, why associative but not commutative?
+This answer will likely not make sense until later,
+but here are some comments that may help.
+
+One general heuristic is:
+Whenever you define a new type of general object,
+there's always a balancing act going on.
+On the one hand, you want to include enough constraints that your
+objects are ``nice''.
+On the other hand, if you include too many constraints,
+then your definition applies to too few objects.
+So, for example, we include ``associative'' because that makes our lives easier
+and most operations we run into are associative.
+We don't include ``commutative'' though, because examples below
+show that there are lots of non-abelian groups we care about.
+(But we introduce the name ``abelian'' because we still want to keep track of it.)
+
+Another comment: a good motivation for the inverse axioms
+is that you get a large amount of \emph{symmetry}.
+The set of positive integers with addition is not a group,
+for example, because you can't subtract $6$ from $3$:
+some elements are ``larger'' than others.
+By requiring an inverse element to exist, you get rid of this issue.
+(You also need identity for this;
+it's hard to define inverses without it.)
+
+Even more abstruse comment:
+\Cref{thm:cayley_theorem} shows that groups are actually shadows of
+the so-called symmetric groups (defined later, also called permutation groups).
+This makes rigorous the notion that ``groups are very symmetric''.
 
 \section\problemhead
 
