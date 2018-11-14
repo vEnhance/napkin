@@ -194,13 +194,13 @@ With smooth manifolds we can try to port over definitions that
 we built for $\RR^n$ onto our manifolds.
 So in general, all definitions involving smooth manifolds will reduce to 
 something on each of the coordinate charts, with a compatibility condition.
-\begin{example}
-	[Examples of manifold definitions]
-	\listhack
+
+AS an example, here is the definition of a ``smooth map'':
+\begin{definition}
 	\begin{enumerate}[(a)]
 		\ii Let $M$ be a smooth manifold.
 		A continuous function $f : M \to \RR$ is called \vocab{smooth}
-		if the composition 
+		if the composition
 		\[ E_i \taking{\phi_i\inv} U_i \injto M \taking f \RR \]
 		is smooth as a function $E_i \to \RR$.
 		\ii Let $M$ and $N$ be smooth
@@ -212,8 +212,7 @@ something on each of the coordinate charts, with a compatibility condition.
 			\taking f N \surjto U_j \taking{\phi_j} E_j \]
 		is smooth, as a function $E_i \to E_j$.
 	\end{enumerate}
-\end{example}
-
+\end{definition}
 
 \section{Differential forms on manifolds}
 We already know what a differential form is on an open set $U \subseteq \RR^n$.
@@ -245,7 +244,7 @@ Since $M$ is just a topological space (rather than a subset of $\RR$),
 there is no default ``left'' or ``right'' that we can pick.
 As another example, if $M = S^1$ is a circle, there is
 no default ``clockwise'' or ``counterclockwise'' unless we decide
-to embed $M$ into $\RR^2$
+to embed $M$ into $\RR^2$.
 
 To work around this we have to actually have to
 make additional assumptions about our manifold.
@@ -294,7 +293,7 @@ a field of vectors pointing away (or towards) the center.
 This is all non-rigorous,
 because I haven't defined the tangent plane $T_p(M)$;
 since $M$ is in general an intrinsic object one has to be
-quite roundabout to define $T_p(M)$.
+quite roundabout to define $T_p(M)$ (although I do so in an optional section later).
 In any event, the point is that guesses about the orientability
 of spaces are likely to be correct.
 
@@ -309,6 +308,7 @@ of spaces are likely to be correct.
 		\ii $\RP^n$ is orientable only for odd $n$.
 	\end{enumerate}
 \end{example}
+
 
 \section{Stokes' theorem for manifolds}
 Stokes' theorem in the general case is based on the idea
@@ -341,7 +341,167 @@ Then Stokes' theorem says
 \end{theorem}
 All the omitted details are developed in full in \cite{ref:manifolds}.
 
+\section{(Optional) The tangent and contangent space}
+\prototype{Draw a line tangent to a circle, or a plane tangent to a sphere.}
+
+Let $M$ be a smooth manifold and $p \in M$ a point.
+I omitted the definition of $T_p(M)$ earlier,
+but want to actually define it now.
+
+As I said, geometrically we know what this \emph{should}
+look like for our usual examples.
+For example, if $M = S^1$ is a circle embedded in $\RR^2$,
+then the tangent vector at a point $p$
+should just look like a vector running off tangent to the circle.
+Similarly, given a sphere $M = S^2$,
+the tangent space at a point $p$ along the sphere
+would look like plane tangent to $M$ at $p$.
+
+\begin{center}
+	\begin{asy}
+		size(5cm);
+		draw(unitcircle);
+		label("$S^1$", dir(140), dir(140));
+		pair p = dir(0);
+		draw( (1,-1.4)--(1,1.4), mediumblue, Arrows);
+		label("$T_p(M)$", (1, 1.4), dir(-45), mediumblue);
+		draw(p--(1,0.7), red, EndArrow);
+		label("$\vec v \in T_p(M)$", (1,0.7), dir(-15), red);
+		dot("$p$", p, p, blue);
+	\end{asy}
+\end{center}
+
+However, one of the points of all this manifold stuff
+is that we really want to see the manifold
+as an \emph{intrinsic object}, in its own right,
+rather than as embedded in $\RR^n$.\footnote{This
+	can be thought of as analogous to the way
+	that we think of a group as an abstract object in its own right,
+	even though Cayley's Theorem tells us that any group is a subgroup
+	of the permutation group.
+	
+	Note this wasn't always the case!
+	During the 19th century, a group was literally defined
+	as a subset of $\text{GL}(n)$ or of $S_n$.
+	In fact Sylow developed his theorems without the word ``group''
+	Only much later did the abstract definition of a group was given,
+	an abstract set $G$ which was independent of any \emph{embedding} into $S_n$,
+	and an object in its own right.}
+So, we would like our notion of a tangent vector to not refer to an ambient space,
+but only to intrinsic properties of the manifold $M$ in question.
+
+\subsection{Tangent space}
+To motivate this construction, let us start
+with an embedded case for which we know the answer already:
+a sphere.
+
+Suppose $f \colon S^2 \to \RR$ is a
+function on a sphere, and take a point $p$.
+Near the point $p$, $f$ looks like a function
+on some neighborhood of the origin.
+Thus we can think of taking a \emph{directional derivative}
+along a vector $\vec v$ in the imagined tangent plane
+(i.e.\ some partial derivative).
+For a fixed $\vec v$ this partial derivative is a linear map
+\[ D_{\vec v} \colon C^\infty(M) \to \RR. \]
+
+It turns out this goes the other way:
+if you know what $D_{\vec v}$ does to every smooth function,
+then you can recover $v$.
+This is the trick we use in order to create the tangent space.
+Rather than trying to specify a vector $\vec v$ directly
+(which we can't do because we don't have an ambient space),
+\begin{moral}
+	The vectors \emph{are} partial-derivative-like maps.
+\end{moral}
+More formally, we have the following.
+\begin{definition}
+	A \vocab{derivation} $D$ at $p$ is a linear map
+	$D \colon C^\infty(M) \to \RR$
+	(i.e.\ assigning a real number to every smooth $f$)
+	satisfying the following Leibniz rule:
+	for any $f$, $g$ we have the equality
+	\[ D(fg) = f(p) \cdot D(g) + g(p) \cdot D(f) \in \RR. \]
+\end{definition}
+This is just a ``product rule''.
+Then the tangent space is easy to define:
+\begin{definition}
+	A \vocab{tangent vector} is just a derivation at $p$, and
+	the \vocab{tangent space} $T_p(M)$ is simply
+	the set of all these tangent vectors.
+\end{definition}
+In this way we have constructed the tangent space.
+
+\subsection{The cotangent space}
+In fact, one can show that the product rule
+for $D$ is equivalent to the following three conditions:
+\begin{enumerate}
+	\ii $D$ is linear, meaning $D(af+bg) = a D(f) + b D(g)$.
+	\ii $D(1_M) = 0$, where $1_M$ is the constant function on $M$.
+	\ii $D(fg) = 0$ whenever $f(p) = g(p) = 0$.
+	Intuitively, this means that if a function $h = fg$
+	vanishes to second order at $p$,
+	then its derivative along $D$ should be zero. 
+\end{enumerate}
+
+This suggests a third equivalent definition:
+suppose we define
+\[ \mm_p \defeq \left\{ f \in C^\infty M \mid f(p) = 0 \right\} \]
+to be the set of functions which vanish at $p$
+(this is called the \emph{maximal ideal} at $p$).
+In that case,
+\[ \mm_p^2 = \left\{ \sum_i f_i \cdot g_i
+	\mid f_i(p) = g_i(p) = 0 \right\} \]
+is the set of functions vanishing to second order at $p$.
+Thus, a tangent vector is really just a linear map
+\[ \mm_p / \mm_p^2 \to \RR. \]
+In other words, the tangent space is actually the
+dual space of $\mm_p / \mm_p^2$;
+for this reason, the space $\mm_p / \mm_p^2$ is defined as the
+\vocab{cotangent space} (the dual of the tangent space).
+This definition is even more abstract than the one with derivations above,
+but has some nice properties:
+\begin{itemize}
+	\ii it is coordinate-free, and
+	\ii it's defined only in terms of the smooth functions $M \to \RR$,
+	which will be really helpful later on in algebraic geometry
+	when we have varieties or schemes and can repeat this definition.
+\end{itemize}
+
+\subsection{Sanity check}
+With all these equivalent definitions, the last thing I should do is check that
+this definition of tangent space actually gives a vector space of dimension $n$.
+To do this it suffices to show verify this for open subsets of $\RR^n$,
+which will imply the result for general manifolds $M$
+(which are locally open subsets of $\RR^n$).
+Using some real analysis, one can prove the following result:
+\begin{theorem}
+	Suppose $M \subset \RR^n$ is open and $0 \in M$.
+	Then
+	\[
+	\begin{aligned}
+		\mm_0 &= \{ \text{smooth functions } f : f(0) = 0 \} \\
+		\mm_0^2 &= \{ \text{smooth functions } f : f(0) = 0, (\nabla f)_0 = 0 \}.
+	\end{aligned}
+	\]
+	In other words $\mm_0^2$ is the set of functions which vanish at $0$
+	and such that all first derivatives of $f$ vanish at zero.
+\end{theorem}
+Thus, it follows that there is an isomorphism
+\[ \mm_0 / \mm_0^2 \cong \RR^n
+	\quad\text{by}\quad
+	f \mapsto
+	\left[ \frac{\partial f}{\partial x_1}(0),
+		\dots, \frac{\partial f}{\partial x_n}(0) \right] \]
+and so the cotangent space, hence tangent space,
+indeed has dimension $n$.
+
+\subsection{So what does this have to do with orientations?}
+\todo{beats me}
+
+
 \section\problemhead
+
 \begin{problem}
 	Show that a differential $0$-form on a smooth manifold $M$
 	is the same thing as a smooth function $M \to \RR$.
