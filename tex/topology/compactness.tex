@@ -1,7 +1,8 @@
 \chapter{Compactness}
 One of the most important notions of topological spaces is that of \emph{compactness}.
-It generalizes the notion of ``closed and bounded'' in Euclidean space to any topological space
-(e.g.\ see \Cref{thm:heine_borel}).
+It generalizes the notion of ``closed and bounded'' in Euclidean space
+to any topological space
+(e.g.\ see \Cref{thm:bzw}).
 
 For metric spaces, there are two equivalent ways of formulating compactness:
 \begin{itemize}
@@ -109,7 +110,7 @@ We also have:
 	$[0,1]$ is compact.
 \end{theorem}
 \begin{proof}
-	Killed by \Cref{thm:heine_borel};
+	Killed by \Cref{thm:bzw};
 	however, here is a sketch of a direct proof.
 	Split $[0,1]$ into $[0,\half] \cup [\half,1]$.
 	By Pigeonhole, infinitely many terms of the sequence lie in the left half (say);
@@ -146,7 +147,7 @@ In other spaces, this criterion can easily fail.
 	but it's certainly not compact since the sequence $s_1, s_2, \dots$ doesn't converge.
 \end{example}
 
-The Heine-Borel theorem, which is \Cref{thm:heine_borel}, tells you exactly
+The Bolzano-Weierstrass theorem, which is \Cref{thm:bzw}, tells you exactly
 which sets are compact in metric spaces in a geometric way.
 
 \section{Compactness using open covers}
@@ -343,13 +344,17 @@ Now, as promised:
 \end{proof}
 
 \section{(Optional) Equivalence of formulations of compactness}
-We'll prove that for a metric space $M$, the following are equivalent:
-\begin{enumerate}[(i)]
-	\ii Every sequence has a convergent subsequence,
-	\ii The space $M$ is complete and totally bounded, and
-	\ii Every open cover has a finite subcover.
-\end{enumerate}
-We leave the proof that (i) $\iff$ (ii) as \Cref{thm:heine_borel};
+We will prove that:
+\begin{theorem}
+	[Heine-Borel for general metric spaces]
+	For a metric space $M$, the following are equivalent:
+	\begin{enumerate}[(i)]
+		\ii Every sequence has a convergent subsequence,
+		\ii The space $M$ is complete and totally bounded, and
+		\ii Every open cover has a finite subcover.
+	\end{enumerate}
+\end{theorem}
+We leave the proof that (i) $\iff$ (ii) as \Cref{thm:bzw};
 the idea of the proof is much in the spirit of \Cref{thm:interval_compact}.
 \begin{proof}
 	[Proof that (i) and (ii) $\implies$ (iii)]
@@ -390,8 +395,10 @@ the idea of the proof is much in the spirit of \Cref{thm:interval_compact}.
 		which contains at most finitely many of the points of the sequence $(x_k)$.
 		(You will have to use the fact that $x_k \not\to p$ and $(x_k)$ is Cauchy.)
 	\end{ques}
-	Now if we consider $M = \bigcup_p U_p$ we get a finite subcover of these neighborhoods;
-	but this finite subcover can only cover finitely many points of the sequence, by contradiction.
+	Now if we consider $M = \bigcup_p U_p$ we get a
+	finite subcover of these neighborhoods;
+	but this finite subcover can only cover finitely
+	many points of the sequence, by contradiction.
 \end{proof}
 
 
@@ -400,7 +407,7 @@ The later problems are pretty hard;
 some have the flavor of IMO 3/6-style constructions.
 It's important to draw lots of pictures so one can tell what's happening.
 % I'd be happy to learn of any easier ones.
-Of these \Cref{thm:heine_borel} is definitely my favorite.
+Of these \Cref{thm:bzw} is definitely my favorite.
 
 \begin{problem}
 	Show that $[0,1]$ and $(0,1)$ are not homeomorphic.
@@ -459,11 +466,11 @@ Of these \Cref{thm:heine_borel} is definitely my favorite.
 
 
 \begin{dproblem}
-	[Heine-Borel theorem]
+	[Bolzano-Weierstra\ss\ theorem for general metric spaces]
 	\gim
-	Prove that a metric space $M$ is (sequentially) compact
+	Prove that a metric space $M$ is sequentially compact
 	if and only if it is complete and totally bounded.
-	\label{thm:heine_borel}
+	\label{thm:bzw}
 	\begin{hint}
 		Mimic the proof of \Cref{thm:interval_compact}.
 		The totally bounded condition lets you do Pigeonhole.
