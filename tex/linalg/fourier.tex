@@ -1,13 +1,11 @@
 \chapter{Bonus: Fourier Analysis}
 Now that we've worked hard to define abstract inner product spaces,
 I want to give an (optional) application:
-how to set up Fourier analysis correctly,
-using this language.
+how to set up Fourier analysis correctly, using this language.
 
 As a bonus, I also prove a form of Arrow's Impossibility Theorem
 using binary Fourier analysis,
-and then talk about the fancier generalizations using Pontryagin duality
-and the Peter-Weyl theorem.
+and then mention the fancier generalization using Pontryagin duality.
 
 In what follows, we let $\TT = \RR/\ZZ$ denote the ``circle group'',
 thought of as the additive group of ``real numbers modulo $1$''.
@@ -325,7 +323,7 @@ square sum of the coefficients.
 \end{proof}
 
 \begin{corollary}
-	[Formulas for $\wh f$]
+	[Fourier inversion formula]
 	Let $f : Z \to \CC$, where $Z$ is a finite abelian group.
 	Then \[ \wh f(\xi) = \frac{1}{|Z|} \sum_{x \in Z} f(x) \ol{e_\xi(x)}. \]
 	Similarly, if $f : [-\pi, \pi] \to \CC$ is square-integrable then
