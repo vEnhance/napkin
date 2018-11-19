@@ -90,8 +90,9 @@ This is a special case of a \emph{pullback}:
 roughly, if $\phi : U \to U'$ (where $U \subseteq V$, $U' \subseteq V'$),
 we can change any differential $k$-form $\alpha$ on $U'$
 to a $k$-form on $U$.
-In particular, if $U = [a,b]$,\footnote{
-OK, so $[a,b]$ isn't actually open, sorry. I ought to write $(a-\eps, b+\eps)$, or something.}
+In particular, if $U = [a,b]$,\footnote{OK,
+	so $[a,b]$ isn't actually open, sorry.
+	I ought to write $(a-\eps, b+\eps)$, or something.}
 we can resort to our old definition of an integral.
 Let's now do this in full generality.
 
@@ -100,7 +101,8 @@ Let $V$ and $V'$ be finite dimensional real vector spaces (possibly different di
 and suppose $U$ and $U'$ are open subsets of each;
 next, consider a $k$-form $\alpha$ on $U'$.
 
-Given a map $\phi : U \to U'$ we now want to define a pullback in much the same way as before.
+Given a map $\phi : U \to U'$ we now want to define a pullback in
+much the same way as before.
 Picture:
 \begin{center}
 	\begin{asy}
@@ -189,7 +191,7 @@ It turns out that the pullback basically behaves nicely as possible, e.g.\
 	\ii $\phi^\ast(\alpha\wedge\beta)
 	= (\phi^\ast \alpha)\wedge(\phi^\ast \beta)$
 	\ii $\phi_1^\ast(\phi_2^\ast(\alpha)) 
-	= (\phi_1 \circ \phi_2)^\ast(\alpha)$ (naturality)
+	= (\phi_2 \circ \phi_1)^\ast(\alpha)$ (naturality)
 \end{itemize}
 but I won't take the time to check these here
 (one can verify them all by expanding with a basis).
