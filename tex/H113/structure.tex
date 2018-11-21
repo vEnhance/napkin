@@ -457,6 +457,7 @@ Now, we can apply our structure theorem!
 		In the structure theorem, $k / (s_i) \in \{0,k\}$.
 	\end{hint}
 \end{dproblem}
+
 \begin{dproblem}
 	[Frobenius normal form]
 	Let $T : V \to V$ where $V$ is a finite-dimensional vector space
@@ -478,6 +479,7 @@ Now, we can apply our structure theorem!
 		Write each block in the form described.
 	\end{hint}
 \end{dproblem}
+
 \begin{dproblem}
 	[Jordan normal form]
 	Let $T : V \to V$ where $V$ is a finite-dimensional vector space
@@ -488,3 +490,23 @@ Now, we can apply our structure theorem!
 		Since $k[x]$ is algebraically closed each $p_i$ is a linear factor.
 	\end{hint}
 \end{dproblem}
+
+\begin{problem}
+	\gim
+	Find two abelian groups $G$ and $H$ which are not isomorphic,
+	but for which there are injective homomorphisms
+	$G \injto H$ and $H \injto G$.
+	\begin{hint}
+		The structure theorem is an anti-result here:
+		it more or less implies that finitely generated abelian groups won't work.
+		So, look for an infinitely generated example.
+	\end{hint}
+	\begin{soln}
+		Take $G = \Zc3 \oplus \Zc9 \oplus \Zc9 \oplus \Zc9 \oplus \dots$
+		and $H = \Zc9 \oplus \Zc9 \oplus \Zc9 \oplus \Zc9 \oplus \dots$.
+		Then there are maps $G \injto H$ and $H \injto G$,
+		but the groups are not isomorphic since e.g.\
+		$G$ has an element $g \in G$ of order $3$
+		for which there's no $g' \in G$ with $g = 3g'$.
+	\end{soln}
+\end{problem}
