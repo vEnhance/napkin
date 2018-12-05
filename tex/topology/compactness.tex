@@ -215,11 +215,20 @@ We defer the proof to the last section.
 	(Indeed, I kind of already did this in the previous few sections.)
 \end{abuse}
 
-Open covers also have the nice property that, again, they don't refer to metrics or sequences.
-So rather than port the sequential definition, we port this definition over for a general space:
+Open covers also have the nice property that,
+again, they don't refer to metrics or sequences.
+So rather than port the sequential definition,
+we port this definition over for a general space:
 \begin{definition}
-	A topological space $X$ is \vocab{compact} if every open cover has finite subcover.
+	A general topological space $X$ is \vocab{compact}
+	if it is Hausdorff and every open cover has finite subcover.
 \end{definition}
+\begin{remark}
+	The ``Hausdorff'' hypothesis that I snuck in
+	is not worth worrying about unless you're
+	working on the algebraic geometry chapters,
+	since all the spaces you will deal with are Hausdorff.
+\end{remark}
 
 \section{Applications of compactness}
 Compactness lets us reduce \emph{infinite} open covers to finite ones.
