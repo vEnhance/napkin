@@ -476,7 +476,7 @@ I just want to define this here so that I can use this word later.
 In any case, basically any space we will encounter other than
 the Zariski topology is Hausdorff.
 
-\section\problemhead
+\section{\problemhead}
 
 \begin{dproblem}
 	Let $X$ be a topological space.
@@ -527,10 +527,20 @@ the Zariski topology is Hausdorff.
 	\end{sol}
 \end{problem}
 
-\begin{dproblem}[Completion]
+\begin{dproblem}[Completion of a metric space]
 	\yod
 	Let $M$ be a metric space.
-	Show that we can add some points to $M$ to obtain a metric space $\ol M$
-	which is complete, in such a way that every open set of $\ol M$ contains
-	a point of $M$ (meaning $M$ is \vocab{dense} in $\ol M$).
+	Construct a metric space $\ol M$ such that
+	\begin{itemize}
+		\ii $\ol M$ is complete,
+		\ii there is an injective map $M \injto \ol M$
+		(so one can consider $M$ as a subspace of $\ol M$), and
+		\ii every open set of $\ol M$ contains a point of $M$
+		(meaning $M$ is \vocab{dense} in $\ol M$).
+	\end{itemize}
+	\begin{hint}
+		As a set, we let $\ol M$ be the sequence of Cauchy
+		sequences $(x_n)$ in $M$, modulo the relation that
+		$(x_n) \sim (y_n)$ if $\lim_n d(x_n, y_n) = 0$.
+	\end{hint}
 \end{dproblem}
