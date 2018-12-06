@@ -1,17 +1,21 @@
-\chapter{Schemes}
-Now that we understand sheaves well, we can readily define the scheme.
-It will be a locally ringed space, so we need to define
+\chapter{Defining an affine scheme}
+Now that we understand sheaves well,
+we can define an affine scheme.
+It will be a ringed space, so we need to define
 \begin{itemize}
 	\ii The set of points,
 	\ii The topology on it, and
 	\ii The structure sheaf on it.
 \end{itemize}
+\todo{change $R$ to $A$ everywhere}
+
+\section{Some more advertising}
+Let me describe what the construction of $\Spec A$ is going to do.
 
 In the case of $\Aff^n$, we used $\CC^n$ as the set of points
 and $\CC[x_1, \dots, x_n]$ as the ring of functions
 but then remarked that the set of points
 of $\CC^n$ corresponded to the maximal ideals of $\CC[x_1, \dots, x_n]$.
-
 In an \emph{affine scheme}, we will take an \emph{arbitrary} ring $R$,
 and generate the entire structure from just $R$ itself.
 The final result is called $\Spec R$, the \vocab{spectrum} of $R$.
@@ -20,8 +24,28 @@ $\CC[x_1, \dots, x_n] / I$, but now we will be able to take
 \emph{any} ideal $I$, thus finally completing the table at the end
 of the ``affine variety'' chapter.
 
-In particular, $\Spec \CC[x] / (x^2)$ will be the double point
-we sought for so long.
+The construction of the affine scheme in this way
+will have three big generalizations:
+\begin{enumerate}
+	\ii We no longer have to work over an algebraically
+	closed field $\CC$, or even a field at all.
+	This will be the most painless generalization:
+	you won't have to adjust your current picture much for this to work.
+
+	\ii We allow non-radical ideals:
+	$\Spec \CC[x] / (x^2)$ will be the double point
+	we sought for so long.
+	This will let us formalize the notion of a ``fat'' or ``fuzzy'' point.
+
+	\ii Our affine schemes will have so-called \emph{generic points}:
+	points which you can visualize as floating around,
+	somewhere in the space but nowhere in particular.
+	(They'll correspond to prime non-maximal ideals.)
+	These will take the longest to get used to,
+	but once we discuss morphisms of schemes
+	we will begin to see that these generic points actually make life
+	\emph{easier}, once you get a sense of what they look like.
+\end{enumerate}
 
 \section{The set of points}
 \prototype{$\Spec \CC[x_1, \dots, x_n] / I$.}
@@ -131,6 +155,7 @@ We now define a useful topological notion:
 	A point $p \in X$ is a \vocab{closed point} if the set $\{p\}$ is closed.
 \end{definition}
 \begin{ques}
+	[Important]
 	Show that $\pp \in \Spec R$ is a closed point
 	if and only if $\pp$ is a maximal ideal.
 \end{ques}
@@ -157,14 +182,6 @@ as just the closed points.
 	we get the entire parabola,
 	since $\pp$ ``could have been'' any of those points.
 \end{example}
-The previous example illustrates an important observation:
-\begin{exercise}
-	Let $I \subsetneq R$ be a proper ideal.
-	Construct a bijection between the maximal ideals of $R$ containing $I$,
-	and the maximal ideals of $R/I$.
-	(\cite{ref:vakil} labels this exercise as
-	``Essential Algebra Exercise (Mandatory if you haven't done it before)''.)
-\end{exercise}
 
 \begin{example}
 	[The generic point of the $y$-axis isn't on the $x$-axis]
@@ -176,15 +193,6 @@ The previous example illustrates an important observation:
 	The geometric way of saying this is that a \emph{generic point}
 	on the $y$-axis does not lie on the $x$-axis.
 \end{example}
-
-Finally, as before, we can define distinguished open sets,
-which form a basis of the Zariski topology.
-\begin{definition}
-	Let $f \in \Spec R$.
-	Then $D(f)$ is the set of $\pp$ such that $f(\pp) \neq 0$,
-	a \vocab{distinguished open set}.
-	These open sets form a basis for the Zariski topology on $\Spec R$.
-\end{definition}
 
 \section{The structure sheaf}
 \prototype{Still $\CC[x_1, \dots, x_n] / I$.}
@@ -204,64 +212,14 @@ for example, the ring $R = \CC[x] / (x^2)$ corresponding to the double point.
 So we will need to define something a little different:
 we will construct the \emph{localization} of $R$ at a set $S$,
 which we think of as the ``set of allowed denominators''.
-
-\begin{definition}
-	Let $S \subseteq R$, where $R$ is a ring,
-	and assume $S$ is closed under multiplication.
-	Then the \vocab{localization of $R$ at $S$}, denoted $S\inv R$,
-	is defined as the set of fractions
-	\[ \left\{ r/s \mid r \in R, s \in S \right\} \]
-	where we declare two fractions $r_1 / s_1 = r_2 / s_2$ 
-	to be equal if 
-	\[ \exists s \in S : \quad s(r_1s_2 - r_2s_1) = 0. \]
-\end{definition}
-In particular, if $0 \in S$ then $S\inv R$ is the trivial ring.
-So we usually only take situations where $0 \notin S$.
-\begin{ques}
-	Assume $R$ is an integral domain and $S = R \setminus \{0\}$.
-	Show that $S\inv R$ is just the field of fractions.
-\end{ques}
-
-\begin{example}
-	[Why the extra $s$?]
-	The reason we need the condition $s(r_1s_2 - r_2s_1) = 0$
-	rather than the simpler $r_1s_2 - r_2s_1 = 0$ is that
-	otherwise the equivalence relation may fail to be transitive.
-	Here is a counterexample: take
-	\[ R = \Zc{12} \qquad S = \{ 2, 4, 8 \}. \]
-	Then we have for example
-	\[ \frac12 = \frac24 = \frac64 = \frac32. \]
-	So we need to have $\frac12=\frac32$ which is only true
-	with the first definition.
-
-	Of course, if $R$ is an integral domain (and $0\notin S$)
-	then this is a moot point.
-\end{example}
-
 The most important special case is the localization at a prime ideal.
-\begin{definition}
-	Let $R$ be a ring and $\pp$ a prime ideal.
-	Then $R_\pp$ is defined to be $S\inv R$ for $S = R\setminus\pp$.
-	We call this \vocab{localization at $\pp$}.
-	Addition is defined in the obvious way.
-\end{definition}
-\begin{ques}
-	Why is $S$ multiplicative closed in the above definition?
-\end{ques}
-Thus,
-\begin{moral}
-	If $R$ is functions on the space $\Spec R$,
-	we think of $R_\pp$ as rational quotients $f/g$ where $g(\pp) \neq 0$.
-\end{moral}
-In particular, if $R = \CC[x_1, \dots, x_n]$
-then this is precisely the definition of rational function from before!
 
 Now, we can define the sheaf as ``locally rational'' functions.
 This is done by a sheafification.
 First, let $\SF$ be the pre-sheaf of ``globally rational'' functions:
 i.e.\ we define $\SF(U)$ to be
 \[
-	\SF(U) = \left\{ 
+	\SF(U) = \left\{
 		\frac fg \mid f, g \in R
 		\text{ and } g(\pp) \neq 0 \; \forall \pp \in U
 	\right\}
@@ -270,10 +228,12 @@ i.e.\ we define $\SF(U)$ to be
 This is the localization of $R$ to the functions vanishing outside $U$.
 For every $\pp \in U$ we can view $f/g$ as an element in $R_\pp$
 (since $g(\pp) \ne 0$).
-As one might expect this is an isomorphism
+
+As promised:
 \begin{lemma}[Stalks of the ``globally rational'' pre-sheaf]
 	\label{lem:global_rational_stalk}
-	The stalk of $\SF$ defined above $\SF_\pp$ is isomorphic to $R_\pp$.
+	The stalk of $\SF$ defined above $\SF_\pp$ is isomorphic to
+	the localization $R_\pp$.
 \end{lemma}
 \begin{proof}
 	There is an obvious map $\SF_\pp \to R_\pp$ on germs by
@@ -293,12 +253,27 @@ As one might expect this is an isomorphism
 	the distinguished open set for $g$.
 \end{proof}
 
-Then, we set \[ \OO_{\Spec R} = \SF\sh. \]
+\begin{definition}
+	We now define the structure sheaf on $\Spec A$.
+	It is
+	\[ \OO_{\Spec R} = \SF\sh \]
+	i.e.\ the sheafification of the $\SF$ we just defined.
+\end{definition}
+\begin{theorem}
+	[Stalks are localizations]
+	We have \[ \OO_{\Spec A, \pp} \cong A_\pp. \]
+	In particular $\Spec A$ is a locally ringed space.
+\end{theorem}
+\begin{proof}
+	Stalks are preserved by sheafification,
+	sot his follows from the earlier lemma.
+\end{proof}
+
 In fact, we can even write out the definition of the sheafification,
 by viewing the germ at each point as an element of $R_\pp$.
 \begin{definition}
 	Let $R$ be a ring. Then $\Spec R$ is made into a ringed space by setting
-	\[ \OO_{\Spec R}(U) 
+	\[ \OO_{\Spec R}(U)
 		= \left\{ (f_\pp \in R_\pp)_{\pp \in U}
 		\text{ which are locally $f/g$} \right\}. \]
 	That is, it consists of sequence $(f_\pp)_{\pp \in U}$, with
@@ -306,6 +281,21 @@ by viewing the germ at each point as an element of $R_\pp$.
 	is a neighborhood $U_\pp$ and an $f,g \in R$ such that
 	$f_\qq = \frac fg \in R_\qq$ for all $\qq \in U_\pp$.
 \end{definition}
+
+\begin{example}
+	[Examples of structure sheaves]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii Let $X = \Spec \CC[x]$.
+		Then $\OO_X(U)$ is the set of regular functions on $U$
+		in the sense that we've seen before.
+		\ii Let $X = \Spec \ZZ$.
+		Let $U = X \setminus \{ (7), (11) \} = D(77)$.
+		Then $\OO_X(U)$ can be identified with the set of rational numbers
+		which have denominator of the form $7^x 11^y$.
+	\end{enumerate}
+\end{example}
+
 
 \section{Example: fat points}
 So, let me elaborate a little on the ``double point'' scheme
@@ -353,39 +343,35 @@ $\CC[x,y] / (x^2,y)$ is ``the origin with fuzz in the $x$-direction'',
 $\CC[x,y] / (x,y)^2$ is ``the origin with fuzz in all directions'',
 and so on and so forth.
 
-\section{Properties of affine schemes}
-Now that we're done defining an affine scheme,
-we state some important results about them.
+\section{The importance of distinguished open sets}
+\prototype{Let $X = \Spec \CC[x] = \Aff^1$ and $U = D(x)$,
+the line minus the origin.}
 
+We will now really hammer in the importance of
+the distinguished open sets.
+First the definition, analogous to before:
 \begin{definition}
-	For $g \in R$, we define the \vocab{localization of $R$ at $g$},
-	denoted $R_g$ to be $\{1, g, g^2, g^3, \dots\}\inv R$.
-	(Note that $\left\{ 1, g, g^2, \dots \right\}$ is multiplicatively closed.)
+	Let $f \in \Spec R$.
+	Then $D(f)$ is the set of $\pp$ such that $f(\pp) \neq 0$,
+	a \vocab{distinguished open set}.
 \end{definition}
-This is admittedly somewhat terrible notation, since $R_\pp$
-is the localization with multiplicative set $R \setminus \pp$,
-while $R_g$ is the localization with multiplicative set $\{1,g,g^2,\dots\}$;
-these two are quite different beasts!
+Open sets will have three absolutely crucial properties.
 
-\begin{example}
-	[Localization at an element]
-	Let $R = \CC[x,y,z]$ and let $g = x$.
-	Then
-	\[ R_g = \left\{ \frac{P(x,y,z)}{x^n} \mid
-		P \in \CC[x,y,z], \; n \ge 0 \right\}. \]
-\end{example}
+The first is topological:
 \begin{theorem}
-	[On the affine structure sheaf]
-	Let $R$ be a ring and $\Spec R$ the associated affine scheme.
-	\begin{enumerate}[(a)]
-		\ii Let $\pp$ be a prime ideal.
-		Then $\OO_{\Spec R, \pp} \cong R_\pp$.
-		\ii Let $D(g)$ be a distinguished open set.
-		Then $\OO_{\Spec S}(D(g)) \cong R_g$.
-	\end{enumerate}
-	\label{thm:affine_struct_master}
+	[Distinguished open sets form a base]
+	The distinguished open sets $D(f)$
+	form a basis for the Zariski topology:
 \end{theorem}
-This matches the results that we've seen when $\Spec R$ is an affine variety.
+\begin{proof}
+	\todo{to be written}
+\end{proof}
+
+The second critical fact is that we can compute the relevant sections.
+\begin{theorem}
+	Let $X = \Spec A$ and $f \in A$.
+	Then \[ \OO_X(D(f)) \cong A_f. \]
+\end{theorem}
 \begin{proof}
 	Part (a) follows by \Cref{lem:global_rational_stalk}
 	and \Cref{lem:pre_sheaf_stalk}.
@@ -400,187 +386,110 @@ This matches the results that we've seen when $\Spec R$ is an affine variety.
 \end{proof}
 
 \begin{example}
-	[Examples of structure sheaves]
-	\listhack
-	\begin{enumerate}[(a)]
-		\ii Let $X = \Spec \CC[x]$.
-		Then $\OO_X(U)$ is the set of regular functions on $U$
-		in the sense that we've seen before.
-		\ii Let $X = \Spec \ZZ$.
-		Let $U = X \setminus \{ (7), (11) \}$.
-		Then $\OO_X(U)$ can be identified with the set of rational numbers
-		which have denominator of the form $7^x 11^y$.
-	\end{enumerate}
+	[The punctured line is isomorphic to a hyperbola]
 \end{example}
+\todo{write}
 
-We now state the most important theorem.
-In fact, this theorem is the justification that our definition
-of a scheme is the correct one.
-\begin{theorem}
-	[Affine schemes and commutative rings are the same category]
-	Let $R$ and $S$ be rings.
-	There is a natural bijection between maps of schemes $\Spec R \to \Spec S$	
-	and ring homomorphisms $\psi : S \to R$.
-\end{theorem}
-\begin{proof}
-	First, we need to do the construction:
-	given a map of schemes $f : \Spec R \to \Spec S$ 
-	we need to construct a homomorphism $S \to R$.
-	This should be the easy part, because $f$ has a lot of data.
-	Indeed, recall that for every $U \subseteq \Spec S$
-	there is supposed to be a map
-	\[ f^\ast_U : \OO_{\Spec S} (U) \to \OO_{\Spec R}(f\pre(U)). \]
-	If we take $U$ to be the entire space $\Spec S$ we now have a ring homomorphism
-	\[ S = \OO_{\Spec S} (\Spec S) \to \OO_{\Spec R} (\Spec R) = R. \]
-	which is one part of the construction.
-
-	The more involved direction is building from a homomorphism
-	$\psi : S \to R$ a map $f : \Spec R \to \Spec S$.
-	We define it by:
-	\begin{itemize}
-		\ii On points, $f(\pp) = \psi\pre(\pp)$ for each prime ideal $\pp$.
-		One can check $\psi\pre(\pp)$ is indeed prime
-		and that $f$ is continuous in the Zariski topology.
-		\ii We first construct a map on the stalks of the sheaf as follows:
-		for every prime ideal $\qq$ in $R$, let $\psi\im(\qq) = \pp$ be its image
-		(so that $f(\qq) = \pp$) and consider the map
-		\[ \psi_\qq : \OO_{\Spec S, \qq} = S_{\qq}
-			\to R_{\psi\im(\qq)} = \OO_{\Spec R, \psi\im(\qq)}
-			\quad\text{by}\quad f/g \mapsto \psi(f)/\psi(g). \]
-		Again, one can check this is well-defined and a map of local rings.
-		This is called the localization of $\psi$ at $\qq$.
-		\ii Finally, we use the above map to construct an
-		$f^\ast_U : \OO_{\Spec S}(U) \to \OO_{\Spec R}(f\pre(U))$
-		for every open set  $U \subseteq \Spec S$.
-		Since $\OO_{\Spec S}$ is a sheafification, we think of its
-		sections as sequences of compatible germs $(g_\qq)_{\qq \in U}$
-		and then map it via the map $\psi_\qq$ above.
-	\end{itemize}
-	One then has to check that everything is well-defined.
-	This is left as an exercise to the diligent reader;
-	for an actual proof see \cite[Proposition 6.3.2]{ref:vakil}.
-\end{proof}
-\begin{remark}
-	Categorically, this says that the ``global section functor''
-	$\Spec R \mapsto \OO_{\Spec R}(R) = R$ is a fully faithful functor
-	from the category $\catname{AffSch}$ to the category $\catname{CRing}$.
-	(It is also essentially surjective on objects.)
-\end{remark}
-To be more philosophical,
+The previous two results answer an important prayer:
+how we can forget about sheafification.
+That's because the distinguished open sets form a base,
+with $D(f) \cap D(g) = D(fg)$,
+and because we know $\OO_X(D(f))$ for every $f$,
+we have ourselves a sheaf on a base.
+Therefore:
 \begin{moral}
-	The category of affine schemes and the
-	category of commutative rings are \emph{exactly the same},
-	down to the morphisms between two pairs of objects.
+	We can compute any section $\OO_X(U)$ in practice
+	by using distinguished open sets.
 \end{moral}
+And thus we can forget about the original definition of $\OO_X$
+which involved sheafification.
+Here is a classical example.
+\begin{example}
+	[Punctured plane]
+\end{example}
+\todo{write me}
 
-\section{Schemes}
-\begin{definition}
-	A \vocab{scheme} is a locally ringed space $(X, \OO_X)$
-	with an open cover $\{U_\alpha\}$ of $X$
-	such that each pair $(U_\alpha, \OO_X \restrict{U_\alpha})$
-	is isomorphic to an affine scheme.
-\end{definition}
-Hooray!
 
-\section{Projective scheme}
-\prototype{Projective varieties, in the same way.}
-The most important class of schemes which are not affine are
-\emph{projective} schemes.
-The complete the obvious analogy:
-\[
-	\frac{\text{Affine variety}}{\text{Projective variety}}
-	= 
-	\frac{\text{Affine scheme}}{\text{Projective scheme}}.
-\]
-Let $S$ be \emph{any} (commutative) graded ring, like $\CC[x_0, \dots, x_n]$.
-\begin{definition}
-	We define $\Proj S$, the \vocab{projective scheme over $S$}:
+The third final important fact is that
+$D(f)$ will actually be \emph{isomorphic} to $\Spec A_f$
+as a locally ringed space,
+just like the line minus the origin is isomorphic to the hyperbola.
+We can't make this precise yet,
+because we have not yet discussed morphisms of locally ringed space.
+However, you can already see this at the level of topological spaces;
+see \Cref{prob:homeomorphism}.
+
+\section{Recap, and a gazillion examples}
+To recap, let $A$ be a ring.
+\begin{itemize}
+	\ii We define $X = \Spec A$ to be the set of prime ideals of $A$.
 	\begin{itemize}
-		\ii As a set, $\Proj S$ consists of \emph{homogeneous prime ideals}
-		$\pp$ which do not contain $S^+$.
-		\ii If $I \subseteq S$ is homogeneous, then
-		we let $\Vp(I) = \{ \pp \in \Proj S \mid I \subseteq \pp \}$.
-		Then the \vocab{Zariski topology} is imposed by declaring 
-		sets of the form $\Vp(I)$ to be closed.
-		\ii We now define a pre-sheaf $\SF$ on $\Proj S$ by
-		\[ \SF(U) = 
-			\left\{ \frac{f}{g} \mid 
-			g(\pp) \neq 0 \; \forall \pp \in U \text{ and }
-			\deg f = \deg g \right\}.
-		\]
-		In other words, the rational functions are quotients $f/g$
-		where $f$ and $g$ are \emph{homogeneous of the same degree}.
-		Then we let \[ \OO_{\Proj S} = \SF\sh \] be the sheafification.
+		\ii The maximal ideals are the ``closed points'' we are used to,
+		but the prime ideals are ``generic points''.
 	\end{itemize}
-\end{definition}
-\begin{definition}
-	The \vocab{distinguished open sets} $D(f)$ of the $\Proj S$
-	are defined as $\left\{ \pp \in \Proj S : f(\pp) \neq 0 \right\}$,
-	as before; these form a basis for the Zariski topology of $\Proj S$.
-\end{definition}
-Now, we want analogous results as we did for affine structure sheaf.
-So, we define a slightly modified localization:
-\begin{definition}
-	Let $S$ be a graded ring.
-	\begin{enumerate}[(i)]
-		\ii For a prime ideal $\pp$, let
-		\[ S_{(\pp)} = \left\{ \frac fg \mid g(\pp) \neq 0 \text{ and }
-			\deg f = \deg g \right\} \]
-		denote the elements of $S_\pp$ with ``degree zero''.
-		\ii For any homogeneous $g \in S$ of degree $d$, let
-		\[ S_{(g)} = \left\{ \frac{f}{g^r} \mid 
-			\deg f = r \deg g \right\} \]
-		denote the elements of $S_g$ with ``degree zero''.
-	\end{enumerate}
-\end{definition}
 
-\begin{theorem}
-	[On the projective structure sheaf]
-	Let $S$ be a graded ring and let $\Proj S$ the associated projective scheme.
-	\begin{enumerate}[(a)]
-		\ii Let $\pp \in \Proj S$.
-		Then $\OO_{\Proj S, \pp} \cong S_{(\pp)}$.
-		\ii Suppose $g$ is homogeneous with $\deg g > 0$. Then
-		\[ D(g) \cong \Spec S_{(g)} \]
-		as locally ringed spaces.
-		In particular, $\OO_{\Proj S}(D(g)) \cong S_{(g)}$.
-	\end{enumerate}
-\end{theorem}
-\begin{ques}
-	Conclude that $\Proj S$ is a scheme.
-\end{ques}
+	\ii We equip $\Spec A$ with the Zariski topology by declaring
+	$\VV(I)$ to be the closed sets, for ideals $I \subseteq A$.
+	\begin{itemize}
+		\ii The distinguished open sets $D(f)$,
+		the complements of $\VV(f)$, form a topological basis.
+	\end{itemize}
 
-Of course, the archetypal example is that
-\[ \Proj \CC[x_0, x_1, \dots, x_n] / I \]
-corresponds to the projective subvariety of $\CP^n$
-cut out by $I$ (when $I$ is radical).
-In the general case of an arbitrary ideal $I$, we
-call such schemes \vocab{projective subscheme} of $\CP^n$.
-For example, the ``double point'' in  $\CP^1$
-is given by $\Proj[x_0,x_1]/(x_0^2)$.
+	\ii Finally, we defined a sheaf $\OO_X$.
+	We set up the definition such that
+	\begin{itemize}
+		\ii $\OO_{X,\pp} = A_\pp$:
+		the stalks are localizations at a prime.
+		\ii $\OO_{X}(D(f)) = A_f$:
+		at distinguished open sets $D(f)$,
+		we get localizations too.
+	\end{itemize}
+	Since $D(f)$ is a basis,
+	these two properties lets us explicitly compute $\OO_X(U)$
+	for any open set $U$,
+	so we don't have to resort to the definition using sheafification.
+\end{itemize}
 
-\begin{remark}
-	No comment yet on what the global sections of $\OO_{\Proj S}(\Proj S)$ are.
-	(The theorem above requires $\deg g > 0$, so we cannot just take $g=1$.)
-	One might hope that in general $\OO_{\Proj S}(\Proj S) \cong S^0$
-	in analogy to our complex projective varieties, but
-	one needs some additional assumptions on $S$ for this to hold.
-\end{remark}
+We now give an enormous list of examples.
+Each example gets its own subsection,
+rather than having page-long orange boxes.
 
-\section{Where to go from here}
-This chapter concludes the long setup for the definition of a scheme.
-Unfortunately, with respect to algebraic geometry this is as much as I have
-the patience or knowledge to write about.
-So, if you want to actually see how schemes are used in ``real life'',
-you'll have to turn elsewhere.
+\subsection{$\Spec \CC[x]$}
+\subsection{$\Spec \RR$}
+\subsection{$\Spec \ZZ$}
+\subsection{$\Spec \Zc{60}$}
+\subsection{$\Spec k[x]/(x^2)$}
+\subsection{$\Spec k[x]_{(x)}$}
 
-A good reference I happily recommend is \cite{ref:gathmann}.
-More intense is \cite{ref:vakil}.
-See \Cref{ch:refs} for further remarks.
+
+\section{Two mandatory algebra exercises}
+
+\todo{write this}
+The previous example illustrates an important observation:
+\begin{exercise}
+	Let $I \subsetneq R$ be a proper ideal.
+	Construct a bijection between the maximal ideals of $R$ containing $I$,
+	and the maximal ideals of $R/I$.
+\end{exercise}
+
+(\cite{ref:vakil} labels this exercise as
+``Essential Algebra Exercise (Mandatory if you haven't done it before)''.)
+
+
+\section{Irreducible closed sets}
+biject them to generic points
 
 \section\problemhead
+
 \begin{problem}
-	Describe the points of $\Spec \RR[x,y]$.
+	\label{prob:homeomorphism}
+	Let $A$ be a ring, $X = \Spec A$ and $f \in A$.
+	Show that $\Spec A_f$ and $D(f) \subset X$ are homeomorphic,
+	as topological spaces.
+\end{problem}
+
+\begin{problem}
+	Describe the points of $\Spec \RR[x]$.
 	\begin{hint}
 		Galois conjugates.
 	\end{hint}
@@ -595,18 +504,6 @@ See \Cref{ch:refs} for further remarks.
 		Appeal to \Cref{prob:finite_sheaf}.
 	\end{hint}
 \end{dproblem}
-
-\begin{problem}
-	Given an affine scheme $X = \Spec R$,
-	show that there is a unique morphism of schemes $X \to \Spec \ZZ$,
-	and describe where it sends points of $X$.
-	\begin{hint}
-		Use the proof that $\catname{AffSch} \simeq \catname{CRing}$.
-	\end{hint}
-	\begin{sol}
-		$\pp$ gets sent to the characteristic of the field $\OO_{X,\pp} / \mm_{X,\pp}$.
-	\end{sol}
-\end{problem}
 
 \begin{problem}
 	[From Andrew Critch]

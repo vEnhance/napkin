@@ -66,7 +66,9 @@ So, for example
 	= \VV(x-3, y-4)
 	= \VV(x-3, y-x-1).
 	\]
-That's a little annoying, because in an ideal world we would have \emph{one} name
+That's a little annoying, because in an ideal\footnote{Pun not intended
+	but left for amusement value.}
+world we would have \emph{one} name
 for every variety.
 Let's see if we can achieve this.
 
@@ -155,9 +157,9 @@ And that's true in general.
 \begin{ques}
 	Show that $\sqrt I$ is always radical.
 \end{ques}
-\begin{ques}
-	Prime ideals are radical.
-\end{ques}
+\begin{exercise}
+	Show that prime ideals are radical.
+\end{exercise}
 Useful equivalent definition
 (more in line with the number theory example),
 which we quote without proof:
@@ -176,8 +178,7 @@ With this, we obtain a theorem called Hilbert's Nullstellensatz.
 	Given an affine variety $V = \VV(I)$,
 	the set of polynomials which vanish
 	on all points of $V$ is precisely $\sqrt I$.
-	Thus if $I$ and $J$ are ideals in $\CC[x_1, \dots, x_n]$,
-	then
+	Thus if $I$ and $J$ are ideals in $\CC[x_1, \dots, x_n]$, then
 	\[ \VV(I) = \VV(J) \text{ if and only if $\sqrt I = \sqrt J$}. \]
 \end{theorem}
 In other words
@@ -278,6 +279,10 @@ we can restrict our attention to the case of \emph{irreducible} varieties;
 	as the nontrivial union of two varieties $V = V_1 \cup V_2$.
 	(Here nontrivial means that $V_1, V_2 \subsetneq V$.)
 \end{definition}
+\begin{abuse}
+	Warning: in other literature,
+	irreducible is part of the definition of variety.
+\end{abuse}
 
 Hence, the irreducible varieties of $\Aff^1$ are
 \begin{enumerate}[(i)]
@@ -347,7 +352,8 @@ Here are a few.
 	Then $(f)$ is a prime ideal! Here $\VV(I)$ is a ``degree one curve''.
 \end{enumerate}
 
-By using some polynomial algebra (again you're welcome to check this; Euclidean algorithm),
+By using some polynomial algebra
+(again you're welcome to check this; Euclidean algorithm),
 these are in fact the only prime ideals of $\CC[x,y]$.
 Here's a picture.
 
@@ -358,9 +364,9 @@ Here's a picture.
 		graph.yaxis("$y$", -4, 4);
 
 		real f (real x) { return x*x; }
-		draw(graph(f,-2,2,operator ..));
-		label("$\mathcal V(y-x^2)$", (1,1), dir(-45));
-		dot("$\mathcal V(x-1,y+2)$", (1,-2), dir(-45));
+		draw(graph(f,-2,2,operator ..), blue);
+		label("$\mathcal V(y-x^2)$", (1,1), dir(-45), blue);
+		dot("$\mathcal V(x-1,y+2)$", (1,-2), dir(-45), red);
 	\end{asy}
 \end{center}
 
@@ -403,30 +409,29 @@ are maximal, since the quotient
 is a field.
 The question is: are all maximal ideals of this form?
 
-The answer is in the affirmative.  It's equivalent to:
+The answer is in the affirmative.
+%It's equivalent to:
+%\begin{theorem}
+%	[Weak Nullstellensatz, phrased as nonempty varieties]
+%	Let $I \subsetneq \CC[x_1, \dots, x_n]$ be a proper ideal.
+%	Then the variety $\VV(I) \neq \varnothing$.
+%\end{theorem}
+% From this we can deduce that all maximal ideals are of the above form.
 \begin{theorem}
-	[Weak Nullstellensatz]
-	Let $I \subsetneq \CC[x_1, \dots, x_n]$ be a proper ideal.
-	Then the variety $\VV(I) \neq \varnothing$.
-\end{theorem}
-The proof of this is surprisingly pernicious,
-so we won't include it here;
-see \cite[\S7.4.3]{ref:vakil}.
-
-From this we can deduce that all maximal ideals are of the above form.
-\begin{theorem}
-	[Maximal ideals]
+	[Weak Nullestellensatz, phrased with maximal ideals]
 	Every maximal ideal of $\CC[x_1, \dots, x_n]$
 	is of the form $\VV(x_1-a_1, \dots, x_n-a_n)$.
 \end{theorem}
-\begin{proof}
-	[WN implies MI]
-	Let $J$ be a maximal ideal, and consider the corresponding variety $V = \VV(J)$.
-	By WN, it contains some point $p=(a_1, \dots, a_n)$.
-	Now, define $I = (x_1-a_1, \dots, x_n-a_n)$; this ideal contains all polynomials
-	vanishing at $p$, so necessarily $J \subseteq I \subsetneq \CC[x_1, \dots, x_n]$.
-	Then by maximality of $J$ we have $J=I$.
-\end{proof}
+The proof of this is surprisingly pernicious,
+so we won't include it here; see \cite[\S7.4.3]{ref:vakil}.
+%\begin{proof}
+%	[WN implies MI]
+%	Let $J$ be a maximal ideal, and consider the corresponding variety $V = \VV(J)$.
+%	By WN, it contains some point $p=(a_1, \dots, a_n)$.
+%	Now, define $I = (x_1-a_1, \dots, x_n-a_n)$; this ideal contains all polynomials
+%	vanishing at $p$, so necessarily $J \subseteq I \subsetneq \CC[x_1, \dots, x_n]$.
+%	Then by maximality of $J$ we have $J=I$.
+%\end{proof}
 Again this uses the fact that $\CC$ is algebraically closed. Thus:
 \begin{moral}
 	Over $\CC$, maximal ideals correspond to single points.
@@ -441,17 +446,17 @@ of affine varieties:
 		radical ideal & affine variety \\
 		prime ideal & irreducible variety \\
 		maximal ideal & single point \\
-		any ideal & scheme \\ \hline
+		any ideal & scheme??? \\ \hline
 	\end{tabular}
 \end{center}
 
 There's one thing I haven't talked about: what's the last entry?
 
-\section{Why schemes?}
+\section{Motivating schemes with non-radical ideals}
 One of the most elementary motivations for the scheme
 is that we would like to use them to count multiplicity.
 That is, consider the intersection
-\[ \VV(y-x^2) \cap \VV(y) \subseteq \Aff^2 \] 
+\[ \VV(y-x^2) \cap \VV(y) \subseteq \Aff^2 \]
 This is the intersection of the parabola with the tangent $x$-axis,
 this is the green dot below.
 
@@ -473,7 +478,7 @@ this is the green dot below.
 
 Unfortunately, as a variety, it is just a single point!
 However, we want to think of this as a ``double point'':
-after all, in the obvious sense it has multiplicity $2$.
+after all, in some sense it has multiplicity $2$.
 You can detect this when you look at the ideals:
 \[ (y-x^2) + (y) = (x^2,y) \]
 and thus, if we blithely ignore taking the radical, we get
@@ -485,17 +490,36 @@ a variety, which (at the end of the day) is really a bunch of points.
 This refined object is the \emph{scheme}.
 
 \section\problemhead
+\todo{some actual computation here would be good}
 
 \begin{problem}
 	Show that a \emph{real} affine variety $V \subseteq \Aff_\RR^n$
 	can always be written in the form $\VV(f)$.
 	\begin{hint}
-		Squares.
+		Squares are nonnegative.
 	\end{hint}
 	\begin{sol}
 		If $V = \VV(I)$ with $I = (f_1, \dots, f_m)$
 		(as usual there are finitely many polynomials since $\RR[x_1, \dots, x_n]$ is Noetherian)
 		then we can take $f = f_1^2 + \dots + f_m^2$.
+	\end{sol}
+\end{problem}
+
+\begin{problem}
+	[Complex varieties can't be empty]
+	Prove that if $I$ is a proper ideal in $\CC[x_1, \dots, x_n]$
+	then $\VV(I) \ne \varnothing$.
+	\begin{hint}
+		This is actually an equivalent formulation
+		of the Weak Nullestellensatz.
+	\end{hint}
+	\begin{sol}
+		Let $I$ be an ideal, and let $\mm$ be a maximal ideal contained in it.
+		(If you are worried about the existence of $\mm$,
+		it follows from Krull's Theorem, \Cref{prob:krull_max_ideal}).
+		Then $\mm = (x_1 - a_1, \dots, x_n - a_n)$ by Weak Nullstellensatz.
+		Consequently, $(a_1, \dots, a_n)$ is the unique point of $\VV(\mm)$,
+		and hence this point is also in $\VV(I)$.
 	\end{sol}
 \end{problem}
 

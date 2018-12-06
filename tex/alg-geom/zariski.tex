@@ -16,7 +16,7 @@ Rather than thinking of them as an object locked into an ambient space $\Aff^n$
 we are instead going to try to make them into an object in their own right.
 Specifically, for us an affine variety will become a \emph{topological space}
 equipped with a \emph{ring of functions} for each of its open sets:
-this is why we call it a \vocab{ringed space}.
+this is why we call it a \textbf{ringed space}.
 
 The bit about the topological space is not too drastic.
 The key insight is the addition of the ring of functions.
@@ -110,11 +110,14 @@ Thus, the picture of a ``typical'' open set $\Aff^1$ might be
 It's everything except a few marked points!
 
 \begin{example}[Zariski topology on $\Aff^2$]
-	Similarly, in $\Aff^2$, the interesting closed sets are going to consist of finite unions
-	(possibly empty) of
+	Similarly, in $\Aff^2$,
+	the interesting closed sets are going to consist
+	of finite unions (possibly empty) of
 	\begin{itemize}
-		\ii Closed curves, like $\VV(y-x^2)$ (which is a parabola), and
-		\ii Single points, like $\VV(x-3,y-4)$ (which is the point $(3,4)$).
+		\ii Closed curves,
+		like $\VV(y-x^2)$ (which is a parabola), and
+		\ii Single points, like $\VV(x-3,y-4)$
+		(which is the point $(3,4)$).
 	\end{itemize}
 	Of course, the entire space $\Aff^2 = \VV(0)$ and the empty set $\varnothing = \VV(1)$
 	are closed sets.
@@ -123,8 +126,8 @@ It's everything except a few marked points!
 	minus a finite collection of points and one-dimensional curves.
 \end{example}
 \begin{ques}
-	Draw a picture (to the best of your artistic ability) of a ``typical''
-	open set in $\Aff^2$.
+	Draw a picture (to the best of your artistic ability)
+	of a ``typical'' open set in $\Aff^2$.
 \end{ques}
 
 All this is to say
@@ -134,12 +137,18 @@ All this is to say
 This is an important difference than what you're used to in topology.
 To be very clear:
 \begin{itemize}
-	\ii In the past, if I said something like ``has so-and-so property in a neighborhood of point $p$'',
-	one thought of this as saying ``is true in a small region around $p$''.
-	\ii In the Zariski topology, ``has so-and-so property in a neighborhood of point $p$'' should be thought
-	of as saying ``is true for virtually all points, other than those on certain curves''.
+	\ii In the past, if I said something like
+	``has so-and-so property in an open neighborhood of point $p$'',
+	one thought of this as saying
+	``is true in a small region around $p$''.
+	\ii In the Zariski topology,
+	``has so-and-so property in an open neighborhood of point $p$''
+	should be thought of as saying ``is true for virtually all points,
+	other than those on certain curves''.
 \end{itemize}
-Indeed, ``neighborhood'' is no longer a very accurate description.
+Indeed, ``open neighborhood'' is no longer really a accurate description.
+Nonetheless, in many pictures to follow,
+it will still be helpful to draw open neighborhoods as circles.
 
 It remains to verify that as I've stated it, the closed sets actually form a topology.
 That is, I need to verify briefly that
@@ -148,15 +157,18 @@ That is, I need to verify briefly that
 	\ii Intersections of closed sets (even infinite) are still closed.
 	\ii Finite unions of closed sets are still closed.
 \end{itemize}
-Well, closed sets are the same as varieties, so we already know this!
+Well, closed sets are the same as affine varieties,
+so we already know this!
 
 \section{The Zariski topology on affine varieties}
-\prototype{If $V = \VV(y-x^2)$ is a parabola, then $V$ minus $(1,1)$ is open in $V$.
-Also, the plane minus the origin is $D(x) \cup D(y)$.}
+\prototype{If $V = \VV(y-x^2)$ is a parabola,
+	then $V$ minus $(1,1)$ is open in $V$.
+	Also, the plane minus the origin is $D(x) \cup D(y)$.}
 
 As we said before, by considering a variety $V$ as a subspace of $\Aff^n$
 it inherits the Zariski topology.
-One should think of an open subset of $V$ as ``$V$ minus a few Zariski-closed sets''.
+One should think of an open subset of $V$ as
+``$V$ minus a few Zariski-closed sets''.
 For example:
 \begin{example}[Open set of a variety]
 	Let $V = \VV(y-x^2) \subseteq \Aff^2$ be a parabola,
@@ -181,14 +193,17 @@ For example:
 	Note that on the other hand the set $U$ is \emph{not} open in $\Aff^2$.
 \end{example}
 
-We'll finish by giving a nice basis of the Zariski topology.
+We will go ahead and introduce now a definition
+that will be very useful later.
 \begin{definition}
 	Given $V \subseteq \Aff^n$ an affine variety and $f \in \CC[x_1, \dots, x_n]$,
-	we define the \vocab{distinguished open set} $D(f)$ to be the open set in $V$
+	we define the \vocab{distinguished open set}
+	$D(f)$ to be the open set in $V$
 	of points not vanishing on $f$:
 	\[ D(f) = \left\{ p \in V \mid f(p) \neq 0 \right\} = V \setminus \VV(f). \]
 \end{definition}
-\cite{ref:vakil} suggests remembering the notation $D(f)$ as ``doesn't-vanish set''.
+In \cite{ref:vakil}, Vakil suggests remembering the
+notation $D(f)$ as ``doesn't-vanish set''.
 \begin{example}
 	[Examples of (unions of) distinguished open sets]
 	\listhack
@@ -196,15 +211,18 @@ We'll finish by giving a nice basis of the Zariski topology.
 		\ii If $V = \Aff^1$ then $D(x)$ corresponds to a line minus a point.
 		\ii If $V = \VV(y-x^2) \subseteq \Aff^2$,
 		then $D(x-1)$ corresponds to the parabola minus $(1,1)$.
-		\ii If $V = \Aff^2$, then $D(x) \cup D(y) = \Aff^2 \setminus \{ (0,0) \}$ is the punctured plane.
+		\ii If $V = \Aff^2$, then
+		$D(x) \cup D(y) = \Aff^2 \setminus \{ (0,0) \}$
+		is the punctured plane.
 	\end{enumerate}
 \end{example}
+
+% There used to be an exercise here about D(f)
+% being a distinguished base
+
 \begin{ques}
-	Show that every open set of a $V \subseteq \Aff^n$
-	can be written as a finite union of distinguished open sets.
-\end{ques}
-\begin{ques}
-	Give an example of an open set of $\Aff^2$ which is not a distinguished open set.
+	Give an example of an open set of $\Aff^2$
+	which is not a distinguished open set.
 	(There was one above already.)
 \end{ques}
 

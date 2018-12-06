@@ -1,0 +1,283 @@
+\chapter{Locally ringed spaces and schemes}
+
+\section{Morphisms of sheaves}
+First, recall that a sheaf is a contravariant functor (pre-sheaf)
+with extra conditions. In light of this, it is not hard to guess
+the definition of a morphism of pre-sheaves:
+\begin{definition}
+	A \vocab{morphism of (pre-)sheaves} $\alpha : \SF \to \SG$ on the same
+	space $X$ is a \textbf{natural transformation} of the underlying functors.
+	Isomorphism of sheaves is defined in the usual way.
+\end{definition}
+\begin{ques}
+	Show that this amounts to: for each $U \subseteq X$ we need to specify
+	a morphism $\alpha_U : \SF(U) \to \SG(U)$ such that the diagram
+	\begin{diagram}
+		\SF(U_2) & \rTo^{\alpha_{U_2}} & \SG(U_2) \\
+		\dTo^{\res_{U_1, U_2}} && \dTo_{\res_{U_1, U_2}} \\
+		\SF(U_1) & \rTo_{\alpha_{U_1}} & \SG(U_1)
+	\end{diagram}
+	commutes any time that $U_1 \subseteq U_2$.
+\end{ques}
+However, in the sheaf case we like stalks more than sections because
+they are theoretically easier to think about.
+And in fact:
+\begin{proposition}
+	[Morphisms determined by stalks]
+	A morphism of sheaves $\alpha : \SF \to \SG$ induces a morphism of stalks
+	\[ \alpha_p : \SF_p \to \SG_p \]
+	for every point $p \in X$.
+	Moreover, the sequence $(\alpha_p)_{p \in X}$ determines $\alpha$ uniquely.
+\end{proposition}
+\begin{proof}
+	The morphism $\alpha_p$ itself is just
+	$(s, U) \xmapsto{\alpha_p} (\alpha_U(s), U)$.
+	\begin{ques}
+		Show this is well-defined.
+	\end{ques}
+	Now suppose $\alpha , \beta : \SF \to \SG$ satisfy $\alpha_p = \beta_p$
+	for every $p$. We want to show $\alpha_U(s) = \beta_U(s)$
+	for every $s \in \SF(U)$.
+	\begin{ques}
+		Verify this using the description of sections
+		as sequences of germs. \qedhere
+	\end{ques}
+\end{proof}
+Thus a morphism of sheaves can be instead modelled as a morphism
+of all the stalks. We will see later on that this viewpoint is quite useful.
+
+\section{Local rings, and locally ringed spaces}
+\prototype{Smooth functions $f$ on $X \subseteq \RR^n$ have invertible
+germs at $p$ unless $f(p) = 0$.}
+
+\section{Morphisms of (locally) ringed spaces}
+Finally, it remains to define a morphism of locally ringed space.
+To do this we have to build up in several steps.
+
+\begin{remark}
+	I always secretly felt that one can probably get away with just
+	suspending belief and knowing ``there is a reasonable definition
+	of morphisms of locally ringed spaces''.
+	Daring readers are welcome to try this approach.
+\end{remark}
+
+\subsection*{Morphisms of ringed spaces}
+We talked about the morphisms of locally ringed spaces
+when we discussed projective varieties.
+We want to copy the same construction here.
+
+The idea was as follows: to ``preserve'' the structure via $f : X \to Y$,
+we took every regular function on $Y$ and made it into a function on $X$
+by composing it with $f$.
+This gave us a ring homomorphism $f^\ast : \OO_Y(U) \to \OO_X(f\pre(U))$
+for every open set $U$ in $Y$.
+
+Unfortunately, in the general case we don't have a notion of function,
+so ``composing by $f$'' doesn't make sense.
+The solution to this is to \emph{include all the ring homomorphisms $f^\ast$}
+in the data for a morphism $f : X \to Y$;
+we package this information using the morphism of sheaves.
+
+Here are the full details.
+Up above we only defined a morphism of sheaves on the same space,
+while right now we have a sheaf on $X$ and $Y$.
+So we have to first ``push'' the sheaf on $X$ into a sheaf on $Y$ by
+\[ U \mapsto \OO_X\left( f\pre(U) \right). \]
+This is important enough to have a name:
+\begin{definition}
+	Let $\SF$ be a sheaf on $X$, and $f : X \to Y$ a continuous map.
+	The \vocab{pushforward sheaf} $f_\ast \SF$ on $Y$ is defined by
+	\[ (f_\ast \SF)(U) = \SF(f\pre(U)) \qquad \forall U \subseteq Y. \]
+	This makes sense, since $f\pre(U)$ is open in $X$.
+\end{definition}
+Picture:
+\begin{diagram}
+	X && \rTo^f & Y && X && \rTo^f & Y \\
+	\Opens(X)\op && \lTo^{f\pre} & \Opens(Y)\op
+	&& f\pre(U) && \lMapsto^{f\pre} & U & \\
+	& \rdMapsto(3,2)_{\SF} && \dMapsto_{f_\ast \SF}
+		&& & \rdMapsto(3,2)_{\SF} && \dMapsto_{f_\ast \SF} & \\
+	&&& \catname{Rings}
+		&& && \SF(f\pre(U)) & = (f_\ast \SF)(U) & \in \catname{Rings}
+\end{diagram}
+I haven't actually checked that $f_\ast \SF$ is a sheaf
+(as opposed to a pre-sheaf), but this isn't hard to do.
+Also, as $f\pre$ is a functor $\Opens(Y)\op \to \Opens(X)\op$,
+the pushforward $f_\ast\SF$ is
+just the composition of these two functors.
+\begin{ques}
+	Technically $f_\ast\SF$ is supposed to be a
+	functor $\Opens(Y)\op \to \catname{Rings}$, so it also needs
+	to come with restriction arrows. What are they?
+\end{ques}
+
+Now that we moved both sheaves onto $Y$,
+we mimic the construction with quasi-projective varieties
+by asking for a sheaf morphism from $\OO_Y$ to $f_\ast \OO_X$:
+\begin{definition}
+	A \vocab{morphism of ringed spaces} $f : (X, \OO_X) \to (Y, \OO_Y)$
+	consists of a continuous map of topological spaces $f : X \to Y$,
+	plus additionally a morphism of sheaves $f^\ast : \OO_Y \to f_\ast \OO_X$.
+\end{definition}
+\begin{exercise}
+	(Mandatory) Check that this coincides with our work
+	on baby ringed spaces if we choose $f^\ast$ to be the pullback.
+\end{exercise}
+
+\subsection*{Morphisms of locally ringed spaces}
+Last step!
+Suppose now that $(X, \OO_X)$ and $(Y, \OO_Y)$ are locally ringed spaces.
+Thus we need to deal with some information about the stalks.
+
+Given a morphism of ringed spaces $f : (X, \OO_X) \to (Y, \OO_Y)$,
+we can actually use the $f^\ast_U$ above to induce maps on the stalks,
+as follows. For a point $p \in X$, construct the map
+\begin{diagram}
+	f^\ast_p :& \OO_{Y, f(p)} & \rTo && \OO_{X, f(p)} \\
+	& (s, U) & \rMapsto && (f^\ast_U(s), f\pre(U)).
+\end{diagram}
+where $s \in \OO_Y(U)$.
+
+\begin{definition}
+	Let $R$ and $S$ be local rings with maximal ideals $\mm_R$ and $\mm_S$.
+	A \vocab{morphism of local rings} is a homomorphism of rings
+	$\psi : R \to S$ such that $\psi\pre(\mm_S) = \mm_R$.
+\end{definition}
+\begin{definition}
+	A \vocab{morphism of locally ringed spaces}
+	is a morphism of ringed spaces $f : (X, \OO_X) \to (Y, \OO_Y)$ such that
+	for every point $p$ the induced map of stalks is a morphism of local rings.
+\end{definition}
+Recalling that $\mm_{X,p}$ is the maximal ideal of $\OO_X$ at $p$,
+the new condition is saying that
+\[ (f^\ast_p)\pre (\mm_{X,p}) = \mm_{Y,f(p)}. \]
+Concretely, if $g$ is a function vanishing on $f(p)$,
+then its pullback $f^\ast_U(g)$ vanishes on $p$.
+
+This completes the definition of a morphism of locally ringed spaces.
+Isomorphisms of (locally) ringed spaces are defined in the usual way.
+
+
+\section{Schemes}
+\begin{definition}
+	A \vocab{scheme} is a locally ringed space $(X, \OO_X)$
+	with an open cover $\{U_\alpha\}$ of $X$
+	such that each pair $(U_\alpha, \OO_X \restrict{U_\alpha})$
+	is isomorphic to an affine scheme.
+\end{definition}
+Hooray!
+
+
+\section{Projective scheme}
+\prototype{Projective varieties, in the same way.}
+The most important class of schemes which are not affine are
+\emph{projective} schemes.
+The complete the obvious analogy:
+\[
+	\frac{\text{Affine variety}}{\text{Projective variety}}
+	= 
+	\frac{\text{Affine scheme}}{\text{Projective scheme}}.
+\]
+Let $S$ be \emph{any} (commutative) graded ring, like $\CC[x_0, \dots, x_n]$.
+\begin{definition}
+	We define $\Proj S$, the \vocab{projective scheme over $S$}:
+	\begin{itemize}
+		\ii As a set, $\Proj S$ consists of \emph{homogeneous prime ideals}
+		$\pp$ which do not contain $S^+$.
+		\ii If $I \subseteq S$ is homogeneous, then
+		we let $\Vp(I) = \{ \pp \in \Proj S \mid I \subseteq \pp \}$.
+		Then the \vocab{Zariski topology} is imposed by declaring 
+		sets of the form $\Vp(I)$ to be closed.
+		\ii We now define a pre-sheaf $\SF$ on $\Proj S$ by
+		\[ \SF(U) = 
+			\left\{ \frac{f}{g} \mid 
+			g(\pp) \neq 0 \; \forall \pp \in U \text{ and }
+			\deg f = \deg g \right\}.
+		\]
+		In other words, the rational functions are quotients $f/g$
+		where $f$ and $g$ are \emph{homogeneous of the same degree}.
+		Then we let \[ \OO_{\Proj S} = \SF\sh \] be the sheafification.
+	\end{itemize}
+\end{definition}
+\begin{definition}
+	The \vocab{distinguished open sets} $D(f)$ of the $\Proj S$
+	are defined as $\left\{ \pp \in \Proj S : f(\pp) \neq 0 \right\}$,
+	as before; these form a basis for the Zariski topology of $\Proj S$.
+\end{definition}
+Now, we want analogous results as we did for affine structure sheaf.
+So, we define a slightly modified localization:
+\begin{definition}
+	Let $S$ be a graded ring.
+	\begin{enumerate}[(i)]
+		\ii For a prime ideal $\pp$, let
+		\[ S_{(\pp)} = \left\{ \frac fg \mid g(\pp) \neq 0 \text{ and }
+			\deg f = \deg g \right\} \]
+		denote the elements of $S_\pp$ with ``degree zero''.
+		\ii For any homogeneous $g \in S$ of degree $d$, let
+		\[ S_{(g)} = \left\{ \frac{f}{g^r} \mid 
+			\deg f = r \deg g \right\} \]
+		denote the elements of $S_g$ with ``degree zero''.
+	\end{enumerate}
+\end{definition}
+
+\begin{theorem}
+	[On the projective structure sheaf]
+	Let $S$ be a graded ring and let $\Proj S$ the associated projective scheme.
+	\begin{enumerate}[(a)]
+		\ii Let $\pp \in \Proj S$.
+		Then $\OO_{\Proj S, \pp} \cong S_{(\pp)}$.
+		\ii Suppose $g$ is homogeneous with $\deg g > 0$. Then
+		\[ D(g) \cong \Spec S_{(g)} \]
+		as locally ringed spaces.
+		In particular, $\OO_{\Proj S}(D(g)) \cong S_{(g)}$.
+	\end{enumerate}
+\end{theorem}
+\begin{ques}
+	Conclude that $\Proj S$ is a scheme.
+\end{ques}
+
+Of course, the archetypal example is that
+\[ \Proj \CC[x_0, x_1, \dots, x_n] / I \]
+corresponds to the projective subvariety of $\CP^n$
+cut out by $I$ (when $I$ is radical).
+In the general case of an arbitrary ideal $I$, we
+call such schemes \vocab{projective subscheme} of $\CP^n$.
+For example, the ``double point'' in  $\CP^1$
+is given by $\Proj[x_0,x_1]/(x_0^2)$.
+
+\begin{remark}
+	No comment yet on what the global sections of $\OO_{\Proj S}(\Proj S)$ are.
+	(The theorem above requires $\deg g > 0$, so we cannot just take $g=1$.)
+	One might hope that in general $\OO_{\Proj S}(\Proj S) \cong S^0$
+	in analogy to our complex projective varieties, but
+	one needs some additional assumptions on $S$ for this to hold.
+\end{remark}
+
+
+\section{Where to go from here}
+This chapter concludes the long setup for the definition of a scheme.
+Unfortunately, with respect to algebraic geometry this is as much as I have
+the patience or knowledge to write about.
+So, if you want to actually see how schemes are used in ``real life'',
+you'll have to turn elsewhere.
+
+A good reference I happily recommend is \cite{ref:gathmann}.
+More intense is \cite{ref:vakil}.
+See \Cref{ch:refs} for further remarks.
+
+
+\section{\problemhead}
+
+\begin{problem}
+	Given an affine scheme $X = \Spec R$,
+	show that there is a unique morphism of schemes $X \to \Spec \ZZ$,
+	and describe where it sends points of $X$.
+	\begin{hint}
+		Use the proof that $\catname{AffSch} \simeq \catname{CRing}$.
+	\end{hint}
+	\begin{sol}
+		$\pp$ gets sent to the characteristic of the field $\OO_{X,\pp} / \mm_{X,\pp}$.
+	\end{sol}
+\end{problem}
+
+

@@ -199,15 +199,16 @@ Now for the examples, which are more enlightening:
 	of the pre-sheaf constant functions, which we define momentarily.
 \end{example}
 
-\section{Stalks}
+\section{Stalks and germs}
 \prototype{Germs of real smooth functions tell you the derivatives,
 but germs of holomorphic functions determine the entire function.}
+
 Let $\SF$ be a pre-sheaf.
-If we have a function $s \in \SF(U)$ and a point $p \in U$,
-then in general it doesn't make sense to ask what $s(p)$ is
-(even though all our examples look like this),
-because $\SF(U)$ is an arbitrary ring.
-So, we will replace the notion of $s(p)$ with a so-called \emph{germ}.
+Let $s \in \SF(U)$ be a section and $p \in U$.
+We want to think of $s$ as a function on $U$ in our examples,
+but in general $\SF(U)$ is a generic ring, and can't be evaluated at a point.
+However, instead we can try to define a so-called \emph{germ},
+which tries to capture this notion.
 
 \begin{definition}
 	Let $\SF$ be a pre-sheaf of rings.
@@ -262,7 +263,7 @@ But actually, it carries much more information than that.
 		information to compute the limit $\lim_{h \to 0} \frac1h[s(h)-s(0)]$.
 		\ii Similarly, we can compute the second derivative and so on.
 		\ii However, we can't read off, say, $s(3)$ from the germ.
-		For example, take
+		For example, take the bump function
 		\[
 			s(x) = \begin{cases}
 				e^{-\frac{1}{x-1}} & x > 1 \\
@@ -273,9 +274,18 @@ But actually, it carries much more information than that.
 		So germs can't distinguish between the zero function and $s$.
 	\end{enumerate}
 \end{example}
+\todo{when bump function is added to Calc 101,
+link it here}
+
+A nice summary for the right mindset might be:
+\begin{moral}
+	A germ is an ``enriched value'';
+	the stalk is the set of possible enriched values.
+\end{moral}
+
 \begin{example}
 	[Germs of holomorphic functions]
-	Holomorphic functions are very strange in this respect.
+	Holomorphic functions are surprising in this respect.
 	Consider the sheaf $\SF$ on $\CC$ of \emph{holomorphic} functions.
 
 	Take $s : \CC \to \CC$ a global section.
@@ -284,7 +294,7 @@ But actually, it carries much more information than that.
 	the derivatives of $s$ at zero is enough to reconstruct all of $s$:
 	we can compute the Taylor series of $s$ now.
 	\textbf{Thus germs of holomorphic functions determine the entire function};
-	they ``carry much more information'' than their real counterparts.
+	they ``carry more information'' than their real counterparts.
 	
 	In particular, we can concretely describe the sheaf:
 	\[
@@ -353,9 +363,10 @@ And of course, our algebraic geometry example.
 	satisfying some local compatibility condition.
 }
 Let $\SF$ be a sheaf on a space $X$ now.
-The purpose of this section is to convince you that the correct way 
+The purpose of this section is to convince you that the correct way
 think about a section $s \in \SF(U)$ is as a sequence of germs
 above every point $p \in U$.
+Put another way: ``a section is determined by its enriched values''.
 
 How do we do this?
 Given $s \in \SF(U)$ we consider its germ $[s]_p$ above every for $p \in U$.
@@ -513,234 +524,11 @@ $(g_p)_{p \in U} \in \SF\sh(U)$ the germ at a point $p$ is $g_p$:
 	i.e.\ the sequence of germs is the constant sequence.
 \end{proof}
 
-We'll later see that if $\SF$ is already a sheaf, then $\SF\sh = \SF$.
-
-\section{Morphisms of sheaves}
-First, recall that a sheaf is a contravariant functor (pre-sheaf)
-with extra conditions. In light of this, it is not hard to guess
-the definition of a morphism of pre-sheaves:
-\begin{definition}
-	A \vocab{morphism of (pre-)sheaves} $\alpha : \SF \to \SG$ on the same
-	space $X$ is a \textbf{natural transformation} of the underlying functors.
-	Isomorphism of sheaves is defined in the usual way.
-\end{definition}
-\begin{ques}
-	Show that this amounts to: for each $U \subseteq X$ we need to specify
-	a morphism $\alpha_U : \SF(U) \to \SG(U)$ such that the diagram
-	\begin{diagram}
-		\SF(U_2) & \rTo^{\alpha_{U_2}} & \SG(U_2) \\
-		\dTo^{\res_{U_1, U_2}} && \dTo_{\res_{U_1, U_2}} \\
-		\SF(U_1) & \rTo_{\alpha_{U_1}} & \SG(U_1)
-	\end{diagram}
-	commutes any time that $U_1 \subseteq U_2$.
-\end{ques}
-However, in the sheaf case we like stalks more than sections because
-they are theoretically easier to think about.
-And in fact:
-\begin{proposition}
-	[Morphisms determined by stalks]
-	A morphism of sheaves $\alpha : \SF \to \SG$ induces a morphism of stalks
-	\[ \alpha_p : \SF_p \to \SG_p \]
-	for every point $p \in X$.
-	Moreover, the sequence $(\alpha_p)_{p \in X}$ determines $\alpha$ uniquely.
-\end{proposition}
-\begin{proof}
-	The morphism $\alpha_p$ itself is just
-	$(s, U) \xmapsto{\alpha_p} (\alpha_U(s), U)$.
-	\begin{ques}
-		Show this is well-defined.
-	\end{ques}
-	Now suppose $\alpha , \beta : \SF \to \SG$ satisfy $\alpha_p = \beta_p$
-	for every $p$. We want to show $\alpha_U(s) = \beta_U(s)$
-	for every $s \in \SF(U)$.
-	\begin{ques}
-		Verify this using the description of sections
-		as sequences of germs. \qedhere
-	\end{ques}
-\end{proof}
-Thus a morphism of sheaves can be instead modelled as a morphism
-of all the stalks. We will see later on that this viewpoint is quite useful.
-
-
-\section{Local rings, and locally ringed spaces}
-\prototype{Smooth functions $f$ on $X \subseteq \RR^n$ have invertible
-germs at $p$ unless $f(p) = 0$.}
-The stalks of the examples we produced above are special types
-of rings, called \emph{local rings}.
-Algebraically, the definition of these is:
-\begin{definition}
-	A \vocab{local ring} $R$ is a ring with exactly one maximal ideal.
-\end{definition}
-\begin{exercise}
-	Show that a ring $R$ is a local ring if there exists
-	a proper ideal $\mm \subsetneq R$ such that
-	all elements of $R \setminus \mm$ are units.
-	(Bonus: prove the converse.)
-\end{exercise}
-
-% Wikipedia has a good explanation here
-To see why this definition applies to the stalks above,
-we need to identify what the maximal ideal is.
-Let's go back to the example of $X = \RR$ and $\SF(U)$ the smooth functions,
-and consider the stalk $\SF_{p}$, where $p \in X$.
-Define the ideal $\mm_p$ to be the set of germs $(s,U)$ for which $s(p) = 0$.
-
-Then $\mm_p$ is maximal: we have an exact sequence
-\[ 0 \to \mm_p \to \SF_p \taking{(s,U) \mapsto s(p)} \RR \to 0 \]
-and so $\SF_p / \mm_p \cong \RR$, which is a field.
-
-It remains to check there are no nonzero maximal ideals.
-Now note that if $s \notin \mm_p$,
-then $s$ is nonzero in some neighborhood of $p$,
-then one can construct the function $1/s$ in a neighborhood of $p$.
-So \textbf{every element of $\SF_p \setminus \mm_p$ is a unit};
-$\mm_p$ is in fact the only maximal ideal!
-
-More generally,
-\begin{moral}
-	If $\SF$ consists of ``field-valued functions'',
-	the stalk $\SF_p$ probably has a maximal ideal
-	consisting of the germs vanishing at $p$.
-\end{moral}
-The discussion above implies, for example:
-\begin{proposition}
-	[Stalks are often local rings]
-	The stalks of each of the following types of sheaves are local rings:
-	\begin{enumerate}[(a)]
-		\ii Sheaves of continuous real/complex functions on a topological space
-		\ii Sheaves of smooth functions on any manifold
-		\ii Regular functions on an algebraic variety $V$.
-	\end{enumerate}
-\end{proposition}
-
-We can now define:
-\begin{definition}
-	A \vocab{ringed space} is a topological space $X$ equipped
-	with a sheaf $\OO_X$ of rings.
-	Suppose that for every point $p$, the stalk $\OO_{X,p}$
-	is a local ring.
-	Then we say that $(X, \OO_X)$ is a \vocab{locally ringed space}.
-	We denote the maximal ideals by $\mm_{X,p}$.
-\end{definition}
-
-In particular, in the previous chapter we showed that every
-affine variety could be built into a locally ringed space. Hooray!
-\begin{abuse}
-	A ringed space $(X, \OO_X)$ is abbreviated to just $X$,
-	while $p \in X$ means ``$p$ is in the topological space $X$''.
-\end{abuse}
-
-
-\section{Morphisms of (locally) ringed spaces}
-Finally, it remains to define a morphism of locally ringed space.
-To do this we have to build up in several steps.
-
-\begin{remark}
-	I always secretly felt that one can probably get away with just
-	suspending belief and knowing ``there is a reasonable definition
-	of morphisms of locally ringed spaces''.
-	Daring readers are welcome to try this approach.
-\end{remark}
-
-\subsection*{Morphisms of ringed spaces}
-We talked about the morphisms of locally ringed spaces
-when we discussed projective varieties.
-We want to copy the same construction here.
-
-The idea was as follows: to ``preserve'' the structure via $f : X \to Y$,
-we took every regular function on $Y$ and made it into a function on $X$
-by composing it with $f$.
-This gave us a ring homomorphism $f^\ast : \OO_Y(U) \to \OO_X(f\pre(U))$
-for every open set $U$ in $Y$.
-
-Unfortunately, in the general case we don't have a notion of function,
-so ``composing by $f$'' doesn't make sense.
-The solution to this is to \emph{include all the ring homomorphisms $f^\ast$}
-in the data for a morphism $f : X \to Y$;
-we package this information using the morphism of sheaves.
-
-Here are the full details.
-Up above we only defined a morphism of sheaves on the same space,
-while right now we have a sheaf on $X$ and $Y$.
-So we have to first ``push'' the sheaf on $X$ into a sheaf on $Y$ by
-\[ U \mapsto \OO_X\left( f\pre(U) \right). \]
-This is important enough to have a name:
-\begin{definition}
-	Let $\SF$ be a sheaf on $X$, and $f : X \to Y$ a continuous map.
-	The \vocab{pushforward sheaf} $f_\ast \SF$ on $Y$ is defined by
-	\[ (f_\ast \SF)(U) = \SF(f\pre(U)) \qquad \forall U \subseteq Y. \]
-	This makes sense, since $f\pre(U)$ is open in $X$.
-\end{definition}
-Picture:
-\begin{diagram}
-	X && \rTo^f & Y && X && \rTo^f & Y \\
-	\Opens(X)\op && \lTo^{f\pre} & \Opens(Y)\op
-	&& f\pre(U) && \lMapsto^{f\pre} & U & \\
-	& \rdMapsto(3,2)_{\SF} && \dMapsto_{f_\ast \SF}
-		&& & \rdMapsto(3,2)_{\SF} && \dMapsto_{f_\ast \SF} & \\
-	&&& \catname{Rings}
-		&& && \SF(f\pre(U)) & = (f_\ast \SF)(U) & \in \catname{Rings}
-\end{diagram}
-I haven't actually checked that $f_\ast \SF$ is a sheaf
-(as opposed to a pre-sheaf), but this isn't hard to do.
-Also, as $f\pre$ is a functor $\Opens(Y)\op \to \Opens(X)\op$,
-the pushforward $f_\ast\SF$ is
-just the composition of these two functors.
-\begin{ques}
-	Technically $f_\ast\SF$ is supposed to be a
-	functor $\Opens(Y)\op \to \catname{Rings}$, so it also needs
-	to come with restriction arrows. What are they?
-\end{ques}
-
-Now that we moved both sheaves onto $Y$,
-we mimic the construction with quasi-projective varieties
-by asking for a sheaf morphism from $\OO_Y$ to $f_\ast \OO_X$:
-\begin{definition}
-	A \vocab{morphism of ringed spaces} $f : (X, \OO_X) \to (Y, \OO_Y)$
-	consists of a continuous map of topological spaces $f : X \to Y$,
-	plus additionally a morphism of sheaves $f^\ast : \OO_Y \to f_\ast \OO_X$.
-\end{definition}
-\begin{exercise}
-	(Mandatory) Check that this coincides with our work
-	on baby ringed spaces if we choose $f^\ast$ to be the pullback.
-\end{exercise}
-
-\subsection*{Morphisms of locally ringed spaces}
-Last step!
-Suppose now that $(X, \OO_X)$ and $(Y, \OO_Y)$ are locally ringed spaces.
-Thus we need to deal with some information about the stalks.
-
-Given a morphism of ringed spaces $f : (X, \OO_X) \to (Y, \OO_Y)$,
-we can actually use the $f^\ast_U$ above to induce maps on the stalks,
-as follows. For a point $p \in X$, construct the map
-\begin{diagram}
-	f^\ast_p :& \OO_{Y, f(p)} & \rTo && \OO_{X, f(p)} \\
-	& (s, U) & \rMapsto && (f^\ast_U(s), f\pre(U)).
-\end{diagram}
-where $s \in \OO_Y(U)$.
-
-\begin{definition}
-	Let $R$ and $S$ be local rings with maximal ideals $\mm_R$ and $\mm_S$.
-	A \vocab{morphism of local rings} is a homomorphism of rings
-	$\psi : R \to S$ such that $\psi\pre(\mm_S) = \mm_R$.
-\end{definition}
-\begin{definition}
-	A \vocab{morphism of locally ringed spaces}
-	is a morphism of ringed spaces $f : (X, \OO_X) \to (Y, \OO_Y)$ such that
-	for every point $p$ the induced map of stalks is a morphism of local rings.
-\end{definition}
-Recalling that $\mm_{X,p}$ is the maximal ideal of $\OO_X$ at $p$,
-the new condition is saying that
-\[ (f^\ast_p)\pre (\mm_{X,p}) = \mm_{Y,f(p)}. \]
-Concretely, if $g$ is a function vanishing on $f(p)$,
-then its pullback $f^\ast_U(g)$ vanishes on $p$.
-
-This completes the definition of a morphism of locally ringed spaces.
-Isomorphisms of (locally) ringed spaces are defined in the usual way.
+\section{Sheaves on a base: forgetting about sheafification}
 
 \section\problemhead
 \begin{problem}
-	Prove that if $\SF$ is a sheaf, then $\SF \cong \SF\sh$.
+	Prove that if $\SF$ is already a sheaf, then $\SF \cong \SF\sh$.
 \end{problem}
 
 \begin{sproblem}
@@ -774,16 +562,18 @@ Isomorphisms of (locally) ringed spaces are defined in the usual way.
 	Compute all the stalks of $\SF$.
 \end{dproblem}
 
-\begin{dproblem}
-	[Pushforward sheaf]
-	Suppose $f : X \to Y$ is a continuous map of spaces
-	and $\SF$ is a sheaf on $X$.
-	Define a sheaf $f_\ast \SF$ on $Y$ from $\SF$;
-	we call this the pushforward of $\SF$ onto $Y$.
-\end{dproblem}
+\todo{better problems here}
 
-\begin{problem}
-	Interpret the skyscraper sheaf as the pushforward
-	of a constant sheaf on a one-point space.
-\end{problem}
+%\begin{dproblem}
+%	[Pushforward sheaf]
+%	Suppose $f : X \to Y$ is a continuous map of spaces
+%	and $\SF$ is a sheaf on $X$.
+%	Define a sheaf $f_\ast \SF$ on $Y$ from $\SF$;
+%	we call this the pushforward of $\SF$ onto $Y$.
+%\end{dproblem}
+%
+%\begin{problem}
+%	Interpret the skyscraper sheaf as the pushforward
+%	of a constant sheaf on a one-point space.
+%\end{problem}
 

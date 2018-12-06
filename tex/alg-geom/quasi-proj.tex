@@ -1,7 +1,10 @@
 \chapter{Morphisms of varieties}
-Now that we've taken all the time to define affine and projective varieties,
-we want to take the time to define the \emph{morphisms} between these objects.
-Fortunately, we know both affine and projective varieties are special
+In preparation for our work with schemes,
+we will finish this part by talking about \emph{morphisms}
+between affine and projective varieties,
+given that we have taken the time to define them.
+
+Idea: we know both affine and projective varieties are special
 cases of baby ringed spaces, so in fact we will just define a morphism
 between \emph{any} two baby ringed spaces.
 
@@ -118,21 +121,21 @@ and easier to use for actual computations.
 
 \section{Examples}
 \begin{example}
-	[The pullback of $\frac{1}{x-25}$ under $t \mapsto t^2$]
+	[The pullback of $\frac{1}{y-25}$ under $t \mapsto t^2$]
 	The map 
 	\[ f : X = \Aff^1 \to Y = \Aff^1 \quad\text{by}\quad t \mapsto t^2 \]
 	is a morphism of varieties.
-	For example, consider the regular function $\varphi = \frac{1}{x-25}$ on
+	For example, consider the regular function $\varphi = \frac{1}{y-25}$ on
 	the open set $Y \setminus \{25\} \subseteq Y$.
 	The $f$-inverse image is $X \setminus \{\pm5\}$.
 	Thus the pullback is
 	\[ f^\ast\varphi : X \setminus \{\pm5\} \to Y \setminus \{25\}
 		\quad\text{by}\quad x \mapsto \frac{1}{x^2-25} \]
 	which is regular on $X \setminus \{\pm5\}$.
-
-	More generally, given any polynomial $P(t)$,
-	the map $t \mapsto P(t)$ will work.
 \end{example}
+More generally, given any polynomial $P(t)$,
+the map $t \mapsto P(t)$ will work.
+And in fact, that's all:
 \begin{exercise}
 	Let $X = \Aff^1$, $Y = \Aff^1$.
 	By considering $\id \in \OO_Y(Y)$, show that no other
@@ -292,7 +295,7 @@ say $\Aff^1$, and delete a point.
 
 Surprisingly, this doesn't work.
 \begin{example}
-	[$\Aff^1 \setminus \{0\}$ is affine]
+	[Cruicial example: punctured line is isomorphic to hyperbola]
 	Let $X = \Aff^1 \setminus \{0\}$ be an quasi-projective variety.
 	We claim that in fact we have an isomorphism
 	\[ X \cong V = \VV(xy-1) \subseteq \Aff^2 \]

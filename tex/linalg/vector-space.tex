@@ -532,6 +532,8 @@ To be explicit, the matrix for $T$ is defined as the array
 		a_{n1} & a_{n2} & \dots & a_{nm}
 	\end{bmatrix}.
 	\]
+\todo{example of a matrix}
+
 From here you can actually work out for yourself what it means to multiply two matrices.
 Suppose we have picked a basis for three spaces $U$, $V$, $W$.
 Given maps $T : U \to V$ and $S : V \to W$, we can consider their composition $S \circ T$, i.e.
@@ -658,14 +660,21 @@ of linear algebra to a theorem from high school we all know.
 	[Lagrange interpolation]
 	Let $x_1, \dots, x_{n+1}$ be distinct real numbers
 	and $y_1, \dots, y_{n+1}$ any real numbers.
-	Then there exists a \emph{unique} polynomial $P$ of degree at most $n$
+	Then there exists a \emph{unique}
+	polynomial $P$ of degree at most $n$
 	such that \[ P(x_i) = y_i \] for every $i$.
 \end{theorem}
+When $n = 1$ for example, this loosely
+says there is a unique line joining two points.
 \begin{proof}
-	The idea is to consider the vector space $V$ of polynomials with degree at most $n$,
+	The idea is to consider the vector space $V$
+	of polynomials with degree at most $n$,
 	as well as the vector space $W = \RR^{n+1}$.
 	\begin{ques}
-		Check that $\dim V = \dim W$.
+		Check that $\dim V = n + 1 = \dim W$.
+		This is easiest to do if you pick a basis for $V$,
+		but you can then immediately forgot about the basis
+		once you finish this exercise.
 	\end{ques}
 	Then consider the linear map $T : V \to W$ given by
 	\[ P \mapsto \left( P(x_1), \dots, P(x_{n+1}) \right). \]
@@ -800,7 +809,10 @@ Nonetheless, there are still analogs of some of the definitions above.
 	This will happen when we study algebraic number theory and homology groups.
 \end{abuse}
 
-\section\problemhead
+\section{\problemhead}
+
+\todo{table: injective/surjective, sometimes/always/never}
+\todo{table: equal dimension then inj iff surj}
 
 \todo{nice polynomial problem}
 

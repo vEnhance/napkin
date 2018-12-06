@@ -1,0 +1,173 @@
+\chapter{Localization}
+\todo{change $R$ to $A$}
+Before we proceed on to defining an affine scheme,
+we will take the time to properly cover one more algebraic construction
+that of a \emph{localization}.
+This is mandatory because when we define a scheme,
+we will find that all the sections and stalks
+are actually obtained using this construction.
+
+You may remember that when we were working with affine varieties,
+there were constantly expressions of the form
+\[ \left\{ \frac{f}{g} \mid g(p) \ne 0 \right\} \]
+and the like.
+The point is that we introduced a lot of denominators.
+This is exactly the idea behind the construction we are about to see.
+
+\section{The definition}
+\begin{definition}
+	Let $S \subseteq R$, where $R$ is a ring,
+	and assume $S$ is closed under multiplication.
+	Then the \vocab{localization of $R$ at $S$}, denoted $S\inv R$,
+	is defined as the set of fractions
+	\[ \left\{ r/s \mid r \in R, s \in S \right\} \]
+	where we declare two fractions $r_1 / s_1 = r_2 / s_2$ 
+	to be equal if
+	\[ \exists s \in S : \quad s(r_1s_2 - r_2s_1) = 0. \]
+\end{definition}
+
+\begin{example}
+	
+\end{example}
+\todo{give examples}
+
+In particular, if $0 \in S$ then $S\inv R$ is the trivial ring.
+So we usually only take situations where $0 \notin S$.
+\begin{ques}
+	Assume $R$ is an integral domain and $S = R \setminus \{0\}$.
+	Show that $S\inv R$ is just the field of fractions.
+\end{ques}
+\begin{example}
+	[Why the extra $s$?]
+	The reason we need the condition $s(r_1s_2 - r_2s_1) = 0$
+	rather than the simpler $r_1s_2 - r_2s_1 = 0$ is that
+	otherwise the equivalence relation may fail to be transitive.
+	Here is a counterexample: take
+	\[ R = \Zc{12} \qquad S = \{ 2, 4, 8 \}. \]
+	Then we have for example
+	\[ \frac12 = \frac24 = \frac64 = \frac32. \]
+	So we need to have $\frac12=\frac32$ which is only true
+	with the first definition.
+
+	Of course, if $R$ is an integral domain (and $0\notin S$)
+	then this is a moot point.
+\end{example}
+
+We will now look at two special cases,
+which have a concrete interpretation.
+
+\todo{ideals bijection}
+
+\section{First important special case: localization at a prime}
+\begin{definition}
+	Let $R$ be a ring and $\pp$ a prime ideal.
+	Then $R_\pp$ is defined to be $S\inv R$ for $S = R\setminus\pp$.
+	We call this \vocab{localization at $\pp$}.
+	Addition is defined in the obvious way.
+\end{definition}
+
+\begin{ques}
+	Why is $S$ multiplicative closed in the above definition?
+\end{ques}
+
+\todo{example: localizing the origin of $\Aff^1$}
+\todo{example: localizing the origin of $\Aff^2$}
+\todo{example: localizing at a hyperbola}
+\todo{example: localizing at $(0)$}
+
+\section{Second important special case: localization away from an element}
+\begin{definition}
+	For $g \in R$, we define the \vocab{localization of $R$ at $g$},
+	denoted $R_g$ to be $\{1, g, g^2, g^3, \dots\}\inv R$.
+	(Note that $\left\{ 1, g, g^2, \dots \right\}$ is multiplicatively closed.)
+\end{definition}
+Warning: this is admittedly somewhat terrible notation, since $R_\pp$
+is the localization with multiplicative set $R \setminus \pp$,
+while $R_g$ is the localization with multiplicative set $\{1,g,g^2,\dots\}$;
+these two are quite different beasts!
+In $R_\pp$ the subscript denotes the \emph{forbidden} denominators;
+in $R_g$ the subscript denotes the \emph{allowed} denominators.
+
+\begin{example}
+	[Localization at an element]
+	Let $R = \CC[x,y,z]$ and let $g = x$.
+	Then
+	\[ R_g = \left\{ \frac{P(x,y,z)}{x^n} \mid
+		P \in \CC[x,y,z], \; n \ge 0 \right\}. \]
+\end{example}
+
+\todo{example: punctured line}
+\todo{example: line minus a parabola}
+
+\section{Local rings, and locally ringed spaces}
+
+The stalks of the examples we produced above are special types
+of rings, called \emph{local rings}.
+Algebraically, the definition of these is:
+\begin{definition}
+	A \vocab{local ring} $R$ is a ring with exactly one maximal ideal.
+\end{definition}
+\begin{exercise}
+	Show that a ring $R$ is a local ring if there exists
+	a proper ideal $\mm \subsetneq R$ such that
+	all elements of $R \setminus \mm$ are units.
+	(Bonus: prove the converse.)
+\end{exercise}
+
+% Wikipedia has a good explanation here
+To see why this definition applies to the stalks above,
+we need to identify what the maximal ideal is.
+Let's go back to the example of $X = \RR$ and $\SF(U)$ the smooth functions,
+and consider the stalk $\SF_{p}$, where $p \in X$.
+Define the ideal $\mm_p$ to be the set of germs $(s,U)$ for which $s(p) = 0$.
+
+Then $\mm_p$ is maximal: we have an exact sequence
+\[ 0 \to \mm_p \to \SF_p \taking{(s,U) \mapsto s(p)} \RR \to 0 \]
+and so $\SF_p / \mm_p \cong \RR$, which is a field.
+
+It remains to check there are no nonzero maximal ideals.
+Now note that if $s \notin \mm_p$,
+then $s$ is nonzero in some neighborhood of $p$,
+then one can construct the function $1/s$ in a neighborhood of $p$.
+So \textbf{every element of $\SF_p \setminus \mm_p$ is a unit};
+$\mm_p$ is in fact the only maximal ideal!
+
+More generally,
+\begin{moral}
+	If $\SF$ consists of ``field-valued functions'',
+	the stalk $\SF_p$ probably has a maximal ideal
+	consisting of the germs vanishing at $p$.
+\end{moral}
+The discussion above implies, for example:
+\begin{proposition}
+	[Stalks are often local rings]
+	The stalks of each of the following types of sheaves are local rings:
+	\begin{enumerate}[(a)]
+		\ii Sheaves of continuous real/complex functions on a topological space
+		\ii Sheaves of smooth functions on any manifold
+		\ii Regular functions on an algebraic variety $V$.
+	\end{enumerate}
+\end{proposition}
+
+We can now define:
+\begin{definition}
+	A \vocab{ringed space} is a topological space $X$ equipped
+	with a sheaf $\OO_X$ of rings.
+	Suppose that for every point $p$, the stalk $\OO_{X,p}$
+	is a local ring.
+	Then we say that $(X, \OO_X)$ is a \vocab{locally ringed space}.
+	We denote the maximal ideals by $\mm_{X,p}$.
+\end{definition}
+
+In particular, in the previous chapter we showed that every
+affine variety could be built into a locally ringed space. Hooray!
+\begin{abuse}
+	A ringed space $(X, \OO_X)$ is abbreviated to just $X$,
+	while $p \in X$ means ``$p$ is in the topological space $X$''.
+\end{abuse}
+
+
+
+\section{A valuable square}
+
+\section{\problemhead}
