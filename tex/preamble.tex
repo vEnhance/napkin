@@ -180,25 +180,28 @@
 \setlength{\headsep}{10pt}
 \def\shortdate{\leavevmode\hbox{\the\year-\twodigits\month-\twodigits\day}}
 \def\twodigits#1{\ifnum#1<10 0\fi\the#1}
-\ihead{\footnotesize \textbf{\sffamily Napkin}, by \emph{Evan Chen} (\shortdate)}
-\automark{section}
+\automark[chapter]{chapter}
+\rohead{}
+\rehead{\footnotesize \textbf{\sffamily Napkin}, by \emph{Evan Chen} (\shortdate)}
+\lehead{}
+\lohead{\footnotesize \leftmark}
 \chead{}
-\ohead{\footnotesize \headmark}
-\cfoot{\pagemark}
+%\cfoot{\pagemark}
 
 %%fakesection Fancy section and chapter heads
-\addtokomafont{chapterprefix}{\raggedleft}
 \renewcommand*{\sectionformat}{\color{purple}\S\thesection\autodot\enskip}
+\newcommand{\problemhead}{A few harder problems to think about}
 
+\addtokomafont{chapterprefix}{\raggedleft}
 \RedeclareSectionCommand[beforeskip=0.5em]{chapter}
 \renewcommand*{\chapterformat}{%
 \mbox{\scalebox{1.5}{\chapappifchapterprefix{\nobreakspace}}%
 \scalebox{2.718}{\color{purple}\thechapter\autodot}\enskip}}
 
 \addtokomafont{partprefix}{\rmfamily}
-\renewcommand*{\partformat}{\color{purple}\scalebox{2.5}{\thepart}%
+\renewcommand*{\partformat}{%
+	\color{purple}\scalebox{2.5}{\thepart}%
 	\enlargethispage{2em}}
-\newcommand{\problemhead}{A few harder problems to think about}
 
 %%fakesection Mini ToC
 \usepackage[tight]{minitoc}
