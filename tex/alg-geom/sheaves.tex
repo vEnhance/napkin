@@ -32,6 +32,8 @@ In light of this, we first define:
 	For a topological space $X$ let $\Opens(X)$ denote
 	its open sets of $X$.
 \end{definition}
+
+So here is the official definition of a pre-sheaf.
 \begin{definition}
 	A \vocab{pre-sheaf} of rings on a space $X$ is a function
 	\[ \SF : \Opens(X) \to \catname{Rings} \]
@@ -85,7 +87,8 @@ In light of this, we first define:
 	are really functions on the space, but in general they need not be.
 \end{example}
 
-Now, we give a second, equivalent and far shorter definition of pre-sheaf:
+If you like category theory,
+we can give a second equivalent (shorter) definition.
 \begin{abuse}
 	By abuse of notation, $\Opens(X)$ will also be thought of as a
 	posetal category by inclusion. Thus $\varnothing$ is an initial object
@@ -95,13 +98,14 @@ Now, we give a second, equivalent and far shorter definition of pre-sheaf:
 	A \vocab{pre-sheaf} of rings on $X$ is a contravariant functor
 	\[ \SF : \Opens(X)\op \to \catname{Rings}. \]
 \end{definition}
-\begin{ques}
+\begin{exercise}
 	Check that these definitions are equivalent.
-\end{ques}
-It is now clear that we can actually replace $\catname{Rings}$
-with any (concrete) category we want.
+\end{exercise}
+So it is possible to replace $\catname{Rings}$ with any category we want.
+We will not need to do so, but it's worth mentioning.
 
-So we should think:
+In practice, thinking about the restriction maps
+might be more confusing than helpful; it is better to say:
 \begin{moral}
 	Pre-sheaves should be thought of as
 	``returning the ring of functions with a property $P$''.
@@ -118,7 +122,6 @@ Now, the main idea next is that
 
 The formal definition doesn't illuminate this as much as the examples
 do, but I have to give it first for the examples to make sense.
-
 \begin{definition}
 	A \vocab{sheaf} $\mathscr F$ is a pre-sheaf obeying two additional axioms:
 	Suppose $U$ is covered by open sets $U_\alpha \subseteq U$. Then:
@@ -203,7 +206,7 @@ Now for the examples, which are more enlightening:
 \prototype{Germs of real smooth functions tell you the derivatives,
 but germs of holomorphic functions determine the entire function.}
 
-Let $\SF$ be a pre-sheaf.
+Let $\SF$ be a sheaf now.
 Let $s \in \SF(U)$ be a section and $p \in U$.
 We want to think of $s$ as a function on $U$ in our examples,
 but in general $\SF(U)$ is a generic ring, and can't be evaluated at a point.
@@ -211,7 +214,7 @@ However, instead we can try to define a so-called \emph{germ},
 which tries to capture this notion.
 
 \begin{definition}
-	Let $\SF$ be a pre-sheaf of rings.
+	Let $\SF$ be a sheaf of rings.
 	For every point $p$ we define the \vocab{stalk} $\SF_p$ to be the set
 	\[ \left\{ (s, U) \mid s \in \SF(U), p \in U \right\} \]
 	modulo the relation $\sim$ that 
@@ -227,7 +230,7 @@ which tries to capture this notion.
 \end{definition}
 
 \begin{remark}
-	It is almost never useful to think of a germ as an ordered pair,
+	It is rarely useful to think of a germ as an ordered pair,
 	since the set $U$ can get arbitrarily small.
 	Instead, one should think of a germ as a
 	``shred'' of some section near $p$.
@@ -240,7 +243,7 @@ no matter how small.
 
 Notice that the stalk is itself a ring as well:
 for example, addition is done by
-\[ 
+\[
 	\left( s_1, U_1 \right) + \left( s_2, U_2 \right)
 	=
 	\left( s_1 \restrict{U_1 \cap U_2} + s_2 \restrict{U_1 \cap U_2},
@@ -344,7 +347,7 @@ And of course, our algebraic geometry example.
 \end{example}
 
 \begin{remark}
-	[For category lovers]
+	[Aside for category lovers]
 	You may notice that $\SF_p$ seems to be
 	``all the $\SF_p(U)$ coming together'', where $p \in U$.
 	And in fact, $\SF_p(U)$ is the categorical \emph{limit}
@@ -392,6 +395,8 @@ which bundles the information of $s$ near $p$.
 	is not defined while the notion $[s]_p$ is.
 \end{example}
 
+\missingfigure{picture}
+
 From the above example it's obvious that if we know each germ $[s]_p$
 this should let us reconstruct the entire section $s$.
 Let's check this from the sheaf axioms:
@@ -405,10 +410,10 @@ Let's check this from the sheaf axioms:
 \end{exercise}
 
 However, this map is clearly not surjective!
-\begin{ques}
-	Come up with a counterexample to break surjectivity.
-	(This is like asking ``come up with a non-smooth function''.)
-\end{ques}
+%\begin{ques}
+%	Come up with a counterexample to break surjectivity.
+%	(This is like asking ``come up with a non-smooth function''.)
+%\end{ques}
 Nonetheless we can describe the image:
 we want a sequence of germs $(g_p)_{p \in U}$ such that near every germ $g_p$,
 the germs $g_q$ are ``compatible'' with $g_p$.
@@ -416,7 +421,8 @@ We make this precise:
 \begin{definition}
 	Let $\SF$ be sheaf (or even a pre-sheaf) and $U$ open.
 	A sequence $(g_p)_{p \in U}$ of germs
-	($g_p \in \SF_p$) is said to be \vocab{compatible} if
+	(with $g_p \in \SF_p$ for each $p$)
+	is said to be \vocab{compatible} if
 	they can be ``locally collated'':
 	\begin{quote}
 		For any $p \in U$ there exists a neighborhood $U_p \ni p$
@@ -513,7 +519,7 @@ $(g_p)_{p \in U} \in \SF\sh(U)$ the germ at a point $p$ is $g_p$:
 	\[ (\SF\sh)_q \cong \SF_q. \]
 \end{lemma}
 \begin{proof}
-	A germ in $(\SF\sh)_q$ looks like 
+	A germ in $(\SF\sh)_q$ looks like
 	$\left( (g_p)_{p \in U}, U \right)$,
 	where $g_p = (s_p, U_p)$ are themselves germs of $\SF_p$,
 	and $q \in U$.
