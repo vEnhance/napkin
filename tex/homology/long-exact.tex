@@ -95,7 +95,7 @@ Now, we know that we get induced maps of homology groups, i.e.\ we have
 	\vdots && \vdots && \vdots  \\
 	H_{n+1}(A_\bullet) & \rTo^{f_\ast} & H_{n+1}(B_\bullet) & \rTo^{g_\ast} & H_{n+1}(C_\bullet) \\
 	H_{n}(A_\bullet) & \rTo^{f_\ast} & H_{n}(B_\bullet) & \rTo^{g_\ast} & H_{n}(C_\bullet) \\
-	H_{n}(A_\bullet) & \rTo^{f_\ast} & H_{n}(B_\bullet) & \rTo^{g_\ast} & H_{n}(C_\bullet) \\
+	H_{n-1}(A_\bullet) & \rTo^{f_\ast} & H_{n-1}(B_\bullet) & \rTo^{g_\ast} & H_{n-1}(C_\bullet) \\
 	\vdots && \vdots && \vdots \\
 \end{diagram}
 But the theorem is that we can string these all together,
@@ -595,7 +595,7 @@ we were done.
 \begin{sproblem}
 	[Triple long exact sequence]
 	\label{prob:triple_long_exact}
-	Let $B \subseteq A \subseteq X$ be subspaces.
+	Let $A \subseteq B \subseteq X$ be subspaces.
 	Show that there is a long exact sequence
 	\[
 		\dots \to H_n(B,A) \to H_n(X,A)

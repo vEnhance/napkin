@@ -318,26 +318,26 @@ and similarly when $m \le n$.
 	[Example of Smith normal form]
 	To give a flavor of the idea of the proof,
 	let's work through a concrete example with the $\ZZ$-matrix
-	\[ \begin{bmatrix} 
+	\[ \begin{bmatrix}
 			18 & 38 & 48 \\
-			14 & 30 & 38
+			14 & 30 & 32
 		\end{bmatrix}.  \]
 	The GCD of all the entries is $2$, and so motivated by this,
 	we perform the \textbf{Euclidean algorithm on the left column}:
 	subtract the second row from the first row,
 	then three times the first row from the second:
 	\[ 
-		\begin{bmatrix} 
+		\begin{bmatrix}
 			18 & 38 & 48 \\
-			14 & 30 & 38
-		\end{bmatrix} 
-		\mapsto
-		\begin{bmatrix} 
-			4 & 8 & 10 \\
-			14 & 30 & 38
+			14 & 30 & 32
 		\end{bmatrix}
 		\mapsto
-		\begin{bmatrix} 
+		\begin{bmatrix}
+			4 & 8 & 10 \\
+			14 & 30 & 32
+		\end{bmatrix}
+		\mapsto
+		\begin{bmatrix}
 			4 & 8 & 10 \\
 			2 & 6 & 2
 		\end{bmatrix}.
@@ -347,12 +347,12 @@ and similarly when $m \le n$.
 	and then kill off all the entries in the same row/column;
 	since $2$ was the GCD all along, we isolate $2$ completely:
 	\[
-		\begin{bmatrix} 
+		\begin{bmatrix}
 			4 & 8 & 10 \\
 			2 & 6 & 2
 		\end{bmatrix}
 		\mapsto
-		\begin{bmatrix} 
+		\begin{bmatrix}
 			2 & 6 & 2 \\
 			4 & 8 & 10
 		\end{bmatrix}
@@ -362,7 +362,7 @@ and similarly when $m \le n$.
 			0 & -4 & 6 \\
 		\end{bmatrix}
 		\mapsto
-		\begin{bmatrix} 
+		\begin{bmatrix}
 			2 & 0 & 0 \\
 			0 & -4 & 6
 		\end{bmatrix}.
@@ -385,7 +385,7 @@ and similarly when $m \le n$.
 			0 & 0 & 2
 		\end{bmatrix}
 		\mapsto
-		\begin{bmatrix} 
+		\begin{bmatrix}
 			2 & 0 & 0 \\
 			0 & 2 & 0
 		\end{bmatrix}.
