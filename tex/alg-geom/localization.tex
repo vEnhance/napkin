@@ -84,21 +84,11 @@ describe the sheaf $\OO_X$ completely.
 	Addition and multiplication in this ring
 	are defined in the obvious way.
 \end{definition}
-
 In particular, if $0 \in S$ then $S\inv A$ is the zero ring.
 So we usually only take situations where $0 \notin S$.
-\begin{remark}
-	If you know what the ``field of fractions'' of an
-	integral domain $A$ is, then you should recognize that
-	it can be expressed as $S\inv A$ where $S = A \setminus \{0\}$.
-	For example, the field of fractions of $\ZZ$ is $\QQ$.
-	If you don't know what this means,
-	it will become the definition in just a few sections.
-\end{remark}
 
 We give in brief now two examples which will be
 motivating forces for the construction of the affine scheme.
-
 \begin{example}
 	[Localizations of {$\CC[x]$}]
 	Let $A = \CC[x]$.
@@ -143,11 +133,14 @@ motivating forces for the construction of the affine scheme.
 	then this is a moot point.
 \end{remark}
 
+\begin{example}
+	[Field of fractions]
+	Let $A$ be an integral domain and $S = A \setminus \{0\}$.
+	Then $S\inv A$ is the field of fractions of $A$.
+\end{example}
 
-We will now look at two special cases,
-which have a concrete interpretation.
 
-
+Here are the two special cases of localization we will need the most.
 
 \section{Localization away from an element}
 \prototype{$\CC[x]_{x}$ is Laurent polynomials.}
@@ -293,13 +286,12 @@ Consequently, we give several examples in this vein.
 	\end{enumerate}
 \end{example}
 
-The localization at $(0)$ has a special name.
-\begin{definition}
+\begin{example}
 	[Field of fractions]
 	If $A$ is an integral domain,
-	the localization $A_{(0)}$ (i.e.\ allowing all nonzero denominators)
-	is called the \vocab{field of fractions} of $A$.
-\end{definition}
+	the localization $A_{(0)}$
+	is the field of fractions of $A$.
+\end{example}
 
 
 \section{Two mandatory algebra exercises}

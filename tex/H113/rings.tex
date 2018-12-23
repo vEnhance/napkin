@@ -1,4 +1,5 @@
 \chapter{Flavors of rings}
+\todo{clean}
 
 \section{Fields}
 \prototype{$\QQ$ is a field, but $\ZZ$ is not.}
@@ -263,32 +264,30 @@ construction that turns any integral domain into a field.
 	we define its \vocab{field of fractions} $K$ as follows:
 	it consists of elements $a / b$, where $a,b \in R$ and $b \neq 0$.
 	We set $a / b \sim c / d$ if and only if $bc = ad$.
+	Addition and multiplication is defined by
+	\begin{align*}
+		\frac ab + \frac cd &= \frac{ad+bc}{bd} \\
+		\frac ab \cdot \frac cd &= \frac{ab}{cd}.
+	\end{align*}
 \end{definition}
 
 For example, the field of fractions of $\ZZ$ is $\QQ$, \emph{by definition}.
 In fact everything you know about $\QQ$ basically carries over by analogy.
-In particular, we define
-\[ \frac ab + \frac cd \defeq \frac{ad+bc}{bd} \]
-and
-\[ \frac ab \cdot \frac cd \defeq \frac{ac}{bd}. \]
 You can prove if you want that this indeed a field, but 
 considering how comfortable we are that $\QQ$ is well-defined,
 I wouldn't worry about it\dots
-
-As long as we're trying to get an analog of factoring things in $\ZZ$,
-we may as well try to extend it to $\QQ$: every rational number $\frac ab$ can be
-factored by just factoring its numerator and denominator.
-So we want some analog of $\QQ$.
-
-
-\begin{ques}
-	Show that the ring of integers $\OO_K$ has field of fractions $K$.
-\end{ques}
 
 
 \section{\problemhead}
 Not olympiad problems, but again the spirit is very close
 to what you might see in an olympiad.
+
+\begin{problem}
+	Is $\QQ[\sqrt2] = \left\{ a + b\sqrt2 \mid a,b \in \QQ \right\}$ a field?
+	\begin{hint}
+		Yes.
+	\end{hint}
+\end{problem}
 
 \begin{sproblem}
 	Prove that a integral domain with finitely many elements is a field.
@@ -323,11 +322,18 @@ to what you might see in an olympiad.
 		\ii Describe the prime ideals of $\CC[x]$.
 		\ii Describe the prime ideals of $\RR[x]$.
 	\end{enumerate}
+	\begin{hint}
+		Use the fact that both are PID's.
+	\end{hint}
 	\begin{sol}
 		The ideal $(0)$ is of course prime in both.
-		Both rings are PID's, so we are then asking
+		Also, both rings are PID's.
 
-		Because $\CC[x]$ is a PID,
+		For $\CC[x]$ we get a prime ideal $(x-z)$ for each $z \in \CC$.
+
+		For $\RR[x]$ a prime ideal $(x-a)$ for each $a \in \RR$
+		and a prime ideal $(x^2 - ax + b)$ for each quadratic
+		with two conjugate real roots.
 	\end{sol}
 \end{problem}
 
