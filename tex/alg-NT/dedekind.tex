@@ -146,38 +146,12 @@ This is compatible with the definition of divisibility:
 As mentioned in \Cref{rem:unit_sign_issue},
 this also lets us ignore multiplication by units: $(-3) = (3)$.
 
-\section{Field of fractions}
-\prototype{The field of fractions of $\ZZ$ is $\QQ$.}
-As long as we're trying to get an analog of factoring things in $\ZZ$,
-we may as well try to extend it to $\QQ$: every rational number $\frac ab$ can be
-factored by just factoring its numerator and denominator.
-So we want some analog of $\QQ$.
-
-Given an integral domain $R$,
-we define its \vocab{field of fractions} $K$ as follows:
-it consists of elements $a / b$, where $a,b \in R$ and $b \neq 0$.
-We set $a / b \sim c / d$ if and only if $bc = ad$.
-
-For example, the field of fractions of $\ZZ$ is $\QQ$, \emph{by definition}.
-In fact everything you know about $\QQ$ basically carries over by analogy.
-In particular, we define
-\[ \frac ab + \frac cd \defeq \frac{ad+bc}{bd} \]
-and
-\[ \frac ab \cdot \frac cd \defeq \frac{ac}{bd}. \]
-You can prove if you want that this indeed a field, but 
-considering how comfortable we are that $\QQ$ is well-defined,
-I wouldn't worry about it\dots
-
-\begin{ques}
-	Show that the ring of integers $\OO_K$ has field of fractions $K$.
-\end{ques}
-
 \section{Dedekind domains}
 \prototype{Any $\OO_K$ is a Dedekind domain.}
 We now define a Dedekind domain as follows.
 \begin{definition}
 	An integral domain $\mathcal A$ is a \vocab{Dedekind domain}
-	if it is Noetherian, integrally closed, and 
+	if it is Noetherian, integrally closed, and
 	\emph{every nonzero prime ideal of $\mathcal A$ is in fact maximal}.
 	(The last condition is the important one.)
 \end{definition}
@@ -193,7 +167,7 @@ of a Dedekind domain is the last one: prime ideals and maximal ideals
 are the same thing.
 The other conditions are just technicalities,
 but ``primes are maximal'' has real substance.
-\begin{example}[$\ZZ$ is a dedekind domain]
+\begin{example}[$\ZZ$ is a Dedekind domain]
 	The ring $\ZZ$ is a Dedekind domain.
 	Note that
 	\begin{itemize}
@@ -266,6 +240,7 @@ We'll prove a stronger result, which will re-appear repeatedly.
 Since every nonzero prime $\pp$ is maximal, we now know that $\OO_K$ is a Dedekind domain.
 Note that this tricky proof is essentially inspired by the solution to \Cref{prob:dedekind_sample}.
 
+
 \section{Unique factorization works}
 Okay, I'll just say it now!
 \begin{moral}
@@ -305,8 +280,11 @@ When we proved the fundamental theorem of arithmetic, the basic plot was:
 What happens if we try to repeat the proof here?
 We get step 1 for free, because we're using a better definition of ``prime''.
 We can also do step 3, since it follows from step 1.
-But step 2 doesn't work, because for abstract Dedekind domains we don't really have a notion of size.
-And step 4 doesn't work because we don't yet have a notion of what the inverse of a prime ideal is.
+But step 2 doesn't work,
+because for abstract Dedekind domains
+we don't really have a notion of size.
+And step 4 doesn't work because we don't yet have a
+notion of what the inverse of a prime ideal is.
 
 Well, it turns out that we \emph{can} define the inverse $\aa\inv$ of an ideal,
 and I'll do so by the end of this chapter.
@@ -334,8 +312,9 @@ Now suppose $(a)$ factors as a product of ideals $\pp_i = (p_i)$, say,
 \[ (a) = (p_1)^{e_1} (p_2)^{e_2} \dots (p_n)^{e_n} . \]
 This verbatim reads \[ a = u p_1^{e_1} p_2^{e_2} \dots p_n^{e_n} \]
 where $u$ is some unit (recall \Cref{def:unit}).
-Hence, Dedekind domains which are PID's satisfy unique factorization for \emph{elements},
-just like in $\ZZ$. (In fact, the converse of this is true.)
+Hence, Dedekind domains which are PID's satisfy unique factorization
+for \emph{elements}, just like in $\ZZ$.
+(In fact, the converse of this is true.)
 
 \section{The factoring algorithm}
 Let's look at some examples from quadratic fields.
@@ -400,7 +379,8 @@ anything we don't already have with the $3$
 (again these are ideals computed in $\OO_K$).
 You can do the computation for $\pp^2$, $\pp\qq_1$, $\pp\qq_2$ in the same way.
 
-Finally, it's worth pointing out that we should quickly verify that $\pp \neq (x)$ for some $x$;
+Finally, it's worth pointing out that we should quickly
+verify that $\pp \neq (x)$ for some $x$;
 in other words, that $\pp$ is not principal.
 Assume for contradiction that it is.
 Then $x$ divides both $1+\sqrt{-5}$ and $2$, in the sense
@@ -415,14 +395,15 @@ But there are no elements of norm $2 = a^2+5b^2$ in $\OO_K$.
 \begin{example}[Factoring $3$ in the integers of $\QQ(\sqrt{-17})$]
 	Let $\OO_K = \ZZ[\sqrt{-17}]$ arise from $K = \QQ(\sqrt{-17})$.
 	We know $\OO_K \cong \ZZ[x] / (x^2+17)$.
-	Now 
+	Now
 	\[
 		\OO_K / 3\OO_K \cong \ZZ[x] / (3,x^2+17)
 		\cong \FF_3[x] / (x^2-1).
 	\]
 	This already shows that $(3)$ cannot be a prime (i.e.\ maximal) ideal,
 	since otherwise our result should be a field.
-	Anyways, we have a projection \[ \OO_K \surjto \FF_3[x] / \left( (x-1)(x+1) \right). \]
+	Anyways, we have a projection
+	\[ \OO_K \surjto \FF_3[x] / \left( (x-1)(x+1) \right). \]
 	Let $\qq_1$ be the pre-image $(x-1)$ in the image, that is,
 	\[ \qq_1 = (3, \sqrt{-17}-1). \]
 	Similarly, \[ \qq_2 = (3, \sqrt{-17}+1). \]
@@ -454,7 +435,8 @@ to factor $p$ in any $\OO_K$ of the form $\ZZ[\theta]$.
 	Then $(p) = p \OO_K$ is factored as follows:
 	\begin{quote}
 		Let $f$ be the minimal polynomial of $\theta$ and
-		factor $\ol f$ mod $p$ as \[ \ol f \equiv \prod_{i=1}^g (\ol f_i)^{e_i} \pmod p. \]
+		factor $\ol f$ mod $p$ as
+		\[ \ol f \equiv \prod_{i=1}^g (\ol f_i)^{e_i} \pmod p. \]
 		Then $\pp_i = (f_i(\theta), p)$ is prime for each $i$
 		and the factorization of $(p)$ is
 		\[ \OO_K \supseteq (p) = \prod_{i=1}^g \pp_i^{e_i}. \]

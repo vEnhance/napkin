@@ -1,6 +1,5 @@
 \chapter{Flavors of rings}
 
-
 \section{Fields}
 \prototype{$\QQ$ is a field, but $\ZZ$ is not.}
 
@@ -253,6 +252,40 @@ It's with this condition and a few other minor conditions
 that you get a so-called \emph{Dedekind domain}
 where prime factorization of ideals \emph{does} work.
 More on that later.
+
+\section{Field of fractions}
+\prototype{The field of fractions of $\ZZ$ is $\QQ$.}
+As long as we are here, we take the time to introduce a useful
+construction that turns any integral domain into a field.
+
+\begin{definition}
+	Given an integral domain $R$,
+	we define its \vocab{field of fractions} $K$ as follows:
+	it consists of elements $a / b$, where $a,b \in R$ and $b \neq 0$.
+	We set $a / b \sim c / d$ if and only if $bc = ad$.
+\end{definition}
+
+For example, the field of fractions of $\ZZ$ is $\QQ$, \emph{by definition}.
+In fact everything you know about $\QQ$ basically carries over by analogy.
+In particular, we define
+\[ \frac ab + \frac cd \defeq \frac{ad+bc}{bd} \]
+and
+\[ \frac ab \cdot \frac cd \defeq \frac{ac}{bd}. \]
+You can prove if you want that this indeed a field, but 
+considering how comfortable we are that $\QQ$ is well-defined,
+I wouldn't worry about it\dots
+
+As long as we're trying to get an analog of factoring things in $\ZZ$,
+we may as well try to extend it to $\QQ$: every rational number $\frac ab$ can be
+factored by just factoring its numerator and denominator.
+So we want some analog of $\QQ$.
+
+
+\begin{ques}
+	Show that the ring of integers $\OO_K$ has field of fractions $K$.
+\end{ques}
+
+
 \section{\problemhead}
 Not olympiad problems, but again the spirit is very close
 to what you might see in an olympiad.

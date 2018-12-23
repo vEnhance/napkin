@@ -31,8 +31,8 @@ of motivating what is to follow.
 \section{Definition and examples of rings}
 \prototype{$\ZZ$ all the way! Also $R[x]$ and various fields.}
 
-Well, I guess I'll define a ring\footnote{%
-	Or, according to some authors, a ``ring with identity'';
+Well, I guess I'll define a ring\footnote{Or,
+	according to some authors, a ``ring with identity'';
 	some authors don't require rings to have multiplicative identity.
 	For us, ``ring'' always means ``ring with $1$''.}.
 
@@ -194,10 +194,11 @@ The only surprise is that we also demand $\phi(1_R)$ to go to $1_S$.
 This condition is not extraneous:
 consider the map $\ZZ \to \ZZ$ called ``multiply by zero''.
 
-Now, just like we were able to mod out by groups, we'd also like to define quotient rings.
+Now, just like we were able to mod out by groups,
+we'd also like to define quotient rings.
 So once again,
 \begin{definition}
-	The \vocab{kernel} of a ring homomorphism $\phi : R \to S$,
+	The \vocab{kernel} of a ring homomorphism $\phi \colon R \to S$,
 	denoted $\ker \phi$, is the set of $r \in R$ such that $\phi(r) = 0$.
 \end{definition}
 
@@ -293,6 +294,7 @@ More explicitly,
 	Given an ideal $I$, we define as above the \vocab{quotient ring}
 	\[ R/I \defeq \left\{ r+I \mid r \in R \right\}. \]
 	It's the ring of these equivalence classes.
+	This ring is pronounced ``$R$ mod $I$''.
 \end{definition}
 \begin{example}[$\ZZ/5\ZZ$]
 	The integers modulo $5$ formed by ``modding out additively by $5$''
@@ -312,6 +314,8 @@ all elements in $\ZZ$ divisible by $5$ to be zero.
 This gives you the usual modular arithmetic!
 
 \section{Generating ideals}
+\prototype{In $\ZZ$, the ideals are all of the form $(n)$.}
+
 Let's give you some practice with ideals.
 
 \begin{exercise}
@@ -327,25 +331,25 @@ Let's make this more precise.
 	The \vocab{ideal generated} by a set of elements $x_1, \dots, x_n \in R$
 	is denoted by $I = (x_1, x_2, \dots, x_n)$
 	and given by
-	\[
-		I = \left\{ r_1 x_1 + \dots + r_n x_n \mid r_i \in R \right\}.
-	\]
+	\[ I = \left\{ r_1 x_1 + \dots + r_n x_n \mid r_i \in R \right\}.  \]
 	One can think of this as ``the smallest ideal containing all the $x_i$''.
 \end{definition}
-%The analogy of putting the $\{x_i\}$ in a sealed box and shaking vigorously
-%kind of works here too.
-The ``additive structure'' of ideals is emphasized if I say
-\begin{moral}
-	An ideal is an $R$-module.
-	The ideal $(x_1, \dots, x_n)$ is the submodule
-	spanned by $x_1, \dots, x_n$.
-\end{moral}
+
+The analogy of putting the $\{x_i\}$ in a sealed box and shaking vigorously
+kind of works here too.
+\begin{remark}
+	[Linear algebra digression]
+	If you know linear algebra,
+	you can summarize this as: an ideal is an $R$-module.
+	The ideal $(x_1, \dots, x_n)$ is the submodule spanned by $x_1, \dots, x_n$.
+\end{remark}
+
 In particular, if $I = (x)$ then $I$ consists of exactly the
 ``multiples of $x$'', i.e.\ numbers of the form $rx$ for $r \in R$.
 \begin{remark}
-	We can also apply this definition to infinite generating sets, as long as
-	only finitely many of the $r_i$ are not zero (since infinite sums
-	don't make sense in general).
+	We can also apply this definition to infinite generating sets,
+	as long as only finitely many of the $r_i$ are not zero
+	(since infinite sums don't make sense in general).
 \end{remark}
 
 \begin{example}[Examples of generated ideals]
@@ -369,7 +373,6 @@ In particular, if $I = (x)$ then $I$ consists of exactly the
 	is indeed always an ideal (closed under addition,
 	and absorbs multiplication).
 \end{ques}
-
 Now suppose $I = (x_1, \dots, x_n)$.
 What does $R/I$ look like?
 According to what I said at the end of the last section,
@@ -398,16 +401,20 @@ For example\dots
 		Then $R/I \cong \ZZ/5\ZZ$.
 	\end{enumerate}
 \end{example}
-By the way, given an ideal $I$ of a ring $R$, it's totally legit to write
-\[ x \equiv y \pmod I \]
-to mean that $x-y \in I$.
-Everything you learned about modular arithmetic carries over.
+\begin{remark}
+	[Mod notation]
+	By the way, given an ideal $I$ of a ring $R$, it's totally legit to write
+	\[ x \equiv y \pmod I \]
+	to mean that $x-y \in I$.
+	Everything you learned about modular arithmetic carries over.
+\end{remark}
 
 \section{Principal ideal domains}
 \prototype{$\ZZ$ is a PID, $\ZZ[x]$ is not.
 $\CC[x]$ is a PID, $\CC[x,y]$ is not.}
 
-What happens if we put multiple generators in an ideal, like $(10,15) \subseteq \ZZ$?
+What happens if we put multiple generators in an ideal,
+like $(10,15) \subseteq \ZZ$?
 Well, we have by definition that $(10,15)$ is given as a set by
 \[ (10,15) \defeq \left\{ 10x + 15y \mid x,y \in \ZZ \right\}.  \]
 If you're good at number theory you'll instantly
