@@ -1,10 +1,30 @@
 \chapter{Flavors of rings}
-\todo{clean}
+
+We continue our exploration of rings by considering
+some nice-ness properties that rings or ideals can satisfy,
+which will be valuable later on.
+As before, number theory is interlaced as motivation.
+I guess I can tell you at the outset what the completed table
+is going to look like, so you know what to expect.
+
+\begin{center}
+	\begin{tabular}[h]{lll}
+		Ring noun & Ideal adjective & Relation \\ \hline
+		PID & principal &
+			$R$ is a PID $\iff$ $R$ is an integral domain, \\
+			&& \qquad and every $I$ is principal \\
+		Noetherian ring & finitely generated &
+			$R$ is Noetherian $\iff$ every $I$ is fin.\ gen. \\
+		field & maximal & $R/I$ is a field $\iff$ $I$ is maximal \\
+		integral domain & prime & $R/I$ is an integral domain
+			$\iff$ $I$ is prime \\
+	\end{tabular}
+\end{center}
 
 \section{Fields}
 \prototype{$\QQ$ is a field, but $\ZZ$ is not.}
 
-As you already know, if the multiplication is invertible,
+As you might already know, if the multiplication is invertible,
 then we call the ring a field.
 To be explicit, let me write the relevant definitions.
 
@@ -39,22 +59,41 @@ Colloquially, we say that
 	A field is a structure where you can add, subtract, multiply, and divide.
 \end{moral}
 
-\begin{remark}
-	You might say at this point that ``fields are nicer than rings'',
-	but as you'll see in this chapter, the conditions for
-	being a field are somehow ``too strong''.
-	To give an example of what I mean:
-	if you try to think about the concept of ``divisibility''
-	in $\ZZ$, you've stepped into the vast and bizarre realm of
-	number theory.  Try to do the same thing in $\QQ$ and you get nothing:
-	any nonzero $a$ ``divides'' any nonzero $b$
-	because $b = a \cdot \frac ba$.
+\begin{example}
+	[First examples of fields]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii $\QQ$, $\RR$, $\CC$ are fields,
+		since the notion $\frac 1c$ makes sense in them.
+		\ii If $p$ is a prime, then $\Zc p$ is a field,
+		which we denote will usually denote by $\FF_p$.
+	\end{enumerate}
+	The trivial ring $0$ is \emph{not} considered a field,
+	since we require fields to be nontrivial..
+\end{example}
 
-	I know at least one person who instead
-	thinks of this as an argument for why people
-	shouldn't care about number theory
-	(studying chaos rather than order).
-\end{remark}
+\begin{exercise}
+	If $k$ is a field, show that there are exactly two ideals.
+	What are they?
+\end{exercise}
+
+
+%\begin{remark}
+%	You might say at this point that ``fields are nicer than rings'',
+%	but as you'll see in this chapter, the conditions for
+%	being a field are somehow ``too strong''.
+%	To give an example of what I mean:
+%	if you try to think about the concept of ``divisibility''
+%	in $\ZZ$, you've stepped into the vast and bizarre realm of
+%	number theory.  Try to do the same thing in $\QQ$ and you get nothing:
+%	any nonzero $a$ ``divides'' any nonzero $b$
+%	because $b = a \cdot \frac ba$.
+%
+%	I know at least one person who instead
+%	thinks of this as an argument for why people
+%	shouldn't care about number theory
+%	(studying chaos rather than order).
+%\end{remark}
 
 \section{Integral domains}
 \prototype{$\ZZ$ is an integral domain.}
@@ -71,30 +110,47 @@ If $a, b \neq 0$ but $ab=0$ then we say $a$ and $b$ are \vocab{zero divisors}
 of the ring $R$.
 So we give a name to such rings.
 \begin{definition}
-	A nontrivial (commutative) ring with no zero divisors
-	is called an \vocab{integral domain}.
+	A nontrivial ring with no zero divisors
+	is called an \vocab{integral domain}.\footnote{Some
+		authors abbreviate this to ``domain'', notably Artin.}
 \end{definition}
+\begin{ques}
+	Show that a field is an integral domain.
+\end{ques}
 
 \begin{example}
-	[Integral domains and fields]
-	\listhack
+	[Examples of integral domains]
+	Every field is an integral domain,
+	so all the previous examples apply.
+	In addition:
 	\begin{enumerate}[(a)]
-		\ii $\QQ$, $\RR$, $\CC$ are fields,
-		since the notion $\frac 1c$ makes sense in them.
 		\ii $\ZZ$ is an integral domain, but it is not a field.
 		\ii $\RR[x]$ is not a field,
 		since there is no polynomial $P(x)$ with $xP(x) = 1$.
-		However, $\RR[x]$ is an integral domain, because if $P(x) Q(x) \equiv 0$ then one
-		of $P$ or $Q$ is zero.
+		However, $\RR[x]$ is an integral domain,
+		because if $P(x) Q(x) \equiv 0$ then one of $P$ or $Q$ is zero.
 		\ii $\ZZ[x]$ is also an example of an integral domain.
 		In fact, $R[x]$ is an integral domain for any integral domain $R$ (why?).
-		\ii $\Zc n$ is a field exactly when $n$ is prime.
+		\ii $\Zc n$ is a field (hence integral domain)
+		exactly when $n$ is prime.
 		When $n$ is not prime, it is a ring but not an integral domain.
 	\end{enumerate}
+	The trivial ring $0$ is \emph{not} considered an integral domain.
 \end{example}
 
+At this point, we go ahead and say:
+\begin{definition}
+	An integral domain where all ideals are principal
+	is called a \vocab{principal ideal domain (PID)}.
+\end{definition}
+The ring $\ZZ/6\ZZ$ is an example of a ring
+which is a principal ideal ring, but not an integral domain.
+As we alluded to earlier, we will never really use ``principal ideal ring''
+in any real way: we typically will want to strengthen it to PID.
+
 \section{Prime ideals}
-\todo{prototype?}
+\prototype{$(5)$ is a prime ideal of $\ZZ$.}
+
 We know that every integer can be factored (up to sign)
 as a unique product of primes; for example $15 = 3 \cdot 5$
 and $-10 = -2 \cdot 5$.
@@ -169,7 +225,8 @@ We also have:
 \end{theorem}
 \begin{exercise}
 	[Mandatory]
-	Convince yourself the theorem is true.
+	Convince yourself the theorem is true;
+	it is just definition chasing.
 	(A possible start is to consider $R = \ZZ$ and $I = (15)$.)
 \end{exercise}
 
@@ -181,12 +238,12 @@ that will arise in algebraic number theory
 (relevant buzzword: Dedekind domain).
 
 \section{Maximal ideals}
-\todo{prototype?}
+\prototype{The ideal $(x,5)$ is maximal in $\ZZ[x]$, by quotient-ing.}
 
 Here's another flavor of an ideal.
 \begin{definition}
 	A proper ideal $I$ of a ring $R$ is \vocab{maximal} if
-	no proper ideal $J$ contains it.
+	it is not contained in any other proper ideal.
 \end{definition}
 \begin{example}
 	[Examples of maximal ideals]
@@ -198,8 +255,11 @@ Here's another flavor of an ideal.
 		it must contain $\gcd(7,n) = 1$, and hence $J = \ZZ$.
 		\ii The ideal $(x)$ is \emph{not} maximal in $\ZZ[x]$,
 		because it's contained in $(x,5)$ (among others).
-		\ii On the other hand, $(x,5)$ is indeed maximal in $\ZZ[x]$,
-		as we will see in a moment.
+		\ii On the other hand, $(x,5)$ is indeed maximal in $\ZZ[x]$.
+		This is actually easiest to verify using
+		\Cref{thm:max_ideal_quotient} below.
+		\ii Also, $(x)$ is maximal in $\CC[x]$,
+		again appealing to \Cref{thm:max_ideal_quotient} below.
 	\end{enumerate}
 \end{example}
 
@@ -209,17 +269,13 @@ Here's another flavor of an ideal.
 
 There's an analogous theorem to the one for prime ideals.
 \begin{theorem}
+	[$I$ maximal $\iff$ $R/I$ field]
+	\label{thm:max_ideal_quotient}
 	An ideal $I$ is maximal if and only if $R/I$ is a field.
 \end{theorem}
 \begin{proof}
-	See if you can convince yourself that
-	there is a one-to-one correspondence between
-	\begin{enumerate}[(i)]
-		\ii Ideals $J$ with $I \subseteq J \subseteq R$, and
-		\ii Ideals of $R/I$.
-	\end{enumerate}
-	You may want to start by taking $R = \ZZ$ and $I = (15)$.
-	In any case, the theorem follows from this.
+	A ring is a field if and only if $(0)$ is the only maximal ideal.
+	So this follows by \Cref{prob:inclusion_reversing}.
 \end{proof}
 
 \begin{corollary}
@@ -239,16 +295,16 @@ this is a very efficient way to check whether an ideal is maximal.
 	\begin{enumerate}[(a)]
 		\ii This instantly implies that $(x,5)$ is a maximal ideal
 		in $\ZZ[x]$, because if we mod out by $x$ and $5$ in $\ZZ[x]$,
-		we just get $\ZZ/5\ZZ$, which is a field.
+		we just get $\FF_5$, which is a field.
 		\ii On the other hand, modding out by just $x$ gives $\ZZ$,
 		which is an integral domain but not a field; that's why $(x)$ is
 		prime but not maximal.
 	\end{enumerate}
 \end{example}
 
-As we say, any maximal ideal is prime.
+As we saw, any maximal ideal is prime.
 But now note that $\ZZ$ has the special property that
-all of its prime ideals are also maximal.
+all of its nonzero prime ideals are also maximal.
 It's with this condition and a few other minor conditions
 that you get a so-called \emph{Dedekind domain}
 where prime factorization of ideals \emph{does} work.
@@ -270,12 +326,43 @@ construction that turns any integral domain into a field.
 		\frac ab \cdot \frac cd &= \frac{ab}{cd}.
 	\end{align*}
 \end{definition}
-
-For example, the field of fractions of $\ZZ$ is $\QQ$, \emph{by definition}.
 In fact everything you know about $\QQ$ basically carries over by analogy.
 You can prove if you want that this indeed a field, but 
 considering how comfortable we are that $\QQ$ is well-defined,
 I wouldn't worry about it\dots
+
+\begin{definition}
+	Let $k$ be a field.
+	The field of fractions of $k[x]$ is denoted $k(x)$
+	(read ``$k$ of $x$''),
+	and called the \vocab{field of rational functions}.
+\end{definition}
+
+\begin{example}
+	[Examples of fraction fields]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii The field of fractions of $\ZZ$ is $\QQ$, \emph{by definition}.
+		\ii The field $\RR(x)$ consists of rational functions in $x$:
+		\[ \RR(x) = \left\{ \frac{f(x)}{g(x)} \mid f,g \in \RR[x] \right\}. \]
+		For example, $\frac{2x}{x^2-3}$ might be a typical element.
+	\end{enumerate}
+\end{example}
+
+\begin{example}
+	[Gaussian rationals]
+	\label{ex:gaussian_rationals}
+	Just like we defined $\ZZ[i]$ by abusing notation,
+	we can also write $\QQ(i)$.
+	Officially, it should consist of
+	\[ \QQ(i) = \left\{ \frac{f(i)}{g(i)} \mid g(i) \ne 0 \right\} \]
+	for polynomials $f$ and $g$ with rational coefficients.
+	But since $i^2=-1$ this just leads to
+	\[ \QQ(i) = \left\{ \frac{a+bi}{c+di} \mid a,b,c,d \in \QQ,
+		(c,d) \ne (0,0) \right\}. \]
+	And since $\frac{1}{c+di} = \frac{c-di}{c^2+d^2}$ we end up with
+	\[ \QQ(i) = \left\{ a+bi \mid a,b \in \QQ \right\}. \]
+\end{example}
 
 
 \section{\problemhead}
@@ -317,11 +404,8 @@ to what you might see in an olympiad.
 \end{sproblem}
 
 \begin{problem}
-	[$\Spec k[x]$]
-	\begin{enumerate}[(a)]
-		\ii Describe the prime ideals of $\CC[x]$.
-		\ii Describe the prime ideals of $\RR[x]$.
-	\end{enumerate}
+	[{$\Spec k[x]$}]
+	Describe the prime ideals of $\CC[x]$ and $\RR[x]$.
 	\begin{hint}
 		Use the fact that both are PID's.
 	\end{hint}

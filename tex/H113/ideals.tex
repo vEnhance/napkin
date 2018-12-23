@@ -1,7 +1,37 @@
 \chapter{Rings and ideals}
-This is a typical chapter on commutative algebra.
+\section{Some motivational metaphors about rings vs groups}
+In this chapter we'll introduce the notion of
+a \textbf{commutative ring} $R$.
+It is a larger structure than a group:
+it will have two operations addition and multiplication,
+rather than just one.
+We will then immediately define a \textbf{ring homomorphism}
+$R \to S$ between pairs of rings.
 
-\section{Digression on motivation}
+This time, instead of having normal subgroups $H \normalin G$,
+rings will instead have subsets $I \subseteq R$ called \textbf{ideals},
+which are not themselves rings but satisfy some niceness conditions.
+We will then show how you to define $R/I$,
+in analogy to $G/H$ as before.
+Finally, like with groups, we will talk a bit about how to generate ideals.
+
+Here is a possibly helpful table of analogies to help you keep track:
+\begin{center}
+	\begin{tabular}[h]{lcc}
+		& Group & Ring \\
+		\hline
+		Notation & $G$ & $R$ \\
+		Operations & $\cdot$ & $+$, $\times$ \\
+		Commutativity & only if abelian & for us, always \\
+		Sub-structure & subgroup & (not discussed)\footnote{You
+		can guess the definition a ``subring'' but we will not use it.} \\
+		Homomorphism & grp hom.\ $G \to H$ & ring hom.\ $R \to S$ \\
+		Kernel & normal subgroup & ideal \\
+		Quotient & $G/H$ & $R/I$ \\
+	\end{tabular}
+\end{center}
+
+\section{(Optional) Pedagogical notes on motivation}
 I wrote most of these examples with a number theoretic eye in mind;
 thus if you liked elementary number theory,
 a lot of your intuition will carry over.
@@ -96,7 +126,7 @@ Here are some more examples of rings.
 	with both operations done component-wise.
 	For example, the Chinese remainder theorem says
 	that \[ \Zc{15} \cong \Zc3 \times \Zc5 \]
-	with the isomorphism $n \pmod 15 \mapsto (n \pmod 3, n \pmod 5)$.
+	with the isomorphism $n \bmod{15} \mapsto (n \bmod 3, n \bmod 5)$.
 \end{example}
 \begin{remark}
 	Equivalently, we can define $R \times S$ as the abelian group $R \oplus S$,
@@ -176,7 +206,6 @@ we did with quotient groups.\footnote{%
 	Napkin to follow it one day.}
 
 First, we define a homomorphism and isomorphism.
-
 \begin{definition}
 	Let $R = (R, +_R, \times_R)$ and $S = (S, +_S, \times_S)$ be rings.
 	A \vocab{ring homomorphism} is a map $\phi : R \to S$
@@ -193,7 +222,40 @@ Just what you would expect.
 The only surprise is that we also demand $\phi(1_R)$ to go to $1_S$.
 This condition is not extraneous:
 consider the map $\ZZ \to \ZZ$ called ``multiply by zero''.
+\begin{example}
+	[Examples of homomorphisms]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii The identity map, as always.
+		\ii The map $\ZZ \to \Zc5$ modding out by $5$.
+		\ii The map $\RR[x] \to \RR$ by $p(x) \mapsto p(0)$
+		by taking the constant term.
+		\ii For any ring $R$, there is a trivial ring homomorphism $R \to 0$.
+	\end{enumerate}
+\end{example}
+\begin{example}
+	[Non-examples of homomorphisms]
+	Because we require $1_R$ to $1_S$, some maps that you
+	might have thought were homomorphisms will fail.
+	\begin{enumerate}[(a)]
+		\ii The map $\ZZ \to \ZZ$ by $x \mapsto 2x$
+		is not a ring homomomorphism.
+		Aside from the fact it sends $1$ to $2$,
+		it also does not preserve multiplication.
 
+		\ii If $S$ is a nontrivial ring,
+		the map $R \to S$ by $x \mapsto 0$ is not
+		a ring homomorphism, even though it preserves multiplication.
+
+		\ii There is no ring homomorphism $\Zc{2016} \to \ZZ$ at all.
+	\end{enumerate}
+	In particular, whereas for groups $G$ and $H$
+	there was always a trivial group homomorphism sending
+	everything in $G$ to $1_H$, this is not the case for rings.
+\end{example}
+
+\section{Ideals}
+\prototype{The multiples of $5$ are an ideal of $\ZZ$.}
 Now, just like we were able to mod out by groups,
 we'd also like to define quotient rings.
 So once again,
@@ -253,9 +315,6 @@ So this is stronger than just saying $I$ is closed under multiplication.
 \begin{ques}
 	Prove this.
 \end{ques}
-\begin{exercise}
-	If $k$ is a field, how many ideals does it have?
-\end{exercise}
 
 Now we claim that these conditions are sufficient.
 More explicitly,
@@ -434,14 +493,23 @@ But the same is not true in more general rings.
 	but then $I$ contains a unit.
 \end{example}
 A ring with the property that all its ideals
-are principal is called a \vocab{principal ideal domain},
-which is abbreviated PID.
-We like PID's because they effectively let us take the ``greatest common factor''
+are principal is called a \vocab{principal ideal ring}.
+We like this property because they effectively
+let us take the ``greatest common factor''
 in a similar way as the GCD in $\ZZ$.
+
+In practice, we actually usually care about
+so-called \textbf{principal ideal domains (PID's)}.
+But we haven't defined what a domain is yet.
+Nonetheless, all the examples below are actually PID's,
+so we will go ahead and use this word for now,
+and tell you what the additional condition is in the next chapter.
 
 \begin{example}
 	[Examples of PID's]
-	\listhack
+	As just said, for now you should just verify
+	that these are principal ideal rings,
+	even though we are using the word PID.
 	\begin{enumerate}[(a)]
 		\ii As we saw, $\ZZ$ is a PID.
 
@@ -540,8 +608,13 @@ Please bear with me!
 \begin{problem}
 	The ring $R = \RR[x] / (x^2+1)$ is one that you've seen before.
 	What is its name?
+	\begin{hint}
+		$R = \RR[i]$.
+	\end{hint}
 	\begin{sol}
 		This is just $\RR[i] = \CC$.
+		The isomorphism is given by $x \mapsto i$,
+		which has kernel $(x^2+1)$.
 	\end{sol}
 \end{problem}
 
@@ -554,8 +627,68 @@ Please bear with me!
 \end{problem}
 
 \begin{problem}
+	In the ring $\ZZ$, let $I = (2016)$ and $J = (30)$.
+	Show that $I \cap J$ is an ideal of $\ZZ$ and compute its elements.
+\end{problem}
+
+\begin{sproblem}
+	\label{prob:inclusion_reversing}
+	Let $R$ be a ring and $I$ an ideal.
+	Find an inclusion reversing bijection between
+	\begin{itemize}
+		\ii ideals of $R/I$, and
+		\ii ideals of $R$ which contain $I$.
+	\end{itemize}
+\end{sproblem}
+
+\begin{problem}
+	Let $R$ be a ring.
+	\begin{enumerate}[(a)]
+		\ii Prove that there is exactly one ring homomorphism $\ZZ \to R$.
+		\ii Prove that the number of ring homomorphisms
+		$\ZZ[x] \to R$ is equal to the number of elements of $R$.
+	\end{enumerate}
+	\begin{hint}
+		For (b) homomorphism is uniquely determined by the choice of $\psi(x) \in R$
+	\end{hint}
+\end{problem}
+
+%\begin{problem}
+%	[$\phi(1_R) = 1_S$ is really necessary]
+%	Find two rings $R$ and $S$ and a \emph{nonzero} function
+%	$f \colon R \to S$ such that
+%	\begin{itemize}
+%		\ii $f(x+y) = f(x) + f(y)$ for $x,y \in R$,
+%		\ii $f(xy) = f(x) f(y)$ for $x,y \in R$,
+%		\ii $f(1_R) \ne 1_S$ (i.e.\ $f$ is not a ring homomorphism).
+%	\end{itemize}
+%	\begin{hint}
+%		Take $S = R \times R$ with $R$ nonzero.
+%	\end{hint}
+%	\begin{sol}
+%		The map $R \to R \times R$ by $x \mapsto (x,0)$ will always work,
+%		with $R$ nonzero.
+%	\end{sol}
+%\end{problem}
+
+\begin{problem}
 	\gim
 	Prove the Hilbert basis theorem, \Cref{thm:hilbert_basis}.
+\end{problem}
+
+\begin{problem}
+	[USA Team Selection Test 2016]
+	Let $\FF_p$ denote the integers modulo a fixed prime number $p$.
+	Define $\Psi \colon \FF_p[x] \to \FF_p[x]$ by
+	\[ \Psi\left( \sum_{i=0}^n a_i x^i \right) = \sum_{i=0}^n a_i x^{p^i}. \]
+	Let $S$ denote the image of $\Psi$.
+	\begin{enumerate}[(a)]
+		\ii Show that $S$ is a ring with addition
+		given by polynomial addition,
+		and multiplication given by \emph{function composition}.
+		\ii Prove that $\Psi \colon \FF_p[x] \to S$
+		is then a ring isomorphism.
+	\end{enumerate}
 \end{problem}
 
 \begin{problem} % from Brian Chen
@@ -580,3 +713,5 @@ Please bear with me!
 		I think the result is true if you add the assumption $A$ is Noetherian.
 	\end{sol}
 \end{problem}
+
+
