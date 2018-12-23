@@ -7,7 +7,6 @@ It will be a ringed space, so we need to define
 	\ii The topology on it, and
 	\ii The structure sheaf on it.
 \end{itemize}
-\todo{change $R$ to $A$ everywhere}
 
 \section{Some more advertising}
 Let me describe what the construction of $\Spec A$ is going to do.
@@ -16,9 +15,9 @@ In the case of $\Aff^n$, we used $\CC^n$ as the set of points
 and $\CC[x_1, \dots, x_n]$ as the ring of functions
 but then remarked that the set of points
 of $\CC^n$ corresponded to the maximal ideals of $\CC[x_1, \dots, x_n]$.
-In an \emph{affine scheme}, we will take an \emph{arbitrary} ring $R$,
-and generate the entire structure from just $R$ itself.
-The final result is called $\Spec R$, the \vocab{spectrum} of $R$.
+In an \emph{affine scheme}, we will take an \emph{arbitrary} ring $A$,
+and generate the entire structure from just $A$ itself.
+The final result is called $\Spec A$, the \vocab{spectrum} of $A$.
 The affine varieties $\VV(I)$ we met earlier will just be
 $\CC[x_1, \dots, x_n] / I$, but now we will be able to take
 \emph{any} ideal $I$, thus finally completing the table at the end
@@ -50,20 +49,20 @@ will have three big generalizations:
 \section{The set of points}
 \prototype{$\Spec \CC[x_1, \dots, x_n] / I$.}
 
-First surprise, for a ring $R$:
+First surprise, for a ring $A$:
 \begin{moral}
-	$\Spec R$ is defined as the set of prime ideals of $R$.
+	$\Spec A$ is defined as the set of prime ideals of $A$.
 \end{moral}
 
 This might be a little surprising, since we might have guessed
-that $\Spec R$ should just have the maximal ideals.
+that $\Spec A$ should just have the maximal ideals.
 What do the remaining ideals correspond to?
 The answer is that they will be so-called \emph{generic points}
 points which are ``somewhere'' in the space, but nowhere in particular.
 
 \begin{remark}
-	As usual $R$ itself is not a prime ideal, but $(0)$
-	is prime if $R$ is an integral domain.
+	As usual $A$ itself is not a prime ideal, but $(0)$
+	is prime if $A$ is an integral domain.
 \end{remark}
 
 \begin{example}
@@ -112,41 +111,41 @@ points which are ``somewhere'' in the space, but nowhere in particular.
 	\end{enumerate}
 \end{example}
 
-\section{The Zariski topology of the spectrum}
+\section{The Zariski topology on the spectrum}
 \prototype{Still $\Spec \CC[x_1, \dots, x_n] / I$.}
 
-Now, we endow a topology on $\Spec R$.
-Since the points on $\Spec R$ are the prime ideals, we continue
-the analogy by thinking of the points $f$ as functions on $\Spec R$. That is,
+Now, we endow a topology on $\Spec A$.
+Since the points on $\Spec A$ are the prime ideals, we continue
+the analogy by thinking of the points $f$ as functions on $\Spec A$. That is,
 \begin{definition}
-	Let $f \in R$ and $\pp \in \Spec R$.
+	Let $f \in A$ and $\pp \in \Spec A$.
 	Then the \vocab{value} of $f$ at $\pp$ is defined to be $f \pmod{\pp}$.
 	We denote it $f(\pp)$.
 \end{definition}
 \begin{example}
 	[Vanishing locii in $\Aff^n$]
-	Suppose $R = \CC[x_1, \dots, x_n]$,
-	and $\pp = (x_1-a_1, x_2-a_2, \dots, x_n-a_n)$ is a maximal ideal of $R$.
+	Suppose $A = \CC[x_1, \dots, x_n]$,
+	and $\pp = (x_1-a_1, x_2-a_2, \dots, x_n-a_n)$ is a maximal ideal of $A$.
 	Then for a polynomial $f \in \CC$,
 	\[ f \pmod \pp = f(a_1, \dots, a_n) \]
 	with the identification that $\CC/\pp \cong \CC$.
 \end{example}
-Indeed if you replace $R$ with $\CC[x_1, \dots, x_n]$
-and $\Spec R$ with $\Aff^n$ in everything that follows,
+Indeed if you replace $A$ with $\CC[x_1, \dots, x_n]$
+and $\Spec A$ with $\Aff^n$ in everything that follows,
 then everything will be clear.
 
 \begin{definition}
-	Let $f \in R$. We define the \vocab{vanishing locus} of $f$ to be
-	\[ \VV(f) = \left\{ \pp \in \Spec R \mid f(\pp) = 0 \right\}
-		= \left\{ \pp \in \Spec R \mid f \in \pp \right\}. \]
+	Let $f \in A$. We define the \vocab{vanishing locus} of $f$ to be
+	\[ \VV(f) = \left\{ \pp \in \Spec A \mid f(\pp) = 0 \right\}
+		= \left\{ \pp \in \Spec A \mid f \in \pp \right\}. \]
 	More generally, just as in the affine case,
 	we define the vanishing locus for an ideal $I$ as
 	\begin{align*}
-		\VV(I) &= \left\{ \pp \in \Spec R \mid f(\pp)=0 \forall f \in I \right\} \\
-		&= \left\{ \pp \in \Spec R \mid f \in \pp \; \forall f \in I \right\} \\
-		&= \left\{ \pp \in \Spec R \mid I \subseteq \pp \right\}.
+		\VV(I) &= \left\{ \pp \in \Spec A \mid f(\pp)=0 \forall f \in I \right\} \\
+		&= \left\{ \pp \in \Spec A \mid f \in \pp \; \forall f \in I \right\} \\
+		&= \left\{ \pp \in \Spec A \mid I \subseteq \pp \right\}.
 	\end{align*}
-	Finally, we define the \vocab{Zariski topology} on $\Spec R$
+	Finally, we define the \vocab{Zariski topology} on $\Spec A$
 	by declaring that the sets of the form $\VV(I)$ are closed.
 \end{definition}
 
@@ -156,19 +155,19 @@ We now define a useful topological notion:
 \end{definition}
 \begin{ques}
 	[Important]
-	Show that $\pp \in \Spec R$ is a closed point
+	Show that $\pp \in \Spec A$ is a closed point
 	if and only if $\pp$ is a maximal ideal.
 \end{ques}
 Therefore the Zariski topology lets us refer back to the old ``geometric''
 as just the closed points.
 \begin{example}
 	[Generic points, continued]
-	Let $R = \CC[x,y]$ and let $\pp = (y-x^2) \in \Spec \RR$;
+	Let $A = \CC[x,y]$ and let $\pp = (y-x^2) \in \Spec A$;
 	this is the ``generic point'' on a parabola.
 	It is not closed, but we can compute its closure:
 	\[
 		\ol{\{\pp\}}
-		= \VV(\pp) = \left\{ \qq \in \Spec R \mid \qq \supseteq \pp \right\}.
+		= \VV(\pp) = \left\{ \qq \in \Spec A \mid \qq \supseteq \pp \right\}.
 	\]
 	This closure contains the point $\pp$ as well
 	as several maximal ideals $\qq$, such as $(x-2,y-4)$ and $(x-3,y-9)$.
@@ -185,8 +184,8 @@ as just the closed points.
 
 \begin{example}
 	[The generic point of the $y$-axis isn't on the $x$-axis]
-	Let $R = \CC[x,y]$ again.
-	Consider $\VV(y)$, which is the $x$-axis of $\Spec R$.
+	Let $A = \CC[x,y]$ again.
+	Consider $\VV(y)$, which is the $x$-axis of $\Spec A$.
 	Then consider $\pp = (x)$, which is the generic point on the $y$-axis.
 	Observe that
 	\[ \pp \notin \VV(y). \]
@@ -194,111 +193,239 @@ as just the closed points.
 	on the $y$-axis does not lie on the $x$-axis.
 \end{example}
 
-\section{The structure sheaf}
+\section{A useless definition of the structure sheaf}
 \prototype{Still $\CC[x_1, \dots, x_n] / I$.}
 
-We have now endowed $\Spec R$ with the Zariski topology,
-and so all that remains is to put a sheaf $\OO_{\Spec R}$ on it.
+We have now endowed $\Spec A$ with the Zariski topology,
+and so all that remains is to put a sheaf $\OO_{\Spec A}$ on it.
 To do this we want a notion of ``regular functions'' as before.
 
-In order for this to make sense, we have to talk about rational
-functions in a meaningful way.
-If $R$ was an integral domain, then we could just use the field of fractions;
-for example if $R = \CC[x_1, \dots, x_n]$ then we could just
-look at rational quotients of polynomials.
-
-Unfortunately, in the general situation $R$ may not be an integral domain:
-for example, the ring $R = \CC[x] / (x^2)$ corresponding to the double point.
-So we will need to define something a little different:
-we will construct the \emph{localization} of $R$ at a set $S$,
-which we think of as the ``set of allowed denominators''.
-The most important special case is the localization at a prime ideal.
-
-Now, we can define the sheaf as ``locally rational'' functions.
-This is done by a sheafification.
-First, let $\SF$ be the pre-sheaf of ``globally rational'' functions:
-i.e.\ we define $\SF(U)$ to be
-\[
-	\SF(U) = \left\{
-		\frac fg \mid f, g \in R
-		\text{ and } g(\pp) \neq 0 \; \forall \pp \in U
-	\right\}
-	= \left(R \setminus \bigcup_{\pp \in U} \pp \right)\inv R.
-\]
-This is the localization of $R$ to the functions vanishing outside $U$.
-For every $\pp \in U$ we can view $f/g$ as an element in $R_\pp$
-(since $g(\pp) \ne 0$).
-
-As promised:
-\begin{lemma}[Stalks of the ``globally rational'' pre-sheaf]
-	\label{lem:global_rational_stalk}
-	The stalk of $\SF$ defined above $\SF_\pp$ is isomorphic to
-	the localization $R_\pp$.
-\end{lemma}
-\begin{proof}
-	There is an obvious map $\SF_\pp \to R_\pp$ on germs by
-	\[
-		\left(U, f/g \in \SF(U) \right)
-		\mapsto f/g \in R_\pp . \]
-	(Note the $f/g$ on the left lives in
-	$\SF(U) = \left(R \setminus \bigcup_{\pp \in U} \pp \right)\inv R$
-	but the one on the right lives in $R_\pp$).
-	Now suppose $(U_1, f_1 / g_1)$ and $(U_2, f_2 / g_2)$
-	are germs with $f_1/g_1 = f_2/g_2 \in R_\pp$.
-	\begin{exercise}
-		Now, show both germs are equal to $(U_1 \cap U_2 \cap D(h), f_1 / g_1)$
-		with $D(h)$ the distinguished open set.
-	\end{exercise}
-	It is also surjective, since given $f/g \in R_\pp$ we take $U = D(g)$
-	the distinguished open set for $g$.
-\end{proof}
-
+This is easy to do since we have localizations on hand.
 \begin{definition}
+	First, let $\SF$ be the pre-sheaf of ``globally rational'' functions:
+	i.e.\ we define $\SF(U)$ to be the localization
+	\[
+		\SF(U) = \left\{
+			\frac fg \mid f, g \in A
+			\text{ and } g(\pp) \neq 0 \; \forall \pp \in U
+		\right\}
+		= \left(A \setminus \bigcup_{\pp \in U} \pp \right)\inv A.
+	\]
 	We now define the structure sheaf on $\Spec A$.
 	It is
-	\[ \OO_{\Spec R} = \SF\sh \]
+	\[ \OO_{\Spec A} = \SF\sh \]
 	i.e.\ the sheafification of the $\SF$ we just defined.
 \end{definition}
+\begin{exercise}
+	Compare this with the definition for $\OO_V$
+	with $V$ a complex variety, and check that they essentially match.
+\end{exercise}
+And thus, we have completed the transition to adulthood,
+with a complete definition of the affine scheme.
+
+If you really like compatible germs,
+you can write out the definition:
+\begin{definition}
+	Let $A$ be a ring.
+	Then $\Spec A$ is made into a ringed space by setting
+	\[ \OO_{\Spec A}(U)
+		= \left\{ (f_\pp \in A_\pp)_{\pp \in U}
+		\text{ which are locally quotients} \right\}. \]
+	That is, it consists of sequence $(f_\pp)_{\pp \in U}$, with
+	each $f_\pp \in A_\pp$, such that for every point $\pp$ there
+	is a neighborhood $U_\pp$ and an $f,g \in A$ such that
+	$f_\qq = \frac fg \in A_\qq$ for all $\qq \in U_\pp$.
+\end{definition}
+
+We will now \textbf{completely forget about this definition},
+because we will never use it in practice.
+In the next two sections, we will show you how to compute
+the stalks and sections of any affine scheme, without having
+to think about sheafification.
+(Hence the lack of examples in this section.)
+
+\section{The stalks of the structure sheaf}
+The stalks are the easy case,
+and you probably can guess what's happening.
+
 \begin{theorem}
-	[Stalks are localizations]
-	Let $A$ be a ring, $X = \Spec A$,
-	and let $\pp \in X$ be a point in $A$.
-	Then \[ \OO_{X, \pp} \cong A_\pp. \]
+	[Stalks of $\Spec A$ are $A_\pp$]
+	Let $A$ be a ring and let $\pp \in \Spec A$.
+	Then \[ \OO_{\Spec A, \pp} \cong A_\pp. \]
 	In particular $X$ is a locally ringed space.
 \end{theorem}
 \begin{proof}
-	Stalks are preserved by sheafification,
-	sot his follows from the earlier lemma.
+	Since sheafification preserved stalks,
+	it's enough to check it for $\SF$ the pre-sheaf
+	of globally rational functions in our definition.
+	The proof is basically the same as \Cref{thm:stalks_affine_var}:
+	there is an obvious map $\SF_\pp \to A_\pp$ on germs by
+	\[ \left(U, f/g \in \SF(U) \right)
+		\mapsto f/g \in A_\pp . \]
+	(Note the $f/g$ on the left lives in $\SF(U)$
+	but the one on the right lives in $A_\pp$).
+	We show injectivity and surjectivity:
+	\begin{itemize}
+		\ii Injective: suppose $(U_1, f_1 / g_1)$ and $(U_2, f_2 / g_2)$
+		are two germs with $f_1/g_1 = f_2/g_2 \in A_\pp$.
+		This means $h(g_1 f_2 - f_2 g_1) = 0$ in $A$, for some nonzero $h$.
+		Then both germs identify with
+		the germ $(U_1 \cap U_2 \cap D(h), f_1 / g_1)$.
+		\ii Surjective: let $U = D(g)$. \qedhere
+	\end{itemize}
 \end{proof}
 
-In fact, we can even write out the definition of the sheafification,
-by viewing the germ at each point as an element of $R_\pp$.
-\begin{definition}
-	Let $R$ be a ring. Then $\Spec R$ is made into a ringed space by setting
-	\[ \OO_{\Spec R}(U)
-		= \left\{ (f_\pp \in R_\pp)_{\pp \in U}
-		\text{ which are locally $f/g$} \right\}. \]
-	That is, it consists of sequence $(f_\pp)_{\pp \in U}$, with
-	each $f_\pp \in R_\pp$, such that for every point $\pp$ there
-	is a neighborhood $U_\pp$ and an $f,g \in R$ such that
-	$f_\qq = \frac fg \in R_\qq$ for all $\qq \in U_\pp$.
-\end{definition}
-
 \begin{example}
-	[Examples of structure sheaves]
-	\listhack
-	\begin{enumerate}[(a)]
-		\ii Let $X = \Spec \CC[x]$.
-		Then $\OO_X(U)$ is the set of regular functions on $U$
-		in the sense that we've seen before.
-		\ii Let $X = \Spec \ZZ$.
-		Let $U = X \setminus \{ (7), (11) \} = D(77)$.
-		Then $\OO_X(U)$ can be identified with the set of rational numbers
-		which have denominator of the form $7^x 11^y$.
-	\end{enumerate}
+	[Denominators not divisible by $x$]
+	We have seen this example so many times
+	that I will only write it in the new notation,
+	and make no further comment:
+	\[ \OO_{\Spec \CC[x], (x)} = \CC[x]_{(x)}. \]
 \end{example}
 
-\section{Example: fat points}
+If you want more examples,
+take any of the ones from \Cref{sec:localize_prime_ideal},
+and try to think about what they mean geometrically.
+
+\section{The importance of distinguished open sets (aka the hyperbola effect matters)}
+\prototype{Let $X = \Spec \CC[x] = \Aff^1$ and $U = D(x)$,
+the line minus the origin.}
+
+We will now really hammer in the importance of
+the distinguished open sets.
+The definition is analogous to before:
+\begin{definition}
+	Let $f \in \Spec A$.
+	Then $D(f)$ is the set of $\pp$ such that $f(\pp) \neq 0$,
+	a \vocab{distinguished open set}.
+\end{definition}
+Distinguished open sets will have three absolutely crucial properties,
+which build on each ohter.
+
+\subsection{A basis of the Zariski topology}
+The first is a topological observation:
+\begin{theorem}
+	[Distinguished open sets form a base]
+	The distinguished open sets $D(f)$
+	form a basis for the Zariski topology:
+\end{theorem}
+\begin{proof}
+	Let $U$ be an open set.
+	It is the complement of some closed set
+	$\VV(I) = \bigcap_{f \in I} V(f)$.
+	Thus $U = \bigcup_{f \in I} D(f)$.
+\end{proof}
+
+\subsection{Sections are computable}
+The second critical fact is that we can compute the relevant sections.
+\begin{theorem}
+	[Sections of distinguished open sets are nice]
+	If $A$ is a ring and $f \in A$ then
+	Then \[ \OO_{\Spec A}(D(f)) \cong A_f. \]
+\end{theorem}
+\begin{proof}
+	Omitted, but similar to
+	\Cref{thm:reg_func_distinguish_open}.
+\end{proof}
+
+\begin{example}
+	[The punctured line is isomorphic to a hyperbola]
+	The hyperbola effect now has a new notation too:
+	\[ \OO_{\Spec \CC[x]} (D(x))
+		= \CC[x]_{x} = \CC[x, x\inv]
+		\cong \CC[x,y] / (xy-1). \]
+\end{example}
+
+The previous two results answer an important prayer:
+how we can forget about sheafification.
+Therefore:
+\begin{moral}
+	We can compute any section $\OO_X(U)$ in practice
+	by using distinguished open sets and sheaf axioms.
+\end{moral}
+And thus we can forget about the original definition of $\OO_X$
+which involved sheafification.
+(This perspective is so useful that some sources,
+like Vakil \cite[\S4.1]{ref:vakil}
+will \emph{define} $\OO_{\Spec A}$
+by requiring $\OO_{\Spec A}(D(f)) = A_f$.)
+
+Here is a classical example; there are more coming.
+\begin{example}
+	[Punctured plane]
+\end{example}
+\todo{write me}
+
+On a tangential note,
+we had better also note somewhere that $\Spec A = D(1)$
+is itself distinguished open, so the global sections can be recovered.
+\begin{corollary}
+	[$A$ is the ring of global sections]
+	The ring of global sections of $\Spec A$ is $A$.
+\end{corollary}
+\begin{proof}
+	By previous theorem, $\OO_{\Spec A}(\Spec A)
+	= \OO_{\Spec A}(D(1)) = A_1 = A$.
+\end{proof}
+
+\subsection{They are affine}
+The third final important fact is that
+$D(f)$ will actually be \emph{isomorphic} to $\Spec A_f$
+(just like the line minus the origin is isomorphic to the hyperbola).
+We can't make this precise yet,
+because we have not yet discussed morphisms of locally ringed space.
+However, you can already see this at the level of topological spaces;
+see \Cref{prob:homeomorphism}.
+%Since distinguished open sets form a base,
+%though, this means that open sets of affine schemes
+%are, at least locally, themselves affine schemes:
+%given any open set $U \subseteq \Spec A$, and point $\pp \in U$,
+%there is some open neighborhood $V \ni p$ contained in $U$
+%which is itself affine.
+
+\section{Recap}
+To recap, let $A$ be a ring.
+\begin{itemize}
+	\ii We define $X = \Spec A$ to be the set of prime ideals of $A$.
+	\begin{itemize}
+		\ii The maximal ideals are the ``closed points'' we are used to,
+		but the prime ideals are ``generic points''.
+	\end{itemize}
+
+	\ii We equip $\Spec A$ with the Zariski topology by declaring
+	$\VV(I)$ to be the closed sets, for ideals $I \subseteq A$.
+	\begin{itemize}
+		\ii The distinguished open sets $D(f)$,
+		the complements of $\VV(f)$, form a topological basis.
+	\end{itemize}
+
+	\ii Finally, we defined a sheaf $\OO_X$.
+	We set up the definition such that
+	\begin{itemize}
+		\ii $\OO_{X,\pp} = A_\pp$:
+		the stalks are localizations at a prime.
+		\ii $\OO_{X}(D(f)) = A_f$:
+		at distinguished open sets $D(f)$,
+		we get localizations too.
+	\end{itemize}
+	Since $D(f)$ is a basis,
+	these two properties lets us explicitly compute $\OO_X(U)$
+	for any open set $U$,
+	so we don't have to resort to the definition using sheafification.
+\end{itemize}
+
+\section{A gazillion examples}
+We now give an enormous list of examples.
+Each example gets its own subsection,
+rather than having page-long orange boxes.
+
+\subsection{$\Spec k$}
+\subsection{$\Spec \CC[x]$}
+\subsection{$\Spec \RR[x]$}
+\subsection{$\Spec \ZZ$}
+\subsection{$\Spec \Zc{60}$}
+\subsection{$\Spec k[xy]/(xy)$}
+\subsection{$\Spec k[x]/(x^2)$}
 So, let me elaborate a little on the ``double point'' scheme
 \[ X_2 = \Spec \CC[x] / (x^2) \]
 since it is such an important motivating example.
@@ -344,148 +471,11 @@ $\CC[x,y] / (x^2,y)$ is ``the origin with fuzz in the $x$-direction'',
 $\CC[x,y] / (x,y)^2$ is ``the origin with fuzz in all directions'',
 and so on and so forth.
 
-\section{The importance of distinguished open sets}
-\prototype{Let $X = \Spec \CC[x] = \Aff^1$ and $U = D(x)$,
-the line minus the origin.}
+\subsection{$\Spec \ZZ[x]$}
 
-We will now really hammer in the importance of
-the distinguished open sets.
-First the definition, analogous to before:
-\begin{definition}
-	Let $f \in \Spec R$.
-	Then $D(f)$ is the set of $\pp$ such that $f(\pp) \neq 0$,
-	a \vocab{distinguished open set}.
-\end{definition}
-Open sets will have three absolutely crucial properties.
-
-The first is topological:
-\begin{theorem}
-	[Distinguished open sets form a base]
-	The distinguished open sets $D(f)$
-	form a basis for the Zariski topology:
-\end{theorem}
-\begin{proof}
-	\todo{to be written}
-\end{proof}
-
-The second critical fact is that we can compute the relevant sections.
-\begin{theorem}
-	Let $X = \Spec A$ and $f \in A$.
-	Then \[ \OO_X(D(f)) \cong A_f. \]
-\end{theorem}
-\begin{proof}
-	Part (a) follows by \Cref{lem:global_rational_stalk}
-	and \Cref{lem:pre_sheaf_stalk}.
-	For part (b), we need:
-	\begin{ques}
-		If $I$ and $J$ are ideals of a ring $R$,
-		then $\VV(I) \subseteq \VV(J)$ if and only if
-		$\sqrt{J} \subseteq \sqrt{I}$.
-		(Use the fact that $\sqrt I = \cap_{I \subseteq \pp} \pp$.)
-	\end{ques}
-	Then we can repeat the proof of \Cref{thm:reg_func_distinguish_open}.
-\end{proof}
-
-\begin{example}
-	[The punctured line is isomorphic to a hyperbola]
-\end{example}
-\todo{write}
-
-The previous two results answer an important prayer:
-how we can forget about sheafification.
-That's because the distinguished open sets form a base,
-with $D(f) \cap D(g) = D(fg)$,
-and because we know $\OO_X(D(f))$ for every $f$,
-we have ourselves a sheaf on a base.
-Therefore:
-\begin{moral}
-	We can compute any section $\OO_X(U)$ in practice
-	by using distinguished open sets.
-\end{moral}
-And thus we can forget about the original definition of $\OO_X$
-which involved sheafification.
-Here is a classical example.
-\begin{example}
-	[Punctured plane]
-\end{example}
-\todo{write me}
-
-
-The third final important fact is that
-$D(f)$ will actually be \emph{isomorphic} to $\Spec A_f$
-as a locally ringed space,
-just like the line minus the origin is isomorphic to the hyperbola.
-We can't make this precise yet,
-because we have not yet discussed morphisms of locally ringed space.
-However, you can already see this at the level of topological spaces;
-see \Cref{prob:homeomorphism}.
-
-\section{Recap, and a gazillion examples}
-To recap, let $A$ be a ring.
-\begin{itemize}
-	\ii We define $X = \Spec A$ to be the set of prime ideals of $A$.
-	\begin{itemize}
-		\ii The maximal ideals are the ``closed points'' we are used to,
-		but the prime ideals are ``generic points''.
-	\end{itemize}
-
-	\ii We equip $\Spec A$ with the Zariski topology by declaring
-	$\VV(I)$ to be the closed sets, for ideals $I \subseteq A$.
-	\begin{itemize}
-		\ii The distinguished open sets $D(f)$,
-		the complements of $\VV(f)$, form a topological basis.
-	\end{itemize}
-
-	\ii Finally, we defined a sheaf $\OO_X$.
-	We set up the definition such that
-	\begin{itemize}
-		\ii $\OO_{X,\pp} = A_\pp$:
-		the stalks are localizations at a prime.
-		\ii $\OO_{X}(D(f)) = A_f$:
-		at distinguished open sets $D(f)$,
-		we get localizations too.
-	\end{itemize}
-	Since $D(f)$ is a basis,
-	these two properties lets us explicitly compute $\OO_X(U)$
-	for any open set $U$,
-	so we don't have to resort to the definition using sheafification.
-\end{itemize}
-
-We now give an enormous list of examples.
-Each example gets its own subsection,
-rather than having page-long orange boxes.
-
-\subsection{$\Spec \CC[x]$}
-\subsection{$\Spec \RR$}
-\subsection{$\Spec \ZZ$}
-\subsection{$\Spec \Zc{60}$}
-\subsection{$\Spec k[x]/(x^2)$}
 \subsection{$\Spec k[x]_{(x)}$}
 
-\section{Two mandatory algebra exercises}
-
-\todo{write this}
-The previous example illustrates an important observation:
-\begin{exercise}
-	Let $I \subsetneq R$ be a proper ideal.
-	Construct a bijection between the maximal ideals of $R$ containing $I$,
-	and the maximal ideals of $R/I$.
-\end{exercise}
-
-(\cite{ref:vakil} labels this exercise as
-``Essential Algebra Exercise (Mandatory if you haven't done it before)''.)
-
-\section{Generic points, and irreducible closed sets}
-biject them to generic points
-
 \section\problemhead
-
-\begin{problem}
-	\label{prob:homeomorphism}
-	Let $A$ be a ring, $X = \Spec A$ and $f \in A$.
-	Show that $\Spec A_f$ and $D(f) \subset X$ are homeomorphic,
-	as topological spaces.
-\end{problem}
 
 \begin{problem}
 	Describe the points of $\Spec \RR[x]$.
@@ -493,6 +483,8 @@ biject them to generic points
 		Galois conjugates.
 	\end{hint}
 \end{problem}
+
+\todo{punctured dreidel}
 
 \begin{dproblem}
 	[Chinese remainder theorem]
@@ -507,9 +499,9 @@ biject them to generic points
 \begin{problem}
 	[From Andrew Critch]
 	\gim
-	Let $R$ be a Noetherian ring.
-	Show that $R$ is an integral domain if and only if it has no idempotents,
-	and $R_\pp$ is an integral domain for every prime $\pp$.
+	Let $A$ be a Noetherian ring.
+	Show that $A$ is an integral domain if and only if it has no idempotents,
+	and $A_\pp$ is an integral domain for every prime $\pp$.
 	\begin{hint}
 		Show that if $\Spec R$ is connected and its stalks are irreducible,
 		then $\Spec R$ is itself irreducible.

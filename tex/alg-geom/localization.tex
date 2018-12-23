@@ -1,5 +1,4 @@
 \chapter{Localization}
-\todo{change $R$ to $A$}
 Before we proceed on to defining an affine scheme,
 we will take the time to properly cover one more algebraic construction
 that of a \emph{localization}.
@@ -7,167 +6,343 @@ This is mandatory because when we define a scheme,
 we will find that all the sections and stalks
 are actually obtained using this construction.
 
+One silly slogan might be:
+\begin{moral}
+	Localization is the art of adding denominators.
+\end{moral}
 You may remember that when we were working with affine varieties,
 there were constantly expressions of the form
-\[ \left\{ \frac{f}{g} \mid g(p) \ne 0 \right\} \]
+$\left\{ \frac{f}{g} \mid g(p) \ne 0 \right\}$
 and the like.
 The point is that we introduced a lot of denominators.
-This is exactly the idea behind the construction we are about to see.
+Localization will give us a concise way of doing this in general.
+
+\emph{Notational note}:
+moving forward we'll prefer to denote rings by $A$, $B$, \dots,
+rather than $R$, $S$, \dots.
+
+\section{Spoilers}
+Here is a preview of things to come,
+so that you know what you are expecting.
+Some things here won't make sense,
+but that's okay, it is just foreshadowing.
+
+Let $V \subseteq \Aff^n$, and for brevity let $R = \CC[V]$ be its coordinate ring.
+We saw in previous sections how to compute $\OO_V(D(g))$
+and $\OO_{V, p}$ for $p \in V$ a point.
+For example, if we take $\Aff^1$ and consider a point $p$, then
+$\OO_{\Aff^1}(D(x-p)) = \left\{ \frac{f(x)}{(x-p)^n} \right\}$
+and $\OO_{\Aff^1, p} = \left\{ \frac{f(x)}{g(x)} \mid g(p) \ne 0 \right\}$.
+More generally, we had
+\begin{align*}
+	\OO_{V}(D(g)) &= \left\{ \frac{f}{g^n} \mid f \in R \right\}
+		\quad\text{by \Cref{thm:reg_func_distinguish_open}} \\
+	\OO_{V,p} &= \left\{ \frac{f}{g} \mid f,g \in R, g(p) \ne 0 \right\}
+		\quad\text{by \Cref{thm:stalks_affine_var}}.
+\end{align*}
+
+We will soon define something called a localization,
+which will give us a nice way of expressing the above:
+if $R = \CC[V]$ is the coordinate ring, then
+the above will become abbreviated to just
+\begin{align*}
+	\OO_{V}(D(g)) &= R_{g} \\
+	\OO_{V, p} &= R_{\mm} \quad \text{where } \{p\} = \VV(\mm).
+\end{align*}
+The former will be pronounced 
+``$R$ localized away from $g$''
+while the latter will be pronounced
+``$R$ localized at $\mm$''.
+
+Even more generally,
+next chapter we will throw out the coordinate ring $R$
+altogether and replace it with a general commutative ring $A$
+(which are still viewed as functions).
+We will construct a ringed space called $X = \Spec A$,
+whose elements are prime ideals of $A$
+and is equipped with the Zariski topology and a sheaf $\OO_X$.
+It will turn out that, in analogy to what we had before,
+\begin{align*}
+	\OO_X(D(f)) &= A_f \\
+	\OO_{X,\pp} &= A_\pp
+\end{align*}
+for any element $f \in A$ and prime ideal $\pp \in \Spec A$.
+Thus just as with complex affine varieties,
+localizations will give us a way to more or less
+describe the sheaf $\OO_X$ completely.
 
 \section{The definition}
 \begin{definition}
-	Let $S \subseteq R$, where $R$ is a ring,
-	and assume $S$ is closed under multiplication.
-	Then the \vocab{localization of $R$ at $S$}, denoted $S\inv R$,
+	Let $A$ be a ring and $S \subset A$ any subset
+	closed under multiplication.
+	Then the \vocab{localization of $A$ at $S$}, denoted $S\inv A$,
 	is defined as the set of fractions
-	\[ \left\{ r/s \mid r \in R, s \in S \right\} \]
-	where we declare two fractions $r_1 / s_1 = r_2 / s_2$ 
+	\[ \left\{ a/s \mid a \in A, s \in S \right\} \]
+	where we declare two fractions $a_1 / s_1 = a_2 / s_2$ 
 	to be equal if
-	\[ \exists s \in S : \quad s(r_1s_2 - r_2s_1) = 0. \]
+	\[ \exists s \in S : \quad s(a_1s_2 - a_2s_1) = 0. \]
+	Addition and multiplication in this ring
+	are defined in the obvious way.
 \end{definition}
 
-\begin{example}
-	
-\end{example}
-\todo{give examples}
-
-In particular, if $0 \in S$ then $S\inv R$ is the trivial ring.
+In particular, if $0 \in S$ then $S\inv A$ is the zero ring.
 So we usually only take situations where $0 \notin S$.
-\begin{ques}
-	Assume $R$ is an integral domain and $S = R \setminus \{0\}$.
-	Show that $S\inv R$ is just the field of fractions.
-\end{ques}
+\begin{remark}
+	If you know what the ``field of fractions'' of an
+	integral domain $A$ is, then you should recognize that
+	it can be expressed as $S\inv A$ where $S = A \setminus \{0\}$.
+	For example, the field of fractions of $\ZZ$ is $\QQ$.
+	If you don't know what this means,
+	it will become the definition in just a few sections.
+\end{remark}
+
+We give in brief now two examples which will be
+motivating forces for the construction of the affine scheme.
+
 \begin{example}
+	[Localizations of {$\CC[x]$}]
+	Let $A = \CC[x]$.
+	\begin{enumerate}[(a)]
+		\ii Suppose we let $S = \left\{ 1, x, x^2, x^3, \dots \right\}$
+		be the powers of $x$.
+		Then
+		\[ S\inv A = \left\{ \frac{f(x)}{x^n}
+			\mid f \in \CC[x], n \in \ZZ_{\ge 0} \right\}.  \]
+		In other words, we get the Laurent polynomials in $x$.
+
+		You might recognize this as
+		\[ \OO_V(U) \text{ where } V = \Aff^1, \; U = V \setminus \{0\}. \]
+		i.e.\ the sections of the punctured line.
+		In line with the ``hyperbola effect'',
+		this is also expressible as $\CC[x,y] / (xy-1)$.
+
+		\ii Let $p \in \CC$.
+		Suppose we let $S = \left\{ g(x) \mid g(p) \ne 0 \right\}$,
+		i.e.\ we allow any denominators where $g(p) \ne 0$.
+		Then
+		\[ S\inv A = \left\{ \frac{f(x)}{g(x)}
+			\mid f,g \in \CC[x], g(p) \ne 0 \right\}.  \]
+		You might recognize this is as the stalk $\OO_{\Aff^1, p}$.
+		This will be important later on.
+	\end{enumerate}
+\end{example}
+
+\begin{remark}
 	[Why the extra $s$?]
-	The reason we need the condition $s(r_1s_2 - r_2s_1) = 0$
-	rather than the simpler $r_1s_2 - r_2s_1 = 0$ is that
+	The reason we need the condition $s(a_1s_2 - a_2s_1) = 0$
+	rather than the simpler $a_1s_2 - a_2s_1 = 0$ is that
 	otherwise the equivalence relation may fail to be transitive.
 	Here is a counterexample: take
-	\[ R = \Zc{12} \qquad S = \{ 2, 4, 8 \}. \]
+	\[ A = \Zc{12} \qquad S = \{ 2, 4, 8 \}. \]
 	Then we have for example
 	\[ \frac12 = \frac24 = \frac64 = \frac32. \]
 	So we need to have $\frac12=\frac32$ which is only true
 	with the first definition.
 
-	Of course, if $R$ is an integral domain (and $0\notin S$)
+	Of course, if $A$ is an integral domain (and $0\notin S$)
 	then this is a moot point.
-\end{example}
+\end{remark}
+
 
 We will now look at two special cases,
 which have a concrete interpretation.
 
-\todo{ideals bijection}
 
-\section{First important special case: localization at a prime}
+
+\section{Localization away from an element}
+\prototype{$\CC[x]_{x}$ is Laurent polynomials.}
 \begin{definition}
-	Let $R$ be a ring and $\pp$ a prime ideal.
-	Then $R_\pp$ is defined to be $S\inv R$ for $S = R\setminus\pp$.
-	We call this \vocab{localization at $\pp$}.
-	Addition is defined in the obvious way.
-\end{definition}
-
-\begin{ques}
-	Why is $S$ multiplicative closed in the above definition?
-\end{ques}
-
-\todo{example: localizing the origin of $\Aff^1$}
-\todo{example: localizing the origin of $\Aff^2$}
-\todo{example: localizing at a hyperbola}
-\todo{example: localizing at $(0)$}
-
-\section{Second important special case: localization away from an element}
-\begin{definition}
-	For $g \in R$, we define the \vocab{localization of $R$ at $g$},
+	For $g \in R$, we define the \vocab{localization of $R$ away from $g$},
 	denoted $R_g$ to be $\{1, g, g^2, g^3, \dots\}\inv R$.
 	(Note that $\left\{ 1, g, g^2, \dots \right\}$ is multiplicatively closed.)
 \end{definition}
-Warning: this is admittedly somewhat terrible notation, since $R_\pp$
-is the localization with multiplicative set $R \setminus \pp$,
-while $R_g$ is the localization with multiplicative set $\{1,g,g^2,\dots\}$;
-these two are quite different beasts!
-In $R_\pp$ the subscript denotes the \emph{forbidden} denominators;
-in $R_g$ the subscript denotes the \emph{allowed} denominators.
 
 \begin{example}
-	[Localization at an element]
-	Let $R = \CC[x,y,z]$ and let $g = x$.
-	Then
-	\[ R_g = \left\{ \frac{P(x,y,z)}{x^n} \mid
-		P \in \CC[x,y,z], \; n \ge 0 \right\}. \]
+	[Localization at an element, algebraic geometry flavored]
+	We saw that if $A$ is the coordinate ring of a variety,
+	then $A_g$ is interpreted geometrically as $\OO_V(D(g))$.
+	Here are some special cases:
+	\begin{enumerate}[(a)]
+		\ii As we saw, if $A = \CC[x]$,
+		then $A_{x} = \left\{ \frac{f(x)}{x^n} \right\}$
+		consists of Laurent polynomials.
+
+		\ii Let $A = \CC[x,y,z]$.
+		Then \[ A_x = \left\{ \frac{f(x,y,z)}{x^n} \mid
+			f \in \CC[x,y,z], \; n \ge 0 \right\} \]
+		is rational functions whose denominators are powers of $x$.
+
+		\ii Let $A = \CC[x,y]$.
+		If we localize away from $y-x^2$ we get
+		\[ A_{y-x^2} = \left\{ \frac{f(x,y)}{(y-x^2)^n} \mid
+			f \in \CC[x,y], \; n \ge 0 \right\} \]
+		By now you should recognize this as $\OO_{\Aff^2}(D(y-x^2))$.
+	\end{enumerate}
 \end{example}
 
-\todo{example: punctured line}
-\todo{example: line minus a parabola}
+\begin{example}
+	[An example with zero-divisors]
+	Let $A = \CC[x,y] / (xy)$
+	(which intuitively is the coordinate ring of two axes).
+	Suppose we localize at $x$:
+	equivalently, allowing denominators of $x$.
+	Since $xy = 0$ in $A$, we now have $0 = x\inv (xy) = y$,
+	so $y = 0$ in $A$, and thus $y$ just goes away completely.
+	From this we get a ring isomorphism
+	\[ A_{(x)} \cong \CC[x]_{(x)}. \]
+\end{example}
+\todo{commute with quotient}
 
-\section{Local rings, and locally ringed spaces}
-
-The stalks of the examples we produced above are special types
-of rings, called \emph{local rings}.
-Algebraically, the definition of these is:
-\begin{definition}
-	A \vocab{local ring} $R$ is a ring with exactly one maximal ideal.
-\end{definition}
-\begin{exercise}
-	Show that a ring $R$ is a local ring if there exists
-	a proper ideal $\mm \subsetneq R$ such that
-	all elements of $R \setminus \mm$ are units.
-	(Bonus: prove the converse.)
-\end{exercise}
-
-% Wikipedia has a good explanation here
-To see why this definition applies to the stalks above,
-we need to identify what the maximal ideal is.
-Let's go back to the example of $X = \RR$ and $\SF(U)$ the smooth functions,
-and consider the stalk $\SF_{p}$, where $p \in X$.
-Define the ideal $\mm_p$ to be the set of germs $(s,U)$ for which $s(p) = 0$.
-
-Then $\mm_p$ is maximal: we have an exact sequence
-\[ 0 \to \mm_p \to \SF_p \taking{(s,U) \mapsto s(p)} \RR \to 0 \]
-and so $\SF_p / \mm_p \cong \RR$, which is a field.
-
-It remains to check there are no nonzero maximal ideals.
-Now note that if $s \notin \mm_p$,
-then $s$ is nonzero in some neighborhood of $p$,
-then one can construct the function $1/s$ in a neighborhood of $p$.
-So \textbf{every element of $\SF_p \setminus \mm_p$ is a unit};
-$\mm_p$ is in fact the only maximal ideal!
-
-More generally,
-\begin{moral}
-	If $\SF$ consists of ``field-valued functions'',
-	the stalk $\SF_p$ probably has a maximal ideal
-	consisting of the germs vanishing at $p$.
-\end{moral}
-The discussion above implies, for example:
-\begin{proposition}
-	[Stalks are often local rings]
-	The stalks of each of the following types of sheaves are local rings:
+\begin{example}
+	[Some arithmetic examples of localizations]
+	\listhack
 	\begin{enumerate}[(a)]
-		\ii Sheaves of continuous real/complex functions on a topological space
-		\ii Sheaves of smooth functions on any manifold
-		\ii Regular functions on an algebraic variety $V$.
-	\end{enumerate}
-\end{proposition}
+		\ii Let $A = \ZZ$. We localize away from $6$:
+		\[ A_{6} = \left\{ \frac{m}{6^n} \mid m \in \ZZ,
+			n \in \ZZ_{\ge 0} \right\}.  \]
+		So $A_6$ consist of those rational numbers whose
+		denominators have only powers of $2$ and $3$.
+		For example, it contains $\frac{5}{12} = \frac{15}{36}$.
 
-We can now define:
+		\ii Here is a more confusing example:
+		if we localize $A = \Zc{60}$ away from the element $5$,
+		we get $A_5 \cong \Zc{12}$.
+		You should try to think about why this is the case.
+	\end{enumerate}
+\end{example}
+
+\section{Localization at a prime ideal}
+\label{sec:localize_prime_ideal}
 \begin{definition}
-	A \vocab{ringed space} is a topological space $X$ equipped
-	with a sheaf $\OO_X$ of rings.
-	Suppose that for every point $p$, the stalk $\OO_{X,p}$
-	is a local ring.
-	Then we say that $(X, \OO_X)$ is a \vocab{locally ringed space}.
-	We denote the maximal ideals by $\mm_{X,p}$.
+	If $A$ is a ring and $\pp$ is a prime ideal, then we define
+	\[ A_\pp \defeq \left( A \setminus \pp \right)^{-1} A. \]
+	This is called the \vocab{localization at $\pp$}.
+\end{definition}
+\begin{ques}
+	Why is $S = A \setminus \pp$ multiplicatively closed
+	in the above definition?
+\end{ques}
+
+Warning: this notation sort of conflicts with the previous one.
+The ring $A_\pp$ is the localization with multiplicative set $A \setminus \pp$,
+while $A_f$ is the localization with multiplicative set $\{1,f,f^2,\dots\}$;
+these two are quite different beasts!
+In $A_\pp$ the subscript denotes the \emph{forbidden} denominators;
+in $A_f$ the subscript denotes the \emph{allowed} denominators.
+
+This special case is important because we will see that
+stalks of schemes will all be of this shape.
+In fact, the same was true for affine varieties too.
+\begin{example}
+	[Relation to affine varieties]
+	Let $V \subseteq \Aff^n$, let $A = \CC[V]$
+	and let $p = (a_1, \dots, a_n)$ be a point.
+	Consider the maximal (hence prime) ideal
+	\[ \mm = (x_1 - a_1, \dots, x_n - a_n). \]
+	Observe that a function $f \in A$ vanishes at $p$
+	if and only if $f \pmod{\mm} = 0$, equivalently $f \in \mm$.
+	Thus, by \Cref{thm:stalks_affine_var} we can write
+	\begin{align*}
+		\OO_{V,p} &= \left\{ \frac{f}{g} \mid f,g \in A, g(p) \ne 0 \right\} \\
+		&= \left\{ \frac{f}{g} \mid f \in A, g \in A \setminus \mm \right\} \\
+		&= \left( A \setminus \mm \right)\inv A = A_\mm.
+	\end{align*}
+	So, we can also express $\OO_{V,p}$ concisely as a localization.
+\end{example}
+Consequently, we give several examples in this vein.
+
+\begin{example}
+	[Geometric examples of localizing at a prime]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii We let $\mm$ be the maximal ideal $(x)$ of $A = \CC[x]$.
+		Then \[ A_\mm = \left\{ \frac{f(x)}{g(x)} \mid g(0) \ne 0 \right\} \]
+		consists of the Laurent polynomials.
+
+		\ii We let $\mm$ be the maximal ideal $(x,y)$ of $A = \CC[x,y]$.
+		Then \[ A_\mm = \left\{ \frac{f(x,y)}{g(x,y)} \mid g(0,0) \ne 0 \right\}. \]
+
+		\ii Let $\pp$ be the prime ideal $(y-x^2)$ of $A = \CC[x,y]$.
+		Then
+		\[ A_\pp = \left\{ \frac{f(x,y)}{g(x,y)} \mid g \notin (y-x^2) \right\}. \]
+		This is a bit different from what we've seen before:
+		the polynomials in the denominator are allowed to vanish
+		at a point like $(1,1)$, as long as they don't vanish on
+		\emph{every} point on the parabola.
+		This doesn't correspond to any stalk we're familiar with right now,
+		but it will later
+		(it will be the ``stalk at the generic point of the parabola'').
+
+		\ii Let $A = \CC[x]$ and localize at the prime ideal $(0)$.
+		This gives \[ A_{(0)} = \left\{ \frac{f(x)}{g(x)} \mid g(x) \ne 0 \right\}. \]
+		This is all rational functions, period.
+	\end{enumerate}
+\end{example}
+
+\begin{example}
+	[Arithmetic examples]
+	We localize $\ZZ$ at a few different primes.
+	\begin{enumerate}[(a)]
+		\ii If we localize $\ZZ$ at $(0)$:
+		\[ \ZZ_{(0)} = \left\{ \frac mn \mid n \ne 0 \right\}
+			\cong \QQ. \]
+		\ii If we localize $\ZZ$ at $(3)$, we get
+		\[ \ZZ_{(3)} = \left\{ \frac mn \mid n \ne 3 \right\} \]
+		which is the ring of rational numbers
+		whose denominators are relatively prime to $3$.
+	\end{enumerate}
+\end{example}
+
+The localization at $(0)$ has a special name.
+\begin{definition}
+	[Field of fractions]
+	If $A$ is an integral domain,
+	the localization $A_{(0)}$ (i.e.\ allowing all nonzero denominators)
+	is called the \vocab{field of fractions} of $A$.
 \end{definition}
 
-In particular, in the previous chapter we showed that every
-affine variety could be built into a locally ringed space. Hooray!
-\begin{abuse}
-	A ringed space $(X, \OO_X)$ is abbreviated to just $X$,
-	while $p \in X$ means ``$p$ is in the topological space $X$''.
-\end{abuse}
 
+\section{Two mandatory algebra exercises}
+\todo{ideals bijection}
+\todo{write this}
+The previous example illustrates an important observation:
+\begin{exercise}
+	Let $I \subsetneq R$ be a proper ideal.
+	Construct a bijection between the maximal ideals of $R$ containing $I$,
+	and the maximal ideals of $R/I$.
+\end{exercise}
+(\cite{ref:vakil} labels this exercise as
+``Essential Algebra Exercise (Mandatory if you haven't done it before)''.)
 
-
-\section{A valuable square}
 
 \section{\problemhead}
+
+\begin{problem}
+	Let $A = \Zc{2016}$. Compute $A_{60}$.
+\end{problem}
+
+\begin{problem}
+	[Injectivity of localizations]
+	Let $A$ be a ring and $S \subseteq A$ a multiplicatively closed set.
+	Find necessary and sufficient conditions
+	for the map $A \mapsto S\inv A$ to be injective.
+	\begin{hint}
+		Consider zero divisors.
+	\end{hint}
+	\begin{sol}
+		If and only if $S$ has no zero divisors.
+	\end{sol}
+\end{problem}
+
+\begin{problem}
+	Let $A$ be a ring such that $A_\pp$ is an integral domain
+	for every prime ideal $\pp$ of $A$.
+	Must $A$ be an integral domain?
+	\begin{hint}
+		No. Imagine two axes.
+	\end{hint}
+	\begin{sol}
+		Take $A = \CC[x,y] / (xy)$.
+	\end{sol}
+\end{problem}
+\todo{problems}
