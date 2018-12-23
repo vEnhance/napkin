@@ -1,4 +1,4 @@
-\chapter{What is a space?}
+\chapter{Metric spaces}
 At the time of writing, I'm convinced that metric topology is
 the morally correct way to motivate point-set topology
 as well as to generalize normal calculus.
@@ -389,9 +389,11 @@ We can rephrase convergence more succinctly in terms of $r$-neighborhoods.
 Specifically, a sequence $(x_n)$ converges to $x$
 if for every $r$-neighborhood of $x$, all terms of $x_n$ eventually stay within that $r$-neighborhood.
 
-Let's try to do the same with functions. 
+Let's try to do the same with functions.
 \begin{ques}
-	In terms of $r$-neighborhoods, what does it mean for a function $f : M \to N$ to be continuous at a point $p \in M$?
+	In terms of $r$-neighborhoods,
+	what does it mean for a function $f \colon M \to N$
+	to be continuous at a point $p \in M$?
 \end{ques}
 
 Essentially, we require that the pre-image of every $\eps$-neighborhood has
@@ -514,7 +516,7 @@ The whole upshot of this is:
 From this we can get a new definition of homeomorphism
 which makes it clear why open sets are good things to consider.
 \begin{theorem}
-	A function $f : M \to N$ of metric spaces is a homeomorphism if
+	A function $f \colon M \to N$ of metric spaces is a homeomorphism if
 	\begin{enumerate}[(i)]
 		\ii It is a bijection of the underlying points.
 		\ii It induces a bijection of the open sets of $M$ and $N$:
@@ -523,136 +525,10 @@ which makes it clear why open sets are good things to consider.
 	\end{enumerate}
 \end{theorem}
 
-This leads us to\dots
-
-\section{Forgetting the metric}
-Notice something interesting about the previous theorem --
-it doesn't reference the metrics of $M$ and $N$ at all.
-Instead, it refers only to the open sets.
-
-This leads us to consider:
-what if we could refer to spaces \emph{only} by their open sets,
-forgetting about the fact that we had a metric to begin with?
-That's exactly what we do in ``point-set topology''.
-
-\begin{definition}
-	A \vocab{topological space} is a pair $(X, \mathcal T)$,
-	where $X$ is a set of points,
-	and $\mathcal T$ is the \vocab{topology}, which consists of several subsets of $X$, called the \vocab{open sets} of $X$.
-	The topology must obey the following axioms.
-	\begin{itemize}
-		\ii $\varnothing$ and $X$ are both in $\mathcal T$.
-		\ii Finite intersections of open sets are also in $\mathcal T$.
-		\ii Arbitrary unions (possibly infinite) of open sets are also in $\mathcal T$.
-	\end{itemize}
-\end{definition}
-So this time, the open sets are \emph{given}.
-Rather than defining a metric and getting open sets from the metric,
-we instead start from just the open sets.
-\begin{abuse}
-	We refer to the space $(X, \mathcal T)$ by just $X$.
-	(Do you see a pattern here?)
-\end{abuse}
-
-\begin{example}[Examples of topologies]
-	\listhack
-	\begin{enumerate}[(a)]
-		\ii Given a metric space $M$, we can let $\mathcal T$ be
-		the open sets in the metric sense.
-		The point is that the axioms are satisfied.
-		\ii In particular, \vocab{discrete space} is a topological space in which every set is open. (Why?)
-		\ii Given $X$, we can let $\mathcal T = \left\{ \varnothing, X \right\}$,
-		the opposite extreme of the discrete space.
-	\end{enumerate}
-\end{example}
-
-Now we can port over our metric definitions.
-\begin{definition}
-	An \vocab{open neighborhood} of a point $x \in X$ is an
-	open set $U$ which contains $x$ (see figure).
-\end{definition}
-\begin{center}
-	\begin{asy}
-		size(4cm);
-		bigblob("$X$");
-		pair p = Drawing("x", (0.3,0.1), dir(-90));
-		real r = 1.55;
-		draw(shift(p) * scale(1.6,1.2)*unitcircle, dashed);
-		label("$U$", p+r*dir(45), dir(45));
-	\end{asy}
-\end{center}
-
-\begin{abuse}
-	Just to be perfectly clear:
-	by a ``open neighborhood'' I mean \emph{any} open set containing $x$.
-	But by an ``$r$-neighborhood'' I always mean the
-	points with distance less than $r$ from $x$,
-	and so I can only use this term if my space is a metric space.
-\end{abuse}
-
-\begin{abuse}
-	There's another related term commonly used:
-	a \emph{neighborhood} $V$ of $x$ is a set
-	which contains some open neighborhood of $x$ (often $V$ itself).
-	Think of it as ``open around $x$'', though
-	not always at other points.
-	However, for most purposes, you should think of neighborhoods
-	as just open neighborhoods.
-\end{abuse}
-\begin{definition}
-	A function $f : X \to Y$ of topological spaces
-	is \vocab{continuous} at $p \in X$ if the pre-image of any
-	open neighborhood of $fp$ is an open neighborhood of $p$.
-	It is continuous if it is continuous at every point,
-	meaning that the pre-image of any open set is open.
-\end{definition}
-
-You can also port over the notion of sequences and convergent sequences.
-But I won't bother to do so because sequences lose most of the nice properties
-they had before.
-
-%\begin{definition}
-%	A sequence $(x_n)$ of points in a topological space $X$ is said to \vocab{converge to} $x \in X$ if for every neighborhood of $x$,
-%	eventually all terms of the sequence lie in that neighborhood.
-%\end{definition}
-%\begin{remark}
-%	Unfortunately, for general topological spaces we no longer have the nice property
-%	that any function which preserves sequential limits is automatically continuous.
-%\end{remark}
-
-%There's one other property of open sets that we have in a metric space that isn't implied by the above: for any two points of $X$, we can find an open set containing one but not the other.
-%A space which also has this property is called a \vocab{Kolmogorov space}.
-%This property is a good property to have, because if $x,y \in X$ are in the same open sets, the topology can't tell them apart.
-
-Finally, what are the homeomorphisms?
-The same definition carries over: a bijection which is continuous in both directions.
-\begin{definition}
-	A \vocab{homeomorphism} of topological spaces $(X, \tau_X)$ and $(Y, \tau_Y)$
-	is a bijection from $X$ to $Y$
-	which induces a bijection from $\tau_X$ to $\tau_Y$:
-	i.e.\ the bijection preserves open sets.
-\end{definition}
-Therefore, any property defined only in terms of open sets is preserved by homeomorphism.
-Such a property is called a \vocab{topological property}.
-That's why $(0,1)$ homeomorphic to $\RR$ is not so surprising,
-because the notion of being ``bounded'' is not a notion
-which can be expressed in terms of open sets.
-
-\begin{remark}
-	As you might have guessed, there exist topological spaces which cannot be realized
-	as metric spaces (in other words, are not \vocab{metrizable}).
-	One example is just to take $X = \{a,b,c\}$ and the topology
-	$\tau_X = \left\{ \varnothing, \{a,b,c\} \right\}$.
-	This topology is fairly ``stupid'':
-	it can't tell apart any of the points $a$, $b$, $c$!
-	But any metric space can tell its points apart (because $d(x,y) > 0$ when $x \neq y$).
-	We'll see less trivial examples later.
-\end{remark}
-
-
 \section{Closed sets}
 \prototype{The closed unit disk $x^2+y^2 \le r^2$ in $\RR^2$.}
-It would be criminal for me to talk about open sets without talking about the dual concept, a closed set.
+It would be criminal for me to talk about open sets
+without talking about closed sets.
 The name ``closed'' comes from the definition in a metric space.
 \begin{definition}
 	Let $M$ be a metric space.
@@ -667,14 +543,16 @@ The name ``closed'' comes from the definition in a metric space.
 \end{abuse}
 Here's another way to phrase it.
 The \vocab{limit points} of a subset $S \subseteq M$ are defined by
-\[ \lim S \defeq \left\{ p \in M : \exists (x_n) \in S \text{ such that } x_n \to p \right\}. \]
+\[ \lim S \defeq \left\{ p \in M :
+	\exists (x_n) \in S \text{ such that } x_n \to p \right\}. \]
 Thus $S$ is closed if and only if $S = \lim S$.
 
 \begin{exercise}
 	Prove that $\lim S$ is closed even if $S$ isn't closed. (Draw a picture.)
 \end{exercise}
-For this reason, $\lim S$ is also called the \vocab{closure} of $S$ in $M$,
-and denoted $\ol S$.  It is simply the smallest closed set which contains $S$.
+For this reason, $\lim S$ is also called the
+\vocab{closure} of $S$ in $M$, and denoted $\ol S$.
+It is simply the smallest closed set which contains $S$.
 
 \begin{example}
 	[Examples of closed sets]
@@ -702,18 +580,16 @@ and denoted $\ol S$.  It is simply the smallest closed set which contains $S$.
 	converges to $0 \in \RR$, but $0 \notin (0,1)$.
 \end{example}
 
-In what sense are these concepts ``dual''?
-Despite first impressions, most sets are neither open nor closed.
+I should now warn you about a confusing part of this terminology.
+Firstly, \textbf{``most'' sets are neither open nor closed}.
 \begin{example}[A set neither open nor closed]
 	The half-open interval $[0,1)$ %chktex 9
 	is neither open nor closed in $\RR$.
 \end{example}
-\begin{remark}
-	It's also possible for a set to be both open and closed;
-	this will be discussed in \Cref{ch:top_more}.
-\end{remark}
+Secondly, it's \textbf{also possible for a set to be both open and closed};
+this will be discussed in \Cref{ch:top_more}.
 
-Remarkably, though, the following \emph{is} true.
+The reason for the opposing terms is the following theorem:
 \begin{theorem}[Closed sets are complements of open sets]
 	Let $M$ be a metric space, and $S \subseteq M$ any subset.
 	Then the following are equivalent:
@@ -728,25 +604,6 @@ Remarkably, though, the following \emph{is} true.
 	you might take $M = \RR^2$ and $S$ to be the closed unit disk.
 \end{exercise}
 
-This leads us to a definition for a general topological space.
-\begin{definition}
-	In a general topological space $X$, we say that $S \subseteq X$ is
-	\vocab{closed} in $X$ if the complement $X \setminus S$ is open in $X$.
-\end{definition}
-Hence, for general topological spaces, open and closed sets carry the same information,
-and it is entirely a matter of taste whether we define everything in terms
-of open sets or closed sets.
-In particular,
-\begin{ques}
-	Show that the (possibly infinite) intersection of closed sets is closed
-	while the union of finitely many closed sets is closed.
-	(Hint: just look at complements.)
-\end{ques}
-\begin{ques}
-	Show that a function is continuous if and only if the pre-image
-	of every closed set is closed.
-\end{ques}
-Mathematicians seem to have agreed that they like open sets better.
 
 \section{Common pitfalls}
 An important distinction to keep in mind is that
@@ -758,16 +615,22 @@ For example, here are some gotchas:
 \begin{itemize}
 	\ii Consider the sequence $1$, $1.4$, $1.41$, $1.414$, \dots.
 	Viewed as a sequence in $\RR$, it converges to $\sqrt 2$.
-	But if viewed as a sequence in $\QQ$, this sequence does \emph{not} converge!
-	For a sequence to converge one has to be able to write down where it approaches,
+	But if viewed as a sequence in $\QQ$,
+	this sequence does \emph{not} converge!
+	For a sequence to converge one has to be able to
+	write down where it approaches,
 	but $\sqrt 2 \notin \QQ$.
-	Similarly, the sequence $0.9$, $0.99$, $0.999$, $0.9999$ does not converge in the space $(0,1)$,
+	Similarly, the sequence $0.9$, $0.99$, $0.999$, $0.9999$
+	does not converge in the space $(0,1)$,
 	although it does converge in $[0,1]$.
 	In general it doesn't make sense to ask
-	``does $(x_n)$ converge'' without specifying which space one is discussing.
+	``does $(x_n)$ converge''
+	without specifying which space one is discussing.
 
-	The fact that these sequences fail to converge even though they ``ought to'' is weird and bad,
-	and so in \Cref{ch:top_more} we'll define a \emph{complete} metric space as one where sequences
+	The fact that these sequences fail to converge
+	even though they ``ought to'' is weird and bad,
+	and so in the next section we'll define
+	\emph{complete} metric space as one where sequences
 	that ``should'' converge (called \emph{Cauchy}) actually do.
 
 	\ii In general, it makes no sense to ask a question like ``is $[0,1]$ open?''.
@@ -794,17 +657,105 @@ a nontrivial set can be both open and closed (apologies for the terminology).
 (As we'll see in \Cref{ch:top_more}, this implies the space is disconnected;
 i.e.\ the only examples look quite like the one we've given above.)
 
+
+\section{Completeness}
+\prototype{$\RR$ is complete, but $\QQ$ and $(0,1)$ are not.}
+
+So far we can only talk about sequences converging if they have a limit.
+But consider the sequence $x_1 = 1$, $x_2 = 1.4$, $x_3 = 1.41$, $x_4 = 1.414$, \dots.
+It converges to $\sqrt 2$ in $\RR$, of course.
+
+But it fails to converge in $\QQ$.
+And so somehow, if we didn't know about the existence of $\RR$, we would
+have \emph{no idea} that the sequence $(x_n)$ is ``approaching'' something.
+
+That seems to be a shame.
+Let's set up a new definition to describe these sequences whose terms
+get close to each other,
+even if they don't approach any particular point in the space.
+Thus, we only want to mention the given points in the definition.
+This is hard to do in a general topological space,
+but such a notion does exist for metric spaces.
+
+\begin{definition}
+	Let $x_1, x_2, \dots$ be a sequence which lives in a metric space $M = (M,d_M)$.
+	We say the sequence is \vocab{Cauchy} if for any $\eps > 0$, we have
+	\[ d_M(x_m, x_n) < \eps \]
+	for all sufficiently large $m$ and $n$.
+\end{definition}
+
+\begin{ques}
+	Show that a sequence which converges is automatically Cauchy.
+	(Draw a picture.)
+\end{ques}
+
+Now we can define:
+\begin{definition}
+	A metric space $M$ is \vocab{complete} if every
+	Cauchy sequence converges.
+\end{definition}
+
+\begin{example}
+	[Examples of complete spaces]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii $\RR$ is complete.
+		(Depending on your definition of $\RR$,
+		this either follows by definition, or requires some work.
+		We won't go through this here.)
+		\ii The discrete space is complete,
+		as the only Cauchy sequences are eventually constant.
+		\ii The closed interval $[0,1]$ is complete.
+		\ii $\RR^n$ is complete as well.
+		(You're welcome to prove this by induction on $n$.)
+	\end{enumerate}
+\end{example}
+\begin{example}
+	[Non-Examples of complete spaces]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii The rationals $\QQ$ are not complete.
+		\ii The open interval $(0,1)$ is not complete,
+		as the sequence $0.9$, $0.99$, $0.999$, $0.9999$, \dots
+		is Cauchy but does not converge.
+	\end{enumerate}
+\end{example}
+
+So, metric spaces need not be complete, like $\QQ$.
+But it turns out that every metric space can be \emph{completed}
+by ``filling in the gaps'', resulting in a space
+called the \vocab{completion} of the metric space.
+For example, the completion of $\QQ$ is $\RR$
+(in fact, this is often taken as the definition of $\RR$).
+
+%It's a theorem that $\RR$ is complete.
+%To prove this I'd have to define $\RR$ rigorously, which I won't do here.
+%In fact, there are some competing definitions of $\RR$.
+%It is sometimes defined as the completion of the space $\QQ$.
+%Other times it is defined using something called \emph{Dedekind cuts}.
+%For now, let's just accept that $\RR$ behaves as we expect and is complete.
+
+%And thus, I can now tell you exactly what $\RR$ is.
+%You might notice that it's actually not that easy to define:
+%we can define $\QQ = \left\{ a/b : a,b \in \NN \right\}$, but
+%what do we say for $\RR$?
+%Here's the answer:
+%\begin{definition}
+%	$\RR$ is the completion of the metric space $\QQ$.
+%\end{definition}
+
+
 \section\problemhead
 \begin{problem}
 	Let $M = (M,d)$ be a metric space.
-	Check that $d : M \times M \to \RR$ is
+	Check that \[ d \colon M \times M \to \RR \]
 	itself a continuous function
 	($M \times M$ being equipped with the product
 	metric described earlier).
 \end{problem}
 
 \begin{problem}
-	Exhibit a function $f : \RR \to \RR$ such that
+	Exhibit a function $f \colon \RR \to \RR$ such that
 	$f$ is continuous at $x \in \RR$ if and only if $x=0$.
 	\begin{hint}
 		$\pm x$ for good choices of $\pm$.
@@ -812,24 +763,6 @@ i.e.\ the only examples look quite like the one we've given above.)
 	\begin{sol}
 		Let $f(x) = x$ for $x \in \QQ$ and $f(x) = -x$ for irrational $x$.
 	\end{sol}
-\end{problem}
-
-\begin{problem}[Furstenberg]
-	We declare a subset of $\ZZ$ to be open
-	if it's the union (possibly empty or infinite)
-	of arithmetic sequences $\left\{ a + nd \mid n \in \ZZ \right\}$,
-	where $a$ and $d$ are positive integers.
-	\begin{enumerate}[(a)]
-		\ii Verify this forms a topology on $\ZZ$,
-		called the \vocab{evenly spaced integer topology}.
-		\ii Prove there are infinitely many primes by considering $\bigcup_p p\ZZ$.
-	\end{enumerate}
-	\begin{hint}
-		Note that $p\ZZ$ is closed for each $p$.
-		If there were finitely many primes, then
-		$\bigcup p\ZZ = \ZZ \setminus \{-1,1\}$ would have to be closed;
-		i.e.\ $\{-1,1\}$ would be open, but all open sets here are infinite.
-	\end{hint}
 \end{problem}
 
 \begin{problem}
@@ -851,9 +784,17 @@ i.e.\ the only examples look quite like the one we've given above.)
 	\end{sol}
 \end{problem}
 
+\begin{dproblem}[Banach fixed point theorem]
+	Let $M = (M,d)$ be a complete metric space.
+	Suppose $T : M \to M$ is a continuous map such that for any $p,q \in M$,
+	\[ d\left( T(p), T(q) \right) < 0.999 d(p,q). \]
+	(We call $T$ a \vocab{contraction}.)
+	Show that $T$ has a unique fixed point.
+\end{dproblem}
+
 \begin{problem}
 	\gim
-	Prove that a function $f : \RR \to \RR$ which is strictly increasing
+	Prove that a function $f \colon \RR \to \RR$ which is strictly increasing
 	must be continuous at some point.
 	\begin{hint}
 		Project gaps onto the $y$-axis.
@@ -880,18 +821,20 @@ i.e.\ the only examples look quite like the one we've given above.)
 	\end{sol}
 \end{problem}
 
-\begin{problem}
-	\gim
-	Prove that the evenly spaced integer topology on $\ZZ$ is metrizable.
-	In other words, show that one can impose a metric $d : \ZZ^2 \to \RR$
-	which makes $\ZZ$ into a metric space whose open sets are those described above.
-	% https://teratologicmuseum.wordpress.com/2009/05/05/a-metric-for-the-evenly-spaced-integer-topology/
+\begin{dproblem}[Completion of a metric space]
+	\yod
+	Let $M$ be a metric space.
+	Construct a metric space $\ol M$ such that
+	\begin{itemize}
+		\ii $\ol M$ is complete,
+		\ii there is an injective map $M \injto \ol M$
+		(so one can consider $M$ as a subspace of $\ol M$), and
+		\ii every open set of $\ol M$ contains a point of $M$
+		(meaning $M$ is \vocab{dense} in $\ol M$).
+	\end{itemize}
 	\begin{hint}
-		The balls at $0$ should be of the form $n! \cdot \ZZ$.
+		As a set, we let $\ol M$ be the sequence of Cauchy
+		sequences $(x_n)$ in $M$, modulo the relation that
+		$(x_n) \sim (y_n)$ if $\lim_n d(x_n, y_n) = 0$.
 	\end{hint}
-	\begin{sol}
-		Let $d(x,y) = 2017^{-n}$,
-		where $n$ is the largest integer
-		such that $n!$ divides $\left\lvert x-y \right\rvert$.
-	\end{sol}
-\end{problem}
+\end{dproblem}

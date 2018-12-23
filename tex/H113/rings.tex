@@ -1,0 +1,313 @@
+\chapter{Flavors of rings}
+
+
+\section{Fields}
+\prototype{$\QQ$ is a field, but $\ZZ$ is not.}
+
+As you already know, if the multiplication is invertible,
+then we call the ring a field.
+To be explicit, let me write the relevant definitions.
+
+\begin{definition}
+	\label{def:unit}
+	A \vocab{unit} of a ring $R$
+	is an element $u \in R$ which is invertible:
+	for some $x \in R$ we have $ux = 1_R$.
+\end{definition}
+\begin{example}
+	[Examples of units]
+	\listhack
+	\begin{enumerate}[(a)]
+	\ii The units of $\ZZ$ are $\pm 1$,
+	because these are the only things which ``divide $1$''
+	(which is the reason for the name ``unit'').
+	\ii On the other hand, in $\QQ$ everything is a unit (except $0$).
+	For example, $\frac 35$ is a unit since
+	$\frac 35 \cdot \frac 53 = 1$.
+	\ii The Gaussian integers $\ZZ[i]$ have four units:
+	$\pm 1$ and $\pm i$.
+	\end{enumerate}
+\end{example}
+
+\begin{definition}
+	A nontrivial (commutative) ring is a \vocab{field}
+	when all its nonzero elements are units.
+\end{definition}
+
+Colloquially, we say that
+\begin{moral}
+	A field is a structure where you can add, subtract, multiply, and divide.
+\end{moral}
+
+\begin{remark}
+	You might say at this point that ``fields are nicer than rings'',
+	but as you'll see in this chapter, the conditions for
+	being a field are somehow ``too strong''.
+	To give an example of what I mean:
+	if you try to think about the concept of ``divisibility''
+	in $\ZZ$, you've stepped into the vast and bizarre realm of
+	number theory.  Try to do the same thing in $\QQ$ and you get nothing:
+	any nonzero $a$ ``divides'' any nonzero $b$
+	because $b = a \cdot \frac ba$.
+
+	I know at least one person who instead
+	thinks of this as an argument for why people
+	shouldn't care about number theory
+	(studying chaos rather than order).
+\end{remark}
+
+\section{Integral domains}
+\prototype{$\ZZ$ is an integral domain.}
+Now it would be nice if we could still conclude the zero product property:
+if $ab = 0$ then either $a = 0$ or $b = 0$.
+If our ring is a field, this is true: if $b \neq 0$,
+then we can multiply by $b\inv$ to get $a = 0$.
+But many other rings we consider like $\ZZ$ and $\ZZ[x]$ also have this property,
+despite not being full-fledged fields.
+
+Not for all rings though: in $\Zc{15}$,
+\[ 3 \cdot 5 \equiv 0 \pmod{15}. \]
+If $a, b \neq 0$ but $ab=0$ then we say $a$ and $b$ are \vocab{zero divisors}
+of the ring $R$.
+So we give a name to such rings.
+\begin{definition}
+	A nontrivial (commutative) ring with no zero divisors
+	is called an \vocab{integral domain}.
+\end{definition}
+
+\begin{example}
+	[Integral domains and fields]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii $\QQ$, $\RR$, $\CC$ are fields,
+		since the notion $\frac 1c$ makes sense in them.
+		\ii $\ZZ$ is an integral domain, but it is not a field.
+		\ii $\RR[x]$ is not a field,
+		since there is no polynomial $P(x)$ with $xP(x) = 1$.
+		However, $\RR[x]$ is an integral domain, because if $P(x) Q(x) \equiv 0$ then one
+		of $P$ or $Q$ is zero.
+		\ii $\ZZ[x]$ is also an example of an integral domain.
+		In fact, $R[x]$ is an integral domain for any integral domain $R$ (why?).
+		\ii $\Zc n$ is a field exactly when $n$ is prime.
+		When $n$ is not prime, it is a ring but not an integral domain.
+	\end{enumerate}
+\end{example}
+
+\section{Prime ideals}
+\todo{prototype?}
+We know that every integer can be factored (up to sign)
+as a unique product of primes; for example $15 = 3 \cdot 5$
+and $-10 = -2 \cdot 5$.
+You might remember the proof involves the so-called B\'ezout's lemma,
+which essentially says that $(a,b) = (\gcd(a,b))$;
+in other words we've carefully used the fact that $\ZZ$ is a PID.
+
+It turns out that for general rings, the situation is not as nice
+as factoring elements because most rings are not PID's.
+The classic example of something going wrong is
+\[ 6 = 2 \cdot 3 = \left( 1-\sqrt{-5} \right)\left( 1+\sqrt{-5} \right) \]
+in $\ZZ[\sqrt{-5}]$.
+Nonetheless, we can sidestep the issue
+and talk about factoring \emph{ideals}:
+somehow the example $10 = 2 \cdot 5$ should be $(10) = (2) \cdot (5)$,
+which says ``every multiple of $10$ is the product of a
+multiple of $2$ and a multiple of $5$''.
+I'd have to tell you then how to multiply two ideals, which I do
+in the chapter on unique factorization.
+
+Let's at least figure out what primes are.
+In $\ZZ$, we have that $p \neq 1$ is prime if whenever $p \mid xy$,
+either $p \mid x$ or $p \mid y$.
+We port over this definition to our world of ideals.
+\begin{definition}
+	\label{def:prime_ideal}
+	A \emph{proper} ideal $I \subsetneq R$ is a \vocab{prime ideal}
+	if whenever $xy \in I$, either $x \in I$ or $y \in I$.
+\end{definition}
+The condition that $I$ is proper is analogous to the
+fact that we don't consider $1$ to be a prime number.
+
+\begin{example}[Examples and non-examples of prime ideals]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii The ideal $(7)$ of $\ZZ$ is prime.
+		\ii The ideal $(8)$ of $\ZZ$ is not prime,
+		since $2 \cdot 4 = 8$.
+
+		\ii The ideal $(x)$ of $\ZZ[x]$ is prime.
+		\ii The ideal $(x^2)$ of $\ZZ[x]$ is not prime,
+		since $x \cdot x = x^2$.
+
+		\ii The ideal $(3,x)$ of $\ZZ[x]$ is prime.
+		This is actually easiest to see
+		using \Cref{thm:prime_ideal_quotient} below.
+
+		\ii The ideal $(5) = 5\ZZ + 5i\ZZ$ of $\ZZ[i]$
+		is not prime, since the elements
+		$3+i$ and $3-i$ have product $10 \in (5)$,
+		yet neither is itself in $(5)$.
+	\end{enumerate}
+\end{example}
+\begin{remark}
+	\label{rem:unit_sign_issue}
+	Ideals have the nice property that they get rid of ``sign issues''.
+	For example, in $\ZZ$, do we consider $-3$ to be a prime?
+	When phrased with ideals, this annoyance goes away: $(-3) = (3)$.
+	More generally, for a ring $R$, talking about ideals
+	lets us ignore multiplication by a unit.
+	(Note that $-1$ is a unit in $\ZZ$.)
+\end{remark}
+
+\begin{exercise}
+	What do you call a ring $R$ for which the zero ideal $(0)$ is prime?
+\end{exercise}
+
+We also have:
+\begin{theorem}[Prime ideal $\iff$ quotient is integral domain]
+	\label{thm:prime_ideal_quotient}
+	An ideal $I$ is prime if and only if $R/I$ is an integral domain.
+\end{theorem}
+\begin{exercise}
+	[Mandatory]
+	Convince yourself the theorem is true.
+	(A possible start is to consider $R = \ZZ$ and $I = (15)$.)
+\end{exercise}
+
+I now must regrettably inform you that unique factorization is still
+not true even with the notion of a ``prime'' ideal
+(though again I haven't told you how to multiply two ideals yet).
+But it will become true with some additional assumptions
+that will arise in algebraic number theory
+(relevant buzzword: Dedekind domain).
+
+\section{Maximal ideals}
+\todo{prototype?}
+
+Here's another flavor of an ideal.
+\begin{definition}
+	A proper ideal $I$ of a ring $R$ is \vocab{maximal} if
+	no proper ideal $J$ contains it.
+\end{definition}
+\begin{example}
+	[Examples of maximal ideals]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii The ideal $I = (7)$ of $\ZZ$ is maximal, because
+		if an ideal $J$ contains $7$
+		and an element $n$ not in $I$
+		it must contain $\gcd(7,n) = 1$, and hence $J = \ZZ$.
+		\ii The ideal $(x)$ is \emph{not} maximal in $\ZZ[x]$,
+		because it's contained in $(x,5)$ (among others).
+		\ii On the other hand, $(x,5)$ is indeed maximal in $\ZZ[x]$,
+		as we will see in a moment.
+	\end{enumerate}
+\end{example}
+
+\begin{exercise}
+	What do you call a ring $R$ for which the zero ideal $(0)$ is maximal?
+\end{exercise}
+
+There's an analogous theorem to the one for prime ideals.
+\begin{theorem}
+	An ideal $I$ is maximal if and only if $R/I$ is a field.
+\end{theorem}
+\begin{proof}
+	See if you can convince yourself that
+	there is a one-to-one correspondence between
+	\begin{enumerate}[(i)]
+		\ii Ideals $J$ with $I \subseteq J \subseteq R$, and
+		\ii Ideals of $R/I$.
+	\end{enumerate}
+	You may want to start by taking $R = \ZZ$ and $I = (15)$.
+	In any case, the theorem follows from this.
+\end{proof}
+
+\begin{corollary}
+	[Maximal ideals are prime]
+	If $I$ is a maximal ideal of a ring $R$, then $I$ is prime.
+\end{corollary}
+\begin{proof}
+	If $I$ is maximal, then $R/I$ is a field,
+	hence an integral domain, so $I$ is prime.
+\end{proof}
+
+In practice, because modding out by generated ideals is pretty convenient,
+this is a very efficient way to check whether an ideal is maximal.
+\begin{example}
+	[Modding out in $\ZZ{[x]}$]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii This instantly implies that $(x,5)$ is a maximal ideal
+		in $\ZZ[x]$, because if we mod out by $x$ and $5$ in $\ZZ[x]$,
+		we just get $\ZZ/5\ZZ$, which is a field.
+		\ii On the other hand, modding out by just $x$ gives $\ZZ$,
+		which is an integral domain but not a field; that's why $(x)$ is
+		prime but not maximal.
+	\end{enumerate}
+\end{example}
+
+As we say, any maximal ideal is prime.
+But now note that $\ZZ$ has the special property that
+all of its prime ideals are also maximal.
+It's with this condition and a few other minor conditions
+that you get a so-called \emph{Dedekind domain}
+where prime factorization of ideals \emph{does} work.
+More on that later.
+\section{\problemhead}
+Not olympiad problems, but again the spirit is very close
+to what you might see in an olympiad.
+
+\begin{sproblem}
+	Prove that a integral domain with finitely many elements is a field.
+	\label{prob:finite_domain_field}
+\end{sproblem}
+
+\begin{sproblem}
+	[Krull's theorem]
+	\label{prob:krull_max_ideal}
+	Let $R$ be a ring and $J$ a proper ideal.
+	\begin{enumerate}[(a)]
+		\ii Prove that if $R$ is Noetherian,
+		then $J$ is contained in a maximal ideal $I$.
+		\ii Use Zorn's lemma (\Cref{ch:zorn})
+		to prove the result even if $R$ isn't Noetherian.
+	\end{enumerate}
+	\begin{hint}
+		Just keep on adding in elements to get an ascending chain.
+	\end{hint}
+	\begin{sol}
+		For part (b), look at the poset of \emph{proper} ideals.
+		Apply Zorn's lemma (again using a union trick to verify the condition;
+		be sure to verify that the union is proper!).
+		In part (a) we are given no ascending infinite chains,
+		so no need to use Zorn's lemma.
+	\end{sol}
+\end{sproblem}
+
+\begin{problem}
+	[$\Spec k[x]$]
+	\begin{enumerate}[(a)]
+		\ii Describe the prime ideals of $\CC[x]$.
+		\ii Describe the prime ideals of $\RR[x]$.
+	\end{enumerate}
+	\begin{sol}
+		The ideal $(0)$ is of course prime in both.
+		Both rings are PID's, so we are then asking
+
+		Because $\CC[x]$ is a PID,
+	\end{sol}
+\end{problem}
+
+\begin{problem}
+	Prove that any nonzero prime ideal of $\ZZ[\sqrt 2]$ is also a maximal ideal.
+	%(This is starred since the main idea of the solution will get used extensively in
+	%the algebraic NT chapters, even though the problem itself won't.)
+	\label{prob:dedekind_sample}
+	\begin{hint}
+		Show that the quotient $\ZZ[\sqrt2]/I$ has finitely many elements
+		for any nonzero prime ideal $I$.
+		Therefore, the quotient is an integral domain, it is also a field,
+		and thus $I$ was a maximal ideal.
+	\end{hint}
+\end{problem}
+
