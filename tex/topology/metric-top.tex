@@ -309,25 +309,32 @@ Here are some examples.
 \begin{example}
 	[Metrics on the unit circle]
 	It may have seemed strange that our metric function on $S^1$
-	was the one inherited from $\RR^2$, meaning the distance between two points
+	was the one inherited from $\RR^2$,
+	meaning the distance between two points
 	on the circle was defined to be the length of the chord.
-	Wouldn't it have made more sense to use the circumference of the arc joining
-	the two points?
-	In fact, it doesn't matter: if we consider $S^1$ with the ``chord'' metric
-	and the ``arc'' metric, we get two homeomorphic spaces.
+	Wouldn't it have made more sense to use the circumference of the
+	smaller arc joining the two points?
+
+	In fact, it doesn't matter:
+	if we consider $S^1$ with the ``chord'' metric
+	and the ``arc'' metric, we get two homeomorphic spaces,
+	as the map between them is continuous.
 
 	The same goes for $S^{n-1}$ for general $n$.
 \end{example}
 
 \begin{example}
 	[Homeomorphisms really don't preserve size]
-	Surprisingly, the open interval $(0,1)$ is homeomorphic to the real line $\RR$!
-	This might come as a surprise, since $(0,1)$ doesn't look that much like $\RR$;
+	Surprisingly, the open interval $(-1,1)$
+	is homeomorphic to the real line $\RR$!
+	One bijection is given by
+	\[ x \mapsto \tan(\pi/2 x) \]
+	with the inverse being given by $t \mapsto \frac2\pi \arctan(t)$.
+
+	This might come as a surprise,
+	since $(-1,1)$ doesn't look that much like $\RR$;
 	the former is ``bounded'' while the latter is ``unbounded''.
 \end{example}
-\begin{exercise}
-	Write down a homeomorphism from $(0,1)$ to $\RR$.
-\end{exercise}
 
 \begin{example}[Product metrics]
 	Let $M = (M, d_M)$ and $N = (N, d_N)$ be metric spaces (say, $M = N = \RR$).
@@ -362,8 +369,10 @@ Here are some examples.
 \section{Open sets}
 \prototype{The open disk $x^2+y^2<r^2$ in $\RR^2$.}
 
-Continuity is really about what happens ``locally'': how a function behaves ``close to a certain point $p$''.
-One way to capture this notion of ``closeness'' is to use metrics as we've done above.
+Continuity is really about what happens ``locally'':
+how a function behaves ``close to a certain point $p$''.
+One way to capture this notion of ``closeness''
+is to use metrics as we've done above.
 In this way we can define a neighborhood of a point.
 
 \begin{definition}
@@ -387,7 +396,8 @@ In this way we can define a neighborhood of a point.
 
 We can rephrase convergence more succinctly in terms of $r$-neighborhoods.
 Specifically, a sequence $(x_n)$ converges to $x$
-if for every $r$-neighborhood of $x$, all terms of $x_n$ eventually stay within that $r$-neighborhood.
+if for every $r$-neighborhood of $x$,
+all terms of $x_n$ eventually stay within that $r$-neighborhood.
 
 Let's try to do the same with functions.
 \begin{ques}
@@ -661,10 +671,12 @@ i.e.\ the only examples look quite like the one we've given above.)
 \section{Completeness}
 \prototype{$\RR$ is complete, but $\QQ$ and $(0,1)$ are not.}
 
+We close this chapter by talking about a way to fix the issue
+of ``sequences that should converge but don't..
+
 So far we can only talk about sequences converging if they have a limit.
 But consider the sequence $x_1 = 1$, $x_2 = 1.4$, $x_3 = 1.41$, $x_4 = 1.414$, \dots.
 It converges to $\sqrt 2$ in $\RR$, of course.
-
 But it fails to converge in $\QQ$.
 And so somehow, if we didn't know about the existence of $\RR$, we would
 have \emph{no idea} that the sequence $(x_n)$ is ``approaching'' something.
@@ -674,8 +686,6 @@ Let's set up a new definition to describe these sequences whose terms
 get close to each other,
 even if they don't approach any particular point in the space.
 Thus, we only want to mention the given points in the definition.
-This is hard to do in a general topological space,
-but such a notion does exist for metric spaces.
 
 \begin{definition}
 	Let $x_1, x_2, \dots$ be a sequence which lives in a metric space $M = (M,d_M)$.
@@ -710,8 +720,9 @@ Now we can define:
 		(You're welcome to prove this by induction on $n$.)
 	\end{enumerate}
 \end{example}
+
 \begin{example}
-	[Non-Examples of complete spaces]
+	[Non-examples of complete spaces]
 	\listhack
 	\begin{enumerate}[(a)]
 		\ii The rationals $\QQ$ are not complete.
@@ -727,6 +738,8 @@ by ``filling in the gaps'', resulting in a space
 called the \vocab{completion} of the metric space.
 For example, the completion of $\QQ$ is $\RR$
 (in fact, this is often taken as the definition of $\RR$).
+We won't need this construction at all,
+so it's left as \Cref{prob:completion}.
 
 %It's a theorem that $\RR$ is complete.
 %To prove this I'd have to define $\RR$ rigorously, which I won't do here.
@@ -823,6 +836,7 @@ For example, the completion of $\QQ$ is $\RR$
 
 \begin{dproblem}[Completion of a metric space]
 	\yod
+	\label{prob:completion}
 	Let $M$ be a metric space.
 	Construct a metric space $\ol M$ such that
 	\begin{itemize}
