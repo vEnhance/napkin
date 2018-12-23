@@ -181,11 +181,15 @@
 \def\shortdate{\leavevmode\hbox{\the\year-\twodigits\month-\twodigits\day}}
 \def\twodigits#1{\ifnum#1<10 0\fi\the#1}
 \automark[chapter]{chapter}
-\rohead{}
+\rohead{\footnotesize\thepage}
 \rehead{\footnotesize \textbf{\sffamily Napkin}, by \emph{Evan Chen} (\shortdate)}
-\lehead{}
+\lehead{\footnotesize\thepage}
 \lohead{\footnotesize \leftmark}
 \chead{}
+\rofoot{}
+\refoot{}
+\lefoot{}
+\lofoot{}
 %\cfoot{\pagemark}
 
 %%fakesection Fancy section and chapter heads
@@ -199,18 +203,16 @@
 \scalebox{2.718}{\color{purple}\thechapter\autodot}\enskip}}
 
 \addtokomafont{partprefix}{\rmfamily}
-\renewcommand*{\partformat}{%
-	\color{purple}\scalebox{2.5}{\thepart}%
-	\enlargethispage{2em}}
+\renewcommand*{\partformat}{\color{purple}\scalebox{2.5}{\thepart}}
 
 %%fakesection Mini ToC
 \usepackage[tight]{minitoc}
 \noptcrule
 \mtcsetfont{parttoc}{chapter}{\large\sffamily\bfseries}
 \mtcsetfont{parttoc}{section}{\scriptsize\rmfamily\upshape\mdseries}
-\renewcommand*{\partheadstartvskip}{}
-\renewcommand*{\partheadendvskip}{}
-\renewcommand\beforeparttoc{\hspace{\fill}\rule{0.95\linewidth}{2pt}\hspace{\fill}}
+\renewcommand*{\partheadstartvskip}{\vfill}
+\renewcommand*{\partheadendvskip}{\vfill}
+\renewcommand\beforeparttoc{}% \hspace{\fill}\rule{0.95\linewidth}{2pt}\hspace{\fill}
 \let\oldpart\part
 \renewcommand{\part}[1]{\oldpart{#1}
 \setcounter{parttocdepth}{1}\parttoc\cleardoublepage}
