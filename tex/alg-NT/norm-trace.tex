@@ -92,8 +92,11 @@ First, let's give names to the new numbers we've discussed above.
 	since any polynomial in $\QQ[x]$ can be scaled to one in $\ZZ[x]$.
 \end{remark}
 \begin{definition}
-	Consider an algebraic number $\alpha$ and its minimal polynomial $P$ (which is monic and has rational coefficients).
-	If it turns out the coefficients of $P$ are integers, then we say $\alpha$ is an \vocab{algebraic integer}.
+	Consider an algebraic number $\alpha$ and
+	its minimal polynomial $P$
+	(which is monic and has rational coefficients).
+	If it turns out the coefficients of $P$ are integers,
+	then we say $\alpha$ is an \vocab{algebraic integer}.
 
 	The set of algebraic integers is denoted $\ol\ZZ$.
 \end{definition}
@@ -119,16 +122,28 @@ as \vocab{rational integers}.
 	that any monic integer polynomial does not have $\half$ as a root!)
 \end{example}
 \begin{proposition}[Rational algebraic integers are rational integers]
-	An algebraic integer is rational if and only if it is a rational integer.
+	An algebraic integer is rational
+	if and only if it is a rational integer.
 	In symbols, \[ \ol\ZZ \cap \QQ = \ZZ. \]
 \end{proposition}
-\begin{ques}
-	(Important) Prove this.
-\end{ques}
+\begin{proof}
+	Let $\alpha$ be a rational number.
+	If $\alpha$ is an integer, it is the root of $x-\alpha$,
+	hence an algebraic integer too.
+
+	Conversely, if $P$ is a monic polynomial with integer
+	coefficients such that $P(\alpha) = 0$ then
+	(by the rational root theorem, say)
+	it follows $\alpha$ must be an integer.
+\end{proof}
 
 \section{Number fields}
 \prototype{$\QQ(\sqrt2)$ is a typical number field.}
-Given any algebraic number $\alpha$, we're able to consider fields of the form $\QQ(\alpha)$. Let us write down the more full version.
+
+Given any algebraic number $\alpha$,
+we're able to consider fields of the form $\QQ(\alpha)$.
+Let us write down the more full version.
+
 \begin{definition}
 	A \vocab{number field} $K$ is a field containing $\QQ$ as a subfield
 	which is a \emph{finite-dimensional} $\QQ$-vector space.
