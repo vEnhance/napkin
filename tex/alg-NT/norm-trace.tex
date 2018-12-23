@@ -155,6 +155,20 @@ Let us write down the more full version.
 	This is a field extension of $\QQ$,
 	and has degree $2$ (the basis being $1$ and $\sqrt2$).
 \end{example}
+
+You might be confused that I wrote $\QQ(\sqrt2)$
+(which should permit denominators) instead of $\QQ[\sqrt2]$, say.
+But if you read through \Cref{ex:gaussian_rationals},
+you should see that the denominators don't really matter:
+$\frac{1}{3-\sqrt2} = \frac17(3+\sqrt2)$ anyways, for example.
+You can either check this now in general,
+or just ignore the distinction and pretend I wrote square brackets everywhere.
+\begin{exercise}
+	[Unimportant]
+	Show that if $\alpha$ is an algebraic number,
+	then $\QQ(\alpha) \cong \QQ[\alpha]$.
+\end{exercise}
+
 \begin{example}[Adjoining an algebraic number]
 	Let $\alpha$ be the root of some irreducible polynomial $P(x)$ in $\QQ$.
 	The field $\QQ(\alpha)$ is a field extension as well, and the basis
@@ -180,7 +194,7 @@ First, let me make precise the notion of a conjugate.
 \end{definition}
 It's worth showing at the moment that there are no repeated conjugates.
 \begin{lemma}[Irreducible polynomials have distinct roots]
-	An irreducible polynomial cannot have a complex double root.
+	An irreducible polynomial in $\QQ[x]$ cannot have a complex double root.
 	\label{lem:irred_complex}
 \end{lemma}
 \begin{proof}
@@ -193,9 +207,11 @@ It's worth showing at the moment that there are no repeated conjugates.
 		because they share a factor $x-\alpha$.
 		\ii The coefficients of $f'$ are also in $\QQ$.
 	\end{itemize}
-	Consider $P = \gcd(f, f')$. We must have $P \in \QQ[x]$ by Euclidean algorithm.
-	But the first two facts about $f'$ ensure that $P$ is nonconstant
-	and $\deg P < \deg f$. Yet $P$ divides $f$, contradiction.
+	Consider $g = \gcd(f, f')$. We must have $g \in \QQ[x]$ by Euclidean algorithm.
+	But the first two facts about $f'$ ensure that $g$ is nonconstant
+	and $\deg g < \deg f$.
+	Yet $g$ divides $f$,
+	contradiction to the fact that $f$ should be a minimal polynomial.
 \end{proof}
 Hence $\alpha$ has exactly as many conjugates as the degree of $\alpha$.
 
@@ -215,7 +231,8 @@ trying to define the norm of an \emph{element},
 when we really ought to be defining the norm of an element
 \emph{with respect to a particular $K$}.
 
-What I'm driving at is that the norm should have different meanings depending on which field you're in.
+What I'm driving at is that the norm should have
+different meanings depending on which field you're in.
 If we think of $5$ as an element of $\QQ$, then its norm is $5$.
 But thought of as an element of $\QQ(i)$, its norm really ought to be $25$.
 Let's make this happen: for $K$ a number field, we will now define $\Norm_{K/\QQ}(\alpha)$
@@ -249,7 +266,7 @@ Of importance is:
 	are rational integers.
 \end{proposition}
 \begin{ques}
-	Prove it. (Vieta.)
+	Prove it. (Vieta formula.)
 \end{ques}
 
 That's great, but it leaves a question unanswered:
@@ -258,13 +275,13 @@ To do this, I have to give a new definition of norm and trace.
 
 \begin{theorem}[Morally correct definition of norm and trace]
 	Let $K$ be a number field of degree $n$, and let $\alpha \in K$.
-	Let $\mu_\alpha : K \to K$ denote the map \[ x \mapsto \alpha x \]
+	Let $\mu_\alpha \colon K \to K$ denote the map \[ x \mapsto \alpha x \]
 	viewed as a linear map of $\QQ$-vector spaces.
 	Then,
 	\begin{itemize}
 		\ii the norm of $\alpha$ equals the determinant $\det \mu_\alpha$, and
 		\ii the trace of $\alpha$ equals the trace $\Tr \mu_\alpha$.
-	\end{itemize} 
+	\end{itemize}
 \end{theorem}
 Since the trace and determinant don't depend on the choice of basis,
 you can pick whatever basis you want
@@ -277,7 +294,7 @@ Fantastic, right?
 	\[ \left( a+b\sqrt2 \right) \left(x+y\sqrt2 \right)
 		= (ax+2yb) + (bx+ay)\sqrt2. \]
 	We can rewrite this in matrix form as
-	\[ 
+	\[
 		\begin{bmatrix}
 			a & 2b \\
 			b & a
@@ -291,7 +308,7 @@ Fantastic, right?
 		\end{bmatrix}.
 	\]
 	Consequently, we can interpret $\mu_\alpha$ as the matrix
-	\[ \mu_\alpha = 
+	\[ \mu_\alpha =
 		\begin{bmatrix}
 			a & 2b \\ b & a
 		\end{bmatrix}. \]
@@ -320,7 +337,7 @@ The proof is split into two parts, depending on whether or not $k=1$.
 	but $\mu_\alpha(\alpha^{n-1}) = -c_{n-1}\alpha^{n-1} - \dots - c_0$.
 	Therefore, $\mu_\alpha$ is given by the matrix
 	\[
-		M = 
+		M =
 		\begin{bmatrix}
 			0 & 0 & 0 & \dots & 0 & -c_0 \\
 			1 & 0 & 0 & \dots & 0 & -c_1 \\
@@ -367,9 +384,9 @@ The proof is split into two parts, depending on whether or not $k=1$.
 \end{ques}
 \end{proof}
 
-From this it follows immediately that 
+From this it follows immediately that
 \[ \Norm_{K/\QQ}(\alpha\beta) = \Norm_{K/\QQ}(\alpha)\Norm_{K/\QQ}(\beta) \]
-because by definition we have 
+because by definition we have
 \[ \mu_{\alpha\beta} = \mu_\alpha \circ \mu_\beta, \]
 and that the determinant is multiplicative.
 In the same way, the trace is additive.
@@ -383,7 +400,7 @@ In the same way, focusing on the \emph{algebraic integers} of $K$
 gives us some really nice structure, and we'll do that here.
 
 \begin{definition}
-	Given a number field $K$, we define 
+	Given a number field $K$, we define
 	\[ \OO_K \defeq K \cap \ol\ZZ \]
 	to be the \vocab{ring of integers} of $K$;
 	in other words $\OO_K$ consists of the algebraic integers of $K$.
@@ -392,6 +409,7 @@ gives us some really nice structure, and we'll do that here.
 We do the classical example of a quadratic field now.
 Before proceeding, I need to write a silly number theory fact.
 \begin{exercise}
+	[Annoying but straightforward]
 	Let $a$ and $b$ be rational numbers, and $d$ a squarefree positive integer.
 	\begin{itemize}
 		\ii If $d \equiv 2, 3 \pmod 4$, prove that
@@ -400,7 +418,7 @@ Before proceeding, I need to write a silly number theory fact.
 		$2a, a^2-db^2 \in \ZZ$ if and only if $a,b \in \ZZ$
 		OR if $a -\half, b-\half \in \ZZ$.
 	\end{itemize}
-	This is annoying but not hard; you'll need to take mod $4$.
+	You'll need to take mod $4$.
 \end{exercise}
 
 \begin{example}
@@ -428,7 +446,7 @@ Before proceeding, I need to write a silly number theory fact.
 	no such thing is possible with $\sqrt 3$.
 \end{example}
 In general, the ring of integers of $K = \QQ(\sqrt d)$ is
-\[ \OO_K 
+\[ \OO_K
 	=
 	\begin{cases}
 		\ZZ[\sqrt d] & d\equiv 2,3 \pmod 4 \\[1em]
@@ -463,8 +481,7 @@ The theorem holds true more generally.
 Now we are going to show $\OO_K$ is a ring;
 we'll check it is closed under addition and multiplication.
 To do so, the easiest route is:
-\newcommand{\tempaeuqnxhj}{$\ZZ[\alpha]$} % fml latex
-\begin{lemma}[$\alpha \in \ol\ZZ$ $\iff$ \tempaeuqnxhj\ finitely generated]
+\begin{lemma}[$\alpha \in \ol\ZZ$ $\iff$ {$\ZZ[\alpha]$} finitely generated]
 	Let $\alpha \in \ol\QQ$.
 	Then $\alpha$ is an algebraic integer if and only if
 	the abelian group $\ZZ[\alpha]$ is finitely generated.
@@ -490,11 +507,9 @@ To do so, the easiest route is:
 \end{proof}
 \begin{example}[$\half$ isn't an algebraic integer]
 	We already know $\half$ isn't an algebraic integer.
-	So we expect 
-	\[
-		\ZZ \left[ \half \right]
-		= \left\{ \frac{a}{2^m} \mid a, m \in \ZZ \text{ and } m \ge 0 \right\}.
-	\]
+	So we expect
+	\[ \ZZ \left[ \half \right] = \left\{ \frac{a}{2^m}
+		\mid a, m \in \ZZ \text{ and } m \ge 0 \right\} \]
 	to not be finitely generated, and this is the case.
 \end{example}
 \begin{ques}
@@ -534,15 +549,13 @@ We claim that in fact, the general picture looks exactly like this.
 	Then $\OO_K$ is a free $\ZZ$-module of rank $n$,
 	i.e.\ $\OO_K \cong \ZZ^{\oplus n}$ as an abelian group.
 	In other words, $\OO_K$ has a $\ZZ$-basis of $n$ elements as
-	\[ \OO_K
-		= \left\{ c_1\alpha_1 + \dots
-			+ c_{n-1}\alpha_{n-1} + c_n\alpha_n
-			\mid c_i \in \ZZ \right\} \]
+	\[ \OO_K = \left\{ c_1\alpha_1 + \dots
+			+ c_{n-1}\alpha_{n-1} + c_n\alpha_n \mid c_i \in \ZZ \right\} \]
 	where $\alpha_i$ are algebraic integers in $\OO_K$.
 	\label{thm:OK_free_Z_module}
 \end{theorem}
 \begin{proof}
-	I find this kind of fun: \Cref{prob:OK_free_Z_module}.
+	I find this kind of fun, so I left it as \Cref{prob:OK_free_Z_module}.
 \end{proof}
 
 This last theorem shows that in many ways $\OO_K$ is a ``lattice'' in $K$.
@@ -556,6 +569,7 @@ as abelian groups.
 
 \section{Primitive element theorem, and monogenic extensions}
 \prototype{$\QQ(\sqrt3,\sqrt5) \cong \QQ(\sqrt3+\sqrt5)$. Can you see why?}
+
 I'm only putting this theorem here because I was upset that no one
 told me it was true (it's a very natural conjecture),
 and I hope to not do the same to the reader.
@@ -643,7 +657,6 @@ As we'll later see, monogenic extensions have a really nice factoring algorithm,
 	\end{hint}
 \end{problem}
 
-
 \begin{sproblem}
 	\label{prob:rep_lemma}
 	Consider $n$ roots of unity $\eps_1$, \dots, $\eps_n$.
@@ -678,13 +691,8 @@ As we'll later see, monogenic extensions have a really nice factoring algorithm,
 		But $\Norm(\alpha)$ is an \emph{integer}, so the denominators of the $c_i$ 
 		have to be bounded by some very large integer $N$.
 		Thus
-		\[
-			\bigoplus_i \ZZ \cdot \alpha_i
-			\subseteq 
-			\OO_K
-			\subseteq
-			\frac 1N \bigoplus_i \ZZ \cdot \alpha_i.
-		\]
+		\[ \bigoplus_i \ZZ \cdot \alpha_i \subseteq \OO_K
+			\subseteq \frac 1N \bigoplus_i \ZZ \cdot \alpha_i.  \]
 		The latter inclusion shows that $\OO_K$ is a subgroup
 		of a free group, and hence it is itself free.
 		On the other hand, the first inclusion shows it's rank $n$.
@@ -717,4 +725,3 @@ As we'll later see, monogenic extensions have a really nice factoring algorithm,
 		Pigeonhole principle on all possible polynomials.
 	\end{hint}
 \end{problem}
-
