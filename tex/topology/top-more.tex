@@ -361,6 +361,188 @@ it might help to solve \Cref{prob:disconnected_better_def}.
 %	But the converse of this statement no longer holds.
 %\end{remark}
 
+
+\section{Path-connected spaces}
+\prototype{Walking around in $\CC$.}
+A stronger and perhaps more intuitive notion
+of a connected space is a \emph{path-connected} space.
+The short description: ``walk around in the space''.
+% We have general topological spaces, but so far they've just been sitting there.
+% Let's start walking in them.
+
+% Throughout this section, we let $I = [0,1]$ with the usual topology
+% inherited from $\RR$.
+%Also, recall that $S^n$ is the surface of the sphere living
+%in $n+1$ dimensional space; hence $S^1$ is a unit circle, say.
+
+\begin{definition}
+	A \vocab{path} in the space $X$ is a continuous function
+	\[ \gamma : [0,1] \to X. \]
+	Its \vocab{endpoints} are the two points $\gamma(0)$ and $\gamma(1)$.
+\end{definition}
+
+You can think of $[0,1]$ as measuring ``time'', and so we'll often write $\gamma(t)$
+for $t \in [0,1]$ (with $t$ standing for ``time'').
+Here's a picture of a path.
+\begin{center}
+	\begin{asy}
+		bigblob("$X$");
+		pair A = Drawing("\gamma(0)", (-3,-1));
+		pair B = Drawing("\gamma(1)", (2,1), dir(90));
+		path p = A..(-2,0)..(0,2)..(1,0)..B;
+		draw(p, EndArrow);
+		MP("\gamma", midpoint(p), dir(90));
+	\end{asy}
+\end{center}
+\begin{ques}
+	Why does this agree with your intuitive notion of what a ``path'' is?
+\end{ques}
+
+\begin{definition}
+	A space $X$ is \vocab{path-connected} if
+	any two points in it are connected by some path.
+\end{definition}
+
+\todo{work out this detail}
+\begin{exercise}
+	Let $X = U \sqcup V$ be a disconnected space.
+	Show that there is no path
+	from a point of $U$ to point $V$.
+	(If $\gamma : [0,1] \to X$, then we get $[0,1] = \gamma\pre(U) \sqcup \gamma\pre(V)$,
+	but $[0,1]$ is connected.)
+\end{exercise}
+
+\begin{example}[Examples of path-connected spaces]
+	\listhack
+	\begin{itemize}
+		\ii $\RR^2$ is path-connected,
+		since we can ``connect'' any two points with a straight line.
+		\ii The unit circle $S^1$ is path-connected, since
+		we can just draw the major or minor arc to connect two points.
+	\end{itemize}
+\end{example}
+
+% Easy, right?
+
+\section{Homotopy and simply connected spaces}
+\prototype{$\CC$ and $\CC \setminus \{0\}$.}
+\label{sec:meteor}
+
+Now let's motivate the idea of homotopy.
+Consider the example of the complex plane $\CC$ (which you can
+think of just as $\RR^2$) with two points $p$ and $q$.
+There's a whole bunch of paths from $p$ to $q$ but somehow
+they're not very different from one another.
+If I told you ``walk from $p$ to $q$'' you wouldn't have too many questions.
+
+\begin{center}
+	\begin{asy}
+		unitsize(0.8cm);
+		bigbox("$\mathbb C$");
+		pair A = Drawing("p", (-3,0), dir(180));
+		pair B = Drawing("q", (3,0), dir(0));
+		draw(A..(-2,0.5)..(0,2)..(1,1.2)..B, red, EndArrow);
+		draw(A--B, mediumgreen, EndArrow);
+		draw(A--(-1,-1)--(2,-1)--B, blue, EndArrow);
+		// draw(A..(1.5,-2)..(-1.5,-2)..B, orange, EndArrow);
+	\end{asy}
+\end{center}
+
+So we're living happily in $\CC$ until a meteor strikes the origin,
+blowing it out of existence.
+Then suddenly to get from $p$ to $q$, people might tell you two different things:
+``go left around the meteor'' or ``go right around the meteor''.
+
+\begin{center}
+	\begin{asy}
+		unitsize(0.8cm);
+		bigbox("$\mathbb C \setminus \{0\}$");
+		pair A = Drawing("p", (-3,0), dir(180));
+		pair B = Drawing("q", (3,0), dir(0));
+		draw(A..(-2,0.5)..(0,2)..(1,1.2)..B, red, EndArrow);
+		draw(A--(-1,-1)--(2,-1)--B, blue, EndArrow);
+		filldraw(scale(0.5)*unitcircle, grey, black);
+	\end{asy}
+\end{center}
+
+So what's happening?
+In the first picture, the red, green, and blue paths somehow all looked
+the same: if you imagine them as pieces of elastic string pinned down
+at $p$ and $q$, you can stretch each one to any other one.
+
+But in the second picture,
+you can't move the red string to match with the blue string:
+there's a meteor in the way.
+The paths are actually different.\footnote{If you know about winding numbers,
+	you might feel this is familiar. 
+	We'll talk more about this in the chapter on homotopy groups.}
+
+The formal notion we'll use to capture this is \emph{homotopy equivalence}.
+We want to write a definition such that in the first picture,
+the three paths are all \emph{homotopic}, but the two paths in the
+second picture are somehow not homotopic.
+And the idea is just continuous deformation.
+
+\begin{definition}
+	Let $\alpha$ and $\beta$ be paths in $X$ whose endpoints coincide.
+	A (path) \vocab{homotopy} from $\alpha$ to $\beta$ is a continuous function
+	$F : [0,1]^2 \to X$, which we'll write $F_s(t)$ for $s,t \in [0,1]$,
+	such that
+	\[ F_0(t) = \alpha(t) \text{ and } F_1(t) = \beta(t)
+		\text{ for all $t \in [0,1]$} \]
+	and moreover
+	\[ \alpha(0) = \beta(0) = F_s(0)
+		\text{ and }
+		\alpha(1) = \beta(1) = F_s(1)
+		\text{ for all $s \in [0,1]$}. \]
+	If a path homotopy exists, we say $\alpha$ and $\beta$
+	are path \vocab{homotopic} and write $\alpha \simeq \beta$.
+\end{definition}
+\begin{abuse}
+	While I strictly should say ``path homotopy'' to describe this relation
+	between two paths, I will shorten this to just ``homotopy'' instead.
+	Similarly I will shorten ``path homotopic'' to ``homotopic''.
+\end{abuse}
+Animated picture: \url{https://commons.wikimedia.org/wiki/File:HomotopySmall.gif}.
+Needless to say, $\simeq$ is an equivalence relation.
+
+What this definition is doing is taking $\alpha$ and ``continuously deforming'' it to $\beta$, while keeping the endpoints fixed.
+Note that for each particular $s$, $F_s$ is itself a function.
+So $s$ represents time as we deform $\alpha$ to $\beta$:
+it goes from $0$ to $1$, starting at $\alpha$ and ending at $\beta$.
+
+\begin{center}
+	\begin{asy}
+		size(9cm);
+		bigbox("$\mathbb C$");
+		pair A = Drawing("p", (-3,0), dir(180));
+		pair B = Drawing("q", (3,0), dir(0));
+		draw(A..MP("F_{0} = \alpha", (0,2), dir(45))..B, heavygreen);
+		draw(A..MP("F_{0.25}", (0,1), dir(45))..B, mediumgreen);
+		draw(A..MP("F_{0.5}", (0,0), dir(90))..B, palecyan);
+		draw(A..MP("F_{0.75}", (0,-1), dir(-45))..B, mediumcyan);
+		draw(A..MP("F_{1} = \beta", (0,-2), dir(-45))..B, heavycyan);
+		// draw(A..(1.5,-2)..(-1.5,-2)..B, orange, EndArrow);
+	\end{asy}
+\end{center}
+
+\begin{ques}
+	Convince yourself the above definition is right.
+	What goes wrong when the meteor strikes?
+\end{ques}
+
+So now I can tell you what makes $\CC$ special:
+\begin{definition}
+	A space $X$ is \vocab{simply connected} if it's path-connected and
+	for any points $p$ and $q$, all paths from $p$ to $q$ are homotopic.
+\end{definition}
+That's why you don't ask questions when walking from $p$ to $q$ in $\CC$:
+there's really only one way to walk. Hence the term ``simply'' connected.
+
+\begin{ques}
+	Convince yourself that $\RR^n$ is simply connected for all $n$.
+\end{ques}
+
 \section{Bases of spaces}
 \prototype{$\RR$ has a basis of open intervals, and $\RR^2$ has a basis of open disks.}
 
@@ -421,7 +603,10 @@ ever have to worry too much about are the $r$-neighborhoods.
 \begin{sproblem}
 	Let $X$ and $Y$ be topological spaces
 	and let $f \colon X \to Y$ be a continuous function.
-	Show that if $X$ is connected then so is $f\im(X)$.
+	\begin{enumerate}[(a)]
+		\ii Show that if $X$ is connected then so is $f\im(X)$.
+		\ii Show that if $X$ is path-connected then so is $f\im(X)$.
+	\end{enumerate}
 \end{sproblem}
 
 \begin{problem}
@@ -479,6 +664,14 @@ ever have to worry too much about are the $r$-neighborhoods.
 \end{problem}
 
 \begin{problem}
+	A topological space $X$ is called \vocab{locally path-connected}
+	if for every point $x \in X$, some neighborhood $U$ of $x$ is path-connected.
+	Prove that $X$ is path-connected if and only if it is connected
+	and locally path-connected.
+	\label{prob:local_path_connected}
+\end{problem}
+
+\begin{problem}
 	\gim
 	We know that any open set $U \subseteq \RR$
 	is a union of open intervals (allowing $\pm\infty$ as endpoints).
@@ -495,4 +688,3 @@ ever have to worry too much about are the $r$-neighborhoods.
 		there are only countably many rational numbers. Done!
 	\end{sol}
 \end{problem}
-
