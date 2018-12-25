@@ -1,46 +1,60 @@
-\chapter{General topological spaces}
+\chapter{Topological spaces}
 \label{ch:top_more}
 
-\todo{rework this chapter}
-Here I'm just talking about some various properties of general topological spaces.
-The chapter is admittedly a bit disconnected (pun not intended, but hey, why not).
+In \Cref{ch:metric_space} we introduced the notion
+of space by describing metrics on them.
+This gives you a lot examples, and nice intuition,
+and tells you how you should draw pictures of open and closed sets.
 
-I should say a little about metric spaces vs general topological spaces here.
-In most of the sections we only really talk about continuous maps or open sets,
-so it doesn't make a difference whether we restrict our attention
-to metric spaces or not.
-But when we talk about completeness, we consider \emph{sequences} of points,
-and in particular the distances between them.
-This notion doesn't make sense for general spaces, so for that section one must
-keep in mind we are only working in metric spaces.
+However, moving forward, it will be useful to begin
+thinking about topological spaces in terms of just their \emph{open sets}.
+(One motivation is that our fishy \Cref{ex:fishy} shows that
+in some ways the notion of homeomorphism really wants
+to be phrased in terms of open sets, not in terms of the metric.)
+As we are going to see, the open sets manage to actually retain
+nearly all the information we need, but are simpler.\footnote{The
+	reason I adamantly introduce metric spaces first
+	is because I think otherwise the examples make much less sense.}
+This will be done in just a few sections,
+and after that we will start describing more adjectives
+that we can apply to topological (and hence metric) spaces.
 
 The most important topological notion is missing from this chapter:
 that of a \emph{compact} space.
 It is so important that I have dedicated a separate chapter just for it.
 
-Note that in contrast to the warning on open/closed sets I gave earlier,
-\begin{moral}
-	The adjectives in this chapter will be used to describe \emph{spaces}.
-\end{moral}
+Quick note for those who care:
+the adjectives ``Hausdorff'', ``connected'',
+and later ``compact'' are all absolute adjectives.
+
+%Note that in contrast to the warning on open/closed sets I gave earlier,
+%\begin{moral}
+%	The adjectives in this chapter will be used to describe \emph{spaces}.
+%\end{moral}
 
 %As I alluded to earlier, sequences in metric spaces are super nice,
 %but sequences in general topological spaces \emph{suck} (to the point where
 %I didn't bother to define convergence of general sequences).
 
 \section{Forgetting the metric}
-Notice something interesting about the previous theorem --
-it doesn't reference the metrics of $M$ and $N$ at all.
-Instead, it refers only to the open sets.
-
-This leads us to consider:
-what if we could refer to spaces \emph{only} by their open sets,
-forgetting about the fact that we had a metric to begin with?
-That's exactly what we do in ``point-set topology''.
+Recall \Cref{thm:open_set}:
+\begin{quote}
+	A function $f \colon M \to N$ of metric spaces is continuous
+	if and only if the pre-image of every open set in $N$ is open in $M$.
+\end{quote}
+Despite us having defined this in the context of metric spaces,
+this nicely doesn't refer to the metric at all,
+only the open sets.
+As alluded to at the start of this chapter,
+this is a great motivation for how we can forgot
+about the fact that we had a metric to begin with,
+and rather \emph{start} with the open sets instead.
 
 \begin{definition}
 	A \vocab{topological space} is a pair $(X, \mathcal T)$,
 	where $X$ is a set of points,
-	and $\mathcal T$ is the \vocab{topology}, which consists of several subsets of $X$, called the \vocab{open sets} of $X$.
+	and $\mathcal T$ is the \vocab{topology},
+	which consists of several subsets of $X$, called the \vocab{open sets} of $X$.
 	The topology must obey the following axioms.
 	\begin{itemize}
 		\ii $\varnothing$ and $X$ are both in $\mathcal T$.
@@ -52,7 +66,8 @@ So this time, the open sets are \emph{given}.
 Rather than defining a metric and getting open sets from the metric,
 we instead start from just the open sets.
 \begin{abuse}
-	We refer to the space $(X, \mathcal T)$ by just $X$.
+	We abbreviate $(X, \mathcal T)$ by just $X$,
+	leaving the topology $\mathcal T$ implicit.
 	(Do you see a pattern here?)
 \end{abuse}
 
@@ -62,7 +77,8 @@ we instead start from just the open sets.
 		\ii Given a metric space $M$, we can let $\mathcal T$ be
 		the open sets in the metric sense.
 		The point is that the axioms are satisfied.
-		\ii In particular, \vocab{discrete space} is a topological space in which every set is open. (Why?)
+		\ii In particular, \vocab{discrete space}
+		is a topological space in which every set is open. (Why?)
 		\ii Given $X$, we can let $\mathcal T = \left\{ \varnothing, X \right\}$,
 		the opposite extreme of the discrete space.
 	\end{enumerate}
@@ -70,7 +86,12 @@ we instead start from just the open sets.
 
 Now we can port over our metric definitions.
 \begin{definition}
-	An \vocab{open neighborhood} of a point $x \in X$ is an
+	An \vocab{open neighborhood}\footnote{In literature,
+		a ``neighborhood'' refers to a set
+		which contains some open set around $x$.
+		We will not use this term;
+		for us, our neighborhoods are always going to be open, anyways.}
+	of a point $x \in X$ is an
 	open set $U$ which contains $x$ (see figure).
 \end{definition}
 \begin{center}
@@ -92,26 +113,43 @@ Now we can port over our metric definitions.
 	and so I can only use this term if my space is a metric space.
 \end{abuse}
 
-\begin{abuse}
-	There's another related term commonly used:
-	a \emph{neighborhood} $V$ of $x$ is a set
-	which contains some open neighborhood of $x$ (often $V$ itself).
-	Think of it as ``open around $x$'', though
-	not always at other points.
-	However, for most purposes, you should think of neighborhoods
-	as just open neighborhoods.
-\end{abuse}
+\section{Re-definitions}
+Now that we've defined a topological space,
+for nearly all of our metric notions we can write down
+as the definition the one that required only open sets
+(which will of course agree with our old definitions
+when we have a metric space).
+
+\subsection{Continuity}
+Here was our motivating example, continuity:
 \begin{definition}
-	A function $f : X \to Y$ of topological spaces
-	is \vocab{continuous} at $p \in X$ if the pre-image of any
+	We say function $f \colon X \to Y$ of topological spaces
+	is \vocab{continuous} at a point $p \in X$ if the pre-image of any
 	open neighborhood of $fp$ is an open neighborhood of $p$.
-	It is continuous if it is continuous at every point,
-	meaning that the pre-image of any open set is open.
+	The function is continuous if it is continuous at every point.
 \end{definition}
 
-You can also port over the notion of sequences and convergent sequences.
-But I won't bother to do so because sequences lose most of the nice properties
-they had before.
+Thus homeomorphisms carries over:
+a bijection which is continuous in both directions.
+\begin{definition}
+	A \vocab{homeomorphism} of topological spaces
+	$(X, \tau_X)$ and $(Y, \tau_Y)$
+	is a bijection $f \colon X \to Y$
+	which induces a bijection from $\tau_X$ to $\tau_Y$:
+	i.e.\ the bijection preserves open sets.
+\end{definition}
+\begin{ques}
+	Show that this is equivalent to $f$ and its inverse
+	both being continuous.
+\end{ques}
+Therefore, any property defined only in
+terms of open sets is preserved by homeomorphism.
+Such a property is called a \vocab{topological property}.
+However, the later adjectives we define 
+(``connected'', ``Hausdorff'', ``compact'') will all be defined
+only in terms of the open sets, so they will be.
+
+
 
 %\begin{definition}
 %	A sequence $(x_n)$ of points in a topological space $X$ is said to \vocab{converge to} $x \in X$ if for every neighborhood of $x$,
@@ -121,85 +159,189 @@ they had before.
 %	Unfortunately, for general topological spaces we no longer have the nice property
 %	that any function which preserves sequential limits is automatically continuous.
 %\end{remark}
-
 %There's one other property of open sets that we have in a metric space that isn't implied by the above: for any two points of $X$, we can find an open set containing one but not the other.
 %A space which also has this property is called a \vocab{Kolmogorov space}.
 %This property is a good property to have, because if $x,y \in X$ are in the same open sets, the topology can't tell them apart.
 
-Finally, what are the homeomorphisms?
-The same definition carries over: a bijection which is continuous in both directions.
-\begin{definition}
-	A \vocab{homeomorphism} of topological spaces $(X, \tau_X)$ and $(Y, \tau_Y)$
-	is a bijection from $X$ to $Y$
-	which induces a bijection from $\tau_X$ to $\tau_Y$:
-	i.e.\ the bijection preserves open sets.
-\end{definition}
-Therefore, any property defined only in terms of open sets is preserved by homeomorphism.
-Such a property is called a \vocab{topological property}.
-That's why $(0,1)$ homeomorphic to $\RR$ is not so surprising,
-because the notion of being ``bounded'' is not a notion
-which can be expressed in terms of open sets.
-
-\begin{remark}
-	As you might have guessed, there exist topological spaces which cannot be realized
-	as metric spaces (in other words, are not \vocab{metrizable}).
-	One example is just to take $X = \{a,b,c\}$ and the topology
-	$\tau_X = \left\{ \varnothing, \{a,b,c\} \right\}$.
-	This topology is fairly ``stupid'':
-	it can't tell apart any of the points $a$, $b$, $c$!
-	But any metric space can tell its points apart (because $d(x,y) > 0$ when $x \neq y$).
-	We'll see less trivial examples later.
-\end{remark}
-
-\section{Closed sets}
-
-This leads us to a definition for a general topological space.
+\subsection{Closed sets}
+We saw last time there were two equivalent definitions
+for closed sets, but one of them relies only on open sets, and we use it:
 \begin{definition}
 	In a general topological space $X$, we say that $S \subseteq X$ is
 	\vocab{closed} in $X$ if the complement $X \setminus S$ is open in $X$.
+
+	If $S \subseteq X$ is any set, the \vocab{closure} of $S$,
+	denoted $\ol S$, is defined as the smallest closed set containing $S$.
 \end{definition}
-Hence, for general topological spaces, open and closed sets carry the same information,
+Thus for general topological spaces,
+open and closed sets carry the same information,
 and it is entirely a matter of taste whether we define everything in terms
 of open sets or closed sets.
-In particular,
+In particular, you can translate axioms and properties of open sets to closed ones:
 \begin{ques}
 	Show that the (possibly infinite) intersection of closed sets is closed
 	while the union of finitely many closed sets is closed.
-	(Hint: just look at complements.)
+	(Look at complements.)
 \end{ques}
-\begin{ques}
+\begin{exercise}
 	Show that a function is continuous if and only if the pre-image
 	of every closed set is closed.
-\end{ques}
+\end{exercise}
 Mathematicians seem to have agreed that they like open sets better.
 
 
+\subsection{Properties that don't carry over}
+Not everything works:
+
+\begin{remark}
+	[Complete and (totally) bounded are metric properties]
+	The two metric properties we have seen,
+	``complete'' and ``(totally) bounded'', are not topological spaces.
+	They rely on a metric,
+	so as written we cannot apply them to topological spaces.
+	One might hope that maybe,
+	there is some alternate definition (like we saw for ``continuous function'')
+	that is just open-set based.
+	But \Cref{ex:fishy} showing $(0,1) \cong \RR$
+	tells us that it is hopeless.
+\end{remark}
+
+\begin{remark}
+	[Sequences don't work well]
+	You could also try to port over the notion
+	of sequences and convergent sequences.
+	However, this turns out to break a lot of desirable properties.
+	Therefore I won't bother to do so,
+	and thus if we are discussing sequences you should
+	assume that we are working with a metric space.
+\end{remark}
+
+\section{Hausdorff spaces}
+\prototype{Every space that's not the Zariski topology (defined much later).}
+
+As you might have guessed,
+there exist topological spaces which cannot be realized
+as metric spaces (in other words, are not \vocab{metrizable}).
+One example is just to take $X = \{a,b,c\}$ and the topology
+$\tau_X = \left\{ \varnothing, \{a,b,c\} \right\}$.
+This topology is fairly ``stupid'':
+it can't tell apart any of the points $a$, $b$, $c$!
+But any metric space can tell its points apart (because $d(x,y) > 0$ when $x \neq y$).
+
+We'll see less trivial examples later,
+but for now we want to add a little more sanity condition onto our spaces.
+There is a whole hierarchy of such axioms, labelled $T_n$ for
+integers $n$ (with $n=0$ being the weakest and $n=6$ the strongest);
+these axioms are called \vocab{separation axioms}.
+
+By far the most common hypothesis is the $T_2$ axiom,
+which bears a special name.
+\begin{definition}
+	A topological space $X$ is \vocab{Hausdorff} if
+	for any two disjoint points $p$ and $q$ in $X$,
+	there exists a neighborhood $U$ of $p$
+	and a neighborhood $V$ of $q$ such that
+	\[ U \cap V = \varnothing. \]
+\end{definition}
+
+In other words, around any two distinct points we should be
+able to draw disjoint open neighborhoods.
+Here's a picture to go with above,
+but not much going on.
+\begin{center}
+\begin{asy}
+	size(5cm);
+	pair p = (-1.5,0);
+	pair q = ( 1.5,0);
+	filldraw(CR(p,1), opacity(0.1)+lightcyan, blue+dashed);
+	filldraw(CR(q,1), opacity(0.1)+lightred, red+dashed);
+	dot("$p$", p, dir(-90), blue);
+	dot("$q$", q, dir(-90), red);
+\end{asy}
+\end{center}
+
+\begin{ques}
+	Show that all metric spaces are Hausdorff.
+\end{ques}
+
+I just want to define this here so that I can use this word later.
+In any case, basically any space we will encounter other than
+the Zariski topology is Hausdorff.
+
+
+\section{Subspaces}
+\prototype{$S^1$ is a subspace of $\RR^2$.}
+
+One can also take subspaces for general topological spaces.
+\begin{definition}
+	Given a topological space $X$,
+	and a subset $S \subseteq X$,
+	we can make $S$ into a topological space
+	by declaring that the open subsets of $S$ are $U \cap S$
+	for open $U \subseteq X$.
+	This is called the \vocab{subspace topology}.
+\end{definition}
+So for example, if we view $S^1$ as a subspace of $\RR^2$,
+then any open arc is an open set,
+because you can view it as the intersection of an open disk with $S^1$.
+\begin{center}
+	\begin{asy}
+		size(3cm);
+		draw(unitcircle, black+1);
+		MP("S^1", dir(60), dir(60));
+		MP("\mathbb R^2", dir(-45)*1.2, dir(-45));
+		pair A = dir(-30);
+		pair B = dir(50);
+		draw(CP(dir(10), A), dotted);
+		draw(arc(origin,A,B), blue+2);
+		dotfactor *= 2;
+		opendot(A, blue);
+		opendot(B, blue);
+	\end{asy}
+\end{center}
+
+Needless to say, for metric spaces it doesn't matter
+which of these definitions I choose.
+(Proving this turns out to be surprisingly annoying,
+so I won't do so.)
+
 \section{Connected spaces}
-It is possible for a set to be both open and closed
-(or \vocab{clopen}) in a topological space $X$;
-for example $\varnothing$ and the entire space are examples of clopen sets.
-In fact, the presence of a nontrivial clopen set other than these two leads
-to a so-called \emph{disconnected} space.
+\prototype{$[0,1] \cup [2,3]$ is disconnected.}
+Even in metric spaces, it is possible for a set
+to be both open and closed.
+\begin{definition}
+	A subset $S$ of a topological space $X$
+	is \vocab{clopen} if it is both closed and open in $X$.
+	(Equivalently, both $S$ and its complement are open.)
+\end{definition}
+For example $\varnothing$ and the entire space are examples of clopen sets.
+In fact, the presence of a nontrivial clopen set other
+than these two leads to a so-called \emph{disconnected} space.
 
 \begin{ques}
 	Show that a space $X$ has a nontrivial clopen set
 	(one other than $\varnothing$ and $X$)
-	if and only if $X$ can be written as a disjoint union $U \sqcup V$
-	where $U$ and $V$ are both open and nonempty.
-	(Use the definition that closed sets are complements of open sets.)
+	if and only if $X$ can be written as a disjoint union
+	of two nonempty open sets.
 \end{ques}
 
-We say $X$ is \vocab{disconnected} if there are nontrivial clopen sets,
+We say $X$ is \vocab{disconnected}
+if there are nontrivial clopen sets,
 and \vocab{connected} otherwise.
-To see why this should be a reasonable definition, it might help
-to solve \Cref{prob:disconnected_better_def}.
+To see why this should be a reasonable definition,
+it might help to solve \Cref{prob:disconnected_better_def}.
 
 \begin{example}[Disconnected and connected spaces]
 	\listhack
 	\begin{enumerate}[(a)]
 		\ii The metric space 
-		\[ \{ (x,y) \mid x^2+y^2\le 1 \} \cup \{ (x,y) \mid (x-4)^2+y^2\le1\} \subseteq \RR^2 \]
+		\[ \{ (x,y) \mid x^2+y^2\le 1 \}
+			\cup \{ (x,y) \mid (x-4)^2+y^2\le1\} \subseteq \RR^2 \]
 		is disconnected (it consists of two disks).
+
+		\ii The space $[0,1] \cup [2,3]$ is disconnected,
+		it consists of two segments,
+		each of which is a clopen set.
 
 		\ii A discrete space on more than one point is disconnected,
 		since \emph{every} set is clopen in the discrete space.
@@ -267,79 +409,6 @@ The point is that in a metric space, the only open sets you really
 ever have to worry too much about are the $r$-neighborhoods.
 
 
-\section{Subspacing}
-Earlier in this chapter,
-I declared that all the adjectives we defined were used to describe spaces.
-However, I now want to be more flexible and describe
-how they can be used to define subsets of spaces as well.
-
-We've talked about some properties that a space can have;
-say, a space is \emph{path-connected}, or \emph{simply connected}, or \emph{complete}.
-If you think about it, it would make sense to use the same adjectives on sets.
-You'd say a set $S$ is path-connected if there's a path between
-every pair of points in $S$ through points in $S$. And so on.
-
-The reason you can do this is that for a metric space $M$,
-\begin{moral}
-	Every subset $S \subseteq M$ is a metric space in its own right.
-\end{moral}
-To see this, we just use the same distance function;
-this is called the \vocab{subspace topology}.
-For example, you can think of a circle $S^1$ as a connected set
-by viewing it as a subspace of $\RR^2$.
-Thus,
-\begin{abuse}
-	Any adjective used to describe a space can equally be used for a subset of a space,
-	and I'll thus be letting these mix pretty promiscuously.
-	So in what follows, I might refer to subsets being complete,
-	even when I only defined completeness for spaces.
-	This is what I mean.
-\end{abuse}
-So to be perfectly clear:
-\begin{itemize}
-	\ii The statement ``$[0,1]$ is complete'' makes sense (and is true);
-	it says that $[0,1]$ is a complete metric space.
-	\ii The statement ``$[0,1]$ is a complete subset of $\RR$'' is valid;
-	it says that the subspace $[0,1]$ of $\RR$ is a complete metric space,
-	which is of course true.
-	\ii The statement ``$[0,1]$ is a closed subset of $\RR$'' makes sense;
-	it says that the set of points $[0,1]$ form a closed subset of a parent space $\RR$.
-	\ii The statement ``$[0,1]$ is closed'' does \emph{not} make sense.
-	Closed sets are only defined relative to parent spaces.
-\end{itemize}
-
-To make sure you understand this:
-\begin{exercise}
-	Let $M$ be a complete metric space and let $S \subseteq M$.
-	Prove that $S$ is complete if and only if it is closed in $M$.
-	(This is obvious once you figure out what the question is asking.)
-	In particular, $[0,1]$ is complete.
-\end{exercise}
-
-One can also define the subspace topology in a general topological space $X$.
-Given a subset $S \subseteq X$, the open sets of the subspace $S$ are those of the form $S \cap U$,
-where $U$ is an open set of $X$.
-So for example, if we view $S^1$ as a subspace of $\RR^2$,
-then any open arc is an open set, because you can view it as the intersection of an open disk with $S^1$.
-\begin{center}
-	\begin{asy}
-		size(3cm);
-		draw(unitcircle, black+1);
-		MP("S^1", dir(60), dir(60));
-		MP("\mathbb R^2", dir(-45)*1.2, dir(-45));
-		pair A = dir(-30);
-		pair B = dir(50);
-		draw(CP(dir(10), A), dotted);
-		draw(arc(origin,A,B), blue+2);
-		dotfactor *= 2;
-		opendot(A, blue);
-		opendot(B, blue);
-	\end{asy}
-\end{center}
-
-Needless to say, for metric spaces it doesn't matter which of these definitions I choose.
-(Proving this turns out to be surprisingly annoying, so I won't do so.)
-
 \section{\problemhead}
 
 \begin{dproblem}
@@ -350,9 +419,30 @@ Needless to say, for metric spaces it doesn't matter which of these definitions 
 \end{dproblem}
 
 \begin{sproblem}
-	Let $f \colon X \to Y$ be a continuous function.
+	Let $X$ and $Y$ be topological spaces
+	and let $f \colon X \to Y$ be a continuous function.
 	Show that if $X$ is connected then so is $f\im(X)$.
 \end{sproblem}
+
+\begin{problem}
+	[Hausdorff implies $T_1$ axiom]
+	Let $X$ be a Hausdorff topological space.
+	Prove that for any point $p \in X$
+	the set $\{p\}$ is closed.
+\end{problem}
+
+\begin{problem}
+	[\cite{ref:pugh}, Exercise 2.56]
+	Let $M$ be a metric space with more than one point
+	but at most countably infinitely many points.
+	Show that $M$ is disconnected.
+	\begin{hint}
+		Let $p$ be any point.
+		If there is a real number $r$
+		such that $d(p,q) \ne r$ for any $q \in M$,
+		then the $r$-neighborhood of $p$ is clopen.
+	\end{hint}
+\end{problem}
 
 \begin{problem}[Furstenberg]
 	We declare a subset of $\ZZ$ to be open
@@ -387,14 +477,6 @@ Needless to say, for metric spaces it doesn't matter which of these definitions 
 		such that $n!$ divides $\left\lvert x-y \right\rvert$.
 	\end{sol}
 \end{problem}
-
-%\begin{problem}
-%	A topological space $X$ is called \vocab{locally path-connected}
-%	if for every point $x \in X$, some neighborhood $U$ of $x$ is path-connected.
-%	Prove that $X$ is path-connected if and only if it is connected
-%	and locally path-connected.
-%	\label{prob:local_path_connected}
-%\end{problem}
 
 \begin{problem}
 	\gim

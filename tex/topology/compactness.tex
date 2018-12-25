@@ -19,9 +19,10 @@ So it's the second definition that will be used for general spaces.
 To emphasize, compactness is one of the
 \emph{best} possible properties that a metric space can have.
 \begin{definition}
-	A \vocab{subsequence} of an infinite sequence $x_1, x_2, \dots$ is exactly
-	what it sounds like: a sequence $x_{i_1}, x_{i_2}, \dots$
-	where $i_1 < i_2 < \dots$ are positive integers.
+	A \vocab{subsequence} of an infinite sequence
+	$x_1, x_2, \dots$ is exactly what it sounds like:
+	a sequence $x_{i_1}, x_{i_2}, \dots$
+	where $i_1 < i_2 < \cdots$ are positive integers.
 	Note that the sequence is required to be infinite.
 \end{definition}
 Another way to think about this is ``selecting infinitely many terms''
@@ -34,14 +35,16 @@ your glass is half empty or half full.
 \end{definition}
 This time, let me give some non-examples before the examples.
 \begin{example}
-	[Non-Examples of compact metric spaces]
+	[Non-examples of compact metric spaces]
 	\listhack
 	\begin{enumerate}[(a)]
 		\ii The space $\RR$ is not compact: consider the sequence $1,2,3,4,\dots$.
 		Any subsequence explodes, hence $\RR$ cannot possibly be compact.
-		\ii More generally, if a space is not \vocab{bounded} it cannot be compact.
-		By bounded I mean that there exists a constant $L$ such that $d_M(x,y) < L$ for all $x,y \in M$.
-		\ii The open interval $(0,1)$ is bounded but not compact: consider the sequence $\frac12, \frac13, \frac14, \dots$.
+		\ii More generally, if a space is
+		not bounded it cannot be compact.
+		(You can prove this if you want.)
+		\ii The open interval $(0,1)$ is bounded but not compact:
+		consider the sequence $\frac12, \frac13, \frac14, \dots$.
 		No subsequence can converge to a point in $(0,1)$ because the sequence ``converges to $0$''.
 		\ii More generally, any space which is not complete cannot be compact.
 	\end{enumerate}
@@ -155,27 +158,72 @@ which sets are compact in metric spaces in a geometric way.
 There's a second related notion of compactness which I'll now define.
 The following definitions might appear very unmotivated, but bear with me.
 \begin{definition}
-	An open cover of a metric space $M$ is a collection of open sets $\{U_\alpha\}$
+	An open cover of a topological space $X$
+	is a collection of open sets $\{U_\alpha\}$
 	(possibly infinite or uncountable) which \emph{cover} it:
-	every point in $M$ lies in at least one of the $U_\alpha$, 
-	so that \[ M = \bigcup U_\alpha. \]
+	every point in $X$ lies in at least one of the $U_\alpha$,
+	so that \[ X = \bigcup U_\alpha. \]
 	Such a cover is called an \vocab{open cover}.
+
 	A \vocab{subcover} is exactly what it sounds like:
 	it takes only some of the $U_\alpha$,
-	while ensuring that $M$ remains covered.
-\end{definition}
-\begin{definition}
-	A metric space $M$ is \vocab{compact} if \emph{every} open cover has a finite subcover.
+	while ensuring that $X$ remains covered.
 \end{definition}
 
+Some art:
+\begin{center}
+\begin{asy}
+size(12cm);
+path blob = (-8,3)..(-10,1)..(-9.4,0)..(-8.2,-3)..(-8,-4)
+	..(-2,-4.3)..(2,-4.2)..(8,-4)
+	..(8.6,-2)..(8.2,0.5)..(8,3)
+	..(4,3.3)..(0,3.1)..(-6,2.9)..cycle;
+void open_ball(pair O, real r, pen p) {
+	dot(O, p);
+	filldraw(CR(O, r), p+opacity(0.1), p+dashed);
+}
+
+filldraw(blob, cyan+opacity(0.2), blue+0.7);
+open_ball((-7,0.8), 3.5, red);
+open_ball((-4.7,-1.2), 4.6, orange);
+open_ball((-1.7,-0.3), 3.9, red);
+open_ball((1.4,0.9), 2.9, yellow);
+open_ball((2.5,-0.9), 3.7, orange);
+open_ball((0.4,-3.7), 1.3, yellow);
+open_ball((4.3,0.8), 2.7, red);
+open_ball((6.3,1.8), 2.4, orange);
+open_ball((6.0,-2.4), 4.0, yellow);
+
+label("$X$", (8,3), dir(5), blue);
+
+label(scale(2)*"$X = \bigcup_\alpha U_\alpha$", (0,4), blue);
+\end{asy}
+\end{center}
+
+
+\begin{definition}
+	A topological space $X$ is \vocab{quasicompact}
+	if \emph{every} open cover has a finite subcover.
+	It is \vocab{compact} if it is also Hausdorff.
+\end{definition}
+\begin{remark}
+	The ``Hausdorff'' hypothesis that I snuck in
+	is a sanity condition which is not worth worrying about unless you're
+	working on the algebraic geometry chapters,
+	since all the spaces you will deal with are Hausdorff.
+	In fact, some authors don't even bother to include it.
+\end{remark}
 What does this mean? Here's an example:
 \begin{example}[Example of a finite subcover]
-	Suppose we cover the unit square $M = [0,1]^2$ by putting an open disk of diameter $1$ at every point
+	Suppose we cover the unit square $M = [0,1]^2$ by
+	putting an open disk of diameter $1$ centered at every point
 	(trimming any overflow).
-	This is clearly an open cover because, well, every point lies in \emph{many} of the open sets,
+	This is clearly an open cover because,
+	well, every point lies in \emph{many} of the open sets,
 	and in particular is the center of one.
 
-	But this is way overkill -- we only need about four of these circles to cover the whole square.
+	But this is way overkill -- we only need about four
+	of these circles to cover the whole square.
 	That's what is meant by a ``finite subcover''.
 	\begin{center}
 		\begin{asy}
@@ -198,6 +246,15 @@ Because of this:
 	\label{thm:compactness_metric}
 \end{theorem}
 We defer the proof to the last section.
+
+This gives us the motivation we wanted for our definition.
+Sequential compactness was a condition that made sense.
+The open-cover definition looked strange,
+but it turned out to be equivalent.
+But we now prefer it, because we have seen that
+whenever possible we want to resort to open-set-only based definitions:
+so that e.g.\ they are preserved under homeomorphism.
+
 \begin{example}[An example of non-compactness]
 	The space $X = [0,1)$ is not compact in either sense. % chktex 9
 	We can already see it is not sequentially compact, because it is not even complete (look at $x_n = 1 - \frac 1n$).
@@ -211,24 +268,11 @@ We defer the proof to the last section.
 	this is a little less intuitive than it being sequentially compact.
 \end{ques}
 \begin{abuse}
-	Thus, we'll never call a metric space ``sequentially compact'' again -- we'll just say ``compact''.
+	Thus, we'll never call a metric space ``sequentially compact'' again
+	--- we'll just say ``compact''.
 	(Indeed, I kind of already did this in the previous few sections.)
 \end{abuse}
 
-Open covers also have the nice property that,
-again, they don't refer to metrics or sequences.
-So rather than port the sequential definition,
-we port this definition over for a general space:
-\begin{definition}
-	A general topological space $X$ is \vocab{compact}
-	if it is Hausdorff and every open cover has finite subcover.
-\end{definition}
-\begin{remark}
-	The ``Hausdorff'' hypothesis that I snuck in
-	is not worth worrying about unless you're
-	working on the algebraic geometry chapters,
-	since all the spaces you will deal with are Hausdorff.
-\end{remark}
 
 \section{Applications of compactness}
 Compactness lets us reduce \emph{infinite} open covers to finite ones.
@@ -239,13 +283,8 @@ and yet compactness lets us reduce to a finite set.
 
 To give an example of a typical usage:
 \begin{proposition}[Compact $\implies$ totally bounded]
-	Let $M$ be compact.
-	Then $M$ is \vocab{totally bounded}, meaning
-	that for any $\eps > 0$ we can cover $M$ with
-	finitely many $\eps$-neighborhoods.
+	Let $M$ be compact. Then $M$ is totally bounded.
 \end{proposition}
-(To picture this: in $\RR^2$, any compact set can be covered by unit disks.)
-\missingfigure{cover a triangle}
 \begin{proof}[Proof Using Covers]
 	For every point $p \in M$, take an $\eps$-neighborhood of $p$, say $U_p$.
 	These cover $M$ for the horrendously stupid reason that each point is
@@ -255,7 +294,7 @@ To give an example of a typical usage:
 
 Next, an important result about maps between compact spaces.
 \begin{theorem}[Images of compacts are compact]
-	Let $f : X \to Y$ be a continuous function, where $X$ is compact.
+	Let $f \colon X \to Y$ be a continuous function, where $X$ is compact.
 	Then the image \[ f\im(X) \subseteq Y \] is compact.
 \end{theorem}
 \begin{proof}[Proof Using Covers]
@@ -284,7 +323,6 @@ Some nice corollaries of this:
 	Consider a continuous function $f: [0,1] \to \RR$.
 	Then the image of $f$ is of the form $[a,b]$ for some real numbers $a \le b$.
 \end{corollary}
-The typical counterexample given for $(0,1) \to \RR$ is the function $\frac 1x$.
 
 \begin{proof}[Sketch of Proof]
 	The point is that the image of $f$ is compact in $\RR$,
@@ -300,13 +338,26 @@ The typical counterexample given for $(0,1) \to \RR$ is the function $\frac 1x$.
 	also, I think $\RR$ is boring.)
 \end{proof}
 
+\begin{example}
+	[$1/x$]
+	The compactness hypothesis is really important here.
+	Otherwise, consider the function
+	\[ (0,1) \to \RR \quad \text{ by } \quad
+		x \mapsto \frac 1x. \]
+	This function (which you plot as a hyperbola) is not bounded;
+	essentially, you can see graphically that the issue
+	is we can't extend it a function on $[0,1]$ because it explodes near $x=0$.
+\end{example}
+
 One last application: if $M$ is a compact metric space,
 then continuous functions $f : M \to N$
 are continuous in an especially ``nice'' way:
 \begin{definition}
-	A function $f : M \to N$ of metric spaces is called \vocab{uniformly continuous}
-	if for any $\eps > 0$, there exists a $\delta > 0$ (depending only on $\eps$) such that 
-	whenever $d_M(x,y) < \delta$ we also have $d_N(fx, fy) < \eps$.	
+	A function $f : M \to N$ of metric spaces
+	is called \vocab{uniformly continuous}
+	if for any $\eps > 0$, there exists a $\delta > 0$
+	(depending only on $\eps$) such that 
+	whenever $d_M(x,y) < \delta$ we also have $d_N(fx, fy) < \eps$.
 \end{definition}
 The name means that for $\eps > 0$,
 we need a $\delta$ that works for \emph{every point} of $M$.
@@ -332,14 +383,14 @@ we need a $\delta$ that works for \emph{every point} of $M$.
 		the function $x \mapsto x^2$ becomes uniformly continuous.
 		(For $\eps > 0$ one can now pick for example $\delta = \min(1,\eps)/3$.)
 
-		\ii The function $(0,1) \to \RR$ by $x \mapsto 1/x$ is \emph{not} uniformly continuous
-		(same reason as before).
+		\ii The function $(0,1) \to \RR$ by $x \mapsto 1/x$ is \emph{not}
+		uniformly continuous (same reason as before).
 	\end{enumerate}
 \end{example}
 
 Now, as promised:
 \begin{proposition}[Continuous on compact $\implies$ uniformly continuous]
-	If $M$ is compact and $f : M \to N$ is continuous,
+	If $M$ is compact and $f \colon M \to N$ is continuous,
 	then $f$ is uniformly continuous.
 \end{proposition}
 \begin{proof}[Proof Using Sequences]
@@ -374,7 +425,6 @@ the idea of the proof is much in the spirit of \Cref{thm:interval_compact}.
 		Then there exists a real number $\delta > 0$, called a \vocab{Lebesgue number} for that covering,
 		such that the $\delta$-neighborhood of any point $p$ lies entirely in some $U_\alpha$.
 	\end{lemma}
-	\missingfigure{Lebesgue Numbers}
 	\begin{subproof}[Proof of lemma]
 		Assume for contradiction that for every $\delta = 1/k$
 		there is a point $x_k \in M$
@@ -424,16 +474,32 @@ Of these \Cref{thm:bzw} is definitely my favorite.
 		$[0,1]$ is compact.
 	\end{hint}
 	\begin{sol}
-		Compactness is preserved under homeomorphism, so this is obvious.
-		To be clear, suppose $f : [0,1] \to (0,1)$ is continuous and surjective.
-		This would imply $(0,1)$ is compact, which is false.
+		Compactness is preserved under homeomorphism,
+		but $[0,1]$ is compact while $(0,1)$ is not.
 	\end{sol}
+\end{problem}
+
+\begin{problem}
+	Let $X$ be a topological space with the discrete topology.
+	Under what conditions is $X$ compact?
+	\begin{hint}
+		If and only if it is finite.
+	\end{hint}
+\end{problem}
+
+\begin{problem}
+	[The cofinite topology is quasicompact only]
+	We let $X$ be an infinite set and equip it with the
+	\vocab{cofinite topology}:
+	the open sets are the empty set and complements of finite sets.
+	This makes $X$ into a topological space.
+	Show that $X$ is quasicompact but not Hausdorff.
 \end{problem}
 
 \begin{problem}
 	[Cantor's intersection theorem]
 	\label{prob:cantor_intersect}
-	Let $X$ be a compact space, and suppose
+	Let $X$ be a compact topological space, and suppose
 	\[ X = K_0 \supseteq K_1 \supseteq K_2 \supseteq \dots \]
 	is an infinite sequence of nested nonempty closed subsets.
 	Show that $\bigcap_{n \ge 0} K_n \neq \varnothing$.
@@ -453,8 +519,17 @@ Of these \Cref{thm:bzw} is definitely my favorite.
 \begin{problem}
 	[Tychonoff's theorem]
 	Let $X$ and $Y$ be compact metric spaces. Show that $X \times Y$ is compact.
-	(This is also true for general topological spaces, but the proof is surprisingly hard.)
+	(This is also true for general topological spaces,
+	but the proof is surprisingly hard,
+	and we haven't even defined $X \times Y$ in general yet.)
 	\label{prob:tychonoff}
+	\begin{hint}
+	Suppose $p_i = (x_i, y_i)$ is a sequence in $X \times Y$ ($i=1,2,\dots$).
+	Take a sub-sequence such that the $x$-coordinate converges
+	(throwing out some terms).
+	Then take a sub-sequence of \emph{that} sub-sequence
+	such that $y$-coordinate converges (throwing out more terms).
+	\end{hint}
 	\begin{sol}
 	Suppose $p_i = (x_i, y_i)$ is a sequence in $X \times Y$ ($i=1,2,\dots$).
 	Looking on the $X$ side, some subsequence converges:
@@ -464,15 +539,16 @@ Of these \Cref{thm:bzw} is definitely my favorite.
 	$y_1, y_{16}, y_{81}, y_{256}, \dots \to y$.
 	Then $p_1, p_{16}, p_{81}, \dots$ will converge to $(x,y)$.
 
-	It's interesting to watch students with little proof experience try this problem.
-	They'll invariably conclude that $(x_n)$ has a convergent subsequence
+	One common mistake is to just conclude
+	that $(x_n)$ has a convergent subsequence
 	and that $(y_n)$ does too.
 	But these sequences could be totally unrelated.
-	For this proof to work, you do need to apply compactness of $X$ first,
-	and then compactness of $Y$ on the resulting \emph{filtered} sequence like we did here.
+	For this proof to work,
+	you do need to apply compactness of $X$ first,
+	and then compactness of $Y$ on the resulting \emph{filtered}
+	sequence like we did here.
 	\end{sol}
 \end{problem}
-
 
 \begin{dproblem}
 	[Bolzano-Weierstra\ss\ theorem for general metric spaces]
