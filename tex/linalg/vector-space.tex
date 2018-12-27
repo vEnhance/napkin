@@ -5,14 +5,13 @@ These are very intuitive concepts that you likely already know.
 
 \section{The definitions of a ring and field}
 \prototype{$\ZZ$, $\RR$, or $\CC$ are rings; the latter two are fields.}
-I'll very informally define a ring/field here; if you're interested in the actual definition,
-you can consult the first part of the chapter on ideals.
-For now you can just remember:
+
+I'll very informally define a ring/field here,
+in case you skipped the earlier chapter.
 \begin{itemize}
-	\ii A \textbf{commutative ring} is a structure with a \emph{commutative}
-	addition and multiplication, as well as subtraction, like $\ZZ$. 
+	\ii A \textbf{ring} is a structure with a \emph{commutative}
+	addition and multiplication, as well as subtraction, like $\ZZ$.
 	It also has an additive identity $0$ and multiplicative identity $1$.
-	(Yes, I'm considering only commutative rings.)
 
 	\ii If the multiplication is invertible like in $\RR$ or $\CC$,
 	(meaning $\frac 1x$ makes sense for any $x \neq 0$),
@@ -270,10 +269,9 @@ The idea of a basis, the topic of this section,
 gives us another way to capture the notion that
 \[ V = \left\{ ax^2+bx+c \mid a,b,c \in \RR \right\} \]
 is just sums of copies of $\{1,x,x^2\}$.
-This section should be very very intuitive, if technical.
+This section should be very intuitive, if technical.
 If you can't see why the theorems here ``should'' be true,
 you're doing it wrong.
-
 
 Let $M$ be an $R$-module now.
 We define three very classical notions that you likely are already familiar with.
@@ -321,8 +319,12 @@ With these new terms, we can just say a basis is a linearly independent and span
 \begin{example}[More example of bases]
 	\listhack
 	\begin{enumerate}[(a)]
-		\ii Regard $\QQ[\sqrt2]$ as a $\QQ$-vector space. Then $\{1, \sqrt 2\}$ is a basis.
-		\ii If $V$ is the set of all real polynomials, there is an infinite basis $\{1, x, x^2, \dots\}$.
+		\ii Regard $\QQ[\sqrt2]
+		= \left\{ a + b \sqrt 2 \mid a, b \in \QQ \right\}$
+		as a $\QQ$-vector space.
+		Then $\{1, \sqrt 2\}$ is a basis.
+		\ii If $V$ is the set of all real polynomials,
+		there is an infinite basis $\{1, x, x^2, \dots\}$.
 		The condition that we only use finitely many terms just says
 		that the polynomials must have finite degree (which is good).
 		\ii Let $V = \{ (x,y,z) \mid x+y+z=0 \text{ and } x,y,z \in \RR\}$.
@@ -369,11 +371,12 @@ that bases in vector spaces behave as nicely as possible.
 
 \begin{theorem}
 	[Dimension theorem for vector spaces]
-	Any two bases of a vector space have the same size.
+	If a vector space $V$ has a finite basis,
+	then every other basis has the same number of elements.
 \end{theorem}
 \begin{proof}
 	We prove something stronger:
-	Let $V$ be a vector space, and assume $v_1, \dots, v_n$ is a spanning set
+	Assume $v_1, \dots, v_n$ is a spanning set
 	while $w_1, \dots, w_m$ is linearly independent. We claim that $n \ge m$.
 	\begin{ques}
 		Show that this claim is enough to imply the theorem.
@@ -385,18 +388,27 @@ that bases in vector spaces behave as nicely as possible.
 	There's some nonzero coefficient, say $c_n$.
 	Thus \[ v_n = \frac{1}{c_n} w_1 - \frac{c_1}{c_n}v_1 - \frac{c_2}{c_n}v_2 - \dots. \]
 	Thus $A_1 = \{v_1, \dots, v_{n-1}, w_1\}$ is spanning.
-	Now do the same thing, throwing in $w_2$, and deleting some element of the $v_i$ as before to get $A_2$;
-	the condition that the $w_i$ are linearly independent ensures that some $v_i$ coefficient
+	Now do the same thing, throwing in $w_2$,
+	and deleting some element of the $v_i$ as before to get $A_2$;
+	the condition that the $w_i$ are linearly independent
+	ensures that some $v_i$ coefficient
 	must always not be zero.
 	Since we can eventually get to $A_m$, we have $n \ge m$.
 \end{proof}
 \begin{remark}
-	In fact, this is true for modules over any commutative ring.
-	Interestingly, the proof for the general case proceeds by reducing
-	to the case of a vector space.
+	[Generalizations]
+	\begin{itemize}
+		\ii The theorem is true for an infinite basis as well
+		if we interpret ``the number of elements'' as ``cardinality''.
+		This is confusing on a first read through, so we won't elaborate.
+		\ii In fact, this is true for modules over any commutative ring.
+		Interestingly, the proof for the general case proceeds by reducing
+		to the case of a vector space.
+	\end{itemize}
 \end{remark}
 
-The dimension theorem, true to its name, lets us define the \vocab{dimension} of
+The dimension theorem, true to its name,
+lets us define the \vocab{dimension} of
 a vector space as the size of any finite basis, if one exists.
 When it does exist we say $V$ is \vocab{finite-dimensional}.
 So for example,
@@ -419,28 +431,25 @@ You can even think of $v$ as just $\left( a_1, \dots, a_n \right)$.
 To put it another way, if $V$ is a $k$-vector space we always have
 \[ V = e_1 k \oplus e_2 k \oplus \dots \oplus e_n k. \]
 
-For the remainder of this chapter,
-\textbf{assume all vector spaces are finite-dimensional
-unless otherwise specified}.
-Infinite-dimensional vector spaces make my eyes glaze over.
-\todo{fix this}
-
 \section{Linear maps}
+\prototype{Evaluation of $\{ax^2+bx+c\}$ at $x=3$.}
 We've seen homomorphisms and continuous maps.
 Now we're about to see linear maps, the structure preserving maps
 between vector spaces. Can you guess the definition?
 
 \begin{definition}
 	Let $V$ and $W$ be vector spaces over the same field $k$.
-	A \vocab{linear map} is a map $T : V \to W$ such that:
+	A \vocab{linear map} is a map $T \colon V \to W$ such that:
 	\begin{enumerate}[(i)]
-		\ii We have  $T(v_1 + v_2) = T(v_1) + T(v_2)$ for $v_1, v_2 \in V$
-		(in group language, $T$ is a homomorphism $(V,+) \to (W,+)$).
+		\ii We have $T(v_1 + v_2) = T(v_1) + T(v_2)$
+		for any $v_1, v_2 \in V$.\footnote{In group language,
+			$T$ is a homomorphism $(V,+) \to (W,+)$.}
 		\ii For any $a \in k$ and $v \in V$, $T(a \cdot v) = a \cdot T(v)$.
 	\end{enumerate}
 	If this map is a bijection (equivalently, if it has an inverse),
 	it is an \vocab{isomorphism}.
-	We say $V$ and $W$ are \vocab{isomorphic} vector spaces and write $V \cong W$.
+	We then say $V$ and $W$ are \vocab{isomorphic}
+	vector spaces and write $V \cong W$.
 \end{definition}
 
 \begin{example}[Examples of linear maps]
@@ -451,6 +460,9 @@ between vector spaces. Can you guess the definition?
 		\ii The map $\RR^3 \to \RR$ by $(a,b,c) \mapsto 4a+2b+c$ is a linear map.
 		\ii Let $V$ be the set of real polynomials of degree at most $2$.
 		The map $\RR^3 \to V$ by $(a,b,c) \mapsto ax^2+bx+c$ is an \emph{isomorphism}.
+		\ii Let $V$ be the set of real polynomials of degree at most $2$.
+		The map $V \to \RR$ by $ax^2+bx+c \mapsto 9a + 3b + c$
+		is a linear map, which can be described as ``evaluation at $3$''.
 		\ii Let $W$ be the set of functions $\RR \to \RR$.
 		The evaluation map $W \to \RR$ by $f \mapsto f(0)$ is a linear map.
 		\ii There is a map of $\QQ$-vector spaces $\QQ[\sqrt2] \to \QQ[\sqrt2]$
@@ -487,11 +499,13 @@ Note that this notion of isomorphism really only cares about the size of the bas
 \end{remark}
 
 \section{What is a matrix?}
-% Now I get to tell you what a matrix is: it's a way of writing a linear map in terms of bases.
+Now I get to tell you what a matrix is:
+it's a way of writing a linear map in terms of bases.
 
-Suppose we have a vector space $V$ with basis $e_1, \dots, e_m$
+Suppose we have a finite-dimensional
+vector space $V$ with basis $e_1, \dots, e_m$
 and a vector space $W$ with basis $w_1, \dots, w_n$.
-I also have a map $T : V \to W$ and I want to tell you what $T$ is.
+I also have a map $T \colon V \to W$ and I want to tell you what $T$ is.
 It would be awfully inconsiderate of me to try and tell you what $T(v)$
 is at every point $v$.
 In fact, I only have to tell you what $T(e_1)$, \dots, $T(e_m)$ are,
@@ -500,6 +514,7 @@ $T(a_1 e_1 + \dots + a_m e_m)$ for yourself:
 \[ T(a_1 e_1 + \dots + a_m e_m) = a_1 T(e_1) + \dots + a_m T(e_m). \]
 Since the $e_i$ are a basis, that tells you all you need to know about $T$.
 \begin{example}
+	[Extending linear maps]
 	Let $V = \left\{ ax^2+bx+c \mid a,b,c \in \RR \right\}$.
 	Then $T(ax^2+bx+c) = aT(x^2) + bT(x) + cT(1)$.
 \end{example}
@@ -517,26 +532,67 @@ and that would tell you everything you need to know about $T$.
 That's where the matrix $T$ comes from!
 It's just a concise way of writing down all $mn$ numbers I need to tell you.
 To be explicit, the matrix for $T$ is defined as the array
-\[ T =  \underbrace{%
+\begin{align*}
+	T &= \underbrace{%
 	\begin{bmatrix}
-		\mid & \mid & & \mid \\	
+		\mid & \mid & & \mid \\
 		T(e_1) & T(e_2) & \dots & T(e_{m}) \\
-		\mid & \mid & & \mid \\	
+		\mid & \mid & & \mid \\
 	\end{bmatrix}
-	}_m \Bigg\} n
-	=
+	}_{\text{$m$ columns}} \Bigg\} \text{$n$ rows} \\
+	&=
 	\begin{bmatrix}
 		a_{11} & a_{12} & \dots & a_{1m} \\
 		a_{21} & a_{22} & \dots & a_{2m} \\
 		\vdots & \vdots & \ddots & \vdots \\
 		a_{n1} & a_{n2} & \dots & a_{nm}
 	\end{bmatrix}.
-	\]
-\todo{example of a matrix}
+\end{align*}
 
-From here you can actually work out for yourself what it means to multiply two matrices.
+\begin{example}
+	[An example of a matrix]
+	Here is a concrete example in terms of a basis.
+	Let $V = \RR^3$ with basis $e_1$, $e_2$, $e_3$
+	and let $W = \RR^2$ with basis $w_1$, $w_2$.
+	If I have $T \colon V \to W$
+	then uniquely determined by three values, for example:
+	\begin{align*}
+		T(e_1) &= 4w_1 + 7w_2 \\
+		T(e_2) &= 2w_1 + 3w_2 \\
+		T(e_3) &= w_1
+	\end{align*}
+	The columns then correspond to $T(e_1)$, $T(e_2)$, $T(e_3)$:
+	\[
+		T =
+		\begin{bmatrix}
+			4 & 2 & 1 \\
+			7 & 3 & 0
+		\end{bmatrix}
+	\]
+\end{example}
+
+\begin{example}
+	[An example of a matrix after choosing a basis]
+	We again let $V = \left\{ ax^2 + bx + c \right\}$
+	be the vector space of polynomials of degree at most $2$.
+	We fix the basis $1$, $x$, $x^2$ for it.
+
+	Consider the ``evaluation at $3$'' map,
+	a map $V \to \RR$.
+	We pick $1$ as the basis element of the RHS;
+	then we can write it as a $1 \times 3$ matrix
+	\[ \begin{bmatrix}
+			1 & 3 & 9
+		\end{bmatrix} \]
+	with the columns corresponding to $T(1)$, $T(x)$, $T(x^2)$.
+\end{example}
+
+
+From here you can actually work out for yourself
+what it means to multiply two matrices.
 Suppose we have picked a basis for three spaces $U$, $V$, $W$.
-Given maps $T : U \to V$ and $S : V \to W$, we can consider their composition $S \circ T$, i.e.
+Given maps $T \colon U \to V$ and $S \colon V \to W$,
+we can consider their composition $S \circ T$, i.e.
 \[ U \taking{T} V \taking{S} W. \]
 Matrix multiplication is defined exactly so that the matrix $ST$
 is the same thing we get from interpreting the composed function $S \circ T$ as a matrix.
@@ -557,9 +613,12 @@ To drive this point home,
 \end{moral}
 
 This means you can define concepts like the determinant or the trace of a matrix
-both in terms of an ``intrinsic'' map $T : V \to W$ and in terms of the entries of the matrix.
+both in terms of an ``intrinsic'' map $T \colon V \to W$
+and in terms of the entries of the matrix.
 Since the map $T$ itself doesn't refer to any basis,
-the abstract definition will imply that the numerical definition doesn't depend on the choice of a basis.
+the abstract definition will imply that the numerical definition
+doesn't depend on the choice of a basis.
+
 \section{Subspaces and picking convenient bases}
 \prototype{Any two linearly independent vectors in $\RR^3$.}
 % A submodule is exactly what you think it is.
@@ -606,7 +665,7 @@ $V'$ is the span of some subset of that basis
 
 The same goes for maps, using $\ker T$:
 \begin{theorem}[Picking a basis for linear maps]
-	Let $T:V\to W$ be a map of finite-dimensional vector spaces. 
+	Let $T \colon V\to W$ be a map of finite-dimensional vector spaces.
 	Then there exists a basis $v_1, \dots, v_n$ of $V$
 	and a basis $w_1, \dots, w_m$ of $W$,
 	as well as a nonnegative integer $k$, such that
@@ -647,15 +706,19 @@ which is just the analog of the first isomorphism theorem.
 \begin{theorem}
 	[Rank-nullity theorem]
 	\label{thm:rank_nullity}
-	If $T : V \to W$, then 
+	Let $V$ and $W$ be finite-dimensional vector spaces.
+	If $T : V \to W$, then
 	\[ \dim V = \dim \ker T + \dim \img T. \]
 	% (Here $\img T = T\im(V) \subseteq W$ is the image of $T$.)
 \end{theorem}
+\begin{ques}
+	Conclude the rank-nullity theorem from \Cref{thm:linear_map_basis}.
+\end{ques}
 
 \section{A cute application: Lagrange interpolation}
 Here's a cute application\footnote{Source: Communicated to me
 by Joe Harris at the first Harvard-MIT Undergraduate Math Symposium.}
-of linear algebra to a theorem from high school we all know.
+of linear algebra to a theorem from high school.
 \begin{theorem}
 	[Lagrange interpolation]
 	Let $x_1, \dots, x_{n+1}$ be distinct real numbers
@@ -690,9 +753,12 @@ says there is a unique line joining two points.
 
 \section{(Digression) Arrays of numbers are evil}
 \label{sec:basis_evil}
-As I'll stress repeatedly, a matrix represents a \emph{linear map between two vector spaces}.
-Writing it in the form of an $m \times n$ matrix is merely a very convenient way to see the map concretely.
-But it obfuscates the fact that this map is, well, a map, not an array of numbers.
+As I'll stress repeatedly, a matrix represents a
+\emph{linear map between two vector spaces}.
+Writing it in the form of an $m \times n$ matrix
+is merely a very convenient way to see the map concretely.
+But it obfuscates the fact that this map is,
+well, a map, not an array of numbers.
 
 If you took high school precalculus, you'll see everything done in terms of matrices.
 To any typical high school student, a matrix is an array of numbers.
@@ -720,7 +786,8 @@ You're told that two matrices $T_1$ and $T_2$ are similar if
 You're told that the trace of a matrix $\Tr T$ is the sum of the diagonal entries.
 Somehow this doesn't change if you look at a similar matrix,
 but you're not sure why.
-Then you define the characteristic polynomial as \[ p_T = \det (XI - T). \]
+Then you define the characteristic polynomial as
+\[ p_T(X) = \det (XI - T). \]
 Somehow this also doesn't change if you take a similar matrix,
 but now you really don't know why.
 And then you have the Cayley-Hamilton theorem in all its black magic:
@@ -728,11 +795,11 @@ $p_T(T)$ is the zero map.  Out of curiosity you Google the proof,
 and you find some ad-hoc procedure which still leaves you
 with no idea why it's true.
 
-This is terrible. Who gives a damn about $T_2 = ST_1S\inv$?
+This is terrible. What's so special about $T_2 = ST_1S\inv$?
 Only if you know that the matrices are linear maps does this make sense:
 $T_2$ is just $T_1$ rewritten with a different choice of basis.
 
-In my eyes, this is \emph{evil}.
+I really want to push the opposite view.
 Linear algebra is the study of \emph{linear maps},
 but it is taught as the study of \emph{arrays of numbers},
 and no one knows what these numbers mean.
@@ -755,7 +822,7 @@ What's wrong with a basis?
 I didn't appreciate until later that this approach was the
 morally correct way to treat the subject: it made it clear what was happening.
 
-Throughout this project, I've tried to strike a balance between these
+Throughout the Napkin, I've tried to strike a balance between these
 two approaches, using matrices when appropriate to illustrate
 the maps and to simplify proofs, but ultimately writing
 theorems and definitions in their \emph{morally correct} form.
@@ -810,14 +877,98 @@ Nonetheless, there are still analogs of some of the definitions above.
 \end{abuse}
 
 \section{\problemhead}
+\begin{dproblem}
+	Let $V$ and $W$ be finite-dimensional vector spaces
+	with nonzero dimension, and consider linear maps $T \colon V \to W$.
+	Complete the following table by writing
+	``sometimes'', ``always'', or ``never'' for each entry.
+	\begin{center}
+	\begin{tabular}[h]{c|ccc}
+		& $T$ injective & $T$ surjective & $T$ isomorphism \\ \hline
+		If $\dim V > \dim W$\dots \\
+		If $\dim V = \dim W$\dots \\
+		If $\dim V < \dim W$\dots \\
+	\end{tabular}
+	\end{center}
+	\begin{hint}
+		Use the rank-nullity theorem.
+		Also consider the zero map.
+	\end{hint}
+	\begin{sol}
+		\begin{center}
+		\begin{tabular}[h]{c|ccc}
+		& $T$ injective & $T$ surjective & $T$ isomorphism \\ \hline
+		If $\dim V > \dim W$\dots & never & sometimes & never\\
+		If $\dim V = \dim W$\dots & sometimes & sometimes & sometimes \\
+		If $\dim V < \dim W$\dots & sometimes & never & never \\
+		\end{tabular}
+		\end{center}
+		Each ``never'' is by the rank-nullity theorem.
+		Each counterexample is obtained by the zero map
+		sending every element of $V$ to zero;
+		this map is certainly neither injective or surjective.
+	\end{sol}
+\end{dproblem}
 
-\todo{table: injective/surjective, sometimes/always/never}
-\todo{table: equal dimension then inj iff surj}
+\begin{dproblem}
+	[Equal dimension vector spaces are usually isomorphisms]
+	Let $V$ and $W$ be finite-dimensional vector
+	spaces with $\dim V = \dim W$.
+	Prove that for a map $T \colon V \to W$,
+	the following are equivalent:
+	\begin{itemize}
+		\ii $T$ is injective,
+		\ii $T$ is surjective,
+		\ii $T$ is bijective.
+	\end{itemize}
+	\begin{sol}
+		It essentially follows by \Cref{thm:linear_map_basis}.
+	\end{sol}
+\end{dproblem}
 
-\todo{nice polynomial problem}
+\begin{problem}
+	[Multiplication by $\sqrt5$]
+	Let $V = \QQ[\sqrt5] = \left\{ a + b \sqrt 5 \right\}$
+	be a two-dimensional $\QQ$-vector space,
+	and fix the basis $\{1, \sqrt 5\}$ for it.
+	Write down the $2 \times 2$ matrix with rational coefficients
+	that corresponds to multiplication by $\sqrt 5$.
+	\begin{hint}
+		$a + b \sqrt 5 \mapsto \sqrt 5 a + 5b$.
+	\end{hint}
+	\begin{sol}
+		Since $1 \mapsto \sqrt5$ and $\sqrt5 \mapsto 5$,
+		the matrix is
+		$\begin{bmatrix}
+			0 & 5 \\
+			1 & 0
+		\end{bmatrix}$.
+	\end{sol}
+\end{problem}
+
+\begin{problem}
+	[Multivariable Lagrange interpolation]
+	Let $S \subset {\mathbb Z}^2$ be a set of $n$ lattice points.
+	Prove that there exists a nonzero two-variable polynomial $p$
+	with real coefficients, of degree at most $\sqrt{2n}$,
+	such that $p(x,y) = 0$ for every $(x,y) \in S$.
+\end{problem}
+
+\begin{problem}
+	[Putnam 2003]
+	Do there exist polynomials $a(x)$, $b(x)$ , $c(y)$, $d(y)$ such that
+	\[ 1 + xy + (xy)^2 = a(x)c(y) + b(x)d(y) \]
+	holds identically?
+	\begin{hint}
+		Plug in $y = -1, 0, 1$. Use dimensions of $\RR[x]$.
+	\end{hint}
+\end{problem}
 
 \begin{problem}[TSTST 2014]
-	Let $P(x)$ and $Q(x)$ be arbitrary polynomials with real coefficients, and let $d$ be the degree of $P(x)$. Assume that $P(x)$ is not the zero polynomial.
+	\gim
+	Let $P(x)$ and $Q(x)$ be arbitrary polynomials with real coefficients,
+	and let $d$ be the degree of $P(x)$.
+	Assume that $P(x)$ is not the zero polynomial.
 	Prove that there exist polynomials $A(x)$ and $B(x)$ such that
 	\begin{enumerate}[(i)]
 		\ii Both $A$ and $B$ have degree at most $d/2$,
@@ -838,29 +989,21 @@ Nonetheless, there are still analogs of some of the definitions above.
 	\end{sol}
 \end{problem}
 
-\begin{problem}
-	[Putnam 2003]
-	Do there exist polynomials $a(x)$, $b(x)$ , $c(y)$, $d(y)$ such that
-	\[ 1 + xy + (xy)^2 = a(x)c(y) + b(x)d(y) \]
-	holds identically?
-	\begin{hint}
-		Plug in $y = -1, 0, 1$. Use dimensions of $\RR[x]$.
-	\end{hint}
-\end{problem}
-
 \begin{sproblem}
 	[Idempotents are projection maps]
 	\label{prob:idempotent}
 	Let $P: V \to V$ be a linear map, where $V$ is a vector space
 	(not necessarily finite-dimensional).
-	Suppose $P$ is \vocab{idempotent}, meaning $P \circ P = P$,
+	Suppose $P$ is \vocab{idempotent}, meaning $P(P(v)) = P(v)$ for each $v \in V$,
 	or equivalently $P$ is the identity on its image.
-	Prove that $V = \ker P \oplus \img P$.
-	Thus we can think of $P$ as \emph{projection} onto the subspace $\img P$.
+	Prove that \[ V = \ker P \oplus \img P. \]
+	Thus we can think of $P$ as \emph{projection}
+	onto the subspace $\img P$.
 \end{sproblem}
 
 \begin{sproblem}
 	\label{prob:endomorphism_eventual_lemma}
+	\gim
 	Let $V$ be a finite dimensional vector space.
 	Let $T : V \to V$ be a linear map, and let $T^n : V \to V$ denote $T$ applied $n$ times.
 	Prove that there exists an integer $N$ such that
