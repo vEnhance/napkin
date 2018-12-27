@@ -92,7 +92,7 @@ Given two sets $A$ and $B$, a \vocab{function} $f$ from $A$ to $B$
 is a mapping of every element of $A$ to some element of $B$.
 
 We call $A$ the \vocab{domain} of $f$, and $B$ the \vocab{codomain}.
-We write this as $f : A \to B$ or $A \taking f B$.
+We write this as $f \colon A \to B$ or $A \taking f B$.
 \begin{abuse}
 	If the name $f$ is not important, we will often just write $A \to B$.
 \end{abuse}
@@ -103,23 +103,34 @@ we often say $a$ is a \vocab{root} or \vocab{zero} of $f$,
 and that $f$ \vocab{vanishes} at $a$.
 
 \subsection{Injective / surjective / bijective functions}
+
 \begin{definition}
-	A function $f$ is:
-	\begin{itemize}
-		\ii \vocab{injective} if whenever $a_1 \neq a_2$, we have $f(a_1) \neq f(a_2)$.
-		Often, we will write $f : A \injto B$ to emphasize this.
-		\ii \vocab{surjective} if whenever $b \in B$, there exists some $a \in A$
-		such that $f(a) = b$.
-		Often, we will write $f : A \surjto B$ to emphasize this.
-		\ii \vocab{bijective} if both, i.e.\ $f$ is a ``one-to-one correspondence'':
-		for every $b \in B$ there is a \emph{unique} $a \in A$
-		such that $f(a) = b$.
-	\end{itemize}
+	A function $f \colon A \to B$ is \vocab{injective}
+	if it is ``one-to-one'' in the following sense:
+	if $f(a) = f(a')$ then $a = a'$.
+	In other words, for any $b \in B$,
+	there is \emph{at most} one $a \in A$ such that $f(a) = b$.
+
+	Often, we will write $f \colon A \injto B$ to emphasize this.
+\end{definition}
+\begin{definition}
+	A function $f \colon A \to B$ is \vocab{surjective}
+	if it is ``onto'' in the following sense:
+	for any $b \in B$ there is \emph{at least} one $a \in A$
+	such that $f(a) = b$.
+
+	Often, we will write $f \colon A \surjto B$ to emphasize this.
+\end{definition}
+\begin{definition}
+	A function $f \colon A \to B$ is \vocab{bijective}
+	if it is both injective and surjective.
+	In other words, for each $b \in B$,
+	there is \emph{exactly} one $a \in A$ such that $f(a) = b$.
 \end{definition}
 
 \begin{example}
 	[Examples of functions]
-	\listhack
+	By ``human'' I mean ``living featherless biped''.
 	\begin{enumerate}[(a)]
 		\ii There's a function taking every human to their
 		age in years (rounded to the nearest integer).
@@ -139,7 +150,7 @@ and that $f$ \vocab{vanishes} at $a$.
 	\listhack
 	\begin{enumerate}[(a)]
 		\ii Let $A = \{1,2,3,4,5\}$ and $B = \{6,7,8,9,10\}$.
-		Then the function $f : A \to B$ by $a \mapsto a+5$ is a bijection.
+		Then the function $f \colon A \to B$ by $a \mapsto a+5$ is a bijection.
 		\ii In a classroom with $30$ seats,
 		there is exactly one student in every seat.
 		Thus the function taking each student to the seat they're in
@@ -148,19 +159,24 @@ and that $f$ \vocab{vanishes} at $a$.
 \end{example}
 
 \begin{remark}
-	Assume for convenience that $A$ and $B$ are finite sets. Then:
+	Assume for convenience that $A$ and $B$ are finite sets.
+	Then:
 	\begin{itemize}
-		\ii If $f : A \injto B$ is injective, then the size of $A$ is at most the size of $B$.
-		\ii If $f : A \surjto B$ is surjective, then the size of $A$ is at least the size of $B$.
-		\ii If $f : A \to B$ is a bijection, then the size of $A$ equals the size of $B$.
+		\ii If $f \colon A \injto B$ is injective,
+		then the size of $A$ is at most the size of $B$.
+		\ii If $f \colon A \surjto B$ is surjective,
+		then the size of $A$ is at least the size of $B$.
+		\ii If $f \colon A \to B$ is a bijection,
+		then the size of $A$ equals the size of $B$.
 	\end{itemize}
 \end{remark}
 
-Now, notice that if $f : A \to B$ is a bijection,
+Now, notice that if $f \colon A \to B$ is a bijection,
 then we can ``apply $f$ backwards'':
 (for example, rather than mapping each student to the seat they're in,
 we map each seat to the student sitting in it).
-This is called an \vocab{inverse function}; we denote it $f\inv : B \to A$.
+This is called an \vocab{inverse function};
+we denote it $f\inv \colon B \to A$.
 
 \subsection{Images and pre-images}
 Let $X \taking f Y$ be a function.
@@ -173,7 +189,7 @@ Let $X \taking f Y$ be a function.
 \end{definition}
 \begin{example}
 	[Examples of pre-image]
-	Let $f : H \to \ZZ$ be the age function from earlier.
+	Let $f \colon H \to \ZZ$ be the age function from earlier.
 	Then
 	\begin{enumerate}[(a)]
 		\ii $f\pre(\{13, 14, 15, 16, 17, 18, 19\})$ is the set of teenagers.
@@ -191,12 +207,13 @@ Let $X \taking f Y$ be a function.
 The dual notion is:
 \begin{definition}
 	Suppose $S \subseteq X$.
-	The \vocab{image} $f\im(S)$ is the set of all things of the form $f(s)$.
+	The \vocab{image} $f\im(S)$ is the set of
+	all things of the form $f(s)$.
 \end{definition}
 \begin{example}
 	[Examples of images]
 	Let $A = \{1,2,3,4,5\}$ and $B = \ZZ$.
-	Consider a function $f : A \to B$ given by
+	Consider a function $f \colon A \to B$ given by
 	\[
 		f(1) = 17 \quad
 		f(2) = 17 \quad
@@ -210,7 +227,7 @@ The dual notion is:
 	\end{enumerate}
 \end{example}
 \begin{ques}
-	Suppose $f : A \surjto B$ is surjective.
+	Suppose $f \colon A \surjto B$ is surjective.
 	What is $f\im(A)$?
 \end{ques}
 
