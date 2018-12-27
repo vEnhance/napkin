@@ -1,5 +1,6 @@
 Napkin.*
 !Napkin.tex
+DRAFT-*.tex
 
 media/*
 asy/*
