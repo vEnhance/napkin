@@ -959,21 +959,49 @@ i.e.\ the only examples look quite like the one we've given above.
 \begin{problem}
 	[Henning Makholm,
 	on \href{https://math.stackexchange.com/a/3051746/229197}{math.SE}]
-	Let $M$ be the metric space on $\RR$ with metric
-	given by $d(x,y) = \min \left( 1, \left\lvert x-y \right\rvert \right)$.
+	We let $M$ and $N$ denote the metric spaces obtained
+	by equipping $\RR$ with the following two metrics:
+	\begin{align*}
+		d_M(x,y) &= \min \left( 1, \left\lvert x-y \right\rvert \right) \\
+		d_N(x,y) &= \left\lvert e^x - e^y \right\rvert.
+	\end{align*}
 	\begin{enumerate}[(a)]
-		\ii Show that $M$ is both complete and bounded.
-		\ii Show that $M \cong (0,\infty)$,
-		the latter of which is \emph{neither} complete nor bounded!
+		\ii Fill in the following $2 \times 3$ table
+		with ``yes'' or ``no'' for each cell.
+		\begin{center}
+		\begin{tabular}[h]{l|ccc}
+			& Complete? & Bounded? & Totally bounded? \\ \hline
+			$M$ \\
+			$N$ \\
+		\end{tabular}
+		\end{center}
+		\ii Are $M$ and $N$ homeomorphic?
 	\end{enumerate}
 	\begin{hint}
-		Part (a) is essentially by definition:
-		the same sequences converge in both metrics and bounded is by construction.
-		For (b), I think it is easiest to show
-		\[ M \taking{\id} \RR \taking{e^x} (0,\infty) \]
-		are homeomorphisms.
-		(Incidentally, each arrow eliminates one property.)
+		(a): $M$ is complete and bounded
+		but not totally bounded. $N$ is all no.
+		For (b) show that $M \cong \RR \cong N$.
 	\end{hint}
+	\begin{sol}
+		Part (a) is essentially by definition.
+		The space $M$ is bounded since no distances exceed $1$,
+		but not totally bounded since we can't cover $M$
+		with finitely many $\half$-neighborhoods.
+		The space $M$ is complete since a sequence of real
+		numbers converges in $M$ if it converges in the usual sense.
+		As for $N$, the sequence $-1$, $-2$, \dots is Cauchy
+		but fails to converge; and it is obviously not bounded.
+
+		To show (b), the identity map (!) is an homeomorphism $M \cong \RR$
+		and $\RR \cong N$, since it is continuous.
+
+		This illustrates that $M \cong N$ despite the fact
+		that $M$ is both complete and bounded
+		but $N$ is neither complete nor bounded.
+		On the other hand, we will later see that complete
+		and totally bounded implies \emph{compact},
+		which is a very strong property preserved under homeomorphism.
+	\end{sol}
 \end{problem}
 
 \begin{problem}
