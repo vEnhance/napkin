@@ -663,14 +663,12 @@ Subspaces behave nicely with respect to bases.
 	(However, we will use this result repeatedly later on,
 	so do take the time to internalize it now.)
 \end{proof}
-This means that given $V'$ a subspace of $V$,
-one can pick a basis of $V$ such that
-$V'$ is the span of some subset of that basis
 
-The same goes for maps, using $\ker T$:
+A very common use case is picking a convenient basis for a map $T$.
 \begin{theorem}[Picking a basis for linear maps]
 	\label{thm:linear_map_basis}
-	Let $T \colon V \to W$ be a map of finite-dimensional vector spaces.
+	Let $T \colon V \to W$ be a map of finite-dimensional vector spaces,
+	with $n = \dim V$, $m = \dim W$.
 	Then there exists a basis $v_1, \dots, v_n$ of $V$
 	and a basis $w_1, \dots, w_m$ of $W$,
 	as well as a nonnegative integer $k$, such that
@@ -681,10 +679,8 @@ The same goes for maps, using $\ker T$:
 			0_W & \text{if $i > k$}.
 		\end{cases}
 	\]
+	Moreover $\dim \img T = k$ and $\dim \ker T = n-k$.
 \end{theorem}
-For example, if $V = k^{\oplus 3}$ and $W = k^{\oplus 99}$,
-$T$ might be the map which sends $e_3 \in V$ to $0 \in W$
-and $e_1, e_2 \in V$ to $f_{1}, f_{2}$ in $W$.
 \begin{proof}[Sketch of Proof]
 	You might like to try this one yourself before reading on:
 	it's a repeated application of \Cref{thm:basis_completion}.
@@ -699,22 +695,73 @@ and $e_1, e_2 \in V$ to $f_{1}, f_{2}$ in $W$.
 	Then extend it again to a basis of $W$.
 \end{proof}
 
-The above theorem is quite important: you should keep it in your head.
-It gives you a picture of how a linear map behaves:
-in particular, for $T \colon V \to W$,
+This theorem is super important,
+not only because of applications but also
+because it will give you the right picture in your head
+of how a linear map is supposed to look.
+I'll even draw a cartoon of it to make sure you remember:
+
+\begin{center}
+\begin{asy}
+	unitsize(0.7cm);
+	real d = 3;
+
+	filldraw(box( (-3*d/2,3.5), (-d/2,-4.5) ), opacity(0.1)+lightcyan, blue);
+	filldraw(box( (d/2,3.5), (3*d/2,-5.5) ), opacity(0.1)+lightred, red);
+
+	label(scale(1.5)*"$V$", (-d,4), blue);
+	dot("$e_1$", (-d,3), dir(180), blue);
+	dot("$e_2$", (-d,2), dir(180), blue);
+	label("$\vdots$", (-d,1), blue);
+	dot("$e_k$", (-d,0), dir(180), blue);
+	dot("$e_{k+1}$", (-d,-1), dir(180), blue);
+	dot("$e_{k+2}$", (-d,-2), dir(180), blue);
+	label("$\vdots$", (-d,-3), dir(180), blue);
+	dot("$e_n$", (-d,-4), dir(180), blue);
+
+	label(scale(1.5)*"$W$", (d,4), red);
+	dot("$f_1$", (d,3), dir(0), red);
+	dot("$f_2$", (d,2), dir(0), red);
+	label("$\vdots$", (d,1), red);
+	dot("$f_k$", (d,0), dir(0), red);
+	dot("$f_{k+1}$", (d,-1), dir(0), red);
+	dot("$f_{k+2}$", (d,-2), dir(0), red);
+	dot("$f_{k+3}$", (d,-3), dir(0), red);
+	label("$\vdots$", (d,-4), dir(0), red);
+	dot("$f_m$", (d,-5), dir(0), red);
+
+	label("$T$", (0,3), dir(90));
+	draw( (-d,3)--(d,3), EndArrow, Margin(3,3) );
+	draw( (-d,2)--(d,2), EndArrow, Margin(3,3) );
+	draw( (-d,0)--(d,0), EndArrow, Margin(3,3) );
+	draw( (-d,-1)--(0,-1), EndArrow, Margin(3,3) );
+	draw( (-d,-2)--(0,-2), EndArrow, Margin(3,3) );
+	draw( (-d,-4)--(0,-4), EndArrow, Margin(3,3) );
+	label("$0$", (0,-1));
+	label("$0$", (0,-2));
+	label("$0$", (0,-4));
+
+	draw( (5.5,3)--(6,3)--(6,0)--(5.5,0));
+	label("$\operatorname{im} T$", (6, 1.5), dir(0));
+	draw( (-5.5,-1)--(-6,-1)--(-6,-4)--(-5.5,-4) );
+	label("$\ker T$", (-6, -2.5), dir(180));
+\end{asy}
+\end{center}
+
+In particular, for $T \colon V \to W$,
 one can write $V = \ker T \oplus V'$,
 so that $T$ annihilates its kernel while sending $V'$
 to an isomorphic copy in $W$.
 
-A corollary of this (which you should have expected anyways) is the so called rank-nullity theorem,
+A corollary of this (which you should have expected anyways)
+is the so called rank-nullity theorem,
 which is just the analog of the first isomorphism theorem.
 \begin{theorem}
 	[Rank-nullity theorem]
 	\label{thm:rank_nullity}
 	Let $V$ and $W$ be finite-dimensional vector spaces.
-	If $T : V \to W$, then
+	If $T \colon V \to W$, then
 	\[ \dim V = \dim \ker T + \dim \img T. \]
-	% (Here $\img T = T\im(V) \subseteq W$ is the image of $T$.)
 \end{theorem}
 \begin{ques}
 	Conclude the rank-nullity theorem from \Cref{thm:linear_map_basis}.

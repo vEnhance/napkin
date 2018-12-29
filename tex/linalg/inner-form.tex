@@ -1,4 +1,5 @@
 \chapter{Inner product spaces}
+%%fakesection Cheerleading
 It will often turn out that our vector spaces which look more like $\RR^n$
 not only have the notion of addition, but also a notion of \emph{orthogonality}
 and the notion of \emph{distance}.
@@ -33,18 +34,18 @@ like we saw in the chapter on spectral theory, $\CC$ is algebraically closed
 in a nice way that $\RR$ is not.
 Every real matrix can be thought of as a matrix with complex entries anyways.
 
-\section{Defining the norm}
+\section{The inner product}
 \prototype{Dot product in $\RR^n$.}
+\subsection{For real numbers: bilinear forms}
 
 First, let's define the inner form for real spaces.
 Rather than the notation $v \cdot w$ it is most customary
 to use $\left< v,w \right>$ for general vector spaces.
 \begin{definition}
 	Let $V$ be a real vector space.
-	A \vocab{real inner form} (or \vocab{bilinear form})\footnote{Other
+	A \vocab{real inner form}\footnote{Other
 		names include ``inner product'', ``dot product'',
-		``positive definite nondegenerate symmetric bilinear form'',
-		\dots}
+		``positive definite nondegenerate symmetric bilinear form'', \dots}
 	is a function
 	\[ \left< \bullet, \bullet \right> : V \times V \to \RR \]
 	which satisfies the following properties:
@@ -53,18 +54,28 @@ to use $\left< v,w \right>$ for general vector spaces.
 		\[ \left< v,w \right> = \left< w,v\right>. \]
 		Of course, one would expect this property from a product.
 
-		\ii The form is \textbf{linear in the first argument}, meaning that
-		$\left< cx, y\right> = c \left< x,y \right>$ and
-		$\left< x+y, z\right> = \left< x,z\right> + \left< y,z\right>$.
+		\ii The form is \vocab{bilinear}, or \textbf{linear in both arguments},
+		meaning that $\left< -, v\right>$
+		and $\left< v, -\right>$ are linear functions for any fixed $v$.
+		Spelled explicitly this means that
+		\begin{align*}
+			\left< cx, v \right> &= c \left< x,v \right> \\
+			\left< x+y, v \right> &= \left< x,v \right> + \left< y,v \right>.
+		\end{align*}
+		and similarly if $v$ was on the left.
 		This is often summarized by the single equation
-		\[ \left< cx+y, z \right> = c \left< x,z \right> + \left< y,z \right>. \]
-		Of course by symmetry it is linear in the second argument too.
-		This should be thought of as ``distributive over addition''.
+		$\left< cx+y, z \right> = c \left< x,z \right> + \left< y,z \right>$.
 
 		\ii The form is \vocab{positive definite}, meaning $\left<v,v\right> \ge 0$
 		is a nonnegative real number, and equality takes place only if $v = 0_V$.
 	\end{itemize}
 \end{definition}
+\begin{exercise}
+	Show that linearity in the first argument plus symmetry
+	already gives you linearity in the second argument,
+	so we could edit the above definition
+	by only requiring $\left< -, v\right>$ to be linear.
+\end{exercise}
 
 \begin{example}
 	[$\RR^n$]
@@ -84,7 +95,8 @@ to use $\left< v,w \right>$ for general vector spaces.
 	which is zero exactly when all $a_i$ are zero.
 \end{example}
 
-The definition for a complex product space is similar, but has a minor difference:
+\subsection{For complex numbers: sesquilinear forms}
+The definition for a complex product space is similar, but has one difference:
 rather than symmetry we instead have \emph{conjugate symmetry}
 meaning $\left< v, w \right> = \ol{ \left< w,v \right> }$.
 Thus, while we still have linearity in the first argument,
@@ -92,27 +104,50 @@ we actually have a different linearity for the second argument.
 To be explicit:
 \begin{definition}
 	Let $V$ be a complex vector space.
-	A \vocab{complex inner form} $\left< \bullet, \bullet \right> : V \times V \to \CC$
-	(or \vocab{sesquilinear form})
-	is a function which satisfies the following properties:
+	A \vocab{complex inner product} is a function
+	\[ \left< \bullet, \bullet \right> : V \times V \to \CC \]
+	which satisfies the following properties:
 	\begin{itemize}
 		\ii The form has \vocab{conjugate symmetry}, which means that
 		for any $v,w \in V$ we have
 		\[ \left< v,w \right> = \ol{\left< w,v\right>}. \]
 
+		\ii The form is \vocab{sesquilinear}
+		(the name means ``one-and-a-half linear'').
+		This means that:
+		\begin{itemize}
 		\ii The form is \textbf{linear in the first argument}, so again we have
-		\[ \left< cx+y, z \right> = c \left< x,z \right> + \left< y,z \right>. \]
-		However it no longer follows that it is linear in the second argument, see below!
+		\begin{align*}
+			\left< x+y, v \right> &= \left< x,v \right> + \left< y,v \right> \\
+			\left< cx, v \right> &= c\left< x,v \right>.
+		\end{align*}
+		Again this is often abbreviated to the single line
+		$\left< cx+y, v \right> = c \left< x,v \right> + \left< y,v \right>$
+		in the literature.
+
+		\ii However, it is now \textbf{\vocab{anti-linear}
+		in the second argument}:
+		for any complex number $c$ and vectors $x$ and $y$ we have
+		\begin{align*}
+			\left< v, x+y\right> &= \left< v, x\right> + \left< v,y \right> \\
+			\left< v, cx \right> &= \ol c \left< v, x\right>.
+		\end{align*}
+		Note the appearance of the complex conjugate $\ol c$,
+		which is new!
+		Again, we can abbreviate this to just
+		$\left< v, cx+y \right> = \left< v,x \right> + \ol c \left< v,y\right>$
+		if we only want to write one equation.
+		\end{itemize}
 
 		\ii The form is \vocab{positive definite},
 		meaning $\left<v,v\right>$ is a nonnegative real number,
 		and equals zero exactly when $v = 0_V$.
 	\end{itemize}
 \end{definition}
-\begin{ques}
-	Show that in a complex inner form, we instead have
-	\[ \left< x, cy + z \right> = \ol c \left< x, y \right> + \left< x, z\right>.  \]
-\end{ques}
+\begin{exercise}
+	Show that anti-linearity follows
+	from conjugate symmetry plus linearity in the first argument.
+\end{exercise}
 
 \begin{example}
 	[$\CC^n$]
@@ -128,31 +163,44 @@ To be explicit:
 	Check that the above is in fact a complex inner form.
 \end{ques}
 
+\subsection{Inner product space}
+It'll be useful to treat both types of spaces simultaneously:
 \begin{definition}
-	An \vocab{inner product} space either a real vector space
+	An \vocab{inner product space} is either a real vector space
 	equipped with a real inner form,
 	or a complex vector space equipped with a complex inner form.
+
+	A linear map between inner product spaces
+	is a map between the underlying vector spaces
+	(we do \emph{not} require any compatibility with the inner form).
 \end{definition}
+
 \begin{remark}
-	\label{rem:only_complex_forms}
-	Note that we can apply the axioms for a complex inner form
-	to those for a real inner form verbatim
-	; in $\RR$, conjugation is the identity.
-	Thus for real vector spaces, for example,
-	``conjugate symmetry'' is just ``symmetry''.
-	Consequently, when proving results about inner product spaces it usually
-	suffices to do just the complex case.
+	[Why sesquilinear?]
+	The above example explains one reason why we want
+	to satisfy conjugate symmetry rather than just symmetry.
+	If we had tried to define the dot product as $\sum w_i z_i$,
+	then we would have lost the condition of being positive definite,
+	because there is no guarantee that
+	$\left< v,v \right> = \sum z_i^2$ will even be a real number at all.
+	On the other hand, with conjugate symmetry
+	we actually enforce $\left< v,v \right> = \ol{\left< v,v \right>}$,
+	i.e.\ $\left< v,v \right> \in \RR$ for every $v$.
+
+	Let's make this point a bit more forcefully.
+	Suppose we tried to put a bilinear form $\left< -, -\right>$,
+	on a \emph{complex} vector space $V$.
+	Let $e$ be any vector with $\left< e, e \right> = 1$ (a unit vector).
+	Then we would instead get
+	$\left< ie, ie \right> = - \left< e,e \right> = -1$;
+	this is a vector with length $-1$, which is not okay!
+	That's why it is important that,
+	when we have a complex inner product space,
+	our form is sesquilinear, not bilinear.
 \end{remark}
 
-The above example explains why we have to require the complex inner form
-to satisfy conjugate symmetry rather than just symmetry.
-If we had tried to define the dot product as $\sum w_i z_i$,
-then we would have lost the condition of being positive definite,
-because there is no guarantee that $\left< v,v \right> = \sum z_i^2$ will even be a real number at all.
-On the other hand, with conjugate symmetry we actually enforce $\left< v,v \right> = \ol{\left< v,v \right>}$,
-i.e.\ $\left< v,v \right> \in \RR$ for every $v$.
-
-Now that we have a dot product, we can talk both about the norm and orthogonality.
+Now that we have a dot product,
+we can talk both about the norm and orthogonality.
 
 \section{Norms}
 \prototype{$\RR^n$ becomes its usual Euclidean space with the vector norm.}
@@ -162,7 +210,8 @@ The inner form equips our vector space with a notion of distance, which we call 
 	Let $V$ be an inner product space.
 	The \vocab{norm} of $v \in V$ is defined by 
 	\[ \norm{v} = \sqrt{\left<v,v\right>}. \]
-	This definition makes sense because we assumed our form to be positive definite.
+	This definition makes sense because we assumed our form to be positive definite,
+	so $\left< v,v\right>$ is a nonnegative real number.
 \end{definition}
 
 \begin{example}[$\RR^n$ and $\CC^n$ are normed vector spaces]
@@ -174,9 +223,12 @@ Our goal now is to prove that
 \begin{moral}
 	With the metric $d(v,w) = \norm{v-w}$, $V$ becomes a metric space.
 \end{moral}
-To do this we have to establish the triangle inequality.
-We use the following lemma as a stepping stone:
-Let's now prove something we all know and love:
+\begin{ques}
+	Verify that $d(v,w) = 0$ if and only if $v = w$.
+\end{ques}
+So we just have to establish the triangle inequality.
+Let's now prove something we all know and love,
+which will be a stepping stone later:
 \begin{lemma}
 	[Cauchy-Schwarz]
 	Let $V$ be an inner product space.
@@ -233,9 +285,12 @@ The definition is easy enough:
 	are \vocab{orthogonal} if $\left< v,w \right> = 0$.
 \end{definition}
 
-As we expect from our geometric intution in $\RR^n$, this implies independence:
+As we expect from our geometric intuition in $\RR^n$,
+this implies independence:
 \begin{lemma}[Orthogonal vectors are independent]
-	Any set of nonzero pairwise orthogonal vectors is linearly independent.
+	Any set of pairwise orthogonal vectors $v_1$, $v_2$, \dots, $v_n$,
+	with $\norm{v_i} \ne 0$ for each $i$,
+	is linearly independent.
 \end{lemma}
 \begin{proof}
 	Consider a dependence

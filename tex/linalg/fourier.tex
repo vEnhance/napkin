@@ -58,7 +58,7 @@ For convenience, we record a few facts about orthonormal bases.
 \end{proposition}
 \begin{exercise}
 	Prove all of these.
-	(You don't need any of the preceding discussion,
+	(You don't need any of the preceding section,
 	it's only there to motivate the notation with lots of scary $\xi$'s.)
 \end{exercise}
 
@@ -175,7 +175,7 @@ but the $\xi \in Z$ play very different roles from the ``physical'' $x \in Z$.
 Here is an example which might be enlightening.
 \begin{example}
 	[Cube roots of unity filter]
-	Suppose $Z = \Zm3$, with the inner form given by $\xi \cdot x = (\xi x)/3$.
+	Suppose $Z = \Zc3$, with the inner form given by $\xi \cdot x = (\xi x)/3$.
 	Let $\omega = \exp(\frac 23 \pi i)$ be a primitive cube root of unity.
 	Note that
 	\[ e_\xi(x) = \begin{cases}
@@ -243,24 +243,46 @@ and use Fourier analysis in order to interchange the order of summation.
 \end{example}
 
 \subsection{Fourier series for functions $L^2([-\pi, \pi])$}
-Now we consider the space $L^2([-\pi, \pi])$ of
-square-integrable functions $[-\pi, \pi] \to \CC$, with inner form
-\[ \left< f,g \right>
-	= \frac{1}{2\pi} \int_{[-\pi, \pi]} f(x) \ol{g(x)}. \]
+This is the most famous one, and hence the one you've heard of.
+\begin{definition}
+	The space $L^2([-\pi, \pi])$ consists of all functions
+	$f \colon [-\pi, \pi] \to \CC$ such that
+	the integral
+	$\int_{[-\pi, \pi]} \left\lvert f(x) \right\rvert^2 \; dx$
+	exists and is finite,
+	modulo the relation that a function which is zero ``almost everywhere''
+	is considered to equal zero.\footnote{We won't define this, yet,
+		as it won't matter to us for now.
+		But we will elaborate more on this in the parts on measure theory.
+	
+		There is one point at which this is relevant.
+		Often we require that the function $f$ satisfies $f(-\pi) = f(\pi)$,
+		so that $f$ becomes a periodic function,
+		and we can think of it as $f \colon \TT \to \CC$.
+		This makes no essential difference
+		since we merely change the value at one point.}
+
+	It is made into an inner product space according to
+	\[ \left< f,g \right>
+		= \frac{1}{2\pi} \int_{[-\pi, \pi]} f(x) \ol{g(x)}. \]
+\end{definition}
 It turns out (we won't prove) that this is an
 (infinite-dimensional) Hilbert space!
-Now, the beauty of Fourier analysis is that it has a great basis:
+
+Now, the beauty of Fourier analysis is that
+\textbf{this space has a great basis}:
 \begin{theorem}
+	[The classical Fourier basis]
 	For each integer $n$, define
 	\[ e_n(x) = \exp(inx). \]
 	Then $e_n$ form an orthonormal basis
 	of the Hilbert space $L^2([-\pi, \pi])$.
 \end{theorem}
-Thus this time the frequency set $\ZZ$ is infinite.
-So every function $f \in L^2([-\pi, \pi])$ decomposes as
-\[ f(x) = \sum_n \wh f(n) \exp(inx) \]
-for $\wh f(n)$ with $\sum_n \left\lvert \wh f(n) \right\rvert^2 < \infty$.
-
+Thus this time the frequency set $\ZZ$ is infinite, and we have
+\[ f(x) = \sum_n \wh f(n) \exp(inx)
+	\quad\text{almost everywhere} \]
+for coefficients $\wh f(n)$
+with $\sum_n \left\lvert \wh f(n) \right\rvert^2 < \infty$.
 Since the frequency set is indexed by $\ZZ$,
 we call this a \vocab{Fourier series}
 to reflect the fact that the index is $n \in \ZZ$.
@@ -268,10 +290,6 @@ to reflect the fact that the index is $n \in \ZZ$.
 	Show once again
 	\[ \wh f(0) = \frac{1}{2\pi} \int_{[-\pi, \pi]} f(x). \]
 \end{exercise}
-
-Often we require that the function $f$ satisfies $f(-\pi) = f(\pi)$,
-so that $f$ becomes a periodic function,
-and we can think of it as $f : \TT \to \CC$.
 
 \section{Summary, and another teaser}
 We summarize our various flavors of Fourier analysis in the following table.
@@ -283,16 +301,16 @@ We summarize our various flavors of Fourier analysis in the following table.
 		\text{Binary} & \{\pm1\}^n
 			& \text{Subsets } S \subseteq \left\{ 1, \dots, n \right\}
 			& \prod_{s \in S} x_s \\
-		\text{Finite group} & Z & \xi \in Z, \text{ choice of } \cdot,
+		\text{Finite group} & Z & \xi \in Z, \text{ choice of } \cdot
 			& e(\xi \cdot x) \\
 		\text{Fourier series} & \TT \text{ or } [-\pi, \pi] & n \in \ZZ
 			& \exp(inx) \\
-		\text{Discrete} & \Zm n
-			& \Zm n
+		\text{Discrete} & \Zc n
+			& \Zc n
 			& e(\xi x / n) \\
 	\end{array}
 \]
-I snuck in a fourth row with $Z  = \Zm /n$,
+I snuck in a fourth row with $Z  = \Zc n$,
 but it's a special case of the second row, so no cause for alarm.
 
 Alluding to the future, I want to hint at how \Cref{ch:pontryagin} starts.
@@ -371,10 +389,53 @@ the coefficient of $e_\xi$ in $f$ is $\left< f, e_\xi\right>$.
 	Prove this one in one line (like before).
 \end{ques}
 
+\section{Application: Basel problem}
+One cute application about Fourier analysis on $L^2([-\pi, \pi])$
+is that you can get some otherwise hard-to-compute sums,
+as long as you are willing to use a little calculus.
+
+Here is the classical one:
+\begin{theorem}
+	[Basel problem]
+	We have
+	\[ \sum_{n \ge 1} \frac{1}{n^2} = \frac{\pi^2}{6}. \]
+\end{theorem}
+The proof is to consider the identity function $f(x) = x$,
+which is certainly square-integrable.
+Then by Parseval, we have
+\[
+	\sum_{n \in \ZZ} \left\lvert \wh f(n) \right\rvert^2
+	= \left< f,f\right>
+	\frac{1}{2\pi} \int_{[-\pi, \pi]} \left\lvert f(x) \right\rvert^2 \; dx.
+\]
+A calculus computation gives
+\[  \frac{1}{2\pi} \int_{[-\pi, \pi]} x^2 \; dx = \frac{\pi^2}{3}. \]
+On the other hand, we will now compute all Fourier coefficietns.
+We have already that
+\[ \wh f(0) = \int_{[-\pi, \pi]} f(x) \; dx 
+	= \int_{[-\pi, \pi]} x \; dx = 0. \]
+For $n \neq 0$, we have by definition
+(or ``Fourier inversion formula'', if you want to use big words)
+the formula
+\begin{align*}
+	\wh f(n) &= \left< f, \exp(inx) \right> \\
+	&= \frac{1}{2\pi} \int_{[-\pi, \pi]} x \cdot \ol{\exp(inx)} \; dx \\
+	&= \frac{1}{2\pi} \int_{[-\pi, \pi]} x \exp(-inx) \; dx.
+\end{align*}
+The anti-derivative is equal to
+$\frac{1}{n^2} \exp(-inx) (1+inx)$,
+which thus with some more calculation gives that
+\[ \wh f(n) = \frac{(-1)^n}{n} i. \]
+So
+\[ \sum_n \left\lvert \wh f(n) \right\rvert^2
+	= 2 \sum_{n \ge 1} \frac{1}{n^2} \]
+implying the result.
+
 \section{Application: Arrow's Impossibility Theorem}
-As an application, of binary Fourier analysis,
+As an application of binary Fourier analysis,
 we now prove a form of
 \href{https://en.wikipedia.org/wiki/Arrow's_impossibility_theorem}{Arrow's theorem}.
+
 Consider $n$ voters voting among $3$ candidates $A$, $B$, $C$.
 Each voter specifies a tuple $v_i = (x_i, y_i, z_i) \in \{\pm1\}^3$ as follows:
 \begin{itemize}
@@ -393,12 +454,14 @@ Then, we can consider a voting mechanism
 	g \colon \{\pm1\}^n &\to \{\pm1\} \\
 	h \colon \{\pm1\}^n &\to \{\pm1\}
 \end{align*}
-such that $f(x_\bullet)$ is the global preference of $A$ vs.\ $B$,
-$g(y_\bullet)$ is the global preference of $B$ vs.\ $C$,
-and $h(z_\bullet)$ is the global preference of $C$ vs.\ $A$.
+such that
+\begin{itemize}
+	\ii $f(x_\bullet)$ is the global preference of $A$ vs.\ $B$,
+	\ii $g(y_\bullet)$ is the global preference of $B$ vs.\ $C$,
+	\ii and $h(z_\bullet)$ is the global preference of $C$ vs.\ $A$.
+\end{itemize}
 We'd like to avoid situations where the global preference
-$(f(x_\bullet), g(y_\bullet), h(z_\bullet))$
-is itself paradoxical.
+$(f(x_\bullet), g(y_\bullet), h(z_\bullet))$ is itself paradoxical.
 
 In fact, we will prove the following theorem:
 \begin{theorem}
@@ -457,11 +520,17 @@ that $f(+1, \dots, +1) = +1$ (hence possibility of anti-dictatorship).
 \end{proof}
 
 
-\section{Application: PI SUM}
-\todo{insert a pi sum}
-
 \section{\problemhead}
-\todo{another pi sum}
+
+\begin{problem}
+	[For calculus fans]
+	Prove that
+	\[ \sum_{n \ge 1} \frac{1}{n^4} = \frac{\pi^4}{90}. \]
+	\begin{hint}
+		Use Parseval again, but this time on $f(x) = x^2$.
+	\end{hint}
+\end{problem}
+
 \begin{problem}
 	\gim
 	\label{prob:arrow_lemma}
@@ -547,4 +616,3 @@ that $f(+1, \dots, +1) = +1$ (hence possibility of anti-dictatorship).
 	Comparing this with the definition of $D$ gives the desired result.
 	\end{sol}
 \end{problem}
-

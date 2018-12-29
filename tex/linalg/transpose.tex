@@ -1,6 +1,12 @@
-\chapter{Transpose and adjoint}
+\chapter{Duals, adjoint, and transposes}
+This chapter is dedicated to the basis-free interpretation
+of the transpose and conjugate transpose of a matrix.
+Poster corollary: we will see that
+symmetric matrices with real coefficients
+are diagonalizable have real eigenvalues.
 
 \section{Dual of a map}
+\prototype{The example below.}
 We go ahead and now define a notion
 that will grow up to be the transpose of a matrix.
 
@@ -15,50 +21,78 @@ that will grow up to be the transpose of a matrix.
 	This map is called the \vocab{dual map}.
 \end{definition}
 
-In the concrete interpretation, if $T$ is a matrix, then
-$T$ multiplies column vectors in $V$ on the left to get column vectors in $W$.
-Then $T^\vee$ is the same matrix, but it multiplies
-row vectors in $W^\vee$ \emph{on the right} to get row vectors in $V$.
-Here is an explicit example: if $V = \RR^3$ and $W = \RR^2$ then
-\[
-	\begin{bmatrix}
-		1 & 2 & 3 \\
-		4 & 5 & 6
+\begin{example}
+	[Example of a dual map]
+	Work over $\RR$.
+	Let's consider $V$ with basis $e_1$, $e_2$, $e_3$
+	and $W$ with basis $f_1$, $f_2$.
+	Suppose that
+	\begin{align*}
+		T(e_1) &= f_1 + 2f_2 \\
+		T(e_2) &= 3f_1 + 4f_2 \\
+		T(e_3) &= 5f_1 + 6f_2.
+	\end{align*}
+	Now consider $V^\vee$ with its dual basis $e_1^\vee$,
+	$e_2^\vee$, $e_3^\vee$
+	and $W^\vee$ with its dual basis $f_1^\vee$, $f_2^\vee$.
+	Let's compute $T^\vee(f_1^\vee) = f_1^\vee \circ T$:
+	it is given by
+	\begin{align*}
+		f_1^\vee \left( T(ae_1 + be_2 + ce_3) \right)
+		&= f_1^\vee\left( (a+3b+5c) f_1 + (2a+4b+6c) f_2 \right) \\
+		&= a + 3b + 5c.
+	\end{align*}
+	So accordingly we can write
+	\[ T^\vee(f_1^\vee) = e_1^\vee + 3e_2^\vee + 5e_3^\vee \]
+	Similarly,
+	\[ T^\vee(f_2^\vee) = 2e_1^\vee + 4e_2^\vee + 6e_3^\vee. \]
+	This determines $T^\vee$ completely.
+\end{example}
+If we write the matrices for $T$ and $T^\vee$ in terms of our basis,
+we now see that
+\[ T = \begin{bmatrix}
+		1 & 3 & 5 \\
+		2 & 4 & 6
 	\end{bmatrix}
-	\begin{bmatrix}
-		v_1 \\ v_2 \\ v_3
-	\end{bmatrix}
-	=
-	\begin{bmatrix}
-		w_1 \\ w_2
-	\end{bmatrix} 
-	\text{ and }
-	\begin{bmatrix}
-		w_1' & w_2'
-	\end{bmatrix}
-	\begin{bmatrix}
-		1 & 2 & 3 \\
-		4 & 5 & 6
-	\end{bmatrix}
-	=
-	\begin{bmatrix}
-		v_1' & v_2' & v_3'
+	\quad\text{and}\quad
+	T^\vee = \begin{bmatrix}
+		1 & 2 \\
+		3 & 4 \\
+		5 & 6
 	\end{bmatrix}.
 \]
-But once again, the definition $T^\vee(f) = f \circ T$
-has the nice property that it doesn't depend on the choice of a basis.
-That shows that $T^\vee$ really is well defined,
-depending only on $T \colon V \to W$.
-And in particular, this definition works even if $V$ or $W$
-is infinite-dimensional.
+So in our selected basis,
+we find that the matrices are \vocab{transposes}:
+mirror images of each other over the diagonal.
 
-\section{The transpose of a matrix}
-With this equipped, we can talk about the transpose of a matrix.
-
-
-
+Of course, this should work in general.
+\begin{theorem}
+	[Transpose interpretation of $T^\vee$]
+	Let $V$ and $W$ be finite-dimensional $k$-vector spaces.
+	Then, for any $T \colon V \to W$,
+	the following two matrices are transposes:
+	\begin{itemize}
+		\ii The matrix for $T \colon V \to W$
+		expressed in the basis $(e_i)$, $(f_j)$.
+		\ii The matrix for $T^\vee \colon W^\vee \to V^\vee$
+		expressed in the basis $(f_j^\vee)$, $(e_i^\vee)$.
+	\end{itemize}
+\end{theorem}
+\begin{proof}
+	The $(i,j)$th entry of the matrix $T$
+	corresponds to the coefficient of $f_j$ in $T(e_i)$,
+	which corresponds to the coefficient of $e_i^\vee$
+	in $f_j^\vee \circ T$.
+\end{proof}
+The nice part of this is that the definition of $T^\vee$ is basis-free.
+So it means that if we start with any linear map $T$,
+and then pick whichever basis we feel like,
+then $T$ and $T^\vee$ will still be transposes.
 
 \section{Identifying with the dual space}
+For the rest of this chapter, though,
+we'll now bring inner products into the picture.
+
 Earlier I complained that there was no natural isomorphism $V \cong V^\vee$.
 But in fact, given an inner form
 we can actually make such an identification:
@@ -72,26 +106,32 @@ represent a map from $V \to \RR$?
 For example, take $\xi \in V^\vee$ by
 $\xi(e_1) = 3$, $\xi(e_2) = 4$ and $\xi(e_3) = 5$.
 Actually, I claim that
-\[ \xi(v) = \left< 3e_1 + 4e_2 + 5e_3, v \right> \]
+\[ \xi(v) = \left< v, 3e_1 + 4e_2 + 5e_3 \right> \]
 for every $v$.
-And this is obvious, once you do the computation.
+\begin{ques}
+	Check this.
+\end{ques}
 
-More generally:
-\begin{theorem}[$V$ is naturally isomorphic to $V^\vee$ once we have an inner product]
-	Let $V$ be a finite-dimensional inner product space and $V^\vee$ its dual.
+And this works beautifully in the real case.
+\begin{theorem}[$V \cong V^\vee$ for real inner form]
+	\label{thm:real_dual_isomorphic}
+	Let $V$ be a finite-dimensional \emph{real}
+	inner product space and $V^\vee$ its dual.
 	Then the map $V \to V^\vee$ by
-	\[ v \mapsto \left<  v, - \right> \in V^\vee \]
-	is an isomorphism.
+	\[ v \mapsto \left<  -, v \right> \in V^\vee \]
+	is an isomorphism of real vector spaces.
 \end{theorem}
 \begin{proof}
 	It suffices to show that the map is injective and surjective.
 	\begin{itemize}
-		\ii Injective: suppose $\left< v_1, w \right> = \left< v_2, w \right>$
-		for every vector $w$.
-		This means $\left< v_1 - v_2, w \right> = 0$ for every vector $w \in V$.
-		This can only happen if $v_1 - v_2 = 0$; for example, take $w = v_1 - v_2$
+		\ii Injective: suppose $\left< v_1, v \right> = \left< v_2, v \right>$
+		for every vector $v \in V$.
+		This means $\left< v_1 - v_2, v \right> = 0$ for every vector $v \in V$.
+		This can only happen if $v_1 - v_2 = 0$; for example, take $v = v_1 - v_2$
 		and use positive definiteness.
-		\ii Surjective: take an orthonormal basis, and mimic the argument we gave earlier.
+		\ii Surjective: take an orthonormal basis $e_1$, \dots $e_n$
+		and let $e_1^\vee$, \dots, $e_n^\vee$ be the dual basis on $V^\vee$.
+		Then $e_1$ maps to $e_1^\vee$, et cetera.
 		\qedhere
 	\end{itemize}
 \end{proof}
@@ -102,37 +142,109 @@ and the proof of surjectivity more enlightening,
 so I included both.
 Thus
 \begin{moral}
-	Once $V$ is given an inner form, $V$ and $V^\vee$ are canonically isomorphic.
+	If a real inner product space $V$ is given an inner form,
+	then $V$ and $V^\vee$ are canonically isomorphic.
 \end{moral}
 
-\section{The conjugate transpose of a square matrix}
-Let $V$ be a finite-dimensional inner product space
-and let $T \colon V \to V$.
+Unfortunately, things go awry if $V$ is complex.
+Here is the results:
+\begin{theorem}[$V$ versus $V^\vee$ for complex inner forms]
+	Let $V$ be a finite-dimensional \emph{complex}
+	inner product space and $V^\vee$ its dual.
+	Then the map $V \to V^\vee$ by
+	\[ v \mapsto \left<  -, v \right> \in V^\vee \]
+	is a bijection of sets.
+\end{theorem}
+Wait, what? Well, the proof above shows that it is both injective
+and surjective, but why is it not an isomorphism?
+The answer is that it is not a linear map:
+since the form is sesquilinear we have for example
+\[ iv \mapsto \left< -, iv\right> = -i \left< -, v\right> \]
+which has introduced a minus sign!
+In fact, it is an \emph{anti-linear} map, in the sense we defined before.
+
+Eager readers might try to fix this by defining
+the isomorphism $v \mapsto \left< v, - \right>$ instead.
+However, this also fails, because the right-hand side
+is not even an element of $V^\vee$:
+it is an ``anti-linear'', not linear.
+
+And so we are stuck.
+Fortunately, we will only need the ``bijection'' result
+for what follows, so we can continue on anyways.
+(If you want to fix this, \Cref{prob:complex_conj_space}
+gives a way to do so.)
+
+
+\section{The adjoint (conjugate transpose)}
+We will see that, as a result of the flipping above,
+the \emph{conjugate transpose} is actually the better concept
+for inner product spaces: since it can be defined using only the inner product
+with making mention to dual spaces at all.
 \begin{definition}
-The \vocab{adjoint} or \vocab{conjugate transpose}
-of $T$, denoted $T^\dagger$,
-is defined as follows: for every vector $w \in V$,
-we let $T^\dagger(w)$ be the unique vector with
-\[ \left< v, T^\dagger(w) \right> = \left< T(v), w \right> \]
-for every $v \in V$.
-This is well-defined,
-because $v \mapsto \left< T(v), w \right>$ is some function in $V^\vee$,
-and hence by the isomorphism we described earlier it can be written
-uniquely in the form $\left< v, x \right>$
-for some $x \in V$; we then let $T^\dagger(w) = x$.
+	Let $V$ and $W$ be finite-dimensional inner product spaces,
+	and let $T \colon W \to V$.
+	The \vocab{adjoint} or \vocab{conjugate transpose}
+	of $T$, denoted $T^\dagger \colon W \to V$,
+	is defined as follows: for every vector $w \in W$,
+	we let $T^\dagger(w) \in V$ be the unique vector with
+	\[ \left< v, T^\dagger(w) \right>_V = \left< T(v), w \right>_W \]
+	for every $v \in V$.
 \end{definition}
 
-By symmetry, of course, we also have
+Some immediate remarks about this definition:
+\begin{itemize}
+\ii This is well-defined,
+because $\left< T(-), w \right>_W$ is some function in $V^\vee$,
+and hence by the bijection earlier
+it should be uniquely of the form $\left< -, v \right>$ for some $v \in V$.
+\ii The niceness of this definition is that it doesn't
+make reference to any basis or even $V^\vee$,
+so it is the ``right'' definition for a inner product space.
+\ii By symmetry, of course, we also have
 $\left< T^\dagger(v), w \right> = \left< v, T(w)\right>$.
+\end{itemize}
 
-Of course, the name conjugate transpose suggests something else:
+\begin{example}
+	[Example of an adjoint map]
+	We'll work over $\CC$, so the conjugates are more visible.
+	Let's consider $V$ with orthonormal basis $e_1$, $e_2$, $e_3$
+	and $W$ with orthonormal basis $f_1$, $f_2$.
+	We put
+	\begin{align*}
+		T(e_1) &= if_1 + 2f_2 \\
+		T(e_2) &= 3f_1 + 4f_2 \\
+		T(e_3) &= 5f_1 + 6if_2.
+	\end{align*}
+	We compute $T^\dagger(f_1)$.
+	It is the unique vector $x \in V$ such that
+	\[ \left< v, x \right>_V = \left< T(v), f_1 \right>_W \]
+	for any $v \in V$.
+	If we expand $v = ae_1 + be_2 + ce_3$ the above equality becomes
+	\begin{align*}
+		\left< ae_1 + be_2 + ce_3, x \right>_V
+		&= \left< T(ae_1 + be_2 + ce_3), f_1 \right>_W \\
+		&= ia + 3b + 5c.
+	\end{align*}
+	However, since $x$ is in the second argument,
+	this means we actually want to take
+	\[ T^\dagger(f_1) = -ie_1 + 3e_2 + 5e_3 \]
+	so that the sesquilinearity will conjugate the $i$.
+\end{example}
+
+
+The pattern continues, though we remind the reader that
+we need the basis to be orthonormal to proceed.
 \begin{theorem}
 	[Adjoints are conjugate transposes]
-	Fix an orthonormal basis of a finite-dimensional inner product $V$.
-	If we write $T$ as a matrix in this basis, then $T^\dagger$ is the conjugate transpose.
+	Fix an \emph{orthonormal} basis of a finite-dimensional inner product $V$.
+	If we write $T$ as a matrix in this basis,
+	then the matrix $T^\dagger$ (in the same basis)
+	is the \emph{conjugate transpose} of that of $T$.
 \end{theorem}
 \begin{proof}
-	One-line version: take $v$ and $w$ to be basis elements, and this falls right out.
+	One-line version: take $v$ and $w$ to be basis elements,
+	and this falls right out.
 
 	Full proof: let
 	\[ T = \begin{bmatrix}
@@ -148,28 +260,38 @@ Of course, the name conjugate transpose suggests something else:
 	for any $i$, which is enough to deduce the result.
 \end{proof}
 
-In this way we can talk about the transpose of a matrix in a meaningful way.
+\section{Eigenvalues of normal maps}
+We now come to the advertised theorem.
+Restrict to the situation where $T \colon V \to V$.
+You see, the world would be a very beautiful place if it turned out
+that we could pick a basis of eigenvectors that was also \emph{orthonormal}.
+This is of course far too much to hope for;
+even without the orthonormal condition,
+we saw that Jordan form could still have $1$'s off the diagonal.
 
-\section{Spectral theory of normal maps}
-The world would be a very beautiful place if it turned out
-that we could pick a basis of eigenvectors that was also orthonormal.
-This is of course far too much to hope for; even without the orthonormal condition,
-we saw in the previous chapter that we could still have $1$'s off the diagonal.
-However, it turns out that there is a good characterization anyways.
+However, it turns out that there is
+a complete characterization of exactly when our overzealous dream is true.
 
 \begin{definition}
-	We say $T$ is \vocab{normal} if $TT^\dagger = T^\dagger T$.
+	We say a linear map $T$
+	(from a finite-dimensional inner product space to itself)
+	is \vocab{normal} if $TT^\dagger = T^\dagger T$.
 
 	We say a complex $T$ is \vocab{self-adjoint} or \vocab{Hermitian} if $T = T^\dagger$;
 	i.e.\ as a matrix in any orthonormal basis, $T$ is its own conjugate transpose.
 	For real $T$ we say ``self-adjoint'', ``Hermitian'' or \vocab{symmetric}.
 \end{definition}
 \begin{theorem}
-	[Normal $\iff$ diagonalizable in inner form]
+	[Normal $\iff$ diagonalizable with orthonormal basis]
 	Let $V$ be a finite-dimensional complex inner product space.
-	A linear map $T : V \to V$ is normal
+	A linear map $T \colon V \to V$ is normal
 	if and only if one can pick an orthonormal basis of eigenvectors.
 \end{theorem}
+\begin{exercise}
+	Show that if there exists such an orthonormal basis
+	then $T \colon V \to V$ is normal,
+	by writing $T$ as a diagonal matrix in that basis.
+\end{exercise}
 \begin{proof}
 	This is long, and maybe should be omitted on a first reading.
 	If $T$ has an orthonormal basis of eigenvectors,
@@ -244,10 +366,10 @@ This means that not only can we write
 \]
 but moreover that the basis associated with this matrix happens to be orthonormal vectors.
 
-
 As a corollary:
 \begin{theorem}[Hermitian matrices have real eigenvalues]
-	A Hermitian matrix $T$ is diagonalizable, and all its eigenvalues are real.
+	A Hermitian matrix $T$ is diagonalizable,
+	and all its eigenvalues are real.
 \end{theorem}
 \begin{proof}
 	Obviously Hermitian $\implies$ normal,
@@ -257,4 +379,151 @@ As a corollary:
 \end{proof}
 
 \section{\problemhead}
-\todo{fundamental theorem linear algebra}
+\begin{sproblem}
+	[Double dual]
+	\gim
+	Let $V$ be a finite-dimensional vector space.
+	Prove that
+	\begin{align*}
+		V &\to (V^\vee)^\vee \\
+		v &\mapsto \left( \xi \mapsto \xi(v) \right)
+	\end{align*}
+	gives an isomorphism.
+	(This is significant because the isomorphism is \emph{canonical},
+	and in particular does not depend on the choice of basis.
+	So this is more impressive.)
+	\begin{hint}
+		You can \emph{prove} the result just by taking a basis
+		$e_1$, \dots, $e_n$ of $V$
+		and showing that it is a linear map sending $e_1$
+		to the basis $(e_1^\vee)^\vee$.
+	\end{hint}
+\end{sproblem}
+
+\begin{problem}
+	[Fundamental theorem of linear algebra]
+	Let $T \colon V \to W$ be a map of finite-dimensional $k$-vector spaces.
+	Prove that
+	\[ \dim \img T = \dim \img T^\vee
+		= \dim V - \dim \ker T = \dim W - \dim \ker T^\vee. \]
+	\begin{hint}
+		Use \Cref{thm:linear_map_basis} and it will be immediate
+		(the four quantities equal the $k$ in the theorem).
+	\end{hint}
+	\begin{sol}
+		By \Cref{thm:linear_map_basis},
+		we may select $e_1$, \dots, $e_n$ a basis of $V$
+		and $f_1$, \dots, $f_m$ a basis of $W$
+		such that $T(e_i) = f_i$ for $i \le k$
+		and $T(e_i) = 0$ for $i > k$.
+		Then $T^\vee(f_i^\vee) = e_i^\vee$ for $i \le k$
+		and $T^\vee(f_i^\vee) = 0$ for $i > k$.
+		All four quantities are above are then equal to $k$.
+	\end{sol}
+\end{problem}
+
+\begin{dproblem}
+	[Row rank is column rank]
+	A $m \times n$ matrix $M$ of real numbers is given.
+	The \emph{column rank} of $M$ is the dimension of the span in $\RR^m$
+	of its $n$ column vectors.
+	The \emph{row rank} of $M$ is the dimension of the span in $\RR^n$
+	of its $m$ row vectors.
+	Prove that the row rank and column rank are equal.
+	\begin{hint}
+		This actually is just the previous problem in disguise!
+		The row rank is $\dim \img T^\vee$
+		and the column rank is $\dim \ker T$.
+	\end{hint}
+\end{dproblem}
+
+\begin{problem}
+	[The complex conjugate spaces]
+	\label{prob:complex_conj_space}
+	Let $V = (V, +, \cdot)$ be a complex vector space.
+	Define the \vocab{complex conjugate vector space},
+	denoted $\ol V = (V, +, \ast)$
+	by changing just the multiplication:
+	\[ c \ast v = \ol c \cdot V. \]
+	Show that for any sesquilinear form on $V$,
+	if $V$ is finite-dimensional, then
+	\begin{align*}
+		\ol V & \to V^\vee \\
+		v &\mapsto \left< -, v \right> 
+	\end{align*}
+	is an isomorphism of complex vector spaces.
+\end{problem}
+
+\begin{problem}
+	[$T^\dagger$ vs $T^\vee$]
+	Let $V$ and $W$ be real inner product spaces
+	and let $T \colon V \to W$ be an inner product.
+	Show that the following diagram commutes:
+	\begin{center}
+	\begin{tikzcd}
+		W \ar[r, "T^\dagger"] \ar[d, "\cong"']
+			& V \ar[d, "\cong"] \\
+		W^\vee \ar[r, "T^\vee"']  & V^\vee
+	\end{tikzcd}
+	\end{center}
+	Here the isomorphisms are $v \mapsto \left< -, v\right>$.
+	Thus, for real inner product spaces,
+	$T^\dagger$ is just $T^\vee$ with the duals eliminated
+	(by \Cref{thm:real_dual_isomorphic}).
+\end{problem}
+
+\begin{problem}
+	[Polynomial criteria for normality]
+	Let $V$ be a complex inner product space
+	and let $T \colon V \to V$ be a linear map.
+	Show that $T$ is normal if and only if
+	there is a polynomial\footnote{Here,
+		$p(T)$ is meant in the same composition
+		sense as in Cayley-Hamilton.}
+	$p \in \CC[t]$ such that \[ T^\dagger = p(T). \]
+	\begin{hint}
+		If there is a polynomial, check $TT^\dagger = T^\dagger T$ directly.
+		If $T$ is normal, diagonalize it.
+	\end{hint}
+	\begin{sol}
+		First, suppose $T^\ast = p(T)$.
+		Then $T^\ast T = p(T) \cdot T = T \cdot p(T) = T T^\ast$ and we're done.
+
+		Conversely, suppose $T$ is diagonalizable
+		in a way compatible with the inner form
+		(OK since $V$ is finite dimensional).
+		Consider the orthonormal basis.
+		Then $T$ consists of eigenvalues on the main diagonals
+		and zeros elsewhere, say
+		\[ T = \left(
+			\begin{array}{cccc}
+				\lambda_1 & 0 & \dots & 0 \\
+				0 & \lambda_2 & \dots & 0 \\
+				\vdots & \vdots & \ddots &  \vdots \\
+				0 & 0 & \dots & \lambda_n
+			\end{array}
+			\right). \]
+		In that case, we find that for any polynomial $q$ we have
+		\[ q(T) = \left(
+			\begin{array}{cccc}
+				q(\lambda_1) & 0 & \dots & 0 \\
+				0 & q(\lambda_2) & \dots & 0 \\
+				\vdots & \vdots & \ddots &  \vdots \\
+				0 & 0 & \dots & q(\lambda_n)
+			\end{array}
+			\right). \]
+		and
+		\[ T^\ast = \left(
+			\begin{array}{cccc}
+				\ol{\lambda_1} & 0 & \dots & 0 \\
+				0 & \ol{\lambda_2} & \dots & 0 \\
+				\vdots & \vdots & \ddots &  \vdots \\
+				0 & 0 & \dots & \ol{\lambda_n}
+			\end{array}
+			\right). \]
+		So we simply require a polynomial $q$
+		such that $q(\lambda_i) = \ol{\lambda_i}$ for every $i$.
+		Since there are finitely many $\lambda_i$,
+		we can construct such a polynomial using Lagrange interpolation.
+	\end{sol}
+\end{problem}

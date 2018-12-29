@@ -227,12 +227,31 @@ I'll give you a hint.
 
 What is $ad-bc$? You might already recognize it:
 \begin{itemize}
-	\ii  You might know that the area of the parallelogram formed by $v$ and $w$ is $ad-bc$.
+	\ii You might know that the area of the parallelogram
+	formed by $v$ and $w$ is $ad-bc$.
 	\ii You might recognize it as the determinant of
 	$ \begin{bmatrix} a & c \\ b & d \end{bmatrix}$.
 	In fact, you might even know that the determinant
 	is meant to interpret hypervolumes.
 \end{itemize}
+
+\begin{center}
+\begin{asy}
+	pair v = (4,1);
+	pair w = (2,3);
+	dot("$0$", origin, dir(225));
+	dot("$v = ae_1 + be_2$", v, dir(-45), red);
+	dot("$w = ce_1 + de_2$", w, dir(135), red);
+	dot("$v+w$", v+w, dir(45));
+	label("$ad-bc$", (v+w)/2, blue);
+	fill(origin--v--(v+w)--w--cycle, opacity(0.1)+lightcyan);
+	draw(origin--v, EndArrow, Margins);
+	draw(origin--w, EndArrow, Margins);
+	draw(v--(v+w), EndArrow, Margins);
+	draw(w--(v+w), EndArrow, Margins);
+\end{asy}
+\end{center}
+
 This is absolutely no coincidence.
 The wedge product is designed to interpret signed areas.
 That is, $v \wedge w$ is meant to interpret the area of the parallelogram

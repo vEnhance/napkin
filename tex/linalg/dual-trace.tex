@@ -79,12 +79,11 @@ Let's make all this precise.
 			0 & i \neq j.
 		\end{cases}
 	\]
-	In more humane terms, $e_i^\vee(v)$ gives the coefficient of $e_i$ in $v$.
+	In more humane terms, $e_i^\vee(v)$
+	gives the coefficient of $e_i$ in $v$.
 
 	Then $e_1^\vee$, $e_2^\vee$, \dots, $e_n^\vee$ is a basis of $V^\vee$.
 \end{proposition}
-I want to emphasize that this choice of basis for $V^\vee$ is absolutely not canonical, and depends very heavily on which basis of $V$ is originally selected.
-It is not ``God-given'', in other words.
 
 \begin{example}[Explicit example of element in $V^\vee$]
 	In this notation, $f = 3e_1^\vee + 4e_2^\vee + 5e_3^\vee$.
@@ -98,24 +97,19 @@ It is not ``God-given'', in other words.
 	That's exactly what we wanted.
 \end{example}
 
-Also, you might be inclined to point out that $V \cong V^\vee$ at this point,
+You might be inclined to point out that $V \cong V^\vee$ at this point,
 since there's an obvious isomorphism $e_i \mapsto e_i^\vee$.
 You might call it ``rotating the column matrix by $90\dg$''.
-Two remarks:
-\begin{itemize}
-	\ii This isomorphism is absolutely not canonical,
-	and depends very much on which basis you choose.
-	In other words, if I pick a different basis, then the isomorphism
-	will be completely different.
+The issue is that this isomorphism
+depends very much on which basis you choose:
+if I pick a different basis, then the isomorphism
+will be completely different.
 
-	It \emph{is} true that $V$ and $V^\vee$ are isomorphic,
-	but the fact is that any two $k$-vector spaces
-	of the same dimension are isomorphic,
-	so the fact that $V \cong V^\vee$ is not especially impressive.
-	
-	\ii If $V$ is infinite-dimensional
-	it is no longer necessarily true that $V \cong V^\vee$.
-\end{itemize}
+It \emph{is} true that $V$ and $V^\vee$ are isomorphic
+for finite-dimensional $V$,
+but the fact is that \emph{any} two $k$-vector spaces
+of the same dimension are isomorphic.
+In light of this, the fact that $V \cong V^\vee$ is not especially impressive.
 
 \section{$V^\vee \otimes W$ gives matrices from $V$ to $W$}
 Goal of this section:
@@ -276,27 +270,6 @@ This result is called the \vocab{trace} of a matrix $T$.
 	\end{hint}
 \end{problem}
 
-\begin{sproblem}
-	[Double dual]
-	\gim
-	Let $V$ be a finite-dimensional vector space.
-	Prove that
-	\begin{align*}
-		V &\to (V^\vee)^\vee \\
-		v &\mapsto \left( \xi \mapsto \xi(v) \right)
-	\end{align*}
-	gives an isomorphism.
-	(This is significant because the isomorphism is \emph{canonical},
-	and in particular does not depend on the choice of basis.
-	So this is more impressive.)
-	\begin{hint}
-		You can \emph{prove} the result just by taking a basis
-		$e_1$, \dots, $e_n$ of $V$
-		and showing that it is a linear map sending $e_1$
-		to the basis $(e_1^\vee)^\vee$.
-	\end{hint}
-\end{sproblem}
-
 \begin{dproblem}
 	[Product of traces]
 	Let $T \colon V \to V$ and $S \colon W \to W$ be linear maps
@@ -307,7 +280,6 @@ This result is called the \vocab{trace} of a matrix $T$.
 		Again one can just take a basis.
 	\end{hint}
 \end{dproblem}
-
 
 \begin{dproblem}
 	[Traces kind of commute]
