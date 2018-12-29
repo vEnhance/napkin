@@ -1,15 +1,16 @@
-\chapter{Spectral theory}
-This chapter will develop the theory of eigenvalues and eigenvectors, the so-called
-``Jordan canonical form'', and from it the characteristic polynomial.
-In what follows, $V$ is a finite-dimensional vector space over a ground field $k$.
+\chapter{Eigen-things}
+This chapter will develop the theory of eigenvalues and eigenvectors,
+the so-called ``Jordan canonical form'',
+and from it the characteristic polynomial.
 
 \section{Why you should care}
 We know that a square matrix $T$ is really just
 a linear map from $V$ to $V$.
 What's the simplest type of linear map?
 It would just be multiplication by some scalar $\lambda$,
-which would have associated matrix
+which would have associated matrix (in any basis!)
 \[
+	T = 
 	\begin{bmatrix}
 		\lambda & 0 & \dots & 0 \\
 		0 & \lambda & \dots & 0 \\
@@ -18,9 +19,10 @@ which would have associated matrix
 	\end{bmatrix}.
 \]
 That's perhaps \emph{too} simple, though.
-If we had a basis $e_1, \dots, e_n$ then another very ``simple'' operation
-would just be scaling each basis element by $\lambda_i$,
-i.e.\ a \vocab{diagonal} matrix of the form
+If we had a fixed basis $e_1, \dots, e_n$
+then another very ``simple'' operation
+would just be scaling each basis element $e_i$ by $\lambda_i$,
+i.e.\ a \vocab{diagonal matrix} of the form
 \[
 	T = \begin{bmatrix}
 		\lambda_1 & 0 & \dots & 0 \\
@@ -32,20 +34,48 @@ i.e.\ a \vocab{diagonal} matrix of the form
 These maps are more general.
 Indeed, you can, for example, compute $T^{100}$ in a heartbeat:
 the map sends $e_1 \to \lambda_1^{100} e_1$.
-Try doing that with an arbitrary $n \times n$ matrix.
+(Try doing that with an arbitrary $n \times n$ matrix.)
 
 Of course, most linear maps are probably not that nice.
 Or are they?
-Let's consider a map $T : \RR^2 \to \RR^2$
-by $e_1 \mapsto 2e_1$ and $e_2 \mapsto e_1+3e_2$.
-This doesn't look anywhere as nice until we realize we can rewrite it as
-\begin{align*}
-	e_1 &\mapsto 2e_1 \\ 
-	e_1+e_2 &\mapsto 3(e_1+e_2).
-\end{align*}
-So our completely random-looking map, under a suitable change of basis,
-looks like the very nice maps we described before!
-That's the motivation for this chapter.
+\begin{example}
+	[Getting lucky]
+	Let $V$ be some two-dimensional vector space
+	with $e_1$ and $e_2$ as basis elements.
+	Let's consider a map $T \colon V \to V$
+	by $e_1 \mapsto 2e_1$ and $e_2 \mapsto e_1+3e_2$,
+	which you can even write concretely as
+	\[ T = \begin{bmatrix}
+		2 & 1 \\
+		0 & 3
+	\end{bmatrix} \quad\text{in basis $e_1$, $e_2$}. \]
+	This doesn't look anywhere as nice until we realize we can rewrite it as
+	\begin{align*}
+		e_1 &\mapsto 2e_1 \\
+		e_1+e_2 &\mapsto 3(e_1+e_2).
+	\end{align*}
+	So suppose we change to the basis $e_1$ and $e_1 + e_2$.
+	Thus in the new basis,
+	\[ T = \begin{bmatrix}
+		2 & 0 \\
+		0 & 3
+	\end{bmatrix} \quad\text{in basis $e_1$, $e_1+e_2$}. \]
+	So our completely random-looking map,
+	under a suitable change of basis,
+	looks like the very nice maps we described before!
+\end{example}
+In this chapter, we will be \emph{making} our luck,
+and we will see that our better understanding of matrices
+gives us the right way to think about this.
+
+\section{Warning on assumptions}
+Most theorems in this chapter only work for
+\begin{itemize}
+	\ii a finite-dimensional vector spaces $V$,
+	\ii over a field $k$ which is \emph{algebraically closed}.
+\end{itemize}
+On the other hand, the definitions work fine without
+these assumptions.
 
 \section{Eigenvectors and eigenvalues}
 Let $k$ be a field and $V$ a vector space over it.
@@ -53,18 +83,48 @@ In the above example, we saw that there were two very nice
 vectors, $e_1$ and $e_1+e_2$, for which $V$ did something very simple.
 Naturally, these vectors have a name.
 \begin{definition}
-	Let $T : V \to V$ and $v \in V$, $v \neq 0$.
+	Let $T \colon V \to V$ and $v \in V$ a \emph{nonzero} vector.
 	We say that $v$ is an \vocab{eigenvector} if $T(v) = \lambda v$
 	for some $\lambda \in k$ (possibly zero, but remember $v \neq 0$).
 	The value $\lambda$ is called an \vocab{eigenvalue} of $T$.
-	(Of course, no mention to a basis anywhere.)
+
+	We will sometimes abbreviate
+	``$v$ is an eigenvector with eigenvalue $\lambda$''
+	to just ``$v$ is a $\lambda$-eigenvector''.
 \end{definition}
+Of course, no mention to a basis anywhere.
+
+\begin{example}
+	[An example of an eigenvector and eigenvalue]
+	Consider the example earlier with
+	$T = \begin{bmatrix} 2 & 1 \\ 0 & 3 \end{bmatrix}$.
+	\begin{enumerate}[(a)]
+		\ii Note that $e_1$ and $e_1 + e_2$ are
+		$2$-eigenvectors and $3$-eigenvectors.
+		\ii Of course, $5e_1$ is also an $2$-eigenvector.
+		\ii And, $7e_1 + 7e_2$ is also a $3$-eigenvector.
+	\end{enumerate}
+\end{example}
+So you can quickly see the following observation.
+\begin{ques}
+	Show that the $\lambda$-eigenvectors, together with $\{0\}$
+	form a subspace.
+\end{ques}
+\begin{definition}
+	For any $\lambda$, we define the $\lambda$-\vocab{eigenspace}
+	as the set of $\lambda$-eigenvectors together with $0$.
+\end{definition}
+This lets us state succinctly that
+``$2$ is an eigenvalue of $T$
+with one-dimensional eigenspace spanned by $e_1$''.
 
 Unfortunately, it's not exactly true that eigenvalues always exist.
 \begin{example}[Eigenvalues need not exist]
-	Let $V = \RR^2$ and let $T$ be the map which rotates a vector by $90\dg$
+	Let $V = \RR^2$ and let $T$ be the map
+	which rotates a vector by $90\dg$
 	around the origin.
-	Then $T(v)$ is not a multiple of $v$ for any $v \in V$, other than the trivial $v=0$.
+	Then $T(v)$ is not a multiple of $v$ for any $v \in V$,
+	other than the trivial $v=0$.
 \end{example}
 
 However, it is true if we replace $k$ with an algebraically closed field
@@ -72,7 +132,8 @@ However, it is true if we replace $k$ with an algebraically closed field
 polynomials have roots, the archetypal example being $\CC$.}
 \begin{theorem}[Eigenvalues always exist over algebraically closed fields]
 	Suppose $k$ is an \emph{algebraically closed} field.
-	Then if $T : V \to V$ is a linear map,
+	Let $V$ be a finite dimensional $k$-vector space.
+	Then if $T \colon V \to V$ is a linear map,
 	there exists an eigenvalue $\lambda \in k$.
 \end{theorem}
 \begin{proof}
@@ -88,7 +149,8 @@ polynomials have roots, the archetypal example being $\CC$.}
 
 	Let $n = \dim V < \infty$ and fix any nonzero vector $v \in V$,
 	and consider vectors $v$, $T(v)$, \dots, $T^n (v)$.
-	They must be linearly dependent for dimension reasons;
+	There are $n+1$ of them,
+	so they must be linearly dependent for dimension reasons;
 	thus there is a nonzero polynomial $P$ such that $P(T)$
 	is zero when applied to $v$.
 	WLOG suppose $P$ is a monic polynomial,
@@ -96,19 +158,51 @@ polynomials have roots, the archetypal example being $\CC$.}
 	Then we get
 	\[ 0 = (T - r_1 \id) \circ (T - r_2 \id) \circ \dots
 		\circ (T - r_m \id)(v) \]
-	which means at least one of $T - r_i \id$ is not injective, done.
+	which means at least one of $T - r_i \id$ is not injective,
+	i.e.\ has a nontrivial kernel,
+	which is the same as an eigenvector.
 \end{proof}
 So in general we like to consider algebraically closed fields.
-This is not a big loss: any real matrix can be interpreted as a complex matrix
+This is not a big loss:
+any real matrix can be interpreted as a complex matrix
 whose entries just happen to be real, for example.
 
 \section{The Jordan form}
-So that you know exactly where I'm going, here's the main theorem.
+So that you know exactly where I'm going,
+here's the main theorem.
+\begin{definition}
+	A \vocab{Jordan block} is an $n \times n$ matrix of the following shape:
+	\[
+		\begin{bmatrix}
+			\lambda & 1 & 0 & 0 & \dots & 0 & 0 \\
+			0 & \lambda & 1 & 0 & \dots & 0 & 0 \\
+			0 & 0 & \lambda & 1 & \dots & 0 & 0 \\
+			0 & 0 & 0 & \lambda & \dots & 0 & 0 \\
+			\vdots & \vdots & \vdots & \vdots & \ddots & \vdots & \vdots \\
+			0 & 0 & 0 & 0 & \dots & \lambda & 1 \\
+			0 & 0 & 0 & 0 & \dots & 0 & \lambda
+		\end{bmatrix}.
+	\]
+	In other words, it has $\lambda$ on the diagonal,
+	and $1$ above it.
+	We allow $n = 1$,
+	so $\begin{bmatrix} \lambda \end{bmatrix}$ is a Jordan block.
+\end{definition}
+
 \begin{theorem}
 	[Jordan canonical form]
-	Let $T : V \to V$ be a linear map over an algebraically closed field $k$.
-	Then we can choose a basis of $V$ such that the matrix $T$ has the form
-	\[
+	Let $T \colon V \to V$ be a linear map
+	of finite-dimensional vector spaces
+	over an algebraically closed field $k$.
+	Then we can choose a basis of $V$
+	such that the matrix $T$ is ``block-diagonal''
+	with each block being a Jordan block.
+
+	Such a matrix is said to be in \vocab{Jordan form}.
+	This form is unique up to rearranging the order of the blocks.
+\end{theorem}
+As an example, this means the matrix should look something like:
+\[
 	\begin{bmatrix}
 		\lambda_1 & 1 \\
 		0 & \lambda_1 \\
@@ -120,29 +214,36 @@ So that you know exactly where I'm going, here's the main theorem.
 		&&&&&&& \lambda_m & 1 \\
 		&&&&&&& 0 & \lambda_m
 	\end{bmatrix}
-	\]
-	Each of the blocks is called a \vocab{Jordan block}.
-	(The blank entries are all zero.)
-\end{theorem}
-\todo{this should have an actual theorem statement}
+\]
+\begin{ques}
+	Check that diagonal matrices are the special case
+	when each block is $1 \times 1$.
+\end{ques}
 
 What does this mean?
-Basically, it means our dream is almost true.
+Basically, it means \emph{our dream is almost true}.
 What happens is that $V$ can get broken down as a direct sum
 \[ V = J_1 \oplus J_2 \oplus \dots \oplus J_m \]
 and $T$ acts on each of these subspaces independently.
 These subspaces correspond to the blocks in the matrix above.
-In the simplest case, $\dim J_i = 1$, so $J_i$ has a basis element $e$ for which $T(e) = \lambda_i e$;
+In the simplest case, $\dim J_i = 1$,
+so $J_i$ has a basis element $e$
+for which $T(e) = \lambda_i e$;
 in other words, we just have a simple eigenvalue.
-But on occasion, the situation is not quite so simple, and we have a block of size greater than $1$;
+But on occasion, the situation is not quite so simple,
+and we have a block of size greater than $1$;
 this leads to $1$'s just above the diagonals.
-I'll explain later how to interpret the $1$'s.
-For now, you should note that even if $\dim J_i \ge 2$, we still have a basis element
+
+I'll explain later how to interpret the $1$'s,
+when I make up the word \emph{descending staircase}.
+For now, you should note that even if $\dim J_i \ge 2$,
+we still have a basis element
 which is an eigenvector with element $\lambda_i$.
 
 \begin{example}
+	[A concrete example of Jordan form]
 	Let $T : k^6 \to k^6$ and suppose $T$ is given by the matrix
-	\[ 
+	\[
 		T = \begin{bmatrix}
 			3 & 0 & 0 & 0 & 0 & 0 \\
 			0 & 7 & 0 & 0 & 0 & 0 \\
@@ -161,22 +262,28 @@ which is an eigenvector with element $\lambda_i$.
 		T(e_5) &= 5e_5 \\
 		T(e_6) &= 3e_6.
 	\end{align*}
+	The element $e_4$, on the other hand,
+	is not an eigenvalue.
+	For $T(e_4) = e_3 + 2e_4$.
 \end{example}
 
-Here's the idea behind the proof.
-We would like to be able to break down $V$ directly into components as above,
-but some of the $\lambda_i$'s from the different Jordan blocks could coincide,
-and this turns out to prove a technical difficulty for detecting them.
-So instead, we're going to break down $V$ first into subspaces based on the values of $\lambda$'s;
-these are called the \vocab{generalized eigenspaces}.
-In other words, the generalized eigenspace of a given $\lambda$
-is just all the Jordan blocks which have eigenvalue $\lambda$.
-Only after that will we break the generalized eigenspace into the individual Jordan blocks.
-
-The sections below record this proof in the other order:
-the next part deals with breaking generalized eigenspaces into Jordan blocks,
-and the part after that is the one where we break down $V$ into
-generalized eigenspaces.
+%Here's the idea behind the proof.
+%We would like to be able to break down $V$ directly into components as above,
+%but some of the $\lambda_i$'s from the different Jordan blocks could coincide,
+%and this turns out to give a technical difficulty for detecting them.
+%So instead, we're going to break down $V$ first into subspaces
+%based on the values of $\lambda$'s;
+%these are called the \emph{generalized eigenspaces}.
+%In other words, the generalized eigenspace of a given $\lambda$
+%is just all the Jordan blocks which have eigenvalue $\lambda$.
+%Only after that will we break the generalized eigenspace
+%into the individual Jordan blocks.
+%
+%The sections below record this proof in the other order:
+%the next part deals with breaking generalized
+%eigenspaces into Jordan blocks,
+%and the part after that is the one where we break down $V$ into
+%generalized eigenspaces.
 
 \section{Nilpotent maps}
 Bear with me for a moment.  First, define:
@@ -186,14 +293,27 @@ Bear with me for a moment.  First, define:
 \end{definition}
 What's an example of a nilpotent map?
 \begin{example}
-	[The ``Descending staircase'']
+	[The ``descending staircase'']
 	Let $V = k^3$ have basis $e_1$, $e_2$, $e_3$.
 	Then the map $T$ which sends
 	\[ e_3 \mapsto e_2 \mapsto e_1 \mapsto 0 \]
 	is nilpotent, since $T(e_1) = T^2(e_2) = T^3(e_3) = 0$,
 	and hence $T^3(v) = 0$ for all $v \in V$.
 \end{example}
-That's a pretty nice example. As another example, we can have multiple such staircases.
+The $3 \times 3$ descending staircase has matrix representation
+\[ T = \begin{bmatrix}
+		0 & 1 & 0 \\
+		0 & 0 & 1 \\
+		0 & 0 & 0
+	\end{bmatrix}. \]
+You'll notice this is a Jordan block.
+\begin{exercise}
+	Show that the descending staircase above
+	has $0$ as its only eigenvalue.
+\end{exercise}
+
+That's a pretty nice example.
+As another example, we can have multiple such staircases.
 \begin{example}
 	[Double staircase]
 	Let $V = k^{\oplus 5}$ have basis $e_1$, $e_2$, $e_3$, $e_4$, $e_5$.
@@ -202,19 +322,34 @@ That's a pretty nice example. As another example, we can have multiple such stai
 		e_5 \mapsto e_4 \mapsto 0 \]
 	is nilpotent.
 \end{example}
-However this isn't really that different from the previous example;
+Picture, with some zeros omitted for emphasis:
+\[ T = \begin{bmatrix}
+		0 & 1 & 0 &   &   \\
+		0 & 0 & 1 &   &   \\
+		0 & 0 & 0 &   &   \\
+		  &   &   & 0 & 1 \\
+		  &   &   & 0 & 0 \\
+	\end{bmatrix}
+\]
+You can see this isn't really that different
+from the previous example;
 it's just the same idea repeated multiple times.
-And in fact we now claim that \emph{all} nilpotent maps have essentially that form.
-
+And in fact we now claim that \emph{all}
+nilpotent maps have essentially that form.
 \begin{theorem}
 	[Nilpotent Jordan]
-	Let $T : V \to V$ be a nilpotent map.
+	Let $V$ be a finite-dimensional vector space
+	over an algebraically closed field $k$.
+	Let $T \colon V \to V$ be a nilpotent map.
 	Then we can write $V = \bigoplus_{i=1}^m V_i$
 	where each $V_i$ has a basis of the form
 	$v_i$, $T(v_i)$, \dots, $T^{\dim V_i - 1}(v_i)$
 	for some $v_i \in V_i$.
-	Hence every nilpotent map can be viewed as independent staircases.
 \end{theorem}
+Hence:
+\begin{moral}
+	Every nilpotent map can be viewed as independent staircases.
+\end{moral}
 Each chain $v_i$, $T(v_i)$, $T(T(v_i))$, \dots is just one staircase.
 The proof is given later, but first let me point out where this is going.
 
@@ -223,32 +358,32 @@ Let's take the double staircase again.
 Expressing it as a matrix gives, say
 \[
 	S = \begin{bmatrix}
-		0 & 1 & 0 & 0 & 0 \\
-		0 & 0 & 1 & 0 & 0 \\
-		0 & 0 & 0 & 0 & 0 \\
-		0 & 0 & 0 & 0 & 1 \\
-		0 & 0 & 0 & 0 & 0
+		0 & 1 & 0 &   &   \\
+		0 & 0 & 1 &   &   \\
+		0 & 0 & 0 &   &   \\
+		  &   &   & 0 & 1 \\
+		  &   &   & 0 & 0
 	\end{bmatrix}.
 \]
 Then we can compute
 \[
 	S + \lambda \id = \begin{bmatrix}
-		\lambda & 1 & 0 & 0 & 0 \\
-		0 & \lambda & 1 & 0 & 0 \\
-		0 & 0 & \lambda & 0 & 0 \\
-		0 & 0 & 0 & \lambda & 1 \\
-		0 & 0 & 0 & 0 & \lambda
+		\lambda & 1 & 0 &   &   \\
+		0 & \lambda & 1 &   &   \\
+		0 & 0 & \lambda &   &   \\
+		  &   &   & \lambda & 1 \\
+		  &   &   & 0 & \lambda
 	\end{bmatrix}.
 \]
-It's a bunch of Jordan blocks!
+It's a bunch of $\lambda$ Jordan blocks!
 This gives us a plan to proceed: we need to break $V$ into
 a bunch of subspaces such that $T - \lambda \id$ is nilpotent over each subspace.
 Then Nilpotent Jordan will finish the job.
 
 \section{Reducing to the nilpotent case}
 \begin{definition}
-	Let $T : V \to V$. A subspace $W \subseteq V$
-	is called \vocab{$T$-invariant}
+	Let $T \colon V \to V$. A subspace $W \subseteq V$
+	is called $T$-\vocab{invariant}
 	if $T(w) \in W$ for any $w \in W$.
 	In this way, $T$ can be thought of as a map $W \to W$.
 \end{definition}
@@ -256,34 +391,39 @@ In this way, the Jordan form is a decomposition of $V$ into invariant subspaces.
 
 Now I'm going to be cheap, and define:
 \begin{definition}
-	A map $T : V \to V$ is called \vocab{indecomposable}
+	A map $T \colon V \to V$ is called \vocab{indecomposable}
 	if it's impossible to write $V = W_1 \oplus W_2$
-	where both $W_1$ and $W_2$ are $T$-invariant.
+	where both $W_1$ and $W_2$ are nontrivial $T$-invariant spaces.
 \end{definition}
 Picture of a \emph{decomposable} map:
 \[ 
 	\begin{bmatrix}
-		\multicolumn{2}{c|}{\multirow{2}{*}{$W_1$}} & 0 & 0 & 0  \\ 
+		\multicolumn{2}{c|}{\multirow{2}{*}{$W_1$}} & 0 & 0 & 0  \\
 		\multicolumn{2}{c|}{} & 0 & 0 & 0 \\ \hline
 		0 & 0 & \multicolumn{3}{|c}{\multirow{3}{*}{$W_2$}} \\
 		0 & 0 & \multicolumn{3}{|c}{} \\
-		0 & 0 & \multicolumn{3}{|c}{} 
+		0 & 0 & \multicolumn{3}{|c}{}
 	\end{bmatrix}
 \]
 As you might expect, we can break a space apart into ``indecomposable'' parts.
 \begin{proposition}
-	Given any map $T: V \to V$, we can write
+	[Invariant subspace decomposition]
+	Let $V$ be a finite-dimensional vector space.
+	Given any map $T \colon V \to V$, we can write
 	\[ V = V_1 \oplus V_2 \oplus \dots \oplus V_m \]
 	where each $V_i$ is $T$-invariant,
-	and for any $i$ the map $T : V_i \to V_i$ is indecomposable.
+	and for any $i$ the map $T \colon V_i \to V_i$ is indecomposable.
 \end{proposition}
 \begin{proof}
 	Same as the proof that every integer is the product of primes.
+	If $V$ is not indecomposable, we are done.
+	Otherwise, by definition write $V = W_1 \oplus W_2$
+	and then repeat on each of $W_1$ and $W_2$.
 \end{proof}
 
 Incredibly, with just that we're almost done!
 Consider a decomposition as above,
-so that $T : V_1 \to V_1$ is an indecomposable map.
+so that $T \colon V_1 \to V_1$ is an indecomposable map.
 Then $T$ has an eigenvalue $\lambda_1$, so let $S = T - \lambda_1 \id$; hence $\ker S \neq \{0\}$.
 \begin{ques}
 	Show that $V_1$ is also $S$-invariant, so we can consider $S : V_1 \to V_1$.
@@ -339,310 +479,207 @@ Check that there are exactly $\ell + \dim W + (\dim \ker T - \ell) = \dim V$ ele
 \end{exercise}
 Hence $\mathcal B$ is a basis of the desired form.
 
-
-\section{Characteristic polynomials, and Cayley-Hamilton}
-Take a map $T : V \to V$, where $V$ is $n$-dimensional, and suppose its eigenvalues
-are $a_1$, $a_2$, \dots, $a_n$ (with repetition).
-Then the \vocab{characteristic polynomial} is given by
+\section{Algebraic and geometric multiplicity}
+\prototype{The matrix $T$ below.}
+This is some convenient notation:
+let's consider the matrix in Jordan form
 \[
-	p_T(X) = (X-a_1)(X-a_2) \dots (X-a_n).
-\]
-Note that if we've written $T$ in Jordan form, that is,
-\[
-	T = \begin{bmatrix}
-		a_1 & \ast & 0 & \dots & 0 \\
-		0 & a_2 & \ast & \dots & 0 \\
-		0 & 0 & a_3 & \dots & 0 \\
-		\vdots & \vdots & \vdots & \ddots & \vdots \\
-		0 & 0 & 0 & \dots & a_n
-	\end{bmatrix}
-\]
-(here each $\ast$ is either $0$ or $1$),
-then we can hack together the definition
-\[
-	p_T(X) \defeq
-	\det \left( X \cdot \id_n - T \right)
-	= \det \begin{bmatrix}
-		X - a_1 & \ast & 0 & \dots & 0 \\
-		0 & X - a_2 & \ast & \dots & 0 \\
-		0 & 0 & X - a_3 & \dots & 0 \\
-		\vdots & \vdots & \vdots & \ddots & \vdots \\
-		0 & 0 & 0 & \dots & X - a_n
+	T =
+	\begin{bmatrix}
+		7 & 1 \\
+		0 & 7 \\
+		& & 9 \\
+		& & & 7 & 1 & 0 \\
+		& & & 0 & 7 & 1 \\
+		& & & 0 & 0 & 7
 	\end{bmatrix}.
 \]
-The latter definition is what you'll see in most
-linear algebra books because it lets you define the characteristic polynomial
-without mentioning the word ``eigenvalue''
-(i.e.\ entirely in terms of arrays of numbers).
-I'll admit it does have the merit that it means that given any matrix,
-it's easy to compute the characteristic polynomial and hence
-compute the eigenvalues;
-but I still think the definition should be done in terms of
-eigenvalues to begin with.
-For instance the determinant definition obscures the following theorem,
-which is actually a completely triviality.
-\begin{theorem}[Cayley-Hamilton theorem]
-	For any $T : V \to V$,
-	the map $p_T(T)$ is the zero map.
-\end{theorem}
-Here, by $p_T(T)$ we mean that if \[ p_T(X) = X^n + c_{n-1} X^{n-1} + \dots + c_0 \]
-then \[ p_T(T) = T^n + c_{n-1} T^{n-1} + \dots + c_1 T +  c_0 I \]
-is the zero map,
-where $T^k$ denotes $T$ applied $k$ times.
+We focus on the eigenvalue $7$,
+which appears multiple times, so it is certainly ``repeated''.
+However, there a two different senses in which you could say it is repeated.
+\begin{itemize}
+	\ii \emph{Algebraic}: You could say it is repeated five times,
+	because it appears five times on the diagonal.
+	\ii \emph{Geometric}: You could say it really only appears two times:
+	because there are only two eigen\emph{vectors}
+	with eigenvalue $7$, namely $e_1$ and $e_4$.
 
-\begin{example}[Example of Cayley-Hamilton using determinant definition]
-	Suppose $T = \begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix}$.
-	Using the determinant definition of characteristic polynomial,
-	we find that $p_T(X) = (X-1)(X-4)-(-2)(-3) = X^2 - 5X - 2$.
-	Indeed, you can verify that
-	\[ T^2 - 5T - 2
-		= \begin{bmatrix}
-			7 & 10 \\
-			15 & 22
-		\end{bmatrix}
-		- 5 \cdot \begin{bmatrix}
-			1 & 2 \\
-			3 & 4
-		\end{bmatrix}
-		- 2 \cdot \begin{bmatrix}
-			1 & 0 \\
-			0 & 1
-		\end{bmatrix}
-		= \begin{bmatrix}
-			0 & 0 \\
-			0 & 0
-		\end{bmatrix}.
-	\]
+	Indeed, the vector $e_2$ for example has $T(e_2) = 7e_2 + e_1$,
+	so it's not really an eigenvector!
+	If you apply $T - 7\id$ to $e_2$ twice though,
+	you do get zero.
+\end{itemize}
+\begin{ques}
+	In this example,
+	how many times do you need to apply $T - 7\id$ to $e_6$ to get zero?
+\end{ques}
+Both these notions are valid,
+so we will name both.
+To preserve generality,
+we first state the ``intrinsic'' definition.
+\begin{definition}
+	Let $T \colon V \to V$ be a linear map and $\lambda$ a scalar.
+	\begin{itemize}
+		\ii The \vocab{geometric multiplicity}
+		of $\lambda$ is the dimension $\dim V_\lambda$
+		of the $\lambda$-eigenspace.
+
+		\ii Define the \vocab{generalized eigenspace}
+		$V^\lambda$ to be the subspace of $v$
+		for which $(T-\lambda \id)^n(v) = 0$ for some $n \ge 1$.
+		The \vocab{algebraic multiplicity} of $\lambda$ is the
+		dimension $\dim V^\lambda$.
+	\end{itemize}
+	(Silly edge case: we allow ``multiplicity zero''
+	if $\lambda$ is not an eigenvalue at all.)
+\end{definition}
+However in practice you should just count the Jordan blocks.
+\begin{example}
+	[An example of eigenspaces via Jordan form]
+	Retain the matrix $T$ mentioned earlier and let $\lambda = 7$.
+	\begin{itemize}
+		\ii The eigenspace $V_\lambda$ has basis $e_1$ and $e_4$,
+		so the geometric multiplicity is $2$.
+		\ii The generalized eigenspace $V^\lambda$ has basis $e_1$, $e_2$,
+		$e_4$, $e_5$, $e_6$ so the algebraic multiplicity is $5$.
+	\end{itemize}
 \end{example}
-If you define $p_T$ without the word eigenvalue,
-and adopt the evil view that matrices are arrays of numbers,
-then this looks like a complete miracle.
-(Indeed, just look at the terrible proofs on Wikipedia.)
 
-But if you use the abstract viewpoint of $T$ as a linear map,
-then the theorem is a total tautology:
-\begin{proof}[Proof of Cayley-Hamilton]
-	Suppose we write $V$ in Jordan normal form as
-	\[ V = J_1 \oplus \dots \oplus J_m \]
-	where $J_i$ has eigenvalue $\lambda_i$ and dimension $d_i$.
-	By definition,
-	\[ p_T(X) = (X - \lambda_1)^{d_1} (X - \lambda_2)^{d_2} \dots (X - \lambda_m)^{d_m}. \]
-	By definition, $(T - \lambda_1)^{d_1}$ is the zero map on $J_1$.
-	So $p_T(T)$ is zero on $J_1$.
-	Similarly it's zero on each of the other $J_i$'s --- end of story.
-\end{proof}
+To be complete explicit, here is how you think of these in practice:0
+\begin{proposition}
+	[Geometric and algebraic multiplicity vs Jordan blocks]
+	Assume $T \colon V \to V$ is a linear map
+	of finite-dimensional vector spaces,
+	written in Jordan form.
+	Let $\lambda$ be a scalar.
+	Then
+	\begin{itemize}
+		\ii The geometric multiplicity of $\lambda$ is the number
+		of Jordan blocks with eigenvalue $\lambda$;
+		the eigenspace has one basis element per Jordan block.
 
-Also, a quick fun fact: all of this actually gives us another way to show the trace
-is independent from the actual matrix, as follows.
-\begin{exercise}
-	Let $T : V \to V$, and suppose $p_T(X) = X^n + c_{n-1}X^{n-1} + \dots + c_0$.
-	Show that in any basis, the sum of the diagonal entries of $T$ is $-c_{n-1}$.
-	Moreover, $\det T = (-1)^n c_0$ is the product of the eigenvalues.
-\end{exercise}
-The fact that $\det T$ is the \emph{product} of the eigenvalues should
-actually not be surprising in retrospect.
-Suppose $T : \RR^2 \to \RR^2$ has a basis of eigenvectors $e_1$ and $e_2$
-with eigenvalues $4$ and $5$; hence $T(e_1) = 4e_1$ and $T(e_2) = 5e_2$,
-and so of course we would say that $T$ stretches areas by a factor of $20$!
+		\ii The algebraic multiplicity of $\lambda$ is the
+		sum of the dimensions of the Jordan blocks
+		with eigenvalue $\lambda$;
+		the eigenspace is the direct sum of the subspaces
+		corresponding to those blocks.
+	\end{itemize}
+\end{proposition}
 
-\section{(Digression) Tensoring up}
-Earlier I said that we'll generally just work over algebraically closed fields,
-because, for example, a real matrix can be interpreted as a complex matrix whose
-entries just happen to be real numbers.
-I just want to briefly tell you, in terms of tensor products, exactly what we have done.
+\begin{ques}
+	Show that the geometric multiplicity
+	is always less than or equal to the algebraic multiplicity.
+\end{ques}
 
-Let's take the space $V = \RR^3$, with basis $e_1$, $e_2$, $e_3$.
-Thus objects in $V$ are of the form
-\[ r_1 e_1 + r_2 e_2 + r_3 e_3 \]
-where $r_1$, $r_2$, $r_3$ are real numbers.
-We want to consider essentially the same vector space,
-but with complex coefficients $z_i$ rather than real coefficients $r_i$.
-
-So here's what we do: view $\CC$ as a $\RR$-vector space (with basis $\{1,i\}$, say)
-and consider the \vocab{complexification}
-\[ V_\CC \defeq \CC \largeotimes{\RR} V. \]
-Then you can check that our elements are actually of the form
-\[ z_1 \otimes e_1 + z_2 \otimes e_2 + z_3 \otimes e_3. \]
-(Here, the tensor product is over $\RR$, so we have $z \otimes re_i = (zr) \otimes e_i$ for $r \in \RR$.)
-Then $V_{\CC}$ can be thought as a vector space over $\CC$, since you can multiply on the left
-by complex numbers.
-In this way, the tensor product lets us ``fuse on'' complex coefficients even though technically
-we shouldn't be able to do so.
-
-If $T : V \to W$, is a map, then $T_\CC : V_\CC \to W_\CC$
-is just the map $z \otimes v \mapsto z \otimes T(v)$.
-You'll see this written sometimes as $T_\CC = \id \otimes T$.
+This actually gives us a tentative definition:
+\begin{itemize}
+	\ii The trace is the sum of the eigenvalues,
+	counted with algebraic multiplicity.
+	\ii The determinant is the product of the eigenvalues,
+	counted with algebraic multiplicity.
+\end{itemize}
+This definition is okay,
+but it has the disadvantage of requiring the ground
+field to be algebraically closed.
+It is also not the definition that is easiest
+to work with computationally.
+The next two chapters will give us a better definition.
 
 \section\problemhead
-\begin{problem}
-	For a matrix $X$, we define the exponential map by
-	\[ \exp(X) = 1 + X + \frac{X^2}{2!} + \frac{X^3}{3!} + \dots \]
-	(take it for granted that this converges to a matrix).
-	Prove that
-	\[ \det(\exp(X)) = e^{\Tr X}. \]
-	\begin{hint}
-		This is actually immediate by taking any basis
-		in which $X$ is upper-triangular.
-	\end{hint}
-\end{problem}
 
 \begin{problem}
-	[Putnam 1988]
-	\gim
-	Let $V$ be an $n$-dimensional vector space.
-	Let $T : V \to V$ be a linear map and suppose there exists $n+1$ eigenvectors,
-	any $n$ of which are linearly independent.
-	Does it follow that $T$ is a scalar multiple of the identity?
-	\begin{hint}
-		Look at the trace of $T$.
-	\end{hint}
-\end{problem}
-
-\begin{problem}
-	[Putnam 2015]
-	\yod
-	Define $S$ to be the set of real matrices 
-	$\left(\begin{smallmatrix} a & b \\ c & d \end{smallmatrix}\right)$
-	such that $a$, $b$, $c$, $d$ form
-	an arithmetic progression in that order.
-	Find all $M \in S$ such that for some integer $k > 1$, $M^k \in S$.
-	\begin{hint}
-		There is a family of solutions other than just $a=b=c=d$.
-
-		One can solve the problem using Cayley-Hamilton.
-		A more ``bare-hands'' approach is to
-		show the matrix is invertible (unless $a=b=c=d$)
-		and then diagonalize the matrix as
-		$
-		M =
-		\begin{bmatrix} s & -q \\ -r & p \end{bmatrix}
-		\begin{bmatrix} \lambda_1 & 0 \\ 0 & \lambda_2 \end{bmatrix}
-		\begin{bmatrix} p & q \\ r & s \end{bmatrix}
-		=
-		\begin{bmatrix} 
-			ps\lambda_1 - qr\lambda_2 & qs(\lambda_1-\lambda_2) \\
-			pr(\lambda_2-\lambda_1) & ps\lambda_2 - qr\lambda_1
-		\end{bmatrix} 
-		$.
-	\end{hint}
+	[Sum of algebraic multiplicities]
+	Given a $2018$-dimensional complex vector space $V$
+	and a map $T \colon V \to V$,
+	what is the sum of the algebraic multiplicities
+	of all eigenvalues of $T$?
 	\begin{sol}
-		The answer is 
-		\[ \begin{bmatrix} t&t\\t&t \end{bmatrix}
-			\quad\text{and}\quad 
-			\begin{bmatrix} -3t&-t\\t&3t \end{bmatrix} \]
-		for $t \in \RR$.
-		These work by taking $k=3$.
-
-		Now to see these are the only ones, consider an arithmetic matrix
-		\[ M = \begin{bmatrix} a & a+e \\ a+2e & a+3e \end{bmatrix}. \]
-		with $e \neq 0$.
-		Its characteristic polynomial is $t^2 - (2a+3e)t - 2e^2$,
-		with discriminant $(2a+3e)^2 + 8e^2$,
-		so it has two distinct real roots; moreover, since $-2e^2 \le 0$
-		either one of the roots is zero or they are of opposite signs.
-		Now we can diagonalize $M$ by writing
-		\[
-			M =
-			\begin{bmatrix} s & -q \\ -r & p \end{bmatrix}
-			\begin{bmatrix} \lambda_1 & 0 \\ 0 & \lambda_2 \end{bmatrix}
-			\begin{bmatrix} p & q \\ r & s \end{bmatrix}
-			=
-			\begin{bmatrix} 
-				ps\lambda_1 - qr\lambda_2 & qs(\lambda_1-\lambda_2) \\
-				pr(\lambda_2-\lambda_1) & ps\lambda_2 - qr\lambda_1
-			\end{bmatrix} 
-		\]
-		where $ps-qr=1$. By using the fact the diagonal entries have sum equalling
-		the off-diagonal entries, we obtain that
-		\[ (ps-qr)(\lambda_1+\lambda_2) = (qs-pr)(\lambda_1-\lambda_2) 
-			\implies qs-pr = \frac{\lambda_1+\lambda_2}{\lambda_1-\lambda_2}. \]
-		Now if $M^k \in S$ too then the same calculation gives
-		\[ qs-pr = \frac{\lambda_1^k+\lambda_2^k}{\lambda_1^k-\lambda_2^k}. \]
-		Let $x = \lambda_1/\lambda_2 < 0$ (since $-2e^2 < 0$). We appropriately get
-		\[ \frac{x+1}{x-1} = \frac{x^k+1}{x^k-1}
-			\implies \frac{2}{x-1} = \frac{2}{x^k-1}
-			\implies x = x^k \implies x = -1 \text{ or } x = 0 \]
-		and $k$ odd. If $x=0$ we get $e=0$ and if $x=-1$ we get $2a+3e=0$,
-		which gives the curve of solutions that we claimed.
-
-		A slicker approach is to note that by Cayley-Hamilton.
-		Assume that $e \neq 0$, so $M$ has two distinct real eigenvalues as above.
-		We have $M^k = cM + d\id$ for some constants $c$ and $d$
-		(since $M$ satisfies some quadratic polynomial).
-		Since $M \in S$, $M^k \in S$ we obtain $d=0$.
-		Thus $M^k = cM$, so it follows the eigenvalues of $M$ are negatives of each other.
-		That means $\Tr M = 0$, and the rest is clear.
+		It's just $\dim V = 2018$.
+		After all, you are adding the dimensions of the Jordan blocks\dots
 	\end{sol}
 \end{problem}
 
-\endinput
-\section{Reducing to the nilpotent case}
-\begin{definition}
-	Let $T : V \to V$. A subspace of $W$ is \vocab{$T$-invariant}
-	if $T(w) \in W$ for any $w \in W$.
-	In this way, $T$ can be thought of as a map $W \to W$.
-\end{definition}
-Visually as a matrix, if $V = W_1 \oplus W_2$ and $W_1$ is $T$-invariant, that means we have zero's in the other rows for the columns associated to $W_1$.
-\[ 
-	\begin{bmatrix}
-		\multicolumn{2}{c|}{\multirow{2}{*}{$W_1$}} &  &  &  \\ 
-		\multicolumn{2}{c|}{} &  &  &  \\ \cline{1-2}
-		0 & 0 & \multicolumn{3}{c}{\multirow{3}{*}{$W_2$}} \\
-		0 & 0 & \multicolumn{3}{c}{} \\
-		0 & 0 & \multicolumn{3}{c}{} 
-	\end{bmatrix}
-\]
+\begin{problem}
+	[The word ``diagonalizable'']
+	A linear map $T \colon V \to V$ (where $\dim V$ is finite)
+	is said to be \vocab{diagonalizable}
+	if it has a basis $e_1$, \dots, $e_n$
+	such that each $e_i$ is an eigenvector.
+	\begin{enumerate}[(a)]
+		\ii Explain the name ``diagonalizable''.
+		\ii Suppose we are working over an algebraically closed field.
+		Then show that that $T$ is diagonalizable if and only if
+		for any $\lambda$, the geometric multiplicity of $\lambda$
+		equals the algebraic multiplicity of $\lambda$.
+	\end{enumerate}
+	\begin{sol}
+		(a): if you express $T$ as a matrix in such a basis,
+		one gets a diagonal matrix.
+		(b): this is just saying each Jordan block has dimension $1$,
+		which is what we wanted.
+		(We are implicitly using uniqueness of Jordan form here.)
+	\end{sol}
+\end{problem}
 
-\begin{ques}
-	Let $\lambda \in k$.
-	Show that a subspace $W$ is $T$-invariant if and only if it is $(T - \lambda I)$-invariant.
-\end{ques}
+\begin{problem}
+	[Switcharoo]
+	Let $V$ be the $\CC$-vector space
+	with basis $e_1$ and $e_2$.
+	The map $T \colon V \to V$ sends $T(e_1) = e_2$ and $T(e_2) = e_1$.
+	Determine the eigenspaces of $T$.
+	\begin{sol}
+		The $+1$ eigenspace is spanned by $e_1+e_2$.
+		The $-1$ eigenspace is spanned by $e_1-e_2$.
+	\end{sol}
+\end{problem}
 
-Our goal is to prove that we can decompose $V$ as
-\[ V = \bigoplus_\lambda V^{\lambda} \]
-for some choices of $\lambda$, such that each $V^\lambda$ is $T$-invariant,
-and moreover $T-\lambda \id$ is nilpotent on it.
-(As I said earlier, each $V^\lambda$ is called a \emph{generalized eigenspace}.)
-If we succeed in doing so, then we can use Nilpotent Jordan to finish.
+\begin{problem}
+	[Writing a polynomial backwards]
+	Define the complex vector space $V$
+	of polynomials with degree at most $2$,
+	say $V = \left\{ ax^2 + bx + c \mid a,b,c \in \CC \right\}$.
+	Define $T \colon V \to V$ by
+	\[ T(ax^2+bx+c) = cx^2+bx+a. \]
+	Determine the eigenspaces of $T$.
+	\begin{sol}
+		The $+1$ eigenspace is spanned by $1+x^2$ and $x$.
+		The $-1$ eigenspace is spanned by $1-x$.
+	\end{sol}
+\end{problem}
 
-The idea behind this proof is to consider ``polynomials'' in $T$.
-For example, $2T^2-4T+5$ would be shorthand for $T(T(v)) - 4T(v) + 5$.
-In this way we can consider ``polynomials'' $P(T)$;
-this lets us tie in the ``algebraically closed'' condition.
-These polynomial behave nicely: we have $P(T)+Q(T) = (P+Q)T$ and $P(T) \circ Q(T) = (P \circ Q)(T)$.
-In fact, we get the very nice bonus property
-\[ P(T) \circ Q(T) = Q(T) \circ P(T) \]
-which is otherwise completely non-obvious!
+\begin{problem}
+	[Differentation of polynomials]
+	Let $V = \RR[x]$ be the real vector space of all real polynomials.
+	Note that $\frac{d}{dx} \colon V \to V$ is a linear map
+	(for example it sends $x^3$ to $3x^2$).
+	Which real numbers are eigenvalues of this map?
+	\begin{hint}
+		Only $0$ is.
+		Look at degree.
+	\end{hint}
+	\begin{sol}
+		Constant functions differentiate to zero,
+		and these are the only $0$-eigenvectors.
+		There can be no other eigenvectors,
+		since if $\deg p > 0$ then $\deg p' = \deg p - 1$,
+		so if $p'$ is a constant real multiple of $p$
+		we must have $p' = 0$, ergo $p$ is constant.
+	\end{sol}
+\end{problem}
 
-Specifically, consider the infinite sequence
-\[ 1, T, T^2, T^3, \dots. \]
-Since the space of maps $V \to V$ is itself finite dimensional (at most $n^2$; why?) then there is some linear dependency.
-So there exists a polynomial $P$ with coefficients in $k$ such that $P(T)$ is the zero map:
-algebraically, this says $V = \ker P(T)$.
-
-Since $k$ is algebraically closed, we now know that $P(x)$ can be factored completely in $k$:
-\[ P(x) = \left( x - \lambda_1 \right)^{t_1} \left( x - \lambda_2 \right)^{t_2} \dots (x - \lambda_s)^{t_s}. \]
-But let's take this a bit more slowly.
-Suppose that $s \ge 2$, meaning $P(x) = A_1(x) A_2(x)$ for relatively prime $A_1$ and $A_2$.
-Then by Bezout's lemma, there are ``dummy'' polynomials $D_1(x)$ and $D_2(x)$ such that
-\[ 1 = D_1(x) A_1(x) + D_2(x) A_2(x). \]
-Plugging in $x=T$, we get
-\[ \id_V = D_1(T) \circ A_1(T) + D_2(T) \circ A_2(T). \]
-Now let $V_1 = \ker A_1(T)$ and $V_2 = \ker A_2(T)$.
-
-We claim that $V = V_1 \oplus V_2$.
-\begin{ques}
-	Show that $V_1 \cap V_2 = \{0\}$; that is,
-	if $A_1(T)(v) = A_2(T)(v) = 0$, then $v=0$.
-\end{ques}
-Moreover, for any $v \in V$, $v = (A_1 \cdot D_1)(T)(v) + (A_2 \cdot D_2)(T)(V)$.
-\begin{ques}
-	Show that $(A_1 \cdot D_1)(T)(v) \in V_2$
-	and similarly $(A_2 \cdot D_2)(T)(v) \in V_1$.
-\end{ques}
-Finally, $V_1$ and $V_2$ are $T$-invariant, as $(A_1(T) \cdot T)(v) = (T \cdot A_1(T))(v)$.
-
-Thus, we deduce
-\[ V = V_1 \oplus V_2 \]
-is an indecomposable representation.
-We can repeat this procedure on $\ker A_1$
+\begin{problem}
+	[Differentation of functions]
+	Let $V$ be the real vector space of all
+	infinitely differentiable functions $\RR \to \RR$.
+	Note that $\frac{d}{dx} \colon V \to V$ is a linear map
+	(for example it sends $\cos x$ to $-\sin x$).
+	Which real numbers are eigenvalues of this map?
+	\begin{hint}
+		All of them are!
+	\end{hint}
+	\begin{sol}
+		$e^{cx}$ is an example of a $c$-eigenvector for every $c$.
+		If you know differential equations,
+		these are the only examples!
+	\end{sol}
+\end{problem}

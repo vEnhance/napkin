@@ -1,0 +1,260 @@
+\chapter{Transpose and adjoint}
+
+\section{Dual of a map}
+We go ahead and now define a notion
+that will grow up to be the transpose of a matrix.
+
+\begin{definition}
+	Let $V$ and $W$ be vector spaces.
+	Suppose $T \colon V \to W$ is a linear map.
+	Then we actually get a map
+	\begin{align*}
+		T^\vee \colon W^\vee &\to V^\vee \\
+		f &\mapsto f \circ T.
+	\end{align*}
+	This map is called the \vocab{dual map}.
+\end{definition}
+
+In the concrete interpretation, if $T$ is a matrix, then
+$T$ multiplies column vectors in $V$ on the left to get column vectors in $W$.
+Then $T^\vee$ is the same matrix, but it multiplies
+row vectors in $W^\vee$ \emph{on the right} to get row vectors in $V$.
+Here is an explicit example: if $V = \RR^3$ and $W = \RR^2$ then
+\[
+	\begin{bmatrix}
+		1 & 2 & 3 \\
+		4 & 5 & 6
+	\end{bmatrix}
+	\begin{bmatrix}
+		v_1 \\ v_2 \\ v_3
+	\end{bmatrix}
+	=
+	\begin{bmatrix}
+		w_1 \\ w_2
+	\end{bmatrix} 
+	\text{ and }
+	\begin{bmatrix}
+		w_1' & w_2'
+	\end{bmatrix}
+	\begin{bmatrix}
+		1 & 2 & 3 \\
+		4 & 5 & 6
+	\end{bmatrix}
+	=
+	\begin{bmatrix}
+		v_1' & v_2' & v_3'
+	\end{bmatrix}.
+\]
+But once again, the definition $T^\vee(f) = f \circ T$
+has the nice property that it doesn't depend on the choice of a basis.
+That shows that $T^\vee$ really is well defined,
+depending only on $T \colon V \to W$.
+And in particular, this definition works even if $V$ or $W$
+is infinite-dimensional.
+
+\section{The transpose of a matrix}
+With this equipped, we can talk about the transpose of a matrix.
+
+
+
+
+\section{Identifying with the dual space}
+Earlier I complained that there was no natural isomorphism $V \cong V^\vee$.
+But in fact, given an inner form
+we can actually make such an identification:
+that is we can naturally associate every linear map
+$\xi \colon V \to k$ with a vector $v \in V$.
+
+To see how we might do this, suppose $V = \RR^3$
+for now with an orthonormal basis $e_1$, $e_2$, $e_3$.
+How might we use the inner product to
+represent a map from $V \to \RR$?
+For example, take $\xi \in V^\vee$ by
+$\xi(e_1) = 3$, $\xi(e_2) = 4$ and $\xi(e_3) = 5$.
+Actually, I claim that
+\[ \xi(v) = \left< 3e_1 + 4e_2 + 5e_3, v \right> \]
+for every $v$.
+And this is obvious, once you do the computation.
+
+More generally:
+\begin{theorem}[$V$ is naturally isomorphic to $V^\vee$ once we have an inner product]
+	Let $V$ be a finite-dimensional inner product space and $V^\vee$ its dual.
+	Then the map $V \to V^\vee$ by
+	\[ v \mapsto \left<  v, - \right> \in V^\vee \]
+	is an isomorphism.
+\end{theorem}
+\begin{proof}
+	It suffices to show that the map is injective and surjective.
+	\begin{itemize}
+		\ii Injective: suppose $\left< v_1, w \right> = \left< v_2, w \right>$
+		for every vector $w$.
+		This means $\left< v_1 - v_2, w \right> = 0$ for every vector $w \in V$.
+		This can only happen if $v_1 - v_2 = 0$; for example, take $w = v_1 - v_2$
+		and use positive definiteness.
+		\ii Surjective: take an orthonormal basis, and mimic the argument we gave earlier.
+		\qedhere
+	\end{itemize}
+\end{proof}
+Actually, since we already know $\dim V = \dim V^\vee$
+we only had to prove one of the above.
+As a matter of personal taste, I find the proof of injectivity more elegant,
+and the proof of surjectivity more enlightening,
+so I included both.
+Thus
+\begin{moral}
+	Once $V$ is given an inner form, $V$ and $V^\vee$ are canonically isomorphic.
+\end{moral}
+
+\section{The conjugate transpose of a square matrix}
+Let $V$ be a finite-dimensional inner product space
+and let $T \colon V \to V$.
+\begin{definition}
+The \vocab{adjoint} or \vocab{conjugate transpose}
+of $T$, denoted $T^\dagger$,
+is defined as follows: for every vector $w \in V$,
+we let $T^\dagger(w)$ be the unique vector with
+\[ \left< v, T^\dagger(w) \right> = \left< T(v), w \right> \]
+for every $v \in V$.
+This is well-defined,
+because $v \mapsto \left< T(v), w \right>$ is some function in $V^\vee$,
+and hence by the isomorphism we described earlier it can be written
+uniquely in the form $\left< v, x \right>$
+for some $x \in V$; we then let $T^\dagger(w) = x$.
+\end{definition}
+
+By symmetry, of course, we also have
+$\left< T^\dagger(v), w \right> = \left< v, T(w)\right>$.
+
+Of course, the name conjugate transpose suggests something else:
+\begin{theorem}
+	[Adjoints are conjugate transposes]
+	Fix an orthonormal basis of a finite-dimensional inner product $V$.
+	If we write $T$ as a matrix in this basis, then $T^\dagger$ is the conjugate transpose.
+\end{theorem}
+\begin{proof}
+	One-line version: take $v$ and $w$ to be basis elements, and this falls right out.
+
+	Full proof: let
+	\[ T = \begin{bmatrix}
+			a_{11} & \dots & a_{1n} \\
+			\vdots & \ddots & \vdots \\
+			a_{n1} & \dots & a_{nn}
+		\end{bmatrix} \]
+	in this basis $e_1$, \dots, $e_n$.
+	Then, letting $w = e_i$ and $v = e_j$ we deduce that
+	\[ \left< e_i, T^\dagger(e_j) \right> = \left< T(e_i) , e_j\right> = a_{ji}
+		\implies
+		\left< T^\dagger(e_j), e_i \right> = \ol{a_{ji}} \]
+	for any $i$, which is enough to deduce the result.
+\end{proof}
+
+In this way we can talk about the transpose of a matrix in a meaningful way.
+
+\section{Spectral theory of normal maps}
+The world would be a very beautiful place if it turned out
+that we could pick a basis of eigenvectors that was also orthonormal.
+This is of course far too much to hope for; even without the orthonormal condition,
+we saw in the previous chapter that we could still have $1$'s off the diagonal.
+However, it turns out that there is a good characterization anyways.
+
+\begin{definition}
+	We say $T$ is \vocab{normal} if $TT^\dagger = T^\dagger T$.
+
+	We say a complex $T$ is \vocab{self-adjoint} or \vocab{Hermitian} if $T = T^\dagger$;
+	i.e.\ as a matrix in any orthonormal basis, $T$ is its own conjugate transpose.
+	For real $T$ we say ``self-adjoint'', ``Hermitian'' or \vocab{symmetric}.
+\end{definition}
+\begin{theorem}
+	[Normal $\iff$ diagonalizable in inner form]
+	Let $V$ be a finite-dimensional complex inner product space.
+	A linear map $T : V \to V$ is normal
+	if and only if one can pick an orthonormal basis of eigenvectors.
+\end{theorem}
+\begin{proof}
+	This is long, and maybe should be omitted on a first reading.
+	If $T$ has an orthonormal basis of eigenvectors,
+	this result is immediate.
+
+	Now assume $T$ is normal.
+	We first prove $T$ is diagonalizable; this is the hard part.
+	\begin{claim}
+		If $T$ is normal, then $\ker T = \ker T^r = \ker T^\dagger$ for $r \ge 1$.
+		(Here $T^r$ is $T$ applied $r$ times.)
+	\end{claim}
+	\begin{subproof}
+		[Proof of Claim]
+		Let $S = T^\dagger \circ T$, which is self-adjoint.
+		We first note that $S$ is Hermitian and $\ker S = \ker T$.
+		To see it's Hermitian, note
+		$\left<Sv, w \right> = \left<Tv, Tw \right> = \left<v, S w \right>$.
+		Taking $v = w$ also implies $\ker S \subseteq \ker T$
+		(and hence equality since obviously $\ker T \subseteq \ker S$).
+
+		First, since we have $\left< S^r(v), S^{r-2}(v) \right>
+		= \left< S^{r-1}(v), S^{r-1}(v)\right>$,
+		an induction shows that $\ker S = \ker S^r$ for $r \ge 1$.
+		Now, since $T$ is normal, we have $S^r = (T^\dagger)^r \circ T^r$,
+		and thus we have the inclusion
+		\[ \ker T \subseteq \ker T^r \subseteq \ker S^r = \ker S = \ker T \]
+		where the last equality follows from the first claim.
+		Thus in fact $\ker T = \ker T^r$.
+
+		Finally, to show equality with $\ker T^\dagger$ we 
+		\begin{align*}
+			\left< Tv, Tv\right> &= \left< v, T^\dagger T v\right> \\
+			&= \left< v, T T^\dagger v \right> \\
+			&= \left< T^\dagger v, T^\dagger v \right>. \qedhere
+		\end{align*}
+	\end{subproof}
+
+	Now consider the given $T$, and any $\lambda$.
+	\begin{ques}
+		Show that $(T - \lambda\id)^\dagger = T^\dagger - \ol\lambda \id$.
+		Thus if $T$ is normal, so is $T - \lambda \id$.
+	\end{ques}
+	In particular, for any eigenvalue $\lambda$ of $T$,
+	we find that $\ker (T-\lambda\id) = \ker(T-\lambda\id)^r$.
+	This implies that all the Jordan blocks of $T$ have size $1$;
+	i.e.\ that $T$ is in fact diagonalizable.
+	Finally, we conclude that the eigenvectors of $T$ and $T^\dagger$ match,
+	and the eigenvalues are complex conjugates.
+
+	So, diagonalize $T$.
+	We just need to show that if $v$ and $w$ are eigenvectors of $T$
+	with distinct eigenvalues, then they are orthogonal.
+	(We can use Gram-Schmidt on any eigenvalue that appears multiple times.)
+	To do this, suppose $T(v) = \lambda v$ and $T(w) = \mu w$
+	(thus $T^\dagger(w) = \ol\mu w $).
+	Then
+	\[ \lambda \left< v,w\right>
+		= \left< \lambda v, w\right>
+		= \left< Tv, w\right>
+		= \left< v, T^\dagger(w)\right>
+		= \left< v, \ol \mu w \right> 
+		= \mu \left< v, w\right>. \]		
+	Since $\lambda \neq \mu$, we conclude $\left< v,w \right> = 0$.
+\end{proof}
+This means that not only can we write
+\[ T = \begin{bmatrix}
+		\lambda_1 & \dots & \dots & 0 \\
+		0 & \lambda_2 & \dots & 0 \\
+		\vdots & \vdots & \ddots & \vdots \\
+		0 & 0 & \dots & \lambda_n
+	\end{bmatrix}
+\]
+but moreover that the basis associated with this matrix happens to be orthonormal vectors.
+
+
+As a corollary:
+\begin{theorem}[Hermitian matrices have real eigenvalues]
+	A Hermitian matrix $T$ is diagonalizable, and all its eigenvalues are real.
+\end{theorem}
+\begin{proof}
+	Obviously Hermitian $\implies$ normal,
+	so write it in the orthonormal basis of eigenvectors.
+	To see that the eigenvalues are real, note that $T = T^\dagger$
+	means $\lambda_i = \ol{\lambda_i}$ for every $i$.
+\end{proof}
+
+\section{\problemhead}
+\todo{fundamental theorem linear algebra}

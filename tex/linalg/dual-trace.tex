@@ -1,0 +1,480 @@
+\chapter{Dual space and trace}
+We now want to also give an intrinsic definition
+of $\Tr T$, where $T \colon V \to V$ and $\dim V < \infty$.
+The tensor product will be used,
+but we'll need another construct called the \emph{dual space} $V^\vee$,
+which is the set of linear maps $V \to k$.
+
+Later on, when we upgrade from a vector space $V$
+to an inner product space $V^\vee$,
+we will see that the dual space gives a nice
+interpretation of the ``transpose'' of a matrix.
+You'll already see some of that come through here,
+
+\section{Dual space}
+\prototype{Rotate a column matrix by $90$ degrees.}
+
+Consider the following vector space:
+\begin{example}
+	[Functions from $\RR^3 \to \RR$]
+	The set of real functions $f(x,y,z)$ is an
+	infinite-dimensional real vector space.
+	Indeed, we can add two functions to get $f+g$,
+	and we can think of functions like $2f$.
+\end{example}
+This is a terrifyingly large vector space,
+but you can do some reasonable reductions.
+For example, you can restrict your attention to just
+the \emph{linear maps} from $\RR^3$ to $\RR$.
+
+That's exactly what we're about to do.
+This definition might seem strange at first, but bear with me.
+
+\begin{definition}
+	Let $V$ be a $k$-vector space.
+	Then $V^\vee$, the \vocab{dual space} of $V$, is defined
+	as the vector space whose elements are \emph{linear maps from $V$ to $k$}.
+\end{definition}
+The addition and multiplication are pointwise:
+it's the same notation we use when we write $cf+g$ to mean $c \cdot f(x) + g(x)$.
+The dual space itself is less easy to think about.
+
+Let's try to find a basis for $V^\vee$.
+First, here is a very concrete interpretation of the vector space.
+Suppose for example $V = \RR^3$.
+We can think of elements of $V$ as column matrices, like
+\[ v = \begin{bmatrix}
+		2 \\ 5 \\ 9
+	\end{bmatrix}
+	\in V. \]
+Then a linear map $f \colon V \to k$ can be interpreted as a \emph{row matrix}:
+\[
+	f = \begin{bmatrix}
+		3 & 4 & 5
+	\end{bmatrix}
+	\in V^\vee. \]
+Then
+\[
+	f(v) = \begin{bmatrix}
+		3 & 4 & 5
+	\end{bmatrix}
+	\begin{bmatrix}
+		2 \\ 5 \\ 9
+	\end{bmatrix}
+	= 71. \]
+
+More precisely: \textbf{to specify a linear map $V \to k$,
+I only have to tell you where each basis element of $V$ goes}.
+In the above example, $f$ sends $e_1$ to $3$, $e_2$ to $4$, and $e_3$ to $5$.
+So $f$ sends \[ 2e_1 + 5e_2 + 9e_3 \mapsto 2 \cdot 3 + 5 \cdot 4 + 9 \cdot 5 = 71. \]
+
+Let's make all this precise.
+\begin{proposition}[The dual basis for $V^\vee$]
+	Let $V$ be a finite-dimensional vector space with basis $e_1, \dots, e_n$.
+	For each $i$ consider the function $e_i^\vee : V \to k$ by
+	\[
+		e_i^\vee(e_j)
+		= \begin{cases}
+			1 & i=j \\
+			0 & i \neq j.
+		\end{cases}
+	\]
+	In more humane terms, $e_i^\vee(v)$ gives the coefficient of $e_i$ in $v$.
+
+	Then $e_1^\vee$, $e_2^\vee$, \dots, $e_n^\vee$ is a basis of $V^\vee$.
+\end{proposition}
+I want to emphasize that this choice of basis for $V^\vee$ is absolutely not canonical, and depends very heavily on which basis of $V$ is originally selected.
+It is not ``God-given'', in other words.
+
+\begin{example}[Explicit example of element in $V^\vee$]
+	In this notation, $f = 3e_1^\vee + 4e_2^\vee + 5e_3^\vee$.
+	Do you see why the ``sum'' notation works as expected here?
+	Indeed
+	\begin{align*}
+		f(e_1) &= (3e_1^\vee + 4e_2^\vee + 5e_3^\vee)(e_1) \\
+		&= 3e_1^\vee(e_1) + 4e_2^\vee(e_1) + 5e_3^\vee(e_1) \\
+		&= 3 \cdot 1 + 4 \cdot 0 + 5 \cdot 0 = 3.
+	\end{align*}
+	That's exactly what we wanted.
+\end{example}
+
+Also, you might be inclined to point out that $V \cong V^\vee$ at this point,
+since there's an obvious isomorphism $e_i \mapsto e_i^\vee$.
+You might call it ``rotating the column matrix by $90\dg$''.
+Two remarks:
+\begin{itemize}
+	\ii This isomorphism is absolutely not canonical,
+	and depends very much on which basis you choose.
+	In other words, if I pick a different basis, then the isomorphism
+	will be completely different.
+
+	It \emph{is} true that $V$ and $V^\vee$ are isomorphic,
+	but the fact is that any two $k$-vector spaces
+	of the same dimension are isomorphic,
+	so the fact that $V \cong V^\vee$ is not especially impressive.
+	
+	\ii If $V$ is infinite-dimensional
+	it is no longer necessarily true that $V \cong V^\vee$.
+\end{itemize}
+
+\section{$V^\vee \otimes W$ gives matrices from $V$ to $W$}
+Goal of this section:
+\begin{moral}
+	If $V$ and $W$ are finite-dimensional $k$-vector spaces
+	then $V^\vee \otimes W$ represents linear maps $V \to W$.
+\end{moral}
+
+Here's the intuition.
+If $V$ is three-dimensional and $W$ is five-dimensional, then we can think
+of the maps $V \to W$ as a $5 \times 3$ array of numbers.
+We want to think of these maps as a vector space:
+(since one can add or scale matrices).
+So it had better be a vector space with dimension $15$,
+but just saying ``$k^{\oplus 15}$'' is not really that satisfying
+(what is the basis?).
+
+To do better, we consider the tensor product
+\[ V^\vee \otimes W \]
+which somehow is a product of maps out of $V$ and the target space $W$.
+We claim that this is in fact the space we want:
+i.e.\ \textbf{there is a natural bijection between elements of $V^\vee \otimes W$
+and linear maps from $V$ to $W$}.
+
+First, how do we interpret an element of $V^\vee \otimes W$ as a map $V \to W$?
+For concreteness, suppose $V$ has a basis $e_1$, $e_2$, $e_3$,
+and $W$ has a basis $f_1$, $f_2$, $f_3$, $f_4$, $f_5$.
+Consider an element of $V^\vee \otimes W$, say
+\[ e_1^\vee \otimes (f_2 + 2f_4) + 4e_2^\vee \otimes f_5. \]
+We want to interpret this element as a function $V \to W$:
+so given a $v \in V$,
+we want to output an element of $W$.
+There's really only one way to do this:
+feed in $v \in V$ into the $V^\vee$ guys on the left.
+That is, take the map
+\[ v \mapsto e_1^\vee(v) \cdot (f_2 + 2f_4) + 4e_2^\vee(v) \cdot f_5 \in W. \]
+So, there's a natural way to interpret any element
+$\xi_1 \otimes w_1 + \dots + \xi_m \otimes w_m \in V^\vee \otimes W$
+as a linear map $V \to W$.
+The claim is that in fact, every linear map $V \to W$ has a unique such interpretation.
+
+First, for notational convenience,
+\begin{definition}
+	Let $\Hom(V,W)$ be the set of linear maps from $V$ to $W$
+	(which one can interpret as matrices which send $V$ to $W$),
+	viewed as a vector space over $k$.
+	Let $\Mat(V) = \Hom(V,V)$.
+	($\Hom$ and $\Mat$ stand for homomorphism and matrices.)
+\end{definition}
+\begin{ques}
+	Identify $\Hom(V,k)$ by name.
+\end{ques}
+
+We can now write down something that's more true generally.
+\begin{theorem}[$V^\vee \otimes W$ $\iff$ linear maps $V \to W$]
+	Let $V$ and $W$ be finite-dimensional vector spaces.
+	We described a map
+	\[ \Psi \colon V^\vee \otimes W \to \Hom(V,W) \]
+	by sending $\xi_1 \otimes w_1 + \dots + \xi_m \otimes w_m$ to the linear map
+	\[ v \mapsto \xi_1(v) w_1 + \dots + \xi_m(v) w_m. \]
+	Then $\Psi$ is an isomorphism of vector spaces, i.e.\ every linear map $V \to W$
+	can be uniquely represented as an element of $V^\vee \otimes W$ in this way.
+\end{theorem}
+The beauty is that we don't actually have to refer to the basis at all to state the theorem.
+
+\begin{proof}
+	This looks intimidating, but it's actually not difficult.
+	We proceed in two steps:
+	\begin{enumerate}
+		\ii First, we check that $\Psi$ is \emph{surjective};
+		every linear map has at least one representation of this form.
+		To see this, take any $T : V \to W$.
+		Suppose $V$ has basis $e_1$, $e_2$, $e_3$ and that
+		$T(e_1) = w_1$, $T(e_2) = w_2$ and $T(e_3) = w_3$.
+		Then the element
+		\[ e_1^\vee \otimes w_1 + e_2^\vee \otimes w_2 + e_3^\vee \otimes w_3 \]
+		works, as it is contrived to agree with $T$ on the basis elements $e_i$.
+		\ii So it suffices to check now that $\dim V^\vee \otimes W = \dim \Hom(V,W)$.
+		Certainly, $V^\vee \otimes W$ has dimension $\dim V \cdot \dim W$.
+		But by viewing $\Hom(V,W)$ as $\dim V \cdot \dim W$ matrices, we see that
+		it too has dimension $\dim V \cdot \dim W$. \qedhere
+	\end{enumerate}
+\end{proof}
+
+So there is a \textbf{natural isomorphism} $V^\vee \otimes W \cong \Hom(V,W)$.
+While we did use a basis liberally in the
+\emph{proof that it works}, this doesn't change the
+fact that the isomorphism is ``God-given'',
+depending only on the spirit of $V$ and $W$ itself
+and not which basis we choose to express the vector spaces in.
+
+The above is perhaps a bit dense, so here is a concrete example.
+\begin{example}[Explicit example]
+	Let $V = \RR^2$ and take a basis $e_1$, $e_2$ of $V$.
+	Then define $T : V \to V$ by
+	\[ T = \begin{bmatrix}
+			1 & 2 \\ 3 & 4
+		\end{bmatrix}. \]
+	Then the isomorphism sends $T$ to
+	\[ T \mapsto e_1^\vee \otimes e_1 + 2e_2^\vee \otimes e_1
+		+ 3e_1^\vee \otimes e_2 + 4e_2^\vee \otimes e_2 \in V^\vee \otimes V. \]
+	The beauty of the basis-free definition is that even if we change the basis,
+	the above expression will look completely different, but
+	the actual element in $V^\vee \otimes V$ doesn't change.
+\end{example}
+
+\section{The trace}
+We are now ready to give the definition of a trace.
+Recall that a square matrix $T$ can be thought of as a map $T \colon V \to V$.
+According to the above theorem,
+\[ \Mat(V) \cong V^\vee \otimes V \]
+so every map $V \to V$ can be thought of as an element of $V^\vee \otimes V$.
+But we can also define an
+\emph{evaluation map} $\opname{ev} : V^\vee \otimes V \to k$
+by ``collapsing'' each pure tensor: $f \otimes v \mapsto f(v)$.
+So this gives us a composed map
+\begin{diagram}
+	\Mat(V) & \rTo^\cong & V^\vee \otimes V & \rTo^{\opname{ev}} & k.
+\end{diagram}
+This result is called the \vocab{trace} of a matrix $T$.
+
+\begin{example}[Example of a trace]
+	Continuing the previous example,
+	\[ \Tr T = e_1^\vee(e_1) + 2e_2^\vee(e_1) 
+		+ 3e_1^\vee(e_2) + 4e_2^\vee(e_2)
+		= 1 + 0 + 0 + 4 = 5. \]
+	And that is why the trace is the sum of the diagonal entries.
+\end{example}
+
+\section{\problemhead}
+
+\begin{problem}
+	[Trace is sum of eigenvalues]
+	Let $V$ be an $n$-dimensional vector space
+	over an algebraically closed field $k$.
+	Let $T \colon V \to V$ be a linear map with
+	$\lambda_1$, $\lambda_2$, \dots, $\lambda_n$
+	(counted with algebraic multiplicity).
+	Show that $\Tr T = \lambda_1 + \dots + \lambda_n$.
+	\begin{hint}
+		You can either do this by writing $T$ in matrix form,
+		or you can use the wedge definition of $\det T$
+		with the basis given by Jordan form.
+	\end{hint}
+\end{problem}
+
+\begin{problem}
+	[Exponential matrix]
+	Let $X$ be $n \times n$ matrix with complex coefficients.
+	We define the exponential map by
+	\[ \exp(X) = 1 + X + \frac{X^2}{2!} + \frac{X^3}{3!} + \dots \]
+	(take it for granted that this converges to a matrix).
+	Prove that
+	\[ \det(\exp(X)) = e^{\Tr X}. \]
+	\begin{hint}
+		This is actually immediate by taking any basis
+		in which $X$ is upper-triangular.
+	\end{hint}
+\end{problem}
+
+\begin{sproblem}
+	[Double dual]
+	\gim
+	Let $V$ be a finite-dimensional vector space.
+	Prove that
+	\begin{align*}
+		V &\to (V^\vee)^\vee \\
+		v &\mapsto \left( \xi \mapsto \xi(v) \right)
+	\end{align*}
+	gives an isomorphism.
+	(This is significant because the isomorphism is \emph{canonical},
+	and in particular does not depend on the choice of basis.
+	So this is more impressive.)
+	\begin{hint}
+		You can \emph{prove} the result just by taking a basis
+		$e_1$, \dots, $e_n$ of $V$
+		and showing that it is a linear map sending $e_1$
+		to the basis $(e_1^\vee)^\vee$.
+	\end{hint}
+\end{sproblem}
+
+\begin{dproblem}
+	[Product of traces]
+	Let $T \colon V \to V$ and $S \colon W \to W$ be linear maps
+	of finite-dimensional vector spaces $V$ and $W$.
+	Consider $T \otimes S \colon V \otimes W \to V \otimes W$.
+	Prove that \[ \Tr(T \otimes S) = \Tr(T) \Tr(S). \]
+	\begin{hint}
+		Again one can just take a basis.
+	\end{hint}
+\end{dproblem}
+
+
+\begin{dproblem}
+	[Traces kind of commute]
+	\gim
+	Let $T \colon V \to W$ and $S \colon W \to V$ be linear maps
+	between finite-dimensional vector spaces $V$ and $W$.
+	Show that \[ \Tr(T \circ S) = \Tr(S \circ T). \]
+	\begin{hint}
+		One solution is to just take a basis.
+		Otherwise, interpret $T \otimes S \mapsto \Tr(T \circ S)$ as a
+		linear map $(V^\vee \otimes W) \otimes (W^\vee \otimes V) \to k$,
+		and verify that it is commutative.
+	\end{hint}
+	\begin{sol}
+		This amounts to drawing the diagram
+		\begin{diagram}
+			&& (W^\vee \otimes V) \otimes (V^\vee \otimes W)
+			&\rIsom& (V^\vee \otimes W) \otimes (W^\vee \otimes V) && \\
+			& \ldTo^{\text{compose}} & \dTo && \dTo & \rdTo^{\text{compose}} & \\
+			\Mat(W) & \lIsom & W^\vee \otimes W & & V^\vee \otimes V & \rIsom & \Mat(V) \\
+			& \rdTo_{\Tr} & \dTo_{\opname{ev}} && \dTo_{\opname{ev}} & \ldTo_{\Tr} & \\
+			&& k & \rIsom{\id} & k &&
+		\end{diagram}
+		It is easy to check that the center rectangle commutes,
+		by check it on simple tensors $\xi_W \otimes v \otimes \xi_V \otimes w$.
+		So the outer hexagon commutes and we're done.
+		This is really the same as the proof with bases;
+		what it amounts to is checking the assertion is true for
+		matrices that have a $1$ somewhere and $0$ elsewhere,
+		then extending by linearity.
+	\end{sol}
+\end{dproblem}
+
+
+\begin{problem}
+	[Putnam 1988]
+	\gim
+	Let $V$ be an $n$-dimensional vector space.
+	Let $T : V \to V$ be a linear map and suppose there exists $n+1$ eigenvectors,
+	any $n$ of which are linearly independent.
+	Does it follow that $T$ is a scalar multiple of the identity?
+	\begin{hint}
+		Look at the trace of $T$.
+	\end{hint}
+\end{problem}
+
+
+
+\begin{problem}
+	\yod
+	Let $V$ be a finite-dimensional vector space over $K$ and $T : V \to V$.
+	Show that
+	\[
+		\det(a \cdot \id_V - T) =
+		\sum_{n=0}^{\dim V} a^{\dim V-n} \cdot (-1)^n
+		\Tr\left( \Lambda^n(T) \right)
+	\]
+	where the trace is taking by viewing $\Lambda^n(T) : \Lambda^n(V) \to \Lambda^n(V)$.
+	\begin{hint}
+		Take bases, and do a fairly long calculation.
+	\end{hint}
+	\begin{sol}
+		\newcommand{\Fix}{\opname{Fix}}
+		\newcommand{\NoFix}{\opname{NoFix}}
+		Pick a basis $e_1, \dots, e_n$ of $V$.
+		Let $T$ have matrix $(x_{ij})$, and let $m = \dim V$.
+		Let $\delta_{ij}$ be the Kronecker delta.
+		Also, let $\Fix(\sigma)$ denote the fixed points of a permutation $\sigma$
+		and let $\NoFix(\sigma)$ denote the non-fixed points.
+
+		Expanding then gives
+		\begin{align*}
+			&\qquad \det (a \cdot \id - T) \\
+			&= \sum_{\sigma \in S_m} \left( \sign(\sigma)
+			\cdot \prod_{i=1}^m \left( a \cdot \delta_{i \sigma(i)} - x_{i \sigma(i)} \right)\right) \\
+			% ------------------------
+			&=
+			\sum_{s=0}^m
+			\sum_{1 \le i_1 < \dots < i_s \le m}
+			\sum_{\substack{\sigma \in S_m \\ \sigma \text{ fixes } i_k}}
+			\left( \sign(\sigma)
+			\cdot \prod_{i=1}^m \left( a \cdot \delta_{i \sigma(i)} - x_{i \sigma(i)} \right)\right) \\
+			% ------------------------
+			&=
+			\sum_{s=0}^m
+			\sum_{1 \le i_1 < \dots < i_s \le m}
+			\sum_{\substack{\sigma \in S_m \\ \sigma \text{ fixes } (i_k)}}
+			\left( \sign(\sigma)
+			\cdot \prod_{i \notin (i_k)} -x_{i \sigma(i)}
+			\prod_{i \in (i_k)}^n \left( a \cdot - x_{ii} 
+			\right)\right) \\
+			% -----------------------
+			&= 
+			\sum_{\sigma \in S_m}
+			\left( \sign(\sigma)
+			\cdot \prod_{i \in \NoFix(\sigma)} -x_{i \sigma(i)}
+			\prod_{i \in \Fix{\sigma}} \left( a - x_{ii} 
+			\right)\right) \\
+			% -----------------------
+			&=
+			\sum_{\sigma \in S_m}
+			\left( \sign(\sigma)
+			\cdot \left( \prod_{i \in \NoFix(\sigma)} -x_{i \sigma(i)} \right)
+			\left( \sum_{t=0}^{\left\lvert \Fix(\sigma) \right\rvert}
+			a^{\left\lvert \Fix(\sigma) \right\rvert - t} \cdot \sum_{i_1 < \dots < i_t \in \Fix(\sigma)}
+			\prod_{k=1}^t -x_{i_k i_k} \right)
+			\right) \\
+			% -----------------------
+			&=
+			\sum_{\sigma \in S_m}
+			\left( \sign(\sigma)
+			\left( \sum_{t=0}^{\left\lvert \Fix(\sigma) \right\rvert}
+			a^{m-t-\left\lvert \Fix(\sigma) \right\rvert} 
+			\sum_{\substack{X \subseteq \{1, \dots, m\} \\ \NoFix(\sigma) \subseteq X \\ X \text{ has exactly $t$ fixed}}} \prod_{i \in X} -x_{i \sigma(i)}
+			\right) \right) \\
+			% -----------------------
+			&= 
+			\sum_{n=0}^m
+			a^{m-n}
+			\left(
+			\sum_{\sigma \in S_m}
+			\sign(\sigma)
+			\sum_{\substack{X \subseteq \{1, \dots, m\} \\ \NoFix(\sigma) \subseteq X \\ \left\lvert X \right\rvert = n} }
+			\prod_{i \in X} -x_{i \sigma(i)}
+			\right) \\
+			% -----------------------
+			&= \sum_{n=0}^m
+			a^{m-n} (-1)^n
+			\left(
+			\sum_{\substack{X \subseteq \{1, \dots, m\} \\ \left\lvert X \right\rvert = n} }
+			\sum_{\substack{\sigma \in S_m \\ \NoFix(\sigma) \subseteq X}}
+			\sign(\sigma) \prod_{i \in X} x_{i \sigma(i)}
+			\right).
+		\end{align*}
+
+		Hence it's the same to show that
+		\[
+			\sum_{\substack{X \subseteq \{1, \dots, m\} \\ \left\lvert X \right\rvert = n} }
+			\sum_{\substack{\sigma \in S_m \\ \NoFix(\sigma) \subseteq X}}
+			\sign(\sigma) \prod_{i \in X} x_{i \sigma(i)}
+			= \Tr_{\Lambda^n(V)} \left( \Lambda^n(T) \right)
+		\]
+		holds for every $n$.
+
+		We can expand the definition of trace as using basis elements as
+		\begin{align*}
+			\Tr\left( \Lambda^n(T) \right)
+			&= \sum_{1 \le i_1 < \dots < i_n \le m}
+			\left( \bigwedge_{k=1}^n e_{i_k} \right)^\vee
+			\left( \Lambda^n(T) \left( \bigwedge_{k=1}^n e_{i_k} \right) \right) \\
+			&= \sum_{1 \le i_1 < \dots < i_n \le m}
+			\left( \bigwedge_{k=1}^n e_{i_k} \right)^\vee
+			\left(  \bigwedge_{k=1}^n T(e_{i_k}) \right) \\
+			&= \sum_{1 \le i_1 < \dots < i_n \le m}
+			\left( \bigwedge_{k=1}^n e_{i_k} \right)^\vee
+			\left(  \bigwedge_{k=1}^n 
+			\left( \sum_{j=1}^m x_{i_k j} e_j \right)
+			\right) \\
+			&= \sum_{1 \le i_1 < \dots < i_n \le m}
+			\sum_{\pi \in S_n} \sign(\pi) \prod_{k=1}^n x_{i_{\pi(k)}k} \\
+			&= \sum_{\substack{X \subseteq \{1,\dots,m\} \\ \left\lvert X \right\rvert = n}}
+			\sum_{\pi \in S_X} \sign(\pi) \prod_{i \in X} x_{t \pi(t)}
+		\end{align*}
+		Hence it remains to show that the permutations over $X$
+		are in bijection with the permutations over $S_m$ which fix $\{1, \dots, m\} - X$,
+		which is clear, and moreover, the signs clearly coincide.
+	\end{sol}
+\end{problem}
+
+

@@ -19,9 +19,11 @@ Some highlights of the chapter:
 	now you'll know.
 	\ii We show how the inner form can be used to make $V$ into a \emph{metric space},
 	giving it more geometric structure.
-	\ii We'll identify $V \cong V^\vee$ in a way that wasn't possible before,
+	\ii A few chapters later,
+	we'll identify $V \cong V^\vee$ in a way that wasn't possible before,
 	and as a corollary deduce the nice result that
-	symmetric matrices with real entries always have real eigenvalues.
+	symmetric matrices with real entries
+	always have real eigenvalues.
 \end{itemize}
 
 Throughout this chapter, \emph{all vector spaces are over $\CC$ or $\RR$},
@@ -39,8 +41,10 @@ Rather than the notation $v \cdot w$ it is most customary
 to use $\left< v,w \right>$ for general vector spaces.
 \begin{definition}
 	Let $V$ be a real vector space.
-	A \vocab{real inner form}\footnote{%
-	Other names include ``inner product'', ``dot product'', ``positive definite symmetric bilinear form'', \dots}
+	A \vocab{real inner form} (or \vocab{bilinear form})\footnote{Other
+		names include ``inner product'', ``dot product'',
+		``positive definite nondegenerate symmetric bilinear form'',
+		\dots}
 	is a function
 	\[ \left< \bullet, \bullet \right> : V \times V \to \RR \]
 	which satisfies the following properties:
@@ -65,16 +69,19 @@ to use $\left< v,w \right>$ for general vector spaces.
 \begin{example}
 	[$\RR^n$]
 	As we already know, one can define the inner form on $\RR^n$ as follows.
-	Let $\ee_1 = (1, 0, \dots, 0)$, $\ee_2 = (0, 1, \dots, 0)$, \dots, $\ee_n = (0, \dots, 0, 1)$
-	be the standard basis.
+	Let $e_1 = (1, 0, \dots, 0)$, $e_2 = (0, 1, \dots, 0)$,
+	\dots, $e_n = (0, \dots, 0, 1)$ be the usual basis.
 	Then we let
 	\[ 
-		\left< a_1 \ee_1 + \dots + a_n \ee_n, b_1 \ee_1 + \dots + b_n \ee_n \right>
+		\left< a_1 e_1 + \dots + a_n e_n, b_1 e_1 + \dots + b_n e_n \right>
 		\defeq a_1 b_1 + \dots + a_n b_n.
 	\]
-	It's easy to see this is bilinear (symmetric and linear in both arguments).
-	To see it is positive definite, note that if $a_i = b_i$
-	then the dot product is $a_1^2 + \dots + a_n^2$, which is zero exactly when all $a_i$ are zero.
+	It's easy to see this is bilinear
+	(symmetric and linear in both arguments).
+	To see it is positive definite,
+	note that if $a_i = b_i$
+	then the dot product is $a_1^2 + \dots + a_n^2$,
+	which is zero exactly when all $a_i$ are zero.
 \end{example}
 
 The definition for a complex product space is similar, but has a minor difference:
@@ -86,6 +93,7 @@ To be explicit:
 \begin{definition}
 	Let $V$ be a complex vector space.
 	A \vocab{complex inner form} $\left< \bullet, \bullet \right> : V \times V \to \CC$
+	(or \vocab{sesquilinear form})
 	is a function which satisfies the following properties:
 	\begin{itemize}
 		\ii The form has \vocab{conjugate symmetry}, which means that
@@ -121,14 +129,17 @@ To be explicit:
 \end{ques}
 
 \begin{definition}
-	A real or complex vector space with an inner form is called
-	an \vocab{inner product space}.
+	An \vocab{inner product} space either a real vector space
+	equipped with a real inner form,
+	or a complex vector space equipped with a complex inner form.
 \end{definition}
 \begin{remark}
 	\label{rem:only_complex_forms}
 	Note that we can apply the axioms for a complex inner form
-	to those for a real inner form verbatim; in $\RR$, conjugation is the identity.
-	Thus for real vector spaces, for example, ``conjugate symmetry'' is just ``symmetry''.
+	to those for a real inner form verbatim
+	; in $\RR$, conjugation is the identity.
+	Thus for real vector spaces, for example,
+	``conjugate symmetry'' is just ``symmetry''.
 	Consequently, when proving results about inner product spaces it usually
 	suffices to do just the complex case.
 \end{remark}
@@ -237,9 +248,11 @@ As we expect from our geometric intution in $\RR^n$, this implies independence:
 
 In light of this, we can now consider a stronger condition on our bases:
 \begin{definition}
-	An \vocab{orthonormal} basis of a finite-dimensional inner product space $V$
+	An \vocab{orthonormal} basis of a
+	\emph{finite-dimensional} inner product space $V$
 	is a basis $e_1$, \dots, $e_n$ such that
-	$\norm{e_i} = 1$ for every $i$ and $\left< e_i, e_j \right> = 0$ for any $i \neq j$.
+	$\norm{e_i} = 1$ for every $i$ and
+	$\left< e_i, e_j \right> = 0$ for any $i \neq j$.
 \end{definition}
 \begin{example}[$\RR^n$ and $\CC^n$ have standard bases]
 	In $\RR^n$ and $\CC^n$ equipped with the standard dot product,
@@ -279,199 +292,101 @@ Worth remarking:
 \end{example}
 And now you know why the dot product expression is so ubiquitous.
 
-\section{Identifying with the dual space}
-Earlier I complained that there was no natural isomorphism $V \cong V^\vee$.
-But in fact, given an inner form we can actually make such an identification:
-that is we can naturally associate every linear map $\xi : V \to k$ with a vector $v \in V$.
+\section{Hilbert spaces}
+In algebra we are usually scared of infinity,
+and so when we defined a basis of a vanilla vector space many chapters ago,
+we only allowed finite linear combinations.
+However, if we have an inner product space,
+then it is a metric space and we \emph{can}
+sometimes actually talk about convergence.
 
-To see how we might do this, suppose $V = \RR^3$ for now with standard basis $\ee_1$, $\ee_2$, $\ee_3$.
-How might we use the standard product to represent a map from $V \to \RR$?
-For example, take $\xi \in V^\vee$ by $\xi(\ee_1) = 3$, $\xi(\ee_2) = 4$ and $\xi(\ee_3) = 5$.
-Actually, I claim that
-\[ \xi(v) = \left< 3\ee_1 + 4\ee_2 + 5\ee_3, v \right> \]
-for every $v$.
-And this is obvious, once you do the computation.
-
-More generally:
-\begin{theorem}[$V$ is isomorphic to $V^\vee$]
-	Let $V$ be a finite-dimensional inner product space and $V^\vee$ its dual.
-	Then the map $V \to V^\vee$ by
-	\[ v \mapsto \left<  v, - \right> \in V^\vee \]
-	is an isomorphism.
-\end{theorem}
-\begin{proof}
-	It suffices to show that the map is injective and surjective.
-	\begin{itemize}
-		\ii Injective: suppose $\left< v_1, w \right> = \left< v_2, w \right>$
-		for every vector $w$.
-		This means $\left< v_1 - v_2, w \right> = 0$ for every vector $w \in V$.
-		This can only happen if $v_1 - v_2 = 0$; for example, take $w = v_1 - v_2$
-		and use positive definiteness.
-		\ii Surjective: take an orthonormal basis, and mimic the argument we gave earlier.
-	\end{itemize}
-	Actually, since we already know $\dim V = \dim V^\vee$ we only had to prove one of the above.
-	As a matter of personal taste, I find the proof of injectivity more elegant,
-	and the proof of surjectivity more enlightening, so I included both.
-\end{proof}
-Thus
-\begin{moral}
-	Once $V$ is given an inner form, $V$ and $V^\vee$ are canonically isomorphic.
-\end{moral}
-
-\section{The transpose of a matrix}
-Let $V$ be a finite-dimensional inner product space and let $T : V \to V$.
-The \vocab{adjoint} (soon \vocab{conjugate transpose}) of $T$, denoted $T^\dagger$,
-is defined as follows: for every vector $w \in V$,
-we let $T^\dagger(w)$ be the unique vector with
-\[ \left< v, T^\dagger(w) \right> = \left< T(v), w \right> \]
-for every $v \in V$.
-This is well-defined,
-because $v \mapsto \left< T(v), w \right>$ is some function in $V^\vee$,
-and hence by the isomorphism we described earlier it can be written
-uniquely in the form $\left< v, x \right>$
-for some $x \in V$; we then let $T^\dagger(w) = x$.
-
-By symmetry, of course, we also have
-$\left< T^\dagger(v), w \right> = \left< v, T(w)\right>$.
-
-Of course, the name conjugate transpose suggests something else:
-\begin{theorem}
-	[Adjoints are conjugate transposes]
-	Fix an orthonormal basis of a finite-dimensional inner product $V$.
-	If we write $T$ as a matrix in this basis, then $T^\dagger$ is the conjugate transpose.
-\end{theorem}
-\begin{proof}
-	One-line version: take $v$ and $w$ to be basis elements, and this falls right out.
-
-	Full proof: let
-	\[ T = \begin{bmatrix}
-			a_{11} & \dots & a_{1n} \\
-			\vdots & \ddots & \vdots \\
-			a_{n1} & \dots & a_{nn}
-		\end{bmatrix} \]
-	in this basis $e_1$, \dots, $e_n$.
-	Then, letting $w = e_i$ and $v = e_j$ we deduce that
-	\[ \left< e_i, T^\dagger(e_j) \right> = \left< T(e_i) , e_j\right> = a_{ji}
-		\implies
-		\left< T^\dagger(e_j), e_i \right> = \ol{a_{ji}} \]
-	for any $i$, which is enough to deduce the result.
-\end{proof}
-
-In this way we can talk about the transpose of a matrix in a meaningful way.
-
-\section{Spectral theory of normal maps}
-The world would be a very beautiful place if it turned out
-that we could pick a basis of eigenvectors that was also orthonormal.
-This is of course far too much to hope for; even without the orthonormal condition,
-we saw in the previous chapter that we could still have $1$'s off the diagonal.
-However, it turns out that there is a good characterization anyways.
-
+Here is how it goes:
 \begin{definition}
-	We say $T$ is \vocab{normal} if $TT^\dagger = T^\dagger T$.
-
-	We say a complex $T$ is \vocab{self-adjoint} or \vocab{Hermitian} if $T = T^\dagger$;
-	i.e.\ as a matrix in any orthonormal basis, $T$ is its own conjugate transpose.
-	For real $T$ we say ``self-adjoint'', ``Hermitian'' or \vocab{symmetric}.
+	A \vocab{Hilbert space} is a inner product space $V$,
+	such that the corresponding metric space is complete.
 \end{definition}
-\begin{theorem}
-	[Normal $\iff$ diagonalizable in inner form]
-	Let $V$ be a finite-dimensional complex inner product space.
-	A linear map $T : V \to V$ is normal
-	if and only if one can pick an orthonormal basis of eigenvectors.
-\end{theorem}
+
+In that case, it will now often make sense to take infinite linear combinations,
+because we can look at the sequence of partial sums and let it converge.
+Here is how we might do it.
+Let's suppose we have $e_1$, $e_2$, \dots an infinite sequence
+of vectors with norm $1$ and which are pairwise orthogonal.
+Suppose $c_1$, $c_2$, \dots, is a sequence of real or complex numbers.
+Then consider the sequence
+\begin{align*}
+	v_1 &= c_1 e_1 \\
+	v_2 &= c_1 e_1 + c_2 e_2 \\
+	v_3 &= c_1 e_1 + c_2 e_2 + c_3 e_3 \\
+	&\vdotswithin=
+\end{align*}
+
+\begin{proposition}
+	[Convergence criteria in a Hilbert space]
+	The sequence $(v_i)$ defined above
+	converges if and only if $\sum \left\lvert c_i \right\rvert^2 < \infty$.
+\end{proposition}
 \begin{proof}
-	This is long, and maybe should be omitted on a first reading.
-	If $T$ has an orthonormal basis of eigenvectors,
-	this result is immediate.
+	This will make more sense if you read\todo{link calc 101 chapter},
+	so you could skip this proof if you haven't read the chapter.
+	The sequence $v_i$ converges if and only if it is Cauchy,
+	meaning that when $i < j$,
+	\[ \norm{v_j - v_i}^2 = |c_i|^2 + \dots + |c_{j-1}|^2 \]
+	tends to zero as $i$ and $j$ get large.
+	This is equivalent to the sequence
+	$s_n = |c_1|^2 + \dots + |c_n|^2$ being Cauchy.
 
-	Now assume $T$ is normal.
-	We first prove $T$ is diagonalizable; this is the hard part.
-	\begin{claim}
-		If $T$ is normal, then $\ker T = \ker T^r = \ker T^\dagger$ for $r \ge 1$.
-		(Here $T^r$ is $T$ applied $r$ times.)
-	\end{claim}
-	\begin{subproof}
-		[Proof of Claim]
-		Let $S = T^\dagger \circ T$, which is self-adjoint.
-		We first note that $S$ is Hermitian and $\ker S = \ker T$.
-		To see it's Hermitian, note
-		$\left<Sv, w \right> = \left<Tv, Tw \right> = \left<v, S w \right>$.
-		Taking $v = w$ also implies $\ker S \subseteq \ker T$
-		(and hence equality since obviously $\ker T \subseteq \ker S$).
-
-		First, since we have $\left< S^r(v), S^{r-2}(v) \right>
-		= \left< S^{r-1}(v), S^{r-1}(v)\right>$,
-		an induction shows that $\ker S = \ker S^r$ for $r \ge 1$.
-		Now, since $T$ is normal, we have $S^r = (T^\dagger)^r \circ T^r$,
-		and thus we have the inclusion
-		\[ \ker T \subseteq \ker T^r \subseteq \ker S^r = \ker S = \ker T \]
-		where the last equality follows from the first claim.
-		Thus in fact $\ker T = \ker T^r$.
-
-		Finally, to show equality with $\ker T^\dagger$ we 
-		\begin{align*}
-			\left< Tv, Tv\right> &= \left< v, T^\dagger T v\right> \\
-			&= \left< v, T T^\dagger v \right> \\
-			&= \left< T^\dagger v, T^\dagger v \right>. \qedhere
-		\end{align*}
-	\end{subproof}
-
-	Now consider the given $T$, and any $\lambda$.
-	\begin{ques}
-		Show that $(T - \lambda\id)^\dagger = T^\dagger - \ol\lambda \id$.
-		Thus if $T$ is normal, so is $T - \lambda \id$.
-	\end{ques}
-	In particular, for any eigenvalue $\lambda$ of $T$,
-	we find that $\ker (T-\lambda\id) = \ker(T-\lambda\id)^r$.
-	This implies that all the Jordan blocks of $T$ have size $1$;
-	i.e.\ that $T$ is in fact diagonalizable.
-	Finally, we conclude that the eigenvectors of $T$ and $T^\dagger$ match,
-	and the eigenvalues are complex conjugates.
-
-	So, diagonalize $T$.
-	We just need to show that if $v$ and $w$ are eigenvectors of $T$
-	with distinct eigenvalues, then they are orthogonal.
-	(We can use Gram-Schmidt on any eigenvalue that appears multiple times.)
-	To do this, suppose $T(v) = \lambda v$ and $T(w) = \mu w$
-	(thus $T^\dagger(w) = \ol\mu w $).
-	Then
-	\[ \lambda \left< v,w\right>
-		= \left< \lambda v, w\right>
-		= \left< Tv, w\right>
-		= \left< v, T^\dagger(w)\right>
-		= \left< v, \ol \mu w \right> 
-		= \mu \left< v, w\right>. \]		
-	Since $\lambda \neq \mu$, we conclude $\left< v,w \right> = 0$.
-\end{proof}
-This means that not only can we write
-\[ T = \begin{bmatrix}
-		\lambda_1 & \dots & \dots & 0 \\
-		0 & \lambda_2 & \dots & 0 \\
-		\vdots & \vdots & \ddots & \vdots \\
-		0 & 0 & \dots & \lambda_n
-	\end{bmatrix}
-\]
-but moreover that the basis associated with this matrix happens to be orthonormal vectors.
-
-
-As a corollary:
-\begin{theorem}[Hermitian matrices have real eigenvalues]
-	A Hermitian matrix $T$ is diagonalizable, and all its eigenvalues are real.
-\end{theorem}
-\begin{proof}
-	Obviously Hermitian $\implies$ normal,
-	so write it in the orthonormal basis of eigenvectors.
-	To see that the eigenvalues are real, note that $T = T^\dagger$
-	means $\lambda_i = \ol{\lambda_i}$ for every $i$.
+	Since $\RR$ is complete, $s_n$ is Cauchy
+	if and only if it converges.
+	Since $s_n$ consists of nonnegative real numbers,
+	that is if and only if $s_n$ is bounded,
+	or $\sum_i \left\lvert c_i \right\rvert^2 < \infty$.
 \end{proof}
 
+Thus, when we have a Hilbert space, we change our definition slightly:
+\begin{definition}
+	A \vocab{orthonormal basis} for a Hilbert space $V$
+	is a (possibly infinite) sequence $e_1$, $e_2$, \dots,
+	of vectors such that
+	\begin{itemize}
+		\ii $\left< e_i, e_1 \right> = 1$ for all $i$,
+		\ii $\left< e_i, e_j \right> = 0$ for $i \ne j$,
+		i.e.\ the vectors are pairwise orthogonal
+		\ii every element of $V$ can be expressed uniquely as an
+		infinite linear combination
+		\[ \sum_i c_i e_i \]
+		where $\sum_i \left\lvert c_i \right\rvert^2 < \infty$,
+		as described above.
+	\end{itemize}
+\end{definition}
+That's the official definition, anyways.
+(Note that if $\dim V < \infty$, this agrees with our usual definition,
+since then there are only finitely many $e_i$.)
+But for our purposes you can mostly not worry about it and instead think:
+\begin{moral}
+	A Hilbert space is an inner product space
+	whose basis requires infinite linear combinations,
+	not just finite ones.
+\end{moral}
+The technical condition $\sum \left\lvert c_i \right\rvert^2 < \infty$
+is exactly the one which ensures the infinite sum makes sense.
 
-\section\problemhead
+\section{\problemhead}
+
 \begin{problem}
 	[Pythagorean theorem]
 	Show that if $\left< v,w \right> = 0$ in an inner product space,
 	then $\norm{v}^2 + \norm{w}^2 = \norm{v+w}^2$.
 \end{problem}
+
+\begin{sproblem}
+	[Finite-dimensional $\implies$ Hilbert]
+	Show that a finite-dimensional inner product space
+	is a Hilbert space.
+	\begin{hint}
+		Fix an orthonormal basis $e_1$, \dots, $e_n$.
+		Use the fact that $\RR^n$ is complete.
+	\end{hint}
+\end{sproblem}
 
 %\begin{problem}
 %	Let $V$ be a complex inner product space
@@ -488,7 +403,10 @@ As a corollary:
 
 \begin{problem}[Taiwan IMO camp]
 	\gim
-	In a town there are $n$ people and $k$ clubs. Each club has an odd number of members, and any two clubs have an even number of common members. Prove that $k \le n$.
+	In a town there are $n$ people and $k$ clubs.
+	Each club has an odd number of members,
+	and any two clubs have an even number of common members.
+	Prove that $k \le n$.
 	\begin{hint}
 		Dot products in $\FF_2$.
 	\end{hint}
@@ -521,7 +439,6 @@ As a corollary:
 	\end{sol}
 \end{sproblem}
 
-
 \begin{problem}[Putnam 2014]
 	\gim
 	Let $n$ be a positive integer.
@@ -536,4 +453,14 @@ As a corollary:
 		Note that ``zero entry somewhere on its diagonal''
 		is equivalent to the product of those entries being zero.
 	\end{hint}
+\end{problem}
+
+\begin{problem}
+	[Sequence space]
+	Consider the space $\ell^2$ of infinite sequences of real numbers
+	$a = (a_1, a_2, \dots)$ satisfying $\sum_i a_i^2 < \infty$.
+	We equip it with the dot product
+	\[ \left< a, b\right> = \sum_i a_i b_i. \]
+	Is this a Hilbert space?
+	If so, identify a Hilbert basis.
 \end{problem}

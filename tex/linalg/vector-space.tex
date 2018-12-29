@@ -421,7 +421,8 @@ But the beauty of the theorem is that no matter how we try
 to contrive the generating set, we always will get exactly three elements.
 That's why it makes sense to say $V$ has dimension three.
 
-On the other hand, the set of all polynomials is \emph{infinite-dimensional}
+On the other hand, the set of all polynomials
+$\RR[x]$ is \emph{infinite-dimensional}
 (which should be intuitively clear).
 
 A basis $e_1, \dots, e_n$ of $V$ is really cool because it means that to specify $v \in V$, I just have to specify $a_1, \dots, a_n \in k$,
@@ -599,9 +600,9 @@ is the same thing we get from interpreting the composed function $S \circ T$ as 
 \begin{exercise}
 	Check this for yourself!
 	For a concrete example let $\RR^2 \taking{T} \RR^2 \taking{S} \RR^2$
-	by $T(\ee_1) = 2\ee_1+3\ee_2$ and $T(\ee_2) = 4\ee_1+5\ee_2$,
-	$S(\ee_1) = 6\ee_1+7\ee_2$ and $S(\ee_2) = 8\ee_1+9\ee_2$.
-	Compute $S(T(\ee_1))$ and $S(T(\ee_2))$ and see how it compares
+	by $T(e_1) = 2e_1+3e_2$ and $T(e_2) = 4e_1+5e_2$,
+	$S(e_1) = 6e_1+7e_2$ and $S(e_2) = 8e_1+9e_2$.
+	Compute $S(T(e_1))$ and $S(T(e_2))$ and see how it compares
 	to multiplying the matrices associated to $S$ and $T$.
 \end{exercise}
 In particular, since function composition is associative,
@@ -623,14 +624,14 @@ doesn't depend on the choice of a basis.
 \prototype{Any two linearly independent vectors in $\RR^3$.}
 % A submodule is exactly what you think it is.
 \begin{definition}
-	Let $M$ be a left $R$-module. 
+	Let $M$ be a left $R$-module.
 	A \vocab{submodule} $N$ of $M$ is a module $N$
 	such that every element of $N$ is also an element of $M$.
 	If $M$ is a vector space then $N$ is called a \vocab{subspace}.
 \end{definition}
 
 \begin{example}[Kernels]
-	The \vocab{kernel} of a map $T : V \to W$ is the
+	The \vocab{kernel} of a map $T \colon V \to W$ is the
 	set of $v \in V$ such that $T(v) = 0_W$.
 	It is a subspace of $V$, since it's closed under addition and scaling (why?).
 \end{example}
@@ -647,8 +648,9 @@ doesn't depend on the choice of a basis.
 
 Subspaces behave nicely with respect to bases.
 \begin{theorem}[Basis completion]
+	\label{thm:basis_completion}
 	Let $V$ be an $n$-dimensional space, and $V'$ a subspace of $V$.
-	Then 
+	Then
 	\begin{enumerate}[(a)]
 		\ii $V'$ is also finite-dimensional.
 		\ii If $e_1, \dots, e_m$ is a basis of $V'$, then there exist
@@ -657,7 +659,9 @@ Subspaces behave nicely with respect to bases.
 	\end{enumerate}
 \end{theorem}
 \begin{proof}
-	Boring and intuitive.
+	Omitted, since it is intuitive and the proof is not that enlightening.
+	(However, we will use this result repeatedly later on,
+	so do take the time to internalize it now.)
 \end{proof}
 This means that given $V'$ a subspace of $V$,
 one can pick a basis of $V$ such that
@@ -665,7 +669,8 @@ $V'$ is the span of some subset of that basis
 
 The same goes for maps, using $\ker T$:
 \begin{theorem}[Picking a basis for linear maps]
-	Let $T \colon V\to W$ be a map of finite-dimensional vector spaces.
+	\label{thm:linear_map_basis}
+	Let $T \colon V \to W$ be a map of finite-dimensional vector spaces.
 	Then there exists a basis $v_1, \dots, v_n$ of $V$
 	and a basis $w_1, \dots, w_m$ of $W$,
 	as well as a nonnegative integer $k$, such that
@@ -676,13 +681,13 @@ The same goes for maps, using $\ker T$:
 			0_W & \text{if $i > k$}.
 		\end{cases}
 	\]
-	\label{thm:linear_map_basis}
 \end{theorem}
 For example, if $V = k^{\oplus 3}$ and $W = k^{\oplus 99}$,
 $T$ might be the map which sends $e_3 \in V$ to $0 \in W$
-and $e_1, e_2 \in V$ to $f_{13}, f_{37}$ in $W$.
+and $e_1, e_2 \in V$ to $f_{1}, f_{2}$ in $W$.
 \begin{proof}[Sketch of Proof]
-	You might like to try this one yourself before reading on.
+	You might like to try this one yourself before reading on:
+	it's a repeated application of \Cref{thm:basis_completion}.
 
 	Let $\ker T$ have dimension $n-k$.
 	We can pick $v_{k+1}, \dots, v_{n}$ a basis of $\ker T$.
@@ -696,7 +701,7 @@ and $e_1, e_2 \in V$ to $f_{13}, f_{37}$ in $W$.
 
 The above theorem is quite important: you should keep it in your head.
 It gives you a picture of how a linear map behaves:
-in particular, for $T : V \to W$, 
+in particular, for $T \colon V \to W$,
 one can write $V = \ker T \oplus V'$,
 so that $T$ annihilates its kernel while sending $V'$
 to an isomorphic copy in $W$.
@@ -877,6 +882,10 @@ Nonetheless, there are still analogs of some of the definitions above.
 \end{abuse}
 
 \section{\problemhead}
+General hint:
+\Cref{thm:linear_map_basis} will be your best friend
+for many of these problems.
+
 \begin{dproblem}
 	Let $V$ and $W$ be finite-dimensional vector spaces
 	with nonzero dimension, and consider linear maps $T \colon V \to W$.
@@ -912,6 +921,7 @@ Nonetheless, there are still analogs of some of the definitions above.
 
 \begin{dproblem}
 	[Equal dimension vector spaces are usually isomorphisms]
+	\label{prob:equal_dimension}
 	Let $V$ and $W$ be finite-dimensional vector
 	spaces with $\dim V = \dim W$.
 	Prove that for a map $T \colon V \to W$,
@@ -992,9 +1002,11 @@ Nonetheless, there are still analogs of some of the definitions above.
 \begin{sproblem}
 	[Idempotents are projection maps]
 	\label{prob:idempotent}
-	Let $P: V \to V$ be a linear map, where $V$ is a vector space
+	Let $P \colon V \to V$ be a linear map,
+	where $V$ is a vector space
 	(not necessarily finite-dimensional).
-	Suppose $P$ is \vocab{idempotent}, meaning $P(P(v)) = P(v)$ for each $v \in V$,
+	Suppose $P$ is \vocab{idempotent},
+	meaning $P(P(v)) = P(v)$ for each $v \in V$,
 	or equivalently $P$ is the identity on its image.
 	Prove that \[ V = \ker P \oplus \img P. \]
 	Thus we can think of $P$ as \emph{projection}
@@ -1005,7 +1017,8 @@ Nonetheless, there are still analogs of some of the definitions above.
 	\label{prob:endomorphism_eventual_lemma}
 	\gim
 	Let $V$ be a finite dimensional vector space.
-	Let $T : V \to V$ be a linear map, and let $T^n : V \to V$ denote $T$ applied $n$ times.
+	Let $T \colon V \to V$ be a linear map,
+	and let $T^n \colon V \to V$ denote $T$ applied $n$ times.
 	Prove that there exists an integer $N$ such that
 	\[ V = \ker T^N \oplus \img T^N. \]
 	\begin{hint}

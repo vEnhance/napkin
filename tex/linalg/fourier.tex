@@ -1,20 +1,17 @@
-\chapter{Bonus: Fourier Analysis}
+\chapter{Bonus: Fourier analysis}
 Now that we've worked hard to define abstract inner product spaces,
 I want to give an (optional) application:
 how to set up Fourier analysis correctly, using this language.
 
-As a bonus, I also prove a form of Arrow's Impossibility Theorem
+For fun, I also prove a form of Arrow's Impossibility Theorem
 using binary Fourier analysis,
 and then mention the fancier generalization using Pontryagin duality.
 
 In what follows, we let $\TT = \RR/\ZZ$ denote the ``circle group'',
 thought of as the additive group of ``real numbers modulo $1$''.
-There is a canonical map $e : \TT \to \CC$ sending $\TT$ to the
-complex unit circle, given by $e(\theta) = \exp(2\pi i \theta)$.
-
-(Disclaimer: I will deliberately be sloppy with convergence issues,
-in part because I don't fully understand them myself,
-and in part because I don't care.)
+There is a canonical map $e \colon \TT \to \CC$ sending $\TT$ to the
+complex unit circle, given by
+\[ e(\theta) = \exp(2\pi i \theta). \]
 
 \section{Synopsis}
 Suppose we have a domain $Z$ and are interested in functions $f \colon Z \to \CC$.
@@ -43,13 +40,7 @@ to be nice ``symmetric'' functions,
 like sine or cosine waves or other periodic functions.
 Thus $we$ decompose an arbitrarily complicated function into a sum on nice ones.
 
-\section{Hilbert spaces}
-\prototype{Any complex inner product space, really.}
-\todo{WRITE ME}
-In this case, an orthonormal basis must allow
-infinite linear combinations,
-as long as the sum of squares is finite.
-
+\section{A reminder on Hilbert spaces}
 For convenience, we record a few facts about orthonormal bases.
 \begin{proposition}
 	[Facts about orthonormal bases]
@@ -65,11 +56,20 @@ For convenience, we record a few facts about orthonormal bases.
 		\left< x,y \right> &= \sum_\xi a_\xi \ol{b_\xi}.
 	\end{align*}
 \end{proposition}
-\begin{ques}
+\begin{exercise}
 	Prove all of these.
 	(You don't need any of the preceding discussion,
 	it's only there to motivate the notation with lots of scary $\xi$'s.)
-\end{ques}
+\end{exercise}
+
+In what follows,
+most of the examples will be of finite-dimensional inner product spaces
+(which are thus Hilbert spaces),
+but the example of ``square-integrable functions''
+will actually be an infinite dimensional example.
+Fortunately, as I alluded to earlier,
+this is no cause for alarm
+and you can mostly close your eyes and not worry about infinity.
 
 \section{Common examples}
 \subsection{Binary Fourier analysis on $\{\pm1\}^n$}
@@ -144,7 +144,8 @@ satisfying the following properties:
 \end{itemize}
 \end{definition}
 \begin{example}
-	If $Z = \Zm3$ then $\xi \cdot x = (\xi x)/3$ satisfies the above.
+	[The form on $\Zc n$]
+	If $Z = \Zc n$ then $\xi \cdot x = (\xi x)/n$ satisfies the above.
 \end{example}
 In general, it turns out finite abelian groups
 decompose as the sum of cyclic groups (see \Cref{sec:FTFGAG}),
@@ -152,29 +153,26 @@ which makes it relatively easy to find such a $\cdot$;
 but as I said the choice won't matter, so let's move on.
 
 Now for the fun part: defining the characters.
-the characters are given by
-In this way, the set of frequencies is also $Z$,
-but the $\xi \in Z$ play very different roles from the ``physical'' $x \in Z$.
 \begin{proposition}
 	[$e_\xi$ are orthonormal]
 	For each $\xi \in Z$ we define the character
 	\[ e_\xi(x) = e(\xi \cdot x). \]
-	The $|Z|$ characters form an orthonormal basis.
+	The $|Z|$ characters form an orthonormal basis of the
+	space of functions $Z \to |CC$.
 \end{proposition}
-We won't prove this here, since it requires too
-much detail about the $\cdot$ that
-I'm deliberately trying to avoid.
-Instead, the following example might be enlightening.
-%\begin{proof}
-%	Compute
-%	\begin{align*}
-%		\left< e_{\xi}, e_{\xi'} \right>
-%		&= \frac{1}{|Z|} \sum_{x \in Z} e(\xi \cdot x) \ol{e(\xi' \cdot x)} \\
-%		&= \frac{1}{|Z|} \sum_{x \in Z} e(\xi \cdot x) e(-\xi' \cdot x) \\
-%		&= \frac{1}{|Z|} \sum_{x \in Z} e\left( (\xi-\xi') \cdot x \right).
-%	\end{align*}
-%\end{proof}
+\begin{proof}
+	I recommend skipping this one, but it is:
+	\begin{align*}
+		\left< e_{\xi}, e_{\xi'} \right>
+		&= \frac{1}{|Z|} \sum_{x \in Z} e(\xi \cdot x) \ol{e(\xi' \cdot x)} \\
+		&= \frac{1}{|Z|} \sum_{x \in Z} e(\xi \cdot x) e(-\xi' \cdot x) \\
+		&= \frac{1}{|Z|} \sum_{x \in Z} e\left( (\xi-\xi') \cdot x \right).
+	\end{align*}
+\end{proof}
 
+In this way, the set of frequencies is also $Z$,
+but the $\xi \in Z$ play very different roles from the ``physical'' $x \in Z$.
+Here is an example which might be enlightening.
 \begin{example}
 	[Cube roots of unity filter]
 	Suppose $Z = \Zm3$, with the inner form given by $\xi \cdot x = (\xi x)/3$.
@@ -247,11 +245,11 @@ and use Fourier analysis in order to interchange the order of summation.
 \subsection{Fourier series for functions $L^2([-\pi, \pi])$}
 Now we consider the space $L^2([-\pi, \pi])$ of
 square-integrable functions $[-\pi, \pi] \to \CC$, with inner form
-\[ \left< f,g \right> = \frac{1}{2\pi} \int_{[-\pi, \pi]} f(x) \ol{g(x)}. \]
-Sadly, this is infinite-dimensional now,
-but it turns out to be a Hilbert space, and we'll treat it this way.
-
-Now, it turns out in this case that
+\[ \left< f,g \right>
+	= \frac{1}{2\pi} \int_{[-\pi, \pi]} f(x) \ol{g(x)}. \]
+It turns out (we won't prove) that this is an
+(infinite-dimensional) Hilbert space!
+Now, the beauty of Fourier analysis is that it has a great basis:
 \begin{theorem}
 	For each integer $n$, define
 	\[ e_n(x) = \exp(inx). \]
@@ -261,21 +259,13 @@ Now, it turns out in this case that
 Thus this time the frequency set $\ZZ$ is infinite.
 So every function $f \in L^2([-\pi, \pi])$ decomposes as
 \[ f(x) = \sum_n \wh f(n) \exp(inx) \]
-for $\wh f(n)$.
-
-This is a little worse than our finite examples:
-instead of a finite sum on the right-hand side,
-we actually have an infinite sum.
-This is because our set of frequencies is now $\ZZ$, which isn't finite.
-In this case the $\wh f$ need not be finitely supported,
-but do satisfy $\sum_n |\wh f(n)|^2 < \infty$.
+for $\wh f(n)$ with $\sum_n \left\lvert \wh f(n) \right\rvert^2 < \infty$.
 
 Since the frequency set is indexed by $\ZZ$,
 we call this a \vocab{Fourier series}
 to reflect the fact that the index is $n \in \ZZ$.
-
 \begin{exercise}
-	Show once again 
+	Show once again
 	\[ \wh f(0) = \frac{1}{2\pi} \int_{[-\pi, \pi]} f(x). \]
 \end{exercise}
 
@@ -283,7 +273,7 @@ Often we require that the function $f$ satisfies $f(-\pi) = f(\pi)$,
 so that $f$ becomes a periodic function,
 and we can think of it as $f : \TT \to \CC$.
 
-\subsection{Summary}
+\section{Summary, and another teaser}
 We summarize our various flavors of Fourier analysis in the following table.
 \[
 	\begin{array}{llll}
@@ -297,23 +287,55 @@ We summarize our various flavors of Fourier analysis in the following table.
 			& e(\xi \cdot x) \\
 		\text{Fourier series} & \TT \text{ or } [-\pi, \pi] & n \in \ZZ
 			& \exp(inx) \\
-		% \textbf{Fourier transf} & \RR & \xi \in \RR
-		% 	& \exp(2\pi i x \xi)
+		\text{Discrete} & \Zm n
+			& \Zm n
+			& e(\xi x / n) \\
 	\end{array}
 \]
+I snuck in a fourth row with $Z  = \Zm /n$,
+but it's a special case of the second row, so no cause for alarm.
+
+Alluding to the future, I want to hint at how \Cref{ch:pontryagin} starts.
+Each one of these is really a statement
+about how functions from $G \to \CC$
+can be expressed in terms of functions $\wh G \to \CC$,
+for some ``dual'' $\wh G$.
+In that sense, we could rewrite the above table as:
+\[
+	\begin{array}{llll}
+		\hline
+		\text{Name} & \text{Domain }G & \text{Dual }\wh G 
+			& \text{Characters} \\ \hline
+		\text{Binary} & \{\pm1\}^n
+			& S \subseteq \left\{ 1, \dots, n \right\}
+			& \prod_{s \in S} x_s \\
+		\text{Finite group} & Z
+			& \xi \in \wh Z \cong Z & e( i \xi \cdot x) \\
+		\text{Fourier series} & \TT \cong [-\pi, \pi]  & n \in \ZZ
+			& \exp(inx) \\
+		\text{Discrete} & \ZZ/n\ZZ & \xi \in \ZZ/n\ZZ
+			& e(\xi x / n) \\
+	\end{array}
+\]
+It will turn out that in general
+we can say something about many different domains $G$,
+once we know what it means to integrate a measure.
+This is the so-called \emph{Pontryagin duality};
+and it is discussed as a follow-up bonus in \Cref{ch:pontryagin}.
 
 \section{Parseval and friends}
-The notion of an orthonormal basis makes several ``big-name'' results
-in Fourier analysis quite lucid.
-Basically, we can take every result from Proposition~\ref{prop:orthonormal},
-translate it into the context of our Fourier analysis,
+Here is a fun section in which you get to learn a lot of big names quickly.
+Basically, we can take each of the three results
+from Proposition~\ref{prop:orthonormal},
+translate it into the context of our Fourier analysis
+(for which we have an orthonormal basis of the Hilbert space),
 and get a big-name result.
 
 \begin{corollary}
 	[Parseval theorem]
-	Let $f : Z \to \CC$, where $Z$ is a finite abelian group.
+	Let $f \colon Z \to \CC$, where $Z$ is a finite abelian group.
 	Then \[ \sum_\xi |\wh f(\xi)|^2 = \frac{1}{|Z|} \sum_{x \in Z} |f(x)|^2. \]
-	Similarly, if $f : [-\pi, \pi] \to \CC$ is square-integrable then
+	Similarly, if $f \colon [-\pi, \pi] \to \CC$ is square-integrable then
 	its Fourier series satisfies
 	\[ \sum_n |\wh f(n)|^2 = \frac{1}{2\pi} \int_{[-\pi, \pi]} |f(x)|^2. \]
 \end{corollary}
@@ -349,7 +371,7 @@ the coefficient of $e_\xi$ in $f$ is $\left< f, e_\xi\right>$.
 	Prove this one in one line (like before).
 \end{ques}
 
-\section{(Optional) Arrow's Impossibility Theorem}
+\section{Application: Arrow's Impossibility Theorem}
 As an application, of binary Fourier analysis,
 we now prove a form of
 \href{https://en.wikipedia.org/wiki/Arrow's_impossibility_theorem}{Arrow's theorem}.
@@ -435,183 +457,11 @@ that $f(+1, \dots, +1) = +1$ (hence possibility of anti-dictatorship).
 \end{proof}
 
 
-\section{A glimpse of Pontryagin duality}
-In fact all the examples we have covered can be subsumed
-as special cases of \emph{Pontryagin duality},
-where we replace the domain with a general group $G$.
-This is mostly beyond the scope of Napkin,
-but I'll outline what's going on.
-
-\subsection{LCA groups}
-Some hypotheses are necessary here:
-\begin{definition}
-	A \vocab{locally compact abelian (LCA) group}
-	consists of two pieces of data:
-	\begin{itemize}
-		\ii A Hausdorff topological space $G$
-		which is \emph{locally compact}:
-		every point of $G$ has a compact neighborhood.
-		\ii $G$ should also have an \emph{abelian group} operation on it,
-		which is continuous\footnote{I haven't (and will not)
-			define what this means, but you can try to guess.}
-		with respect to the topology.
-	\end{itemize}
-\end{definition}
-Our previous examples fall into this category:
-\begin{example}
-	[Examples of locally compact abelian groups]
-	\listhack
-	\begin{itemize}
-		\ii Any finite group $Z$ with the discrete topology is LCA.
-		\ii The circle group $\TT$ is LCA and also in fact compact.
-		\ii The real numbers $\RR$ are an example of an LCA group
-		which is \emph{not} compact.
-	\end{itemize}
-\end{example}
-It turns out that for an LCA group,
-it's possible to define an integral $\int_G f$
-for functions $f \colon G \to \CC$.
-The relevant buzz-word is
-\href{https://en.wikipedia.org/wiki/Haar_measure}{Haar measure},
-which we won't work in detail here.
-
-\subsection{The Pontryagin dual}
-The key definition is:
-\begin{definition}
-	Let $G$ be an LCA group.
-	Then its \vocab{Pontryagin dual} is the abelian group
-	\[ \wh G \defeq \left\{ \text{continuous group homomorphisms }
-			\xi : G \to \TT \right\}. \]
-	The maps $\xi$ are called \vocab{characters}.
-	It can itself be made into an LCA group
-	using the so-called
-	\href{https://en.wikipedia.org/wiki/Compact-open_topology}{compact-open topology},
-	which we don't define here.
-\end{definition}
-\begin{example}
-	[Examples of Pontryagin duals]
-	\listhack
-	\begin{itemize}
-		\ii $\wh{\ZZ} \cong \TT$,
-		since group homomorphisms $\ZZ \to \TT$ are determined by the image of $1$.
-		\ii $\wh{\TT} \cong \ZZ$.
-		The characters are given by $\theta \mapsto n\theta$ for $n \in \ZZ$.
-		\ii $\wh{\RR} \cong \RR$.
-		This is because a nonzero continuous homomorphism
-		$\RR \to S^1$ is determined by the fiber above $1 \in S^1$.
-		(Algebraic topologists might see covering projections here.)
-		\ii $\wh{\ZZ/n\ZZ} \cong \ZZ/n\ZZ$,
-		characters $\xi$ being determined by the image $\xi(1) \in \TT$.
-		\ii $\wh{G \times H} \cong \wh G \times \wh H$.
-	\end{itemize}
-\end{example}
-\begin{exercise}
-	[$\wh Z \cong Z$, for those who read \Cref{sec:FTFGAG}]
-	If $Z$ is a finite abelian group, show that $\wh Z \cong Z$,
-	using the results of the previous example.
-	You may now recognize that the bilinear form
-	$\cdot \colon Z \times Z \to \TT$
-	is exactly a choice of isomorphism $Z \to \wh Z$.
-	It is not ``canonical''.
-\end{exercise}
-
-
-True to its name as the dual,
-and in analogy with $(V^\vee)^\vee \cong V$ for vector spaces $V$, we have:
-\begin{theorem}
-	[Pontryagin duality theorem]
-	For any LCA group $G$, there is an isomorphism
-	\[ G \cong \wh{\wh G} \qquad \text{by} \qquad
-		x \mapsto \left( \xi \mapsto \xi(x) \right). \]
-\end{theorem}
-
-\subsection{The orthonormal basis in the compact case}
-If $G$ is LCA and compact,
-then it turns out it's possible to integrate over $G$
-Thus we may let $L^2(G)$ be the space of square-integrable functions to $\CC$, i.e.
-\[ L^2(G) = \left\{ f : G \to \CC
-	\quad\text{such that}\quad \int_G |f|^2 < \infty \right\}. \]
-Thus we can equip it with the inner form
-\[ \left< f,g \right> = \int_G f \cdot \ol{g}. \]
-In that case, we get all the results we wanted before:
-\begin{theorem}
-	[Characters of $\wh G$ forms an orthonormal basis]
-	\label{thm:god}
-	Assume $G$ is LCA and compact.
-	Then $\wh G$ is \emph{discrete}, and the characters
-	\[ (e_\xi)_{\xi \in \wh G}
-		\qquad\text{by}\qquad e_\xi(x) = e(\xi(x)) = \exp(2\pi i \xi(x)) \]
-	form an orthonormal basis of $L^2(G)$.
-	Thus for each $f \in L^2(G)$ we have
-	\[ f = \sum_{\xi \in \wh G} \wh f(\xi) e_\xi \]
-	where
-	\[ \wh f(\xi) = \left< f, e_\xi \right>
-		= \int_G f(x) \exp(-2\pi i \xi(x)) \; d\mu. \]
-\end{theorem}
-The sum $\sum_{\xi \in \wh G}$ makes sense since $\wh G$ is discrete.
-In particular,
-\begin{itemize}
-	\ii Letting $G = Z$ gives ``Fourier transform on finite groups''.
-	\ii The special case $G = \ZZ/n\ZZ$ has its
-	\href{https://en.wikipedia.org/wiki/Discrete-time_Fourier_transform}%
-	{own Wikipedia page}.
-	\ii Letting $G = \TT$ gives the ``Fourier series'' earlier.
-\end{itemize}
-
-\subsection{The Fourier transform of the non-compact case}
-If $G$ is LCA but not compact, then Theorem~\ref{thm:god} becomes false.
-On the other hand, it's still possible to define $\wh G$
-and then try to write
-\[ \wh f(\xi) = \int_G f \cdot \ol{e_\xi} \]
-for functions $f$.
-The results are less fun in this case,
-though, and we won't discuss them further.
-
-Despite the fact that the $e_\xi$ no longer form an orthonormal basis,
-the transformed function $\wh f : \wh G \to \CC$ is still often useful.
-In particular, they have special names for a few special $G$:
-\begin{itemize}
-	\ii If $G = \RR$, then $\wh G = \RR$,
-	and this construction gives the poorly named
-	``\href{https://en.wikipedia.org/wiki/Fourier_transform}{(continuous) Fourier transform}''.
-	\ii If $G = \ZZ$, then $\wh G = \TT$,
-	and this construction gives the poorly named
-	``\href{https://en.wikipedia.org/wiki/Discrete-time_Fourier_transform}{discrete time Fourier transform}.
-\end{itemize}
-
-\section{Summary}
-We summarize our various flavors of Fourier analysis
-from the previous sections in the following table.
-In the first part $G$ is compact,
-in the second half $G$ is not.
-\[
-	\begin{array}{llll}
-		\hline
-		\text{Name} & \text{Domain }G & \text{Dual }\wh G 
-			& \text{Characters} \\ \hline
-		\text{Binary Fourier analysis} & \{\pm1\}^n
-			& S \subseteq \left\{ 1, \dots, n \right\}
-			& \prod_{s \in S} x_s \\
-		\text{Fourier transform on finite groups} & Z
-			& \xi \in \wh Z \cong Z & e( i \xi \cdot x) \\
-		\text{Discrete Fourier transform} & \ZZ/n\ZZ & \xi \in \ZZ/n\ZZ
-			& e(\xi x / n) \\
-		\text{Fourier series} & \TT \cong [-\pi, \pi]  & n \in \ZZ
-			& \exp(inx) \\ \hline
-		\text{Continuous Fourier transform} & \RR & \xi \in \RR
-		 	& e(\xi x) \\
-		\text{Discrete time Fourier transform} & \ZZ & \xi \in \TT \cong [-\pi, \pi]
-		 	& \exp(i \xi n) \\
-	\end{array}
-\]
-You might notice that the \textbf{various names are awful}.
-This is part of the reason I got confused as a high school student:
-every type of Fourier series above has its own Wikipedia article.
-If it were up to me, we would just use the term ``$G$-Fourier transform'',
-and that would make everyone's lives a lot easier.
+\section{Application: PI SUM}
+\todo{insert a pi sum}
 
 \section{\problemhead}
-
+\todo{another pi sum}
 \begin{problem}
 	\gim
 	\label{prob:arrow_lemma}
@@ -697,65 +547,4 @@ and that would make everyone's lives a lot easier.
 	Comparing this with the definition of $D$ gives the desired result.
 	\end{sol}
 \end{problem}
-
-\endinput
-\section{Peter-Weyl}
-In fact, if $G$ is a Lie group, even if $G$ is not abelian
-we can still give an orthonormal basis of $L^2(G)$
-(the square-integrable functions on $G$).
-It turns out in this case the characters are attached to complex
-irreducible representations of $G$
-(and in what follows all representations are complex).
-
-The result is given by the Peter-Weyl theorem.
-First, we need the following result:
-\begin{lemma}
-	[Compact Lie groups have unitary reps]
-	Any finite-dimensional (complex) representation $V$ of a compact Lie group $G$
-	is unitary, meaning it can be equipped with a $G$-invariant inner form.
-	Consequently, $V$ is completely reducible:
-	it splits into the direct sum of irreducible representations of $G$.
-\end{lemma}
-\begin{proof}
-	Suppose $B : V \times V \to \CC$ is any inner product.
-	Equip $G$ with a right-invariant Haar measure $dg$.
-	Then we can equip it with an ``averaged'' inner form
-	\[ \wt B(v,w) = \int_G B(gv, gw) \; dg. \]
-	Then $\wt B$ is the desired $G$-invariant inner form.
-	Now, the fact that $V$ is completely reducible follows from the fact
-	that given a subrepresentation of $V$, its orthogonal complement
-	is also a subrepresentation.
-\end{proof}
-
-The Peter-Weyl theorem then asserts that the finite-dimensional irreducible
-unitary representations essentially give an orthonormal basis for $L^2(G)$,
-in the following sense.  Let $V = (V, \rho)$ be such a representation of $G$,
-and fix an orthonormal basis of $e_1$, \dots, $e_d$ for $V$ (where $d = \dim V$).
-The $(i,j)$th \vocab{matrix coefficient} for $V$ is then given by 
-\[ G \taking{\rho} \GL(V) \taking{\pi_{ij}} \CC \]
-where $\pi_{ij}$ is the projection onto the $(i,j)$th entry of the matrix.
-We abbreviate $\pi_{ij} \circ \rho$ to $\rho_{ij}$.
-Then the theorem is:
-\begin{theorem}
-	[Peter-Weyl]
-	Let $G$ be a compact Lie group.
-	Let $\Sigma$ denote the (pairwise non-isomorphic) irreducible finite-dimensional
-	unitary representations of $G$.
-	Then
-	\[ \left\{ \sqrt{\dim V} \rho_{ij}
-			\; \Big\vert \; (V, \rho) \in \Sigma,
-			\text{ and } 1 \le i,j \le \dim V \right\}  \]
-	is an orthonormal basis of $L^2(G)$.
-\end{theorem}
-Strictly, I should say $\Sigma$ is a set of representatives of 
-the isomorphism classes of irreducible unitary representations,
-one for each isomorphism class.
-
-In the special case $G$ is abelian,
-all irreducible representations are one-dimensional.
-A one-dimensional representation of $G$ is a map
-$G \injto \GL(\CC) \cong \CC^\times$,
-but the unitary condition implies it is actually a map $G \injto S^1 \cong \TT$,
-i.e.\ it is an element of $\wh G$.
-
 

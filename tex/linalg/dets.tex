@@ -1,6 +1,6 @@
-\chapter{Trace and determinant}
+\chapter{Determinant}
 You may have learned in high school that given a matrix
-\[ 
+\[
 	\begin{bmatrix}
 		a & c \\
 		b & d
@@ -10,22 +10,30 @@ the trace is the sum along the diagonals $a+d$ and the determinant is $ad-bc$.
 But we know that a matrix is somehow just encoding a linear map using a choice of basis.
 Why would these random formulas somehow not depend on the choice of a basis?
 
-The goal of this chapter is to give the basis-free definition of a determinant and trace of a matrix:
-that is, we're going to define $\det T$ and $\Tr T$ for $T : V \to V$ without making reference to the encoding for $T$.
-This will make it obvious the determinant and trace of a matrix do not depend on the choice of basis,
-and that several properties are vacuously true (e.g.\ that the determinant is multiplicative).
+The goal of this chapter is to give the basis-free
+definition of the determinant:
+that is, we're going to define $\det T$
+for $T \colon V \to V$ without making reference to the encoding for $T$.
+(We'll cover $\Tr T$ in the next chapter.)
+This will make it obvious the determinant of a matrix
+do not depend on the choice of basis,
+and that several properties are vacuously true
+(e.g.\ that the determinant is multiplicative).
 
-Along the way, we'll meet the tensor product, the dual module, and the wedge product.
-Fair warning that this makes this one of the harder chapters.
-
-In what follows, all vector spaces are finite-dimensional.
+The determinant is only defined for finite-dimensional
+vector spaces, so if you want you can restrict
+your attention to finite-dimensional vector spaces for this chapter.
+On the other hand we do not need the
+ground field to be algebraically closed.
 
 \section{Tensor product}
-Note that $\dim (V \oplus W) = \dim V + \dim W$, even though as sets $V \oplus W$ looks like $V \times W$.
+\prototype{$\RR[x] \otimes \RR[y] = \RR[x,y]$.}
+We know that $\dim (V \oplus W) = \dim V + \dim W$,
+even though as sets $V \oplus W$ looks like $V \times W$.
 What if we wanted a real ``product'' of spaces,
 with multiplication of dimensions?
 
-For example, let's pull out (for hopefully the last time)
+For example, let's pull out
 my favorite example of a real vector space, namely
 \[ V = \left\{ ax^2 + bx + c \mid a,b,c \in \RR \right\}. \]
 Here's another space, a little smaller:
@@ -50,11 +58,16 @@ think of it as a ``wall'' that separates the elements
 between the two vector spaces.
 For example, the above example might be written as
 \[ 4x^2 \otimes y + 5x \otimes y + 1 \otimes y + 3 \otimes 1. \]
-(This should be read as $(4x^2 \otimes y) + (5x \otimes y) + \dots$; addition comes after $\otimes$.)
-Of course there should be no distinction between writing $4x^2 \otimes y$ and $x^2 \otimes 4y$ or even $2x^2 \otimes 2y$.
-While we want to keep the $x$ and $y$ separate, the scalars should be free to float around.
+(This should be read as $(4x^2 \otimes y) + (5x \otimes y) + \dots$;
+addition comes after $\otimes$.)
+Of course there should be no distinction
+between writing $4x^2 \otimes y$ and $x^2 \otimes 4y$
+or even $2x^2 \otimes 2y$.
+While we want to keep the $x$ and $y$ separate,
+the scalars should be free to float around.
 
-Of course, there's no need to do everything in terms of just the monomials.
+Of course, there's no need to do everything
+in terms of just the monomials.
 We are free to write
 \[ (x + 1) \otimes (y + 1). \]
 If you like, you can expand this as
@@ -64,9 +77,9 @@ The point is that we can take any two of our polynomials
 and artificially ``tensor'' them together.
 
 The definition of the tensor product does exactly this,
-and nothing else.
-I'll only define this for vector spaces for simplicity.
-The definition for modules over a commutative ring $R$ is exactly the same.
+and nothing else.\footnote{I'll only define this
+	for vector spaces for simplicity.
+	The definition for modules over a commutative ring $R$ is exactly the same.}
 \begin{definition}
 	Let $V$ and $W$ be vector spaces over the same field $k$.
 	The \vocab{tensor product} $V \otimes_k W$ is the abelian group
@@ -88,6 +101,18 @@ But we let the $\otimes$ wall be ``permeable'' in the sense that
 and we let multiplication and addition distribute as we expect.
 Finally, the elements of $V \otimes W$ are not the pure tensors,
 but in fact \emph{sums} of these pure tensors!
+
+\begin{example}
+	[Infinite-dimensional example of tensor product: two-variable polynomials]
+	Although it's not relevant to this chapter,
+	this definition works equally well with infinite-dimensional
+	vector spaces.
+	The best example might be
+	\[ \RR[x] \otimes_\RR \RR[y] = \RR[x,y]. \]
+	That is, the tensor product of polynomials in $x$
+	with real polynomials in $y$
+	turns out to just be two-variable polynomials $\RR[x,y]$.
+\end{example}
 
 As the example we gave suggested,
 the basis of $V \otimes W$ is literally the ``product''
@@ -146,304 +171,11 @@ $\dim (V \otimes W) = \dim V \cdot \dim W$.
 	just like $(g,1_G) \neq (1_G,g)$ in the group $G \times G$.
 \end{remark}
 
-\section{Dual module}
-\prototype{Rotate a column matrix by $90$ degrees.}
-
-Consider the following vector space:
-\begin{example}
-	[Functions from $\RR^3 \to \RR$]
-	The set of real functions $f(x,y,z)$ is an
-	infinite-dimensional real vector space.
-	Indeed, we can add two functions to get $f+g$,
-	and we can think of functions like $2f$.
-\end{example}
-This is a terrifyingly large vector space,
-but you can do some reasonable reductions.
-For example, you can restrict your attention to just
-the \emph{linear maps} from $\RR^3$ to $\RR$.
-
-That's exactly what we're about to do.
-This definition might seem strange at first, but bear with me.
-
-\begin{definition}
-	Let $V$ be a $k$-vector space.
-	Then $V^\vee$, the \vocab{dual space} of $V$, is defined
-	as the vector space whose elements are \emph{linear maps from $V$ to $k$}.
-\end{definition}
-The addition and multiplication are pointwise:
-it's the same notation we use when we write $cf+g$ to mean $c \cdot f(x) + g(x)$.
-The dual space itself is less easy to think about.
-
-Let's try to find a basis for $V^\vee$.
-First, here is a very concrete interpretation of the vector space.
-Suppose for example $V = \RR^3$.
-We can think of elements of $V$ as column matrices, like
-\[ v = \begin{bmatrix}
-		2 \\ 5 \\ 9
-	\end{bmatrix}
-	\in V. \]
-Then a linear map $f : V \to k$ can be interpreted as a \emph{row matrix}:
-\[
-	f = \begin{bmatrix}
-		3 & 4 & 5
-	\end{bmatrix}
-	\in V^\vee. \]
-Then
-\[
-	f(v) = \begin{bmatrix}
-		3 & 4 & 5
-	\end{bmatrix}
-	\begin{bmatrix}
-		2 \\ 5 \\ 9
-	\end{bmatrix}
-	= 71. \]
-
-More precisely: \textbf{to specify a linear map $V \to k$,
-I only have to tell you where each basis element of $V$ goes}.
-In the above example, $f$ sends $e_1$ to $3$, $e_2$ to $4$, and $e_3$ to $5$.
-So $f$ sends \[ 2e_1 + 5e_2 + 9e_3 \mapsto 2 \cdot 3 + 5 \cdot 4 + 9 \cdot 5 = 71. \]
-
-Let's make all this precise.
-\begin{proposition}[The dual basis for $V^\vee$]
-	Let $V$ be a finite-dimensional vector space with basis $e_1, \dots, e_n$.
-	For each $i$ consider the function $e_i^\vee : V \to k$ by
-	\[
-		e_i^\vee(e_j)
-		= \begin{cases}
-			1 & i=j \\
-			0 & i \neq j.
-		\end{cases}
-	\]
-	In more humane terms, $e_i^\vee(v)$ gives the coefficient of $e_i$ in $v$.
-
-	Then $e_1^\vee$, $e_2^\vee$, \dots, $e_n^\vee$ is a basis of $V^\vee$.
-\end{proposition}
-I want to emphasize that this choice of basis for $V^\vee$ is absolutely not canonical, and depends very heavily on which basis of $V$ is originally selected.
-It is not ``God-given'', in other words.
-
-\begin{example}[Explicit example of element in $V^\vee$]
-	In this notation, $f = 3e_1^\vee + 4e_2^\vee + 5e_3^\vee$.
-	Do you see why the ``sum'' notation works as expected here?
-	Indeed
-	\begin{align*}
-		f(e_1) &= (3e_1^\vee + 4e_2^\vee + 5e_3^\vee)(e_1) \\
-		&= 3e_1^\vee(e_1) + 4e_2^\vee(e_1) + 5e_3^\vee(e_1) \\
-		&= 3 \cdot 1 + 4 \cdot 0 + 5 \cdot 0 = 3.
-	\end{align*}
-	That's exactly what we wanted.
-\end{example}
-
-Also, you might be inclined to point out that $V \cong V^\vee$ at this point,
-since there's an obvious isomorphism $e_i \mapsto e_i^\vee$.
-You might call it ``rotating the column matrix by $90\dg$''.
-I want to point out again that
-\begin{itemize}
-	\ii This isomorphism is absolutely not canonical,
-	and depends very much on which basis you choose.
-	In other words, if I pick a different basis, then the isomorphism
-	will be completely different.
-
-	It \emph{is} true that $V$ and $V^\vee$ are isomorphic,
-	but the fact is that any two $k$-vector spaces of the same dimension are isomorphic,
-	so the fact that $V \cong V^\vee$ is not especially impressive.
-	
-	\ii If $V$ is infinite-dimensional it is no longer necessarily true that $V \cong V^\vee$.
-\end{itemize}
-
-\section{The trace}
-The point of introducing both the tensor product and the dual module is that together
-we can use them to get an algebraic way of thinking about ``matrices''.
-Here's the intuition.
-If $V$ is three-dimensional and $W$ is five-dimensional, then we can think
-of the maps $V \to W$ as a $5 \times 3$ array of numbers.
-We want to think of these maps as a vector space:
-(since one can add or scale matrices).
-So it had better be a vector space with dimension $15$,
-but just saying ``$k^{\oplus 15}$'' is not really that satisfying
-(what is the basis?).
-
-To do better, we consider the tensor product \[ V^\vee \otimes W \]
-which somehow is a product of maps out of $V$ and the target space $W$.
-We claim that this is in fact the space we want:
-i.e.\ \textbf{there is a natural bijection between elements of $V^\vee \otimes W$
-and linear maps from $V$ to $W$}.
-
-First, how do we interpret an element of $V^\vee \otimes W$ as a map $V \to W$?
-For concreteness, suppose $V$ has a basis $e_1$, $e_2$, $e_3$,
-and $W$ has a basis $f_1$, $f_2$, $f_3$, $f_4$, $f_5$.
-Consider an element of $V^\vee \otimes W$, say
-\[ e_1^\vee \otimes (f_2 + 2f_4) + 4e_2^\vee \otimes f_5. \]
-We want to interpret this element as a function $V \to W$:
-so given a $v \in V$,
-we want to output an element of $W$.
-There's really only one way to do this:
-feed in $v \in V$ into the $V^\vee$ guys on the left.
-That is, take the map
-\[ v \mapsto e_1^\vee(v) \cdot (f_2 + 2f_4) + 4e_2^\vee(v) \cdot f_5 \in W. \]
-So, there's a natural way to interpret any element
-$\xi_1 \otimes w_1 + \dots + \xi_m \otimes w_m \in V^\vee \otimes W$
-as a linear map $V \to W$.
-The claim is that in fact, every linear map $V \to W$ has a unique such interpretation.
-
-First, for notational convenience,
-\begin{definition}
-	Let $\Hom(V,W)$ be the set of linear maps from $V$ to $W$
-	(which one can interpret as matrices which send $V$ to $W$),
-	viewed as a vector space over $k$.
-	Let $\Mat(V) = \Hom(V,V)$.
-	($\Hom$ and $\Mat$ stand for homomorphism and matrices.)
-\end{definition}
-In this notation, $V^\vee \defeq \Hom(V,k)$.
-
-We can now write down something that's more true generally.
-\begin{theorem}[$V^\vee \otimes W$ $\iff$ linear maps $V \to W$]
-	Let $V$ and $W$ be finite-dimensional vector spaces.
-	We described a map
-	\[ \Psi : V^\vee \otimes W \to \Hom(V,W) \]
-	by sending $\xi_1 \otimes w_1 + \dots + \xi_m \otimes w_m$ to the linear map
-	\[ v \mapsto \xi_1(v) w_1 + \dots + \xi_m(v) w_m. \]
-	Then $\Psi$ is an isomorphism of vector spaces, i.e.\ every linear map $V \to W$
-	can be uniquely represented as an element of $V^\vee \otimes W$ in this way.
-\end{theorem}
-The beauty is that we don't actually have to refer to the basis at all to state the theorem.
-
-\begin{proof}
-	This looks intimidating, but it's actually not difficult.
-	We proceed in two steps:
-	\begin{enumerate}
-		\ii First, we check that $\Psi$ is \emph{surjective};
-		every linear map has at least one representation of this form.
-		To see this, take any $T : V \to W$.
-		Suppose $V$ has basis $e_1$, $e_2$, $e_3$ and that
-		$T(e_1) = w_1$, $T(e_2) = w_2$ and $T(e_3) = w_3$.
-		Then the element
-		\[ e_1^\vee \otimes w_1 + e_2^\vee \otimes w_2 + e_3^\vee \otimes w_3 \]
-		works, as it is contrived to agree with $T$ on the basis elements $e_i$.
-		\ii So it suffices to check now that $\dim V^\vee \otimes W = \dim \Hom(V,W)$.
-		Certainly, $V^\vee \otimes W$ has dimension $\dim V \cdot \dim W$.
-		But by viewing $\Hom(V,W)$ as $\dim V \cdot \dim W$ matrices, we see that
-		it too has dimension $\dim V \cdot \dim W$. \qedhere
-	\end{enumerate}
-\end{proof}
-
-So there is a \textbf{natural isomorphism} $V^\vee \otimes W \cong \Hom(V,W)$.
-While we did use a basis liberally in the \emph{proof that it works}, this doesn't change the 
-fact that the isomorphism is ``God-given'', depending only on the spirit
-of $V$ and $W$ itself and not which basis we choose to express the vector spaces in.
-
-The above is perhaps a bit dense, so here is a concrete example.
-\begin{example}[Explicit example]
-	Let $V = \RR^2$ and take a basis $e_1$, $e_2$ of $V$.
-	Then define $T : V \to V$ by
-	\[ T = \begin{bmatrix}
-			1 & 2 \\ 3 & 4
-		\end{bmatrix}. \]
-	Then the isomorphism sends $T$ to
-	\[ T \mapsto e_1^\vee \otimes e_1 + 2e_2^\vee \otimes e_1
-		+ 3e_1^\vee \otimes e_2 + 4e_2^\vee \otimes e_2 \in V^\vee \otimes V. \]
-	The beauty of the basis-free definition is that even if we change the basis,
-	the above expression will look completely different, but
-	the actual element in $V^\vee \otimes V$ doesn't change.
-\end{example}
-
-
-We are now ready to give the definition of a trace.
-Recall that a square matrix $T$ can be thought of as a map $T : V \to V$.
-According to the above theorem there is a map
-\[ \Mat(V) \cong V^\vee \otimes V \]
-so every map $V \to V$ can be thought of as an element of $V^\vee \otimes V$.
-But we can also define an
-\emph{evaluation map} $\opname{ev} : V^\vee \otimes V \to k$
-by ``collapsing'' each pure tensor: $f \otimes v \mapsto f(v)$.
-So this gives us a composed map
-\begin{diagram}
-	\Mat(V) & \rTo^\cong & V^\vee \otimes V & \rTo^{\opname{ev}} & k.
-\end{diagram}
-This result is called the \vocab{trace} of a matrix $T$.
-
-\begin{example}[Example of a trace]
-	Continuing the previous example,
-	\[ \Tr T = e_1^\vee(e_1) + 2e_2^\vee(e_1) 
-		+ 3e_1^\vee(e_2) + 4e_2^\vee(e_2)
-		= 1 + 0 + 0 + 4 = 5. \]
-	And that is why the trace is the sum of the diagonal entries.
-\end{example}
-
-\section{(Optional) Two more digressions on dual spaces}
-\label{sec:double_dual}
-\begin{itemize}
-	\ii Suppose $T : V \to W$ is a linear map.
-	Then we actually get a map $T^\vee : W^\vee \to V^\vee$,
-	called the \vocab{dual map}, as follows:
-	$T^\vee(f) = f \circ T$.
-	In the concrete interpretation, if $T$ is a matrix, then
-	$T$ multiplies column vectors in $V$ on the left to get column vectors in $W$.
-	Then $T^\vee$ is the same matrix, but it multiplies
-	row vectors in $W^\vee$ \emph{on the right} to get row vectors in $V$.
-	Here is an explicit example: if $V = \RR^3$ and $W = \RR^2$ then
-	\[
-		\begin{bmatrix}
-			1 & 2 & 3 \\
-			4 & 5 & 6
-		\end{bmatrix}
-		\begin{bmatrix}
-			v_1 \\ v_2 \\ v_3 
-		\end{bmatrix}
-		= 
-		\begin{bmatrix}
-			w_1 \\ w_2
-		\end{bmatrix} 
-		\text{ and }
-		\begin{bmatrix}
-			w_1' & w_2'
-		\end{bmatrix}
-		\begin{bmatrix}
-			1 & 2 & 3 \\
-			4 & 5 & 6
-		\end{bmatrix}
-		=
-		\begin{bmatrix}
-			v_1' & v_2' & v_3'
-		\end{bmatrix}.
-	\]
-	But once again, the definition $T^\vee(f) = f \circ T$
-	has the nice property that it doesn't depend on the choice of a basis.
-	That shows that $T^\vee$ really is well defined, depending only on $T : V \to W$.
-	And in particular, this definition works even if $V$ or $W$
-	is infinite-dimensional.
-
-	\ii Why is the dual so named?
-	We'll show that the dual of the dual (i.e.\ $(V^\vee)^\vee$)
-	is somehow exactly the same as $V$.
-	It's of course true that they are isomorphic, but somehow that's
-	not very impressive (any vector spaces of the same dimension are isomorphic).
-	But we will show that there is a very natural isomorphism between them;
-	this will be more meaningful.
-
-	Let $V$ be a finite-dimensional vector space.
-	For every $v \in V$, we define the map $\opname{ev}_v : V^\vee \to k$
-	called ``evaluation at $v$'': it takes a function $f \in V^\vee$,
-	and since $f : V \to k$, we can return the value $f(v)$.
-	Succinctly, $\opname{ev}_v(f) = f(v)$.
-
-	Since $\opname{ev}_v : V^\vee \to k$, we see that
-	$\opname{ev}_v \in (V^\vee)^\vee$.
-	In fact, you can show that the map $v \mapsto \opname{ev}_v$
-	is an isomorphism from $V$ to $(V^\vee)^\vee$ for dimension reasons.
-	So unlike the situation $V \cong V^\vee$, there
-	is a \emph{canonical} isomorphism \[ V \cong (V^\vee)^\vee \]
-	that doesn't depend at all on what $V$ looks like,
-	or on an arbitrary choice of basis.
-	In other words, the structures of $V$ and $(V^\vee)^\vee$
-	really are the same at heart.
-\end{itemize}
-
-
-
 \section{Wedge product}
-\prototype{$\Lambda^2(\RR^2)$.}
+\prototype{$\Lambda^2(\RR^2)$ gives parallelograms.}
 We're now going to define something called the wedge product.
-It will look a ton like the tensor product, but we'll have one extra relation.
+It will look at first like the tensor product $V \otimes V$,
+but we'll have one extra relation.
 
 For simplicity, I'll first define the wedge product $\Lambda^2(V)$.
 But we will later replace $2$ with any $n$.
@@ -452,27 +184,30 @@ But we will later replace $2$ with any $n$.
 	Let $V$ be a $k$-vector space.
 	The $2$-wedge product $\Lambda^2(V)$ is the abelian group
 	generated by elements of the form $v \wedge w$ (where $v,w \in V$),
-	subject to relations
+	subject to the same relations
 	\begin{align*}
 		(v_1 + v_2) \wedge w &= v_1 \wedge w + v_2 \wedge w \\
 		v \wedge (w_1 + w_2) &= v \wedge w_1 + v \wedge w_2 \\
-		(c \cdot v) \wedge w &= v \wedge (c \cdot w) \\
-		v \wedge v &= 0.
+		(c \cdot v) \wedge w &= v \wedge (c \cdot w)
 	\end{align*}
+	plus two additional relations:
+	\[ v \wedge v = 0 \quad\text{and}\quad
+		v \wedge w = - w \wedge v. \]
 	As a vector space, its action is given by
 	$c \cdot (v \wedge w) = (c \cdot v) \wedge w = v \wedge (c \cdot w)$.
 \end{definition}
 \begin{exercise}
-	Use these properties to show that $v \wedge w = - (w \wedge v)$
-	for any $v,w \in V$.
+	Show that the condition $v \wedge w = - (w \wedge v)$
+	is actually extraneous:
+	you can derive it from the fact that $v \wedge v = 0$.
+	(Hint: expand $(v + w) \wedge (v + w) = 0$.)
 \end{exercise}
 
 This looks almost exactly the same as the definition for a tensor product,
 with two subtle differences.
 The first is that we only have $V$ now, rather than $V$ and $W$.
-Secondly, there is a new \emph{mysterious} relation $v \wedge v = 0$,
-which implies that
-\[ v \wedge w = - (w \wedge v). \]
+Secondly, there is a new \emph{mysterious} relation
+\[ v \wedge v = 0 \implies v \wedge w = - (w \wedge v). \]
 What's that doing there?
 It seems kind of weird.
 
@@ -510,12 +245,16 @@ The \textbf{miracle of wedge products} is that the only additional condition
 we need to add to the tensor product axioms is that $v \wedge w = -(w \wedge v)$,
 Then suddenly, the wedge will do all our work of interpreting volumes for us.
 
-\begin{ques}
-	Let $V$ be a real finite-dimensional vector space.
-	Convince yourself that if $e_1, \dots, e_n$ is a basis of $V$,
-	then a basis of $\Lambda^2(V)$ is $e_i \wedge e_j$ where $i < j$.
+In analog to earlier:
+\begin{proposition}
+	[Basis of $\Lambda^2(V)$]
+	Let $V$ be a vector space
+	with basis $e_1$, \dots, $e_n$.
+	Then a basis of $\Lambda^2(V)$ is
+	\[ e_i \wedge e_j \]
+	where $i < j$.
 	Hence $\Lambda^2(V)$ has dimension $\binom n2$.
-\end{ques}
+\end{proposition}
 
 Now I have the courage to define a multi-dimensional wedge product.
 It's just the same thing with more wedges.
@@ -530,8 +269,9 @@ It's just the same thing with more wedges.
 			 + (\dots \wedge v_2 \wedge \dots) \\
 		\dots \wedge (cv_1) \wedge v_2 \wedge \dots
 			&= \dots \wedge v_1 \wedge (cv_2) \wedge \dots  \\
-		\dots \wedge v \wedge v \wedge \dots
-			&= 0.
+		\dots \wedge v \wedge v \wedge \dots &= 0 \\
+		\dots \wedge v \wedge w \wedge \dots &=
+			- (\dots \wedge w \wedge v \wedge \dots)
 	\end{align*}
 	As a vector space
 	\[ c \cdot (v_1 \wedge v_2 \wedge \dots \wedge v_m)
@@ -545,7 +285,7 @@ This definition is pretty wordy, but in English the three conditions say
 	\ii We should be able to add products like before,
 	\ii You can put constants onto any of the $m$ components
 	(as is directly pointed out in the ``vector space'' action), and
-	\ii Switching any two adjacent wedges negates the whole wedge.
+	\ii Switching any two \emph{adjacent} wedges negates the whole wedge.
 \end{itemize}
 It's a pretty standard generalization of $\Lambda^2(V)$.
 You can convince yourself that any element of the form
@@ -562,10 +302,12 @@ for general $m$ and $n$.
 	\[ 1 \le i_1 < i_2 < \dots < i_m \le n. \]
 	Hence $\Lambda^m(V)$ has dimension $\binom nm$.
 \end{proposition}
-\begin{proof}[Sketch of Proof]
-	We knew earlier that $e_{i_1} \otimes \dots \otimes e_{i_m}$ was a basis for the tensor product.
+\begin{proof}[Sketch of proof]
+	We knew earlier that $e_{i_1} \otimes \dots \otimes e_{i_m}$
+	was a basis for the tensor product.
 	Here we have the additional property that (a)
 	if two basis elements re-appear then the whole thing becomes zero,
+	thus we should assume the $i$'s are all distinct;
 	and (b) we can shuffle around elements,
 	and so we arbitrarily decide to put the basis elements
 	in increasing order.
@@ -575,7 +317,7 @@ for general $m$ and $n$.
 \section{The determinant}
 \prototype{$(ae_1+be_2)\wedge(ce_1+de_2) = (ad-bc)e_1\wedge e_2$.}
 Now we're ready to define the determinant.
-Suppose $T : V \to V$ is a square matrix.
+Suppose $T \colon V \to V$ is a square matrix.
 We claim that the map $\Lambda^m(V) \to \Lambda^m(V)$ given on wedges by
 \[ v_1 \wedge v_2 \wedge \dots \wedge v_m
 	\mapsto T(v_1) \wedge T(v_2) \wedge \dots \wedge T(v_m) \]
@@ -584,14 +326,14 @@ and extending linearly to all of $\Lambda^m(V)$ is a linear map.
 We call that map $\Lambda^m(T)$.
 \begin{example}
 	[Example of $\Lambda^m(T)$]
-	In $V = \RR^4$ with standard basis $\ee_1$, $\ee_2$, $\ee_3$, $\ee_4$,
-	let $T(\ee_1) = \ee_2$, $T(\ee_2) = 2\ee_3$, $T(\ee_3) = \ee_3$ and $T(\ee_4) = 2\ee_2 + \ee_3$.
+	In $V = \RR^4$ with standard basis $e_1$, $e_2$, $e_3$, $e_4$,
+	let $T(e_1) = e_2$, $T(e_2) = 2e_3$, $T(e_3) = e_3$ and $T(e_4) = 2e_2 + e_3$.
 	Then, for example, $\Lambda^2(T)$ sends
 	\begin{align*}
-		\ee_1 \wedge \ee_2 + \ee_3 \wedge \ee_4
-		&\mapsto T(\ee_1) \wedge T(\ee_2) + T(\ee_3) \wedge T(\ee_4) \\
-		&= \ee_2 \wedge 2\ee_3 + \ee_3 \wedge (2\ee_2 + \ee_3) \\
-		&= 2(\ee_2 \wedge \ee_3 + \ee_3\wedge \ee_2) \\
+		e_1 \wedge e_2 + e_3 \wedge e_4
+		&\mapsto T(e_1) \wedge T(e_2) + T(e_3) \wedge T(e_4) \\
+		&= e_2 \wedge 2e_3 + e_3 \wedge (2e_2 + e_3) \\
+		&= 2(e_2 \wedge e_3 + e_3 \wedge e_2) \\
 		&= 0.
 	\end{align*}
 \end{example}
@@ -605,46 +347,46 @@ So $\Lambda^n(T)$ can be thought of as a linear map from $k$ to $k$.
 But we know that \emph{a linear map from $k$ to $k$ is just multiplication by a constant}.
 Hence $\Lambda^n(T)$ is multiplication by some constant.
 \begin{definition}
-	Let $T : V \to V$, where $V$ is an $n$-dimensional vector space.
+	Let $T \colon V \to V$, where $V$ is an $n$-dimensional vector space.
 	Then $\Lambda^n(T)$ is multiplication by a constant $c$;
 	we define the \vocab{determinant} of $T$ as $c = \det T$.
 \end{definition}
 
 \begin{example}[The determinant of a $2 \times 2$ matrix]
-	Let $V = \RR^2$ again with basis $\ee_1$ and $\ee_2$.
+	Let $V = \RR^2$ again with basis $e_1$ and $e_2$.
 	Let
 	\[ T = \begin{bmatrix}
 			a & c \\ b & d
 		\end{bmatrix}.
 	\]
-	In other words, $T(\ee_1) = a\ee_1 + b\ee_2$
-	and $T(\ee_2) = c\ee_1 + d\ee_2$.
+	In other words, $T(e_1) = ae_1 + be_2$
+	and $T(e_2) = ce_1 + de_2$.
 
 	Now let's consider $\Lambda^2(V)$.
-	It has a basis $\ee_1 \wedge \ee_2$.
+	It has a basis $e_1 \wedge e_2$.
 	Now $\Lambda^2(T)$ sends it to
-	\[ \ee_1 \wedge \ee_2 \xmapsto{\Lambda^2(T)}
-		T(\ee_1) \wedge T(\ee_2) =
-		(a\ee_1 + b\ee_2) \wedge (c\ee_1 + d\ee_2) 
-		= (ad-bc)(\ee_1 \wedge \ee_2). 
+	\[ e_1 \wedge e_2 \xmapsto{\Lambda^2(T)}
+		T(e_1) \wedge T(e_2) =
+		(ae_1 + be_2) \wedge (ce_1 + de_2)
+		= (ad-bc)(e_1 \wedge e_2).
 	\]
 	So $\Lambda^2(T) : \Lambda^2(V) \to \Lambda^2(V)$
 	is multiplication by $\det T = ad-bc$,
-	because it sent $\ee_1 \wedge \ee_2$ to
-	$(ad-bc)(\ee_1 \wedge \ee_2)$.
+	because it sent $e_1 \wedge e_2$ to
+	$(ad-bc)(e_1 \wedge e_2)$.
 \end{example}
 And that is the definition of a determinant.
 Once again, since we defined it in terms of $\Lambda^n(T)$,
 this definition is totally independent of the choice of basis.
-In other words, the determinant can be defined based on $T : V \to V$ alone
+In other words, the determinant can be defined based on $T \colon V \to V$ alone
 without any reference to matrices.
 
 \begin{ques}
 	Why does $\Lambda^n(S \circ T) = \Lambda^n(S) \circ \Lambda^n(T)$?
-	(Remember that these are one-dimensional maps.)
 \end{ques}
 In this way, we also get \[ \det(S \circ T) = \det(S) \det(T) \] for free.
-The general nasty formula for a determinant in terms of the matrix also follows from our work,
+The general nasty formula for a determinant
+in terms of the matrix also follows from our work,
 and is just a generalization of the work we did for $n=2$.
 Simply write out
 \[ \left( a_{11}e_1 + a_{21}e_2 + \dots \right) \wedge \dots \wedge
@@ -656,11 +398,147 @@ and do a full expansion.
 	(For example, expand this for $n=3$.)
 \end{exercise}
 
+
+\section{Characteristic polynomials, and Cayley-Hamilton}
+Let's connect with the theory of eigenvalues.
+Take a map $T \colon V \to V$, where $V$ is $n$-dimensional
+over an algebraically closed field,
+and suppose its eigenvalues
+are $\lambda_1$, $\lambda_2$, \dots, $\lambda_n$ (with repetition).
+Then the \vocab{characteristic polynomial} is given by
+\[
+	p_T(X) = (X-\lambda_1)(X-\lambda_2) \dots (X-\lambda_n).
+\]
+Note that if we've written $T$ in Jordan form, that is,
+\[
+	T = \begin{bmatrix}
+		\lambda_1 & \ast & 0 & \dots & 0 \\
+		0 & \lambda_2 & \ast & \dots & 0 \\
+		0 & 0 & \lambda_3 & \dots & 0 \\
+		\vdots & \vdots & \vdots & \ddots & \vdots \\
+		0 & 0 & 0 & \dots & \lambda_n
+	\end{bmatrix}
+\]
+(here each $\ast$ is either $0$ or $1$),
+then we can hack together the definition
+\[
+	p_T(X) \defeq
+	\det \left( X \cdot \id_n - T \right)
+	= \det \begin{bmatrix}
+		X - \lambda_1 & \ast & 0 & \dots & 0 \\
+		0 & X - \lambda_2 & \ast & \dots & 0 \\
+		0 & 0 & X - \lambda_3 & \dots & 0 \\
+		\vdots & \vdots & \vdots & \ddots & \vdots \\
+		0 & 0 & 0 & \dots & X - \lambda_n
+	\end{bmatrix}.
+\]
+The latter definition is what you'll see in most
+linear algebra books because it lets you define the characteristic polynomial
+without mentioning the word ``eigenvalue''
+(i.e.\ entirely in terms of arrays of numbers).
+I'll admit it does have the merit that it means that given any matrix,
+it's easy to compute the characteristic polynomial and hence
+compute the eigenvalues;
+but I still think the definition should be done in terms of
+eigenvalues to begin with.
+For instance the determinant definition obscures the following theorem,
+which is actually a completely triviality.
+\begin{theorem}[Cayley-Hamilton]
+	Let $T \colon V \to V$ be a map of finite-dimensional
+	vector spaces.
+	Then for any $T \colon V \to V$,
+	the map $p_T(T)$ is the zero map.
+\end{theorem}
+Here, by $p_T(T)$ we mean that if
+\[ p_T(X) = X^n + c_{n-1} X^{n-1} + \dots + c_0 \]
+then \[ p_T(T) = T^n + c_{n-1} T^{n-1} + \dots + c_1 T +  c_0 I \]
+is the zero map,
+where $T^k$ denotes $T$ applied $k$ times.
+We saw this concept already when we proved
+that $T$ had at least one nonzero eigenvector.
+
+\begin{example}[Example of Cayley-Hamilton using determinant definition]
+	Suppose $T = \begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix}$.
+	Using the determinant definition of characteristic polynomial,
+	we find that $p_T(X) = (X-1)(X-4)-(-2)(-3) = X^2 - 5X - 2$.
+	Indeed, you can verify that
+	\[ T^2 - 5T - 2
+		= \begin{bmatrix}
+			7 & 10 \\
+			15 & 22
+		\end{bmatrix}
+		- 5 \cdot \begin{bmatrix}
+			1 & 2 \\
+			3 & 4
+		\end{bmatrix}
+		- 2 \cdot \begin{bmatrix}
+			1 & 0 \\
+			0 & 1
+		\end{bmatrix}
+		= \begin{bmatrix}
+			0 & 0 \\
+			0 & 0
+		\end{bmatrix}.
+	\]
+\end{example}
+If you define $p_T$ without the word eigenvalue,
+and adopt the evil view that matrices are arrays of numbers,
+then this looks like a complete miracle.
+(Indeed, just look at the terrible proofs on Wikipedia.)
+
+But if you use the abstract viewpoint of $T$ as a linear map,
+then the theorem is almost obvious:
+\begin{proof}[Proof of Cayley-Hamilton]
+	Suppose we write $V$ in Jordan normal form as
+	\[ V = J_1 \oplus \dots \oplus J_m \]
+	where $J_i$ has eigenvalue $\lambda_i$ and dimension $d_i$.
+	By definition,
+	\[ p_T(T) = (T - \lambda_1)^{d_1} (T - \lambda_2)^{d_2}
+		\dots (T - \lambda_m)^{d_m}. \]
+	By definition, $(T - \lambda_1)^{d_1}$ is the zero map on $J_1$.
+	So $p_T(T)$ is zero on $J_1$.
+	Similarly it's zero on each of the other $J_i$'s --- end of story.
+\end{proof}
+
+\section{(Optional digression) Tensoring up}
+In the previous chapter I said that we'll generally
+just work over algebraically closed fields,
+because, for example, any real matrix can be interpreted
+as a complex matrix whose
+entries just happen to be real numbers.
+I just want to briefly tell you,
+in terms of tensor products, exactly what we have done.
+
+Let's take the space $V = \RR^3$, with basis $e_1$, $e_2$, $e_3$.
+Thus objects in $V$ are of the form
+\[ r_1 e_1 + r_2 e_2 + r_3 e_3 \]
+where $r_1$, $r_2$, $r_3$ are real numbers.
+We want to consider essentially the same vector space,
+but with complex coefficients $z_i$ rather than real coefficients $r_i$.
+
+So here's what we do: view $\CC$ as a $\RR$-vector space
+(with basis $\{1,i\}$, say)
+and consider the \vocab{complexification}
+\[ V_\CC \defeq \CC \largeotimes{\RR} V. \]
+Then you can check that our elements are actually of the form
+\[ z_1 \otimes e_1 + z_2 \otimes e_2 + z_3 \otimes e_3. \]
+(Here, the tensor product is over $\RR$,
+so we have $z \otimes re_i = (zr) \otimes e_i$ for $r \in \RR$.)
+Then $V_{\CC}$ can be thought as a vector space over $\CC$,
+since you can multiply on the left
+by complex numbers.
+In this way, the tensor product lets us formalize the idea
+that we ``fuse on'' complex coefficients.
+
+If $T \colon V \to W$, is a map, then $T_\CC \colon V_\CC \to W_\CC$
+is just the map $z \otimes v \mapsto z \otimes T(v)$.
+You'll see this written sometimes as $T_\CC = \id \otimes T$.
+
 \section\problemhead
-\begin{problem}
+\begin{problem}[Column operations]
 	Show that for any real numbers $x_{ij}$ (here $1 \le i,j \le n$) we have
 	\[
-		\det 
+		\det
 		\begin{bmatrix}
 			x_{11} & x_{12} & \dots & x_{1n} \\
 			x_{21} & x_{22} & \dots & x_{2n} \\
@@ -668,70 +546,71 @@ and do a full expansion.
 			x_{n1} & x_{n2} & \dots & x_{nn} \\
 		\end{bmatrix}
 		=
-		\det 
+		\det
 		\begin{bmatrix}
-			x_{11} + x_{12} & x_{12} & \dots & x_{1n} \\
-			x_{21} + x_{22} & x_{22} & \dots & x_{2n} \\
+			x_{11} + cx_{12} & x_{12} & \dots & x_{1n} \\
+			x_{21} + cx_{22} & x_{22} & \dots & x_{2n} \\
 			\vdots & \vdots & \ddots & \vdots \\
-			x_{n1} + x_{n2} & x_{n2} & \dots & x_{nn} \\
+			x_{n1} + cx_{n2} & x_{n2} & \dots & x_{nn} \\
 		\end{bmatrix}.
 	\]
 	\begin{hint}
-		The point is that 
-		\[ 
-			(v_1+v_2) \wedge v_2 \dots \wedge v_n
+		The point is that
+		\[
+			(v_1+cv_2) \wedge v_2 \dots \wedge v_n
 			= v_1 \wedge v_2 \dots \wedge v_n
-			+ v_2 \wedge v_2 \dots \wedge v_n
+			+ c(v_2 \wedge v_2 \dots \wedge v_n)
 		\]
 		and the latter term is zero.
 	\end{hint}
 \end{problem}
 
-\begin{dproblem}
-	[Traces kind of commute]
-	\gim
-	Let $T : V \to W$ and $S : W \to V$ be linear maps
-	between finite-dimensional vector spaces $V$ and $W$.
-	Show that \[ \Tr(T \circ S) = \Tr(S \circ T). \]
+\begin{problem}
+	[Determinant is product of eigenvalues]
+	Let $V$ be an $n$-dimensional vector space
+	over an algebraically closed field $k$.
+	Let $T \colon V \to V$ be a linear map with
+	$\lambda_1$, $\lambda_2$, \dots, $\lambda_n$
+	(counted with algebraic multiplicity).
+	Show that $\det T = \lambda_1 \dots \lambda_n$.
 	\begin{hint}
-		One solution is to just take a basis.
-		Otherwise, interpret $T \otimes S \mapsto \Tr(T \circ S)$ as a
-		linear map $(V^\vee \otimes W) \otimes (W^\vee \otimes V) \to k$,
-		and verify that it is commutative.
+		You can either do this by writing $T$ in matrix form,
+		or you can use the wedge definition of $\det T$
+		with the basis given by Jordan form.
 	\end{hint}
-	\begin{sol}
-		This amounts to drawing the diagram
-		\begin{diagram}
-			&& (W^\vee \otimes V) \otimes (V^\vee \otimes W)
-			&\rIsom& (V^\vee \otimes W) \otimes (W^\vee \otimes V) && \\
-			& \ldTo^{\text{compose}} & \dTo && \dTo & \rdTo^{\text{compose}} & \\
-			\Mat(W) & \lIsom & W^\vee \otimes W & & V^\vee \otimes V & \rIsom & \Mat(V) \\
-			& \rdTo_{\Tr} & \dTo_{\opname{ev}} && \dTo_{\opname{ev}} & \ldTo_{\Tr} & \\
-			&& k & \rIsom{\id} & k &&
-		\end{diagram}
-		It is easy to check that the center rectangle commutes,
-		by check it on simple tensors $\xi_W \otimes v \otimes \xi_V \otimes w$.
-		So the outer hexagon commutes and we're done.
-		This is really the same as the proof with bases;
-		what it amounts to is checking the assertion is true for
-		matrices that have a $1$ somewhere and $0$ elsewhere,
-		then extending by linearity.
-	\end{sol}
-\end{dproblem}
-
-\begin{dproblem}
-	[Product of traces]
-	Let $T : V \to V$ and $S : W \to W$ be linear maps
-	of finite-dimensional vector spaces $V$ and $W$.
-	Consider $T \otimes S : V \otimes W \to V \otimes W$.
-	Prove that \[ \Tr(T \otimes S) = \Tr(T) \Tr(S). \]
-	\begin{hint}
-		Again one can just take a basis.
-	\end{hint}
-\end{dproblem}
+\end{problem}
 
 \begin{problem}
-	[Sweden 2010, edited]
+	[Extension to \Cref{prob:equal_dimension}]
+	Let $T \colon V \to V$ be a map of finite-dimensional vector spaces.
+	Prove that $T$ is an isomorphism
+	if and only if $\det T \ne 0$.
+	\begin{hint}
+		You don't need eigenvalues (though they could work also).
+		In one direction, recall that (by \Cref{prob:equal_dimension})
+		we can replace ``isomorphism'' by ``injective''.
+		In the other, if $T$ is an isomorphism,
+		let $S$ be the inverse map and look at $\det(S \circ T)$.
+	\end{hint}
+	\begin{sol}
+		Recall that (by \Cref{prob:equal_dimension})
+		we can replace ``isomorphism'' by ``injective''.
+
+		If $T(v) = 0$ for any nonzero $v$,
+		then by taking a basis for which $e_1 = v$,
+		we find $\Lambda^n(T)$ will map $e_1 \wedge \dots$
+		to $0 \wedge T(e_2) \wedge \dots = 0$,
+		hence is the zero map, so $\det T = 0$.
+
+		Conversely, if $T$ is an isomorphism,
+		we let $S$ denote the inverse map.
+		Then $1 = \det(\id) = \det(S \circ T) = \det S \det T$,
+		so $\det T \ne 0$.
+	\end{sol}
+\end{problem}
+
+\begin{problem}
+	[Based on Sweden 2010]
 	\gim
 	A herd of $1000$ cows of nonzero weight is given.
 	Prove that we can remove one cow such that the
@@ -757,125 +636,82 @@ and do a full expansion.
 \end{problem}
 
 \begin{problem}
+	[Putnam 2015]
 	\yod
-	Let $V$ be a finite-dimensional vector space over $K$ and $T : V \to V$.
-	Show that
-	\[
-		\det(a \cdot \id_V - T) =
-		\sum_{n=0}^{\dim V} a^{\dim V-n} \cdot (-1)^n
-		\Tr\left( \Lambda^n(T) \right)
-	\]
-	where the trace is taking by viewing $\Lambda^n(T) : \Lambda^n(V) \to \Lambda^n(V)$.
+	Define $S$ to be the set of real matrices 
+	$\left(\begin{smallmatrix} a & b \\ c & d \end{smallmatrix}\right)$
+	such that $a$, $b$, $c$, $d$ form
+	an arithmetic progression in that order.
+	Find all $M \in S$ such that for some integer $k > 1$, $M^k \in S$.
 	\begin{hint}
-		Take bases, and do a fairly long calculation.
+		There is a family of solutions other than just $a=b=c=d$.
+
+		One can solve the problem using Cayley-Hamilton.
+		A more ``bare-hands'' approach is to
+		show the matrix is invertible (unless $a=b=c=d$)
+		and then diagonalize the matrix as
+		$
+		M =
+		\begin{bmatrix} s & -q \\ -r & p \end{bmatrix}
+		\begin{bmatrix} \lambda_1 & 0 \\ 0 & \lambda_2 \end{bmatrix}
+		\begin{bmatrix} p & q \\ r & s \end{bmatrix}
+		=
+		\begin{bmatrix} 
+			ps\lambda_1 - qr\lambda_2 & qs(\lambda_1-\lambda_2) \\
+			pr(\lambda_2-\lambda_1) & ps\lambda_2 - qr\lambda_1
+		\end{bmatrix} 
+		$.
 	\end{hint}
 	\begin{sol}
-		\newcommand{\Fix}{\opname{Fix}}
-		\newcommand{\NoFix}{\opname{NoFix}}
-		Pick a basis $e_1, \dots, e_n$ of $V$.
-		Let $T$ have matrix $(x_{ij})$, and let $m = \dim V$.
-		Let $\delta_{ij}$ be the Kronecker delta.
-		Also, let $\Fix(\sigma)$ denote the fixed points of a permutation $\sigma$
-		and let $\NoFix(\sigma)$ denote the non-fixed points.
+		The answer is 
+		\[ \begin{bmatrix} t&t\\t&t \end{bmatrix}
+			\quad\text{and}\quad 
+			\begin{bmatrix} -3t&-t\\t&3t \end{bmatrix} \]
+		for $t \in \RR$.
+		These work by taking $k=3$.
 
-		Expanding then gives
-		\begin{align*}
-			&\qquad \det (a \cdot \id - T) \\
-			&= \sum_{\sigma \in S_m} \left( \sign(\sigma)
-			\cdot \prod_{i=1}^m \left( a \cdot \delta_{i \sigma(i)} - x_{i \sigma(i)} \right)\right) \\
-			% ------------------------
-			&=
-			\sum_{s=0}^m
-			\sum_{1 \le i_1 < \dots < i_s \le m}
-			\sum_{\substack{\sigma \in S_m \\ \sigma \text{ fixes } i_k}}
-			\left( \sign(\sigma)
-			\cdot \prod_{i=1}^m \left( a \cdot \delta_{i \sigma(i)} - x_{i \sigma(i)} \right)\right) \\
-			% ------------------------
-			&=
-			\sum_{s=0}^m
-			\sum_{1 \le i_1 < \dots < i_s \le m}
-			\sum_{\substack{\sigma \in S_m \\ \sigma \text{ fixes } (i_k)}}
-			\left( \sign(\sigma)
-			\cdot \prod_{i \notin (i_k)} -x_{i \sigma(i)}
-			\prod_{i \in (i_k)}^n \left( a \cdot - x_{ii} 
-			\right)\right) \\
-			% -----------------------
-			&= 
-			\sum_{\sigma \in S_m}
-			\left( \sign(\sigma)
-			\cdot \prod_{i \in \NoFix(\sigma)} -x_{i \sigma(i)}
-			\prod_{i \in \Fix{\sigma}} \left( a - x_{ii} 
-			\right)\right) \\
-			% -----------------------
-			&=
-			\sum_{\sigma \in S_m}
-			\left( \sign(\sigma)
-			\cdot \left( \prod_{i \in \NoFix(\sigma)} -x_{i \sigma(i)} \right)
-			\left( \sum_{t=0}^{\left\lvert \Fix(\sigma) \right\rvert}
-			a^{\left\lvert \Fix(\sigma) \right\rvert - t} \cdot \sum_{i_1 < \dots < i_t \in \Fix(\sigma)}
-			\prod_{k=1}^t -x_{i_k i_k} \right)
-			\right) \\
-			% -----------------------
-			&=
-			\sum_{\sigma \in S_m}
-			\left( \sign(\sigma)
-			\left( \sum_{t=0}^{\left\lvert \Fix(\sigma) \right\rvert}
-			a^{m-t-\left\lvert \Fix(\sigma) \right\rvert} 
-			\sum_{\substack{X \subseteq \{1, \dots, m\} \\ \NoFix(\sigma) \subseteq X \\ X \text{ has exactly $t$ fixed}}} \prod_{i \in X} -x_{i \sigma(i)}
-			\right) \right) \\
-			% -----------------------
-			&= 
-			\sum_{n=0}^m
-			a^{m-n}
-			\left(
-			\sum_{\sigma \in S_m}
-			\sign(\sigma)
-			\sum_{\substack{X \subseteq \{1, \dots, m\} \\ \NoFix(\sigma) \subseteq X \\ \left\lvert X \right\rvert = n} }
-			\prod_{i \in X} -x_{i \sigma(i)}
-			\right) \\
-			% -----------------------
-			&= \sum_{n=0}^m
-			a^{m-n} (-1)^n
-			\left(
-			\sum_{\substack{X \subseteq \{1, \dots, m\} \\ \left\lvert X \right\rvert = n} }
-			\sum_{\substack{\sigma \in S_m \\ \NoFix(\sigma) \subseteq X}}
-			\sign(\sigma) \prod_{i \in X} x_{i \sigma(i)}
-			\right).
-		\end{align*}
-
-		Hence it's the same to show that
+		Now to see these are the only ones, consider an arithmetic matrix
+		\[ M = \begin{bmatrix} a & a+e \\ a+2e & a+3e \end{bmatrix}. \]
+		with $e \neq 0$.
+		Its characteristic polynomial is $t^2 - (2a+3e)t - 2e^2$,
+		with discriminant $(2a+3e)^2 + 8e^2$,
+		so it has two distinct real roots; moreover, since $-2e^2 \le 0$
+		either one of the roots is zero or they are of opposite signs.
+		Now we can diagonalize $M$ by writing
 		\[
-			\sum_{\substack{X \subseteq \{1, \dots, m\} \\ \left\lvert X \right\rvert = n} }
-			\sum_{\substack{\sigma \in S_m \\ \NoFix(\sigma) \subseteq X}}
-			\sign(\sigma) \prod_{i \in X} x_{i \sigma(i)}
-			= \Tr_{\Lambda^n(V)} \left( \Lambda^n(T) \right)
+			M =
+			\begin{bmatrix} s & -q \\ -r & p \end{bmatrix}
+			\begin{bmatrix} \lambda_1 & 0 \\ 0 & \lambda_2 \end{bmatrix}
+			\begin{bmatrix} p & q \\ r & s \end{bmatrix}
+			=
+			\begin{bmatrix} 
+				ps\lambda_1 - qr\lambda_2 & qs(\lambda_1-\lambda_2) \\
+				pr(\lambda_2-\lambda_1) & ps\lambda_2 - qr\lambda_1
+			\end{bmatrix} 
 		\]
-		holds for every $n$.
+		where $ps-qr=1$. By using the fact the diagonal entries have sum equalling
+		the off-diagonal entries, we obtain that
+		\[ (ps-qr)(\lambda_1+\lambda_2) = (qs-pr)(\lambda_1-\lambda_2) 
+			\implies qs-pr = \frac{\lambda_1+\lambda_2}{\lambda_1-\lambda_2}. \]
+		Now if $M^k \in S$ too then the same calculation gives
+		\[ qs-pr = \frac{\lambda_1^k+\lambda_2^k}{\lambda_1^k-\lambda_2^k}. \]
+		Let $x = \lambda_1/\lambda_2 < 0$ (since $-2e^2 < 0$). We appropriately get
+		\[ \frac{x+1}{x-1} = \frac{x^k+1}{x^k-1}
+			\implies \frac{2}{x-1} = \frac{2}{x^k-1}
+			\implies x = x^k \implies x = -1 \text{ or } x = 0 \]
+		and $k$ odd. If $x=0$ we get $e=0$ and if $x=-1$ we get $2a+3e=0$,
+		which gives the curve of solutions that we claimed.
 
-		We can expand the definition of trace as using basis elements as
-		\begin{align*}
-			\Tr\left( \Lambda^n(T) \right)
-			&= \sum_{1 \le i_1 < \dots < i_n \le m}
-			\left( \bigwedge_{k=1}^n e_{i_k} \right)^\vee
-			\left( \Lambda^n(T) \left( \bigwedge_{k=1}^n e_{i_k} \right) \right) \\
-			&= \sum_{1 \le i_1 < \dots < i_n \le m}
-			\left( \bigwedge_{k=1}^n e_{i_k} \right)^\vee
-			\left(  \bigwedge_{k=1}^n T(e_{i_k}) \right) \\
-			&= \sum_{1 \le i_1 < \dots < i_n \le m}
-			\left( \bigwedge_{k=1}^n e_{i_k} \right)^\vee
-			\left(  \bigwedge_{k=1}^n 
-			\left( \sum_{j=1}^m x_{i_k j} e_j \right)
-			\right) \\
-			&= \sum_{1 \le i_1 < \dots < i_n \le m}
-			\sum_{\pi \in S_n} \sign(\pi) \prod_{k=1}^n x_{i_{\pi(k)}k} \\
-			&= \sum_{\substack{X \subseteq \{1,\dots,m\} \\ \left\lvert X \right\rvert = n}}
-			\sum_{\pi \in S_X} \sign(\pi) \prod_{i \in X} x_{t \pi(t)}
-		\end{align*}
-		Hence it remains to show that the permutations over $X$
-		are in bijection with the permutations over $S_m$ which fix $\{1, \dots, m\} - X$,
-		which is clear, and moreover, the signs clearly coincide.
+		A slicker approach is to note that by Cayley-Hamilton.
+		Assume that $e \neq 0$, so $M$ has two distinct real eigenvalues as above.
+		We have $M^k = cM + d\id$ for some constants $c$ and $d$
+		(since $M$ satisfies some quadratic polynomial).
+		Since $M \in S$, $M^k \in S$ we obtain $d=0$.
+		Thus $M^k = cM$, so it follows the eigenvalues of $M$ are negatives of each other.
+		That means $\Tr M = 0$, and the rest is clear.
 	\end{sol}
 \end{problem}
+
 
 %\begin{problem}[USAMO 2008, edited]
 %	At a certain mathematical conference,
