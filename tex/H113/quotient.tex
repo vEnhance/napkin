@@ -154,7 +154,7 @@ the right way to think about an isomorphism is as a ``bijective homomorphism''.
 To be explicit,
 \begin{exercise}
 	Show that $G \cong H$ if and only if there exist
-	homomorphisms $\phi : G \to H$ and $\psi : H \to G$
+	homomorphisms $\phi \colon G \to H$ and $\psi \colon H \to G$
 	such that $\phi \circ \psi = \id_H$ and $\psi \circ \phi = \id_G$.
 \end{exercise}
 So the definitions of homeomorphism of metric spaces
@@ -162,7 +162,7 @@ and isomorphism of groups are not too different.
 
 Some obvious properties of homomorphisms follow.
 \begin{fact}
-	Let $\phi : G \to H$ be a homomorphism.
+	Let $\phi \colon G \to H$ be a homomorphism.
 	Then $\phi(1_G) = 1_H$ and $\phi(g\inv) = \phi(g)\inv$.
 \end{fact}
 \begin{proof}
@@ -171,12 +171,12 @@ Some obvious properties of homomorphisms follow.
 
 Now let me define a very important property of a homomorphism.
 \begin{definition}
-	The \vocab{kernel} of a homomorphism $\phi : G \to H$ is defined by
-	\[ \ker \phi 
-	\defeq
+	The \vocab{kernel} of a homomorphism $\phi \colon G \to H$ is defined by
+	\[ \ker \phi \defeq
 		\left\{ g \in G : \phi(g) = 1_H \right\}.
 		\]
-	It is a \emph{subgroup} of $G$ (in particular, $1_G \in \ker \phi$ for obvious reasons).
+	It is a \emph{subgroup} of $G$
+	(in particular, $1_G \in \ker \phi$ for obvious reasons).
 \end{definition}
 \begin{ques}
 	Verify that $\ker\phi$ is in fact a subgroup of $G$.
@@ -195,15 +195,17 @@ To make this concrete, let's compute the kernel of each of our examples.
 		\ii The kernel of any isomorphism $G \to H$ is trivial,
 		since an isomorphism is injective.
 		In particular, the kernel of the identity map $G \to G$ is $\{1_G\}$.
-		\ii The kernel of the trivial homomorphism $G \to H$ (by $g \mapsto 1_H$) is all of $G$.
+		\ii The kernel of the trivial homomorphism $G \to H$
+		(by $g \mapsto 1_H$) is all of $G$.
 		\ii The kernel of the homomorphism $\ZZ \to \Zc{100}$ by $n \mapsto \ol n$
 		is precisely \[ 100\ZZ = \{\dots, -200, -100, 0, 100, 200, \dots \}. \]
 		\ii The kernel of the map $\ZZ \to \ZZ$ by $x \mapsto 10x$ is trivial: $\{0\}$.
 		\ii There is a homomorphism from $S_n$ to $S_{n+1}$ by ``embedding'',
 		but it also has trivial kernel because it is injective.
-		\ii A homomorphism $\phi: D_{12} \to D_6$ is given by $s_{12} \mapsto s_6$ and $r_{12} \mapsto r_6$.  
+		\ii A homomorphism $\phi\colon D_{12} \to D_6$
+		is given by $s_{12} \mapsto s_6$ and $r_{12} \mapsto r_6$.
 		You can check that
-		\[ \ker \phi = \left\{ 1, r_{12}^{6} \right\} \cong \Zc2. \]
+		\[ \ker \phi = \left\{ 1, r_{12}^{3} \right\} \cong \Zc2. \]
 		\ii Exercise below.
 	\end{enumerate}
 \end{example}
