@@ -1,0 +1,58 @@
+\chapter{Random variables}
+Having properly developed the Lebesgue measure
+and the integral on it,
+we can now proceed to develop random variables.
+
+\section{Random variables}
+With all this set-up, random variables are going to be really quick to define.
+\begin{definition}
+	A (real) \vocab{random variable} $X$ on a probability space
+	$\Omega = (\Omega, \SA, \mu)$
+	is a measurable function $X \colon \Omega \to \RR$,
+	where $\RR$ is equipped with the Borel $\sigma$-algebra.
+\end{definition}
+In particular, addition of random variables, etc.\
+all makes sense, as we can just add.
+Also, we can integrate $X$ over $\Omega$, by previous chapter.
+
+\begin{definition}
+	[First properties of random variables]
+	Given a random variable $X$,
+	the \vocab{expected value} of $X$ is defined by
+	the Lebesgue integral
+	\[ \EE[X] = \int_{\Omega} X(\omega) \; d\mu. \]
+	Confusingly, the letter $\mu$ is often used for expected values.
+
+	The \vocab{$k$th moment} of $X$ is defined as $\EE[X^k]$,
+	for each positive integer $k \ge 1$.
+	The \vocab{variance} of $X$ is then defined as
+	\[ \Var(X) = \EE\left[ (X-\EE[X])^2 \right]. \]
+\end{definition}
+\begin{ques}
+	Show that $\mathbf{1}_A$ is a random variable
+	(just check that it is Borel measurable),
+	and its expected value is $\mu(A)$.
+\end{ques}
+
+An important property of expected value you probably already know:
+\begin{theorem}
+	[Linearity of expectation]
+	If $X$ and $Y$ are random variables on $\Omega$ then
+	\[ \EE[X+Y] = \EE[X] + \EE[Y]. \]
+\end{theorem}
+\begin{proof}
+	$\EE[X+Y] = \int_\Omega X(\omega) + Y(\omega) \; d\mu
+	= \int_\Omega X(\omega) \; d\mu + \int_\Omega Y(\omega) \; d\mu
+	= \EE[X] + \EE[Y]$.
+\end{proof}
+Note that $X$ and $Y$ do not have to be ``independent'' here:
+a notion we will define shortly.
+
+\section{Distribution functions}
+
+\section{Examples of random variables}
+
+\section{Characteristic functions}
+
+\section{Independent random variables}
+

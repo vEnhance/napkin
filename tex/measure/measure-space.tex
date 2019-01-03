@@ -1,0 +1,368 @@
+\chapter{Measure spaces}
+Here is an outline of where we are going next.
+Our \emph{goal} over the next few chapters
+is to develop the machinery to state (and in some cases prove)
+the large of law numbers and the central limit theorem.
+For these purposes, the scant amount of work we did in Calculus 101
+is going to be awfully insufficient:
+integration over $\RR$ (or even $\RR^n$) is just not going to cut it.
+
+This chapter will develop the theory of ``measure spaces'',
+which you can think of as ``spaces equipped with a notion of size''.
+We will then be able to integrate over these
+with the so-called Lebesgue integral
+(which in some senses is almost strictly better than the Riemann one).
+
+\section*{Letter connotations}
+There are a lot of ``types'' of objects moving forward,
+so here are the letter connotations we'll use
+throughout the next several chapters.
+This makes it easier to tell what the ``type'' of each object
+is just by which letter is used.
+\begin{itemize}
+	\ii Measure spaces denoted by $\Omega$,
+	their elements denoted by $\omega$.
+	\ii Algebras and $\sigma$-algebras denoted by script $\SA$, $\SB$, \dots.
+	Sets in them denoted by early capital Roman $A$, $B$, $C$, $D$, $E$, \dots.
+	\ii Measures (i.e.\ functions assigning sets to reals)
+	denoted usually by $\mu$ or $\rho$.
+	\ii Random variables (functions sending worlds to reals)
+	denoted usually by late capital Roman $X$, $Y$, $Z$, \dots.
+	\ii Functions from $\RR \to \RR$
+	by Roman letters like $f$ and $g$ for pdf's
+	and $F$ and $G$ for cdf's.
+	\ii Real numbers denoted by lower Roman letters like $x$, $y$, $z$.
+\end{itemize}
+
+
+\section{Motivating measure spaces via random variables}
+To motivate \emph{why} we want to construct measure spaces,
+I want to talk about a (real) \vocab{random variable},
+which you might think of as
+\begin{itemize}
+	\ii the result of a coin flip,
+	\ii the high temperature in Boston on Saturday,
+	\ii the possibility of rain on your 18.725 date next weekend.
+\end{itemize}
+
+Why does this need a long theory to develop well?
+For a simple coin flip one intuitively just thinks
+``50\% heads, 50\% tails'' and is done with it.
+The situation is a little trickier with temperature
+since it is continuous rather than discrete,
+but if all you care about is that one temperature,
+calculus seems like it might be enough to deal with this.
+
+But it gets more slippery once the variables start to ``talk to'' each other:
+the high temperature tells you a little bit about whether it will rain,
+because e.g.\ if the temperature is very high it's quite likely to be sunny.
+Suddenly we find ourselves wishing we could talk about conditional probability,
+but this a whole can of worms --- the relations
+between these sorts of things can get very complicated very quickly.
+
+The big idea to getting a formalism for this is that:
+\begin{moral}
+	Our measure spaces $\Omega$ will be thought of as a space of entire worlds,
+	with each $\omega \in \Omega$ representing a world.
+	Random variables are functions from worlds to $\RR$.
+\end{moral}
+This way, the space of ``worlds'' takes care of all the messy interdependence.
+
+Then, we can assign ``measures'' to sets of worlds:
+for example, to be fair coin means that if you are only interested in
+that one coin flip, the ``fraction'' of worlds
+which that coin showed heads should be $\half$.
+This is in some ways backwards from what you were told in high-school:
+officially, we start with the space of worlds,
+rather than starting with the probabilities.
+
+It will soon be clear that there is no way we can assign
+a well-defined measure to every single one of the $2^\Omega$ subsets.
+Fortunately, in practice, we won't need to,
+and the notion of a $\sigma$-algebra will capture the idea
+of ``enough measur-\emph{able} sets for us to get by''.
+
+\begin{remark}
+	[Random seeds]
+	Another analogy if you do some programming:
+	each $\omega \in \Omega$ is a \emph{random seed}.
+\end{remark}
+
+\section{Motivating measure spaces geometrically}
+So, we have a set $\Omega$ of possible points
+(which in the context of the previous discussion
+can be thought of as the set of worlds),
+and we want to assign a \emph{measure} (think volume)
+to subsets of points in $\Omega$.
+We will now describe some of the obstacles that we will face,
+in order to motivate \emph{how} measure spaces are defined
+(as the previous section only motivated \emph{why} we want such things).
+
+If you try to do this na\"{\i}vely,
+you basically immediately run into set-theoretic issues.
+A good example to think about why this might happen
+is if $\Omega = \RR^2$ with the measure corresponding to area.
+You can define the area of a triangle as in high school,
+and you can then try and define the area of a circle,
+maybe by approximating it with polygons.
+But what area would you assign to the subset $\QQ^2$, for example?
+(It turns out ``zero'' is actually a working answer.)
+Or, a unit disk is composed of infinitely many points;
+each of the points better have measure zero,
+but why does their union have measure $\pi$ then?
+Blah blah blah.
+
+We'll say more about this later, but
+you might have already heard of the \textbf{Banach-Tarski paradox}
+which essentially shows there is no good way that you can assign a
+measure to every single subset of $\RR^3$
+and still satisfy basic sanity checks.
+There are just too many possible subsets of Euclidean space.
+
+However, the good news is that most of these sets are not ones
+that we will ever care about,
+and it's enough to define measures for certain
+``sufficiently nice sets'' $A$.
+The adjective we will use is \emph{measurable},
+and it will turn out that this will be way, way more than good enough
+for any practical purposes.
+We will generally use $A$, $B$, \dots for measurable sets
+and denote the entire family of measurable sets by curly $\SA$.
+
+\section{$\sigma$-algebras and measurable spaces}
+Here's the machine code.
+\begin{definition}
+	A \vocab{measurable space} consists of a space $\Omega$ of points,
+	and a \vocab{$\sigma$-algebra} $\SA$ of subsets of $\Omega$
+	(the ``measurable sets'' of $\Omega$).
+	The set $\SA$ is required to satisfy the following axioms:
+	\begin{itemize}
+		\ii $\SA$ contains $\varnothing$ and $\Omega$.
+		\ii $\SA$ should be closed under complements and
+		\emph{countable} unions/intersections.
+		(Hint on nomenclature: $\sigma$ usually indicates
+		some sort of ``countably finite'' condition.)
+	\end{itemize}
+\end{definition}
+(Complaint: this terminology is phonetically confusing,
+because it can be confused with ``measure space'' later.
+The way to think about is that
+``measur\emph{able} spaces have a $\sigma$-algebra, so we \emph{could}
+try to put a measure on it, but we \emph{haven't}, yet.'')
+
+Though this definition is how we actually think about it in a few select cases,
+for the most part, and we will usually instantiate $\SA$ in practice
+in a different way:
+\begin{definition}
+	Let $\Omega$ be a set, and consider some family of subsets $\SF$ of $\Omega$.
+	Then the \vocab{$\sigma$-algebra generated by $\SF$}
+	is the smallest $\sigma$-algebra $\SA$ which contains $\SF$.
+\end{definition}
+As is commonplace in math, when we see ``generated'',
+this means we sort of let the definition ``take care of itself''.
+So, if $\Omega = \RR$, maybe I want $\SA$ to contain all open sets.
+Well, then the definition means it should contain every complements too,
+so it contains all the closed sets.
+Then it has to contain all the half-open intervals too, and then\dots.
+Rather than try to reason out what exactly the final shape $\SA$ looks like
+(which basically turns out to be impossible),
+we just give up and say ``$\SA$ is all the sets you can get if you start
+with the open sets and apply repeatedly union/complement operations''.
+OR even more bluntly: ``start with closed sets, shake vigorously''.
+
+I've gone on too long with no examples.
+\begin{example}
+	[Examples of measurable spaces]
+	The first two examples actually say what $\SA$ is;
+	the third example (most important) will use generation.
+	\begin{enumerate}[(a)]
+		\ii If $\Omega$ is any set,
+		then the power set $\SA = 2^{\Omega}$ is obviously a $\sigma$-algebra.
+		This will be used if $\Omega$ is countably finite,
+		but it won't be very helpful if $\Omega$ is huge.
+		\ii If $\Omega$ is an uncountable set,
+		then we can declare $\SA$ to be all subsets of $\Omega$
+		which are either countable,
+		or which have countable complement.
+		(You should check this satisfies the definitions.)
+		This is a very ``coarse'' algebra.
+		\ii If $\Omega$ is a topological space,
+		the \vocab{Borel $\sigma$-algebra}
+		is defined as the $\sigma$-algebra generated by all the open sets of $\Omega$.
+		We denote it by $\SB(\Omega)$,
+		and call the space a \vocab{Borel space}.
+		As warned earlier, it is basically impossible to describe
+		what it looks like,
+		and instead you should think of it as saying
+		``we can measure the open sets''.
+	\end{enumerate}
+\end{example}
+\begin{ques}
+	Show that the closed sets are in $\SB(\Omega)$ for
+	any topological space $\Omega$.
+	Show that $[0,1)$ %chktex 9
+	is also in $\SB(\RR)$.
+\end{ques}
+
+\section{Measure spaces}
+\begin{definition}
+	Measurable spaces $(\Omega, \SA)$ are then equipped
+	with a function $\mu \colon \SA \to [0, +\infty]$
+	called the \vocab{measure}, which is required to satisfy
+	the following axioms:
+	\begin{itemize}
+		\ii $\mu(\varnothing) = 0$
+		\ii \textbf{Countable additivity}:
+		If $A_1$, $A_2$, \dots are disjoint sets in $\SA$,
+		then \[ \mu\left( \bigsqcup_n A_n \right) = \sum_n \mu(A_n). \]
+	\end{itemize}
+	The triple $(\Omega, \SA, \mu)$ is called a \vocab{measure space}.
+	It's called a \vocab{probability space} if $\mu(\Omega) = 1$.
+\end{definition}
+
+\begin{remark}
+Here are some immediate remarks on these definitions.
+\begin{itemize}
+	\ii If $A \subseteq B$ are measurable,
+	then $\mu(A) \le \mu(B)$ since $\mu(B) = \mu(A) + \mu(B-A)$.
+	\ii In particular, in a probability space all measures are in $[0,1]$.
+	On the other hand, for general measure spaces we'll allow $+\infty$
+	as a possible measure
+	(hence the choice of $[0,+\infty]$ as codomain for $\mu$).
+	\ii We want to allow at least countable unions / additivity
+	because with finite unions it's too hard to make progress:
+	it's too hard to estimate the area of a circle
+	without being able to talk about limits of countably infinitely many triangles.
+	\ii We \emph{don't} want to allow uncountable unions and additivity,
+	because uncountable sums basically never work out.
+	In particular, there is a nice elementary exercise as follows:
+	\begin{exercise}
+		[Tricky]
+		Let $S$ be an uncountable set of positive real numbers.
+		Show that some finite subset $T \subseteq S$ has sum greater than $10^{2019}$.
+		Colloquially, ``uncountable many positive reals
+		cannot have finite sum''.
+	\end{exercise}
+	So countable sums are as far as we'll let the infinite sums go.
+	This is the reason why we considered $\sigma$-algebras in the first place.
+\end{itemize}
+\end{remark}
+
+\begin{example}
+	[Measures]
+	We now discuss measures on each of the spaces
+	in our previous examples.
+	\begin{enumerate}[(a)]
+		\ii If $\SA = 2^\Omega$ (or for that matter any $\SA$)
+		we may declare $\mu(A) = |A|$ for each $A \in \SA$
+		(even if $|A| = \infty$).
+		This is called the \vocab{counting measure},
+		simply counting the number of elements.
+
+		This is useful if $\Omega$ is countably finite,
+		and optimal if $\Omega$ is finite (and nonempty).
+		In the latter case, we will often normalize by
+		$\mu(A) = \frac{|A|}{|\Omega|}$
+		so that $\Omega$ becomes a probability space.
+
+		\ii Suppose $\Omega$ was uncountable
+		and we took $\SA$ to be the countable sets and their complements.
+		Then
+		\[
+			\mu(A) = \begin{cases}
+				0 & \text{$A$ is countable} \\
+				1 & \text{$\Omega \setminus A$ is countable}
+			\end{cases}
+		\]
+		is a measure. (Check this.)
+		
+		\ii Elephant in the room:
+		defining a measure on $\SB(\Omega)$ is hard even for $\Omega = \RR$,
+		and is done in the next chapter.
+		So you will have to hold your breath.
+		Right now, all you know is that by declaring my \emph{intent}
+		to define a measure $\SB(\Omega)$,
+		I am hoping that at least every open set will have a volume.
+	\end{enumerate}
+\end{example}
+
+\begin{exercise}
+	[Weaker equivalent definitions]
+	I chose to give axioms for $\SA$ and $\mu$
+	that capture how people think of them in practice,
+	which means there is some redundancy:
+	for example, being closed under complements and unions
+	is enough to get intersections, by de Morgan's law.
+	Here are more minimal definitions,
+	which are useful if you are trying to prove something satisfies them
+	to reduce the amount of work you have to do.
+
+	Show:
+	\begin{enumerate}
+		\ii The axioms on $\SA$ can be weakened
+		to (i) $\varnothing \in \SA$ and (ii) $\SA$ is closed under
+		complements and countable \emph{disjoint} unions.
+		\ii The axioms on $\mu$ can be weakened to
+		(i) $\mu(\varnothing) = 0$,
+		(ii) $\mu(A \sqcup B) = \mu(A) + \mu(B)$, and
+		(iii) for $A_1 \supset A_2 \supset \dots$
+		we have $\mu\left( \bigcap_n A_n \right) = \lim_n \mu(A_n)$.
+	\end{enumerate}
+\end{exercise}
+
+\section{A hint of Banach-Tarski}
+I will now try to convince you that $\SB(\Omega)$
+is a necessary concession,
+and that for general topological spaces like $\Omega = \RR^n$,
+there is no hope of assigning a measure to $2^{\Omega}$.
+\begin{example}
+	[A geometric example of why $\SA = 2^\Omega$ is unsuitable]
+	Let $\Omega$ denote the closed unit disk in $\RR^2$
+	and $\SA = 2^\Omega$.
+	We will show that any measure $\mu$ on $\Omega$
+	with $\mu(\Omega) = 1$ will have undesirable properties.
+
+	Let $\sim$ denote an equivalence relation on $\Omega$
+	defined as follows: two points are equivalent
+	if they differ by a rotation around the origin by a multiple of $\pi$.
+	We may pick a representative from each equivalence class,
+	letting $X$ denote the set of representatives.
+	Then
+	\[ \Omega = \bigsqcup_{\substack{q \in \QQ \\ 0 \le q < 2}}
+		\left( X \text{ rotated by $q\pi$ radians} \right).  \]
+	Since we've only rotated $X$,
+	each of the rotations should have the same measure $m$.
+	But $\mu(\Omega) = 1$,
+	and there is no value we can assign that measure:
+	if $m = 0$ we get $\mu(\Omega) = 0$
+	and $m > 0$ we get $\mu(\Omega) = \infty$.
+\end{example}
+\begin{remark}
+	[Choice]
+	Experts may recognize that picking a representative
+	(i.e.\ creating set $X$)
+	technically requires the Axiom of Choice.
+	That is why, when people talk about Banach-Tarski issues,
+	the Axiom of Choice almost always gets honorable mention as well.
+\end{remark}
+
+Stay tuned to actually see a construction for $\SB(\RR^n)$
+in the next chapter.
+
+\section{Measurable functions}
+\todo{write me}
+
+\section{\problemhead}
+
+\begin{dproblem}
+	Let $(\Omega, \SA, \mu)$ be a probability space.
+	Show that the intersection of countably many sets of measure $1$
+	also has measure $1$.
+\end{dproblem}
+
+\begin{problem}
+	\gim
+	Let $\SA$ be a $\sigma$-algebra on a set $\Omega$.
+	Suppose that $\SA$ has countable cardinality.
+	Prove that $|\SA|$ is finite and equals a power of $2$.
+\end{problem}

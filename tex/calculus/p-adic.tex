@@ -1,0 +1,713 @@
+\chapter[Bonus: p-adic numbers]{Bonus: $p$-adic numbers}
+In this chapter, we are going to redo most of the previous chapter
+with the absolute value $\left\lvert - \right\rvert$
+replaced by the $p$-adic one.
+This will give us the $p$-adic integers $\ZZ_p$,
+and the $p$-adic numbers $\QQ_p$.
+The one-sentence description is that these are
+``integers/rationals carrying full mod $p^e$ information''
+(and only that information).
+
+In everything that follows $p$ is always assumed to denote a prime.
+The first four sections will cover the founding definitions
+culminating in a short solution to a USA TST problem.
+We will then state (mostly without proof) some more
+surprising results about continuous functions $f \colon \ZZ_p \to \QQ_p$;
+finally we close with the famous proof of the Skolem-Mahler-Lech theorem
+using $p$-adic analysis.
+
+Small dependency bug: for this chapter,
+you will need to have read the chapter on rings and fields.
+
+%In this whole post, $p$ is always a prime.
+%Much of this is based off of Chapter 3A from
+%\emph{Straight from the Book}.
+
+\section{Motivation}
+Before really telling you what $\ZZ_p$ and $\QQ_p$ are,
+let me tell you what you might expect them to do.
+
+In elementary/olympiad number theory,
+we're already well-familiar with the following two ideas:
+\begin{itemize}
+	\ii Taking modulo a prime $p$ or prime $p^e$, and
+	\ii Looking at the exponent $\nu_p$.
+\end{itemize}
+
+Let me expand on the first point.
+Suppose we have some Diophantine equation.
+In olympiad contexts, one can take an equation modulo $p$
+to gain something else to work with.
+Unfortunately, taking modulo $p$ loses some information:
+the reduction $\ZZ \surjto \ZZ/p$ is far from injective.
+
+If we want finer control, we could consider instead
+taking modulo $p^2$, rather than taking modulo $p$.
+This can also give some new information (cubes modulo $9$, anyone?),
+but it has the disadvantage that $\ZZ/p^2$ isn't a field,
+so we lose a lot of the nice algebraic properties that we
+got if we take modulo $p$.
+
+One of the goals of $p$-adic numbers is that we can get around
+these two issues I described.
+The $p$-adic numbers we introduce is going to have the following properties:
+\begin{enumerate}
+	\ii \textbf{You can ``take modulo $p^e$ for all $e$ at once''.}
+	In olympiad contexts, we are used to picking a particular modulus and then
+	seeing what happens if we take that modulus.
+	But with $p$-adic numbers, we won't have to make that choice.
+	An equation of $p$-adic numbers carries enough information
+	to take modulo $p^e$.
+	\ii \textbf{The numbers $\QQ_p$ form a field},
+	the nicest possible algebraic structure:
+	$1/p$ makes sense.
+	Contrast this with $\ZZ/p^2$, which is not even an integral domain.
+	\ii \textbf{It doesn't lose as much information}
+	as taking modulo $p$ does:
+	rather than the surjective $\ZZ \surjto \ZZ/p$ we have an
+	\emph{injective} map $\ZZ \injto \ZZ_p$.
+	\ii \textbf{Despite this, you ``ignore'' some ``irrelevant'' data}.
+	Just like taking modulo $p$, you want to zoom-in on
+	a particular type of algebraic information,
+	and this means necessarily
+	losing sight of other things.\footnote{To draw an analogy: the equation
+	$ a^2 + b^2 + c^2 + d^2 = -1$
+	has no integer solutions, because, well, squares are nonnegative.
+	But you will find that this equation has solutions modulo any prime $p$,
+	because once you take modulo $p$ you stop being able to
+	talk about numbers being nonnegative.
+	The same thing will happen if we work in $p$-adics:
+	the above equation has a solution in $\ZZ_p$ for every prime $p$.}
+\end{enumerate}
+So, you can think of $p$-adic numbers as the right tool to use
+if you only really care about modulo $p^e$ information,
+but normal $\ZZ/p^e$ isn't quite powerful enough.
+
+To be more concrete, I'll give a poster example now:
+\todo{IMO logo this one as well, like Japan}
+\begin{example}
+	[USA TST 2002/2]
+	For a prime $p$, show the value of
+	\[ f_p(x) = \sum_{k=1}^{p-1} \frac{1}{(px+k)^2} \pmod{p^3} \]
+	does not depend on $x$.
+	\label{ex:token}
+\end{example}
+Here is a problem where we \emph{clearly} only care
+about $p^e$-type information.
+Yet it's a nontrivial challenge to do the
+necessary manipulations mod $p^3$ (try it!).
+The basic issue is that there is no good way to deal with
+the denominators modulo $p^3$
+(in part $\ZZ/p^3$ is not even an integral domain).
+
+However, with $p$-adic analysis we're going to be able
+to overcome these limitations and give a ``straightforward'' proof
+by using the identity
+\[
+	\left( 1 + \frac{px}{k} \right)^{-2}
+	= \sum_{n \ge 0} \binom{-2}{n} \left( \frac{px}{k} \right)^n.
+\]
+Such an identity makes no sense over $\QQ$ or $\RR$
+for converge reasons,
+but it will work fine over the $\QQ_p$, which is all we need.
+
+
+\section{Algebraic perspective}
+\prototype{$1/2 = 1 + 3 + 3^2 + 3^3 + \dots \in \ZZ_3$.}
+We now construct $\ZZ_p$ and $\QQ_p$.
+I promised earlier that a $p$-adic integer will let you look at
+``all residues modulo $p^e$'' at once.
+This definition will formalize this.
+
+\subsection{Definition of $\ZZ_p$}
+\begin{definition}
+	[Introducing $\ZZ_p$]
+	A \vocab{$p$-adic integer} is a sequence
+	\[ x = (x_1 \bmod p, \; x_2 \bmod{p^2}, \; x_3 \bmod{p^3}, \; \dots) \]
+	of residues $x_e$ modulo $p^e$ for each integer $e$,
+	satisfying the compatibility relations
+	$x_i \equiv x_j \pmod{p^i}$ for $i < j$.
+
+	The set $\ZZ_p$ of $p$-adic integers forms a ring
+	under component-wise addition and multiplication.
+\end{definition}
+
+\begin{example}
+	[Some $3$-adic integers]
+	Let $p=3$.
+	Every usual integer $n$ generates
+	a (compatible) sequence of residues modulo $p^e$ for each $e$,
+	so we can view each ordinary integer as $p$-adic one:
+	\[ 50 = \left( 2 \bmod 3, \; 5 \bmod 9, \;
+		23 \bmod{27}, \; 50 \bmod{81}, \; 50 \bmod{243}, \; \dots \right). \]
+	On the other hand, there are sequences of residues
+	which do not correspond to any usual integer despite
+	satisfying compatibility relations, such as
+	\[ \left( 1 \bmod 3, \; 4 \bmod 9, \;
+		13 \bmod{27}, \; 40 \bmod{81}, \; \dots \right) \]
+	which can be thought of as $x = 1 + p + p^2 + \dots$.
+\end{example}
+In this way we get an injective map
+\[ \ZZ \injto \ZZ_p \qquad
+	n \mapsto \left( n \bmod p, n \bmod{p^2}, n \bmod{p^3}, \dots \right) \]
+which is not surjective.
+So there are more $p$-adic integers than usual integers.
+
+(Remark for experts:
+those of you familiar with category theory might recognize
+that this definition can be written concisely as
+\[ \ZZ_p \defeq \varprojlim \ZZ/p^e \ZZ \]
+where the inverse limit is taken across $e \ge 1$.)
+
+\begin{exercise}
+	Check that $\ZZ_p$ is an integral domain.
+\end{exercise}
+
+\subsection{Base $p$ expansion}
+Here is another way to think about $p$-adic integers using ``base $p$''.
+As in the example earlier, every usual integer can be written in base $p$,
+for example
+\[ 50 = \ol{1212}_3 = 2 \cdot 3^0 + 1 \cdot 3^1 + 2 \cdot 3^2 + 1 \cdot 3^3. \]
+More generally, given any $x = (x_1, \dots) \in \ZZ_p$,
+we can write down a ``base $p$'' expansion in the sense
+that there are exactly $p$ choices of $x_k$ given $x_{k-1}$.
+Continuing the example earlier, we would write
+\begin{align*}
+	\left( 1 \bmod 3, \; 4 \bmod 9, \;
+	13 \bmod{27}, \; 40 \bmod{81}, \; \dots \right)
+	&= 1 + 3 + 3^2 + \dots \\
+	&= \ol{\dots1111}_3
+\end{align*}
+and in general we can write
+\[ x = \sum_{k \ge 0} a_k p^k = \ol{\dots a_2 a_1 a_0}_p \]
+where $a_k \in \{0, \dots, p-1\}$,
+such that the equation holds modulo $p^e$ for each $e$.
+Note the expansion is infinite to the \emph{left},
+which is different from what you're used to.
+
+(Amusingly, negative integers also have infinite base $p$ expansions:
+$-4 = \ol{\dots222212}_3$, corresponding to
+$(2 \bmod 3, \; 5 \bmod 9, \; 23 \bmod{27}, \; 77 \bmod{81} \dots)$.)
+
+Thus you may often hear the advertisement that a $p$-adic integer
+is an ``possibly infinite base $p$ expansion''.
+This is correct, but later on we'll be thinking of $\ZZ_p$ in
+a more and more ``analytic'' way,
+and so I prefer to think of this as
+\begin{moral}
+	$p$-adic integers are Taylor series with base $p$.
+\end{moral}
+Indeed, much of your intuition from generating functions $K[[X]]$
+(where $K$ is a field) will carry over to $\ZZ_p$.
+
+\subsection{Constructing $\QQ_p$}
+Here is one way in which your intuition from generating functions carries over:
+\begin{proposition}
+	[Non-multiples of $p$ are all invertible]
+	The number $x \in \ZZ_p$ is invertible if and only if $x_1 \ne 0$.
+	In symbols,
+	\[ x \in \ZZ_p^\times \iff x \not\equiv 0 \pmod p. \]
+\end{proposition}
+Contrast this with the corresponding statement for $K[ [ X ] ]$:
+a generating function $F \in K[ [ X ] ]$ is invertible iff $F(0) \neq 0$.
+
+\begin{proof}
+	If $x \equiv 0 \pmod p$ then $x_1 = 0$,
+	so clearly not invertible.
+	Otherwise, $x_e \not\equiv 0 \pmod p$ for all $e$,
+	so we can take an inverse $y_e$ modulo $p^e$,
+	with $x_e y_e \equiv 1 \pmod{p^e}$.
+	As the $y_e$ are themselves compatible,
+	the element $(y_1, y_2, \dots)$ is an inverse.
+\end{proof}
+\begin{example}
+	[We have $-\half = \ol{\dots1111}_3 \in \ZZ_3$]
+	We claim the earlier example is actually
+	\begin{align*}
+	-\half = \left( 1 \bmod 3, \; 4 \bmod 9, \;
+	13 \bmod{27}, \; 40 \bmod{81}, \; \dots \right)
+	&= 1 + 3 + 3^2 + \dots \\
+	&= \ol{\dots1111}_3.
+	\end{align*}
+	Indeed, multiplying it by $-2$ gives
+	\[ \left( -2 \bmod 3, \; -8 \bmod 9, \;
+		-26 \bmod{27}, \; -80 \bmod{81}, \; \dots \right)
+		= 1. \]
+	(Compare this with the ``geometric series''
+	$1 + 3 + 3^2 + \dots = \frac{1}{1-3}$.
+	We'll actually be able to formalize this later, but not yet.)
+\end{example}
+\begin{remark}
+	[$\half$ is an integer for $p > 2$]
+	The earlier proposition implies that $\half \in \ZZ_3$
+	(among other things);
+	your intuition about what is an ``integer'' is different here!
+	In olympiad terms, we already knew $\half \pmod 3$ made sense,
+	which is why calling $\half$ an ``integer''
+	in the $3$-adics is correct,
+	even though it doesn't correspond to any element of $\ZZ$.
+\end{remark}
+\begin{exercise}
+	[Unimportant but tricky]
+	Rational numbers correspond exactly to
+	eventually periodic base $p$ expansions.
+\end{exercise}
+
+With this observation, here is now the definition of $\QQ_p$.
+\begin{definition}
+	[Introducing $\QQ_p$]
+	Since $\ZZ_p$ is an integral domain,
+	we let $\QQ_p$ denote its field of fractions.
+	These are the \vocab{$p$-adic numbers}.
+\end{definition}
+Continuing our generating functions analogy:
+\[ \ZZ_p \text{ is to } \QQ_p
+	\quad\text{as}\quad
+	K[[X]] \text{ is to } K((X)). \]
+This means
+\begin{moral}
+	$\QQ_p$ can be thought of as Laurent series with base $p$.
+\end{moral}
+and in particular according to the earlier proposition we deduce:
+\begin{proposition}
+	[$\QQ_p$ looks like formal Laurent series]
+	Every nonzero element of $\QQ_p$ is uniquely of the form
+	\[ p^k u \qquad \text{ where } k \in \ZZ, \; u \in \ZZ_p^\times. \]
+\end{proposition}
+Thus, continuing our base $p$ analogy,
+elements of $\QQ_p$ are in bijection with ``Laurent series''
+\[ \sum_{k \ge -n} a_k p^k
+	= \ol{\dots a_2 a_1 a_0 . a_{-1} a_{-2} \dots a_{-n}}_p \]
+for $a_k \in \left\{ 0, \dots, p-1 \right\}$.
+So the base $p$ representations of elements of $\QQ_p$
+can be thought of as the same as usual,
+but extending infinitely far to the left
+(rather than to the right).
+
+\begin{remark}
+	[Warning]
+	The field $\QQ_p$ has characteristic \emph{zero}, not $p$.
+\end{remark}
+\begin{remark}
+	[Warning on fraction field]
+	This result implies that you shouldn't think about elements of $\QQ_p$
+	as $x/y$ (for $x,y \in \ZZ_p$) in practice,
+	even though this is the official definition
+	(and what you'd expect from the name $\QQ_p$).
+	The only denominators you need are powers of $p$.
+
+	To keep pushing the formal Laurent series analogy,
+	$K((X))$ is usually not thought of as quotient of generating functions
+	but rather as ``formal series with some negative exponents''.
+	You should apply the same intuition on $\QQ_p$.
+\end{remark}
+
+\begin{remark}
+At this point I want to make a remark about the fact $1/p \in \QQ_p$,
+connecting it to the wish-list of properties I had before.
+In elementary number theory you can take equations modulo $p$,
+but if you do the quantity $n/p \bmod{p}$ doesn't make sense
+unless you know $n \bmod{p^2}$.
+You can't fix this by just taking modulo $p^2$
+since then you need $n \bmod{p^3}$ to get $n/p \bmod{p^2}$, ad infinitum.
+You can work around issues like this,
+but the nice feature of $\ZZ_p$ and $\QQ_p$
+is that you have modulo $p^e$ information for ``all $e$ at once'':
+the information of $x \in \QQ_p$ packages all the modulo $p^e$
+information simultaneously.
+So you can divide by $p$ with no repercussions.
+\end{remark}
+
+
+\section{Analytic perspective}
+\todo{prototype}
+\subsection{Definition}
+Up until now we've been thinking about things mostly algebraically,
+but moving forward it will be helpful to start using the language of analysis.
+Usually, two real numbers are considered ``close'' if
+they are close on the number of line,
+but for $p$-adic purposes we only care about modulo $p^e$ information.
+So, we'll instead think of two elements of $\ZZ_p$ or $\QQ_p$
+as ``close'' if they differ by a large multiple of $p^e$.
+
+For this we'll borrow the familiar $\nu_p$ from elementary number theory.
+\begin{definition}
+	[$p$-adic valuation and absolute value]
+	We define the \vocab{$p$-adic valuation} $\nu_p : \QQ_p^\times \to \ZZ$
+	in the following two equivalent ways:
+	\begin{itemize}
+		\ii For $x = (x_1, x_2, \dots) \in \ZZ_p$ we let
+		$\nu_p(x)$ be the largest $e$ such that
+		$x_e \equiv 0 \pmod{p^e}$ (or $e=0$ if $x \in \ZZ_p^\times$).
+		Then extend to all of $\QQ_p^\times$
+		by $\nu_p(xy) = \nu_p(x) + \nu_p(y)$.
+		\ii Each $x \in \QQ_p^\times$ can be written
+		uniquely as $p^k u$ for $u \in \ZZ_p^\times$, $k \in \ZZ$.
+		We let $\nu_p(x) = k$.
+	\end{itemize}
+	By convention we set $\nu_p(0) = +\infty$.
+	Finally, define the \vocab{$p$-adic absolute value}
+	$\left\lvert \bullet \right\rvert_p$ by
+	\[ \left\lvert x \right\rvert_p = p^{-\nu_p(x)}. \]
+	In particular $\left\lvert 0 \right\rvert_p = 0$.
+\end{definition}
+This fulfills the promise that $x$ and $y$ are close
+if they look the same modulo $p^e$ for large $e$;
+in that case $\nu_p(x-y)$ is large
+and accordingly $\left\lvert x-y \right\rvert_p$ is small.
+
+\subsection{Ultrametric space}
+In this way, $\QQ_p$ and $\ZZ_p$ becomes a metric space
+with metric given by $\left\lvert x-y \right\rvert_p$.
+
+\begin{exercise}
+	\label{exer:alternating}
+	Suppose $f \colon \ZZ_p \to \QQ_p$ is continuous
+	and $f(n) = (-1)^n$ for every $n \in \ZZ_{\ge 0}$.
+	Prove that $p = 2$.
+\end{exercise}
+
+In fact, these spaces satisfy a stronger
+form of the triangle inequality than you are used to from $\RR$.
+\begin{proposition}
+	[$\left\lvert \bullet \right\rvert_p$ is an ultrametric]
+	For any $x,y \in \ZZ_p$, we have the \vocab{strong triangle inequality}
+	\[ \left\lvert x+y \right\rvert_p
+		\le \max \left\{ \left\lvert x \right\rvert_p,
+		\left\lvert y \right\rvert_p \right\}.
+	\]
+	Equality holds if (but not only if)
+	$\left\lvert x \right\rvert_p \neq \left\lvert y \right\rvert_p$.
+\end{proposition}
+
+However, $\QQ_p$ is more than just a metric space:
+it is a field, with its own addition and multiplication.
+This means we can do analysis just like in $\RR$ or $\CC$:
+basically, any notion such as ``continuous function'',
+``convergent series'', et cetera has a $p$-adic analog.
+In particular, we can define what it means for an infinite sum to converge:
+\begin{definition}
+	[Convergence notions]
+	Here are some examples of $p$-adic analogs of ``real-world'' notions.
+	\begin{itemize}
+		\ii A sequence $s_1$, \dots converges to a limit $L$
+		if $\lim_{n \to \infty} \left\lvert s_n - L \right\rvert_p = 0$.
+		\ii The infinite series $\sum_k x_k$ converges
+		if the sequence of partial sums $s_1 = x_1$,
+		$s_2 = x_1 + x_2$, \dots, converges to some limit.
+		\ii \dots et cetera \dots
+	\end{itemize}
+\end{definition}
+With this definition in place,
+the ``base $p$'' discussion we had earlier is now true
+in the analytic sense: if $x = \ol{\dots a_2 a_1 a_0}_p \in \ZZ_p$ then
+\[ \sum_{k=0}^\infty a_k p^k \quad\text{converges to } x. \]
+Indeed, the $n$th partial sum is divisible by $p^n$,
+hence the partial sums approach $x$ as $n \to \infty$.
+
+While the definitions are all the same,
+there are some changes in properties that should be true.
+For example, in $\QQ_p$ convergence of partial sums is simpler:
+\begin{proposition}
+	[$|x_k|_p \to 0$ iff convergence of series]
+	A series $\sum_{k=1}^\infty x_k$ in $\QQ_p$
+	converges to some limit if and only if
+	$\lim_{k \to \infty} |x_k|_p = 0$.
+	\label{noharmonic}
+\end{proposition}
+Contrast this with $\sum \frac1n = \infty$ in $\RR$.
+You can think of this as a consequence of strong triangle inequality.
+\begin{proof}
+	By multiplying by a large enough power of $p$,
+	we may assume $x_k \in \ZZ_p$.
+	(This isn't actually necessary, but makes the notation nicer.)
+
+	Observe that $x_k \pmod p$ must eventually stabilize,
+	since for large enough $n$ we have
+	$\left\lvert x_n \right\rvert_p < 1 \iff \nu_p(x_n) \ge 1$.
+	So let $a_1$ be the eventual residue modulo $p$
+	of $\sum_{k=0}^N x_k \pmod p$ for large $N$.
+	In the same way let $a_2$ be the eventual residue modulo $p^2$, and so on.
+	Then one can check we approach the limit $a = (a_1, a_2, \dots)$.
+\end{proof}
+
+\subsection{More fun with geometric series}
+Let's finally state the $p$-adic analog of the geometric series formula.
+
+\begin{proposition}
+	[Geometric series]
+	Let $x \in \ZZ_p$ with $\left\lvert x \right\rvert_p < 1$.
+	Then \[ \frac{1}{1-x} = 1 + x + x^2 + x^3 + \dots. \]
+\end{proposition}
+\begin{proof}
+	Note that the partial sums satisfy
+	$1 + x + x^2 + \dots + x^n = \frac{1-x^n}{1-x}$,
+	and $x^n \to 0$ as $n \to \infty$ since
+	$\left\lvert x \right\rvert_p < 1$.
+\end{proof}
+
+So, $1 + 3 + 3^2 + \dots = -\half$ is really a correct convergence
+in $\ZZ_3$.
+And so on.
+
+If you buy the analogy that $\ZZ_p$ is generating functions
+with base $p$, then all the olympiad generating functions
+you might be used to have $p$-adic analogs.
+For example, you can prove more generally that:
+\begin{theorem}
+	[Generalized binomial theorem]
+	If $x \in \ZZ_p$ and $\left\lvert x \right\rvert_p < 1$,
+	then for any $r \in \QQ$ we have the series convergence
+	\[ \sum_{n \ge 0} \binom rn x^n = (1+x)^r. \]
+\end{theorem}
+(I haven't defined $(1+x)^r$, but it has the properties you expect.)
+The proof is as in the real case;
+even the theorem statement is the same
+except for the change for the extra subscript of $p$.
+I won't elaborate too much on this now,
+since $p$-adic exponentiation will be described in much
+more detail in the next post.
+
+\subsection{Completeness}
+Note that the definition of $\left\lvert \bullet \right\rvert_p$
+could have been given for $\QQ$ as well;
+we didn't need $\QQ_p$ to introduce it
+(after all, we have $\nu_p$ in olympiads already).
+The big important theorem\todo{link completion} I must state now is:
+\begin{theorem}
+	[$\QQ_p$ is complete]
+	The space $\QQ_p$ is the completion of $\QQ$
+	with respect to $\left\lvert \bullet \right\rvert_p$.
+\end{theorem}
+This is the definition of $\QQ_p$ you'll see more frequently;
+one then defines $\ZZ_p$ in terms of $\QQ_p$
+(rather than vice-versa) according to
+\[ \ZZ_p = \left\{ x \in \QQ_p :
+	\left\lvert x \right\rvert_p \le 1 \right\}. \]
+
+\subsection{Philosophical notes}
+Let me justify why this definition is philosophically nice.
+Suppose you are an ancient Greek mathematician who is given:
+\begin{quote}
+	\textbf{Problem for Ancient Greeks.}
+	Estimate the value of the sum
+	\[ S = \frac{1}{1^2} + \frac{1}{2^2} + \dots + \frac{1}{10000^2} \]
+	to within $0.001$.
+\end{quote}
+The sum $S$ consists entirely of rational numbers,
+so the problem statement would be fair game for ancient Greece.
+But it turns out that in order to get a good estimate,
+it \emph{really helps} if you know about the real numbers:
+because then you can construct the infinite series
+$\sum_{n \ge 1} n^{-2} = \frac16 \pi^2$,
+and deduce that $S \approx \frac{\pi^2}{6}$,
+up to some small error term from the terms past $\frac{1}{10001^2}$,
+which can be bounded.
+
+Of course, in order to have access to enough theory
+to prove that $S = \pi^2/6$, you need to have the real numbers;
+it's impossible to do calculus in $\QQ$
+(the sequence $1$, $1.4$, $1.41$, $1.414$,
+is considered ``not convergent''!)
+
+Now fast-forward to 2002, and suppose you are given
+\begin{quote}
+	\textbf{Problem from USA TST 2002.}
+	Estimate the sum
+	\[ f_p(x) = \sum_{k=1}^{p-1} \frac{1}{(px+k)^2} \]
+	to within mod $p^3$.
+\end{quote}
+% (i.e.\ to within $p^{-3}$ in $\left\lvert \bullet \right\rvert_p$).
+Even though $f_p(x)$ is a rational number,
+it still helps to be able to do analysis with infinite sums,
+and then bound the error term (i.e.\ take mod $p^3$).
+But the space $\QQ$ is not complete with respect
+to $\left\lvert \bullet \right\rvert_p$ either,
+and thus it makes sense to work in the completion of $\QQ$
+with respect to $\left\lvert \bullet \right\rvert_p$.
+This is exactly $\QQ_p$.
+
+In any case, let's finally solve \Cref{ex:token}.
+\begin{example}
+[USA TST 2002]
+We will now compute
+\[ f_p(x) = \sum_{k=1}^{p-1} \frac{1}{(px+k)^2} \pmod{p^3}. \]
+Armed with the generalized binomial theorem,
+this becomes straightforward.
+\begin{align*}
+	f_p(x) &= \sum_{k=1}^{p-1} \frac{1}{(px+k)^2}
+	= \sum_{k=1}^{p-1} \frac{1}{k^2}
+	\left( 1 + \frac{px}{k} \right)^{-2} \\
+	&= \sum_{k=1}^{p-1} \frac{1}{k^2} \sum_{n \ge 0}
+	\binom{-2}{n} \left( \frac{px}{k} \right)^{n} \\
+	&= \sum_{n \ge 0} \binom{-2}{n}
+	\sum_{k=1}^{p-1} \frac{1}{k^2} \left( \frac{x}{k} \right)^{n} p^n \\
+	&\equiv \sum_{k=1}^{p-1} \frac{1}{k^2}
+	 - 2x \left( \sum_{k=1}^{p-1} \frac{1}{k^3} \right) p
+	 + 3x^2 \left( \sum_{k=1}^{p-1} \frac{1}{k^4} \right) p^2 \pmod{p^3}.
+\end{align*}
+Using the elementary facts that
+$p^2 \mid \sum_k k^{-3}$ and $p \mid \sum k^{-4}$,
+this solves the problem.
+\end{example}
+
+
+\section{Digression on $\CC_p$}
+Before I go on, I want to mention that $\QQ_p$
+is not algebraically closed.
+So, we can take its algebraic closure $\ol{\QQ_p}$ --- but this
+field is now no longer complete (in the topological sense).
+However, we can then take the completion of this space
+to obtain $\CC_p$.
+In general, completing an algebraically closed field
+remains algebraically closed,
+and so there is a larger space $\CC_p$ which
+is algebraically closed \emph{and} complete.
+This space is called the $p$-adic complex numbers.
+
+We won't need $\CC_p$ at all in what follows,
+so you can forget everything you just read.
+
+\section{Mahler coefficients}
+One of the big surprises of $p$-adic analysis is that:
+\begin{moral}
+	We can basically describe all continuous functions $\ZZ_p \to \QQ_p$.
+\end{moral}
+They are given by a basis of functions
+\[ \binom xn \defeq \frac{x(x-1) \dots (x-(n-1))}{n!} \]
+in the following way.
+\todo{cite Schikof in refs}
+\begin{theorem}
+	[Mahler; see Schikhof Theorem 51.1 and Exercise 51.B]
+	Let $f \colon \ZZ_p \to \QQ_p$ be continuous, and define
+	\begin{equation}
+		a_n = \sum_{k=0}^n \binom nk (-1)^{n-k} f(n).
+		\label{eq:mahler}
+	\end{equation}
+	Then $\lim_n a_n = 0$ and \[ f(x) = \sum_{n \ge 0} a_n \binom xn. \]
+
+	Conversely, if $a_n$ is any sequence converging to zero,
+	then $f(x) = \sum_{n \ge 0} a_n \binom xn$
+	defines a continuous function satisfying \eqref{eq:mahler}.
+	% true for C_p too
+\end{theorem}
+The $a_i$ are called the \emph{Mahler coefficients} of $f$.
+\begin{exercise}
+	Last post we proved that if $f \colon \ZZ_p \to \QQ_p$ is continuous
+	and $f(n) = (-1)^n$ for every $n \in \ZZ_{\ge 0}$ then $p = 2$.
+	Re-prove this using Mahler's theorem,
+	and this time show conversely that a unique such $f$ exists when $p=2$.
+\end{exercise}
+
+You'll note that these are the same finite differences that one
+uses on polynomials in high school math contests,
+which is why they are also called ``Mahler differences''.
+\begin{align*}
+	a_0 &= f(0) \\
+	a_1 &= f(1) - f(0) \\
+	a_2 &= f(2) - 2f(1) - f(0) \\
+	a_3 &= f(3) - 3f(2) + 3f(1) - f(0).
+\end{align*}
+Thus one can think of $a_n \to 0$ as saying that
+the values of $f(0)$, $f(1)$, \dots behave like a polynomial modulo $p^e$
+for every $e \ge 0$.
+
+
+The notion ``analytic'' also has a Mahler interpretation.
+First, the definition.
+\begin{definition}
+We say that a function $f \colon \ZZ_p \to \QQ_p$ is \vocab{analytic}
+if it has a power series expansion
+\[ \sum_{n \ge 0} c_n x^n \quad c_n \in \QQ_p
+	\qquad\text{ converging for } x \in \ZZ_p. \]
+\end{definition}
+\begin{theorem}
+	[Schikhof Theorem 54.4]
+	The function $f(x) = \sum_{n \ge 0} a_n \binom xn$ is analytic
+	if and only if
+	\[ \lim_{n \to \infty} \frac{a_n}{n!} = 0. \]
+	% true for Q_p too
+\end{theorem}
+Analytic functions also satisfy the following niceness result:
+\begin{theorem}
+	[Strassmann's theorem]
+	Let $f \colon \ZZ_p \to \QQ_p$ be analytic.
+	Then $f$ has finitely many zeros.
+	% should be true for \CC_p? gdi
+\end{theorem}
+
+Te give an application of these results,
+we will prove the following result,
+which was interesting even before $p$-adics came along!
+\begin{theorem}
+	[Skolem-Mahler-Lech]
+	Let $(x_i)_{i \ge 0}$ be an integral linear recurrence,
+	meaning $(x_i)_{i \ge 0}$ is a sequence of integers
+	\[ x_n = c_1 x_{n-1} + c_2 x_{n-2} + \dots + c_k x_{n-k}
+		\qquad n = 1, 2, \dots \]
+	holds for some choice of integers $c_1$, \dots, $c_k$.
+	Then the set of indices $\{ i \mid x_i = 0 \}$
+	is eventually periodic.
+\end{theorem}
+
+\begin{proof}
+	According to the theory of linear recurrences,
+	there exists a matrix $A$ such that we can write
+	$x_i$ as a dot product
+	\[ x_i = \left< A^i u, v \right>. \]
+	Let $p$ be a prime not dividing $\det A$.
+	Let $T$ be an integer such that $A^T \equiv \id \pmod p$
+	(with $\id$ denoting the identity matrix).
+
+	Fix any $0 \le r < N$.
+	We will prove that either all the terms
+	\[ f(n) = x_{nT+r} \qquad n = 0, 1, \dots \]
+	are zero, or at most finitely many of them are.
+	This will conclude the proof.
+
+	Let $A^T = \id + pB$ for some integer matrix $B$.
+	We have
+	\begin{align*}
+		f(n) &= \left< A^{nT+r} u, v \right>
+		= \left< (\id + pB)^n A^r u, v \right> \\
+		&= \sum_{k \ge 0} \binom nk \cdot p^n \left< B^n A^r u, v \right> \\
+		&= \sum_{k \ge 0} a_n \binom nk \qquad \text{ where }
+			a_n = p^n \left< B^n A^r u, v \right> \in p^n \ZZ.
+	\end{align*}
+	Thus we have written $f$ in Mahler form.
+	Initially, we define $f \colon \ZZ_{\ge 0} \to \ZZ$,
+	but by Mahler's theorem (since $\lim_n a_n = 0$)
+	it follows that $f$ extends to a function $f \colon \ZZ_p \to \QQ_p$.
+	Also, we can check that $\lim_n \frac{a_n}{n!} = 0$
+	hence $f$ is even analytic.
+
+	Thus by Strassman's theorem, $f$ is either identically zero,
+	or else it has finitely many zeros, as desired.
+\end{proof}
+
+
+
+\section{\problemhead}
+\begin{dproblem}
+	[$\ZZ_p$ is compact]
+	Show that $\QQ_p$ is not compact, but $\ZZ_p$ is.
+	(For the latter, I recommend using sequential continuity.)
+\end{dproblem}
+\begin{dproblem}
+	[Totally disconnected]
+	Show that both $\ZZ_p$ and $\QQ_p$ are \emph{totally disconnected}:
+	there are no connected sets other than the empty set and singleton sets.
+\end{dproblem}
+
+\begin{problem}
+	[USA TST 2011/3]
+	Let $p$ be a prime.
+	We say that a sequence of integers $\{z_n\}_{n=0}^\infty$
+	is a \emph{$p$-pod} if for each $e \geq 0$,
+	there is an $N \geq 0$ such that whenever $m \geq N$,
+	$p^e$ divides the sum
+	\[ \sum_{k=0}^m (-1)^k \binom mk z_k. \]
+	Prove that if both sequences $\{x_n\}_{n=0}^\infty$
+	and $\{y_n\}_{n=0}^\infty$ are $p$-pods,
+	then the sequence $\{x_n y_n\}_{n=0}^\infty$ is a $p$-pod.
+\end{problem}

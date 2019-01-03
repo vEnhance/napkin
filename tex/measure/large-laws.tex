@@ -1,0 +1,98 @@
+\chapter{Large number laws}
+
+\section{Notions of convergence}
+\begin{definition}
+	Let $X$, $X_n$ be random variables on a probability space $\Omega$.
+	We say $X_n$ \vocab{converges almost surely} to $X$ if
+	\[ \mu \left( \omega \in \Omega :
+		\lim_n X_n(\omega) = X(\omega) \right) = 1. \]
+\end{definition}
+This is a very strong notion of convergence:
+it says in almost every \emph{world},
+the values of $X_n$ converge to $X$.
+In fact, it is almost better for me to give a \emph{non-example}.
+\begin{example}
+	[Non-example of almost sure convergence]
+	Imagine an immortal skeleton archer is practicing shots,
+	and on the $n$th shot, he scores a bulls-eye with probability
+	$1 - \frac 1n$
+	(which tends to zero because the archer improves over time).
+	Let $X_n \in \{0, 1, \dots, 10\}$ be the score of the $n$th shot.
+
+	Although the skeleton is gradually approaching perfection,
+	there is \emph{no particular world} in which the archer
+	misses only finitely many shots: that is
+	\[ \mu \left( \omega \in \Omega :
+		\lim_n X_n(\omega) = 10 \right) = 0. \]
+\end{example}
+
+Therefore, for many purposes we need a weaker notion of convergence.
+\begin{definition}
+	Let $X$, $X_n$ be random variables on a probability space $\Omega$.
+	We say $X_n$ \vocab{converges in probability} to $X$ if
+	if for every $\eps > 0$ and $\delta > 0$, we have
+	\[ \mu \left( \omega \in \Omega :
+			\left\lvert X_n(\omega) - X(\omega) \right\rvert < \eps
+		\right) \ge 1 - \delta  \]
+	for $n$ large enough (in terms of $\eps$ and $\delta$).
+\end{definition}
+In this sense, our skeleton archer does succeed:
+for any $\delta > 0$, if $n > \delta\inv$
+then the skeleton archer does hit a bulls-eye
+in a $1-\delta$ fraction of the worlds.
+In general, you can think of this as saying that for any $\delta > 0$,
+the chance of an $\eps$-anomaly event at the $n$th stage
+eventually drops below $\delta$.
+
+\begin{remark}
+	To mask $\delta$ from the definition,
+	this is sometimes written instead as:
+	for all $\eps$
+	\[ \lim_{n \to \infty} \mu \left( \omega \in \Omega :
+		\left\lvert X_n(\omega) - X(\omega) \right\rvert < \eps
+		\right) = 1. \]
+	I suppose it doesn't make much difference,
+	though I personally don't like the asymmetry.
+\end{remark}
+
+
+\section{\problemhead}
+\begin{problem}
+	[Quantifier hell]
+	\gim
+	In the definition of convergence in probability
+	suppose we allowed $\delta = 0$
+	(rather than $\delta > 0$).
+	Show that the modified definition is
+	equivalent to almost sure convergence.
+	\begin{hint}
+		This is actually trickier than it appears,
+		you cannot just push quantifiers (contrary to the name),
+		but have to focus on $\eps = 1/m$ for $m = 1, 2, \dots$.
+
+		The problem is saying for each $\eps > 0$,
+		if $n > N_\eps$, we have
+		$\mu(\omega : |X(\omega)-X_n(\omega)| \le \eps) = 1$.
+		For each $m$ there are some measure zero ``bad worlds'';
+		take the union.
+	\end{hint}
+	\begin{sol}
+		For each positive integer $m$,
+		consider what happens when $\eps = 1/m$.
+		Then, by hypothesis, there is a threshold $N_m$
+		such that the \emph{anomaly set}
+		\[ A_m \defeq \left\{ \omega :
+			|X(\omega)-X_n(\omega)| \ge \frac 1m
+			\text{ for some } n > N_m \right\} \]
+		has measure $\mu(A_m) = 0$.
+		Hence, the countable union $A = \bigcup_{m \ge 1} A_m$ has measure zero too.
+
+		So the complement of $A$ has measure $1$.
+		For any world $\omega \notin A$,
+		we then have 
+		\[ \lim_n \left\lvert X(\omega) - X_n(\omega) \right\rvert = 1 \]
+		because when $n > N_m$ that absolute value
+		is always at most $1/m$ (as $\omega \notin A_m$).
+	\end{sol}
+\end{problem}
+
