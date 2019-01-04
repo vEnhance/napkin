@@ -2,8 +2,8 @@
 \label{ch:metric_space}
 At the time of writing, I'm convinced that metric topology is
 the morally correct way to motivate point-set topology
-as well as to generalize normal calculus.
-Also, ``metric'' is a fun word to say.
+as well as to generalize normal calculus.\footnote{Also,
+``metric'' is a fun word to say.}
 So here is my best attempt.
 
 The concept of a metric space is very ``concrete'', and lends itself easily to visualization. Hence throughout this chapter you should draw lots of pictures as you learn about new objects, like convergent sequences, open sets, closed sets, and so on.
@@ -174,19 +174,16 @@ You should check that this definition coincides with your intuitive notion of ``
 \end{ques}
 
 \section{Continuous maps}
-\begin{abuse}
-	For a function $f$ and its argument $x$,
-	we will begin abbreviating $f(x)$ to just $fx$
-	when there is no risk of confusion.
-\end{abuse}
-
-In calculus you were also told (or have at least heard) of what it means for a function to be continuous. Probably something like
+In calculus you were also told (or have at least heard)
+of what it means for a function to be continuous.
+Probably something like
 \begin{quote}
-	A function $f : \RR \to \RR$ is continuous at a point $p \in \RR$ if for every $\eps > 0$ there exists a $\delta > 0$ such that
+	A function $f \colon \RR \to \RR$
+	is continuous at a point $p \in \RR$
+	if for every $\eps > 0$ there exists a $\delta > 0$ such that
 	$\left\lvert x-p \right\rvert < \delta
 		\implies
-		\left\lvert fx - fp \right\rvert < \eps
-	$.
+		\left\lvert f(x) - f(p) \right\rvert < \eps$.
 \end{quote}
 \begin{ques}
 	Can you guess what the corresponding definition for metric spaces is?
@@ -196,10 +193,12 @@ All we have do is replace the absolute values with the more general distance fun
 
 \begin{definition}
 	Let $M = (M, d_M)$ and $N = (N, d_N)$ be metric spaces.
-	A function $f : M \to N$ is \vocab{continuous} at a point $p \in M$
+	A function $f \colon M \to N$ is \vocab{continuous}
+	at a point $p \in M$
 	if for every $\eps > 0$ there exists a $\delta > 0$ such that
-	\[ d_M(x,p) < \delta \implies d_N(fx, fp) < \eps. \]
-	Moreover, the entire function $f$ is continuous if it is continuous at every point $p \in M$.
+	\[ d_M(x,p) < \delta \implies d_N(f(x), f(p)) < \eps. \]
+	Moreover, the entire function $f$ is continuous
+	if it is continuous at every point $p \in M$.
 \end{definition}
 Notice that, just like in our definition of an isomorphism of a group,
 we use the metric of $M$ for one condition
@@ -212,35 +211,51 @@ because it makes extensive use of the real numbers
 Here is an equivalent condition.
 \begin{theorem}[Sequential continuity]
 	\label{thm:seq_cont}
-	A function $f : M \to N$ of metric spaces is continuous at a point $p \in M$
+	A function $f \colon M \to N$ of metric spaces
+	is continuous at a point $p \in M$
 	if and only if the following property holds:
 	if $x_1$, $x_2$, \dots is a sequence in $M$ converging to $p$,
 	then the sequence $f(x_1)$, $f(x_2)$, \dots in $N$ converges to $f(p)$.
 \end{theorem}
 \begin{proof}
-	It's not too hard to see that $\eps$-$\delta$ continuity implies sequential continuity.
-	The reverse direction is trickier and left as \Cref{prob:sequential}.
+	One direction is not too hard:
+	\begin{exercise}
+		Show that $\eps$-$\delta$ continuity implies sequential continuity
+		at each point.
+	\end{exercise}
+	Conversely, we will prove if $f$ is not $\eps$-$\delta$ continuous at $p$
+	then it does not preserve convergence.
+
+	If $f$ is not continuous at $p$, then there is a ``bad'' $\eps > 0$,
+	which we now consider fixed.
+	So for each choice of $\delta = 1/n$,
+	there should be some point $x_n$ which is within $\delta$ of $p$,
+	but which is mapped more than $\eps$ away from $f(p)$.
+	But then the sequence $x_n$ converges to $p$,
+	and $f(x_n)$ is always at least $\eps$ away from $p$, contradiction.
 \end{proof}
 
 Example application showcasing the niceness of sequential continuity:
 \begin{proposition}[Composition of continuous functions is continuous]
-	Let $f : M \to N$ and $g : N \to L$ be continuous maps of metric spaces.
+	Let $f \colon M \to N$ and $g \colon N \to L$ be continuous maps of metric spaces.
 	Then their composition $g \circ f$ is continuous.
 \end{proposition}
 \begin{proof}
 	Dead simple with sequences:
 	Let $p \in M$ be arbitrary and let $x_n \to p$ in $M$.
-	Then $fx_n \to fp$ in $N$ and $gfx_n \to gfp$ in $L$, QED.
+	Then $f(x_n) \to f(p)$ in $N$ and $g(f(x_n)) \to g(f(p))$ in $L$, QED.
 \end{proof}
 
 \begin{ques}
 	Let $M$ be any metric space and $D$ a discrete space.
-	When is a map $f : D \to M$ continuous?
+	When is a map $f \colon D \to M$ continuous?
 \end{ques}
 
 
 
 \section{Homeomorphisms}
+\prototype{The unit circle $S^1$ is homeomorphic to the boundary of the unit square.}
+
 When do we consider two groups to be the same?
 Answer: if there's a structure-preserving map
 between them which is also a bijection.
@@ -249,9 +264,10 @@ but replace ``structure-preserving'' with ``continuous''.
 
 \begin{definition}
 	Let $M$ and $N$ be metric spaces.
-	A function $f : M \to N$ is a
+	A function $f \colon M \to N$ is a
 	\vocab{homeomorphism} if it is a bijection,
-	and both $f : M \to N$ and its inverse $f\inv : N \to M$ are continuous.
+	and both $f \colon M \to N$
+	and its inverse $f\inv \colon N \to M$ are continuous.
 	We say $M$ and $N$ are \vocab{homeomorphic}.
 \end{definition}
 Needless to say, homeomorphism is an equivalence relation.
@@ -337,39 +353,99 @@ Here are some examples.
 	the former is ``bounded'' while the latter is ``unbounded''.
 \end{example}
 
-\begin{example}[Product metrics]
-	Let $M = (M, d_M)$ and $N = (N, d_N)$ be metric spaces (say, $M = N = \RR$).
-	Let $p_i = (x_i,y_i) \in M \times N$ for $i=1,2$.
-	Consider the following metrics on the set of points $M \times N$:
-	\begin{itemize}
-		\ii $d_{\text{max}} ( p_1, p_2 )
-			= \max \left\{ d_M(x_1, x_2), d_N(y_1, y_2) \right\}$.
-		\ii $d_{\text{Euclid}} ( p_1, p_2 )
-			= \sqrt{d_M(x_1,x_2)^2 + d_N(y_1, y_2)^2}$.
-		\ii $d_{\text{taxicab}} \left( p_1, p_2 \right)
-			= d_M(x_1, x_2) + d_N(y_1, y_2)$.
-	\end{itemize}
-	It's easy to verify that
-	\[ d_{\text{max}}(p_1,p_2)
-		\le d_{\text{Euclid}}(p_1, p_2)
-		\le d_{\text{taxicab}}(p_1, p_2)
-		\le 2d_{\text{max}}(p_1, p_2). \]
-	Using this you can show that
-	\[
-		(M \times N, d_{\text{max}}), \qquad
-		(M \times N, d_{\text{Euclid}}), \qquad
-		(M \times N, d_{\text{taxicab}})
-	\]
-	are homeomorphic,
-	with the homeomorphism being just the identity map.
-	Hence we will usually simply refer to \emph{the} metric on $M \times N$,
-	called the \vocab{product metric},
-	and it will not be important which metric we select.
+\section{Extended example/definition: product metric}
+\prototype{$\RR \times \RR$ is $\RR^2$.}
+
+Here is an extended example which will occur later on.
+Let $M = (M, d_M)$ and $N = (N, d_N)$ be metric spaces (say, $M = N = \RR$).
+Our goal is to define a metric space on $M \times N$.
+
+Let $p_i = (x_i,y_i) \in M \times N$ for $i=1,2$.
+Consider the following metrics on the set of points $M \times N$:
+\begin{align*}
+	d_{\text{max}} ( p_1, p_2 )
+		&\defeq \max \left\{ d_M(x_1, x_2), d_N(y_1, y_2) \right\}  \\
+	d_{\text{Euclid}} ( p_1, p_2 )
+		&\defeq \sqrt{d_M(x_1,x_2)^2 + d_N(y_1, y_2)^2} \\
+	d_{\text{taxicab}} \left( p_1, p_2 \right)
+		&\defeq d_M(x_1, x_2) + d_N(y_1, y_2).
+\end{align*}
+All of these are good candidates.
+We are about to see it doesn't matter which one we use:
+\begin{exercise}
+Verify that
+\[ d_{\text{max}}(p_1,p_2)
+	\le d_{\text{Euclid}}(p_1, p_2)
+	\le d_{\text{taxicab}}(p_1, p_2)
+	\le 2d_{\text{max}}(p_1, p_2). \]
+Use this to show that the metric space we obtain
+by imposing any of the three metrics are homeomorphic,
+with the homeomorphism being just the identity map.
+\end{exercise}
+
+\begin{definition}
+	Hence we will usually simply refer to
+	\emph{the} metric on $M \times N$,
+	called the \vocab{product metric}.
+	It will not be important which of the three metrics we select.
+\end{definition}
+
+\begin{example}[$\RR^2$]
+	If $M = N = \RR$, we get $\RR^2$, the Euclidean plane.
+	The metric $d_{\text{Euclid}}$ is the one we started with,
+	but using either of the other two metric work fine as well.
 \end{example}
 
-\section{Open and closed sets}
+The product metric plays well with convergence of sequences.
+\begin{proposition}
+	[Convergence in the product metric is by component]
+	We have $(x_n, y_n) \to (x,y)$
+	if and only if $x_n \to x$ and $y_n \to y$.
+\end{proposition}
+\begin{proof}
+	We have $d_{\text{max}} \left( (x,y), (x_n, y_n) \right)
+	= \max\left( d_M(x, x_n), d_N(y, y_n) \right)$
+	and the latter approaches zero as $n \to \infty$
+	if and only if $d_M(x,x_n) \to 0$ and $d_N(y, y_n) \to 0$.
+\end{proof}
 
-\subsection{Open sets}
+That's see an application of this:
+\begin{proposition}
+	[Addition and multiplication are continuous]
+	\label{prop:arithmetic_continuous}
+	The addition and multiplication maps
+	are continuous maps $\RR \times \RR \to \RR$.
+\end{proposition}
+\begin{proof}
+	The fact that $+ \colon \RR \times \RR \to \RR$ is continuous
+	is the easier one,
+	so we prove only multiplication for concreteness
+	(as the details of the proof will not matter).
+	For any $n$ we have
+	\begin{align*}
+		x_n y_n &= \left( x + (x_n-x) \right)
+		\left( y + (y_n-y) \right) \\
+		&= xy + y(x_n-x) + x(y_n-y) + (x_n-x)(y_n-y)
+		\implies \left\lvert x_n y_n - xy \right\rvert \\
+		&\le \left\lvert y \right\rvert
+			\left\lvert x_n - x \right\rvert
+		+ \left\lvert x \right\rvert
+			\left\lvert y_n - y \right\rvert
+		+ \left\lvert x_n - x \right\rvert
+			\left\lvert y_n - y \right\rvert.
+	\end{align*}
+	As $n \to \infty$, all three terms on the right-hand side tend to zero.
+\end{proof}
+\Cref{prob:subtract_divide} cover the other two operations,
+subtraction and division.
+The upshot of this is that, since compositions are also continuous,
+most of your naturally arising real-valued functions
+automatically be continuous as well.
+For example, the function $\frac{3x}{x^2+1}$
+will be a continuous function from $\RR \to \RR$,
+since it can be obtained my composing $+$, $\times$, $\div$.
+
+\section{Open sets}
 \prototype{The open disk $x^2+y^2<r^2$ in $\RR^2$.}
 
 Continuity is really about what happens ``locally'':
@@ -451,7 +527,7 @@ This motivates:
 	\end{enumerate}
 \end{example}
 \begin{example}
-	[Non-Examples of open sets]
+	[Non-examples of open sets]
 	\listhack
 	\begin{enumerate}[(a)]
 		\ii The closed interval $[0,1]$ is not open in $\RR$.
@@ -542,7 +618,7 @@ The whole upshot of this is:
 %	\end{enumerate}
 %\end{theorem}
 
-\subsection{Closed sets}
+\section{Closed sets}
 \prototype{The closed unit disk $x^2+y^2 \le r^2$ in $\RR^2$.}
 It would be criminal for me to talk about open sets
 without talking about closed sets.
@@ -622,302 +698,6 @@ The reason for the opposing terms is the following theorem:
 	you might take $M = \RR^2$ and $S$ to be the closed unit disk.
 \end{exercise}
 
-\section{Two metric niceness adjectives --- bounded, complete}
-We provide a couple niceness adjectives that applies to
-\emph{entire metric spaces}, rather than just a set relative to a parent space.
-
-\subsection{Boundedness}
-\prototype{$[0,1]$ is bounded but $\RR$ is not.}
-Here is one notion of how to prevent a metric space
-from being a bit too large.
-
-\begin{definition}
-	A metric space $M$ is \vocab{bounded}
-	if there is a constant $D$ such that $d(p,q) \le D$ for all $p,q \in M$.
-\end{definition}
-You can change the order of the quantifiers:
-\begin{proposition}
-	[Boundedness with radii instead of diameters]
-	A metric space $M$ is bounded if and only if
-	for every point $p \in M$, there is a radius $R$
-	(possibly depending on $p$) such that $d(p,q) \le R$.
-\end{proposition}
-\begin{exercise}
-	Use the triangle inequality to show these are equivalent.
-	(The names ``radius'' and ``diameter'' are a big hint!)
-\end{exercise}
-
-\begin{example}
-	[Examples of bounded spaces]
-	\listhack
-	\begin{enumerate}[(a)]
-		\ii Finite intervals like $[0,1]$ and $(a,b)$ are bounded.
-		\ii The unit square $[0,1]^2$ is bounded.
-		\ii $\RR^n$ is not bounded for any $n \ge 1$.
-		\ii A discrete space on an infinite set is bounded.
-		\ii $\NN$ is not bounded, despite being
-		homeomorphic to the discrete space!
-	\end{enumerate}
-\end{example}
-
-The fact that a discrete space on an infinite set
-is ``bounded'' might be upsetting to you, so
-here is a somewhat stronger condition you can use:
-
-\begin{definition}
-	A metric space is \vocab{totally bounded}
-	if for any $\eps > 0$,
-	we can cover $M$ with finitely many $\eps$-neighborhoods.
-\end{definition}
-For example, if $\eps = 1/2$, you can cover $[0,1]^2$
-by $\eps$-neighborhoods.
-\begin{center}
-	\begin{asy}
-		size(4cm);
-		draw(shift( (-0.5,-0.5) )*unitsquare, black+1);
-		real d = 0.4;
-		real r = 0.5;
-		draw(CR(dir( 45)*d, r), dotted);
-		draw(CR(dir(135)*d, r), dotted);
-		draw(CR(dir(225)*d, r), dotted);
-		draw(CR(dir(315)*d, r), dotted);
-	\end{asy}
-\end{center}
-\begin{exercise}
-	Show this ``totally bounded'' implies ``bounded''.
-\end{exercise}
-\begin{example}
-	[Examples of totally bounded spaces]
-	\listhack
-	\begin{enumerate}[(a)]
-		\ii A subset of $\RR^n$ is bounded if and only if
-		it is totally bounded.
-
-		This is for Euclidean geometry reasons:
-		for example in $\RR^2$ if I can cover a set
-		by a single disk of radius $2$,
-		then I can certainly cover it by finitely many
-		disks of radius $1/2$.
-		(We won't prove this rigorously.)
-
-		\ii So for example $[0,1]$ or $[0,2] \times [0,3]$
-		is totally bounded.
-
-		\ii In contrast, a discrete space on
-		an infinite set is not totally bounded.
-	\end{enumerate}
-\end{example}
-
-\subsection{Completeness}
-\prototype{$\RR$ is complete, but $\QQ$ and $(0,1)$ are not.}
-
-So far we can only talk about sequences converging if they have a limit.
-But consider the sequence 
-\[ x_1 = 1, \; x_2 = 1.4, \; x_3 = 1.41, \; x_4 = 1.414, \dots. \]
-It converges to $\sqrt 2$ in $\RR$, of course.
-But it fails to converge in $\QQ$;
-there is no \emph{rational} number this sequence converges to.
-And so somehow, if we didn't know about the existence of $\RR$, we would
-have \emph{no idea} that the sequence $(x_n)$ is ``approaching'' something.
-
-That seems to be a shame.
-Let's set up a new definition to describe these sequences whose terms
-\textbf{get close to each other},
-even if they don't approach any particular point in the space.
-Thus, we only want to mention the given points in the definition.
-
-\begin{definition}
-	Let $x_1, x_2, \dots$ be a sequence which lives in a metric space $M = (M,d_M)$.
-	We say the sequence is \vocab{Cauchy} if for any $\eps > 0$, we have
-	\[ d_M(x_m, x_n) < \eps \]
-	for all sufficiently large $m$ and $n$.
-\end{definition}
-
-\begin{ques}
-	Show that a sequence which converges is automatically Cauchy.
-	(Draw a picture.)
-\end{ques}
-
-Now we can define:
-\begin{definition}
-	A metric space $M$ is \vocab{complete} if every
-	Cauchy sequence converges.
-\end{definition}
-
-\begin{example}
-	[Examples of complete spaces]
-	\listhack
-	\begin{enumerate}[(a)]
-		\ii $\RR$ is complete.
-		(Depending on your definition of $\RR$,
-		this either follows by definition, or requires some work.
-		We won't go through this here.)
-		\ii The discrete space is complete,
-		as the only Cauchy sequences are eventually constant.
-		\ii The closed interval $[0,1]$ is complete.
-		\ii $\RR^n$ is complete as well.
-		(You're welcome to prove this by induction on $n$.)
-	\end{enumerate}
-\end{example}
-
-\begin{example}
-	[Non-examples of complete spaces]
-	\listhack
-	\begin{enumerate}[(a)]
-		\ii The rationals $\QQ$ are not complete.
-		\ii The open interval $(0,1)$ is not complete,
-		as the sequence $0.9$, $0.99$, $0.999$, $0.9999$, \dots
-		is Cauchy but does not converge.
-	\end{enumerate}
-\end{example}
-
-So, metric spaces need not be complete, like $\QQ$.
-But we certainly would like them to be complete,
-and in light of the following theorem this is not unreasonable.
-\begin{theorem}
-	[Completion]
-	Every metric space can be ``completed'',
-	i.e.\ made into a complete space by adding in some points.
-\end{theorem}
-We won't need this construction at all,
-so it's left as \Cref{prob:completion}.
-\begin{example}
-	The completion of $\QQ$ is $\RR$
-	(in fact, this is often taken as the definition of $\RR$).
-\end{example}
-
-\subsection{Let the buyer beware}
-There is something suspicious about both these notions.
-
-\begin{example}
-	[Something fishy is going on here]
-	\label{ex:fishy}
-	Let $M = (0,1)$ and $N = \RR$.
-	As we saw much earlier $M$ and $N$ are homeomorphic.
-	However:
-	\begin{itemize}
-		\ii $(0,1)$ is totally bounded, but not complete.
-		\ii $\RR$ is complete, but not bounded.
-	\end{itemize}
-\end{example}
-
-So neither of these new adjectives is preserved under homeomorphism!
-This is the first hint of something going awry with the metric.
-As we progress further into our study of topology,
-we will see that it is in fact open and closed sets,
-which we motivated by using the metric,
-are the notion that will really shine later on.
-I insist on introducing the metric first so that
-the standard pictures of open and closed sets make sense,
-but eventually it is time to remove the training wheels.
-
-%It's a theorem that $\RR$ is complete.
-%To prove this I'd have to define $\RR$ rigorously, which I won't do here.
-%In fact, there are some competing definitions of $\RR$.
-%It is sometimes defined as the completion of the space $\QQ$.
-%Other times it is defined using something called \emph{Dedekind cuts}.
-%For now, let's just accept that $\RR$ behaves as we expect and is complete.
-
-%And thus, I can now tell you exactly what $\RR$ is.
-%You might notice that it's actually not that easy to define:
-%we can define $\QQ = \left\{ a/b : a,b \in \NN \right\}$, but
-%what do we say for $\RR$?
-%Here's the answer:
-%\begin{definition}
-%	$\RR$ is the completion of the metric space $\QQ$.
-%\end{definition}
-
-\section{Subspaces, and (inb4) a confusing linguistic point}
-\prototype{A circle is obtained as a subspace of $\RR^2$.}
-
-As we've already been doing implicitly in examples, we'll now say:
-\begin{definition}
-	Every subset $S \subseteq M$ is a metric space in its own right,
-	by re-using the distance function on $M$.
-	We say that $S$ is a \vocab{subpsace} of $M$.
-\end{definition}
-For example, we saw that the circle $S^1$
-is just a subspace of $\RR^2$.
-
-It thus becomes important to distinguish between
-\begin{enumerate}[(i)]
-	\ii \textbf{``absolute'' adjectives} like ``complete'' or ``bounded'',
-	which can be applied to both spaces,
-	and hence even to subsets of spaces (by taking a subspace),
-	and
-	\ii \textbf{``relative'' adjectives}
-	like ``open (in $M$)'' and ``closed (in $M$)'',
-	which make sense only relative to a space,
-	even though people are often sloppy and omit them.
-\end{enumerate}
-So ``$[0,1]$ is complete'' makes sense,
-as does ``$[0,1]$ is a complete subset of $\RR$'',
-which we take to mean ``$[0,1]$ is a complete as a subspace of $\RR$''.
-This is since ``complete'' is an absolute adjective.
-
-But here are some examples of ways in which relative adjectives
-require a little more care:
-\begin{itemize}
-	\ii Consider the sequence $1$, $1.4$, $1.41$, $1.414$, \dots.
-	Viewed as a sequence in $\RR$, it converges to $\sqrt 2$.
-	But if viewed as a sequence in $\QQ$,
-	this sequence does \emph{not} converge!
-	Similarly, the sequence $0.9$, $0.99$, $0.999$, $0.9999$
-	does not converge in the space $(0,1)$,
-	although it does converge in $[0,1]$.
-
-	The fact that these sequences fail to converge
-	even though they ``ought to'' is weird and bad,
-	and was why we defined complete spaces to begin with.
-
-	\ii In general, it makes no sense to ask a question like ``is $[0,1]$ open?''.
-	The questions ``is $[0,1]$ open in $\RR$?''
-	and ``is $[0,1]$ open in $[0,1]$?'' do make sense, however.
-	The answer to the first question is ``no''
-	but the answer to the second question is ``yes'';
-	indeed, every space is open in itself.
-	Similarly, $[0, \half)$ is an open set % chktex 9
-	in the space $M = [0,1]$
-	because it is the ball \emph{in $M$}
-	of radius $\half$ centered at $0$.
-
-	\ii Dually, it doesn't make sense to ask ``is $[0,1]$ closed''?
-	It is closed \emph{in $\RR$} and \emph{in itself}
-	(but every space is closed in itself, anyways).
-\end{itemize}
-
-%Thus to list out all four cases:
-%\begin{itemize}
-%	\ii The statement ``$[0,1]$ is complete'' makes sense (and is true);
-%	it says that $[0,1]$ is a complete metric space.
-%	\ii The statement ``$[0,1]$ is a complete subset of $\RR$'' is valid;
-%	it says that the subspace $[0,1]$ of $\RR$ is a complete metric space.
-%	\ii The statement ``$[0,1]$ is a closed subset of $\RR$'' makes sense;
-%	it says that the set of points $[0,1]$ form a closed subset of a parent space $\RR$.
-%	\ii The statement ``$[0,1]$ is closed'' does \emph{not} make sense officially.
-%	Closed sets are only defined relative to parent spaces.
-%\end{itemize}
-
-To make sure you understand the above,
-here are two exercises to help you practice relative adjectives.
-
-\begin{exercise}
-	Let $M$ be a complete metric space and let $S \subseteq M$.
-	Prove that $S$ is complete if and only if it is closed in $M$.
-	% (This is obvious once you figure out what the question is asking.)
-	In particular, $[0,1]$ is complete.
-\end{exercise}
-\begin{exercise}
-	Let $M = [0,1] \cup (2,3)$.
-	Show that $[0,1]$ and $(2,3)$ are both open and closed in $M$.
-\end{exercise}
-
-This illustrates a third point:
-a nontrivial set can be both open and closed\footnote{Which
-	always gets made fun of.}
-As we'll see in \Cref{ch:top_more}, this implies the space is disconnected;
-i.e.\ the only examples look quite like the one we've given above.
-
 \section{\problemhead}
 \begin{problem}
 	Let $M = (M,d)$ be a metric space.
@@ -938,69 +718,45 @@ i.e.\ the only examples look quite like the one we've given above.
 \end{problem}
 
 \begin{problem}
-	\label{prob:sequential}
-	Show that sequentially continuous at $p$ implies $\eps$-$\delta$ continuous at $p$,
-	as in \Cref{thm:seq_cont}.
+	[Continuity of arithmetic continued]
+	\label{prob:subtract_divide}
+	Show that subtraction is a continuous map $- \colon \RR \times \RR \to \RR$,
+	and division is a continuous map $\div \colon \RR \times \RR_{>0} \to \RR$.
 	\begin{hint}
-		Use contradiction. Only take $\delta$ of the form $1/k$, for $k \in \ZZ$.
+		You can do this with bare hands.
+		You can also use composition.
 	\end{hint}
 	\begin{sol}
-		Assume for contradiction that there is a bad $\eps_0 > 0$,
-		meaning that for any $\delta$, there is a $x \in M$ which is within $\delta$
-		of $p \in M$ but $f(x)$ is at least $\eps$ away from $f(p) \in N$.
-		For $\delta = 1/k$ let $x_k$ be the said counterexample.
-		Then $x_k$ converges to $p$ (by triangle inequality) so
-		$f(x_k)$ is supposed to converge to $f(p)$,
-		which is impossible by construction since the $f(x_k)$ 
-		are at least $\eps_0$ away from $f(p)$.
-	\end{sol}
-\end{problem}
-
-\begin{problem}
-	[Henning Makholm,
-	on \href{https://math.stackexchange.com/a/3051746/229197}{math.SE}]
-	We let $M$ and $N$ denote the metric spaces obtained
-	by equipping $\RR$ with the following two metrics:
-	\begin{align*}
-		d_M(x,y) &= \min \left( 1, \left\lvert x-y \right\rvert \right) \\
-		d_N(x,y) &= \left\lvert e^x - e^y \right\rvert.
-	\end{align*}
-	\begin{enumerate}[(a)]
-		\ii Fill in the following $2 \times 3$ table
-		with ``yes'' or ``no'' for each cell.
+		For subtraction, the map $x \mapsto -x$ is continuous
+		so you can view it as a composed map
 		\begin{center}
-		\begin{tabular}[h]{l|ccc}
-			& Complete? & Bounded? & Totally bounded? \\ \hline
-			$M$ \\
-			$N$ \\
-		\end{tabular}
+		\begin{tikzcd}
+			\RR \times \RR \ar[r, "{(\id,-x)}"]
+				& \RR \times \RR \ar[r, "+"] & \RR \\[1ex]
+			(a,b) \ar[r, mapsto] & (a,-b) \ar[r, mapsto] &  a-b.
+		\end{tikzcd}
 		\end{center}
-		\ii Are $M$ and $N$ homeomorphic?
-	\end{enumerate}
-	\begin{hint}
-		(a): $M$ is complete and bounded
-		but not totally bounded. $N$ is all no.
-		For (b) show that $M \cong \RR \cong N$.
-	\end{hint}
-	\begin{sol}
-		Part (a) is essentially by definition.
-		The space $M$ is bounded since no distances exceed $1$,
-		but not totally bounded since we can't cover $M$
-		with finitely many $\half$-neighborhoods.
-		The space $M$ is complete since a sequence of real
-		numbers converges in $M$ if it converges in the usual sense.
-		As for $N$, the sequence $-1$, $-2$, \dots is Cauchy
-		but fails to converge; and it is obviously not bounded.
-
-		To show (b), the identity map (!) is an homeomorphism $M \cong \RR$
-		and $\RR \cong N$, since it is continuous.
-
-		This illustrates that $M \cong N$ despite the fact
-		that $M$ is both complete and bounded
-		but $N$ is neither complete nor bounded.
-		On the other hand, we will later see that complete
-		and totally bounded implies \emph{compact},
-		which is a very strong property preserved under homeomorphism.
+		Similarly, if you are willing to believe $x \mapsto 1/x$
+		is a continuous function, then division is composition
+		\begin{center}
+		\begin{tikzcd}
+			\RR \times \RR_{>0} \ar[r, "{(\id, 1/x)}"]
+				& \RR \times \RR_{>0} \ar[r, "\times"] & \RR \\
+			(a,b) \ar[r, mapsto] & (a,1/b) \ar[r, mapsto] & a/b.
+		\end{tikzcd}
+		\end{center}
+		If for some reason you are suspicious that $x \mapsto 1/x$ is continuous,
+		then here is a proof using sequential continuity.
+		Suppose $x_n \to x$ with $x_n > 0$ and $x > 0$
+		(since $x$ needs to be in $\RR_{>0}$ too).
+		Then \[ \left\lvert \frac{1}{x} - \frac 1{x_n} \right\rvert
+			= \frac{\left\lvert x_n-x \right\rvert}{\left\lvert x x_n \right\rvert}.
+		\]
+		If $n$ is large enough, then $\left\lvert x_n \right\rvert > x/2$;
+		so the denominator is at least $x^2/2$,
+		and hence the whole fraction is at most
+		$\frac{2}{x^2} \left\lvert x_n-x \right\rvert$,
+		which tends to zero as $n \to \infty$.
 	\end{sol}
 \end{problem}
 
@@ -1014,14 +770,6 @@ i.e.\ the only examples look quite like the one we've given above.
 		Let $f(x) = x$ for $x \in \QQ$ and $f(x) = -x$ for irrational $x$.
 	\end{sol}
 \end{problem}
-
-\begin{dproblem}[Banach fixed point theorem]
-	Let $M = (M,d)$ be a complete metric space.
-	Suppose $T : M \to M$ is a continuous map such that for any $p,q \in M$,
-	\[ d\left( T(p), T(q) \right) < 0.999 d(p,q). \]
-	(We call $T$ a \vocab{contraction}.)
-	Show that $T$ has a unique fixed point.
-\end{dproblem}
 
 \begin{problem}
 	\yod
@@ -1054,19 +802,3 @@ i.e.\ the only examples look quite like the one we've given above.
 		so the collection $\mathcal F$ must be countable, contradiction.
 	\end{sol}
 \end{problem}
-
-\begin{dproblem}[Completion of a metric space]
-	\yod
-	\label{prob:completion}
-	Let $M$ be a metric space.
-	Construct a complete metric space $\ol M$
-	such that $M$ is a subspace of $\ol M$,
-	and every open set of $\ol M$ contains a point of $M$
-	(meaning $M$ is \vocab{dense} in $\ol M$).
-	\begin{hint}
-		As a set, we let $\ol M$ be the sequence of Cauchy
-		sequences $(x_n)$ in $M$, modulo the relation that
-		$(x_n) \sim (y_n)$ if $\lim_n d(x_n, y_n) = 0$.
-	\end{hint}
-\end{dproblem}
-

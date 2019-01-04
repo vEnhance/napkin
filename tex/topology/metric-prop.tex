@@ -1,0 +1,395 @@
+\chapter{Properties of metric spaces}
+At the end of the last chapter on metric spaces,
+we introduced two adjectives ``open'' and ``closed''.
+These are important because they'll grow up
+to be the \emph{definition} for a general topological space,
+once we graduate from metric spaces.
+
+To move forward, we provide a couple niceness adjectives
+that applies to \emph{entire metric spaces},
+rather than just a set relative to a parent space.
+They are ``(totally) bounded'' and ``complete''.
+These adjectives are specific to metric spaces,
+but will grow up to become the notion of \emph{compactness},
+which is, in the words of \cite{ref:pugh},
+``the single most important concept in real analysis''.
+At the end of the chapter,
+we will know enough to realize that something is amiss
+with our definition of homeomorphism,
+and this will serve as the starting point for the next chapter,
+when we define fully general topological spaces.
+
+\section{Boundedness}
+\prototype{$[0,1]$ is bounded but $\RR$ is not.}
+Here is one notion of how to prevent a metric space
+from being a bit too large.
+
+\begin{definition}
+	A metric space $M$ is \vocab{bounded}
+	if there is a constant $D$ such that $d(p,q) \le D$ for all $p,q \in M$.
+\end{definition}
+You can change the order of the quantifiers:
+\begin{proposition}
+	[Boundedness with radii instead of diameters]
+	A metric space $M$ is bounded if and only if
+	for every point $p \in M$, there is a radius $R$
+	(possibly depending on $p$) such that $d(p,q) \le R$.
+\end{proposition}
+\begin{exercise}
+	Use the triangle inequality to show these are equivalent.
+	(The names ``radius'' and ``diameter'' are a big hint!)
+\end{exercise}
+
+\begin{example}
+	[Examples of bounded spaces]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii Finite intervals like $[0,1]$ and $(a,b)$ are bounded.
+		\ii The unit square $[0,1]^2$ is bounded.
+		\ii $\RR^n$ is not bounded for any $n \ge 1$.
+		\ii A discrete space on an infinite set is bounded.
+		\ii $\NN$ is not bounded, despite being
+		homeomorphic to the discrete space!
+	\end{enumerate}
+\end{example}
+
+The fact that a discrete space on an infinite set
+is ``bounded'' might be upsetting to you, so
+here is a somewhat stronger condition you can use:
+
+\begin{definition}
+	A metric space is \vocab{totally bounded}
+	if for any $\eps > 0$,
+	we can cover $M$ with finitely many $\eps$-neighborhoods.
+\end{definition}
+For example, if $\eps = 1/2$, you can cover $[0,1]^2$
+by $\eps$-neighborhoods.
+\begin{center}
+	\begin{asy}
+		size(4cm);
+		draw(shift( (-0.5,-0.5) )*unitsquare, black+1);
+		real d = 0.4;
+		real r = 0.5;
+		draw(CR(dir( 45)*d, r), dotted);
+		draw(CR(dir(135)*d, r), dotted);
+		draw(CR(dir(225)*d, r), dotted);
+		draw(CR(dir(315)*d, r), dotted);
+	\end{asy}
+\end{center}
+\begin{exercise}
+	Show this ``totally bounded'' implies ``bounded''.
+\end{exercise}
+\begin{example}
+	[Examples of totally bounded spaces]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii A subset of $\RR^n$ is bounded if and only if
+		it is totally bounded.
+
+		This is for Euclidean geometry reasons:
+		for example in $\RR^2$ if I can cover a set
+		by a single disk of radius $2$,
+		then I can certainly cover it by finitely many
+		disks of radius $1/2$.
+		(We won't prove this rigorously.)
+
+		\ii So for example $[0,1]$ or $[0,2] \times [0,3]$
+		is totally bounded.
+
+		\ii In contrast, a discrete space on
+		an infinite set is not totally bounded.
+	\end{enumerate}
+\end{example}
+
+\section{Completeness}
+\prototype{$\RR$ is complete, but $\QQ$ and $(0,1)$ are not.}
+
+So far we can only talk about sequences converging if they have a limit.
+But consider the sequence 
+\[ x_1 = 1, \; x_2 = 1.4, \; x_3 = 1.41, \; x_4 = 1.414, \dots. \]
+It converges to $\sqrt 2$ in $\RR$, of course.
+But it fails to converge in $\QQ$;
+there is no \emph{rational} number this sequence converges to.
+And so somehow, if we didn't know about the existence of $\RR$, we would
+have \emph{no idea} that the sequence $(x_n)$ is ``approaching'' something.
+
+That seems to be a shame.
+Let's set up a new definition to describe these sequences whose terms
+\textbf{get close to each other},
+even if they don't approach any particular point in the space.
+Thus, we only want to mention the given points in the definition.
+
+\begin{definition}
+	Let $x_1, x_2, \dots$ be a sequence which lives in a metric space $M = (M,d_M)$.
+	We say the sequence is \vocab{Cauchy} if for any $\eps > 0$, we have
+	\[ d_M(x_m, x_n) < \eps \]
+	for all sufficiently large $m$ and $n$.
+\end{definition}
+
+\begin{ques}
+	Show that a sequence which converges is automatically Cauchy.
+	(Draw a picture.)
+\end{ques}
+
+Now we can define:
+\begin{definition}
+	A metric space $M$ is \vocab{complete} if every
+	Cauchy sequence converges.
+\end{definition}
+
+\begin{example}
+	[Examples of complete spaces]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii $\RR$ is complete.
+		(Depending on your definition of $\RR$,
+		this either follows by definition, or requires some work.
+		We won't go through this here.)
+		\ii The discrete space is complete,
+		as the only Cauchy sequences are eventually constant.
+		\ii The closed interval $[0,1]$ is complete.
+		\ii $\RR^n$ is complete as well.
+		(You're welcome to prove this by induction on $n$.)
+	\end{enumerate}
+\end{example}
+
+\begin{example}
+	[Non-examples of complete spaces]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii The rationals $\QQ$ are not complete.
+		\ii The open interval $(0,1)$ is not complete,
+		as the sequence $0.9$, $0.99$, $0.999$, $0.9999$, \dots
+		is Cauchy but does not converge.
+	\end{enumerate}
+\end{example}
+
+So, metric spaces need not be complete, like $\QQ$.
+But we certainly would like them to be complete,
+and in light of the following theorem this is not unreasonable.
+\begin{theorem}
+	[Completion]
+	Every metric space can be ``completed'',
+	i.e.\ made into a complete space by adding in some points.
+\end{theorem}
+We won't need this construction at all,
+so it's left as \Cref{prob:completion}.
+\begin{example}
+	[$\QQ$ completes to $\RR$]
+	The completion of $\QQ$ is $\RR$
+	(in fact, this is often taken as the definition of $\RR$).
+\end{example}
+
+\section{Let the buyer beware}
+There is something suspicious about both these notions:
+neither are preserved under homeomorphism!
+
+\begin{example}
+	[Something fishy is going on here]
+	\label{ex:fishy}
+	Let $M = (0,1)$ and $N = \RR$.
+	As we saw much earlier $M$ and $N$ are homeomorphic.
+	However:
+	\begin{itemize}
+		\ii $(0,1)$ is totally bounded, but not complete.
+		\ii $\RR$ is complete, but not bounded.
+	\end{itemize}
+\end{example}
+
+This is the first hint of something going awry with the metric.
+As we progress further into our study of topology,
+we will see that in fact \emph{open and closed sets}
+(which we motivated by using the metric)
+are the notion that will really shine later on.
+I insist on introducing the metric first so that
+the standard pictures of open and closed sets make sense,
+but eventually it is time to remove the training wheels.
+
+%It's a theorem that $\RR$ is complete.
+%To prove this I'd have to define $\RR$ rigorously, which I won't do here.
+%In fact, there are some competing definitions of $\RR$.
+%It is sometimes defined as the completion of the space $\QQ$.
+%Other times it is defined using something called \emph{Dedekind cuts}.
+%For now, let's just accept that $\RR$ behaves as we expect and is complete.
+
+%And thus, I can now tell you exactly what $\RR$ is.
+%You might notice that it's actually not that easy to define:
+%we can define $\QQ = \left\{ a/b : a,b \in \NN \right\}$, but
+%what do we say for $\RR$?
+%Here's the answer:
+%\begin{definition}
+%	$\RR$ is the completion of the metric space $\QQ$.
+%\end{definition}
+
+\section{Subspaces, and (inb4) a confusing linguistic point}
+\prototype{A circle is obtained as a subspace of $\RR^2$.}
+
+As we've already been doing implicitly in examples, we'll now say:
+\begin{definition}
+	Every subset $S \subseteq M$ is a metric space in its own right,
+	by re-using the distance function on $M$.
+	We say that $S$ is a \vocab{subpsace} of $M$.
+\end{definition}
+For example, we saw that the circle $S^1$
+is just a subspace of $\RR^2$.
+
+It thus becomes important to distinguish between
+\begin{enumerate}[(i)]
+	\ii \textbf{``absolute'' adjectives} like ``complete'' or ``bounded'',
+	which can be applied to both spaces,
+	and hence even to subsets of spaces (by taking a subspace),
+	and
+	\ii \textbf{``relative'' adjectives}
+	like ``open (in $M$)'' and ``closed (in $M$)'',
+	which make sense only relative to a space,
+	even though people are often sloppy and omit them.
+\end{enumerate}
+So ``$[0,1]$ is complete'' makes sense,
+as does ``$[0,1]$ is a complete subset of $\RR$'',
+which we take to mean ``$[0,1]$ is a complete as a subspace of $\RR$''.
+This is since ``complete'' is an absolute adjective.
+
+But here are some examples of ways in which relative adjectives
+require a little more care:
+\begin{itemize}
+	\ii Consider the sequence $1$, $1.4$, $1.41$, $1.414$, \dots.
+	Viewed as a sequence in $\RR$, it converges to $\sqrt 2$.
+	But if viewed as a sequence in $\QQ$,
+	this sequence does \emph{not} converge!
+	Similarly, the sequence $0.9$, $0.99$, $0.999$, $0.9999$
+	does not converge in the space $(0,1)$,
+	although it does converge in $[0,1]$.
+
+	The fact that these sequences fail to converge
+	even though they ``ought to'' is weird and bad,
+	and was why we defined complete spaces to begin with.
+
+	\ii In general, it makes no sense to ask a question like ``is $[0,1]$ open?''.
+	The questions ``is $[0,1]$ open in $\RR$?''
+	and ``is $[0,1]$ open in $[0,1]$?'' do make sense, however.
+	The answer to the first question is ``no''
+	but the answer to the second question is ``yes'';
+	indeed, every space is open in itself.
+	Similarly, $[0, \half)$ is an open set % chktex 9
+	in the space $M = [0,1]$
+	because it is the ball \emph{in $M$}
+	of radius $\half$ centered at $0$.
+
+	\ii Dually, it doesn't make sense to ask ``is $[0,1]$ closed''?
+	It is closed \emph{in $\RR$} and \emph{in itself}
+	(but every space is closed in itself, anyways).
+\end{itemize}
+
+%Thus to list out all four cases:
+%\begin{itemize}
+%	\ii The statement ``$[0,1]$ is complete'' makes sense (and is true);
+%	it says that $[0,1]$ is a complete metric space.
+%	\ii The statement ``$[0,1]$ is a complete subset of $\RR$'' is valid;
+%	it says that the subspace $[0,1]$ of $\RR$ is a complete metric space.
+%	\ii The statement ``$[0,1]$ is a closed subset of $\RR$'' makes sense;
+%	it says that the set of points $[0,1]$ form a closed subset of a parent space $\RR$.
+%	\ii The statement ``$[0,1]$ is closed'' does \emph{not} make sense officially.
+%	Closed sets are only defined relative to parent spaces.
+%\end{itemize}
+
+To make sure you understand the above,
+here are two exercises to help you practice relative adjectives.
+
+\begin{exercise}
+	Let $M$ be a complete metric space and let $S \subseteq M$.
+	Prove that $S$ is complete if and only if it is closed in $M$.
+	% (This is obvious once you figure out what the question is asking.)
+	In particular, $[0,1]$ is complete.
+\end{exercise}
+\begin{exercise}
+	Let $M = [0,1] \cup (2,3)$.
+	Show that $[0,1]$ and $(2,3)$ are both open and closed in $M$.
+\end{exercise}
+
+This illustrates a third point:
+a nontrivial set can be both open and closed\footnote{Which
+	always gets made fun of.}
+As we'll see in \Cref{ch:top_more}, this implies the space is disconnected;
+i.e.\ the only examples look quite like the one we've given above.
+
+\section{\problemhead}
+\begin{dproblem}[Banach fixed point theorem]
+	Let $M = (M,d)$ be a complete metric space.
+	Suppose $T \colon M \to M$ is a continuous map such that for any $p,q \in M$,
+	\[ d\left( T(p), T(q) \right) < 0.999 d(p,q). \]
+	(We call $T$ a \vocab{contraction}.)
+	Show that $T$ has a unique fixed point.
+\end{dproblem}
+
+\begin{problem}
+	[Henning Makholm,
+	on \href{https://math.stackexchange.com/a/3051746/229197}{math.SE}]
+	We let $M$ and $N$ denote the metric spaces obtained
+	by equipping $\RR$ with the following two metrics:
+	\begin{align*}
+		d_M(x,y) &= \min \left( 1, \left\lvert x-y \right\rvert \right) \\
+		d_N(x,y) &= \left\lvert e^x - e^y \right\rvert.
+	\end{align*}
+	\begin{enumerate}[(a)]
+		\ii Fill in the following $2 \times 3$ table
+		with ``yes'' or ``no'' for each cell.
+		\begin{center}
+		\begin{tabular}[h]{l|ccc}
+			& Complete? & Bounded? & Totally bounded? \\ \hline
+			$M$ \\
+			$N$ \\
+		\end{tabular}
+		\end{center}
+		\ii Are $M$ and $N$ homeomorphic?
+	\end{enumerate}
+	\begin{hint}
+		(a): $M$ is complete and bounded
+		but not totally bounded. $N$ is all no.
+		For (b) show that $M \cong \RR \cong N$.
+	\end{hint}
+	\begin{sol}
+		Part (a) is essentially by definition.
+		The space $M$ is bounded since no distances exceed $1$,
+		but not totally bounded since we can't cover $M$
+		with finitely many $\half$-neighborhoods.
+		The space $M$ is complete since a sequence of real
+		numbers converges in $M$ if it converges in the usual sense.
+		As for $N$, the sequence $-1$, $-2$, \dots is Cauchy
+		but fails to converge; and it is obviously not bounded.
+
+		To show (b), the identity map (!) is an homeomorphism $M \cong \RR$
+		and $\RR \cong N$, since it is continuous.
+
+		This illustrates that $M \cong N$ despite the fact
+		that $M$ is both complete and bounded
+		but $N$ is neither complete nor bounded.
+		On the other hand, we will later see that complete
+		and totally bounded implies \emph{compact},
+		which is a very strong property preserved under homeomorphism.
+	\end{sol}
+\end{problem}
+
+
+\begin{dproblem}[Completion of a metric space]
+	\yod
+	\label{prob:completion}
+	Let $M$ be a metric space.
+	Construct a complete metric space $\ol M$
+	such that $M$ is a subspace of $\ol M$,
+	and every open set of $\ol M$ contains a point of $M$
+	(meaning $M$ is \vocab{dense} in $\ol M$).
+	\begin{hint}
+		As a set, we let $\ol M$ be the sequence of Cauchy
+		sequences $(x_n)$ in $M$, modulo the relation that
+		$(x_n) \sim (y_n)$ if $\lim_n d(x_n, y_n) = 0$.
+	\end{hint}
+\end{dproblem}
+
+\begin{problem}
+	\kurumi
+	Prove that $\QQ$ is not homeomorphic to any complete metric space.
+	\begin{hint}
+		The standard solution seems to be
+		via the so-called ``Baire category theorem''.
+	\end{hint}
+\end{problem}
