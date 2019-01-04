@@ -1,1 +1,910 @@
 \chapter{Limits and series}
+Now that we have developed the theory
+of metric (and topological) spaces well,
+we give a three-chapter sequence which
+briskly covers the theory of single-variable calculus.
+
+Much of the work has secretly already been done,
+For example, if $x_n$ and $y_n$ are real sequences
+with $\lim_n x_n = x$ and $\lim_n y_n = y$,
+then in fact $\lim_n (x_n + y_n) = x+y$
+or $\lim_n (x_n y_n) = xy$,
+because we showed in \Cref{prop:arithmetic_continuous}
+that arithmetic was continuous.
+We will also see that completeness plays a crucial role.
+
+\section{Completeness and inf/sup}
+\prototype{$\sup [0,1] = \sup (0,1) =  1$.}
+As $\RR$ is a metric space,
+we may discuss continuity and convergence.
+There are two important facts about $\RR$
+which will make most of the following sections tick.
+
+The first fact you have already seen before:
+\begin{theorem}
+	[$\RR$ is complete]
+	\label{thm:complete_R}
+	As a metric space, $\RR$ is complete:
+	sequences converge if and only if they are Cauchy.
+\end{theorem}
+
+The second one we have not seen before --- it is the
+existence of $\inf$ and $\sup$.
+Your intuition should be:
+\begin{moral}
+	$\sup$ is $\max$ adjusted slightly for infinite sets.
+	(And $\inf$ is adjusted $\min$.)
+\end{moral}
+Why the ``adjustment''?
+\begin{example}
+	[Why is max not good enough?]
+	Let's say we have the open interval $S = (0,1)$.
+	The elements can get arbitrarily close to $1$,
+	so we would like to think ``$1$ is the max of $S$'';
+	except the issue is that $1 \notin S$.
+	In general, infinite sets don't necessarily \emph{have}
+	a maximum, and we have to talk about bounds instead.
+
+	So we will define $\sup S$ in such a way that $\sup S = 1$.
+	The definition is that ``$1$ is the smallest number
+	which is $\ge$ every element of $S$''.
+\end{example}
+To write it out:
+\begin{definition}
+	If $S$ is a set of real numbers:
+	\begin{itemize}
+		\ii An \emph{upper bound} for $S$ is a real number $M$
+		such that $x \le M$ for all $x \in S$.
+		If one exists, we say $S$ is \vocab{bounded above};
+		\ii A \emph{lower bound} for $S$ is a real number $m$
+		such that $m \le x$ for all $x \in S$.
+		If one exists, we say $S$ is \vocab{bounded below}.
+		\ii If both upper and lower bounds exist,
+		we say $S$ is \vocab{bounded}.
+	\end{itemize}
+\end{definition}
+\begin{theorem}
+	[$\RR$ has inf's and sup's]
+	\label{thm:inf_sup}
+	Let $S$ be a nonempty set of real numbers.
+	\begin{itemize}
+		\ii If $S$ is bounded above
+		then it has a \emph{least} upper bound,
+		which we denote by $\sup S$
+		and refer to as the \vocab{supremum} of $S$.
+		\ii If $S$ is bounded below
+		then it has a \emph{greatest} lower bound,
+		which we denote by $\inf S$
+		and refer to as the \vocab{infimum} of $S$.
+	\end{itemize}
+\end{theorem}
+
+\begin{definition}
+	For convenience, if $S$ has not bounded above, we write $\sup S = +\infty$.
+	Similarly, if $S$ has not bounded below, we write $\inf S = -\infty$.
+\end{definition}
+
+\begin{example}
+	[Supremums]
+	Since the examples for infimums are basically the same,
+	we stick with supremums for now.
+	\begin{enumerate}[(a)]
+		\ii If $S = \left\{ 1, 2, 3, \dots \right\}$
+		then $S$ is not bounded above, so we have $\sup S = +\infty$.
+		\ii If $S = \left\{ \dots, -2, -1 \right\}$
+		denotes the set of negative integers, then $\sup S = -1$.
+		\ii Let $S = [0,1]$ be a closed interval.
+		Then $\sup S = 1$.
+		\ii Let $S = (0,1)$ be an open interval.
+		Then $\sup S = 1$ as well, even though $1$ itself
+		is not an element of $S$.
+		\ii Let $S = \QQ \cap (0,1)$ denote the set of rational
+		numbers between $0$ and $1$.
+		Then $\sup S = 1$ still.
+		\ii If $S$ is a finite nonempty set,
+		then $\sup S = \max S$.
+	\end{enumerate}
+\end{example}
+
+\begin{definition}
+	[Porting definitions to sequences]
+	If $a_1$, \dots is a sequence we will often write
+	\begin{align*}
+		\sup_n a_n &\defeq \sup \left\{ a_n \mid n \in \NN \right\} \\
+		\inf_n a_n &\defeq \inf \left\{ a_n \mid n \in \NN \right\}
+	\end{align*}
+	for the supremum and infimum of the set of elements of the sequence.
+	We also use the words ``bounded above/below'' for sequences
+	in the same way.
+\end{definition}
+\begin{example}
+	[Infimum of a sequence]
+	The sequence $a_n = \frac 1n$ has infimum $\inf a_n = 0$.
+\end{example}
+
+\section{Proofs of the two key completeness properties of $\RR$}
+Careful readers will note that we have not actually
+proven either \Cref{thm:inf_sup} or \Cref{thm:complete_R}.
+We will do so here.
+
+First, we show that the ability
+to take infimums and supremums lets you prove completeness of $\RR$.
+\begin{proof}
+	[Proof that \Cref{thm:inf_sup} implies \Cref{thm:complete_R}]
+	Let $a_1$, $a_2$, \dots be a Cauchy sequence.
+	By discarding finitely many leading terms,
+	we may as well assume that $|a_i - a_j| \le 100$ for all $i$ and $j$.
+	In particular, the sequence is now bounded;
+	it lies between $[a_1-100, a_1+100]$ for example.
+
+	We want to show this sequence converges,
+	so we have to first describe what the limit is.
+	We know that to do this we are really going
+	to have to use the fact that we live in $\RR$.
+	(For example we know in $\QQ$ the limit of
+	$1$, $1.4$, $1.41$, $1.414$, \dots is nonexistent.)
+
+	We propose the following: let
+	\[ S = \left\{ x \in \RR \mid a_n \ge x \text {
+		for infinitely many $n$ } \right\}.  \]
+	We claim that the sequence converges to $M = \sup S$.
+	\begin{exercise}
+		Show that this supremum makes sense by proving
+		that $a_1 - 100 \in S$ (so $S$ is nonempty)
+		while all elements of $S$ are at most $a_1 + 100$
+		(so $S$ is bounded above).
+		Thus we are allowed to actually take the supremum.
+	\end{exercise}
+
+	You can think of this set $S$ with the following picture.
+	We have a Cauchy sequence drawn in the real line which we think converges,
+	which we can visualize as a bunch of dots on the real line,
+	with some order on them.
+	We wish to cut the line with a knife such that
+	only finitely many dots are do to the left of the knife.
+	(For example, placing the knife all the way to the left always works.)
+	The set $S$ represents the places where we could put the knife,
+	and $M$ is ``as far right'' as we could go.
+	Because of the way supremums work,
+	$M$ might not \emph{itself} be a valid knife location,
+	but certainly anything to its left is.
+	\begin{center}
+	\begin{asy}
+		size(10cm);
+		draw( (-8,0)--(8,0), Arrows );
+		label("$\mathbb R$", (8,0), dir(-90));
+		draw( (3.1,1)--(3.1,-1), red );
+		draw( (2.7,1.5)--(2.7,-1.5), deepgreen );
+		label("$M$", (3.1,-1), dir(-45), red);
+		label("$M-\frac12\varepsilon$", (2.7,1.5), dir(90), deepgreen);
+		dot("$a_1$", (-5, 0), dir(-90), blue);
+		dot("$a_2$", (-1, 0), dir(-90), blue);
+		dot("$a_3$", ( 6, 0), dir(-90), blue);
+		dot("$a_4$", ( 0, 0), dir(-90), blue);
+		dot("$a_5$", (4.8, 0), dir(-90), blue);
+		dot("$a_6$", (4.1, 0), dir(-90), blue);
+		dot("$a_8$", (3.5, 0), dir(-90), blue);
+		dot("$a_7$", (1.5, 0), dir(-90), blue);
+		dot((3.3, 0), blue);
+		dot((3.2, 0), blue);
+		dot((3.05, 0), blue);
+	\end{asy}
+	\end{center}
+	Let $\eps > 0$ be given;
+	we want to show eventually all terms are within $\eps$ of $M$.
+	Because the sequence is Cauchy,
+	there is an $N$ such that
+	eventually $\left\lvert a_m - a_n \right\rvert < \half\eps$
+	for $m \ge n \ge N$.
+
+	Now suppose we fix $n$ and vary $m$.
+	By the definition of $M$,
+	it should be possible to pick the index $m$
+	such that $a_m \ge M - \half \eps$
+	(there are infinitely many to choose from
+	since $M - \half\eps$ is a valid knife location,
+	and we only need $m \ge n$).
+	In that case we have
+	\[ \left\lvert a_n - M \right\rvert
+		\le \left\lvert a_n - a_m \right\rvert
+		+ \left\lvert a_m - M \right\rvert <
+		\half\eps + \half\eps = \eps \]
+	by the triangle inequality.
+	This completes the proof.
+\end{proof}
+
+Therefore it is enough to prove the latter \Cref{thm:inf_sup}.
+To do this though, we would need to actually give a rigorous definition of
+the real numbers $\RR$, since we have not done so yet!
+
+One approach that makes this easy to use the so-called
+\vocab{Dedekind cut} construction.
+Suppose we take the rational numbers $\QQ$.
+Then one \emph{defines} a real number to be a ``cut''
+$A \mid B$ of the set of rational numbers:
+a pair of subsets of $\QQ$ such that
+\begin{itemize}
+	\ii $\QQ = A \sqcup B$ is a disjoint union;
+	\ii $A$ and $B$ are nonempty;
+	\ii we have $a < b$ for every $a \in A$ and $b \in B$, and
+	\ii $A$ has no largest element (i.e.\ $\sup A \notin A$).
+\end{itemize}
+This can again be visualized by taking what you think of
+as the real line, and slicing at some real number.
+The subset $\QQ \subset \RR$ gets cut into two halves $A$ and $B$.
+If the knife happens to land exactly at a rational number,
+by convention we consider that number to be in the right half
+(which explains the last fourth condition that $\sup A \notin A$).
+
+With this definition \Cref{thm:inf_sup} is easy:
+to take the supremum of a set of real numbers,
+we take the union of all the left halves.
+The hard part is then figuring out how to define $+$, $-$, $\times$, $\div$
+and so on with this rather awkward construction.
+If you want to read more about this construction in detail,
+my favorite reference is \cite{ref:pugh}$,$
+in which all of this is done carefully in Chapter 1.
+
+\section{Monotonic sequences}
+Here is a great exercise.
+\begin{exercise}
+	[Mandatory]
+	\label{exer:inf_exists}
+	Prove that if $a_1 \ge a_2 \ge \dots \ge 0$
+	then the limit
+	\[ \lim_{n \to \infty} a_n \]
+	exists.
+	Hint: the idea in the proof of the previous section helps;
+	you can also try to use completeness of $\RR$.
+	Second hint: if you are really stuck,
+	wait until after \Cref{thm:nonneg_bounded},
+	at which point you can use essentially copy its proof.
+\end{exercise}
+
+The proof here readily adapts by shifting.
+\begin{definition}
+	A sequence $a_n$ is \vocab{monotonic}
+	if either $a_1 \ge a_2 \ge \dots$
+	or $a_1 \le a_2 \le \dots$.
+\end{definition}
+
+\begin{theorem}
+	[Monotonic bounded sequences converge]
+	Let $a_1$, $a_2$, \dots be a monotonic bounded sequence.
+	Then $\lim_{n \to \infty} a_n$ exists.
+	\label{thm:monotonic_bounded}
+\end{theorem}
+
+\begin{example}
+	[Silly example of monotonocity]
+	Consider the sequence defined by
+	\begin{align*}
+		a_1 &= 1.2 \\
+		a_2 &= 1.24 \\
+		a_3 &= 1.1248 \\
+		a_4 &= 1.124816 \\
+		a_5 &= 1.12481632 \\
+		&\vdotswithin=
+	\end{align*}
+	and so on, where in general we stuck
+	on the decimal representation of the next power of $2$.
+	This will converge to \emph{some} real number,
+	although of course this number
+	is quite unnatural and there is probably no good description for it.
+\end{example}
+In general, ``infinite decimals''
+can now be defined as the limit of the truncated finite ones.
+
+\begin{example}
+	[$0.9999\dots = 1$]
+	In particular, I can finally make precise the notion
+	you argued about in elementary school that
+	\[ 0.9999\dots = 1. \]
+	We simply \emph{define} a repeating decimal
+	to be the limit of the sequence $0.9$, $0.99$, $0.999\dots$.
+	And it is obvious that the limit of this sequence is $1$.
+\end{example}
+
+Some of you might be a little surprised since
+it seems like we really should have
+$0.9999 = 9 \cdot 10^{-1} + 9 \cdot 10^{-2} + \dots$ ---
+the limit of ``partial sums''.
+Don't worry, we're about to define those in just a moment.
+
+\medskip
+
+Here is one other great use of monotonic sequences.
+\begin{definition}
+	Let $a_1$, $a_2$, \dots be a sequence
+	(not necessarily monotonic) which is bounded above.
+	We define
+	\[
+		\limsup_{n \to \infty} a_n
+		\defeq \lim_{N \to \infty} \sup_{n \ge N} a_n
+		= \lim_{N \to \infty} \sup \left\{ a_N, a_{N+1}, \dots \right\}.
+	\]
+	This is called the \vocab{limit supremum} of $(a_n)$.
+	We set $\limsup_{n \to \infty} a_n$ to be $+\infty$
+	if $a_n$ is not bounded above.
+
+	The \vocab{limit infimum} is defined similarly,
+	with $\liminf_{n \to \infty} a_n = -\infty$
+	if $a_n$ is not bounded below.
+\end{definition}
+\begin{exercise}
+	Show that this definition makes sense,
+	by checking that the supremums are non-decreasing,
+	and bounded above.
+\end{exercise}
+We can think of $\limsup_n a_n$ as
+``supremum, but allowing finitely many terms to be discarded''.
+
+
+\section{Infinite series}
+\prototype{$\sum_{k \ge 1}^\infty \frac{1}{k(k+1)}
+= \lim_{n \to \infty} \left( 1 - \frac{1}{n+1} \right) = 1$.}
+
+We will actually begin by working with infinite series,
+since in the previous chapters we defined limits of sequences,
+and so this is actually the next closest thing to work
+with.\footnote{Conceptually: discrete things are easier
+	to be rigorous about than continuous things,
+	so series are actually ``easier'' than derivatives!
+	I suspect the reason that most schools teach series last in calculus
+	is that most calculus courses do not have proofs.}
+
+This will give you a rigorous way to think about
+statements like
+\[ \sum_{n = 1}^{\infty} \frac{1}{n^2} = \frac{\pi^2}{6} \]
+and help answer questions like
+``how can you add rational numbers and get an irrational one?''.
+
+\begin{definition}
+	Consider a sequence $a_1$, \dots{} of real numbers.
+	The series $\sum_k a_k$ \vocab{converges} to a limit $L$ if
+	the sequence of ``partial sums''
+	\begin{align*}
+		s_1 &= a_1 \\
+		s_2 &= a_1 + a_2 \\
+		s_3 &= a_1 + a_2 + a_3 \\
+		&\vdotswithin= \\
+		s_n &= a_1 + \dots + a_n
+	\end{align*}
+	converges to the limit $L$.
+	Otherwise it \vocab{diverges}.
+\end{definition}
+\begin{abuse}
+	[Writing divergence as $+\infty$]
+	It is customary, if all the $a_k$ are nonnegative,
+	to write $\sum_k a_k = \infty$ to denote that the series diverges.
+\end{abuse}
+
+You will notice that by using the definition of sequences,
+we have masterfully sidestepped the issue of
+``adding infinitely many numbers''
+which would otherwise cause all sorts of problems.
+\begin{moral}
+	An ``infinite sum'' is actually the \emph{limit} of its partial sums.
+	There is no infinite addition involved.
+\end{moral}
+
+That's why it's for example okay to have
+$\sum_{n \ge 1} \frac{1}{n^2} = \frac{\pi^2}{6}$ be irrational;
+we have already seen many times that sequences of rational
+numbers converge to irrational numbers.
+It also means we can gladly ignore all the
+irritating posts by middle schoolers about
+$1+2+3+\dots = -\frac{1}{12}$;
+the partial sums explode to $+\infty$, end of story,
+and if you want to assign a value to that sum
+it had better be a definition.
+
+\begin{example}
+	[The classical telescoping series]
+	We can now prove the classic telescoping series
+	\[ \sum_{k = 1}^\infty \frac{1}{k(k+1)} \]
+	in a way that doesn't just hand-wave the ending.
+	Note that the $k$th partial sum is
+	\begin{align*}
+		\sum_{k=1}^n \frac{1}{k(k+1)}
+		&= \frac{1}{1 \cdot 2}
+			+ \frac{1}{2 \cdot 3}
+			+ \dots + \frac{1}{n(n+1)} \\
+		&= \left( \frac11 - \frac12 \right)
+			+ \dots + \left( \frac 1n - \frac{1}{n+1} \right) \\
+		&= 1 - \frac{1}{n+1}.
+	\end{align*}
+	The limit of this partial sum as $n \to \infty$ is $1$.
+\end{example}
+
+\begin{example}
+	[Harmonic series diverges]
+	We can also make sense of the statement
+	that $\sum_{k=1}^\infty \frac 1k = \infty$
+	(i.e.\ it diverges).
+	We may bound the $2^n$th partial sums from below:
+	\begin{align*}
+		\sum_{k=1}^{2^n} \frac1k &= \frac11 + \frac12 + \dots + \frac1{2^n} \\
+		&\ge \frac11 + \frac12 + \left( \frac14+\frac14 \right)
+		+ \left( \frac18+\frac18+\frac18+\frac18 \right) \\
+		&+ \dots  +
+		\underbrace{\left( \frac{1}{2^n} + \dots + \frac{1}{2^n} \right)}_{2^{n-1} \text{ terms}} \\
+		&= 1 + \half + \half + \dots + \half = 1 + \frac{n-1}{2}.
+	\end{align*}
+	A sequence satisfying $s_{2^n} \ge 1 + \half(n-1)$
+	will never converge to a finite number!
+\end{example}
+
+I had better also mention that for nonnegative sums,
+convergence is just the same as having ``finite sum''
+in the following sense.
+
+\begin{proposition}
+	[Partial sums of nonnegatives bounded implies convergent]
+	\label{thm:nonneg_bounded}
+	Let $\sum_k a_k$ be a series of \emph{nonnegative} real numbers.
+	Then $\sum_k a_k$ converges to some limit
+	if and only if there is a constant $M$ such that
+	\[ a_1 + \dots + a_n < M \]
+	for every positive integer $n$.
+\end{proposition}
+\begin{proof}
+	This is actually just \Cref{thm:monotonic_bounded} in disguise,
+	but since we left the proof as an exercise back then,
+	we'll write it out this time.
+
+	Obviously if no such $M$ exists then convergence will not happen,
+	since this means the sequence $s_n$ of partial sums is unbounded.
+
+	Conversely, if such $M$ exists then we have
+	$s_1 \le s_2 \le \dots < M$.
+	Then we contend the sequence $s_n$ converges to $M = \sup_n s_n$.
+	(If you read the proof that completeness implies Cauchy,
+	the picture is nearly the same here, but simpler.)
+	\begin{center}
+	\begin{asy}
+		size(10cm);
+		draw( (-8,0)--(8,0), Arrows );
+		label("$\mathbb R$", (8,0), dir(-90));
+		draw( (3.1,1)--(3.1,-1), red );
+		draw( (2.4,1.5)--(2.4,-1.5), deepgreen );
+		label("$M$", (3.1,-1), dir(-45), red);
+		label("$M-\varepsilon$", (2.4,1.5), dir(90), deepgreen);
+		dot("$s_1$", (-5, 0), dir(-90), blue);
+		dot("$s_2$", (-4, 0), dir(-90), blue);
+		dot("$s_3$", (-1.7, 0), dir(-90), blue);
+		dot("$s_4$", (-0.2, 0), dir(-90), blue);
+		dot("$s_5$", (0.3, 0), dir(-90), blue);
+		dot("$s_6$", (1.3, 0), dir(-90), blue);
+		dot("$s_7$", (2.2, 0), dir(-90), blue);
+		dot("$s_8$", (2.7, 0), dir(-90), blue);
+		dot((2.8, 0), blue);
+		dot((2.88, 0), blue);
+		dot((2.97, 0), blue);
+	\end{asy}
+	\end{center}
+
+	Indeed, this means for any $\eps$ there
+	are infinitely many terms of the sequence exceeding $M-\eps$;
+	but since the sequence is monotic, once $s_n \ge M-\eps$
+	for some $N$ then $s_{n'} \ge M-\eps$ for all $n \ge n'$.
+	This implies convergence.
+\end{proof}
+
+\begin{abuse}
+	[Writing $\sum < \infty$]
+	For this reason, if $a_k$ are nonnegative real numbers,
+	it is customary to write \[ \sum_k a_k < \infty \]
+	as a shorthand for ``$\sum_k a_k$ converges to a finite limit'',
+	(or perhaps shorthand for ``$\sum_k a_k$ is bounded'' --- as
+	we have just proved these are equivalent).
+	We will use this notation too.
+\end{abuse}
+
+\section{Series addition is not commutative: a horror story}
+One unfortunate property of the above definition
+is that it actually depends on the order of the elements.
+In fact, it turns out that there is an explicit way
+to describe when rearrangement is okay.
+
+\begin{definition}
+	A series $\sum_k a_k$ of real numbers
+	is said to \vocab{converge absolutely} if
+	\[ \sum_k \left\lvert a_k \right\rvert < \infty \]
+	i.e.\ the series of absolute values converges to some limit.
+	If the series converges, but not absolutely,
+	we say it \vocab{converges conditionally}.
+\end{definition}
+
+\begin{proposition}
+	[Absolute convergence $\implies$ convergence]
+	If a series $\sum_k a_k$ of real numbers
+	converges absolutely, then it converges in the usual sense.
+\end{proposition}
+\begin{exercise}
+	[Great exercise]
+	Prove this by using the Cauchy criteria:
+	show that if the partial sums of $\sum_k |a_k|$ are Cauchy,
+	then so are the partial sums of $\sum_k a_k$.
+\end{exercise}
+
+Then, rearrangement works great.
+\begin{theorem}
+	[Permutation of terms okay for absolute convergence]
+	Consider a series $\sum_k a_k$ which is absolutely convergent
+	and has limit $L$.
+	Then any permutation of the terms will also converge to $L$.
+\end{theorem}
+\begin{proof}
+	Suppose $\sum_k a_k$ converges to $L$,
+	and $b_n$ is a rearrangement.
+	Let $\eps > 0$.
+	We will show that sum partial sums of $b_n$
+	are eventually within $\eps$ of $L$.
+
+	The hypothesis means that there is a large $N$ in terms of $\eps$
+	such that
+	\[ \left\lvert \sum_{k=1}^N a_k - L \right\rvert < \half\eps
+		\quad\text{and}\quad
+		\sum_{k = N+1}^{n} \left\lvert a_k \right\rvert < \half\eps
+	\]
+	for every $n \ge N$ (the former from vanilla convergence of $a_k$
+	and the latter from the fact that $a_k$ converges absolutely,
+	hence its partial sums are Cauchy).
+
+	Now suppose $M$ is large enough that $a_1$, \dots, $a_N$
+	are contained within the terms $\{b_1, \dots, b_M\}$.
+	Then
+	\begin{align*}
+		b_1 + \dots + b_M
+		&= (a_1 + \dots + a_N) \\
+		&+ \underbrace{a_{i_1} + a_{i_2} + \dots + a_{i_{M-N}}}%
+		_{\text{$M-N$ terms with indices $\ge N$}}
+	\end{align*}
+	The terms in the first line sum up to within $\half\eps$ of $L$,
+	and the terms in the second line have sum at most $\half\eps$
+	in absolute value, so the total $b_1 + \dots + b_M$
+	is within $\half\eps + \half\eps = \eps$ of $L$.
+\end{proof}
+In particular, when you have nonnegative terms, the world is great:
+\begin{moral}
+	Nonnegative series can be rearranged at will.
+\end{moral}
+And the good news is that actually,
+in practice, most of your sums will be nonnegative.
+
+The converse is not true,
+and in fact, it is almost the worst possible converse you can imagine.
+\begin{theorem}
+	[Permutation of terms meaningless for conditional convergence]
+	Consider a series $\sum_k a_k$ which converges \emph{conditionally}
+	to some real number.
+	Then, there exists a permutation of the series
+	which converges conditionally to $1337$.
+
+	(Or any constant.  You can also get it to diverge, too.)
+\end{theorem}
+So, permutation is as bad as possible for conditionally convergent
+series, and hence don't even bother to try.
+
+\section{Limits of functions at points}
+\prototype{$\lim_{x \to \infty} 1/x = 0$.}
+We had also better define the notion
+of a limit of a real function,
+which (surprisingly) we haven't actually defined yet.
+The definition will look like what we have seen before with continuity.
+
+\begin{definition}
+	Let $f \colon \RR \to \RR$ be a function\footnote{Or
+		$f \colon (a,b) \to \RR$, or variants.
+		We just need $f$ to be defined on an open neighborhood of $p$.
+	} and let $p \in \RR$ be a point in the domain.
+	Suppose there exists a real number $L$ such that:
+	\begin{quote}
+		For every $\eps > 0$, there exists $\delta > 0$
+		such that if $\left\lvert x - p \right\rvert < \delta$
+		and $x \neq p$ then $\left\lvert f(x) - L \right\rvert < \eps$.
+	\end{quote}
+	Then we say $L$ is the \vocab{limit} of $f$ as $x \to p$, and write
+	\[ \lim_{x \to p} f(x) = L. \]
+\end{definition}
+There is an important point here: in this definition
+we \emph{deliberately} require that $x \ne p$.
+Therefore, the value of this limit does not depend on $f(p)$ itself.
+\begin{example}
+	[Function with a hole]
+	Define the function $f \colon \RR \to \RR$ by
+	\[ f(x) = \begin{cases}
+			3x & \text{if } x \ne 0 \\
+			2019 & \text{otherwise}.
+		\end{cases} \]
+	Then $\lim_{x \to 0} f(x) = 0$.
+	The value $f(0) = 2019$ does not affect the limit.
+	Obviously, because $f(0)$ was made up to be some artificial
+	value that did not agree with the limit,
+	this function is discontinuous at $x = 0$.
+\end{example}
+
+\begin{ques}
+	[Mandatory]
+	Show that a function $f$ is continuous at $p$
+	if and only if $\lim_{x \to p} f(x)$ exists and equals $f(p)$.
+\end{ques}
+
+\begin{example}
+	[Less trivial example: a rational piecewise function]
+	\label{ex:rational_piecewise}
+	Define the function $f \colon \RR \to \RR$ as follows:
+	\[ f(x) = \begin{cases}
+			1 & \text{if } x = 0 \\
+			\frac1q & \text{if } x = \frac pq \text{ where } q > 0
+				\text{ and } \gcd(p,q) = 1 \\
+			0 & \text{if } x \notin \QQ.
+		\end{cases} \]
+	For example, $f(\pi) = 0$, $f(2/3) = \frac13$, $f(0.17) = \frac{1}{100}$.
+	Then \[ \lim_{x \to 0} f(x) = 0. \]
+	For example, if $|x| < 1/100$ and $x \neq 0$
+	then $f(x)$ is either zero (for $x$ irrational)
+	or else is at most $\frac{1}{101}$ (if $x$ is rational).
+
+	As $f(0) = 1$, this function is also discontinuous at $x = 0$.
+	However, if we change the definition so that $f(0) = 0$ instead,
+	then $f$ becomes continuous.
+\end{example}
+
+\begin{example}
+	[Famous example]
+	Let $f(x) = \frac{\sin x}{x}$, $f \colon \RR \to \RR$,
+	where $f(0)$ is assigned any value.
+	Then
+	\[ \lim_{x \to 0} f(x) = 1. \]
+	We will not prove this here, since I don't want to get into trig yet.
+\end{example}
+\begin{abuse}
+	[The usual notation]
+	From now on, the above example
+	will usually be abbreviated to just
+	\[ \lim_{x \to 0} \frac{\sin x}{x} = 1. \]
+	The reason there is a slight abuse here
+	is that I'm supposed to feed a function $f$ into the limit,
+	and instead I've written down an expression
+	which is defined everywhere --- except at $x=0$.
+	But that $f(0)$ value doesn't change anything.
+	So the above means: ``the limit of the function described
+	by $f(x) = \frac{\sin x}{x}$,
+	except $f(0)$ can be whatever it wants because it doesn't matter''.
+\end{abuse}
+
+\begin{remark}
+	[For metric spaces]
+	You might be surprised that I didn't define
+	the notion of $\lim_{x \to p} f(x)$ earlier
+	for $f \colon M \to N$ a function on metric spaces.
+	We can actually do so as above, but there is one nuance:
+	what if our metric space $M$ is discrete,
+	so $p$ has no points nearby it?
+	(Or even more simply, what if $M$ is a one-point space?)
+	We then cannot define $\lim_{x \to p} f(x)$ at all.
+
+	Thus if $f \colon M \to N$ and we want to define
+	$\lim_{x \to p} f(x)$, we have the requirement that $p$
+	should have a point within $\eps$ of it, for any $\eps > 0$.
+	In other words, $p$ should not be an isolated point.
+\end{remark}
+
+As usual, there are no surprises with arithmetic,
+we have $\lim_{x \to p} (f(x) \pm g(x))
+	= \lim_{x \to p} f(x) \pm \lim_{x \to p} g(x)$,
+and so on and so forth.
+We have effectively done this proof before
+so we won't repeat it again.
+
+\section{Limits of functions at infinity}
+Annoyingly, we actually have to make this
+definition separately,
+even though it will not feel any different
+from earlier examples.
+\begin{definition}
+	Let $f \colon \RR \to \RR$.
+	Suppose there exists a real number $L$ such that:
+	\begin{quote}
+		For every $\eps > 0$, there exists a constant $M$
+		such that if $x > M$, then $\left\lvert f(x)-L \right\rvert < \eps$.
+	\end{quote}
+	Then we say $L$ is the \vocab{limit} of $f$ as
+	$x$ approaches $\infty$ and write
+	\[ \lim_{x \to \infty} f(x) = L. \]
+	The limit $\lim_{x \to -\infty} f(x)$ is defined similarly,
+	with $x > M$ replaced by $x < M$.
+\end{definition}
+Fortunately, as $\infty$ is not an element of $\RR$,
+we don't have to do the same antics about $f(\infty)$
+like we had to do with ``$f(p)$ set arbitrarily''.
+So these examples can be more easily written down.
+\begin{example}
+	[Limit at infinity]
+	The usual:
+	\[ \lim_{x \to \infty} \frac 1x = 0. \]
+	I'll even write out the proof:
+	for any $\eps > 0$, if $x > 1/\eps$
+	then $\left\lvert \frac 1x - 0 \right\rvert < \frac1\eps$.
+\end{example}
+
+There are no surprises with arithmetic:
+we have $\lim_{x \to \infty} (f(x) \pm g(x))
+	= \lim_{x \to \infty} f(x) \pm \lim_{x \to p} g(x)$,
+and so on and so forth.
+This is about the fourth time
+I've mentioned this, so I will not say more.
+
+\section{\problemhead}
+
+\begin{problem}
+	Define the sequence
+	\[ a_n = (-1)^n + \frac{n^3}{2^n} \]
+	for every positive integer $n$.
+	Compute the limit infimum and the limit supremum.
+\end{problem}
+
+\begin{problem}
+	For which bounded sequences $a_n$
+	does $\liminf_n a_n = \limsup_n a_n$?
+	\begin{hint}
+		Iff the sequence is convergent!
+	\end{hint}
+\end{problem}
+
+\begin{dproblem}
+	[Comparison test]
+	Let $\sum a_n$ and $\sum b_n$ be two series.
+	Assume $\sum b_n$ is absolutely convergent,
+	and $|a_n| \le |b_n|$ for all integers $n$.
+	Prove that $\sum_n a_n$ is absolutely convergent.
+\end{dproblem}
+
+\begin{problem}
+	[Geometric series]
+	Let $-1 < r < 1$ be a real number.
+	Show that the series
+	\[ 1 + r + r^2 + r^3 + \dots \]
+	converges absolutely and determine what it converges to.
+	\begin{hint}
+		The $n$th partial sum is $\frac{1}{1-r} (1-r^{n+1})$.
+	\end{hint}
+\end{problem}
+
+%\begin{problem}
+%	[An order-free definition for infinite nonnegative sums]
+%	Let $a_1$, \dots{} be a sequence of \emph{nonnegative} real numbers.
+%	Prove that
+%	\[ \sum_{k=1}^\infty a_k = \sup \left\{ \sum_{k \in K} a_k
+%			\mid K \subseteq \NN \right\} \]
+%	where if the right-hand side is $+\infty$,
+%	we mean that the left-hand side is a divergent series.
+%\end{problem}
+
+\begin{problem}
+	[Alternating series test]
+	Let $a_0 \ge a_1 \ge a_2 \ge a_3 \ge \dots$ be a weakly decreasing sequence
+	of nonnegative real numbers,
+	and assume that $\lim_{n \to \infty} a_n = 0$.
+	Show that the series $\sum_n (-1)^n a_n$ is convergent
+	(it need not be absolutely convergent).
+	\begin{sol}
+		This is an application of Cauchy convergence, since
+		one can show that
+		\[ \left\lvert \sum_{n=M}^N (-1)^n a_n \right\rvert \le a_{\min(M,N)}. \]
+		Indeed, if $M$ and $N$ are even
+		(for simplicity; other cases identical) then
+		\begin{align*}
+			a_M - a_{M+1} + a_{M+2} - \dots
+			&= a_M - (a_{M+1}-a_{M+2}) - (a_{M+3}-a_{M+4}) \\
+			&\quad- \dots - (a_{N-1} - a_N) \\
+			&\le a_M \\
+			a_M - a_{M+1} + a_{M+2} - \dots
+			&= a_M - a_{M+1} + (a_{M+2} - a_{M+3}) + (a_{M+4} - a_{M+5}) \\
+			&\quad+ \dots + (a_{N-2} - a_{N+1}) + a_N \\
+			&\ge -a_{M+1}.
+		\end{align*}
+		In this way we see that the sequence of partial sums is Cauchy,
+		hence converges to some limit.
+	\end{sol}
+\end{problem}
+
+
+\begin{problem}
+	[{\cite[Chapter 3, Exercise 55]{ref:pugh}}]
+	\gim
+	Let $(a_n)_{n \ge 1}$ and $(b_n)_{n \ge 1}$ be sequences of real numbers.
+	Assume $a_1 \le a_2 \le \dots \le 1000$
+	and moreover that $\sum_n b_n$ converges.
+	Prove that $\sum_n a_n b_n$ converges.
+	(Note that in both the hypothesis and statement,
+	we do not have absolute convergence.)
+	\begin{hint}
+		This is a very tricky algebraic manipulation.
+		Try setting $a_n = x_1 + \dots + x_n$ for $x_i \ge 0$.
+	\end{hint}
+	\begin{sol}
+		To capture $(a_n)_n$ monotonic and bounded,
+		write $a_n = x_1 + \dots + x_n$ for some $x_i$.
+		Then $x_2$, \dots are all the same sign and so $\sum |x_i| = A < \infty$
+		for some constant $A$.
+
+		We now prove that the partial sums of $\sum a_n b_n$ are a Cauchy sequence.
+		Consider any $\varepsilon > 0$.
+		Let $K$ be such that the tails of $b_n$
+		starting after $K$ have absolute value less than $\frac{\varepsilon}{A}$.
+		Then for any $N > M \ge K$ we have
+		\begin{align*}
+			\left\lvert \sum_{k=M}^N a_k b_k \right\rvert
+			&= \left\lvert \sum_{k=M}^N \sum_{j=1}^k b_k x_j \right\rvert \\
+			&= \left\lvert \sum_{j=1}^N \sum_{k=\max\{j,M\}}^N b_k x_j \right\rvert \\
+			&= \left\lvert \sum_{j=1}^N x_j \cdot \sum_{k=\max\{j,M\}}^N b_k\right\rvert \\
+			&\le \sum_{j=1}^N |x_j| \left\lvert \sum_{k=\max\{j,M\}}^N b_k \right\rvert \\
+			&< \sum_{j=1}^N |x_j| \cdot \frac{\varepsilon}{A} \\
+			&< \varepsilon
+		\end{align*}
+		as desired.
+	\end{sol}
+\end{problem}
+
+\begin{problem}
+	[Putnam 2016 B1]
+	\gim
+	Let $x_0, x_1, x_2, \dots$ be the sequence
+	such that $x_0=1$ and for $n\ge 0$,
+	\[ x_{n+1} = \log(e^{x_n}-x_n) \]
+	(as usual, $\log$ is the natural logarithm).
+	Prove that the infinite series $x_0 + x_1 + \dots$
+	converges and determine its value.
+	\begin{hint}
+		This is trickier than it looks.
+		We have $x_n = e^{x_n} - e^{x_{n+1}}$
+		but it requires some care to prove convergences.
+		Helpful hint: $e^t \ge t+1$ for all real numbers $t$,
+		therefore all $x_n$'s are nonnegative.
+	\end{hint}
+	\begin{sol}
+		The answer is $e-1$.
+
+		We begin by noting $x_{n+1} = \log(e^{x_n} - x_n) \ge \log 1 = 0$,
+		owing to $e^t \ge 1+t$.
+		So $x_n \ge 0$ for all $n$.
+
+		Next notice that
+		\[ x_{n+1} = \log\left( e^{x_n} - x_n \right) < \log e^{x_n} = x_n. \]
+		So $(x_n)_n$ is strictly decreasing in addition to nonnegative.
+		Thus it must converge to some limit $L$.
+
+		Third, observe that
+		\[ x_n = e^{x_n} - e^{x_{n+1}}
+			\implies x_0 + x_1 + \dots + x_n
+			= e^{x_0} - e^{x_n} = e - e^{x_n} < e. \]
+		Since the partial sums are bounded by $e$,
+		and $x_i \ge 0$, we conclude $L = 0$.
+
+		Finally, the limit of the partial sums is then
+		\[ \lim_{n \to \infty} e - e^{x_n} = e - e^0 = e - 1. \]
+	\end{sol}
+\end{problem}
+
+
+\begin{problem}
+	Consider again the function $f \colon \RR \to \RR$
+	in \Cref{ex:rational_piecewise} defined by
+	\[ f(x) = \begin{cases}
+			1 & \text{if } x = 0 \\
+			\frac1q & \text{if } x = \frac pq
+			\text{ where } q > 0 \text{ and } \gcd(p,q) = 1 \\
+			0 & \text{if } x \notin \QQ.
+		\end{cases} \]
+	For every real number $p$,
+	compute $\lim_{x \to p} f(x)$, if it exists.
+	At which points is $f$ continuous?
+	\begin{hint}
+		The limit always exists and equals zero.
+		Consequently, $f$ is continuous exactly at irrational points.
+	\end{hint}
+\end{problem}
+
