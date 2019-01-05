@@ -506,17 +506,21 @@ We can write
 	&= \frac{1}{2\pi i} \oint_\gamma \frac{f(z)/z}{1 - \frac az} \; dz \\
 	&= \frac{1}{2\pi i} \oint_\gamma f(z)/z \cdot \sum_{k \ge 0} \left( \frac az \right)^k \; dz \\
 	\intertext{You can prove (using the so-called Weierstrass M-test) that the summation order can be switched:}
-	&= \frac{1}{2\pi i} \sum_{k \ge 0} \oint_\gamma \frac{f(z)}{z} \cdot \left( \frac az \right)^k \; dz \\
+	f(a) &= \frac{1}{2\pi i} \sum_{k \ge 0} \oint_\gamma \frac{f(z)}{z} \cdot \left( \frac az \right)^k \; dz \\
 	&= \frac{1}{2\pi i} \sum_{k \ge 0} \oint_\gamma a^k \cdot \frac{f(z)}{z^{k+1}} \; dz \\
-	&=  \sum_{k \ge 0} \left( \frac{1}{2\pi i}\oint_\gamma \frac{f(z)}{z^{k+1}} \; dz \right) a^k \\
-	\intertext{Letting $c_k =  \frac{1}{2\pi i}\oint_\gamma \frac{f(z)}{z^{k+1}} \; dz$, and noting
-this is independent of $a$, this is}
-	&=  \sum_{k \ge 0} c_k a^k
+	&=  \sum_{k \ge 0} \left( \frac{1}{2\pi i}\oint_\gamma \frac{f(z)}{z^{k+1}} \; dz \right) a^k. \\
+	\intertext{Letting
+		$c_k =  \frac{1}{2\pi i}\oint_\gamma \frac{f(z)}{z^{k+1}} \; dz$,
+		and noting this is independent of $a$, this is}
+	f(a) &= \sum_{k \ge 0} c_k a^k
 \end{align*}
-and that's the miracle: holomorphic functions are given by a Taylor series!
+and that's the miracle: holomorphic functions
+are given by a \vocab{Taylor series}!
 This is one of the biggest results in complex analysis.
-Moreover, we also know that \[ c_k = \frac{f^{(k)}(0)}{k!} \] from AP Calculus (if you don't see this,
-just take the derivative $k$ times), and this gives us $f^{(k)}(0) = k! \cdot c_k$.
+Moreover, if one is willing to believe that we can
+take the derivative $k$ times, we obtain
+\[ c_k = \frac{f^{(k)}(0)}{k!} \]
+and this gives us $f^{(k)}(0) = k! \cdot c_k$.
 
 Naturally, we can do this with any circle (not just one centered at zero).
 So let's state the full result below, with arbitrary center $p$.
@@ -563,7 +567,6 @@ In the next complex analysis chapter we'll see some more nice applications.
 
 The first few results are the most important.
 
-
 \begin{sproblem}
 	[Liouville's theorem]
 	\gim
@@ -582,7 +585,6 @@ The first few results are the most important.
 %	then $f$ is a polynomial of degree at most $n$.
 %	The proof is just induction on $n$ with the case $n=0$ being the theorem.}
 \end{sproblem}
-
 
 \begin{sproblem}[Zeros are isolated]
 	An \vocab{isolated set} in the complex plane is a
