@@ -1,0 +1,460 @@
+\chapter{Power series and Taylor series}
+Polynomials are very well-behaved functions,
+and are studied extensively for that reason.
+From an analytic perspective, for example, they are smooth,
+and their derivatives are easy to compute.
+
+In this chapter we will study \emph{power series},
+which are literally ``infinite polynomials'' $\sum_n a_n x^n$.
+Armed with our understanding of series and differentiation,
+we will see three great things:
+\begin{itemize}
+	\ii Many of the functions we see in nature
+	actually \emph{are} given by power series.
+	Among them are $e^x$, $\log x$, $\sin x$.
+
+	\ii Their convergence properties are actually quite well behaved:
+	from the string of coefficients,
+	we can figure out which $x$ they converge for.
+
+	\ii The derivative of $\sum_n a_n x^n$
+	is actually just $\sum_n n a_n x^{n-1}$.
+\end{itemize}
+
+\section{Motivation}
+To get the ball rolling, let's start with
+one infinite polynomial you'll recognize:
+for any fixed number $-1 < x < 1$ we have the series convergence
+\[ \frac{1}{1-x} = 1 + x + x^2 + \dots \]
+by the geometric series formula.
+
+Let's pretend we didn't see this already in
+\Cref{prob:geometric}.
+So, we instead have a smooth function $f \colon (-1,1) \to \RR$ by
+\[ f(x) = \frac{1}{1-x}. \]
+Suppose we wanted to pretend that it was equal to
+an ``infinite polynomial'' near the origin, that is
+\[ (1-x)\inv = a_0 + a_1 x + a_2 x^2 + a_3 x^3 + a_4 x^4 + \dots. \]
+How could we find that polynomial,
+if we didn't already know?
+
+Well, for starters we can first note that by plugging in $x = 0$
+we obviously want $a_0 =1$.
+
+We have derivatives, so actually,
+we can then differentiate both sides to obtain that
+\[ (1-x)^{-2} = a_1 + 2a_2 x + 3a_3 x^2 + 4a_4 x^3. \]
+If we now set $x = 0$, we get $a_1 = 1$.
+In fact, let's keep taking derivatives and see what we get.
+\begin{alignat*}{8}
+	(1-x)^{-1} &{}={}& a_0 &{}+{}& a_1x &{}+{}& a_2x^2 &{}+{}& a_3x^3 &{}+{}& a_4x^4  &{}+{}& a_5x^5 &{}+{}& \dots \\
+	(1-x)^{-2} &{}={}& && a_1 &{}+{}& 2a_2 x &{}+{}& 3a_3 x^2 &{}+{}& 4a_4 x^3 &{}+{}& 5a_5 x^4 &{}+{}&\dots \\
+	2(1-x)^{-3} &{}={}& && && 2a_2 &{}+{}& 6a_3 x &{}+{}& 12 a_4 x^2 &{}+{}& 20 a_5 x^3 &{}+{}&  \dots \\
+	6(1-x)^{-4} &{}={}& &&  &&&& 6a_3 &{}+{}& 24 a_4 x &{}+{}& 60 a_5 x^2 &{}+{}& \dots \\
+	24(1-x)^{-5} &{}={}& && && && && 24 a_4 &{}+{}& 120 a_5 x &{}+{}& \dots \\
+	&{}\vdotswithin={}.
+\end{alignat*}
+If we set $x=0$ we find $1 = a_0 = a_1 = a_2 = \dots$
+which is what we expect;
+the geometric series $\frac{1}{1-x} = 1 + x + x^2 + \dots$.
+And so actually taking derivatives was enough to get the right claim!
+
+\section{Power series}
+\prototype{$\frac{1}{1-z} = 1 + z + z^2 + \dots$, which converges on $(-1,1)$.}
+Of course this is not rigorous,
+since we haven't described what the right-hand side is,
+much less show that it can be differentiated term by term.
+So we define the main character now.
+
+\begin{definition}
+	A \vocab{power series} is a sum of the form
+	\[ \sum_{n = 0}^\infty a_n z^n
+		= a_0 + a_1 z + a_2 z^2 + \dots \]
+	where $a_0$, $a_1$, \dots\ are real numbers,
+	and $z$ is a variable.
+\end{definition}
+\begin{abuse}
+	[$0^0=1$]
+	If you are very careful, you might notice
+	that when $z=0$ and $n=0$ we find $0^0$ terms appearing.
+	For this chapter the convention is that
+	they are all equal to one.
+\end{abuse}
+
+Now, if I plug in a \emph{particular} real number $h$,
+then I get a series of real numbers $\sum_{n = 0}^{\infty} a_n h^n$.
+So I can ask, when does this series converge?
+It terms out there is a precise answer for this.
+
+\begin{definition}
+	Given a power series $\sum_{n=0}^{\infty} a_n z_n$,
+	the \vocab{radius of convergence} $R$ is defined
+	by the formula
+	\[ \frac 1R = \limsup_{n \to \infty} \left\lvert a_n \right\rvert^{1/n}. \]
+	with the convention that $R = 0$ if the right-hand side is $\infty$,
+	and $R = \infty$ if the right-hand side is zero.
+\end{definition}
+\begin{theorem}
+	[Cauchy-Hadamard theorem]
+	Let $\sum_{n=0}^{\infty} a_n z^n$
+	be a power series with radius of convergence $R$.
+	Let $h$ be a real number, and consider the infinite series
+	\[ \sum_{n=0}^\infty a_n h^n \]
+	of real numbers.
+	Then:
+	\begin{itemize}
+		\ii The series converges absolutely if $|h| < R$.
+		\ii The series diverges if $|h| > R$.
+	\end{itemize}
+\end{theorem}
+\begin{proof}
+	This is not actually hard,
+	but it won't be essential, so not included.
+\end{proof}
+\begin{remark}
+	In the case $|h| = R$, it could go either way.
+\end{remark}
+\begin{example}
+	[$\sum z^n$ has radius $1$]
+	Consider the geometric series $\sum_{n} z^n = 1 + z + z^2 + \dots$.
+	Since $a_n = 1$ for every $n$, we get $R = 1$,
+	which is what we expected.
+\end{example}
+
+Therefore, if $\sum_n a_n z^n$ is a power
+series with a nonzero radius $R > 0$ of convergence,
+then it can \emph{also} be thought of as a function
+\[ (-R, R) \to \RR
+	\quad\text{ by }\quad
+	h \mapsto \sum_{n \ge 0} a_n h^n. \]
+This is great.
+Note also that if $R = \infty$,
+this means we get a function $\RR \to \RR$.
+
+\begin{abuse}
+	[Power series vs.\ functions]
+	There is some subtly going on with ``types'' of objects again.
+	Analogies with polynomials can help.
+
+	Consider $P(x) = x^3 + 7x + 9$, a polynomial.
+	You \emph{can}, for any real number $h$,
+	plug in $P(h)$ to get a real number.
+	However, in the polynomial \emph{itself},
+	the symbol $x$ is supposed to be a \emph{variable} ---
+	which sometimes we will plug in a real number for,
+	but that happens only after the polynomial is defined.
+
+	Despite this, ``the polynomial $p(x) = x^3+7x+9$''
+	(which can be thought of as the coefficients)
+	and ``the real-valued function $x \mapsto x^3+7x+9$''
+	are often used interchangeably.
+	The same is about to happen with power series:
+	while they were initially thought of as a sequence of
+	coefficients, the Cauchy-Hadamard theorem
+	lets us think of them as functions too,
+	and thus we blur the distinction between them.
+%	Pedants will sometimes \emph{define} a polynomial
+%	to be the sequence of coefficients, say $(9,7,0,1)$,
+%	with $x^3+7x+9$ being ``intuition only''.
+%	Similarly they would define a power series
+%	to be the sequence $(a_0, a_1, \dots)$.
+%	We will not go quite this far, but they have a point.
+%
+%	I will be careful to use ``power series''
+%	for the one with a variable,
+%	and ``infinite series'' for the sums of real numbers from before.
+\end{abuse}
+
+\section{Differentiating them}
+\prototype{We saw earlier $1+x+x^2+x^3+\dots$ has derivative $1+2x+3x^2+\dots$.}
+As promised, differentiation works exactly as you want.
+
+\begin{theorem}
+	[Differentiation works term by term]
+	Let $\sum_{n \ge 0} a_n z^n$ be a power series
+	with radius of convergence $R > 0$,
+	and consider the corresponding function
+	\[ f \colon (-R,R) \to \RR \quad\text{by}\quad
+		f(x) = \sum_{n \ge 0} a_n x^n. \]
+	Then all the derivatives of $f$ exist and
+	are given by power series
+	\begin{align*}
+		f'(x) &= \sum_{n \ge 1} n a_n x^{n-1} \\
+		f''(x) &= \sum_{n \ge 2} n(n-1) a_n x^{n-2} \\
+		&\vdotswithin=
+	\end{align*}
+	which also converge for any $x \in (-R, R)$.
+	In particular, $f$ is smooth.
+\end{theorem}
+\begin{proof}
+	Also omitted.
+	The right way to prove it is to define the notion
+	``converges uniformly'',
+	and strengthen Cauchy-Hadamard to have
+	this is as a conclusion as well.
+	However, we won't use this later.
+\end{proof}
+
+\begin{corollary}
+	[A description of power series coefficients]
+	Let $\sum_{n \ge 0} a_n z^n$ be a power series
+	with radius of convergence $R > 0$,
+	and consider the corresponding function $f(x)$ as above
+	Then
+	\[ a_n = \frac{f^{(n)}(x)}{n!}. \]
+\end{corollary}
+\begin{proof}
+	Take the $n$th derivative and plug in $x=0$.
+\end{proof}
+
+\section{Analytic functions}
+\prototype{The piecewise $e^{-1/x}$ or $0$ function is not analytic,
+	but is smooth.}
+With all these nice results about power series,
+we now have a way to do this process the other way:
+suppose that $f \colon U \to \RR$ is a function.
+Can we express it as a power series?
+
+Functions for which this \emph{is} true
+are called analytic.
+\begin{definition}
+	A function $f \colon U \to \RR$ is \vocab{analytic} at
+	the point $p \in U$
+	if there exists an open neighborhood $V$ of $p$ (inside $U$)
+	and a power series $\sum_n a_n z^n$ such that
+	\[ f(x) = \sum_{n \ge 0} a_n (x-p)^n \]
+	for any $x \in V$.
+	As usual, the whole function is analytic
+	if it is analytic at each point.
+\end{definition}
+\begin{ques}
+	Show that if $f$ is analytic, then it's smooth.
+\end{ques}
+Moreover, if $f$ is analytic,
+then by the corollary above its coefficients are
+actually described exactly by
+\[ f(x) = \sum_{n \ge 0} \frac{f^{(n)}(p)}{n!} (x-p)^n. \]
+Even if $f$ is smooth but not analytic,
+we can at least write down the power series;
+we give this a name.
+\begin{definition}
+	For smooth $f$,
+	the power series $\sum_{n \ge 0} \frac{f^{(n)}(p)}{n!} z^n$.
+	is called the \vocab{Taylor series} of $f$ at $p$.
+\end{definition}
+
+\begin{example}
+	[Examples of analytic functions]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii Polynomials, $\sin$, $\cos$, $e^x$, $\log$
+		all turn out to be analytic.
+
+		\ii The smooth function from before defined by
+		\[ f(x) = \begin{cases}
+				\exp(-1/x) & x > 0 \\
+				0 & x \le 0 \\
+			\end{cases}
+		\]
+		is \emph{not} analytic.
+		Indeed, suppose for contradiction it was.
+		As all the derivatives are zero,
+		its Taylor series would be $0 + 0x + 0x^2 + \dots$.
+		This Taylor series does \emph{converge}, but not to the right value ---
+		as $f(\eps) > 0$ for any $\eps > 0$, contradiction.
+	\end{enumerate}
+\end{example}
+
+\begin{theorem}
+	[Analytic iff Taylor series has positive radius]
+	Let $f \colon U \to \RR$ be a smooth function.
+	Then $f$ is analytic if and only if for any point $p \in U$,
+	its Taylor series at $p$ has positive radius of convergence.
+\end{theorem}
+
+\begin{example}
+	It now follows that $f(x) = \sin(x)$ is analytic.
+	To see that, we can compute
+	\begin{align*}
+		f(0) &= \sin 0 = 0 \\
+		f'(0) &= \cos 0 = 1 \\
+		f''(0) &= -\sin 0 = 0 \\
+		f^{(3)}(0) &= -\cos 0 = -1 \\
+		f^{(4)}(0) &= \sin 0 = 0 \\
+		f^{(5)}(0) &= \cos 0 = 1 \\
+		f^{(7)}(0) &= -\sin 0 = 0 \\
+		&\vdotswithin=
+	\end{align*}
+	and so by continuing the pattern
+	(which repeats every four) we find the Taylor series is
+	\[ z - \frac{z^3}{3!} + \frac{z^5}{5!} - \frac{z^7}{7!} + \dots \]
+	which is seen to have radius of convergence $R = \infty$.
+\end{example}
+
+Like with differentiable functions:
+\begin{proposition}
+	[All your usual closure properties for analytic functions]
+	The sums, products, compositions, nonzero quotients
+	of analytic functions are analytic.
+\end{proposition}
+The upshot of this is is that most of your usual
+functions that occur in nature,
+or even artificial ones like $f(x) = e^x + x \sin(x^2)$,
+will be analytic, hence describable locally by Taylor series.
+
+\section{A definition of Euler's constant and exponentiation}
+We can actually give a definition of $e^x$ using the tools we have now.
+
+\begin{definition}
+	We define the map $\exp \colon \RR \to \RR$ by
+	using the following power series,
+	which has infinite radius of convergence:
+	\[ \exp(x) = \sum_{n \ge 0} \frac{x^n}{n!}. \]
+	We then define Euler's constant as $e = \exp(1)$.
+\end{definition}
+\begin{ques}
+	Show that under this definition, $\exp' = \exp$.
+\end{ques}
+
+We are then settled with:
+\begin{proposition}
+	[$\exp$ is multiplicative]
+	Under this definition,
+	\[ \exp(x+y) = \exp(x) \exp(y). \]
+\end{proposition}
+\begin{proof}
+	[Idea of proof.]
+	There is some subtlety here with switching
+	the order of summation that we won't address.
+	Modulo that:
+	\begin{align*}
+		\exp(x) \exp(y)
+		&= \sum_{n \ge 0} \frac{x^n}{n!}
+			\sum_{m \ge 0} \frac{y^m}{m!}
+		= \sum_{n \ge 0} \sum_{m \ge 0}
+			\frac{x^n}{n!} \frac{y^m}{m!} \\
+		&= \sum_{k \ge 0} \sum_{\substack{m+n = k \\ m,n \ge 0}}
+			\frac{x^n y^m}{n! m!}
+		= \sum_{k \ge 0} \sum_{\substack{m+n = k \\ m,n \ge 0}}
+			\binom{k}{n} \frac{x^n y^m}{k!} \\
+		&= \sum_{k \ge 0} \frac{(x+y)^k}{k!} = \exp(x+y). \qedhere
+	\end{align*}
+\end{proof}
+
+\begin{corollary}
+	[$\exp$ is positive]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii We have $\exp(x) > 0$ for any real number $x$.
+		\ii The function $\exp$ is strictly increasing.
+	\end{enumerate}
+\end{corollary}
+\begin{proof}
+	First \[ \exp(x) = \exp(x/2)^2 \ge 0 \]
+	which shows $\exp$ is positive.
+	Also, $1 = \exp(0) = \exp(x) \exp(-x)$ implies $\exp(x) \ne 0$
+	for any $x$, proving (a).
+
+	(b) is just since $\exp'$ is strictly positive (racetrack principle).
+\end{proof}
+
+The log function then comes after.
+\begin{definition}
+	We may define $\log \colon \RR_{>0} \to \RR$
+	to be the inverse function of $\exp$.
+\end{definition}
+Since its derivative is $1/x$ it is smooth;
+and then one may compute its coefficients to show it is analytic.
+	
+Note that this actually gives us a rigorous way to define
+$a^r$ for any $a > 0$ and $r > 0$, namely
+\[ a^r \defeq \exp\left( r \log a \right). \]
+
+\section{This all works over complex numbers as well,
+except also complex analysis is heaven}
+We now mention that every theorem we referred to above
+holds equally well if we work over $\CC$,
+with essentially no modifications.
+\begin{itemize}
+	\ii Power series are defined by $\sum_n a_n z^n$ with $a_n \in \CC$,
+	rather than $a_n \in \RR$.
+	\ii The definition of radius of convergence $R$ is unchanged!
+	The series will converge if $|z| < R$.
+	\ii Differentiation still works great.
+	(The definition of the derivative is unchanged.)
+	\ii Analytic still works great for functions
+	$f \colon U \to \CC$, with $U \subseteq \CC$ open.
+\end{itemize}
+In particular, we can now even define complex exponentials,
+giving us a function \[ \exp \colon \CC \to \CC \]
+since the power series still has $R = \infty$.
+More generally if $a > 0$ and $z \in \CC$
+we may still define \[ a^z \defeq \exp(z \log a). \]
+(We still require the base $a$ to be a positive real
+so that $\log a$ is defined, though.
+So this $i^i$ issue is still there.)
+
+However, if one tries to study calculus for complex functions
+as we did for the real case,
+in addition to most results carrying over,
+we run into a huge surprise:
+\begin{quote}
+	\itshape
+	If $f \colon \CC \to \CC$ is differentiable,
+	it is analytic.
+\end{quote}
+And this is just the beginning of the nearly unbelievable
+results that hold for complex analytic functions.
+But this is the part on real analysis,
+so you will have to read about this later!
+
+\section{\problemhead}
+
+\begin{problem}
+	Find the Taylor series of $\log(1-x)$.
+\end{problem}
+
+\begin{dproblem}
+	[Euler formula]
+	Show that \[ \exp(i \theta) = \cos \theta + i \sin \theta \]
+	for any real number $\theta$.
+	\begin{hint}
+		Because you know all derivatives of $\sin$ and $\cos$,
+		you can compute their Taylor series,
+		which converge everywhere on $\RR$.
+		At the same time, $\exp$ was defined as a Taylor series,
+		so you can also compute it.
+		Write them all out and compare.
+	\end{hint}
+\end{dproblem}
+
+\begin{dproblem}
+	[Taylor's theorem, Lagrange form]
+	Let $f \colon [a,b] \to \RR$ be continuous
+	and $n+1$ times differentiable on $(a,b)$.
+	Define
+	\[ P_n = \sum_{k=0}^n \frac{f^{(k)}(b)}{k!} \cdot (b-a)^k. \]
+	Prove that there exists $\xi \in (a,b)$ such that
+	\[ f^{(n)}(\xi) = (n+1)! \cdot \frac{f(b) - P_n}{(b-a)^{n+1}}. \]
+	This generalizes the mean value theorem
+	(which is the special case $n = 0$, where $P_0 = f(a)$).
+	\begin{hint}
+		Use repeated Rolle's theorem.
+		You don't need any of the theory in this chapter to solve this,
+		so it could have been stated much earlier;
+		but then it would be quite unmotivated.
+	\end{hint}
+\end{dproblem}
+
+\begin{problem}
+	[Putnam 2018 A5]
+	\yod
+	Let $f \colon \RR \to \RR$ be smooth,
+	and assume that $f(0) = 0$, $f(1) = 1$, and $f(x) \ge 0$
+	for every real number $x$.
+	Prove that $f^{(n)}(x) < 0$ for some positive integer $n$
+	and real number $x$.
+	\begin{hint}
+		Use Taylor's theorem.
+	\end{hint}
+\end{problem}

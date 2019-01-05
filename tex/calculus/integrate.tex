@@ -1,1 +1,422 @@
 \chapter{Riemann integrals}
+\begin{quote}
+	\footnotesize
+	``Trying to Riemann integrate discontinuous
+	functions is kind of outdated.'' \\
+	--- Dennis Gaitsgory, \cite{ref:55b}
+\end{quote}
+
+We will go ahead and define the Riemann integral,
+but we won't do very much with it.
+The reason is that the Lebesgue integral is basically better,
+so we will define it, check the fundamental theorem of calculus
+(or rather, leave it as a problem at the end of the chapter),
+and then always use Lebesgue integrals forever after.
+
+\section{Uniform continuity}
+\prototype{$f(x) = x^2$ is not uniformly continuous on $\RR$,
+but functions on compact sets are always uniformly continuous.}
+\begin{definition}
+	Let $f \colon M \to N$ be a continuous
+	map between two metric spaces.
+	We say that $f$ is \vocab{uniformly continuous} if
+	for all $\eps > 0$ there exists a $\delta > 0$ such that
+	\[ d_M(p,q) < \delta \implies d_N(f(p), f(q)) < \eps. \]
+\end{definition}
+This difference is that given an $\eps > 0$ we must specify a $\delta > 0$
+which works for \emph{every} choice $p$ and $q$ of inputs;
+whereas usually $\delta$ is allowed to depend on $p$ and $q$.
+(Also, this definition can't be ported
+to a general topological space.)
+
+\begin{example}
+	[Uniform continuity failure]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii The function $f \colon \RR \to \RR$ by $x \mapsto x^2$
+		is not uniformly continuous.
+		Suppose we take $\eps = 0.1$ for example.
+		There is no $\delta$ such that if $|x-y| < \delta$
+		then $|x^2-y^2| < 0.1$,
+		since as $x$ and $y$ get large,
+		the function $f$ becomes increasingly sensitive
+		to small changes.
+
+		\ii The function $(0,1) \to \RR$ by $x \mapsto x\inv$
+		is not uniformly continuous.
+
+		\ii The function $\RR_{>0} \to \RR$ by $x \mapsto \sqrt x$
+		does turn out to be uniformly continuous
+		(despite having unbounded derivatives!).
+		Indeed, you can check that the assertion
+		\[ \left\lvert x-y  \right\rvert < \eps^2
+			\implies \left\lvert \sqrt x - \sqrt y \right\rvert
+			< \eps \]
+		holds for any $x, y, \eps > 0$.
+	\end{enumerate}
+\end{example}
+
+The good news is that in the compact case all is well.
+\begin{theorem}
+	[Uniform continuity free for compact spaces]
+	Let $M$ be a compact metric space.
+	Then any continuous map $f \colon M \to N$ is
+	also uniformly continuous.
+\end{theorem}
+\begin{proof}
+	Assume for contradiction there is some bad $\eps > 0$.
+	Then taking $\delta = 1/n$,
+	we find that for each integer $n$
+	there exists points $p_n$ and $q_n$
+	which are within $1/n$ of each other,
+	but are mapped more than $\eps$ away from each other by $f$.
+	In symbols, $d_M(p_n, q_n) < 1/n$ but $d_N(f(p_n), f(q_n)) > 1/n$.
+
+	By compactness of $M$,
+	we can find a convergent subsequences
+	$p_{i_1}$, $p_{i_2}$, \dots\ converging to some $x \in M$..
+	Since the $q_{i_n}$ is within $1/i_n$ of $p_{i_n}$,
+	it ought to converge as well, to the same point $x \in M$.
+	Then the sequences $f(p_{i_n})$ and $f(q_{i_n})$
+	should both converge to $f(x) \in N$,
+	but this is impossible as they are always $\eps$
+	away from  each other.
+\end{proof}
+This means for example that $x^2$ viewed
+as a continuous function $[0,1] \to \RR$ is automatically
+uniformly continuous.
+Man, isn't compactness great?
+
+\section{Dense sets and extension}
+\prototype{Functions from $\QQ \to N$ extend to $\RR \to N$
+if they're uniformly continuous and $N$ is complete.
+See also counterexamples below.}
+
+\begin{definition}
+	Let $S$ be a subset (or subspace) of a topological space $X$.
+	Then we say that $S$ is \vocab{dense}
+	if every open subset of $X$ contains a point of $S$.
+\end{definition}
+
+\begin{example}
+	[Dense sets]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii $\QQ$ is dense in $\RR$.
+		\ii In general, any metric space $M$ is dense
+		in its completion $\ol M$.
+	\end{enumerate}
+\end{example}
+
+Dense sets lend themselves to having functions completed.
+The idea is that if I have a continuous function
+$f \colon \QQ \to N$, for some metric space $N$,
+then there should be \emph{at most} one way to extend it to a function
+$\wt f \colon \RR \to N$.
+For we can approximate each rational number by real numbers:
+if I know $f(1)$, $f(1.4)$, $f(1.41)$, \dots\
+$\wt f(\sqrt2)$ had better be the limit of this sequence.
+So it is certainly unique.
+
+However, there are two ways this could go wrong:
+\begin{example}
+	[Non-existence of extension]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii It could be than $N$ is not complete,
+		so the limit may not even exist in $N$.
+		For example if $N = \QQ$,
+		then certainly there is no way to
+		extend even the identify function $f \colon \QQ \to N$
+		to a function $\wt f \colon \QQ \to N$.
+
+		\ii Even if $N$ was complete, we might run into issues
+		where $f$ explodes.
+		For example, let $N = \RR$ and define
+		\[ f(x) = \frac{1}{x-\sqrt2} \qquad f \colon \QQ \to \RR. \]
+		There is also no way to extend this
+		due to the explosion of $f$ near $\sqrt2 \notin \QQ$,
+		which would cause $\wt f(\sqrt2)$ to be undefined.
+	\end{enumerate}
+\end{example}
+However, the way to fix this is to require $f$ to be uniformly continuous,
+and in that case we do get a unique extension.
+
+\begin{theorem}
+	[Extending uniformly continuous functions]
+	Let $M$ be a metric space, $N$ a \emph{complete} metric space,
+	and $S$ a dense subspace of $M$.
+	Suppose $\psi \colon S \to N$ is a \emph{uniformly} continuous function.
+	Then there exist as unique continuous function $\wt \psi \colon M \to N$
+	such that the digaram
+	\begin{center}
+	\begin{tikzcd}
+		M \ar[r, "\wt \psi"] & N \\
+		S \ar[u, hook] \ar[ru, "\psi"'] &
+	\end{tikzcd}
+	\end{center}
+	commutes.
+\end{theorem}
+\begin{proof}
+	[Outline of proof]
+	As mentioned in the discussion,
+	each $x \in M$ can be approximated by a
+	sequence $x_1$, $x_2$, \dots\ in $S$ with $x_i \to x$.
+	The two main hypotheses, completeness and uniform continuity,
+	are now used:
+	\begin{exercise}
+		Prove that $\psi(x_1)$, $\psi(x_2)$, \dots\ converges in $N$
+		by using uniform continuity to show that it is Cauchy,
+		and then appealing to completeness of $N$.
+	\end{exercise}
+	Hence we define $\wt \psi(x)$ to be the limit of that sequence;
+	this doesn't depend on the choice of sequence,
+	and one can use sequential continuity to show $\wt \psi$ is continuous.
+\end{proof}
+
+\section{Defining the Riemann integral}
+Extensions will allow us to define the Riemann integral.
+I need to introduce a bit of notation so bear with me.
+
+\begin{definition}
+	Let $[a,b]$ be a closed interval.
+	\begin{itemize}
+		\ii We let $C^0([a,b])$ denote the set of
+		continuous functions on $[a,b] \to \RR$.
+		\ii We let $R([a,b])$ denote the set of
+		\textbf{rectangle functions} on $[a,b] \to \RR$.
+		These functions which are constant on the intervals
+		$[a,t_1)$, $[t_1, t_2)$, $[t_2, t_3)$, \dots, $[t_{n-1}, t_n)$, %chktex 9
+		and also $[t_n, b]$,
+		for some $a < t_1 < t_2 < \dots < t_n < b$.
+		\ii We let $M([a,b]) = C^0([a,b]) \cup R([a,b])$.
+	\end{itemize}
+\end{definition}
+Warning: only $C^0([a,b])$ is common notation,
+and the other two are made up.
+
+See picture below for a typical a rectangle function.
+(It is irritating that we have to officially assign a single
+value to each $t_i$,
+even though there are naturally two values we want to use,
+and so we use the convention of letting
+the left endpoint be closed).
+\begin{center}
+\begin{asy}
+	import graph;
+	graph.xaxis();
+	graph.yaxis();
+	label("$a$", (-3,0), dir(-90), red);
+	label("$b$", ( 3,0), dir(-90), red);
+	pen b = blue + 1.2;
+	draw( (-3,3)--(-1.2,3), b );
+	draw( (-1.2,1)--(0.8,1), b );
+	draw( (0.8,4)--(2,4), b );
+	draw( (2,2.5)--(3,2.5), b );
+
+	draw( (-3,3)--(-3,0), red );
+	draw( (-1.2,3)--(-1.2,0), dotted+heavycyan );
+	draw( (0.8,4)--(0.8,0), dotted+heavycyan );
+	draw( (2,4)--(2,0), dotted+heavycyan );
+	draw( (3,2.5)--(3,0), red );
+	label("$t_1$", (-1.2,0), dir(-90), heavycyan);
+	label("$t_2$", (0.8,0), dir(-90), heavycyan);
+	label("$t_3$", (2,0), dir(-90), heavycyan);
+
+	dotfactor *= 2;
+	dot( (-3,3), blue ); // x = a
+	opendot( (-1.2, 3), blue );
+	opendot( (0.8, 1), blue );
+	opendot( (2, 4), blue );
+	dot( (-1.2,1), blue );
+	dot( (0.8,4), blue );
+	dot( (2,2.5), blue );
+	dot( (3, 2.5), blue ); // x = b
+\end{asy}
+\end{center}
+
+\begin{definition}
+	We can impose a metric on $M([a,b])$
+	by defining
+	\[ d(f,g) = \sup_{x \in [a,b]} \left\lvert f(x) - g(x) \right\rvert. \]
+\end{definition}
+
+Now, there is a natural notion of integral
+for rectangle functions: just sum up the obvious rectangles!
+Officially, this is the expression
+\[ f(a)(t_1-a) + f(t_1)(t_2-t_1) +
+	+ f(t_2) \left( t_3 - t_2 \right)
+	+ \dots + f(t_n) \left( b - t_n \right).  \]
+We denote this function by
+\[ \Sigma : R([a,b]) \to \RR. \]
+
+\begin{theorem}
+	[The Riemann integral]
+	\label{thm:gaitsgory_riemann}
+	There exists a unique continuous map
+	\[ \textstyle{\int_a^b} \colon M([a,b]) \to \RR \]
+	such that the diagram
+	\begin{center}
+	\begin{tikzcd}
+		M([a,b]) \ar[r, "\int_a^b"] & \RR \\
+		R([a,b]) \ar[u, hook] \ar[ru, "\Sigma"'] &
+	\end{tikzcd}
+	\end{center}
+	commutes.
+\end{theorem}
+\begin{proof}
+	We want to apply the extension theorem,
+	so we just have to check a few things:
+	\begin{itemize}
+		\ii We claim $R([a,b])$ is a dense subset of $M([a,b])$.
+		In other words, for any continuous $f \colon [a,b] \to \RR$
+		and $\eps > 0$,
+		we want there to exist a rectangle function
+		that approximates $f$ within $\eps$.
+
+		This follows by uniform continuity.
+		We know there exists a $\delta > 0$ such
+		that whenever $|x-y| < \delta$ we have $|f(x)-f(y)| < \eps$.
+		So as long as we select a rectangle function
+		whose rectangles have width less than $\delta$,
+		and such that the upper-left corner of each rectangle
+		lies on the graph of $f$, then we are all set. 
+
+		\begin{center}
+		\begin{asy}
+			import graph;
+			real f(real x) { return 3 + (x-2)*(x-2)*(x+5) / 35; }
+			draw( (5, f(5))--(5, 0), red+dotted );
+			for (int i=0; i<10; ++i) {
+				filldraw(box( (i-5, 0), (i-4, f(i-5)) ),
+					opacity(0.1)+lightgreen, deepgreen);
+				dot( (i-5, f(i-5)), deepgreen);
+			}
+			draw(graph(f,-5.2,5.2,operator ..), blue, Arrows(TeXHead));
+			graph.xaxis();
+			graph.yaxis();
+			label("$a$", (-5,0), dir(-90), blue);
+			label("$b$", (5,0), dir(-90), blue);
+		\end{asy}
+		\end{center}
+
+
+		\ii The ``add-the-rectangles'' map $\Sigma \colon R([a,b]) \to \RR$
+		is \emph{uniformly} continuous.
+		Actually this is pretty obvious:
+		if two rectangle functions $f$ and $g$
+		have $d(f,g) < \eps$,
+		then $d(\Sigma f, \Sigma g) < \eps(b-a)$.
+
+		\ii $\RR$ is complete.\qedhere
+	\end{itemize}
+\end{proof}
+
+\section{Meshes}
+The above definition might seem fantastical, overcomplicated,
+hilarious, or terrible, depending on your taste.
+But if you unravel it, it's really the picture you are used to.
+What we have done is taking every continuous function $f \colon [a,b] \to \RR$
+and showed that it can be approximated by a rectangle function
+(which we phrased as a dense inclusion).
+Then we added the area of the rectangles.
+Nonetheless, we will give a definition that's
+more like what you're used to seeing in other places.
+\begin{definition}
+	A \emph{tagged partition} $P$ of $[a,b]$
+	consists of a partition of $[a,b]$ into $n$ intervals,
+	with a point $\xi_i$ in the $n$th interval, denoted
+	\[ a \le t_0 < t_1 < t_2 < \dots < t_n \le b 
+		\qquad\text{and}\qquad \xi_i \in [t_{i-1}, t_i]
+		\quad \forall \; 1 \le i \le n.  \]
+	The \emph{mesh} of $P$ is the width
+	of the longest interval, i.e.\ $\max_i(t_i - t_{i-1})$.
+\end{definition}
+
+Of course the point of this definition
+is that we add the rectangles,
+but the $\xi_i$ are the sample points.
+
+\begin{center}
+\begin{asy}
+	import graph;
+	real f(real x) { return 3 + (x-2)*(x-2)*(x+5) / 35; }
+	real[] t = {-4.4, -3.3, -0.2, 1.3, 3.5, 4.5};
+	filldraw(box((-5,0), (-4.1,f(t[0]))), opacity(0.1)+lightcyan, heavycyan );
+	filldraw(box((-4.1,0), (-2,f(t[1]))), opacity(0.1)+lightcyan, heavycyan );
+	filldraw(box((-2,0), (0.6,f(t[2]))), opacity(0.1)+lightcyan, heavycyan );
+	filldraw(box((0.6,0), (1.9,f(t[3]))), opacity(0.1)+lightcyan, heavycyan );
+	filldraw(box((1.9,0), (3.7,f(t[4]))), opacity(0.1)+lightcyan, heavycyan );
+	filldraw(box((3.7,0), (5,f(t[5]))), opacity(0.1)+lightcyan, heavycyan );
+	for (int i=0; i<=5; ++i) { dot( (t[i], f(t[i])), blue ); }
+	draw(graph(f,-5.2,5.2,operator ..), blue, Arrows(TeXHead));
+	graph.xaxis();
+	graph.yaxis();
+	label("$a$", (-5,0), dir(-90), blue);
+	label("$b$", (5,0), dir(-90), blue);
+\end{asy}
+\end{center}
+
+\begin{theorem}
+	[Riemann integral]
+	Let $f \colon [a,b] \to \RR$ be continuous.
+	Then
+	\[ \int_a^b f(x) \; dx
+		= \lim_{\substack{\text{$P$ tagged partition}
+				\\ \opname{mesh} P \to 0}}
+			\left( \sum_{i=1}^n f(\xi_i) (t_i - t_{i-1}) \right). \]
+	Here the limit means that we can take any sequence
+	of partitions whose mesh approaches zero.
+\end{theorem}
+\begin{proof}
+	The right-hand side corresponds to the areas
+	of some rectangle functions $g_1$, $g_2$, \dots
+	with increasingly narrow rectangles.
+	As in the proof \Cref{thm:gaitsgory_riemann},
+	as the meshes of those rectangles approaches zero,
+	by uniform continuity, we have $d(f, g_n) \to 0$ as well.
+	Thus by continuity in the diagram of \Cref{thm:gaitsgory_riemann},
+	we get $\lim_n \Sigma(g_n) = \int(f)$ as needed.
+\end{proof}
+
+Combined with the mean value theorem,
+this can be used to give a short proof of
+the fundamental theorem of calculus
+for functions $f$ with a continuous derivative.
+
+\section{\problemhead}
+\begin{problem}
+	Let $f \colon (a,b) \to \RR$ be differentiable
+	and assume $f'$ is bounded.
+	Show that $f$ is uniformly continuous.
+\end{problem}
+
+\begin{dproblem}
+	[Fundamental theorem of calculus]
+	Let $f \colon [a,b] \to \RR$ be continuous,
+	differentiable on $(a,b)$,
+	and assume the derivative $f'$ extends to a
+	continuous function $f' \colon [a,b] \to \RR$.
+	Prove that
+	\[ \int_a^b f'(x) \; dx = f(b) - f(a). \]
+	\begin{hint}
+		For every positive integer $n$,
+		take a partition where every rectangle has width $w = \frac{b-a}{n}$.
+		Use the mean value theorem to construct a tagged partition
+		such that the first rectangle has area $f(a+w)-f(a)$,
+		the second rectangle has area $f(a+2w) - f(a+w)$, and so on;
+		thus the total area is $f(b) - f(a)$.
+	\end{hint}
+\end{dproblem}
+
+\begin{problem}
+	Show that
+	\[ \lim_{n \to \infty}
+		\left( \frac{1}{n+1} + \frac{1}{n+2} + \dots + \frac{1}{2n} \right)
+		= \log 2.  \]
+	\begin{hint}
+		Write this as $\frac1n \sum_{k=1}^n \frac{1}{1+\frac kn}$.
+		Then you can interpret it as a rectangle sum
+		of a certain Riemann integral.
+	\end{hint}
+\end{problem}

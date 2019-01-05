@@ -1,4 +1,9 @@
-\chapter[Bonus: p-adic numbers]{Bonus: $p$-adic numbers}
+\chapter[Bonus: A hint of p-adic numbers]{Bonus: A hint of $p$-adic numbers}
+This is a bonus chapter meant for those
+who have also read about \textbf{rings and fields}:
+it's a nice tidbit at the intersection of algebra and analysis.
+
+
 In this chapter, we are going to redo most of the previous chapter
 with the absolute value $\left\lvert - \right\rvert$
 replaced by the $p$-adic one.
@@ -15,10 +20,6 @@ We will then state (mostly without proof) some more
 surprising results about continuous functions $f \colon \ZZ_p \to \QQ_p$;
 finally we close with the famous proof of the Skolem-Mahler-Lech theorem
 using $p$-adic analysis.
-
-\textbf{Dependency bug}: for this chapter,
-you will need to have read about rings and fields to follow this chapter,
-since it's at the intersection of basic algebra and basic analysis.
 
 %In this whole post, $p$ is always a prime.
 %Much of this is based off of Chapter 3A from
@@ -462,12 +463,6 @@ For example, you can prove more generally that:
 	\[ \sum_{n \ge 0} \binom rn x^n = (1+x)^r. \]
 \end{theorem}
 (I haven't defined $(1+x)^r$, but it has the properties you expect.)
-The proof is as in the real case;
-even the theorem statement is the same
-except for the change for the extra subscript of $p$.
-I won't elaborate too much on this now,
-since $p$-adic exponentiation will be described in much
-more detail in the next post.
 
 \subsection{Completeness}
 Note that the definition of $\left\lvert \bullet \right\rvert_p$
@@ -613,7 +608,6 @@ Thus one can think of $a_n \to 0$ as saying that
 the values of $f(0)$, $f(1)$, \dots behave like a polynomial modulo $p^e$
 for every $e \ge 0$.
 
-
 The notion ``analytic'' also has a Mahler interpretation.
 First, the definition.
 \begin{definition}
@@ -701,7 +695,7 @@ which was interesting even before $p$-adics came along!
 \end{dproblem}
 
 \begin{problem}
-	[USA TST 2011/3]
+	[USA TST 2011]
 	Let $p$ be a prime.
 	We say that a sequence of integers $\{z_n\}_{n=0}^\infty$
 	is a \emph{$p$-pod} if for each $e \geq 0$,

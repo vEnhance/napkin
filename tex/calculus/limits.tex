@@ -610,7 +610,10 @@ The definition will look like what we have seen before with continuity.
 \end{definition}
 There is an important point here: in this definition
 we \emph{deliberately} require that $x \ne p$.
-Therefore, the value of this limit does not depend on $f(p)$ itself.
+\begin{moral}
+	The value $\lim_{x \to p} f(x)$ does not depend on $f(p)$,
+	and accordingly we often do not even bother to define $f(p)$.
+\end{moral}
 \begin{example}
 	[Function with a hole]
 	Define the function $f \colon \RR \to \RR$ by
@@ -658,10 +661,15 @@ Therefore, the value of this limit does not depend on $f(p)$ itself.
 	where $f(0)$ is assigned any value.
 	Then
 	\[ \lim_{x \to 0} f(x) = 1. \]
-	We will not prove this here, since I don't want to get into trig yet.
 \end{example}
+We will not prove this here,
+since I don't want to get into trig yet.
+In general, I will basically only use trig functions
+for examples and not for any theory,
+so most properties of the trig functions will just be quoted.
 \begin{abuse}
 	[The usual notation]
+	\label{abuse:limit}
 	From now on, the above example
 	will usually be abbreviated to just
 	\[ \lim_{x \to 0} \frac{\sin x}{x} = 1. \]
@@ -764,6 +772,7 @@ I've mentioned this, so I will not say more.
 
 \begin{problem}
 	[Geometric series]
+	\label{prob:geometric}
 	Let $-1 < r < 1$ be a real number.
 	Show that the series
 	\[ 1 + r + r^2 + r^3 + \dots \]
