@@ -186,9 +186,9 @@ I need to introduce a bit of notation so bear with me.
 		\ii We let $R([a,b])$ denote the set of
 		\textbf{rectangle functions} on $[a,b] \to \RR$.
 		These functions which are constant on the intervals
-		$[a,t_1)$, $[t_1, t_2)$, $[t_2, t_3)$, \dots, $[t_{n-1}, t_n)$, %chktex 9
-		and also $[t_n, b]$,
-		for some $a < t_1 < t_2 < \dots < t_n < b$.
+		$[t_0,t_1)$, $[t_1, t_2)$, $[t_2, t_3)$, \dots, $[t_{n-2}, t_{n-1})$, %chktex 9
+		and also $[t_{n-1}, t_n]$,
+		for some $a = t_0 < t_1 < t_2 < \dots < t_n = b$.
 		\ii We let $M([a,b]) = C^0([a,b]) \cup R([a,b])$.
 	\end{itemize}
 \end{definition}
@@ -206,8 +206,8 @@ the left endpoint be closed).
 	import graph;
 	graph.xaxis();
 	graph.yaxis();
-	label("$a$", (-3,0), dir(-90), red);
-	label("$b$", ( 3,0), dir(-90), red);
+	label("$a=t_0$", (-3,0), dir(-90), red);
+	label("$b=t_4$", ( 3,0), dir(-90), red);
 	pen b = blue + 1.2;
 	draw( (-3,3)--(-1.2,3), b );
 	draw( (-1.2,1)--(0.8,1), b );
@@ -326,7 +326,7 @@ more like what you're used to seeing in other places.
 	A \emph{tagged partition} $P$ of $[a,b]$
 	consists of a partition of $[a,b]$ into $n$ intervals,
 	with a point $\xi_i$ in the $n$th interval, denoted
-	\[ a \le t_0 < t_1 < t_2 < \dots < t_n \le b 
+	\[ a = t_0 < t_1 < t_2 < \dots < t_n = b
 		\qquad\text{and}\qquad \xi_i \in [t_{i-1}, t_i]
 		\quad \forall \; 1 \le i \le n.  \]
 	The \emph{mesh} of $P$ is the width
@@ -350,6 +350,7 @@ but the $\xi_i$ are the sample points.
 	filldraw(box((3.7,0), (5,f(t[5]))), opacity(0.1)+lightcyan, heavycyan );
 	for (int i=0; i<=5; ++i) { dot( (t[i], f(t[i])), blue ); }
 	draw(graph(f,-5.2,5.2,operator ..), blue, Arrows(TeXHead));
+	label("$\xi$", (t[1], f(t[1])), dir(90), blue);
 	graph.xaxis();
 	graph.yaxis();
 	label("$a$", (-5,0), dir(-90), blue);
@@ -383,16 +384,75 @@ Combined with the mean value theorem,
 this can be used to give a short proof of
 the fundamental theorem of calculus
 for functions $f$ with a continuous derivative.
+The idea is that for any choice of partition
+$a \le t_0 < t_1 < t_2 < \dots < t_n \le b$,
+using the Mean Value Theorem it should be possible
+to pick $\xi_i$ in each interval to match
+with the slope of the secant:
+at which point the areas sum to the total change in $f$.
+We illustrate this situation with three points,
+and invite the reader to fill
+in the details as \Cref{thm:FTC}.
+
+\begin{center}
+\begin{asy}
+	size(9cm);
+	import graph;
+	graph.xaxis("$x$");
+	graph.yaxis("$y$");
+	real f(real x) { return x*x/2+0.4; }
+	pair P(real x) { return (x, f(x)); }
+	draw(graph(f,-2,2,operator ..), blue, Arrows(TeXHead));
+	label("$f$", (2, f(2)), dir(-45), blue);
+	for (real i=-1.3; i<=2; ++i) {
+		if (i < 1) { draw(P(i)--P(i+1), deepgreen, EndArrow(TeXHead), Margins); }
+		dot(P(i), deepgreen);
+	}
+	real m1 = f(-0.3) - f(-1.3);
+	real m2 = f(0.7) - f(-0.3);
+	real m3 = f(1.7) - f(0.7);
+	real r = 0.4;
+	void draw_tangent(real m) {
+		dot(P(m), red);
+		draw((m-r, f(m)-r*m)--(m+r, f(m)+r*m), red);
+	}
+	draw_tangent(m1);
+	draw_tangent(m2);
+	draw_tangent(m3);
+	draw(P(-1.3)--(-1.3,0), deepgreen+dashed);
+	draw(P(-0.3)--(-0.3,0), deepgreen+dashed);
+	draw(P( 0.7)--( 0.7,0), deepgreen+dashed);
+	draw(P( 1.7)--( 1.7,0), deepgreen+dashed);
+	label("$t_0$", (-1.3,0), dir(-90), deepgreen);
+	label("$t_1$", (-0.3,0), dir(-90), deepgreen);
+	label("$t_2$", ( 0.7,0), dir(-90), deepgreen);
+	label("$t_3$", ( 1.7,0), dir(-90), deepgreen);
+	draw(P(m1)--(m1,0), red+dashed);
+	draw(P(m2)--(m2,0), red+dashed);
+	draw(P(m3)--(m3,0), red+dashed);
+	label("$\xi_1$", (m1,0), dir(-90), red+fontsize(8pt));
+	label("$\xi_2$", (m2,0), dir(-90), red+fontsize(8pt));
+	label("$\xi_3$", (m3,0), dir(-90), red+fontsize(8pt));
+	draw(P(-1.3)--P(1.7), blue+dashed, EndArrow, Margins);
+	label("Net change", 0.3*P(-1.3)+0.7*P(1.7), dir(90), blue);
+\end{asy}
+\end{center}
+
+
 
 \section{\problemhead}
 \begin{problem}
 	Let $f \colon (a,b) \to \RR$ be differentiable
 	and assume $f'$ is bounded.
 	Show that $f$ is uniformly continuous.
+	\begin{hint}
+		Contradiction and mean value theorem (again!).
+	\end{hint}
 \end{problem}
 
-\begin{dproblem}
+\begin{sproblem}
 	[Fundamental theorem of calculus]
+	\label{thm:FTC}
 	Let $f \colon [a,b] \to \RR$ be continuous,
 	differentiable on $(a,b)$,
 	and assume the derivative $f'$ extends to a
@@ -407,7 +467,25 @@ for functions $f$ with a continuous derivative.
 		the second rectangle has area $f(a+2w) - f(a+w)$, and so on;
 		thus the total area is $f(b) - f(a)$.
 	\end{hint}
-\end{dproblem}
+\end{sproblem}
+
+\begin{problem}
+	[Improper integrals]
+	For each real number $r > 0$,
+	evaluate the limit\footnote{If you are not
+		familiar with the notation $\eps \to 0^+$,
+		you can replace $\eps$ with $1/M$ for $M > 0$,
+		and let $M \to \infty$ instead.}
+	\[ \lim_{\eps \to 0^+} \int_\eps^1 \frac{1}{x^r} \; dx \]
+	or show it does not exist.
+	This can intuitively be thought of as
+	the ``improper'' integral $\int_0^1 x^{-r} \; dx$;
+	it doesn't make sense in our original definition since
+	we did not (and cannot) define the integral
+	over the non-compact $(0,1]$ %chktex 9
+	but we can still consider the integral over $[\eps,1]$
+	for any $\eps > 0$.
+\end{problem}
 
 \begin{problem}
 	Show that
