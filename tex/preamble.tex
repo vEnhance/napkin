@@ -206,18 +206,6 @@
 \addtokomafont{partprefix}{\rmfamily}
 \renewcommand*{\partformat}{\color{purple}\scalebox{2.5}{\thepart}}
 
-%%fakesection Mini ToC
-\usepackage[tight]{minitoc}
-\noptcrule
-\mtcsetfont{parttoc}{chapter}{\large\sffamily\bfseries}
-\mtcsetfont{parttoc}{section}{\scriptsize\rmfamily\upshape\mdseries}
-\renewcommand*{\partheadstartvskip}{\vfill}
-\renewcommand*{\partheadendvskip}{\vfill}
-\renewcommand\beforeparttoc{}% \hspace{\fill}\rule{0.95\linewidth}{2pt}\hspace{\fill}
-\let\oldpart\part
-\renewcommand{\part}[1]{\oldpart{#1}
-\setcounter{parttocdepth}{1}\parttoc\cleardoublepage}
-
 %%fakesection SNSD
 \newcommand{\snsd}[2][]%
 {\includegraphics[#1]{/home/evan/Pictures/TopologicalGG/#2}}
@@ -371,6 +359,19 @@ style=thmbluebox,name=Theorem,numberwithin=section]{theorem}
 \DeclareFieldFormat{labelalpha}{\textbf{\scriptsize #1}}
 \addbibresource{references.bib}
 \addbibresource{images.bib}
+
+%%fakesection Mini ToC
+\usepackage[tight]{minitoc}
+\mtcsetfont{parttoc}{chapter}{\sffamily\bfseries}
+\mtcsetfont{parttoc}{section}{\footnotesize\rmfamily\upshape\mdseries}
+\mtcsetfont{parttoc}{subsection}{\footnotesize\rmfamily\upshape\mdseries}
+\mtcsetdepth{parttoc}{1}
+\renewcommand*{\partheadstartvskip}{\vspace*{20em}}
+\renewcommand*{\partheadendvskip}{}
+%\noptcrule
+\renewcommand\beforeparttoc{\noindent{\bfseries \Large Part \thepart: Contents}}
+%\hspace{\fill}\rule{0.95\linewidth}{2pt}\hspace{\fill}
+\doparttoc[n]
 
 %%fakesection Napkin Macros
 \newcommand{\Zc}[1]{\ZZ/#1\ZZ}

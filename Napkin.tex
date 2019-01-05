@@ -1,47 +1,50 @@
-\documentclass[11pt,twoside=semi,openright,numbers=noenddot]{scrreprt}
+\documentclass[11pt,twoside=semi,openright,numbers=noenddot]{scrbook}
 \input{tex/preamble}
 \input{tex/Qcircuit.tex}
-
-%\usepackage{draftwatermark}
-%\SetWatermarkAngle{32}
-%\SetWatermarkLightness{0.98}
-%\SetWatermarkFontSize{40pt}
-%\SetWatermarkScale{2.0}
-%\SetWatermarkText{\shortstack{DRAFT (Evan Chen) \\ Updated \today}}
-
-\begin{document}
-\doparttoc[n]
 
 \title{An Infinitely Large Napkin}
 \subtitle{Second edition (last updated \today)}
 \author{Evan Chen}
 \date{\url{http://web.evanchen.cc/napkin.html}}
+
+\begin{document}
+
+\frontmatter
 \maketitle
 
 \include{tex/frontmatter/title-embellishments}
 \include{tex/frontmatter/preface}
+
 \include{tex/frontmatter/advice}
+
+\mainmatter
+\addtocounter{chapter}{-1} % sales pitch should be chapter 0
+\include{tex/frontmatter/salespitch}
+
 \tableofcontents
 
 \Opensolutionfile{tex/backmatter/all-hints}
 \Opensolutionfile{tex/backmatter/all-solns}
 
 \part{Starting Out}
+\parttoc
 \include{tex/H113/grp-intro}
 \include{tex/topology/metric-top}
 
 \part{Basic Abstract Algebra}
+\parttoc
 \include{tex/H113/quotient}
 \include{tex/H113/ideals}
 \include{tex/H113/rings}
 
 \part{Basic Topology}
+\parttoc
 \include{tex/topology/metric-prop}
 \include{tex/topology/top-more}
 \include{tex/topology/compactness}
-%% some analysis chapters here
 
 \part{Linear Algebra}
+\parttoc
 \include{tex/linalg/vector-space}
 \include{tex/linalg/eigenvalues}
 \include{tex/linalg/dual-trace}
@@ -51,34 +54,40 @@
 \include{tex/linalg/transpose}
 
 \part{More on Groups}
+\parttoc
 \include{tex/H113/action}
 \include{tex/H113/sylow}
 \include{tex/H113/structure}
 
 \part{Representation Theory}
+\parttoc
 \include{tex/rep-theory/rep-alg}
 \include{tex/rep-theory/semisimple}
 \include{tex/rep-theory/characters}
 \include{tex/rep-theory/applications}
 
 \part{Quantum Algorithms}
+\parttoc
 \include{tex/quantum/vectors}
 \include{tex/quantum/circuits}
 \include{tex/quantum/shor}
 
 \part{Calculus 101}
+\parttoc
 \include{tex/calculus/limits}
-\include{tex/calculus/differentiate}
 \include{tex/calculus/p-adic}
+\include{tex/calculus/differentiate}
+\include{tex/calculus/taylor}
 \include{tex/calculus/integrate}
 
 \part{Complex Analysis}
-% chapter on R?
+\parttoc
 \include{tex/complex-analysis/holomorphic}
 \include{tex/complex-analysis/meromorphic}
 \include{tex/complex-analysis/log}
 
 \part{Measure Theory and Probability}
+\parttoc
 \input{tex/measure/measure-space}
 \input{tex/measure/cartheodory}
 
@@ -91,12 +100,14 @@
 \input{tex/measure/martingale}
 
 \part{Differential Geometry}
-\include{tex/diffgeo/multivar}      % missing sols
+\parttoc
+\include{tex/diffgeo/multivar} % missing sols
 \include{tex/diffgeo/forms}
 \include{tex/diffgeo/stokes} % sols
 \include{tex/diffgeo/manifolds}
 
 \part{Algebraic NT I: Rings of Integers}
+\parttoc
 \include{tex/alg-NT/norm-trace}
 \include{tex/alg-NT/dedekind}
 \include{tex/alg-NT/classgrp}
@@ -104,6 +115,7 @@
 \include{tex/alg-NT/pell}
 
 \part{Algebraic NT II: Galois and Ramification Theory}
+\parttoc
 \include{tex/alg-NT/galois}
 \include{tex/alg-NT/finite-field}
 \include{tex/alg-NT/ramification} % missing probs
@@ -111,16 +123,19 @@
 \include{tex/alg-NT/artin}
 
 \part{Algebraic Topology I: Homotopy}
+\parttoc
 \include{tex/topology/constructions}
 \include{tex/topology/fundamental-group}
 \include{tex/topology/cover-project} % missing problems
 
 \part{Category Theory}
+\parttoc
 \include{tex/cats/categories} % missing sols
 \include{tex/cats/functors} % missing sols
 \include{tex/cats/abelian}
 
 \part{Algebraic Topology II: Homology}
+\parttoc
 \include{tex/homology/singular} % missing problems
 \include{tex/homology/long-exact} % missing problems
 \include{tex/homology/excision}
@@ -129,6 +144,7 @@
 \include{tex/homology/cup-product}
 
 \part{Algebraic Geometry I: Varieties}
+\parttoc
 \include{tex/alg-geom/affine-var}
 \include{tex/alg-geom/zariski}
 \include{tex/alg-geom/proj-var} % missing problems
@@ -136,6 +152,7 @@
 \include{tex/alg-geom/quasi-proj}
 
 \part{Algebraic Geometry II: Schemes}
+\parttoc
 \input{tex/alg-geom/sheaves}
 \input{tex/alg-geom/localization}
 \input{tex/alg-geom/affine-scheme}
@@ -143,19 +160,22 @@
 \input{tex/alg-geom/mor-scheme}
 
 \part{Set Theory I: ZFC, Ordinals, and Cardinals}
+\parttoc
 \include{tex/set-theory/zorn-lemma}
 \include{tex/set-theory/zfc}
 \include{tex/set-theory/ordinal}
 \include{tex/set-theory/cardinal}
 
 \part{Set Theory II: Model Theory and Forcing}
+\parttoc
 \include{tex/set-theory/models}
 \include{tex/set-theory/forcing}
 \include{tex/set-theory/CH}
 
 \part{Backmatter}
+\parttoc
 \appendix
-\automark{chapter} % change to chapter in appendix
+% \automark{chapter} % change to chapter in appendix
 
 \Closesolutionfile{tex/backmatter/all-hints}
 \Closesolutionfile{tex/backmatter/all-solns}
@@ -164,6 +184,8 @@
 
 \include{tex/backmatter/notation}
 \include{tex/backmatter/sets-functions}
+
+\backmatter
 
 %% References
 \clearpage
