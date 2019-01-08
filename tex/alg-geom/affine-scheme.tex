@@ -50,9 +50,9 @@ will have three big generalizations:
 \prototype{$\Spec \CC[x_1, \dots, x_n] / I$.}
 
 First surprise, for a ring $A$:
-\begin{moral}
-	$\Spec A$ is defined as the set of prime ideals of $A$.
-\end{moral}
+\begin{definition}
+	The set $\Spec A$ is defined as the set of prime ideals of $A$.
+\end{definition}
 
 This might be a little surprising, since we might have guessed
 that $\Spec A$ should just have the maximal ideals.
@@ -237,7 +237,7 @@ you can write out the definition:
 	$f_\qq = \frac fg \in A_\qq$ for all $\qq \in U_\pp$.
 \end{definition}
 
-We will now \textbf{completely forget about this definition},
+We will now \textbf{basically forget about this definition},
 because we will never use it in practice.
 In the next two sections, we will show you how to compute
 the stalks and sections of any affine scheme, without having
@@ -280,7 +280,8 @@ and you probably can guess what's happening.
 	We have seen this example so many times
 	that I will only write it in the new notation,
 	and make no further comment:
-	\[ \OO_{\Spec \CC[x], (x)} = \CC[x]_{(x)}. \]
+	if $X = \Spec \CC[x]$ then
+	\[ \OO_{\Spec X, (x)} = \CC[x]_{(x)}. \]
 \end{example}
 
 If you want more examples,

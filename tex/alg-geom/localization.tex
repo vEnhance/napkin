@@ -59,7 +59,7 @@ next chapter we will throw out the coordinate ring $R$
 altogether and replace it with a general commutative ring $A$
 (which are still viewed as functions).
 We will construct a ringed space called $X = \Spec A$,
-whose elements are prime ideals of $A$
+whose elements are \emph{prime ideals} of $A$
 and is equipped with the Zariski topology and a sheaf $\OO_X$.
 It will turn out that, in analogy to what we had before,
 \begin{align*}
@@ -184,7 +184,6 @@ Here are the two special cases of localization we will need the most.
 	From this we get a ring isomorphism
 	\[ A_{(x)} \cong \CC[x]_{(x)}. \]
 \end{example}
-\todo{commute with quotient}
 
 \begin{example}
 	[Some arithmetic examples of localizations]
@@ -295,7 +294,42 @@ Consequently, we give several examples in this vein.
 
 
 \section{Two mandatory algebra exercises}
+We take the time now to mention how you can
+think about prime ideals of localized rings.
+\begin{proposition}
+	[The prime ideals of a localization]
+	Let $A$ be a ring and $S \subseteq A$ a multiplicatively closed set.
+	Then there is a natural inclusion-preserving bijection between:
+	\begin{itemize}
+		\ii The set of prime ideals of $S\inv A$, and
+		\ii The set of prime ideals of $A$ not intersecting $S$.
+	\end{itemize}
+\end{proposition}
+\begin{proof}
+	Consider the homomorphism $\iota \colon A \to S\inv A$.
+	For any prime ideal $\qq \subseteq S\inv A$,
+	its pre-image is $\iota\pre(\qq)$.
+	Conversely, for any prime ideal $\pp \subseteq A$
+	not meeting $S$,
+	$S\inv \pp = \left\{ \frac{a}{s} \mid a \in \pp, s \in S \right\}$
+	is a prime ideal of $S\inv A$.
+	An annoying check shows that this produces the required bijection.
+\end{proof}
+In practice, we will almost always use the corollary
+where $S$ is one of the two special cases above,
+and we write it out here.
+\begin{corollary}
+	Let $A$ be a ring.
+	\begin{enumerate}[(a)]
+		\ii If $\pp$ is a prime ideal of $A$,
+		then the prime ideals of $A_\pp$ are naturally
+		in bijection with prime ideals of $A$ contained \emph{within} $\pp$.
+	\end{enumerate}
+\end{corollary}
+
+
 \todo{ideals bijection}
+
 \todo{write this}
 The previous example illustrates an important observation:
 \begin{exercise}
