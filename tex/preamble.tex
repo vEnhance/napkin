@@ -195,7 +195,9 @@
 
 %%fakesection Fancy section and chapter heads
 \renewcommand*{\sectionformat}{\color{purple}\S\thesection\autodot\enskip}
+\renewcommand*{\subsectionformat}{\color{purple}\S\thesubsection\autodot\enskip}
 \newcommand{\problemhead}{A few harder problems to think about}
+\renewcommand{\thesubsection}{\thesection.\roman{subsection}}
 
 \addtokomafont{chapterprefix}{\raggedleft}
 \RedeclareSectionCommand[beforeskip=0.5em]{chapter}
@@ -205,10 +207,6 @@
 
 \addtokomafont{partprefix}{\rmfamily}
 \renewcommand*{\partformat}{\color{purple}\scalebox{2.5}{\thepart}}
-
-%%fakesection SNSD
-\newcommand{\snsd}[2][]%
-{\includegraphics[#1]{/home/evan/Pictures/TopologicalGG/#2}}
 
 %%fakesection Theorems
 \usepackage{thmtools}
