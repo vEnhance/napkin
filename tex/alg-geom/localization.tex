@@ -64,9 +64,9 @@ and is equipped with the Zariski topology and a sheaf $\OO_X$.
 It will turn out that, in analogy to what we had before,
 \begin{align*}
 	\OO_X(D(f)) &= A_f \\
-	\OO_{X,\pp} &= A_\pp
+	\OO_{X,\kp} &= A_\kp
 \end{align*}
-for any element $f \in A$ and prime ideal $\pp \in \Spec A$.
+for any element $f \in A$ and prime ideal $\kp \in \Spec A$.
 Thus just as with complex affine varieties,
 localizations will give us a way to more or less
 describe the sheaf $\OO_X$ completely.
@@ -206,20 +206,20 @@ Here are the two special cases of localization we will need the most.
 \section{Localization at a prime ideal}
 \label{sec:localize_prime_ideal}
 \begin{definition}
-	If $A$ is a ring and $\pp$ is a prime ideal, then we define
-	\[ A_\pp \defeq \left( A \setminus \pp \right)^{-1} A. \]
-	This is called the \vocab{localization at $\pp$}.
+	If $A$ is a ring and $\kp$ is a prime ideal, then we define
+	\[ A_\kp \defeq \left( A \setminus \kp \right)^{-1} A. \]
+	This is called the \vocab{localization at $\kp$}.
 \end{definition}
 \begin{ques}
-	Why is $S = A \setminus \pp$ multiplicatively closed
+	Why is $S = A \setminus \kp$ multiplicatively closed
 	in the above definition?
 \end{ques}
 
 Warning: this notation sort of conflicts with the previous one.
-The ring $A_\pp$ is the localization with multiplicative set $A \setminus \pp$,
+The ring $A_\kp$ is the localization with multiplicative set $A \setminus \kp$,
 while $A_f$ is the localization with multiplicative set $\{1,f,f^2,\dots\}$;
 these two are quite different beasts!
-In $A_\pp$ the subscript denotes the \emph{forbidden} denominators;
+In $A_\kp$ the subscript denotes the \emph{forbidden} denominators;
 in $A_f$ the subscript denotes the \emph{allowed} denominators.
 
 This special case is important because we will see that
@@ -254,9 +254,9 @@ Consequently, we give several examples in this vein.
 		\ii We let $\mm$ be the maximal ideal $(x,y)$ of $A = \CC[x,y]$.
 		Then \[ A_\mm = \left\{ \frac{f(x,y)}{g(x,y)} \mid g(0,0) \ne 0 \right\}. \]
 
-		\ii Let $\pp$ be the prime ideal $(y-x^2)$ of $A = \CC[x,y]$.
+		\ii Let $\kp$ be the prime ideal $(y-x^2)$ of $A = \CC[x,y]$.
 		Then
-		\[ A_\pp = \left\{ \frac{f(x,y)}{g(x,y)} \mid g \notin (y-x^2) \right\}. \]
+		\[ A_\kp = \left\{ \frac{f(x,y)}{g(x,y)} \mid g \notin (y-x^2) \right\}. \]
 		This is a bit different from what we've seen before:
 		the polynomials in the denominator are allowed to vanish
 		at a point like $(1,1)$, as long as they don't vanish on
@@ -307,11 +307,11 @@ think about prime ideals of localized rings.
 \end{proposition}
 \begin{proof}
 	Consider the homomorphism $\iota \colon A \to S\inv A$.
-	For any prime ideal $\qq \subseteq S\inv A$,
-	its pre-image is $\iota\pre(\qq)$.
-	Conversely, for any prime ideal $\pp \subseteq A$
+	For any prime ideal $\kq \subseteq S\inv A$,
+	its pre-image is $\iota\pre(\kq)$.
+	Conversely, for any prime ideal $\kp \subseteq A$
 	not meeting $S$,
-	$S\inv \pp = \left\{ \frac{a}{s} \mid a \in \pp, s \in S \right\}$
+	$S\inv \kp = \left\{ \frac{a}{s} \mid a \in \kp, s \in S \right\}$
 	is a prime ideal of $S\inv A$.
 	An annoying check shows that this produces the required bijection.
 \end{proof}
@@ -321,9 +321,9 @@ and we write it out here.
 \begin{corollary}
 	Let $A$ be a ring.
 	\begin{enumerate}[(a)]
-		\ii If $\pp$ is a prime ideal of $A$,
-		then the prime ideals of $A_\pp$ are naturally
-		in bijection with prime ideals of $A$ contained \emph{within} $\pp$.
+		\ii If $\kp$ is a prime ideal of $A$,
+		then the prime ideals of $A_\kp$ are naturally
+		in bijection with prime ideals of $A$ contained \emph{within} $\kp$.
 	\end{enumerate}
 \end{corollary}
 
@@ -361,8 +361,8 @@ The previous example illustrates an important observation:
 \end{problem}
 
 \begin{problem}
-	Let $A$ be a ring such that $A_\pp$ is an integral domain
-	for every prime ideal $\pp$ of $A$.
+	Let $A$ be a ring such that $A_\kp$ is an integral domain
+	for every prime ideal $\kp$ of $A$.
 	Must $A$ be an integral domain?
 	\begin{hint}
 		No. Imagine two axes.

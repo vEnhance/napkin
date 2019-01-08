@@ -14,12 +14,12 @@ Using weapons from Galois Theory, this will culminate in a proof of Quadratic Re
 
 Let $p$ be a rational prime, and toss it into $\OO_K$.
 Thus we get a factorization into prime ideals
-\[ p \cdot \OO_K = \pp_1^{e_1} \dots \pp_g^{e_g}. \]
-We say that each $\pp_i$ is \vocab{above} $(p)$.\footnote{%
+\[ p \cdot \OO_K = \kp_1^{e_1} \dots \kp_g^{e_g}. \]
+We say that each $\kp_i$ is \vocab{above} $(p)$.\footnote{%
 	Reminder that $p \cdot \OO_K$ and $(p)$ mean the same thing, and I'll use both interchangeably.}
 Pictorially, you might draw this as follows:
 \begin{diagram}
-	K & \supset & \OO_K & \pp_i \\
+	K & \supset & \OO_K & \kp_i \\
 	\dLine && \dLine & \dLine \\
 	\QQ & \supset & \ZZ & (p)
 \end{diagram}
@@ -80,27 +80,27 @@ In particular, only finitely many primes ramify.
 \prototype{$(7)$ has inertial degree $2$ in $\ZZ[i]$ and $(2+i)$ has inertial degree $1$ in $\ZZ[i]$.}
 
 Recall that we were able to define an ideal norm
-$\Norm(\aa) = \left\lvert \OO_K / \aa \right\rvert$
-measuring how ``roomy'' the ideal $\aa$ is.
+$\Norm(\ka) = \left\lvert \OO_K / \ka \right\rvert$
+measuring how ``roomy'' the ideal $\ka$ is.
 For example, $(5)$ has ideal norm $5^2 = 25$ in $\ZZ[i]$, since
 \[ \ZZ[i] / (5) \cong \left\{ a+bi \mid a,b \in \Zc5 \right\} \]
 has $5^2 = 25$ elements.
 
 Now, let's look at
-\[ p \cdot \OO_K = \pp_1^{e_1} \dots \pp_g^{e_g} \]
+\[ p \cdot \OO_K = \kp_1^{e_1} \dots \kp_g^{e_g} \]
 in $\OO_K$, where $K$ has degree $n$.
 Taking the ideal norms of both sides, we have that
-\[ p^n = \Norm(\pp_1)^{e_1} \dots \Norm(\pp_g)^{e_g}. \]
-We conclude that $\pp_i = p^{f_i}$ for some integer $f_i \ge 1$, and moreover that
+\[ p^n = \Norm(\kp_1)^{e_1} \dots \Norm(\kp_g)^{e_g}. \]
+We conclude that $\kp_i = p^{f_i}$ for some integer $f_i \ge 1$, and moreover that
 \[ n = \sum_{i=1}^g e_i f_i. \]
 \begin{definition}
-	We say $f_i$ is the \vocab{inertial degree} of $\pp_i$,
+	We say $f_i$ is the \vocab{inertial degree} of $\kp_i$,
 	and $e_i$ is the \vocab{ramification index}.
 \end{definition}
 \begin{example}[Examples of inertial degrees]
 	Work in $\ZZ[i]$, which is degree $2$.
 	The inertial degree detects how ``spacy'' the
-	given $\pp$ is when interpreted in $\OO_K$.
+	given $\kp$ is when interpreted in $\OO_K$.
 	\begin{enumerate}[(a)]
 		\ii The prime $7 \cdot \ZZ[i]$ has inertial degree $2$.
 		Indeed, $\ZZ[i]/ (7)$ has $7^2=49$ elements,
@@ -124,11 +124,11 @@ all the inertial degrees and ramification degrees are equal.
 We set about proving this.
 
 Let $K/\QQ$ be Galois with $G = \Gal(K/\QQ)$.
-Note that if $\pp \subseteq \OO_K$ is a prime above $p$,
-then the image $\sigma\im(\pp)$ is also prime for any $\sigma \in G$
+Note that if $\kp \subseteq \OO_K$ is a prime above $p$,
+then the image $\sigma\im(\kp)$ is also prime for any $\sigma \in G$
 (since $\sigma$ is an automorphism!).
-Moreover, since $p \in \pp$ and $\sigma$ fixes $\QQ$,
-we know that $p \in \sigma\im(\pp)$ as well.
+Moreover, since $p \in \kp$ and $\sigma$ fixes $\QQ$,
+we know that $p \in \sigma\im(\kp)$ as well.
 
 Thus, by the pointwise mapping, \textbf{the Galois group acts
 on the prime ideals above a rational prime $p$}.
@@ -149,11 +149,11 @@ Picture:
 	\end{asy}
 \end{center}
 
-The notation $\sigma\im(\pp)$ is hideous in this context,
+The notation $\sigma\im(\kp)$ is hideous in this context,
 since we're really thinking of $\sigma$ as just doing a group action,
 and so we give the shorthand:
 \begin{abuse}
-	Let $\sigma\pp$ be shorthand for $\sigma\im(\pp)$.
+	Let $\sigma\kp$ be shorthand for $\sigma\im(\kp)$.
 \end{abuse}
 
 Since the $\sigma$'s are all bijections (they are automorphisms!),
@@ -163,50 +163,50 @@ But miraculously, it turns out there is only one orbit!
 \begin{theorem}
 	[Galois group acts transitively]
 	Let $K/\QQ$ be Galois with $G = \Gal(K/\QQ)$.
-	Let $\{\pp_i\}$ be the set of distinct prime ideals in
+	Let $\{\kp_i\}$ be the set of distinct prime ideals in
 	the factorization of $p \cdot \OO_K$ (in $\OO_K$).
 
-	Then $G$ acts transitively on the $\pp_i$:
-	for every $i$ and $j$, we can find $\sigma$ such that $\sigma\pp_i = \pp_j$.
+	Then $G$ acts transitively on the $\kp_i$:
+	for every $i$ and $j$, we can find $\sigma$ such that $\sigma\kp_i = \kp_j$.
 \end{theorem}
 \begin{proof}
 	Fairly slick.
-	Suppose for contradiction that no $\sigma \in G$ sends $\pp_1$ to $\pp_2$, say.
+	Suppose for contradiction that no $\sigma \in G$ sends $\kp_1$ to $\kp_2$, say.
 	By the Chinese remainder theorem, we can find an $x \in \OO_K$ such that
 	\begin{align*}
-		x &\equiv 0 \pmod{\pp_1} \\
-		x &\equiv 1 \pmod{\pp_i} \text{ for $i \ge 2$}
-		% \pmod{(\sigma\inv)\im(\pp_2)} \text{ for $\sigma \in G$.}
+		x &\equiv 0 \pmod{\kp_1} \\
+		x &\equiv 1 \pmod{\kp_i} \text{ for $i \ge 2$}
+		% \pmod{(\sigma\inv)\im(\kp_2)} \text{ for $\sigma \in G$.}
 	\end{align*}
 	Then, compute the norm
 	\[ \NK(x) = \prod_{\sigma \in \Gal(K/\QQ)} \sigma(x). \]
 	Each $\sigma(x)$ is in $K$ because $K/\QQ$ is Galois!
 
-	Since $\NK(x)$ is an integer and divisible by $\pp_1$,
+	Since $\NK(x)$ is an integer and divisible by $\kp_1$,
 	we should have that $\NK(x)$ is divisible by $p$.
-	Thus it should be divisible by $\pp_2$ as well.
-	But by the way we selected $x$, we have $x \notin \sigma\inv\pp_2$ for every $\sigma \in G$!
-	So $\sigma(x) \notin \pp_2$ for any $\sigma$, which is a contradiction.
+	Thus it should be divisible by $\kp_2$ as well.
+	But by the way we selected $x$, we have $x \notin \sigma\inv\kp_2$ for every $\sigma \in G$!
+	So $\sigma(x) \notin \kp_2$ for any $\sigma$, which is a contradiction.
 \end{proof}
 \begin{theorem}[Inertial degree and ramification indices are all equal]
 	Assume $K/\QQ$ is Galois.
 	Then for any rational prime $p$ we have
-	\[ p \cdot \OO_K = \left( \pp_1 \pp_2 \dots \pp_g \right)^e \]
-	for some $e$, where the $\pp_i$ are distinct prime ideals
+	\[ p \cdot \OO_K = \left( \kp_1 \kp_2 \dots \kp_g \right)^e \]
+	for some $e$, where the $\kp_i$ are distinct prime ideals
 	with the same inertial degree $f$.
 	Hence \[ [K:\QQ] = efg. \]
 \end{theorem}
 \begin{proof}
 	To see that the inertial degrees are equal, note that each $\sigma$
 	induces an isomorphism
-	\[ \OO_K / \pp \cong \OO_K / \sigma(\pp). \]
+	\[ \OO_K / \kp \cong \OO_K / \sigma(\kp). \]
 	Because the action is transitive, all $f_i$ are equal.
 	\begin{exercise}
 		Using the fact that $\sigma \in \Gal(K/\QQ)$,
 		show that \[ \sigma\im(p \cdot \OO_K) = p \cdot \sigma\im(\OO_K) = p \cdot \OO_K. \]
 	\end{exercise}
 	So for every $\sigma$, we have that
-	$p \cdot \OO_K = \prod \pp_i^{e_i} = \prod (\sigma\pp_i)^{e_i}$.
+	$p \cdot \OO_K = \prod \kp_i^{e_i} = \prod (\sigma\kp_i)^{e_i}$.
 	Since the action is transitive, all $e_i$ are equal.
 \end{proof}
 
@@ -239,15 +239,15 @@ Let's see an illustration of this.
 \section{(Optional) Decomposition and inertia groups}
 Let $p$ be a rational prime.
 Thus
-\[ p \cdot \OO_K = \left( \pp_1 \dots \pp_g \right)^e \]
-and all the $\pp_i$ have inertial degree $f$.
-Let $\pp$ denote a choice of the $\pp_i$.
+\[ p \cdot \OO_K = \left( \kp_1 \dots \kp_g \right)^e \]
+and all the $\kp_i$ have inertial degree $f$.
+Let $\kp$ denote a choice of the $\kp_i$.
 
-We can look at both the fields $\OO_K / \pp$ and $\ZZ / p = \mathbb F_p$.
-Naturally, since $\OO_K / \pp$ is a finite field we can view it as a field extension of $\OO_K$.
+We can look at both the fields $\OO_K / \kp$ and $\ZZ / p = \mathbb F_p$.
+Naturally, since $\OO_K / \kp$ is a finite field we can view it as a field extension of $\OO_K$.
 So we can get the diagram
 \begin{diagram}
-	K & \supset & \OO_K & \pp & & \OO_K / \pp \cong \FF_{p^f} \\
+	K & \supset & \OO_K & \kp & & \OO_K / \kp \cong \FF_{p^f} \\
 	\dLine && \dLine & \dLine & & \dLine \\
 	\QQ & \supset & \ZZ & (p) & & \FF_p.
 \end{diagram}
@@ -255,23 +255,23 @@ At the far right we have finite field extensions, which we know are \emph{really
 So we ask:
 \begin{quote}
 	\itshape
-	How are $\Gal\left( (\OO_K/\pp) / \FF_p \right)$
+	How are $\Gal\left( (\OO_K/\kp) / \FF_p \right)$
 	and $\Gal(K/\QQ)$ related?
 \end{quote}
 Absurdly enough, there is an explicit answer:
-\textbf{it's just the stabilizer of $\pp$, at least when
+\textbf{it's just the stabilizer of $\kp$, at least when
 $p$ is unramified}.
 \begin{definition}
-	Let $D_\pp \subseteq \Gal(K/\QQ)$ be the stabilizer of $\pp$, that is
-	\[ D_\pp \defeq \left\{ \sigma \in \Gal(K/\QQ) \mid \sigma\pp = \pp \right\}. \]
-	We say $D_\pp$ is the \vocab{decomposition group} of $\pp$.
+	Let $D_\kp \subseteq \Gal(K/\QQ)$ be the stabilizer of $\kp$, that is
+	\[ D_\kp \defeq \left\{ \sigma \in \Gal(K/\QQ) \mid \sigma\kp = \kp \right\}. \]
+	We say $D_\kp$ is the \vocab{decomposition group} of $\kp$.
 \end{definition}
-Then, every $\sigma \in D_\pp$ induces an automorphism of $\OO_K / \pp$ by
-\[ \alpha \mapsto \sigma(\alpha) \pmod\pp. \]
+Then, every $\sigma \in D_\kp$ induces an automorphism of $\OO_K / \kp$ by
+\[ \alpha \mapsto \sigma(\alpha) \pmod\kp. \]
 So there's a natural map
-\[ D_\pp \taking\theta \Gal\left( (\OO_K/\pp) / \FF_p \right) \]
-by declaring $\theta(\sigma)$ to just be ``$\sigma \pmod \pp$''.
-The fact that $\sigma \in D_\pp$ (i.e.\ $\sigma$ fixes $\pp$)
+\[ D_\kp \taking\theta \Gal\left( (\OO_K/\kp) / \FF_p \right) \]
+by declaring $\theta(\sigma)$ to just be ``$\sigma \pmod \kp$''.
+The fact that $\sigma \in D_\kp$ (i.e.\ $\sigma$ fixes $\kp$)
 ensures this map is well-defined.
 
 \begin{theorem}[Decomposition group and Galois group]
@@ -283,39 +283,39 @@ ensures this map is well-defined.
 		the ramification index.
 	\end{itemize}
 	In particular, if $p$ is unramified then
-	$D_\pp \cong \Gal\left( (\OO_K/\pp)/\FF_p \right)$.
+	$D_\kp \cong \Gal\left( (\OO_K/\kp)/\FF_p \right)$.
 \end{theorem}
 (The proof is not hard, but a bit lengthy and in my opinion
 not very enlightening.)
 
 \begin{moral}
 	If $p$ is unramified, then taking
-	modulo $\pp$ gives
-	$D_\pp \cong \Gal\left( (\OO_K/\pp) / \FF_p \right)$.
+	modulo $\kp$ gives
+	$D_\kp \cong \Gal\left( (\OO_K/\kp) / \FF_p \right)$.
 \end{moral}
 
-But we know exactly what $\Gal\left( (\OO_K/\pp)/\FF_p \right)$ is!
-We already have $ \OO_K / \pp \cong \FF_{p^f} $, and the Galois group is
+But we know exactly what $\Gal\left( (\OO_K/\kp)/\FF_p \right)$ is!
+We already have $ \OO_K / \kp \cong \FF_{p^f} $, and the Galois group is
 \[
-	\Gal\left( (\OO_K/\pp) / \FF_p \right)
+	\Gal\left( (\OO_K/\kp) / \FF_p \right)
 	\cong \Gal\left( \FF_{p^f} / \FF_p \right)
 	\cong \left< x \mapsto x^p \right>
 	\cong \Zc f.
 \]
-So \[ D_\pp \cong \Zc f \] as well.
+So \[ D_\kp \cong \Zc f \] as well.
 
 Let's now go back to
-\[ D_\pp \taking\theta \Gal\left( (\OO_K/\pp) : \FF_p \right). \]
+\[ D_\kp \taking\theta \Gal\left( (\OO_K/\kp) : \FF_p \right). \]
 The kernel of $\theta$ is called the \vocab{inertia group}
-and denoted $I_\pp \subseteq D_\pp$; it has order $e$.
+and denoted $I_\kp \subseteq D_\kp$; it has order $e$.
 
 This gives us a pretty cool sequence of subgroups
 $\{1\} \subseteq I \subseteq D \subseteq G$
-where $G$ is the Galois group (I'm dropping the $\pp$-subscripts now).
+where $G$ is the Galois group (I'm dropping the $\kp$-subscripts now).
 Let's look at the corresponding \emph{fixed fields} via the Fundamental theorem of Galois theory.
 Picture:
 \begin{diagram}
-	\pp \subseteq \OO_K \subseteq & K & \rIsom & \{1\} \\
+	\kp \subseteq \OO_K \subseteq & K & \rIsom & \{1\} \\
 	& \dLine^{\text{Ramify}} & & \dLine_e \\
 	& K^I & & I \\
 	& \dLine^{\text{Inert}} & & \dLine_f \\
@@ -336,7 +336,7 @@ In other words, the process of going from $1$ to $efg$
 can be very nicely broken into the three steps above.
 To draw this in the picture, we get
 \begin{diagram}
-	(p) & \rTo & \pp_1 \dots \pp_g & \rTo & \pp_1 \dots \pp_g & \rTo & (\pp_1 \dots \pp_g)^e \\
+	(p) & \rTo & \kp_1 \dots \kp_g & \rTo & \kp_1 \dots \kp_g & \rTo & (\kp_1 \dots \kp_g)^e \\
 	\{f_i\}: && 1,\dots,1 && f,\dots,f && f,\dots,f \\
 	\QQ & \hLine_{\text{Split}} & K^D & \hLine_{\text{Inert}} & K^I & \hLine_{\text{Ramify}} & K
 \end{diagram}
@@ -347,11 +347,11 @@ we just have $K^I = K$.
 All the discussion about Galois extensions
 carries over if we replace $K/\QQ$ by some different Galois extension $K/F$.
 Instead of a rational prime $p$ breaking down in $\OO_K$,
-we would have a prime ideal $\pp$ of $F$ breaking down as
-\[ \pp \cdot \OO_L = (\kP_1 \dots \kP_g)^e \]
+we would have a prime ideal $\kp$ of $F$ breaking down as
+\[ \kp \cdot \OO_L = (\kP_1 \dots \kP_g)^e \]
 in $\OO_L$ and then all results hold verbatim.
-(The $\kP_i$ are primes in $L$ above $\pp$.)
-Instead of $\FF_p$ we would have $\OO_F/\pp$.
+(The $\kP_i$ are primes in $L$ above $\kp$.)
+Instead of $\FF_p$ we would have $\OO_F/\kp$.
 
 The reason I choose to work with $F = \QQ$ is that capital Gothic $P$'s ($\kP$)
 look \emph{really} terrifying.

@@ -1,27 +1,27 @@
 \chapter{The Frobenius element}
 Throughout this chapter $K/\QQ$ is a Galois extension with Galois group $G$,
-$p$ is an \emph{unramified} rational prime in $K$, and $\pp$ is a prime above it.
+$p$ is an \emph{unramified} rational prime in $K$, and $\kp$ is a prime above it.
 Picture:
 \begin{diagram}
-	K & \supset & \OO_K & \pp & & \OO_K / \pp \cong \FF_{p^f} \\
+	K & \supset & \OO_K & \kp & & \OO_K / \kp \cong \FF_{p^f} \\
 	\dLine && \dLine & \dLine & & \dLine \\
 	\QQ & \supset & \ZZ & (p) & & \FF_p
 \end{diagram}
 If $p$ is unramified, then one can show there
 is a unique $\sigma \in \Gal(L/K)$ such that
-$\sigma(\alpha) \equiv \alpha^p \pmod{\pp}$ for every prime $p$.
+$\sigma(\alpha) \equiv \alpha^p \pmod{\kp}$ for every prime $p$.
 
 \section{Frobenius elements}
-\prototype{$\Frob_\pp$ in $\ZZ[i]$ depends on $p \pmod 4$.}
+\prototype{$\Frob_\kp$ in $\ZZ[i]$ depends on $p \pmod 4$.}
 
 Here is the theorem statement again:
 \begin{theorem}[The Frobenius element]
 	Assume $K/\QQ$ is Galois with Galois group $G$.
-	Let $p$ be a rational prime unramified in $K$, and $\pp$ a prime above it.
-	There is a \emph{unique} element $\Frob_\pp \in G$
+	Let $p$ be a rational prime unramified in $K$, and $\kp$ a prime above it.
+	There is a \emph{unique} element $\Frob_\kp \in G$
 	with the property that
-	\[ \Frob_\pp(\alpha) \equiv \alpha^{p} \pmod{\pp}. \]
-	It is called the \vocab{Frobenius element} at $\pp$, and has order $f$.
+	\[ \Frob_\kp(\alpha) \equiv \alpha^{p} \pmod{\kp}. \]
+	It is called the \vocab{Frobenius element} at $\kp$, and has order $f$.
 \end{theorem}
 The \emph{uniqueness} part is pretty important:
 it allows us to show that a given $\sigma \in \Gal(L/K)$
@@ -35,37 +35,37 @@ Let's see an example of this:
 	This is a Galois extension, with $G = \Zm2$,
 	corresponding to the identity and complex conjugation.
 
-	If $p$ is an odd prime with $\pp$ above it,
-	then $\Frob_\pp$ is the unique element such that
-	\[ (a+bi)^p \equiv \Frob_\pp(a+bi) \pmod{\pp} \]
+	If $p$ is an odd prime with $\kp$ above it,
+	then $\Frob_\kp$ is the unique element such that
+	\[ (a+bi)^p \equiv \Frob_\kp(a+bi) \pmod{\kp} \]
 	in $\ZZ[i]$. In particular,
-	\[ \Frob_\pp(i) = i^p = 
+	\[ \Frob_\kp(i) = i^p = 
 		\begin{cases}
 			i & p \equiv 1 \pmod 4 \\
 			-i & p \equiv 3 \pmod 4.
 		\end{cases}
 	\]
-	From this we see that $\Frob_\pp$ is the identity when $p \equiv 1 \pmod 4$
-	and $\Frob_\pp$ is complex conjugation when $p \equiv 3 \pmod 4$.
+	From this we see that $\Frob_\kp$ is the identity when $p \equiv 1 \pmod 4$
+	and $\Frob_\kp$ is complex conjugation when $p \equiv 3 \pmod 4$.
 \end{example}
-Note that we really only needed to compute $\Frob_\pp$ on $i$.
+Note that we really only needed to compute $\Frob_\kp$ on $i$.
 If this seems too good to be true,
 a philosophical reason is ``freshman's dream''
-where $(x+y)^p \equiv x^p + y^p \pmod{p}$ (and hence mod $\pp$).
+where $(x+y)^p \equiv x^p + y^p \pmod{p}$ (and hence mod $\kp$).
 So if $\sigma$ satisfies the functional equation on generators,
 it satisfies the functional equation everywhere.
 
 We also have an important lemma:
 \begin{lemma}
 	[Order of the Frobenius element]
-	Let $\Frob_\pp$ be a Frobenius element from an extension $K/\QQ$.
-	Then the order of $\pp$ is equal to the inertial degree $f_\pp$.
+	Let $\Frob_\kp$ be a Frobenius element from an extension $K/\QQ$.
+	Then the order of $\kp$ is equal to the inertial degree $f_\kp$.
 	In particular, $(p)$ splits completely in $\OO_K$
-	if and only if $\Frob_\pp = \id$.
+	if and only if $\Frob_\kp = \id$.
 \end{lemma}
 \begin{exercise}
-	Prove this lemma as by using the fact that $\OO_K / \pp$
-	is the finite field of order $f_\pp$,
+	Prove this lemma as by using the fact that $\OO_K / \kp$
+	is the finite field of order $f_\kp$,
 	and the Frobenius element is just $x \mapsto x^p$ on this field.
 \end{exercise}
 
@@ -108,15 +108,15 @@ so readers which skipped that part should omit this proof.
 			label("$\cong$", (2.5,0), dir(-90));
 		\end{asy}
 	\end{center}
-	In here we can restrict our attention to $D_\pp$
-	since we need to have $\sigma(\alpha) \equiv 0 \pmod \pp$
-	when $\alpha \equiv 0 \pmod \pp$.
+	In here we can restrict our attention to $D_\kp$
+	since we need to have $\sigma(\alpha) \equiv 0 \pmod \kp$
+	when $\alpha \equiv 0 \pmod \kp$.
 	Thus we have the isomorphism
-	\[ D_\pp \taking\theta \Gal\left( (\OO_K/\pp) / \FF_p \right). \]
-	But we already know $\Gal\left( (\OO_K/\pp)/\FF_p \right)$,
+	\[ D_\kp \taking\theta \Gal\left( (\OO_K/\kp) / \FF_p \right). \]
+	But we already know $\Gal\left( (\OO_K/\kp)/\FF_p \right)$,
 	according to the string of isomorphisms
 	\[
-		\Gal\left( (\OO_K/\pp) / \FF_p \right)
+		\Gal\left( (\OO_K/\kp) / \FF_p \right)
 		\cong \Gal\left( \FF_{p^f} / \FF_p \right)
 		\cong \left< T = x \mapsto x^p \right>
 		\cong \Zc{f} .
@@ -126,14 +126,14 @@ so readers which skipped that part should omit this proof.
 
 
 \section{Conjugacy classes}
-Now suppose $\pp_1$ and $\pp_2$ are \emph{two} primes above an unramified rational prime $p$.
-Then we can define $\Frob_{\pp_1}$ and $\Frob_{\pp_2}$.
+Now suppose $\kp_1$ and $\kp_2$ are \emph{two} primes above an unramified rational prime $p$.
+Then we can define $\Frob_{\kp_1}$ and $\Frob_{\kp_2}$.
 Since the Galois group acts transitively,
 we can select $\sigma \in \Gal(K/\QQ)$ be such that
-\[ \sigma(\pp_1) = \pp_2. \]
+\[ \sigma(\kp_1) = \kp_2. \]
 We claim that
 \[
-	\Frob_{\pp_2} = \sigma \circ \Frob_{\pp_1} \circ \sigma\inv.
+	\Frob_{\kp_2} = \sigma \circ \Frob_{\kp_1} \circ \sigma\inv.
 \]
 Note that this is an equation in $G$.
 \begin{ques}
@@ -144,17 +144,17 @@ More generally, for a given unramified rational prime $p$, we obtain:
 \begin{theorem}
 	[Conjugacy classes in Galois groups]
 	The set
-	\[ \left\{ \Frob_\pp \mid \pp \text{ above } p \right\} \]
+	\[ \left\{ \Frob_\kp \mid \kp \text{ above } p \right\} \]
 	is one of the conjugacy classes of $G$.
 \end{theorem}
 \begin{proof}
 	We've used the fact that $G = \Gal(K/\QQ)$ is transitive
-	to show that $\Frob_{\pp_1}$ and $\Frob_{\pp_2}$ are conjugate
+	to show that $\Frob_{\kp_1}$ and $\Frob_{\kp_2}$ are conjugate
 	if they both lie above $p$; hence it's \emph{contained} in some
 	conjugacy class.
-	So it remains to check that for any $\pp$, $\sigma$,
-	we have $\sigma \circ \Frob_\pp \circ \sigma\inv = \Frob_{\pp'}$
-	for some $\pp'$. For this, just take $\pp' = \sigma\pp$.
+	So it remains to check that for any $\kp$, $\sigma$,
+	we have $\sigma \circ \Frob_\kp \circ \sigma\inv = \Frob_{\kp'}$
+	for some $\kp'$. For this, just take $\kp' = \sigma\kp$.
 	Hence the set is indeed a conjugacy class.
 \end{proof}
 %We denote the conjugacy class by the \vocab{Frobenius symbol}
@@ -162,10 +162,10 @@ More generally, for a given unramified rational prime $p$, we obtain:
 
 In summary,
 \begin{moral}
-	$\Frob_{\pp}$ is determined up to conjugation by the prime $p$
-	from which $\pp$ arises.
+	$\Frob_{\kp}$ is determined up to conjugation by the prime $p$
+	from which $\kp$ arises.
 \end{moral}
-So even though the Gothic letters look scary, the content of $\Frob_{\pp}$
+So even though the Gothic letters look scary, the content of $\Frob_{\kp}$
 really just comes from the more friendly-looking rational prime $p$.
 
 
@@ -180,9 +180,9 @@ really just comes from the more friendly-looking rational prime $p$.
 
 	Let's consider the prime $5$ which factors (trust me here) as
 	\[ (5) = (5, \eps^2+\eps+2)(5, \eps^2+3\eps+3)(5, \eps^2+4\eps+1)
-		= \pp_1 \pp_2 \pp_3. \]
+		= \kp_1 \kp_2 \kp_3. \]
 	Note that all the prime ideals have inertial degree $2$.
-	Thus $\Frob_{\pp_i}$ will have order $2$ for each $i$.
+	Thus $\Frob_{\kp_i}$ will have order $2$ for each $i$.
 
 	Note that 
 	\[ \Gal(K/\QQ) =
@@ -190,10 +190,10 @@ really just comes from the more friendly-looking rational prime $p$.
 		\cong S_3.  \]
 	In this $S_3$ there are $3$ elements of order three:
 	fixing one root and swapping the other two.
-	These correspond to each of $\Frob_{\pp_1}$, $\Frob{\pp_2}$, $\Frob_{\pp_3}$.
+	These correspond to each of $\Frob_{\kp_1}$, $\Frob{\kp_2}$, $\Frob_{\kp_3}$.
 
 	In conclusion, the conjugacy class
-	$\left\{ \Frob_{\pp_1}, \Frob_{\pp_2}, \Frob_{\pp_3} \right\}$
+	$\left\{ \Frob_{\kp_1}, \Frob_{\kp_2}, \Frob_{\kp_3} \right\}$
 	associated to $(5)$ is the
 	cycle type $(\bullet)(\bullet \; \bullet)$ in $S_3$.
 \end{example}
@@ -201,18 +201,18 @@ really just comes from the more friendly-looking rational prime $p$.
 
 \section{Chebotarev density theorem}
 Natural question: can we represent every conjugacy class in this way?
-In other words, is every element of $G$ equal to $\Frob_\pp$ for some $\pp$?
+In other words, is every element of $G$ equal to $\Frob_\kp$ for some $\kp$?
 
 Miraculously, not only is the answer ``yes'', but in fact it does so in the nicest way possible:
-the $\Frob_\pp$'s are ``equally distributed'' when we pick a random $\pp$.
+the $\Frob_\kp$'s are ``equally distributed'' when we pick a random $\kp$.
 \begin{theorem}
 	[Chebotarev density theorem over $\QQ$]
 	Let $C$ be a conjugacy class of $G = \Gal(K/\QQ)$.
-	The density of (unramified) primes $p$ such that $\{ \Frob_\pp \mid \pp \text{ above } p \} = C$
+	The density of (unramified) primes $p$ such that $\{ \Frob_\kp \mid \kp \text{ above } p \} = C$
 	%\[ \left( \frac{K/\QQ}{p} \right) = C \]
 	is exactly $\left\lvert C \right\rvert / \left\lvert G \right\rvert$.
 	In particular, for any $\sigma \in G$ there are infinitely many rational primes $p$
-	with $\pp$ above $p$ so that $\Frob_{\pp} = \sigma$.
+	with $\kp$ above $p$ so that $\Frob_{\kp} = \sigma$.
 \end{theorem}
 
 %\begin{figure}[ht]
@@ -264,8 +264,8 @@ the probability of hitting any conjugacy class depends just on the size of the c
 \begin{remark}
 Happily, this theorem (and preceding discussion)
 also works if we replace $K/\QQ$ with any Galois extension $K/F$;
-in that case we replace ``$\pp$ over $p$'' with ``$\kP$ over $\pp$''.
-In that case, we use $\Norm(\pp) \le x$ rather than $p \le x$ as the way
+in that case we replace ``$\kp$ over $p$'' with ``$\kP$ over $\kp$''.
+In that case, we use $\Norm(\kp) \le x$ rather than $p \le x$ as the way
 to define density.
 \end{remark}
 
@@ -292,23 +292,23 @@ Specifically:
 	\label{lem:cyclo_frob}
 	In the cyclotomic setting $L = \QQ(\zeta_q)$,
 	let $p$ be a rational unramified prime
-	and $\pp$ above it. Then \[ \Frob_\pp = \sigma_p. \]
+	and $\kp$ above it. Then \[ \Frob_\kp = \sigma_p. \]
 \end{lemma}
 \begin{proof}
 	Observe that $\sigma_p$ satisfies the functional equation
 	(check on generators).
 	Done by uniqueness.
-%	We know $\Frob_\pp(\alpha) \equiv \alpha^p \pmod{\pp}$ by definition,
-%	but also that $\Frob_\pp = \sigma_n$ for some $n$
+%	We know $\Frob_\kp(\alpha) \equiv \alpha^p \pmod{\kp}$ by definition,
+%	but also that $\Frob_\kp = \sigma_n$ for some $n$
 %	We want $n=p$; since $\sigma_n(\zeta_q)^n = \zeta_q^n$ by definition
 %	it would be very weird if this wasn't true!
 %
-%	Given $\zeta_q^n \equiv \zeta_q^p \pmod{\pp}$, it suffices to
-%	prove that the $q$th roots of unity are distinct mod $\pp$.
-%	Look at the polynomial $F(x) = x^q-1$ in $\ZZ[\zeta_p]/\pp \cong \FF_{p^f}$.
-%	Its derivative is \[ F'(x) = qx^{q-1} \not\equiv 0 \pmod{\pp} \]
+%	Given $\zeta_q^n \equiv \zeta_q^p \pmod{\kp}$, it suffices to
+%	prove that the $q$th roots of unity are distinct mod $\kp$.
+%	Look at the polynomial $F(x) = x^q-1$ in $\ZZ[\zeta_p]/\kp \cong \FF_{p^f}$.
+%	Its derivative is \[ F'(x) = qx^{q-1} \not\equiv 0 \pmod{\kp} \]
 %	(since $\FF_{p^f}$ has characteristic $p \nmid q$).
-%	The only root of $F'$ is zero, hence $F$ has no double roots mod $\pp$.
+%	The only root of $F'$ is zero, hence $F$ has no double roots mod $\kp$.
 \end{proof}
 
 \begin{ques}
@@ -321,13 +321,13 @@ Let $L/\QQ$ and $K/\QQ$ be Galois extensions, and consider the setup
 \begin{diagram}
 	L & \supseteq & \kP & \rDotted & \Frob_{\kP} \in \Gal(L/\QQ)\\
 	\dLine && \dLine && \\
-	K & \supseteq & \pp & \rDotted & \Frob_\pp \in \Gal(K/\QQ) \\
+	K & \supseteq & \kp & \rDotted & \Frob_\kp \in \Gal(K/\QQ) \\
 	\dLine && \dLine && \\
 	\QQ & \supseteq & (p) &&
 \end{diagram}
-Here $\pp$ is above $(p)$ and $\kP$ is above $\pp$.
+Here $\kp$ is above $(p)$ and $\kP$ is above $\kp$.
 We may define
-\[ \Frob_\pp : K \to K
+\[ \Frob_\kp : K \to K
 \quad\text{and}\quad
 \Frob_{\kP} : L \to L \]
 and want to know how these are related.
@@ -335,10 +335,10 @@ and want to know how these are related.
 \begin{theorem}
 	[Restrictions of Frobenius elements]
 	Assume $L/\QQ$ and $K/\QQ$ are both Galois.
-	Let $\kP$ and $\pp$ be unramified as above.
-	Then $\Frob_{\kP} \restrict{K} = \Frob_{\pp}$,
+	Let $\kP$ and $\kp$ be unramified as above.
+	Then $\Frob_{\kP} \restrict{K} = \Frob_{\kp}$,
 	i.e.\ for every $\alpha \in K$,
-	\[ \Frob_\pp(\alpha) = \Frob_{\kP}(\alpha). \]
+	\[ \Frob_\kp(\alpha) = \Frob_{\kP}(\alpha). \]
 \end{theorem}
 \begin{proof}
 	We know
@@ -347,12 +347,12 @@ and want to know how these are related.
 	from the definition.
 	\begin{ques}
 		Deduce that
-		\[ \Frob_{\kP}(\alpha) \equiv \alpha^p \pmod{\pp}
+		\[ \Frob_{\kP}(\alpha) \equiv \alpha^p \pmod{\kp}
 			\quad \forall \alpha \in \OO_K. \]
 		(This is weaker than the previous statement in two ways!)
 	\end{ques}
 	Thus $\Frob_{\kP}$ restricted to $\OO_K$ satisfies the
-	characterizing property of $\Frob_\pp$.
+	characterizing property of $\Frob_\kp$.
 \end{proof}
 In short, the point of this section is that
 \begin{moral}
@@ -414,14 +414,14 @@ Now we are going to prove:
 \end{exercise}
 
 We look at the rational prime $p$ in $\ZZ$.
-Either it splits into two in $K$ or is inert; either way let $\pp$ be a prime factor
-in the resulting decomposition (so $\pp$ is either $p \cdot \OO_K$ in the inert case,
+Either it splits into two in $K$ or is inert; either way let $\kp$ be a prime factor
+in the resulting decomposition (so $\kp$ is either $p \cdot \OO_K$ in the inert case,
 or one of the primes in the split case).
-Then let ${\kP}$ be above $\pp$.
+Then let ${\kP}$ be above $\kp$.
 It could possibly also split in $K$: the picture looks like
 \begin{diagram}
 	\OO_L = \ZZ[\zeta_q] & \supset {\kP} & \rDotted & \ZZ[\zeta_p]/{\kP} \cong \FF_{p^f} \\
-	\OO_K = \ZZ[\frac{1+\sqrt{q^\ast}}{2}] & \supseteq \pp & \rDotted & \FF_p \text{ or } \FF_{p^2} \\
+	\OO_K = \ZZ[\frac{1+\sqrt{q^\ast}}{2}] & \supseteq \kp & \rDotted & \FF_p \text{ or } \FF_{p^2} \\
 	\ZZ & \supseteq (p) & \rDotted & \FF_p
 \end{diagram}
 \begin{ques}
@@ -435,10 +435,10 @@ We claim that
 \[ \Frob_{\kP} \in H \iff \text{$p$ splits in $K$}. \]
 To see this, note that $\Frob_{\kP}$ is in $H$ if and only if it acts
 as the identity on $K$.
-But $\Frob_{\kP} \restrict{K}$ is $\Frob_\pp$!
-So \[ \Frob_{\kP} \in H \iff \Frob_\pp = \id_K. \]
-Finally note that $\Frob_\pp$ has order $1$ if $p$ splits
-($\pp$ has inertial degree $1$)
+But $\Frob_{\kP} \restrict{K}$ is $\Frob_\kp$!
+So \[ \Frob_{\kP} \in H \iff \Frob_\kp = \id_K. \]
+Finally note that $\Frob_\kp$ has order $1$ if $p$ splits
+($\kp$ has inertial degree $1$)
 and order $2$ if $p$ is inert.
 This completes the proof of the claim.
 
@@ -460,10 +460,10 @@ This completes the proof.
 
 
 \section{Frobenius elements control factorization}
-\prototype{$\Frob_\pp$ controlled the splitting of $p$ in the proof of quadratic reciprocity;
+\prototype{$\Frob_\kp$ controlled the splitting of $p$ in the proof of quadratic reciprocity;
 the same holds in general.}
 In the proof of quadratic reciprocity, we used the fact that Frobenius elements behaved
-well with restriction in order to relate the splitting of $p$ with properties of $\Frob_\pp$.
+well with restriction in order to relate the splitting of $p$ with properties of $\Frob_\kp$.
 
 In fact, there is a much stronger statement for
 any intermediate field $\QQ \subseteq E \subseteq K$
@@ -473,7 +473,7 @@ Here is how it goes.
 
 Set $n = [E:\QQ]$, and let $p$ be a rational prime unramified in $K$.
 Then $p$ can be broken in $E$ as
-\[ p \cdot \OO_E = \pp_1 \pp_2 \dots \pp_g \]
+\[ p \cdot \OO_E = \kp_1 \kp_2 \dots \kp_g \]
 with inertial degrees $f_1$, \dots, $f_g$:
 (these inertial degrees might be different since $E/\QQ$ isn't Galois).
 The numbers $f_1 + \dots + f_g = n$ form a partition of the number $n$.
@@ -488,7 +488,7 @@ Diagram:
 \begin{diagram}
 	K & \rIsom & \{1\} && \Frob_{\kP} & \\
 	\dLine && \dLine &&& \\
-	E & \rIsom & H && \pp_1 \dots \pp_g & \qquad f_1 + \dots + f_g = n \\
+	E & \rIsom & H && \kp_1 \dots \kp_g & \qquad f_1 + \dots + f_g = n \\
 	\dLine^n && \dLine_n && \dLine & \\
 	\QQ & \rIsom & G && (p) &
 \end{diagram}
@@ -568,10 +568,10 @@ i.e.\ that $E$ is monogenic.
 Then we know by the Factoring Algorithm,
 to factor any $p$ in $E$, all we have to do is factor $f$ modulo $p$,
 since if $f = f_1^{e_1} \dots f_g^{e_g} \pmod p$ then we have
-\[ (p) = \prod_i \pp_i = \prod_i (f_i(\alpha), p)^{e_i}. \]
+\[ (p) = \prod_i \kp_i = \prod_i (f_i(\alpha), p)^{e_i}. \]
 This gives us complete information about the ramification indices and inertial degrees;
 the $e_i$ are the ramification indices, and $\deg f_i$ are the inertial degrees
-(since $\OO_E / \pp_i \cong \FF_p[X] / (f_i(X))$).
+(since $\OO_E / \kp_i \cong \FF_p[X] / (f_i(X))$).
 
 In particular, if $p$ is unramified then all the $e_i$ are equal to $1$, and we get
 \[ n = \deg f = \deg f_1 + \deg f_2 + \dots + \deg f_g. \]
@@ -605,7 +605,7 @@ And it turns out these coincide even without the assumption that $E$ is monogeni
 	\begin{diagram}
 		K = \QQ(\cbrt2, \omega) && \kP && x^3-2 = (x-\cbrt2)(x-\cbrt2\omega)(x-\cbrt2\omega^2) \\
 		\dLine~2 && \dLine \\
-		E = \QQ(\sqrt[3]{2}) && \pp && x^3-2 = (x-\cbrt2)(x^2+\cbrt2x+\cbrt4) \\
+		E = \QQ(\sqrt[3]{2}) && \kp && x^3-2 = (x-\cbrt2)(x^2+\cbrt2x+\cbrt4) \\
 		\dLine~3 && \dLine \\
 		\QQ && (5) && x^3-2 \text{ irreducible over } \QQ
 	\end{diagram}
@@ -625,7 +625,7 @@ And it turns out these coincide even without the assumption that $E$ is monogeni
 	\begin{diagram}
 		K && \{1\} && \kP \\
 		\dLine && \dLine && \dLine \\
-		E = \QQ(\alpha) && H && \pp \\
+		E = \QQ(\alpha) && H && \kp \\
 		\dLine && \dLine && \dLine \\
 		\QQ && G && (p)
 	\end{diagram}
@@ -744,7 +744,7 @@ such that $X^p-p$ is irreducible modulo $q$.
 		are singleton sets; there are $\phi(m)$ of them.
 
 		As long as $p$ is sufficiently large, it is unramified
-		and $\sigma_p = \Frob_\pp$ for any $\pp$ above $p$
+		and $\sigma_p = \Frob_\kp$ for any $\kp$ above $p$
 		(as $m$th roots of unity will be distinct modulo $p$;
 		differentiate $x^m-1$ mod $p$ again).
 	\end{sol}
@@ -786,16 +786,16 @@ such that $X^p-p$ is irreducible modulo $q$.
 			\ii If $p \equiv 3 \pmod 4$, then $d = (p-1)^{\half(p-1)}$, so $K = \QQ$.
 			\ii If $p \equiv 1 \pmod 4$, then $d = i(p-1)^{\half(p-1)}$, so $K = \QQ(i)$.
 		\end{itemize}
-		Either way, in $\OO_K$, let $\pp$ be a prime ideal above $(3) \subseteq \OO_K$.
-		Let $\sigma = \Frob_\pp$ then be the unique element such that
-		$\sigma(x) = x^3 \pmod{\pp}$ for all $x$.
+		Either way, in $\OO_K$, let $\kp$ be a prime ideal above $(3) \subseteq \OO_K$.
+		Let $\sigma = \Frob_\kp$ then be the unique element such that
+		$\sigma(x) = x^3 \pmod{\kp}$ for all $x$.
 		Then, we observe that
 		\[
 			\sigma(d) \equiv \prod_{0 \le i < j < p-1} (\zeta^{3i} - \zeta^{3j})
 			\equiv \begin{cases}
 				+d & \text{if $\pi$ is even} \\
 				-d & \text{if $\pi$ is odd}
-			\end{cases} \pmod{\pp}.
+			\end{cases} \pmod{\kp}.
 		\]
 		Now if $K = \QQ$, then $\sigma$ is the identity, thus $\sigma$ even.
 		Conversely, if $K = \QQ(i)$, then $3$ does not split, so $\sigma(d) = -d$

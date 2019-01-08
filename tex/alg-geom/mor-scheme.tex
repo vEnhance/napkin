@@ -184,15 +184,15 @@ Let $S$ be \emph{any} (commutative) graded ring, like $\CC[x_0, \dots, x_n]$.
 	We define $\Proj S$, the \vocab{projective scheme over $S$}:
 	\begin{itemize}
 		\ii As a set, $\Proj S$ consists of \emph{homogeneous prime ideals}
-		$\pp$ which do not contain $S^+$.
+		$\kp$ which do not contain $S^+$.
 		\ii If $I \subseteq S$ is homogeneous, then
-		we let $\Vp(I) = \{ \pp \in \Proj S \mid I \subseteq \pp \}$.
+		we let $\Vp(I) = \{ \kp \in \Proj S \mid I \subseteq \kp \}$.
 		Then the \vocab{Zariski topology} is imposed by declaring 
 		sets of the form $\Vp(I)$ to be closed.
 		\ii We now define a pre-sheaf $\SF$ on $\Proj S$ by
 		\[ \SF(U) = 
 			\left\{ \frac{f}{g} \mid 
-			g(\pp) \neq 0 \; \forall \pp \in U \text{ and }
+			g(\kp) \neq 0 \; \forall \kp \in U \text{ and }
 			\deg f = \deg g \right\}.
 		\]
 		In other words, the rational functions are quotients $f/g$
@@ -202,7 +202,7 @@ Let $S$ be \emph{any} (commutative) graded ring, like $\CC[x_0, \dots, x_n]$.
 \end{definition}
 \begin{definition}
 	The \vocab{distinguished open sets} $D(f)$ of the $\Proj S$
-	are defined as $\left\{ \pp \in \Proj S : f(\pp) \neq 0 \right\}$,
+	are defined as $\left\{ \kp \in \Proj S : f(\kp) \neq 0 \right\}$,
 	as before; these form a basis for the Zariski topology of $\Proj S$.
 \end{definition}
 Now, we want analogous results as we did for affine structure sheaf.
@@ -210,10 +210,10 @@ So, we define a slightly modified localization:
 \begin{definition}
 	Let $S$ be a graded ring.
 	\begin{enumerate}[(i)]
-		\ii For a prime ideal $\pp$, let
-		\[ S_{(\pp)} = \left\{ \frac fg \mid g(\pp) \neq 0 \text{ and }
+		\ii For a prime ideal $\kp$, let
+		\[ S_{(\kp)} = \left\{ \frac fg \mid g(\kp) \neq 0 \text{ and }
 			\deg f = \deg g \right\} \]
-		denote the elements of $S_\pp$ with ``degree zero''.
+		denote the elements of $S_\kp$ with ``degree zero''.
 		\ii For any homogeneous $g \in S$ of degree $d$, let
 		\[ S_{(g)} = \left\{ \frac{f}{g^r} \mid 
 			\deg f = r \deg g \right\} \]
@@ -225,8 +225,8 @@ So, we define a slightly modified localization:
 	[On the projective structure sheaf]
 	Let $S$ be a graded ring and let $\Proj S$ the associated projective scheme.
 	\begin{enumerate}[(a)]
-		\ii Let $\pp \in \Proj S$.
-		Then $\OO_{\Proj S, \pp} \cong S_{(\pp)}$.
+		\ii Let $\kp \in \Proj S$.
+		Then $\OO_{\Proj S, \kp} \cong S_{(\kp)}$.
 		\ii Suppose $g$ is homogeneous with $\deg g > 0$. Then
 		\[ D(g) \cong \Spec S_{(g)} \]
 		as locally ringed spaces.
@@ -277,7 +277,7 @@ See \Cref{ch:refs} for further remarks.
 		Use the proof that $\catname{AffSch} \simeq \catname{CRing}$.
 	\end{hint}
 	\begin{sol}
-		$\pp$ gets sent to the characteristic of the field $\OO_{X,\pp} / \mm_{X,\pp}$.
+		$\kp$ gets sent to the characteristic of the field $\OO_{X,\kp} / \mm_{X,\kp}$.
 	\end{sol}
 \end{problem}
 

@@ -45,25 +45,25 @@ if all its infinite primes are real (resp complex).
 
 \section{Modular arithmetic with infinite primes}
 A \vocab{modulus} is a formal product
-\[ \mm = \prod_{\pp} \pp^{\nu(\pp)} \]
+\[ \mm = \prod_{\kp} \kp^{\nu(\kp)} \]
 where the product runs over all primes, finite and infinite.
-(Here $\nu(\pp)$ is a nonnegative integer,
+(Here $\nu(\kp)$ is a nonnegative integer,
 of which only finitely many are nonzero.)
 We also require that
 \begin{itemize}
-	\ii $\nu(\pp) = 0$ for any complex infinite prime $\pp$, and
-	\ii $\nu(\pp) \le 1$ for any real infinite prime $\pp$.
+	\ii $\nu(\kp) = 0$ for any complex infinite prime $\kp$, and
+	\ii $\nu(\kp) \le 1$ for any real infinite prime $\kp$.
 \end{itemize}
 Obviously, every $\mm$ can be written as $\mm = \mm_0\mm_\infty$
 by separating the finite from the (real) infinite primes.
 
 We say $a \equiv b \pmod{\mm}$ if
 \begin{itemize}
-	\ii If $\pp$ is a finite prime, then $a \equiv b \pmod{\pp^{\nu(\pp)}}$
+	\ii If $\kp$ is a finite prime, then $a \equiv b \pmod{\kp^{\nu(\kp)}}$
 	means exactly what you think it should mean:
-	$a-b \in \pp^{\nu(\pp)}$.
-	\ii If $\pp$ is a \emph{real} infinite prime $\sigma : K \to \RR$, then
-	$a \equiv b \pmod{\pp}$ means that $\sigma(a/b) > 0$.
+	$a-b \in \kp^{\nu(\kp)}$.
+	\ii If $\kp$ is a \emph{real} infinite prime $\sigma : K \to \RR$, then
+	$a \equiv b \pmod{\kp}$ means that $\sigma(a/b) > 0$.
 \end{itemize}
 Of course, $a \equiv b \pmod{\mm}$ means $a \equiv b$
 modulo each prime power in $\mm$.
@@ -175,7 +175,7 @@ the concept of modulus and ray class group are objects
 defined solely from $K$ rather than the above $L$.
 
 Now take a \emph{Galois} extension $L/K$ of degree $m$.
-We already know prime ideals $\pp$ of $K$ break into
+We already know prime ideals $\kp$ of $K$ break into
 a product of prime ideals $\kP$ of $K$ in $L$ in a nice way,
 so we want to do the same thing with infinite primes.
 This is straightforward: each of the $n$ infinite primes
@@ -214,11 +214,11 @@ Recall the key result:
 \begin{theorem}
 	[Frobenius element]
 	Let $L/K$ be a \emph{Galois} extension.
-	If $\pp$ is a prime unramified in $K$,
+	If $\kp$ is a prime unramified in $K$,
 	and $\kP$ a prime above it in $L$.
 	Then there is a unique element of $\Gal(L/K)$,
 	denoted $\Frob_\kP$, obeying
-	\[ \Frob_\kP(\alpha) \equiv \alpha^{N\pp} \pmod{\kP}
+	\[ \Frob_\kP(\alpha) \equiv \alpha^{N\kp} \pmod{\kP}
 		\qquad \forall \alpha \in \OO_L. \]
 \end{theorem}
 \begin{example}
@@ -256,23 +256,23 @@ Recall the key result:
 \end{example}
 
 An important property of the Frobenius element is its order
-is related to the decomposition of $\pp$ in the higher field $L$
+is related to the decomposition of $\kp$ in the higher field $L$
 in the nicest way possible:
 \begin{lemma}
 	[Order of the Frobenius element]
 	The Frobenius element $\Frob_\kP \in \Gal(L/K)$
 	of an extension $L/K$ has order equal to the
 	inertial degree of $\kP$, that is,
-	\[ \ord \Frob_\kP = f(\kP \mid \pp). \]
-	In particular, $\Frob_\kP = \id$ if and only if $\pp$
+	\[ \ord \Frob_\kP = f(\kP \mid \kp). \]
+	In particular, $\Frob_\kP = \id$ if and only if $\kp$
 	splits completely in $L/K$.
 \end{lemma}
 \begin{proof}
-	We want to understand the order of the map $T : x \mapsto x^{N\pp}$ on
+	We want to understand the order of the map $T : x \mapsto x^{N\kp}$ on
 	the field $\OO_K / \kP$.
 	But the latter is isomorphic to the splitting field 
 	of $X^{N\kP} - X$ in $\FF_p$, by Galois theory of finite fields.
-	Hence the order is $\log_{N\pp} (N\kP) = f(\kP \mid \pp)$.
+	Hence the order is $\log_{N\kp} (N\kP) = f(\kP \mid \kp)$.
 \end{proof}
 
 \begin{exercise}
@@ -281,10 +281,10 @@ in the nicest way possible:
 	Here $\zeta$ is an $m$th root of unity.
 \end{exercise}
 
-The Galois group acts transitively among the set of $\kP$ above a given $\pp$,
+The Galois group acts transitively among the set of $\kP$ above a given $\kp$,
 so that we have
-\[ \Frob_{\sigma(\kP)} = \sigma \circ (\Frob_{\pp}) \circ \sigma\inv.  \]
-Thus $\Frob_\kP$ is determined by its underlying $\pp$ up to conjugation.
+\[ \Frob_{\sigma(\kP)} = \sigma \circ (\Frob_{\kp}) \circ \sigma\inv.  \]
+Thus $\Frob_\kP$ is determined by its underlying $\kp$ up to conjugation.
 
 In class field theory, we are interested in \vocab{abelian extensions},
 i.e.\ those for which $\Gal(L/K)$ is Galois.
@@ -292,10 +292,10 @@ Here the theory becomes extra nice:
 the conjugacy classes have size one.
 \begin{definition}
 	Assume $L/K$ is an \textbf{abelian} extension.
-	Then for a given unramified prime $\pp$ in $K$,
+	Then for a given unramified prime $\kp$ in $K$,
 	the element $\Frob_\kP$ doesn't depend on the choice of $\kP$.
 	We denote the resulting $\Frob_\kP$ by the \vocab{Artin symbol},
-	\[ \left( \frac{L/K}{\pp} \right). \]
+	\[ \left( \frac{L/K}{\kp} \right). \]
 \end{definition}
 The definition of the Artin symbol is written deliberately to
 look like the Legendre symbol.
@@ -388,9 +388,9 @@ the above theorem tells us we get a sequence of maps
 \end{center}
 Consequently:
 \begin{moral}
-	For primes $\pp \in I_K(\kf)$,
-	$\left( \frac{L/K}{\pp} \right)$ depends
-	only on ``$\pp \pmod \kf$''.
+	For primes $\kp \in I_K(\kf)$,
+	$\left( \frac{L/K}{\kp} \right)$ depends
+	only on ``$\kp \pmod \kf$''.
 \end{moral}
 
 Let's see how this result relates to quadratic reciprocity.
@@ -545,7 +545,7 @@ To finish, here is a quote from Emil Artin on his reciprocity law:
 	\begin{itemize}
 		\ii $E/K$ is the maximal such extension by inclusion.
 		\ii $\Gal(E/K)$ is isomorphic to the class group of $E$.
-		\ii A prime $\pp$ of $K$ splits completely in $E$
+		\ii A prime $\kp$ of $K$ splits completely in $E$
 		if and only if it is a principal ideal of $\OO_K$.
 	\end{itemize}
 	We call $E$ the \vocab{Hilbert class field} of $K$.
@@ -564,8 +564,8 @@ To finish, here is a quote from Emil Artin on his reciprocity law:
 			so inclusion reversal gives $M \subseteq E$.
 			\ii We have $\Gal(L/K) \cong I_K(1) / P_K(1) = C_K(1)$ the class group.
 			\ii The isomorphism in the previous part is given by the Artin symbol.
-			So $\pp$ splits completely if and only if $\left( \frac{L/K}{\pp} \right) = \id$
-			if and only if $\pp$ is principal (trivial in $C_K(1)$).
+			So $\kp$ splits completely if and only if $\left( \frac{L/K}{\kp} \right) = \id$
+			if and only if $\kp$ is principal (trivial in $C_K(1)$).
 		\end{itemize}
 		This completes the proof.
 	\end{sol}

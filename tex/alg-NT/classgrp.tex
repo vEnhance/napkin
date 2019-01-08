@@ -349,14 +349,14 @@ when we take $\OO_K$. In fact, we have:
 From this we can deduce:
 \begin{lemma}
 	Consider the composition of the embeddings $K \injto \RR^{r_1} \times \CC^{r_2} \taking\sim \RR^n$.
-	Let $\aa$ be an ideal in $\OO_K$.
-	Then the image of $\aa$ is a lattice $L_\aa$ in $\RR^n$ with mesh equal to
-	\[ \frac{\Norm(\aa)}{2^{r_2}} \sqrt{\left\lvert \Delta_K \right\rvert}. \]
+	Let $\ka$ be an ideal in $\OO_K$.
+	Then the image of $\ka$ is a lattice $L_\ka$ in $\RR^n$ with mesh equal to
+	\[ \frac{\Norm(\ka)}{2^{r_2}} \sqrt{\left\lvert \Delta_K \right\rvert}. \]
 \end{lemma}
 \begin{proof}[Sketch of Proof]
-	Let \[ d = \Norm(\aa) \defeq [\OO_K : \aa]. \]
-	Then in the lattice $L_\aa$, we somehow only take $\frac 1d$th of the points
-	which appear in the lattice $L$, which is why the area increases by a factor of $\Norm(\aa)$.
+	Let \[ d = \Norm(\ka) \defeq [\OO_K : \ka]. \]
+	Then in the lattice $L_\ka$, we somehow only take $\frac 1d$th of the points
+	which appear in the lattice $L$, which is why the area increases by a factor of $\Norm(\ka)$.
 	To make this all precise I would need to do a lot more with lattices and geometry
 	than I have space for in this chapter, so I will omit the details.
 	But I hope you can see why this is intuitively true.
@@ -452,7 +452,7 @@ and our goal is to use Minkowski to lure some nonzero element into it.
 	\end{asy}
 \end{center}
 
-That is, suppose $\alpha \in \aa$ falls into the box I've defined above, which means
+That is, suppose $\alpha \in \ka$ falls into the box I've defined above, which means
 \[
 	M \ge
 	\sum_{i=1}^{r_1} \left\lvert \sigma_i(\alpha) \right\rvert
@@ -488,10 +488,10 @@ This is again some geometry I won't do, but take my word for it:
 We can now put everything we have together to obtain the great Minkowski bound.
 \begin{theorem}
 	[Minkowski bound]
-	Let $\aa \subseteq \OO_K$ be any nonzero ideal.
-	Then there exists $0 \neq \alpha \in \aa$ such that
+	Let $\ka \subseteq \OO_K$ be any nonzero ideal.
+	Then there exists $0 \neq \alpha \in \ka$ such that
 	\[ \Norm_{K/\QQ}(\alpha) \le \left( \frac 4\pi \right)^{r_2} \frac{n!}{n^n} \sqrt{\left\lvert \Delta_K \right\rvert}
-	\cdot \Norm(\aa). \]
+	\cdot \Norm(\ka). \]
 \end{theorem}
 \begin{proof}
 	This is a matter of putting all our ingredients together.
@@ -502,19 +502,19 @@ We can now put everything we have together to obtain the great Minkowski bound.
 		& \quad\text{with volume } 2^{r_1} \left( \frac\pi2 \right)^{r_2} \frac{M^n}{n!} \\
 		\OO_K && \rMapsto && \text{Lattice } L
 		& \quad\text{with mesh } 2^{-r_2} \sqrt{\left\lvert \Delta_K \right\rvert} \\
-		\aa && \rMapsto && \text{Lattice } L_\aa
-		& \quad\text{with mesh } 2^{-r_2} \sqrt{\left\lvert \Delta_K \right\rvert} \Norm(\aa)
+		\ka && \rMapsto && \text{Lattice } L_\ka
+		& \quad\text{with mesh } 2^{-r_2} \sqrt{\left\lvert \Delta_K \right\rvert} \Norm(\ka)
 	\end{diagram}
-	Pick a value of $M$ such that the mesh of $L_\aa$
+	Pick a value of $M$ such that the mesh of $L_\ka$
 	equals $2^{-n}$ of the volume of the box.
-	Then Minkowski's theorem gives that some $0 \neq \alpha \in \aa$ lands inside the box ---
+	Then Minkowski's theorem gives that some $0 \neq \alpha \in \ka$ lands inside the box ---
 	the mousetrap is configured to force $\Norm_{K/\QQ}(\alpha) \le \frac{1}{n^n} M^n$.
 	The correct choice of $M$ is
 	\[
 		M^n
 		= M^n \cdot 2^n \cdot \frac{\text{mesh}}{\text{vol box}}
 		= 2^n \cdot \frac{n!}{2^{r_1} \cdot \left( \frac \pi 2 \right)^{r_2}}
-		\cdot 2^{-r_2} \sqrt{\left\lvert \Delta_K \right\rvert} \Norm(\aa) 
+		\cdot 2^{-r_2} \sqrt{\left\lvert \Delta_K \right\rvert} \Norm(\ka) 
 	\]
 	which gives the bound after some arithmetic.
 \end{proof}
@@ -530,29 +530,29 @@ So that's cool and all, but what we really wanted was to show that
 the class group is finite.
 How can the Minkowski bound help?
 Well, you might notice that we can rewrite it to say
-\[ \Norm\left( (\alpha) \cdot \aa\inv \right) \le M_K \]
-where $M_K$ is some constant depending on $K$, and $\alpha \in \aa$.
+\[ \Norm\left( (\alpha) \cdot \ka\inv \right) \le M_K \]
+where $M_K$ is some constant depending on $K$, and $\alpha \in \ka$.
 \begin{ques}
-	Show that $(\alpha) \cdot \aa\inv$ is an integral ideal.
+	Show that $(\alpha) \cdot \ka\inv$ is an integral ideal.
 	(Unwind definitions.)
 \end{ques}
 But in the class group we \emph{mod out} by principal ideals like $(\alpha)$.
-If we shut our eyes for a moment and mod out, the above statement becomes ``$\Norm(\aa\inv)\le M_K$''.
+If we shut our eyes for a moment and mod out, the above statement becomes ``$\Norm(\ka\inv)\le M_K$''.
 The precise statement of this is
 \begin{corollary}
 	\label{cor:class_rep_minkowski}
 	Let $K$ be a number field, and pick a fractional ideal $J$.
-	Then we can find $\alpha$ such that $\bb = (\alpha) \cdot J$ is integral
-	and $\Norm(\bb) \le M_K$.
+	Then we can find $\alpha$ such that $\kb = (\alpha) \cdot J$ is integral
+	and $\Norm(\kb) \le M_K$.
 \end{corollary}
 \begin{proof}
 	For fractional ideals $I$ and $J$ write $I \sim J$ to mean
 	that $I = (\alpha)J$ for some $\alpha$; then $\Cl_K$ is just modding out by $\sim$.
 	Let $J$ be a fractional ideal.
 	Then $J\inv$ is some other fractional ideal.
-	By definition, for some $\alpha \in \OO_K$ we have that $\alpha J\inv$ is an integral ideal $\aa$.
-	The Minkowski bound tells us that for some $x \in \aa$, we have $\Norm(x\aa\inv) \le M_K$.
-	But $x\aa\inv \sim \aa\inv = (\alpha J\inv)\inv \sim J$.
+	By definition, for some $\alpha \in \OO_K$ we have that $\alpha J\inv$ is an integral ideal $\ka$.
+	The Minkowski bound tells us that for some $x \in \ka$, we have $\Norm(x\ka\inv) \le M_K$.
+	But $x\ka\inv \sim \ka\inv = (\alpha J\inv)\inv \sim J$.
 \end{proof}
 
 \begin{corollary}[Finiteness of class group]
@@ -560,14 +560,14 @@ The precise statement of this is
 \end{corollary}
 \begin{proof}
 	For every class in $\Cl_K$,
-	we can identify an integral ideal $\aa$ with norm less than $M_K$.
+	we can identify an integral ideal $\ka$ with norm less than $M_K$.
 	We just have to show there are finitely many such integral ideals;
 	this will mean there are finitely many classes.
 
-	Suppose we want to build such an ideal $\aa = \pp_1^{e_1} \dots \pp_m^{e_m}$.
-	Recall that a prime ideal $\pp_i$ must have some rational prime $p$ inside it,
-	meaning $\pp_i$ divides $(p)$ and $p$ divides $\Norm(\pp_i)$.
-	So let's group all the $\pp_i$ we want to build $\aa$ with based on which $(p)$ they came from.
+	Suppose we want to build such an ideal $\ka = \kp_1^{e_1} \dots \kp_m^{e_m}$.
+	Recall that a prime ideal $\kp_i$ must have some rational prime $p$ inside it,
+	meaning $\kp_i$ divides $(p)$ and $p$ divides $\Norm(\kp_i)$.
+	So let's group all the $\kp_i$ we want to build $\ka$ with based on which $(p)$ they came from.
 	\begin{center}
 		\begin{asy}
 			size(4cm);
@@ -583,11 +583,11 @@ The precise statement of this is
 	To be more dramatic: imagine you have a \emph{cherry tree};
 	each branch corresponds to a prime $(p)$
 	and contains as cherries (prime ideals) the factors of $(p)$ (finitely many).
-	Your bucket (the ideal $\aa$ you're building) can only hold a total weight
+	Your bucket (the ideal $\ka$ you're building) can only hold a total weight
 	(norm) of $M_K$.  So you can't even touch the branches higher than $M_K$.
 	You can repeat cherries (oops),
 	but the weight of a cherry on branch $(p)$ is definitely $\ge p$;
-	all this means that the number of ways to build $\aa$ is finite.
+	all this means that the number of ways to build $\ka$ is finite.
 \end{proof}
 
 \section{Computation of class numbers}
@@ -634,8 +634,8 @@ Let's give an example how!
 	Now we claim that's all.
 	Pick a fractional ideal $J$.
 	By \Cref{cor:class_rep_minkowski},
-	we can find an integral ideal $\bb \sim J$ with $\Norm(\bb) \le M_K$.
-	But by the above, either $\bb = (1)$ or $\bb = (4)$, both of which are principal,
+	we can find an integral ideal $\kb \sim J$ with $\Norm(\kb) \le M_K$.
+	But by the above, either $\kb = (1)$ or $\kb = (4)$, both of which are principal,
 	and hence trivial in $\Cl_K$.
 	So $J$ is trivial in $\Cl_K$ too, as needed.
 \end{proof}
@@ -647,14 +647,14 @@ Let's do a couple more.
 	This is $\OO_K$ where $K = \QQ(i)$, so we just want $\Cl_K$ to be trivial.
 	We have $M_K = \frac{2}{\pi}\sqrt{4} < 2$.
 	So every class
-	has an integral ideal of norm $\bb$ satisfying
+	has an integral ideal of norm $\kb$ satisfying
 	\[ 
-		\Norm(\bb)
+		\Norm(\kb)
 		\left( \frac4\pi \right)^{1} \cdot \frac{2!}{2^2} \cdot \sqrt{4}
 		= \frac4\pi < 2. 
 	\]
 	Well, that's silly: we don't have any branches to pick from at all.
-	In other words, we can only have $\bb = (1)$.
+	In other words, we can only have $\kb = (1)$.
 \end{proof}
 
 Here's another example of something that still turns out to be unique factorization,
@@ -685,16 +685,16 @@ How about some nontrivial class groups?
 First, we use a lemma that will help us with
 narrowing down the work in our cherry tree.
 \begin{lemma}[Ideals divide their norms]
-	Let $\bb$ be an integral ideal with $\Norm(\bb) = n$.
-	Then $\bb$ divides the ideal $(n)$.
+	Let $\kb$ be an integral ideal with $\Norm(\kb) = n$.
+	Then $\kb$ divides the ideal $(n)$.
 \end{lemma}
 \begin{proof}
-	By definition, $n = \left\lvert \OO_K / \bb \right\rvert$.
-	Treating $\OO_K/\bb$ as an (additive) abelian group and using Lagrange's theorem, we find
+	By definition, $n = \left\lvert \OO_K / \kb \right\rvert$.
+	Treating $\OO_K/\kb$ as an (additive) abelian group and using Lagrange's theorem, we find
 	\[ 0 \equiv
 		\underbrace{\alpha + \dots + \alpha}_{n\text{ times}} = n\alpha
-		\pmod \bb \qquad\text{for all } \alpha \in \OO_K. \]
-	Thus $(n) \subseteq \bb$, done.
+		\pmod \kb \qquad\text{for all } \alpha \in \OO_K. \]
+	Thus $(n) \subseteq \kb$, done.
 \end{proof}
 
 Now we can give such an example.
@@ -717,31 +717,31 @@ The minimal polynomial of $\sqrt{-17}$ is $x^2+17$, so as usual
 	(5) &= (5)
 \end{align*}
 corresponding to the factorizations of $x^2+17$ modulo each of $2$, $3$, $5$.
-Set $\pp = (2, \sqrt{-17}+1)$ and $\qq_1 = (3, \sqrt{-17}-1)$, $\qq_2 = (3, \sqrt{-17}+1)$.
+Set $\kp = (2, \sqrt{-17}+1)$ and $\kq_1 = (3, \sqrt{-17}-1)$, $\kq_2 = (3, \sqrt{-17}+1)$.
 We can compute
-\[ \Norm(\pp) = 2 \quad\text{and}\quad \Norm(\qq_1) = \Norm(\qq_2) = 3. \]
+\[ \Norm(\kp) = 2 \quad\text{and}\quad \Norm(\kq_1) = \Norm(\kq_2) = 3. \]
 In particular, they are not principal.
 The ideal $(5)$ is out the window; it has norm $25$.
-Hence, the three cherries are $\pp$, $\qq_1$, $\qq_2$.
+Hence, the three cherries are $\kp$, $\kq_1$, $\kq_2$.
 
 The possible ways to arrange these cherries into ideals with norm $\le 5$ are
-\[ \left\{ (1), \pp, \qq_1, \qq_2, \pp^2 \right\}. \]
-However, you can compute \[ \pp^2 = (2) \] so $\pp^2$ and $(1)$ are in the same class group;
+\[ \left\{ (1), \kp, \kq_1, \kq_2, \kp^2 \right\}. \]
+However, you can compute \[ \kp^2 = (2) \] so $\kp^2$ and $(1)$ are in the same class group;
 that is, they are trivial.
 In particular, the class group has order at most $4$.
 
-From now on, let $[\aa]$ denote the class (member of the class group) that $\aa$ is in.
-Since $\pp$ isn't principal (so $[\pp] \neq [(1)]$), it follows that $\pp$ has order two.
+From now on, let $[\ka]$ denote the class (member of the class group) that $\ka$ is in.
+Since $\kp$ isn't principal (so $[\kp] \neq [(1)]$), it follows that $\kp$ has order two.
 So Lagrange's theorem says that $\Cl_K$ has order either $2$ or $4$.
 
-Now we claim $[\qq_1]^2 \neq [(1)]$, which implies that $\qq_1$ has order greater than $2$.
-If not, $\qq_1^2$ is principal.
-We know $\Norm(\qq_1) = 3$,
-so this can only occur if $\qq_1^2 = (3)$;
-this would force $\qq_1 = \qq_2$.
-This is impossible since $\qq_1 + \qq_2 = (1)$.
+Now we claim $[\kq_1]^2 \neq [(1)]$, which implies that $\kq_1$ has order greater than $2$.
+If not, $\kq_1^2$ is principal.
+We know $\Norm(\kq_1) = 3$,
+so this can only occur if $\kq_1^2 = (3)$;
+this would force $\kq_1 = \kq_2$.
+This is impossible since $\kq_1 + \kq_2 = (1)$.
 
-Thus, $\qq_1$ has even order greater than $2$.
+Thus, $\kq_1$ has even order greater than $2$.
 So it has to have order $4$.
 From this we deduce \[ \Cl_K \cong \Zc 4. \qedhere \]
 \end{proof}
@@ -829,11 +829,11 @@ From this we deduce \[ \Cl_K \cong \Zc 4. \qedhere \]
 		Let $K = \QQ(\sqrt{-5})$. Check that $\Cl_K$ has order two using the Minkowski bound;
 		moreover $\Delta_K = 20$.
 		Now note that $\OO_K = \ZZ[\sqrt{-5}]$, and $x^2+5$ factors mod $p$ as $(x+k)(x-k)$;
-		hence in $\OO_K$ we have $(p) = (p, \sqrt{-5}+k)(p, \sqrt{-5}-k) = \pp_1 \pp_2$, say.
-		For $p > 5$ the prime $p$ does not ramify and we have $\pp_1 \neq \pp_2$, since $\Delta_K = 20$.
+		hence in $\OO_K$ we have $(p) = (p, \sqrt{-5}+k)(p, \sqrt{-5}-k) = \kp_1 \kp_2$, say.
+		For $p > 5$ the prime $p$ does not ramify and we have $\kp_1 \neq \kp_2$, since $\Delta_K = 20$.
 
-		Then $(p^2) = \pp_1^2 \cdot \pp_2^2$. Because the class group has order two,
-		both ideals on the right hand side are principal, and because $\pp_1 \neq \pp_2$ they are distinct.
+		Then $(p^2) = \kp_1^2 \cdot \kp_2^2$. Because the class group has order two,
+		both ideals on the right hand side are principal, and because $\kp_1 \neq \kp_2$ they are distinct.
 		Thus $p^2$ is a nontrivial product of two elements of $\OO_K$; from this we can extract the desired factorization.
 	\end{sol}
 \end{problem}
