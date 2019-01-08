@@ -103,7 +103,7 @@ If $G$ acts on $X$, then
 \end{itemize}
 Note that when I say $x$ is a fixed point, I mean it is fixed by \textbf{every} element of the group, i.e.\ the orbit really has size one. Hence that's a really strong condition.
 
-\subsection*{Definitions}
+\subsection{Definitions}
 \prototype{Conjugacy in $S_n$.}
 I've defined conjugacy of elements previously,
 but I now need to define it for groups:
@@ -133,7 +133,7 @@ the following shouldn't be surprising:
 
 We are now ready to present the proof.
 
-\subsection*{Step 1: Prove that a Sylow $p$-subgroup exists}
+\subsection{Step 1: Prove that a Sylow $p$-subgroup exists}
 What follows is something like the probabilistic method.
 By considering the set $X$ of ALL subsets of size $p^n$ at once, we can exploit the ``deep number theoretic fact'' that 
 \[ \left\lvert X \right\rvert = \binom{p^n m}{p^n} \not\equiv 0 \pmod p. \]
@@ -157,7 +157,7 @@ Here is the proof.
 \end{itemize}
 
 
-\subsection*{Step 2: Any two Sylow $p$-subgroups are conjugate}
+\subsection{Step 2: Any two Sylow $p$-subgroups are conjugate}
 Let $P$ be a Sylow $p$-subgroup (which exists by the previous step).
 We now prove that for any $p$-group $Q$, $Q \subseteq gPg\inv$.
 Note that if $Q$ is also a Sylow $p$-subgroup, then $Q = gPg\inv$ for size reasons;
@@ -174,7 +174,7 @@ $qgP = gP$ for all $q$.
 Equivalently, $qg \in gP$ for all $q \in Q$, so $Q \subseteq gPg\inv$ as desired.
 
 
-\subsection*{Step 3: Showing $n_p \equiv 1 \pmod p$}
+\subsection{Step 3: Showing $n_p \equiv 1 \pmod p$}
 Let $\mathcal S$ denote the set of all the Sylow $p$-subgroups.
 Let $P \in \mathcal S$ be arbitrary.
 \begin{ques}
@@ -195,7 +195,7 @@ Then:
 	\ii Hence $P=Q$, as desired.
 \end{itemize}
 
-\subsection*{Step 4: $n_p$ divides $m$}
+\subsection{Step 4: $n_p$ divides $m$}
 Since $n_p \equiv 1 \pmod p$, it suffices to show $n_p$ divides $\left\lvert G \right\rvert$.
 Let $G$ act on the set of all Sylow $p$-groups by conjugation.
 Step 2 says this action has only one orbit, so the Orbit-Stabilizer theorem
