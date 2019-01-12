@@ -1,0 +1,102 @@
+\chapter{Limits in categories}
+We saw near the start of our category theory chapter
+the nice construction of products by drawing
+a bunch of arrows.
+It turns out that this concept can be generalized immensely,
+and I want to give a you taste of that here.
+
+To run this chapter, we follow the approach of \cite{ref:msci}.
+% First we will define an \emph{equalizer}.
+\todo{keep writing}
+
+\section{Equalizers}
+\prototype{The equalizer of $f,g : X \to Y$ is the set of points with $f(x) = g(x)$.}
+Given two sets $X$ and $Y$, and maps $X \taking{f,g} Y$, we define their \vocab{equalizer} to be
+\[ \left\{ x \in X \mid f(x) = g(x) \right\}. \]
+We would like a categorical way of defining this, too.
+
+Consider two objects $X$ and $Y$ with two maps $f$ and $g$ between them.
+Stealing a page from \cite{ref:msci}, we call this a \vocab{fork}:
+\begin{diagram}
+	X & \pile{\rTo^f \\ \rTo_g} & Y
+\end{diagram}
+A cone over this fork is an object $A$ and arrows over $X$ and $Y$ which make the diagram commute, like so.
+\begin{diagram}
+	A && \\
+	\dTo^q & \rdDashed^{f \circ q = g \circ q} & \\
+	X & \pile{\rTo^f \\ \rTo_g} & Y
+\end{diagram}
+Effectively, the arrow over $Y$ is just forcing $f \circ q = g \circ q$.
+In any case, the \vocab{equalizer} of $f$ and $g$ is a ``universal cone'' over this fork:
+it is an object $E$ and a map $E \taking{e} X$ such that
+for each $A \taking q X$ the diagram
+\begin{diagram}
+	& A & \\
+	\ldTo(1,3)^q & \dTo~{!\exists h} & \rdDashed(1,3) \\
+	& E & \\
+	X \ldTo(1,1)^e & \pile{\rTo^f \\ \rTo_g} & \rdDashed(1,1) Y \\
+\end{diagram}
+commutes for a unique $A \taking h E$.
+In other words, any map $A \taking{q} X$ as above
+must factor uniquely through $E$.
+Again, the dotted arrows can be omitted,
+and as before equalizers may not exist.
+But when they do exist:
+\begin{exercise}
+	If $E \taking{e} X$ and $E' \taking{e'} X$ are equalizers,
+	show that $E \cong E'$.
+\end{exercise}
+
+\begin{example}
+	[Examples of equalizers]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii In $\catname{Set}$, given $X \taking{f,g} Y$
+		the equalizer $E$ can be realized as $E = \{x \mid f(x) = g(x)\}$,
+		with the inclusion $e : E \injto X$ as the morphism.
+		As usual, by abuse we'll often just refer to $E$ as the equalizer.
+
+		\ii Ditto in $\catname{Top}$, $\catname{Grp}$.
+		One has to check that the appropriate structures are preserved
+		(e.g.\ one should check that $\{\phi(g) = \psi(g) \mid g \in G\}$ is a group).
+
+		\ii In particular, given a homomorphism $\phi : G \to H$, the inclusion
+		$ \ker\phi \injto G $
+		is an equalizer for the fork $G \to H$ by $\phi$ and the trivial homomorphism.
+	\end{enumerate}
+\end{example}
+
+According to (c) equalizers let us get at the concept of a kernel
+if there is a distinguished
+``trivial map'', like the trivial homomorphism in $\catname{Grp}$.
+We'll flesh this idea out in the chapter on abelian categories.
+
+\section{Pullback squares}
+Great example: differentiable functions on $(-3,1)$ and $(-1,3)$
+
+\begin{example}
+	\label{ex:diff_pullback}
+\end{example}
+
+\section{Limits}
+We've defined cones over discrete sets of $X_i$ and over forks.
+It turns out you can also define a cone over any general \vocab{diagram} of objects and arrows;
+we specify a projection from $A$ to each object and
+require that the projections from $A$ commute with the arrows in the diagram.
+(For example, a cone over a fork is a diagram with two edges and two arrows.)
+If you then demand the cone be universal,
+you have the extremely general definition of a \vocab{limit}.
+As always, these are unique up to unique isomorphism.
+We can also define the dual notion of a \vocab{colimit} in the same way.
+
+
+\section{\problemhead}
+\begin{sproblem}[Equalizers are monic]
+	Show that the equalizer of any fork is monic.
+	\label{prob:equalizer_monic}
+\end{sproblem}
+
+pushout square gives tenor product
+
+p-adic
+
