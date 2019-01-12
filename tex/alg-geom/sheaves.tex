@@ -723,27 +723,15 @@ However, in practice, the details of the construction will often not matter.
 
 \begin{problem}
 	\label{prob:finite_sheaf}
-	Suppose $X$ is a finite topological space equipped with the discrete topology
-	(i.e.\ $X$ is a finite set of points).
-	Let $\SF$ be a sheaf on $X$.
-	Show that for any open set $U$, we have a ring isomorphism
-	\[ \SF(U) \cong \prod_{p \in U} \SF_p. \]
-	Here the product is the product ring as defined in \Cref{ex:product_ring}.
-	\begin{hint}
-		We have $\SF_p \cong \SF(\{p\})$.
-		If $X$ is discrete, then all sequences of germs are compatible.
-	\end{hint}
-\end{problem}
-
-\begin{problem}
-	Let $\SF$ be a sheaf on a space $X$ and let $s \in \SF(X)$
-	be a global section.
-	Define the \vocab{support} of $s$ as
-	\[ Z = \left\{ p \in X \mid [s]_p \neq 0 \in \SF_p \right\}. \]
-	Show that $Z$ is a closed set of $X$.
-	\begin{hint}
-		Show that the complement $\{ p \mid [s]_p = 0 \}$ is open.
-	\end{hint}
+	Let $X$ be a space with two points $\{p,q\}$
+	and let $\SF$ be a sheaf on it.
+	Suppose $\SF_p = \Zc{5}$ and $\SF_q = \ZZ$.
+	Describe $\SF(U)$ for each open set $U$ of $X$, where
+	\begin{enumerate}[(a)]
+		\ii $X$ is equipped with the discrete topology.
+		\ii $X$ is equipped $\varnothing$, $\{p\}$, $\{p,q\}$
+		as the only open sets.
+	\end{enumerate}
 \end{problem}
 
 \begin{problem}
@@ -766,6 +754,17 @@ However, in practice, the details of the construction will often not matter.
 	Then try to work out the general answer.)
 	\begin{hint}
 		The stalk is $R$ at points in the closure of $\{p\}$, and $0$ elsewhere.
+	\end{hint}
+\end{problem}
+
+\begin{problem}
+	Let $\SF$ be a sheaf on a space $X$ and let $s \in \SF(X)$
+	be a global section.
+	Define the \vocab{support} of $s$ as
+	\[ Z = \left\{ p \in X \mid [s]_p \neq 0 \in \SF_p \right\}. \]
+	Show that $Z$ is a closed set of $X$.
+	\begin{hint}
+		Show that the complement $\{ p \mid [s]_p = 0 \}$ is open.
 	\end{hint}
 \end{problem}
 

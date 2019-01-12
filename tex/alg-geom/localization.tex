@@ -47,12 +47,12 @@ if $R = \CC[V]$ is the coordinate ring, then
 the above will become abbreviated to just
 \begin{align*}
 	\OO_{V}(D(g)) &= R_{g} \\
-	\OO_{V, p} &= R_{\mm} \quad \text{where } \{p\} = \VV(\mm).
+	\OO_{V, p} &= R_{\km} \quad \text{where } \{p\} = \VV(\km).
 \end{align*}
 The former will be pronounced 
 ``$R$ localized away from $g$''
 while the latter will be pronounced
-``$R$ localized at $\mm$''.
+``$R$ localized at $\km$''.
 
 Even more generally,
 next chapter we will throw out the coordinate ring $R$
@@ -233,14 +233,14 @@ In fact, the same was true for affine varieties too.
 	Let $V \subseteq \Aff^n$, let $A = \CC[V]$
 	and let $p = (a_1, \dots, a_n)$ be a point.
 	Consider the maximal (hence prime) ideal
-	\[ \mm = (x_1 - a_1, \dots, x_n - a_n). \]
+	\[ \km = (x_1 - a_1, \dots, x_n - a_n). \]
 	Observe that a function $f \in A$ vanishes at $p$
-	if and only if $f \pmod{\mm} = 0$, equivalently $f \in \mm$.
+	if and only if $f \pmod{\km} = 0$, equivalently $f \in \km$.
 	Thus, by \Cref{thm:stalks_affine_var} we can write
 	\begin{align*}
 		\OO_{V,p} &= \left\{ \frac{f}{g} \mid f,g \in A, g(p) \ne 0 \right\} \\
-		&= \left\{ \frac{f}{g} \mid f \in A, g \in A \setminus \mm \right\} \\
-		&= \left( A \setminus \mm \right)\inv A = A_\mm.
+		&= \left\{ \frac{f}{g} \mid f \in A, g \in A \setminus \km \right\} \\
+		&= \left( A \setminus \km \right)\inv A = A_\km.
 	\end{align*}
 	So, we can also express $\OO_{V,p}$ concisely as a localization.
 \end{example}
@@ -250,12 +250,12 @@ Consequently, we give several examples in this vein.
 	[Geometric examples of localizing at a prime]
 	\listhack
 	\begin{enumerate}[(a)]
-		\ii We let $\mm$ be the maximal ideal $(x)$ of $A = \CC[x]$.
-		Then \[ A_\mm = \left\{ \frac{f(x)}{g(x)} \mid g(0) \ne 0 \right\} \]
+		\ii We let $\km$ be the maximal ideal $(x)$ of $A = \CC[x]$.
+		Then \[ A_\km = \left\{ \frac{f(x)}{g(x)} \mid g(0) \ne 0 \right\} \]
 		consists of the Laurent polynomials.
 
-		\ii We let $\mm$ be the maximal ideal $(x,y)$ of $A = \CC[x,y]$.
-		Then \[ A_\mm = \left\{ \frac{f(x,y)}{g(x,y)} \mid g(0,0) \ne 0 \right\}. \]
+		\ii We let $\km$ be the maximal ideal $(x,y)$ of $A = \CC[x,y]$.
+		Then \[ A_\km = \left\{ \frac{f(x,y)}{g(x,y)} \mid g(0,0) \ne 0 \right\}. \]
 
 		\ii Let $\kp$ be the prime ideal $(y-x^2)$ of $A = \CC[x,y]$.
 		Then

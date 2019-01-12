@@ -446,18 +446,18 @@ for $D$ is equivalent to the following three conditions:
 
 This suggests a third equivalent definition:
 suppose we define
-\[ \mm_p \defeq \left\{ f \in C^\infty M \mid f(p) = 0 \right\} \]
+\[ \km_p \defeq \left\{ f \in C^\infty M \mid f(p) = 0 \right\} \]
 to be the set of functions which vanish at $p$
 (this is called the \emph{maximal ideal} at $p$).
 In that case,
-\[ \mm_p^2 = \left\{ \sum_i f_i \cdot g_i
+\[ \km_p^2 = \left\{ \sum_i f_i \cdot g_i
 	\mid f_i(p) = g_i(p) = 0 \right\} \]
 is the set of functions vanishing to second order at $p$.
 Thus, a tangent vector is really just a linear map
-\[ \mm_p / \mm_p^2 \to \RR. \]
+\[ \km_p / \km_p^2 \to \RR. \]
 In other words, the tangent space is actually the
-dual space of $\mm_p / \mm_p^2$;
-for this reason, the space $\mm_p / \mm_p^2$ is defined as the
+dual space of $\km_p / \km_p^2$;
+for this reason, the space $\km_p / \km_p^2$ is defined as the
 \vocab{cotangent space} (the dual of the tangent space).
 This definition is even more abstract than the one with derivations above,
 but has some nice properties:
@@ -480,15 +480,15 @@ Using some real analysis, one can prove the following result:
 	Then
 	\[
 	\begin{aligned}
-		\mm_0 &= \{ \text{smooth functions } f : f(0) = 0 \} \\
-		\mm_0^2 &= \{ \text{smooth functions } f : f(0) = 0, (\nabla f)_0 = 0 \}.
+		\km_0 &= \{ \text{smooth functions } f : f(0) = 0 \} \\
+		\km_0^2 &= \{ \text{smooth functions } f : f(0) = 0, (\nabla f)_0 = 0 \}.
 	\end{aligned}
 	\]
-	In other words $\mm_0^2$ is the set of functions which vanish at $0$
+	In other words $\km_0^2$ is the set of functions which vanish at $0$
 	and such that all first derivatives of $f$ vanish at zero.
 \end{theorem}
 Thus, it follows that there is an isomorphism
-\[ \mm_0 / \mm_0^2 \cong \RR^n
+\[ \km_0 / \km_0^2 \cong \RR^n
 	\quad\text{by}\quad
 	f \mapsto
 	\left[ \frac{\partial f}{\partial x_1}(0),

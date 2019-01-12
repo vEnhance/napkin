@@ -13,8 +13,8 @@ Algebraically, the definition of these is:
 \end{definition}
 \begin{exercise}
 	Show that a ring $R$ is a local ring if there exists
-	a proper ideal $\mm \subsetneq R$ such that
-	all elements of $R \setminus \mm$ are units.
+	a proper ideal $\km \subsetneq R$ such that
+	all elements of $R \setminus \km$ are units.
 	(Bonus: prove the converse.)
 \end{exercise}
 
@@ -23,18 +23,18 @@ To see why this definition applies to the stalks above,
 we need to identify what the maximal ideal is.
 Let's go back to the example of $X = \RR$ and $\SF(U)$ the smooth functions,
 and consider the stalk $\SF_{p}$, where $p \in X$.
-Define the ideal $\mm_p$ to be the set of germs $(s,U)$ for which $s(p) = 0$.
+Define the ideal $\km_p$ to be the set of germs $(s,U)$ for which $s(p) = 0$.
 
-Then $\mm_p$ is maximal: we have an exact sequence
-\[ 0 \to \mm_p \to \SF_p \taking{(s,U) \mapsto s(p)} \RR \to 0 \]
-and so $\SF_p / \mm_p \cong \RR$, which is a field.
+Then $\km_p$ is maximal: we have an exact sequence
+\[ 0 \to \km_p \to \SF_p \taking{(s,U) \mapsto s(p)} \RR \to 0 \]
+and so $\SF_p / \km_p \cong \RR$, which is a field.
 
 It remains to check there are no nonzero maximal ideals.
-Now note that if $s \notin \mm_p$,
+Now note that if $s \notin \km_p$,
 then $s$ is nonzero in some neighborhood of $p$,
 then one can construct the function $1/s$ in a neighborhood of $p$.
-So \textbf{every element of $\SF_p \setminus \mm_p$ is a unit};
-$\mm_p$ is in fact the only maximal ideal!
+So \textbf{every element of $\SF_p \setminus \km_p$ is a unit};
+$\km_p$ is in fact the only maximal ideal!
 
 More generally,
 \begin{moral}
@@ -69,7 +69,7 @@ We can now define:
 	Suppose that for every point $p$, the stalk $\OO_{X,p}$
 	is a local ring.
 	Then we say that $(X, \OO_X)$ is a \vocab{locally ringed space}.
-	We denote the maximal ideals by $\mm_{X,p}$.
+	We denote the maximal ideals by $\km_{X,p}$.
 \end{definition}
 
 In particular, in the previous chapter we showed that every

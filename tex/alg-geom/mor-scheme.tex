@@ -140,18 +140,18 @@ as follows. For a point $p \in X$, construct the map
 where $s \in \OO_Y(U)$.
 
 \begin{definition}
-	Let $R$ and $S$ be local rings with maximal ideals $\mm_R$ and $\mm_S$.
+	Let $R$ and $S$ be local rings with maximal ideals $\km_R$ and $\km_S$.
 	A \vocab{morphism of local rings} is a homomorphism of rings
-	$\psi : R \to S$ such that $\psi\pre(\mm_S) = \mm_R$.
+	$\psi : R \to S$ such that $\psi\pre(\km_S) = \km_R$.
 \end{definition}
 \begin{definition}
 	A \vocab{morphism of locally ringed spaces}
 	is a morphism of ringed spaces $f : (X, \OO_X) \to (Y, \OO_Y)$ such that
 	for every point $p$ the induced map of stalks is a morphism of local rings.
 \end{definition}
-Recalling that $\mm_{X,p}$ is the maximal ideal of $\OO_X$ at $p$,
+Recalling that $\km_{X,p}$ is the maximal ideal of $\OO_X$ at $p$,
 the new condition is saying that
-\[ (f^\ast_p)\pre (\mm_{X,p}) = \mm_{Y,f(p)}. \]
+\[ (f^\ast_p)\pre (\km_{X,p}) = \km_{Y,f(p)}. \]
 Concretely, if $g$ is a function vanishing on $f(p)$,
 then its pullback $f^\ast_U(g)$ vanishes on $p$.
 
@@ -277,7 +277,7 @@ See \Cref{ch:refs} for further remarks.
 		Use the proof that $\catname{AffSch} \simeq \catname{CRing}$.
 	\end{hint}
 	\begin{sol}
-		$\kp$ gets sent to the characteristic of the field $\OO_{X,\kp} / \mm_{X,\kp}$.
+		$\kp$ gets sent to the characteristic of the field $\OO_{X,\kp} / \km_{X,\kp}$.
 	\end{sol}
 \end{problem}
 
