@@ -36,14 +36,14 @@ will have three big generalizations:
 	we sought for so long.
 	This will let us formalize the notion of a ``fat'' or ``fuzzy'' point.
 
-	\ii Our affine schemes will have so-called \emph{generic points}:
+	\ii Our affine schemes will have so-called \emph{non-closed points}:
 	points which you can visualize as floating around,
 	somewhere in the space but nowhere in particular.
 	(They'll correspond to prime non-maximal ideals.)
 	These will take the longest to get used to,
-	but once we discuss morphisms of schemes
-	we will begin to see that these generic points actually make life
-	\emph{easier}, once you get a sense of what they look like.
+	but as we progress we will begin to see that these non-closed points
+	actually make life \emph{easier},
+	once you get a sense of what they look like.
 \end{enumerate}
 
 \section{The set of points}
@@ -57,8 +57,10 @@ First surprise, for a ring $A$:
 This might be a little surprising, since we might have guessed
 that $\Spec A$ should just have the maximal ideals.
 What do the remaining ideals correspond to?
-The answer is that they will be so-called \emph{generic points}
-points which are ``somewhere'' in the space, but nowhere in particular.
+The answer is that they will be so-called \emph{non-closed points}
+or \emph{generic points} which are ``somewhere'' in the space,
+but nowhere in particular.
+(The name ``non-closed'' is explained next chapter.)
 
 \begin{remark}
 	As usual $A$ itself is not a prime ideal, but $(0)$
@@ -72,13 +74,13 @@ points which are ``somewhere'' in the space, but nowhere in particular.
 		\ii $\Spec \CC[x]$ consists of a point $(x-a)$ for every $a \in \CC$,
 		which correspond to what we geometrically think of as $\Aff^1$.
 		In additionally consists of a point $(0)$,
-		which we think of as a ``generic point'', nowhere in particular.
+		which we think of as a ``non-closed point'', nowhere in particular.
 
 		\ii $\Spec \CC[x,y]$ consists of points $(x-a,y-b)$
-		(which are the maximal ideals) as well as $(0)$ again, a generic
-		point that is thought of as ``somewhere in $\CC^2$,
+		(which are the maximal ideals) as well as $(0)$ again,
+		a non-closed point that is thought of as ``somewhere in $\CC^2$,
 		but nowhere in particular''.
-		It also consists of generic points corresponding to irreducible
+		It also consists of non-closed points corresponding to irreducible
 		polynomials $f(x,y)$, for example $(y-x^2)$,
 		which is a ``generic point on the parabola''.
 
@@ -86,14 +88,20 @@ points which are ``somewhere'' in the space, but nowhere in particular.
 		since the only maximal ideal of $k$ is $(0)$.
 	\end{enumerate}
 \end{example}
+
 \begin{example}
 	[Complex affine varieties]
 	Let $I \subseteq \CC[x_1, \dots, x_n]$ be an ideal.
-	Then \[ \Spec \CC[x_1, \dots, x_n] /I \] contains a
+	By \Cref{prop:prime_quotient},
+	the set \[ \Spec \CC[x_1, \dots, x_n] /I \]
+	consists of those prime ideals of $\CC[x_1, \dots, x_n]$
+	which contain $I$: in other words, it has a
 	point for every closed irreducible subvariety of $\VV(I)$.
-	So in addition to the ``geometric points'' we have
-	``generic points'' along each of the varieties.
+	So in addition to the ``geometric points'' 
+	(corresponding to the maximal ideals $(x_1-a_1, \dots, x_n-a_n)$
+	we have non-closed points along each of the varieties).
 \end{example}
+
 \begin{example}
 	[More examples of spectrums]
 	\listhack
@@ -111,12 +119,26 @@ points which are ``somewhere'' in the space, but nowhere in particular.
 	\end{enumerate}
 \end{example}
 
+The non-closed points are the ones you are not used to:
+there is one for each non-maximal prime ideal
+(visualized as ``irreducible subvariety'').
+I like to visualize them in my head like a fly:
+you can hear it, so you know it is floating \emph{somewhere} in the room,
+but as it always moving, you never know exactly where.
+So the generic point of $\Spec \CC[x,y]$ corresponding to the prime
+ideal $(0)$ is floating everywhere in the plane,
+the one for the ideal $(y-x^2)$ floats along the parabola, etc.
+\begin{center}
+	\includegraphics[scale=0.4]{media/calvin-hobbes-fly.png} \\
+	\footnotesize Image from \cite{img:calvin_hobbes_fly}.
+\end{center}
+
 \section{The Zariski topology on the spectrum}
 \prototype{Still $\Spec \CC[x_1, \dots, x_n] / I$.}
 
 Now, we endow a topology on $\Spec A$.
 Since the points on $\Spec A$ are the prime ideals, we continue
-the analogy by thinking of the points $f$ as functions on $\Spec A$. That is,
+the analogy by thinking of the points $f$ as functions on $\Spec A$. That is:
 \begin{definition}
 	Let $f \in A$ and $\kp \in \Spec A$.
 	Then the \vocab{value} of $f$ at $\kp$ is defined to be $f \pmod{\kp}$.
@@ -125,14 +147,22 @@ the analogy by thinking of the points $f$ as functions on $\Spec A$. That is,
 \begin{example}
 	[Vanishing locii in $\Aff^n$]
 	Suppose $A = \CC[x_1, \dots, x_n]$,
-	and $\kp = (x_1-a_1, x_2-a_2, \dots, x_n-a_n)$ is a maximal ideal of $A$.
+	and $\km = (x_1-a_1, x_2-a_2, \dots, x_n-a_n)$ is a maximal ideal of $A$.
 	Then for a polynomial $f \in \CC$,
 	\[ f \pmod \kp = f(a_1, \dots, a_n) \]
-	with the identification that $\CC/\kp \cong \CC$.
+	with the identification that $\CC/\km \cong \CC$.
 \end{example}
+\begin{example}
+	[Functions on $\Spec \ZZ$]
+	Consider $A = \Spec \ZZ$.
+	Then $2019$ is a function on $A$.
+	Its value at the point $(5)$ is $4 \pmod 5$;
+	its value at the point $(7)$ is $3 \pmod 7$.
+\end{example}
+
 Indeed if you replace $A$ with $\CC[x_1, \dots, x_n]$
 and $\Spec A$ with $\Aff^n$ in everything that follows,
-then everything will be clear.
+then everything will become quite familiar.
 
 \begin{definition}
 	Let $f \in A$. We define the \vocab{vanishing locus} of $f$ to be
@@ -141,7 +171,7 @@ then everything will be clear.
 	More generally, just as in the affine case,
 	we define the vanishing locus for an ideal $I$ as
 	\begin{align*}
-		\VV(I) &= \left\{ \kp \in \Spec A \mid f(\kp)=0 \forall f \in I \right\} \\
+		\VV(I) &= \left\{ \kp \in \Spec A \mid f(\kp)=0 \; \forall f \in I \right\} \\
 		&= \left\{ \kp \in \Spec A \mid f \in \kp \; \forall f \in I \right\} \\
 		&= \left\{ \kp \in \Spec A \mid I \subseteq \kp \right\}.
 	\end{align*}
@@ -149,19 +179,28 @@ then everything will be clear.
 	by declaring that the sets of the form $\VV(I)$ are closed.
 \end{definition}
 
-We now define a useful topological notion:
+We now define a few useful topological notions:
 \begin{definition}
-	A point $p \in X$ is a \vocab{closed point} if the set $\{p\}$ is closed.
+	Let $X$ be a topological space.
+	A point $p \in X$ is a \vocab{closed point}
+	if the set $\{p\}$ is closed.
 \end{definition}
 \begin{ques}
-	[Important]
-	Show that $\kp \in \Spec A$ is a closed point
-	if and only if $\kp$ is a maximal ideal.
+	[Mandatory]
+	Show that a point (i.e.\ prime ideal)
+	$\km \in \Spec A$ is a closed point
+	if and only if $\km$ is a maximal ideal.
 \end{ques}
+Recall also in \Cref{def:closure} we denote by $\ol S$
+the closure of a set $S$ (i.e.\ the smallest closed set containing $S$);
+so you can think of a closed point $p$ also
+as one whose closure is just $\{p\}$,
+while with a generic point
 Therefore the Zariski topology lets us refer back to the old ``geometric''
 as just the closed points.
+
 \begin{example}
-	[Generic points, continued]
+	[Non-closed points, continued]
 	Let $A = \CC[x,y]$ and let $\kp = (y-x^2) \in \Spec A$;
 	this is the ``generic point'' on a parabola.
 	It is not closed, but we can compute its closure:
@@ -175,12 +214,14 @@ as just the closed points.
 	is literally the set of all points that are actually on the parabola
 	(including generic points).
 
-	That means the way to picture $\kp$ is a point that 
-	is ``somewhere on the parabola'', but nowhere in particular.
+	That means the way to picture $\kp$ is a point that
+	is floating ``somewhere on the parabola'', but nowhere in particular.
 	It makes sense then that if we take the closure,
 	we get the entire parabola,
 	since $\kp$ ``could have been'' any of those points.
 \end{example}
+
+\missingfigure{draw it}
 
 \begin{example}
 	[The generic point of the $y$-axis isn't on the $x$-axis]
@@ -192,6 +233,97 @@ as just the closed points.
 	The geometric way of saying this is that a \emph{generic point}
 	on the $y$-axis does not lie on the $x$-axis.
 \end{example}
+
+We now also introduce one more word:
+\begin{definition}
+	A topological space $X$ is \vocab{irreducible}
+	if either of the following two conditions hold:
+	\begin{itemize}
+		\ii The space $X$ cannot be written as the
+		union of two proper closed subsets.
+		\ii Any two nonempty open sets of $X$ intersect.
+	\end{itemize}
+	A subset $Z$ of $X$ (usually closed) is irreducible
+	if it is irreducible as a subspace.
+\end{definition}
+\begin{exercise}
+	Show that the two conditions above are indeed equivalent.
+	Also, show that the closure of a set is always irreducible.
+\end{exercise}
+
+This is the analog of the ``irreducible''
+we defined for affine varieties,
+but it is now a topological definition,
+although in practice this definition is only
+useful for spaces with the Zariski topology.
+Indeed, if any two nonempty open sets intersect
+(and there is more than one point),
+the space is certainly not Hausdorff!
+As with our old affine varieties,
+the intuition is that $\VV(xy)$ (the union of two lines)
+should not be irreducible.
+
+\begin{example}
+	[Reducible and irreducible spaces]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii The closed set $\VV(xy) = \VV(x) \cup \VV(y)$ is reducible.
+		\ii The entire plane $\Spec \CC[x,y]$ is irreducible.
+		There is actually a simple (but counter-intuitive,
+		since you are just getting used to generic points)
+		reason why this is true:
+		the generic point $(0)$ is in \emph{every} open set,
+		ergo, any two open sets intersect.
+	\end{enumerate}
+\end{example}
+
+So actually, the generic points
+kind of let us cheat our way through the following bit:
+\begin{proposition}
+	[Spectrums of integral domains are irreducible]
+	If $A$ is an integral domain,
+	then $\Spec A$ is irreducible.
+\end{proposition}
+\begin{proof}
+	Just note $(0)$ is a prime ideal,
+	and in every open set.
+\end{proof}
+You should compare this with the result that $\CC[x_1, \dots, x_n]/I$
+was irreducible exactly when $I$ was prime.
+But this time, the generic point actually takes care
+of the work for us:
+the fact that it is \emph{allowed} to float
+anywhere in the plane lets us capture the idea that
+$\Aff^2$ should be irreducible
+without having to expend any additional effort.
+\begin{remark}
+	Surprisingly, the converse of this proposition is false:
+	we have seen $\Spec \CC[x]/(x^2)$ has only one point,
+	so is certainly irreducible.
+	But $A = \CC[x]/(x^2)$ is not an integral domain.
+	So this is one weird-ness introduced by allowing ``non-radical'' behavior.
+\end{remark}
+
+At this point you might notice something:
+\begin{theorem}
+	[Points are in bijection with irreducible closed sets]
+	Consider $X = \Spec A$.
+	For every irreducible closed set $Z$,
+	there is exactly one point $\kp$ such that $Z = \ol{\{\kp\}}$.
+	(In particular points of $X$ are in bijection
+	with closed subsets of $X$.)
+\end{theorem}
+\begin{proof}
+	[Idea of proof]
+	The point $\kp$ corresponds to the closed set $\VV(\kp)$,
+	which one can show is irreducible.
+	% Maybe I really should prove this here,
+	% but I don't really want to draw to much attention to radicals yet;
+	% there's too much going on already.
+\end{proof}
+This gives you a better way to draw non-closed points:
+they are the generic points lying along any irreducible closed set
+(consisting of more than just one point).
 
 \section{A useless definition of the structure sheaf}
 \prototype{Still $\CC[x_1, \dots, x_n] / I$.}
@@ -288,9 +420,8 @@ If you want more examples,
 take any of the ones from \Cref{sec:localize_prime_ideal},
 and try to think about what they mean geometrically.
 
-\section{The importance of distinguished open sets (aka the hyperbola effect matters)}
-\prototype{Let $X = \Spec \CC[x] = \Aff^1$ and $U = D(x)$,
-the line minus the origin.}
+\section{The value of distinguished open sets}
+\prototype{$D(x)$ in $\Spec \CC[x]$ is the punctured line.}
 
 We will now really hammer in the importance of
 the distinguished open sets.
@@ -301,7 +432,7 @@ The definition is analogous to before:
 	a \vocab{distinguished open set}.
 \end{definition}
 Distinguished open sets will have three absolutely crucial properties,
-which build on each ohter.
+which build on each other.
 
 \subsection{A basis of the Zariski topology}
 The first is a topological observation:
@@ -311,17 +442,16 @@ The first is a topological observation:
 	form a basis for the Zariski topology:
 \end{theorem}
 \begin{proof}
-	Let $U$ be an open set.
-	It is the complement of some closed set
-	$\VV(I) = \bigcap_{f \in I} V(f)$.
-	Thus $U = \bigcup_{f \in I} D(f)$.
+	Let $U$ be an open set;
+	suppose it is the complement of closed set $V(I)$.
+	Then verify that \[ U = \bigcup_{f \in I} D(f). \qedhere \]
 \end{proof}
 
 \subsection{Sections are computable}
 The second critical fact is that we can compute the relevant sections.
 \begin{theorem}
-	[Sections of distinguished open sets are nice]
-	If $A$ is a ring and $f \in A$ then
+	[Sections of $D(f)$ are localizations away from $f$]
+	Let $A$ be a ring and $f \in A$.
 	Then \[ \OO_{\Spec A}(D(f)) \cong A_f. \]
 \end{theorem}
 \begin{proof}
@@ -337,29 +467,6 @@ The second critical fact is that we can compute the relevant sections.
 		\cong \CC[x,y] / (xy-1). \]
 \end{example}
 
-The previous two results answer an important prayer:
-how we can forget about sheafification.
-\begin{moral}
-	We can compute any section $\OO_X(U)$ in practice
-	by using distinguished open sets and sheaf axioms.
-\end{moral}
-And thus we can forget about the original definition of $\OO_X$
-which involved sheafification.
-(This perspective is so useful that some sources,
-like Vakil \cite[\S4.1]{ref:vakil}
-will \emph{define} $\OO_{\Spec A}$
-by requiring $\OO_{\Spec A}(D(f)) = A_f$.)
-
-Here is a classical example; there are more coming.
-\begin{example}
-	[Punctured plane]
-	Let $X = \Spec \CC[x,y]$,
-	and consider the origin, the point $\km = (x,y)$.
-	This ideal is maximal, so it corresponds to a closed point,
-	and we can consider the open set $U$.
-\end{example}
-\todo{write me}
-
 On a tangential note,
 we had better also note somewhere that $\Spec A = D(1)$
 is itself distinguished open, so the global sections can be recovered.
@@ -373,11 +480,14 @@ is itself distinguished open, so the global sections can be recovered.
 \end{proof}
 
 \subsection{They are affine}
-The third final important fact is that
+We know $\OO_X(D(f)) = A_f$.
+In fact, if you draw $\Spec A_f$,
+you will find that it looks exactly like $D(f)$.
+So the third final important fact is that
 $D(f)$ will actually be \emph{isomorphic} to $\Spec A_f$
 (just like the line minus the origin is isomorphic to the hyperbola).
 We can't make this precise yet,
-because we have not yet discussed morphisms of locally ringed space.
+because we have not yet discussed morphisms of schemes.
 %However, you can already see this at the level of topological spaces;
 %see \Cref{prob:homeomorphism}.
 %Since distinguished open sets form a base,
@@ -386,6 +496,72 @@ because we have not yet discussed morphisms of locally ringed space.
 %given any open set $U \subseteq \Spec A$, and point $\kp \in U$,
 %there is some open neighborhood $V \ni p$ contained in $U$
 %which is itself affine.
+
+\section{Classic example: the punctured plane}
+To drive the point home with the previous section,
+we now show you how you can forget about sheafification,
+if you never liked it.\footnote{This perspective is
+	so useful that some sources, like Vakil \cite[\S4.1]{ref:vakil}
+	will \emph{define} $\OO_{\Spec A}$
+	by requiring $\OO_{\Spec A}(D(f)) = A_f$,
+	rather than use sheafification as we did.}
+The idea is that:
+\begin{moral}
+	We can compute any section $\OO_X(U)$ in practice
+	by using distinguished open sets and sheaf axioms.
+\end{moral}
+
+Let $X = \Spec \CC[x,y]$,
+and consider the origin, i.e.\ the point $\km = (x,y)$.
+This ideal is maximal, so it corresponds to a closed point,
+and we can consider the open set $U$
+consisting of all the points other than $\km$.
+We wish to compute $\OO_X(U)$.
+
+\begin{center}
+\begin{asy}
+	graph.xaxis("$\mathcal{V}(y)$", red);
+	graph.yaxis("$\mathcal{V}(x)$", red);
+	fill(box( (-3,-3), (3,3) ), opacity(0.2)+lightcyan);
+	opendot(origin, blue+1.5);
+	label("$\mathfrak m = (x,y)$", origin, dir(45), blue);
+\end{asy}
+\end{center}
+
+Unfortunately, $U$ is not distinguished open.
+But, we can compute it anyways by writing $U = D(x) \cup D(y)$:
+conveniently, $D(x) \cap D(y) = D(xy)$.
+By the sheaf axioms,
+we have a pullback square
+\begin{center}
+\begin{tikzcd}
+	\OO_X(U) \ar[r] \ar[d] & \OO_X(D(x)) = \CC[x,y]_{x} \ar[d] \\
+	\OO_X(D(x)) = \CC[x,y]_{y} \ar[r] & \OO_X(D(xy)) = \CC[x,y]_{xy}
+\end{tikzcd}
+\end{center}
+or equivalently
+\begin{center}
+\begin{tikzcd}
+	\OO_X(U) \ar[r] \ar[d] & \CC[x,x\inv,y] \ar[d] \\
+	\CC[x,y,y\inv] \ar[r] & \CC[x,y,x\inv,y\inv].
+\end{tikzcd}
+\end{center}
+In other words, $\OO_X(U)$ consists of pairs
+\begin{align*}
+	f &\in \CC[x,y,x\inv] \\
+	g &\in \CC[x,y,y\inv]
+\end{align*}
+which agree on the overlap:
+$f = g$ on $D(x) \cap D(y)$.
+Well, we can describe
+$f$ as a polynomial with some $x$'s in the denominator, and
+$g$ as a polynomial with some $y$'s in the denominator.
+If they match, the denominator is actually constant.
+Put crudely,
+\[ \CC[x,y,x\inv] \cap \CC[x,y,y\inv] = \CC[x,y]. \]
+In conclusion,
+\[ \OO_X(U) = \CC[x,y]. \]
+That is, we get no additional functions.
 
 \section{Recap}
 To recap, let $A$ be a ring.
@@ -400,7 +576,9 @@ To recap, let $A$ be a ring.
 	$\VV(I)$ to be the closed sets, for ideals $I \subseteq A$.
 	\begin{itemize}
 		\ii The distinguished open sets $D(f)$,
-		the complements of $\VV(f)$, form a topological basis.
+		form a topological basis.
+		\ii In this basis, the irreducible closed sets
+		are exactly the closures of points.
 	\end{itemize}
 
 	\ii Finally, we defined a sheaf $\OO_X$.
@@ -418,115 +596,30 @@ To recap, let $A$ be a ring.
 	so we don't have to resort to the definition using sheafification.
 \end{itemize}
 
-\section{A gazillion examples of affine schemes}
-We now give an enormous list of examples.
-Each example gets its own subsection,
-rather than having page-long orange boxes.
-
-\todo{mention Krull dimension}
-
-\subsection{Example: $\Spec k$, a single point}
-
-%%fakesection One-dimensional
-\subsection{Example: $\Spec \CC[x]$, a one-dimensional line}
-\subsection{Example: $\Spec \RR[x]$, a one-dimensional line with complex conjugates glued (no fear nullstellensatz)}
-\subsection{Example: $\Spec k[x]$, over any ground field}
-\subsection{Example: $\Spec \ZZ$, a one-dimensional scheme}
-
-%% 0D from 2D
-\subsection{Example: $\Spec k[x] / (x^2-x)$, a scheme with two points}
-\subsection{Example: $\Spec k[x]/(x^2)$, the double point}
-So, let me elaborate a little on the ``double point'' scheme
-\[ X_2 = \Spec \CC[x] / (x^2) \]
-since it is such an important motivating example.
-How it does differ from the ``one-point'' scheme $X_1 = \Spec \CC[x] / (x)$?
-
-The difference can only be seen on the level of the structure sheaves.
-Indeed,
-\begin{itemize}
-	\ii As a set of points, $X_2$ has only one point, call it $p_2 = (x)$.
-	Similarly, $X_1$ has only one point, call it $p_1 = (0)$.
-	\ii The two Zariski topologies are the same
-	(at any rate there is only one topology on a one-point space).
-	\ii But at the structure sheaf level, $X_2$ has a ``bigger'' sheaf:
-	the ring of functions on the single point $p_2$ is instead
-	a \emph{two-dimensional} $\CC$-vector space $\CC[x]/(x^2)$.
-	This formalizes the notion that this point is ``fat'':
-	specifying a function from $p_2$ to $\CC$ now gives you
-	\emph{two} degrees of freedom instead of just one.
-\end{itemize}
-
-Another way to think about is in terms of functions.
-Consider polynomials $f = a_0 + a_1x + a_2x^2 + \dots$ on $\CC[x]$.
-Then we have a sequence of maps
-\begin{diagram}
-	\CC[x] & \rTo & \CC[x]/(x^2) & \rTo & \CC[x] / (x) \\
-	f & \rMapsto & a_0 + a_1x & \rMapsto & a_0
-\end{diagram}
-So $p_1$ only remembers the value of $f$, i.e.\ it remembers $f(0)$.
-But the point $p_2$ remembers more than just the value of $f$:
-it also remembers the first derivative of $f$.
-In \cite{ref:vakil} one draws a picture of this by taking $0 \in \CC$
-and adding a little bit of ``infinitesimal fuzz'' around it.
-
-One can play the analogy more.
-There's a ``triple point'' $X_3 = \Spec \CC[x] / (x^3) = \{p_3\}$
-whose ring of functions has three degrees of freedom:
-specifying a ``function'' on $p_3$ gives you three degrees of freedom.
-Analogously, it remembers both the first and second derivatives 
-of any polynomial in $\CC[x]$.
-In \cite{ref:vakil}, this is ``the point $0$ with even more fuzz''.
-Going even further,
-$\CC[x,y] / (x^2,y)$ is ``the origin with fuzz in the $x$-direction'',
-$\CC[x,y] / (x,y)^2$ is ``the origin with fuzz in all directions'',
-and so on and so forth.
-
-% \subsection{Example: $\Spec \Zc{49}$, a doubled $7$}
-
-%% Two-dimensional
-\subsection{Example: $\Spec \Zc{60}$, a scheme with three points}
-\subsection{Example: $\Spec k[x,y]$, the two-dimensional plane}
-\subsection{Example: $\Spec \ZZ[x]$, a strange two-dimensional scheme}
-
-%% 1D cut out from 2D
-\subsection{Example: $\Spec k[x,y]/(y-x^2)$, the parabola}
-\subsection{Example: $\Spec k[x,y]/(xy)$, two axes}
-\subsection{Example: $\Spec k[x] \times k[y]$, two ``parallel'' lines}
-
-%% 1D with holes
-\subsection{Example: $\Spec k[x]_x$, the punctured line (or hyperbola)}
-\subsection{Example: $\Spec \ZZ_{55}$, deleting $5$ and $11$}
-
-%% 0D --- stalks above 1D
-\subsection{Example: $\Spec (k[x,y]/(xy))_{x+y}$, two axes with the origin deleted}
-
-\subsection{Example: $\Spec k[x]_{(x)}$, the stalk above the origin}
-\subsection{Example: $\Spec k[x]_{(0)}$, the stalk above the generic point}
-\subsection{Example: $\Spec \ZZ_{(5)}$, the stalk above $(5)$}
-\subsection{Example: $\Spec \ZZ_{(0)} = \Spec \QQ$}
-\subsection{Example: $\Spec k[x,y]_{(x,y)}$, the stalk above the origin}
-\subsection{Example: $\Spec k[x,y]_{(y-x^2)}$, the stalk above the parabola}
-\subsection{Example: $\Spec k[x,y]_{(0)}$, the stalk above the generic point}
-
 \section\problemhead
+The next chapter contains many, many
+detailed examples of affine schemes to train your intuition,
+so it might actually work better if you read
+the next chapter before attempting these problems.
 
 \begin{problem}
-	Describe the points of $\Spec \QQ[x]$.
+	[Punctured gyrotop, communicated by Aaron Pixton]
+	The gyrotop is the scheme $X = \Spec \CC[x,y,z] / (xy,z)$.
+	We let $U$ denote the open subset obtained
+	by deleting the closed point $\km = (x,y,z)$.
+	Compute $\OO_X(U)$.
 	\begin{hint}
-		Galois conjugates.
+		$k[x,y] \times k[z,z\inv]$.
 	\end{hint}
 \end{problem}
-\todo{punctured dreidel}
 
 \begin{dproblem}
-	[Chinese remainder theorem]
-	Consider $X = \Spec \Zc{60}$, which as a topological space has three points.
-	By considering $\OO_X(X)$ prove the Chinese theorem
-	\[ \Zc{60} \cong \Zc{4} \times \Zc{3} \times \Zc{5}. \]
-	\begin{hint}
-		Appeal to \Cref{prob:finite_sheaf}.
-	\end{hint}
+	[Spectrums are quasicompact]
+	\gim
+	Show that $\Spec A$ is quasicompact for any ring $A$.
 \end{dproblem}
+
+\endinput
 
 \begin{problem}
 	[From Andrew Critch]
@@ -535,8 +628,8 @@ and so on and so forth.
 	Show that $A$ is an integral domain if and only if it has no idempotents,
 	and $A_\kp$ is an integral domain for every prime $\kp$.
 	\begin{hint}
-		Show that if $\Spec R$ is connected and its stalks are irreducible,
-		then $\Spec R$ is itself irreducible.
+		Show that if $\Spec A$ is connected and its stalks are irreducible,
+		then $\Spec A$ is itself irreducible.
 		Consider nilradical $N = \sqrt{(0)}$.
 	\end{hint}
 	\begin{sol}

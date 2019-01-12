@@ -1,0 +1,111 @@
+\chapter{An enormous list of examples of affine schemes}
+
+To cement in the previous chapter,
+we now give an enormous list of examples.
+Each example gets its own section,
+rather than having page-long orange boxes.
+
+
+\section{Example: $\Spec k$, a single point}
+This one is easy: for any field $k$
+
+%%fakechapter One-dimensional
+\section{Example: $\Spec \CC[x]$, a one-dimensional line}
+\section{Example: $\Spec \RR[x]$, a one-dimensional line with complex conjugates glued (no fear nullstellensatz)}
+\section{Example: $\Spec k[x]$, over any ground field}
+\section{Example: $\Spec \ZZ$, a one-dimensional scheme}
+
+%% 0D from 2D
+\section{Example: $\Spec k[x] / (x^2-x)$, a scheme with two points}
+\section{Example: $\Spec k[x]/(x^2)$, the double point}
+So, let me elaborate a little on the ``double point'' scheme
+\[ X_2 = \Spec \CC[x] / (x^2) \]
+since it is such an important motivating example.
+How it does differ from the ``one-point'' scheme $X_1 = \Spec \CC[x] / (x)$?
+
+The difference can only be seen on the level of the structure sheaves.
+Indeed,
+\begin{itemize}
+	\ii As a set of points, $X_2$ has only one point, call it $p_2 = (x)$.
+	Similarly, $X_1$ has only one point, call it $p_1 = (0)$.
+	\ii The two Zariski topologies are the same
+	(at any rate there is only one topology on a one-point space).
+	\ii But at the structure sheaf level, $X_2$ has a ``bigger'' sheaf:
+	the ring of functions on the single point $p_2$ is instead
+	a \emph{two-dimensional} $\CC$-vector space $\CC[x]/(x^2)$.
+	This formalizes the notion that this point is ``fat'':
+	specifying a function from $p_2$ to $\CC$ now gives you
+	\emph{two} degrees of freedom instead of just one.
+\end{itemize}
+
+Another way to think about is in terms of functions.
+Consider polynomials $f = a_0 + a_1x + a_2x^2 + \dots$ on $\CC[x]$.
+Then we have a sequence of maps
+\begin{diagram}
+	\CC[x] & \rTo & \CC[x]/(x^2) & \rTo & \CC[x] / (x) \\
+	f & \rMapsto & a_0 + a_1x & \rMapsto & a_0
+\end{diagram}
+So $p_1$ only remembers the value of $f$, i.e.\ it remembers $f(0)$.
+But the point $p_2$ remembers more than just the value of $f$:
+it also remembers the first derivative of $f$.
+In \cite{ref:vakil} one draws a picture of this by taking $0 \in \CC$
+and adding a little bit of ``infinitesimal fuzz'' around it.
+
+One can play the analogy more.
+There's a ``triple point'' $X_3 = \Spec \CC[x] / (x^3) = \{p_3\}$
+whose ring of functions has three degrees of freedom:
+specifying a ``function'' on $p_3$ gives you three degrees of freedom.
+Analogously, it remembers both the first and second derivatives 
+of any polynomial in $\CC[x]$.
+In \cite{ref:vakil}, this is ``the point $0$ with even more fuzz''.
+Going even further,
+$\CC[x,y] / (x^2,y)$ is ``the origin with fuzz in the $x$-direction'',
+$\CC[x,y] / (x,y)^2$ is ``the origin with fuzz in all directions'',
+and so on and so forth.
+
+% \section{Example: $\Spec \Zc{49}$, a doubled $7$}
+
+%% Two-dimensional
+\section{Example: $\Spec \Zc{60}$, a scheme with three points}
+\section{Example: $\Spec k[x,y]$, the two-dimensional plane}
+\section{Example: $\Spec \ZZ[x]$, a strange two-dimensional scheme}
+
+%% 1D cut out from 2D
+\section{Example: $\Spec k[x,y]/(y-x^2)$, the parabola}
+\section{Example: $\Spec k[x,y]/(xy)$, two axes}
+\section{Example: $\Spec k[x] \times k[y]$, two ``parallel'' lines}
+
+%% 1D with holes
+\section{Example: $\Spec k[x]_x$, the punctured line (or hyperbola)}
+\section{Example: $\Spec \ZZ_{55}$, deleting $5$ and $11$}
+
+%% 0D --- stalks above 1D
+\section{Example: $\Spec (k[x,y]/(xy))_{x+y}$, two axes with the origin deleted}
+
+\section{Example: $\Spec k[x]_{(x)}$, the stalk above the origin}
+\section{Example: $\Spec k[x]_{(0)}$, the stalk above the generic point}
+\section{Example: $\Spec \ZZ_{(5)}$, the stalk above $(5)$}
+\section{Example: $\Spec \ZZ_{(0)} = \Spec \QQ$}
+\section{Example: $\Spec k[x,y]_{(x,y)}$, the stalk above the origin}
+\section{Example: $\Spec k[x,y]_{(y-x^2)}$, the stalk above the parabola}
+\section{Example: $\Spec k[x,y]_{(0)}$, the stalk above the generic point}
+
+
+\section{\problemhead}
+\begin{problem}
+	Describe the points of $\Spec \QQ[x]$.
+	\begin{hint}
+		Galois conjugates.
+	\end{hint}
+\end{problem}
+
+\begin{dproblem}
+	[Chinese remainder theorem]
+	Consider $X = \Spec \Zc{60}$, which as a topological space has three points.
+	By considering $\OO_X(X)$ prove the Chinese theorem
+	\[ \Zc{60} \cong \Zc{4} \times \Zc{3} \times \Zc{5}. \]
+	\begin{hint}
+		Appeal to \Cref{prob:finite_sheaf}.
+	\end{hint}
+\end{dproblem}
+

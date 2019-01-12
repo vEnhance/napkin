@@ -375,12 +375,12 @@ so we do it carefully now.
 		\[ \OO_{V, (0,0)}
 			= \left\{ \frac{f(x,y)}{g(x,y)} \mid f,g \in \CC[x,y] / (y-x^2),
 				\; g(0,0) \ne 0 \right\}. \]
-		For example, $\frac{y}{1+x} = \frac{x^2}{1+x}$ denote the same element
-		in the stalk.
+		For example, $\frac{y}{1+x} = \frac{x^2}{1+x}$
+		denote the same element in the stalk.
 		Actually, you could give a canonical choice of representative
 		by replacing $y$ with $x^2$ everywhere, so it would also be
 		correct to write
-		\[ \OO_{V, \text{origin}}
+		\[ \OO_{V, (0,0)}
 			= \left\{ \frac{f(x)}{g(x)} \mid \; g(0) \ne 0 \right\} \]
 		which is the same as the first example.
 	\end{enumerate}
@@ -431,40 +431,63 @@ for the examples to make sense.
 	\end{enumerate}
 \end{definition}
 \begin{remark}
+	[For keepers of the empty set]
 	The above axioms imply $\SF(\varnothing) = 0$ (the zero ring).
 	This is not worth worrying about until you actually need it,
 	so you can forget I said that.
 \end{remark}
-This is best illustrated by picture: consider an open cover $U_1 \cup U_2$.
+This is best illustrated by picture in the case of just two open sets:
+consider two open sets $U$ and $V$.
+Then the sheaf axioms are saying something about
+$\SF(U \cup V)$, $\SF(U \cap V)$, $\SF(U)$ and $\SF(V)$.
 \begin{center}
 	\begin{asy}
 		size(4cm);
 		filldraw(shift(-0.5,0)*unitcircle, lightred+opacity(0.3), red);
 		filldraw(shift( 0.5,0)*unitcircle, lightblue+opacity(0.3), blue);
-		label("$U_1$", (-0.5,0)+dir(135), dir(135), red);
-		label("$U_2$", ( 0.5,0)+dir(45), dir(45), blue);
+		label("$U$", (-0.5,0)+dir(135), dir(135), red);
+		label("$V$", ( 0.5,0)+dir(45), dir(45), blue);
 	\end{asy}
 \end{center}
 Then for a sheaf of functions, the axioms are saying that:
 \begin{itemize}
 	\ii If $s$ and $t$ are functions (with property $P$)
-	on the whole space $U = U_1 \cup U_2$,
-	and $s \restrict{U_1} = t \restrict{U_1}$,
-	$s \restrict{U_2} = t \restrict{U_2}$,
+	on $U \cap V$
+	and $s \restrict{U} = t \restrict{U}$,
+	$s \restrict{V} = t \restrict{V}$,
 	then $s = t$ on the entire union.
 	This is clear.
 
-	\ii If $s_1$ is a function with property $P$ on $U_1$
-	and $s_2$ is a function with property $P$ on $U_2$,
+	\ii If $s_1$ is a function with property $P$ on $U$
+	and $s_2$ is a function with property $P$ on $V$,
 	and the two functions agree on the overlap,
-	then one can collate them to obtain a function $s$
+	then one can glue them to obtain a function $s$
 	on the whole space:
-	this is obvious, but \textbf{the catch is that the collated function
-	needs to have property $P$ as well.}
+	this is obvious, but
+	\textbf{the catch is that the collated function
+	needs to have property $P$ as well}
+	(i.e.\ needs to be an element of $\SF(U \cup V)$).
 	That's why it matters that $P$ is local.
 \end{itemize}
+So you can summarize both of these as saying:
+any two functions on $U$ and $V$
+which agree on the overlap
+glue to a \emph{unique} function on $U \cup V$.
+If you like category theory,
+you might remember we alluded to this in \Cref{ex:diff_pullback}.
+\begin{exercise}
+	[For the categorically inclined]
+	Show that the diagram
+	\begin{center}
+	\begin{tikzcd}
+		\SF(U \cup V) \ar[r] \ar[d] & \SF(U) \ar[d] \\
+		\SF(V) \ar[r] & \SF(U \cap V)
+	\end{tikzcd}
+	\end{center}
+	is a pullback square.
+\end{exercise}
 
-Now for the examples, which are more enlightening:
+Now for the examples.
 \begin{example}
 	[Examples and non-examples of sheaves]
 	Note that every example of a stalk we computed
