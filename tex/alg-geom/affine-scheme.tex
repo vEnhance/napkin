@@ -339,7 +339,6 @@ The second critical fact is that we can compute the relevant sections.
 
 The previous two results answer an important prayer:
 how we can forget about sheafification.
-Therefore:
 \begin{moral}
 	We can compute any section $\OO_X(U)$ in practice
 	by using distinguished open sets and sheaf axioms.
@@ -375,8 +374,8 @@ $D(f)$ will actually be \emph{isomorphic} to $\Spec A_f$
 (just like the line minus the origin is isomorphic to the hyperbola).
 We can't make this precise yet,
 because we have not yet discussed morphisms of locally ringed space.
-However, you can already see this at the level of topological spaces;
-see \Cref{prob:homeomorphism}.
+%However, you can already see this at the level of topological spaces;
+%see \Cref{prob:homeomorphism}.
 %Since distinguished open sets form a base,
 %though, this means that open sets of affine schemes
 %are, at least locally, themselves affine schemes:
@@ -415,18 +414,24 @@ To recap, let $A$ be a ring.
 	so we don't have to resort to the definition using sheafification.
 \end{itemize}
 
-\section{A gazillion examples}
+\section{A gazillion examples of affine schemes}
 We now give an enormous list of examples.
 Each example gets its own subsection,
 rather than having page-long orange boxes.
 
-\subsection{$\Spec k$}
-\subsection{$\Spec \CC[x]$}
-\subsection{$\Spec \RR[x]$}
-\subsection{$\Spec \ZZ$}
-\subsection{$\Spec \Zc{60}$}
-\subsection{$\Spec k[xy]/(xy)$}
-\subsection{$\Spec k[x]/(x^2)$}
+\todo{mention Krull dimension}
+
+\subsection{Example: $\Spec k$, a single point}
+
+%%fakesection One-dimensional
+\subsection{Example: $\Spec \CC[x]$, a one-dimensional line}
+\subsection{Example: $\Spec \RR[x]$, a one-dimensional line with complex conjugates glued (no fear nullstellensatz)}
+\subsection{Example: $\Spec k[x]$, over any ground field}
+\subsection{Example: $\Spec \ZZ$, a one-dimensional scheme}
+
+%% 0D from 2D
+\subsection{Example: $\Spec k[x] / (x^2-x)$, a scheme with two points}
+\subsection{Example: $\Spec k[x]/(x^2)$, the double point}
 So, let me elaborate a little on the ``double point'' scheme
 \[ X_2 = \Spec \CC[x] / (x^2) \]
 since it is such an important motivating example.
@@ -472,19 +477,41 @@ $\CC[x,y] / (x^2,y)$ is ``the origin with fuzz in the $x$-direction'',
 $\CC[x,y] / (x,y)^2$ is ``the origin with fuzz in all directions'',
 and so on and so forth.
 
-\subsection{$\Spec \ZZ[x]$}
+% \subsection{Example: $\Spec \Zc{49}$, a doubled $7$}
 
-\subsection{$\Spec k[x]_{(x)}$}
+%% Two-dimensional
+\subsection{Example: $\Spec \Zc{60}$, a scheme with three points}
+\subsection{Example: $\Spec k[x,y]$, the two-dimensional plane}
+\subsection{Example: $\Spec \ZZ[x]$, a strange two-dimensional scheme}
+
+%% 1D cut out from 2D
+\subsection{Example: $\Spec k[x,y]/(y-x^2)$, the parabola}
+\subsection{Example: $\Spec k[x,y]/(xy)$, two axes}
+\subsection{Example: $\Spec k[x] \times k[y]$, two ``parallel'' lines}
+
+%% 1D with holes
+\subsection{Example: $\Spec k[x]_x$, the punctured line (or hyperbola)}
+\subsection{Example: $\Spec \ZZ_{55}$, deleting $5$ and $11$}
+
+%% 0D --- stalks above 1D
+\subsection{Example: $\Spec (k[x,y]/(xy))_{x+y}$, two axes with the origin deleted}
+
+\subsection{Example: $\Spec k[x]_{(x)}$, the stalk above the origin}
+\subsection{Example: $\Spec k[x]_{(0)}$, the stalk above the generic point}
+\subsection{Example: $\Spec \ZZ_{(5)}$, the stalk above $(5)$}
+\subsection{Example: $\Spec \ZZ_{(0)} = \Spec \QQ$}
+\subsection{Example: $\Spec k[x,y]_{(x,y)}$, the stalk above the origin}
+\subsection{Example: $\Spec k[x,y]_{(y-x^2)}$, the stalk above the parabola}
+\subsection{Example: $\Spec k[x,y]_{(0)}$, the stalk above the generic point}
 
 \section\problemhead
 
 \begin{problem}
-	Describe the points of $\Spec \RR[x]$.
+	Describe the points of $\Spec \QQ[x]$.
 	\begin{hint}
 		Galois conjugates.
 	\end{hint}
 \end{problem}
-
 \todo{punctured dreidel}
 
 \begin{dproblem}

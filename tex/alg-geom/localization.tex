@@ -143,12 +143,31 @@ motivating forces for the construction of the affine scheme.
 Here are the two special cases of localization we will need the most.
 
 \section{Localization away from an element}
-\prototype{$\CC[x]_{x}$ is Laurent polynomials.}
+\prototype{$\ZZ$ localized away from $6$ has fractions $\frac{m}{2^x 3^y}$.}
 \begin{definition}
-	For $g \in R$, we define the \vocab{localization of $R$ away from $g$},
-	denoted $R_g$ to be $\{1, g, g^2, g^3, \dots\}\inv R$.
-	(Note that $\left\{ 1, g, g^2, \dots \right\}$ is multiplicatively closed.)
+	For $f \in A$, we define the \vocab{localization of $A$ away from $f$},
+	denoted $A_f$, to be $\{1, f, f^2, f^3, \dots\}\inv A$.
+	(Note that $\left\{ 1, f, f^2, \dots \right\}$ is multiplicatively closed.)
 \end{definition}
+
+\begin{example}
+	[Some arithmetic examples of localizations]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii Let $A = \ZZ$. We localize away from $6$:
+		\[ A_{6} = \left\{ \frac{m}{6^n} \mid m \in \ZZ,
+			n \in \ZZ_{\ge 0} \right\}.  \]
+		So $A_6$ consist of those rational numbers whose
+		denominators have only powers of $2$ and $3$.
+		For example, it contains $\frac{5}{12} = \frac{15}{36}$.
+
+		\ii Here is a more confusing example:
+		if we localize $A = \Zc{60}$ away from the element $5$,
+		we get $A_5 \cong \Zc{12}$.
+		You should try to think about why this is the case.
+	\end{enumerate}
+\end{example}
+
 
 \begin{example}
 	[Localization at an element, algebraic geometry flavored]
@@ -185,26 +204,10 @@ Here are the two special cases of localization we will need the most.
 	\[ A_{(x)} \cong \CC[x]_{(x)}. \]
 \end{example}
 
-\begin{example}
-	[Some arithmetic examples of localizations]
-	\listhack
-	\begin{enumerate}[(a)]
-		\ii Let $A = \ZZ$. We localize away from $6$:
-		\[ A_{6} = \left\{ \frac{m}{6^n} \mid m \in \ZZ,
-			n \in \ZZ_{\ge 0} \right\}.  \]
-		So $A_6$ consist of those rational numbers whose
-		denominators have only powers of $2$ and $3$.
-		For example, it contains $\frac{5}{12} = \frac{15}{36}$.
-
-		\ii Here is a more confusing example:
-		if we localize $A = \Zc{60}$ away from the element $5$,
-		we get $A_5 \cong \Zc{12}$.
-		You should try to think about why this is the case.
-	\end{enumerate}
-\end{example}
-
 \section{Localization at a prime ideal}
+\prototype{$\ZZ$ localized at $(5)$ has fractions $\frac{m}{n}$ with $5 \nmid n$.}
 \label{sec:localize_prime_ideal}
+
 \begin{definition}
 	If $A$ is a ring and $\kp$ is a prime ideal, then we define
 	\[ A_\kp \defeq \left( A \setminus \kp \right)^{-1} A. \]
@@ -279,7 +282,7 @@ Consequently, we give several examples in this vein.
 		\[ \ZZ_{(0)} = \left\{ \frac mn \mid n \ne 0 \right\}
 			\cong \QQ. \]
 		\ii If we localize $\ZZ$ at $(3)$, we get
-		\[ \ZZ_{(3)} = \left\{ \frac mn \mid n \ne 3 \right\} \]
+		\[ \ZZ_{(3)} = \left\{ \frac mn \mid \gcd(n,3) = 1 \right\} \]
 		which is the ring of rational numbers
 		whose denominators are relatively prime to $3$.
 	\end{enumerate}
@@ -293,11 +296,12 @@ Consequently, we give several examples in this vein.
 \end{example}
 
 
-\section{Two mandatory algebra exercises}
+\section{Prime ideals of localizations (and quotients)}
+\prototype{The examples with $A = \ZZ$.}
 We take the time now to mention how you can
 think about prime ideals of localized rings.
 \begin{proposition}
-	[The prime ideals of a localization]
+	[The prime ideals of $S\inv A$]
 	Let $A$ be a ring and $S \subseteq A$ a multiplicatively closed set.
 	Then there is a natural inclusion-preserving bijection between:
 	\begin{itemize}
@@ -308,7 +312,8 @@ think about prime ideals of localized rings.
 \begin{proof}
 	Consider the homomorphism $\iota \colon A \to S\inv A$.
 	For any prime ideal $\kq \subseteq S\inv A$,
-	its pre-image is $\iota\pre(\kq)$.
+	its pre-image $\psi\pre(\kq)$ is a prime ideal of $A$
+	(by \Cref{prob:prime_preimage}).
 	Conversely, for any prime ideal $\kp \subseteq A$
 	not meeting $S$,
 	$S\inv \kp = \left\{ \frac{a}{s} \mid a \in \kp, s \in S \right\}$
@@ -316,42 +321,122 @@ think about prime ideals of localized rings.
 	An annoying check shows that this produces the required bijection.
 \end{proof}
 In practice, we will almost always use the corollary
-where $S$ is one of the two special cases above,
-and we write it out here.
+where $S$ is one of the two special cases we discussed at length:
 \begin{corollary}
+	[Spectrums of localizations]
 	Let $A$ be a ring.
 	\begin{enumerate}[(a)]
 		\ii If $\kp$ is a prime ideal of $A$,
+		then the prime ideals of $A_f$ are naturally
+		in bijection with prime ideals of $A$
+		\textbf{do not contain the element} $f$.
+
+		\ii If $\kp$ is a prime ideal of $A$,
 		then the prime ideals of $A_\kp$ are naturally
-		in bijection with prime ideals of $A$ contained \emph{within} $\kp$.
+		in bijection with prime ideals of $A$
+		which are \textbf{subsets of} $\kp$.
 	\end{enumerate}
 \end{corollary}
+\begin{proof}
+	Part (b) is immediate; a prime ideal doesn't meet $A \setminus \kp$
+	exactly if it is contained in $\kp$.
+	For part (a), we want prime ideals of $A$ not containing
+	any \emph{power} of $f$.
+	But if the ideal is prime and contains $f^n$,
+	then it should contain either $f$ or $f^{n-1}$,
+	and so at least for prime ideals these are equivalent.
+\end{proof}
+Notice again how the notation is a bit of a nuisance.
+Anyways, here are some examples, to help cement the picture.
+\begin{example}
+	[Prime ideals of $A_6$]
+	Let $A = \ZZ$ and
+	suppose we localize away from the element $6$,
+	i.e.\ consider $A_{6}$.
+	As we saw,
+	\[ A_{6} = \left\{ \frac{n}{2^x 3^y} \mid n \in \ZZ,
+		x,y \in \ZZ_{\ge 0} \right\}.  \]
+	consist of those rational numbers whose
+	denominators have only powers of $2$ and $3$.
+	Note that $(5) \subset A_6$ is a prime ideal:
+	those elements of $A_6$ with $5$ dividing the numerator.
+	Similarly, $(7)$, $(11)$, $(13)$, \dots\
+	and even $(0)$ give prime ideals of $A_6$.
 
+	But $(2)$ and $(3)$ no longer correspond to
+	prime ideals; in fact in $A_6$ we have $(2) = (3) = (1)$,
+	the whole ring.
+\end{example}
 
-\todo{ideals bijection}
+\begin{example}
+	[Prime ideals of $A_{(5)}$]
+	Let $A = \ZZ$ and
+	suppose we localize at the prime $(5)$,
+	i.e.\ consider $A_{(5)}$.
+	As we saw,
+	\[ A_{5} = \left\{ \frac{m}{n} \mid m,n \in \ZZ,
+			5 \nmid n \right\}.  \]
+	consist of those rational numbers whose
+	denominators are not divisible by $5$.
+	This is an integral domain, so $(0)$ is still a prime ideal.
+	There is one other prime ideal: $(5)$,
+	i.e.\ those elements whose numerators are divisible by $5$.
 
-\todo{write this}
-The previous example illustrates an important observation:
-\begin{exercise}
-	Let $I \subsetneq R$ be a proper ideal.
-	Construct a bijection between the maximal ideals of $R$ containing $I$,
-	and the maximal ideals of $R/I$.
-\end{exercise}
-(\cite{ref:vakil} labels this exercise as
-``Essential Algebra Exercise (Mandatory if you haven't done it before)''.)
+	There are no other prime ideals:
+	if $p \ne 5$ is a rational prime,
+	then $(p) = (1)$, the whole ring, again.
+\end{example}
+
+While we are here, we mention that quotients
+have a similar interpretation.
+You may remember this from \Cref{prob:inclusion_preserving}
+a long time ago, if you did that problem.
+\begin{proposition}
+	[The prime ideals of $A/I$]
+	If $A$ is a ring and $I$ is any ideal (not necessarily prime)
+	then the prime ideals of $A/I$
+	are in bijection with ideals of $A$
+	which are \textbf{supersets of} $I$.
+\end{proposition}
+\begin{proof}
+	Consider the quotient homomorphism $\psi \colon A \to A/I$.
+	For any prime ideal $\kq \subseteq A/I$,
+	its pre-image $\iota\pre(\kq)$ is a prime ideal
+	(by \Cref{prob:prime_premimage}).
+	Conversely, for any prime ideal $\kp$
+	with $I \subseteq \kp \subseteq A$,
+	we get a prime ideal of $A/I$ by looking at $\kp \pmod I$.
+	An annoying check shows that this produces the required bijection.
+\end{proof}
+\begin{example}
+	[Prime ideals of $\Zc{60}$]
+	The ring $\Zc{60}$ has three prime ideals:
+	\begin{align*}
+		(2) &= \left\{ 0, 2, 4, \dots, 58 \right\} \\
+		(3) &= \left\{ 0, 3, 6, \dots, 57 \right\} \\
+		(5) &= \left\{ 0, 5, 10, \dots, 55 \right\}.
+	\end{align*}
+	Back in $\ZZ$, these correspond to the three prime ideals
+	which are supersets of
+	$60\ZZ = \left\{ \dots, -60, 0, 60, 120, \dots \right\}$.
+\end{example}
 
 
 \section{\problemhead}
 
 \begin{problem}
-	Let $A = \Zc{2016}$. Compute $A_{60}$.
+	Let $A = \Zc{2016}$, and consider the element $60 \in A$.
+	Compute $A_{60}$, the localization of $A$ away from $60$.
+	\begin{sol}
+		One should get $A_{60} = \Zc{7}$.
+	\end{sol}
 \end{problem}
 
 \begin{problem}
 	[Injectivity of localizations]
 	Let $A$ be a ring and $S \subseteq A$ a multiplicatively closed set.
 	Find necessary and sufficient conditions
-	for the map $A \mapsto S\inv A$ to be injective.
+	for the map $A \to S\inv A$ to be injective.
 	\begin{hint}
 		Consider zero divisors.
 	\end{hint}
@@ -359,6 +444,15 @@ The previous example illustrates an important observation:
 		If and only if $S$ has no zero divisors.
 	\end{sol}
 \end{problem}
+
+\begin{sproblem}
+	[Alluding to local rings]
+	Let $A$ be a ring, and $\kp$ a prime ideal.
+	How many maximal ideals does $A_\kp$ have?
+	\begin{hint}
+		Only one!
+	\end{hint}
+\end{sproblem}
 
 \begin{problem}
 	Let $A$ be a ring such that $A_\kp$ is an integral domain
@@ -371,4 +465,3 @@ The previous example illustrates an important observation:
 		Take $A = \CC[x,y] / (xy)$.
 	\end{sol}
 \end{problem}
-\todo{problems}

@@ -117,6 +117,13 @@ So we give a name to such rings.
 \begin{ques}
 	Show that a field is an integral domain.
 \end{ques}
+\begin{exercise}
+	[Cancellation in integral domains]
+	Suppose $ac = bc$ in an integral domain, and $c \neq 0$.
+	Show that that $a = b$.
+	(There is no $c\inv$ to multiply by,
+	so you have to use the definition.)
+\end{exercise}
 
 \begin{example}
 	[Examples of integral domains]
@@ -275,7 +282,7 @@ There's an analogous theorem to the one for prime ideals.
 \end{theorem}
 \begin{proof}
 	A ring is a field if and only if $(0)$ is the only maximal ideal.
-	So this follows by \Cref{prob:inclusion_reversing}.
+	So this follows by \Cref{prob:inclusion_preserving}.
 \end{proof}
 
 \begin{corollary}
@@ -370,15 +377,55 @@ Not olympiad problems, but again the spirit is very close
 to what you might see in an olympiad.
 
 \begin{problem}
-	Is $\QQ[\sqrt2] = \left\{ a + b\sqrt2 \mid a,b \in \QQ \right\}$ a field?
+	Consider the ring
+	\[ \QQ[\sqrt2] = \left\{ a + b\sqrt2 \mid a,b \in \QQ \right\}. \]
+	Is it a field?
 	\begin{hint}
 		Yes.
 	\end{hint}
 \end{problem}
 
 \begin{sproblem}
-	Prove that a integral domain with finitely many elements is a field.
+	[Pre-image of prime ideals]
+	\label{prob:prime_preimage}
+	Suppose $\phi \colon R \to S$ is a ring homomorphism,
+	and $I \subseteq S$ is a prime ideal.
+	Prove that $\phi\pre(I)$ is prime as well.
+	\begin{hint}
+		This is just a definition chase.
+	\end{hint}
+	\begin{sol}
+		Consider $ab \in \phi\pre(I)$,
+		meaning $\phi(ab) = \phi(a) \phi(b) \in I$.
+		Since $I$ is prime, either $\phi(a) \in I$ or $\phi(b) \in I$.
+		In the former case we get $a \in \phi\pre(I)$ as needed;
+		the latter case we get $b \in \phi\pre(I)$.
+	\end{sol}
+\end{sproblem}
+
+\begin{sproblem}
+	\gim
+	Let $R$ be an integral domain with finitely many elements.
+	Prove that $R$ is a field.
 	\label{prob:finite_domain_field}
+	\begin{hint}
+		Fermat's little theorem type argument;
+		cancellation holds in integral domains.
+	\end{hint}
+	\begin{sol}
+		Let $x \in R$ with $x \neq 0$.
+		Look at the powers $x$, $x^2$, \dots.
+		By pigeonhole, eventually two of them coincide.
+		So assume $x^m = x^n$ where $m < n$, or equivalently
+		\[ 0  = x \cdot x \cdot \dots \cdot x
+			\cdot \left( x^{n-m} - 1 \right). \]
+		Since $x \ne 0$, we get $x^{n-m} - 1 = 0$,
+		or $x^{n-m} = 1$.
+		So $x^{n-m-1}$ is an inverse for $x$.
+
+		This means every nonzero element has an inverse,
+		ergo $R$ is a field.
+	\end{sol}
 \end{sproblem}
 
 \begin{sproblem}
