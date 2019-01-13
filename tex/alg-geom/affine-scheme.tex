@@ -7,6 +7,12 @@ It will be a ringed space, so we need to define
 	\ii The topology on it, and
 	\ii The structure sheaf on it.
 \end{itemize}
+Quick note: the next chapter after this one officially
+contains no new content, and instead
+contains a long list of examples of affine schemes.
+So if something written in this chapter is not making sense,
+one thing worth trying is skimming through the next chapter
+to see if any of the examples there are more helpful.
 
 \section{Some more advertising}
 Let me describe what the construction of $\Spec A$ is going to do.
@@ -325,6 +331,24 @@ This gives you a better way to draw non-closed points:
 they are the generic points lying along any irreducible closed set
 (consisting of more than just one point).
 
+At this point\footnote{Pun not intended},
+I may as well give you the real definition of generic point.
+\begin{definition}
+	Given a topological space $X$,
+	a \vocab{generic point} $\eta$
+	is a point whose closure is the entire space $X$.
+\end{definition}
+So for us, when $A$ is an integral domain,
+$\Spec A$ has generic point $(0)$.
+\begin{abuse}
+	Very careful readers might note I am being a little careless
+	with referring to $(y-x^2)$ as
+	``the generic point along the parabola''
+	in $\Spec \CC[x,y]$.
+	What's happening is that $\VV(y-x^2)$ is a closed set,
+	and as a topological subspace, it has generic point $(y-x^2)$.
+\end{abuse}
+
 \section{A useless definition of the structure sheaf}
 \prototype{Still $\CC[x_1, \dots, x_n] / I$.}
 
@@ -601,6 +625,26 @@ The next chapter contains many, many
 detailed examples of affine schemes to train your intuition,
 so it might actually work better if you read
 the next chapter before attempting these problems.
+
+\begin{problem}
+	[{$\Spec \QQ[x]$}]
+	Describe the points and topology of $\Spec \QQ[x]$.
+	\begin{hint}
+		Galois conjugates.
+	\end{hint}
+\end{problem}
+
+\begin{problem}
+	[Product rings]
+	Describe the points and topology of $\Spec A \times B$
+	in terms of $\Spec A$ and $\Spec B$.
+\end{problem}
+
+\begin{problem}
+	Show that if $A$ is \emph{not}
+	an integral domain,
+	then $\Spec A$ is not irreducible.
+\end{problem}
 
 \begin{problem}
 	[Punctured gyrotop, communicated by Aaron Pixton]

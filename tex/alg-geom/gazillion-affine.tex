@@ -1,103 +1,330 @@
-\chapter{An enormous list of examples of affine schemes}
-
+\chapter{List of examples of affine schemes}
 To cement in the previous chapter,
 we now give an enormous list of examples.
 Each example gets its own section,
 rather than having page-long orange boxes.
 
-
 \section{Example: $\Spec k$, a single point}
-This one is easy: for any field $k$
+This one is easy: for any field $k$,
+$X = \Spec k$ has a single point,
+corresponding to the only proper ideal $(0)$.
+There is only way to put a topology on it.
+
+As for the sheaf,
+\[ \OO_X(X) = \OO_{X,(0)} = k. \]
+So the space is remembering what field it wants to be over.
+If we are complex analysists,
+the set of functions on a single point is $\CC$;
+if we are number theoerists,
+maybe the set of functions on a single point is $\QQ$.
 
 %%fakechapter One-dimensional
-\section{Example: $\Spec \CC[x]$, a one-dimensional line}
-\section{Example: $\Spec \RR[x]$, a one-dimensional line with complex conjugates glued (no fear nullstellensatz)}
-\section{Example: $\Spec k[x]$, over any ground field}
-\section{Example: $\Spec \ZZ$, a one-dimensional scheme}
-
-%% 0D from 2D
-\section{Example: $\Spec k[x] / (x^2-x)$, a scheme with two points}
-\section{Example: $\Spec k[x]/(x^2)$, the double point}
-So, let me elaborate a little on the ``double point'' scheme
-\[ X_2 = \Spec \CC[x] / (x^2) \]
-since it is such an important motivating example.
-How it does differ from the ``one-point'' scheme $X_1 = \Spec \CC[x] / (x)$?
-
-The difference can only be seen on the level of the structure sheaves.
-Indeed,
+\section{$\Spec \CC[x]$, a one-dimensional line}
+The scheme $X = \Spec \CC[x]$ is our beloved one-dimensional line.
+It consists of two types of points:
 \begin{itemize}
-	\ii As a set of points, $X_2$ has only one point, call it $p_2 = (x)$.
-	Similarly, $X_1$ has only one point, call it $p_1 = (0)$.
-	\ii The two Zariski topologies are the same
-	(at any rate there is only one topology on a one-point space).
-	\ii But at the structure sheaf level, $X_2$ has a ``bigger'' sheaf:
-	the ring of functions on the single point $p_2$ is instead
-	a \emph{two-dimensional} $\CC$-vector space $\CC[x]/(x^2)$.
-	This formalizes the notion that this point is ``fat'':
-	specifying a function from $p_2$ to $\CC$ now gives you
-	\emph{two} degrees of freedom instead of just one.
+	\ii The closed points $(x-a)$, corresponding to each
+	complex number $a \in \CC$, and
+	\ii The \emph{generic} point $(0)$.
 \end{itemize}
+As for the Zariski topology, every open set contains $(0)$,
+which captures the idea it is close to everywhere:
+no matter where you stand, you can still here the buzzing of the fly!
+True to the irreducibility of this space,
+the open sets are huge:
+the proper \emph{closed sets} consist of finitely many closed points.
 
-Another way to think about is in terms of functions.
-Consider polynomials $f = a_0 + a_1x + a_2x^2 + \dots$ on $\CC[x]$.
-Then we have a sequence of maps
-\begin{diagram}
-	\CC[x] & \rTo & \CC[x]/(x^2) & \rTo & \CC[x] / (x) \\
-	f & \rMapsto & a_0 + a_1x & \rMapsto & a_0
-\end{diagram}
-So $p_1$ only remembers the value of $f$, i.e.\ it remembers $f(0)$.
-But the point $p_2$ remembers more than just the value of $f$:
-it also remembers the first derivative of $f$.
-In \cite{ref:vakil} one draws a picture of this by taking $0 \in \CC$
-and adding a little bit of ``infinitesimal fuzz'' around it.
+Here is a picture:
+for lack of better place to put it,
+the point $(0)$ is floating around just above the line in red.
+\begin{center}
+	\begin{asy}
+		size(8cm);
+		pair A = (-8,0); pair B = (8,0);
+		draw(A--B, Arrows);
+		dot("$(x)$", (0,0), dir(-90), blue);
+		dot("$(x-3)$", (3,0), dir(-90), blue);
+		dot("$(x+i)$", (-4,0), dir(-90), blue);
+		dot("$(0)$", (0,1), dir(90), red);
+		draw( (-6,0)..(-3,0.5)..(-1,1)--(1,1)--(3,0.5)--(6,0), dotted+red );
+		label("$\operatorname{Spec} \mathbb C[x]$", A, dir(-90));
+	\end{asy}
+\end{center}
 
-One can play the analogy more.
-There's a ``triple point'' $X_3 = \Spec \CC[x] / (x^3) = \{p_3\}$
-whose ring of functions has three degrees of freedom:
-specifying a ``function'' on $p_3$ gives you three degrees of freedom.
-Analogously, it remembers both the first and second derivatives 
-of any polynomial in $\CC[x]$.
-In \cite{ref:vakil}, this is ``the point $0$ with even more fuzz''.
-Going even further,
-$\CC[x,y] / (x^2,y)$ is ``the origin with fuzz in the $x$-direction'',
-$\CC[x,y] / (x,y)^2$ is ``the origin with fuzz in all directions'',
-and so on and so forth.
+The notion of ``value at $\kp$'' works as expected.
+For example, $f = x^2+5$ is a global section of $\CC[x]$.
+If we evaluate it at $\kp = x-3$,
+we find $f(\kp) = f \pmod \kp = x^2+5 \pmod{x-3} = 14 \pmod{x-3}$.
+As \[ \CC[x] / \kp \cong \CC \qquad \text{by $x \mapsto 3$} \]
+we see we are just plugging $x=3$.
 
-% \section{Example: $\Spec \Zc{49}$, a doubled $7$}
+Of course, the stalk at $(x-3)$ carries more information.
+In this case it is $\CC[x]_{(x-3)}$.
+Which means that if we stand near the point $(x-3)$,
+rational functions are all fine as long as no $x-3$
+appears in the denominator.
+So, $\frac{x^2+8}{(x-1)(x-5)}$ is a fine example of a germ near $x=3$.
 
-%% Two-dimensional
-\section{Example: $\Spec \Zc{60}$, a scheme with three points}
-\section{Example: $\Spec k[x,y]$, the two-dimensional plane}
-\section{Example: $\Spec \ZZ[x]$, a strange two-dimensional scheme}
+Things get more interesting if we
+consider the generic point $\eta = (0)$.
+What happens if we evaluate the global section
+$f = x^2+5$ at $\eta$?
+Well, we just get $f(\eta) = x^2+5$ ---
+taking modulo $0$ doesn't do much.
+Fitting, it means that if you want to be able to evaluate
+a polynomial $f$ at a general complex number,
+you actually just need the whole polynomial.
 
-%% 1D cut out from 2D
-\section{Example: $\Spec k[x,y]/(y-x^2)$, the parabola}
-\section{Example: $\Spec k[x,y]/(xy)$, two axes}
-\section{Example: $\Spec k[x] \times k[y]$, two ``parallel'' lines}
+What is the stalk $\OO_{X, \eta}$?
+Well, it should be $\CC[x]_{(0)} = \CC(x)$,
+which is the set of \emph{rational} functions.
+And that's what you expect.
+For example, $\frac{x^2+8}{(x-1)(x-5)}$
+certainly describes a rational function on ``most'' complex numbers.
 
-%% 1D with holes
-\section{Example: $\Spec k[x]_x$, the punctured line (or hyperbola)}
-\section{Example: $\Spec \ZZ_{55}$, deleting $5$ and $11$}
+\section{$\Spec \RR[x]$, a one-dimensional line
+with complex conjugates glued (no fear nullstellensatz)}
 
-%% 0D --- stalks above 1D
-\section{Example: $\Spec (k[x,y]/(xy))_{x+y}$, two axes with the origin deleted}
+Despite appearances, this actually
+looks almost exactly like $\Spec \CC[x]$,
+even more than you expect.
+The main thing to keep in mind is that now $(x^2+1)$
+is a point, which you can loosely think of as $\pm i$.
+So it almost didn't matter that $\RR$ is not algebraically closed;
+the $\CC$ is showing through anyways.
+But this time, because we only consider
+real coefficient polynomials,
+we do not distinguish between ``conjugate'' $+i$ and $-i$.
+Put another way, we have folded $a+bi$ and $a-bi$ into a single point:
+$(x+i)$ and $(x-i)$ merge to form $x^2+1$.
 
-\section{Example: $\Spec k[x]_{(x)}$, the stalk above the origin}
-\section{Example: $\Spec k[x]_{(0)}$, the stalk above the generic point}
-\section{Example: $\Spec \ZZ_{(5)}$, the stalk above $(5)$}
-\section{Example: $\Spec \ZZ_{(0)} = \Spec \QQ$}
-\section{Example: $\Spec k[x,y]_{(x,y)}$, the stalk above the origin}
-\section{Example: $\Spec k[x,y]_{(y-x^2)}$, the stalk above the parabola}
-\section{Example: $\Spec k[x,y]_{(0)}$, the stalk above the generic point}
+To be explicit, there are three types of points:
+\begin{itemize}
+	\ii $(x-a)$ for each real number $a$
+	\ii $(x^2-ax+b)$ if $a^2 < 4b$, and
+	\ii the generic point $(0)$, again.
+\end{itemize}
+The ideals $(x-a)$ and $(x^2-ax+b)$
+are each closed points:
+the quotients with $\RR[x]$ are both fields
+($\RR$ and $\CC$, respectively).
 
 
+We have been drawing $\Spec \CC[x]$ as a one-dimensional line,
+so $\Spec \RR[x]$ will be drawn the same way.
+\begin{center}
+	\begin{asy}
+		size(8cm);
+		pair A = (-8,0); pair B = (8,0);
+		draw(A--B, Arrows);
+		dot("$(x)$", (0,0), dir(-90), blue);
+		dot("$(x-3)$", (3,0), dir(-90), blue);
+		dot("$(x^2+1)$", (-4,0), dir(-90), blue);
+		dot("$(0)$", (0,1), dir(90), red);
+		draw( (-6,0)..(-3,0.5)..(-1,1)--(1,1)--(3,0.5)--(6,0), dotted+red );
+		label("$\operatorname{Spec} \mathbb R[x]$", A, dir(-90));
+	\end{asy}
+\end{center}
+
+One nice thing about this is that the nullstellensatz
+is less scary than it was with classical varieties.
+The short version is that the function $x^2+1$
+vanishes at a point of $\Spec \RR[x]$,
+namely $(x^2+1)$ itself!
+
+You might remember a long time ago we made a big fuss about
+the weak nullstellensatz, for example in
+\Cref{pr:complex_variety_nonempty}:
+if $I$ was a proper ideal in $\CC[x_1, \dots, x_n]$
+there was \emph{some} point $(a_1, \dots, a_n) \in \CC^n$
+such that $f(a_1, \dots, a_n) = 0$ for all $f \in I$.
+With schemes, it doesn't matter anymore:
+if $I$ is a proper ideal of a ring $A$,
+then some maximal ideal contains it,
+and so $\VV(I)$ is nonempty in $\Spec A$.
+
+\section{$\Spec k[x]$, over any ground field}
+In general, if $\ol k$ is the algebraic closure of $k$,
+then $\Spec k[x]$ looks like $\Spec \ol k[x]$
+with all the Galois conjugates glued together.
+So we will almost never need ``algebraically closed''
+hypotheses anymore: we're working with polynomial ideals,
+so all the elements are implicitly there, anyways.
+
+\section{$\Spec \ZZ$, a one-dimensional scheme}
+The great thing about $\Spec \ZZ$ is that
+it basically looks like $\Spec k[x]$, too,
+being a one-dimensional scheme.
+It has two types of prime ideals:
+\begin{itemize}
+	\ii $(p)$, for every rational prime $p$,
+	\ii and the generic point $(0)$.
+\end{itemize}
+So the picture almost does not change.
+\begin{center}
+	\begin{asy}
+		size(8cm);
+		pair A = (-8,0); pair B = (8,0);
+		draw(A--B, Arrows);
+		dot("$(7)$", (0,0), dir(-90), blue);
+		dot("$(3)$", (3,0), dir(-90), blue);
+		dot("$(19)$", (-4,0), dir(-90), blue);
+		dot("$(0)$", (0,1), dir(90), red);
+		draw( (-6,0)..(-3,0.5)..(-1,1)--(1,1)--(3,0.5)--(6,0), dotted+red );
+		label("$\operatorname{Spec} \mathbb R[x]$", A, dir(-90));
+	\end{asy}
+\end{center}
+This time $\eta = (0)$ has stalk $\ZZ_{(0)} = \QQ$,
+so a ``rational function'' is literally a rational number!
+Thus, $\frac{20}{19}$ is a function
+with a double root at $(2)$, a root at $(5)$,
+and a simple pole at $(19)$.
+If we evaluate it at $\kp = (3)$, we get $2 \pmod 3$.
+
+The stalk $X_{(3)}$ is the rational numbers
+that don't have a pole at $3$.
+
+%%fakechapter 0D from 1D
+\section{$\Spec k[x] / (x^2-x)$, two points}
+If we were working with affine varieties,
+you would already know what the answer is:
+$x^2-x = 0$ has solutions $x=0$ and $x=1$,
+so this should be a scheme with two points.
+
+To see this come true, we use \Cref{prop:prime_quotient}:
+the points of $\Spec k[x]/(x^2-x)$
+should correspond to prime ideals of $k[x]$
+contained in $(x^2-x)$.
+As $k[x]$ is a PID, there are only two, $(x-1)$ and $(x)$.
+They are each maximal,
+since their quotient with $k[x]$ is a field (namely $k$),
+so as promised $\Spec k[x] / (x^2-x)$ has just two closed points.
+
+Each point has a stalk above it isomorphic to $k$.
+A section on the whole space $X$ is just a choice
+of two values, one at $(x)$ and one at $(x-1)$.
+\begin{center}
+\begin{asy}
+	size(3cm);
+	draw("$k$", (-2,0)--(-2,5), dir(180), red);
+	draw("$k$", (2,0)--(2,5), red);
+	dot("$(x)$", (-2,0), dir(-90), blue);
+	dot("$(x-1)$", (2,0), dir(-90), blue);
+	label("$\operatorname{Spec} k[x]/(x^2-x)$", (0,5), 2*dir(90));
+\end{asy}
+\end{center}
+So actually, this is a geometric way of thinking about the
+ring-theoretic fact that
+\[ k[x] / \left( x^2-x \right) \cong k \times k
+	\quad\text{by } f \mapsto \left( f(0), f(1) \right).  \]
+
+Also, this is the first example of a reducible space in this chapter:
+in fact $X$ is even disconnected.
+Accordingly there is no generic point floating around:
+as the space is discrete, all points are closed.
+
+\section{$\Spec k[x]/(x^2)$, the double point}
+We can now elaborate on the ``double point'' scheme
+\[ X_2 = \Spec k[x] / (x^2) \]
+since it is such an important motivating example.
+How it does differ from the ``one-point'' scheme
+$X_1 = \Spec k[x] / (x) = \Spec k$?
+Both $X_2$ and $X_1$ have exactly one point,
+and so obviously the topologies are the same too.
+
+The difference is that the stalk
+(equivalently, the section, since we have only one point)
+is larger:
+\[ \OO_{X_2}(X_2) = \OO_{X_2, (x)} = k[x]/(x^2). \]
+So to specify a function on a double point,
+you need to specify two parameters, not just one:
+if we take a polynomial
+\[ f = a_0 + a_1 x + \dots \in k[x] \]
+then evaluating it at the double point
+will remember both $a_0$ and the ``first derivative'' say.
+
+\section{$\Spec k[x]/(x^3-x)$, a double point and a single point}
+There is no problem putting the previous two examples side by side:
+the scheme $X = \Spec k[x] / (x^3-x)$
+consists of a double point next to a single point.
+Note that the stalks are different:
+the one above the double point is larger.
+\begin{center}
+\begin{asy}
+	size(5cm);
+	draw("$k[x] / (x^2)$", (-2,0)--(-2,7), dir(180), red);
+	draw("$k$", (2,0)--(2,5), red);
+	dot("$(x)$", (-2,0), dir(-90), blue+5);
+	dot("$(x-1)$", (2,0), dir(-90), blue);
+	label("$\operatorname{Spec} k[x]/(x^3-x)$", (0,7), 2*dir(90));
+\end{asy}
+\end{center}
+This time, we implicitly have the ring isomorphism
+\[ k[x] / (x^3-x) \cong k[x] / (x^2) \times k \]
+by $f \mapsto \left( f(0) + f'(0) x, f(1) \right)$.
+The derivative is meant formally here!
+
+\section{$\Spec \Zc{60}$, a scheme with three points}
+We've being seeing geometric examples of ring products coming up,
+but actually the Chinese remainder theorem you are used to
+with integers is no different.
+(This example $X = \Spec \Zc{60}$
+is taken from \cite[\S4.4.11]{ref:vakil}.)
+
+By \Cref{prop:prime_quotient},
+the prime ideals of $\Zc{60}$ are $(2)$, $(3)$, $(5)$.
+But you can think of this also as coming out of $\Spec \ZZ$:
+as $60$ was a function with a double root at $(2)$,
+and single roots at $(3)$ and $(5)$.
+\begin{center}
+\begin{asy}
+	size(6cm);
+	draw("$\mathbb Z / 4 \mathbb Z$", (-2,0)--(-2,7), dir(180), red);
+	draw("$\mathbb Z / 3 \mathbb Z$", (0,0)--(0,5), red);
+	draw("$\mathbb Z / 5 \mathbb Z$", (2,0)--(2,6), red);
+	dot("$(2)$", (-2,0), dir(-90), blue+5);
+	dot("$(3)$", ( 0,0), dir(-90), blue);
+	dot("$(5)$", ( 2,0), dir(-90), blue);
+	label("$\operatorname{Spec} \mathbb Z / 60 \mathbb Z$", (0,7), 2*dir(90));
+\end{asy}
+\end{center}
+Actually, although I have been claiming the ring isomorphisms,
+the sheaves really actually give us a full proof.
+Let me phrase it in terms of global sections:
+\begin{align*}
+	\Zc{60} &= \OO_X(X) \\
+	&= \OO_X( \{(2)\} ) \times \OO_X( \{(3)\} ) \times \OO_X( \{(5)\} ) \\
+	&= \OO_{X,(2)} \times \OO_{X,(3)} \times \OO_{X,(5)} \\
+	&= \Zc4 \times \Zc3 \times \Zc5.
+\end{align*}
+So the theorem that $\OO_X(X) = A$ for $X = \Spec A$
+is doing the ``work'' here;
+the sheaf axioms then give us the Chinese remainder theorem from here.
+
+%%fakechapter Two-dimensional
+\section{$\Spec k[x,y]$, the two-dimensional plane}
+\section{$\Spec \ZZ[x]$, a strange two-dimensional scheme}
+
+%%fakechapter 1D cut out from 2D
+\section{$\Spec k[x,y]/(y-x^2)$, the parabola}
+\section{$\Spec k[x,y]/(xy)$, two axes}
+\section{$\Spec k[x] \times k[y]$, two ``parallel'' lines}
+
+%%fakechapter 1D with holes
+\section{$\Spec k[x]_x$, the punctured line (or hyperbola)}
+\section{$\Spec \ZZ_{55}$, deleting $5$ and $11$}
+\section{$\Spec (k[x,y]/(xy))_{x+y}$, two axes with the origin deleted}
+%%fakechapter 0D --- stalks above 1D
+\section{$\Spec k[x]_{(x)}$, the stalk above the origin}
+\section{$\Spec k[x]_{(0)}$, the stalk above the generic point}
+\section{$\Spec \ZZ_{(5)}$, the stalk above $(5)$}
+\section{$\Spec \ZZ_{(0)} = \Spec \QQ$}
+\section{$\Spec k[x,y]_{(x,y)}$, the stalk above the origin}
+\section{$\Spec k[x,y]_{(y-x^2)}$, the stalk above the parabola}
+\section{$\Spec k[x,y]_{(0)}$, the stalk above the generic point}
+
+%%fakechapter Problems
 \section{\problemhead}
-\begin{problem}
-	Describe the points of $\Spec \QQ[x]$.
-	\begin{hint}
-		Galois conjugates.
-	\end{hint}
-\end{problem}
 
 \begin{dproblem}
 	[Chinese remainder theorem]
