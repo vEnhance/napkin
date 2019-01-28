@@ -230,7 +230,7 @@
 	postheadspace={0pt}
 ]{thmbluebox}
 
-\mdfdefinestyle{mdrecbox}{%
+\mdfdefinestyle{mdredbox}{%
 	linewidth=0.5pt,
 	skipabove=12pt,
 	frametitleaboveskip=5pt,
@@ -245,17 +245,17 @@
 }
 \declaretheoremstyle[
 	headfont=\bfseries\color{RawSienna},
-	mdframed={style=mdrecbox},
+	mdframed={style=mdredbox},
 	headpunct={\\[3pt]},
 	postheadspace={0pt},
-]{thmrecbox}
+]{thmredbox}
 
 \declaretheorem[%
 style=thmbluebox,name=Theorem,numberwithin=section]{theorem}
 \declaretheorem[style=thmbluebox,name=Lemma,sibling=theorem]{lemma}
 \declaretheorem[style=thmbluebox,name=Proposition,sibling=theorem]{proposition}
 \declaretheorem[style=thmbluebox,name=Corollary,sibling=theorem]{corollary}
-\declaretheorem[style=thmrecbox,name=Example,sibling=theorem]{example}
+\declaretheorem[style=thmredbox,name=Example,sibling=theorem]{example}
 
 \mdfdefinestyle{mdinlinebox}{%
 	skipabove=8pt,
