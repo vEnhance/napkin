@@ -318,13 +318,14 @@ where prime factorization of ideals \emph{does} work.
 More on that later.
 
 \section{Field of fractions}
-\prototype{The field of fractions of $\ZZ$ is $\QQ$.}
+\prototype{$\Frac(\ZZ) = \QQ$.}
 As long as we are here, we take the time to introduce a useful
 construction that turns any integral domain into a field.
 
 \begin{definition}
 	Given an integral domain $R$,
-	we define its \vocab{field of fractions} $K$ as follows:
+	we define its \vocab{field of fractions} or \vocab{fraction field}
+	$\Frac(R)$ as follows:
 	it consists of elements $a / b$, where $a,b \in R$ and $b \neq 0$.
 	We set $a / b \sim c / d$ if and only if $bc = ad$.
 	Addition and multiplication is defined by
@@ -340,16 +341,16 @@ I wouldn't worry about it\dots
 
 \begin{definition}
 	Let $k$ be a field.
-	The field of fractions of $k[x]$ is denoted $k(x)$
+	We define $k(x) = \Frac(k[x])$
 	(read ``$k$ of $x$''),
-	and called the \vocab{field of rational functions}.
+	and call it the \vocab{field of rational functions}.
 \end{definition}
 
 \begin{example}
 	[Examples of fraction fields]
 	\listhack
 	\begin{enumerate}[(a)]
-		\ii The field of fractions of $\ZZ$ is $\QQ$, \emph{by definition}.
+		\ii By \emph{definition}, $\Frac(\ZZ) = \QQ$.
 		\ii The field $\RR(x)$ consists of rational functions in $x$:
 		\[ \RR(x) = \left\{ \frac{f(x)}{g(x)} \mid f,g \in \RR[x] \right\}. \]
 		For example, $\frac{2x}{x^2-3}$ might be a typical element.
@@ -360,7 +361,7 @@ I wouldn't worry about it\dots
 	[Gaussian rationals]
 	\label{ex:gaussian_rationals}
 	Just like we defined $\ZZ[i]$ by abusing notation,
-	we can also write $\QQ(i)$.
+	we can also write $\QQ(i) = \Frac(\ZZ[i])$.
 	Officially, it should consist of
 	\[ \QQ(i) = \left\{ \frac{f(i)}{g(i)} \mid g(i) \ne 0 \right\} \]
 	for polynomials $f$ and $g$ with rational coefficients.
