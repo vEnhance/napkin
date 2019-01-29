@@ -1,8 +1,11 @@
-\chapter{List of examples of affine schemes}
-To cement in the previous chapter,
+\chapter{Interlude: a list of examples of affine schemes}
+\label{ch:spec_examples}
+To cement in the previous two chapters,
 we now give an enormous list of examples.
 Each example gets its own section,
 rather than having page-long orange boxes.
+
+In everything that follows, $k$ is any field.
 
 \section{Example: $\Spec k$, a single point}
 This one is easy: for any field $k$,
@@ -67,20 +70,26 @@ So, $\frac{x^2+8}{(x-1)(x-5)}$ is a fine example of a germ near $x=3$.
 
 Things get more interesting if we
 consider the generic point $\eta = (0)$.
+
+What is the stalk $\OO_{X, \eta}$?
+Well, it should be $\CC[x]_{(0)} = \CC(x)$,
+which is the again the set of \emph{rational} functions.
+And that's what you expect.
+For example, $\frac{x^2+8}{(x-1)(x-5)}$
+certainly describes a rational function on ``most'' complex numbers.
+
 What happens if we evaluate the global section
 $f = x^2+5$ at $\eta$?
 Well, we just get $f(\eta) = x^2+5$ ---
 taking modulo $0$ doesn't do much.
 Fitting, it means that if you want to be able to evaluate
 a polynomial $f$ at a general complex number,
-you actually just need the whole polynomial.
+you actually just need the whole polynomial
+(or rational function).
+We can think of this in terms of the residue field being $\CC(x)$:
+\[ \kappa( (0) ) = \Frac \left( \CC[x] / (0) \right)
+	\cong \Frac \CC[x] = \CC(x). \]
 
-What is the stalk $\OO_{X, \eta}$?
-Well, it should be $\CC[x]_{(0)} = \CC(x)$,
-which is the set of \emph{rational} functions.
-And that's what you expect.
-For example, $\frac{x^2+8}{(x-1)(x-5)}$
-certainly describes a rational function on ``most'' complex numbers.
 
 \section{$\Spec \RR[x]$, a one-dimensional line
 with complex conjugates glued (no fear nullstellensatz)}
@@ -235,13 +244,21 @@ and so obviously the topologies are the same too.
 The difference is that the stalk
 (equivalently, the section, since we have only one point)
 is larger:
-\[ \OO_{X_2}(X_2) = \OO_{X_2, (x)} = k[x]/(x^2). \]
+\[ \OO_{X_2, (x)} = \OO_{X_2}(X_2)  = k[x]/(x^2). \]
 So to specify a function on a double point,
 you need to specify two parameters, not just one:
 if we take a polynomial
 \[ f = a_0 + a_1 x + \dots \in k[x] \]
 then evaluating it at the double point
 will remember both $a_0$ and the ``first derivative'' say.
+
+I should mention that if you drop all the way to the residue
+field, you can't tell the difference between
+the double point and the single point anymore.
+For the residue field of $\Spec k[x] / (x^2)$ at $(x)$ is
+\[ \Frac\left( A / (x) \right) = \Frac k = k. \]
+Thus the set of \emph{values} is still just $k$;
+but the stalk, having enriched values, can tell the difference.
 
 \section{$\Spec k[x]/(x^3-x)$, a double point and a single point}
 There is no problem putting the previous two examples side by side:
@@ -303,17 +320,123 @@ the sheaf axioms then give us the Chinese remainder theorem from here.
 
 %%fakechapter Two-dimensional
 \section{$\Spec k[x,y]$, the two-dimensional plane}
-\section{$\Spec \ZZ[x]$, a strange two-dimensional scheme}
+We have seen this scheme already: it is visualized as a plane.
+There are three types of points:
+\begin{itemize}
+	\ii The closed points $(x-a, y-b)$,
+	which consists of single points of the plane.
+	\ii A non-closed point $(f(x,y))$ for any irreducible
+	polynomial $f$, which floats along some irreducible curve.
+	We illustrate this by drawing the dotted curve along
+	which the point is floating.
+	\ii The generic point $(0)$, floating along the entire plane.
+	I don't know a good place to put it in the picture,
+	so I'll just put it somewhere and draw a dotted circle around it.
+\end{itemize}
+
+Here is an illustration of all three types of points.
+\begin{center}
+\begin{asy}
+	graph.xaxis();
+	graph.yaxis();
+	real f(real x) { return x*x; }
+	graph.xaxis("$x$");
+	graph.yaxis("$y$");
+	draw(graph(f,-2,2,operator ..), blue+dotted, Arrows(TeXHead));
+	dot("$(y-x^2)$", (1.3, f(1.3)), dir(-45), blue);
+	dot("$(x-1,y+2)$", (1,-2), dir(-45), red);
+	pair O = (-3,3);
+	dot("$(0)$", O, dir(225), deepgreen);
+	filldraw(CR(O, 0.8), opacity(0.2)+lightgreen, dotted+green);
+\end{asy}
+\end{center}
+
+We also go ahead and compute the stalks above each point.
+\begin{itemize}
+	\ii The stalk above $(x-1, y+2)$ is
+	the set of rational functions $\frac{f(x,y)}{g(x,y)}$
+	such that $g(1,-2) \ne 0$.
+	\ii The stalk above the non-closed point $(y-x^2)$
+	the set of rational functions $\frac{f(x,y)}{g(x,y)}$
+	such that $g(t, t^2) \ne 0$.
+	For example the function $\frac{xy}{x+y-2}$ is still fine;
+	despite the fact it vanishes at the point $(1,1)$ and $(-2,4)$
+	on the parabola it is a function
+	on a ``generic point'' (crudely, ``most points'') of the parabola.
+	\ii The stalk above $(0)$ is the entire fraction field
+	$k(x,y)$ of rational functions.
+\end{itemize}
+
+Let's consider the global section $f = x^2 + y^2$
+and also take the value at each of the above points.
+\begin{itemize}
+	\ii $f \pmod{x-1,y-2} = 5$, so $f$ has value $5$ at $(x-1, y+2)$.
+	\ii The new bit is that we can think of evaluating
+	$f$ along the parabola too --- it is given a particular value
+	in the quotient $k[x,y] / (y-x^2)$.
+	We can think of it as $f = x^2+y^2 \equiv x^2+x^4 \pmod{y-x^2}$ for example.
+	Note that if we know the value of $f$ at the generic point of the parabola,
+	we can therefore also evaluate it at any closed point on the parabola.
+	\ii At the generic point $(0)$, $f \pmod{0} = f$.
+	So ``evaluating at the generic point'' does nothing, as in any other scheme.
+\end{itemize}
+
+
+\section{$\Spec \ZZ[x]$, a two-dimensional scheme, and Mumford's picture}
+We saw $\Spec \ZZ$ looked a lot like $\Spec k[x]$,
+and we will now see that $\Spec \ZZ[x]$ looks a lot like $\Spec k[x,y]$.
+As before, there are there types of prime ideals,
+but they will look somewhat more different:
+\begin{itemize}
+	\ii The closed points are now pairs $(p, f(x))$
+	where $p$ is a prime and $f$ is an irreducible polynomial modulo $p$.
+	Indeed, these are the maximal ideals:
+	the quotient $\ZZ[x] / (p,f)$ becomes some finite extension of $\FF_p$.
+	\ii There are now two different ``one-dimensional'' non-closed points:
+	\begin{itemize}
+		\ii Each rational prime gives a point $(p)$ and
+		\ii Each irreducible polynomial $f$ gives a point $(f)$.
+	\end{itemize}
+	Indeed, note that the quotients of $\ZZ[x]$ by each are integral domains.
+	\ii $\ZZ[x]$ is an integral domain,
+	so as always $(0)$ is our generic point for the entire space.
+\end{itemize}
+
+There is a famous picture of this scheme in Mumford's ``red book'',
+which I will produce here for culture-preservation reasons,
+even though there are some discrepancies between
+the pictures that we previously drew.
+\begin{center}
+	\includegraphics[width=0.9\textwidth]{media/mumforddrawing.jpg}
+\end{center}
+Mumford uses $[\kp]$ to denote the point $\kp$,
+which we don't, so you can ignore the square brackets that appear everywhere.
+The non-closed points are illustrated as balls of fuzz.
+There is one bit that I would do differently,
+in $V(3)$ and $V(7)$, there ought to be a point $(3,x^2+1)$,
+which is not drawn as a closed point in the picture,
+but rather as dashed oval.
+This is not right in the topological sense:
+as $\km = (3, x^2+1)$ is a maximal ideal,
+so it really is one closed point in the scheme.
+But the reason it might be thought of as counting as two points
+is that $\ZZ[x] / (3,x^2+1)$,
+the field of possible values at $\km$,
+is a two-dimensional $\FF_3$ vector space.
+
+
 
 %%fakechapter 1D cut out from 2D
 \section{$\Spec k[x,y]/(y-x^2)$, the parabola}
 \section{$\Spec k[x,y]/(xy)$, two axes}
+\section{$\Spec \ZZ[i]$, the Gaussian integers (one-dimensional)}
 \section{$\Spec k[x] \times k[y]$, two ``parallel'' lines}
 
 %%fakechapter 1D with holes
 \section{$\Spec k[x]_x$, the punctured line (or hyperbola)}
 \section{$\Spec \ZZ_{55}$, deleting $5$ and $11$}
 \section{$\Spec (k[x,y]/(xy))_{x+y}$, two axes with the origin deleted}
+
 %%fakechapter 0D --- stalks above 1D
 \section{$\Spec k[x]_{(x)}$, the stalk above the origin}
 \section{$\Spec k[x]_{(0)}$, the stalk above the generic point}
@@ -322,17 +445,4 @@ the sheaf axioms then give us the Chinese remainder theorem from here.
 \section{$\Spec k[x,y]_{(x,y)}$, the stalk above the origin}
 \section{$\Spec k[x,y]_{(y-x^2)}$, the stalk above the parabola}
 \section{$\Spec k[x,y]_{(0)}$, the stalk above the generic point}
-
-%%fakechapter Problems
-\section{\problemhead}
-
-\begin{dproblem}
-	[Chinese remainder theorem]
-	Consider $X = \Spec \Zc{60}$, which as a topological space has three points.
-	By considering $\OO_X(X)$ prove the Chinese theorem
-	\[ \Zc{60} \cong \Zc{4} \times \Zc{3} \times \Zc{5}. \]
-	\begin{hint}
-		Appeal to \Cref{prob:finite_sheaf}.
-	\end{hint}
-\end{dproblem}
 

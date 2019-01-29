@@ -1,4 +1,5 @@
-\chapter{Defining an affine scheme}
+\chapter{Affine schemes: the Zariski topology}
+\label{ch:spec_zariski}
 Now that we understand sheaves well,
 we can define an affine scheme.
 It will be a ringed space, so we need to define
@@ -7,7 +8,10 @@ It will be a ringed space, so we need to define
 	\ii The topology on it, and
 	\ii The structure sheaf on it.
 \end{itemize}
-Quick note: the next chapter after this one officially
+In this chapter, we handle the first two parts;
+\Cref{ch:spec_sheaf} does the last one.
+
+Quick note: \Cref{ch:spec_examples}
 contains no new content, and instead
 contains a long list of examples of affine schemes.
 So if something written in this chapter is not making sense,
@@ -349,282 +353,11 @@ $\Spec A$ has generic point $(0)$.
 	and as a topological subspace, it has generic point $(y-x^2)$.
 \end{abuse}
 
-\section{A useless definition of the structure sheaf}
-\prototype{Still $\CC[x_1, \dots, x_n] / I$.}
-
-We have now endowed $\Spec A$ with the Zariski topology,
-and so all that remains is to put a sheaf $\OO_{\Spec A}$ on it.
-To do this we want a notion of ``regular functions'' as before.
-
-This is easy to do since we have localizations on hand.
-\begin{definition}
-	First, let $\SF$ be the pre-sheaf of ``globally rational'' functions:
-	i.e.\ we define $\SF(U)$ to be the localization
-	\[
-		\SF(U) = \left\{
-			\frac fg \mid f, g \in A
-			\text{ and } g(\kp) \neq 0 \; \forall \kp \in U
-		\right\}
-		= \left(A \setminus \bigcup_{\kp \in U} \kp \right)\inv A.
-	\]
-	We now define the structure sheaf on $\Spec A$.
-	It is
-	\[ \OO_{\Spec A} = \SF\sh \]
-	i.e.\ the sheafification of the $\SF$ we just defined.
-\end{definition}
-\begin{exercise}
-	Compare this with the definition for $\OO_V$
-	with $V$ a complex variety, and check that they essentially match.
-\end{exercise}
-And thus, we have completed the transition to adulthood,
-with a complete definition of the affine scheme.
-
-If you really like compatible germs,
-you can write out the definition:
-\begin{definition}
-	Let $A$ be a ring.
-	Then $\Spec A$ is made into a ringed space by setting
-	\[ \OO_{\Spec A}(U)
-		= \left\{ (f_\kp \in A_\kp)_{\kp \in U}
-		\text{ which are locally quotients} \right\}. \]
-	That is, it consists of sequence $(f_\kp)_{\kp \in U}$, with
-	each $f_\kp \in A_\kp$, such that for every point $\kp$ there
-	is a neighborhood $U_\kp$ and an $f,g \in A$ such that
-	$f_\kq = \frac fg \in A_\kq$ for all $\kq \in U_\kp$.
-\end{definition}
-
-We will now \textbf{basically forget about this definition},
-because we will never use it in practice.
-In the next two sections, we will show you how to compute
-the stalks and sections of any affine scheme, without having
-to think about sheafification.
-(Hence the lack of examples in this section.)
-
-\section{The stalks of the structure sheaf}
-The stalks are the easy case,
-and you probably can guess what's happening.
-
-\begin{theorem}
-	[Stalks of $\Spec A$ are $A_\kp$]
-	Let $A$ be a ring and let $\kp \in \Spec A$.
-	Then \[ \OO_{\Spec A, \kp} \cong A_\kp. \]
-	In particular $X$ is a locally ringed space.
-\end{theorem}
-\begin{proof}
-	Since sheafification preserved stalks,
-	it's enough to check it for $\SF$ the pre-sheaf
-	of globally rational functions in our definition.
-	The proof is basically the same as \Cref{thm:stalks_affine_var}:
-	there is an obvious map $\SF_\kp \to A_\kp$ on germs by
-	\[ \left(U, f/g \in \SF(U) \right)
-		\mapsto f/g \in A_\kp . \]
-	(Note the $f/g$ on the left lives in $\SF(U)$
-	but the one on the right lives in $A_\kp$).
-	We show injectivity and surjectivity:
-	\begin{itemize}
-		\ii Injective: suppose $(U_1, f_1 / g_1)$ and $(U_2, f_2 / g_2)$
-		are two germs with $f_1/g_1 = f_2/g_2 \in A_\kp$.
-		This means $h(g_1 f_2 - f_2 g_1) = 0$ in $A$, for some nonzero $h$.
-		Then both germs identify with
-		the germ $(U_1 \cap U_2 \cap D(h), f_1 / g_1)$.
-		\ii Surjective: let $U = D(g)$. \qedhere
-	\end{itemize}
-\end{proof}
-
-\begin{example}
-	[Denominators not divisible by $x$]
-	We have seen this example so many times
-	that I will only write it in the new notation,
-	and make no further comment:
-	if $X = \Spec \CC[x]$ then
-	\[ \OO_{\Spec X, (x)} = \CC[x]_{(x)}. \]
-\end{example}
-
-If you want more examples,
-take any of the ones from \Cref{sec:localize_prime_ideal},
-and try to think about what they mean geometrically.
-
-\section{The value of distinguished open sets}
-\prototype{$D(x)$ in $\Spec \CC[x]$ is the punctured line.}
-
-We will now really hammer in the importance of
-the distinguished open sets.
-The definition is analogous to before:
-\begin{definition}
-	Let $f \in \Spec A$.
-	Then $D(f)$ is the set of $\kp$ such that $f(\kp) \neq 0$,
-	a \vocab{distinguished open set}.
-\end{definition}
-Distinguished open sets will have three absolutely crucial properties,
-which build on each other.
-
-\subsection{A basis of the Zariski topology}
-The first is a topological observation:
-\begin{theorem}
-	[Distinguished open sets form a base]
-	The distinguished open sets $D(f)$
-	form a basis for the Zariski topology:
-\end{theorem}
-\begin{proof}
-	Let $U$ be an open set;
-	suppose it is the complement of closed set $V(I)$.
-	Then verify that \[ U = \bigcup_{f \in I} D(f). \qedhere \]
-\end{proof}
-
-\subsection{Sections are computable}
-The second critical fact is that we can compute the relevant sections.
-\begin{theorem}
-	[Sections of $D(f)$ are localizations away from $f$]
-	Let $A$ be a ring and $f \in A$.
-	Then \[ \OO_{\Spec A}(D(f)) \cong A_f. \]
-\end{theorem}
-\begin{proof}
-	Omitted, but similar to
-	\Cref{thm:reg_func_distinguish_open}.
-\end{proof}
-
-\begin{example}
-	[The punctured line is isomorphic to a hyperbola]
-	The hyperbola effect now has a new notation too:
-	\[ \OO_{\Spec \CC[x]} (D(x))
-		= \CC[x]_{x} = \CC[x, x\inv]
-		\cong \CC[x,y] / (xy-1). \]
-\end{example}
-
-On a tangential note,
-we had better also note somewhere that $\Spec A = D(1)$
-is itself distinguished open, so the global sections can be recovered.
-\begin{corollary}
-	[$A$ is the ring of global sections]
-	The ring of global sections of $\Spec A$ is $A$.
-\end{corollary}
-\begin{proof}
-	By previous theorem, $\OO_{\Spec A}(\Spec A)
-	= \OO_{\Spec A}(D(1)) = A_1 = A$.
-\end{proof}
-
-\subsection{They are affine}
-We know $\OO_X(D(f)) = A_f$.
-In fact, if you draw $\Spec A_f$,
-you will find that it looks exactly like $D(f)$.
-So the third final important fact is that
-$D(f)$ will actually be \emph{isomorphic} to $\Spec A_f$
-(just like the line minus the origin is isomorphic to the hyperbola).
-We can't make this precise yet,
-because we have not yet discussed morphisms of schemes.
-%However, you can already see this at the level of topological spaces;
-%see \Cref{prob:homeomorphism}.
-%Since distinguished open sets form a base,
-%though, this means that open sets of affine schemes
-%are, at least locally, themselves affine schemes:
-%given any open set $U \subseteq \Spec A$, and point $\kp \in U$,
-%there is some open neighborhood $V \ni p$ contained in $U$
-%which is itself affine.
-
-\section{Classic example: the punctured plane}
-To drive the point home with the previous section,
-we now show you how you can forget about sheafification,
-if you never liked it.\footnote{This perspective is
-	so useful that some sources, like Vakil \cite[\S4.1]{ref:vakil}
-	will \emph{define} $\OO_{\Spec A}$
-	by requiring $\OO_{\Spec A}(D(f)) = A_f$,
-	rather than use sheafification as we did.}
-The idea is that:
-\begin{moral}
-	We can compute any section $\OO_X(U)$ in practice
-	by using distinguished open sets and sheaf axioms.
-\end{moral}
-
-Let $X = \Spec \CC[x,y]$,
-and consider the origin, i.e.\ the point $\km = (x,y)$.
-This ideal is maximal, so it corresponds to a closed point,
-and we can consider the open set $U$
-consisting of all the points other than $\km$.
-We wish to compute $\OO_X(U)$.
-
-\begin{center}
-\begin{asy}
-	graph.xaxis("$\mathcal{V}(y)$", red);
-	graph.yaxis("$\mathcal{V}(x)$", red);
-	fill(box( (-3,-3), (3,3) ), opacity(0.2)+lightcyan);
-	opendot(origin, blue+1.5);
-	label("$\mathfrak m = (x,y)$", origin, dir(45), blue);
-\end{asy}
-\end{center}
-
-Unfortunately, $U$ is not distinguished open.
-But, we can compute it anyways by writing $U = D(x) \cup D(y)$:
-conveniently, $D(x) \cap D(y) = D(xy)$.
-By the sheaf axioms,
-we have a pullback square
-\begin{center}
-\begin{tikzcd}
-	\OO_X(U) \ar[r] \ar[d] & \OO_X(D(x)) = \CC[x,y]_{x} \ar[d] \\
-	\OO_X(D(x)) = \CC[x,y]_{y} \ar[r] & \OO_X(D(xy)) = \CC[x,y]_{xy}
-\end{tikzcd}
-\end{center}
-or equivalently
-\begin{center}
-\begin{tikzcd}
-	\OO_X(U) \ar[r] \ar[d] & \CC[x,x\inv,y] \ar[d] \\
-	\CC[x,y,y\inv] \ar[r] & \CC[x,y,x\inv,y\inv].
-\end{tikzcd}
-\end{center}
-In other words, $\OO_X(U)$ consists of pairs
-\begin{align*}
-	f &\in \CC[x,y,x\inv] \\
-	g &\in \CC[x,y,y\inv]
-\end{align*}
-which agree on the overlap:
-$f = g$ on $D(x) \cap D(y)$.
-Well, we can describe
-$f$ as a polynomial with some $x$'s in the denominator, and
-$g$ as a polynomial with some $y$'s in the denominator.
-If they match, the denominator is actually constant.
-Put crudely,
-\[ \CC[x,y,x\inv] \cap \CC[x,y,y\inv] = \CC[x,y]. \]
-In conclusion,
-\[ \OO_X(U) = \CC[x,y]. \]
-That is, we get no additional functions.
-
-\section{Recap}
-To recap, let $A$ be a ring.
-\begin{itemize}
-	\ii We define $X = \Spec A$ to be the set of prime ideals of $A$.
-	\begin{itemize}
-		\ii The maximal ideals are the ``closed points'' we are used to,
-		but the prime ideals are ``generic points''.
-	\end{itemize}
-
-	\ii We equip $\Spec A$ with the Zariski topology by declaring
-	$\VV(I)$ to be the closed sets, for ideals $I \subseteq A$.
-	\begin{itemize}
-		\ii The distinguished open sets $D(f)$,
-		form a topological basis.
-		\ii In this basis, the irreducible closed sets
-		are exactly the closures of points.
-	\end{itemize}
-
-	\ii Finally, we defined a sheaf $\OO_X$.
-	We set up the definition such that
-	\begin{itemize}
-		\ii $\OO_{X,\kp} = A_\kp$:
-		the stalks are localizations at a prime.
-		\ii $\OO_{X}(D(f)) = A_f$:
-		at distinguished open sets $D(f)$,
-		we get localizations too.
-	\end{itemize}
-	Since $D(f)$ is a basis,
-	these two properties lets us explicitly compute $\OO_X(U)$
-	for any open set $U$,
-	so we don't have to resort to the definition using sheafification.
-\end{itemize}
-
 \section\problemhead
-The next chapter contains many, many
-detailed examples of affine schemes to train your intuition,
-so it might actually work better if you read
-the next chapter before attempting these problems.
+As \Cref{ch:spec_examples} contains many
+examples of affine schemes to train your intuition,
+it's possibly worth reading even before attempting these problems,
+even though there will be some parts that won't make sense yet.
 
 \begin{problem}
 	[{$\Spec \QQ[x]$}]
@@ -645,23 +378,6 @@ the next chapter before attempting these problems.
 	an integral domain,
 	then $\Spec A$ is not irreducible.
 \end{problem}
-
-\begin{problem}
-	[Punctured gyrotop, communicated by Aaron Pixton]
-	The gyrotop is the scheme $X = \Spec \CC[x,y,z] / (xy,z)$.
-	We let $U$ denote the open subset obtained
-	by deleting the closed point $\km = (x,y,z)$.
-	Compute $\OO_X(U)$.
-	\begin{hint}
-		$k[x,y] \times k[z,z\inv]$.
-	\end{hint}
-\end{problem}
-
-\begin{dproblem}
-	[Spectrums are quasicompact]
-	\gim
-	Show that $\Spec A$ is quasicompact for any ring $A$.
-\end{dproblem}
 
 \endinput
 

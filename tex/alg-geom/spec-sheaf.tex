@@ -1,0 +1,543 @@
+\chapter{Affine schemes: the sheaf}
+\label{ch:spec_sheaf}
+
+We now complete our definition of $X = \Spec A$ by
+defining the sheaf $\OO_X$ on it, making it into a ringed space.
+This is done quickly in the first section.
+
+However, we will then spend the next several chapters
+trying to convince the reader to \emph{forget}
+the definition we gave, in practice.
+This is because practically,
+the sections of the sheaves are best computed by not using
+the definition directly, but by using some other results.
+
+Along the way we'll develop some related theory:
+in computing the stalks we'll find out the definition of a local ring,
+and in computing the sections we'll find out about distinguished open sets.
+
+A reminder once again: \Cref{ch:spec_examples} has
+many more concrete examples.
+It's not a bad idea to look through there for more examples
+if anything in this chapter trips you up.
+
+\section{A useless definition of the structure sheaf}
+\prototype{Still $\CC[x_1, \dots, x_n] / I$.}
+
+We have now endowed $\Spec A$ with the Zariski topology,
+and so all that remains is to put a sheaf $\OO_{\Spec A}$ on it.
+To do this we want a notion of ``regular functions'' as before.
+
+This is easy to do since we have localizations on hand.
+\begin{definition}
+	First, let $\SF$ be the pre-sheaf of ``globally rational'' functions:
+	i.e.\ we define $\SF(U)$ to be the localization
+	\[
+		\SF(U) = \left\{
+			\frac fg \mid f, g \in A
+			\text{ and } g(\kp) \neq 0 \; \forall \kp \in U
+		\right\}
+		= \left(A \setminus \bigcup_{\kp \in U} \kp \right)\inv A.
+	\]
+	We now define the structure sheaf on $\Spec A$.
+	It is
+	\[ \OO_{\Spec A} = \SF\sh \]
+	i.e.\ the sheafification of the $\SF$ we just defined.
+\end{definition}
+\begin{exercise}
+	Compare this with the definition for $\OO_V$
+	with $V$ a complex variety, and check that they essentially match.
+\end{exercise}
+And thus, we have completed the transition to adulthood,
+with a complete definition of the affine scheme.
+
+If you really like compatible germs,
+you can write out the definition:
+\begin{definition}
+	Let $A$ be a ring.
+	Then $\Spec A$ is made into a ringed space by setting
+	\[ \OO_{\Spec A}(U)
+		= \left\{ (f_\kp \in A_\kp)_{\kp \in U}
+		\text{ which are locally quotients} \right\}. \]
+	That is, it consists of sequence $(f_\kp)_{\kp \in U}$, with
+	each $f_\kp \in A_\kp$, such that for every point $\kp$ there
+	is a neighborhood $U_\kp$ and an $f,g \in A$ such that
+	$f_\kq = \frac fg \in A_\kq$ for all $\kq \in U_\kp$.
+\end{definition}
+
+We will now \textbf{basically forget about this definition},
+because we will never use it in practice.
+In the next two sections, we will show you:
+\begin{itemize}
+	\ii that the stalks $\OO_{\Spec A, \kp}$ are just $A_\kp$, and
+	\ii that the sections $\OO_{\Spec A}(U)$
+	can be computed, for any open set $U$,
+	by focusing only on the special case where $U = D(f)$
+	is a distinguished open set.
+\end{itemize}
+These two results will be good enough for all of our purposes,
+so we will be able to not use this definition.
+(Hence the lack of examples in this section.)
+
+\section{The value of distinguished open sets (or: how to actually compute sections)}
+\prototype{$D(x)$ in $\Spec \CC[x]$ is the punctured line.}
+
+We will now really hammer in the importance of
+the distinguished open sets.
+The definition is analogous to before:
+\begin{definition}
+	Let $f \in \Spec A$.
+	Then $D(f)$ is the set of $\kp$ such that $f(\kp) \neq 0$,
+	a \vocab{distinguished open set}.
+\end{definition}
+Distinguished open sets will have three absolutely crucial properties,
+which build on each other.
+
+\subsection{A basis of the Zariski topology}
+The first is a topological observation:
+\begin{theorem}
+	[Distinguished open sets form a base]
+	The distinguished open sets $D(f)$
+	form a basis for the Zariski topology:
+\end{theorem}
+\begin{proof}
+	Let $U$ be an open set;
+	suppose it is the complement of closed set $V(I)$.
+	Then verify that \[ U = \bigcup_{f \in I} D(f). \qedhere \]
+\end{proof}
+
+\subsection{Sections are computable}
+The second critical fact is that the sections
+on distinguished open sets can be computed explicitly.
+\begin{theorem}
+	[Sections of $D(f)$ are localizations away from $f$]
+	Let $A$ be a ring and $f \in A$.
+	Then \[ \OO_{\Spec A}(D(f)) \cong A_f. \]
+\end{theorem}
+\begin{proof}
+	Omitted, but similar to
+	\Cref{thm:reg_func_distinguish_open}.
+\end{proof}
+
+\begin{example}
+	[The punctured line is isomorphic to a hyperbola]
+	The hyperbola effect now has a new notation too:
+	\[ \OO_{\Spec \CC[x]} (D(x))
+		= \CC[x]_{x} = \CC[x, x\inv]
+		\cong \CC[x,y] / (xy-1). \]
+\end{example}
+
+On a tangential note,
+we had better also note somewhere that $\Spec A = D(1)$
+is itself distinguished open, so the global sections can be recovered.
+\begin{corollary}
+	[$A$ is the ring of global sections]
+	The ring of global sections of $\Spec A$ is $A$.
+\end{corollary}
+\begin{proof}
+	By previous theorem, $\OO_{\Spec A}(\Spec A)
+	= \OO_{\Spec A}(D(1)) = A_1 = A$.
+\end{proof}
+
+\subsection{They are affine}
+We know $\OO_X(D(f)) = A_f$.
+In fact, if you draw $\Spec A_f$,
+you will find that it looks exactly like $D(f)$.
+So the third final important fact is that
+$D(f)$ will actually be \emph{isomorphic} to $\Spec A_f$
+(just like the line minus the origin is isomorphic to the hyperbola).
+We can't make this precise yet,
+because we have not yet discussed morphisms of schemes,
+but it will be handy later (though not right away).
+%However, you can already see this at the level of topological spaces;
+%see \Cref{prob:homeomorphism}.
+%Since distinguished open sets form a base,
+%though, this means that open sets of affine schemes
+%are, at least locally, themselves affine schemes:
+%given any open set $U \subseteq \Spec A$, and point $\kp \in U$,
+%there is some open neighborhood $V \ni p$ contained in $U$
+%which is itself affine.
+
+\subsection{Classic example: the punctured plane}
+We now give the classical example of a computation which shows
+how you can forget about sheafification,
+if you never liked it.\footnote{This perspective is
+	so useful that some sources, like Vakil \cite[\S4.1]{ref:vakil}
+	will \emph{define} $\OO_{\Spec A}$
+	by requiring $\OO_{\Spec A}(D(f)) = A_f$,
+	rather than use sheafification as we did.}
+The idea is that:
+\begin{moral}
+	We can compute any section $\OO_X(U)$ in practice
+	by using distinguished open sets and sheaf axioms.
+\end{moral}
+
+Let $X = \Spec \CC[x,y]$,
+and consider the origin, i.e.\ the point $\km = (x,y)$.
+This ideal is maximal, so it corresponds to a closed point,
+and we can consider the open set $U$
+consisting of all the points other than $\km$.
+We wish to compute $\OO_X(U)$.
+
+\begin{center}
+\begin{asy}
+	graph.xaxis("$\mathcal{V}(y)$", red);
+	graph.yaxis("$\mathcal{V}(x)$", red);
+	fill(box( (-3,-3), (3,3) ), opacity(0.2)+lightcyan);
+	opendot(origin, blue+1.5);
+	label("$\mathfrak m = (x,y)$", origin, dir(45), blue);
+\end{asy}
+\end{center}
+
+Unfortunately, $U$ is not distinguished open.
+But, we can compute it anyways by writing $U = D(x) \cup D(y)$:
+conveniently, $D(x) \cap D(y) = D(xy)$.
+By the sheaf axioms,
+we have a pullback square
+\begin{center}
+\begin{tikzcd}
+	\OO_X(U) \ar[r] \ar[d] & \OO_X(D(x)) = \CC[x,y]_{x} \ar[d] \\
+	\OO_X(D(x)) = \CC[x,y]_{y} \ar[r] & \OO_X(D(xy)) = \CC[x,y]_{xy}
+\end{tikzcd}
+\end{center}
+or equivalently
+\begin{center}
+\begin{tikzcd}
+	\OO_X(U) \ar[r] \ar[d] & \CC[x,x\inv,y] \ar[d] \\
+	\CC[x,y,y\inv] \ar[r] & \CC[x,y,x\inv,y\inv].
+\end{tikzcd}
+\end{center}
+In other words, $\OO_X(U)$ consists of pairs
+\begin{align*}
+	f &\in \CC[x,y,x\inv] \\
+	g &\in \CC[x,y,y\inv]
+\end{align*}
+which agree on the overlap:
+$f = g$ on $D(x) \cap D(y)$.
+Well, we can describe
+$f$ as a polynomial with some $x$'s in the denominator, and
+$g$ as a polynomial with some $y$'s in the denominator.
+If they match, the denominator is actually constant.
+Put crudely,
+\[ \CC[x,y,x\inv] \cap \CC[x,y,y\inv] = \CC[x,y]. \]
+In conclusion,
+\[ \OO_X(U) = \CC[x,y]. \]
+That is, we get no additional functions.
+
+
+
+\section{The stalks of the structure sheaf}
+\prototype{The stalk of $\Spec \CC[x,y]$ at $\km = (x,y)$
+are rational functions defined at the origin.}
+
+Don't worry, this one is easier than last section.
+
+\subsection{They are localizations}
+\begin{theorem}
+	[Stalks of $\Spec A$ are $A_\kp$]
+	Let $A$ be a ring and let $\kp \in \Spec A$.
+	Then \[ \OO_{\Spec A, \kp} \cong A_\kp. \]
+	In particular $X$ is a locally ringed space.
+\end{theorem}
+\begin{proof}
+	Since sheafification preserved stalks,
+	it's enough to check it for $\SF$ the pre-sheaf
+	of globally rational functions in our definition.
+	The proof is basically the same as \Cref{thm:stalks_affine_var}:
+	there is an obvious map $\SF_\kp \to A_\kp$ on germs by
+	\[ \left(U, f/g \in \SF(U) \right)
+		\mapsto f/g \in A_\kp . \]
+	(Note the $f/g$ on the left lives in $\SF(U)$
+	but the one on the right lives in $A_\kp$).
+	We show injectivity and surjectivity:
+	\begin{itemize}
+		\ii Injective: suppose $(U_1, f_1 / g_1)$ and $(U_2, f_2 / g_2)$
+		are two germs with $f_1/g_1 = f_2/g_2 \in A_\kp$.
+		This means $h(g_1 f_2 - f_2 g_1) = 0$ in $A$, for some nonzero $h$.
+		Then both germs identify with
+		the germ $(U_1 \cap U_2 \cap D(h), f_1 / g_1)$.
+		\ii Surjective: let $U = D(g)$. \qedhere
+	\end{itemize}
+\end{proof}
+
+\begin{example}
+	[Denominators not divisible by $x$]
+	We have seen this example so many times
+	that I will only write it in the new notation,
+	and make no further comment:
+	if $X = \Spec \CC[x]$ then
+	\[ \OO_{\Spec X, (x)} = \CC[x]_{(x)}
+		= \left\{  \frac fg \mid g(0) \ne 0 \right\}. \]
+\end{example}
+\begin{example}
+	[Denominators not divisible by $x$]
+	Let $X = \Spec \CC[x,y]$ and let $\km = (x,y)$ be the origin.
+	Then
+	\[ \CC[x,y]_{(x,y)}
+		= \left\{ \frac{f(x,y)}{g(x,y)} \mid g(0,0) \ne 0 \right\}. \]
+\end{example}
+
+If you want more examples,
+take any of the ones from \Cref{sec:localize_prime_ideal},
+and try to think about what they mean geometrically.
+
+\subsection{Motivating local rings: germs should package values}
+Let's return to our well-worn example $X = \Spec \CC[x,y]$
+and consider $\km = (x,y)$ the origin.
+The stalk was
+\[ \OO_{X, \km} = \CC[x,y]_{(x,y)}
+	= \left\{ \frac{f(x,y)}{g(x,y)} \mid g(0,0) \ne 0 \right\}. \]
+So let's take some section like $f = \frac{1}{xy + 4}$,
+which is a section of $U = D(xy+4)$ (or some smaller open set,
+but we'll just use this one for simplicity).
+We also have $U \ni m$, and so $f$ gives a germ at $\km$.
+
+On the other hand, $f$ also has a value at $\km$:
+it is $f \pmod{\km} = \frac 14$.
+And in general, the ring of possible values of a section
+at the origin $\km$ is $\CC[x,y] / \km \cong \CC$.
+
+Now, you might recall that I pressed the point of view
+that a germ might be thought of as an ``enriched value''.
+Then it makes sense that if you know the germ of a section $f$ at
+a point $\km$ --- i.e., you know the ``enriched value'' ---
+then you should be able to value as well.
+What this means is that we ought to have some map
+\[ A_\km \to A/\km \]
+sending germs to their associated values.
+
+Indeed you can, and this leads us to\dots
+
+\section{Local rings and residue fields:
+linking germs to values}
+\prototype{The residue field of $\Spec \CC[x,y]$ at $\km = (x,y)$
+is $\CC$.}
+
+\subsection{Localizations give local rings}
+This notation is about to get really terrible, but bear with me.
+\begin{theorem}
+	[Stalks are local rings]
+	\label{thm:stalks_local_ring}
+	Let $A$ be a ring and $\kp$ any prime ideal.
+	Then the localization $A_\kp$ has exactly one maximal ideal,
+	given explicitly by
+	\[ \kp A_\kp =
+		\left\{ \frac fg \mid f \in \kp \; g \notin \kp \right\}. \]
+\end{theorem}
+The ideal $\kp A_\kp$ thus captures the idea
+of ``germs vanishing at $\kp$''.\footnote{The notation $\kp A_\kp$ really means
+the set of $f \cdot h$ where $f \in \kp$
+(viewed as a subset of $A_\kp$ by $f \mapsto \frac f1$) and $h \in A_{\kp}$.
+I personally find this is more confusing than helpful,
+so I'm footnoting it.}
+
+Proof in a moment;
+for now let's introduce some words so we can
+give our examples in the proper language.
+\begin{definition}
+	A ring $R$ with exactly one maximal ideal $\km$
+	will be called a \vocab{local ring}.
+	The \vocab{residue field} is the quotient $A / \km$.
+\end{definition}
+\begin{ques}
+	Are fields local rings?
+\end{ques}
+
+Thus what we find is that:
+\begin{moral}
+	The stalks consist of enriched values;
+	the residue field has (un-enriched) values.
+\end{moral}
+
+\begin{example}
+	[The stalk at the origin of {$\Spec \CC[x,y]$}]
+	Again set $A = \CC[x,y]$, $X = \Spec A$ and $\kp = (x,y)$
+	so that $\OO_{X,\kp} = A_\kp$.
+	(I switched to $\kp$ for the origin,
+	to avoid confusion with the maximal ideal $\kp A_{\kp}$
+	of the local ring $A_\kp$.)
+	As we said many times already,
+	$A_{\kp}$ consists of rational functions not vanishing at the origin,
+	such as $f = \frac{1}{xy+4}$.
+
+	What is the unique maximal ideal $\kp A_\kp$?
+	Answer: it consists of the rational functions
+	which \emph{vanish} at the origin:
+	for example, $\frac{x}{x^2+3y}$, or $\frac{3x+5y}{2}$,
+	or $\frac{-xy}{4(xy+4)}$.
+	If we allow ourselves to mod out by such functions,
+	we get the residue field $\CC$,
+	and $f$ will have the value $\frac14$, since
+	\[ \frac{1}{xy+4} -
+		{\underbrace{\frac{-xy}{4(xy+4)}}_{\text{vanishes at origin}}}
+		= \frac14. \]
+
+	More generally, suppose $f$ is any section of some open
+	set containing $\kp$.
+	Let $c \in \CC$ be the value $f(\kp)$, that is, $f \pmod \kp$.
+	Then $f - c$ is going to be another section
+	which vanishes at the origin $\kp$,
+	so as promised, $f \equiv c \pmod{\kp A_{\kp}}$.
+\end{example}
+
+Okay, we can write down a proof of the theorem now.
+\begin{proof}
+	[Proof of \Cref{thm:stalks_local_ring}]
+	One may check set $I = \kp A_\kp$ is an ideal of $A_\kp$.
+	Moreover, $1 \notin I$, so $I$ is proper.
+
+	To prove it is maximal and unique,
+	it suffices to prove that any $f \in A_\kp$ with $f \notin I$
+	is a \emph{unit} of $A_\kp$.
+	This will imply $I$ is maximal: there are no more non-units to add.
+	It will also imply $I$ is the only maximal ideal:
+	because any proper ideal can't contain units, so is contained in $I$.
+
+	This is actually easy.
+	An element of $A_\kp$ not in $I$ must be $x = \frac fg$
+	for $f,g \in A$ and $f,g \notin \kp$.
+	For such an element, $x\inv = \frac gf \notin \kp$ too.
+	So $x$ is a unit. End proof.
+\end{proof}
+
+Even more generally:
+\begin{moral}
+	If a sheaf $\SF$ consists of ``field-valued functions'',
+	the stalk $\SF_p$ probably has a maximal ideal
+	consisting of the germs vanishing at $p$.
+\end{moral}
+
+\begin{example}[Local rings in non-algebaric geometry sheaves]
+Let's go back to the example of $X = \RR$ and $\SF(U)$ the smooth functions,
+and consider the stalk $\SF_{p}$, where $p \in X$.
+Define the ideal $\km_p$ to be the set of germs $(s,U)$ for which $s(p) = 0$.
+
+Then $\km_p$ is maximal: we have an exact sequence
+\[ 0 \to \km_p \to \SF_p \taking{(s,U) \mapsto s(p)} \RR \to 0 \]
+and so $\SF_p / \km_p \cong \RR$, which is a field.
+
+It remains to check there are no nonzero maximal ideals.
+Now note that if $s \notin \km_p$,
+then $s$ is nonzero in some neighborhood of $p$,
+then one can construct the function $1/s$ in a neighborhood of $p$.
+So \textbf{every element of $\SF_p \setminus \km_p$ is a unit};
+and again $\km_p$ is in fact the only maximal ideal!
+
+Thus the stalks of each of the following types of sheaves
+are local rings, too.
+\begin{itemize}
+	\ii Sheaves of continuous real/complex functions on a topological space
+	\ii Sheaves of smooth functions on any manifold
+	\ii etc.
+\end{itemize}
+\end{example}
+
+\subsection{Computing values: a convenient square}
+Very careful readers might have noticed something
+a little uncomfortable in our extended example with $\Spec A$
+with $A = \CC[x,y]$ and $\kp = (x,y)$ the origin.
+Let's consider $f = \frac{1}{xy+4}$.
+We took $f \pmod{x,y}$ in the original ring $A$ in order
+to decide the value ``should'' be $\frac14$.
+However, all our calculations actually
+took place not in the ring $A$, but instead in the ring $A_\kp$.
+Does this cause issues?
+
+Thankfully, no, nothing goes wrong, even in a general ring $A$.
+
+\begin{definition}
+	We let the quotient $A_\kp / \kp A_\kp$,
+	i.e.\ the residue field of the stalk of $\Spec A$ at $\kp$,
+	be denoted by $\kappa(\kp)$.
+\end{definition}
+
+The following result from commutative algebra
+shows that the order doesn't matter.
+\begin{theorem}
+	[The germ-to-value commutative diagram]
+	Let $A$ be a ring and $\kp$ a prime ideal.
+	The following diagram commutes:
+	\begin{center}
+	\begin{tikzcd}
+		A \ar[r, "\text{localize}"] \ar[d, "\bmod \kp"']
+			& A_\kp \ar[d, "\bmod \kp"] \\
+		A/\kp \ar[r, "\Frac(-)"] & \kappa (\kp)
+	\end{tikzcd}
+	\end{center}
+	In particular, $\kappa(\kp)$
+	can also be described as $\Frac(A/\kp)$.
+\end{theorem}
+So for example, if $A = \CC[x,y]$ and $\kp = (x,y)$,
+then $A/\kp = \CC$ and $\Frac(A_\kp) = \Frac(\CC) = \CC$, as we expected.
+
+In practice, $\Frac(A/\kp)$ is probably the easier way
+to compute $\kappa(\kp)$ for any prime ideal $\kp$.
+
+\section{Recap}
+To recap the last two chapters, let $A$ be a ring.
+\begin{itemize}
+	\ii We define $X = \Spec A$ to be the set of prime ideals of $A$.
+	\begin{itemize}
+		\ii The maximal ideals are the ``closed points'' we are used to,
+		but the prime ideals are ``generic points''.
+	\end{itemize}
+
+	\ii We equip $\Spec A$ with the Zariski topology by declaring
+	$\VV(I)$ to be the closed sets, for ideals $I \subseteq A$.
+	\begin{itemize}
+		\ii The distinguished open sets $D(f)$,
+		form a topological basis.
+		\ii The irreducible closed sets are exactly the closures of points.
+	\end{itemize}
+
+	\ii Finally, we defined a sheaf $\OO_X$.
+	We set up the definition such that
+	\begin{itemize}
+		\ii $\OO_{X}(D(f)) = A_f$:
+		at distinguished open sets $D(f)$,
+		we get localizations too.
+		\ii $\OO_{X,\kp} = A_\kp$:
+		the stalks are localizations at a prime.
+	\end{itemize}
+	Since $D(f)$ is a basis,
+	these two properties lets us explicitly compute $\OO_X(U)$
+	for any open set $U$,
+	so we don't have to resort to the definition using sheafification.
+\end{itemize}
+
+\section{\problemhead}
+As \Cref{ch:spec_examples} contains many
+examples of affine schemes to train your intuition;
+it's likely to be worth reading even before attempting these problems.
+
+\begin{dproblem}
+	[Spectrums are quasicompact]
+	\gim
+	Show that $\Spec A$ is quasicompact for any ring $A$.
+\end{dproblem}
+
+\begin{problem}
+	[Punctured gyrotop, communicated by Aaron Pixton]
+	The gyrotop is the scheme $X = \Spec \CC[x,y,z] / (xy,z)$.
+	We let $U$ denote the open subset obtained
+	by deleting the closed point $\km = (x,y,z)$.
+	Compute $\OO_X(U)$.
+	\begin{hint}
+		$k[x,y] \times k[z,z\inv]$.
+	\end{hint}
+\end{problem}
+
+\begin{problem}
+	Show that a ring $R$ is a local ring
+	if and only of the following property is true:
+	for any $x \in R$,
+	either $x$ or $1-x$ is a unit.
+\end{problem}
+
+\begin{problem}
+	Let $A$ be a ring, and $\km$ a maximal ideal.
+	Consider $\km$ as point of $\Spec A$
+	Show that $\kappa(\km) \cong A/\km$.
+\end{problem}
+
+
