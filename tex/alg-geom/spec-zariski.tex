@@ -12,7 +12,6 @@ In this chapter, we handle the first two parts;
 \Cref{ch:spec_sheaf} does the last one.
 
 Quick note: \Cref{ch:spec_examples}
-contains no new content, and instead
 contains a long list of examples of affine schemes.
 So if something written in this chapter is not making sense,
 one thing worth trying is skimming through the next chapter
@@ -231,7 +230,18 @@ as just the closed points.
 	since $\kp$ ``could have been'' any of those points.
 \end{example}
 
-\missingfigure{draw it}
+\begin{center}
+\begin{asy}
+	graph.xaxis();
+	graph.yaxis();
+	real f(real x) { return x*x; }
+	graph.xaxis("$x$");
+	graph.yaxis("$y$");
+	draw(graph(f,-2,2,operator ..), blue+dotted, Arrows(TeXHead));
+	dot("$(y-x^2)$", (1.3, f(1.3)), dir(-45), blue);
+	dot("$(x-2,y-4)$", (2,4), dir(-45), red);
+\end{asy}
+\end{center}
 
 \begin{example}
 	[The generic point of the $y$-axis isn't on the $x$-axis]
@@ -353,7 +363,7 @@ $\Spec A$ has generic point $(0)$.
 	and as a topological subspace, it has generic point $(y-x^2)$.
 \end{abuse}
 
-\section\problemhead
+\section{\problemhead}
 As \Cref{ch:spec_examples} contains many
 examples of affine schemes to train your intuition,
 it's possibly worth reading even before attempting these problems,
