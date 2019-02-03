@@ -73,8 +73,11 @@ describe the sheaf $\OO_X$ completely.
 
 \section{The definition}
 \begin{definition}
-	Let $A$ be a ring and $S \subset A$ any subset
-	closed under multiplication.
+	A subset $S \subseteq A$ is a \vocab{multiplicative set}
+	if $1 \in S$ and $S$ is closed under multiplication.
+\end{definition}
+\begin{definition}
+	Let $A$ be a ring and $S \subset A$ a multiplicative set.
 	Then the \vocab{localization of $A$ at $S$}, denoted $S\inv A$,
 	is defined as the set of fractions
 	\[ \left\{ a/s \mid a \in A, s \in S \right\} \]
@@ -147,7 +150,7 @@ Here are the two special cases of localization we will need the most.
 \begin{definition}
 	For $f \in A$, we define the \vocab{localization of $A$ away from $f$},
 	denoted $A_f$, to be $\{1, f, f^2, f^3, \dots\}\inv A$.
-	(Note that $\left\{ 1, f, f^2, \dots \right\}$ is multiplicatively closed.)
+	(Note that $\left\{ 1, f, f^2, \dots \right\}$ is multiplicative.)
 \end{definition}
 
 \begin{example}
@@ -214,7 +217,7 @@ Here are the two special cases of localization we will need the most.
 	This is called the \vocab{localization at $\kp$}.
 \end{definition}
 \begin{ques}
-	Why is $S = A \setminus \kp$ multiplicatively closed
+	Why is $S = A \setminus \kp$ multiplicative
 	in the above definition?
 \end{ques}
 
@@ -302,7 +305,7 @@ We take the time now to mention how you can
 think about prime ideals of localized rings.
 \begin{proposition}
 	[The prime ideals of $S\inv A$]
-	Let $A$ be a ring and $S \subseteq A$ a multiplicatively closed set.
+	Let $A$ be a ring and $S \subseteq A$ a multiplicative set.
 	Then there is a natural inclusion-preserving bijection between:
 	\begin{itemize}
 		\ii The set of prime ideals of $S\inv A$, and
@@ -387,21 +390,25 @@ Anyways, here are some examples, to help cement the picture.
 	then $(p) = (1)$, the whole ring, again.
 \end{example}
 
-\section{Stray proposition: prime ideals of quotients}
-While we are here, we mention that quotients
-have a similar interpretation.
+\section{Prime ideals of quotients}
+While we are here, we mention that
+the prime ideals of quotients $A/I$
+can be interpreted in terms of those of $A$
+(as in the previous section for localization).
 You may remember this from \Cref{prob:inclusion_preserving}
-a long time ago, if you did that problem.
+a long time ago, if you did that problem;
+but for our purposes we actually only care about the prime ideals.
 \begin{proposition}
 	[The prime ideals of $A/I$]
 	\label{prop:prime_quotient}
 	If $A$ is a ring and $I$ is any ideal (not necessarily prime)
-	then the prime ideals of $A/I$
-	are in bijection with ideals of $A$
+	then the prime (resp.\ maximal) ideals of $A/I$
+	are in bijection with prime (resp.\ maximal) ideals of $A$
 	which are \textbf{supersets of} $I$.
+	This bijection is inclusion-preserving.
 \end{proposition}
 \begin{proof}
-	Consider the quotient homomorphism $\psi \colon A \to A/I$.
+	Consider the quotient homomorphism $\psi \colon A \surjto A/I$.
 	For any prime ideal $\kq \subseteq A/I$,
 	its pre-image $\iota\pre(\kq)$ is a prime ideal
 	(by \Cref{prob:prime_preimage}).
@@ -409,6 +416,8 @@ a long time ago, if you did that problem.
 	with $I \subseteq \kp \subseteq A$,
 	we get a prime ideal of $A/I$ by looking at $\kp \pmod I$.
 	An annoying check shows that this produces the required bijection.
+	It is also inclusion-preserving --- from which
+	the same statement holds for maximal ideals.
 \end{proof}
 \begin{example}
 	[Prime ideals of $\Zc{60}$]
@@ -423,9 +432,121 @@ a long time ago, if you did that problem.
 	$60\ZZ = \left\{ \dots, -60, 0, 60, 120, \dots \right\}$.
 \end{example}
 
+\section{Localization commute with quotients}
+\prototype{$(\CC[xy]/(xy))_x \cong \CC[x,x\inv]$.}
+While we are here, we mention a useful result from
+commutative algebra which lets us compute localizations in quotient rings,
+which are surprisingly unintuitive.
+You will \emph{not} have a reason to care about this
+until we reach \Cref{sec:localize_prime_ideal},
+and so this is only placed earlier to emphasize that it's
+a purely algebraic fact that we can (and do) state this early,
+even though we will not need it anytime soon.
+
+Let's say we have a quotient ring like
+\[ A/I = \CC[x,y] / (xy) \]
+and want to compute the localization of this ring
+away from the element $x$.
+(To be pedantic, we are actually localizing away from $x \pmod{xy}$,
+the element of the quotient ring, but we will just call it $x$.)
+You will quickly find that even the notation becomes clumsy: it is
+\begin{equation}
+	\left( \CC[x,y] / (xy) \right)_{x}
+	\label{eq:quotient_localization_before}
+\end{equation}
+which is hard to think about,
+because the elements in play are part of the \emph{quotient}:
+how are we supposed to think about
+\[ \frac{1 \pmod{xy}}{x \pmod{xy}} \]
+for example?
+The zero-divisors in play may already make you feel uneasy.
+
+However, it turns out that we can actually do the localization
+\emph{first}, meaning the answer is just
+\begin{equation}
+	\CC[x,y]_x / (xy)
+	\label{eq:quotient_localization_after}
+\end{equation}
+which then becomes $\CC[x, x\inv, y] / (y) \cong \CC[x,x\inv]$.
+
+This might look like it should be trivial,
+but it's not as obvious as you might expect.
+There is a sleight of hand present here with the notation:
+\begin{itemize}
+	\ii In \eqref{eq:quotient_localization_before},
+	the notation $(xy)$ stands for an ideal of $\CC[x,y]$
+	--- that is, the set $xy \CC[x,y]$.
+
+	\ii In \eqref{eq:quotient_localization_after}
+	the notation $(xy)$ now stands for an ideal of $\CC[x,x\inv,y]$
+	--- that is, the set $xy \CC[x,x\inv,y]$.
+\end{itemize}
+So even writing down the \emph{statement} of the theorem
+is actually going to look terrible.
+
+In general, what we want to say is that if we have our ring $A$
+with ideal $I$ and $S$ is some multiplicative subset of $A$,
+then \[ \text{Colloquially: ``}S\inv (A/I) = (S\inv A)/I\text{''}. \]
+But there are two things wrong with this:
+\begin{itemize}
+\ii The main one is that $I$ is not an ideal of $S\inv A$, as we saw above.
+This is remedied by instead using $S\inv I$,
+which consists of those elements of those elements $\frac xs$
+for $x \in I$ and $s \in S$.
+As we saw this distinction is usually masked in practice,
+because we will usually write $I = (a_1, \dots, a_n) \subseteq A$
+in which case the new ideal $S\inv I \subseteq A$ can be denoted
+in exactly the same way: $(a_1, \dots, a_n)$,
+just regarded as a subset of $S\inv A$ now.
+
+\ii The second is that $S$ is not, strictly speaking,
+a subset of $A/I$, either.
+But this is easily remedied by instead using the image of $S$
+under the quotient map $A \surjto A/I$.
+
+We actually already saw this in the previous example:
+when trying to localize $\CC[x,y]/(xy)$,
+we were really localizing at the element $x \pmod{xy}$,
+but (as always) we just denoted it by $x$ anyways.
+\end{itemize}
+
+And so after all those words, words, words, we have the hideous:
+\begin{theorem}
+	[Localization commutes with quotients]
+	\label{thm:localization_commute_quotient}
+	Let $S$ be a multiplicative set of a ring $A$,
+	and $I$ an ideal of $A$.
+	Let $\ol S$ be the image of $S$
+	under the projection map $A \surjto A/I$.
+	Then
+	\[ {\ol S}\inv (A/I) \cong S\inv A / S\inv I \]
+	where $S\inv I = \left\{ \frac{x}{s} \mid x \in I, s \in S \right\}$.
+\end{theorem}
+\begin{proof}
+	Do you actually care? No? Cool, I didn't either.
+	(Atiyah-Macdonald is the right reference for these
+	type of things in the event that you do care.)
+\end{proof}
+The notation is a hot mess.
+But when we do calculations in practice, we instead write
+\[ \left( \CC[x,y,z]/(x^2 + y^2 - z^2) \right)_x
+	\cong \CC[x,y,z]_x / (x^2 + y^2 - z^2) \]
+or (for an example where we localize at a prime ideal)
+\[ \left( \ZZ[x,y,z]/ (x^2 + yz) \right)_{(x,y)}
+	\cong \ZZ[x,y,z]_{(x,y)} / (x^2 + yz) \]
+and so on --- the pragmatism of our ``real-life'' notation
+which hides some details actually guides our intuition
+(rather than misleading us).
+So maybe the moral of this section is that whenever
+you compute the localization of the quotient ring,
+if you just suspend belief for a bit,
+then you will probably get the right answer.
+
+We will later see geometric interpretations of these facts
+when we work with $\Spec A/I$,
+at which point they will become more natural.
 
 \section{\problemhead}
-
 \begin{problem}
 	Let $A = \Zc{2016}$, and consider the element $60 \in A$.
 	Compute $A_{60}$, the localization of $A$ away from $60$.
@@ -436,7 +557,7 @@ a long time ago, if you did that problem.
 
 \begin{problem}
 	[Injectivity of localizations]
-	Let $A$ be a ring and $S \subseteq A$ a multiplicatively closed set.
+	Let $A$ be a ring and $S \subseteq A$ a multiplicative set.
 	Find necessary and sufficient conditions
 	for the map $A \to S\inv A$ to be injective.
 	\begin{hint}
@@ -453,6 +574,7 @@ a long time ago, if you did that problem.
 	How many maximal ideals does $A_\kp$ have?
 	\begin{hint}
 		Only one!
+		A proof will be given a few chapters later.
 	\end{hint}
 \end{sproblem}
 

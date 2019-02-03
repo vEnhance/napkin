@@ -1,72 +1,331 @@
-\chapter{Morphisms of schemes}
-We can now define:
+\chapter{Morphisms of locally ringed spaces}
+Having set up the definition of a locally ringed space,
+we are almost ready to define morphisms between them.
+Throughout this chapter, you should imagine your ringed spaces
+are the affine schemes we have so painstakingly defined;
+but it will not change anything to work in the generality
+of arbitrary locally ringed spaces.
+
+\section{Morphisms of ringed spaces via sections}
+Let $(X, \OO_X)$ and $(Y, \OO_Y)$ be ringed spaces.
+We want to give a define what it means
+to have a function $\pi \colon X \to Y$ between them.\footnote{Notational
+	connotations: for ringed spaces, $\pi$ will be used for maps,
+	since $f$ is often used for sections.}
+We start by requiring the map to be continuous,
+but this is not enough: there is a sheaf on it!
+
+Well, you might remember what we did for baby ringed spaces:
+any time we had a function on an open set of $U \subseteq Y$,
+we wanted there to be an analogous function on $\pi\pre(U) \subseteq X$.
+For baby ringed spaces, this was done by composition,
+since the elements of the sheaf \emph{were} really complex valued functions:
+\[ \pi^\ast\phi \text{ was defined as } \phi \circ \pi. \]
+The upshot was that we got a map $\OO_Y(U) \to \OO_X(\pi\pre(U))$
+for every open set $U$.
+\begin{center}
+	\begin{asy}
+		size(13cm);
+		bigblob("$X$");
+		pair p = (0.5,0);
+		filldraw(CR(p, 1), opacity(0.2)+lightgreen, deepgreen+dashed);
+		label("$\pi^{\text{pre}}(U)$", p+dir(135), dir(135), deepgreen);
+
+		transform t = scale(0.8) * shift(14*dir(180));
+		add(t * CC());
+		p = t*p;
+
+		bigblob("$Y$");
+		pair q = (0,0.5);
+		filldraw(CR(q, 1.2), opacity(0.2)+lightred, red+dashed);
+		label("$U$", q+1.2*dir(45), dir(45), red);
+		
+		draw( (-9,0.5)--(-3,0.5), EndArrow);
+		label("$\pi$", (-6,0.5), dir(90));
+		label("$\boxed{f \in \mathcal O_Y(U)}$", (0,-5), red);
+		label("$\boxed{\pi^\ast f \in \mathcal O_X(f^{\text{pre}}(U))}$",
+			t*(0,-6), deepgreen);
+	\end{asy}
+\end{center}
+
+Now, for general locally ringed spaces,
+the sections are just random rings,
+which may not be so well-behaved.
+So the solution is that we \emph{include} the data of $f^\ast$
+as part of the definition of a morphism.
 \begin{definition}
-	A \vocab{ringed space} is a topological space $X$ equipped
-	with a sheaf $\OO_X$ of rings.
-	Suppose that for every point $p$, the stalk $\OO_{X,p}$
-	is a local ring.
-	Then we say that $(X, \OO_X)$ is a \vocab{locally ringed space}.
-	We denote the maximal ideals by $\km_{X,p}$.
+	A \vocab{morphism of ringed spaces}
+	is a continuous map $\pi \colon X \to Y$
+	together with a choice of ring homomorphism
+	\[ \pi^\ast \colon \OO_Y(U) \to \OO_X(\pi\pre(U)) \]
+	for every open set $U \subseteq Y$, such that the restriction diagram
+	\begin{center}
+	\begin{tikzcd}
+		\OO_Y(U) \ar[r] \ar[d] & \OO_Y(\pi\pre(U)) \ar[d] \\
+		\OO_Y(V) \ar[r] & \OO_X(\pi\pre(V))
+	\end{tikzcd}
+	\end{center}
+	commutes for $V \subseteq U$.
+
+	There is an obvious identity map,
+	and so we can also define \vocab{isomorphism} in the categorical way.
 \end{definition}
-
-In particular, in the previous chapter we showed that every
-affine variety could be built into a locally ringed space. Hooray!
-\begin{abuse}
-	A ringed space $(X, \OO_X)$ is abbreviated to just $X$,
-	while $p \in X$ means ``$p$ is in the topological space $X$''.
-\end{abuse}
-
-
-
-\section{Morphisms of sheaves}
-First, recall that a sheaf is a contravariant functor (pre-sheaf)
-with extra conditions. In light of this, it is not hard to guess
-the definition of a morphism of pre-sheaves:
-\begin{definition}
-	A \vocab{morphism of (pre-)sheaves} $\alpha : \SF \to \SG$ on the same
-	space $X$ is a \textbf{natural transformation} of the underlying functors.
-	Isomorphism of sheaves is defined in the usual way.
-\end{definition}
-\begin{ques}
-	Show that this amounts to: for each $U \subseteq X$ we need to specify
-	a morphism $\alpha_U : \SF(U) \to \SG(U)$ such that the diagram
-	\begin{diagram}
-		\SF(U_2) & \rTo^{\alpha_{U_2}} & \SG(U_2) \\
-		\dTo^{\res_{U_1, U_2}} && \dTo_{\res_{U_1, U_2}} \\
-		\SF(U_1) & \rTo_{\alpha_{U_1}} & \SG(U_1)
-	\end{diagram}
-	commutes any time that $U_1 \subseteq U_2$.
-\end{ques}
-However, in the sheaf case we like stalks more than sections because
-they are theoretically easier to think about.
-And in fact:
+% Note that the ring homomorphism has its direction flipped.
+Unsurprisingly, the sections are clumsier to work with
+than the stalks, now that we have grown to love localization.
+Fortunately, the good news is that we do get morphisms of stalks.
 \begin{proposition}
-	[Morphisms determined by stalks]
-	A morphism of sheaves $\alpha : \SF \to \SG$ induces a morphism of stalks
-	\[ \alpha_p : \SF_p \to \SG_p \]
-	for every point $p \in X$.
-	Moreover, the sequence $(\alpha_p)_{p \in X}$ determines $\alpha$ uniquely.
+	[Induced stalk morphisms]
+	If $\pi \colon X \to Y$ is a map of ringed spaces,
+	then we get a map
+	\[ \pi^\ast \colon \OO_{Y,q} \to \OO_{X,p} \]
+	whenever $\pi(p) = q$.
 \end{proposition}
+Again, compare this to the pullback picture:
+this is roughly saying that if a function $f$ has some enriched value at $q$,
+then $\pi^\ast(f)$ should be assigned a corresponding enriched value at $p$.
+The analogy is not perfect since the stalks at $q$ and $p$
+may be different rings in general,
+but there should at least be a ring homomorphism (the assignment).
 \begin{proof}
-	The morphism $\alpha_p$ itself is just
-	$(s, U) \xmapsto{\alpha_p} (\alpha_U(s), U)$.
-	\begin{ques}
-		Show this is well-defined.
-	\end{ques}
-	Now suppose $\alpha , \beta : \SF \to \SG$ satisfy $\alpha_p = \beta_p$
-	for every $p$. We want to show $\alpha_U(s) = \beta_U(s)$
-	for every $s \in \SF(U)$.
-	\begin{ques}
-		Verify this using the description of sections
-		as sequences of germs. \qedhere
-	\end{ques}
+	If $(s,U)$ is a germ at $q$,
+	then $(\pi^\ast(s), \pi\pre(U))$ is a germ at $p$,
+	and this is a well-defined morphism because
+	of compatibility with restrictions.
 \end{proof}
-Thus a morphism of sheaves can be instead modelled as a morphism
-of all the stalks. We will see later on that this viewpoint is quite useful.
 
-\section{Local rings, and locally ringed spaces}
-\prototype{Smooth functions $f$ on $X \subseteq \RR^n$ have invertible
-germs at $p$ unless $f(p) = 0$.}
+\begin{remark}
+	Two additional facts that we mention,
+	but won't prove here:
+	\begin{itemize}
+		\ii $\pi$ is uniquely determined by the collection of stalk maps.
+		\ii $\pi$ is an isomorphism iff each stalk map is an isomorphism.
+	\end{itemize}
+\end{remark}
+This means you can draw a morphism of locally ringed spaces
+as a continuous map on the topological space,
+plus for each $\pi(p) = q$,
+an assign of each germ at $q$ to a germ at $p$.
+
+\begin{center}
+\begin{asy}
+	size(10cm);
+	pair p = (-4,0);
+	pair q = ( 4,0);
+	filldraw(ellipse(p, 2, 1 ), opacity(0.2)+lightcyan, black);
+	filldraw(ellipse(q, 2, 1 ), opacity(0.2)+lightcyan, black);
+	label("$X$", p+dir(270), dir(270), blue);
+	label("$Y$", q+dir(270), dir(270), blue);
+	pair pt = (-4, 3.5);
+	pair qt = ( 4, 4.3);
+	draw( p--pt, red );
+	draw( q--qt, red );
+	label("$\mathcal O_{X,p}$", pt, dir(90), red);
+	label("$\mathcal O_{Y,q}$", qt, dir(90), red);
+	dot("$p$", p, dir(-90), blue);
+	dot("$q$", q, dir(-90), blue);
+	pair pg = (-4, 1.6);
+	pair qg = (4, 2.8);
+	dot("$[s]_q$", qg, dir(0), red+6);
+	dot("$[\pi^\ast(s)]_p$", pg, dir(180), red+6);
+	draw(qg--pg, deepgreen, EndArrow, Margin(4,4));
+	label("$\pi^\ast$", midpoint(qg--pg), dir(90), deepgreen);
+	draw( (-1.5,0)--(1.5,0), deepgreen, EndArrow );
+	label("$\pi$", origin, dir(-90), deepgreen);
+\end{asy}
+\end{center}
+
+\section{Morphisms of locally ringed spaces}
+On the other hand, we've seen that our stalks are local rings,
+which enable us to actually talk about \emph{values}.
+And so we want to add one more compatibility condition
+to ensure that our notion of value is preserved.
+Now the stalks at $p$ and $q$ in the previous picture might be different,
+so $\kappa(p)$ and $\kappa(q)$ might even be different fields.
+\begin{definition}
+	A \vocab{morphism of locally ringed spaces}
+	is a morphism of ringed spaces $\pi \colon X \to Y$
+	with the following additional property:
+	whenever $\pi(p) = q$,
+	the map at the stalks induces a well-defined ring homomorphism
+	\[ \pi^\ast \colon \kappa(q) \to \kappa(p). \]
+\end{definition}
+So we require $\pi^\ast$ induces a field homomorphisms\footnote{Which
+means it is automatically injective, by \Cref{prob:field_hom}.}
+on the \emph{residue fields}.
+In particular, since $\pi^\ast(0) = 0$,
+this means something very important:
+\begin{moral}
+	In a morphism of locally ringed spaces,
+	a germ vanishes at $q$ if and only if
+	the corresponding germ vanishes at $p$.
+\end{moral}
+\begin{exercise}
+	[So-called ``local ring homomorphism'']
+	Show that this is equivalent to requiring
+	\[ (\pi^\ast)\im(\km_{Y,q}) \subseteq \km_{X,p} \]
+	or in English, a germ at $q$ has value zero
+	iff the corresponding germ at $p$ has value zero.
+\end{exercise}
+I don't like this formulation
+$(\pi^\ast)\im(\km_{Y,q}) \subseteq \km_{X,p}$
+as much since it hides the geometric intuition behind a lot of symbols:
+that we want the notion of ``value at a point''
+to be preserved in some way.
+
+\section{A bunch of examples of morphisms between affine schemes}
+\todo{WRITE ME}
+
+\section{The big theorem}
+\begin{quote}
+	``He [Hartshorne] never mentions that the category of affine schemes
+	is dual to the category of rings, as far as I can see.
+	I'd expect to see that in huge letters
+	near the definition of scheme.
+	How could you miss that out?''
+\end{quote}
+
+\todo{Give definition}
+
+\begin{theorem}
+	[$\catname{CRing}$ and $\catname{AffSch}$]
+	There is a bijection between ring homomorphisms $B \to A$
+	and $\Spec A \to \Spec B$.
+\end{theorem}
+
+\todo{Show equivalence}
+
+\section{Finishing up}
+Recalling that $\Spec A$ is an example of a locally ringed space,
+we're actually done with the definitions once we write:
+\begin{definition}
+	A \vocab{scheme} is a locally ringed space
+	for which every point has an open neighborhood
+	isomorphic to an affine scheme.
+
+	A morphism of schemes is just a morphism of locally ringed spaces.
+\end{definition}
+
+% Notice that: $\Spec A$ is of course a scheme.
+We can finally state the isomorphism that we wanted for a long time
+(first mentioned in \Cref{subsec:distinguished_open_affine}):
+\begin{theorem}
+	[Distinguished open sets are isomorphic to affine schemes]
+	Let $A$ be a ring and $f$ an element.
+	Then
+	\[ \Spec A_f \cong D(f) \subseteq \Spec A. \]
+\end{theorem}
+\begin{proof}
+	Annoying check, not included yet.
+	(We have already seen the bijection of prime ideals, at the level of points.)
+\end{proof}
+
+\begin{corollary}
+	[Open subsets are schemes]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii Any nonempty open subset of an affine scheme is itself a scheme.
+		\ii Any nonempty open subset of any scheme (affine or not) is itself a scheme.
+	\end{enumerate}
+\end{corollary}
+\begin{proof}
+	Part (a) has essentially been done already:
+	\begin{ques}
+		Combine \Cref{thm:distinguished_base}
+		with the previous proposition to deduce (a).
+	\end{ques}
+	Part (b) then follows by noting that if $U$ is an open set,
+	and $p$ is a point in $U$,
+	then we can take an affine open neighborhood $\Spec A$ at $p$,
+	and then cover $U \cap \Spec A$ with distinguished
+	open subsets of $\Spec A$ as in (a).
+\end{proof}
+
+\section{The punctured plane is not affine}
+We now reprise \Cref{subsec:punctured_plane}
+(except $\CC$ will be replaced by $k$).
+We have seen it is an open subset $U$ of $\Spec k[xy]$, so it is affine.
+\begin{ques}
+	Show that in fact $U$ can be covered by
+	two open sets which are both affine.
+\end{ques}
+However, we show now that you really do need two open sets.
+\begin{proposition}
+	[Famous example: punctured plane isn't affine]
+	The punctured plane $U = (U, \OO_U)$,
+	obtained by deleting $(x,y)$ from $\Spec k[x,y]$,
+	is not isomorphic to any affine scheme $\Spec B$.
+\end{proposition}
+
+The intuition is that $\OO_U(U) = k[x,y]$, but $U$ is not the plane.
+\begin{proof}
+	We already know $\OO_U(U) = k[x,y]$
+	and we have a good handle on it.
+	For example, $y \in \OO_U(U)$ is a global section
+	which vanishes on what looks like the $y$-axis.
+	Similarly, $x \in \OO_X(X)$ is a global section
+	which vanishes on what looks like the $y$-axis.
+	In particular, no point of $U$ vanishes at both.
+
+	Now assume for contradiction that we have an isomorphism
+	\[ \psi \colon \Spec B \to U. \]
+	By taking the map on global sections (part of the definition),
+	\[ k[x,y] = \OO_U(U) \taking{\psi^\ast}
+		\OO_{\Spec B}(\Spec B) \cong B. \]
+	The global sections $x$ and $y$ in $\OO_U(U)$
+	should then have images $a$ and $b$ in $B$;
+	and it follows we have a ring isomorphism $B \cong k[a,b]$.
+
+	\begin{center}
+	\begin{asy}
+		unitsize(0.9cm);
+		draw( (0,-3)--(0,3), red );
+		draw( (-3,0)--(3,0), red );
+		fill(box( (-3,-3), (3,3) ), opacity(0.2)+lightcyan);
+		opendot(origin, blue+1.5);
+		label("$\mathcal V(x)$", (3,0), dir(135), red);
+		label("$\mathcal V(y)$", (0,3), dir(-45), red);
+		label("$U$", (0,3), dir(90), deepcyan);
+		label("$\mathcal O_U(U) = k[x,y]$", (0,-3), dir(-90), deepcyan);
+		add(shift(-8,0)*CC());
+		fill(box( (-3,-3), (3,3) ), opacity(0.2)+lightblue);
+		path a = (-3,-1)..(-1,0.7)..(0.2,0.5)..(2,1)..(3,0.8);
+		path b = (-0.5,-3)..(0.4,-1)..(0.2,0.5)..(-0.4,2)..(-0.7,3);
+		draw(a, red);
+		draw(b, red);
+		label("$\mathcal V(a)$", (3,0.8), dir(225), red);
+		label("$\mathcal V(b)$", (-0.7,3), dir(225), red);
+		dot("$(a,b)$", (0.2,0.5), dir(225), red);
+		label("$\operatorname{Spec} B$", (0,3), dir(90), blue);
+		label("$\mathcal O_{\operatorname{Spec} B}(\operatorname{Spec} B) \cong k[a,b]$", (0,-3), dir(-90), blue);
+	\end{asy}
+	\end{center}
+
+	Now in $\Spec B$, $\VV(a) \cap \VV(b)$ is a closed
+	set containing a single point, the maximal ideal $\km = (a,b)$.
+	Thus in $\Spec B$ there is exactly
+	one point vanishing at both $a$ and $b$.
+	\emph{Because we required morphisms of schemes to preserve values}
+	(hence the big fuss about locally ringed spaces),
+	that means there should be a single point of $U$
+	vanishing at both $x$ and $y$.
+	But there isn't --- it was the origin we deleted.
+\end{proof}
+
+\section{\problemhead}
+\begin{problem}
+	Given an affine scheme $X = \Spec R$,
+	show that there is a unique morphism of schemes $X \to \Spec \ZZ$,
+	and describe where it sends points of $X$.
+	\begin{hint}
+		Use the proof that $\catname{AffSch} \simeq \catname{CRing}$.
+	\end{hint}
+	\begin{sol}
+		$\kp$ gets sent to the characteristic of the field $\OO_{X,\kp} / \km_{X,\kp}$.
+	\end{sol}
+\end{problem}
+
+\endinput
 
 \section{Morphisms of (locally) ringed spaces}
 Finally, it remains to define a morphism of locally ringed space.
@@ -177,16 +436,21 @@ This completes the definition of a morphism of locally ringed spaces.
 Isomorphisms of (locally) ringed spaces are defined in the usual way.
 
 
-\section{Schemes}
-\begin{definition}
-	A \vocab{scheme} is a locally ringed space $(X, \OO_X)$
-	with an open cover $\{U_\alpha\}$ of $X$
-	such that each pair $(U_\alpha, \OO_X \restrict{U_\alpha})$
-	is isomorphic to an affine scheme.
-\end{definition}
-Hooray!
+\section{Where to go from here}
+This chapter concludes the long setup for the definition of a scheme.
+Unfortunately, with respect to algebraic geometry this is as much as I have
+the patience or knowledge to write about.
+So, if you want to actually see how schemes are used in ``real life'',
+you'll have to turn elsewhere.
+
+A good reference I happily recommend is \cite{ref:gathmann}.
+More intense is \cite{ref:vakil}.
+See \Cref{ch:refs} for further remarks.
 
 
+
+
+\endinput
 \section{Projective scheme}
 \prototype{Projective varieties, in the same way.}
 The most important class of schemes which are not affine are
@@ -273,30 +537,50 @@ is given by $\Proj[x_0,x_1]/(x_0^2)$.
 \end{remark}
 
 
-\section{Where to go from here}
-This chapter concludes the long setup for the definition of a scheme.
-Unfortunately, with respect to algebraic geometry this is as much as I have
-the patience or knowledge to write about.
-So, if you want to actually see how schemes are used in ``real life'',
-you'll have to turn elsewhere.
 
-A good reference I happily recommend is \cite{ref:gathmann}.
-More intense is \cite{ref:vakil}.
-See \Cref{ch:refs} for further remarks.
-
-
-\section{\problemhead}
-
-\begin{problem}
-	Given an affine scheme $X = \Spec R$,
-	show that there is a unique morphism of schemes $X \to \Spec \ZZ$,
-	and describe where it sends points of $X$.
-	\begin{hint}
-		Use the proof that $\catname{AffSch} \simeq \catname{CRing}$.
-	\end{hint}
-	\begin{sol}
-		$\kp$ gets sent to the characteristic of the field $\OO_{X,\kp} / \km_{X,\kp}$.
-	\end{sol}
-\end{problem}
-
+\section{Morphisms of sheaves}
+First, recall that a sheaf is a contravariant functor (pre-sheaf)
+with extra conditions. In light of this, it is not hard to guess
+the definition of a morphism of pre-sheaves:
+\begin{definition}
+	A \vocab{morphism of (pre-)sheaves} $\alpha : \SF \to \SG$ on the same
+	space $X$ is a \textbf{natural transformation} of the underlying functors.
+	Isomorphism of sheaves is defined in the usual way.
+\end{definition}
+\begin{ques}
+	Show that this amounts to: for each $U \subseteq X$ we need to specify
+	a morphism $\alpha_U : \SF(U) \to \SG(U)$ such that the diagram
+	\begin{diagram}
+		\SF(U_2) & \rTo^{\alpha_{U_2}} & \SG(U_2) \\
+		\dTo^{\res_{U_1, U_2}} && \dTo_{\res_{U_1, U_2}} \\
+		\SF(U_1) & \rTo_{\alpha_{U_1}} & \SG(U_1)
+	\end{diagram}
+	commutes any time that $U_1 \subseteq U_2$.
+\end{ques}
+However, in the sheaf case we like stalks more than sections because
+they are theoretically easier to think about.
+And in fact:
+\begin{proposition}
+	[Morphisms determined by stalks]
+	A morphism of sheaves $\alpha : \SF \to \SG$ induces a morphism of stalks
+	\[ \alpha_p : \SF_p \to \SG_p \]
+	for every point $p \in X$.
+	Moreover, the sequence $(\alpha_p)_{p \in X}$ determines $\alpha$ uniquely.
+\end{proposition}
+\begin{proof}
+	The morphism $\alpha_p$ itself is just
+	$(s, U) \xmapsto{\alpha_p} (\alpha_U(s), U)$.
+	\begin{ques}
+		Show this is well-defined.
+	\end{ques}
+	Now suppose $\alpha , \beta : \SF \to \SG$ satisfy $\alpha_p = \beta_p$
+	for every $p$. We want to show $\alpha_U(s) = \beta_U(s)$
+	for every $s \in \SF(U)$.
+	\begin{ques}
+		Verify this using the description of sections
+		as sequences of germs. \qedhere
+	\end{ques}
+\end{proof}
+Thus a morphism of sheaves can be instead modelled as a morphism
+of all the stalks. We will see later on that this viewpoint is quite useful.
 

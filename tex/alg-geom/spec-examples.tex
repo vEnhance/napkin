@@ -5,6 +5,28 @@ we now give an enormous list of examples.
 Each example gets its own section,
 rather than having page-long orange boxes.
 
+One common theme you will find as you wade through
+the examples is that your geometric intuition may
+be better than your algebraic one.
+For example, while studying $k[x,y] / (xy)$ you will say
+``geometrically, I expect so-and-so to look like other thing'',
+but when you write down the algebraic statements
+you find two expressions that are don't look equal to you.
+However, if you then do some calculation you will
+find that they were isomorphic after all.
+So in that sense, in this chapter you will learn to begin drawing
+pictures of algebraic statements --- which is great!
+
+As another example, all the lemmas about
+prime ideals from our study of localizations
+will begin to now take concrete forms:
+you will see many examples that
+\begin{itemize}
+	\ii $\Spec A/I$ looks like $\VV(I)$ of $\Spec A$,
+	\ii $\Spec A_f$ looks like $D(f)$ of $\Spec A$,
+	\ii $\Spec A_\kp$ looks like $\OO_{\Spec A, \kp}$ of $\Spec A$.
+\end{itemize}
+
 In everything that follows, $k$ is any field.
 
 \section{Example: $\Spec k$, a single point}
@@ -90,7 +112,6 @@ We can think of this in terms of the residue field being $\CC(x)$:
 \[ \kappa( (0) ) = \Frac \left( \CC[x] / (0) \right)
 	\cong \Frac \CC[x] = \CC(x). \]
 
-
 \section{$\Spec \RR[x]$, a one-dimensional line
 with complex conjugates glued (no fear nullstellensatz)}
 
@@ -143,7 +164,7 @@ namely $(x^2+1)$ itself!
 
 You might remember a long time ago we made a big fuss about
 the weak nullstellensatz, for example in
-\Cref{pr:complex_variety_nonempty}:
+\Cref{prob:complex_variety_nonempty}:
 if $I$ was a proper ideal in $\CC[x_1, \dots, x_n]$
 there was \emph{some} point $(a_1, \dots, a_n) \in \CC^n$
 such that $f(a_1, \dots, a_n) = 0$ for all $f \in I$.
@@ -337,8 +358,6 @@ There are three types of points:
 Here is an illustration of all three types of points.
 \begin{center}
 \begin{asy}
-	graph.xaxis();
-	graph.yaxis();
 	real f(real x) { return x*x; }
 	graph.xaxis("$x$");
 	graph.yaxis("$y$");
@@ -385,6 +404,18 @@ and also take the value at each of the above points.
 \section{$\Spec \ZZ[x]$, a two-dimensional scheme, and Mumford's picture}
 We saw $\Spec \ZZ$ looked a lot like $\Spec k[x]$,
 and we will now see that $\Spec \ZZ[x]$ looks a lot like $\Spec k[x,y]$.
+
+There is a famous picture of this scheme in Mumford's ``red book'',
+which I will produce here for culture-preservation reasons,
+even though there are some discrepancies between
+the pictures that we previously drew.
+\begin{center}
+	\includegraphics[width=0.9\textwidth]{media/mumforddrawing.jpg}
+\end{center}
+Mumford uses $[\kp]$ to denote the point $\kp$,
+which we don't, so you can ignore the square brackets that appear everywhere.
+The non-closed points are illustrated as balls of fuzz.
+
 As before, there are there types of prime ideals,
 but they will look somewhat more different:
 \begin{itemize}
@@ -401,48 +432,281 @@ but they will look somewhat more different:
 	\ii $\ZZ[x]$ is an integral domain,
 	so as always $(0)$ is our generic point for the entire space.
 \end{itemize}
-
-There is a famous picture of this scheme in Mumford's ``red book'',
-which I will produce here for culture-preservation reasons,
-even though there are some discrepancies between
-the pictures that we previously drew.
-\begin{center}
-	\includegraphics[width=0.9\textwidth]{media/mumforddrawing.jpg}
-\end{center}
-Mumford uses $[\kp]$ to denote the point $\kp$,
-which we don't, so you can ignore the square brackets that appear everywhere.
-The non-closed points are illustrated as balls of fuzz.
 There is one bit that I would do differently,
-in $V(3)$ and $V(7)$, there ought to be a point $(3,x^2+1)$,
+in $\VV(3)$ and $\VV(7)$, there ought to be a point $(3,x^2+1)$,
 which is not drawn as a closed point in the picture,
 but rather as dashed oval.
 This is not right in the topological sense:
 as $\km = (3, x^2+1)$ is a maximal ideal,
 so it really is one closed point in the scheme.
-But the reason it might be thought of as counting as two points
+But the reason it might be thought of as ``doubled'',
 is that $\ZZ[x] / (3,x^2+1)$,
 the field of possible values at $\km$,
 is a two-dimensional $\FF_3$ vector space.
 
-
-
 %%fakechapter 1D cut out from 2D
 \section{$\Spec k[x,y]/(y-x^2)$, the parabola}
-\section{$\Spec k[x,y]/(xy)$, two axes}
+\label{sec:parabola}
+By \Cref{prop:prime_quotient},
+the prime ideals of $k[x,y] / (y-x^2)$
+correspond to the prime ideals of $k[x,y]$ which are supersets of $(y-x^2)$,
+or equivalently the points of $\Spec k[x,y]$ contained
+inside the closed set $\VV(y-x^2)$.
+Moreover, the subspace topology on $\VV(y-x^2)$
+coincides with the topology on $\Spec k[x,y] / (y-x^2)$.
+
+\begin{center}
+\begin{asy}
+	real f(real x) { return x*x; }
+	draw(graph(f,-2,2,operator ..), blue+dotted, Arrows(TeXHead));
+	label("$\operatorname{Spec} k[x,y]/(y-x^2)$", (0, f(0)), dir(-90), blue);
+\end{asy}
+\end{center}
+
+This holds much more generally:
+\begin{exercise}
+	[Boring check]
+	Show that if $I$ is an ideal of a ring $A$,
+	then $\Spec A/I$ is homeomorphic as a topological space
+	to the closed subset $\VV(I)$ of $\Spec A$.
+\end{exercise}
+So this is the notion of ``closed embedding'':
+the parabola, which was a closed subset of $\Spec k[x,y]$,
+is itself a scheme.
+It will be possible to say more about this,
+once we actually define the notion of a morphism.
+
+The sheaf on this scheme only remembers the functions
+on the parabola, though: the stalks are not ``inherited'', so to speak.
+To see this, let's compute the stalk at the origin:
+\Cref{thm:localization_commute_quotient} tells us it is
+\[ k[x,y]_{(x,y)} / (y-x^2)
+	\cong k[x,x^2]_{(x,x^2)}
+	\cong k[x]_{(x)} \]
+which is the same as the stalk
+of the affine line $\Spec k[x]$ at the origin.
+Intuitively, not surprising;
+if one looks at any point of the parabola near the origin,
+it looks essentially like a line,
+as do the functions on it.
+
+The stalk above the generic point is $\Frac(k[x,y] / (y-x^2))$:
+so rational functions, with the identification that $y = x^2$.
+Also unsurprising.
+
 \section{$\Spec \ZZ[i]$, the Gaussian integers (one-dimensional)}
-\section{$\Spec k[x] \times k[y]$, two ``parallel'' lines}
+You can play on this idea some more in the integer case.
+Note that \[ \ZZ[i] \cong \ZZ[x] / (x^2+1) \]
+which means this is a ``dimension-one'' closed set within $\Spec \ZZ[x]$.
+In this way, we get a scheme whose elements are \emph{Gaussian primes}.
+
+You can tell which closed points are ``bigger'' than others
+by looking at the residue fields.
+For example the residue field of the point $(2+i)$ is
+\[ \kappa\left( (2+i) \right) = \ZZ[i] / (2+i) \cong \FF_5 \]
+but the residue field of the point $(3)$ is 
+\[ \kappa\left( (3) \right) \cong \ZZ[i] / (3) \cong \FF_9 \]
+which is a degree two $\FF_3$-extension.
+
+\section{Long example: $\Spec k[x,y]/(xy)$, two axes}
+This is going to be our first example of an irreducible scheme.
+
+\subsection{Picture}
+Like before, topologically it looks like the closed set $\VV(xy)$
+of $\Spec k[x,y]$.
+Here is a picture:
+\begin{center}
+\begin{asy}
+	draw( (-4,0)--(4,0), blue, Arrows);
+	draw( (0,-4)--(0,4), blue, Arrows);
+	dot("$(x)$", (0.3,3), dir(-45), lightred);
+	dot("$(y)$", (3, 0.3), dir(135), lightred);
+	dot("$(x+2)$", (-2,0), dir(-90), blue);
+	dot("$(y+3)$", (0,-3), dir(0), blue);
+\end{asy}
+\end{center}
+To make sure things are making sense:
+\begin{ques}
+	[Sanity check]
+	Verify that $(y+3)$ is really a maximal ideal of $\Spec k[x,y] / (xy)$
+	lying in $\VV(x)$.
+\end{ques}
+
+The ideal $(0)$ is longer prime,
+so it is not a point of this space.
+Rather, there are two non-closed points this time:
+the ideals $(x)$ and $(y)$,
+which can be visualized as floating around each of the two axes.
+This space is reducible,
+since it can be written as the union
+of two proper closed sets, $\VV(x) \cup \VV(y)$.
+(It is still \emph{connected}, as a topological space.)
+
+\subsection{Throwing out the $y$-axis}
+Consider the distinguished open set $U = D(x)$.
+This corresponds to deleting $\VV(x)$, the $y$-axis.
+Therefore we expect that $D(x)$
+``is'' just $\Spec k[x]$ with the origin deleted,
+and in particular that we should get $k[x]_{(x)} = k[x, x\inv]$
+for the sections.
+Indeed,
+\begin{align*}
+	\OO_{\Spec k[x,y]/(xy)} (D(x))
+	&\cong (k[x,y]/(xy))_x \\
+	&\cong (k[x,y]_x) / (xy) \cong k[x, x\inv, y] / (xy) \\
+	&\cong k[x, x\inv, y] / (y) \cong k[x, x\inv].
+\end{align*}
+where $(xy) = (y)$ follows from $x$ being a unit.
+Everything as planned.
+
+\subsection{Stalks above some points}
+Let's compute the stalk above the point $\km = (x+2)$,
+which we think of as the point $(-2,0)$ on the $x$-axis.
+(If it makes you more comfortable, note that $\km \ni y(x+2) = 2y$
+and hence $y \in \km$, so we could also write $\km = (x+2,y)$.)
+The stalk is
+\[ \OO_{\Spec k[x,y] / (xy), \km} = k[x,y]_{(x+2)} / (xy). \]
+This might look confusing until we realize that $\frac1x$
+is an element of $k[x,y]_{(x+2)}$, so $x$ is a unit;
+thus $(xy)$ and $(y)$ specify the same ideal and
+\[ \OO_{\Spec k[x,y] / (xy), (x+2)} \cong k[x,y]_{(x+2)} / (y)
+	\cong k[x]_{(x+2)}  \]
+which anyways looks just like the stalk of $(x+2)$ in $\Spec k[x]$.
+That's expected.
+If we have a space with two lines but we're
+standing away from the origin,
+then the stalk is not going to pick up the weird behavior
+at that far-away point;
+it only cares about what happens near $\km$,
+and so it looks just like an affine line there.
+
+The generic point $(y)$ (which floats around the $x$-axis)
+will tell a similar tale:
+if we look at the stalk above it,
+we ought to find that it doesn't recognize the presence of the $y$-axis,
+because ``nearly all'' points don't recognize it either.
+To actually compute the stalk:
+\[ \OO_{\Spec k[x,y] / (xy), (y)} = k[x,y]_{(y)} / (xy). \]
+Again as $\frac1x$ is an element of $k[x,y]_{(y)}$,
+we have $(xy) = (y)$ and thus
+\[ \OO_{\Spec k[x,y] / (xy), (y)} = k[x,y]_{(y)} / (y)
+	\cong k[x]_{(0)} \cong k(x). \]
+which is what we expected
+(it is the same as the stalk above $(0)$ in $\Spec k[x]$).
+
+\subsection{Stalk above the origin (tricky)}
+The stalk above the origin $(x,y)$ is interesting,
+and has some ideas in it we won't be able to explore fully
+without talking about localizations of modules.
+We could of course write it as
+\[ (k[x,y] / (xy))_{(x,y)}
+	= k[x,y]_{(x,y)} / (xy). \]
+and hence the elements should be
+\[ \frac{c + (a_1 x + a_2 x^2 + \dots)
+	+ (b_1 y + b_2 y^2 + \dots)}
+	{c' + (a_1' x + a_2' x^2 + \dots)
+	+ (b_1' y + b_2' y^2 + \dots)}
+\]
+where $c' \ne 0$.
+
+You might feel unsatisfied with this characterization.
+Here is some geometric intuition.
+You can write the global section ring as
+\[ k[x,y] / (xy) = c + (a_1 x + a_2 x^2 + \dots)
+	+ (b_1 y + b_2 y^2 + \dots) \]
+meaning that any global section is the sum of an $x$-polynomial
+and a $y$-polynomial.
+This is \emph{not} just the ring product $k[x] \times k[y]$, though:
+because the constant term is shared.
+So it is better thought of as pairs of polynomials in $k[x]$
+and $k[y]$ which agree on the constant term.
+
+If you like category theory, it is thus a fibered product
+\[ k[x,y] / (xy) \cong k[x] \times_k k[y] \]
+with morphism $k[x] \to k$ and $k[y] \to k$ by sending $x$ and $y$ to zero.
+In that way, we can mostly decompose $k[x,y] / (xy)$
+into its two components.
+
+We really ought to be able to do the same as the stalk:
+we wish to say that
+\[ \OO_{\Spec k[x,y] / (xy), (x,y)}
+	\cong k[x]_{(x)} \times_k k[y]_{(y)}. \]
+English translation: a ``typical'' germ
+ought to look like $\frac{3+x}{x^2+7} + \frac{4+y^3}{y^2+y+7}$,
+with the $x$ and $y$ parts decoupled.
+Equivalently, the stalk should consist of
+pairs of $x$-germs and $y$-germs that agree at the origin.
+
+In fact, this is true!
+This might come as a surprise, but let's see why we expect this.
+Suppose we take the germ
+\[ \frac{1}{1-(x+y)}. \]
+If we hold our breath, we could imagine expanding it as
+a geometric series: $1 + (x+y) + (x+y)^2 + \dots$.
+As $xy =0 $, this just becomes $1+x+x^2+x^3 + \dots + y+y^2+y^3+\dots$.
+This is nonsense (as written), but nonetheless it suggests the conjecture
+\[ \frac{1}{1-(x+y)} = \frac{1}{1-x} + \frac{1}{1-y} - 1 \]
+which you can actually verify is true.
+\begin{ques}
+	Check this identity holds.
+\end{ques}
+
+Of course, this is a lot of computation just for one simple example.
+Is there a way to make it general?
+Yes: the key claim is that ``localization commutes with \emph{limits}''.
+You can try to work out the statement now if you want,
+but we won't do so quite yet.
+\todo{do we ever?}
+
+
 
 %%fakechapter 1D with holes
-\section{$\Spec k[x]_x$, the punctured line (or hyperbola)}
+\section{$\Spec k[x]_x$, the punctured line (or alternatively hyperbola)}
+This is supposed to look like $D(x)$ of $\Spec k[x]$,
+or the line with the origin deleted it.
+Alternatively, we could also write
+\[ k[x]_x \cong k[x,x\inv] \cong k[x,y] / (xy-1) \]
+so that the scheme could also be drawn as a hyperbola.
+
+First, here's the 1D illustration.
+\begin{center}
+	\begin{asy}
+		size(8cm);
+		pair A = (-8,0); pair B = (8,0);
+		draw(A--B, Arrows);
+		dot("$(x-3)$", (3,0), dir(-90), blue);
+		dot("$(x+2)$", (-2,0), dir(-90), blue);
+		dot("$(0)$", (0,1), dir(90), red);
+		opendot(origin, black+1.5);
+		draw( (-6,0)..(-3,0.5)..(-1,1)--(1,1)--(3,0.5)--(6,0), dotted+red );
+		label("$\operatorname{Spec} k[x,x^{-1}]$", A, dir(-90));
+	\end{asy}
+\end{center}
+We actually saw this scheme already when we took $\Spec k[x,y] / (xy)$
+and looked at $D(y)$, too.
+Anyways, let us compute the stalk at $(x-3)$ now; it is
+\[ \OO_{\Spec k[x,x\inv], (x-3)}
+	\cong k[x,x\inv]_{(x-3)}
+	\cong k[x]_{(x-3)} \]
+since $x\inv$ is in $k[x]_{(x-3)}$ anyways.
+So again, we see that the deletion of the origin
+doesn't affect the stalk at the farther away point $(x-3)$.
+
+\todo{picture with parabola}
+
 \section{$\Spec \ZZ_{55}$, deleting $5$ and $11$}
-\section{$\Spec (k[x,y]/(xy))_{x+y}$, two axes with the origin deleted}
 
 %%fakechapter 0D --- stalks above 1D
 \section{$\Spec k[x]_{(x)}$, the stalk above the origin}
 \section{$\Spec k[x]_{(0)}$, the stalk above the generic point}
-\section{$\Spec \ZZ_{(5)}$, the stalk above $(5)$}
-\section{$\Spec \ZZ_{(0)} = \Spec \QQ$}
 \section{$\Spec k[x,y]_{(x,y)}$, the stalk above the origin}
 \section{$\Spec k[x,y]_{(y-x^2)}$, the stalk above the parabola}
-\section{$\Spec k[x,y]_{(0)}$, the stalk above the generic point}
+\section{$\Spec \ZZ_{(5)}$, the stalk above $(5)$}
 
+% \section{$\Spec \ZZ_{(0)} = \Spec \QQ$}
+% \section{$\Spec k[x,y]_{(0)}$, the stalk above the generic point}
+
+
+%%fakechapter Problems
+\section{\problemhead}
+$\Spec (k[x,y]/(xy))_{x+y}$

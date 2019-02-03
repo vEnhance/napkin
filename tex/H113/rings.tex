@@ -58,6 +58,8 @@ Colloquially, we say that
 \begin{moral}
 	A field is a structure where you can add, subtract, multiply, and divide.
 \end{moral}
+Depending on context, they are often denoted
+either $k$, $K$, $F$.
 
 \begin{example}
 	[First examples of fields]
@@ -73,10 +75,10 @@ Colloquially, we say that
 \end{example}
 
 \begin{exercise}
-	If $k$ is a field, show that there are exactly two ideals.
+	[Mandatory: fields have two ideals]
+	If $K$ is a field, show that $K$ has exactly two ideals.
 	What are they?
 \end{exercise}
-
 
 %\begin{remark}
 %	You might say at this point that ``fields are nicer than rings'',
@@ -383,6 +385,20 @@ to what you might see in an olympiad.
 	Is it a field?
 	\begin{hint}
 		Yes.
+	\end{hint}
+\end{problem}
+
+\begin{problem}
+	[Homomorphisms from fields are injective]
+	\label{prob:field_hom}
+	Let $K$ be a field and $R$ a ring.
+	Prove that any homomorphism $\psi \colon K \to R$
+	is injective.\footnote{Note that $\psi$
+		cannot be the zero map for us,
+		since we require $\psi(1_K) = 1_R$.
+		You sometimes find different statements in the literature.}
+	\begin{hint}
+		The kernel is an ideal of $K$!
 	\end{hint}
 \end{problem}
 

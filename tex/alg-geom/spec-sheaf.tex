@@ -97,8 +97,10 @@ which build on each other.
 The first is a topological observation:
 \begin{theorem}
 	[Distinguished open sets form a base]
+	\label{thm:distinguished_base}
 	The distinguished open sets $D(f)$
 	form a basis for the Zariski topology:
+	any open set $U$ is a union of distinguished open sets.
 \end{theorem}
 \begin{proof}
 	Let $U$ be an open set;
@@ -140,6 +142,7 @@ is itself distinguished open, so the global sections can be recovered.
 \end{proof}
 
 \subsection{They are affine}
+\label{subsec:distinguished_open_affine}
 We know $\OO_X(D(f)) = A_f$.
 In fact, if you draw $\Spec A_f$,
 you will find that it looks exactly like $D(f)$.
@@ -159,6 +162,7 @@ but it will be handy later (though not right away).
 %which is itself affine.
 
 \subsection{Classic example: the punctured plane}
+\label{subsec:punctured_plane}
 We now give the classical example of a computation which shows
 how you can forget about sheafification,
 if you never liked it.\footnote{This perspective is
@@ -447,14 +451,14 @@ Thankfully, no, nothing goes wrong, even in a general ring $A$.
 
 \begin{definition}
 	We let the quotient $A_\kp / \kp A_\kp$,
-	i.e.\ the residue field of the stalk of $\Spec A$ at $\kp$,
+	i.e.\ the \vocab{residue field} of the stalk of $\Spec A$ at $\kp$,
 	be denoted by $\kappa(\kp)$.
 \end{definition}
 
 The following result from commutative algebra
 shows that the order doesn't matter.
 \begin{theorem}
-	[The germ-to-value commutative diagram]
+	[The germ-to-value square]
 	Let $A$ be a ring and $\kp$ a prime ideal.
 	The following diagram commutes:
 	\begin{center}
@@ -469,7 +473,6 @@ shows that the order doesn't matter.
 \end{theorem}
 So for example, if $A = \CC[x,y]$ and $\kp = (x,y)$,
 then $A/\kp = \CC$ and $\Frac(A_\kp) = \Frac(\CC) = \CC$, as we expected.
-
 In practice, $\Frac(A/\kp)$ is probably the easier way
 to compute $\kappa(\kp)$ for any prime ideal $\kp$.
 
