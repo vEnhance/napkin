@@ -80,6 +80,8 @@ The notion of ``value at $\kp$'' works as expected.
 For example, $f = x^2+5$ is a global section of $\CC[x]$.
 If we evaluate it at $\kp = x-3$,
 we find $f(\kp) = f \pmod \kp = x^2+5 \pmod{x-3} = 14 \pmod{x-3}$.
+Indeed, \[ \kappa(\kp) \cong \CC \]
+meaning the stalks all have residue field $\CC$.
 As \[ \CC[x] / \kp \cong \CC \qquad \text{by $x \mapsto 3$} \]
 we see we are just plugging $x=3$.
 
@@ -173,6 +175,17 @@ if $I$ is a proper ideal of a ring $A$,
 then some maximal ideal contains it,
 and so $\VV(I)$ is nonempty in $\Spec A$.
 
+We better mention that the stalks this time look different than expected.
+Here are some examples:
+\begin{align*}
+	\kappa\left( (x^2+1) \right) &\cong \RR[x]/(x^2+1) \cong \CC \\
+	\kappa \left( (x-3) \right) &\cong \RR[x] / (x-3) \cong \RR \\
+	\kappa \left( (0) \right) &\cong \Frac(\RR[x] / (0)) \cong \RR(x)
+\end{align*}
+Notice the residue fields above the ``complex''
+points are bigger: functions on them take values in $\CC$.
+
+
 \section{$\Spec k[x]$, over any ground field}
 In general, if $\ol k$ is the algebraic closure of $k$,
 then $\Spec k[x]$ looks like $\Spec \ol k[x]$
@@ -209,10 +222,18 @@ so a ``rational function'' is literally a rational number!
 Thus, $\frac{20}{19}$ is a function
 with a double root at $(2)$, a root at $(5)$,
 and a simple pole at $(19)$.
-If we evaluate it at $\kp = (3)$, we get $2 \pmod 3$.
+If we evaluate it at $\kp = (7)$, we get $3 \pmod 7$.
+In general, the residue fields are what you'd guess:
+\[ \kappa\left( (p) \right) = \ZZ/(p) \cong \FF_p \]
+for each prime $p$, and
+$\kappa\left( (0) \right) \cong \QQ$.
 
-The stalk $X_{(3)}$ is the rational numbers
-that don't have a pole at $3$.
+The stalk is bigger than the residue field at the closed points:
+for example
+\[ \OO_{\Spec \ZZ, (3)}
+	\cong \left\{ \frac mn \mid 3 \nmid n \right\} \]
+consists of rational numbers with no pole at $3$.
+The stalk at the generic point is $\ZZ_{(0)} \cong \Frac \ZZ = \QQ$.
 
 %%fakechapter 0D from 1D
 \section{$\Spec k[x] / (x^2-x)$, two points}
@@ -441,7 +462,7 @@ as $\km = (3, x^2+1)$ is a maximal ideal,
 so it really is one closed point in the scheme.
 But the reason it might be thought of as ``doubled'',
 is that $\ZZ[x] / (3,x^2+1)$,
-the field of possible values at $\km$,
+the residue field at $\km$,
 is a two-dimensional $\FF_3$ vector space.
 
 %%fakechapter 1D cut out from 2D

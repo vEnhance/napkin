@@ -158,7 +158,7 @@ the analogy by thinking of the points $f$ as functions on $\Spec A$. That is:
 	Suppose $A = \CC[x_1, \dots, x_n]$,
 	and $\km = (x_1-a_1, x_2-a_2, \dots, x_n-a_n)$ is a maximal ideal of $A$.
 	Then for a polynomial $f \in \CC$,
-	\[ f \pmod \kp = f(a_1, \dots, a_n) \]
+	\[ f \pmod \km = f(a_1, \dots, a_n) \]
 	with the identification that $\CC/\km \cong \CC$.
 \end{example}
 \begin{example}
@@ -238,8 +238,8 @@ as just the closed points.
 	graph.xaxis("$x$");
 	graph.yaxis("$y$");
 	draw(graph(f,-2,2,operator ..), blue+dotted, Arrows(TeXHead));
-	dot("$(y-x^2)$", (1.3, f(1.3)), dir(-45), blue);
-	dot("$(x-2,y-4)$", (2,4), dir(-45), red);
+	dot("$(y-x^2)$", (1.4, f(1.4)), dir(-45), blue);
+	dot("$(x+1,y-1)$", (-1,1), dir(225), red);
 \end{asy}
 \end{center}
 

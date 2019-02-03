@@ -40,10 +40,10 @@ To give some examples from the very beginning of time:
 \end{example}
 This time, the ringed spaces $(X, \OO_X)$ have an underlying
 \emph{topological space}, which we have enriched with a structure sheaf.
-So, we want a continuous map $f : X \to Y$ of these topological spaces,
+So, we want a continuous map $f \colon X \to Y$ of these topological spaces,
 which we then need to respect the sheaf of regular functions.
 
-How might we do this? Well, if we let $\psi : Y \to \CC$
+How might we do this? Well, if we let $\psi \colon Y \to \CC$
 be a regular function, then there's a natural way to get
 then composition gives us a way to write a map $X \to Y \to \CC$.
 We then want to require that this is also a regular function.
@@ -53,8 +53,8 @@ and obtain some function on $X$, which we call a pullback.
 We then require that all the pullbacks are regular on $X$.
 \begin{definition}
 	Let $(X, \OO_X)$ and $(Y, \OO_Y)$ be baby ringed spaces.
-	Given a map $f : X \to Y$ and a regular function $\phi \in \OO_Y(U)$,
-	we define the \vocab{pullback} of $\phi$, denoted $f^\ast\phi$,
+	Given a map $f \colon X \to Y$ and a regular function $\phi \in \OO_Y(U)$,
+	we define the \vocab{pullback} of $\phi$, denoted $f^\sharp\phi$,
 	to be the composed function
 	\begin{diagram}
 		f\pre(U) &\rTo^f & U & \rTo^\phi & \CC.
@@ -65,7 +65,7 @@ of differential forms.
 
 \begin{definition}
 	Let $(X, \OO_X)$ and $(Y, \OO_Y)$ be baby ringed spaces.
-	A continuous map of topological spaces $f: X \to Y$
+	A continuous map of topological spaces $f \colon X \to Y$
 	is a \vocab{morphism} if every pullback of a regular function on $Y$
 	is a regular function on $X$.
 
@@ -75,10 +75,10 @@ of differential forms.
 \end{definition}
 
 In particular, the pullback gives us a (reversed) \emph{ring homomorphism}
-\[ f^\ast : \OO_Y(U) \to \OO_X(f\pre(U)) \] for \emph{every} $U$;
+\[ f^\sharp \colon \OO_Y(U) \to \OO_X(f\pre(U)) \] for \emph{every} $U$;
 thus our morphisms package a lot of information.
 Here's a picture of a morphism $f$,
-and the pullback of $\phi : U \to \CC$ (where $U \subseteq Y$).
+and the pullback of $\phi \colon U \to \CC$ (where $U \subseteq Y$).
 \begin{center}
 	\begin{asy}
 		size(13cm);
@@ -104,22 +104,22 @@ and the pullback of $\phi : U \to \CC$ (where $U \subseteq Y$).
 		label(scale(2.718)*"$\mathbb C$", (0,-9), black);
 
 		draw( p--(-0.5,-8), deepgreen, EndArrow);
-		label("$f^\ast \phi \in \mathcal O_X(f^{\text{pre}}(U))$",
+		label("$f^\sharp \phi \in \mathcal O_X(f^{\text{pre}}(U))$",
 			(p+(-0.5,-8))/2, dir(225), deepgreen);
 	\end{asy}
 \end{center}
 
 \begin{example}
 	[The pullback of $\frac{1}{y-25}$ under $t \mapsto t^2$]
-	The map 
-	\[ f : X = \Aff^1 \to Y = \Aff^1 \quad\text{by}\quad t \mapsto t^2 \]
+	The map
+	\[ f \colon X = \Aff^1 \to Y = \Aff^1 \quad\text{by}\quad t \mapsto t^2 \]
 	is a morphism of varieties.
 	For example, consider the regular function $\varphi = \frac{1}{y-25}$ on
 	the open set $Y \setminus \{25\} \subseteq Y$.
 	The $f$-inverse image is $X \setminus \{\pm5\}$.
 	Thus the pullback is
 	\begin{align*}
-		f^\ast\varphi : X \setminus \{\pm5\} &\to Y \setminus \{25\} \\
+		f^\sharp\varphi \colon X \setminus \{\pm5\} &\to Y \setminus \{25\} \\
 		\quad\text{by}\quad x &\mapsto \frac{1}{x^2-25}
 	\end{align*}
 	which is regular on $X \setminus \{\pm5\}$.
@@ -160,7 +160,7 @@ In fact, let's generalize the previous exercise:
 \begin{theorem}
 	[Regular maps of affine varieties are globally polynomials]
 	Let $X \subseteq \Aff^m$ and $Y \subseteq \Aff^n$ be affine varieties.
-	Every morphism $f : X \to Y$ of varieties is given by
+	Every morphism $f \colon X \to Y$ of varieties is given by
 	\[
 		x = \left( x_1, \dots, x_m \right)
 		\xmapsto{f} \left( P_1(x), \dots, P_n(x) \right)
@@ -171,7 +171,7 @@ In fact, let's generalize the previous exercise:
 \begin{proof}
 	It's not too hard to see that all such functions work,
 	so let's go the other way.
-	Let $f : X \to Y$ be a morphism.
+	Let $f \colon X \to Y$ be a morphism.
 
 	First, remark that $f\pre(Y) = X$.
 	Now consider the regular function $\pi_1 \in \OO_Y(Y)$,
@@ -221,7 +221,7 @@ The good news is that ``local'' issues are the only limiting factor.
 \begin{theorem}
 	[Regular maps of projective varieties are locally polynomials]
 	Let $X \subseteq \CP^m$ and $Y \subseteq \CP^n$ be projective varieties
-	and let $f : X \to Y$ be a morphism.
+	and let $f \colon  X \to Y$ be a morphism.
 	Then at every point $p \in X$ there exists an neighborhood $U_p \ni p$
 	and polynomials $P_0$, $P_1$, \dots, $P_n$ (which depend on $U$) so that
 	\[ f(x) = \left( P_0(x) : P_1(x) : \dots : P_n(x) \right)
@@ -232,7 +232,7 @@ The good news is that ``local'' issues are the only limiting factor.
 \begin{example}
 	[Example of an isomorphism]
 	In fact, the map $V = \Vp(xy-z^2) \to \CP^1$ is an isomorphism.
-	The inverse map $\CP^1 \to V$ is given by 
+	The inverse map $\CP^1 \to V$ is given by
 	\[ (s:t) \mapsto (s^2:st:t^2). \]
 	Thus actually $V \cong \CP^1$.
 \end{example}
@@ -452,19 +452,19 @@ so you will have a second chance to do so.
 	Show that $f$ is not an isomorphism.
 	\begin{hint}
 		Assume $f$ was an isomorphism.
-		Then it gives an isomorphism $f^\ast \colon \OO_V(V) \to \OO_X(X) = \CC[x,y]$.
+		Then it gives an isomorphism $f^\sharp \colon \OO_V(V) \to \OO_X(X) = \CC[x,y]$.
 		Thus we may write $\OO_V(V) = \CC[a,b]$,
-		where $f^\ast(a) = x$ and $f^\ast(b) = y$.
+		where $f^\sharp(a) = x$ and $f^\sharp(b) = y$.
 		Let $f(p) = q$ where $\VV(a,b) = \{q\}$.
 		Use the definition of pullback to prove $p \in \VV(x,y)$, contradiction.
 	\end{hint}
 	\begin{sol}
 		Assume for contradiction there is an affine variety $V$
 		and an isomorphism
-		\[ f : X \to V. \]
+		\[ f \colon X \to V. \]
 		Then taking the pullback we get a ring isomorphism
-		\[ f^\ast : \OO_V(V) \to \OO_X(X) = \CC[x,y]. \]
-		Now let $\OO_V(V) = \CC[a,b]$ where $f^\ast(a) = x$, $f^\ast(b) = y$.
+		\[ f^\sharp \colon  \OO_V(V) \to \OO_X(X) = \CC[x,y]. \]
+		Now let $\OO_V(V) = \CC[a,b]$ where $f^\sharp(a) = x$, $f^\sharp(b) = y$.
 		In particular, we actually have to have $V \cong \Aff^2$.
 
 		Now in the \emph{affine} variety $V$ we can take $\VV(a)$ and $\VV(b)$;
@@ -473,7 +473,7 @@ so you will have a second chance to do so.
 		Call this point $q$, and let $p$ be a point with $f(p) = q$.
 
 		Then
-		\[ 0 = a(q) = (f^\ast a)(p) = x(p) \]
+		\[ 0 = a(q) = (f^\sharp a)(p) = x(p) \]
 		and so $p \in \VV(x) \subseteq X$.
 		Similarly, $p \in \VV(y) \subseteq X$,
 		but this is a contradiction since $\VV(x,y) = \varnothing$.
