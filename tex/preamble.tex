@@ -257,32 +257,52 @@ style=thmbluebox,name=Theorem,numberwithin=section]{theorem}
 \declaretheorem[style=thmbluebox,name=Corollary,sibling=theorem]{corollary}
 \declaretheorem[style=thmredbox,name=Example,sibling=theorem]{example}
 
-\mdfdefinestyle{mdinlinebox}{%
+\mdfdefinestyle{mdgreenbox}{%
+	skipabove=8pt,
+	linewidth=2pt,
+	rightline=false,
+	leftline=true,
+	topline=false,
+	bottomline=false,
+	linecolor=ForestGreen,
+	backgroundcolor=ForestGreen!5,
+}
+\declaretheoremstyle[
+	headfont=\bfseries\sffamily\color{ForestGreen!70!black},
+	bodyfont=\normalfont,
+	spaceabove=2pt,
+	spacebelow=1pt,
+	mdframed={style=mdgreenbox},
+	headpunct={ --- },
+]{thmgreenbox}
+
+\mdfdefinestyle{mdblackbox}{%
 	skipabove=8pt,
 	linewidth=3pt,
 	rightline=false,
 	leftline=true,
 	topline=false,
 	bottomline=false,
-	linecolor=gray,
-	backgroundcolor=black!2
+	linecolor=black,
+	backgroundcolor=RedViolet!5!gray!5,
 }
 \declaretheoremstyle[
 	headfont=\bfseries,
 	bodyfont=\normalfont\small,
 	spaceabove=0pt,
 	spacebelow=0pt,
-	mdframed={style=mdinlinebox}
-]{thminlinebox}
+	mdframed={style=mdblackbox}
+]{thmblackbox}
+
 \theoremstyle{theorem}
-\declaretheorem[name=Question,sibling=theorem,style=thminlinebox]{ques}
-\declaretheorem[name=Exercise,sibling=theorem,style=thminlinebox]{exercise}
+\declaretheorem[name=Question,sibling=theorem,style=thmblackbox]{ques}
+\declaretheorem[name=Exercise,sibling=theorem,style=thmblackbox]{exercise}
+\declaretheorem[name=Remark,sibling=theorem,style=thmgreenbox]{remark}
 
 \theoremstyle{definition}
 \newtheorem{claim}[theorem]{Claim}
 \newtheorem{definition}[theorem]{Definition}
 \newtheorem{fact}[theorem]{Fact}
-\newtheorem{remark}[theorem]{Remark}
 \newtheorem{abuse}[theorem]{Abuse of Notation}
 
 \newtheorem{problem}{Problem}[chapter]
