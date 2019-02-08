@@ -353,32 +353,38 @@ It turns out that the exterior derivative is easy to compute
 given explicit coordinates to work with.
 
 First, given a function $f : U \to \RR$,
-we define 
-\[ df \defeq Df = \sum_i f_i e_i^\vee \]
-In particular, suppose $V = \RR^n$ and $f(x_1, \dots, x_n) = x_1$ (i.e.\ $f = \ee_1^\vee$). Then:
+we define
+\[ df \defeq Df = \sum_i \frac{\partial f_i}{\partial e_i} e_i^\vee \]
+In particular, suppose $V = \RR^n$ and $f(x_1, \dots, x_n) = x_1$
+(i.e.\ $f = \ee_1^\vee$). Then:
 \begin{ques}
 	Show that for any $p \in U$, \[ \left( d(\ee_1^\vee) \right)_p = \ee_1^\vee. \]
 \end{ques}
 
 \begin{abuse}
-	Unfortunately, someone somewhere decided it would be a good idea to use ``$x_1$'' to denote $\ee_1^\vee$
+	Unfortunately, someone somewhere decided
+	it would be a good idea to use ``$x_1$'' to denote $\ee_1^\vee$
 	(because \emph{obviously}\footnote{Sarcasm.} $x_1$ means
 	``the function that takes $(x_1, \dots, x_n) \in \RR^n$ to $x_1$'')
 	and then decided that \[ dx_1 \defeq \ee_1^\vee. \]
-	This notation is so entrenched that I have no choice but to grudgingly accept it.
-	Note that it's not even right, since technically it's $(dx_1)_p = \ee_1^\vee$; $dx_1$ is a $1$-form.
+	This notation is so entrenched that I have no choice
+	but to grudgingly accept it.
+	Note that it's not even right,
+	since technically it's $(dx_1)_p = \ee_1^\vee$; $dx_1$ is a $1$-form.
 	\label{abuse:dx}
 \end{abuse}
 \begin{remark}
 	This is the reason why we use the notation $\frac{df}{dx}$ in calculus now:
 	given, say, $f : \RR \to \RR$ by $f(x) = x^2$, it is indeed true that
 	\[ df = 2x \cdot \ee_1^\vee = 2x \cdot dx \]
-	and so by abuse of notation we write $df/dx = 2x$.
+	and so by (more) abuse of notation we write $df/dx = 2x$.
 \end{remark}
 
-More generally, we can define the \vocab{exterior derivative} in terms of our basis $e_1$, \dots, $e_n$ as follows:
+More generally, we can define the \vocab{exterior derivative}
+in terms of our basis $e_1$, \dots, $e_n$ as follows:
 if $\alpha = \sum_I f_I de_I$ then we set
-\[ d\alpha \defeq \sum_I df_I \wedge de_I = \sum_I \sum_j \fpartial{f_I}{e_j} de_j \wedge de_I. \]
+\[ d\alpha \defeq \sum_I df_I \wedge de_I
+	= \sum_I \sum_j \fpartial{f_I}{e_j} de_j \wedge de_I. \]
 This doesn't depend on the choice of basis.
 
 \begin{example}[Computing some exterior derivatives]
