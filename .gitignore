@@ -10,6 +10,8 @@ asy/*
 
 **/*.asy
 !extras.asy
+!olympiad.asy
+!cse5.asy
 **/*.out
 **/*.pdf
 
