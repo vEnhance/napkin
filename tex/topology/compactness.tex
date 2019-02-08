@@ -280,8 +280,9 @@ so that e.g.\ they are preserved under homeomorphism.
 \section{Applications of compactness}
 Compactness lets us reduce \emph{infinite} open covers to finite ones.
 Actually, it lets us do this even if the open covers are \emph{blithely stupid}.
-Very often one takes an open cover consisting of a neighborhood of $x \in X$
-for every single point $x$ in the space; this is a huge number of open sets,
+Very often one takes an open cover consisting
+of an open neighborhood of $x \in X$ for every single point $x$ in the space;
+this is a huge number of open sets,
 and yet compactness lets us reduce to a finite set.
 
 To give an example of a typical usage:
@@ -291,7 +292,7 @@ To give an example of a typical usage:
 \begin{proof}[Proof Using Covers]
 	For every point $p \in M$, take an $\eps$-neighborhood of $p$, say $U_p$.
 	These cover $M$ for the horrendously stupid reason that each point is
-	at the very least covered by the neighborhood $U_p$.
+	at the very least covered by the open neighborhood $U_p$.
 	Compactness then lets us take a finite subcover.
 \end{proof}
 
@@ -425,8 +426,10 @@ the idea of the proof is much in the spirit of \Cref{thm:interval_compact}.
 	\begin{lemma}
 		[Lebesgue number lemma]
 		Let $M$ be a compact metric space and $\{U_\alpha\}$ an open cover.
-		Then there exists a real number $\delta > 0$, called a \vocab{Lebesgue number} for that covering,
-		such that the $\delta$-neighborhood of any point $p$ lies entirely in some $U_\alpha$.
+		Then there exists a real number $\delta > 0$,
+		called a \vocab{Lebesgue number} for that covering,
+		such that the $\delta$-neighborhood of any point
+		$p$ lies entirely in some $U_\alpha$.
 	\end{lemma}
 	\begin{subproof}[Proof of lemma]
 		Assume for contradiction that for every $\delta = 1/k$
@@ -458,7 +461,7 @@ the idea of the proof is much in the spirit of \Cref{thm:interval_compact}.
 		(You will have to use the fact that $x_k \not\to p$ and $(x_k)$ is Cauchy.)
 	\end{ques}
 	Now if we consider $M = \bigcup_p U_p$ we get a
-	finite subcover of these neighborhoods;
+	finite subcover of these open neighborhoods;
 	but this finite subcover can only cover finitely
 	many points of the sequence, by contradiction.
 \end{proof}

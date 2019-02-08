@@ -23,7 +23,7 @@ This observation underlies the definition of a manifold:
 Actually there are two ways to think about a topological manifold $M$:
 \begin{itemize}
 	\ii ``Locally'': at every point $p \in M$,
-	some neighborhood of $p$ looks like an open set of $\RR^n$.
+	some open neighborhood of $p$ looks like an open set of $\RR^n$.
 	For example, to someone standing on the surface of the Earth,
 	the Earth looks much like $\RR^2$.
 	
@@ -102,12 +102,12 @@ Here is a picture of an atlas for $S^1$, with two open sets.
 	\begin{enumerate}[(a)]
 		\ii As discussed at length,
 		the sphere $S^2$ is a $2$-manifold: every point in the sphere has a
-		small neighborhood that looks like $D^2$.
-			One can cover the Earth with just two hemispheres,
+		small open neighborhood that looks like $D^2$.
+		One can cover the Earth with just two hemispheres,
 		and each hemisphere is homeomorphic to a disk.
 
-		\ii The circle $S^1$ is a $1$-manifold; every point has a neighborhood that looks
-		like an open interval.
+		\ii The circle $S^1$ is a $1$-manifold; every point has an
+		open neighborhood that looks like an open interval.
 
 		\ii The torus, Klein bottle, $\RP^2$, $\CP^2$ are all $2$-manifolds.
 
@@ -116,7 +116,8 @@ Here is a picture of an atlas for $S^1$, with two open sets.
 	All these spaces are compact except $\RR^n$.
 
 	A non-example of a manifold is $D^n$, because it has a \emph{boundary};
-	points on the boundary do not have locally Euclidean neighborhoods.
+	points on the boundary do not have open neighborhoods
+	that look Euclidean.
 \end{example}
 
 \section{Smooth manifolds}
@@ -398,7 +399,7 @@ a sphere.
 Suppose $f \colon S^2 \to \RR$ is a
 function on a sphere, and take a point $p$.
 Near the point $p$, $f$ looks like a function
-on some neighborhood of the origin.
+on some open neighborhood of the origin.
 Thus we can think of taking a \emph{directional derivative}
 along a vector $\vec v$ in the imagined tangent plane
 (i.e.\ some partial derivative).

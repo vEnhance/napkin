@@ -100,7 +100,8 @@ Then for some $z_0 \in U$, we define the \vocab{derivative} at $z_0$ to be
 \[
 	\lim_{h \to 0} \frac{f(z_0+h) - f(z_0)}{h}.
 \]
-Note that this limit may not exist; when it does we say $f$ is \vocab{differentiable} at $z_0$.
+Note that this limit may not exist;
+when it does we say $f$ is \vocab{differentiable} at $z_0$.
 
 What do I mean by a ``complex'' limit $h \to 0$?
 It's what you might expect: for every $\eps > 0$ there should be a $\delta > 0$
@@ -108,8 +109,10 @@ such that
 \[ 0 < \left\lvert h \right\rvert < \delta
 	\implies
 	\left\lvert \frac{f(z_0+h)-f(z_0)}{h} - L \right\rvert < \eps. \]
-If you like topology, you are encouraged to think of this in terms of neighborhoods in the complex plane.
-(This is why we require $U$ to be open: it makes it possible to take $\delta$-neighborhoods in it.)
+If you like topology, you are encouraged to think of this in terms of
+open neighborhoods in the complex plane.
+(This is why we require $U$ to be open:
+it makes it possible to take $\delta$-neighborhoods in it.)
 
 But note that having a complex derivative is actually much stronger
 than a real function having a derivative.
@@ -556,7 +559,8 @@ the Taylor series centered at $p$ is only valid in a disk centered at $p$ which 
 If $U = \CC$ this is no issue, since you can make the disk big enough to accommodate any point you want.
 It's more subtle in the case that $U$ is, for example, a square; you can't cover the entire square
 with a disk centered at some point without going outside the square.
-However, since $U$ is open we can at any rate at least find some neighborhood for which the Taylor
+However, since $U$ is open we can at any rate at least find some
+open neighborhood for which the Taylor
 series is correct -- in stark contrast to the real case.
 Indeed, as you'll see in the problems,
 the existence of a Taylor series is incredibly powerful.
@@ -589,7 +593,7 @@ The first few results are the most important.
 \begin{sproblem}[Zeros are isolated]
 	An \vocab{isolated set} in the complex plane is a
 	set of points $S$ such that around each point in $S$,
-	one can draw a neighborhood not intersecting any other point of $S$.
+	one can draw an open neighborhood not intersecting any other point of $S$.
 
 	Show that the zero set of any nonzero holomorphic
 	function $f : U \to \CC$ is an isolated set,
@@ -599,7 +603,7 @@ The first few results are the most important.
 		Proceed by contradiction,
 		meaning there exists a sequence $z_1, z_2, \dots \to z$
 		where $0 = f(z_1) = f(z_2) = \dots$ all distinct.
-		Prove that $f = 0$ on a neighborhood of $z$
+		Prove that $f = 0$ on an open neighborhood of $z$
 		by looking at the Taylor series of $f$ and
 		pulling out factors of $z$.
 	\end{hint}
@@ -611,7 +615,7 @@ The first few results are the most important.
 		Since it isn't uniformly zero by assumption,
 		write it as $a_N z^N + a_{N+1}z^{N+1} + \dots$, $a_N \neq 0$.
 		But by continuity of $h(z) = a_N + a_{N+1}z + \dots$ there is some
-		neighborhood of zero where $h(z) \neq 0$.
+		open neighborhood of zero where $h(z) \neq 0$.
 	\end{sol}
 \end{sproblem}
 
@@ -619,7 +623,8 @@ The first few results are the most important.
 	[Identity theorem]
 	\gim
 	Let $f, g : U \to \CC$ be holomorphic, and assume that $U$ is connected.
-	Prove that if $f$ and $g$ agree on some neighborhood, then $f = g$.
+	Prove that if $f$ and $g$ agree on some open neighborhood,
+	then $f = g$.
 	\begin{hint}
 		Take the interior of the agreeing points;
 		show that this set is closed, which implies the conclusion.
@@ -628,7 +633,7 @@ The first few results are the most important.
 		Let $S$ be the interior of the points satisfying $f=g$.
 		By definition $S$ is open.
 		By the previous part, $S$ is closed: if $z_i \to z$ and $z_i \in S$,
-		then $f=g$ in some neighborhood of $z$, hence $z \in S$.
+		then $f=g$ in some open neighborhood of $z$, hence $z \in S$.
 		Since $S$ is clopen and nonempty, $S = U$.
 	\end{sol}
 \end{sproblem}

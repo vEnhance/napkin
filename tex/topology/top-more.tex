@@ -89,8 +89,8 @@ Now we can port over our metric definitions.
 	An \vocab{open neighborhood}\footnote{In literature,
 		a ``neighborhood'' refers to a set
 		which contains some open set around $x$.
-		We will not use this term;
-		for us, our neighborhoods are always going to be open, anyways.}
+		We will not use this term,
+		and exclusively refer to ``open neighborhoods''.}
 	of a point $x \in X$ is an
 	open set $U$ which contains $x$ (see figure).
 \end{definition}
@@ -152,8 +152,8 @@ only in terms of the open sets, so they will be.
 
 
 %\begin{definition}
-%	A sequence $(x_n)$ of points in a topological space $X$ is said to \vocab{converge to} $x \in X$ if for every neighborhood of $x$,
-%	eventually all terms of the sequence lie in that neighborhood.
+%	A sequence $(x_n)$ of points in a topological space $X$ is said to \vocab{converge to} $x \in X$ if for every open neighborhood of $x$,
+%	eventually all terms of the sequence lie in that open neighborhood.
 %\end{definition}
 %\begin{remark}
 %	Unfortunately, for general topological spaces we no longer have the nice property
@@ -241,8 +241,8 @@ which bears a special name.
 \begin{definition}
 	A topological space $X$ is \vocab{Hausdorff} if
 	for any two disjoint points $p$ and $q$ in $X$,
-	there exists a neighborhood $U$ of $p$
-	and a neighborhood $V$ of $q$ such that
+	there exists an open neighborhood $U$ of $p$
+	and an open neighborhood $V$ of $q$ such that
 	\[ U \cap V = \varnothing. \]
 \end{definition}
 
@@ -666,13 +666,14 @@ ever have to worry too much about are the $r$-neighborhoods.
 	\end{sol}
 \end{problem}
 
-\begin{problem}
-	A topological space $X$ is called \vocab{locally path-connected}
-	if for every point $x \in X$, some neighborhood $U$ of $x$ is path-connected.
-	Prove that $X$ is path-connected if and only if it is connected
-	and locally path-connected.
-	\label{prob:local_path_connected}
-\end{problem}
+%\begin{problem}
+%	A topological space $X$ is called \vocab{locally path-connected}
+%	if for every point $x \in X$ and open neighborhood $U$ of $x$,
+%	some open neighborhood $V$ of $x$ contained in $U$ is path-connected.
+%	Prove that $X$ is path-connected if and only if it is connected
+%	and locally path-connected.
+%	\label{prob:local_path_connected}
+%\end{problem}
 
 \begin{problem}
 	\gim

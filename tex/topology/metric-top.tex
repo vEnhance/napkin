@@ -452,7 +452,7 @@ Continuity is really about what happens ``locally'':
 how a function behaves ``close to a certain point $p$''.
 One way to capture this notion of ``closeness''
 is to use metrics as we've done above.
-In this way we can define a neighborhood of a point.
+In this way we can define an $r$-neighborhood of a point.
 
 \begin{definition}
 	Let $M$ be a metric space.
@@ -531,7 +531,8 @@ This motivates:
 	\listhack
 	\begin{enumerate}[(a)]
 		\ii The closed interval $[0,1]$ is not open in $\RR$.
-		There is no neighborhood of the point $0$ which is contained in $[0,1]$.
+		There is no $\eps$-neighborhood of the point $0$
+		which is contained in $[0,1]$.
 		\ii The unit circle $S^1$ is not open in $\RR^2$.
 	\end{enumerate}
 \end{example}
@@ -571,7 +572,8 @@ The whole upshot of this is:
 	\end{exercise}
 	Now assume $f$ is continuous.
 	First, suppose $V$ is an open subset of the metric space $N$;
-	let $U = f\pre(V)$. Pick $x \in U$, so $y = f(x) \in V$; we want a neighborhood of $x$ inside $U$.
+	let $U = f\pre(V)$. Pick $x \in U$, so $y = f(x) \in V$; we want an
+	open neighborhood of $x$ inside $U$.
 
 	\begin{center}
 		\begin{asy}

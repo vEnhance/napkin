@@ -26,7 +26,7 @@ is a bunch of copies of it. (Actually, a little more: each of the pancakes is ho
 \begin{definition}
 	A \vocab{covering projection} $p : E \to B$
 	is a surjective continuous map such that every base point $b \in B$
-	has a neighborhood $U \ni b$ which is evenly covered by $p$.
+	has an open neighborhood $U \ni b$ which is evenly covered by $p$.
 \end{definition}
 \begin{exercise}
 	[On requiring surjectivity of $p$]
@@ -63,7 +63,9 @@ A much more interesting example is that of $\RR$ and $S^1$.
 \missingfigure{helix}
 
 We claim this is a covering projection.
-Indeed, consider the point $1 \in S^1$ (where we view $S^1$ as the unit circle in the complex plane). We can draw a small neighborhood of it
+Indeed, consider the point $1 \in S^1$
+(where we view $S^1$ as the unit circle in the complex plane).
+We can draw a small open neighborhood of it
 whose pre-image is a bunch of copies in $\RR$.
 \begin{center}
 	\begin{asy}
@@ -99,7 +101,9 @@ whose pre-image is a bunch of copies in $\RR$.
 	\end{asy}
 \end{center}
 
-Note that not all neighborhoods work this time: notably, $U = S^1$ does not work because the pre-image would be the entire $\RR$.
+Note that not all open neighborhoods work this time:
+notably, $U = S^1$ does not work because the pre-image
+would be the entire $\RR$.
 
 \begin{example}[Covering of $S^1$ by itself]
 	The map $S^1 \to S^1$ by
@@ -207,7 +211,8 @@ It turns out this is true more generally.
 	such that $\tilde\gamma(0) = e_0$.
 \end{theorem}
 \begin{proof}
-	For every point $b \in B$, consider an evenly covered neighborhood $U_b$ in $B$.
+	For every point $b \in B$, consider an evenly covered
+	open neighborhood $U_b$ in $B$.
 	Then the family of open sets
 	\[ \left\{ \gamma\pre(U_b) \mid b \in B \right\} \]
 	is an open cover of $[0,1]$.
@@ -533,12 +538,15 @@ It's an absolute miracle that this is true more generally:
 the greatest triumph of covering spaces is the following result.
 Suppose a space $X$ satisfies some nice conditions, like:
 \begin{definition}
-	A space $X$ is called \vocab{locally connected} if each point $x \in X$
-	has a connected neighborhood $U$.
+	A space $X$ is called \vocab{locally connected}
+	if for each point $x \in X$ and open neighborhood $V$ of it,
+	there is a connected open set $U$ with $x \in U \subseteq V$.
 \end{definition}
 \begin{definition}
-	A space $X$ is \vocab{semi-locally simply connected} if for every point $x \in X$
-	there is a neighborhood $U$ such that all loops in $U$ are nulhomotopic.
+	A space $X$ is \vocab{semi-locally simply connected}
+	if for every point $x \in X$
+	there is an open neighborhood $U$
+	such that all loops in $U$ are nulhomotopic.
 	(But the contraction need not take place in $U$.)
 \end{definition}
 \begin{example}[These conditions are weak]

@@ -30,13 +30,18 @@ It's ridiculous, I know.
 
 Let $U$ be an open subset of $\CC$ again.
 \begin{definition}
-	A function $f : U \to \CC$ is \vocab{meromorphic} if it can be expressed as $A/B$
-	for $A, B : U \to \CC$ holomorphic, with $B$ not identically zero in any neighborhood.
+	A function $f : U \to \CC$ is \vocab{meromorphic}
+	if there exists holomorphic functions $A, B \colon U \to \CC$
+	with $B$ not identically zero in any open neighborhood,
+	and $f(z) = A(z)/B(z)$ whenever $B(z) \ne 0$.
 \end{definition}
 Let's see how this function $f$ behaves.
-If $z \in U$ has $B(z) \neq 0$, then in some small neighborhood the function $B$ isn't zero
-at all, and thus $A/B$ is in fact \emph{holomorphic}; thus $f$ is holomorphic at $z$.
-(Concrete example: $\frac 1z$ is holomorphic in any disk not containing $0$.)
+If $z \in U$ has $B(z) \neq 0$,
+then in some small open neighborhood the function $B$ isn't zero
+at all, and thus $A/B$ is in fact \emph{holomorphic};
+thus $f$ is holomorphic at $z$.
+(Concrete example: $\frac 1z$ is holomorphic
+in any disk not containing $0$.)
 
 On the other hand, suppose $p \in U$ has $B(p) = 0$: without loss of generality, $p=0$
 to ease notation.
@@ -46,7 +51,8 @@ with $c_k \neq 0$
 (certainly some coefficient is nonzero since $B$ is not identically zero!).
 Then we can write
 \[ \frac{1}{B(z)} = \frac{1}{z^k} \cdot \frac{1}{c_k + c_{k+1}z + \dots}. \]
-But the fraction on the right is a holomorphic function in this neighborhood!
+But the fraction on the right is a
+holomorphic function in this open neighborhood!
 So all that's happened is that we have an extra $z^{-k}$ kicking around.
 
 %We want to consider functions $f$ defined on all points in $U$
@@ -60,9 +66,12 @@ This gives us an equivalent way of viewing meromorphic functions:
 
 \begin{definition}
 	Let $f : U \to \CC$ as usual.
-	A \vocab{meromorphic} function is a function which is holomorphic on $U$
-	except at an isolated set $S$ of points (meaning it is holomorphic as a function $U \setminus S \to \CC$).
-	For each $p \in S$, called a \vocab{pole} of $f$, the function $f$ must admit a \vocab{Laurent series},
+	A \vocab{meromorphic} function is a
+	function which is holomorphic on $U$
+	except at an isolated set $S$ of points
+	(meaning it is holomorphic as a function $U \setminus S \to \CC$).
+	For each $p \in S$, called a \vocab{pole} of $f$,
+	the function $f$ must admit a \vocab{Laurent series},
 	meaning that
 	\[
 		f(z) =
@@ -71,12 +80,14 @@ This gives us an equivalent way of viewing meromorphic functions:
 		+ \dots
 		+ \frac{c_{-1}}{z-p} + c_0 + c_1 (z-p) + \dots
 	\]
-	for all $z$ in some neighborhood of $p$, other than $z = p$.
+	for all $z$ in some open neighborhood of $p$,
+	other than $z = p$.
 	Here $m$ is a positive integer (and $c_{-m} \neq 0$).
 \end{definition}
 Note that the trailing end \emph{must} terminate.
-By ``isolated set'', I mean that we can draw neighborhoods around each pole in $S$,
-in such a way that no two neighborhoods intersect.
+By ``isolated set'', I mean that we can draw
+open neighborhoods around each pole in $S$,
+in such a way that no two open neighborhoods intersect.
 
 \begin{example}
 	[Example of a meromorphic function]
@@ -97,10 +108,15 @@ in such a way that no two neighborhoods intersect.
 \end{example}
 
 \begin{abuse}
-	We'll often say something like ``consider the function $f : \CC \to \CC$ by $z \mapsto \frac 1z$''.
-	Of course this isn't completely correct, because $f$ doesn't have a value at $z=0$.
-	If I was going to be completely rigorous I would just set $f(0) = 2015$ or something and move on
-	with life, but for all intents let's just think of it as ``undefined at $z=0$''.
+	We'll often say something like
+	``consider the function $f : \CC \to \CC$
+	by $z \mapsto \frac 1z$''.
+	Of course this isn't completely correct,
+	because $f$ doesn't have a value at $z=0$.
+	If I was going to be completely rigorous
+	I would just set $f(0) = 2015$ or something and move on
+	with life, but for all intents
+	let's just think of it as ``undefined at $z=0$''.
 
 	Why don't I just write $g : \CC \setminus \{0\} \to \CC$?
 	The reason I have to do this is that it's still important 
