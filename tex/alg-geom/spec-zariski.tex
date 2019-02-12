@@ -378,7 +378,23 @@ even in the case where $A = \CC[x_1, \dots, x_n]$,
 the addition of prime ideals (instead of just maximal ideals)
 will actually \emph{simplify} the proof,
 because radicals play well with prime ideals.
-We hinted the key result earlier,
+
+We still have the following result.
+\begin{proposition}
+	[$\VV(\sqrt I) = \VV(I)$]
+	For any ideal $I$ of a ring $A$
+	we have $\VV(\sqrt I) = \VV(I)$.
+\end{proposition}
+\begin{proof}
+	We have $\sqrt I \supseteq I$.
+	Hence automatically $\VV(\sqrt I) \subseteq \VV(I)$.
+
+	Conversely, if $\kp \in \VV(I)$, then $I \subseteq \kp$,
+	so $\sqrt I \subseteq \sqrt{\kp} = \kp$
+	(by \Cref{prop:radical}).
+\end{proof}
+
+We hinted the key result in an earlier remark,
 and we now prove it.
 \begin{theorem}
 	[Radical is intersection of primes]
@@ -392,8 +408,8 @@ and we now prove it.
 	It is ``doing most of the work''.
 
 	Note that if $I \subseteq \kp$,
-	then $\sqrt I \subseteq \kp$ too, since $\kp$ is radical.
-	Thus $\sqrt I \subseteq \bigcap_{\kp \supseteq I} \kp$.
+	then $\sqrt I \subseteq \sqrt{\kp} = \kp$;
+	thus $\sqrt I \subseteq \bigcap_{\kp \supseteq I} \kp$.
 
 	Conversely, suppose $x \notin \sqrt I$,
 	meaning $1, x, x^2, x^3, \dots \notin I$.
@@ -404,6 +420,16 @@ and we now prove it.
 	Thus $x \notin \bigcap_{\kp \supseteq I} \kp$,
 	as desired.
 \end{proof}
+\begin{remark}
+	[A variant of Krull's theorem]
+	The longer direction of this proof is essentially
+	saying that for any $x \in A$,
+	there is a maximal ideal of $A$ not containing $x$.
+	The ``short'' proof is to use Krull's theorem on $A[1/x]$ as above,
+	but one can also still prove it directly using Zorn's lemma
+	(by copying the proof of the original Krull's theorem).
+\end{remark}
+
 \begin{example}
 	[$\sqrt{(2016)} = (42)$ in $\ZZ$]
 	In the ring $\ZZ$, we see that $\sqrt{(2016)} = (42)$,
@@ -417,9 +443,6 @@ Indeed, we may write
 \[ \sqrt I = \bigcap_{\kp \supset I} \kp
 	= \bigcap_{\kp \in \VV(I)} \kp
 	= \bigcap_{\kp \in \VV(I)} \left\{ f \in A \mid f(\kp) = 0 \right\}. \]
-\begin{ques}
-	Conclude $\VV(I) = \VV(\sqrt I)$ on $\Spec A$ now.
-\end{ques}
 
 We can now state:
 \begin{theorem}
@@ -437,17 +460,7 @@ We can now state:
 	\bigcap_{\kp \in \VV(J)} \kp = \sqrt J$ as needed.
 
 	Conversely, suppose $\sqrt I = \sqrt J$.
-	Then
-	\begin{align*}
-		\kp \in \VV(I) &\implies I \subseteq \kp \\
-		&\implies \sqrt I \subseteq \sqrt{\kp} = \kp \\
-		&\implies \sqrt J \subseteq \kp \\
-		&\implies \kp \in \VV(\sqrt J) = \VV(J)
-	\end{align*}
-	which means $\VV(I) \subseteq \VV(J)$;
-	the reverse direction is similar and we are done.
-	(The fact that $\sqrt{\kp} = \kp$ was from \Cref{prop:radical};
-	it is actually harder to derive from \Cref{thm:radical_intersect_prime}.)
+	Then $\VV(I) = \VV(\sqrt I) = \VV(\sqrt J) = \VV(J)$.
 \end{proof}
 
 Compare this to the theorem we had earlier
