@@ -124,7 +124,8 @@ that is, if $\VV(I) = \VV(J)$, does it follow that $I=J$?
 The answer is unfortunately no: the counterexample can be found in just $\Aff^1$.
 It is
 \[ \VV(x) = \VV(x^2). \]
-In other words, the set of solutions to $x=0$ is the same as the set of solutions to $x^2=0$.
+In other words, the set of solutions to $x=0$
+is the same as the set of solutions to $x^2=0$.
 
 Well, that's stupid.
 We want an operation which takes the ideal $(x^2)$ and makes it into the ideal $(x)$.
@@ -134,47 +135,62 @@ The way to do so is using the radical of an ideal.
 	Let $R$ be a ring.
 	The \vocab{radical} of an ideal $I \subseteq R$, denoted $\sqrt I$,
 	is defined by
-	\[
-		\sqrt I =
-		\left\{ r \in R
-			\mid r^m \in I \text{ for some integer $m \ge 1$}  \right\}. 
-	\]
+	\[ \sqrt I = \left\{ r \in R
+			\mid r^m \in I \text{ for some integer $m \ge 1$} \right\}. \]
+	If $I = \sqrt I$, we say the ideal $I$ itself is \vocab{radical}.
 \end{definition}
 For example, $\sqrt{(x^2)} = (x)$.
 You may like to take the time to verify that $\sqrt I$ is actually an ideal.
 
-This is actually the same as the notion of ``radical'' in number theory.
-In $\ZZ$, the radical of an ideal $(n)$ corresponds to just
-removing all the duplicate prime factors, so for example
-\[ \sqrt{(12)} = (6). \]
-In particular, if you try to take $\sqrt{(6)}$, you just get $(6)$ back;
-you don't squeeze out any new prime factors.
-And that's true in general.
+\begin{remark}
+	[Number theoretic motivation]
+	This is actually the same as the notion of ``radical'' in number theory.
+	In $\ZZ$, the radical of an ideal $(n)$ corresponds to just
+	removing all the duplicate prime factors, so for example
+	\[ \sqrt{(12)} = (6). \]
+	In particular, if you try to take $\sqrt{(6)}$,
+	you just get $(6)$ back;
+	you don't squeeze out any new prime factors.
 
-\begin{definition}
-	An ideal $I$ is called \vocab{radical} if $\sqrt I = I$.
-\end{definition}
-\begin{ques}
-	Show that $\sqrt I$ is always radical.
-\end{ques}
-\begin{exercise}
-	Show that prime ideals are radical.
-\end{exercise}
-Useful equivalent definition
-(more in line with the number theory example),
-which we quote without proof:
-\begin{theorem}[Radical is intersection of prime ideals]
-	For any ideal $I$, we have
+	This is actually true more generally,
+	and there is a nice corresponding alternate definition:
+	for any ideal $I$, we have
 	\[ \sqrt I = \bigcap_{I \subseteq \kp \text{ prime}} \kp. \]
-\end{theorem}
+	Although we could prove this now,
+	it will be proved later in \Cref{thm:radical_intersect_prime},
+	when we first need it.
+\end{remark}
 
-In any case, we have:
-\begin{ques}
-	Verify that $\VV(I) = \VV(\sqrt I)$.
-\end{ques}
-This makes sense: you would never refer to $x=0$ as $x^2=0$.
+Here are the immediate properties you should know.
+\begin{proposition}
+	[Properties of radical]
+	\label{prop:radical}
+	In any ring:
+	\begin{itemize}
+		\ii If $I$ is an ideal, then $\sqrt I$ is always a radical ideal.
+		\ii Prime ideals are radical.
+		\ii For $I \subseteq \CC[x_1, \dots, x_n]$
+		we have $\VV(I) = \VV(\sqrt I)$.
+	\end{itemize}
+\end{proposition}
+\begin{proof}
+	These are all obvious.
+	\begin{itemize}
+		\ii If $f^m \in \sqrt I$ then $f^{mn} \in I$, so $f \in I$.
+		\ii If $f^n \in \kp$ for a prime $\kp$,
+		then either $f \in \kp$ or $f^{n-1} \in \kp$,
+		and in the latter case we may continue by induction.
+		\ii We have $f(x_1, \dots, x_n) = 0$
+		if and only if $f(x_1, \dots, x_n)^m = 0$ for some integer $m$.
+		\qedhere
+	\end{itemize}
+\end{proof}
+
+The last bit makes sense: you would never refer to $x=0$ as $x^2=0$,
+and hence we would always want to call $\VV(x^2)$ just $\VV(x)$.
 With this, we obtain a theorem called Hilbert's Nullstellensatz.
 \begin{theorem}[Hilbert's Nullstellensatz]
+	\label{thm:hilbert_null}
 	Given an affine variety $V = \VV(I)$,
 	the set of polynomials which vanish
 	on all points of $V$ is precisely $\sqrt I$.
@@ -434,7 +450,7 @@ The answer is in the affirmative.
 \begin{theorem}
 	[Weak Nullestellensatz, phrased with maximal ideals]
 	Every maximal ideal of $\CC[x_1, \dots, x_n]$
-	is of the form $\VV(x_1-a_1, \dots, x_n-a_n)$.
+	is of the form $(x_1-a_1, \dots, x_n-a_n)$.
 \end{theorem}
 The proof of this is surprisingly pernicious,
 so we won't include it here; see \cite[\S7.4.3]{ref:vakil}.
@@ -446,7 +462,9 @@ so we won't include it here; see \cite[\S7.4.3]{ref:vakil}.
 %	vanishing at $p$, so necessarily $J \subseteq I \subsetneq \CC[x_1, \dots, x_n]$.
 %	Then by maximality of $J$ we have $J=I$.
 %\end{proof}
-Again this uses the fact that $\CC$ is algebraically closed. Thus:
+Again this uses the fact that $\CC$ is algebraically closed.
+(For example $(x^2+1)$ is a maximal ideal of $\RR[x]$.)
+Thus:
 \begin{moral}
 	Over $\CC$, maximal ideals correspond to single points.
 \end{moral}

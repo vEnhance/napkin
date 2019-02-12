@@ -73,7 +73,7 @@ but nowhere in particular.
 
 \begin{remark}
 	As usual $A$ itself is not a prime ideal, but $(0)$
-	is prime if $A$ is an integral domain.
+	is prime if and only if $A$ is an integral domain.
 \end{remark}
 
 \begin{example}
@@ -150,7 +150,8 @@ Since the points on $\Spec A$ are the prime ideals, we continue
 the analogy by thinking of the points $f$ as functions on $\Spec A$. That is:
 \begin{definition}
 	Let $f \in A$ and $\kp \in \Spec A$.
-	Then the \vocab{value} of $f$ at $\kp$ is defined to be $f \pmod{\kp}$.
+	Then the \vocab{value} of $f$ at $\kp$ is defined to be $f \pmod{\kp}$,
+	an element of $A/\kp$.
 	We denote it $f(\kp)$.
 \end{definition}
 \begin{example}
@@ -237,9 +238,9 @@ as just the closed points.
 	real f(real x) { return x*x; }
 	graph.xaxis("$x$");
 	graph.yaxis("$y$");
-	draw(graph(f,-2,2,operator ..), blue+dotted, Arrows(TeXHead));
-	dot("$(y-x^2)$", (1.4, f(1.4)), dir(-45), blue);
-	dot("$(x+1,y-1)$", (-1,1), dir(225), red);
+	draw(graph(f,-2,2,operator ..), red+dotted, Arrows(TeXHead));
+	dot("$(y-x^2)$", (1.4, f(1.4)), dir(-45), red);
+	dot("$(x+1,y-1)$", (-1,1), dir(225), blue);
 \end{asy}
 \end{center}
 
@@ -308,9 +309,10 @@ kind of let us cheat our way through the following bit:
 	Just note $(0)$ is a prime ideal,
 	and in every open set.
 \end{proof}
-You should compare this with the result that $\CC[x_1, \dots, x_n]/I$
-was irreducible exactly when $I$ was prime.
-But this time, the generic point actually takes care
+You should compare this with our old classical result that
+$\CC[x_1, \dots, x_n]/I$
+was irreducible as an affine variety exactly when $I$ was prime.
+This time, the generic point actually takes care
 of the work for us:
 the fact that it is \emph{allowed} to float
 anywhere in the plane lets us capture the idea that
@@ -363,6 +365,94 @@ $\Spec A$ has generic point $(0)$.
 	and as a topological subspace, it has generic point $(y-x^2)$.
 \end{abuse}
 
+\section{On radicals}
+Back when we studied classical algebraic geometry in $\CC^n$,
+we saw Hilbert's Nullstellensatz (\Cref{thm:hilbert_null}) show up
+to give bijections between radical ideals and affine varieties;
+we omitted the proof, because it was nontrivial.
+
+However, for a \emph{scheme}, where the points \emph{are} prime ideals
+(rather than tuples in $\CC^n$),
+the corresponding results will actually be \emph{easy}:
+even in the case where $A = \CC[x_1, \dots, x_n]$,
+the addition of prime ideals (instead of just maximal ideals)
+will actually \emph{simplify} the proof,
+because radicals play well with prime ideals.
+We hinted the key result earlier,
+and we now prove it.
+\begin{theorem}
+	[Radical is intersection of primes]
+	\label{thm:radical_intersect_prime}
+	Let $I$ be an ideal of a ring $A$.
+	Then \[ \sqrt I = \bigcap_{\kp \supseteq I} \kp. \]
+\end{theorem}
+\begin{proof}
+	This is a famous statement from commutative algebra,
+	and we prove it here only for completeness.
+	It is ``doing most of the work''.
+
+	Note that if $I \subseteq \kp$,
+	then $\sqrt I \subseteq \kp$ too, since $\kp$ is radical.
+	Thus $\sqrt I \subseteq \bigcap_{\kp \supseteq I} \kp$.
+
+	Conversely, suppose $x \notin \sqrt I$,
+	meaning $1, x, x^2, x^3, \dots \notin I$.
+	Then, consider the localization $A[1/x]$.
+	Like any ring, it has some maximal ideal (Krull's theorem).
+	This means our usual bijection between prime ideals of $A[1/x]$
+	gives some prime ideal $\kp$ of $A$ containing $I$ but not containing $x$.
+	Thus $x \notin \bigcap_{\kp \supseteq I} \kp$,
+	as desired.
+\end{proof}
+\begin{example}
+	[$\sqrt{(2016)} = (42)$ in $\ZZ$]
+	In the ring $\ZZ$, we see that $\sqrt{(2016)} = (42)$,
+	since the distinct primes containing $(2016)$
+	are $(2)$, $(3)$, $(7)$.
+\end{example}
+
+Geometrically, this gives us a good way to describe $\sqrt I$:
+it is the \emph{set of all functions vanishing on all of $\VV(I)$}.
+Indeed, we may write
+\[ \sqrt I = \bigcap_{\kp \supset I} \kp
+	= \bigcap_{\kp \in \VV(I)} \kp
+	= \bigcap_{\kp \in \VV(I)} \left\{ f \in A \mid f(\kp) = 0 \right\}. \]
+\begin{ques}
+	Conclude $\VV(I) = \VV(\sqrt I)$ on $\Spec A$ now.
+\end{ques}
+
+We can now state:
+\begin{theorem}
+	[Radical ideals correspond to closed sets]
+	Let $I$ and $J$ be ideals of $A$,
+	and considering the space $\Spec A$.
+	Then
+	\[ \VV(I) = \VV(J) \iff \sqrt I = \sqrt J. \]
+	In particular, radical ideals exactly
+	correspond to closed subsets of $\Spec A$.
+\end{theorem}
+\begin{proof}
+	If $\VV(I) = \VV(J)$,
+	then $\sqrt I = \bigcap_{\kp \in \VV(I)} \kp =
+	\bigcap_{\kp \in \VV(J)} \kp = \sqrt J$ as needed.
+
+	Conversely, suppose $\sqrt I = \sqrt J$.
+	Then
+	\begin{align*}
+		\kp \in \VV(I) &\implies I \subseteq \kp \\
+		&\implies \sqrt I \subseteq \sqrt{\kp} = \kp \\
+		&\implies \sqrt J \subseteq \kp \\
+		&\implies \kp \in \VV(\sqrt J) = \VV(J)
+	\end{align*}
+	which means $\VV(I) \subseteq \VV(J)$;
+	the reverse direction is similar and we are done.
+	(The fact that $\sqrt{\kp} = \kp$ was from \Cref{prop:radical};
+	it is actually harder to derive from \Cref{thm:radical_intersect_prime}.)
+\end{proof}
+
+Compare this to the theorem we had earlier
+that the \emph{irreducible} closed subsets correspond to \emph{prime} ideals!
+
 \section{\problemhead}
 As \Cref{ch:spec_examples} contains many
 examples of affine schemes to train your intuition,
@@ -384,8 +474,7 @@ even though there will be some parts that won't make sense yet.
 \end{problem}
 
 \begin{problem}
-	Show that if $A$ is \emph{not}
-	an integral domain,
+	Show that if $A$ is \emph{not} an integral domain,
 	then $\Spec A$ is not irreducible.
 \end{problem}
 
@@ -407,3 +496,4 @@ even though there will be some parts that won't make sense yet.
 		\url{http://www.acritch.com/media/math/Stalk-local_detection_of_irreducibility.pdf}
 	\end{sol}
 \end{problem}
+

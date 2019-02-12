@@ -97,10 +97,10 @@ since that is how we were told to draw functions in grade school.
 	filldraw(ellipse( (-1,0), 5, 1 ), opacity(0.2)+lightcyan, heavycyan);
 	label("$U$", (4,-1), dir(45), heavycyan);
 	path curve = (-6,3)..(-4,5)..(-2,8)..(-1,7)..(0,5)..(2,7)..(4,9);
-	draw(curve, heavygreen);
-	label("$s \in \mathcal F(U)$", (-2,8), dir(90), heavygreen);
-	draw( (-6,3)..(-6,0), dashed+heavygreen );
-	draw( (4,9)..(4,0), dashed+heavygreen );
+	draw(curve, red);
+	label("$s \in \mathcal F(U)$", (-2,8), dir(90), red);
+	draw( (-6,3)..(-6,0), dashed+red );
+	draw( (4,9)..(4,0), dashed+red );
 \end{asy}
 \end{center}
 Then, the restriction corresponds to, well, taking just a chunk of the section.
@@ -111,15 +111,15 @@ Then, the restriction corresponds to, well, taking just a chunk of the section.
 	filldraw(ellipse( (-1,0), 5, 1 ), opacity(0.2)+lightcyan, heavycyan);
 	label("$U$", (4,-1), dir(45), heavycyan);
 	path curve = (-6,3)..(-4,5)..(-2,8)..(-1,7)..(0,5)..(2,7)..(4,9);
-	draw(curve, heavygreen);
-	draw(subpath(curve, 1, 5), red+1); // from x=-4 to x=2
-	filldraw(ellipse( (-1,0), 3, 0.8 ), opacity(0.2)+lightred, red);
-	label("$V$", (2,-0.8), dir(45), red);
-	label("$\operatorname{res} s \in \mathcal F(V)$", (-2,8), dir(90), red);
-	draw( (-4,5)..(-4,0), dashed+red);
-	draw( (2,7)..(2,0), dashed+red);
-	draw( (-6,3)..(-6,0), dashed+heavygreen );
-	draw( (4,9)..(4,0), dashed+heavygreen );
+	draw(curve, red);
+	draw(subpath(curve, 1, 5), deepgreen+1.5); // from x=-4 to x=2
+	filldraw(ellipse( (-1,0), 3, 0.8 ), opacity(0.2)+deepgreen, deepgreen);
+	label("$V$", (2,-0.8), dir(45), deepgreen);
+	label("$\operatorname{res} s \in \mathcal F(V)$", (-2,8), dir(90), deepgreen);
+	draw( (-4,5)..(-4,0), dashed+deepgreen);
+	draw( (2,7)..(2,0), dashed+deepgreen);
+	draw( (-6,3)..(-6,0), dashed+red );
+	draw( (4,9)..(4,0), dashed+red );
 \end{asy}
 \end{center}
 All of this is still a dream, since $s$ in reality is an element of a ring.
@@ -230,14 +230,14 @@ rather than a small dot at $p$.
 	filldraw(ellipse( (-1,0), 5, 1 ), opacity(0.2)+lightcyan, heavycyan);
 	label("$U$", (4,-1), dir(45), heavycyan);
 	path curve = (-6,3)..(-4,5)..(-2,8)..(-1,7)..(0,5)..(2,7)..(4,9);
-	draw(curve, heavygreen);
-	label("$s \in \mathcal F(U)$", (-2,8), dir(120), heavygreen);
-	draw( (-6,3)..(-6,0), dashed+heavygreen );
-	draw( (4,9)..(4,0), dashed+heavygreen );
+	draw(curve, red);
+	label("$s \in \mathcal F(U)$", (-2,8), dir(120), red);
+	draw( (-6,3)..(-6,0), dashed+red );
+	draw( (4,9)..(4,0), dashed+red );
+	draw( (0,0)--(0,12), heavygreen);
+	label("$\mathcal F_p$", (0,12), dir(90), heavygreen);
+	dot("$[s]_p$", (0,5), dir(-45), heavygreen+6);
 	dot("$p$", (0,0), dir(0), blue);
-	draw( (0,0)--(0,12), red);
-	label("$\mathcal F_p$", (0,12), dir(90), red);
-	dot("$[s]_p$", (0,5), dir(-45), red+6);
 \end{asy}
 \end{center}
 
@@ -623,29 +623,29 @@ which are ``close to each other'' should be ``compatible''.
 	filldraw(ellipse( (-1,0), 5, 1 ), opacity(0.2)+lightcyan, heavycyan);
 	label("$U$", (4,-1), dir(45), heavycyan);
 	path curve = (-6,3)..(-4,5)..(-2,8)..(-1,7)..(0,5)..(2,7)..(4,9);
-	draw(curve, heavygreen);
-	draw( (-6,3)..(-6,0), dashed+heavygreen );
-	draw( (4,9)..(4,0), dashed+heavygreen );
+	draw(curve, red);
+	draw( (-6,3)..(-6,0), dashed+red );
+	draw( (4,9)..(4,0), dashed+red );
 
+	draw( (-4,0)--(-4,13), heavygreen);
+	dot((-4,5), heavygreen+6);
 	dot((-4,0), blue);
-	draw( (-4,0)--(-4,13), red);
-	dot((-4,5), red+6);
 
+	draw( (-2,0)--(-2,12), heavygreen);
+	dot((-2,8), heavygreen+6);
 	dot((-2,0), blue);
-	draw( (-2,0)--(-2,12), red);
-	dot((-2,8), red+6);
 
+	draw( (-1,0)--(-1,11), heavygreen);
+	dot((-1,7), heavygreen+6);
 	dot((-1,0), blue);
-	draw( (-1,0)--(-1,11), red);
-	dot((-1,7), red+6);
 
+	draw( (0,0)--(0,12), heavygreen);
+	dot((0,5), heavygreen+6);
 	dot((0,0), blue);
-	draw( (0,0)--(0,12), red);
-	dot((0,5), red+6);
 
+	draw( (2,0)--(2,11), heavygreen);
+	dot((2,7), heavygreen+6);
 	dot((2,0), blue);
-	draw( (2,0)--(2,11), red);
-	dot((2,7), red+6);
 \end{asy}
 \end{center}
 

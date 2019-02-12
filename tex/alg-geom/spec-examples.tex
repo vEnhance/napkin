@@ -1,4 +1,4 @@
-\chapter{Interlude: a list of examples of affine schemes}
+\chapter{Interlude: nineteen examples of affine schemes}
 \label{ch:spec_examples}
 To cement in the previous two chapters,
 we now give an enormous list of examples.
@@ -23,11 +23,19 @@ will begin to now take concrete forms:
 you will see many examples that
 \begin{itemize}
 	\ii $\Spec A/I$ looks like $\VV(I)$ of $\Spec A$,
-	\ii $\Spec A_f$ looks like $D(f)$ of $\Spec A$,
+	\ii $\Spec A[1/f]$ looks like $D(f)$ of $\Spec A$,
 	\ii $\Spec A_\kp$ looks like $\OO_{\Spec A, \kp}$ of $\Spec A$.
 \end{itemize}
 
 In everything that follows, $k$ is any field.
+We will also use the following color connotations:
+\begin{itemize}
+	\ii The closed points of the scheme are drawn in blue.
+	\ii Non-closed points are drawn in red,
+	with their ``trails'' dotted red.
+	\ii Stalks are drawn in green, when they appear.
+\end{itemize}
+
 
 \section{Example: $\Spec k$, a single point}
 This one is easy: for any field $k$,
@@ -66,13 +74,13 @@ the point $(0)$ is floating around just above the line in red.
 	\begin{asy}
 		size(8cm);
 		pair A = (-8,0); pair B = (8,0);
-		draw(A--B, Arrows);
+		draw(A--B, blue, Arrows);
 		dot("$(x)$", (0,0), dir(-90), blue);
 		dot("$(x-3)$", (3,0), dir(-90), blue);
 		dot("$(x+i)$", (-4,0), dir(-90), blue);
 		dot("$(0)$", (0,1), dir(90), red);
 		draw( (-6,0)..(-3,0.5)..(-1,1)--(1,1)--(3,0.5)--(6,0), dotted+red );
-		label("$\operatorname{Spec} \mathbb C[x]$", A, dir(-90));
+		label("$\operatorname{Spec} \mathbb C[x]$", A, dir(-90), blue);
 	\end{asy}
 \end{center}
 
@@ -141,28 +149,28 @@ are each closed points:
 the quotients with $\RR[x]$ are both fields
 ($\RR$ and $\CC$, respectively).
 
-
 We have been drawing $\Spec \CC[x]$ as a one-dimensional line,
 so $\Spec \RR[x]$ will be drawn the same way.
 \begin{center}
 	\begin{asy}
 		size(8cm);
 		pair A = (-8,0); pair B = (8,0);
-		draw(A--B, Arrows);
+		draw(A--B, blue, Arrows);
 		dot("$(x)$", (0,0), dir(-90), blue);
 		dot("$(x-3)$", (3,0), dir(-90), blue);
 		dot("$(x^2+1)$", (-4,0), dir(-90), blue);
 		dot("$(0)$", (0,1), dir(90), red);
 		draw( (-6,0)..(-3,0.5)..(-1,1)--(1,1)--(3,0.5)--(6,0), dotted+red );
-		label("$\operatorname{Spec} \mathbb R[x]$", A, dir(-90));
+		label("$\operatorname{Spec} \mathbb R[x]$", A, dir(-90), blue);
 	\end{asy}
 \end{center}
 
 One nice thing about this is that the nullstellensatz
 is less scary than it was with classical varieties.
 The short version is that the function $x^2+1$
-vanishes at a point of $\Spec \RR[x]$,
-namely $(x^2+1)$ itself!
+vanishes at a point of $\Spec \RR[x]$, namely $(x^2+1)$ itself!
+(So in some ways we're sort of automatically working
+with the algebraic closure.)
 
 You might remember a long time ago we made a big fuss about
 the weak nullstellensatz, for example in
@@ -208,13 +216,13 @@ So the picture almost does not change.
 	\begin{asy}
 		size(8cm);
 		pair A = (-8,0); pair B = (8,0);
-		draw(A--B, Arrows);
+		draw(A--B, blue, Arrows);
 		dot("$(7)$", (0,0), dir(-90), blue);
 		dot("$(3)$", (3,0), dir(-90), blue);
 		dot("$(19)$", (-4,0), dir(-90), blue);
 		dot("$(0)$", (0,1), dir(90), red);
 		draw( (-6,0)..(-3,0.5)..(-1,1)--(1,1)--(3,0.5)--(6,0), dotted+red );
-		label("$\operatorname{Spec} \mathbb R[x]$", A, dir(-90));
+		label("$\operatorname{Spec} \mathbb Z$", A, dir(-90), blue);
 	\end{asy}
 \end{center}
 This time $\eta = (0)$ has stalk $\ZZ_{(0)} = \QQ$,
@@ -257,8 +265,8 @@ of two values, one at $(x)$ and one at $(x-1)$.
 \begin{center}
 \begin{asy}
 	size(3cm);
-	draw("$k$", (-2,0)--(-2,5), dir(180), red);
-	draw("$k$", (2,0)--(2,5), red);
+	draw("$k$", (-2,0)--(-2,5), dir(180), heavygreen);
+	draw("$k$", (2,0)--(2,5), heavygreen);
 	dot("$(x)$", (-2,0), dir(-90), blue);
 	dot("$(x-1)$", (2,0), dir(-90), blue);
 	label("$\operatorname{Spec} k[x]/(x^2-x)$", (0,5), 2*dir(90));
@@ -294,13 +302,15 @@ if we take a polynomial
 then evaluating it at the double point
 will remember both $a_0$ and the ``first derivative'' say.
 
-I should mention that if you drop all the way to the residue
-field, you can't tell the difference between
+I should mention that if you drop all the way to the residue fields,
+you can't tell the difference between
 the double point and the single point anymore.
 For the residue field of $\Spec k[x] / (x^2)$ at $(x)$ is
 \[ \Frac\left( A / (x) \right) = \Frac k = k. \]
-Thus the set of \emph{values} is still just $k$;
-but the stalk, having enriched values, can tell the difference.
+Thus the set of \emph{values} is still just $k$
+(leading to the ``nilpotent'' discussion at the end of last chapter);
+but the stalk, having ``enriched'' values,
+can tell the difference.
 
 \section{$\Spec k[x]/(x^3-x)$, a double point and a single point}
 There is no problem putting the previous two examples side by side:
@@ -311,8 +321,8 @@ the one above the double point is larger.
 \begin{center}
 \begin{asy}
 	size(5cm);
-	draw("$k[x] / (x^2)$", (-2,0)--(-2,7), dir(180), red);
-	draw("$k$", (2,0)--(2,5), red);
+	draw("$k[x] / (x^2)$", (-2,0)--(-2,7), dir(180), heavygreen);
+	draw("$k$", (2,0)--(2,5), heavygreen);
 	dot("$(x)$", (-2,0), dir(-90), blue+5);
 	dot("$(x-1)$", (2,0), dir(-90), blue);
 	label("$\operatorname{Spec} k[x]/(x^3-x)$", (0,7), 2*dir(90));
@@ -338,9 +348,9 @@ and single roots at $(3)$ and $(5)$.
 \begin{center}
 \begin{asy}
 	size(6cm);
-	draw("$\mathbb Z / 4 \mathbb Z$", (-2,0)--(-2,7), dir(180), red);
-	draw("$\mathbb Z / 3 \mathbb Z$", (0,0)--(0,5), red);
-	draw("$\mathbb Z / 5 \mathbb Z$", (2,0)--(2,6), red);
+	draw("$\mathbb Z / 4 \mathbb Z$", (-2,0)--(-2,7), dir(180), heavygreen);
+	draw("$\mathbb Z / 3 \mathbb Z$", (0,0)--(0,5), heavygreen);
+	draw("$\mathbb Z / 5 \mathbb Z$", (2,0)--(2,6), heavygreen);
 	dot("$(2)$", (-2,0), dir(-90), blue+5);
 	dot("$(3)$", ( 0,0), dir(-90), blue);
 	dot("$(5)$", ( 2,0), dir(-90), blue);
@@ -359,6 +369,14 @@ Let me phrase it in terms of global sections:
 So the theorem that $\OO_X(X) = A$ for $X = \Spec A$
 is doing the ``work'' here;
 the sheaf axioms then give us the Chinese remainder theorem from here.
+
+On that note, this gives us a way of thinking about
+the earlier example that
+\[ (\Zc{60})[1/5] \cong \Zc{12}. \]
+Indeed, $\Spec \Zc{60}[1/5]$ is supposed to look
+like the distinguished open set $D(5)$:
+which means we delete the point $(5)$ from the picture above.
+That leaves us with $\Zc{12}$.
 
 %%fakechapter Two-dimensional
 \section{$\Spec k[x,y]$, the two-dimensional plane}
@@ -382,12 +400,12 @@ Here is an illustration of all three types of points.
 	real f(real x) { return x*x; }
 	graph.xaxis("$x$");
 	graph.yaxis("$y$");
-	draw(graph(f,-2,2,operator ..), blue+dotted, Arrows(TeXHead));
-	dot("$(y-x^2)$", (1.3, f(1.3)), dir(-45), blue);
-	dot("$(x-1,y+2)$", (1,-2), dir(-45), red);
+	draw(graph(f,-2,2,operator ..), red+dotted, Arrows(TeXHead));
+	dot("$(y-x^2)$", (1.3, f(1.3)), dir(-45), red);
+	dot("$(x-1,y+2)$", (1,-2), dir(-45), blue);
 	pair O = (-3,3);
-	dot("$(0)$", O, dir(225), deepgreen);
-	filldraw(CR(O, 0.8), opacity(0.2)+lightgreen, dotted+green);
+	dot("$(0)$", O, dir(225), red);
+	filldraw(CR(O, 0.8), opacity(0.2)+lightred, dotted+red);
 \end{asy}
 \end{center}
 
@@ -479,7 +497,7 @@ coincides with the topology on $\Spec k[x,y] / (y-x^2)$.
 \begin{center}
 \begin{asy}
 	real f(real x) { return x*x; }
-	draw(graph(f,-2,2,operator ..), blue+dotted, Arrows(TeXHead));
+	draw(graph(f,-2,2,operator ..), blue, Arrows(TeXHead));
 	label("$\operatorname{Spec} k[x,y]/(y-x^2)$", (0, f(0)), dir(-90), blue);
 \end{asy}
 \end{center}
@@ -515,6 +533,15 @@ The stalk above the generic point is $\Frac(k[x,y] / (y-x^2))$:
 so rational functions, with the identification that $y = x^2$.
 Also unsurprising.
 
+Finally, we note expect the parabola is actually isomorphic to $\Spec k[x]$,
+since there is an isomorphism $k[x,y] / (y-x^2) \cong k[x]$
+by sending $y \mapsto x^2$.
+Pictorially, this looks like ``un-bending'' the hyperbola.
+In general, we would hope that when two rings $A$ and $B$ are isomorphic,
+then $\Spec A$ and $\Spec B$ should be ``the same''
+(otherwise we would be horrified),
+and we'll see later this is indeed the case.
+
 \section{$\Spec \ZZ[i]$, the Gaussian integers (one-dimensional)}
 You can play on this idea some more in the integer case.
 Note that \[ \ZZ[i] \cong \ZZ[x] / (x^2+1) \]
@@ -542,6 +569,8 @@ Here is a picture:
 	draw( (0,-4)--(0,4), blue, Arrows);
 	dot("$(x)$", (0.3,3), dir(-45), lightred);
 	dot("$(y)$", (3, 0.3), dir(135), lightred);
+	draw( (0.3,3.6)--(0.3,2.4), lightred+dotted );
+	draw( (2.4,0.3)--(3.6,0.3), lightred+dotted );
 	dot("$(x+2)$", (-2,0), dir(-90), blue);
 	dot("$(y+3)$", (0,-3), dir(0), blue);
 \end{asy}
@@ -568,14 +597,13 @@ Consider the distinguished open set $U = D(x)$.
 This corresponds to deleting $\VV(x)$, the $y$-axis.
 Therefore we expect that $D(x)$
 ``is'' just $\Spec k[x]$ with the origin deleted,
-and in particular that we should get $k[x]_{(x)} = k[x, x\inv]$
+and in particular that we should get $k[x, x\inv]$
 for the sections.
 Indeed,
 \begin{align*}
 	\OO_{\Spec k[x,y]/(xy)} (D(x))
-	&\cong (k[x,y]/(xy))_x \\
-	&\cong (k[x,y]_x) / (xy) \cong k[x, x\inv, y] / (xy) \\
-	&\cong k[x, x\inv, y] / (y) \cong k[x, x\inv].
+	&\cong (k[x,y]/(xy))[1/x] \\
+	&\cong k[x, x\inv, y] / (xy) \cong k[x, x\inv, y] / (y) \cong k[x, x\inv].
 \end{align*}
 where $(xy) = (y)$ follows from $x$ being a unit.
 Everything as planned.
@@ -675,18 +703,15 @@ which you can actually verify is true.
 Of course, this is a lot of computation just for one simple example.
 Is there a way to make it general?
 Yes: the key claim is that ``localization commutes with \emph{limits}''.
-You can try to work out the statement now if you want,
-but we won't do so quite yet.
-\todo{do we ever?}
-
-
+You can try to work out the statement now if you want, but we won't do so.
+% \todo{but if we ever do sheaves of modules, then we will}
 
 %%fakechapter 1D with holes
-\section{$\Spec k[x]_x$, the punctured line (or alternatively hyperbola)}
+\section{$\Spec k[x,x\inv]$, the punctured line (or hyperbola)}
 This is supposed to look like $D(x)$ of $\Spec k[x]$,
 or the line with the origin deleted it.
 Alternatively, we could also write
-\[ k[x]_x \cong k[x,x\inv] \cong k[x,y] / (xy-1) \]
+\[ k[x,x\inv] \cong k[x,y] / (xy-1) \]
 so that the scheme could also be drawn as a hyperbola.
 
 First, here's the 1D illustration.
@@ -694,13 +719,13 @@ First, here's the 1D illustration.
 	\begin{asy}
 		size(8cm);
 		pair A = (-8,0); pair B = (8,0);
-		draw(A--B, Arrows);
+		draw(A--B, blue, Arrows);
 		dot("$(x-3)$", (3,0), dir(-90), blue);
 		dot("$(x+2)$", (-2,0), dir(-90), blue);
 		dot("$(0)$", (0,1), dir(90), red);
-		opendot(origin, black+1.5);
+		opendot(origin, blue+1.5);
 		draw( (-6,0)..(-3,0.5)..(-1,1)--(1,1)--(3,0.5)--(6,0), dotted+red );
-		label("$\operatorname{Spec} k[x,x^{-1}]$", A, dir(-90));
+		label("$\operatorname{Spec} k[x,x^{-1}]$", A, dir(-90), blue);
 	\end{asy}
 \end{center}
 We actually saw this scheme already when we took $\Spec k[x,y] / (xy)$
@@ -713,21 +738,165 @@ since $x\inv$ is in $k[x]_{(x-3)}$ anyways.
 So again, we see that the deletion of the origin
 doesn't affect the stalk at the farther away point $(x-3)$.
 
-\todo{picture with parabola}
+As mentioned, since $k[x,x\inv]$ is isomorphic to $k[x,y] / (xy-1)$,
+another way to draw the visualize the same curve
+would be to draw the hyperbola
+(which you can imagine as flattening to give the punctured line.)
+There is one generic point $(0)$ since $k[x,y]/(xy-1)$
+really is an integral domain,
+as well as points like $(x+2, y+1/2) = (x+2) = (y+1/2)$.
+\begin{center}
+	\begin{asy}
+		size(7cm);
+		import graph;
+		graph.xaxis("$x$", -4, 4);
+		graph.yaxis("$y$", -4, 4);
 
-\section{$\Spec \ZZ_{55}$, deleting $5$ and $11$}
+		real f (real x) { return 1/x; }
+		draw(graph(f,-4,-0.25,operator ..), blue);
+		draw(graph(f,0.25,4,operator ..), blue);
+		label("$\operatorname{Spec} k[x,y] / (xy-1)$", (1,1), dir(45), blue);
+
+		dot("$(0)$", (0.4,2), dir(225), red);
+		filldraw(CR( (0.4,2), 0.3 ), opacity(0.1)+lightred, red+dotted);
+		dot("$(x+2)$", (-2, f(-2)), dir(10), blue);
+	\end{asy}
+\end{center}
 
 %%fakechapter 0D --- stalks above 1D
-\section{$\Spec k[x]_{(x)}$, the stalk above the origin}
-\section{$\Spec k[x]_{(0)}$, the stalk above the generic point}
-\section{$\Spec k[x,y]_{(x,y)}$, the stalk above the origin}
-\section{$\Spec k[x,y]_{(y-x^2)}$, the stalk above the parabola}
-\section{$\Spec \ZZ_{(5)}$, the stalk above $(5)$}
+\section{$\Spec k[x]_{(x)}$, zooming in to the origin of the line}
+We know already that $\OO_{\Spec A, \kp} \cong A_\kp$:
+so $A_\kp$ should be the stalk at $\kp$.
+In this example we will see that $\Spec A_\kp$
+should be drawn sort of as this stalk, too.
 
+We saw earlier how to draw a picture of $\Spec k[x]$.
+You can also draw a picture of the stalk above the origin $(x)$,
+which you might visualize as a grass or other plant
+growing above $(x)$ if you like agriculture.
+In that case, $\Spec k[x]_{(x)}$ might look like what happens
+if you pluck out that stalk from the affine line.
+
+\begin{center}
+	\begin{asy}
+		unitsize(0.7cm);
+		pair A = (-5,0); pair B = (5,0);
+		draw(A--B, blue, Arrows);
+		draw( (-4,0)..(-2,0.5)..(-1,1)--(1,1)--(2,0.5)--(4,0), dotted+red );
+		label("$\operatorname{Spec} k[x]$", A, dir(-90), blue);
+		draw( (0,0)--(0,3), heavygreen);
+		label("$\mathcal O_{\operatorname{Spec} k[x], (x)}$", (0,3), dir(90), heavygreen);
+		dot("$(x)$", (0,0), dir(-90), blue);
+		dot("$(0)$", (0.2,1), dir(45), red);
+		add(shift(-9,0)*CC());
+		draw("pluck", (-4.5, 1.5)--(-1.5,1.5), dir(90), black, EndArrow(TeXHead));
+		// now the stalk
+		draw( (0,0)--(0,3), heavygreen);
+		label("$\operatorname{Spec} k[x]_{(x)}$", (0,3), dir(90), blue);
+		draw( (-1,1)--(1,1), dotted+red );
+		dot("$(0)$", (0.2,1), dir(45), red);
+		dot("$(x)$", (0,0), dir(-90), blue);
+	\end{asy}
+\end{center}
+
+Since $k[x]_{(x)}$ is a local ring
+(it is the localization of a prime ideal),
+this point has only one closed point: the maximal ideal $(x)$.
+However, surprisingly, it has one more point:
+a ``generic'' point $(0)$.
+So $\Spec k[x]_{(x)}$ is a \emph{two-point space},
+but it does not have the discrete topology:
+$(x)$ is a closed point, but $(0)$ is not.
+(This makes it a nice counter-example for exercises of various sorts.)
+
+So, topologically what's happening is that when we zoom in to $(x)$,
+the generic point $(0)$ (which was ``close to every point'') remains,
+floating above the point $(x)$.
+
+Note that the stalk above our single closed point $(x)$
+is the same as it was before:
+\[ \left( k[x]_{(x)} \right)_{(x)} \cong k[x]_{(x)}. \]
+Indeed, in general if $R$ is a local ring with maximal ideal $\km$,
+then $R_\km \cong R$:
+since every element $x \notin \km$ was invertible anyways.
+Thus in the picture, the stalk is drawn the same.
+
+Similarly, the stalk above $(0)$ is the same as it was
+before we plucked it out:
+\[ \left( k[x]_{(x)} \right)_{(0)}
+	= \Frac k[x]_{(x)} = k(x). \]
+More generally:
+\begin{exercise}
+	Let $A$ be a ring, and $\kq \subseteq \kp$ prime ideals.
+	Check that $A_\kq \cong (A_\kp)_\kq$,
+	where we view $\kq$ as a prime ideal of $A_\kp$.
+\end{exercise}
+So when we zoom in like this, all the stalks stay the same,
+even above the non-closed points.
+
+
+\section{$\Spec k[x,y]_{(x,y)}$, zooming in to the origin of the plane}
+The situation is more surprising if we pluck the stalk
+above the origin of $\Spec k[x,y]$,
+the two-dimensional plane.
+The points of $\Spec k[x,y]_{(x,y)}$ are supposed to be
+the prime ideals of $k[x,y]$ which are contained in $(x,y)$;
+geometrically these are $(x,y)$ and the generic points passing through the origin.
+For example, there will be a generic point for the parabola $(y-x^2)$
+contained in $k[x,y]_{(x,y)}$,
+and another one $(y-x)$ corresponding to a straight line, etc.
+
+So we have the single closed point $(x,y)$ sitting at the bottom,
+and all sorts of ``one-dimensional'' generic points floating above it:
+lines, parabolas, you name it.
+Finally, we have $(0)$, a generic point floating in two dimensions,
+whose closure equals the entire space.
+\begin{center}
+	\begin{asy}
+		size(6cm);
+		draw( (0,0)--(0,3), heavygreen);
+		label("$\operatorname{Spec} k[x,y]_{(x,y)}$", (0,3), dir(90), blue);
+		draw( (-1,0.1)--(1,1.1), dotted+red );
+		dot("$(3x-2y)$", (0.4,0.8), dir(-45), red);
+		path p1 = (-0.5,2.5)..(0,2)..(0.5,2.5);
+		draw(p1, dotted+red);
+		dot("$(y-x^2)$", relpoint(p1,0.3), dir(200), red);
+		path p2 = (-1,1.3)..(-0.5,1.8)..(0,1.6)..(0.5,1.4)..(1,1.9);
+		draw(p2, dotted+red);
+		dot("$(2y-x^3)$", relpoint(p2,0.7), dir(-45), red);
+		dot("$(x,y)$", (0,0), dir(-90), blue);
+		dot("$(0)$", (1.5,2.5), dir(225), red);
+		filldraw(CR( (1.5,2.5), 0.5 ), opacity(0.1)+lightred, red+dotted);
+	\end{asy}
+\end{center}
+
+
+
+\section{$\Spec k[x,y]_{(0)} = \Spec k(x,y)$, the stalk above the generic point}
+
+% \section{$\Spec k[x,y]_{(y-x^2)}$, the stalk above the parabola}
 % \section{$\Spec \ZZ_{(0)} = \Spec \QQ$}
 % \section{$\Spec k[x,y]_{(0)}$, the stalk above the generic point}
 
-
 %%fakechapter Problems
 \section{\problemhead}
-$\Spec (k[x,y]/(xy))_{x+y}$
+\begin{problem}
+	Draw a picture of $\Spec \ZZ[1/55]$,
+	describe the topology, and compute the stalk at each point.
+\end{problem}
+
+\begin{problem}
+	Draw a picture of $\Spec \ZZ_{(5)}$,
+	describe the topology, and compute the stalk at each point.
+\end{problem}
+
+\begin{problem}
+	Let $A = (k[x,y]/(xy))[(x+y)\inv]$.
+	Draw a picture of $\Spec A$.
+	Show that it is not connected as a topological space.
+\end{problem}
+
+\begin{problem}
+	Let $A = k[x,y]_{(y-x^2)}$.
+	Draw a picture of $\Spec A$.
+\end{problem}<++>

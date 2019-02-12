@@ -63,7 +63,7 @@ whose elements are \emph{prime ideals} of $A$
 and is equipped with the Zariski topology and a sheaf $\OO_X$.
 It will turn out that, in analogy to what we had before,
 \begin{align*}
-	\OO_X(D(f)) &= A_f \\
+	\OO_X(D(f)) &= A[f\inv] \\
 	\OO_{X,\kp} &= A_\kp
 \end{align*}
 for any element $f \in A$ and prime ideal $\kp \in \Spec A$.
@@ -81,9 +81,8 @@ describe the sheaf $\OO_X$ completely.
 	Then the \vocab{localization of $A$ at $S$}, denoted $S\inv A$,
 	is defined as the set of fractions
 	\[ \left\{ a/s \mid a \in A, s \in S \right\} \]
-	where we declare two fractions $a_1 / s_1 = a_2 / s_2$ 
-	to be equal if
-	\[ \exists s \in S : \quad s(a_1s_2 - a_2s_1) = 0. \]
+	where we declare two fractions $a_1 / s_1 = a_2 / s_2$
+	to be equal if $s(a_1s_2 - a_2s_1) = 0$ for some $s \in S$.
 	Addition and multiplication in this ring
 	are defined in the obvious way.
 \end{definition}
@@ -136,35 +135,44 @@ motivating forces for the construction of the affine scheme.
 \begin{example}
 	[Field of fractions]
 	Let $A$ be an integral domain and $S = A \setminus \{0\}$.
-	Then $S\inv A$ is the field of fractions of $A$.
+	Then $S\inv A = \Frac(A)$.
 \end{example}
 
 
-Here are the two special cases of localization we will need the most.
-
 \section{Localization away from an element}
 \prototype{$\ZZ$ localized away from $6$ has fractions $\frac{m}{2^x 3^y}$.}
+We now focus on the two special cases of localization we will need the most;
+one in this section, the other in the next section.
 \begin{definition}
 	For $f \in A$, we define the \vocab{localization of $A$ away from $f$},
-	denoted $A_f$, to be $\{1, f, f^2, f^3, \dots\}\inv A$.
+	denoted $A[1/f]$ or $A[f\inv]$,
+	to be $\{1, f, f^2, f^3, \dots\}\inv A$.
 	(Note that $\left\{ 1, f, f^2, \dots \right\}$ is multiplicative.)
 \end{definition}
+\begin{remark}
+	In the literature it is more common to
+	see the notation $A_f$ instead of $A[1/f]$.
+	This is confusing, because in the next section
+	we define $A_\kp$ which is almost the opposite.
+	So I prefer this more suggestive (but longer) notation.
+\end{remark}
 
 \begin{example}
 	[Some arithmetic examples of localizations]
 	\listhack
 	\begin{enumerate}[(a)]
-		\ii Let $A = \ZZ$. We localize away from $6$:
-		\[ A_{6} = \left\{ \frac{m}{6^n} \mid m \in \ZZ,
+		\ii We localize $\ZZ$ away from $6$:
+		\[ \ZZ[1/6] = \left\{ \frac{m}{6^n} \mid m \in \ZZ,
 			n \in \ZZ_{\ge 0} \right\}.  \]
-		So $A_6$ consist of those rational numbers whose
+		So $A[1/6]$ consist of those rational numbers whose
 		denominators have only powers of $2$ and $3$.
 		For example, it contains $\frac{5}{12} = \frac{15}{36}$.
 
 		\ii Here is a more confusing example:
-		if we localize $A = \Zc{60}$ away from the element $5$,
-		we get $A_5 \cong \Zc{12}$.
+		if we localize $\Zc{60}$ away from the element $5$,
+		we get $(\Zc{60})[1/5] \cong \Zc{12}$.
 		You should try to think about why this is the case.
+		We will see a ``geometric'' reason later.
 	\end{enumerate}
 \end{example}
 
@@ -172,21 +180,21 @@ Here are the two special cases of localization we will need the most.
 \begin{example}
 	[Localization at an element, algebraic geometry flavored]
 	We saw that if $A$ is the coordinate ring of a variety,
-	then $A_g$ is interpreted geometrically as $\OO_V(D(g))$.
+	then $A[1/g]$ is interpreted geometrically as $\OO_V(D(g))$.
 	Here are some special cases:
 	\begin{enumerate}[(a)]
 		\ii As we saw, if $A = \CC[x]$,
-		then $A_{x} = \left\{ \frac{f(x)}{x^n} \right\}$
+		then $A[1/x] = \left\{ \frac{f(x)}{x^n} \right\}$
 		consists of Laurent polynomials.
 
 		\ii Let $A = \CC[x,y,z]$.
-		Then \[ A_x = \left\{ \frac{f(x,y,z)}{x^n} \mid
+		Then \[ A[1/x] = \left\{ \frac{f(x,y,z)}{x^n} \mid
 			f \in \CC[x,y,z], \; n \ge 0 \right\} \]
 		is rational functions whose denominators are powers of $x$.
 
 		\ii Let $A = \CC[x,y]$.
 		If we localize away from $y-x^2$ we get
-		\[ A_{y-x^2} = \left\{ \frac{f(x,y)}{(y-x^2)^n} \mid
+		\[ A[(y-x^2)\inv] = \left\{ \frac{f(x,y)}{(y-x^2)^n} \mid
 			f \in \CC[x,y], \; n \ge 0 \right\} \]
 		By now you should recognize this as $\OO_{\Aff^2}(D(y-x^2))$.
 	\end{enumerate}
@@ -201,7 +209,7 @@ Here are the two special cases of localization we will need the most.
 	Since $xy = 0$ in $A$, we now have $0 = x\inv (xy) = y$,
 	so $y = 0$ in $A$, and thus $y$ just goes away completely.
 	From this we get a ring isomorphism
-	\[ A_{(x)} \cong \CC[x]_{(x)}. \]
+	\[ A[1/x] \cong \CC[x,1/x].\] 
 \end{example}
 
 \section{Localization at a prime ideal}
@@ -218,12 +226,12 @@ Here are the two special cases of localization we will need the most.
 	in the above definition?
 \end{ques}
 
-Warning: this notation sort of conflicts with the previous one.
-The ring $A_\kp$ is the localization with multiplicative set $A \setminus \kp$,
-while $A_f$ is the localization with multiplicative set $\{1,f,f^2,\dots\}$;
-these two are quite different beasts!
-In $A_\kp$ the subscript denotes the \emph{forbidden} denominators;
-in $A_f$ the subscript denotes the \emph{allowed} denominators.
+%Warning: this notation sort of conflicts with the previous one.
+%The ring $A_\kp$ is the localization with multiplicative set $A \setminus \kp$,
+%while $A_f$ is the localization with multiplicative set $\{1,f,f^2,\dots\}$;
+%these two are quite different beasts!
+%In $A_\kp$ the subscript denotes the \emph{forbidden} denominators;
+%in $A_f$ the subscript denotes the \emph{allowed} denominators.
 
 This special case is important because we will see that
 stalks of schemes will all be of this shape.
@@ -327,7 +335,7 @@ where $S$ is one of the two special cases we discussed at length:
 	Let $A$ be a ring.
 	\begin{enumerate}[(a)]
 		\ii If $\kp$ is a prime ideal of $A$,
-		then the prime ideals of $A_f$ are naturally
+		then the prime ideals of $A[1/f]$ are naturally
 		in bijection with prime ideals of $A$
 		\textbf{do not contain the element} $f$.
 
@@ -349,19 +357,18 @@ where $S$ is one of the two special cases we discussed at length:
 Notice again how the notation is a bit of a nuisance.
 Anyways, here are some examples, to help cement the picture.
 \begin{example}
-	[Prime ideals of $A_6$]
-	Let $A = \ZZ$ and
-	suppose we localize away from the element $6$,
-	i.e.\ consider $A_{6}$.
+	[Prime ideals of {$\ZZ[1/6]$}]
+	Suppose we localize $\ZZ$ away from the element $6$,
+	i.e.\ consider $\ZZ[1/6]$.
 	As we saw,
-	\[ A_{6} = \left\{ \frac{n}{2^x 3^y} \mid n \in \ZZ,
+	\[ \ZZ[1/6] = \left\{ \frac{n}{2^x 3^y} \mid n \in \ZZ,
 		x,y \in \ZZ_{\ge 0} \right\}.  \]
 	consist of those rational numbers whose
 	denominators have only powers of $2$ and $3$.
-	Note that $(5) \subset A_6$ is a prime ideal:
-	those elements of $A_6$ with $5$ dividing the numerator.
+	Note that $(5) \subset \ZZ[1/6]$ is a prime ideal:
+	those elements of $\ZZ[1/6]$ with $5$ dividing the numerator.
 	Similarly, $(7)$, $(11)$, $(13)$, \dots\
-	and even $(0)$ give prime ideals of $A_6$.
+	and even $(0)$ give prime ideals of $\ZZ[1/6]$.
 
 	But $(2)$ and $(3)$ no longer correspond to
 	prime ideals; in fact in $A_6$ we have $(2) = (3) = (1)$,
@@ -370,11 +377,9 @@ Anyways, here are some examples, to help cement the picture.
 
 \begin{example}
 	[Prime ideals of $A_{(5)}$]
-	Let $A = \ZZ$ and
-	suppose we localize at the prime $(5)$,
-	i.e.\ consider $A_{(5)}$.
+	Suppose we localize $\ZZ$ at the prime $(5)$.
 	As we saw,
-	\[ A_{5} = \left\{ \frac{m}{n} \mid m,n \in \ZZ,
+	\[ \ZZ_{(5)} = \left\{ \frac{m}{n} \mid m,n \in \ZZ,
 			5 \nmid n \right\}.  \]
 	consist of those rational numbers whose
 	denominators are not divisible by $5$.
@@ -430,7 +435,7 @@ but for our purposes we actually only care about the prime ideals.
 \end{example}
 
 \section{Localization commute with quotients}
-\prototype{$(\CC[xy]/(xy))_x \cong \CC[x,x\inv]$.}
+\prototype{$(\CC[xy]/(xy))[1/x] \cong \CC[x,x\inv]$.}
 While we are here, we mention a useful result from
 commutative algebra which lets us compute localizations in quotient rings,
 which are surprisingly unintuitive.
@@ -448,7 +453,7 @@ away from the element $x$.
 the element of the quotient ring, but we will just call it $x$.)
 You will quickly find that even the notation becomes clumsy: it is
 \begin{equation}
-	\left( \CC[x,y] / (xy) \right)_{x}
+	\left( \CC[x,y] / (xy) \right)[1/x]
 	\label{eq:quotient_localization_before}
 \end{equation}
 which is hard to think about,
@@ -461,7 +466,7 @@ The zero-divisors in play may already make you feel uneasy.
 However, it turns out that we can actually do the localization
 \emph{first}, meaning the answer is just
 \begin{equation}
-	\CC[x,y]_x / (xy)
+	\CC[x,y,1/x] / (xy)
 	\label{eq:quotient_localization_after}
 \end{equation}
 which then becomes $\CC[x, x\inv, y] / (y) \cong \CC[x,x\inv]$.
@@ -526,8 +531,8 @@ And so after all those words, words, words, we have the hideous:
 \end{proof}
 The notation is a hot mess.
 But when we do calculations in practice, we instead write
-\[ \left( \CC[x,y,z]/(x^2 + y^2 - z^2) \right)_x
-	\cong \CC[x,y,z]_x / (x^2 + y^2 - z^2) \]
+\[ \left( \CC[x,y,z]/(x^2 + y^2 - z^2) \right)[1/x]
+	\cong \CC[x,y,z,1/x] / (x^2 + y^2 - z^2) \]
 or (for an example where we localize at a prime ideal)
 \[ \left( \ZZ[x,y,z]/ (x^2 + yz) \right)_{(x,y)}
 	\cong \ZZ[x,y,z]_{(x,y)} / (x^2 + yz) \]
@@ -546,9 +551,9 @@ at which point they will become more natural.
 \section{\problemhead}
 \begin{problem}
 	Let $A = \Zc{2016}$, and consider the element $60 \in A$.
-	Compute $A_{60}$, the localization of $A$ away from $60$.
+	Compute $A[1/60]$, the localization of $A$ away from $60$.
 	\begin{sol}
-		One should get $A_{60} = \Zc{7}$.
+		One should get $A[1/60] = \Zc{7}$.
 	\end{sol}
 \end{problem}
 
@@ -574,6 +579,7 @@ at which point they will become more natural.
 		A proof will be given a few chapters later.
 	\end{hint}
 \end{sproblem}
+
 
 \begin{problem}
 	Let $A$ be a ring such that $A_\kp$ is an integral domain

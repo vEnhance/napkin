@@ -638,7 +638,7 @@ We can finally state the isomorphism that we wanted for a long time
 	[Distinguished open sets are isomorphic to affine schemes]
 	Let $A$ be a ring and $f$ an element.
 	Then
-	\[ \Spec A_f \cong D(f) \subseteq \Spec A. \]
+	\[ \Spec A[1/f] \cong D(f) \subseteq \Spec A. \]
 \end{theorem}
 \begin{proof}
 	Annoying check, not included yet.
@@ -737,11 +737,9 @@ The intuition is that $\OO_U(U) = k[x,y]$, but $U$ is not the plane.
 \end{proof}
 
 \section{Where to go from here}
-\todo{I think I want to write more. . .}
-
+% \todo{I think I want to write more, but in a later edition}
 This chapter concludes the long setup for the definition of a scheme.
-Unfortunately, with respect to algebraic geometry this is as much as I have
-the patience or knowledge to write about.
+For the second edition, this unfortunately is as far as I have time to go.
 So, if you want to actually see how schemes are used in ``real life'',
 you'll have to turn elsewhere.
 
@@ -755,11 +753,19 @@ See \Cref{ch:refs} for further remarks.
 	show that there is a unique morphism of schemes $X \to \Spec \ZZ$,
 	and describe where it sends points of $X$.
 	\begin{hint}
-		Use the proof that $\catname{AffSch} \simeq \catname{CRing}$.
+		Use the fact that $\catname{AffSch} \simeq \catname{CRing}$.
 	\end{hint}
 	\begin{sol}
+		Since $\ZZ$ is the initial object of $\catname{CRing}$,
+		it follows $\Spec \ZZ$ is the final object of $\catname{AffSch}$.
 		$\kp$ gets sent to the characteristic of the field $\OO_{X,\kp} / \km_{X,\kp}$.
 	\end{sol}
+\end{problem}
+
+\begin{problem}
+	Is the open subset of $\Spec \ZZ[x]$
+	obtained by deleting the point $\km = (2,x)$
+	isomorphic to some affine scheme?
 \end{problem}
 
 \endinput

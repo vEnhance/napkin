@@ -114,7 +114,7 @@ on distinguished open sets can be computed explicitly.
 \begin{theorem}
 	[Sections of $D(f)$ are localizations away from $f$]
 	Let $A$ be a ring and $f \in A$.
-	Then \[ \OO_{\Spec A}(D(f)) \cong A_f. \]
+	Then \[ \OO_{\Spec A}(D(f)) \cong A[1/f]. \]
 \end{theorem}
 \begin{proof}
 	Omitted, but similar to
@@ -123,9 +123,9 @@ on distinguished open sets can be computed explicitly.
 
 \begin{example}
 	[The punctured line is isomorphic to a hyperbola]
-	The hyperbola effect now has a new notation too:
+	The ``hyperbola effect'' appears again:
 	\[ \OO_{\Spec \CC[x]} (D(x))
-		= \CC[x]_{x} = \CC[x, x\inv]
+		= \CC[x, x\inv]
 		\cong \CC[x,y] / (xy-1). \]
 \end{example}
 
@@ -138,16 +138,16 @@ is itself distinguished open, so the global sections can be recovered.
 \end{corollary}
 \begin{proof}
 	By previous theorem, $\OO_{\Spec A}(\Spec A)
-	= \OO_{\Spec A}(D(1)) = A_1 = A$.
+	= \OO_{\Spec A}(D(1)) = A[1/1] = A$.
 \end{proof}
 
 \subsection{They are affine}
 \label{subsec:distinguished_open_affine}
-We know $\OO_X(D(f)) = A_f$.
-In fact, if you draw $\Spec A_f$,
+We know $\OO_X(D(f)) = A[1/f]$.
+In fact, if you draw $\Spec A[1/f]$,
 you will find that it looks exactly like $D(f)$.
 So the third final important fact is that
-$D(f)$ will actually be \emph{isomorphic} to $\Spec A_f$
+$D(f)$ will actually be \emph{isomorphic} to $\Spec A[1/f]$
 (just like the line minus the origin is isomorphic to the hyperbola).
 We can't make this precise yet,
 because we have not yet discussed morphisms of schemes,
@@ -168,7 +168,7 @@ how you can forget about sheafification,
 if you never liked it.\footnote{This perspective is
 	so useful that some sources, like Vakil \cite[\S4.1]{ref:vakil}
 	will \emph{define} $\OO_{\Spec A}$
-	by requiring $\OO_{\Spec A}(D(f)) = A_f$,
+	by requiring $\OO_{\Spec A}(D(f)) = A[1/f]$,
 	rather than use sheafification as we did.}
 The idea is that:
 \begin{moral}
@@ -200,15 +200,8 @@ By the sheaf axioms,
 we have a pullback square
 \begin{center}
 \begin{tikzcd}
-	\OO_X(U) \ar[r] \ar[d] & \OO_X(D(x)) = \CC[x,y]_{x} \ar[d] \\
-	\OO_X(D(x)) = \CC[x,y]_{y} \ar[r] & \OO_X(D(xy)) = \CC[x,y]_{xy}
-\end{tikzcd}
-\end{center}
-or equivalently
-\begin{center}
-\begin{tikzcd}
-	\OO_X(U) \ar[r] \ar[d] & \CC[x,x\inv,y] \ar[d] \\
-	\CC[x,y,y\inv] \ar[r] & \CC[x,y,x\inv,y\inv].
+	\OO_X(U) \ar[r] \ar[d] & \OO_X(D(x)) = \CC[x,y,x\inv] \ar[d] \\
+	\OO_X(D(x)) = \CC[x,y,y\inv]_{y} \ar[r] & \OO_X(D(xy)) = \CC[x,y,x\inv, y\inv].
 \end{tikzcd}
 \end{center}
 In other words, $\OO_X(U)$ consists of pairs
@@ -476,6 +469,8 @@ then $A/\kp = \CC$ and $\Frac(A_\kp) = \Frac(\CC) = \CC$, as we expected.
 In practice, $\Frac(A/\kp)$ is probably the easier way
 to compute $\kappa(\kp)$ for any prime ideal $\kp$.
 
+
+
 \section{Recap}
 To recap the last two chapters, let $A$ be a ring.
 \begin{itemize}
@@ -496,7 +491,7 @@ To recap the last two chapters, let $A$ be a ring.
 	\ii Finally, we defined a sheaf $\OO_X$.
 	We set up the definition such that
 	\begin{itemize}
-		\ii $\OO_{X}(D(f)) = A_f$:
+		\ii $\OO_{X}(D(f)) = A[1/f]$:
 		at distinguished open sets $D(f)$,
 		we get localizations too.
 		\ii $\OO_{X,\kp} = A_\kp$:
@@ -507,6 +502,57 @@ To recap the last two chapters, let $A$ be a ring.
 	for any open set $U$,
 	so we don't have to resort to the definition using sheafification.
 \end{itemize}
+
+\section{Functions are determined by germs, not values}
+\prototype{The functions $0$ and $x$ on $\Spec \CC[x]/(x^2)$.}
+
+We close the chapter with a word of warning.
+In any ringed space, a section is determined by its germs;
+so that on $\Spec A$ a function $f \in A$ is determined
+by its germ in each stalk $A_\kp$.
+However, we now will mention that an $f \in A$ is \emph{not}
+determined by its value $f(\kp) = f \pmod \kp$ at each point.
+
+The famous example is:
+\begin{example}
+	[On the double point, all multiples of $x$ are zero at all points]
+	The space $\Spec \CC[x] / (x^2)$ has only one point, $(x)$.
+	The functions $0$ and $x$ (and for that matter $2x$, $3x$, \dots)
+	all vanish on it.
+	This shows that functions are not determined uniquely
+	by values in general.
+\end{example}
+
+Fortunately, we can explicitly characterize
+when this sort of ``bad'' behavior happens.
+Indeed, we want to see when $f(\kp) = g(\kp)$ for every $\kp$,
+or equivalently, $h = f-g$ vanishes on every prime ideal $\kp$.
+This is equivalent to having
+\[ h \in \bigcap_{\kp} \kp = \sqrt{(0)} \]
+the radical of the \emph{zero} ideal.
+Thus in the prototype, the failure was caused by the fact that $x^n = 0$
+for some large $n$.
+
+\begin{definition}
+	For a ring $A$, the radical of the zero ideal, $\sqrt{(0)}$,
+	is called the \vocab{nilradical} of $A$.
+	Elements of the nilradical are called \vocab{nilpotents}.
+	We say $A$ is \vocab{reduced} if $0$ is the only nilpotent,
+	i.e.\ $\sqrt{(0)} = \{0\} = (0)$.
+\end{definition}
+\begin{ques}
+	Are integral domains reduced?
+\end{ques}
+
+Then our above discussion gives:
+\begin{theorem}
+	[Nilpotents are the only issue]
+	Two functions $f$ and $g$ have the same value
+	on all points of $\Spec A$ if and only if $f-g$ is nilpotent.
+\end{theorem}
+In particular, when $A$ is a reduced ring,
+even the values $f(\kp)$ as $\kp \in \Spec A$
+are enough to determine $f \in A$.
 
 \section{\problemhead}
 As \Cref{ch:spec_examples} contains many
@@ -535,6 +581,14 @@ it's likely to be worth reading even before attempting these problems.
 	if and only of the following property is true:
 	for any $x \in R$,
 	either $x$ or $1-x$ is a unit.
+\end{problem}
+
+\begin{problem}
+	Let $R$ be a local ring, and $\km$ be its maximal ideal.
+	Describe $R_\km$.
+	\begin{hint}
+		It's isomorphic to $R$!
+	\end{hint}
 \end{problem}
 
 \begin{problem}
