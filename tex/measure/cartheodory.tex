@@ -85,7 +85,7 @@ In practice, we will basically always use generation for algebras.
 	which behaves as you expect --- although we won't do this.
 \end{example}
 
-Since we are sweeping something other the rug that
+Since we are sweeping something under the rug that
 turns out to be conceptually important,
 I'll go ahead and blue-box it.
 \begin{proposition}
@@ -403,8 +403,25 @@ Here is an example.
 
 \begin{example}
 	[The Cantor set has measure zero]
+	The standard \vocab{middle-thirds Cantor set} is the subset
+	$[0,1]$ obtained as follows:
+	we first delete the open interval $(1/3, 2/3)$.
+	This leaves two intervals $[0,1/3]$ and $[2/3,1]$
+	from which we delete the middle thirds again from both,
+	i.e.\ deleting $(1/9,2/9)$ and $(7/9,8/9)$.
+	We repeat this procedure indefinitely and let $C$ denote the result.
+	An illustration is shown below.
+	\begin{center}
+		\includegraphics[width=0.8\textwidth]{media/cantor-thirds.png} \\
+		\footnotesize Image from \cite{img:cantor}
+	\end{center}
+	It is a classic fact that $C$ is uncountable
+	(it consists of ternary expansions omitting the digit $1$).
+	But it is measurable (it is an intersection of closed sets!)
+	and we contend it has measure zero.
+	Indeed, at the $n$th step, the result has measure $(2/3)^n$ leftover.
+	So $\mu(C) \le (2/3)^n$ for every $n$, forcing $\mu(C) = 0$.
 \end{example}
-\todo{write}
 
 This is fantastic, but there is one elephant in the room:
 how are the Lebesgue $\sigma$-algebra and the Borel $\sigma$-algebra related?
@@ -444,7 +461,7 @@ Using this, one obtains:
 	Show the Borel $\sigma$-algebra is not complete.
 	(Hint: consider the Cantor set.
 	You won't be able to write down an example of a non-measurable
-	set, but you can use size arguments.)
+	set, but you can use cardinality arguments.)
 	Thus the Lebesgue $\sigma$-algebra strictly contains the Borel one.
 	% It should contain every subset of the Cantor set,
 	% since Lebesgue is complete.
@@ -614,4 +631,10 @@ when $\mu_0$ is $\sigma$-finite.
 		I think the answer is just unbounded sets,
 		$\varnothing$, and one-point sets.
 	\end{hint}
+\end{problem}
+
+\begin{problem}
+	\gim
+	A function $f \colon \RR \to \RR$ is continuous.
+	Must $f$ be measurable with respect to the Lebesgue measure on $\RR$?
 \end{problem}

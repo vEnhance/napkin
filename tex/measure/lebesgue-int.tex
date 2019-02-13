@@ -1,6 +1,18 @@
 \chapter{Lebesgue integration}
-Lebesgue measurable function definition goes here
+On any measure space $(\Omega, \SA, \mu)$ we can then,
+for a function $f \colon \Omega \to [0,\infty]$
+define an integral
+\[ \int_\Omega f \; d\mu. \]
+This integral may be $+\infty$ (even if $f$ is finite).
+As the details of the construction won't matter for us later on,
+we will state the relevant definitions,
+skip all the proofs,
+and also state all the properties that we actually care about.
+Consequently, this chapter will be quite short.
 
+
+\section{The definition}
+The construction is done in four steps.
 \begin{definition}
 	If $A$ is a measurable set of $\Omega$,
 	then the \vocab{indicator function}
@@ -11,4 +23,220 @@ Lebesgue measurable function definition goes here
 		\end{cases} \]
 \end{definition}
 
-\section{You could skip this chapter}
+\begin{step}
+	[Indicator functions]
+	For an indicator function, we require
+	\[ \int_\Omega \mathbf{1}_A \; d\mu \defeq \mu(A) \]
+	(which may be infinite).
+\end{step}
+We extend this linearly now for nonnegative functions
+which are sums of indicators:
+these functions are called \vocab{simple functions}.
+\begin{step}
+	[Simple functions]
+	Let $A_1$, \dots, $A_n$ be a finite collection of measurable sets.
+	Let $c_1$, \dots, $c_n$ be either nonnegative real numbers or $+\infty$.
+	Then we define
+	\[ \int_\Omega \left( \sum_{i=1}^n c_i \mathbf{1}_{A_i} \right) \; d\mu
+		\defeq \sum_{i=1}^n c_i \mu(A_i). \]
+	If $c_i = \infty$ and $\mu(A_i) = 0$, we treat $c_i \mu(A_i) = 0$.
+\end{step}
+One can check the resulting sum does not depend
+on the representation of the simple function as $\sum c_i \mathbf{1}_{A_i}$.
+In particular, it is compatible with the previous step.
+
+Conveniently, this is already enough to define the integral
+for $f \colon \Omega \to [0, +\infty]$.
+Note that $[0,+\infty]$ can be thought of as a topological space
+where we add new open sets $(a,+\infty]$ %chktex 9
+for each real number $a$ to our usual basis of open intervals.
+Thus we can equip it with the Borel sigma-algebra.\footnote{We
+	\emph{could} also try to define a measure on it,
+	but we will not: it is a good enough for us
+	that it is a measurable space.}
+\begin{step}
+	[Nonnegative functions]
+	For each measurable function $f \colon \Omega \to [0, +\infty]$, let
+	\[ \int_\Omega f \; d\mu \defeq
+		\sup_{0 \le s \le f} \left( \int_\Omega s \; d\mu \right) \]
+	where the supremum is taken over all \emph{simple} $s$
+	such that $0 \le s \le f$.
+	As before, this integral may be $+\infty$.
+\end{step}
+One can check this is compatible with the previous definitions.
+At this point, we introduce an important term.
+\begin{definition}
+	A measurable (nonnegative) function
+	$f \colon \Omega \to [0, +\infty]$
+	is \vocab{absolutely integrable} or \vocab{Lebesgue integrable}
+	if $\int_\Omega f \; d\mu < \infty$.
+\end{definition}
+Warning: I find ``Lebesgue integrable'' to be \emph{really} confusing terminology.
+Indeed, \emph{every} measurable function from $\Omega$ to $[0,+\infty]$
+can be assigned a Lebesgue integral, it's just that
+this integral may be $+\infty$.
+So the definition is far more stringent than the name suggests.
+Even constant functions can fail to be Lebesgue integrable:
+\begin{example}
+	[Lebesgue integrable functions]
+	The constant function $1$ is \emph{not}
+	Lebesgue integrable on $\RR$,
+	since $\int_\RR 1 \; d\mu = \mu(\RR) +\infty$.
+\end{example}
+For this reason, I will usually prefer the term ``absolutely integrable''.
+(If it were up to me, I would call it ``finitely integrable'',
+and usually do so privately.)
+
+Finally, this lets us integrate general functions.
+\begin{definition}
+	In general, a measurable function $f \colon \Omega \to [-\infty, \infty]$
+	is \vocab{absolutely integrable} or \vocab{Lebesgue integrable} if $|f|$ is.
+\end{definition}
+Since we'll be using the first word, this is easy to remember:
+``absolutely integrable'' requires taking absolute values.
+
+\begin{step}
+	[Absolutely integrable functions]
+	If $f \colon \Omega \to [-\infty, \infty]$ is absolutely integrable,
+	then we define
+	\begin{align*}
+		f^+(x) &= \max\left( f(x), 0 \right) \\
+		f^-(x) &= \min\left( f(x), 0 \right) \\
+	\end{align*}
+	and set
+	\[ \int_\Omega f \; d\mu = \int_\Omega |f^+| \; d\mu
+		- \int_\Omega |f^-| \; d\mu \]
+	which in particular is finite.
+\end{step}
+You may already start to see that we really like nonnegative functions:
+with the theory of measures, it is possible to integrate them,
+and it's even okay to throw in $+\infty$'s everywhere.
+But once we start dealing with functions that can be either positive or negative,
+we have to start adding finiteness restrictions ---
+actually essentially what we're doing is splitting
+the function into its positive and negative part,
+requiring both are finite, and then integrating.
+
+\section{Relation to Riemann integrals (or: actually computing Lebesgue integrals)}
+For closed intervals, this actually just works out of the box.
+\begin{theorem}
+	[Lebesgue integral generalizes Riemann integral]
+	Let $f \colon [a,b] \to \RR$ be a Riemann integrable function
+	(where $[a,b]$ is equipped with the Borel measure).
+	Then $f$ is also Lebesgue integrable and the integrals agree:
+	\[ \int_a^b f(x) \; dx = \int_{[a,b]} f \; d\mu. \]
+\end{theorem}
+
+Thus in practice, we do all theory with Lebesgue integrals (they're nicer),
+but when we actually need to compute $\int_{[1,4]} x^2 \; d\mu$
+we just revert back to our usual antics with the
+Fundamental Theorem of Calculus.
+\begin{example}
+	[Integrating $x^2$ over {$[1,4]$}]
+	Reprising our old example:
+	\[ \int_{[1,4]} x^2 \; d\mu
+		= \int_1^4 x^2 \; dx
+		= \frac13 \cdot 4^3 - \frac13 \cdot 1^3 = 21.  \]
+\end{example}
+
+This even works for \emph{improper} integrals,
+if the functions are nonnegative.
+The statement is a bit cumbersome to write down, but here it is.
+\begin{theorem}
+	[Improper integrals are nice Lebesgue ones]
+	Let $f \ge 0$ be a \emph{nonnegative}
+	continuous function defined on $(a,b) \subseteq \RR$,
+	possibly allowing $a = -\infty$ or $b = \infty$.
+	Then
+	\[ \int_{(a,b)} f \; d\mu
+		= \lim_{\substack{a' \to a^+ \\ b' \to b^-}}
+		\int_{a'}^{b'} f(x) \; dx \]
+	where we allow both sides to be $+\infty$
+	if $f$ is not absolutely integrable.
+\end{theorem}
+The right-hand side makes sense since $[a',b'] \subsetneq (a,b)$
+is a compact interval on which $f$ is continuous.
+This means that improper Riemann integrals of nonnegative
+functions can just be regarded as Lebesgue ones
+over the corresponding open intervals.
+
+It's probably better to just look at an example though.
+\begin{example}
+	[Integrating $1/\sqrt{x}$ on $(0,1)$]
+	For example, you might be familiar with improper integrals like
+	\[ \int_0^1 \frac{1}{\sqrt x} \; dx
+		\defeq \lim_{\eps \to 0^+}
+		\int_\eps^1 \frac{1}{\sqrt x} \; dx
+		= \lim_{\eps \to 0^+} \left( 2\sqrt{1} - 2\sqrt{\eps} \right) = 2.
+	\]
+	(Note this appeared before as \Cref{prob:improper}.)
+	In the Riemann integration situation, we needed the limit as $\eps \to 0^+$
+	since otherwise $\frac{1}{\sqrt x}$ is not defined as a function $[0,1] \to \RR$.
+	However, it is a \emph{measurable nonnegative}
+	function $(0,1) \to [0,+\infty]$,
+	and hence
+	\[ \int_{(0,1)} \frac{1}{\sqrt x} \; d\mu = 2. \]
+\end{example}
+
+If $f$ is not nonnegative, then all bets are off.
+Indeed \Cref{prob:sin_improper} is the famous counterexample.
+
+\section{Properties that are true}
+We state these for completeness.
+You knew they were true already.
+
+Fix $\Omega = (\Omega, \SA, \mu)$.
+Let $f$ and $g$ be measurable real-valued functions
+such that $f(x) = g(x)$ almost everywhere.
+\begin{itemize}
+	\ii (Almost-everywhere preservation)
+	Then $f$ is absolutely integrable if and only if $g$ is,
+	and if so, their Lebesgue integrals match.
+	\ii (Additivity)
+	If $f$ and $g$ are absolutely integrable then
+	\[ \int_\Omega f+g \; d\mu
+		= \int_\Omega f \; d\mu
+		+ \int_\Omega g \; d\mu. \]
+	The ``absolutely integrable'' hypothesis can be dropped
+	if $f$ and $g$ are nonnegative.
+	\ii (Scaling) If $f$ is absolutely integrable and $c \in \RR$
+	then $cf$ is absolutely integrable and
+	\[ \int_\Omega cf \; d\mu = c \int_\Omega f \; d\mu. \]
+	The ``absolutely integrable'' hypothesis can be dropped
+	if $f$ is nonnegative and $c > 0$.
+	\ii (Monotoncity)
+	If $f$ and $g$ are absolutely integrable and $f \le g$, then
+	\[ \int_\Omega f \; d\mu \le \int_\Omega g \; d\mu. \]
+	The ``absolutely integrable'' hypothesis can be dropped
+	if $f$ and $g$ are nonnegative.
+\end{itemize}
+There are more famous results like monotone/dominated convergence
+that are also true, but we won't state them here
+as we won't really have a use for them in the context of probability.
+(They appear later on in a bonus chapter.)
+
+\section{\problemhead}
+
+\begin{dproblem}
+	[The indicaton of the rationals]
+	Take the indicator function
+	$\mathbf 1_{\QQ} \colon \RR \to \{0,1\} \subseteq \RR$
+	for the rational numbers.
+	\begin{enumerate}[(a)]
+		\ii Prove that $\mathbf{1}_\QQ$ is not Riemann integrable.
+		\ii Show that $\int_\RR \mathbf{1}_\QQ$ exists
+		and determine its value --- the one you expect!
+	\end{enumerate}
+\end{dproblem}
+
+\begin{dproblem}
+	[An improper Riemann integral with sign changes]
+	\label{prob:sin_improper}
+	Define $f \colon (0,\infty) \to \RR$ by $f(x) = \frac{\sin(x)}{x}$.
+	Show that $f$ is not absolutely integrable,
+	but that the improper Riemann integral
+	\[ \int_0^\infty f(x) \; dx \defeq
+		\lim_{\substack{a \to 0^+ \\ b \to \infty}}
+		\int_a^b f(x) \; dx \]
+	nonetheless exists.
+\end{dproblem}

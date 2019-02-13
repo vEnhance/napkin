@@ -1,32 +1,40 @@
-\chapter{Bonus: Pontryagin Duality}
+\chapter{Bonus: A hint of Pontryagin duality}
 \label{ch:pontryagin}
 
-\section{A glimpse of Pontryagin duality}
-In fact all the examples we have covered can be subsumed
-as special cases of \emph{Pontryagin duality},
-where we replace the domain with a general group $G$.
-This is mostly beyond the scope of Napkin,
-but I'll outline what's going on.
+In this short chapter we will give statements
+about how to generalize our Fourier analysis
+(a bonus chapter \Cref{ch:fourier})
+to a much wider class of groups $G$.
 
-\subsection{LCA groups}
-Some hypotheses are necessary here:
+\section{LCA groups}
+\prototype{$\TT$, $\RR$.}
+Earlier we played with $\RR$,
+which is nice because in addition to being a topological space,
+it is also an abelian group under addition.
+These sorts of objects which are both groups and spaces have a name.
 \begin{definition}
-	A \vocab{locally compact abelian (LCA) group}
-	consists of two pieces of data:
-	\begin{itemize}
-		\ii A Hausdorff topological space $G$
-		which is \emph{locally compact}:
-		for every point $p$ of $G$,
-		there exists a compact subset $K$ of $G$
-		such that $K \ni p$,
-		and $K$ contains some open neighborhood of $p$.
-		\ii $G$ should also have an \emph{abelian group} operation on it,
-		which is continuous\footnote{I haven't (and will not)
-			define what this means, but you can try to guess.}
-		with respect to the topology.
-	\end{itemize}
+	A group $G$ is a \vocab{topological group}
+	is a Hausdorff\footnote{Some authors omit the Hausdorff condition.}
+	topological space equipped also with a group operation $(G, \cdot)$,
+	such that both maps
+	\begin{align*}
+		G \times G &\to G \quad\text{ by }\quad (x,y) \mapsto xy \\
+		G &\to G \quad\text{ by }\quad x \mapsto x\inv
+	\end{align*}
+	are continuous.
 \end{definition}
-Our previous examples fall into this category:
+
+For our Fourier analysis, we need some additional conditions.
+\begin{definition}
+	A \vocab{locally compact abelian (LCA) group} $G$
+	is one for which the group operation is abelian,
+	and moreover the topology is \emph{locally compact}:
+	for every point $p$ of $G$,
+	there exists a compact subset $K$ of $G$
+	such that $K \ni p$, and $K$ contains some open neighborhood of $p$.
+\end{definition}
+
+Our previous examples all fall into this category:
 \begin{example}
 	[Examples of locally compact abelian groups]
 	\listhack
@@ -37,25 +45,59 @@ Our previous examples fall into this category:
 		which is \emph{not} compact.
 	\end{itemize}
 \end{example}
-It turns out that for an LCA group,
-it's possible to define an integral $\int_G f$
-for functions $f \colon G \to \CC$.
-The relevant buzz-word is
-\href{https://en.wikipedia.org/wiki/Haar_measure}{Haar measure},
-which we won't work in detail here.
 
-\subsection{The Pontryagin dual}
-The key definition is:
+These conditions turn out to be enough
+for us to define a measure on the space $G$.
+The relevant theorem, which we will just quote:
+\begin{theorem}
+	[Haar measure]
+	Let $G$ be a locally compact abelian group.
+	We regard it as a measurable space
+	using its Borel $\sigma$-algebra $\SB(G)$.
+	There exists a measure $\mu \colon \SB(G) \to [0,\infty]$,
+	called the \vocab{Haar measure},
+	satisfying the following properties:
+	\begin{itemize}
+		\ii $\mu(gS) = \mu(S)$ for every $g \in G$ and measurable $S$.
+		That means that $\mu$ is ``translation-invariant''
+		under translation by $G$.
+		\ii $\mu(K)$ is finite for any compact set $K$.
+		\ii if $S$ is measurable, then $\mu(S) = \inf\left\{ \mu(U) \colon U \supseteq S \text{ open} \right\}$.
+		\ii if $U$ is open, then $\mu(U) = \sup\left\{ \mu(S) \colon S \supseteq U \text{ measurable} \right\}$.
+	\end{itemize}
+	Moreover, it is unique up to scaling by a positive constant.
+\end{theorem}
+
+\begin{remark}
+	Note that if $G$ is compact, then $\mu(G)$ is finite (and positive).
+	For this reason the Haar measure on a LCA group $G$
+	is usually normalized so $\mu(G) = 1$.
+\end{remark}
+
+For this chapter, we will only use the first two properties at all,
+and the other two are just mentioned for completeness.
+Note that this actually generalizes the chapter where
+we constructed a measure on $\SB(\RR^n)$,
+since $\RR^n$ is an LCA group!
+
+So, in short: if we have an LCA group,
+we have a measure $\mu$ on it.
+
+\section{The Pontryagin dual}
+Now the key definition is:
 \begin{definition}
 	Let $G$ be an LCA group.
 	Then its \vocab{Pontryagin dual} is the abelian group
 	\[ \wh G \defeq \left\{ \text{continuous group homomorphisms }
 			\xi : G \to \TT \right\}. \]
 	The maps $\xi$ are called \vocab{characters}.
-	It can itself be made into an LCA group
-	using the so-called
-	\href{https://en.wikipedia.org/wiki/Compact-open_topology}{compact-open topology},
-	which we don't define here.
+	It can be itself made into an LCA group.\footnote{If you must
+		know the topology, it is the \vocab{compact-open topology}:
+		for any compact set $K \subseteq G$
+		and open set $U \subseteq \TT$,
+		we declare the set of all $\xi$ with $\xi\im(K) \subseteq U$ to be open,
+		and then take the smallest topology
+		containing all such sets. We won't use this at all.}
 \end{definition}
 \begin{example}
 	[Examples of Pontryagin duals]
@@ -84,7 +126,6 @@ The key definition is:
 	It is not ``canonical''.
 \end{exercise}
 
-
 True to its name as the dual,
 and in analogy with $(V^\vee)^\vee \cong V$ for vector spaces $V$, we have:
 \begin{theorem}
@@ -94,11 +135,22 @@ and in analogy with $(V^\vee)^\vee \cong V$ for vector spaces $V$, we have:
 		x \mapsto \left( \xi \mapsto \xi(x) \right). \]
 \end{theorem}
 
-\subsection{The orthonormal basis in the compact case}
-If $G$ is LCA and compact,
-then it turns out it's possible to integrate over $G$
-Thus we may let $L^2(G)$ be the space of square-integrable functions to $\CC$, i.e.
-\[ L^2(G) = \left\{ f : G \to \CC
+The compact case is especially nice.
+\begin{proposition}
+	[$G$ compact $\iff$ $\wh G$ discrete]
+	Let $G$ be an LCA group.
+	Then $G$ is compact if and only if $\wh G$ is discrete.
+\end{proposition}
+\begin{proof}
+	\Cref{prob:LCA_compact}.
+\end{proof}
+
+\section{The orthonormal basis in the compact case}
+Let $G$ be a compact LCA group,
+and work with its Haar measure.
+We may now let $L^2(G)$ be the space of
+square-integrable functions to $\CC$, i.e.
+\[ L^2(G) = \left\{ f \colon G \to \CC
 	\quad\text{such that}\quad \int_G |f|^2 < \infty \right\}. \]
 Thus we can equip it with the inner form
 \[ \left< f,g \right> = \int_G f \cdot \ol{g}. \]
@@ -106,8 +158,8 @@ In that case, we get all the results we wanted before:
 \begin{theorem}
 	[Characters of $\wh G$ forms an orthonormal basis]
 	\label{thm:god}
-	Assume $G$ is LCA and compact.
-	Then $\wh G$ is \emph{discrete}, and the characters
+	Assume $G$ is LCA and compact (so $\wh G$ is discrete).
+	Then the characters
 	\[ (e_\xi)_{\xi \in \wh G}
 		\qquad\text{by}\qquad e_\xi(x) = e(\xi(x)) = \exp(2\pi i \xi(x)) \]
 	form an orthonormal basis of $L^2(G)$.
@@ -120,37 +172,44 @@ In that case, we get all the results we wanted before:
 The sum $\sum_{\xi \in \wh G}$ makes sense since $\wh G$ is discrete.
 In particular,
 \begin{itemize}
-	\ii Letting $G = Z$ gives ``Fourier transform on finite groups''.
+	\ii Letting $G = Z$ for a finite group $G$
+	gives ``Fourier transform on finite groups''.
 	\ii The special case $G = \ZZ/n\ZZ$ has its
-	\href{https://en.wikipedia.org/wiki/Discrete-time_Fourier_transform}%
-	{own Wikipedia page}.
+	\href{https://en.wikipedia.org/wiki/Discrete_Fourier_transform#Definition}%
+	{own Wikipedia page}: the ``discrete-time Fourier transform''.
 	\ii Letting $G = \TT$ gives the ``Fourier series'' earlier.
 \end{itemize}
 
-\subsection{The Fourier transform of the non-compact case}
+\section{The Fourier transform of the non-compact case}
 If $G$ is LCA but not compact, then Theorem~\ref{thm:god} becomes false.
-On the other hand, it's still possible to define $\wh G$
-and then try to write
-\[ \wh f(\xi) = \int_G f \cdot \ol{e_\xi} \]
-for functions $f$.
-The results are less fun in this case,
-though, and we won't discuss them further.
+On the other hand, it's still possible to define $\wh G$.
+We can then try to write the Fourier coefficients anyways:
+let \[ \wh f(\xi) = \int_G f \cdot \ol{e_\xi} \; d\mu \]
+for $\xi \in \wh G$ and $f \colon G \to \CC$.
+The results are less fun in this case, but we still have, for example:
+\begin{theorem}
+	[Fourier inverison formula in the non-compact case]
+	Let $\mu$ be a Haar measure on $G$.
+	Then there exists a unique Haar measure $\nu$ on $\wh G$
+	(called the \vocab{dual measure}) such that:
+	whenever $f \in L^1(G)$ and $\wh f \in L^1(\wh G)$, we have
+	\[ f(x) = \int_{\wh G} \wh f(\xi) \xi(x) \; d\nu \]
+	for almost all $x \in G$ (with respect to $\mu$).
+	If $f$ is continuous, this holds for all $x$.
+\end{theorem}
+So while we don't have the niceness of a full inner product from before,
+we can still in some situations at least write $f$ as integral
+in sort of the same way as before.
 
-Despite the fact that the $e_\xi$ no longer form an orthonormal basis,
-the transformed function $\wh f : \wh G \to \CC$ is still often useful.
 In particular, they have special names for a few special $G$:
 \begin{itemize}
 	\ii If $G = \RR$, then $\wh G = \RR$,
-	and this construction gives the poorly named
+	yielding the
 	``\href{https://en.wikipedia.org/wiki/Fourier_transform}{(continuous) Fourier transform}''.
 	\ii If $G = \ZZ$, then $\wh G = \TT$,
-	and this construction gives the poorly named
+	yielding the
 	``\href{https://en.wikipedia.org/wiki/Discrete-time_Fourier_transform}{discrete time Fourier transform}.
 \end{itemize}
-
-
-
-
 
 \section{Summary}
 We summarize our various flavors of Fourier analysis
@@ -183,6 +242,33 @@ every type of Fourier series above has its own Wikipedia article.
 If it were up to me, we would just use the term ``$G$-Fourier transform'',
 and that would make everyone's lives a lot easier.
 
+
+
+\section{\problemhead}
+\begin{problem}
+	If $G$ is compact, so $\wh G$ is discrete,
+	describe the dual measure $\nu$.
+	\begin{hint}
+		You can read it off \Cref{thm:god}.
+	\end{hint}
+	\begin{sol}
+		It is the counting measure.
+	\end{sol}
+\end{problem}
+
+\begin{problem}
+	\label{prob:LCA_compact}
+	Show that an LCA group $G$ is compact
+	if and only if $\wh G$ is discrete.
+	(You will need the compact-open topology for this.)
+	\begin{hint}
+		After Pontryagin duality,
+		we need to show $G$ compact implies $\wh G$ discrete
+		and $G$ discrete implies $\wh G$ compact.
+		Both do not need anything fancy:
+		they are topological facts.
+	\end{hint}
+\end{problem}
 
 \endinput
 \section{Peter-Weyl}

@@ -443,10 +443,10 @@ If I told you ``walk from $p$ to $q$'' you wouldn't have too many questions.
 		bigbox("$\mathbb C$");
 		pair A = Drawing("p", (-3,0), dir(180));
 		pair B = Drawing("q", (3,0), dir(0));
-		draw(A..(-2,0.5)..(0,2)..(1,1.2)..B, red, EndArrow);
-		draw(A--B, mediumgreen, EndArrow);
-		draw(A--(-1,-1)--(2,-1)--B, blue, EndArrow);
-		// draw(A..(1.5,-2)..(-1.5,-2)..B, orange, EndArrow);
+		draw(A..(-2,0.5)..(0,2)..(1,1.2)..B, red, EndArrow(TeXHead));
+		draw(A--B, mediumgreen, EndArrow(TeXHead));
+		draw(A--(-1,-1)--(2,-1)--B, blue, EndArrow(TeXHead));
+		// draw(A..(1.5,-2)..(-1.5,-2)..B, orange, EndArrow(TeXHead));
 	\end{asy}
 \end{center}
 
@@ -461,8 +461,8 @@ Then suddenly to get from $p$ to $q$, people might tell you two different things
 		bigbox("$\mathbb C \setminus \{0\}$");
 		pair A = Drawing("p", (-3,0), dir(180));
 		pair B = Drawing("q", (3,0), dir(0));
-		draw(A..(-2,0.5)..(0,2)..(1,1.2)..B, red, EndArrow);
-		draw(A--(-1,-1)--(2,-1)--B, blue, EndArrow);
+		draw(A..(-2,0.5)..(0,2)..(1,1.2)..B, red, EndArrow(TeXHead));
+		draw(A--(-1,-1)--(2,-1)--B, blue, EndArrow(TeXHead));
 		filldraw(scale(0.5)*unitcircle, grey, black);
 	\end{asy}
 \end{center}
@@ -476,8 +476,8 @@ But in the second picture,
 you can't move the red string to match with the blue string:
 there's a meteor in the way.
 The paths are actually different.\footnote{If you know about winding numbers,
-	you might feel this is familiar. 
-	We'll talk more about this in the chapter on homotopy groups.}
+	you might feel this is familiar.
+	We'll talk more about this in the chapter on the fundamental group.}
 
 The formal notion we'll use to capture this is \emph{homotopy equivalence}.
 We want to write a definition such that in the first picture,

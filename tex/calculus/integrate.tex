@@ -438,7 +438,44 @@ in the details as \Cref{thm:FTC}.
 \end{asy}
 \end{center}
 
+One quick note is that although I've only defined
+the Riemann integral for continuous functions,
+there ought to be other functions for which it exists
+(including ``piecewise continuous functions'' for example,
+or functions ``continuous almost everywhere'').
+The relevant definition is:
+\begin{definition}
+	If $f \colon [a,b] \to \RR$ is a function
+	which is not necessarily continuous,
+	but for which the limit
+	\[ \lim_{\substack{\text{$P$ tagged partition}
+			\\ \opname{mesh} P \to 0}}
+		\left( \sum_{i=1}^n f(\xi_i) (t_i - t_{i-1}) \right). \]
+	exists anyways,
+	then we say $f$ is \vocab{Riemann integrable} on $[a,b]$
+	and define its value to be that limit $\int_a^b f(x) \; dx$.
+\end{definition}
+We won't really use this definition much,
+because we will see that every Riemann integrable function
+is Lebesgue integrable, and the Lebesgue integral is better.
 
+\begin{example}
+	[Your AP calculus returns]
+	We had better mention that \Cref{thm:FTC}
+	implies that we can compute Riemann integrals in practice,
+	although most of you may already know this
+	from high-school calculus
+	For example, on the interval $(1,4)$,
+	the derivative of the function $F(x) = \frac13 x^3$ is $F'(x) = x^2$.
+	As $f(x) = x^2$ is a continuous function $f \colon [1,4] \to \RR$, we get
+	\[ \int_1^4 x^2 \; dx =
+		F(4) - F(1) = \frac{64}{3} - \frac13 = 21. \]
+	Note that we could also have picked $F(x) = \frac13x^3 + 2019$;
+	the function $F$ is unique up to shifting,
+	and this constant cancels out when we subtract.
+	This is why it's common in high school to (really) abuse notation
+	and write $\int x^2 \; dx = \frac13x^3+C$
+\end{example}
 
 \section{\problemhead}
 \begin{problem}

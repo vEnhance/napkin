@@ -85,7 +85,8 @@ of ``enough measur-\emph{able} sets for us to get by''.
 \begin{remark}
 	[Random seeds]
 	Another analogy if you do some programming:
-	each $\omega \in \Omega$ is a \emph{random seed}.
+	each $\omega \in \Omega$ is a \emph{random seed},
+	and everything is determined from there.
 \end{remark}
 
 \section{Motivating measure spaces geometrically}
@@ -122,10 +123,11 @@ There are just too many possible subsets of Euclidean space.
 However, the good news is that most of these sets are not ones
 that we will ever care about,
 and it's enough to define measures for certain
-``sufficiently nice sets'' $A$.
+``sufficiently nice sets''.
 The adjective we will use is \emph{measurable},
 and it will turn out that this will be way, way more than good enough
 for any practical purposes.
+
 We will generally use $A$, $B$, \dots for measurable sets
 and denote the entire family of measurable sets by curly $\SA$.
 
@@ -168,7 +170,7 @@ Rather than try to reason out what exactly the final shape $\SA$ looks like
 (which basically turns out to be impossible),
 we just give up and say ``$\SA$ is all the sets you can get if you start
 with the open sets and apply repeatedly union/complement operations''.
-OR even more bluntly: ``start with closed sets, shake vigorously''.
+Or even more bluntly: ``start with closed sets, shake vigorously''.
 
 I've gone on too long with no examples.
 \begin{example}
@@ -219,6 +221,28 @@ I've gone on too long with no examples.
 	The triple $(\Omega, \SA, \mu)$ is called a \vocab{measure space}.
 	It's called a \vocab{probability space} if $\mu(\Omega) = 1$.
 \end{definition}
+\begin{exercise}
+	[Weaker equivalent definitions]
+	I chose to give axioms for $\SA$ and $\mu$
+	that capture how people think of them in practice,
+	which means there is some redundancy:
+	for example, being closed under complements and unions
+	is enough to get intersections, by de Morgan's law.
+	Here are more minimal definitions,
+	which are useful if you are trying to prove something satisfies them
+	to reduce the amount of work you have to do:
+	\begin{enumerate}[(a)]
+		\ii The axioms on $\SA$ can be weakened
+		to (i) $\varnothing \in \SA$ and (ii) $\SA$ is closed under
+		complements and countable \emph{disjoint} unions.
+		\ii The axioms on $\mu$ can be weakened to
+		(i) $\mu(\varnothing) = 0$,
+		(ii) $\mu(A \sqcup B) = \mu(A) + \mu(B)$, and
+		(iii) for $A_1 \supset A_2 \supset \dots$
+		we have $\mu\left( \bigcap_n A_n \right) = \lim_n \mu(A_n)$.
+	\end{enumerate}
+\end{exercise}
+
 
 \begin{remark}
 Here are some immediate remarks on these definitions.
@@ -233,20 +257,21 @@ Here are some immediate remarks on these definitions.
 	because with finite unions it's too hard to make progress:
 	it's too hard to estimate the area of a circle
 	without being able to talk about limits of countably infinitely many triangles.
-	\ii We \emph{don't} want to allow uncountable unions and additivity,
-	because uncountable sums basically never work out.
-	In particular, there is a nice elementary exercise as follows:
-	\begin{exercise}
-		[Tricky]
-		Let $S$ be an uncountable set of positive real numbers.
-		Show that some finite subset $T \subseteq S$ has sum greater than $10^{2019}$.
-		Colloquially, ``uncountable many positive reals
-		cannot have finite sum''.
-	\end{exercise}
-	So countable sums are as far as we'll let the infinite sums go.
-	This is the reason why we considered $\sigma$-algebras in the first place.
-\end{itemize}
+	\end{itemize}
 \end{remark}
+We \emph{don't} want to allow uncountable unions and additivity,
+because uncountable sums basically never work out.
+In particular, there is a nice elementary exercise as follows:
+\begin{exercise}
+	[Tricky]
+	Let $S$ be an uncountable set of positive real numbers.
+	Show that some finite subset $T \subseteq S$ has sum greater than $10^{2019}$.
+	Colloquially, ``uncountable many positive reals
+	cannot have finite sum''.
+\end{exercise}
+So countable sums are as far as we'll let the infinite sums go.
+This is the reason why we considered $\sigma$-algebras in the first place.
+
 
 \begin{example}
 	[Measures]
@@ -286,34 +311,10 @@ Here are some immediate remarks on these definitions.
 	\end{enumerate}
 \end{example}
 
-\begin{exercise}
-	[Weaker equivalent definitions]
-	I chose to give axioms for $\SA$ and $\mu$
-	that capture how people think of them in practice,
-	which means there is some redundancy:
-	for example, being closed under complements and unions
-	is enough to get intersections, by de Morgan's law.
-	Here are more minimal definitions,
-	which are useful if you are trying to prove something satisfies them
-	to reduce the amount of work you have to do.
-
-	Show:
-	\begin{enumerate}
-		\ii The axioms on $\SA$ can be weakened
-		to (i) $\varnothing \in \SA$ and (ii) $\SA$ is closed under
-		complements and countable \emph{disjoint} unions.
-		\ii The axioms on $\mu$ can be weakened to
-		(i) $\mu(\varnothing) = 0$,
-		(ii) $\mu(A \sqcup B) = \mu(A) + \mu(B)$, and
-		(iii) for $A_1 \supset A_2 \supset \dots$
-		we have $\mu\left( \bigcap_n A_n \right) = \lim_n \mu(A_n)$.
-	\end{enumerate}
-\end{exercise}
-
 \section{A hint of Banach-Tarski}
 I will now try to convince you that $\SB(\Omega)$
 is a necessary concession,
-and that for general topological spaces like $\Omega = \RR^n$,
+and for general topological spaces like $\Omega = \RR^n$,
 there is no hope of assigning a measure to $2^{\Omega}$.
 \begin{example}
 	[A geometric example of why $\SA = 2^\Omega$ is unsuitable]
@@ -350,7 +351,35 @@ Stay tuned to actually see a construction for $\SB(\RR^n)$
 in the next chapter.
 
 \section{Measurable functions}
+In the past, when we had topological spaces,
+we considered continuous functions.
+The analog here is:
+\begin{definition}
+	Let $(X, \SA)$ and $(Y, \SB)$ be measurable spaces
+	(or measure spaces).
+	A function $f \colon X \to Y$ is \vocab{measurable}
+	if for any measurable set $S \subseteq Y$ (i.e.\ $S \in \SB$)
+	we have $f\pre(S)$ is measurable (i.e. $f\pre(S) \in \SA$).
+\end{definition}
+
+In practice, most functions you encounter will be continuous anyways,
+and in that case we are fine.
+\begin{proposition}
+	[Continuous implies Borel measurable]
+	Suppose $X$ and $Y$ are topological spaces
+	and we pick the Borel measures on both.
+	A function $f \colon X \to Y$
+	which is continuous as a map of topological spaces
+	is also measurable.
+\end{proposition}
+\begin{proof}
+	Follows from the fact that pre-images of open sets are open,
+	and the Borel measure is generated by open sets.
+\end{proof}
+
+\section{On the word ``almost''}
 \todo{write me}
+define almost everywhere
 
 \section{\problemhead}
 
