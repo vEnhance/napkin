@@ -232,11 +232,11 @@ as we won't really have a use for them in the context of probability.
 \begin{dproblem}
 	[An improper Riemann integral with sign changes]
 	\label{prob:sin_improper}
-	Define $f \colon (0,\infty) \to \RR$ by $f(x) = \frac{\sin(x)}{x}$.
+	Define $f \colon (1,\infty) \to \RR$ by $f(x) = \frac{\sin(x)}{x}$.
 	Show that $f$ is not absolutely integrable,
 	but that the improper Riemann integral
-	\[ \int_0^\infty f(x) \; dx \defeq
-		\lim_{\substack{a \to 0^+ \\ b \to \infty}}
+	\[ \int_1^\infty f(x) \; dx \defeq
+		\lim_{B \to \infty}
 		\int_a^b f(x) \; dx \]
 	nonetheless exists.
 \end{dproblem}
