@@ -8,62 +8,66 @@
 
 \setcounter{diagheight}{50}
 \begin{chart}
-\halfcourse 10,45:{Chapters 1,3}{Groups}{}
-\halfcourse 48,45:{Chapter 2}{Spaces}{}
-\halfcourse 48,35:{Chapters 4-5}{Topology}{}
-\halfcourse 63,45:{Chapter 6}{Modules}{}
-\halfcourse 63,35:{Chapters 7-9}{Lin Alg}{}
-\halfcourse 5,35:{Chapter 10}{Grp Actions}{}
-\halfcourse 5,20:{Chapter 11}{Grp Classif}{}
-\halfcourse 30,35:{Chapter 12-13}{Ideals}{}
-\reqhalfcourse 55,10:{Chapters 14-16}{Cmplx Ana}{}
-\halfcourse 58,19:{Chapters 17-19}{Quantum}{}
-\reqhalfcourse 30,10:{Chapters 20-22}{Alg Top 1}{}
-\reqhalfcourse 30,22:{Chapters 23-25}{Cat Th}{}
-\halfcourse 65,25:{Chapters 26-29}{Diff Geo}{}
-\reqhalfcourse 20,0:{Chapters 30-35}{Alg Top 2}{}
-\reqhalfcourse 42,10:{Chapters 36-40}{Alg NT 1}{}
-\reqhalfcourse 42,0:{Chapter 41-45}{Alg NT 2}{}
-\reqhalfcourse 35,45:{Chapters 46-49}{Rep Theory}{}
-\reqhalfcourse 16,10:{Chapters 50-53}{Alg Geom 1}{}
-\halfcourse 6,0:{Chapters 54-56}{Alg Geom 2}{}
-\reqhalfcourse 65,0:{Chapters 57-63}{Set Theory}{}
+\reqhalfcourse 20,45:{Ch 1,3-5}{Abs Alg}{}
+\reqhalfcourse 55,45:{Ch 2,6-8}{Topology}{}
+\halfcourse 33,45:{Ch 9-15,18}{Lin Alg}{}
+\halfcourse 5,35:{Ch 16}{Grp Act}{}
+\halfcourse 5,24:{Ch 17}{Grp Classif}{}
+\halfcourse 30,35:{Ch 19-22}{Rep Th}{}
+\halfcourse 45,43:{Ch 23-25}{Quantum}{}
+\halfcourse 64,38:{Ch 26-30}{Calc}{}
+\halfcourse 64,30:{Ch 31-33}{Cmplx Ana}{}
+\halfcourse 55,20:{Ch 34-41}{Measure/Pr}{}
+\halfcourse 48,28:{Ch 42-45}{Diff Geo}{}
+\halfcourse 40,10:{Ch 46-50}{Alg NT 1}{}
+\halfcourse 40,0:{Ch 51-55}{Alg NT 2}{}
+\halfcourse 23,10:{Ch 56-58}{Alg Top 1}{}
+\halfcourse 20,28:{Ch 59-62}{Cat Th}{}
+\halfcourse 23,0:{Ch 63-68}{Alg Top 2}{}
+\halfcourse 6,10:{Ch 69-73}{Alg Geo 1}{}
+\halfcourse 6,0:{Ch 74-79}{Alg Geo 2-3}{}
+\reqhalfcourse 5,45:{Ch 80-86}{Set Theory}{}
 
-\prereqc 30,35,35,45;0:   % Ideals -> Rep Th
-\prereqc 63,35,35,45;0:   % Lin Alg -> Rep Th
-\coreqc  30,22,35,45;50: % Cats -> Rep Th
-\prereqc 63,35,58,19;30:  % Lin Alg -> Quantum
-\prereqc 48,45,65,25;-20: % Spaces -> Diff Geo
-
-\prereqc 10,45,30,22;0:   % Grp -> Cat Th
-\coreqc  30,35,30,22;0:   % Ideals -> Cat Th
-\coreqc  48,45,30,22;0:   % Space -> Cat Th
-\coreqc  63,35,30,22;10:  % Lin Alg -> Cat Th
-\prereqc 63,35,65,25;0:   % Lin Alg -> Diff Geo
-\coreqc  48,35,30,22;-10: % Top -> Cat Th
-\coreqc  30,22,16,10;0:   % Cat Th -> AG2
-\prereqc 63,45,30,35;0:   % Module -> Ideal
-
-\prereqc 30,10,20,0;0:    % AT1 -> AT2
-\prereqc 30,22,20,0;20:   % Cat -> AT2
-\coreqc  30,22,30,10;0:   % Cat -> AT1
-
-\prereqc 10,45,5,35;0:    % Grp -> Grp Act
-\prereq   5,35,5,20:      % Grp Act -> Grp Class
-\prereq  48,45,48,35:     % Space -> Top
-\prereqc 48,35,30,10;0:   % Top -> AT1
-\prereqc  5,35,30,10;0:   % Grp Act -> AT1
-\prereqc 48,35,55,10;-30: % Top -> Cmplx Ana
-\coreqc  10,45,30,35;0:   % Grp -> Ideals
-\prereqc 30,35,42,10;0:   % Ideals -> ANT1
-\prereq  63,45,63,35:     % Modules -> Linalg
-\prereq  63,45,42,10:     % Modules -> ANT1
-\coreqc  63,35,42,10;0:   % Lin Alg -> ANT1
-\prereqc 30,35,16,10;0:   % Ideals -> AG1
-\prereqc 48,35,16,10;-30: % Top -> AG1
-\prereqc 42,10,42,0;0:    % ANT1 -> ANT2
-\prereqc 16,10,6,0;0:     % AG1 -> AG2
-\prereqc 30,22,6,0;80:     % Cat -> AG2
-\prereqc  5,35,42,0;-30:  % Grp Act -> ANT2
+%% Basic alg ch
+\prereqc 20,45,30,35;0:    % Abs Alg -> Rep Th
+\coreqc  20,45,33,45;0:    % Abs Alg -> Lin Alg
+\prereqc 33,45,30,35;0:    % Lin Alg -> Rep Th
+\prereqc 33,45,45,43;0:    % Lin Alg -> Quantum
+%% Category theory
+\prereqc 20,45,20,28;0:    % Grp -> Cat Th
+\coreqc  20,45,20,28;0:    % Abs Alg -> Cat Th
+\coreqc  33,45,20,28;80:   % Lin Alg -> Cat Th
+\coreqc  55,45,20,28;-40:  % Top -> Cat Th
+\coreqc  20,28,30,35;0:    % Cat Th -> Rep Th
+%% Group theory chain
+\prereqc 20,45,5,35;0:     % Grp -> Grp Act
+\prereqc  5,35,5,24;0:     % Grp Act -> Grp Class
+%% Analysis chain
+\prereqc 33,45,48,28;30:   % Lin Alg -> Diff Geo
+\prereqc 55,45,64,38;0:    % Top -> Diff Geo
+\coreqc  64,38,48,28;50:   % Calc -> Diff Geo
+\prereqc 55,45,48,28;10:   % Top -> Diff Geo
+\prereqc 55,45,64,38;0:    % Top -> Calc
+\coreqc  64,38,64,30;0:    % Calc -> Cmplx Ana
+\prereqc 55,45,64,30;-10:  % Top -> Cmplx Ana
+\prereqc 55,45,55,20;0:    % Top -> Meas/Pr
+\coreqc  64,38,55,20;50:   % Calc -> Meas/Pr
+%% Alg Geom
+\prereqc 6,10,6,0;0:       % AG1 -> AG2
+\prereqc 20,45,6,10;0:     % Abs Alg -> AG1
+\prereqc 55,45,6,10;-40:   % Top -> AG1
+\coreqc  20,28,6,10;0:     % Cat Th -> AG1
+\prereqc 20,28,6,0;-18:    % Cat -> AG2
+%% Alg Top
+\prereqc 23,10,23,0;0:     % AT1 -> AT2
+\prereqc 55,45,23,10;0:    % Top -> AT1
+\prereqc  5,35,23,10;20:   % Grp Act -> AT1
+\coreqc 23,10,20,28;20:    % AT1 -> Cat
+\prereqc 20,28,23,0;-190:  % Cat -> AT2
+%% Alg NT
+\prereqc 40,10,40,0;0:     % ANT1 -> ANT2
+\prereqc 20,45,40,10;-40:  % Abs Alg -> ANT1
+\prereqc 33,45,40,10;50:   % Lin Alg -> ANT1
+\prereqc  5,35,40,0;10:    % Grp Act -> ANT2
 \end{chart}
 \egroup

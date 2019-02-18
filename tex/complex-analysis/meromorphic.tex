@@ -428,45 +428,62 @@ you find yourself with just linear functions.
 
 \begin{dproblem}
 	[Rouch\'e's theorem]
-	Let $f, g : U \to \CC$ be holomorphic functions, where $U$ contains the unit disk.
+	Let $f, g \colon U \to \CC$ be holomorphic functions,
+	where $U$ contains the unit disk.
 	Suppose that $\left\lvert f(z) \right\rvert > \left\lvert g(z) \right\rvert$
 	for all $z$ on the unit circle.
 	Prove that $f$ and $f+g$ have the same number of zeros
 	which lie strictly inside the unit circle (counting multiplicities).
 \end{dproblem}
+
+\begin{problem}
+	[Wedge contour]
+	\gim
+	For each odd integer $n$, evaluate the improper integral
+	\[ \int_0^\infty \frac{1}{1+x^{n}} \; dx. \]
+	\begin{hint}
+		This is called a ``wedge contour''.
+		Try to integrate over a wedge shape
+		consisting of a sector of a circle of radius $r$,
+		with central angle $\frac{2\pi}{n}$.
+		Take the limit as $r \to \infty$ then.
+	\end{hint}
+	\begin{sol}
+		See \url{https://math.stackexchange.com/q/242514/229197},
+		which does it with $2019$ replaced by $3$.
+	\end{sol}
+\end{problem}
 	
 \begin{problem}
+	[Another contour]
 	\yod
 	Prove that the integral
-	\[
-		\int_{-\infty}^{\infty} \frac{\cos x}{x^2+1} \; dx
-	\]
+	\[ \int_{-\infty}^{\infty} \frac{\cos x}{x^2+1} \; dx \]
 	converges and determine its value.
 	\begin{hint}
 		It's $\lim_{a \to \infty} \int_{-a}^{a} \frac{\cos x}{x^2+1} \; dx$.
 		For each $a$, construct a semicircle.
 	\end{hint}
 	% semicircle integral
-
 	% \quad \text{ and } \quad
 	% \int_{-\infty}^{\infty} \frac{\sin x}{x^2+1} \; dx
 \end{problem}
 
 \begin{sproblem}
 	\gim
-	Let $f : U \to \CC$ be a nonconstant holomorphic function.
+	Let $f \colon U \to \CC$ be a nonconstant holomorphic function.
 	\begin{enumerate}[(a)]
 		\ii (Open mapping theorem)
-		Prove that $f\im(U)$ is open in $\CC$.\footnote{%
-			Thus the image of \emph{any}
+		Prove that $f\im(U)$ is open in $\CC$.\footnote{Thus
+			the image of \emph{any}
 			open set $V \subseteq U$ is open in $\CC$
-			(by repeating the proof for $f \restrict{V}$).
-		}
-		\ii (Maximum Modulus Principle)
+			(by repeating the proof for $f \restrict{V}$).}
+		\ii (Maximum modulus principle)
 		Show that $\left\lvert f \right\rvert$
 		cannot have a maximum over $U$.
-		That is, show that for any $z \in U$, there is some $z' \in U$
-		such that $\left\lvert f(z) \right\rvert < \left\lvert f(z') \right\rvert$.
+		That is, show that for any $z \in U$,
+		there is some $z' \in U$ such that
+		$\left\lvert f(z) \right\rvert < \left\lvert f(z') \right\rvert$.
 	\end{enumerate}
 	% http://en.wikipedia.org/wiki/Open_mapping_theorem_(complex_analysis)
 \end{sproblem}

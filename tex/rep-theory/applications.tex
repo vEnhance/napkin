@@ -149,16 +149,16 @@ We finish with the following result,
 the problem that started the branch of representation theory.
 Given a finite group $G$,
 we create $n$ variables $\{x_g\}_{g \in G}$,
-and an $n \times n$ matrix $X_G$ whose $(g,h)$th entry is $x_{gh}$.
+and an $n \times n$ matrix $M_G$ whose $(g,h)$th entry is $x_{gh}$.
 \begin{example}[Frobenius determinants]
 	\listhack
 	\begin{enumerate}[(a)]
 	\ii If $G = \Zc 2 = \left< T \mid T^2 = 1\right>$
-	then the matrix would be \[ X_G =
+	then the matrix would be \[ M_G =
 	\begin{bmatrix} x_{\id} & x_T \\ x_T & x_{\id} \end{bmatrix}. \]
-	Then $\det X_G = (x_{\id}-x_T)(x_{\id}+x_T)$.
+	Then $\det M_G = (x_{\id}-x_T)(x_{\id}+x_T)$.
 	\ii If $G = S_3$, a long computation gives
-	the irreducible factorization of $\det X_G$ is
+	the irreducible factorization of $\det M_G$ is
 	\[
 		\left( \sum_{\sigma \in S_3} x_{\sigma} \right)
 		\left( \sum_{\sigma \in S_3} \sign(\sigma)x_\sigma \right)
@@ -170,7 +170,7 @@ and an $n \times n$ matrix $X_G$ whose $(g,h)$th entry is $x_{gh}$.
 \end{example}
 \begin{theorem}
 	[Frobenius determinant]
-	The polynomial $\det X_G$ (in $|G|$ variables) factors
+	The polynomial $\det M_G$ (in $|G|$ variables) factors
 	into a product of irreducible polynomials such that
 	\begin{enumerate}[(i)]
 		\ii The number of polynomials equals the number
@@ -180,7 +180,7 @@ and an $n \times n$ matrix $X_G$ whose $(g,h)$th entry is $x_{gh}$.
 	\end{enumerate}
 \end{theorem}
 You may already be able to guess how the ``sum of squares'' result
-is related! (Indeed, look at $\deg\det X_G$.)
+is related! (Indeed, look at $\deg\det M_G$.)
 
 Legend has it that Dedekind observed this behavior first in 1896.
 He didn't know how to prove it in general,
@@ -193,8 +193,8 @@ to prove the result.
 \begin{proof}
 	Let $V = (V, \rho) = \Reg(\CC[G])$ and let $V_1$, \dots, $V_r$
 	be the irreps of $G$.
-	Let's consider the map $T : \CC[G] \to \CC[G]$
-	which has matrix $X_G$ in the usual basis of $\CC[G]$, namely
+	Let's consider the map $T \colon \CC[G] \to \CC[G]$
+	which has matrix $M_G$ in the usual basis of $\CC[G]$, namely
 	\[ T = T(\{x_g\}) = \sum_{g \in G} x_g \rho(g) \in \Mat(V). \]
 	Thus we want to examine $\det T$.
 

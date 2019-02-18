@@ -103,7 +103,7 @@ Linear algebra:
 	\ii $\yup$, $\ydown$: spin $y$-up, spin $y$-down
 \end{itemize}
 
-\section{Topology and (complex) analysis}
+\section{Topology and real/complex analysis}
 Common topological spaces:
 \begin{itemize}
 	\ii $S^1$: the unit circle
@@ -120,13 +120,36 @@ Some topological notation:
 	\ii $X \amalg Y$: disjoint union of spaces $X$ and $Y$
 	\ii $X \vee Y$: wedge product of (pointed) spaces $X$ and $Y$
 \end{itemize}
+Real analysis (calculus 101):
+\begin{itemize}
+	\ii $\liminf$: limit infimum
+	\ii $\limsup$: limit supremum
+	\ii $\inf$: infimum
+	\ii $\sup$: supremum
+	\ii $\ZZ_p$: $p$-adic integers
+	\ii $\QQ_p$: $p$-adic numbers
+	\ii $f'$: derivative of $f$
+	\ii $\int_a^b f(x) \; dx$: Riemann integral of $f$ on $[a,b]$
+\end{itemize}
 Complex analysis:
 \begin{itemize}
 	\ii $\int_\alpha f \; dz$: contour integral of $f$ along path $\alpha$
 	\ii $\Res(f;p)$: the residue of a meromorphic function $f$ at point $p$
 	\ii $\Wind(\gamma, p)$: winding number of $\gamma$ around $p$.
 \end{itemize}
-Algebraic topology:
+\section{Measure theory and probability}
+\begin{itemize}
+	\ii $\SA\cme$: the $\sigma$-algebra of Caratheory-measurable sets
+	\ii $\SB(X)$: the Borel space for $X$
+	\ii $\mu\cme$: the induced measure on $\SA\cme$.
+	\ii $\lambda$: Lebesgue measure
+	\ii $\mathbf{1}_A$: the indicator function for $A$
+	\ii $\int_\Omega f \; d\mu$: the Lebesgue integral of $f$
+	\ii $\lim_{n \to \infty} f_n$: pointwise limit of $f_n$
+	\ii $\wh G$: Pontryagin dual for $G$
+\end{itemize}
+
+\section{Algebraic topology}
 \begin{itemize}
 	\ii $\alpha \simeq \beta$: for paths, this indicates path homotopy
 	\ii $\ast$: path concatenation
@@ -255,16 +278,21 @@ Operations with categories:
 	\ii $U_i$: standard affine charts
 	\ii $\Vp(-)$: projective vanishing locus.
 	\ii $h_I$, $h_V$: Hilbert function of an ideal $I$ or projective variety $V$
-	\ii $f^\ast$: the pullback $\OO_Y \to \OO_X(f\pre(U))$ obtained from $f : X \to Y$
+	\ii $\pi^\sharp$ or $\pi^\sharp_U$: the pullback $\OO_Y \to \OO_X(\pi\pre(U))$ obtained from $\pi \colon X \to Y$
 	\ii $\SF_p$: the stalk of a (pre-)sheaf $\SF$ at a point $p$
 	\ii $[s]_p:$ the germ of $s \in \SF(U)$ at the point $p$
 	\ii $\OO_{X,p}$: shorthand for $(\OO_X)_p$.
 	\ii $\SF\sh$: sheafification of pre-sheaf $\SF$
 	\ii $\alpha_p : \SF_p \to \SG_p$: morphism of stalks obtained from $\alpha : \SF \to \SG$
 	\ii $\km_{X,p}$: the maximal ideal of $\OO_{X,p}$
-	\ii $\Spec R$: the spectrum of a ring $R$
-	\ii $S\inv R$: localization of ring $R$ at a set $S$
-	\ii $\Proj R$: the projective scheme of a graded ring $S$
+	\ii $\Spec A$: the spectrum of a ring $A$
+	\ii $S\inv A$: localization of ring $A$ at a set $S$
+	\ii $A[1/f]$: localization of ring $A$ away from element $f$
+	\ii $A_\kp$: localization of ring $A$ at prime ideal $\kp$
+	\ii $f(\kp)$: the value of $f$ at $\kp$, i.e.\ $f \pmod \kp$
+	\ii $\kappa(\kp)$: the residue field of $\Spec A$ at the element $\kp$.
+	% \ii $\Proj R$: the projective scheme of a graded ring $S$
+	\ii $\pi^\sharp_{\kp}$: the induced map of stalks in $\pi^\sharp$.
 \end{itemize}
 
 \section{Set theory}
