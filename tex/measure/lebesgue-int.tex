@@ -10,7 +10,6 @@ skip all the proofs,
 and also state all the properties that we actually care about.
 Consequently, this chapter will be quite short.
 
-
 \section{The definition}
 The construction is done in four steps.
 \begin{definition}
@@ -117,6 +116,39 @@ actually essentially what we're doing is splitting
 the function into its positive and negative part,
 requiring both are finite, and then integrating.
 
+
+To finish this section, we state for completeness
+some results that you probably could have guessed were true.
+Fix $\Omega = (\Omega, \SA, \mu)$, and
+let $f$ and $g$ be measurable real-valued functions
+such that $f(x) = g(x)$ almost everywhere.
+\begin{itemize}
+	\ii (Almost-everywhere preservation)
+	The function $f$ is absolutely integrable if and only if $g$ is,
+	and if so, their Lebesgue integrals match.
+	\ii (Additivity)
+	If $f$ and $g$ are absolutely integrable then
+	\[ \int_\Omega f+g \; d\mu
+		= \int_\Omega f \; d\mu
+		+ \int_\Omega g \; d\mu. \]
+	The ``absolutely integrable'' hypothesis can be dropped
+	if $f$ and $g$ are nonnegative.
+	\ii (Scaling) If $f$ is absolutely integrable and $c \in \RR$
+	then $cf$ is absolutely integrable and
+	\[ \int_\Omega cf \; d\mu = c \int_\Omega f \; d\mu. \]
+	The ``absolutely integrable'' hypothesis can be dropped
+	if $f$ is nonnegative and $c > 0$.
+	\ii (Monotoncity)
+	If $f$ and $g$ are absolutely integrable and $f \le g$, then
+	\[ \int_\Omega f \; d\mu \le \int_\Omega g \; d\mu. \]
+	The ``absolutely integrable'' hypothesis can be dropped
+	if $f$ and $g$ are nonnegative.
+\end{itemize}
+There are more famous results like monotone/dominated convergence
+that are also true, but we won't state them here
+as we won't really have a use for them in the context of probability.
+(They appear later on in a bonus chapter.)
+
 \section{Relation to Riemann integrals (or: actually computing Lebesgue integrals)}
 For closed intervals, this actually just works out of the box.
 \begin{theorem}
@@ -181,53 +213,20 @@ It's probably better to just look at an example though.
 If $f$ is not nonnegative, then all bets are off.
 Indeed \Cref{prob:sin_improper} is the famous counterexample.
 
-\section{Properties that are true}
-We state these for completeness.
-You knew they were true already.
-
-Fix $\Omega = (\Omega, \SA, \mu)$.
-Let $f$ and $g$ be measurable real-valued functions
-such that $f(x) = g(x)$ almost everywhere.
-\begin{itemize}
-	\ii (Almost-everywhere preservation)
-	Then $f$ is absolutely integrable if and only if $g$ is,
-	and if so, their Lebesgue integrals match.
-	\ii (Additivity)
-	If $f$ and $g$ are absolutely integrable then
-	\[ \int_\Omega f+g \; d\mu
-		= \int_\Omega f \; d\mu
-		+ \int_\Omega g \; d\mu. \]
-	The ``absolutely integrable'' hypothesis can be dropped
-	if $f$ and $g$ are nonnegative.
-	\ii (Scaling) If $f$ is absolutely integrable and $c \in \RR$
-	then $cf$ is absolutely integrable and
-	\[ \int_\Omega cf \; d\mu = c \int_\Omega f \; d\mu. \]
-	The ``absolutely integrable'' hypothesis can be dropped
-	if $f$ is nonnegative and $c > 0$.
-	\ii (Monotoncity)
-	If $f$ and $g$ are absolutely integrable and $f \le g$, then
-	\[ \int_\Omega f \; d\mu \le \int_\Omega g \; d\mu. \]
-	The ``absolutely integrable'' hypothesis can be dropped
-	if $f$ and $g$ are nonnegative.
-\end{itemize}
-There are more famous results like monotone/dominated convergence
-that are also true, but we won't state them here
-as we won't really have a use for them in the context of probability.
-(They appear later on in a bonus chapter.)
-
 \section{\problemhead}
 
-\begin{dproblem}
+\begin{sproblem}
 	[The indicaton of the rationals]
+	\label{prob:1QQ}
 	Take the indicator function
 	$\mathbf 1_{\QQ} \colon \RR \to \{0,1\} \subseteq \RR$
 	for the rational numbers.
-	\begin{enumerate}[(a)]
-		\ii Prove that $\mathbf{1}_\QQ$ is not Riemann integrable.
-		\ii Show that $\int_\RR \mathbf{1}_\QQ$ exists
-		and determine its value --- the one you expect!
-	\end{enumerate}
-\end{dproblem}
+		\begin{enumerate}[(a)]
+	   \ii Prove that $\mathbf{1}_\QQ$ is not Riemann integrable.
+	   \ii Show that $\int_\RR \mathbf{1}_\QQ$ exists
+	   and determine its value --- the one you expect!
+   \end{enumerate}
+\end{sproblem}
 
 \begin{dproblem}
 	[An improper Riemann integral with sign changes]

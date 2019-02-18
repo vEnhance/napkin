@@ -1,1 +1,195 @@
-\chapter{Bonus: Dominated Convergence, Fubini, etc.}
+\chapter{Swapping order with Lebesgue integrals}
+\section{Motivating limit interchange}
+\prototype{$\mathbf{1}_\QQ$ is good!}
+
+One of the issues with the Riemann integral is
+that it behaves badly with respect to convergence of functions,
+and the Lebesgue integral deals with this.
+This is therefore often given as a poster child
+or why the Lebesgue integral has better behaviors than the Riemann one.
+
+We technically have already seen this:
+consider the indicator function $\mathbf{1}_\QQ$,
+which is not Riemann integrable by \Cref{prob:1QQ}.
+But we can readily compute its Lebesgue integral over $[0,1]$, as
+\[ \int_{[0,1]} \mathbf{1}_\QQ \; d\mu
+	= \mu\left( [0,1] \cap \QQ \right) = 0 \]
+since it is countable.
+
+This \emph{could} be thought of as a failure of convergence
+for the Riemann integral.
+\begin{example}
+	[$\mathbf{1}_\QQ$ is a limit of finitely supported functions]
+	\label{ex:1QQindicator}
+	We can define the sequence of functions $g_1$, $g_2$, \dots\ by
+	\[ g_n(x) = \begin{cases}
+			1 & nx \text{ is an integer} \\
+			0 & \text{ else}.
+		\end{cases} \]
+	Then each $g_n$ is piecewise continuous
+	and hence Riemann integrable on $[0,1]$ (with integral zero),
+	but $\lim_{n \to \infty} g_n = \mathbf{1}_\QQ$ is not.
+\end{example}
+
+The limit here is defined in the following sense:
+\begin{definition}
+	Let $f$ and $f_1, f_2, \dots \colon \Omega \to \RR$ be a sequence of functions.
+	Suppose that for each $\omega \in \Omega$, the sequence
+	\[ f_1(\omega), \; f_2(\omega), \; f_3(\omega), \;, \dots \]
+	converges to $f(\omega)$.
+	Then we say $(f_n)_n$ \vocab{converges pointwise}
+	to the limit $f$, written $\lim_{n \to \infty} f_n = f$.
+
+	We can define $\liminf_{n \to \infty} f_n$
+	and $\limsup_{n \to \infty} f_n$ similarly.
+\end{definition}
+This is actually a fairly weak notion of convergence, for example:
+\begin{exercise}
+	[Witch's hat]
+	Find a sequence of continuous function on $[-1,1] \to \RR$
+	which converges pointwise to the function $f$ given by
+	\[ f(x) = \begin{cases}
+			1 & x = 0 \\
+			0 & \text{otherwise}.
+		\end{cases} \]
+\end{exercise}
+This is why when thinking about the Lebesgue integral
+it is commonplace to work with stronger conditions like
+``uniformly convergent'' and the like.
+However, with the Lebesgue integral, we can mostly not think about these!
+
+\section{Overview}
+The three big-name results for exchanging
+pointwise limits with Lebesgue integrals is:
+\begin{itemize}
+	\ii Fatou's lemma: the most general statement possible,
+	for any nonnegative measurable functions.
+	\ii Monotone convergence: ``increasing limits'' just work.
+	\ii Dominated convergence (actually Fatou-Lebesgue):
+	limits that are not too big
+	(bounded by some absolutely integrable function) just work.
+\end{itemize}
+
+\section{Fatou's lemma}
+Without further ado:
+\begin{lemma}
+	[Fatou's lemma]
+	Let $f_1, f_2, \dots \colon \Omega \to [0,+\infty]$
+	be a sequence of \emph{nonnegative} measurable functions.
+	Then $\liminf_n \colon \Omega \to [0,+\infty]$ is measurable and
+	\[ \int_\Omega \left( \liminf_{n \to \infty} f_n \right) \; d\mu
+		\le \liminf_{n \to \infty} \left( \int_\Omega f_n \; d\mu \right).  \]
+	Here we allow either side to be $+\infty$.
+\end{lemma}
+Notice that there are \emph{no extra hypothesis}
+on $f_n$ other than nonnegative: which makes this quite surprisingly versatile
+if you ever are trying to prove some general result.
+
+\section{Everything else}
+The big surprise is how quickly all the ``big-name''
+theorem follows from Fatou's lemma.
+Here is the so-called ``monotone convergence theorem''.
+\begin{corollary}
+	[Monotone convergence theorem]
+	Let $f$ and $f_1, f_2, \dots \colon \Omega \to [0,+\infty]$
+	be a sequence of measurable functions such that $\lim_n f_n = f$.
+	Moreover, assume that
+	\[ f_1(\omega) \le f_2(\omega) \le \dots \le f(\omega). \]
+	Then $f$ is measurable and
+	\[ \lim_{n \to \infty} \left( \int_\Omega f_n \; d\mu \right)
+		= \int_\Omega f \; d\mu. \]
+	Here we allow either side to be $+\infty$.
+\end{corollary}
+\begin{ques}
+	Deduce this from Fatou's lemma.
+\end{ques}
+
+\begin{example}
+	[Monotone convergence gives $\mathbf{1}_\QQ$]
+	This already implies \Cref{ex:1QQindicator}.
+	Letting $g_n$ be the indicator function for $\frac1n\ZZ$
+	as described in that example, we have
+	\[ g_1(x) \le g_2(x) \le \dots \]
+	and $\lim_{n \to \infty} g_n(x) = \mathbf{1}_\QQ(x)$,
+	for each individual $x$.
+	So since $\int_{[0,1]} g_n \; d\mu = 0$ for each $n$,
+	this gives $\int_{[0,1]} \mathbf{1}_\QQ = 0$ as we already knew.
+\end{example}
+
+The most famous result, though is the following.
+\begin{corollary}
+	[Fatou–Lebesgue theorem]
+	Let $f$ and $f_1, f_2, \dots \colon \Omega \to \RR$
+	be a sequence of measurable functions.
+	Assume that $g \colon \Omega \to \RR$ is an
+	\emph{absolutely integrable} function for which
+	$|f_n(\omega)| \le |g(\omega)|$ for all $\omega \in \Omega$.
+	Then the inequality
+	\begin{align*}
+		\int_\Omega \left( \liminf_{n \to \infty} f_n \right) \; d\mu
+		&\le \liminf_{n \to \infty} \left( \int_\Omega f_n \; d\mu \right) \\
+		&\le \limsup_{n \to \infty} \left( \int_\Omega f_n \; d\mu \right)
+		\le \int_\Omega \left( \limsup_{n \to \infty} f_n \right) \; d\mu.
+	\end{align*}
+\end{corollary}
+\begin{proof}
+	There are three inequalities:
+	\begin{itemize}
+		\ii The first inequality follows by Fatou on $g + f_n$ which is nonnegative.
+		\ii The second inequality is just $\liminf \le \limsup$.
+		(This makes the theorem statement easy to remember!)
+		\ii The third inequality follows by Fatou on $g - f_n$ which is nonnegative.
+		\qedhere
+	\end{itemize}
+\end{proof}
+
+\begin{exercise}
+	Where is the fact that $g$ is absolutely integrable used in this proof?
+\end{exercise}
+
+\begin{corollary}
+	[Dominated convergence theorem]
+	Let $f_1, f_2, \dots \colon \Omega \to \RR$
+	be a sequence of measurable functions
+	such that $f = \lim_{n \to \infty} f_n$ exists.
+	Assume that $g \colon \Omega \to \RR$ is an
+	\emph{absolutely integrable} function for which
+	$|f_n(\omega)| \le |g(\omega)|$ for all $\omega \in \Omega$.
+	Then
+	\[ \int_\Omega f \; d \mu
+		= \lim_{n \to \infty} \left( \int_\Omega f_n \; d\mu \right). \]
+\end{corollary}
+\begin{proof}
+	If $f(\omega) = \lim_{n \to \infty} f_n(\omega)$,
+	then $f(\omega) = \liminf_{n \to \infty} f_n(\omega)
+	= \limsup_{n \to \infty} f_n(\omega)$.
+	So all the inequalities in the Fatou-Lebesgue theorem
+	become equalities, since the leftmost and rightmost sides are equal.
+\end{proof}
+Note this gives yet another way to verify \Cref{ex:1QQindicator}.
+In general, the dominated convergence theorem
+is a favorite clich\'{e} for undergraduate exams,
+because it is easy to create questions for it.
+Here is one example showing how they all look.
+\begin{example}
+	[The usual Lebesgue dominated convergence examples]
+	Suppose one wishes to compute
+	\[ \lim_{n \to \infty}
+		\left( \int_{(0,1)} \frac{n\sin(n\inv x)}{\sqrt x} \right) \; dx \]
+	then one starts by observing that
+	the inner term is bounded by the absolutely integrable function $x^{-1/2}$.
+	Therefore it equals
+	\begin{align*}
+		\int_{(0,1)} \lim_{n \to \infty}
+			\left( \frac{n\sin(n\inv x)}{\sqrt x} \right) \; dx
+		&= \int_{(0,1)} \frac{x}{\sqrt x} \; dx \\
+		&= \int_{(0,1)} \sqrt{x} \; dx = \frac23.
+	\end{align*}
+\end{example}
+
+%%fakesection TODO
+
+% TODO: maybe add Fubini and Tonelli?
+
+\section{\problemhead}
+
