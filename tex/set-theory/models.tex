@@ -379,8 +379,9 @@ Here's a second, better reason we might only care about transitive models.
 
 \begin{lemma}
 	[Mostowski collapse lemma]
-	Let $X = (X, \in)$ be a model, where $X$ is a set (possibly not transitive).
-	Then there exists an isomorphism $\pi : X \to M$ for
+	Let $X = (X, \in)$ be a model,
+	where $X$ is a set (possibly not transitive).
+	Then there exists an isomorphism $\pi \colon X \to M$ for
 	a transitive model $M = (M,\in)$.
 \end{lemma}
 
@@ -449,15 +450,15 @@ Great. Now we do something \emph{really} crazy.
 	Fasten your seat belts.
 
 	First, since we assumed $\ZFC^+$,
-	we can take $M = (V_\kappa, \in)$ as our model of $\ZFC$.
+	we can take $V_\kappa = (V_\kappa, \in)$ as our model of $\ZFC$.
 	Start with the set $X_0 = \varnothing$.
 	Then for every integer $n$, we do the following to get $X_{n+1}$.
 	\begin{itemize}
 		\ii Start with $X_{n+1}$ containing every element of $X_n$.
 		\ii Consider a formula $\phi(x, x_1, \dots, x_n)$
 		and $b_1, \dots, b_n$ in $X_n$.
-		Suppose that $M$ thinks there is a $b \in M$ for which
-		\[ M \vDash \phi[b, b_1, \dots, b_n]. \]
+		Suppose that $V_\kappa$ thinks there is a $b \in V_\kappa$ for which
+		\[ V_\kappa \vDash \phi[b, b_1, \dots, b_n]. \]
 		We then add in the element $b$ to $X_{n+1}$.
 		\ii We do this for \emph{every possible formula in the language of set theory}.
 		We also have to put in \emph{every possible set of parameters} from the previous set $X_n$.
@@ -468,7 +469,7 @@ Great. Now we do something \emph{really} crazy.
 	at each step.
 	This exhibits an infinite nested sequence of countable sets
 	\[ X_0 \subseteq X_1 \subseteq X_2 \subseteq \dots \]
-	None of these is a substructure of $M$,
+	None of these is a substructure of $V_\kappa$,
 	because each $X_n$ relies on witnesses in $X_{n+1}$.
 	So we instead \emph{take the union}:
 	\[ X = \bigcup_n X_n. \]
