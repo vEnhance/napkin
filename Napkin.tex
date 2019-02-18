@@ -6,6 +6,7 @@
 \subtitle{Second edition (last updated \today)}
 \author{Evan Chen}
 \date{\url{http://web.evanchen.cc/napkin.html}}
+\renewcommand{\napkinversion}{v1.5.\hbox{\the\year\twodigits\month\twodigits\day}}
 
 \begin{document}
 
@@ -93,18 +94,19 @@
 \include{tex/complex-analysis/meromorphic}
 \include{tex/complex-analysis/log}
 
-\part{Measure Theory and Probability}
+\part{Measure Theory}
 \parttoc
 \include{tex/measure/measure-space}
 \include{tex/measure/caratheodory}
-
 \include{tex/measure/lebesgue-int}
-\include{tex/measure/pontryagin}
 \include{tex/measure/swapsum}
+\include{tex/measure/pontryagin}
 
+\part{Probability}
+\parttoc
 \include{tex/measure/randvar}
 \include{tex/measure/large-laws}
-% \include{tex/measure/martingale} Cut for now
+\include{tex/measure/martingale} % To be written
 
 \part{Differential Geometry}
 \parttoc
@@ -161,12 +163,15 @@
 
 \part{Algebraic Geometry II: Affine Schemes}
 \parttoc
-\input{tex/alg-geom/sheaves}
-\input{tex/alg-geom/localization}
-\input{tex/alg-geom/spec-zariski}
-\input{tex/alg-geom/spec-sheaf}
-\input{tex/alg-geom/spec-examples}
-\input{tex/alg-geom/mor-scheme}
+\include{tex/alg-geom/sheaves}
+\include{tex/alg-geom/localization}
+\include{tex/alg-geom/spec-zariski}
+\include{tex/alg-geom/spec-sheaf}
+\include{tex/alg-geom/spec-examples}
+\include{tex/alg-geom/mor-scheme}
+
+\part{Algebraic Geometry III: More on Schemes (TO DO)}
+\parttoc
 
 \part{Set Theory I: ZFC, Ordinals, and Cardinals}
 \parttoc

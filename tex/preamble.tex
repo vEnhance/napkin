@@ -178,12 +178,15 @@
 \addtolength{\textheight}{3.14cm}
 \setlength{\footskip}{0.5in}
 \setlength{\headsep}{10pt}
+
 \def\shortdate{\leavevmode\hbox{\the\year-\twodigits\month-\twodigits\day}}
 \def\twodigits#1{\ifnum#1<10 0\fi\the#1}
 \automark[chapter]{chapter}
+
+\newcommand{\napkinversion}{\shortdate}
+
 \rohead{\footnotesize\thepage}
-\rehead{\footnotesize \textbf{\sffamily Napkin} (2nd edition),
-	by \emph{Evan Chen} (\shortdate)}
+\rehead{\footnotesize \textbf{\sffamily Napkin}, by \emph{Evan Chen} (\napkinversion)}
 \lehead{\footnotesize\thepage}
 \lohead{\footnotesize \leftmark}
 \chead{}
