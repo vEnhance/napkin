@@ -86,7 +86,6 @@ if you only really care about modulo $p^e$ information,
 but normal $\ZZ/p^e$ isn't quite powerful enough.
 
 To be more concrete, I'll give a poster example now:
-\todo{IMO logo this one as well, like Japan}
 \begin{example}
 	[USA TST 2002/2]
 	For a prime $p$, show the value of
@@ -322,7 +321,6 @@ So you can divide by $p$ with no repercussions.
 
 
 \section{Analytic perspective}
-\todo{prototype}
 \subsection{Definition}
 Up until now we've been thinking about things mostly algebraically,
 but moving forward it will be helpful to start using the language of analysis.
@@ -469,7 +467,7 @@ Note that the definition of $\left\lvert \bullet \right\rvert_p$
 could have been given for $\QQ$ as well;
 we didn't need $\QQ_p$ to introduce it
 (after all, we have $\nu_p$ in olympiads already).
-The big important theorem\todo{link completion} I must state now is:
+The big important theorem I must state now is:
 \begin{theorem}
 	[$\QQ_p$ is complete]
 	The space $\QQ_p$ is the completion of $\QQ$
@@ -572,9 +570,8 @@ One of the big surprises of $p$-adic analysis is that:
 They are given by a basis of functions
 \[ \binom xn \defeq \frac{x(x-1) \dots (x-(n-1))}{n!} \]
 in the following way.
-\todo{cite Schikof in refs}
 \begin{theorem}
-	[Mahler; see Schikhof Theorem 51.1 and Exercise 51.B]
+	[Mahler; see {\cite[Theorem 51.1, Exercise 51.b]{ref:schikof}}]
 	Let $f \colon \ZZ_p \to \QQ_p$ be continuous, and define
 	\begin{equation}
 		a_n = \sum_{k=0}^n \binom nk (-1)^{n-k} f(n).
@@ -617,7 +614,7 @@ if it has a power series expansion
 	\qquad\text{ converging for } x \in \ZZ_p. \]
 \end{definition}
 \begin{theorem}
-	[Schikhof Theorem 54.4]
+	[{\cite[Theorem 54.4]{ref:schikof}}]
 	The function $f(x) = \sum_{n \ge 0} a_n \binom xn$ is analytic
 	if and only if
 	\[ \lim_{n \to \infty} \frac{a_n}{n!} = 0. \]
@@ -679,8 +676,6 @@ which was interesting even before $p$-adics came along!
 	Thus by Strassman's theorem, $f$ is either identically zero,
 	or else it has finitely many zeros, as desired.
 \end{proof}
-
-
 
 \section{\problemhead}
 \begin{dproblem}
