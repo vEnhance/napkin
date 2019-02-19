@@ -215,9 +215,69 @@ AS an example, here is the definition of a ``smooth map'':
 	\end{enumerate}
 \end{definition}
 
-\section{Regular value theorem (TO DO)}
-\todo{write me}
-actual examples of manifolds obtained by embedding
+\section{Regular value theorem}
+\prototype{$x^2+y^2=1$ is a circle!}
+Despite all that I've written about general manifolds,
+it would be sort of mean if I left you here
+because I have not really told you how to actually construct
+manifolds in practice, even though we know the circle
+$x^2+y^2=1$ is a great example of a one-dimensional
+manifold embedded in $\RR^2$.
+
+\begin{theorem}
+	[Regular value theorem]
+	Let $V$ be an $n$-dimensional real normed vector
+	space, let $U \subseteq V$ be open
+	and let $f_1, \dots, f_m \colon U \to \RR$
+	be smooth functions.
+	Let $M$ be the set of points $p \in U$
+	such that $f_1(p) = \dots = f_m(p) = 0$.
+
+	Assume $M$ is nonempty and that the map
+	\[ V \to \RR^m \quad\text{by}\quad
+		v \mapsto \left( (Df_1)_p(v), \dots, (Df_m)_p(v) \right) \]
+	has rank $m$, for every point $p \in M$.
+	Then $M$ is a manifold of dimension $n-m$.
+\end{theorem}
+For a proof, see \cite[Theorem 6.3]{ref:manifolds}.
+
+One very common special case is to take $m = 1$ above.
+\begin{corollary}
+	[Level hypersurfaces]
+	Let $V$ be a finite-dimensional real normed vector
+	space, let $U \subseteq V$ be open
+	and let $f \colon U \to \RR$ be smooth.
+	Let $M$ be the set of points $p \in U$
+	such that $f(p) = 0$.
+	If $M \ne \varnothing$ and
+	$(Df)_p$ is not the zero map for any $p \in M$,
+	then $M$ is a manifold of dimension $n-1$.
+\end{corollary}
+
+\begin{example}
+	[The circle $x^2+y^2-c=0$]
+	Let $f(x,y) = x^2+y^2 - c$, $f \colon \RR^2 \to \RR$,
+	where $c$ is a positive real number.
+	Note that
+	\[ Df = 2x \cdot dx + 2y \cdot dy \]
+	which in particular is nonzero
+	as long as $(x,y) \ne (0,0)$, i.e.\ as long as $c \ne 0$.
+	Thus:
+	\begin{itemize}
+		\ii When $c > 0$, the resulting curve ---
+		a circle with radius $\sqrt c$ ---
+		is a one-dimensional manifold, as we knew.
+		\ii When $c = 0$, the result fails.
+		Indeed, $M$ is a single point,
+		which is actually a zero-dimensional manifold!
+	\end{itemize}
+\end{example}
+
+We won't give further examples
+since I'm only mentioning this in passing
+in order to increase your capacity to write real concrete examples.
+(But \cite[Chapter 6.2]{ref:manifolds} has some more examples,
+beautifully illustrated.)
 
 \section{Differential forms on manifolds}
 We already know what a differential form is on an open set $U \subseteq \RR^n$.
@@ -501,12 +561,10 @@ Thus, it follows that there is an isomorphism
 and so the cotangent space, hence tangent space,
 indeed has dimension $n$.
 
-\subsection{So what does this have to do with orientations?}
-\todo{beats me}
-
+%\subsection{So what does this have to do with orientations?}
+%\todo{beats me}
 
 \section\problemhead
-
 \begin{problem}
 	Show that a differential $0$-form on a smooth manifold $M$
 	is the same thing as a smooth function $M \to \RR$.
