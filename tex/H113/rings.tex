@@ -374,9 +374,72 @@ I wouldn't worry about it\dots
 \end{example}
 
 
-\section{Unique factorization domains (UFD's) (TO DO)}
-\todo{write me}
-% forgot to define a UFD
+\section{Unique factorization domains (UFD's)}
+\prototype{$\ZZ$ and polynomial rings in general.}
+
+Here is one stray definition that will be important
+for those with a number-theoretic inclination.
+Over the positive integers, we have a fundamental theorem of arithmetic,
+stating that every integer is uniquely the product of prime numbers.
+
+We can even make an analogous statement in $\ZZ$ or $\ZZ[i]$,
+if we allow representations like $6 = (-2)(-3)$ and so on.
+The trick is that we only consider everything \emph{up to units};
+so $6 = (-2)(-3) = 2 \cdot 3$ are considered the same.
+
+The general definition goes as follows.
+\begin{definition}
+	A nonzero non-unit of an integral domain $R$ is
+	\vocab{irreducible} if cannot be written as the product of two non-units.
+
+	An integral domain $R$ is a \vocab{unique factorization domain}
+	if every nonzero non-unit of $R$ can be written
+	as the product of irreducible elements,
+	which is unique up to multiplication by units.
+\end{definition}
+\begin{ques}
+	Verify that $\ZZ$ is a UFD.
+\end{ques}
+
+\begin{example}
+	[Examples of UFD's]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii Fields are a ``degenerate'' example of UFD's:
+		every nonzero element is a unit,
+		so there is nothing to check.
+
+		\ii $\ZZ$ is a UFD.
+		The irreducible elements are $p$ and $-p$,
+		for example $5$ or $-17$.
+
+		\ii $\QQ[x]$ is a UFD:
+		polynomials with rational coefficients
+		can be uniquely factored, up to scaling by constants
+		(as the units of $\QQ[x]$ are just the rational numbers).
+
+		\ii $\ZZ[x]$ is a UFD.
+
+		\ii The Gaussian integers $\ZZ[i]$ turns out to be a UFD too
+		(and this will be proved in the chapters on algebraic number theory).
+
+		\ii $\ZZ[\sqrt{-5}]$ is the classic non-example of a UFD:
+		one may write
+		\[ 6 = 2 \cdot 3 = \left( 1-\sqrt{-5} \right)
+			\left( 1+\sqrt{-5} \right) \]
+		but each of $2$, $3$, $1 \pm \sqrt{-5}$ is irreducible.
+		(It turns out the right way to fix this is
+		by considering prime \emph{ideals} instead,
+		and this is one big motivation for \Cref{part:algnt1}.)
+
+		\ii Theorem we won't prove: every PID is a UFD.
+		\ii Theorem we won't prove: if $R$ is a UFD,
+		so is $R[x]$ (and hence by induction so is
+		$R[x,y]$, $R[x,y,z]$, \dots).
+	\end{enumerate}
+\end{example}
+
+
 
 \section{\problemhead}
 Not olympiad problems, but again the spirit is very close
