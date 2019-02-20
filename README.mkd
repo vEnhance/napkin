@@ -1,3 +1,5 @@
+# Napkin v1.5
+
 These are the source files for Evan Chen's *An Infinitely Large Napkin*.
 
 You can read about the project
