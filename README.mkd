@@ -1,0 +1,5 @@
+These are the source files for Evan Chen's *An Infinitely Large Napkin*.
+
+You can read about the project
+on the [project webpage](http://web.evanchen.cc/napkin.html),
+or [download compiled PDF versions from my blog](https://usamo.wordpress.com/napkin/).
