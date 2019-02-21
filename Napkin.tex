@@ -17,6 +17,7 @@
 \include{tex/frontmatter/title-embellishments}
 \include{tex/frontmatter/preface}
 
+\setcounter{chapter}{-1} % avoid sales pitch collision
 \include{tex/frontmatter/advice}
 
 % I DON'T want to reset the page number for mainmatter,
@@ -35,7 +36,7 @@
 \part{Starting Out}
 \label{part:startout}
 \parttoc
-\addtocounter{chapter}{-1} % sales pitch should be chapter 0
+\setcounter{chapter}{-1} % sales pitch should be chapter 0
 \include{tex/frontmatter/salespitch}
 \include{tex/H113/grp-intro}
 \include{tex/topology/metric-top}
