@@ -16,7 +16,7 @@ void bigblob(string L) {
 	label(L, (4,3), dir(5));
 }
 
-real[] default_ticks = {-4,-3,-2,-1,0,1,2.3,4};
+real[] default_ticks = {-4,-3,-2,-1,0,1,2,3,4};
 void cplane(real theta=-45, real[] T = default_ticks, real xmin = -4.5, real xmax = 4.5, real S = 3) {
 	graph.xaxis("Re", xmin, xmax, graph.Ticks(format="%", Ticks=T, Size=S), Arrows);
 	graph.yaxis("Im", xmin, xmax, graph.Ticks(format="%", Ticks=T, Size=S), Arrows);
