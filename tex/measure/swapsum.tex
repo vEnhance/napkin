@@ -92,24 +92,45 @@ Here is the so-called ``monotone convergence theorem''.
 \begin{corollary}
 	[Monotone convergence theorem]
 	Let $f$ and $f_1, f_2, \dots \colon \Omega \to [0,+\infty]$
-	be a sequence of measurable functions such that $\lim_n f_n = f$.
-	Moreover, assume that
-	\[ f_1(\omega) \le f_2(\omega) \le \dots \le f(\omega). \]
+	be a sequence of \emph{nonnegative}
+	measurable functions such that $\lim_n f_n = f$
+	and $f_n(\omega) \le f(\omega)$ for each $n$.
 	Then $f$ is measurable and
 	\[ \lim_{n \to \infty} \left( \int_\Omega f_n \; d\mu \right)
 		= \int_\Omega f \; d\mu. \]
 	Here we allow either side to be $+\infty$.
 \end{corollary}
-\begin{ques}
-	Deduce this from Fatou's lemma.
-\end{ques}
+\begin{proof}
+	We have
+	\begin{align*}
+		\int_\Omega f \; d\mu
+		&= \int_\Omega \left( \liminf_{n \to \infty} f_n \right) \; d\mu \\
+		&\le \liminf_{n \to \infty} \int_\Omega f_n \; d\mu \\
+		&\le \limsup_{n \to \infty} \int_\Omega f_n \; d\mu \\
+		&\le \int_\Omega f \; d\mu
+	\end{align*}
+	where the first $\le$ is by Fatou lemma,
+	and the second by the fact that
+	$\int_\Omega f_n \le \int_\Omega f$ for every $n$.
+	This implies all the inequalities are equalities and we are done.
+\end{proof}
+\begin{remark}
+	[The monotone convergence theorem does not require monotonicity!]
+	In the literature it is much more common
+	to see the hypothesis $f_1(\omega) \le f_2(\omega) \le \dots \le f(\omega)$
+	rather than just $f_n(\omega) \le f(\omega)$ for all $n$,
+	which is where the theorem gets its name.
+	However as we have shown this hypothesis is superfluous!
+	This is pointed out in \url{https://mathoverflow.net/a/296540/70654},
+	as a response to a question entitled
+	``Do you know of any very important theorems that remain unknown?''.
+\end{remark}
 
 \begin{example}
 	[Monotone convergence gives $\mathbf{1}_\QQ$]
 	This already implies \Cref{ex:1QQindicator}.
 	Letting $g_n$ be the indicator function for $\frac1n\ZZ$
-	as described in that example, we have
-	\[ g_1(x) \le g_2(x) \le \dots \]
+	as described in that example, we have $g_n \le \mathbf{1}_\QQ$
 	and $\lim_{n \to \infty} g_n(x) = \mathbf{1}_\QQ(x)$,
 	for each individual $x$.
 	So since $\int_{[0,1]} g_n \; d\mu = 0$ for each $n$,
