@@ -6,5 +6,14 @@ You can read about the project
 on the [project webpage](http://web.evanchen.cc/napkin.html),
 or [download compiled PDF versions from my blog](https://usamo.wordpress.com/napkin/).
 
+The project can be compiled on a system supporting `latexmk` and `asymptote`.
+Simply run `latexmk` to compile the entire document.
+(One may need to install from CTAN some additional packages
+used in `tex/preamble.tex` if they are not installed already.
+I think distributions like TeX Live should have everything ready.)
+
+Pull requests are welcome!
+You can email corrections directly to me as well.
+
 If you like this project and want to support me,
 you can consider [buying me a coffee](http://ko-fi.com/evanchen).
