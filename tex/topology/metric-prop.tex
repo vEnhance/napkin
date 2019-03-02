@@ -33,7 +33,7 @@ You can change the order of the quantifiers:
 	[Boundedness with radii instead of diameters]
 	A metric space $M$ is bounded if and only if
 	for every point $p \in M$, there is a radius $R$
-	(possibly depending on $p$) such that $d(p,q) \le R$.
+	(possibly depending on $p$) such that $d(p,q) \le R$ for all $q \in M$.
 \end{proposition}
 \begin{exercise}
 	Use the triangle inequality to show these are equivalent.
@@ -77,7 +77,7 @@ by $\eps$-neighborhoods.
 	\end{asy}
 \end{center}
 \begin{exercise}
-	Show this ``totally bounded'' implies ``bounded''.
+	Show that ``totally bounded'' implies ``bounded''.
 \end{exercise}
 \begin{example}
 	[Examples of totally bounded spaces]
@@ -203,7 +203,7 @@ we will see that in fact \emph{open and closed sets}
 are the notion that will really shine later on.
 I insist on introducing the metric first so that
 the standard pictures of open and closed sets make sense,
-but eventually it is time to remove the training wheels.
+but eventually it becomes time to remove the training wheels.
 
 %It's a theorem that $\RR$ is complete.
 %To prove this I'd have to define $\RR$ rigorously, which I won't do here.
@@ -228,7 +228,7 @@ As we've already been doing implicitly in examples, we'll now say:
 \begin{definition}
 	Every subset $S \subseteq M$ is a metric space in its own right,
 	by re-using the distance function on $M$.
-	We say that $S$ is a \vocab{subpsace} of $M$.
+	We say that $S$ is a \vocab{subspace} of $M$.
 \end{definition}
 For example, we saw that the circle $S^1$
 is just a subspace of $\RR^2$.
