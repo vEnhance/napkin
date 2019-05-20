@@ -334,7 +334,7 @@ So we will not do much in the way of computation.
 However, there is a little progress we can make.
 
 \section{Wedge sums}
-Our goal is to now compute $\wt H^\bullet(X \wedge Y)$.
+Our goal is to now compute $\wt H^\bullet(X \vee Y)$.
 To do this, we need to define the product of two graded pseudo-rings:
 \begin{definition}
 	Let $R$ and $S$ be two graded pseudo-rings.
@@ -441,7 +441,7 @@ By using this, we can define a so-called cross product.
 		\taking{\times} H^\bullet(X \times Y; R)
 	\]
 	acting on cocycles as follows:
-	$\phi \times \psi = \pi_X^\ast(\phi) \smile \pi_Y^\ast(\phi)$.
+	$\phi \times \psi = \pi_X^\ast(\phi) \smile \pi_Y^\ast(\psi)$.
 \end{definition}
 
 This is just the most natural way to take a $k$-cycle
@@ -524,7 +524,7 @@ So it follows that $\CP^3$ and $S^2 \times S^4$ are not homotopy equivalent.
 \end{problem}
 
 \begin{problem}
-	Show that $\RP^3$ is not homotopy equivalent to $\RP^2 \wedge S^3$.
+	Show that $\RP^3$ is not homotopy equivalent to $\RP^2 \vee S^3$.
 	\begin{hint}
 		Use the $\Zc2$ cohomologies, and find the cup product.
 	\end{hint}
@@ -532,12 +532,12 @@ So it follows that $\CP^3$ and $S^2 \times S^4$ are not homotopy equivalent.
 
 \begin{problem}
 	\gim
-	Show that $S^m \wedge S^n$ is not a deformation retract
+	Show that $S^m \vee S^n$ is not a deformation retract
 	of $S^m \times S^n$ for any $m,n \ge 1$.
 	\begin{hint}
-		Assume that $r : S^m \times S^n \to S^m \wedge S^n$ is such a map.
+		Assume that $r : S^m \times S^n \to S^m \vee S^n$ is such a map.
 		Show that the induced map
-		$H^\bullet(S^m \wedge S^n; \ZZ) \to H^\bullet(S^m \times S^n; \ZZ)$
+		$H^\bullet(S^m \vee S^n; \ZZ) \to H^\bullet(S^m \times S^n; \ZZ)$
 		between their cohomology rings is monic
 		(since there exists an inverse map $i$).
 	\end{hint}
