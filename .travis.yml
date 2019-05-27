@@ -18,4 +18,4 @@ install:
     - sudo texhash
     
 script:
-    - latexmk -halt-on-error -interaction=nonstopmode 
+    - latexmk -halt-on-error -interaction=nonstopmode -pdf
