@@ -14,7 +14,7 @@ addons:
         - wget
 
 install:
-    - sudo wget -P /usr/share/texmf/tex/latex/ http://www.paultaylor.eu/diagrams/diagrams.sty
+    - sudo wget -P /usr/share/texmf/tex/latex/ http://www.paultaylor.eu/diagrams/diagrams.sty https://github.com/vEnhance/dotfiles/raw/master/texmf/tex/latex/patch-asy/patch-asy.sty
     - sudo texhash
     
 script:
