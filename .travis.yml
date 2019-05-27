@@ -11,5 +11,5 @@ addons:
     packages:
         - texlive-full
         - asymptote
-srcipt:
+script:
     - latexmk
