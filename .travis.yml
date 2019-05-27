@@ -12,4 +12,4 @@ addons:
         - texlive-full
         - asymptote
 script:
-    - latexmk
+    - latexmk -halt-on-error -interaction=nonstopmode 
