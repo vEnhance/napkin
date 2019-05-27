@@ -10,6 +10,6 @@ addons:
   apt:
     packages:
         - texlive-full
-
+        - asymptote
 srcipt:
     - latexmk
