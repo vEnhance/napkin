@@ -1,0 +1,15 @@
+sudo: false
+
+dist: xenial
+
+language: generic
+
+cache: apt
+
+addons:
+  apt:
+    packages:
+        - texlive-full
+
+srcipt:
+    - latexmk
