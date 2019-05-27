@@ -1,4 +1,4 @@
-sudo: false
+sudo: true
 
 dist: xenial
 
@@ -11,5 +11,11 @@ addons:
     packages:
         - texlive-full
         - asymptote
+        - wget
+
+install:
+    - sudo wget -P /usr/share/texmf/tex/latex/ http://www.paultaylor.eu/diagrams/diagrams.sty
+    - sudo texhash
+    
 script:
     - latexmk -halt-on-error -interaction=nonstopmode 
