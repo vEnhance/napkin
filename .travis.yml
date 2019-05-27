@@ -18,6 +18,10 @@ install:
     - sudo texhash
     
 script:
-    - yes '' | latexmk  -pdf -bibtex -shell-escape -file-line-error
-
+    #    - yes '' | latexmk  -pdf -bibtex -shell-escape -file-line-error
+    - pdflatex -halt-on-error -interaction=nonstopmode Napkin
+    - biber Napkin
+    - pdflatex -halt-on-error -interaction=nonstopmode Napkin
+    - pdflatex -halt-on-error -interaction=nonstopmode Napkin
+      
 
