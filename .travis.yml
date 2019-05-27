@@ -18,6 +18,6 @@ install:
     - sudo texhash
     
 script:
-    - latexmk -halt-on-error -interaction=nonstopmode -pdf -bibtex -shell-escape -file-line-error
+    - yes '' | latexmk  -pdf -bibtex -shell-escape -file-line-error
 
 
