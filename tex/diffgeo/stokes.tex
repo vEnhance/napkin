@@ -68,12 +68,8 @@ using only the notion of an integral over $[a,b]$.
 \end{exercise}
 
 So, the definition we give is
-\[
-	\int_c \alpha
-	\defeq
-	\int_{[a,b]}
-	\alpha_{c(t)} \left( c'(t) \right) \; dt.
-\]
+\[ \int_c \alpha \defeq
+	\int_{[a,b]} \alpha_{c(t)} \left( c'(t) \right) \; dt.  \]
 Here, $c'(t)$ is shorthand for $(Dc)_{c(t)}(1)$.
 It represents the \emph{tangent vector} to the curve $c$ at the point $p=c(t)$,
 at time $t$.
@@ -82,7 +78,7 @@ at time $t$.
 Now that definition was a pain to write, so we will define a differential
 $1$-form $c^\ast \alpha$ on $[a,b]$ to swallow that entire thing:
 specifically, in this case we define $c^\ast\alpha$ to be
-\[ \left( c^\ast \alpha \right)_t (\eps) = (Dc)_{c(t)} (\eps) \]
+\[ \left( c^\ast \alpha \right)_t (\eps) = \alpha_{c(t)} \cdot (Dc)_{t} (\eps) \]
 (here $\eps$ is some displacement in time).
 Thus, we can more succinctly write
 \[ \int_c \alpha \defeq \int_{[a,b]} c^\ast \alpha. \]
