@@ -451,6 +451,7 @@ Aside from the fact $H$ is a group, we can get an ``obvious'' property:
 	(Check $\phi(ghg\inv) = 1_H$.)
 \end{ques}
 \begin{example}[Example of a non-normal subgroup]
+	\label{ex:dihedral_normal_subgroup}
 	Let $D_{12} = \left<r,s \mid r^6=s^2=1, rs=sr\inv\right>$.
 	Consider the subgroup of order two $H = \{1,s\}$
 	and notice that \[ rsr\inv = r(sr\inv)= r(rs) = r^2s \notin H. \]
@@ -609,17 +610,17 @@ is an \emph{embedding} of $G$ into $H$.
 		If so, compute $G/H$ up to isomorphism.
 	\end{enumerate}
 	\begin{hint}
-		Yes to both, more or less by definition.
+		Yes, no.
 	\end{hint}
 	\begin{sol}
-		Yes to both: you can check this directly
+		Yes to (a): you can check this directly
 		from the $ghg\inv$ definition.
 		For example, for (a)
 		it is enough to compute $(r^a s) r^n (r^a s)\inv = r^{-n} \in H$.
+		The quotient group is $\Zc2$.
 
-		The quotient groups are $\Zc2$ and $\Zc5$ respectively.
-		You can verify this directly by hand,
-		or just note that these are the only groups with orders $2$ and $5$.
+		The answer is no for (b) by following
+		\Cref{ex:dihedral_normal_subgroup}.
 	\end{sol}
 \end{problem}
 
