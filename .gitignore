@@ -33,3 +33,4 @@ asy/*
 
 drafts/**/*.bib
 keepsakes/*
+!media/**
