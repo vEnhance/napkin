@@ -12,6 +12,7 @@ addons:
         - texlive-full
         - asymptote
         - wget
+        - xzdec
 
 install:
     - tlmgr init-usertree
