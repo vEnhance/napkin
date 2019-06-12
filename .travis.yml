@@ -16,6 +16,8 @@ addons:
 install:
     - sudo wget -P /usr/share/texmf/tex/latex/ http://www.paultaylor.eu/diagrams/diagrams.sty https://github.com/vEnhance/dotfiles/raw/master/texmf/tex/latex/patch-asy/patch-asy.sty
     - sudo texhash
+    - sudo tlmgr update --self --all --reinstall-forcibly-removed
+    - sudo texhash
 before_script:
     - mkdir asy    
 script:
