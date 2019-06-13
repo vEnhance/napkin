@@ -10,5 +10,6 @@
        - run: sudo texhash
        - run: mkdir asy
        - run: touch Napkin.original.pdf
-       - run: pdflatex.sh Napkin
+      #- run: pdflatex.sh Napkin
+       - run : pdflatex -shell-escape -interaction=nonstopmode -halt-on-error Napkin.tex
        - run: latexmk -shell-escape -interaction=nonstopmode -halt-on-error
