@@ -6,4 +6,5 @@
      steps:
        - checkout
        - run: echo "A first hello"
+       - run: latex.sh Napkin
        - run: latexmk -shell-escape -interaction=nonstopmode -halt-on-error
