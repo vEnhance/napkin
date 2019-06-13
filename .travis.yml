@@ -2,4 +2,4 @@ sudo: required
 dist: trusty # Ubuntu 14.04
 services: docker # Enables docker
 script:
-    - ./dockerbuild.sh latexmk -pdf -outdir=./_build
+    - ./dockerbuild.sh latexmk -pdf -outdir=./_build -halt-on-error -interaction=nonstopmode
