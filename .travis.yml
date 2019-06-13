@@ -1,34 +1,5 @@
-sudo: true
-
-dist: xenial 
-
-language: generic
-
-cache: apt
-
-addons:
-  apt:
-    packages:
-        - texlive-full
-        - asymptote
-        - wget
-        - xzdec
-
-install:
-    - (tlmgr init-usertree; exit 0)
-    - tlmgr option repository ftp://tug.org/historic/systems/texlive/2015/tlnet-final 
-#   - (tlmgr init-usertree; exit 0)
-    - sudo wget -P /usr/share/texmf/tex/latex/ http://www.paultaylor.eu/diagrams/diagrams.sty https://github.com/vEnhance/dotfiles/raw/master/texmf/tex/latex/patch-asy/patch-asy.sty
-      #  - sudo texhash
-    - sudo tlmgr update --self --all --reinstall-forcibly-removed
-    - sudo texhash
-before_script:
-    - mkdir asy    
+sudo: required
+dist: trusty # Ubuntu 14.04
+services: docker # Enables docker
 script:
-    #    - yes '' | latexmk  -pdf -bibtex -shell-escape -file-line-error
-    - pdflatex -halt-on-error -interaction=nonstopmode Napkin
-    - biber Napkin
-    - pdflatex -halt-on-error -interaction=nonstopmode Napkin
-    - pdflatex -halt-on-error -interaction=nonstopmode Napkin
-      
-
+    - ./dockerbuild.sh latexmk -pdf -outdir=./_build
