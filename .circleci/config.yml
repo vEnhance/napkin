@@ -6,5 +6,7 @@
      steps:
        - checkout
        - run: echo "A first hello"
+       - run: sudo wget -P /usr/share/texmf/tex/latex/ http://www.paultaylor.eu/diagrams/diagrams.sty https://github.com/vEnhance/dotfiles/raw/master/texmf/tex/latex/patch-asy/patch-asy.sty
+       - run: sudo texhash
        - run: latex.sh Napkin
        - run: latexmk -shell-escape -interaction=nonstopmode -halt-on-error
