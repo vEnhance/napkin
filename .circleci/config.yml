@@ -7,9 +7,10 @@
        - checkout
        - run: echo "A first hello"
        - run: wget -P /usr/local/texlive/2017/texmf-dist/tex/latex http://www.paultaylor.eu/diagrams/diagrams.sty https://github.com/vEnhance/dotfiles/raw/master/texmf/tex/latex/patch-asy/patch-asy.sty
+       - run: apt-get -yq install asymptote
        - run: texhash
        - run: mkdir asy
        - run: touch Napkin.original.pdf
       #- run: pdflatex.sh Napkin
-       - run : pdflatex -shell-escape -interaction=nonstopmode -halt-on-error Napkin.tex
+      #       - run : pdflatex -shell-escape -interaction=nonstopmode -halt-on-error Napkin.tex
        - run: latexmk -shell-escape -interaction=nonstopmode -halt-on-error
