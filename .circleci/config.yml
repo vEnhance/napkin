@@ -6,7 +6,7 @@
      steps:
        - checkout
        - run: echo "A first hello"
-       - run: wget -P /usr/share/texmf/tex/latex/ http://www.paultaylor.eu/diagrams/diagrams.sty https://github.com/vEnhance/dotfiles/raw/master/texmf/tex/latex/patch-asy/patch-asy.sty
+       - run: wget -P /usr/local/texlive/2017/texmf-dist/tex/latex http://www.paultaylor.eu/diagrams/diagrams.sty https://github.com/vEnhance/dotfiles/raw/master/texmf/tex/latex/patch-asy/patch-asy.sty
        - run: texhash
        - run: mkdir asy
        - run: touch Napkin.original.pdf
