@@ -6,15 +6,19 @@ language: generic
 
 cache: apt
 
-addons:
-  apt:
-    packages:
-        - texlive-full
-        - asymptote
-        - wget
-        - xzdec
-
+#addons:
+#  apt:
+#    packages:
+#        - texlive-full
+#        - asymptote
+#        - wget
+#        - xzdec
 install:
+    - sudo add-apt-repository -y ppa:jonathonf/texlive
+    - sudo apt-get -y update
+    - sudo apt-get install texlive-base asymptote latexmk
+
+after_install:
     - (tlmgr init-usertree; exit 0)
     - tlmgr option repository ftp://tug.org/historic/systems/texlive/2015/tlnet-final 
 #   - (tlmgr init-usertree; exit 0)
