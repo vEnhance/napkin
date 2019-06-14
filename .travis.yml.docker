@@ -1,0 +1,6 @@
+sudo: required
+dist: trusty # Ubuntu 14.04
+services: docker # Enables docker
+script:
+    - > ./dockerbuild.sh "sh -c \"
+      wget -P /usr/share/texmf/tex/latex/ http://www.paultaylor.eu/diagrams/diagrams.sty https://github.com/vEnhance/dotfiles/raw/master/texmf/tex/latex/patch-asy/patch-asy.sty &&  texhash && mkdir asy && latexmk -pdf -outdir=./_build -halt-on-error -interaction=nonstopmode\" "
