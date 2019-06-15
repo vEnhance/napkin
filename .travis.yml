@@ -16,7 +16,7 @@ cache: apt
 install:
     - sudo add-apt-repository -y ppa:jonathonf/texlive
     - sudo apt-get -y update
-    - sudo apt-get install texlive-base asymptote latexmk  texlive-extra cm-super  biber 
+    - sudo apt-get install texlive-base asymptote latexmk texlive-extra cm-super biber 
 
 after_install:
     - (tlmgr init-usertree; exit 0)
