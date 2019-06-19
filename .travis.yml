@@ -15,8 +15,8 @@ addons:
 #        - xzdec
 install:
     - wget http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
-    - tar xf install-tl-unx.tar.gz
-    - ./install-tl*/install-tl
+    - tar xvf install-tl-unx.tar.gz
+    - echo I | sudo ./install-tl*/install-tl
 
 after_install:
     - (tlmgr init-usertree; exit 0)
