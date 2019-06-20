@@ -14,12 +14,12 @@ addons:
        - wget
 #        - xzdec
 install:
+    - echo "installing texlive"
     - wget http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
     - tar xvf install-tl-unx.tar.gz
     - echo I | sudo ./install-tl*/install-tl
     - PATH=/usr/local/texlive/2019/bin/x86_64-linux:$PATH
-
-after_install:
+    - echo "instaling packages"
     - (tlmgr init-usertree; exit 0)
 #     - tlmgr option repository ftp://tug.org/historic/systems/texlive/2015/tlnet-final 
 #   - (tlmgr init-usertree; exit 0)
