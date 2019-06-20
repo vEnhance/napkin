@@ -20,12 +20,13 @@ install:
     - echo I | sudo ./install-tl*/install-tl
     - PATH=/usr/local/texlive/2019/bin/x86_64-linux:$PATH
     - echo "instaling packages"
+    - echo $PATH
     - (tlmgr init-usertree; exit 0)
 #     - tlmgr option repository ftp://tug.org/historic/systems/texlive/2015/tlnet-final 
 #   - (tlmgr init-usertree; exit 0)
     - sudo wget -P /usr/share/texmf/tex/latex/ http://www.paultaylor.eu/diagrams/diagrams.sty https://github.com/vEnhance/dotfiles/raw/master/texmf/tex/latex/patch-asy/patch-asy.sty
       #  - sudo texhash
-    - sudo tlmgr update --self --all --reinstall-forcibly-removed
+#     - sudo tlmgr update --self --all --reinstall-forcibly-removed
     - sudo texhash
 before_script:
     - mkdir asy    
