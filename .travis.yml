@@ -18,7 +18,7 @@ install:
     - wget http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
     - tar xvf install-tl-unx.tar.gz
     - echo I | sudo ./install-tl*/install-tl
-    - PATH=/usr/local/texlive/2019/bin/x86_64-linux:$PATH
+    - export PATH=/usr/local/texlive/2019/bin/x86_64-linux:$PATH
     - echo "instaling packages"
     - echo $PATH
     - (tlmgr init-usertree; exit 0)
