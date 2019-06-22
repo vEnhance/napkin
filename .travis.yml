@@ -9,32 +9,23 @@ cache: apt
 addons:
  apt:
    packages:
-#        - texlive-full
-#        - asymptote
        - wget
-#        - xzdec
+       - freeglut3
+       - ghostscript
+
 install:
     - echo "installing texlive"
     - wget http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
     - tar xvf install-tl-unx.tar.gz
     - echo I | sudo ./install-tl*/install-tl
+    #- export PATH=/usr/local/texlive/2019/bin/x86_64-linux/:$PATH
     - export PATH=/usr/local/texlive/2019/bin/x86_64-linux:$PATH
-    - echo "instaling packages"
-    - echo $PATH
-    - (tlmgr init-usertree; exit 0)
-#     - tlmgr option repository ftp://tug.org/historic/systems/texlive/2015/tlnet-final 
-#   - (tlmgr init-usertree; exit 0)
-    - sudo wget -P /usr/share/texmf/tex/latex/ http://www.paultaylor.eu/diagrams/diagrams.sty https://github.com/vEnhance/dotfiles/raw/master/texmf/tex/latex/patch-asy/patch-asy.sty
-      #  - sudo texhash
-#     - sudo tlmgr update --self --all --reinstall-forcibly-removed
-    - sudo texhash
+    - hash -r
+    - tlmgr init-usertree
+    - wget -P ~/texmf/tex/latex/ http://www.paultaylor.eu/diagrams/diagrams.sty https://github.com/vEnhance/dotfiles/raw/master/texmf/tex/latex/patch-asy/patch-asy.sty
+    - sudo env PATH="$PATH" texhash
+    
 before_script:
     - mkdir asy    
 script:
-    #    - yes '' | latexmk  -pdf -bibtex -shell-escape -file-line-error
-    - pdflatex -halt-on-error -interaction=nonstopmode Napkin
-    - biber Napkin
-    - pdflatex -halt-on-error -interaction=nonstopmode Napkin
-    - pdflatex -halt-on-error -interaction=nonstopmode Napkin
-      
-
+- latexmk  -pdf -halt-on-error -interaction=nonstopmode
