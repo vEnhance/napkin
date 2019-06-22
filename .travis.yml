@@ -9,6 +9,7 @@ addons:
        - wget
        - freeglut3
        - ghostscript
+       - tree
 
 install:
     - wget http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
