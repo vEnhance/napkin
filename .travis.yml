@@ -15,6 +15,9 @@ install:
     - tar xvf install-tl-unx.tar.gz
     - echo I | sudo ./install-tl*/install-tl
     - export PATH=$TEXDIR/bin/x86_64-linux:$PATH
+    - export PATH=/usr/local/texlive/2019/bin/x86_64-linux:$PATH
+    - echo $TEXDIR
+    - echo $PATH
     - hash -r
     - tlmgr init-usertree
     - wget -P ~/texmf/tex/latex/ http://www.paultaylor.eu/diagrams/diagrams.sty https://github.com/vEnhance/dotfiles/raw/master/texmf/tex/latex/patch-asy/patch-asy.sty
