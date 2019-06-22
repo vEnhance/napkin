@@ -26,7 +26,7 @@ before_script:
 script:
     - latexmk  -pdf -halt-on-error -interaction=nonstopmode
     
- before_deploy:
+before_deploy:
     - mkdir dist
     - mv *.pdf dist
     - cd dist/
