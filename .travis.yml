@@ -26,14 +26,14 @@ before_script:
 script:
     - latexmk  -pdf -halt-on-error -interaction=nonstopmode
     
-before_deploy:
+before_deploy:   
     - mkdir dist
     - mv *.pdf dist
     - cd dist/
     - ls
     - tree -H '.' -P '*.pdf' --charset utf-8 --noreport > index.html 
     
- deploy:
+deploy:
     provider: pages
     skip-cleanup: true
     github-token: $GITHUB_TOKEN
