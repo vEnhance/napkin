@@ -1,9 +1,6 @@
 sudo: true
-
 dist: xenial 
-
 language: generic
-
 cache: apt
 
 addons:
@@ -12,19 +9,38 @@ addons:
        - wget
        - freeglut3
        - ghostscript
+       - tree
 
 install:
-    - echo "installing texlive"
     - wget http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
     - tar xvf install-tl-unx.tar.gz
     - echo I | sudo ./install-tl*/install-tl
+    # TODO: Be compatible with non 2019 texlive
     - export PATH=/usr/local/texlive/2019/bin/x86_64-linux:$PATH
     - hash -r
     - tlmgr init-usertree
+    # TODO: Less of a hack
     - wget -P ~/texmf/tex/latex/ http://www.paultaylor.eu/diagrams/diagrams.sty https://github.com/vEnhance/dotfiles/raw/master/texmf/tex/latex/patch-asy/patch-asy.sty
     - sudo env PATH="$PATH" texhash
     
 before_script:
     - mkdir asy    
+    
 script:
     - latexmk  -pdf -halt-on-error -interaction=nonstopmode
+    
+before_deploy:   
+    - mkdir dist
+    - mv *.pdf dist
+    - cd dist/
+    - ls
+    - tree -H '.' -P '*.pdf' --charset utf-8 --noreport > index.html 
+    
+deploy:
+    provider: pages
+    skip-cleanup: true
+    github-token: $GITHUB_TOKEN
+    local-dir: dist/
+    keep-history: false
+    on:
+        branch: master
