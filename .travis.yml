@@ -1,41 +1,46 @@
 sudo: true
-dist: xenial 
+dist: xenial
 language: generic
 cache: apt
 
 addons:
- apt:
-   packages:
-       - wget
-       - freeglut3
-       - ghostscript
-       - tree
+  apt:
+    sources:
+      - sourceline: 'ppa:jonathonf/texlive'
+    packages:
+      - wget
+      - freeglut3
+      - ghostscript
+      - tree
+      - texlive-latex-recommended
+      - texlive-latex-extra
+      - texlive-science
+      - texlive-bibtex-extra
+      - asymptote
+      - latexmk
+      - biber
 
-install:
-    - wget http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
-    - tar xvf install-tl-unx.tar.gz
-    - echo I | sudo ./install-tl*/install-tl
-    # TODO: Be compatible with non 2019 texlive
-    - export PATH=/usr/local/texlive/2019/bin/x86_64-linux:$PATH
-    - hash -r
-    - tlmgr init-usertree
-    # TODO: Less of a hack
-    - wget -P ~/texmf/tex/latex/ http://www.paultaylor.eu/diagrams/diagrams.sty https://github.com/vEnhance/dotfiles/raw/master/texmf/tex/latex/patch-asy/patch-asy.sty
-    - sudo env PATH="$PATH" texhash
-    
 before_script:
-    - mkdir asy    
-    
+    - mkdir asy
+
 script:
-    - latexmk  -pdf -halt-on-error -interaction=nonstopmode
-    
-before_deploy:   
+    - pdflatex -interaction=batchmode Napkin.tex
+    - asy -nosafe -o asy/ asy/Napkin-*.asy -v
+    - biber Napkin
+    - pdflatex -interaction=batchmode Napkin.tex
+    - pdflatex -interaction=batchmode Napkin.tex
+    - pdflatex -interaction=batchmode Napkin.tex
+    - pdflatex -interaction=batchmode Napkin.tex
+    # ...
+    # latexmk -pdf -halt-on-error -quiet -interaction=batchmode
+
+before_deploy:
     - mkdir dist
     - mv *.pdf dist
     - cd dist/
     - ls
     - tree -H '.' -P '*.pdf' --charset utf-8 --noreport > index.html 
-    
+
 deploy:
     provider: pages
     skip-cleanup: true

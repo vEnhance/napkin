@@ -1,0 +1,395 @@
+%%
+%% This is file `asymptote.sty',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% asy-latex.dtx  (with options: `pkg')
+%% ____________________________
+%% The ASYMPTOTE package
+%% 
+%% (C) 2003 Tom Prince
+%% (C) 2003-2010 John Bowman
+%% (C) 2010 Will Robertson
+%% 
+%% Adapted from comment.sty
+%% 
+%% Licence: GPL2+
+%% 
+\ProvidesPackage{asymptote}
+  [2012/08/25 v1.27 Asymptote style file for LaTeX]
+\def\Asymptote{{\tt Asymptote}}
+\InputIfFileExists{\jobname.pre}{}{}
+\newbox\ASYbox
+\newcounter{asy}
+\newwrite\AsyStream
+\newwrite\AsyPreStream
+\newif\ifASYinline
+\newif\ifASYattach
+\newif\ifASYkeepAspect
+\ASYkeepAspecttrue
+\RequirePackage{keyval}
+\RequirePackage{ifthen}
+\RequirePackage{color,graphicx}
+\IfFileExists{ifpdf.sty}{
+  \RequirePackage{ifpdf}
+}{
+  \expandafter\newif\csname ifpdf\endcsname
+  \ifx\pdfoutput\@undefined\else
+    \ifcase\pdfoutput\else
+      \pdftrue
+    \fi
+  \fi
+}
+\IfFileExists{ifxetex.sty}{
+  \RequirePackage{ifxetex}
+}{
+  \expandafter\newif\csname ifxetex\endcsname
+  \ifx\XeTeXversion\@undefined\else
+    \xetextrue
+  \fi
+}
+\IfFileExists{catchfile.sty}{
+  \RequirePackage{catchfile}
+}{
+  \newcommand\CatchFileDef[3]{%
+    \begingroup
+    \everyeof{%
+      \ENDCATCHFILEMARKER
+      \noexpand
+    }%
+    \long\def\@tempa####1\ENDCATCHFILEMARKER{%
+      \endgroup
+      \def##1{####1}%
+    }%
+    ##3%
+    \expandafter\@tempa\@@input ##2\relax
+  }
+}
+\newif\if@asy@attachfile@loaded
+\AtBeginDocument{%
+  \@ifpackageloaded{attachfile2}{\@asy@attachfile@loadedtrue}{}%
+  \let\asy@check@attachfile\asy@check@attachfile@loaded
+}
+\newcommand\asy@check@attachfile@loaded{%
+  \if@asy@attachfile@loaded\else
+    \PackageError{asymptote}{You must load the attachfile2 package}{^^J%
+      You have requested the [attach] option for some or all of your^^J%
+      Asymptote graphics, which requires the attachfile2 package.^^J%
+      Please load it in the document preamble.^^J%
+    }%
+  \fi
+}
+\newcommand\asy@check@attachfile{%
+  \AtBeginDocument{\asy@check@attachfile@loaded}%
+  \let\asy@check@attachfile\@empty
+}
+\def\csarg#1#2{\expandafter#1\csname#2\endcsname}
+\DeclareOption{inline}{%
+  \ASYinlinetrue
+}
+\DeclareOption{attach}{%
+  \asy@check@attachfile
+  \ASYattachtrue
+}
+\ProcessOptions*
+\def\asydir{}
+\def\ASYprefix{}
+\newif\ifASYPDF
+\ifxetex
+  \ASYPDFtrue
+\else
+  \ifpdf
+    \ASYPDFtrue
+  \fi
+\fi
+\ifASYPDF
+  \def\AsyExtension{pdf}
+\else
+  \def\AsyExtension{eps}
+\fi
+\def\unquoteJobname#1"#2"#3\relax{%
+  \def\rawJobname{#1}%
+  \ifx\rawJobname\empty
+    \def\rawJobname{#2}%
+  \fi
+}
+\expandafter\unquoteJobname\jobname""\relax
+\def\fixstar#1*#2\relax{%
+  \def\argtwo{#2}%
+  \ifx\argtwo\empty
+    \gdef\Jobname{#1}%
+  \else
+    \fixstar#1-#2\relax
+  \fi
+}
+\expandafter\fixstar\rawJobname*\relax
+\def\Ginclude@eps#1{%
+  \message{<#1>}%
+  \bgroup
+  \def\@tempa{!}%
+  \dimen@\Gin@req@width
+  \dimen@ii.1bp\relax
+  \divide\dimen@\dimen@ii
+  \@tempdima\Gin@req@height
+  \divide\@tempdima\dimen@ii
+    \special{PSfile=#1\space
+      llx=\Gin@llx\space
+      lly=\Gin@lly\space
+      urx=\Gin@urx\space
+      ury=\Gin@ury\space
+      \ifx\Gin@scalex\@tempa\else rwi=\number\dimen@\space\fi
+      \ifx\Gin@scaley\@tempa\else rhi=\number\@tempdima\space\fi
+      \ifGin@clip clip\fi}%
+  \egroup
+}
+\immediate\openout\AsyPreStream=\jobname.pre\relax
+\AtEndDocument{\immediate\closeout\AsyPreStream}
+\def\WriteAsyLine#1{%
+  \immediate\write\AsyStream{\detokenize{#1}}%
+}
+\def\globalASYdefs{}
+\def\WriteGlobalAsyLine#1{%
+  \expandafter\g@addto@macro
+  \expandafter\globalASYdefs
+  \expandafter{\detokenize{#1^^J}}%
+}
+\def\ProcessAsymptote#1{%
+  \begingroup
+  \def\CurrentAsymptote{#1}%
+  \let\do\@makeother \dospecials
+  \@makeother\^^L% and whatever other special cases
+  \catcode`\ =10
+  \endlinechar`\^^M \catcode`\^^M=12 \xAsymptote
+}
+\begingroup
+  \catcode`\^^M=12 \endlinechar=-1\relax%
+  \gdef\xAsymptote{%
+    \expandafter\ProcessAsymptoteLine%
+  }
+  \gdef\ProcessAsymptoteLine#1^^M{%
+    \def\@tempa{#1}%
+    {%
+      \escapechar=-1\relax%
+      \xdef\@tempb{\string\\end\string\{\CurrentAsymptote\string\}}%
+    }%
+    \ifx\@tempa\@tempb%
+      \edef\next{\endgroup\noexpand\end{\CurrentAsymptote}}%
+    \else%
+      \ThisAsymptote{#1}%
+      \let\next\ProcessAsymptoteLine%
+    \fi%
+    \next%
+  }
+\endgroup
+\newcommand\asy[1][]{%
+  \stepcounter{asy}%
+  \setkeys{ASYkeys}{#1}%
+  \ifASYattach
+    \ASYinlinefalse
+  \fi
+  \ifx\asydir\empty\else
+    \def\ASYprefix{\asydir/}%
+  \fi
+  \immediate\write\AsyPreStream{%
+    \noexpand\InputIfFileExists{%
+      \ASYprefix\noexpand\jobname-\theasy.pre}{}{}%
+  }
+  \asy@write@graphic@header
+  \let\ThisAsymptote\WriteAsyLine
+  \ProcessAsymptote{asy}%
+}
+\def\endasy{%
+  \asy@finalise@stream
+  \asy@input@graphic
+}
+\def\asy@write@graphic@header{%
+  \immediate\openout\AsyStream=\ASYprefix\jobname-\theasy.asy\relax
+  \gdef\AsyFile{\ASYprefix\Jobname-\theasy}%
+  \immediate\write\AsyStream{%
+    if(!settings.multipleView) settings.batchView=false;^^J%
+    \ifxetex
+      settings.tex="xelatex";^^J%
+    \else\ifASYPDF
+        settings.tex="pdflatex";^^J%
+    \fi\fi
+    \ifASYinline
+      settings.inlinetex=true;^^J%
+      deletepreamble();^^J%
+    \fi
+    defaultfilename="\Jobname-\theasy";^^J%
+    if(settings.render < 0) settings.render=4;^^J%
+    settings.outformat="";^^J%
+    \ifASYattach
+      settings.inlineimage=false;^^J%
+      settings.embed=false;^^J%
+      settings.toolbar=true;^^J%
+    \else
+      settings.inlineimage=true;^^J%
+      settings.embed=true;^^J%
+      settings.toolbar=false;^^J%
+      viewportmargin=(2,2);^^J%
+    \fi
+    \globalASYdefs
+  }%
+}
+\def\asy@expand@keepAspect{%
+  \ifASYkeepAspect keepAspect=true%
+  \else keepAspect=false%
+  \fi%
+}
+\def\asy@finalise@stream{%
+  \ifx\ASYwidth\@empty
+    \ifx\ASYheight\@empty
+      % write nothing!
+    \else
+      \immediate\write\AsyStream{size(0,\ASYheight,\asy@expand@keepAspect);}%
+    \fi
+  \else
+    \ifx\ASYheight\@empty
+      \immediate\write\AsyStream{size(\ASYwidth,0,\asy@expand@keepAspect);}%
+    \else
+      \immediate\write\AsyStream{size(\ASYwidth,\ASYheight,\asy@expand@keepAspect);}%
+    \fi
+  \fi
+  \ifx\ASYviewportwidth\@empty
+    \ifx\ASYviewportheight\@empty
+      % write nothing!
+    \else
+      \immediate\write\AsyStream{viewportsize=(0,\ASYviewportheight);}%
+    \fi
+  \else
+    \ifx\ASYviewportheight\@empty
+      \immediate\write\AsyStream{viewportsize=(\ASYviewportwidth,0);}%
+    \else
+      \immediate\write\AsyStream{%
+        viewportsize=(\ASYviewportwidth,\ASYviewportheight);}%
+    \fi
+  \fi
+  \immediate\closeout\AsyStream
+}
+\def\asy@input@graphic{%
+  \ifASYinline
+    \IfFileExists{"\AsyFile.tex"}{%
+      \catcode`:=12\relax
+      \@@input"\AsyFile.tex"\relax
+    }{%
+      \PackageWarning{asymptote}{file `\AsyFile.tex' not found}%
+    }%
+  \else
+    \IfFileExists{"\AsyFile.\AsyExtension"}{%
+      \ifASYattach
+        \ifASYPDF
+          \IfFileExists{"\AsyFile+0.pdf"}{%
+            \setbox\ASYbox=\hbox{\includegraphics[hiresbb]{"\AsyFile+0".pdf}}%
+          }{%
+            \setbox\ASYbox=\hbox{\includegraphics[hiresbb]{"\AsyFile".pdf}}%
+          }%
+        \else
+          \setbox\ASYbox=\hbox{\includegraphics[hiresbb]{"\AsyFile.eps"}}%
+        \fi
+        \textattachfile{\AsyFile.\AsyExtension}{\phantom{\copy\ASYbox}}%
+        \vskip-\ht\ASYbox
+        \indent
+        \box\ASYbox
+      \else
+        \ifASYPDF
+          \includegraphics[hiresbb]{"\AsyFile".pdf}%
+        \else
+          \includegraphics[hiresbb]{"\AsyFile.eps"}%
+        \fi
+      \fi
+    }{%
+      \IfFileExists{"\AsyFile.tex"}{%
+        \catcode`:=12
+        \@@input"\AsyFile.tex"\relax
+      }{%
+        \PackageWarning{asymptote}{%
+          file `\AsyFile.\AsyExtension' not found%
+        }%
+      }%
+    }%
+  \fi
+}
+\def\asydef{%
+  \let\ThisAsymptote\WriteGlobalAsyLine
+  \ProcessAsymptote{asydef}%
+}
+\newcommand\asyinclude[2][]{%
+  \begingroup
+  \stepcounter{asy}%
+  \setkeys{ASYkeys}{#1}%
+  \ifASYattach
+    \ASYinlinefalse
+  \fi
+  \ifx\asydir\empty\else
+    \def\ASYprefix{\asydir/}%
+  \fi
+  \immediate\write\AsyPreStream{%
+    \noexpand\InputIfFileExists{%
+      \ASYprefix\noexpand\jobname-\theasy.pre}{}{}%
+  }%
+  \asy@write@graphic@header
+  \IfFileExists{#2.asy}{%
+    \CatchFileDef\@tempa{#2.asy}{%
+      \let\do\@makeother
+      \dospecials
+      \endlinechar=10\relax
+    }%
+  }{%
+    \IfFileExists{#2}{%
+      \CatchFileDef\@tempa{#2}{%
+        \let\do\@makeother
+        \dospecials
+        \endlinechar=10\relax
+      }%
+    }{%
+      \PackageWarning{asymptote}{file #2 not found}%
+      \def\@tempa{}%
+    }%
+  }%
+  \immediate\write\AsyStream{\unexpanded\expandafter{\@tempa}}%
+  \asy@finalise@stream
+  \asy@input@graphic
+  \endgroup
+}
+\newcommand{\ASYanimategraphics}[5][]{%
+  \IfFileExists{_#3.pdf}{%
+    \animategraphics[{#1}]{#2}{_#3}{#4}{#5}%
+  }{}%
+}
+\newcommand\asysetup[1]{\setkeys{ASYkeys}{#1}}
+\define@key{ASYkeys}{dir}{%
+  \def\asydir{#1}%
+}
+\def\ASYwidth{}
+\define@key{ASYkeys}{width}{%
+  \edef\ASYwidth{\the\dimexpr#1\relax}%
+}
+\def\ASYheight{}
+\define@key{ASYkeys}{height}{%
+  \edef\ASYheight{\the\dimexpr#1\relax}%
+}
+\define@key{ASYkeys}{keepAspect}[true]{%
+  \ifthenelse{\equal{#1}{true}}
+    {\ASYkeepAspecttrue}
+    {\ASYkeepAspectfalse}%
+}
+\def\ASYviewportwidth{}
+\define@key{ASYkeys}{viewportwidth}{%
+  \edef\ASYviewportwidth{\the\dimexpr#1\relax}%
+}
+\def\ASYviewportheight{}
+\define@key{ASYkeys}{viewportheight}{%
+  \edef\ASYviewportheight{\the\dimexpr#1\relax}%
+}
+\define@key{ASYkeys}{inline}[true]{%
+  \ifthenelse{\equal{#1}{true}}
+    {\ASYinlinetrue}
+    {\ASYinlinefalse}%
+}
+\define@key{ASYkeys}{attach}[true]{%
+  \ifthenelse{\equal{#1}{true}}
+    {\ASYattachtrue}
+    {\ASYattachfalse}%
+}
