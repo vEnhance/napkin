@@ -1,19 +1,22 @@
 # Napkin v1.5
 
 These are the source files for Evan Chen's *An Infinitely Large Napkin*.
+You can read about the project on my [webpage](http://web.evanchen.cc/napkin.html).
 
-You can read about the project
-on the [project webpage](http://web.evanchen.cc/napkin.html),
-or [download compiled PDF versions from my blog](https://usamo.wordpress.com/napkin/).
+### Download
+You can [download the most recent PDF here](https://venhance.github.io/napkin/Napkin.pdf)
+(or [generated log files](https://venhance.github.io/napkin/)).
+Thanks to [aDotInTheVoid](https://github.com/aDotInTheVoid)
+for helping me set up the Travis CI to automate this process!
 
-The project can be compiled on a system supporting `latexmk` and `asymptote`.
+### Code
+The project can be compiled on a system supporting `latexmk` and `asymptote`,
+with a sufficiently recent version of TeX Live (say).
 Simply run `latexmk` to compile the entire document.
-(One may need to install from CTAN some additional packages
-used in `tex/preamble.tex` if they are not installed already.
-I think distributions like TeX Live should have everything ready.)
 
-Pull requests are welcome!
+**Pull requests are welcome!**
 You can email corrections directly to me as well.
 
+### Coffee
 If you like this project and want to support me,
 you can consider [buying me a coffee](http://ko-fi.com/evanchen).
