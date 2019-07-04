@@ -36,10 +36,11 @@ script:
 
 before_deploy:
     - mkdir dist
-    - mv *.pdf dist
+    - mv Napkin.pdf dist
+    - mv Napkin.log dist
     - cd dist/
     - ls
-    - tree -H '.' -P '*.pdf' --charset utf-8 --noreport > index.html 
+    - tree -H '.' -D -s --charset utf-8 -T "An Infinitely Large Napkin" > index.html
 
 deploy:
     provider: pages
