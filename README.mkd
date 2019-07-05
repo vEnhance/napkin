@@ -12,7 +12,8 @@ for helping me set up the Travis CI to automate this process!)
 ### Code
 The project can be compiled on a system supporting `latexmk` and `asymptote`,
 with a sufficiently recent version of TeX Live.
-Simply run `latexmk` to compile the entire document.
+You'll need to `mkdir asy`, then simply run `latexmk`.
+(Or, see `.travis.yml` for the instructions that Travis CI uses to compile.)
 
 *Pull requests are welcome!*
 You can email corrections directly to me as well.
