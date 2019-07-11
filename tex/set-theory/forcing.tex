@@ -31,7 +31,7 @@ Picture:
 		pair A1 = 0.4*A;
 		pair B1 = 0.4*B;
 		draw(MP("V_\omega", A1, dir(0))--B1);
-		draw(MP("V_{\omega+1} = \mathcal P(V_n)", 0.45*A, dir(0))--0.45*B);
+		draw(MP("V_{\omega+1} = \mathcal P(V_\omega)", 0.45*A, dir(0))--0.45*B);
 		Drawing("\omega", 0.45*M, dir(45));
 
 		filldraw(O--A1--(A1+0.30*M)..(0.85*M)..(B1+0.30*M)--B1--cycle,
