@@ -31,7 +31,7 @@ Picture:
 		pair A1 = 0.4*A;
 		pair B1 = 0.4*B;
 		draw(MP("V_\omega", A1, dir(0))--B1);
-		draw(MP("V_{\omega+1} = \mathcal P(V_n)", 0.45*A, dir(0))--0.45*B);
+		draw(MP("V_{\omega+1} = \mathcal P(V_\omega)", 0.45*A, dir(0))--0.45*B);
 		Drawing("\omega", 0.45*M, dir(45));
 
 		filldraw(O--A1--(A1+0.30*M)..(0.85*M)..(B1+0.30*M)--B1--cycle,
@@ -289,7 +289,7 @@ each $\Name_\alpha$ is just the set of all names with rank $\le \alpha$.)
 
 \begin{definition}
 	For a filter $G$, we define the \vocab{interpretation} of $\tau$ by $G$,
-	denote $\tau^G$, using the transfinite recursion
+	denoted $\tau^G$, using the transfinite recursion
 	\[ \tau^G
 		= \left\{ \sigma^G
 		\mid \left<\sigma, p\right> \in \tau
@@ -339,7 +339,7 @@ V_2 = \left\{ \varnothing, \left\{ \varnothing \right\} \right\}. \]
 		\left\{
 			\left<\varnothing, p_1\right>,
 			\left<\varnothing, p_2\right>,
-			\dots
+			\dots,
 			\left<\varnothing, p_n\right>
 		\right\} 
 		\in \Name_2. \]
@@ -412,7 +412,7 @@ This leaves $\PowerSet$, $\Replacement$, and Choice.
 	\[ \sigma = 
 		\left\{ \left<\sigma_1, 1_\Po\right>, \left<\sigma_2, 1_\Po\right> \right\}
 	\]
-	works satisfies $\sigma^G = \{\sigma_1, \sigma_2\}$.
+	satisfies $\sigma^G = \{\sigma_1^G, \sigma_2^G\}$.
 	(Note that we used $M \vDash \Pairing$.)
 	$\Union$ is left as a problem, which you are encouraged to try now.
 \end{proof}
@@ -459,7 +459,7 @@ And miraculously, we can define this relation in such a way that the converse is
 \begin{theorem}
 	[Fundamental theorem of forcing]
 	Suppose $M$ is a transitive model of ZF.
-	Let $\Po \in M$ be a poset, and $G \subseteq \PP$ is an $M$-generic filter.
+	Let $\Po \in M$ be a poset, and $G \subseteq \Po$ is an $M$-generic filter.
 	Then,
 	\begin{enumerate}[(1)]
 		\ii Consider $\sigma_1, \dots, \sigma_n \in \Name^M$,
@@ -477,7 +477,7 @@ I'll tell you how the definition works in the next section.
 \section{(Optional) Defining the relation}
 Here's how we're going to go.
 We'll define the most generous condition possible such that
-the forcing works in one direction ($p \vDash \varphi(\sigma_1, \dots, \sigma_n)$ means
+the forcing works in one direction ($p \Vdash \varphi(\sigma_1, \dots, \sigma_n)$ means
 $M[G] \vDash \varphi[\sigma_1^G, \dots, \sigma_n^G]$).
 We will then cross our fingers that the converse also works.
 
@@ -485,7 +485,7 @@ We proceed by induction on the formula complexity.
 It turns out in this case that the atomic formula (base cases)
 are hardest and themselves require induction on ranks.
 
-For some motivation, let's consider how we should define $p \Vdash \tau_1 \in \tau_2$ given that we've already defined $p \vDash \tau_1 = \tau_2$.
+For some motivation, let's consider how we should define $p \vDash \tau_1 \in \tau_2$ given that we've already defined $p \vDash \tau_1 = \tau_2$.
 We need to ensure this holds iff
 \[ \forall \text{$M$-generic $G$ with $p \in G$}:
 	\ M[G] \vDash \tau_1^G \in \tau_2^G. \]
@@ -581,7 +581,7 @@ This completes the proof of the fundamental theorem.
 \section{The remaining axioms}
 \begin{theorem}[The generic extension satisfies $\ZFC$]
 	Suppose $M$ is a transitive model of $\ZFC$.
-	Let $\Po \in M$ be a poset, and $G \subseteq \PP$ is an $M$-generic filter.
+	Let $\Po \in M$ be a poset, and $G \subseteq \Po$ is an $M$-generic filter.
 	Then \[ M[G] \vDash \ZFC. \]
 \end{theorem}
 \begin{proof}
@@ -618,7 +618,7 @@ This completes the proof of the fundamental theorem.
 		=
 		\left\{ \left<\rho, p\right>
 			\in \dom(\sigma) \times \Po \mid
-			p \Vdash 
+			p \Vdash \rho \in \sigma
 			\land \varphi(\rho, \sigma_1, \dots, \sigma_n)
 		\right\}
 	\]
