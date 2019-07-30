@@ -183,7 +183,7 @@ for general $m$ and $n$.
 
 
 \section{The determinant}
-\prototype{$(ae_1+be_2)\wedge(ce_1+de_2) = (ad-bc)e_1\wedge e_2$.}
+\prototype{$(ae_1+be_2)\wedge(ce_1+de_2) = (ad-bc)(e_1\wedge e_2)$.}
 Now we're ready to define the determinant.
 Suppose $T \colon V \to V$ is a square matrix.
 We claim that the map $\Lambda^m(V) \to \Lambda^m(V)$ given on wedges by
@@ -310,7 +310,7 @@ compute the eigenvalues;
 but I still think the definition should be done in terms of
 eigenvalues to begin with.
 For instance the determinant definition obscures the following theorem,
-which is actually a completely triviality.
+which is actually a complete triviality.
 \begin{theorem}[Cayley-Hamilton]
 	Let $T \colon V \to V$ be a map of finite-dimensional
 	vector spaces over an algebraically closed field.
@@ -437,7 +437,7 @@ then the theorem is almost obvious:
 	Let $V$ be an $n$-dimensional vector space
 	over an algebraically closed field $k$.
 	Let $T \colon V \to V$ be a linear map with
-	$\lambda_1$, $\lambda_2$, \dots, $\lambda_n$
+	eigenvalues $\lambda_1$, $\lambda_2$, \dots, $\lambda_n$
 	(counted with algebraic multiplicity).
 	Show that $\det T = \lambda_1 \dots \lambda_n$.
 	\begin{hint}
@@ -449,7 +449,7 @@ then the theorem is almost obvious:
 
 \begin{problem}
 	[Exponential matrix]
-	Let $X$ be $n \times n$ matrix with complex coefficients.
+	Let $X$ be an $n \times n$ matrix with complex coefficients.
 	We define the exponential map by
 	\[ \exp(X) = 1 + X + \frac{X^2}{2!} + \frac{X^3}{3!} + \dots \]
 	(take it for granted that this converges to some $n \times n$ matrix).
@@ -584,7 +584,7 @@ then the theorem is almost obvious:
 		and $k$ odd. If $x=0$ we get $e=0$ and if $x=-1$ we get $2a+3e=0$,
 		which gives the curve of solutions that we claimed.
 
-		A slicker approach is to note that by Cayley-Hamilton.
+		A slicker approach is by Cayley-Hamilton.
 		Assume that $e \neq 0$, so $M$ has two distinct real eigenvalues as above.
 		We have $M^k = cM + d\id$ for some constants $c$ and $d$
 		(since $M$ satisfies some quadratic polynomial).
@@ -610,14 +610,14 @@ then the theorem is almost obvious:
 
 \begin{problem}
 	\yod
-	Let $V$ be a finite-dimensional vector space over $K$ and $T : V \to V$.
+	Let $V$ be a finite-dimensional vector space over $k$ and $T : V \to V$.
 	Show that
 	\[
 		\det(a \cdot \id_V - T) =
 		\sum_{n=0}^{\dim V} a^{\dim V-n} \cdot (-1)^n
 		\Tr\left( \Lambda^n(T) \right)
 	\]
-	where the trace is taking by viewing $\Lambda^n(T) : \Lambda^n(V) \to \Lambda^n(V)$.
+	where the trace is taken by viewing $\Lambda^n(T) : \Lambda^n(V) \to \Lambda^n(V)$.
 	\begin{hint}
 		Take bases, and do a fairly long calculation.
 	\end{hint}
