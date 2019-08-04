@@ -158,7 +158,7 @@ Now for the fun part: defining the characters.
 	For each $\xi \in Z$ we define the character
 	\[ e_\xi(x) = e(\xi \cdot x). \]
 	The $|Z|$ characters form an orthonormal basis of the
-	space of functions $Z \to |CC$.
+	space of functions $Z \to \CC$.
 \end{proposition}
 \begin{proof}
 	I recommend skipping this one, but it is:
@@ -234,7 +234,7 @@ and use Fourier analysis in order to interchange the order of summation.
 	Indeed, let $S \subseteq \{1, \dots, n\}$
 	and let $\xi \in \{\pm1\}^n$ which is $-1$ at positions in $S$,
 	and $+1$ at positions not in $S$.
-	Then the character $\chi_S$ form the previous example
+	Then the character $\chi_S$ from the previous example
 	coincides with the character $e_\xi$ in the new notation.
 	In particular, $\wh f(S) = \wh f(\xi)$.
 
@@ -406,14 +406,14 @@ Then by Parseval, we have
 \[
 	\sum_{n \in \ZZ} \left\lvert \wh f(n) \right\rvert^2
 	= \left< f,f\right>
-	\frac{1}{2\pi} \int_{[-\pi, \pi]} \left\lvert f(x) \right\rvert^2 \; dx.
+	= \frac{1}{2\pi} \int_{[-\pi, \pi]} \left\lvert f(x) \right\rvert^2 \; dx.
 \]
 A calculus computation gives
 \[  \frac{1}{2\pi} \int_{[-\pi, \pi]} x^2 \; dx = \frac{\pi^2}{3}. \]
 On the other hand, we will now compute all Fourier coefficients.
 We have already that
-\[ \wh f(0) = \int_{[-\pi, \pi]} f(x) \; dx 
-	= \int_{[-\pi, \pi]} x \; dx = 0. \]
+\[ \wh f(0) = \frac{1}{2\pi} \int_{[-\pi, \pi]} f(x) \; dx 
+	= \frac{1}{2\pi} \int_{[-\pi, \pi]} x \; dx = 0. \]
 For $n \neq 0$, we have by definition
 (or ``Fourier inversion formula'', if you want to use big words)
 the formula
