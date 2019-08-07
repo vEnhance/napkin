@@ -35,17 +35,17 @@ and corresponds to a real number.
 \begin{center}
 	\begin{asy}
 		size(8cm);
-		pair P = Drawing("\varnothing", red, (0,4), red, dir(90));
-		pair P0 = Drawing("0", red, (-5,2), red, 1.5*dir(90));
+		pair P = Drawing("\varnothing", (0,4), dir(90), red);
+		pair P0 = Drawing("0", (-5,2), 1.5*dir(90), red);
 		pair P1 = Drawing("1", (5,2),  1.5*dir(90));
 		pair P00 = Drawing("00", (-7,0), 1.4*dir(120));
-		pair P01 = Drawing("01", red, (-3,0), red, 1.4*dir(60));
+		pair P01 = Drawing("01", (-3,0), 1.4*dir(60), red);
 		pair P10 = Drawing("10", (3,0),  1.4*dir(120));
 		pair P11 = Drawing("11", (7,0),  1.4*dir(60));
 
 		pair P000 = Drawing("000", (-8,-3));
 		pair P001 = Drawing("001", (-6,-3));
-		pair P010 = Drawing("010", red, (-4,-3), red);
+		pair P010 = Drawing("010", (-4,-3), red);
 		pair P011 = Drawing("011", (-2,-3));
 
 		pair P100 = Drawing("100", (2,-3));

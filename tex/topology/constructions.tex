@@ -600,6 +600,9 @@ As a possibly helpful example, we give all three pictures of $\RP^1$.
 			pair P = extension( (0,1), (1,1), dir(250), dir(70) );
 			dot("$0.36$", P, dir(90), heavyred);
 			label("$\mathbb R$", X2, dir(105), heavyred);
+
+			path L(pair A, pair B, real a=0.6, real b=a)
+				{ return (a*(A-B)+A)--(b*(B-A)+B); }
 			draw(L(dir(130),-dir(130),0.2,0.2), gray);
 			draw(L(dir(250),-dir(250),0.2,0.2), gray);
 			draw(L(dir(-20),-dir(-20),0.2,0.2), gray);
