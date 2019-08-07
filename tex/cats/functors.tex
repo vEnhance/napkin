@@ -389,37 +389,36 @@ A picture might help: consider
 		dot("$G(A_1)$", GG*A1, dir(225), p);
 		dot("$G(A_2)$", GG*A2, 3*dir(-90), p);
 		dot("$G(A_3)$", GG*A3, dir(-45), p);
-		label("$G(f)$", D(GG*f, p, EndArrow), dir(110), p);
-		label("$G(g)$", D(GG*g, p, EndArrow), dir(70), p);
+		label("$G(f)$", Drawing(GG*f, p, EndArrow), dir(110), p);
+		label("$G(g)$", Drawing(GG*g, p, EndArrow), dir(70), p);
 		draw(GG*f, p+1.4);
 		draw(GG*g, p+1.4);
 
 		p = lightred;
-		label("$\alpha_{A_1}$", D(sparrow(FF*A1, GG*A1), p, EndArrow), dir(180), p);
-		label("$\alpha_{A_2}$", D(sparrow(FF*A2, GG*A2), p, EndArrow), dir(180), p);
-		label("$\alpha_{A_3}$", D(sparrow(FF*A3, GG*A3), p, EndArrow), dir(0), p);
+		label("$\alpha_{A_1}$", Drawing(sparrow(FF*A1, GG*A1), p, EndArrow), dir(180), p);
+		label("$\alpha_{A_2}$", Drawing(sparrow(FF*A2, GG*A2), p, EndArrow), dir(180), p);
+		label("$\alpha_{A_3}$", Drawing(sparrow(FF*A3, GG*A3), p, EndArrow), dir(0), p);
 
 		p = magenta + dotted + 0.7;
 		path Fa = (0.5,0)--FF*(-1,-0.2);
 		path Ga = (0.5,-0.6)--GG*(-1,-0.4);
-		label("$F$", D(Fa, p, EndArrow), dir(135), p);
-		label("$G$", D(Ga, p, EndArrow), dir(225), p);
+		label("$F$", Drawing(Fa, p, EndArrow), dir(135), p);
+		label("$G$", Drawing(Ga, p, EndArrow), dir(225), p);
 
 		p = lightred + 0.7;
-		label("$\alpha$", D(sparrow(midpoint(Fa), midpoint(Ga)), p, EndArrow), dir(180), p);
+		label("$\alpha$", Drawing(sparrow(midpoint(Fa), midpoint(Ga)), p, EndArrow), dir(180), p);
 
 		p = grey + dashed;
-		pointpen = p;
-		pair B1 = D(midpoint(FF*A2--GG*A1));
-		pair B2 = D(0.6 * (FF*A3) + 0.4 * (GG*A2));
+		pair B1 = Drawing(midpoint(FF*A2--GG*A1), p);
+		pair B2 = Drawing(0.6 * (FF*A3) + 0.4 * (GG*A2), p);
 		draw(sparrow(FF*A1, B1), p, EndArrow);
 		draw(sparrow(GG*A2, B1), p, EndArrow);
 		draw(sparrow(FF*A3, B2), p, EndArrow);
-		pair B3 = D(FF*A3 + 0.7*dir(100));
+		pair B3 = Drawing(FF*A3 + 0.7*dir(100), p);
 		draw(sparrow(B3, FF*A3), p, EndArrow);
 		label("$\mathcal B$", GG*(0.6*(A1+A3)));
 		draw(sparrow(FF*A2, GG*A3), p, EndArrow);
-		pair B4 = D(FF*A1 + 0.5*dir(90));
+		pair B4 = Drawing(FF*A1 + 0.5*dir(90), p);
 		draw(sparrow(FF*A1, B4), p, EndArrow);
 	\end{asy}
 \end{center}

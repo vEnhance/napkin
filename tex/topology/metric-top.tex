@@ -582,19 +582,19 @@ The whole upshot of this is:
 			pair Y = Drawing("y", origin, dir(75));
 			real eps = 1.5;
 			draw(CR(Y, eps), dotted);
-			label("$\varepsilon$", D(Y--(Y+eps*dir(255))));
+			label("$\varepsilon$", Drawing(Y--(Y+eps*dir(255))));
 			label("$V$",
-				D(shift(-0.5,0)*rotate(190)*scale(3.2,2.8)*unitcircle, dashed));
+				Drawing(shift(-0.5,0)*rotate(190)*scale(3.2,2.8)*unitcircle, dashed));
 			add(shift( (13,0) ) * CC());
-			label("$f$", D( (4.5,0)--(8,0), EndArrow));
+			label("$f$", Drawing( (4.5,0)--(8,0), EndArrow));
 
 			bigblob("$M$");
 			real delta = 1.1;
 			pair X = Drawing("x", (-1.5,-0.5), dir(-45));
-			label("$\delta$", D(X--(X+delta*dir(155))));
+			label("$\delta$", Drawing(X--(X+delta*dir(155))));
 			draw(CR(X, delta), dotted);
 			label("$U = f^{\text{pre}}(V)$",
-				D(shift(-1.5,-0.3)*rotate(235)*scale(2.4,1.8)*unitcircle, dashed));
+				Drawing(shift(-1.5,-0.3)*rotate(235)*scale(2.4,1.8)*unitcircle, dashed));
 		\end{asy}
 	\end{center}
 
