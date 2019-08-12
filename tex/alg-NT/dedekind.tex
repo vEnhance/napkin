@@ -664,7 +664,7 @@ Thus $\Norm$ is a natural group homomorphism $J_K \to \QQ \setminus \{0\}$.
 		\[ J = \left\{ \sum_i \gamma_i \cdot \frac{\beta_i}{\alpha_i}
 		\mid \alpha_i, \beta_i, \gamma_i \in \OO_K \right\}. \]
 		Now ``clear denominators''. Set $\alpha = \alpha_1 \dots \alpha_n$,
-		and show that $\alpha I$ is an integral ideal.
+		and show that $\alpha J$ is an integral ideal.
 	\end{sol}
 \end{dproblem}
 
@@ -698,18 +698,18 @@ Thus $\Norm$ is a natural group homomorphism $J_K \to \QQ \setminus \{0\}$.
 			at the beginning and looked at just $(1+\sqrt{7})(1-\sqrt{7}) = (6)$;
 			all the other products we get will obviously have factors of $3$.
 		}
-		\[ \prod_{i=1}^{r} (f_i(\alpha))^{e_i}
-			\equiv (f(\alpha)) \equiv 0 \pmod p \]
+		\[ \prod_{i=1}^{g} (f_i(\theta))^{e_i}
+			\equiv (f(\theta)) \equiv 0 \pmod p \]
 		so we've shown that $I \subseteq (p)$.
 
 	Finally, we prove (c) with a size argument.
 		The idea is that $I$ and $(p)$ really should have the same size;
 		to nail this down we'll use the ideal norm.
 		Since $(p)$ divides $I$, we can write
-		$ (p) = \prod_{i=1}^r \kp_i^{e_i'} $
+		$ (p) = \prod_{i=1}^g \kp_i^{e_i'} $
 		where $e_i' \le e_i$ for each $i$.
 		Remark $\OO_K / (p) \cong \Zc p[x] / (f)$ has size $p^{\deg f}$.
-		Similarly, $\OO_K / (f_i)$ has degree $p^{\deg f_i}$ for each $i$.
+		Similarly, $\OO_K / (\kp_i)$ has degree $p^{\deg f_i}$ for each $i$.
 		Compute $\Norm( (p) )$ using the $e_i'$ now and compare the results.
 %		Hence
 %		\[ p^{\deg f} = \Norm(p)
