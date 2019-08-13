@@ -187,7 +187,7 @@ we will not prove this here.
 
 	Applying this to the $\ZZ$-basis $\left\{ 1, \frac{1+\sqrt5}{2} \right\}$, we get
 	\[
-		\Delta_K^2
+		\Delta_K
 		=
 		\det
 		\begin{bmatrix}
@@ -234,7 +234,7 @@ Let $K$ be a number field and $\sigma_1, \dots, \sigma_n$ be its embeddings.
 We distinguish between the \vocab{real embeddings}
 (which map all of $K$ into $\RR$)
 and the \vocab{complex embeddings} 
-(which map some part of $K$ outside $\RR$)
+(which map some part of $K$ outside $\RR$).
 Notice that if $\sigma$ is a complex embedding,
 then so is the conjugate $\ol{\sigma} \ne \sigma$;
 hence complex embeddings come in pairs.
@@ -633,7 +633,7 @@ Let's give an example how!
 	Pick a fractional ideal $J$.
 	By \Cref{cor:class_rep_minkowski},
 	we can find an integral ideal $\kb \sim J$ with $\Norm(\kb) \le M_K$.
-	But by the above, either $\kb = (1)$ or $\kb = (4)$, both of which are principal,
+	But by the above, either $\kb = (1)$ or $\kb = (2)$, both of which are principal,
 	and hence trivial in $\Cl_K$.
 	So $J$ is trivial in $\Cl_K$ too, as needed.
 \end{proof}
@@ -648,7 +648,7 @@ Let's do a couple more.
 	has an integral ideal of norm $\kb$ satisfying
 	\[ 
 		\Norm(\kb)
-		\left( \frac4\pi \right)^{1} \cdot \frac{2!}{2^2} \cdot \sqrt{4}
+		\le \left( \frac4\pi \right)^{1} \cdot \frac{2!}{2^2} \cdot \sqrt{4}
 		= \frac4\pi < 2. 
 	\]
 	Well, that's silly: we don't have any branches to pick from at all.
