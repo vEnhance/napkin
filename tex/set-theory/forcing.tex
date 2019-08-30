@@ -426,8 +426,8 @@ For this, we have to introduce the fundamental theorem of forcing.
 
 \section{Fundamental theorem of forcing}
 The model $M$ unfortunately has no idea what $G$ might be,
-only that it is some generic filter.\footnote{%
-	You might say this is a good thing, here's why.
+only that it is some generic filter.\footnote{You might
+	say this is a good thing; here's why.
 	We're trying to show that $\neg \CH$ is consistent with $\ZFC$,
 	and we've started with a model $M$ of the real universe $V$.
 	But for all we know $\CH$ might be true in $V$ (what if $V=L$?),
@@ -438,9 +438,9 @@ only that it is some generic filter.\footnote{%
 	Conversely, if $M$ could compute everything about $M[G]$,
 	then $M[G]$ would have to conform to $M$'s beliefs.
 
-	That's why we worked so hard to make sure $G \in M[G]$ but $G \notin M$.
-}
-Nonetheless, we are going to define a relation $\Vdash$, called the \emph{forcing} relation.
+	That's why we worked so hard to make sure $G \in M[G]$ but $G \notin M$.}
+Nonetheless, we are going to define a relation $\Vdash$,
+called the \emph{forcing} relation.
 Roughly, we are going to write
 \[ p \Vdash \varphi(\sigma_1, \dots, \sigma_n) \]
 where $p \in \Po$, $\sigma_1, \dots, \sigma_n \in M[G]$, if and only if:
@@ -451,7 +451,7 @@ where $p \in \Po$, $\sigma_1, \dots, \sigma_n \in M[G]$, if and only if:
 \end{quote}
 Note that $\Vdash$ is defined without reference to $G$:
 it is something that $M$ can see.
-We say $p$ \vocab{forces} the sentences $\varphi(\sigma_1, \dots, \sigma_n)$.
+We say $p$ \vocab{forces} the sentence $\varphi(\sigma_1, \dots, \sigma_n)$.
 And miraculously, we can define this relation in such a way that the converse is true:
 \emph{a sentence holds if and only if some $p$ forces it}.
 
@@ -485,7 +485,9 @@ We proceed by induction on the formula complexity.
 It turns out in this case that the atomic formula (base cases)
 are hardest and themselves require induction on ranks.
 
-For some motivation, let's consider how we should define $p \vDash \tau_1 \in \tau_2$ given that we've already defined $p \vDash \tau_1 = \tau_2$.
+For some motivation, let's consider how we should define
+$p \Vdash \tau_1 \in \tau_2$ given that we've
+already defined $p \Vdash \tau_1 = \tau_2$.
 We need to ensure this holds iff
 \[ \forall \text{$M$-generic $G$ with $p \in G$}:
 	\ M[G] \vDash \tau_1^G \in \tau_2^G. \]
@@ -493,9 +495,8 @@ So it suffices to ensure that any generic $G \ni p$ hits a condition $q$ which f
 In other words, we want to choose the definition of $p \Vdash \tau_1 \in \tau_2$ to hold if and only if
 \[
 	\left\{ q \in \Po
-	\mid \exists \left<\tau, r\right> \in \tau_2 
-	\left( q \le r \land q \Vdash(\tau=\tau_1) \right)
-	\right\}
+		\mid \exists \left<\tau, r\right> \in \tau_2
+		\left( q \le r \land q \Vdash(\tau=\tau_1) \right) \right\}
 \]
 is dense below in $p$.
 In other words, if the set is dense, then the generic must hit $q$, so it must hit $r$, meaning that $\left<\tau_r\right> \in \tau_2$ will get interpreted such that $\tau^G \in \tau_2^G$, and moreover the $q \in G$ will force $\tau_1 = \tau$.
