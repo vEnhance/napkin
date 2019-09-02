@@ -1,7 +1,10 @@
 \chapter{Breaking the continuum hypothesis}
-We now use the technique of forcing to break the Contiuum Hypothesis by choosing a good poset $\Po$.
-As I mentioned earlier, one can also build a model where the Continuum Hypothesis is true;
-this is called the \emph{constructible universe}, i.e.\ the model $V=L$.
+We now use the technique of forcing to break the
+Continuum Hypothesis by choosing a good poset $\Po$.
+As I mentioned earlier, one can also build a model
+where the Continuum Hypothesis is true;
+this is called the \emph{constructible universe},
+(this model is often called ``$V=L$'').
 However, I think it's more fun when things break\dots
 
 %\section{Forcing $V \neq L$ is really easy}
@@ -66,24 +69,24 @@ and corresponds to a real number.
 	\end{asy}
 \end{center}
 
-We want to do something similar, but with $\omega_2$ many real numbers instead of just one.
+We want to do something similar,
+but with $\omega_2$ many real numbers instead of just one.
 In light of this, consider in $M$ the poset
 \[
-	\Po = 
-	\opname{Add} \left( \omega_2, \omega \right)
-	\defeq
-	\left( 
-	\left\{ p : \omega_2 \times \omega \to 2,
-		\dom(p) < \omega
-	\right\},
-	\supseteq
-	\right).
+	\Po = \opname{Add} \left( \omega_2, \omega \right)
+	\defeq \left( \left\{ p : \omega_2 \times \omega \to 2,
+		\dom(p) \text{ is finite} \right\},
+	\supseteq \right).
 \]
-These elements (conditions) are ``partial functions'':
+These elements $p$ (conditions) are ``partial functions'':
 we take some finite subset of $\omega_2 \times \omega$ and map it into $2=\{0,1\}$.
-Moreover, we say $p \le q$ if $\dom(p) \supseteq \dom(q)$ and the two functions agree over $\dom(q)$.
+(Here $\dom(p)$ denotes the domain of $p$,
+which is the finite subset of $\omega_2 \times \omega$ mentioned.)
+Moreover, we say $p \le q$ if $\dom(p) \supseteq \dom(q)$
+and the two functions agree over $\dom(q)$.
+
 \begin{ques}
-	What is $1_\Po$ here?
+	What is the maximal element $1_\Po$ here?
 \end{ques}
 
 \begin{exercise}
