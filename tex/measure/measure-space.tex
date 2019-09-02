@@ -379,8 +379,43 @@ and in that case we are fine.
 
 \section{On the word ``almost'' (TO DO)}
 In later chapters we will begin seeing the phrase ``almost everywhere''
-start to come up, and it seems prudent to take the time to talk about it now.
-\todo{write this}
+and ``almost surely'' start to come up,
+and it seems prudent to take the time to talk about it now.
+
+\begin{definition}
+	We say that property $P$ occurs
+	\vocab{almost everywhere} or \vocab{almost surely} if the set
+	\[ \left\{ \omega \in \Omega \mid \text{$P$ does not hold for $\omega$} \right\} \]
+	has measure zero.
+\end{definition}
+
+For example, if we say ``$f = g$ almost everywhere''
+for some functions $f$ and $g$ defined on a measure space $\Omega$,
+then we mean that $f(\omega) = g(\omega)$ for all $\omega \in \Omega$
+other than a measure-zero set.
+
+There, that's the definition.
+The main thing to now update your instincts on is that
+\begin{moral}
+	In measure theory,
+	we basically only care about things up to almost-everywhere.
+\end{moral}
+Here are some examples:
+\begin{itemize}
+	\ii If $f=g$ almost everywhere,
+	then measure theory will basically not tell these functions apart.
+	For example, $\int_\Omega f \; d\omega = \int_\Omega g \; d\omega$
+	will hold for two functions agreeing almost everywhere.
+	\ii As another example,
+	if we prove ``there exists a unique function $f$ such that so-and-so'',
+	the uniqueness is usually going to be up to measure-zero sets.
+\end{itemize}
+You can think of this sort of like group isomorphism,
+where two groups are considered ``basically the same'' when they are isomorphic,
+except this one might take a little while to get used to.\footnote{In fact,
+	some people will even define functions on measure spaces
+	as \emph{equivalence classes} of maps,
+	modded out by agreement outside a measure zero set.}
 
 \section{\problemhead}
 \begin{dproblem}
@@ -390,6 +425,7 @@ start to come up, and it seems prudent to take the time to talk about it now.
 \end{dproblem}
 
 \begin{problem}
+	[On countable sigma-algebras]
 	\gim
 	Let $\SA$ be a $\sigma$-algebra on a set $\Omega$.
 	Suppose that $\SA$ has countable cardinality.
