@@ -65,31 +65,29 @@ Thus we can equip it with the Borel sigma-algebra.\footnote{We
 One can check this is compatible with the previous definitions.
 At this point, we introduce an important term.
 \begin{definition}
-	A measurable (nonnegative) function
-	$f \colon \Omega \to [0, +\infty]$
-	is \vocab{absolutely integrable} or \vocab{Lebesgue integrable}
-	if $\int_\Omega f \; d\mu < \infty$.
+	A measurable (nonnegative) function $f \colon \Omega \to [0, +\infty]$
+	is \vocab{absolutely integrable}
+	or just \vocab{integrable} if $\int_\Omega f \; d\mu < \infty$.
 \end{definition}
-Warning: I find ``Lebesgue integrable'' to be \emph{really} confusing terminology.
+Warning: I find ``integrable'' to be \emph{really} confusing terminology.
 Indeed, \emph{every} measurable function from $\Omega$ to $[0,+\infty]$
 can be assigned a Lebesgue integral, it's just that
 this integral may be $+\infty$.
 So the definition is far more stringent than the name suggests.
-Even constant functions can fail to be Lebesgue integrable:
+Even constant functions can fail to be integrable:
 \begin{example}
-	[Lebesgue integrable functions]
-	The constant function $1$ is \emph{not}
-	Lebesgue integrable on $\RR$,
+	[We really should call it ``finitely integrable'']
+	The constant function $1$ is \emph{not} integrable on $\RR$,
 	since $\int_\RR 1 \; d\mu = \mu(\RR) +\infty$.
 \end{example}
-For this reason, I will usually prefer the term ``absolutely integrable''.
+For this reason, I will usually prefer the term ``integrable''.
 (If it were up to me, I would call it ``finitely integrable'',
 and usually do so privately.)
 
 Finally, this lets us integrate general functions.
 \begin{definition}
 	In general, a measurable function $f \colon \Omega \to [-\infty, \infty]$
-	is \vocab{absolutely integrable} or \vocab{Lebesgue integrable} if $|f|$ is.
+	is \vocab{absolutely integrable} or just \vocab{integrable} if $|f|$ is.
 \end{definition}
 Since we'll be using the first word, this is easy to remember:
 ``absolutely integrable'' requires taking absolute values.
@@ -205,8 +203,7 @@ It's probably better to just look at an example though.
 	In the Riemann integration situation, we needed the limit as $\eps \to 0^+$
 	since otherwise $\frac{1}{\sqrt x}$ is not defined as a function $[0,1] \to \RR$.
 	However, it is a \emph{measurable nonnegative}
-	function $(0,1) \to [0,+\infty]$,
-	and hence
+	function $(0,1) \to [0,+\infty]$, and hence
 	\[ \int_{(0,1)} \frac{1}{\sqrt x} \; d\mu = 2. \]
 \end{example}
 
