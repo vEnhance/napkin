@@ -164,7 +164,8 @@ Now, I can specify what it means to be ``generic''.
 	Let $\Po = 2^{<\omega}$.
 	The generic filters on $\Po$ are sets of the form
 	\[ \left\{ 0,\; b_1,\; b_1b_2,\; b_1b_2b_3,\; \dots \right\}. \]
-	So every generic filter on $\Po$ correspond to a binary number $b = 0.b_1b_2b_3\dots$.
+	So every generic filter on $\Po$ corresponds
+	to a binary number $b = 0.b_1b_2b_3\dots$.
 
 	It is harder to describe which reals correspond to generic filters,
 	but they should really ``look random''.
@@ -506,7 +507,10 @@ In what follows, the $\Vdash$ omits the $M$ and $\Po$.
 \begin{definition}
 	Let $M$ be a countable transitive model of ZFC.
 	Let $\Po \in M$ be a partial order.
-	For $p \in \Po$ and $\varphi(\sigma_1, \dots, \sigma_n)$ a formula in LST, we write $\tau \Vdash \varphi(\sigma_1, \dots, \sigma_n)$ to mean the following, defined by induction on formula complexity plus rank.
+	For $p \in \Po$ and $\varphi(\sigma_1, \dots, \sigma_n)$
+	a formula in the language of set theory,
+	we write $\tau \Vdash \varphi(\sigma_1, \dots, \sigma_n)$
+	to mean the following, defined by induction on formula complexity plus rank.
 	\begin{enumerate}[(1)]
 		\ii $p \Vdash \tau_1 = \tau_2$ means
 		\begin{enumerate}[(i)]
@@ -590,7 +594,8 @@ This completes the proof of the fundamental theorem.
 	
 	Suppose $\sigma^G, \sigma_1^G, \dots, \sigma_n^G \in M[G]$
 	are a set and parameters, and
-	$\varphi(x,x_1, \dots, x_n)$ is an LST formula.
+	$\varphi(x,x_1, \dots, x_n)$ is a formula
+	in the language of set theory.
 	We want to show that the set
 	\[ A = \left\{ 
 		x \in \sigma^G \mid M[G] \vDash \varphi[x, \sigma_1^G, \dots, \sigma_n^G]
@@ -598,9 +603,9 @@ This completes the proof of the fundamental theorem.
 	is in $M[G]$; i.e.\ it is the interpretation of some name.
 
 	Note that every element of $\sigma^G$ is of the form $\rho^G$
-	for some $\rho \in \dom(\sigma)$ (a bit of abuse here,
+	for some $\rho \in \dom(\sigma)$ (a bit of abuse of notation here,
 	$\sigma$ is a bunch of pairs of names and $p$'s,
-	and the domain is just the set of names).
+	and the domain $\dom(\sigma)$ is just the set of names).
 	So by the fundamental theorem of forcing, we may write
 	\[ A = 
 		\left\{ \rho^G \mid \rho \in \dom(\sigma)
