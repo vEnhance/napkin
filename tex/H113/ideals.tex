@@ -58,7 +58,7 @@ the only good way (perhaps not even the most natural one)
 of motivating what is to follow.
 
 \section{Definition and examples of rings}
-\prototype{$\ZZ$ all the way! Also $R[x]$ and various fields.}
+\prototype{$\ZZ$ all the way! Also $R[x]$ and various fields (next section).}
 
 Well, I guess I'll define a ring\footnote{Or,
 	according to some authors, a ``ring with identity'';
@@ -88,7 +88,7 @@ Well, I guess I'll define a ring\footnote{Or,
 
 These definitions are just here for completeness.
 The examples are much more important.
-\begin{example}[Typical rings and fields]
+\begin{example}[Typical rings]
 	\listhack
 	\begin{enumerate}[(a)]
 		\ii The sets $\ZZ$, $\QQ$, $\RR$ and $\CC$ are all rings
@@ -188,6 +188,87 @@ Here are some more examples of rings.
 	\[ \ZZ[\sqrt[3]{2}] = \left\{ a + b\sqrt[3]{2} + c\sqrt[3]4
 		\mid a,b,c \in \ZZ \right\}. \]
 \end{example}
+
+\section{Fields}
+\prototype{$\QQ$ is a field, but $\ZZ$ is not.}
+
+Although we won't need to know what a field is until next chapter,
+they're so convenient for examples I will go ahead and introduce them now.
+
+As you might already know, if the multiplication is invertible,
+then we call the ring a field.
+To be explicit, let me write the relevant definitions.
+
+\begin{definition}
+	\label{def:unit}
+	A \vocab{unit} of a ring $R$
+	is an element $u \in R$ which is invertible:
+	for some $x \in R$ we have $ux = 1_R$.
+\end{definition}
+
+\begin{example}
+	[Examples of units]
+	\listhack
+	\begin{enumerate}[(a)]
+	\ii The units of $\ZZ$ are $\pm 1$,
+	because these are the only things which ``divide $1$''
+	(which is the reason for the name ``unit'').
+	\ii On the other hand, in $\QQ$ everything is a unit (except $0$).
+	For example, $\frac 35$ is a unit since
+	$\frac 35 \cdot \frac 53 = 1$.
+	\ii The Gaussian integers $\ZZ[i]$ have four units:
+	$\pm 1$ and $\pm i$.
+	\end{enumerate}
+\end{example}
+
+\begin{definition}
+	A nontrivial (commutative) ring is a \vocab{field}
+	when all its nonzero elements are units.
+\end{definition}
+
+Colloquially, we say that
+\begin{moral}
+	A field is a structure where you can add, subtract, multiply, and divide.
+\end{moral}
+Depending on context, they are often denoted
+either $k$, $K$, $F$.
+
+\begin{example}
+	[First examples of fields]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii $\QQ$, $\RR$, $\CC$ are fields,
+		since the notion $\frac 1c$ makes sense in them.
+		\ii If $p$ is a prime, then $\Zc p$ is a field,
+		which we denote will usually denote by $\FF_p$.
+	\end{enumerate}
+	The trivial ring $0$ is \emph{not} considered a field,
+	since we require fields to be nontrivial.
+\end{example}
+
+\begin{exercise}
+	[Mandatory: fields have two ideals]
+	If $K$ is a field, show that $K$ has exactly two ideals.
+	What are they?
+	\label{exer:field_ideal}
+\end{exercise}
+
+%\begin{remark}
+%	You might say at this point that ``fields are nicer than rings'',
+%	but as you'll see in this chapter, the conditions for
+%	being a field are somehow ``too strong''.
+%	To give an example of what I mean:
+%	if you try to think about the concept of ``divisibility''
+%	in $\ZZ$, you've stepped into the vast and bizarre realm of
+%	number theory.  Try to do the same thing in $\QQ$ and you get nothing:
+%	any nonzero $a$ ``divides'' any nonzero $b$
+%	because $b = a \cdot \frac ba$.
+%
+%	I know at least one person who instead
+%	thinks of this as an argument for why people
+%	shouldn't care about number theory
+%	(studying chaos rather than order).
+%\end{remark}
 
 \section{Homomorphisms}
 \prototype{$5\ZZ$ is an ideal of $\ZZ$.}
@@ -306,15 +387,6 @@ So this is stronger than just saying $I$ is closed under multiplication.
 	given $15 \in I$, $999 \in \ZZ$, we get $15 \cdot 999 \in I$.
 \end{example}
 
-\begin{proposition}
-	[Proper ideal $\iff$ no units]
-	Let $R$ be a ring and $I \subseteq R$ an ideal.
-	Then $I$ is proper if and only if it contains no units of $R$.
-\end{proposition}
-\begin{ques}
-	Prove this.
-\end{ques}
-
 Now we claim that these conditions are sufficient.
 More explicitly,
 \begin{theorem}
@@ -376,9 +448,31 @@ This gives you the usual modular arithmetic!
 
 Let's give you some practice with ideals.
 
+An important piece of intuition is that once an ideal
+contains a unit, it contains $1$, and thus must contain the
+That's why the notion of ``proper ideal'' is useful language.
+To expand on that:
+\begin{proposition}
+	[Proper ideal $\iff$ no units]
+	Let $R$ be a ring and $I \subseteq R$ an ideal.
+	Then $I$ is proper (i.e.\ $I \ne R$)
+	if and only if it contains no units of $R$.
+\end{proposition}
+\begin{proof}
+	Suppose $I$ contains a unit $u$, i.e.\ an element $u$
+	with an inverse $u\inv$.
+	Then it contains $u \cdot u\inv = 1$, and thus $I = R$.
+	Conversely, if $I$ contains no units, it is obviously proper.
+\end{proof}
+As a consequence, if $K$ is a field,
+then its only ideals are $(0)$ and $K$
+(this was \Cref{exer:field_ideal}).
+So for our practice purposes, we'll be working with rings that aren't fields.
+
+First practice: $\ZZ$.
 \begin{exercise}
 	Show that the only ideals of $\ZZ$ are precisely those
-	sets of the form $n\ZZ$, where $n$ is an integer.
+	sets of the form $n\ZZ$, where $n$ is a nonnegative integer.
 \end{exercise}
 
 Thus, while ideals of fields are not terribly interesting,
@@ -486,10 +580,11 @@ But the same is not true in more general rings.
 \begin{example}
 	[A non-principal ideal]
 	In $\ZZ[x]$, $I = (x,2015)$ is \emph{not} a principal ideal.
+
 	For if $I = (f)$ for some polynomial $f \in I$
 	then $f$ divides $x$ and $2015$.
 	This can only occur if $f = \pm 1$,
-	but then $I$ contains a unit.
+	but then $I$ contains $\pm1$, which it does not.
 \end{example}
 A ring with the property that all its ideals
 are principal is called a \vocab{principal ideal ring}.
