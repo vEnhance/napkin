@@ -23,89 +23,24 @@ is going to look like, so you know what to expect.
 \section{Fields}
 \prototype{$\QQ$ is a field, but $\ZZ$ is not.}
 
-As you might already know, if the multiplication is invertible,
-then we call the ring a field.
-To be explicit, let me write the relevant definitions.
+We already saw this definition last chapter:
+a field $K$ is a nontrivial ring for which every nonzero element is a unit.
 
-\begin{definition}
-	\label{def:unit}
-	A \vocab{unit} of a ring $R$
-	is an element $u \in R$ which is invertible:
-	for some $x \in R$ we have $ux = 1_R$.
-\end{definition}
-\begin{example}
-	[Examples of units]
-	\listhack
-	\begin{enumerate}[(a)]
-	\ii The units of $\ZZ$ are $\pm 1$,
-	because these are the only things which ``divide $1$''
-	(which is the reason for the name ``unit'').
-	\ii On the other hand, in $\QQ$ everything is a unit (except $0$).
-	For example, $\frac 35$ is a unit since
-	$\frac 35 \cdot \frac 53 = 1$.
-	\ii The Gaussian integers $\ZZ[i]$ have four units:
-	$\pm 1$ and $\pm i$.
-	\end{enumerate}
-\end{example}
-
-\begin{definition}
-	A nontrivial (commutative) ring is a \vocab{field}
-	when all its nonzero elements are units.
-\end{definition}
-
-Colloquially, we say that
-\begin{moral}
-	A field is a structure where you can add, subtract, multiply, and divide.
-\end{moral}
-Depending on context, they are often denoted
-either $k$, $K$, $F$.
-
-\begin{example}
-	[First examples of fields]
-	\listhack
-	\begin{enumerate}[(a)]
-		\ii $\QQ$, $\RR$, $\CC$ are fields,
-		since the notion $\frac 1c$ makes sense in them.
-		\ii If $p$ is a prime, then $\Zc p$ is a field,
-		which we denote will usually denote by $\FF_p$.
-	\end{enumerate}
-	The trivial ring $0$ is \emph{not} considered a field,
-	since we require fields to be nontrivial..
-\end{example}
-
-\begin{exercise}
-	[Mandatory: fields have two ideals]
-	If $K$ is a field, show that $K$ has exactly two ideals.
-	What are they?
-\end{exercise}
-
-%\begin{remark}
-%	You might say at this point that ``fields are nicer than rings'',
-%	but as you'll see in this chapter, the conditions for
-%	being a field are somehow ``too strong''.
-%	To give an example of what I mean:
-%	if you try to think about the concept of ``divisibility''
-%	in $\ZZ$, you've stepped into the vast and bizarre realm of
-%	number theory.  Try to do the same thing in $\QQ$ and you get nothing:
-%	any nonzero $a$ ``divides'' any nonzero $b$
-%	because $b = a \cdot \frac ba$.
-%
-%	I know at least one person who instead
-%	thinks of this as an argument for why people
-%	shouldn't care about number theory
-%	(studying chaos rather than order).
-%\end{remark}
+In particular, there are only two ideals in a field:
+the ideal $(0)$, which is maximal, and the entire field $K$.
 
 \section{Integral domains}
 \prototype{$\ZZ$ is an integral domain.}
+
+In practice, we are often not so lucky that we have a full-fledged field.
 Now it would be nice if we could still conclude the zero product property:
 if $ab = 0$ then either $a = 0$ or $b = 0$.
 If our ring is a field, this is true: if $b \neq 0$,
 then we can multiply by $b\inv$ to get $a = 0$.
 But many other rings we consider like $\ZZ$ and $\ZZ[x]$ also have this property,
-despite not being full-fledged fields.
+despite not having division.
 
-Not for all rings though: in $\Zc{15}$,
+Not all rings though: in $\Zc{15}$,
 \[ 3 \cdot 5 \equiv 0 \pmod{15}. \]
 If $a, b \neq 0$ but $ab=0$ then we say $a$ and $b$ are \vocab{zero divisors}
 of the ring $R$.
@@ -253,6 +188,7 @@ Here's another flavor of an ideal.
 	A proper ideal $I$ of a ring $R$ is \vocab{maximal} if
 	it is not contained in any other proper ideal.
 \end{definition}
+
 \begin{example}
 	[Examples of maximal ideals]
 	\listhack
