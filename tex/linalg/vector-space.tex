@@ -106,18 +106,20 @@ but first, examples\dots
 Now let me write the actual rules for how this multiplication behaves.
 \begin{definition}
 	Let $R$ be a commutative ring.
-	An $R$-\vocab{module} is an additive abelian group
-	$M = (M,+)$ equipped with a left multiplication by elements of $R$.
+	An $R$-\vocab{module} starts with an additive abelian group $M = (M,+)$
+	whose identity is denoted $0 = 0_M$.
+	We the additionally specify a left multiplication by elements of $R$.
 	This multiplication must satisfy the following properties
-	for every $r_1, r_2 \in R$ and $m \in M$:
+	for $r, r_1, r_2 \in R$ and $m, m_1, m_2 \in M$:
 	\begin{enumerate}[(i)]
 		\ii $r_1 \cdot (r_2 \cdot m) = (r_1r_2) \cdot m$.
 		\ii Multiplication is distributive, meaning
-		\[ (r_1+r_2) \cdot m = r_1 \cdot m + r_2 \cdot m 
+		\[ (r_1+r_2) \cdot m = r_1 \cdot m + r_2 \cdot m
 			\text{ and }
 			r \cdot (m_1 + m_2) = r \cdot m_1 + r \cdot m_2. \]
 		\ii $1_R \cdot m = m$.
-		\ii $0_R \cdot m = 0_M$. (This is actually extraneous;
+		\ii $0_R \cdot m = 0_M$.
+		(This is actually extraneous;
 		one can deduce it from the first three.)
 	\end{enumerate}
 	If $R$ is a field we say $M$ is an $R$-\vocab{vector space};
