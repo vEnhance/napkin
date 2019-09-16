@@ -101,9 +101,6 @@ From this you might already have a guess what the definition of a group is.
 	\end{itemize}
 \end{example}
 
-
-
-
 Let's resume writing down examples.
 Here are some more \textbf{abelian examples} of groups:
 \begin{example}
@@ -127,6 +124,7 @@ Here are some more \textbf{abelian examples} of groups:
 	These form a group under addition.
 	We call this the \vocab{cyclic group of order $n$},
 	and denote it as $\Zc n$, with elements $\ol 0, \ol 1, \dots$.
+	The identity is $\ol 0$.
 	\label{def:cyclic_group}
 \end{example}
 \begin{example}
@@ -342,10 +340,25 @@ which highlights why having an inverse is so valuable.
 		6 &\overset{\times 3}{\longmapsto} 4 \pmod 7.
 	\end{align*}
 \end{example}
-
-
 The fact that the map is injective is often called the \vocab{cancellation law}.
 (Why do you think so?)
+
+\begin{abuse}
+	[Later on, sometimes the identity is denoted $0$ instead of $1$]
+	You don't need to worry about this for a few chapters,
+	but I'll bring it up now anyways.
+	In most of our examples up until now the operation $\star$
+	was thought of like multiplication of some sort,
+	which is why $1 = 1_G$ was a natural notation for the identity element.
+
+	But there are groups like $\ZZ = (\ZZ,+)$
+	where the operation $\star$ is thought of as addition,
+	in which case the notation $0 = 0_G$ might make more sense instead.
+	(In general, whenever an operation is denoted $+$,
+	the operation is almost certainly commutative.)
+	We will eventually start doing so too
+	when we discuss rings and linear algebra.
+\end{abuse}
 
 \section{Isomorphisms}
 \prototype{$\ZZ \cong 10\ZZ$.}
