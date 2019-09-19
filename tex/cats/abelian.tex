@@ -157,7 +157,10 @@ For example,
 	a map is an isomorphism if and only if it is monic and epic.
 \end{proposition}
 \begin{proof}
-	Omitted, because the Mitchell embedding theorem presented later implies this.
+	Omitted. (The Mitchell embedding theorem
+	presented later implies this anyways for
+	most situations we care about,
+	by looking at a small sub-category.)
 \end{proof}
 
 \section{Exact sequences}
@@ -342,6 +345,42 @@ Thus, any exact sequence can be broken into short exact sequences, as
 where $C_k = \img f_{k-1} = \ker f_k$ for every $k$.
 
 \section\problemhead
+
+\begin{problem}
+	[Four lemma]
+	In an abelian category, consider the commutative diagram
+	\begin{diagram}
+		A & \rTo^p & B & \rTo^q & C & \rTo^r & D \\
+		\dSurj_\alpha && \dInj_\beta && \dTo_\gamma && \dInj_\delta \\
+		A' & \rTo_{p'} & B' & \rTo_{q'} & C' & \rTo_{r'} & D'
+	\end{diagram}
+	where the first and second rows are exact.
+	Prove that if $\alpha$ is epic, and $\beta$ and $\delta$ are monic,
+	then $\gamma$ is epic.
+	\begin{soln}
+		Let $c \in C$ with $\gamma(c) = 0$.
+		We show $c = 0$.
+		This proceeds in a diagram chase:
+		\begin{itemize}
+			\ii Note that $0 = r'(\gamma(c)) = \delta(r(c))$, and since $\delta$
+			is injective, it follows that $r(c) = 0$.
+			\ii Since the top row is exact,
+			it follows $c = q(b)$ for some $b \in B$.
+			\ii Then $q'(\beta(b)) = 0$,
+			so if we let $b' = \beta(b)$,
+			then $b' \in \ker(q')$.
+			As the bottom row is exact, there exists $a'$ with $p'(a') = b'$.
+			\ii Since $\alpha$ is injective,
+			there is $a \in A$ with $\alpha(a') = a$.
+			\ii Since $\beta$ is injective,
+			it follows that $p(a) = b$.
+			\ii Since the top row is exact, and $b$ is in the image of $p$,
+			it follows that $0 = q(b) = c$ as needed.
+		\end{itemize}
+
+
+	\end{soln}<++>
+\end{problem}
 
 \begin{problem}
 	[Five lemma]
