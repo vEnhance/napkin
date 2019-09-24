@@ -246,26 +246,24 @@ which is an eigenvector with element $\lambda_i$.
 	Let $T : k^6 \to k^6$ and suppose $T$ is given by the matrix
 	\[
 		T = \begin{bmatrix}
-			3 & 0 & 0 & 0 & 0 & 0 \\
-			0 & 7 & 0 & 0 & 0 & 0 \\
-			0 & 0 & 2 & 1 & 0 & 0 \\
-			0 & 0 & 0 & 2 & 0 & 0 \\
-			0 & 0 & 0 & 0 & 5 & 0 \\
+			5 & 0 & 0 & 0 & 0 & 0 \\
+			0 & 2 & 1 & 0 & 0 & 0 \\
+			0 & 0 & 2 & 0 & 0 & 0 \\
+			0 & 0 & 0 & 7 & 0 & 0 \\
+			0 & 0 & 0 & 0 & 3 & 0 \\
 			0 & 0 & 0 & 0 & 0 & 3 \\
 		\end{bmatrix}.
 	\]
 	Reading the matrix, we can compute all the eigenvectors and eigenvalues:
-	they are
+	for any constants $a, b \in k$ we have
 	\begin{align*}
-		T(e_1) &= 3e_1 \\
-		T(e_2) &= 7e_2 \\
-		T(e_3) &= 2e_3 \\
-		T(e_5) &= 5e_5 \\
-		T(e_6) &= 3e_6.
+		T(a \cdot e_1) &= 5a \cdot e_1 \\
+		T(a \cdot e_2) &= 2a \cdot e_2 \\
+		T(a \cdot e_4) &= 7a \cdot e_4 \\
+		T(a \cdot e_5 + b \cdot e_6) &= 3\left[ a \cdot e_5 + b \cdot e_6 \right].
 	\end{align*}
-	The element $e_4$, on the other hand,
-	is not an eigenvalue.
-	For $T(e_4) = e_3 + 2e_4$.
+	The element $e_3$ on the other hand,
+	is not an eigenvalue since $T(e_3) = e_2 + 2e_3$.
 \end{example}
 
 %Here's the idea behind the proof.
@@ -433,7 +431,7 @@ By \Cref{prob:endomorphism_eventual_lemma}, we have
 \[ V_1 = \ker S^N \oplus \img S^N \]
 for some $N$.
 But we assumed $T$ was indecomposable,
-so this can only happen if $\img S^N = \{0\}$ and $\ker S^N = V$
+so this can only happen if $\img S^N = \{0\}$ and $\ker S^N = V_1$
 (since $\ker S^N$ contains our eigenvector).
 Hence $S$ is nilpotent, so it's a collection of staircases.
 In fact, since $T$ is indecomposable, there is only one staircase.
