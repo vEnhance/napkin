@@ -557,7 +557,8 @@ we were done.
 \end{problem}
 
 \begin{problem}
-	Compute the reduced homology groups of $\RR^n$ with $p \ge 1$ points removed.
+	Compute the reduced homology groups
+	of $\RR^n$ with $p \ge 1$ points removed.
 	\begin{hint}
 		One strategy is induction on $p$, with base case $p=1$.
 		Another strategy is to let $U$ be the desired space and let $V$
@@ -585,11 +586,52 @@ we were done.
 	Compute $H_k(\RR^n, \RR^n \setminus \{0\})$.
 	\begin{hint}
 		Use \Cref{thm:long_exact_rel}.
-		Note that $\RR^n \setminus \{0\}$ is homotopy equivalent to $S^{n-1}$.
+		Note that $\RR^n \setminus \{0\}$ is homotopy
+		equivalent to $S^{n-1}$.
 	\end{hint}
 	\begin{sol}
 		It is $\ZZ$ for $k=n$ and $0$ otherwise.
 	\end{sol}
+\end{sproblem}
+
+\begin{problem}
+	[Nine lemma]
+	Consider a commutative diagram
+	\begin{center}
+	\begin{tikzcd}
+		& 0 \ar[d] & 0 \ar[d] & 0 \ar[d] \\
+		0 \ar[r] & A_1 \ar[r] \ar[d] & B_1 \ar[r] \ar[d] & C_1 \ar[r] \ar[d] & 0 \\
+		0 \ar[r] & A_2 \ar[r] \ar[d] & B_2 \ar[r] \ar[d] & C_2 \ar[r] \ar[d] & 0 \\
+		0 \ar[r] & A_3 \ar[r] \ar[d] & B_3 \ar[r] \ar[d] & C_3 \ar[r] \ar[d] & 0 \\
+		& 0 & 0 & 0 & 
+	\end{tikzcd}
+	\end{center}
+	and assume that all rows are exact,
+	and two of the columns are exact.
+	Show that the third column is exact as well.
+	\begin{hint}
+		$0 \to A_\bullet \to B_\bullet \to C_\bullet \to 0$
+		is a short exact sequence of chain complexes.
+		Write out the corresponding long exact sequence.
+		Nearly all terms will vanish.
+	\end{hint}
+\end{problem}
+
+\begin{sproblem}[Klein bottle]
+	\gim
+	Show that the reduced homology groups of the Klein bottle $K$ are given by
+	\[
+		\wt H_n(K) = 
+		\begin{cases}
+			\ZZ \oplus \Zc 2 & n = 1 \\
+			0 & \text{otherwise}.
+		\end{cases}
+	\]
+	\begin{hint}
+		It's possible to use two cylinders with $U$ and $V$.
+		This time the matrix is $\begin{bmatrix} 1 & 1 \\ 1 & -1 \end{bmatrix}$
+		or some variant though; in particular, it's injective, so $\wt H_2(X) = 0$.
+	\end{hint}
 \end{sproblem}
 
 \begin{sproblem}
@@ -607,23 +649,7 @@ we were done.
 	\end{hint}
 	\begin{sol}
 		Use the short exact sequence
-		$0 \to C_n(A,B) \to C_n(X,B) \to C_n(X,A) \to 0$.
+		\[ 0 \to C_\bullet(A,B) \to C_\bullet(C,B) \to C_\bullet(C,A) \to 0 \]
+		of chain complexes.
 	\end{sol}
-\end{sproblem}
-
-\begin{sproblem}[Klein bottle]
-	\gim
-	Show that the reduced homology groups of the Klein bottle $K$ are given by
-	\[
-		\wt H_n(K) = 
-		\begin{cases}
-			\ZZ \oplus \Zc 2 & n = 1 \\
-			0 & \text{otherwise}.
-		\end{cases}
-	\]
-	\begin{hint}
-		It's possible to use two cylinders with $U$ and $V$.
-		This time the matrix is $\begin{bmatrix} 1 & 1 \\ 1 & -1 \end{bmatrix}$
-		or some variant though; in particular, it's injective, so $\wt H_2(X) = 0$.
-	\end{hint}
 \end{sproblem}
