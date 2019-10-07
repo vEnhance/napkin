@@ -409,7 +409,7 @@ The product metric plays well with convergence of sequences.
 	if and only if $d_M(x,x_n) \to 0$ and $d_N(y, y_n) \to 0$.
 \end{proof}
 
-That's see an application of this:
+Let's see an application of this:
 \begin{proposition}
 	[Addition and multiplication are continuous]
 	\label{prop:arithmetic_continuous}
@@ -417,16 +417,12 @@ That's see an application of this:
 	are continuous maps $\RR \times \RR \to \RR$.
 \end{proposition}
 \begin{proof}
-	The fact that $+ \colon \RR \times \RR \to \RR$ is continuous
-	is the easier one,
-	so we prove only multiplication for concreteness
-	(as the details of the proof will not matter).
-	For any $n$ we have
+	For multiplication: for any $n$ we have
 	\begin{align*}
 		x_n y_n &= \left( x + (x_n-x) \right)
 		\left( y + (y_n-y) \right) \\
-		&= xy + y(x_n-x) + x(y_n-y) + (x_n-x)(y_n-y)
-		\implies \left\lvert x_n y_n - xy \right\rvert \\
+		&= xy + y(x_n-x) + x(y_n-y) + (x_n-x)(y_n-y) \\
+		\implies \left\lvert x_n y_n - xy \right\rvert
 		&\le \left\lvert y \right\rvert
 			\left\lvert x_n - x \right\rvert
 		+ \left\lvert x \right\rvert
@@ -434,7 +430,13 @@ That's see an application of this:
 		+ \left\lvert x_n - x \right\rvert
 			\left\lvert y_n - y \right\rvert.
 	\end{align*}
-	As $n \to \infty$, all three terms on the right-hand side tend to zero.
+	As $n \to \infty$, all three terms on the
+	right-hand side tend to zero.
+	The proof that $+ \colon \RR \times \RR \to \RR$ is continuous
+	is similar (and easier): one notes for any $n$ that
+	\[ |(x_n + y_n) - (x+y)| \le |x_n-x| + |y_n-y| \]
+	and both terms on the right-hand side
+	end to zero as $n \to \infty$.
 \end{proof}
 \Cref{prob:subtract_divide} covers the other two operations,
 subtraction and division.
