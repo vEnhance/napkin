@@ -357,3 +357,24 @@ Thus this local homology group only depends on the space near $p$.
 	What are the local homology groups of points in $X$?
 	% http://math.stackexchange.com/questions/350667/local-homology-group-a-homeomorphism-takes-the-boundary-to-the-boundary
 \end{problem}
+
+\begin{problem}
+	[Brouwer-Jordan separation theorem,
+	generalizing Jordan curve theorem]
+	\yod
+	Let $X \subseteq \RR^n$ be a subset
+	which is homeomorphic to $S^{n-1}$.
+	Prove that $\RR^n \setminus X$
+	has exactly two path-connected components.
+	\begin{hint}
+		For any $n$, prove by induction for $k=1,\dots,n-1$ that
+		(a) if $X$ is a subset of $S^n$ homeomorphic to $D^k$
+		then $\wt H_i(S^n \setminus X) = 0$;
+		(b) if $X$ is a subset of $S^n$ homeomorphic to $S^k$
+		then $\wt H_i(S^n \setminus X) = \ZZ$ for $i=n-k-1$
+		and $0$ otherwise.
+	\end{hint}
+	\begin{sol}
+		This is shown in detail in Section 2.B of Hatcher.
+	\end{sol}
+\end{problem}
