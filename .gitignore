@@ -2,7 +2,6 @@ Napkin.*
 !Napkin.tex
 DRAFT-*.tex
 
-asy/*
 
 .log
 .dropbox
@@ -34,3 +33,4 @@ asy/*
 drafts/**/*.bib
 keepsakes/*
 !media/**
+asy/*
