@@ -277,14 +277,14 @@ The proof here readily adapts by shifting.
 \end{theorem}
 
 \begin{example}
-	[Silly example of monotonocity]
+	[Silly example of monotonicity]
 	Consider the sequence defined by
 	\begin{align*}
 		a_1 &= 1.2 \\
 		a_2 &= 1.24 \\
-		a_3 &= 1.1248 \\
-		a_4 &= 1.124816 \\
-		a_5 &= 1.12481632 \\
+		a_3 &= 1.248 \\
+		a_4 &= 1.24816 \\
+		a_5 &= 1.2481632 \\
 		&\vdotswithin=
 	\end{align*}
 	and so on, where in general we stuck
@@ -459,7 +459,8 @@ in the following sense.
 
 	Conversely, if such $M$ exists then we have
 	$s_1 \le s_2 \le \dots < M$.
-	Then we contend the sequence $s_n$ converges to $M = \sup_n s_n$.
+	Then we contend the sequence $s_n$ converges to
+	$L \defeq \sup_n s_n < \infty$.
 	(If you read the proof that completeness implies Cauchy,
 	the picture is nearly the same here, but simpler.)
 	\begin{center}
@@ -469,8 +470,8 @@ in the following sense.
 		label("$\mathbb R$", (8,0), dir(-90));
 		draw( (3.1,1)--(3.1,-1), red );
 		draw( (2.4,1.5)--(2.4,-1.5), deepgreen );
-		label("$M$", (3.1,-1), dir(-45), red);
-		label("$M-\varepsilon$", (2.4,1.5), dir(90), deepgreen);
+		label("$L$", (3.1,-1), dir(-45), red);
+		label("$L-\varepsilon$", (2.4,1.5), dir(90), deepgreen);
 		dot("$s_1$", (-5, 0), dir(-90), blue);
 		dot("$s_2$", (-4, 0), dir(-90), blue);
 		dot("$s_3$", (-1.7, 0), dir(-90), blue);
@@ -486,9 +487,9 @@ in the following sense.
 	\end{center}
 
 	Indeed, this means for any $\eps$ there
-	are infinitely many terms of the sequence exceeding $M-\eps$;
-	but since the sequence is monotic, once $s_n \ge M-\eps$
-	for some $N$ then $s_{n'} \ge M-\eps$ for all $n \ge n'$.
+	are infinitely many terms of the sequence exceeding $L-\eps$;
+	but since the sequence is monotic, once $s_n \ge L-\eps$
+	for some $N$ then $s_{n'} \ge L-\eps$ for all $n \ge n'$.
 	This implies convergence.
 \end{proof}
 
