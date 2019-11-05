@@ -317,7 +317,7 @@ Don't worry, we're about to define those in just a moment.
 Here is one other great use of monotonic sequences.
 \begin{definition}
 	Let $a_1$, $a_2$, \dots be a sequence
-	(not necessarily monotonic) which is bounded above.
+	(not necessarily monotonic) which is bounded below.
 	We define
 	\[
 		\limsup_{n \to \infty} a_n
@@ -328,14 +328,16 @@ Here is one other great use of monotonic sequences.
 	We set $\limsup_{n \to \infty} a_n$ to be $+\infty$
 	if $a_n$ is not bounded above.
 
-	The \vocab{limit infimum} is defined similarly,
-	with $\liminf_{n \to \infty} a_n = -\infty$
+	If $a_n$ is bounded above,
+	the \vocab{limit infimum} $\liminf_{n \to \infty} a_n$
+	is defined similarly.
+	In particular, $\liminf_{n \to \infty} a_n = -\infty$
 	if $a_n$ is not bounded below.
 \end{definition}
 \begin{exercise}
-	Show that this definition makes sense,
-	by checking that the supremums are non-decreasing,
-	and bounded above.
+	Show that these definitions make sense,
+	by checking that the supremums are non-increasing,
+	and bounded below.
 \end{exercise}
 We can think of $\limsup_n a_n$ as
 ``supremum, but allowing finitely many terms to be discarded''.
@@ -489,7 +491,7 @@ in the following sense.
 	Indeed, this means for any $\eps$ there
 	are infinitely many terms of the sequence exceeding $L-\eps$;
 	but since the sequence is monotonic, once $s_n \ge L-\eps$
-	for some $N$ then $s_{n'} \ge L-\eps$ for all $n \ge n'$.
+	then $s_{n'} \ge L-\eps$ for all $n' \ge n$.
 	This implies convergence.
 \end{proof}
 
@@ -541,7 +543,7 @@ Then, rearrangement works great.
 	Suppose $\sum_k a_k$ converges to $L$,
 	and $b_n$ is a rearrangement.
 	Let $\eps > 0$.
-	We will show that sum partial sums of $b_n$
+	We will show that the partial sums of $b_n$
 	are eventually within $\eps$ of $L$.
 
 	The hypothesis means that there is a large $N$ in terms of $\eps$
@@ -654,7 +656,7 @@ we \emph{deliberately} require that $x \ne p$.
 
 	As $f(0) = 1$, this function is also discontinuous at $x = 0$.
 	However, if we change the definition so that $f(0) = 0$ instead,
-	then $f$ becomes continuous.
+	then $f$ becomes continuous at $0$.
 \end{example}
 
 \begin{example}
