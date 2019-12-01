@@ -1,6 +1,6 @@
 \chapter{Vector spaces}
 This is a pretty light chapter.
-The point of it is to just define what a vector space and a basis are.
+The point of it is to define what a vector space and a basis are.
 These are intuitive concepts that you may already know.
 
 \section{The definitions of a ring and field}
@@ -133,7 +133,7 @@ Now let me write the actual rules for how this multiplication behaves.
 	Sorry about that, but it's kind of hard to avoid, and the point
 	of the axioms is that these additions should be related.
 	I'll try to remember to put $r \cdot m$ for the multiplication of the module
-	and just $r_1r_2$ for the multiplication of $R$.
+	and $r_1r_2$ for the multiplication of $R$.
 \end{abuse}
 
 \begin{ques}
@@ -238,7 +238,7 @@ distinct things are exactly the same.
 \end{definition}
 
 For example, while we technically wrote $\RR^2 = X \oplus Y$,
-since each of $X$ and $Y$ is just a copy of $\RR$,
+since each of $X$ and $Y$ is a copy of $\RR$,
 we may as well have written $\RR^2 \cong \RR \oplus \RR$.
 
 \begin{abuse}
@@ -270,7 +270,7 @@ and each of the summands is really just a copy of $\RR$ at heart.
 The idea of a basis, the topic of this section,
 gives us another way to capture the notion that
 \[ V = \left\{ ax^2+bx+c \mid a,b,c \in \RR \right\} \]
-is just sums of copies of $\{1,x,x^2\}$.
+is sums of copies of $\{1,x,x^2\}$.
 This section should be very intuitive, if technical.
 If you can't see why the theorems here ``should'' be true,
 you're doing it wrong.
@@ -316,7 +316,7 @@ it fails for two reasons:
 	\ii It's not possible to write $x^2$ as a sum of elements of $S$.
 	So $S$ fails to be spanning.
 \end{itemize}
-With these new terms, we can just say a basis is a linearly independent and spanning set.
+With these new terms, we can say a basis is a linearly independent and spanning set.
 
 \begin{example}[More example of bases]
 	\listhack
@@ -427,9 +427,11 @@ On the other hand, the set of all polynomials
 $\RR[x]$ is \emph{infinite-dimensional}
 (which should be intuitively clear).
 
-A basis $e_1, \dots, e_n$ of $V$ is really cool because it means that to specify $v \in V$, I just have to specify $a_1, \dots, a_n \in k$,
+A basis $e_1, \dots, e_n$ of $V$ is really cool
+because it means that to specify $v \in V$,
+I only have to specify $a_1, \dots, a_n \in k$,
 and then let $v = a_1 e_1 + \dots + a_n e_n$.
-You can even think of $v$ as just $\left( a_1, \dots, a_n \right)$.
+You can even think of $v$ as $\left( a_1, \dots, a_n \right)$.
 % In a way I'll make precise in a moment, $V$ is actually isomorphic to just $k^{\oplus n}$.
 To put it another way, if $V$ is a $k$-vector space we always have
 \[ V = e_1 k \oplus e_2 k \oplus \dots \oplus e_n k. \]
@@ -492,7 +494,7 @@ Note that this notion of isomorphism really only cares about the size of the bas
 	But this seems kind of rude.
 	Spaces often are more than just triples: $ax^2+bx+c$ is a polynomial,
 	and so it has some ``essence'' to it that you'd lose if you
-	just compressed it into $(a,b,c)$.
+	compressed it into $(a,b,c)$.
 
 	Moreover, a lot of spaces, like the set of vectors $(x,y,z)$ with $x+y+z=0$,
 	do not have an obvious choice of basis.
@@ -529,11 +531,12 @@ Specifically, there are unique $a_{11}, a_{21}, \dots, a_{n1} \in k$ such that
 \[ T(e_1) = a_{11} w_1 + a_{21} w_2 + \dots + a_{n1} w_n. \]
 So rather than telling you the value of $T(e_1)$ in some abstract space $W$,
 I could just tell you what $a_{11}, a_{21}, \dots, a_{n1}$ were.
-Then I'd just repeat this for $T(e_2)$, $T(e_3)$, all the way up to $T(e_m)$,
+Then I'd repeat this for $T(e_2)$, $T(e_3)$, all the way up to $T(e_m)$,
 and that would tell you everything you need to know about $T$.
 
 That's where the matrix $T$ comes from!
-It's just a concise way of writing down all $mn$ numbers I need to tell you.
+It's a concise way of writing down all $mn$ numbers
+I need to tell you.
 To be explicit, the matrix for $T$ is defined as the array
 \begin{align*}
 	T &= \underbrace{%
@@ -757,7 +760,7 @@ to an isomorphic copy in $W$.
 
 A corollary of this (which you should have expected anyways)
 is the so called rank-nullity theorem,
-which is just the analog of the first isomorphism theorem.
+which is the analog of the first isomorphism theorem.
 \begin{theorem}
 	[Rank-nullity theorem]
 	\label{thm:rank_nullity}
@@ -882,7 +885,7 @@ the maps and to simplify proofs, but ultimately writing
 theorems and definitions in their \emph{morally correct} form.
 I hope that this has both the advantage of giving the ``right'' definitions
 while being concrete enough to be digested.
-But I would just like to say for the record that,
+But I would like to say for the record that,
 if I had to pick between the high school approach and the 55a approach,
 I would pick 55a in a heartbeat.
 
