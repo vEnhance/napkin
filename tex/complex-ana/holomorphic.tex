@@ -16,7 +16,7 @@ This line is not terribly discerning -- you can construct a lot of unfortunate f
 Here are some examples.
 \begin{example}
 	[Optional: evil real functions]
-	You can skim over these very quickly: they're just here to make a point.
+	You can skim over these very quickly: they're only here to make a point.
 	\begin{enumerate}[(a)]
 		\ii The \vocab{Devil's Staircase} (or Cantor function)
 		is a continuous function $H : [0,1] \to [0,1]$
@@ -61,8 +61,8 @@ that still doesn't tell you anything about the function as a whole.
 It could be literally anything, because it's somehow possible to ``fuse together'' smooth functions.
 
 So what about complex functions?
-If you just consider them as functions $\RR^2 \to \RR^2$, you now have the interesting property
-that you can integrate along things that are not just line segments: you can write integrals
+If you consider them as functions $\RR^2 \to \RR^2$, you now have the interesting property
+that you can integrate along things that are not line segments: you can write integrals
 across curves in the plane.
 But $\CC$ has something more: it is a \emph{field}, so you can \emph{multiply} and \emph{divide} two complex numbers.
 
@@ -82,9 +82,9 @@ from which all other results are more or less corollaries:
 \end{itemize}
 Some of the resulting corollaries:
 \begin{itemize}
-	\ii It'll turn out that knowing just the values of a holomorphic function
+	\ii It'll turn out that knowing the values of a holomorphic function
 	on the boundary of the unit circle will tell you the values in its interior.
-	\ii Knowing just the values of the function at $1$, $\half$, $\frac13$, \dots
+	\ii Knowing the values of the function at $1$, $\half$, $\frac13$, \dots
 	are enough to determine the whole function!
 	\ii Bounded holomorphic functions $\CC \to \CC$ must be constant
 	\ii And more\dots
@@ -240,7 +240,7 @@ Let's see an example of a contour integral.
 	otherwise the integrals vanish.
 \end{proof}
 Let me try to explain why this intuitively ought to be true for $m=0$.
-In that case we just have $\oint_\gamma 1 \; dz$.
+In that case we have $\oint_\gamma 1 \; dz$.
 So as the integral walks around the unit circle, it ``sums up'' all the tangent vectors
 at every point (that's the direction it's walking in), multiplied by $1$.
 And given the nice symmetry of the circle, it should come as no surprise that everything cancels out.
@@ -300,7 +300,7 @@ But you probably wouldn't expect there to be \emph{much} of a relation.
 
 As a concrete example, let $\Psi : \CC \to \CC$ be the function $z \mapsto z - \Re[z]$
 (for example, $\Psi(2015+3i) = 3i$). Let's consider two paths from $-1$ to $1$.
-Thus $\beta$ just walking along the real axis, and $\alpha$ which follows an upper semicircle.
+Thus $\beta$ is walking along the real axis, and $\alpha$ which follows an upper semicircle.
 
 \begin{center}
 	\begin{asy}
@@ -349,7 +349,7 @@ but later we'll have a ``Cauchy Integral Formula'' so blah).
 	The subtlety is that $z^{-1}$ is not even defined at $z = 0$.
 	On the other hand, the function $\CC \setminus \{0\} \to \CC$ by $z \mapsto \frac 1z$ \emph{is} holomorphic!
 	The defect now is that $\Omega = \CC \setminus \{0\}$ is not simply connected.
-	So the theorem passes our sanity checks, albeit just barely.
+	So the theorem passes our sanity checks, albeit barely.
 \end{remark}
 
 The typical proof of Cauchy's Theorem assumes additionally
@@ -362,7 +362,7 @@ You can show that if $f : \Omega \to \CC$ has an antiderivative $F : \Omega \to 
 and moreover $\Omega$ is simply connected, then you get a ``fundamental theorem of calculus'', a la
 \[ \oint_\alpha f(z) \; dz = F(\alpha(b)) - F(\alpha(a)) \]
 where $\alpha : [a,b] \to \CC$ is some path.
-So to prove Cauchy-Goursat, you just have to show this antiderivative $F$ exists.
+So to prove Cauchy-Goursat, you only have to show this antiderivative $F$ exists.
 Goursat works very hard to prove the result in the special case that $\gamma$ is a triangle,
 and hence by induction for any polygon.
 Once he has the result for a rectangle, he uses this special case to construct the function $F$ explicitly.
@@ -450,7 +450,7 @@ In fact, that's the central result we're going to use to prove the result.
 	\]
 	As we let $\delta \to 0$, the two walls of the keyhole will cancel each other (because $f$ is continuous,
 	and the walls run in opposite directions).
-	So taking the limit as $\delta \to 0$, we are left with just $\gamma$ and $\gamma_\eps$, 
+	So taking the limit as $\delta \to 0$, we are left with just $\gamma$ and $\gamma_\eps$,
 	which (taking again orientation into account) gives
 	\[
 		\oint_{\gamma} \frac{f(z)}{z-a} \; dz
@@ -458,7 +458,7 @@ In fact, that's the central result we're going to use to prove the result.
 		= \oint_{\gamma_\eps} \frac{f(z)}{z-a} \; dz.
 	\]
 	Thus \textbf{we've managed to replace $\gamma$ with a much smaller circle $\gamma_\eps$ centered around $a$},
-	and the rest is just algebra.
+	and the rest is algebra.
 
 	To compute the last quantity, write
 	\begin{align*}
@@ -476,8 +476,8 @@ In fact, that's the central result we're going to use to prove the result.
 	Thus, all we have to do is show that 
 	\[ \oint_{\gamma_\eps} \frac{f(z)-f(a)}{z-a} \; dz = 0. \]
 	For this we can basically use the weakest bound possible, the so-called $ML$ lemma
-	which I'll just cite without proof:
-	it just says ``bound the function everywhere by its maximum''.
+	which I'll cite without proof:
+	it says ``bound the function everywhere by its maximum''.
 	\begin{lemma}
 		[$ML$ estimation lemma]
 		Let $f$ be a holomorphic function and $\alpha$ a path.
@@ -489,9 +489,9 @@ In fact, that's the central result we're going to use to prove the result.
 	(This is straightforward to prove if you know the definition of length:
 	$L = \int_a^b |\alpha'(t)| \; dt$, where $\alpha : [a,b] \to \CC$.)
 
-	Anyways, as $\eps \to 0$, the quantity $\frac{f(z)-f(a)}{z-a}$ just approaches $f'(a)$,
+	Anyways, as $\eps \to 0$, the quantity $\frac{f(z)-f(a)}{z-a}$ approaches $f'(a)$,
 	and so for small enough $\eps$ (i.e.\ $z$ close to $a$) there's some upper bound $M$.
-	Yet the length of $\gamma_\eps$ is just the circumference $2\pi \eps$.
+	Yet the length of $\gamma_\eps$ is the circumference $2\pi \eps$.
 	So the $ML$ lemma says that
 	\[ \left\lvert \oint_{\gamma_\eps} \frac{f(z)-f(a)}{z-a} \right\rvert
 		\le 2\pi\eps \cdot M \to 0
@@ -587,7 +587,7 @@ The first few results are the most important.
 %	$\left\lvert f(z) \right\rvert < A+B\left\lvert z \right\rvert^n$
 %	for some constants $A$ and $B$,
 %	then $f$ is a polynomial of degree at most $n$.
-%	The proof is just induction on $n$ with the case $n=0$ being the theorem.}
+%	The proof is induction on $n$ with the case $n=0$ being the theorem.}
 \end{sproblem}
 
 \begin{sproblem}[Zeros are isolated]

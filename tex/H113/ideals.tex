@@ -77,7 +77,7 @@ Well, I guess I'll define a ring\footnote{Or,
 	The ring $R$ is \vocab{commutative} if $\times$ is commutative.
 \end{definition}
 \begin{abuse}
-	As usual, we will abbreviate $(R, +, \times)$ to just $R$.
+	As usual, we will abbreviate $(R, +, \times)$ to $R$.
 \end{abuse}
 \begin{abuse}
 	For simplicity, assume all rings are commutative
@@ -150,7 +150,7 @@ Here are some more examples of rings.
 	Happily, polynomial division also does what we expect:
 	if $p(x) \in R[x]$ and $p(a) = 0$,
 	then $(x-a)q(x) = p(x)$ for some polynomial $q$.
-	Proof: just do polynomial long division.
+	Proof: do polynomial long division.
 	With that, note the caveat that
 	\[ x^2-1 \equiv (x-1)(x+1) \pmod 8 \]
 	has \emph{four} roots $1$, $3$, $5$, $7$ in $\Zc8$.
@@ -178,8 +178,9 @@ Here are some more examples of rings.
 \begin{abuse}
 	[Liberal use of adjoinment]
 	Extremely careful readers will detect some abuse in notation here.
-	$\ZZ[i]$ should officially be ``integer-coefficient polynomials in $i$''.
-	However, as $i^2=-1$, a polynomial in $i$ is just the same as
+	$\ZZ[i]$ should officially be
+	``integer-coefficient polynomials in $i$''.
+	However, as $i^2=-1$, a polynomial in $i$ is the same as
 	a Gaussian integer. So not a big deal.
 \end{abuse}
 \begin{example}
@@ -369,12 +370,13 @@ That is,
 \end{definition}
 
 Note that in the second condition, $r$ need not be in $I$!
-So this is stronger than just saying $I$ is closed under multiplication.
+So this is stronger than merely saying $I$ is closed under multiplication.
 \begin{remark}
 	If $R$ is not commutative, we also need the condition $xr \in I$.
 	That is, the ideal is \emph{two-sided}: it absorbs multiplication
 	from both the left and the right.
-	But since most of our rings are commutative we needn't worry with this distinction.
+	But since rings in Napkin are commutative
+	we needn't worry with this distinction.
 \end{remark}
 
 \begin{example}
@@ -403,11 +405,12 @@ More explicitly,
 	\[ S = \left\{ r + I \mid r \in R \right\}. \]
 	These are the equivalence where we say $r_1 \sim r_2$ if $r_1 - r_2 \in I$
 	(think of this as taking ``mod $I$'').
-	To see that these form a ring, we just have to check that the addition
+	To see that these form a ring, we have to check that the addition
 	and multiplication we put on them is well-defined.
 	Specifically, we want to check that if $r_1 \sim s_1$ and $r_2 \sim s_2$,
 	then $r_1 + r_2 \sim s_1 + s_2$ and $r_1r_2 \sim s_1s_2$.
-	We actually already did the first part -- just think of $R$ and $S$ as abelian
+	We actually already did the first part
+	-- just think of $R$ and $S$ as abelian
 	groups, forgetting for the moment that we can multiply.
 	The multiplication is more interesting.
 	\begin{exercise}
@@ -572,7 +575,7 @@ like $(10,15) \subseteq \ZZ$?
 Well, we have by definition that $(10,15)$ is given as a set by
 \[ (10,15) \defeq \left\{ 10x + 15y \mid x,y \in \ZZ \right\}.  \]
 If you're good at number theory you'll instantly
-recognize that this as just $5\ZZ = (5)$.
+recognize that this as $5\ZZ = (5)$.
 Surprise! In $\ZZ$, the ideal $(a,b)$ is exactly $\gcd(a,b) \ZZ$.
 And that's exactly the reason you often see the GCD of two numbers denoted $(a,b)$.
 
@@ -603,7 +606,7 @@ and tell you what the additional condition is in the next chapter.
 
 \begin{example}
 	[Examples of PID's]
-	As just said, for now you should just verify
+	To reiterate, for now you should just verify
 	that these are principal ideal rings,
 	even though we are using the word PID.
 	\begin{enumerate}[(a)]
@@ -696,7 +699,8 @@ left it as a problem at the end of this chapter.
 
 Noetherian rings really shine in algebraic geometry,
 and it's a bit hard for me to motivate them right now,
-other than to just say ``almost all rings you'll ever care about are Noetherian''.
+other than to say
+``most rings you'll encounter are Noetherian''.
 Please bear with me!
 
 \section{\problemhead}
