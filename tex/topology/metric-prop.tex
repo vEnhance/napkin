@@ -26,7 +26,8 @@ from being a bit too large.
 
 \begin{definition}
 	A metric space $M$ is \vocab{bounded}
-	if there is a constant $D$ such that $d(p,q) \le D$ for all $p,q \in M$.
+	if there is a constant $D$ such that
+	$d(p,q) \le D$ for all $p,q \in M$.
 \end{definition}
 You can change the order of the quantifiers:
 \begin{proposition}
@@ -315,7 +316,8 @@ i.e.\ the only examples look quite like the one we've given above.
 \section{\problemhead}
 \begin{dproblem}[Banach fixed point theorem]
 	Let $M = (M,d)$ be a complete metric space.
-	Suppose $T \colon M \to M$ is a continuous map such that for any $p,q \in M$,
+	Suppose $T \colon M \to M$ is a continuous map
+	such that for any $p \neq q \in M$,
 	\[ d\left( T(p), T(q) \right) < 0.999 d(p,q). \]
 	(We call $T$ a \vocab{contraction}.)
 	Show that $T$ has a unique fixed point.
