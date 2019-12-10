@@ -120,11 +120,18 @@ I hope you'll find it useful as well.
 
 \section{Conventions and notations}
 This part describes some of the less familiar notations and definitions
-and settles for once and for all some annoying issues (``is zero a natural number?'').
+and settles for once and for all some annoying issues
+(``is zero a natural number?'').
 Most of these are ``remarks for experts'':
-if something doesn't make sense, you probably don't have to worry about it for now.
+if something doesn't make sense,
+you probably don't have to worry about it for now.
 
 A full glossary of notation used can be found in the appendix.
+
+\subsection{Natural numbers are positive}
+The set $\NN$ is the set of \emph{positive} integers, not including $0$.
+In the set theory chapters, we use $\omega = \{0, 1, \dots\}$
+instead, for consistency with the rest of the book.
 
 \subsection{Sets and equivalence relations}
 This is brief, intended as a reminder for experts.
@@ -177,11 +184,25 @@ This image notation is \emph{not} standard.
 
 \ii If $S \subseteq X$, then the \vocab{restriction} of $f$ to $S$
 is denoted $f \restrict{S}$,
-i.e.\ it is the function $f \restrict{S} : S \to Y$.
+i.e.\ it is the function $f \restrict{S} \colon S \to Y$.
 
-\ii Sometimes functions $f : X \to Y$ are \emph{injective} or \emph{surjective};
-I may emphasize this sometimes by writing $f : X \injto Y$ or $f : X \surjto Y$, respectively.
+\ii Sometimes functions $f \colon X \to Y$
+are \emph{injective} or \emph{surjective};
+I may emphasize this sometimes by writing
+$f \colon X \injto Y$ or $f \colon X \surjto Y$, respectively.
 \end{itemize}
+
+\subsection{Cycle notation for permutations}
+\label{subsec:cycle_notation}
+
+Additionally, a permutation on a finite set may be denoted
+in \emph{cycle notation},
+as described in say \url{https://en.wikipedia.org/wiki/Permutation#Cycle_notation}.
+For example the notation $(1 \; 2 \; 3 \; 4)(5 \; 6 \; 7)$
+refers to the permutation with
+$1 \mapsto 2$, $2 \mapsto 3$, $3 \mapsto 4$, $4 \mapsto 1$,
+$5 \mapsto 6$, $6 \mapsto 7$, $7 \mapsto 5$.
+Usage of this notation will usually be obvious from context.
 
 \subsection{Rings}
 All rings have a multiplicative identity $1$ unless otherwise specified.
@@ -206,11 +227,6 @@ used only in the chapter on cohomology rings:
 
 On the other hand, an \emph{algebra} always has $1$,
 but it need not be commutative.
-
-\subsection{Natural numbers are positive}
-The set $\NN$ is the set of \emph{positive} integers, not including $0$.
-In the set theory chapters, we use $\omega = \{0, 1, \dots\}$
-instead, for consistency with the rest of the book.
 
 \subsection{Choice}
 We accept the Axiom of Choice, and use it freely.
