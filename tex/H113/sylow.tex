@@ -285,12 +285,10 @@ Math is weird.
 
 \section\problemhead
 
-
 \begin{sproblem}
 	[Cauchy's theorem]
 	Let $G$ be a group and let $p$ be a prime dividing $\left\lvert G \right\rvert$.
-	Prove\footnote{
-		Cauchy's theorem can be proved without the Sylow theorems,
+	Prove\footnote{Cauchy's theorem can be proved without the Sylow theorems,
 		and in fact can often be used to give alternate proofs of Sylow.}
 	that $G$ has an element of order $p$.
 	\label{thm:cauchy_group}
@@ -300,13 +298,19 @@ Math is weird.
 	Let $G$ be a finite simple group.
 	Show that $\left\lvert G \right\rvert \neq 56$.
 	\begin{hint}
-		Count Sylow $8$ and $7$ groups and let them intersect.
+		Count Sylow $2$ and $7$ groups and let them intersect.
 	\end{hint}
 	\begin{sol}
-		If not, there exists eight Sylow $7$-groups and seven Sylow $8$-groups
-		(since $n_7 \equiv 1 \pmod 7$, $n_8 \mid 7$, and $n_7, n_8 > 1$).
-		But no two of thees $8+7=15$ groups can intersect at an element other than $1_G$,
-		which is clearly absurd.
+		Suppose $|G|=56$ and $G$ is simple.
+		Consider the Sylow $7$-subgroups;
+		if there are $n_7$ of them we assume $n_7 > 1$ (since $G$ is simple)
+		and $n_7 \equiv 1 \pmod 7$, so $n_7 = 8$.
+		That means there are $(7-1) \cdot 8 = 48$ elements of order $7$ in $G$.
+
+		But consider the Sylow $2$-subgroups.
+		These have $8$ elements each, and we conclude therefore
+		that there is at exactly one Sylow $2$-subgroup.
+		That subgroup is normal, contradiction.
 	\end{sol}
 \end{problem}
 
