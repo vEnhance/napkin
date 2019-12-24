@@ -114,7 +114,7 @@ but it will work fine over the $\QQ_p$, which is all we need.
 
 
 \section{Algebraic perspective}
-\prototype{$1/2 = 1 + 3 + 3^2 + 3^3 + \dots \in \ZZ_3$.}
+\prototype{$-1/2 = 1 + 3 + 3^2 + 3^3 + \dots \in \ZZ_3$.}
 We now construct $\ZZ_p$ and $\QQ_p$.
 I promised earlier that a $p$-adic integer will let you look at
 ``all residues modulo $p^e$'' at once.
@@ -574,7 +574,7 @@ in the following way.
 	[Mahler; see {\cite[Theorem 51.1, Exercise 51.b]{ref:schikof}}]
 	Let $f \colon \ZZ_p \to \QQ_p$ be continuous, and define
 	\begin{equation}
-		a_n = \sum_{k=0}^n \binom nk (-1)^{n-k} f(n).
+		a_n = \sum_{k=0}^n \binom nk (-1)^{n-k} f(k).
 		\label{eq:mahler}
 	\end{equation}
 	Then $\lim_n a_n = 0$ and \[ f(x) = \sum_{n \ge 0} a_n \binom xn. \]

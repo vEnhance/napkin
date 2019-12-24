@@ -23,8 +23,8 @@ for the Riemann integral.
 	\label{ex:1QQindicator}
 	We can define the sequence of functions $g_1$, $g_2$, \dots\ by
 	\[ g_n(x) = \begin{cases}
-			1 & nx \text{ is an integer} \\
-			0 & \text{ else}.
+			1 & (n!)x \text{ is an integer} \\
+			0 & \text{else}.
 		\end{cases} \]
 	Then each $g_n$ is piecewise continuous
 	and hence Riemann integrable on $[0,1]$ (with integral zero),
@@ -129,7 +129,7 @@ Here is the so-called ``monotone convergence theorem''.
 \begin{example}
 	[Monotone convergence gives $\mathbf{1}_\QQ$]
 	This already implies \Cref{ex:1QQindicator}.
-	Letting $g_n$ be the indicator function for $\frac1n\ZZ$
+	Letting $g_n$ be the indicator function for $\frac1{n!}\ZZ$
 	as described in that example, we have $g_n \le \mathbf{1}_\QQ$
 	and $\lim_{n \to \infty} g_n(x) = \mathbf{1}_\QQ(x)$,
 	for each individual $x$.
