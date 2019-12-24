@@ -191,8 +191,11 @@ we can actually change that.
 	For every point $p$ we define the \vocab{stalk} $\SF_p$ to be the set
 	\[ \left\{ (s, U) \mid s \in \SF(U), p \in U \right\} \]
 	modulo the equivalence relation $\sim$ that
-	\[ (s_1,U_1) \sim (s_2, U_2) \text{ if }
-		s_1 \restrict{U_1 \cap U_2} = s_2 \restrict{U_1 \cap U_2}. \]
+	\[ (s_1,U_1) \sim (s_2, U_2)
+		\quad\text{if}\quad
+		s_1 \restrict{V} = s_2 \restrict{V} \]
+	for some open set $V$ with $V \ni p$
+	and $V \subseteq U_1 \cap U_2$.
 	The equivalence classes themselves are called \vocab{germs}.
 \end{definition}
 
