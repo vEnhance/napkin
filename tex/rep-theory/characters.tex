@@ -279,7 +279,7 @@ which give a natural way to deal with the quantity $\chi_V(g)\ol{\chi_W(g)}$.
 		\dim \left\{ x \in V \otimes W^\vee
 		\mid g \cdot x = x \; \forall g \in G  \right\}.
 		\]
-	Now, consider the usual isomorphism $V \otimes W^\vee \to \Hom(W, V)$.
+	Now, consider the natural isomorphism $V \otimes W^\vee \to \Hom(W, V)$.
 	\begin{exercise}
 		Let $g \in G$.
 		Show that under this isomorphism, $T \in \Hom(W, V)$
@@ -367,7 +367,7 @@ a complete set of irreps.
 	This can be geometrically checked to be irreducible,
 	but we can also do this numerically by computing the
 	character directly (this is tedious):
-	it comes out to have $3$, $-1$, $0$, $1$, $-1$
+	it comes out to have $3$, $1$, $0$, $-1$, $-1$
 	which indeed gives norm
 	\[
 		\left< \chi_{\refl_0}, \chi_{\refl_0} \right>
@@ -375,9 +375,9 @@ a complete set of irreps.
 		\frac{1}{4!}
 		\left( 
 			\underbrace{3^2}_{\id}
-			+ \underbrace{6\cdot(-1)^2}_{(\bullet\;\bullet)}
+			+ \underbrace{6\cdot(1)^2}_{(\bullet\;\bullet)}
 			+ \underbrace{8\cdot(0)^2}_{(\bullet\;\bullet\;\bullet)}
-			+ \underbrace{6\cdot(1)^2}_{(\bullet\;\bullet\;\bullet\;\bullet)}
+			+ \underbrace{6\cdot(-1)^2}_{(\bullet\;\bullet\;\bullet\;\bullet)}
 			+ \underbrace{3\cdot(-1)^2}_{(\bullet\;\bullet)(\bullet\;\bullet)}
 		\right)
 		= 1.
@@ -398,8 +398,8 @@ a complete set of irreps.
 			\Ctriv & 1 & 1 & 1 & 1 & 1 \\
 			\Csign & 1 & -1 & 1 & -1 & 1 \\ 
 			\CC^2 & 2 & 0 & -1 & 0 & 2 \\ 
-			\refl_0 & 3 & -1 & 0 & 1 & -1 \\
-			\refl_0 \otimes \Csign & 3 & 1 & 0 & -1 & -1 \\\hline
+			\refl_0 & 3 & 1 & 0 & -1 & -1 \\
+			\refl_0 \otimes \Csign & 3 & -1 & 0 & 1 & -1 \\\hline
 		\end{array}
 	\]
 \end{example}
@@ -411,7 +411,7 @@ a complete set of irreps.
 	Let $W$ be a complex representation of a finite group $G$.
 	Let $V_1$, \dots, $V_r$ be the complex irreps of $G$
 	and set $n_i = \left< \chi_W, \chi_{V_i} \right>$.
-	Prove that each $n_i$ is a positive integer and
+	Prove that each $n_i$ is a non-negative integer and
 	\[ W = \bigoplus_{i=1}^r V_i^{\oplus n_i}. \]
 	\begin{hint}
 		Obvious.
