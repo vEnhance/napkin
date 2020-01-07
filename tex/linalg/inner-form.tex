@@ -209,9 +209,10 @@ we can talk both about the norm and orthogonality.
 The inner form equips our vector space with a notion of distance, which we call the norm.
 \begin{definition}
 	Let $V$ be an inner product space.
-	The \vocab{norm} of $v \in V$ is defined by 
+	The \vocab{norm} of $v \in V$ is defined by
 	\[ \norm{v} = \sqrt{\left<v,v\right>}. \]
-	This definition makes sense because we assumed our form to be positive definite,
+	This definition makes sense because
+	we assumed our form to be positive definite,
 	so $\left< v,v\right>$ is a nonnegative real number.
 \end{definition}
 
@@ -519,4 +520,16 @@ is exactly the one which ensures the infinite sum makes sense.
 	\[ \left< a, b\right> = \sum_i a_i b_i. \]
 	Is this a Hilbert space?
 	If so, identify a Hilbert basis.
+\end{problem}
+
+\begin{problem}
+	[Kuratowski embedding]
+	A \vocab{Banach space} is a normed vector space $V$,
+	such that the corresponding metric space is complete.
+	(So a Hilbert space is a special case of a Banach space.)
+
+	Let $(M,d)$ be any metric space.
+	Prove that there exists a Banach space $X$
+	and an injective function $f \colon M \injto X$
+	such that $d(x,y) = \norm{f(x)-f(y)}$ for any $x$ and $y$.
 \end{problem}
