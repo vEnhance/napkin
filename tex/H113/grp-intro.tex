@@ -277,14 +277,20 @@ More examples:
 	and $g^{-n} = (g\inv)^n$.
 \end{abuse}
 
-If you did functional equations at the IMO, you might know that you can actually determine a lot about a function just by knowing a few properties of it.
-For example, if you know that $f : \QQ \to \RR$ satisfies $f(x+y) = f(x) + f(y)$, then you actually can show that $f(x) = cx$ for some $c \in \RR$.
-(This is called Cauchy's functional equation.)
+In mathematics, a common theme is to require
+that objects satisfy certain minimalistic properties,
+with certain examples in mind,
+but then ignore the examples on paper
+and try to deduce as much as you can just from the properties alone.
+(Math olympiad veterans are likely familiar with
+``functional equations''
+in which knowing a single property about a function
+is enough to determine the entire function.)
+Let's try to do this here,
+and see what we can conclude just from knowing \Cref{def:group}.
 
-In the same vein, we can try to deduce some properties that a group must have just from \Cref{def:group}.
-(In fact, this really is a functional equation: $\star$ is just a function $G \times G \to G$.)
-
-It is a law in Guam and 37 other states that I now state the following proposition.
+It is a law in Guam and 37 other states that
+I now state the following proposition.
 \begin{fact}
 	Let $G$ be a group.
 	\begin{enumerate}[(a)]
@@ -294,7 +300,7 @@ It is a law in Guam and 37 other states that I now state the following propositi
 	\end{enumerate}
 \end{fact}
 \begin{proof}
-	This is mostly just some formal ``functional-equation'' style manipulations,
+	This is mostly just some formal manipulations,
 	and you needn't feel bad skipping it on a first read.
 	\begin{enumerate}[(a)]
 		\ii If $1$ and $1'$ are identities, then $1 = 1 \star 1' = 1'$.
@@ -320,13 +326,14 @@ Now we state a slightly more useful proposition.
 Finally, we state a very important lemma about groups,
 which highlights why having an inverse is so valuable.
 \begin{lemma}[Left multiplication is a bijection]
-	Let $G$ be a group, and pick a $g \in G$. 
+	Let $G$ be a group, and pick a $g \in G$.
 	Then the map $G \to G$ given by $x \mapsto gx$ is a bijection.
 	\label{lem:group_mult_biject}
 \end{lemma}
 \begin{exercise}
 	Check this by showing injectivity and surjectivity directly.
-	(If you don't know what these words mean, consult \Cref{ch:sets_functions}.)
+	(If you don't know what these words mean,
+	consult \Cref{ch:sets_functions}.)
 \end{exercise}
 \begin{example}
 	Let $G = \Zm 7$ (as in \Cref{def:mult_mod_p}) and pick $g=3$.
