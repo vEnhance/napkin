@@ -127,8 +127,8 @@ In what follows $p$ and $q$ will always denote prime numbers.
 	We claim this is a nontrivial normal subgroup of $G$.
 	It is easy to check $H$ is normal,
 	and since $|C| > 1$ we have that $H$ is nontrivial.
-	Each element of $H$ acts trivially in $G$,
-	so since $V$ is nontrivial and irreducible $H \neq G$.
+	As represented by $V$ each element of $H$ acts trivially in $G$,
+	so since $V$ is nontrivial and irreducible, $H \neq G$.
 	This contradicts the assumption that $G$ was simple.
 \end{proof}
 
@@ -195,7 +195,7 @@ to prove the result.
 	be the irreps of $G$.
 	Let's consider the map $T \colon \CC[G] \to \CC[G]$
 	which has matrix $M_G$ in the usual basis of $\CC[G]$, namely
-	\[ T = T(\{x_g\}) = \sum_{g \in G} x_g \rho(g) \in \Mat(V). \]
+	\[ T : T(\{x_g\}_{g \in G}) = \sum_{g \in G} x_g \rho(g) \in \Mat(V). \]
 	Thus we want to examine $\det T$.
 
 	But we know that $V = \bigoplus_{i=1}^r V_i^{\oplus \dim V_i}$
@@ -237,7 +237,7 @@ to prove the result.
 			If $\dim V_i = k$, and $1_G \neq g \in G$, then
 			\[
 				\chi_{V_i} (g)
-				\text{ is the coefficient of } x_g^{k-1} x_{1_G}.
+				\text{ is the coefficient of } x_g x_{1_G}^{k-1}.
 			\]
 		\end{exercise}
 		Thus, we are done. \qedhere
