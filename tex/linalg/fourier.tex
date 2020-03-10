@@ -227,7 +227,8 @@ and use Fourier analysis in order to interchange the order of summation.
 	under pointwise multiplication
 	hence isomorphic to $(\ZZ/2\ZZ)^{\oplus n}$.
 	Assume we pick the dot product defined by
-	\[ \xi \cdot x = \half \sum_i \frac{\xi_i-1}{2} \cdot \frac{x_i-1}{2} \]
+	\[ \left< \xi, x \right>
+		= \half \sum_i \frac{\xi_i-1}{2} \cdot \frac{x_i-1}{2} \]
 	where $\xi = (\xi_1, \dots, \xi_n)$ and $x = (x_1, \dots, x_n)$.
 
 	We claim this coincides with the first example we gave.
@@ -264,7 +265,7 @@ This is the most famous one, and hence the one you've heard of.
 
 	It is made into an inner product space according to
 	\[ \left< f,g \right>
-		= \frac{1}{2\pi} \int_{[-\pi, \pi]} f(x) \ol{g(x)}. \]
+		= \frac{1}{2\pi} \int_{[-\pi, \pi]} f(x) \ol{g(x)} \; dx. \]
 \end{definition}
 It turns out (we won't prove) that this is an
 (infinite-dimensional) Hilbert space!
@@ -288,7 +289,7 @@ we call this a \vocab{Fourier series}
 to reflect the fact that the index is $n \in \ZZ$.
 \begin{exercise}
 	Show once again
-	\[ \wh f(0) = \frac{1}{2\pi} \int_{[-\pi, \pi]} f(x). \]
+	\[ \wh f(0) = \frac{1}{2\pi} \int_{[-\pi, \pi]} f(x) \; dx. \]
 \end{exercise}
 
 \section{Summary, and another teaser}
@@ -355,7 +356,7 @@ and get a big-name result.
 	Then \[ \sum_\xi |\wh f(\xi)|^2 = \frac{1}{|Z|} \sum_{x \in Z} |f(x)|^2. \]
 	Similarly, if $f \colon [-\pi, \pi] \to \CC$ is square-integrable then
 	its Fourier series satisfies
-	\[ \sum_n |\wh f(n)|^2 = \frac{1}{2\pi} \int_{[-\pi, \pi]} |f(x)|^2. \]
+	\[ \sum_n |\wh f(n)|^2 = \frac{1}{2\pi} \int_{[-\pi, \pi]} |f(x)|^2 \; dx. \]
 \end{corollary}
 \begin{proof}
 Recall that $\left< f,f\right>$ is equal to the
@@ -368,7 +369,7 @@ square sum of the coefficients.
 	Then \[ \wh f(\xi) = \frac{1}{|Z|} \sum_{x \in Z} f(x) \ol{e_\xi(x)}. \]
 	Similarly, if $f : [-\pi, \pi] \to \CC$ is square-integrable then
 	its Fourier series is given by
-	\[ \wh f(n) = \frac{1}{2\pi} \int_{[-\pi, \pi]} f(x) \exp(-inx). \]
+	\[ \wh f(n) = \frac{1}{2\pi} \int_{[-\pi, \pi]} f(x) \exp(-inx) \; dx. \]
 \end{corollary}
 \begin{proof}
 Recall that in an orthonormal basis $(e_\xi)_\xi$,
@@ -412,7 +413,7 @@ A calculus computation gives
 \[  \frac{1}{2\pi} \int_{[-\pi, \pi]} x^2 \; dx = \frac{\pi^2}{3}. \]
 On the other hand, we will now compute all Fourier coefficients.
 We have already that
-\[ \wh f(0) = \frac{1}{2\pi} \int_{[-\pi, \pi]} f(x) \; dx 
+\[ \wh f(0) = \frac{1}{2\pi} \int_{[-\pi, \pi]} f(x) \; dx
 	= \frac{1}{2\pi} \int_{[-\pi, \pi]} x \; dx = 0. \]
 For $n \neq 0$, we have by definition
 (or ``Fourier inversion formula'', if you want to use big words)
@@ -448,6 +449,9 @@ we forbid ``paradoxical'' votes of the form $x_i = y_i = z_i$
 by assuming that people's votes are consistent
 (meaning the preferences are transitive).
 
+
+For brevity, let $x_\bullet = (x_1, \dots, x_n)$
+and define $y_\bullet$ and $z_\bullet$ similarly.
 Then, we can consider a voting mechanism
 \begin{align*}
 	f \colon \{\pm1\}^n &\to \{\pm1\} \\
@@ -463,7 +467,13 @@ such that
 We'd like to avoid situations where the global preference
 $(f(x_\bullet), g(y_\bullet), h(z_\bullet))$ is itself paradoxical.
 
-In fact, we will prove the following theorem:
+Let $\EE f$ denote the average value of $f$ across all $2^n$ inputs.
+Define $\EE g$ and $\EE h$ similarly.
+We'll add an assumption that $\EE f = \EE g = \EE h = 0$,
+which provides symmetry
+(and e.g.\ excludes the possibility that $f$, $g$, $h$
+are constant functions which ignore voter input).
+With that we will prove the following result:
 \begin{theorem}
 	[Arrow Impossibility Theorem]
 	Assume that $(f,g,h)$ always avoids paradoxical outcomes,
@@ -474,9 +484,6 @@ In fact, we will prove the following theorem:
 		\qquad h(z_\bullet) = \pm z_k \]
 	where all three signs coincide.
 \end{theorem}
-The assumption $\EE f = \EE g = \EE h = 0$ provides symmetry
-(and e.g.\ excludes the possibility that $f$, $g$, $h$
-are constant functions which ignore voter input).
 Unlike the usual Arrow theorem, we do \emph{not} assume
 that $f(+1, \dots, +1) = +1$ (hence possibility of anti-dictatorship).
 
@@ -490,7 +497,7 @@ that $f(+1, \dots, +1) = +1$ (hence possibility of anti-dictatorship).
 		\left( -\frac13 \right)^{\left\lvert S \right\rvert} 
 		\left( \wh f(S) \wh g(S) + \wh g(S) \wh h(S) + \wh h(S) \wh f(S) \right).
 		\]
-	Assume for contradiction this equals $0$.
+	Assume that this probability (of a paradoxical outcome) equals $0$.
 	Then, we derive
 	\[ 1 = \sum_{S \subseteq \{1, \dots, n\}}
 		-\left( -\frac13 \right)^{\left\lvert S \right\rvert} 

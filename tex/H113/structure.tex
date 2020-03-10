@@ -111,14 +111,14 @@ In this case, we have a Chinese remainder theorem for elements.
 \begin{theorem}
 	[Chinese remainder theorem for rings]
 	Let $m$ and $n$ be relatively prime elements, meaning $(m) + (n) = (1)$.
-	Then \[ R / (mn) \cong R/m \times R/n. \]
+	Then \[ R / (mn) \cong R/(m) \times R/(n). \]
 \end{theorem}
 Here the ring product is as defined in \Cref{ex:product_ring}.
 \begin{proof}
 	This is the same as the proof of the usual Chinese remainder theorem.
 	First, since $(m,n)=(1)$ we have $am+bn=1$ for some $a$ and $b$.
 	Then we have a map
-	\[ R/m \times R/n \to R/(mn) \quad\text{by}\quad
+	\[ R/(m) \times R/(n) \to R/(mn) \quad\text{by}\quad
 		(r,s) \mapsto r \cdot bn + s \cdot am. \]
 	One can check that this map is well-defined and an isomorphism of rings.
 	(Diligent readers invited to do so.)
@@ -146,8 +146,9 @@ Our structure theorem takes two forms:
 \begin{theorem}
 	[Structure theorem, invariant form]
 	Let $R$ be a PID and let $M$ be any finitely generated $R$-module. Then
-	\[ M \cong \bigoplus_{i=1}^m R/s_i \]
-	for some $s_i$ satisfying $s_1 \mid s_2 \mid \dots \mid s_m$.
+	\[ M \cong \bigoplus_{i=1}^m R/(s_i) \]
+	for some $s_i$ (possibly zero)
+	satisfying $s_1 \mid s_2 \mid \dots \mid s_m$.
 	% These $s_i$ are unique up to multiplication by units.
 \end{theorem}
 \begin{corollary}
