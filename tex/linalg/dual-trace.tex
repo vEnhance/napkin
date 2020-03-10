@@ -134,7 +134,7 @@ Then $V \otimes W$ consists of sums of pure tensors.
 	If you liked the previous example,
 	this fact has a nice interpretation ---
 	not every polynomial in $\RR[x,y] = \RR[x] \otimes_\RR \RR[y]$ factors
-	as a polyonmial in $x$ times a polynomial in $y$
+	as a polynomial in $x$ times a polynomial in $y$
 	(i.e.\ as pure tensors $f(x) \otimes g(y)$).
 	But they all can be written as sums of pure tensors $x^a \otimes y^b$.
 \end{remark}
@@ -259,7 +259,8 @@ So $f$ sends \[ 2e_1 + 5e_2 + 9e_3 \mapsto 2 \cdot 3 + 5 \cdot 4 + 9 \cdot 5 = 7
 Let's make all this precise.
 \begin{proposition}[The dual basis for $V^\vee$]
 	Let $V$ be a finite-dimensional vector space with basis $e_1, \dots, e_n$.
-	For each $i$ consider the function $e_i^\vee : V \to k$ by
+	For each $i$ consider the function $e_i^\vee \colon V \to k$
+	defined by
 	\[
 		e_i^\vee(e_j)
 		= \begin{cases}
@@ -337,7 +338,8 @@ That is, take the map
 So, there's a natural way to interpret any element
 $\xi_1 \otimes w_1 + \dots + \xi_m \otimes w_m \in V^\vee \otimes W$
 as a linear map $V \to W$.
-The claim is that in fact, every linear map $V \to W$ has a unique such interpretation.
+The claim is that in fact, every linear map $V \to W$ has
+such an interpretation.
 
 First, for notational convenience,
 \begin{definition}
@@ -369,9 +371,9 @@ The above is perhaps a bit dense, so here is a concrete example.
 	\[ T = \begin{bmatrix}
 			1 & 2 \\ 3 & 4
 		\end{bmatrix}. \]
-	Then $\Psi$ sends $T$ to
-	\[ T \mapsto e_1^\vee \otimes e_1 + 2e_2^\vee \otimes e_1
-		+ 3e_1^\vee \otimes e_2 + 4e_2^\vee \otimes e_2 \in V^\vee \otimes V. \]
+	Then we have
+	\[ \Psi(e_1^\vee \otimes e_1 + 2e_2^\vee \otimes e_1
+		+ 3e_1^\vee \otimes e_2 + 4e_2^\vee \otimes e_2) = T. \]
 	The beauty is that the $\Psi$ definition is basis-free;
 	thus even if we change the basis,
 	although the above expression will look completely different,
@@ -385,7 +387,7 @@ Despite this, we'll indulge ourselves in using coordinates for the proof.
 	We proceed in two steps:
 	\begin{enumerate}
 		\ii First, we check that $\Psi$ is \emph{surjective};
-		every linear map has at least one representation of this form.
+		every linear map has at least one representation in $V^\vee \otimes W$.
 		To see this, take any $T : V \to W$.
 		Suppose $V$ has basis $e_1$, $e_2$, $e_3$ and that
 		$T(e_1) = w_1$, $T(e_2) = w_2$ and $T(e_3) = w_3$.
