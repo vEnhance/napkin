@@ -122,7 +122,7 @@ can write it in an orthonormal basis as
 \]
 As we've said, this is fantastic:
 not only do we have a basis of eigenvectors,
-but the eignvectors are pairwise orthogonal,
+but the eigenvectors are pairwise orthogonal,
 and so they form an orthonormal basis of $V$.
 \begin{ques}
 	Show that all eigenvalues of $T$ are real.
@@ -204,7 +204,7 @@ But anyways, an example.
 		with eigenvalues $+1$ and $-1$.  So if we measure $\ket\psi$ to $T$,
 		we get $+1$ with probability $1/5$ and $-1$ with probability $4/5$.
 		After this measurement, the original state collapses to
-		$\ket0$ if we measured $0$, and $\ket1$ if we measured $1$.
+		$\ket0$ if we measured $+1$, and $\ket1$ if we measured $-1$.
 		So we never learn the original probabilities.
 
 		\ii Now consider $T = \id$, and arbitrarily
@@ -328,7 +328,7 @@ This does what you would hope for pure tensors in $H$:
 		\otimes
 		\left( \frac{1}{\sqrt2} \ket0_B + \frac{1}{\sqrt2}\ket1_B \right).
 	\]
-	Suppose we measure $\ket\psi$ along 
+	Suppose we measure $\ket\psi$ along
 	\[ M = \id_A \otimes \sigma_z^B. \]
 	The eigenspace decomposition is
 	\begin{itemize}
@@ -338,7 +338,7 @@ This does what you would hope for pure tensors in $H$:
 		$\ket1_A \otimes \ket1_B$.
 	\end{itemize}
 	(We could have used other bases, like $\xup_A \otimes \ket0_B$ and
-	$\xdown_A \otimes \ket0_B$ for the first eigenpsace, but it doesn't matter.)
+	$\xdown_A \otimes \ket0_B$ for the first eigenspace, but it doesn't matter.)
 	Expanding $\ket\psi$ in the four-element basis, we find that
 	we'll get the first eigenspace with probability
 	\[ \left|\frac{i}{\sqrt{10}}\right|^2
@@ -465,8 +465,7 @@ That's what entangled states mean: the qubits somehow depend on each other.
 		\ket{\Psi}_{\text{GHZ}}
 		=
 		\frac{1}{\sqrt2}
-		\left( 
-		\ket0_A \ket0_B \ket0_C
+		\left( \ket0_A \ket0_B \ket0_C
 		- \ket1_A \ket1_B \ket1_C \right).
 	\]
 	Find the value of the measurements along each of
@@ -475,7 +474,7 @@ That's what entangled states mean: the qubits somehow depend on each other.
 		\sigma_x^A \otimes \sigma_y^B \otimes \sigma_y^C, \quad
 		\sigma_x^A \otimes \sigma_x^B \otimes \sigma_x^C.
 	\]
-	As for the paradox: what happens if you multiply all these measurement together?
+	As for the paradox: what happens if you multiply all these measurements together?
 	\begin{hint}
 		$-1$, $1$, $1$, $1$.
 		When we multiply them all together,

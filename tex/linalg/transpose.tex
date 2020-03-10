@@ -1,9 +1,10 @@
 \chapter{Duals, adjoint, and transposes}
 This chapter is dedicated to the basis-free interpretation
 of the transpose and conjugate transpose of a matrix.
+
 Poster corollary: we will see that
 symmetric matrices with real coefficients
-are diagonalizable have real eigenvalues.
+are diagonalizable and have real eigenvalues.
 
 \section{Dual of a map}
 \prototype{The example below.}
@@ -184,7 +185,7 @@ with making mention to dual spaces at all.
 \begin{definition}
 	Let $V$ and $W$ be finite-dimensional inner product spaces,
 	and let $T \colon V \to W$.
-	The \vocab{adjoint} or \vocab{conjugate transpose}
+	The \vocab{adjoint} (or \vocab{conjugate transpose})
 	of $T$, denoted $T^\dagger \colon W \to V$,
 	is defined as follows: for every vector $w \in W$,
 	we let $T^\dagger(w) \in V$ be the unique vector with
@@ -194,10 +195,11 @@ with making mention to dual spaces at all.
 
 Some immediate remarks about this definition:
 \begin{itemize}
-\ii This is well-defined,
+\ii Our $T^\dagger$ is well-defined,
 because $\left< T(-), w \right>_W$ is some function in $V^\vee$,
 and hence by the bijection earlier
 it should be uniquely of the form $\left< -, v \right>$ for some $v \in V$.
+\ii This map $T^\dagger$ is indeed a linear map (why?).
 \ii The niceness of this definition is that it doesn't
 make reference to any basis or even $V^\vee$,
 so it is the ``right'' definition for a inner product space.
@@ -238,9 +240,12 @@ we need the basis to be orthonormal to proceed.
 \begin{theorem}
 	[Adjoints are conjugate transposes]
 	Fix an \emph{orthonormal} basis of a finite-dimensional inner product space $V$.
+	Let $T \colon V \to V$ be a linear map.
 	If we write $T$ as a matrix in this basis,
 	then the matrix $T^\dagger$ (in the same basis)
-	is the \emph{conjugate transpose} of that of $T$.
+	is the \emph{conjugate transpose} of the matrix of $T$;
+	that is, the $(i,j)$th entry of $T^\vee$
+	is the complex conjugate of the $(j,i)$th entry of $T$.
 \end{theorem}
 \begin{proof}
 	One-line version: take $v$ and $w$ to be basis elements,

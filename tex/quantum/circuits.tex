@@ -169,7 +169,7 @@ We now need a different definition of universal for our reversible gates.
 	The gate(s) are \vocab{universal} if they can simulate any Boolean function.
 \end{definition}
 For example, the CNOT gate can simulate the NOT gate,
-using a single ancilla bit $1$ but with no garbage,
+using a single ancilla bit $1$,
 according to the following circuit.
 \[
 	\Qcircuit @C=1em @R=.7em {
@@ -485,7 +485,8 @@ However,
 			\lstick{\ket1} & \gate{H} & \ghost{U_f} & \qw & \\
 		}
 	\]
-	Here the $H$'s are Hadamard gates, and meter at the end of the rightmost wire
+	Here the $H$'s are Hadamard gates,
+	and the meter at the end of the rightmost wire
 	indicates that we make a measurement along the usual $\ket0$, $\ket1$ basis.
 	This is not a typo! Even though classically the top wire is just
 	a repeat of the input information,
