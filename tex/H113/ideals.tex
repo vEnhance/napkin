@@ -148,9 +148,10 @@ Here are some more examples of rings.
 \begin{remark}
 	[Digression on division]
 	Happily, polynomial division also does what we expect:
-	if $p(x) \in R[x]$ and $p(a) = 0$,
+	if $p \in R[x]$ is a polynomial, and $p(a) = 0$,
 	then $(x-a)q(x) = p(x)$ for some polynomial $q$.
 	Proof: do polynomial long division.
+
 	With that, note the caveat that
 	\[ x^2-1 \equiv (x-1)(x+1) \pmod 8 \]
 	has \emph{four} roots $1$, $3$, $5$, $7$ in $\Zc8$.
@@ -177,15 +178,15 @@ Here are some more examples of rings.
 \end{example}
 \begin{abuse}
 	[Liberal use of adjoinment]
-	Extremely careful readers will detect some abuse in notation here.
+	Careful readers will detect some abuse in notation here.
 	$\ZZ[i]$ should officially be
-	``integer-coefficient polynomials in $i$''.
-	However, as $i^2=-1$, a polynomial in $i$ is the same as
-	a Gaussian integer. So not a big deal.
+	``integer-coefficient polynomials in a variable $i$''.
+	However, it is understood from context that $i^2=-1$;
+	and a polynomial in $i = \sqrt{-1}$ ``is'' a Gaussian integer.
 \end{abuse}
 \begin{example}
 	[Cube root of $2$]
-	As another example:
+	As another example (using the same abuse of notation):
 	\[ \ZZ[\sqrt[3]{2}] = \left\{ a + b\sqrt[3]{2} + c\sqrt[3]4
 		\mid a,b,c \in \ZZ \right\}. \]
 \end{example}
@@ -445,6 +446,17 @@ The better way to think about it is
 For example, modding out by $5\ZZ$ means that we consider
 all elements in $\ZZ$ divisible by $5$ to be zero.
 This gives you the usual modular arithmetic!
+
+\begin{exercise}
+	Earlier, we wrote $\ZZ[i]$ for the Gaussian integers,
+	which was a slight abuse of notation.
+	Convince yourself that this ring
+	could instead be written as $\ZZ[x] / (x^2+1)$,
+	if we wanted to be perfectly formal.
+	(We will stick with $\ZZ[i]$ though --- it's more natural.)
+
+	Figure out the analogous formalization of $\ZZ[\sqrt[3]{2}]$.
+\end{exercise}
 
 \section{Generating ideals}
 \prototype{In $\ZZ$, the ideals are all of the form $(n)$.}
