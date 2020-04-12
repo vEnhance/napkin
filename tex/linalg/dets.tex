@@ -253,19 +253,23 @@ without any reference to matrices.
 	Why does $\Lambda^n(S \circ T) = \Lambda^n(S) \circ \Lambda^n(T)$?
 \end{ques}
 In this way, we also get \[ \det(S \circ T) = \det(S) \det(T) \] for free.
-The general nasty formula for a determinant
-in terms of the matrix also follows from our work,
-and is just a generalization of the work we did for $n=2$.
-Simply write out
-\[ \left( a_{11}e_1 + a_{21}e_2 + \dots \right) \wedge \dots \wedge
-	\left( a_{1n}e_1 + a_{2n}e_2 + \dots + a_{nn} e_n \right)
-\]
-and do a full expansion.
-\begin{exercise}
-	Convince yourself this gives the right answer.
-	(For example, expand this for $n=3$.)
-\end{exercise}
 
+More generally if we replace $2$ by $n$,
+an write out the result of expanding
+\[ \left( a_{11}e_1 + a_{21}e_2 + \dots \right) \wedge \dots \wedge
+	\left( a_{1n}e_1 + a_{2n}e_2 + \dots + a_{nn} e_n \right) \]
+then you will get the formula
+\[ \det(A) = \sum_{\sigma \in S_n} \opname{sgn}(\sigma)
+	a_{1, \sigma(1)} a_{2, \sigma(2)} \dots a_{n, \sigma(n)} \]
+called the \vocab{Leibniz formula} for determinants.
+American high school students will recognize it;
+this is (unfortunately) taught as the definition of the determinant,
+rather than a corollary of the better definition using wedge products.
+
+\begin{exercise}
+	Verify that expanding the wedge product
+	yields the Leibniz formula for $n=3$.
+\end{exercise}
 
 \section{Characteristic polynomials, and Cayley-Hamilton}
 Let's connect with the theory of eigenvalues.
