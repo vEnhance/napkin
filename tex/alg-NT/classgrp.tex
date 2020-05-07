@@ -494,15 +494,25 @@ We can now put everything we have together to obtain the great Minkowski bound.
 \begin{proof}
 	This is a matter of putting all our ingredients together.
 	Let's see what things we've defined already:
-	\begin{diagram}
-		K & \rInj^\iota & \RR^{r_1} \times \CC^{r_2} & \rTo^\tau & \RR^n & \\
-		&& \text{box } S & \rMapsto & \tau\im(S)
-		& \quad\text{with volume } 2^{r_1} \left( \frac\pi2 \right)^{r_2} \frac{M^n}{n!} \\
-		\OO_K && \rMapsto && \text{Lattice } L
-		& \quad\text{with mesh } 2^{-r_2} \sqrt{\left\lvert \Delta_K \right\rvert} \\
-		\ka && \rMapsto && \text{Lattice } L_\ka
-		& \quad\text{with mesh } 2^{-r_2} \sqrt{\left\lvert \Delta_K \right\rvert} \Norm(\ka)
-	\end{diagram}
+	\begin{center}
+	\begin{tikzcd}
+		K \ar[r, "\iota", hook]
+			& \RR^{r_1} \times \CC^{r_2} \ar[r, "\tau"]
+			& \RR^n \\
+		& \text{box } S \ar[r, mapsto]
+			& \tau\im(S)
+			& \quad\text{with volume }
+			2^{r_1} \left( \frac\pi2 \right)^{r_2} \frac{M^n}{n!} \\
+		\OO_K \ar[rr, mapsto]
+			&& \text{Lattice } L
+			& \quad\text{with mesh }
+			2^{-r_2} \sqrt{\left\lvert \Delta_K \right\rvert} \\
+		\ka \ar[rr, mapsto]
+			&& \text{Lattice } L_\ka
+			& \quad\text{with mesh }
+			2^{-r_2} \sqrt{\left\lvert \Delta_K \right\rvert} \Norm(\ka)
+	\end{tikzcd}
+	\end{center}
 	Pick a value of $M$ such that the mesh of $L_\ka$
 	equals $2^{-n}$ of the volume of the box.
 	Then Minkowski's theorem gives that some $0 \neq \alpha \in \ka$ lands inside the box ---

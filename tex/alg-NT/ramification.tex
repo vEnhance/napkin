@@ -18,11 +18,12 @@ Thus we get a factorization into prime ideals
 We say that each $\kp_i$ is \vocab{above} $(p)$.\footnote{%
 	Reminder that $p \cdot \OO_K$ and $(p)$ mean the same thing, and I'll use both interchangeably.}
 Pictorially, you might draw this as follows:
-\begin{diagram}
-	K & \supset & \OO_K & \kp_i \\
-	\dLine && \dLine & \dLine \\
+\begin{center}
+\begin{tikzcd}
+	K \ar[d, dash] & \supset & \OO_K \ar[d, dash] & \kp_i \ar[d, dash] \\
 	\QQ & \supset & \ZZ & (p)
-\end{diagram}
+\end{tikzcd}
+\end{center}
 Some names for various behavior that can happen:
 \begin{itemize}
 	\ii We say $p$ is \vocab{ramified} if $e_i > 1$ for some $i$.
@@ -246,11 +247,14 @@ Let $\kp$ denote a choice of the $\kp_i$.
 We can look at both the fields $\OO_K / \kp$ and $\ZZ / p = \mathbb F_p$.
 Naturally, since $\OO_K / \kp$ is a finite field we can view it as a field extension of $\OO_K$.
 So we can get the diagram
-\begin{diagram}
-	K & \supset & \OO_K & \kp & & \OO_K / \kp \cong \FF_{p^f} \\
-	\dLine && \dLine & \dLine & & \dLine \\
-	\QQ & \supset & \ZZ & (p) & & \FF_p.
-\end{diagram}
+\begin{center}
+\begin{tikzcd}
+	K \ar[d, dash] & \supset & \OO_K \ar[d, dash] & \kp \ar[d, dash]
+		& \OO_K / \kp \cong \FF_{p^f} \ar[d, dash]  \\
+	\QQ & \supset & \ZZ & (p)
+		& \FF_p.
+\end{tikzcd}
+\end{center}
 At the far right we have finite field extensions, which we know are \emph{really} well behaved.
 So we ask:
 \begin{quote}
@@ -314,15 +318,18 @@ $\{1\} \subseteq I \subseteq D \subseteq G$
 where $G$ is the Galois group (I'm dropping the $\kp$-subscripts now).
 Let's look at the corresponding \emph{fixed fields} via the Fundamental theorem of Galois theory.
 Picture:
-\begin{diagram}
-	\kp \subseteq \OO_K \subseteq & K & \rIsom & \{1\} \\
-	& \dLine^{\text{Ramify}} & & \dLine_e \\
-	& K^I & & I \\
-	& \dLine^{\text{Inert}} & & \dLine_f \\
-	& K^D & & D \\
-	& \dLine^{\text{Split}} & & \dLine_g \\
-	(p) \subseteq \ZZ \subseteq & \QQ & \rIsom & G
-\end{diagram}
+\begin{center}
+\begin{tikzcd}
+	\kp \subset \OO_K \subset
+		& K \ar[r, leftrightarrow] \ar[d, "\text{Ramify}"']
+		& \{1\} \ar[d, "e"] \\
+	\; & K^I \ar[d, "\text{Inert}"'] & I \ar[d, "f"] \\
+	\; & K^D \ar[d, "\text{Split}"'] & D \ar[d, "g"] \\
+	(p) \subset \ZZ \subset
+		& \QQ \ar[r, leftrightarrow]
+		& G
+\end{tikzcd}
+\end{center}
 Something curious happens:
 \begin{itemize}
 	\ii When $(p)$ is lifted into $K^D$ it splits completely into $g$ unramified primes.
@@ -335,11 +342,19 @@ Picture:
 In other words, the process of going from $1$ to $efg$
 can be very nicely broken into the three steps above.
 To draw this in the picture, we get
-\begin{diagram}
-	(p) & \rTo & \kp_1 \dots \kp_g & \rTo & \kp_1 \dots \kp_g & \rTo & (\kp_1 \dots \kp_g)^e \\
-	\{f_i\}: && 1,\dots,1 && f,\dots,f && f,\dots,f \\
-	\QQ & \hLine_{\text{Split}} & K^D & \hLine_{\text{Inert}} & K^I & \hLine_{\text{Ramify}} & K
-\end{diagram}
+\begin{center}
+\begin{tikzcd}
+	(p) \ar[r]
+		& \kp_1 \dots \kp_g \ar[r]
+		& \kp_1 \dots \kp_g \ar[r]
+		& (\kp_1 \dots \kp_g)^e \\
+	\{f_i\}: & 1,\dots,1 & f,\dots,f & f,\dots,f \\
+	\QQ \ar[r, dash, "\text{Split}"]
+		& K^D \ar[r, dash, "\text{Inert}"]
+		& K^I \ar[r, dash, "\text{Ramify}"]
+		& K
+\end{tikzcd}
+\end{center}
 In any case, in the ``typical'' case that there is no ramification,
 we just have $K^I = K$.
 

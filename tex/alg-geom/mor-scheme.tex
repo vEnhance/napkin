@@ -869,11 +869,14 @@ the definition of a morphism of pre-sheaves:
 \begin{ques}
 	Show that this amounts to: for each $U \subseteq X$ we need to specify
 	a morphism $\alpha_U : \SF(U) \to \SG(U)$ such that the diagram
-	\begin{diagram}
-		\SF(U_2) & \rTo^{\alpha_{U_2}} & \SG(U_2) \\
-		\dTo^{\res_{U_1, U_2}} && \dTo_{\res_{U_1, U_2}} \\
-		\SF(U_1) & \rTo_{\alpha_{U_1}} & \SG(U_1)
-	\end{diagram}
+	\begin{center}
+	\begin{tikzcd}
+		\SF(U_2) \ar[r, "\alpha_{U_2}"]
+			\ar[d, "\res_{U_1, U_2}"']
+			& \SG(U_2) \ar[d, "\res_{U_1, U_2}"]\\
+		\SF(U_1) \ar[r, "\alpha_{U_1}"'] & \SG(U_1)
+	\end{tikzcd}
+	\end{center}
 	commutes any time that $U_1 \subseteq U_2$.
 \end{ques}
 However, in the sheaf case we like stalks more than sections because

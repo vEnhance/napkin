@@ -2,11 +2,16 @@
 Throughout this chapter $K/\QQ$ is a Galois extension with Galois group $G$,
 $p$ is an \emph{unramified} rational prime in $K$, and $\kp$ is a prime above it.
 Picture:
-\begin{diagram}
-	K & \supset & \OO_K & \kp & & \OO_K / \kp \cong \FF_{p^f} \\
-	\dLine && \dLine & \dLine & & \dLine \\
-	\QQ & \supset & \ZZ & (p) & & \FF_p
-\end{diagram}
+\begin{center}
+\begin{tikzcd}
+	K \ar[d, dash]
+		& \supset
+		& \OO_K \ar[d, dash]
+		& \kp \ar[d, dash]
+		& \OO_K/\kp \cong \FF_{p^f} \ar[d, dash] \\
+	\QQ & \supset & \ZZ & (p) & \FF_p
+\end{tikzcd}
+\end{center}
 If $p$ is unramified, then one can show there
 is a unique $\sigma \in \Gal(L/K)$ such that
 $\sigma(\alpha) \equiv \alpha^p \pmod{\kp}$ for every prime $p$.
@@ -313,18 +318,24 @@ Specifically:
 
 \section{Frobenius elements behave well with restriction}
 Let $L/\QQ$ and $K/\QQ$ be Galois extensions, and consider the setup
-\begin{diagram}
-	L & \supseteq & \kP & \rDotted & \Frob_{\kP} \in \Gal(L/\QQ)\\
-	\dLine && \dLine && \\
-	K & \supseteq & \kp & \rDotted & \Frob_\kp \in \Gal(K/\QQ) \\
-	\dLine && \dLine && \\
-	\QQ & \supseteq & (p) &&
-\end{diagram}
+\begin{center}
+\begin{tikzcd}
+	L \ar[d, dash] & \supset
+		& \kP \ar[d, dash] \ar[r, dotted]
+		& \Frob_{\kP} \in \Gal(L/\QQ)\\
+	K \ar[d, dash] & \supset
+		& \kp \ar[d, dash] \ar[r, dotted]
+		& \Frob_\kp \in \Gal(K/\QQ) \\
+	\QQ & \supset
+		& (p)
+		&
+\end{tikzcd}
+\end{center}
 Here $\kp$ is above $(p)$ and $\kP$ is above $\kp$.
 We may define
-\[ \Frob_\kp : K \to K
-\quad\text{and}\quad
-\Frob_{\kP} : L \to L \]
+\[ \Frob_\kp \colon K \to K
+	\quad\text{and}\quad
+	\Frob_{\kP} \colon L \to L \]
 and want to know how these are related.
 
 \begin{theorem}
@@ -379,13 +390,20 @@ In fact, we can describe it exactly: viewing $G \cong \Zm q$, we have
 By the fundamental theorem of Galois Theory, there ought to be a degree $2$
 extension of $\QQ$ inside $\QQ(\zeta_q)$ (that is, a quadratic field).
 Call it $\QQ(\sqrt{q^\ast})$, for $q^\ast$ squarefree:
-\begin{diagram}
-	L = \QQ(\zeta_q) & \rIsom & \{1\} \\
-	\dLine^{\frac{q-1}{2}} && \dLine \\
-	K = \QQ(\sqrt{q^\ast}) & \rIsom & H \\
-	\dLine^2 && \dLine \\
-	\QQ & \rIsom & G \\
-\end{diagram}
+\begin{center}
+\begin{tikzcd}
+	L = \QQ(\zeta_q)
+		\ar[d, "\frac{q-1}{2}"', dash]
+		\ar[r, leftrightarrow]
+		& \{1\} \ar[d, dash] \\
+	K = \QQ(\sqrt{q^\ast})
+		\ar[d, "2"', dash]
+		\ar[r, leftrightarrow]
+		& H \ar[d, dash] \\
+	\QQ \ar[r, leftrightarrow]
+		& G
+\end{tikzcd}
+\end{center}
 \begin{exercise}
 	Note that if a rational prime $\ell$ ramifies in $K$,
 	then it ramifies in $L$.
@@ -414,11 +432,16 @@ in the resulting decomposition (so $\kp$ is either $p \cdot \OO_K$ in the inert 
 or one of the primes in the split case).
 Then let ${\kP}$ be above $\kp$.
 It could possibly also split in $K$: the picture looks like
-\begin{diagram}
-	\OO_L = \ZZ[\zeta_q] & \supset {\kP} & \rDotted & \ZZ[\zeta_p]/{\kP} \cong \FF_{p^f} \\
-	\OO_K = \ZZ[\frac{1+\sqrt{q^\ast}}{2}] & \supseteq \kp & \rDotted & \FF_p \text{ or } \FF_{p^2} \\
-	\ZZ & \supseteq (p) & \rDotted & \FF_p
-\end{diagram}
+\begin{center}
+\begin{tikzcd}
+	\OO_L = \ZZ[\zeta_q] & \supset
+		& {\kP} \ar[r, dotted] & \ZZ[\zeta_p]/{\kP} \cong \FF_{p^f} \\
+	\OO_K = \ZZ[\frac{1+\sqrt{q^\ast}}{2}] & \supset
+		& \kp \ar[r, dotted] & \FF_p \text{ or } \FF_{p^2} \\
+	\ZZ & \supset & (p) \ar[r, dotted]
+		& \FF_p
+\end{tikzcd}
+\end{center}
 \begin{ques}
 	Why is $p$ not ramified in either $K$ or $L$?
 \end{ques}
@@ -480,13 +503,15 @@ Next, we introduce a Frobenius $\Frob_{\kP}$ above $(p)$, all the way in $K$;
 this is an element of $G = \Gal(K/\QQ)$.
 Then let $H$ be the group corresponding to the field $E$.
 Diagram:
-\begin{diagram}
-	K & \rIsom & \{1\} && \Frob_{\kP} & \\
-	\dLine && \dLine &&& \\
-	E & \rIsom & H && \kp_1 \dots \kp_g & \qquad f_1 + \dots + f_g = n \\
-	\dLine^n && \dLine_n && \dLine & \\
-	\QQ & \rIsom & G && (p) &
-\end{diagram}
+\begin{center}
+\begin{tikzcd}
+	K \ar[r, leftrightarrow] \ar[d, dash] & \{1\} \ar[d, dash]
+		& \Frob_{\kP} \\
+	E \ar[d, dash, "n"'] \ar[r, leftrightarrow] & H \ar[d, dash, "n"]
+		& \kp_1 \dots \kp_g \ar[d, dash] & f_1 + \dots + f_g = n \\
+	\QQ \ar[r, leftrightarrow] & G & (p)
+\end{tikzcd}
+\end{center}
 Then $\Frob_{\kP}$ induces a \emph{permutation}
 of the $n$ left cosets $gH$ by left multiplication
 (after all, $\Frob_{\kP}$ is an element of $G$ too!).
@@ -595,13 +620,17 @@ And it turns out these coincide even without the assumption that $E$ is monogeni
 	Let $\alpha = \cbrt2$ and $f = x^3-2$, so $E = \QQ(\cbrt2)$.
 	Set $p=5$ and let finally, let $K = \QQ(\cbrt2, \omega)$ be the splitting field.
 	Setup:
-	\begin{diagram}
-		K = \QQ(\cbrt2, \omega) && \kP && x^3-2 = (x-\cbrt2)(x-\cbrt2\omega)(x-\cbrt2\omega^2) \\
-		\dLine~2 && \dLine \\
-		E = \QQ(\sqrt[3]{2}) && \kp && x^3-2 = (x-\cbrt2)(x^2+\cbrt2x+\cbrt4) \\
-		\dLine~3 && \dLine \\
-		\QQ && (5) && x^3-2 \text{ irreducible over } \QQ
-	\end{diagram}
+	\begin{center}
+	\begin{tikzcd}
+		K = \QQ(\cbrt2, \omega) \ar[d, dash, "2"']
+			& \kP \ar[d, dash]
+			& x^3-2 = (x-\cbrt2)(x-\cbrt2\omega)(x-\cbrt2\omega^2) \\
+		E = \QQ(\sqrt[3]{2}) \ar[d, dash, "3"']
+			& \kp \ar[d, dash]
+			& x^3-2 = (x-\cbrt2)(x^2+\cbrt2x+\cbrt4) \\
+		\QQ & (5) & x^3-2 \text{ irreducible over } \QQ
+	\end{tikzcd}
+	\end{center}
 	The three claimed objects now all have shape $2+1$:
 	\begin{enumerate}[(i)]
 		\ii By the Factoring Algorithm, we have
@@ -615,13 +644,13 @@ And it turns out these coincide even without the assumption that $E$ is monogeni
 	Letting $n = \deg f$.
 	Let $H$ be the subgroup of $G = \Gal(K/\QQ)$ corresponding to $E$, so $[G:E] = n$.
 	Pictorially, we have
-	\begin{diagram}
-		K && \{1\} && \kP \\
-		\dLine && \dLine && \dLine \\
-		E = \QQ(\alpha) && H && \kp \\
-		\dLine && \dLine && \dLine \\
-		\QQ && G && (p)
-	\end{diagram}
+	\begin{center}
+	\begin{tikzcd}
+		K \ar[d, dash] & \{1\} \ar[d, dash] & \kP \ar[d, dash] \\
+		E = \QQ(\alpha) \ar[d, dash] & H \ar[d, dash] & \kp \ar[d, dash] \\
+		\QQ & G & (p)
+	\end{tikzcd}
+	\end{center}
 	We claim that (i), (ii), (iii) are all equivalent to
 	\begin{center}
 		(iv) The pattern of the action of $\Frob_{\kP}$ on the $G/H$.
