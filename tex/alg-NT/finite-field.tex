@@ -223,12 +223,17 @@ We can see an example of this again with the finite field of order $9$.
 	and represent it concretely by $\FF_9 = \ZZ[i]/(3)$.
 	Let $\sigma_3 : \FF_9 \to \FF_9$ be $x \mapsto x^3$.
 	We can witness the fate of all nine elements:
-	\begin{diagram}
-		0 & 1 & 2 & i & 1+i & 2+i \\
-		&&& \dIsom^\sigma & \dIsom^\sigma & \dIsom^\sigma \\
-		&&& -i & 1-i & 2-i \\
-	\end{diagram}
-	(As claimed, $0$, $1$, $2$ are the fixed points, so I haven't drawn arrows for them.)
+	\begin{center}
+	\begin{tikzcd}
+		0 & 1 & 2
+			& i \ar[d, leftrightarrow, "\sigma"]
+			& 1+i \ar[d, leftrightarrow, "\sigma"]
+			& 2+i \ar[d, leftrightarrow, "\sigma"] \\
+		&&& -i & 1-i & 2-i
+	\end{tikzcd}
+	\end{center}
+	(As claimed, $0$, $1$, $2$ are the fixed points,
+	so I haven't drawn arrows for them.)
 	As predicted, the Galois group has order two:
 	\[ \Gal(\FF_9/\FF_3) = \left\{ \id, \sigma_3 \right\} \cong \Zc 2. \]
 \end{example}

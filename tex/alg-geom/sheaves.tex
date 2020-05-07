@@ -59,11 +59,14 @@ So here is the official definition of a pre-sheaf.
 		\ii Whenever we have nested subsets
 		\[ U_{\text{small}} \subseteq U_{\text{med}} \subseteq U_{\text{big}} \]
 		the diagram
-		\begin{diagram}
-			\SF(U_{\text{big}}) & \rTo^{\res} & \SF(U_{\text{med}}) \\
-			& \rdTo_\res & \dTo_\res \\
-			&& \SF(U_{\text{small}})
-		\end{diagram}
+		\begin{center}
+		\begin{tikzcd}
+			\SF(U_{\text{big}})
+				\ar[r, "\res"] \ar[rd, "\res"']
+				& \SF(U_{\text{med}}) \ar[d, "\res"] \\
+			& \SF(U_{\text{small}})
+		\end{tikzcd}
+		\end{center}
 		commutes.
 	\end{itemize}
 \end{definition}

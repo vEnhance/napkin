@@ -162,14 +162,16 @@ this implies that $\dim W = \dim V + \dim X$.
 	Consider any $d \ge 0$.
 	Let $S = \CC[x_0, \dots, x_n]$ for brevity.
 	Then
-	\begin{diagram}
-		0 & \rTo & \left[ S / (I \cap J) \right]^d
-			& \rInj & \left[ S / I \right]^d \oplus \left[ S / J \right]^d
-			& \rSurj & \left[ S / (I+J) \right]^d
-			& \rTo & 0 \\
-		&& f & \rMapsto & (f,f) &&&& \\
-		&&&& (f,g) & \rMapsto & f-g &&
-	\end{diagram}
+	\begin{center}
+	\begin{tikzcd}
+		0 \ar[r]
+			& \left[ S / (I \cap J) \right]^d \ar[r, hook]
+			& \left[ S / I \right]^d \oplus \left[ S / J \right]^d \ar[r, two heads]
+			& \left[ S / (I+J) \right]^d \ar[r] & 0 \\
+		& f \ar[r, mapsto] & (f,f) \\
+		&& (f,g) \ar[r, mapsto] & f-g
+	\end{tikzcd}
+	\end{center}
 	is a short exact sequence of vector spaces.
 	Therefore, for every $d \ge 0$ we have that
 	\[
@@ -296,12 +298,16 @@ In fact, this behavior of ``eventually polynomial'' always works.
 
 	Let $S = \CC[x_0, \dots, x_n]$ again.
 	Now, consider the short exact sequence
-	\begin{diagram}
-		0 & \rTo & [S/I]^{d-1} & \rInj^{\times x_0} & [S/I]^d & \rSurj &
-			[S/(I+(x_0))]^d & \rTo & 0 \\
-		&& f & \rMapsto & fx_0 &&&& \\
-		&&&& f & \rMapsto & f. &&
-	\end{diagram}
+	\begin{center}
+	\begin{tikzcd}
+		0 \ar[r]
+			& \left[ S/I \right]^{d-1} \ar[r, hook]
+			& \left[ S / I \right]^d \ar[r, two heads]
+			& \left[ S / (I+(f)) \right]^d \ar[r] & 0 \\
+		& f \ar[r, mapsto] & f \cdot x_0 \\
+		&& f \ar[r, mapsto] & f.
+	\end{tikzcd}
+	\end{center}
 	(The injectivity of the first map follows from the assumption
 	about irreducible components of $\Vp(I)$.)
 	Now exactness implies that
@@ -355,10 +361,14 @@ This is true:
 \begin{proof}
 	Let $S = \CC[x_0, \dots, x_n]$ again.
 	This time the exact sequence is
-	\begin{diagram}
-		0 & \rTo & [S/I]^{d-k} & \rInj^{\times f} & [S/I]^d & \rSurj &
-			[S/(I+(f))]^d & \rTo & 0
-	\end{diagram}
+	\begin{center}
+	\begin{tikzcd}
+		0 \ar[r]
+			& \left[ s/I \right]^{d-k} \ar[r, hook]
+			& \left[ S / I \right]^d \ar[r, two heads]
+			& \left[ S / (I+(f)) \right]^d \ar[r] & 0.
+	\end{tikzcd}
+	\end{center}
 	We leave this olympiad-esque exercise as \Cref{prob:bezout}.
 \end{proof}
 

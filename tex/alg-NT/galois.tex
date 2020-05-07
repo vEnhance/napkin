@@ -9,7 +9,8 @@ The key idea in Galois theory is that of \emph{embeddings},
 which give us another way to get at the idea of the ``conjugate'' we described earlier.
 
 Let $K$ be a number field.
-An \vocab{embedding} $\sigma : K \injto \CC$, is an \emph{injective field homomorphism}:
+An \vocab{embedding} $\sigma \colon K \injto \CC$,
+is an \emph{injective field homomorphism}:
 it needs to preserve addition and multiplication,
 and in particular it should fix $1$.
 \begin{ques}
@@ -160,12 +161,20 @@ Now that I've defined all these ingredients, I can prove:
 	until we eventually get all of $K$, that is,
 	\[ K = \QQ(\alpha_1, \dots, \alpha_n). \]
 	Diagrammatically, this is
-	\begin{diagram}
-		\QQ & \rInj & \QQ(\alpha_1) & \rInj & \QQ(\alpha_1, \alpha_2) & \rInj & \dots & \rInj & K \\
-		\dInj^\id && \dInj^{\tau_1} && \dInj^{\tau_2} && \dots && \dInj_{\tau_m = \sigma} \\
-		\CC & \rTo & \CC & \rTo & \CC & \rTo & \dots & \rTo & \CC \\
-	\end{diagram}
-
+	\begin{center}
+	\begin{tikzcd}
+		\QQ \ar[r, hook] \ar[d, hook, "\id"']
+			& \QQ(\alpha_1) \ar[r, hook] \ar[d, hook, "\tau_1"']
+			& \QQ(\alpha_1, \alpha_2) \ar[r, hook] \ar[d, hook, "\tau_2"']
+			& \dots \ar[r, hook]
+			& K \ar[d, hook, "\tau_m=\sigma"] \\
+		\CC \ar[r]
+			& \CC \ar[r]
+			& \CC \ar[r]
+			& \dots \ar[r]
+			& \CC
+	\end{tikzcd}
+	\end{center}
 	First, we claim there are exactly \[ [\QQ(\alpha_1) : \QQ] \] ways to pick $\tau_1$.
 	Observe that $\tau_1$ is determined by where it sends $\alpha_1$ (since it has to fix $\QQ$).
 	Letting $p_1$ be the minimal polynomial of $\alpha_1$, we see that there are $\deg p_1$ choices for $\tau_1$,
@@ -522,25 +531,16 @@ is the Klein four group
 In that case, the diagram of fields between $\QQ$ and $K$
 matches exactly with the subgroups of $G$, as follows:
 \begin{center}
-\begin{minipage}[t]{4cm}
-	\begin{diagram}
-		& \QQ(\sqrt2, \sqrt 3) & \\
-		\ldLine(1,2) & \dLine & \rdLine(1,2) \\
-		\QQ(\sqrt2) & \QQ(\sqrt 6) & \QQ(\sqrt 3) \\
-		& \ldLine(1,2) \dLine \rdLine(1,2) & \\
-		& \QQ & 
-	\end{diagram}
-\end{minipage}
-\qquad
-\begin{minipage}[t]{4cm}
-	\begin{diagram}
-		& \{\id\} & \\
-		\ldLine(1,2) & \dLine & \rdLine(1,2) \\
-		\{\id,\tau\} & \;\; \{\id, \sigma\tau\} \;\; & \{\id,\sigma\} \\
-		& \ldLine(1,2) \dLine \rdLine(1,2) & \\
-		& G & 
-	\end{diagram}
-\end{minipage}
+\begin{tikzcd}
+	& \QQ(\sqrt2, \sqrt3) \ar[ld, dash] \ar[d, dash] \ar[rd, dash] & \\
+	\QQ(\sqrt2) \ar[rd, dash] & \QQ(\sqrt6) \ar[d, dash] & \QQ(\sqrt3) \ar[ld, dash] \\
+	& \QQ &
+\end{tikzcd}
+\begin{tikzcd}
+	& \{\id\} \ar[ld, dash] \ar[d, dash] \ar[rd, dash] & \\
+	\{\id,\tau\} \ar[rd, dash] & \{\id,\sigma\tau\} \ar[d, dash] & \{\id,\sigma\} \ar[ld, dash] \\
+	& G &
+\end{tikzcd}
 \end{center}
 We see that subgroups correspond to fixed fields.
 That, and much more, holds in general.
@@ -665,11 +665,20 @@ The easier direction is when $K$ is a splitting field.
 Assume $K = F(\alpha_1, \dots, \alpha_n)$ is the splitting field of some separable polynomial $p \in F[x]$
 with $n$ distinct roots $\alpha_1, \dots, \alpha_n$.
 Adjoin them one by one:
-\begin{diagram}
-	F & \rInj & F(\alpha_1) & \rInj & F(\alpha_1, \alpha_2) & \rInj & \dots & \rInj & K \\
-	\dTo^\id && \dTo^{\tau_1} && \dTo^{\tau_2} && \dots && \dTo_{\tau_n = \sigma} \\
-	F & \rInj & F(\alpha_1) & \rInj & F(\alpha_1, \alpha_2) & \rInj & \dots & \rInj & K \\
-\end{diagram}
+\begin{center}
+\begin{tikzcd}
+	F \ar[r, hook] \ar[d, "\id"']
+		& F(\alpha_1) \ar[r, hook] \ar[d, "\tau_1"']
+		& F(\alpha_1, \alpha_2) \ar[r, hook] \ar[d, "\tau_2"']
+		& \dots \ar[r, hook]
+		& K \ar[d, "\tau_n=\sigma"] \\
+	F \ar[r, hook]
+		& F(\alpha_1) \ar[r, hook]
+		& F(\alpha_1, \alpha_2) \ar[r, hook]
+		& \dots \ar[r, hook]
+		& K
+\end{tikzcd}
+\end{center}
 (Does this diagram look familiar?)
 Every map $K \to K$ which fixes $F$ corresponds to an above commutative diagram.
 As before, there are exactly $[F(\alpha_1) : F]$ ways to pick $\tau_1$.
