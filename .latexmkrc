@@ -4,3 +4,4 @@ add_cus_dep("asy","pdf",0,"asy");
 add_cus_dep("asy","tex",0,"asy");
 
 $max_repeat = 12;
+$pdf_mode = 1;
