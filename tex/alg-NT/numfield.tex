@@ -34,7 +34,7 @@ Or do they?
 
 Let's try and figure out exactly what's happening.
 Let $\alpha$ be any complex number.
-We define the \vocab{minimal polynomial} of $\alpha$ over $\QQ$ to be the polynomial such that
+We define a \vocab{minimal polynomial} of $\alpha$ over $\QQ$ to be a polynomial such that
 \begin{itemize}
 	\item $P(x)$ has rational coefficients, and leading coefficient $1$,
 	\item $P(\alpha) = 0$.
@@ -61,6 +61,9 @@ and $R(x) \not\equiv 0$.
 Notice that by plugging in $x = \alpha$, we find that $R(\alpha) = 0$.
 But $\deg R < \deg P$, and $P(x)$ was supposed to be the minimal polynomial.
 That's impossible!
+
+It follows from this and the monotonicity of the minimal polynomial
+that it is unique (when it exists). % Exercise: Find an element in $\CC$ which has no minimal polynomial.
 
 Let's look at a more concrete example.
 Consider $A(x) = x^3-3x^2-2x+2$ from the beginning. 
