@@ -320,7 +320,7 @@ think about prime ideals of localized rings.
 \begin{proof}
 	Consider the homomorphism $\iota \colon A \to S\inv A$.
 	For any prime ideal $\kq \subseteq S\inv A$,
-	its pre-image $\psi\pre(\kq)$ is a prime ideal of $A$
+	its pre-image $\iota\pre(\kq)$ is a prime ideal of $A$
 	(by \Cref{prob:prime_preimage}).
 	Conversely, for any prime ideal $\kp \subseteq A$
 	not meeting $S$,
@@ -412,7 +412,7 @@ but for our purposes we actually only care about the prime ideals.
 \begin{proof}
 	Consider the quotient homomorphism $\psi \colon A \surjto A/I$.
 	For any prime ideal $\kq \subseteq A/I$,
-	its pre-image $\iota\pre(\kq)$ is a prime ideal
+	its pre-image $\psi\pre(\kq)$ is a prime ideal
 	(by \Cref{prob:prime_preimage}).
 	Conversely, for any prime ideal $\kp$
 	with $I \subseteq \kp \subseteq A$,
@@ -434,13 +434,13 @@ but for our purposes we actually only care about the prime ideals.
 	$60\ZZ = \left\{ \dots, -60, 0, 60, 120, \dots \right\}$.
 \end{example}
 
-\section{Localization commute with quotients}
+\section{Localization commutes with quotients}
 \prototype{$(\CC[xy]/(xy))[1/x] \cong \CC[x,x\inv]$.}
 While we are here, we mention a useful result from
 commutative algebra which lets us compute localizations in quotient rings,
 which are surprisingly unintuitive.
 You will \emph{not} have a reason to care about this
-until we reach \Cref{sec:localize_prime_ideal},
+until we reach \Cref{sec:convenient_square},
 and so this is only placed earlier to emphasize that it's
 a purely algebraic fact that we can (and do) state this early,
 even though we will not need it anytime soon.
@@ -525,9 +525,8 @@ And so after all those words, words, words, we have the hideous:
 	where $S\inv I = \left\{ \frac{x}{s} \mid x \in I, s \in S \right\}$.
 \end{theorem}
 \begin{proof}
-	Do you actually care? No? Cool, I didn't either.
-	(Atiyah-Macdonald is the right reference for these
-	type of things in the event that you do care.)
+	Omitted; Atiyah-Macdonald is the right reference for these
+	type of things in the event that you do care.
 \end{proof}
 The notation is a hot mess.
 But when we do calculations in practice, we instead write
