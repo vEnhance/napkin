@@ -430,6 +430,7 @@ are local rings, too.
 \end{example}
 
 \subsection{Computing values: a convenient square}
+\label{sec:convenient_square}
 Very careful readers might have noticed something
 a little uncomfortable in our extended example with $\Spec A$
 with $A = \CC[x,y]$ and $\kp = (x,y)$ the origin.
@@ -448,8 +449,9 @@ Thankfully, no, nothing goes wrong, even in a general ring $A$.
 	be denoted by $\kappa(\kp)$.
 \end{definition}
 
-The following result from commutative algebra
-shows that the order doesn't matter.
+Then the following is a special case of
+\Cref{thm:localization_commute_quotient}
+(localization commutes with quotients):
 \begin{theorem}
 	[The germ-to-value square]
 	Let $A$ be a ring and $\kp$ a prime ideal.
