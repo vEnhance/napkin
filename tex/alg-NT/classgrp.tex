@@ -12,7 +12,7 @@ for instance, this will let us show in some cases that the class group must be t
 Astonishingly, the proof will use Minkowski's theorem, a result from geometry.
 
 \section{The class group}
-\prototype{PID's have trivial class group}
+\prototype{PID's have trivial class group.}
 Let $K$ be a number field,
 and let $J_K$ denote the multiplicative group of fractional ideals of $\OO_K$.
 Let $P_K$ denote the multiplicative group of \vocab{principal fractional ideals}:
@@ -48,7 +48,8 @@ The key insight now is that you might think of this as a \emph{lattice}:
 geometrically, we want to think about this the same way we think about $\ZZ^2$.
 
 Perversely, we might try to embed this into $\QQ^2$ by sending $a+b\sqrt 2$ to $(a, b)$.
-But this is a little stupid, since we're rudely making $K$, which somehow lives inside $\QQ$ and is
+But this is a little stupid, since we're rudely making $K$,
+which somehow lives inside $\RR$ and is
 ``one-dimensional'' in that sense, into a two-dimensional space.
 It also depends on a choice of basis, which we don't like.
 A better way is to think about the fact that there are two embeddings
@@ -773,7 +774,8 @@ From this we deduce \[ \Cl_K \cong \Zc 4. \qedhere \]
 \section\problemhead
 \begin{problem}
 	Show that $K = \QQ(\sqrt{-163})$ has trivial class group,
-	and hence $\OO_K = \ZZ[\sqrt{-163}]$ is a UFD.\footnote{In fact,
+	and hence $\OO_K = \ZZ\left[ \frac{1+\sqrt{-163}}{2} \right]$
+	is a UFD.\footnote{In fact,
 		$n = 163$ is the largest number
 		for which $\QQ(\sqrt{-n})$ has trivial class group.
 		The complete list is $1, 2, 3, 7, 11, 19, 43, 67, 163$,
