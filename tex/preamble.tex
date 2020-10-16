@@ -285,6 +285,14 @@ style=thmbluebox,name=Theorem,numberwithin=section]{theorem}
 	mdframed={style=mdgreenbox},
 	headpunct={ --- },
 ]{thmgreenbox}
+\declaretheoremstyle[
+	headfont=\bfseries\sffamily\color{ForestGreen!70!black},
+	bodyfont=\normalfont,
+	spaceabove=2pt,
+	spacebelow=1pt,
+	mdframed={style=mdgreenbox},
+	headpunct={},
+]{thmgreenbox*}
 
 \mdfdefinestyle{mdblackbox}{%
 	skipabove=8pt,
@@ -308,6 +316,7 @@ style=thmbluebox,name=Theorem,numberwithin=section]{theorem}
 \declaretheorem[name=Question,sibling=theorem,style=thmblackbox]{ques}
 \declaretheorem[name=Exercise,sibling=theorem,style=thmblackbox]{exercise}
 \declaretheorem[name=Remark,sibling=theorem,style=thmgreenbox]{remark}
+\declaretheorem[name=Remark,sibling=theorem,style=thmgreenbox*]{remark*}
 \declaretheorem[name=Step,style=thmgreenbox]{step} % only used in Lebesgue int
 
 \theoremstyle{definition}
