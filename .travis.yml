@@ -1,5 +1,5 @@
 sudo: true
-dist: focal
+dist: bionic
 language: generic
 cache: apt
 
