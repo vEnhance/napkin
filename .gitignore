@@ -23,6 +23,7 @@ DRAFT-*.tex
 **/*.out
 **/*.pre
 **/*.run.xml
+**/*.synctex.gz
 **/*.toc
 
 **/*.maf
