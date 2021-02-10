@@ -51,4 +51,4 @@ deploy:
     local-dir: dist/
     keep-history: false
     on:
-        branch: master
+        branch: main
