@@ -193,7 +193,7 @@ really just comes from the more friendly-looking rational prime $p$.
 	\[ \Gal(K/\QQ) =
 		\text{permutations of } \{\cbrt2,\omega\cbrt2,\omega^2\cbrt2\}
 		\cong S_3.  \]
-	In this $S_3$ there are $3$ elements of order three:
+	In this $S_3$ there are $3$ elements of order two:
 	fixing one root and swapping the other two.
 	These correspond to each of $\Frob_{\kp_1}$, $\Frob{\kp_2}$, $\Frob_{\kp_3}$.
 
@@ -313,7 +313,7 @@ Specifically:
 
 \begin{ques}
 	Conclude that a rational prime $p$
-	splits completely in $\OO_L$ if and only if $p \equiv 1 \pmod m$.
+	splits completely in $\OO_L$ if and only if $p \equiv 1 \pmod q$.
 \end{ques}
 
 \section{Frobenius elements behave well with restriction}
@@ -346,19 +346,22 @@ and want to know how these are related.
 	i.e.\ for every $\alpha \in K$,
 	\[ \Frob_\kp(\alpha) = \Frob_{\kP}(\alpha). \]
 \end{theorem}
+%\begin{proof}
+%	We know
+%	\[ \Frob_{\kP}(\alpha) \equiv \alpha^p \pmod{\kP}
+%		\quad \forall \alpha \in \OO_L \]
+%	from the definition.
+%	\begin{ques}
+%		Deduce that
+%		\[ \Frob_{\kP}(\alpha) \equiv \alpha^p \pmod{\kp}
+%			\quad \forall \alpha \in \OO_K. \]
+%		(This is weaker than the previous statement in two ways!)
+%	\end{ques}
+%	Thus $\Frob_{\kP}$ restricted to $\OO_K$ satisfies the
+%	characterizing property of $\Frob_\kp$.
+%\end{proof}
 \begin{proof}
-	We know
-	\[ \Frob_{\kP}(\alpha) \equiv \alpha^p \pmod{\kP}
-		\quad \forall \alpha \in \OO_L \]
-	from the definition.
-	\begin{ques}
-		Deduce that
-		\[ \Frob_{\kP}(\alpha) \equiv \alpha^p \pmod{\kp}
-			\quad \forall \alpha \in \OO_K. \]
-		(This is weaker than the previous statement in two ways!)
-	\end{ques}
-	Thus $\Frob_{\kP}$ restricted to $\OO_K$ satisfies the
-	characterizing property of $\Frob_\kp$.
+	TODO: Broken proof. Needs repair.
 \end{proof}
 In short, the point of this section is that
 \begin{moral}
@@ -383,7 +386,7 @@ For this proof, we first define
 where $\zeta_q$ is a primitive $q$th root of unity.
 Then $L/\QQ$ is Galois, with Galois group $G$.
 \begin{ques}
-	Show that $G$ has a unique subgroup $H$ of order two.
+	Show that $G$ has a unique subgroup $H$ of index two.
 \end{ques}
 In fact, we can describe it exactly: viewing $G \cong \Zm q$, we have
 \[ H = \left\{ \sigma_n \mid \text{$n$ quadratic residue mod $q$} \right\}. \]
@@ -618,7 +621,7 @@ And it turns out these coincide even without the assumption that $E$ is monogeni
 \end{theorem}
 \begin{example}[Factoring $x^3-2 \pmod 5$]
 	Let $\alpha = \cbrt2$ and $f = x^3-2$, so $E = \QQ(\cbrt2)$.
-	Set $p=5$ and let finally, let $K = \QQ(\cbrt2, \omega)$ be the splitting field.
+	Set $p=5$ and finally, let $K = \QQ(\cbrt2, \omega)$ be the splitting field.
 	Setup:
 	\begin{center}
 	\begin{tikzcd}
