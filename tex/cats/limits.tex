@@ -16,25 +16,31 @@ We would like a categorical way of defining this, too.
 
 Consider two objects $X$ and $Y$ with two maps $f$ and $g$ between them.
 Stealing a page from \cite{ref:msci}, we call this a \vocab{fork}:
-\begin{diagram}
-	X & \pile{\rTo^f \\ \rTo_g} & Y
-\end{diagram}
-A cone over this fork is an object $A$ and arrows over $X$ and $Y$ which make the diagram commute, like so.
-\begin{diagram}
-	A && \\
-	\dTo^q & \rdDashed^{f \circ q = g \circ q} & \\
-	X & \pile{\rTo^f \\ \rTo_g} & Y
-\end{diagram}
+\begin{center}
+\begin{tikzcd}
+	X \ar[r, "f", shift left] \ar[r, "g"', shift right] & Y
+\end{tikzcd}
+\end{center}
+A cone over this fork is an object $A$ and arrows over $X$ and $Y$
+which make the diagram commute, like so.
+\begin{center}
+\begin{tikzcd}
+	A \ar[d, "q"'] \ar[rd, "f \circ q = g \circ q"] & \\
+	X \ar[r, "f", shift left, near start] \ar[r, "g"', shift right, near start] & Y
+\end{tikzcd}
+\end{center}
 Effectively, the arrow over $Y$ is just forcing $f \circ q = g \circ q$.
 In any case, the \vocab{equalizer} of $f$ and $g$ is a ``universal cone'' over this fork:
 it is an object $E$ and a map $E \taking{e} X$ such that
 for each $A \taking q X$ the diagram
-\begin{diagram}
-	& A & \\
-	\ldTo(1,3)^q & \dTo~{!\exists h} & \rdDashed(1,3) \\
-	& E & \\
-	X \ldTo(1,1)^e & \pile{\rTo^f \\ \rTo_g} & \rdDashed(1,1) Y \\
-\end{diagram}
+\begin{center}
+\begin{tikzcd}
+	& A \ar[dd, "\exists! h"] \ar[lddd, "q"'] \ar[rddd, dashed, bend left] \\
+	\\
+	& E \ar[ld, "e"', near start] \ar[rd, dashed] & \\
+	X \ar[rr, "f", shift left] \ar[rr, "g"', shift right] && Y
+\end{tikzcd}
+\end{center}
 commutes for a unique $A \taking h E$.
 In other words, any map $A \taking{q} X$ as above
 must factor uniquely through $E$.
