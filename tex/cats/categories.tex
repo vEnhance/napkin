@@ -40,23 +40,25 @@ Let's use this to motivate the definition of a general \emph{category}.
 		a class of \vocab{arrows} (also called \vocab{morphisms} or \vocab{maps}) between them.
 		We'll denote the set of these arrows by $\Hom_\AA(A_1, A_2)$.
 		\ii For any $A_1, A_2, A_3 \in \obj(\AA)$,
-		if $f : A_1 \to A_2$ is an arrow and $g : A_2 \to A_3$ is an arrow, we can compose
-		these arrows to get an arrow $g \circ f : A_1 \to A_3$.
+		if $f \colon A_1 \to A_2$ is an arrow and $g \colon A_2 \to A_3$ is an arrow,
+		we can compose these arrows to get an arrow $g \circ f \colon A_1 \to A_3$.
 
 		We can represent this in a \vocab{commutative diagram}
-		\begin{diagram}
-			A_1 & \rTo^f & A_2 \\
-			& \rdDashed^h & \dTo_g \\
-			&& A_3
-		\end{diagram}
+		\begin{center}
+		\begin{tikzcd}
+			A_1 \ar[r, "f"] \ar[rd, "h"'] & A_2 \ar[d, "g"] \\
+			& A_3
+		\end{tikzcd}
+		\end{center}
 		where $h = g \circ f$.
 		The composition operation $\circ$ is part of the data of $\AA$;
 		it must be associative.
 		In the diagram above we say that $h$ \vocab{factors} through $A_2$.
 		
 		\ii Finally, every object $A \in \obj(\AA)$ has a special \vocab{identity arrow} $\id_A$;
-		you can guess what it does.\footnote{To be painfully explicit: if $f : A' \to A$ is an arrow then $\id_A \circ f = f$;
-		similarly, if $g : A \to A'$ is an arrow then $g \circ \id_A = g$.}
+		you can guess what it does.\footnote{To be painfully explicit:
+			if $f \colon A' \to A$ is an arrow then $\id_A \circ f = f$;
+		similarly, if $g \colon A \to A'$ is an arrow then $g \circ \id_A = g$.}
 	\end{itemize}
 \end{definition}
 \begin{abuse}
@@ -340,11 +342,13 @@ A function $A \taking f X \times Y$
 amounts to a pair of functions $(A \taking g X, A \taking h Y)$.
 \end{moral}
 Put another way, there is a natural projection map $X \times Y \surjto X$ and $X \times Y \surjto Y$:
-\begin{diagram}
-	&& X \\
-	X \times Y & \ruSurj(2,1)^{\pi_X} & \\
-	& \rdSurj(2,1)_{\pi_Y} & Y
-\end{diagram}
+\begin{center}
+\begin{tikzcd}
+	& X \\
+	X \times Y \ar[ru, two heads, "\pi_X"] \ar[rd, two heads, "\pi_Y"'] & \\
+	& Y
+\end{tikzcd}
+\end{center}
 (We have to do this in terms of projection maps rather than elements,
 because category theory forces us to talk about arrows.)
 Now how do I add $A$ to this diagram?
@@ -357,24 +361,22 @@ But $X \times Y$ is special in that it is ``universal'':
 for any \emph{other} set $A$, if you give me functions $A \to X$ and $A \to Y$, I can use it
 build a \emph{unique} function $A \to X \times Y$.
 Picture:
-\begin{diagram}
-	&& && X \\
-	A & \rDotted~{\exists! f} & X \times Y & \ruTo(4,1)^g \ruSurj(2,1)_{\pi_X} & \\
-	& \rdTo(4,1)_h && \rdProj(2,1)^{\pi_Y} & Y
-\end{diagram}
+\begin{center}
+\begin{tikzcd}
+	&&& X \\
+	A \ar[rrru, bend left, "g"'] \ar[rrrd, bend right, "h"] \ar[rr, dotted, "\exists! f"] &&
+		X \times Y \ar[ru, two heads, "\pi_X"] \ar[rd, two heads, "\pi_Y"] & \\
+	&&& Y
+\end{tikzcd}
+\end{center}
+
 We can do this in any general category, defining a so-called product.
 \begin{definition}
 	Let $X$ and $Y$ be objects in any category $\AA$.
 	The \vocab{product} consists of an object $X \times Y$
 	and arrows $\pi_X$, $\pi_Y$ to $X$ and $Y$ (thought of as projection).
 	We require that for any object $A$ and arrows $A \taking g X$, $A \taking h Y$, there
-	is a \emph{unique} function $A \taking f X \times Y$ such that the diagram
-	\begin{diagram}
-		&& && X \\
-		A & \rDotted~{\exists! f} & X \times Y & \ruTo(4,1)^g \ruProj(2,1)_{\pi_X} & \\
-		& \rdTo(4,1)_h && \rdProj(2,1)^{\pi_Y} & Y
-	\end{diagram}
-	commutes.
+	is a \emph{unique} function $A \taking f X \times Y$ such that the above diagram commutes.
 \end{definition}
 \begin{abuse}
 	Strictly speaking, the product should consist of \emph{both}
@@ -398,13 +400,17 @@ Nonetheless:
 	This is very similar to the proof that initial objects are unique up to unique isomorphism.
 	Consider two such objects $P_1$ and $P_2$, and the associated projection maps.
 	So, we have a diagram
-	\begin{diagram}
-		&& X && \\
-		& \ruProj^{\pi_X^1} & \uProj_{\pi_X^2} & \luProj^{\pi_X^1} & \\
-		P_1 & \rTo~f & P_2 & \rTo~g & P_1 \\
-		& \rdProj_{\pi_Y^1} & \dProj_{\pi_Y^2} & \ldProj_{\pi_Y^1} & \\
-		&& Y &&
-	\end{diagram}
+	\begin{center}
+	\begin{tikzcd}
+		& & X & & \\
+		\\
+		P_1 \ar[rrdd, "\pi_Y^1"', two heads] \ar[rruu, "\pi_X^1", two heads] \ar[rr, "f", two heads]
+			&& P_2 \ar[rr, "g", two heads] \ar[uu, "\pi_X^2"', two heads] \ar[dd, "\pi_Y^2" two heads]
+			&& P_1 \ar[lluu, "\pi_X^1"', two heads] \\
+		\\
+		&& Y \ar[rruu, "\pi_Y^1"', two heads] &&
+	\end{tikzcd}
+	\end{center}
 	There are unique morphisms $f$ and $g$ between $P_1$ and $P_2$ that
 	make the entire diagram commute, according to the universal property.
 
@@ -472,13 +478,25 @@ given any other cone $A$ there is a unique map $A \to P$ making the diagram comm
 In short, a product is a ``universal cone''.
 
 The picture of this is
-\begin{diagram}
-	&& A && \\
-	& \ldProj(2,4) \ldProj(1,4) & \dTo~{!\exists f} & \rdProj(2,4) \rdProj(1,4)& \\
-	&& P && \\
-	& \ldProj \ldProj(1,2) && \rdProj \rdProj(1,2) & \\
+\begin{center}
+\begin{tikzcd}
+	&& A
+		\ar[dd, "\exists! f"]
+		\ar[llddd, two heads, bend right]
+		\ar[lddd, two heads, bend right]
+		\ar[rddd, two heads, bend left]
+		\ar[rrddd, two heads, bend left]
+		&& \\
+	&&&& \\
+	&& P
+		\ar[lld, two heads]
+		\ar[ld, two heads]
+		\ar[rd, two heads]
+		\ar[rrd, two heads]
+		&& \\
 	X_1 & X_2 && X_3 & X_4
-\end{diagram}
+\end{tikzcd}
+\end{center}
 See also \Cref{prob:associative_product}.
 
 One can also do the dual construction to get a \vocab{coproduct}:
@@ -487,13 +505,13 @@ together with maps $X \taking{\iota_X} X+Y$ and $Y \taking{\iota_Y} X+Y$
 (that's Greek iota, think inclusion)
 such that for any object $A$ and maps $X \taking g A$, $Y \taking h A$
 there is a unique $f$ for which
-\begin{diagram}
-	X &&&& \\
-	& \rdTo(1,2)_{\iota_X} \rdTo(3,2)^g && \\
-	& X+Y & \rTo~{!\exists f} & A \\
-	\ruTo(1,2)^{\iota^Y} && \ruTo(3,2)_h & \\
-	Y &&&&
-\end{diagram}
+\begin{center}
+\begin{tikzcd}
+	X \ar[rd, "\iota_X"'] \ar[rrd, "g", bend left] \\
+	& X+Y \ar[r, "\exists! f"] & A \\
+	Y \ar[ru, "\iota_Y"] \ar[rru, "h"', bend right]
+\end{tikzcd}
+\end{center}
 commutes.
 We'll leave some of the concrete examples as an exercise this time,
 for example:
@@ -513,9 +531,11 @@ The correct categorical notion is:
 \begin{definition}
 	A map $X \taking f Y$ is \vocab{monic}
 	(or a monomorphism) if for any commutative diagram
-	\begin{diagram}
-		A & \pile{\rTo^g \\ \rTo_h} & X & \rTo^f Y 
-	\end{diagram}
+	\begin{center}
+	\begin{tikzcd}
+		A \ar[r, shift left, "g"] \ar[r, shift right, "h"'] & X \ar[r, "f"] & Y
+	\end{tikzcd}
+	\end{center}
 	we must have $g = h$.
 	In other words, $f \circ g = f \circ h \implies g = h$.
 \end{definition}
@@ -552,9 +572,11 @@ Of course, we can also take the dual notion.
 \begin{definition}
 	A map $X \taking f Y$ is \vocab{epic}
 	(or an epimorphism) if for any commutative diagram
-	\begin{diagram}
-		X & \rTo^f & Y & \pile{\rTo^g \\ \rTo_h} & A
-	\end{diagram}
+	\begin{center}
+	\begin{tikzcd}
+		X \ar[r, "f"] & Y \ar[r, "g", shift left] \ar[r, "h"', shift right] & A
+	\end{tikzcd}
+	\end{center}
 	we must have $g = h$.
 	In other words, $g \circ f = h \circ f \implies g = h$.
 \end{definition}

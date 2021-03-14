@@ -3,7 +3,7 @@
 Functors are maps between categories; natural transformations are maps between functors.
 
 \section{Many examples of functors}
-\prototype{Forgetful functors; fundamental groups; $-^\vee$.}
+\prototype{Forgetful functors; fundamental groups; $\bullet^\vee$.}
 Here's the point of a functor:
 \begin{moral}
 	Pretty much any time you make an object out of another object,
@@ -57,11 +57,13 @@ and so we can now think about maps between categories.
 	In addition, though, it must take every arrow $A_1 \taking{f} A_2$
 	to an arrow $F(A_1) \taking{F(f)} F(A_2)$.
 	You can picture this as follows.
-	\begin{diagram}
-		& A_1 & & B_1 & = F(A_1) & \\
-		\AA \ni & \dTo^f & \rDotted^F & \dTo_{F(f)} && \in \BB \\
-		& A_2 & & B_2 & = F(A_2) &
-	\end{diagram}
+	\begin{center}
+	\begin{tikzcd}
+		& A_1 \ar[dd, "f"'] && B_1 = F(A_1) \ar[dd, "F(f)"] \\
+		\AA \ni & \quad \ar[rr, "F", dashed] & & \quad & \in \BB \\
+		& A_2 && B_2 = F(A_2)
+	\end{tikzcd}
+	\end{center}
 	(I'll try to use dotted arrows for functors, which cross different categories, for emphasis.)
 	It needs to satisfy the ``naturality'' requirements:
 	\begin{itemize}
@@ -195,11 +197,13 @@ and the proof is done solely through arrows:
 \end{theorem}
 \begin{proof}
 	Try it yourself! The picture is:
-	\begin{diagram}
-		& A_1 & & B_1 & = F(A_1) & \\
-		\AA \ni & \dTo^f \uTo_g & \rDotted^F & \dTo^{F(f)} \uTo_{F(g)} && \in \BB \\
-		& A_2 & & B_2 & = F(A_2) &
-	\end{diagram}
+	\begin{center}
+	\begin{tikzcd}
+		& A_1 \ar[dd, "f"', shift right, near start] && B_1 = F(A_1) \ar[dd, "F(f)"', near start, shift right] \\
+		\AA \ni & \quad \ar[rr, "F", dashed] & & \quad & \in \BB \\
+		& A_2 \ar[uu, "g"', shift right, near start] && B_2 = F(A_2) \ar[uu, "F(g)"', near start, shift right]
+	\end{tikzcd}
+	\end{center}
 	You'll need to use both key properties of functors:
 	they preserve composition and the identity map.
 \end{proof}
@@ -245,11 +249,13 @@ These functors have a name:
 	use the correct domain and codomain.)
 \end{definition}
 Pictorially:
-\begin{diagram}
-	& A_1 & & B_1 & = F(A_1) & \\
-	\AA \ni & \dTo^f & \rDotted^F & \uTo_{F(f)} && \in \BB \\
-	& A_2 & & B_2 & = F(A_2) &
-\end{diagram}
+\begin{center}
+\begin{tikzcd}
+	& A_1 \ar[dd, "f"'] && B_1 = F(A_1)  \\
+	\AA \ni & \quad \ar[rr, "F", dashed] & & \quad & \in \BB \\
+	& A_2 && B_2 = F(A_2) \ar[uu, "F(f)"']
+\end{tikzcd}
+\end{center}
 For emphasis, a usual functor is often called a \vocab{covariant functor}.
 (The word ``functor'' with no adjective always refers to covariant.)
 
@@ -258,27 +264,31 @@ Let's see why this might happen.
 	Consider the functor $\catname{Vect}_k \to \catname{Vect}_k$ by $V \mapsto V^\vee$.
 
 	If we were trying to specify a covariant functor,
-	we would need, for every linear map $T : V_1 \to V_2$,
-	a linear map $T^\vee : V_1^\vee \to V_2^\vee$.
+	we would need, for every linear map $T \colon V_1 \to V_2$,
+	a linear map $T^\vee \colon V_1^\vee \to V_2^\vee$.
 	But recall that $V_1^\vee = \Hom(V_1, k)$ and $V_2^\vee = \Hom(V_2, k)$:
 	there's no easy way to get an obvious map from left to right.
 
 	However, there \emph{is} an obvious map from right to left:
-	given $\xi_2 : V_2 \to k$, we can easily give a map from $V_1 \to k$:
+	given $\xi_2 \colon V_2 \to k$, we can easily give a map from $V_1 \to k$:
 	just compose with $T$!
 	In other words, there is a very natural map $V_2^\vee \to V_1^\vee$
 	according to the composition
-	\begin{diagram}
-		V_1 & \rTo^T & V_2 & \rTo^{\xi_2} & k
-	\end{diagram}
+	\begin{center}
+	\begin{tikzcd}
+		V_1 \ar[r, "T"] & V_2 \ar[r, "\xi_2"] & k
+	\end{tikzcd}
+	\end{center}
 	In summary, a map $T : V_1 \to V_2$ induces naturally a map
-	$T^\vee : V_2^\vee \to V_1^\vee$ in the opposite direction.
+	$T^\vee \colon V_2^\vee \to V_1^\vee$ in the opposite direction.
 	So the contravariant functor looks like:
-	\begin{diagram}
-		V_1 & & V_1^\vee \\
-		\dTo^T & \rDotted^{-^\vee} & \uTo_{T^\vee} \\
-		V_2 & & V_2^\vee
-	\end{diagram}
+	\begin{center}
+	\begin{tikzcd}
+		V_1 \ar[dd, "T"'] && V_1^\vee  \\
+		\quad \ar[rr, "\bullet^\vee", dashed] & & \quad \\
+		V_2 && V_2^\vee \ar[uu, "T^\vee"']
+	\end{tikzcd}
+	\end{center}
 \end{example}
 
 %Contravariant functors come up in a lot in geometric applications.
@@ -335,18 +345,21 @@ along a series of arrows in the target space $\BB$.
 	consists of, for each $A \in \AA$ an arrow $\alpha_A \in \Hom_\BB(F(A), G(A))$, which is
 	called the \vocab{component} of $\alpha$ at $A$.
 	Pictorially, it looks like this:
-	\begin{diagram}
-		& & & F(A) \in \BB \\
-		\AA \ni & A & \ruDotted(2,1)^F & \dTo_{\alpha_A} \\
-		& & \rdDotted(2,1)^G & G(A) \in \BB
-	\end{diagram}
+	\begin{center}
+	\begin{tikzcd}
+		& F(A) \in \BB \ar[dd, "\alpha_A"] \\
+		\AA \ni A \ar[ru, dashed, "F"] \ar[rd, dashed, "G"'] & \\
+		& G(A) \in \BB
+	\end{tikzcd}
+	\end{center}
 	These $\alpha_A$ are subject to the ``naturality'' requirement that for any $A_1 \taking{f} A_2$,
 	the diagram
-	\begin{diagram}
-		F(A_1) & \rTo^{F(f)} & F(A_2) \\
-		\dTo_{\alpha_{A_1}} & & \dTo_{\alpha_{A_2}} \\
-		G(A_1) & \rTo_{G(f)} & G(A_2)
-	\end{diagram}
+	\begin{center}
+	\begin{tikzcd}
+		F(A_1) \ar[r, "F(f)"] \ar[d, "\alpha_{A_1}"'] & F(A_2) \ar[d, "\alpha_{A_2}"]\\
+		G(A_1) \ar[r, "G(f)"'] & G(A_2)
+	\end{tikzcd}
+	\end{center}
 	commutes.
 \end{definition}
 The arrow $\alpha_A$ represents the path that $F(A)$ takes to get to $G(A)$
@@ -454,21 +467,22 @@ There is a second equivalent definition that looks much more like the homotopy.
 The proof that these are equivalent is left as a practice problem.
 
 Naturally, two natural transformations $\alpha : F \to G$ and $\beta : G \to H$ can get composed.
-\begin{diagram}
-	& & F(A) \\
-	& \ruDotted^F & \dTo_{\alpha_A} \\
-	\AA \ni A & \rDotted^G & G(A) \\
-	& \rdDotted_H & \dTo_{\beta_A} \\
-	&& H(A)
-\end{diagram}
-
+\begin{center}
+\begin{tikzcd}
+	& F(A) \ar[d, "\alpha_A"] \\
+	\AA \ni A \ar[ru, dashed, "F"] \ar[r, dashed, "G"] \ar[rd, dashed, "H"'] & G(A) \ar[d, "\beta_A"] \\
+	& H(A)
+\end{tikzcd}
+\end{center}
 Now suppose $\alpha$ is a natural transformation such that $\alpha_A$ is an isomorphism for each $A$.
 In this way, we can construct an inverse arrow $\beta_A$ to it.
-\begin{diagram}
-	& & F(A) \in \BB \\
-	\AA \ni A & \ruDotted(2,1)^F & \dTo^{\alpha_A} \uTo_{\beta_A} \\
-	& \rdDotted(2,1)^G & G(A) \in \BB
-\end{diagram}
+\begin{center}
+\begin{tikzcd}
+	& F(A) \in \BB \ar[dd, "\alpha_A"', shift right] \\
+	\AA \ni A \ar[ru, dashed, "F"] \ar[rd, dashed, "G"'] & \\
+	& G(A) \in \BB \ar[uu, "\beta_A"', shift right]
+\end{tikzcd}
+\end{center}
 In this case, we say $\alpha$ is a \vocab{natural isomorphism}.
 We can then say that $F(A) \cong G(A)$ \vocab{naturally} in $A$.
 (And $\beta$ is an isomorphism too!)
@@ -486,7 +500,7 @@ and mumbled something about ``not having to pick a basis'' and ``God-given''.
 Category theory, amazingly, lets us formalize this:
 it just says that $(V^\vee)^\vee \cong \id(V)$ naturally in $V \in \catname{FDVect}_k$.
 Really, we have a natural transformation
-\[ \nattfm{\catname{FDVect}_k}{\id}{\eps}{(-^\vee)^\vee}{\catname{FDVect}_k}. \]
+\[ \nattfm{\catname{FDVect}_k}{\id}{\eps}{(\bullet^\vee)^\vee}{\catname{FDVect}_k}. \]
 where the component $\eps_V$ is given by $v \mapsto \opname{ev}_v$
 (as discussed earlier,
 the fact that it is an isomorphism follows from the fact that $V$ and $(V^\vee)^\vee$
