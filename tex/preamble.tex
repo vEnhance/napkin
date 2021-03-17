@@ -177,7 +177,35 @@
 \newarrow{Dashed}{}{dash}{}{dash}>
 \newarrow{Line}-----
 \usepackage{tikz-cd}
-\usetikzlibrary{decorations.pathmorphing}
+\usetikzlibrary{arrows,arrows.meta}
+
+% make a larger hook
+% https://tex.stackexchange.com/questions/514451/how-to-define-a-new-hooked-arrow
+\makeatletter
+\pgfdeclarearrow{
+  name=xGlyph,
+  cache=false,
+  bending mode=none,
+  parameters={\tikzcd@glyph@len,\tikzcd@glyph@shorten},
+  setup code={%
+    \pgfarrowssettipend{\tikzcd@glyph@len\advance\pgf@x by\tikzcd@glyph@shorten}},
+  defaults={
+    glyph axis=axis_height,
+    glyph length=+1.55ex,
+    glyph shorten=+-0.1ex},
+  drawing code={%
+    \pgfpathrectangle{\pgfpoint{+0pt}{+-1.5ex}}{\pgfpoint{+\tikzcd@glyph@len}{+3ex}}%
+    \pgfusepathqclip%
+    \pgftransformxshift{+\tikzcd@glyph@len}%
+    \pgftransformyshift{+-\tikzcd@glyph@axis}%
+    \pgftext[right,base]{\tikzcd@glyph}}}
+\makeatother
+\tikzcdset{
+	arrow style=tikz,
+	diagrams={>={Latex}},
+	tikzcd left hook/.tip={xGlyph[glyph math command=supset, swap, glyph axis = 5.7pt]},
+	tikzcd right hook/.tip={xGlyph[glyph math command=supset, glyph axis = 5.7pt]}
+}
 
 %%fakesection Page layout
 \usepackage[headsepline]{scrlayer-scrpage}
