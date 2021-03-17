@@ -30,12 +30,13 @@ We can now define:
 \begin{definition}
 	Consider a map $A \taking f B$.
 	The \vocab{kernel} is defined as the equalizer of this map and the map $A \taking 0 B$.
-	Thus, it's a map $\ker f : \Ker f \injto A$ such that
-	\begin{diagram}
-		\Ker f && \\
-		\dInj^{\ker f} & \rdDashed^0 & \\
-		A & \rTo_f & B
-	\end{diagram}
+	Thus, it's a map $\ker f \colon \Ker f \injto A$ such that
+	\begin{center}
+	\begin{tikzcd}
+		\Ker f \ar[rd, "0", dashed] \ar[d, "\ker f"', hook] \\
+		A \ar[r, "f"'] & B
+	\end{tikzcd}
+	\end{center}
 	commutes, and moreover any other map with the same property factors uniquely through $\Ker A$
 	(so it is universal with this property).
 	By \Cref{prob:equalizer_monic}, $\ker f$ is a monic morphism, 
@@ -45,19 +46,20 @@ Notice that we're using $\ker f$ to represent the map and $\Ker f$ to represent 
 Similarly, we define the cokernel, the dual notion:
 \begin{definition}
 	Consider a map $A \taking f B$.
-	The \vocab{cokernel} of $f$ is a map $\coker f: B \surjto \Coker f$ such that
-	\begin{diagram}
-		A & \rTo^f & B \\
-		& \rdDashed_0 & \dSurj_{\coker f} \\
-		&& \Coker f
-	\end{diagram}
+	The \vocab{cokernel} of $f$ is a map $\coker f \colon B \surjto \Coker f$ such that
+	\begin{center}
+	\begin{tikzcd}
+		A \ar[r, "f"] \ar[rd, "0"', dashed] & B \ar[d, "\coker f", two heads] \\
+		& \Coker f
+	\end{tikzcd}
+	\end{center}
 	commutes, and moreover any other map with the same property factors
 	uniquely through $\Coker f$ (so it is universal with this property).
 	Thus it is the ``coequalizer'' of this map and the map $A \taking 0 B$.
 	By the dual of \Cref{prob:equalizer_monic}, $\coker f$ is an epic morphism,
 	which justifies the use of ``$\surjto$''.
 \end{definition}
-Think of the cokernel of a map $A \taking f B$ as ``$B$ modulo the image of $f$'', e.g.
+Think of the cokernel of a map $A \taking f B$ as ``$B$ modulo the image of $f$''.
 \begin{example}
 	[Cokernels]
 	Consider the map $\Zc6 \to D_{12} = \left\langle r,s \mid r^6=s^2=1, rs=sr\inv\right\rangle$.
@@ -73,13 +75,16 @@ Nonetheless, we can use this to define:
 \end{definition}
 When it exists, this coincides with our concrete notion of ``image''.
 Picture:
-\begin{diagram}
-	A & \rTo^f & B \\
-	& \rdTo(1,2)~{\exists!} \rdDashed(3,2)^{0\qquad\qquad} \ruInj(1,2) & & \rdSurj(1,2)^{\coker f} \\
-	& \Img f & \rDashed^0 & \Coker f
-\end{diagram}
+\begin{center}
+\begin{tikzcd}
+	A \ar[rd, "\exists!"'] \ar[rr, "f"] \ar[rrrd, "0"', near start, dashed]
+		&& B \ar[rd, two heads, "\coker f"] \\
+	& \Img f \ar[ur, hook] \ar[rr, "0", dashed] && \Coker f
+\end{tikzcd}
+\end{center}
 Note that by universality of $\Img f$,
-we find that there is a unique map $\img f : A \to \Img f$ that makes the entire diagram commute.
+we find that there is a unique map
+$\img f \colon A \to \Img f$ that makes the entire diagram commute.
 
 \section{Additive and abelian categories}
 \prototype{$\catname{Ab}$, $\catname{Vect}_k$, or more generally $\catname{Mod}_R$.}
@@ -106,9 +111,17 @@ which are the types of categories where this notion is most useful.
 		\ii The morphism factors through the image so that $\img(f)$ is epic.
 	\end{itemize}
 	So, this yields a diagram
-	\begin{diagram}
-		\Ker(f) & \rInj^{\quad\ker(f)} & A & \rSurj^{\img(f)\quad} & \Img(f) & \rInj & B & \rSurj^{\coker(f)} \Coker(f).
-	\end{diagram}
+	\begin{center}
+	\begin{tikzcd}
+		\Ker(f) \ar[rd, hook, "\ker(f)"']
+		&&
+		\Img(f) \ar[rd, hook]
+		&&
+		\Coker(f) \\
+		& A \ar[ru, "\img(f)", two heads] \ar[rr, "f"', dashed]
+		&& B \ar[ru, "\coker(f)"', two heads]
+	\end{tikzcd}
+	\end{center}
 \end{definition}
 
 \begin{example}[Examples of abelian categories]
@@ -139,16 +152,19 @@ For example,
 	On the other hand, assume that $0 \to A$ is a kernel of $A \taking f B$.
 	For this we can exploit the group structure of the underlying homomorphisms now.
 	Assume the diagram
-	\begin{diagram}
-		Z & \pile{\rTo^g \\ \rTo_h} & A & \rTo^f & B
-	\end{diagram}
+	\begin{center}
+	\begin{tikzcd}
+		Z \ar[r, "g", shift left] \ar[r, "h"', shift right] & A \ar[r, "f"] & B
+	\end{tikzcd}
+	\end{center}
 	commutes.
 	Then $(g - h) \circ f = g \circ f - h \circ f = 0$, and we've arrived at a commutative diagram.
-	\begin{diagram}
-		Z && \\
-		\dTo^{g-h} & \rdDotted^0 & \\
-		A & \rTo_f & B
-	\end{diagram}
+	\begin{center}
+	\begin{tikzcd}
+		Z \ar[d, "g-h"'] \ar[rd, dashed, "0"] & \\
+		A \ar[r, "f"'] & B
+	\end{tikzcd}
+	\end{center}
 	But since $0 \to A$ is a kernel it follows that $g-h$ factors through $0$,
 	so $g-h = 0 \implies g = h$, which is to say that $f$ is monic.
 \end{proof}
@@ -197,11 +213,14 @@ So, let's write down a criterion for when $A \taking f B \taking g C$ is exact.
 First, we had better have that $g \circ f = 0$,
 which encodes the fact that $\img(f) \subseteq \ker(g)$.
 Adding in all the relevant objects, we get the commutative diagram below.
-\begin{diagram}
-	A && \rDashed^0 && C \\
-	\dSurj^{\img f} & \rdTo(2,1)^f & B & \ruTo(2,1)^g & \uDashed_0 \\
-	\Img f & \ruInj(2,1)_{\iota} & \rDotted_{\exists!} & \luInj(2,1) & \Ker g \\
-\end{diagram}
+\begin{center}
+\begin{tikzcd}
+	A \ar[rd, "f"] \ar[rr, dashed, "0"] \ar[dd, "\img f"', two heads] && C  \\
+	& B \ar[ru, "g"] \\
+	\Img f \ar[ru, hook, "\iota"] \ar[rr, dashed, "\exists!"] &&
+	\Ker g \ar["0"', dashed, uu] \ar[lu, hook']
+\end{tikzcd}
+\end{center}
 Here the map $A \surjto \Img f$ is epic since we are assuming $\AA$ is an abelian category.
 So, we have that
 \[ 0 = (g \circ \iota) \circ \img f = g \circ (\iota \circ \img f) = g \circ f = 0 \]
@@ -261,11 +280,16 @@ For example, let's prove:
 \begin{lemma}
 	[Short five lemma]
 	In an abelian category, consider the commutative diagram
-	\begin{diagram}
-		0 & \rTo & A & \rInj^p & B & \rSurj^q & C & \rTo & 0 \\
-		&& \dTo^\cong_\alpha && \dTo_\beta && \dTo^\cong_\gamma && \\
-		0 & \rTo & A' & \rInj^{p'} & B' & \rSurj^{q'} & C' & \rTo & 0
-	\end{diagram}
+	\begin{center}
+	\begin{tikzcd}
+		0 \ar[r]
+		& A \ar[r, hook, "p"] \ar[d, "\alpha", "\cong"']
+			& B \ar[r, two heads, "q"] \ar[d, "\beta"]
+			& C \ar[r] \ar[d, "\gamma", "\cong"']
+			& 0 \\
+		0 \ar[r] & A' \ar[r, hook, "p'"'] & B' \ar[r, two heads, "q'"'] & C' \ar[r] & 0
+	\end{tikzcd}
+	\end{center}
 	and assume the top and bottom rows are exact.
 	If $\alpha$ and $\gamma$ are isomorphisms, then so is $\beta$.
 \end{lemma}
@@ -285,11 +309,12 @@ For example, let's prove:
 	Then $q'(b') \in C'$, and since $\gamma$ is surjective, we have a $c$ such that $\gamma(c) = b'$,
 	and finally a $b \in B$ such that $q(b) = c$.
 	Picture:
-	\begin{diagram}
-		b \in B & \rMapsto^q & c \in C \\
-		\dDashed_\beta && \dMapsto^\cong_\gamma \\
-		b' \in B' & \rMapsto^{q'} & c' \in C'
-	\end{diagram}
+	\begin{center}
+	\begin{tikzcd}
+		b \in B \ar[r, "q", mapsto] \ar[d, "\beta"', dashed] & c \in C \ar[d, "\gamma", "\cong"', mapsto] \\
+		b' \in B' \ar[r, mapsto, "q'"] & c' \in C'
+	\end{tikzcd}
+	\end{center}
 	Now, it is not necessarily the case that $\beta(b) = b'$.
 	However, since the diagram commutes we at least have that
 	\[ q'(b') = q'(\beta(b)) \]
@@ -297,11 +322,12 @@ For example, let's prove:
 	$p'(a') = b' - \beta(b)$;
 	use $\alpha$ now to lift it to $a \in A$.
 	Picture:
-	\begin{diagram}
-		a \in A && b \in B && \\
-		\dMapsto && && \\
-		a' \in A' & \rMapsto & b'-\beta(b) \in B' & \rMapsto & 0 \in C'
-	\end{diagram}
+	\begin{center}
+	\begin{tikzcd}
+		a \in A \ar[d, mapsto] & b \in B \\
+		a' \in A' \ar[r, mapsto] & b' - \beta(b) \in B' \ar[r, mapsto] & 0 \in C
+	\end{tikzcd}
+	\end{center}
 	Then, we have
 	\[
 		\beta(b + q(a)) = \beta b + \beta p a
@@ -334,26 +360,35 @@ Let's analyze this theorem in our two examples of abelian categories:
 \end{enumerate}
 \end{example}
 Thus, any exact sequence can be broken into short exact sequences, as
-\begin{diagram}
-	&& 0 & & 0 && 0 && 0 \\
-	&&& \rdDotted(1,1) C_n \ruDotted(1,1) &&&& \rdDotted(1,1) C_{n+2} \ruDotted(1,1) & \\
-	\dots & \rTo & A_{n-1} \ruDotted(1,1) & \rTo^{f_{n-1}} & \rdDotted(1,1) A_n & \rTo^{f_n} &
-	A_{n+1} \ruDotted(1,1)  & \rTo^{f_{n+1}} & \rdDotted(1,1) \dots \\
-	& \rdDotted(1,1) C_{n-1} \ruDotted(1,1) &&&& \rdDotted(1,1) C_{n+1} \ruDotted(1,1) &&& \\
-	0 \ruDotted(1,1) && \rdDotted(1,1) 0 && 0 \ruDotted(1,1) && \rdDotted(1,1) 0 &&
-\end{diagram}
+\begin{center}
+	\begin{tikzcd}[sep=0.8em]
+	&& 0 \ar[rd] && 0 && 0 \ar[rd] && 0 \\
+	&&& C_{n} \ar[rd] \ar[ru] &&&& C_{n+2} \ar[ru] \ar[rd] \\
+	{\color{red}\dots} \ar[rr, red] \ar[rd]
+		&& {\color{red}A_{n-1}} \ar[rr, "f_{n-1}"', red] \ar[ru]
+		&& {\color{red}A_n} \ar[rr, "f_n", red] \ar[rd]
+		&& {\color{red}A_{n+1}} \ar[rr, "f_{n+1}"', red] \ar[ru]
+		&& \dots
+	\\
+	& C_{n-1} \ar[ru] \ar[rd] &&&& C_{n+1} \ar[ru] \ar[rd] \\
+	0 \ar[ru] && 0 && 0 \ar[ru] && 0
+\end{tikzcd}
+\end{center}
 where $C_k = \img f_{k-1} = \ker f_k$ for every $k$.
 
 \section\problemhead
-
 \begin{problem}
 	[Four lemma]
 	In an abelian category, consider the commutative diagram
-	\begin{diagram}
-		A & \rTo^p & B & \rTo^q & C & \rTo^r & D \\
-		\dSurj_\alpha && \dInj_\beta && \dTo_\gamma && \dInj_\delta \\
-		A' & \rTo_{p'} & B' & \rTo_{q'} & C' & \rTo_{r'} & D'
-	\end{diagram}
+	\begin{center}
+	\begin{tikzcd}
+		A \ar[r, "p"] \ar[d, "\alpha"', two heads]
+			& B \ar[r, "q"] \ar[d, "\beta"', hook]
+			& C \ar[r, "r"] \ar[d, "\gamma"']
+			& D \ar[d, "\delta"', hook] \\
+		A' \ar[r, "p'"'] & B' \ar[r, "q'"'] & C' \ar[r, "r'"'] & D'
+	\end{tikzcd}
+	\end{center}
 	where the first and second rows are exact.
 	Prove that if $\alpha$ is epic, and $\beta$ and $\delta$ are monic,
 	then $\gamma$ is epic.
@@ -384,26 +419,28 @@ where $C_k = \img f_{k-1} = \ker f_k$ for every $k$.
 	[Five lemma]
 	\gim
 	In an abelian category, consider the commutative diagram
-	\begin{diagram}
-		A & \rTo^p & B & \rTo^q & C & \rTo^r & D & \rTo^s & E \\
-		\dSurj_\alpha && \dTo^\cong_\beta && \dTo_\gamma && \dTo^\cong_\delta && \dInj_\eps \\
-		A' & \rTo_{p'} & B' & \rTo_{q'} & C' & \rTo_{r'} & D' & \rTo_{s'} & E'
-	\end{diagram}
-	where the first and second rows are exact.
-	Prove that if $\alpha$ is epic, $\eps$ is monic, and $\beta$, $\delta$ are isomorphisms,
-	then $\gamma$ is an isomorphism as well.
-	Thus this is a stronger version of the short five lemma.
+	\begin{center}
+	\begin{tikzcd}
+		A \ar[r, "p"] \ar[d, "\alpha"', two heads]
+			& B \ar[r, "q"] \ar[d, "\beta"', "\cong"]
+			& C \ar[r, "r"] \ar[d, "\gamma"']
+			& D \ar[r, "s"] \ar[d, "\delta"', "\cong"]
+			& E \ar[d, "\eps"', hook] \\
+		A' \ar[r, "p'"'] & B' \ar[r, "q'"'] & C' \ar[r, "r'"'] & D' \ar[r, "s'"'] & E'
+	\end{tikzcd}
+	\end{center}
 \end{problem}
 
 \begin{sproblem}
 	[Snake lemma]
-	\yod
+	\gim
 	In an abelian category, consider the diagram
-	\begin{diagram}
-		&& A & \rTo^f & B & \rSurj^g & C & \rTo & 0 \\
-		&& \dTo_a && \dTo_b && \dTo_c && \\
-		0 & \rTo & A' & \rInj_{f'} & B' & \rTo_{g'} & C' && 
-	\end{diagram}
+	\begin{center}
+	\begin{tikzcd}
+		& A \ar[r, "f"] \ar[d, "a"] & B \ar[r, "g", two heads] \ar[d, "b"] & C \ar[r] \ar[d, "c"] & 0 \\
+		0 \ar[r] & A' \ar[r, hook, "f'"'] & B' \ar[r, "g'"'] & C'
+	\end{tikzcd}
+	\end{center}
 	where the first and second rows are exact sequences.
 	Prove that there is an exact sequence
 	\[ \Ker a \to \Ker b \to \Ker c \to \Coker a \to \Coker b \to \Coker c. \]
