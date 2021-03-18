@@ -222,11 +222,12 @@ To this end we prove that
 Hence $K \subseteq R^{\oplus d}$ is finitely generated as claimed.
 So we can find another surjective map $R^{\oplus f} \surjto K$.
 Consequently, we have a composition
-\begin{diagram}
-	&& K && && \\
-	R^{\oplus f} & \ruSurj(2,1) & \rTo_T & \rdInj(2,1)
-		& R^{\oplus d} & \rSurj & M
-\end{diagram}
+\begin{center}
+\begin{tikzcd}
+	& K \ar[rd, hook] \\
+	R^{\oplus f} \ar[ru, two heads] \ar[rr, "T"'] && R^{\oplus d} \ar[r, two heads] & M
+\end{tikzcd}
+\end{center}
 Observe that $M$ is the \emph{cokernel} of the linear map $T$,
 i.e.\ we have that
 \[ M \cong R^{\oplus d} / \img(T). \]

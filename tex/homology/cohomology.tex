@@ -170,14 +170,26 @@ Then in exact analog to our result that $H_n : \catname{hTop} \to \catname{Grp}$
 	the prism operator earlier.
 	First, we construct the entire sequence of functors
 	from $\catname{Top}\op \to \catname{Grp}$:
-	\begin{diagram}
-		\catname{Top}\op & \rTo^{C_\bullet} & \catname{Cmplx}\op & \rTo^{\Hom(-;G)}
-		& \catname{CoCmplx} & \rTo^{H^n} & \catname{Grp} \\
-		X && C_\bullet(X) && C^\bullet(X;G) && H^n(X;G) \\
-		\dTo^f &\rMapsto& \dTo^{f_\sharp} &\rMapsto&
-		\uTo^{f^\sharp} &\rMapsto& \uTo^{f^\ast} \\
-		Y && C_\bullet(Y) && C^\bullet(Y;G) && H^n(Y;G).
-	\end{diagram}
+	\begin{center}
+	\begin{tikzcd}
+		\catname{Top}\op \ar[rr, "C_\bullet"]
+			&& \catname{Cmplx}\op \ar[rr, "\Hom(-;G)"]
+			&& \catname{CoCmplx} \ar[rr, "H^n"]
+			&& \catname{Grp} \\
+		X \ar[dd, "f"', near start]
+			&& C_\bullet(X) \ar[dd, "f_\sharp"', near start]
+			&& C^\bullet(X;G)
+			&& H^n(X;G) \\
+			\quad \ar[rr, mapsto] &&
+			\quad \ar[rr, mapsto] &&
+			\quad \ar[rr, mapsto] &&
+			\quad \\
+		Y
+			&& C_\bullet(Y)
+			&& C^\bullet(Y;G) \ar[uu, "f_\sharp"', near start]
+			&& H^n(Y;G). \ar[uu, "f^\ast"', near start]
+	\end{tikzcd}
+	\end{center}
 	Here $f^\sharp = (f_\sharp)^\vee$, and $f^\ast$
 	is the resulting induced map on homology groups of the cochain complex.
 

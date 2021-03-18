@@ -418,10 +418,12 @@ which involves the tensor product of two graded rings.
 
 Now let $X$ and $Y$ be topological spaces, and take the product:
 we have a diagram
-\begin{diagram}
-	&& X \times Y && \\
-	X &\ldTo(2,1)^{\pi_X} && \rdTo(2,1)^{\pi_Y} & Y \\
-\end{diagram}
+\begin{center}
+\begin{tikzcd}
+	& X \times Y \ar[ld, "\pi_X"'] \ar[rd, "\pi_Y"] \\
+	X && Y
+\end{tikzcd}
+\end{center}
 where $\pi_X$ and $\pi_Y$ are projections.
 As $H^k(-; R)$ is functorial, this gives induced maps
 \begin{align*}

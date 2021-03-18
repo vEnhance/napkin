@@ -238,12 +238,12 @@ For $z \in U \setminus V$, we already have the square root $g(z) = \sqrt{f(z)} =
 So the burden is completing $g : V \to \CC$.
 
 Then essentially, what we are trying to do is construct a lifting $g$ in the diagram
-\begin{diagram}
-	&&& E = \CC \setminus \{0\} \\
-	&& \ruTo(3,2)^{g} & \dTo_{p = (-)^2} \\
-	V & \rTo_f && B = \CC \setminus \{0\}.
-\end{diagram}
-
+\begin{center}
+	\begin{tikzcd}[sep=large]
+	& E = \CC \setminus \{0\} \ar[d, "p=\bullet^2"] \\
+	V \ar[ru, "g"] \ar[r, "f"'] & B = \CC \setminus \{0\}.
+	\end{tikzcd}
+\end{center}
 Our map $p$ can be described as ``winding around twice''.
 Our \Cref{thm:lifting} now tells us that this lifting exists if and only if
 \[ f_\ast\im(\pi_1(V)) \subseteq p_\ast\im(\pi_1(E)) \]
@@ -280,11 +280,12 @@ So if $e^w = z$, then any complex number $w + 2\pi i k$ is also a solution.
 
 We can handle this in the same way as before:
 it amounts to a lifting of the following diagram.
-\begin{diagram}
-	&&& E = \CC \\
-	&& \ruTo(3,2)^{g} & \dTo_{p = \exp} \\
-	U & \rTo_f && B = \CC \setminus \{0\}
-\end{diagram}
+\begin{center}
+\begin{tikzcd}[sep=large]
+	& E = \CC \ar[d, "p=\exp"] \\
+	U \ar[ru, "g"] \ar[r, "f"'] & B =  \CC \setminus \{0\}
+\end{tikzcd}
+\end{center}
 There is no longer a need to work with a separate $V$ since:
 \begin{ques}
 	Show that if $f$ has any zeros then $g$ can't possibly exist.

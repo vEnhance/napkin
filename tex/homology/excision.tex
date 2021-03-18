@@ -186,11 +186,15 @@ Answer:
 	Considering the long exact sequence of a triple
 	(which was \Cref{prob:triple_long_exact})
 	we have a diagram
-	\begin{diagram}
-		H_n(V,A) & \rTo & H_n(X,A) & \rTo^f & H_n(X, V) & \rTo & H_{n-1}(V,A) \\
-		\dTo_r^\cong && && && \dTo_r^\cong \\
-		\underbrace{H_n(A,A)}_{=0} && && && \underbrace{H_{n-1}(A,A)}_{=0}
-	\end{diagram}
+	\begin{center}
+		\begin{tikzcd}[row sep=huge]
+		H_n(V,A) \ar[r] \ar[d, "\cong"', "r"]
+			& H_n(X,A) \ar["f", r]
+			& H_n(X, V) \ar[r]
+			& H_{n-1}(V,A) \ar[d, "\cong"', "r"] \\
+		\underbrace{H_n(A,A)}_{=0} & & & \underbrace{H_{n-1}(A,A)}_{=0}
+	\end{tikzcd}
+	\end{center}
 	where the isomorphisms arise since $r$ is a pair-homotopy equivalence.
 	So $f$ is an isomorphism.
 	Similarly the map
@@ -198,12 +202,17 @@ Answer:
 	is an isomorphism.
 
 	Now, consider the commutative diagram
-	\begin{diagram}
-		H_n(X,A) & \rTo^f & H_n(X,V) & \lTo^{\text{Excise}} & H_n(X-A, V-A) \\
-		\dTo^{q_\ast} && && \dTo^{\widehat{q}_\ast}_{\cong} \\
-		H_n(X/A,A/A) & \rTo^g & H_n(X/A,V/A)
-		& \lTo^{\text{Excise}} & H_n(X/A-A/A, V/A-A/A) \\
-	\end{diagram}
+	\begin{center}
+		\begin{tikzcd}[sep=huge]
+		H_n(X,A) \ar[r, "f"] \ar[d, "q_\ast"']
+			& H_n(X,V)
+			& H_n(X-A, V-A) \ar[l, "\text{Excise}"'] \ar[d, "\widehat{q}_\ast", "\cong"']
+			\\
+		H_n(X/A,A/A) \ar[r, "g"'] 
+			& H_n(X/A,V/A)
+			& \ar["\text{Excise}"', l] H_n(X/A-A/A, V/A-A/A)
+	\end{tikzcd}
+	\end{center}
 	and observe that the rightmost arrow $\widehat{q}_\ast$ is an isomorphism,
 	because outside of $A$ the map $\widehat q$ is the identity.
 	We know $f$ and $g$ are isomorphisms,
@@ -263,13 +272,13 @@ formed by the pair $X = D^2$ and $A = S^1$.
 	Clearly $S^1$ is a deformation retraction of $D^2 \setminus \{0\}$,
 	and if we fuse all points on the boundary together we get $D^2 / S^1 \cong S^2$.
 	So we have a long exact sequence
-	\begin{diagram}
-		\wt H_2(S^1) & \rTo & \underbrace{\wt H_2(D^2)}_{=0} & \rTo & \wt H_2(S^2) \\
-		&&& \ldTo(4,2) & \\
-		\wt H_1(S^1) & \rTo & \underbrace{\wt H_1(D^2)}_{=0} & \rTo & \wt H_1(S^2) \\
-		&&& \ldTo(4,2) & \\
-		\wt H_0(S^1) & \rTo & \underbrace{\wt H_0(D^2)}_{=0} & \rTo & \underbrace{\wt H_0(S^2)}_{=0}
-	\end{diagram}
+	\begin{center}
+	\begin{tikzcd}
+		\wt H_2(S^1) \ar[r] & \underbrace{\wt H_2(D^2)}_{=0} \ar[r] & \wt H_2(S^2) \ar[lld] \\
+		\wt H_1(S^1) \ar[r] & \underbrace{\wt H_1(D^2)}_{=0} \ar[r] & \wt H_1(S^2) \ar[lld] \\
+		\wt H_0(S^1) \ar[r] & \underbrace{\wt H_0(D^2)}_{=0} \ar[r] & \underbrace{\wt H_0(S^2)}_{=0}
+	\end{tikzcd}
+	\end{center}
 	From this diagram we read that
 	\[
 		\dots, \quad

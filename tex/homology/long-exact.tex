@@ -22,17 +22,27 @@ Recall that we defined a morphism of chain complexes in $\AA$ already.
 Suppose we have a map of chain complexes
 \[ 0 \to A_\bullet \taking f B_\bullet \taking g C_\bullet \to 0 \]
 It is said to be \vocab{short exact} if \emph{each row} of the diagram below is short exact.
-\begin{diagram}
-	&& \vdots && \vdots && \vdots && \\
-	&& \dTo^{\partial_A} && \dTo^{\partial_B} && \dTo^{\partial_C} && \\
-	0 & \rTo & A_{n+1} & \rInj^{f_{n+1}} & B_{n+1} & \rSurj^{g_{n+1}} & C_{n+1} & \rTo & 0 \\
-	&& \dTo^{\partial_A} && \dTo^{\partial_B} && \dTo^{\partial_C} && \\
-	0 & \rTo & A_n & \rInj^{f_n} & B_n & \rSurj^{g_n} & C_n & \rTo & 0 \\
-	&& \dTo^{\partial_A} && \dTo^{\partial_B} && \dTo^{\partial_C} && \\
-	0 & \rTo & A_{n-1} & \rInj^{f_{n-1}} & B_{n-1} & \rSurj^{g_{n-1}} & C_{n-1} & \rTo & 0 \\
-	&& \dTo^{\partial_A} && \dTo^{\partial_B} && \dTo^{\partial_C} && \\
-	&& \vdots && \vdots && \vdots &&
-\end{diagram}
+\begin{center}
+\begin{tikzcd}[column sep=huge]
+	& \vdots \ar[d, "\partial_A"] & \vdots \ar[d, "\partial_B"] & \vdots \ar[d, "\partial_C"] & \\
+	0 \ar[r]
+		& A_{n+1} \ar[hook, r, "f_{n+1}"] \ar[d, "\partial_A"]
+		& B_{n+1} \ar[r, two heads, "g_{n+1}"] \ar[d, "\partial_B"]
+		& C_{n+1} \ar[r] \ar[d, "\partial_C"]
+		& 0 \\
+	0 \ar[r]
+		& A_n \ar[hook, r, "f_n"] \ar[d, "\partial_A"]
+		& B_n \ar[r, two heads, "g_n"] \ar[d, "\partial_B"]
+		& C_n \ar[r] \ar[d, "\partial_C"]
+		& 0 \\
+	0 \ar[r]
+		& A_{n-1} \ar[hook, r, "f_{n-1}"] \ar[d, "\partial_A"]
+		& B_{n-1} \ar[r, two heads, "g_{n-1}"] \ar[d, "\partial_B"]
+		& C_{n-1} \ar[r] \ar[d, "\partial_C"]
+		& 0 \\
+	& \vdots & \vdots & \vdots
+\end{tikzcd}
+\end{center}
 \end{definition}
 
 \begin{example}
@@ -40,11 +50,13 @@ It is said to be \vocab{short exact} if \emph{each row} of the diagram below is 
 	\label{ex:mayer_short_exact}
 	Let $X = U \cup V$ be an open cover.
 	For each $n$ consider
-	\begin{diagram}
-		C_n(U \cap V) & \rInj & C_n(U) \oplus C_n(V) & \rSurj & C_n(U + V) \\
-		c & \rMapsto & (c, -c) && \\
-		&& (c, d) & \rMapsto & c + d
-	\end{diagram}
+	\begin{center}
+	\begin{tikzcd}[row sep=tiny]
+		C_n(U \cap V) \ar[r, hook] & C_n(U) \oplus C_n(V) \ar[r, two heads] & C_n(U + V) \\
+		c \ar[r, mapsto] & (c, -c) \\
+		& (c, d) \ar[r, mapsto] & c + d
+	\end{tikzcd}
+	\end{center}
 	One can easily see (by taking a suitable basis)
 	that the kernel of the latter map is exactly
 	the image of the first map.
@@ -56,11 +68,20 @@ It is said to be \vocab{short exact} if \emph{each row} of the diagram below is 
 	[Augmented Mayer-Vietoris sequence]
 	We can \emph{augment} each of the chain complexes in the Mayer-Vietoris
 	sequence as well, by appending
-	\begin{diagram}
-		0 & \rTo & C_0(U \cap V) & \rInj & C_0(U) \oplus C_0(V) & \rSurj & C_0(U+V) & \rTo & 0\\
-		&& \dSurj^{\eps} && \dSurj^{\eps \oplus \eps} && \dTo^\eps && \\
-		0 & \rTo & \ZZ & \rTo & \ZZ \oplus \ZZ & \rTo & \ZZ & \rTo & 0
-	\end{diagram}
+	\begin{center}
+	\begin{tikzcd}[row sep=large]
+		0 \ar[r]
+		& C_0(U \cap V) \ar[r, hook] \ar[d, "\eps"', two heads]
+			& C_0(U) \oplus C_0(V) \ar[r, two heads] \ar[d, "\eps \oplus \eps"', two heads]
+			& C_0(U+V) \ar[r] \ar[d, "\eps"']
+			& 0 \\
+		0 \ar[r]
+			& \ZZ \ar[r]
+			& \ZZ \oplus \ZZ \ar[r]
+			& \ZZ \ar[r]
+			& 0
+	\end{tikzcd}
+	\end{center}
 	to the bottom of the diagram.
 	In other words we modify the above into
 	\[ 0 \to  \wt C_\bullet(U \cap V) 
@@ -81,23 +102,30 @@ It is said to be \vocab{short exact} if \emph{each row} of the diagram below is 
 	\[ 0 \to \wt C_\bullet(A) \injto \wt C_\bullet(X)
 		\surjto C_\bullet(X,A) \to 0 \]
 	by adding the final row
-	\begin{diagram}
-		0 & \rTo & C_0(A) & \rInj & C_0(X) & \rSurj & C_0(X,A) & \rTo & 0\\
-		&& \dSurj^{\eps} && \dSurj^{\eps} && \dTo && \\
-		0 & \rTo & \ZZ & \rTo_\id & \ZZ & \rTo & 0 & \rTo & 0.
-	\end{diagram}
+	\begin{center}
+	\begin{tikzcd}
+		0 \ar[r]
+		& C_0(A) \ar[r, hook] \ar[d, "\eps", two heads]
+			& C_0(X) \ar[r, two heads] \ar[d, "\eps", two heads]
+			& C_0(X,A) \ar[r]
+			& 0 \\
+		0 \ar[r] & \ZZ \ar[r, "\id"'] & \ZZ \ar[r] & 0 \ar[r] & 0.
+	\end{tikzcd}
+	\end{center}
 \end{example}
 
 \section{The long exact sequence of homology groups}
 Consider a short exact sequence $0 \to A_\bullet \taking f B_\bullet \taking g C_\bullet \to 0$.
 Now, we know that we get induced maps of homology groups, i.e.\ we have
-\begin{diagram}
-	\vdots && \vdots && \vdots  \\
-	H_{n+1}(A_\bullet) & \rTo^{f_\ast} & H_{n+1}(B_\bullet) & \rTo^{g_\ast} & H_{n+1}(C_\bullet) \\
-	H_{n}(A_\bullet) & \rTo^{f_\ast} & H_{n}(B_\bullet) & \rTo^{g_\ast} & H_{n}(C_\bullet) \\
-	H_{n-1}(A_\bullet) & \rTo^{f_\ast} & H_{n-1}(B_\bullet) & \rTo^{g_\ast} & H_{n-1}(C_\bullet) \\
-	\vdots && \vdots && \vdots \\
-\end{diagram}
+\begin{center}
+\begin{tikzcd}
+	\vdots & \vdots & \vdots  \\
+	H_{n+1}(A_\bullet) \ar[r, "f_\ast"] & H_{n+1}(B_\bullet) \ar[r, "g_\ast"] & H_{n+1}(C_\bullet) \\
+	H_{n}(A_\bullet) \ar[r, "f_\ast"] & H_{n}(B_\bullet) \ar[r, "g_\ast"] & H_{n}(C_\bullet) \\
+	H_{n-1}(A_\bullet) \ar[r, "f_\ast"] & H_{n-1}(B_\bullet) \ar[r, "g_\ast"] & H_{n-1}(C_\bullet) \\
+	\vdots & \vdots & \vdots \\
+\end{tikzcd}
+\end{center}
 But the theorem is that we can string these all together,
 taking each $H_{n+1}(C_\bullet)$ to $H_n(A_\bullet)$.
 
@@ -106,16 +134,21 @@ taking each $H_{n+1}(C_\bullet)$ to $H_n(A_\bullet)$.
 	Let $0 \to A_\bullet \taking f B_\bullet \taking g C_\bullet \to 0$ 
 	be \emph{any} short exact sequence of chain complexes we like.
 	Then there is an \emph{exact} sequence
-	\begin{diagram}
-		&& \dots & \rTo & H_{n+2}(C_\bullet) \\
-		H_{n+1}(A_\bullet) & \rTo_{f_\ast} &
-		H_{n+1}(B_\bullet) & \ldTo(4,1)~\partial \rTo^{g_\ast} & H_{n+1}(C_\bullet) \\
-		H_{n}(A_\bullet) & \rTo_{f_\ast} &
-		H_{n}(B_\bullet) & \rTo^{g_\ast} \ldTo(4,1)~{\partial} & H_{n}(C_\bullet) \\
-		H_{n-1}(A_\bullet) & \rTo_{f_\ast} &
-		H_{n-1}(B_\bullet) & \rTo^{g_\ast} \ldTo(4,1)~{\partial} & H_{n-1}(C_\bullet) \\
-		H_{n-2}(A_\bullet) & \rTo & \dots & \ldTo(4,1)~\partial & 
-	\end{diagram}
+	\begin{center}
+	\begin{tikzcd}
+		& \dots \ar[r] & H_{n+2}(C_\bullet) \ar[lld, "\partial"'] \\
+		H_{n+1}(A_\bullet) \ar[r, "f_\ast"']
+			& H_{n+1}(B_\bullet) \ar[r, "g_\ast"]
+			& H_{n+1}(C_\bullet) \ar[lld, "\partial"'] \\
+		H_{n}(A_\bullet) \ar[r, "f_\ast"']
+			& H_{n}(B_\bullet) \ar[r, "g_\ast"]
+			& H_{n}(C_\bullet) \ar[lld, "\partial"'] \\
+		H_{n-1}(A_\bullet) \ar[r, "f_\ast"']
+			& H_{n-1}(B_\bullet) \ar[r, "g_\ast"]
+			& H_{n-1}(C_\bullet) \ar[lld, "\partial"'] \\
+		H_{n-2}(A_\bullet) \ar[r] & \dots 
+	\end{tikzcd}
+	\end{center}
 	This is called a \vocab{long exact sequence} of homology groups.
 \end{theorem}
 \begin{proof}
@@ -127,11 +160,12 @@ taking each $H_{n+1}(C_\bullet)$ to $H_n(A_\bullet)$.
 	\label{rem:leftdownleft}
 	The map $\partial : H_n(C_\bullet) \to H_{n-1}(A_\bullet)$ can be written explicitly as follows.
 	Recall that $H_n$ is ``cycles modulo boundaries'', and consider the sub-diagram
-	\begin{diagram}
-	&& B_n & \rSurj^{g_n} & C_n \\
-	 && \dTo^{\partial_B} && \dTo_{\partial_C} \\
-	A_{n-1} & \rInj^{f_{n-1}} & B_{n-1} & \rSurj_{g_{n-1}} & C_{n-1} \\
-	\end{diagram}
+	\begin{center}
+	\begin{tikzcd}
+		& B_n \ar[r, "g_n", two heads] \ar[d, "\partial_B"'] & C_n \ar[d, "\partial_C"] \\
+		A_{n-1} \ar[r, "f_{n-1}"', hook] & B_{n-1} \ar[r, "g_{n-1}"', two heads] & C_{n-1}
+	\end{tikzcd}
+	\end{center}
 	We need to take every cycle in $C_n$ to a cycle in $A_{n-1}$.
 	(Then we need to check a ton of ``well-defined'' issues,
 	but let's put that aside for now.)
@@ -144,11 +178,15 @@ taking each $H_{n+1}(C_\bullet)$ to $H_n(A_\bullet)$.
 	(by exactness at $B_{n-1}$).
 
 	In summary: we go ``\emph{left, down, left}'' to go from $c$ to $a$:
-	\begin{diagram}
-		&& b & \rMapsto^{g_n} & \boxed c \\
-		&& \dMapsto^{\partial_B} && \dMapsto_{\partial_C} \\
-		\boxed a & \rMapsto^{f_{n-1}} & \partial_B(b) & \rMapsto_{g_{n-1}} & 0
-	\end{diagram}
+	\begin{center}
+	\begin{tikzcd}
+		& b \ar[r, mapsto, "g_n"] \ar[d, "\partial_B"', mapsto]
+			& \boxed{c} \ar[d, "\partial_C", mapsto] \\
+		\boxed{a} \ar[r, mapsto, "f_{n-1}"']
+			& \partial_B(b) \ar[r, "g_{n-1}"', mapsto]
+			& 0
+	\end{tikzcd}
+	\end{center}
 \end{remark}
 \begin{exercise}
 	Check quickly that the recovered $a$ is actually a cycle,
@@ -274,11 +312,12 @@ At long last, we can compute the homology groups of the spheres.
 	Note that the isomorphism was given by the connecting homomorphism $\partial$,
 	which is given by a ``left, down, left'' procedure (\Cref{rem:leftdownleft})
 	in the diagram
-	\begin{diagram}
-		&& C_1(U) \oplus C_1(V) & \rTo & C_1(U+V) \\
-		&& \dTo^{\partial \oplus \partial} && \\
-		C_0(U \cap V) & \rTo & C_0(U) \oplus C_0(V). &&
-	\end{diagram}
+	\begin{center}
+	\begin{tikzcd}
+		& C_1(U) \oplus C_1(V) \ar[r] \ar[d, "\partial \oplus \partial"] & C_1(U+V) \\
+		C_0(U \cap V) \ar[r] & C_0(U) \oplus C_0(V)
+	\end{tikzcd}
+	\end{center}
 	Mark the points $a$ and $b$ as shown in the two disjoint paths of $U \cap V$.
 	\begin{center}
 		\begin{asy}
@@ -303,11 +342,12 @@ At long last, we can compute the homology groups of the spheres.
 	We can find the pre-image of $\partial$ as follows:
 	letting $c$ and $d$ be the chains joining $a$ and $b$, with $c$ contained
 	in $U$, and $d$ contained in $V$, the diagram completes as
-	\begin{diagram}
-		&& (c,d) & \rMapsto & c-d \\
-		&& \dMapsto && \\
-		a-b & \rMapsto & (a-b, a-b) &&
-	\end{diagram}
+	\begin{center}
+	\begin{tikzcd}
+		& (c,d) \ar[r, mapsto]  \ar[d, mapsto] & c-d \\
+		a-b \ar[r, mapsto] & (a-b, a-b)
+	\end{tikzcd}
+	\end{center}
 	In other words $\partial(c-d) = a-b$, so $c-d$ is a generator for $\wt H^1(S^1)$.
 	
 	Thus we wish to show that $c-d$ is (in $H^1(S^1)$) equivalent to the loop $\gamma$
@@ -487,8 +527,8 @@ actually understand the maps in question to complete the solution.
 	Now, we also have
 	\begin{align*}
 		\ker \partial \cong \img \psi &\cong \left( \wt H_1(U) \oplus \wt H_1(V) \right) / \ker \psi \\
-		&\cong \left( \wt H_1(U) \oplus \wt H_1(V) \right) / \img \phi \\
-		&\cong \ZZ
+		&\cong \left( \wt H_1(U) \oplus \wt H_1(V) \right) / \img \phi
+		\cong \ZZ
 	\end{align*}
 	by what we knew about $\img \phi$ already.
 	To finish off we need some algebraic tricks. The first is \Cref{prop:break_exact},
@@ -518,11 +558,13 @@ Finally, to fully justify the last step, we present:
 		\ii There exists $p : B \to A$ such that $A \taking f B \taking p A$ is the identity.
 		\ii There exists $s : C \to B$ such that $C \taking s B \taking g C$ is the identity.
 		\ii There is an isomorphism from $B$ to $A \oplus C$ such that the diagram
-		\begin{diagram}
-			&&& & B & &&&  \\
-			0 & \rTo & A & \ruInj(2,1)^f & \dIsom^\cong & \rdSurj(2,1)^g & C & \rTo & 0 \\
-			&&& \rdInj(2,1) & A \oplus C & \ruSurj(2,1) &&& 
-		\end{diagram}
+		\begin{center}
+		\begin{tikzcd}
+			&& B \ar[rd, "g", two heads] \ar[dd, leftrightarrow, "\cong"] \\
+			0 \ar[r] & A \ar[ru, hook, "f"] \ar[rd, hook] && C \ar[r] & 0 \\
+			&& A \oplus C \ar[ru, two heads]
+		\end{tikzcd}
+		\end{center}
 		commutes. (The maps attached to $A \oplus C$ are the obvious ones.)
 	\end{enumerate}
 	In particular, (b) holds anytime $C$ is free.

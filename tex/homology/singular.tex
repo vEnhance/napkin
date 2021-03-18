@@ -423,13 +423,14 @@ rid of all its original geometric context.
 \begin{definition}
 	A \vocab{morphism of chain complexes} $f : A_\bullet \to B_\bullet$ is
 	a sequence of maps $f_n$ for every $n$ such that the diagram
-	\begin{diagram}
-		\dots &\rTo^{\partial_A} & A_{n+1} & \rTo^{\partial_A} &
-		A_n & \rTo^{\partial_A} & A_{n-1} & \rTo^{\partial_A} & \dots \\
-		&& \dTo_{f_{n+1}} && \dTo_{f_n} && \dTo_{f_{n-1}} && \\
-		\dots & \rTo^{\partial_B} & B_{n+1} & \rTo^{\partial_B} &
-		B_n & \rTo^{\partial_B} & B_{n-1} & \rTo^{\partial_B} & \dots \\
-	\end{diagram}
+	\begin{center}
+	\begin{tikzcd}
+		\dots \ar[r, "\partial_A"] & A_{n+1} \ar[r, "\partial_A"]  \ar[d, "f_{n+1}"] &
+		A_n \ar[r, "\partial_A"] \ar[d, "f_n"] & A_{n-1} \ar[r, "\partial_A"] \ar[d, "f_{n-1}"] & \dots \\
+		\dots \ar[r, "\partial_B"] & B_{n+1} \ar[r, "\partial_B"] &
+		B_n \ar[r, "\partial_B"] & B_{n-1} \ar[r, "\partial_B"] & \dots
+	\end{tikzcd}
+	\end{center}
 	commutes.
 	Under this definition, the set of chain complexes becomes a category,
 	which we denote $\catname{Cmplx}$.
@@ -437,11 +438,12 @@ rid of all its original geometric context.
 
 Note that given a morphism of chain complexes $f : A_\bullet \to B_\bullet$,
 every cycle in $A_n$ gets sent to a cycle in $B_n$, since the square
-\begin{diagram}
-	A_n & \rTo^{\partial_A} & A_{n-1} \\
-	\dTo^{f_n} & & \dTo^{f_{n-1}} \\
-	B_n & \rTo_{\partial_B} & B_{n-1} \\
-\end{diagram}
+\begin{center}
+\begin{tikzcd}
+	A_n \ar[r, "\partial_A"] \ar[d, "f_n"'] & A_{n-1} \ar[d, "f_{n-1}"] \\
+	B_n \ar[r, "\partial_B"'] & B_{n-1}
+\end{tikzcd}
+\end{center}
 commutes.
 Similarly, every boundary in $A_n$ gets sent to a boundary in $B_n$. Thus,
 \begin{moral}
@@ -464,14 +466,20 @@ Here's the answer:
 
 We can draw a picture to illustrate this (warning: the diagonal dotted arrows do NOT commute
 with all the other arrows):
-\begin{diagram}
-	\dots &\rTo^{\partial_A} & A_{n+1} & \rTo^{\partial_A} &
-	A_n & \rTo^{\partial_A} & A_{n-1} & \rTo^{\partial_A} & \dots \\
-	&& \dTo~{g-f} & \ldDotted~{P_n} & \dTo~{g-f}
-	& \ldDotted~{P_{n-1}} & \dTo~{g-f} && \\
-	\dots & \rTo^{\partial_B} & B_{n+1} & \rTo^{\partial_B} &
-	B_n & \rTo^{\partial_B} & B_{n-1} & \rTo^{\partial_B} & \dots \\
-\end{diagram}
+\begin{center}
+\begin{tikzcd}[sep=large]
+	\dots \ar[r, "\partial_A"]
+		& A_{n+1} \ar[r, "\partial_A"] \ar[d, "g-f"']
+		& A_n \ar[r, "\partial_A"] \ar[d, "g-f"'] \ar[ld, dotted, "P_n"']
+		& A_{n-1} \ar[r, "\partial_A"] \ar[d, "g-f"'] \ar[ld, dotted, "P_{n-1}"']
+		& \dots \\
+	\dots \ar[r, "\partial_B"]
+		& B_{n+1} \ar[r, "\partial_B"]
+		& B_n \ar[r, "\partial_B"]
+		& B_{n-1} \ar[r, "\partial_B"]
+		& \dots
+\end{tikzcd}
+\end{center}
 The definition is that in each slanted ``parallelogram'', the $g-f$ arrow is the sum of the two
 compositions along the sides.
 
