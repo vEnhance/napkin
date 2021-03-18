@@ -617,13 +617,14 @@ Then we can summarize many of the preceding results as follows:
 \begin{theorem}[Functorial interpretation of fundamental groups]
 	\label{thm:fundgrp_functor}
 	There is a functor
-	\[ \pi_1 : \catname{hTop}_\ast \to \catname{Grp} \]
+	\[ \pi_1 \colon \catname{hTop}_\ast \to \catname{Grp} \]
 	sending
-	\begin{diagram}
-		(X,x_0) & \rTo & \pi_1(X, x_0) \\
-		\dTo^f & & \dTo^{f_\sharp} \\
-		(Y,y_0) & \rTo & \pi_1(Y, y_0)
-	\end{diagram}
+	\begin{center}
+	\begin{tikzcd}
+		(X,x_0) \ar[d, "f"'] \ar[r, dashed] & \pi_1(X, x_0) \ar[d, "f_\sharp"] \\
+		(Y,y_0) \ar[r, dashed] & \pi_1(Y, y_0)
+	\end{tikzcd}
+	\end{center}
 \end{theorem}
 This implies several things, like
 \begin{itemize}

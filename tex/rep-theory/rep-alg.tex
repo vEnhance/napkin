@@ -407,11 +407,12 @@ We now proceed to define the morphisms between representations.
 \begin{remark}
 	[For commutative diagram lovers]
 	The condition $T(a \cdot v) = a \cdot T(v)$ can be read as saying that
-	\begin{diagram}
-		V & \rTo^{\rho_1(a)} & V \\
-		\dTo^T & & \dTo_T \\
-		W & \rTo_{\rho_2(a)} & W
-	\end{diagram}
+	\begin{center}
+	\begin{tikzcd}
+		V \ar[r, "\rho_1(a)"] \ar[d, "T"'] & V \ar[d, "T"] \\
+		W \ar[r, "\rho_2(a)"'] & W
+	\end{tikzcd}
+	\end{center}
 	commutes for any $a \in A$.
 \end{remark}
 

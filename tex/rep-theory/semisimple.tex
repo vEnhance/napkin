@@ -57,11 +57,15 @@ The possible maps are $v \mapsto (c_1v_1, c_2v_2)$ for some choice of $c_1, c_2 
 
 More generally, suppose $V$ is an irrep and consider
 $\Homrep(V^{\oplus m}, V^{\oplus n})$.
-Intertwining operators are determined completely
-$T : V^{\oplus m} \to V^{\oplus n}$ by the $mn$ choices of compositions
-\begin{diagram}
-	V & \rInj & V^{\oplus m} & \rTo^T & V^{\oplus n} & \rSurj & V
-\end{diagram}
+Intertwining operators
+$T \colon V^{\oplus m} \to V^{\oplus n}$
+are determined completely
+by the $mn$ choices of compositions
+\begin{center}
+\begin{tikzcd}
+	V \ar[r, hook] & V^{\oplus m} \ar[r, "T"] & V^{\oplus n} \ar[r, two heads] & V
+\end{tikzcd}
+\end{center}
 where the first arrow is inclusion to the $i$th component of $V^{\oplus m}$
 (for $1 \le i \le m$) and the second arrow is inclusion to the $j$th
 component of $V^{\oplus n}$ (for $1 \le j \le n$).
@@ -138,15 +142,15 @@ Similarly, given lots of different nonisomorphic representations of $A$,
 this means that we can select a single $a \in A$ which induces any tuple
 $(\rho_1(a), \dots, \rho_r(a))$ of actions we want --- a surprising result,
 since even the $r=1$ case is not obvious at all!
-
-\begin{diagram}
-	&&& \rho_1(a) &= M_1 \in \Mat(V_1) \\
-	&& \ruTo(3,2) & \rho_2(a) &= M_2 \in \Mat(V_2) \\
-	\boxed{a \in A} && \ruTo(3,1) && \vdots \\
-	& \rdTo(3,1) && \rho_r(a) &= M_r \in \Mat(V_r) \\
-\end{diagram}
-
-This also gives us the non-obvious corollary
+\begin{center}
+	\begin{tikzcd}[column sep=huge, row sep= tiny]
+		& \rho_1(a) = M_1 \in \Mat(V_1) \\
+		& \rho_2(a) = M_2 \in \Mat(V_2) \\
+		\boxed{a \in A} \ar[ruu, end anchor=west] \ar[ru, end anchor=west] \ar[rd, end anchor=west] & \vdots \\
+		& \rho_r(a) = M_r \in \Mat(V_r) \\
+	\end{tikzcd}
+\end{center}
+This also gives us the non-obvious corollary:
 \begin{corollary}
 	[Finiteness of number of representations]
 	Any finite-dimensional algebra $A$ has at most $\dim A$ irreps.
@@ -176,11 +180,13 @@ This also gives us the non-obvious corollary
 	its image is a \emph{proper} subrepresentation of $V^{\oplus n}$.
 	Assume its image is isomorphic to $V^{\oplus m}$ for $m < n$,
 	so by \Cref{thm:compred_schur} there is a matrix of constants $X$ with
-	\begin{diagram}
-		\Reg(A) & \rTo & V^{\oplus n} & \lInj^{X \cdot -} & V^{\oplus r} \\
-		a & \rMapsto & (a \cdot e_1, \dots, a \cdot e_n) && \\
-		1_A & \rMapsto & (e_1, \dots, e_n) & \lMapsto & (v_1, \dots, v_m)
-	\end{diagram}
+	\begin{center}
+		\begin{tikzcd}[row sep=tiny]
+			\Reg(A) \ar[r] & V^{\oplus n} & \ar[l, "X \cdot -", hook'] V^{\oplus r} \\
+			a \ar[r, mapsto] & (a \cdot e_1, \dots, a \cdot e_n) \\
+			1_A \ar[r, mapsto] & (e_1, \dots, e_n) & \ar[l, mapsto] (v_1, \dots, v_m)
+		\end{tikzcd}
+	\end{center}
 	where the two arrows in the top row have the same image;
 	hence the pre-image $(v_1, \dots, v_m)$ of $(e_1, \dots, e_n)$ can be found.
 	But since $r < n$ we can find constants $c_1, \dots, c_n$ not all zero

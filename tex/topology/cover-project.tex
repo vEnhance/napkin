@@ -139,11 +139,13 @@ that might (and indeed it does!) make computing $\pi_1(S^1)$ tractable.
 	such that $p \circ \tilde\gamma = \gamma$.
 \end{definition}
 Picture:
-\begin{diagram}
-	&&& E \\
-	&& \ruTo(3,2)^{\tilde \gamma} & \dTo_p \\
-	[0,1] & \rTo^{\gamma} && B
-\end{diagram}
+\begin{center}
+\begin{tikzcd}
+	& E \ar[d, "p"] \\
+	{[0,1]} \ar[r, "\gamma"'] \ar[ru, "\tilde{\gamma}"] & B
+\end{tikzcd}
+\end{center}
+
 
 \begin{example}[Typical example of lifting]
 	Take $p : \RR \to S^1 \subseteq \CC$ by $\theta \mapsto e^{2 \pi i \theta}$
@@ -237,11 +239,12 @@ It turns out this is true more generally.
 \end{proof}
 
 The theorem can be generalized to a diagram
-\begin{diagram}
-	&& (E, e_0) \\
-	& \ruTo^{\tilde f} & \dTo_{p} \\
-	(Y,y_0) & \rTo^{f} & (B, b_0)
-\end{diagram}
+\begin{center}
+\begin{tikzcd}
+	& (E, e_0) \ar[d, "p"] \\
+	(Y, y_0)  \ar[ru, "\tilde{f}"] \ar[r, "f"'] & (B, b_0)
+\end{tikzcd}
+\end{center}
 where $Y$ is some general path-connected space, as follows.
 \begin{theorem}[General lifting criterion]
 	\label{thm:lifting}
@@ -521,11 +524,12 @@ two covering projections to be equivalent.
 	Given two covering projections $p_1 : E_1 \to B$ and $p_2 : E_2 \to B$
 	a \vocab{map of covering projections} is a continuous function $f : E_1 \to E_2$
 	such that $p_2 \circ f = p_1$.
-	\begin{diagram}
-		E_1 & \rTo^f && E_2 \\
-		& \rdTo(3,2)_{p_1} && \dTo_{p_2} \\
-		&&& B
-	\end{diagram}
+	\begin{center}
+	\begin{tikzcd}
+		E_1 \ar[r, "f"] \ar[rd, "p_1"'] & E_2 \ar[d, "p_2"] \\
+		& B
+	\end{tikzcd}
+	\end{center}
 	Then two covering projections $p_1$ and $p_2$ are isomorphic if there are
 	$f : E_1 \to E_2$ and $g : E_2 \to E_1$
 	such that $f \circ g = \id_{E_1}$ and $g \circ f = \id_{E_2}$.

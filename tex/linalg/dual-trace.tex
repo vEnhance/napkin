@@ -418,9 +418,11 @@ But we can also define an
 \emph{evaluation map} $\opname{ev} : V^\vee \otimes V \to k$
 by ``collapsing'' each pure tensor: $f \otimes v \mapsto f(v)$.
 So this gives us a composed map
-\begin{diagram}
-	\Hom(V, V) & \rTo^\cong & V^\vee \otimes V & \rTo^{\opname{ev}} & k.
-\end{diagram}
+\begin{center}
+\begin{tikzcd}
+	\Hom(V, V) \ar[r, "\cong"] & V^\vee \otimes V \ar[r, "\opname{ev}"] & k.
+\end{tikzcd}
+\end{center}
 This result is called the \vocab{trace} of a matrix $T$.
 
 \begin{example}[Example of a trace]
@@ -475,14 +477,21 @@ This result is called the \vocab{trace} of a matrix $T$.
 		Although we could give a coordinate calculation,
 		we instead opt to give a cleaner proof.
 		This amounts to drawing the diagram
-		\begin{diagram}
-			&& (W^\vee \otimes V) \otimes (V^\vee \otimes W)
-			&\rIsom& (V^\vee \otimes W) \otimes (W^\vee \otimes V) && \\
-			& \ldTo^{\text{compose}} & \dTo && \dTo & \rdTo^{\text{compose}} & \\
-			\Hom(W, W) & \lIsom & W^\vee \otimes W & & V^\vee \otimes V & \rIsom & \Hom(V, V) \\
-			& \rdTo_{\Tr} & \dTo_{\opname{ev}} && \dTo_{\opname{ev}} & \ldTo_{\Tr} & \\
-			&& k & \rIsom{\id} & k &&
-		\end{diagram}
+		\begin{center}
+			\begin{tikzcd}[column sep=tiny]
+			& (W^\vee \otimes V) \otimes (V^\vee \otimes W) \ar[d]
+				\ar[r, equals] \ar[ld, "\text{compose}"']
+				& (V^\vee \otimes W) \otimes (W^\vee \otimes V) \ar[d]
+				\ar[rd, "\text{compose}"]
+				\\
+			\Hom(W, W) \ar[r, leftrightarrow] \ar[rd, "\Tr"']
+				& W^\vee \otimes W \ar[d, "\opname{ev}"]
+				& V^\vee \otimes V \ar[r, leftrightarrow] \ar[d, "\opname{ev}"]
+				& \Hom(V, V) \ar[ld, "\Tr"']
+				\\
+			& k \ar[r, equals] & k
+		\end{tikzcd}
+		\end{center}
 		It is easy to check that the center rectangle commutes,
 		by checking it on pure tensors $\xi_W \otimes v \otimes \xi_V \otimes w$.
 		So the outer hexagon commutes and we're done.
