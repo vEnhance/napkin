@@ -1,0 +1,278 @@
+\newcommand{\cbrt}[1]{\sqrt[3]{#1}}
+\newcommand{\floor}[1]{\left\lfloor #1 \right\rfloor}
+\newcommand{\ceiling}[1]{\left\lceil #1 \right\rceil}
+\newcommand{\mailto}[1]{\href{mailto:#1}{\texttt{#1}}}
+\newcommand{\ol}{\overline}
+\newcommand{\ul}{\underline}
+\newcommand{\wt}{\widetilde}
+\newcommand{\wh}{\widehat}
+\newcommand{\eps}{\varepsilon}
+%\renewcommand{\iff}{\Leftrightarrow}
+%\renewcommand{\implies}{\Rightarrow}
+\newcommand{\vocab}[1]{\textbf{\color{blue} #1}}
+\newcommand{\catname}{\mathsf}
+\newcommand{\hrulebar}{
+  \par\hspace{\fill}\rule{0.95\linewidth}{.7pt}\hspace{\fill}
+  \par\nointerlineskip \vspace{\baselineskip}
+}
+\newcommand{\half}{\frac{1}{2}}
+
+%More commands and math operators
+\DeclareMathOperator{\cis}{cis}
+\DeclareMathOperator*{\lcm}{lcm}
+\DeclareMathOperator*{\argmin}{arg min}
+\DeclareMathOperator*{\argmax}{arg max}
+
+%Convenient Environments
+\newenvironment{soln}{\begin{proof}[Solution]}{\end{proof}}
+\newenvironment{parlist}{\begin{inparaenum}[(i)]}{\end{inparaenum}}
+\newenvironment{gobble}{\setbox\z@\vbox\bgroup}{\egroup}
+
+%Inequalities
+\newcommand{\cycsum}{\sum_{\mathrm{cyc}}}
+\newcommand{\symsum}{\sum_{\mathrm{sym}}}
+\newcommand{\cycprod}{\prod_{\mathrm{cyc}}}
+\newcommand{\symprod}{\prod_{\mathrm{sym}}}
+
+%From H113 "Introduction to Abstract Algebra" at UC Berkeley
+\newcommand{\CC}{\mathbb C}
+\newcommand{\FF}{\mathbb F}
+\newcommand{\NN}{\mathbb N}
+\newcommand{\QQ}{\mathbb Q}
+\newcommand{\RR}{\mathbb R}
+\newcommand{\ZZ}{\mathbb Z}
+\newcommand{\charin}{\text{ char }}
+\DeclareMathOperator{\sign}{sign}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Inn}{Inn}
+\DeclareMathOperator{\Syl}{Syl}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\GL}{GL} % General linear group
+\DeclareMathOperator{\SL}{SL} % Special linear group
+
+%From Kiran Kedlaya's "Geometry Unbound"
+\newcommand{\abs}[1]{\left\lvert #1 \right\rvert}
+\newcommand{\norm}[1]{\left\lVert #1 \right\rVert}
+\newcommand{\dang}{\measuredangle} %% Directed angle
+\newcommand{\ray}[1]{\overrightarrow{#1}}
+\newcommand{\seg}[1]{\overline{#1}}
+\newcommand{\arc}[1]{\wideparen{#1}}
+
+%From M275 "Topology" at SJSU
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\taking}[1]{\xrightarrow{#1}}
+\newcommand{\inv}{^{-1}}
+
+%From M170 "Introduction to Graph Theory" at SJSU
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\ord}{ord}
+%\newcommand{\defeq}{\overset{\mathrm{def}}{=}}
+\newcommand{\defeq}{\coloneqq}
+
+%From the USAMO .tex filse
+\newcommand{\st}{^{\text{st}}}
+\newcommand{\nd}{^{\text{nd}}}
+\renewcommand{\th}{^{\text{th}}}
+\newcommand{\dg}{^\circ}
+\newcommand{\ii}{\item}
+
+% From Math 55 and Math 145 at Harvard
+\newenvironment{subproof}[1][Proof]{%
+\begin{proof}[#1] \renewcommand{\qedsymbol}{$\blacksquare$}}%
+{\end{proof}}
+
+\newcommand{\liff}{\leftrightarrow}
+\newcommand{\lthen}{\rightarrow}
+\newcommand{\opname}{\operatorname}
+\newcommand{\surjto}{\twoheadrightarrow}
+\newcommand{\injto}{\hookrightarrow}
+\newcommand{\On}{\mathrm{On}} % ordinals
+\DeclareMathOperator{\img}{im} % Image
+\DeclareMathOperator{\Img}{Im} % Image
+\DeclareMathOperator{\coker}{coker} % Cokernel
+\DeclareMathOperator{\Coker}{Coker} % Cokernel
+\DeclareMathOperator{\Ker}{Ker} % Kernel
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\Spec}{Spec} % spectrum
+\DeclareMathOperator{\Tr}{Tr} % trace
+\DeclareMathOperator{\pr}{pr} % projection
+\DeclareMathOperator{\ext}{ext} % extension
+\DeclareMathOperator{\pred}{pred} % predecessor
+\DeclareMathOperator{\dom}{dom} % domain
+\DeclareMathOperator{\ran}{ran} % range
+\DeclareMathOperator{\Hom}{Hom} % homomorphism
+\DeclareMathOperator{\End}{End} % endomorphism
+
+% Things Lie
+\newcommand{\kg}{\mathfrak g}
+\newcommand{\kh}{\mathfrak h}
+\newcommand{\kn}{\mathfrak n}
+\newcommand{\ku}{\mathfrak u}
+\newcommand{\kz}{\mathfrak z}
+\DeclareMathOperator{\Ext}{Ext} % Ext functor
+\DeclareMathOperator{\Tor}{Tor} % Tor functor
+
+% More script letters etc.
+\newcommand{\SA}{\mathscr A}
+\newcommand{\SB}{\mathscr B}
+\newcommand{\SC}{\mathscr C}
+\newcommand{\SD}{\mathscr D}
+\newcommand{\SF}{\mathscr F}
+\newcommand{\SG}{\mathscr G}
+\newcommand{\SH}{\mathscr H}
+\newcommand{\OO}{\mathcal O}
+
+
+%%fakesection Napkin Macros
+\newcommand{\Zc}[1]{\ZZ/#1\ZZ}
+\newcommand{\Zcc}[1]{\ZZ/(#1)\ZZ}
+\newcommand{\Zm}[1]{(\ZZ/#1\ZZ)^\times}
+\newcommand{\EE}{\mathbb E}
+\newcommand{\TT}{\mathbb T}
+\newcommand{\im}{^{\text{img}}} % or ``?
+\newcommand{\pre}{^{\text{pre}}}
+\newcommand{\normalin}{\trianglelefteq}
+\newcommand{\triv}{\mathrm{triv}}
+\newcommand{\largeotimes}[1]{\mathop{\otimes}\limits_{#1}}
+\newcommand{\Mat}{\mathrm{Mat}}
+\newcommand{\PGL}[1]{\mathbf{PGL}_{#1}(\CC)}
+
+\DeclareMathOperator{\Stab}{Stab}
+\DeclareMathOperator{\FixPt}{FixPt}
+\DeclareMathOperator{\refl}{refl}
+\DeclareMathOperator{\Fun}{Fun}
+\DeclareMathOperator{\Irrep}{Irrep}
+\DeclareMathOperator{\Res}{Res}
+\DeclareMathOperator{\Reg}{Reg}
+\DeclareMathOperator{\Classes}{Classes}
+\DeclareMathOperator{\Frac}{Frac}
+\newcommand{\FunCl}{\Fun_{\mathrm{class}}}
+\newcommand{\Homrep}{\Hom_{\mathrm{rep}}}
+\newcommand{\ab}{^\text{ab}} % abelianization
+\DeclareMathOperator{\ev}{ev}
+\DeclareMathOperator{\Wind}{\mathbf I}
+\newcommand{\Ctriv}{\CC_{\mathrm{triv}}}
+\newcommand{\Csign}{\CC_{\mathrm{sign}}}
+
+% Alg geom macros
+\newcommand{\VV}{\mathcal V}
+\newcommand{\Vp}{\mathcal V_{\text{pr}}}
+\newcommand{\Aff}{\mathbb A}
+\newcommand{\II}{\mathcal I_{\text{rad}}}
+\newcommand{\RP}{\mathbb{RP}}
+\newcommand{\CP}{\mathbb{CP}}
+\newcommand{\Cl}{\mathrm{Cl}}
+\newcommand{\restrict}[1]{\bgroup\restriction_{#1}\egroup}
+\DeclareMathOperator{\Opens}{OpenSets}
+\DeclareMathOperator{\Proj}{Proj}
+\DeclareMathOperator{\res}{res}
+\newcommand{\km}{\mathfrak m}
+\newcommand{\sh}{^\mathrm{sh}}
+
+\renewcommand{\Re}{\opname{Re}}
+\renewcommand{\Im}{\opname{Im}}
+
+%% Category Theory macros
+\renewcommand{\AA}{\mathcal A}
+\newcommand{\BB}{\mathcal B}
+\newcommand{\obj}{\operatorname{obj}}
+\newcommand{\op}{^{\mathrm{op}}}
+
+
+\usepackage{tkz-graph}
+\pgfarrowsdeclare{biggertip}{biggertip}{%
+  \setlength{\arrowsize}{1pt}  
+  \addtolength{\arrowsize}{.1\pgflinewidth}  
+  \pgfarrowsrightextend{0}  
+  \pgfarrowsleftextend{-5\arrowsize}  
+}{%
+  \setlength{\arrowsize}{1pt}  
+  \addtolength{\arrowsize}{.1\pgflinewidth}  
+  \pgfpathmoveto{\pgfpoint{-5\arrowsize}{4\arrowsize}}  
+  \pgfpathlineto{\pgfpointorigin}  
+  \pgfpathlineto{\pgfpoint{-5\arrowsize}{-4\arrowsize}}  
+  \pgfusepathqstroke  
+}  
+\tikzset{
+	EdgeStyle/.style = {>=biggertip}
+}
+
+\usepackage[all,cmtip,2cell]{xy}
+\UseTwocells
+\newcommand\nattfm[5]{\xymatrix@C+2pc{#1 \rtwocell<4>^{#2}_{#4}{\; #3} & #5}}
+
+%% Alg Top macros
+\DeclareMathOperator{\Cells}{Cells}
+\newcommand{\HdR}{H_{\mathrm{dR}}}
+
+%% Alg NT macros
+\newcommand{\ka}{\mathfrak a}
+\newcommand{\kb}{\mathfrak b}
+\newcommand{\kp}{\mathfrak p}
+\newcommand{\kq}{\mathfrak q}
+
+\newcommand{\Frob}{\mathrm{Frob}}
+\DeclareMathOperator{\Norm}{N}
+\DeclareMathOperator{\Ram}{Ram}
+\newcommand{\TrK}{\Tr_{K/\QQ}}
+\newcommand{\NK}{\Norm_{K/\QQ}}
+\newcommand{\kf}{\mathfrak f}
+\newcommand{\kP}{\mathfrak P}
+\newcommand{\kQ}{\mathfrak Q}
+
+%% Diff geo macros
+\newcommand{\ee}{\mathbf e}
+\newcommand{\fpartial}[2]{\frac{\partial #1}{\partial #2}}
+
+%% ST macros
+\newcommand{\CH}{\mathsf{CH}}
+\newcommand{\ZFC}{\mathsf{ZFC}}
+
+\newcommand{\Name}{\text{Name}}
+\newcommand{\Po}{\mathbb P}
+\newcommand{\nrank}{\opname{n-rank}} % ranks
+\newcommand{\PP}{\mathcal P}
+
+\newcommand{\EmptySet}{\mathrm{EmptySet}}
+\newcommand{\PowerSet}{\mathrm{PowerSet}}
+\newcommand{\Pairing}{\mathrm{Pairing}}
+\newcommand{\Infinity}{\mathrm{Infinity}}
+\newcommand{\Extensionality}{\mathrm{Extensionality}}
+\newcommand{\Foundation}{\mathrm{Foundation}}
+\newcommand{\Union}{\mathrm{Union}}
+\newcommand{\Comprehension}{\mathrm{Comprehension}}
+\newcommand{\Replacement}{\mathrm{Replacement}}
+
+\usepackage{mathrsfs}
+
+\newcommand\MM{\mathscr M}
+\newcommand\llex{<_{\text{lex}}}
+
+\DeclareMathOperator{\cof}{cof}
+
+%% Quantum macros
+\usepackage{braket}
+\newcommand{\cvec}[1]{\begin{bmatrix} #1 \end{bmatrix}}
+\newcommand{\pair}[2]{\begin{bmatrix} #1 \\ #2 \end{bmatrix}}
+\newcommand{\zup}{\ket\uparrow}
+\newcommand{\zdown}{\ket\downarrow}
+\newcommand{\xup}{\ket\rightarrow}
+\newcommand{\xdown}{\ket\leftarrow}
+\newcommand{\yup}{\ket\otimes}
+\newcommand{\ydown}{\ket\odot}
+\newcommand{\UCNOT}{U_{\mathrm{CNOT}}}
+\newcommand{\UQFT}{U_{\mathrm{QFT}}}
+
+%% Measure
+\DeclareMathOperator{\Var}{Var}
+\newcommand{\cme}{^\text{cm}}
+\newcommand{\asto}{\xrightarrow{\text{a.s.}}}
+
+%% Hot chili peppers
+\reversemarginpar
+\newcommand{\prechili}{\vspace*{0.3em}\hspace*{1.5em}}
+\newcommand{\nochili}{\hspace*{1.5em}}
+\newcommand{\chili}{\includegraphics[width=1.5em]{media/chili.png}}
+\newcommand{\gim}{\marginpar{\prechili\nochili\nochili\chili}}
+\newcommand{\yod}{\marginpar{\prechili\nochili\chili\chili}}
+\newcommand{\kurumi}{\marginpar{\prechili\chili\chili\chili}}
