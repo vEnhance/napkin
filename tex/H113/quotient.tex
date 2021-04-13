@@ -517,9 +517,17 @@ make any external references to $\phi$.
 	You can easily see that $G' \normalin G \times H$.
 	(Easy calculation.)
 
-	Moreover, just as the notation would imply, you can check that
+	Moreover, you can check that
 	\[ (G \times H) / (G') \cong H. \]
 	Indeed, we have $(g, h) \sim_{G'} (1_G, h)$ for all $g \in G$ and $h \in H$.
+\end{example}
+\begin{example}[Quotients and products don't necessarily cancel]
+	It is not necessarily true that $(G/H) \times H \cong G$.
+	For example, consider $G = \ZZ/4\ZZ$
+	and the normal subgroup $H = \{0,2\} \cong \ZZ/2\ZZ$.
+	Then $G/H \cong \ZZ/2\ZZ$,
+	but $\ZZ/4\ZZ \not\cong \ZZ/2\ZZ \times \ZZ/2\ZZ$.
+	(Footnote: the precise condition for this kind of ``canceling'' is called the Schur-Zassenhaus lemma.)
 \end{example}
 \begin{example}[Another explicit computation]
 	Let $\phi: D_8 \to \Zc 4$ be defined by \[ r \mapsto \ol 2, \quad s \mapsto \ol 2. \] 
