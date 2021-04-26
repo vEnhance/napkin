@@ -715,11 +715,25 @@ The reason for the opposing terms is the following theorem:
 \begin{problem}
 	Are $\QQ$ and $\NN$ homeomorphic subspaces of $\RR$?
 	\begin{hint}
-		No.
+		No. There is not even a continuous injective map from $\QQ$ to $\NN$.
 	\end{hint}
 	\begin{sol}
-		In $\QQ$, no singleton set is open,
+		Two possible approaches, one using metric definition
+		and one using open sets. 
+
+		Metric approach: I claim there is no injective map from $\QQ$ to $\NN$
+		that is continuous. Indeed, suppose $f$ was such a map and $f(x) = n$.
+		Then, choose $\eps = 1/2$.
+		There should be a $\delta > 0$ such that everything with $\delta$ of $x$
+		in $\QQ$ should land within $\eps$ of $n \in \NN$ --- i.e., is equal to $n$.
+		This is a blatant contradiction of continuity.
+
+		Open set approach: In $\QQ$, no singleton set is open,
 		whereas in $\NN$, they all are (in fact $\NN$ is discrete).
+		As you'll see at the start of \Cref{ch:top_more},
+		with the new and improved definition of ``homeomorphism'',
+		we found out that the structure of open sets on $\QQ$ and $\NN$ are different,
+		so they are not homeomorphic.
 	\end{sol}
 \end{problem}
 
