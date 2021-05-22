@@ -287,18 +287,56 @@ Let's make all this precise.
 \end{example}
 
 You might be inclined to point out that $V \cong V^\vee$ at this point,
-since there's an obvious isomorphism $e_i \mapsto e_i^\vee$.
+with an isomorphism given by $e_i \mapsto e_i^\vee$.
 You might call it ``rotating the column matrix by $90\dg$''.
-The issue is that this isomorphism
-depends very much on which basis you choose:
-if I pick a different basis, then the isomorphism
-will be intrinsically different.
 
-It \emph{is} true that $V$ and $V^\vee$ are isomorphic
-for finite-dimensional $V$,
-but you should already know that \emph{any} two $k$-vector spaces
-of the same dimension are isomorphic.
-In light of this, the fact that $V \cong V^\vee$ is not especially impressive.
+This statement is technically true,
+but for a generic vector space $V$ without any extra information,
+you can just think of this as an artifact of the $\dim V = \dim V^\vee$
+(as \emph{any} two vector spaces of equal dimension are isomorphic).
+Most importantly, the isomorphism given above depends
+on what basis you picked.
+
+\begin{remark*}
+	[Explicit example showing that the isomorphism $V \to V^\vee$
+	given above is unnatural]
+	Alice or Bob are looking at the same two-dimensional real vector space
+	\[ V = \left\{ (x,y,z) \mid x+y+z = 0 \right\}. \]
+	Also, let $v_{\text{example}} = (3,5,-8)$
+	be an example of an arbitrary element of $V$ for concreteness.
+
+	Suppose Alice chooses the following basis vectors for $V$.
+	\begin{align*}
+		e_1 &= (1,0,-1) \\
+		e_2 &= (0,1,-1).
+	\end{align*}
+	Alice uses this to construct an isomorphism $A \colon V \to V^\vee$
+	as described above, and considers $e_1^\vee = A(e_1^\vee)$.
+	The element $e_1^\vee \in V^\vee$ is a
+	function $e_1^\vee \colon V \to \RR$,
+	meaning Alice can plug any vector in $V$ into it.
+	As an example, for $v_{\text{example}}$
+	\[ e_1^\vee(v_{\text{example}})
+		= e_1\left( (3,5,-8) \right)
+		= e_1^\vee\left( 3e_1 - 5e_2 \right) = 3. \]
+	Meanwhile, Bob chooses the different basis vectors
+	\begin{align*}
+		f_1 &= (1,0,-1) \\
+		f_2 &= (1,-1,0).
+	\end{align*}
+	This gives Bob an isomorphism $B \colon V \to V^\vee$,
+	and a corresponding $f_1^\vee = B(f_1)$.
+	Bob can also evaluate it anywhere, e.g.
+	\[ f_1^\vee\left( v_{\text{example}} \right)
+		f_1^\vee\left( (3, 5, -8) \right)
+		= f_1^\vee\left( 8f_1 - 5f_2 \right) = 8. \]
+	
+	It follows that $e_1^\vee = A\left( (1,0,-1) \right)$
+	and $f_1^\vee = B\left( (1,0,-1) \right)$
+	are different elements of $V^\vee$.
+	In other words Alice and Bob got different isomorphisms
+	because they picked different bases.
+\end{remark*}
 
 \section{$V^\vee \otimes W$ gives matrices from $V$ to $W$}
 Goal of this section:
