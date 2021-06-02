@@ -35,5 +35,5 @@ drafts/**/*.bib
 keepsakes/*
 !media/**
 asy/*
-tikz-cd.sty
+tkz-graph.sty
 html/*
