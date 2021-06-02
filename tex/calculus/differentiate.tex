@@ -564,24 +564,16 @@ easily decouple; the following form may be more useful in that case.
 	Let $f, g \colon [a,b] \to \RR$ be two continuous functions
 	which are differentiable on $(a,b)$,
 	and such that $g(a) \neq g(b)$.
-	Then there is a $c \in (a,b)$ such that $g'(c) \neq 0$ and
-	\[ \frac{f'(c)}{g'(c)} = \frac{f(b)-f(a)}{g(b)-g(a)}. \]
+	Then there exists $c \in (a,b)$ such that 
+	\[ f'(c)(g(b)-g(a)) = g'(c)(f(b)-f(a)) \]
 \end{theorem}
 \begin{proof}
 	Use Rolle's theorem on the function
 	\[ h(x) = \left[ f(x)-f(a) \right] \left[ g(b)-g(a) \right]
-		- \left[ g(x)-g(a) \right] \left[ f(b)-f(a) \right].
-		\qedhere \]
+		- \left[ g(x)-g(a) \right] \left[ f(b)-f(a) \right].  \qedhere \]
 \end{proof}
-\begin{remark}
-	You can capture the case $g(a) = g(b)$ as well
-	if you are willing to write the conclusion
-	in the less intuitive form $g'(c) \left[ f(b)-f(a) \right]
-	= f'(c) \left[ g(b)-g(a) \right]$.
-	In the event $g(a) = g(b)$ then this is just the mean value theorem
-	for $g$, and the data of $f$ is irrelevant.
-\end{remark}
-
+This is also called Cauchy's mean value theorem
+or the extended mean value theorem.
 
 \section{Smooth functions}
 \prototype{All the functions you're used to.}
