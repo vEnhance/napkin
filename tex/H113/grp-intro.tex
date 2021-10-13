@@ -85,7 +85,7 @@ From this you might already have a guess what the definition of a group is.
 		Then $(\Mat_{2 \times 2}(\RR), \cdot)$
 		(where $\cdot$ is matrix multiplication) is NOT a group.
 		Indeed, even though we have an identity matrix
-		\[ 
+		\[
 			\begin{bmatrix}
 				1 & 0 \\ 0 & 1
 			\end{bmatrix}
@@ -160,7 +160,7 @@ Here are some \textbf{non-abelian examples}:
 \end{example}
 \begin{example}
 	[Special linear group]
-	Following the example above, let $\SL_n(\RR)$ denote 
+	Following the example above, let $\SL_n(\RR)$ denote
 	the set of $n \times n$ matrices whose determinant is actually $1$.
 	Again, for linear algebra reasons
 	it turns out that $(\SL_n(\RR), \times)$ is also a group,
@@ -421,21 +421,17 @@ uses the operation of $H$.
 	As a nontrivial example, we claim that $\Zc 6 \cong \Zm 7$.
 	The bijection is
 	\[ \phi(\text{$a$ mod $6$}) = \text{$3^a$ mod $7$}. \]
-	To check that this is an isomorphism, we need to verify several things.
 	\begin{itemize}
-		\ii First, we need to check this map actually makes sense:
-		why is it the case that if $a \equiv b \pmod 6$, then $3^a \equiv 3^b \pmod 7$?
-		The reason is that Fermat's little theorem guarantees that $3^6 \equiv 1 \pmod 7$.
-		\ii Next, we need to check that this map is a bijection.
-		You can do this explicitly:
-		\[ (3^1, 3^2, 3^3, 3^4, 3^5, 3^6)
-			\equiv (3,2,6,4,5,1) \pmod 7. \]
+		\ii This map is a bijection by explicit calculation:
+		\[ (3^0, 3^1, 3^2, 3^3, 3^4, 3^5)
+			\equiv (1,3,2,6,4,5) \pmod 7. \]
+		(Technically, I should more properly write $3^{0 \bmod 6} = 1$ and so on to be pedantic.)
 		\ii Finally, we need to verify that this map respects the group action.
 		In other words, we want to see that
 		$\phi(a+b) = \phi(a) \phi(b)$
 		since the operation of $\Zc 6$ is addition
 		while the operation of $\Zm 7$ is multiplication.
-		That's just saying that $3^{a+b} \equiv 3^a 3^b \pmod 7$,
+		That's just saying that $3^{a+b \bmod 6} \equiv 3^{a \bmod 6} 3^{b \bmod 6} \pmod 7$,
 		which is true.
 	\end{itemize}
 \end{example}
@@ -456,7 +452,7 @@ uses the operation of $H$.
 It's not hard to see that $\cong$ is an equivalence relation (why?).
 Moreover, because we really only care about the structure of groups,
 we'll usually consider two groups to be the same when they are isomorphic.
-So phrases such as ``find all groups'' really mean 
+So phrases such as ``find all groups'' really mean
 ``find all groups up to isomorphism''.
 
 \section{Orders of groups, and Lagrange's theorem}
@@ -792,7 +788,7 @@ This makes rigorous the notion that ``groups are very symmetric''.
 	(but not one of the outermost markers),
 	remove it, and reverse the closest marker to the left of it
 	and also reverse the closest marker to the right of it.
-	
+
 	Prove that if $n \equiv 1 \pmod 3$ it's impossible to reach a state
 	with only two markers remaining.
 	(In fact the converse is true as well.)
