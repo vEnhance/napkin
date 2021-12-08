@@ -235,6 +235,9 @@ style=thmbluebox,name=Theorem,numberwithin=section]{theorem}
 }{}{}%
 \makeatother
 \setcounter{tocdepth}{1}
+\RedeclareSectionCommand[tocnumwidth=4.2em]{part}
+\RedeclareSectionCommand[tocnumwidth=4.2em]{chapter}
+\RedeclareSectionCommand[tocnumwidth=2.8em]{section}
 
 %%fakesection Asymptote definitions
 \usepackage{patch-asy}
@@ -260,7 +263,7 @@ style=thmbluebox,name=Theorem,numberwithin=section]{theorem}
 		\field[strwidth=2,strside=left]{labelname}
 	}
 	\labelelement{
-		\field[strwidth=2,strside=right]{year}    
+		\field[strwidth=2,strside=right]{year}
 	}
 }
 \DeclareFieldFormat{labelalpha}{\textbf{\scriptsize #1}}
