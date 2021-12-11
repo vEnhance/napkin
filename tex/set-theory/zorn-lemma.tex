@@ -6,11 +6,11 @@ It can be omitted without loss of continuity.}
 
 \medskip
 
-In the world of olympiad math, there's a famous functional equation that goes as follows: 
+In the world of olympiad math, there's a famous functional equation that goes as follows:
 \[ f : \RR \to \RR \qquad f(x+y) = f(x) + f(y). \]
 Everyone knows what its solutions are!
 There's an obvious family of solutions $f(x) = cx$.
-Then there's also this family of\dots\ uh\dots\ noncontinuous solutions (mumble grumble) pathological 
+Then there's also this family of\dots\ uh\dots\ noncontinuous solutions (mumble grumble) pathological
 (mumble mumble) Axiom of Choice (grumble).
 
 There's also this thing called Zorn's lemma. It sounds terrifying,
@@ -134,6 +134,7 @@ Hence, induction and recursion still work verbatim:
 		\ii If $P(\alpha)$ is true for all $\alpha < \beta$, then $P(\beta)$ is true.
 	\end{itemize}
 	Then $P(\beta)$ is true.
+	\label{thm:transfinite}
 \end{theorem}
 Similarly, you're allowed to do recursion to define $x_\beta$ if you know the
 value of $x_\alpha$ for all $\alpha < \beta$.
@@ -311,7 +312,8 @@ where is the Axiom of Choice used?
 Well, the idea is that for any chain there could be lots of $\tilde p$'s,
 and you need to pick one of them.
 Since you are making arbitrary choices infinitely many times, you need the Axiom of Choice.
-(Actually, you also need choice to talk about cardinalities as in theorem 1.)
+(Actually, you also need Choice to talk about cardinalities as in
+\Cref{thm:transfinite}.)
 But really, it's nothing special.
 
 \section{\problemhead}
