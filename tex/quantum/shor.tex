@@ -19,7 +19,7 @@ Let $N$ be a positive integer, and let $\omega_N = \exp\left( \frac{2\pi i}{N} \
 	Equivalently, one is applying the matrix
 	\[
 		\frac 1N
-		\begin{bmatrix} 
+		\begin{bmatrix}
 			1 & 1 & 1 & \dots & 1 \\
 			1 & \omega_N & \omega_N^2 & \dots & \omega_N^{N-1} \\
 			1 & \omega_N^2 & \omega_N^4 & \dots & \omega_N^{2(N-1)} \\
@@ -98,7 +98,7 @@ orthonormal basis $\ket0$, $\ket1$, \dots, $\ket{N-1}$
 	$\UQFT$ is given by the matrix
 	\[
 		\UQFT = \frac{1}{\sqrt N}
-		\begin{bmatrix} 
+		\begin{bmatrix}
 			1 & 1 & 1 & \dots & 1 \\
 			1 & \omega_N & \omega_N^2 & \dots & \omega_N^{N-1} \\
 			1 & \omega_N^2 & \omega_N^4 & \dots & \omega_N^{2(N-1)} \\
@@ -144,7 +144,7 @@ Then, for $n=3$ the circuit is given by by using controlled $R_k$'s as follows:
 \]
 \begin{exercise}
 	Show that in this circuit, the image of of $\ket{x_3x_2x_1}$
-	(for binary $x_i$) is 
+	(for binary $x_i$) is
 	\[
 		\Big(\ket0+\exp(2\pi i \cdot 0.x_1) \ket1\Big)
 		\otimes \Big(\ket0+\exp(2\pi i \cdot 0.x_2x_1) \ket1\Big)
@@ -210,10 +210,10 @@ first we generate a sequence which is periodic modulo $r$.
 	Let $n = 13$ and $N = 2^{13}$, and start by initializing the state
 	\[ \ket\psi = \frac{1}{\sqrt N} \sum_{k=0}^{N-1} \ket k. \]
 	Now, build a circuit $U_x$ (depending on $x=2$!)
-	which takes $\ket k \ket 0$ to $\ket k \ket{2^k \mod M}$.
+	which takes $\ket k \ket 0$ to $\ket k \ket{x^k \bmod M}$.
 	Applying this to $\ket\psi \otimes \ket0$ gives
 	\[ U(\ket\psi\ket0) =
-		\frac{1}{\sqrt N} \sum_{k=0}^{N-1} \ket k \otimes \ket{2^k \mod M}. \]
+		\frac{1}{\sqrt N} \sum_{k=0}^{N-1} \ket k \otimes \ket{x^k \bmod M}. \]
 	Now suppose we measure the second qubit, and get a state of $\ket{128}$.
 	That tells us that the collapsed state now, up to scaling, is
 	\[ (\ket{7} + \ket{7+r} + \ket{7+2r} + \dots) \otimes \ket{128}. \]
