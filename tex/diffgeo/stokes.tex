@@ -317,9 +317,9 @@ Here's how we do it in general.
 	For each $i = 1,\dots,k$ define
 	\begin{align*}
 		c_i^{\text{start}}(t_1, \dots, t_{k-1}) &
-		= (t_1, \dots, t_{i-1}, 0, t_i, \dots, t_k) \\
+		= c(t_1, \dots, t_{i-1}, 0, t_i, \dots, t_k) \\
 		c_i^{\text{stop}}(t_1, \dots, t_{k-1}) &
-		= (t_1, \dots, t_{i-1}, 1, t_i, \dots, t_k).
+		= c(t_1, \dots, t_{i-1}, 1, t_i, \dots, t_k).
 	\end{align*}
 	Then
 	\[ \partial c \defeq
