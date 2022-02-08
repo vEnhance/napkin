@@ -93,10 +93,10 @@ and the pullback of $\phi \colon U \to \CC$ (where $U \subseteq Y$).
 		pair q = (0,0.5);
 		filldraw(CR(q, 1.2), opacity(0.2)+lightred, red+dashed);
 		label("$U$", q+1.2*dir(45), dir(45), red);
-		
+
 		draw( (-9,0.5)--(-3,0.5), EndArrow);
 		label("$f$", (-6,0.5), dir(90));
-	
+
 		draw(q--(0,-8), red, EndArrow);
 		label("$\phi \in \mathcal O_Y(U)$", (0,-6), dir(0), red);
 		label(scale(2.718)*"$\mathbb C$", (0,-9), black);
@@ -232,7 +232,7 @@ The good news is that ``local'' issues are the only limiting factor.
 	[Example of an isomorphism]
 	In fact, the map $V = \Vp(xy-z^2) \to \CP^1$ is an isomorphism.
 	The inverse map $\CP^1 \to V$ is given by
-	\[ (s:t) \mapsto (s^2:st:t^2). \]
+	\[ (s:t) \mapsto (s^2:t^2:st). \]
 	Thus actually $V \cong \CP^1$.
 \end{example}
 
