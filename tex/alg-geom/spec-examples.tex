@@ -551,7 +551,7 @@ You can tell which closed points are ``bigger'' than others
 by looking at the residue fields.
 For example the residue field of the point $(2+i)$ is
 \[ \kappa\left( (2+i) \right) = \ZZ[i] / (2+i) \cong \FF_5 \]
-but the residue field of the point $(3)$ is 
+but the residue field of the point $(3)$ is
 \[ \kappa\left( (3) \right) \cong \ZZ[i] / (3) \cong \FF_9 \]
 which is a degree two $\FF_3$-extension.
 
@@ -613,13 +613,12 @@ which we think of as the point $(-2,0)$ on the $x$-axis.
 (If it makes you more comfortable, note that $\km \ni y(x+2) = 2y$
 and hence $y \in \km$, so we could also write $\km = (x+2,y)$.)
 The stalk is
-\[ \OO_{\Spec k[x,y] / (xy), \km} = k[x,y]_{(x+2)} / (xy). \]
-This might look confusing until we realize that $\frac1x$
-is an element of $k[x,y]_{(x+2)}$, so $x$ is a unit;
-thus $(xy)$ and $(y)$ specify the same ideal and
-\[ \OO_{\Spec k[x,y] / (xy), (x+2)} \cong k[x,y]_{(x+2)} / (y)
-	\cong k[x]_{(x+2)}  \]
-which anyways looks just like the stalk of $(x+2)$ in $\Spec k[x]$.
+\[ \OO_{\Spec k[x,y] / (xy), \km} = (k[x,y]/ (xy))_{(x+2)}. \]
+But I claim that $y$ becomes the zero element with this localization.
+Indeed, we have $\frac y1 = \frac 0x = 0$.
+Hence the entire thing collapses to just
+\[ \OO_{\Spec k[x,y] / (xy), \km} = k[x,y]_{(x+2)} \]
+which anyways is the stalk of $(x+2)$ in $\Spec k[x]$.
 That's expected.
 If we have a space with two lines but we're
 standing away from the origin,
@@ -628,17 +627,23 @@ at that far-away point;
 it only cares about what happens near $\km$,
 and so it looks just like an affine line there.
 
+\begin{remark}
+	Note that $(k[x,y]/ (xy))_{(x+2)}$
+	is \emph{not} the same as $k[x,y]_{(x+2)} / (xy)$;
+	the order matters here.
+	In fact, the latter is the zero ring,
+	since both $x$ and $y$, and hence $xy$, are units.
+\end{remark}
+
 The generic point $(y)$ (which floats around the $x$-axis)
 will tell a similar tale:
 if we look at the stalk above it,
 we ought to find that it doesn't recognize the presence of the $y$-axis,
 because ``nearly all'' points don't recognize it either.
 To actually compute the stalk:
-\[ \OO_{\Spec k[x,y] / (xy), (y)} = k[x,y]_{(y)} / (xy). \]
-Again as $\frac1x$ is an element of $k[x,y]_{(y)}$,
-we have $(xy) = (y)$ and thus
-\[ \OO_{\Spec k[x,y] / (xy), (y)} = k[x,y]_{(y)} / (y)
-	\cong k[x]_{(0)} \cong k(x). \]
+\[ \OO_{\Spec k[x,y] / (xy), (y)} = (k[x,y]/ (xy))_{(y)}. \]
+Again $\frac y1 = \frac 0x = 0$, so this is just
+\[ \OO_{\Spec k[x,y] / (xy), (y)} \cong k[x]_{(0)} \cong k(x). \]
 which is what we expected
 (it is the same as the stalk above $(0)$ in $\Spec k[x]$).
 
@@ -646,9 +651,8 @@ which is what we expected
 The stalk above the origin $(x,y)$ is interesting,
 and has some ideas in it we won't be able to explore fully
 without talking about localizations of modules.
-We could of course write it as
-\[ (k[x,y] / (xy))_{(x,y)}
-	= k[x,y]_{(x,y)} / (xy). \]
+The localization is given by
+\[ (k[x,y] / (xy))_{(x,y)} \]
 and hence the elements should be
 \[ \frac{c + (a_1 x + a_2 x^2 + \dots)
 	+ (b_1 y + b_2 y^2 + \dots)}
@@ -662,11 +666,11 @@ Here is some geometric intuition.
 You can write the global section ring as
 \[ k[x,y] / (xy) = c + (a_1 x + a_2 x^2 + \dots)
 	+ (b_1 y + b_2 y^2 + \dots) \]
-meaning that any global section is the sum of an $x$-polynomial
+meaning any global section is the sum of an $x$-polynomial
 and a $y$-polynomial.
-This is \emph{not} just the ring product $k[x] \times k[y]$, though:
-because the constant term is shared.
-So it is better thought of as pairs of polynomials in $k[x]$
+This is \emph{not} just the ring product $k[x] \times k[y]$, though;
+the constant term is shared.
+So it's better thought of as pairs of polynomials in $k[x]$
 and $k[y]$ which agree on the constant term.
 
 If you like category theory, it is thus a fibered product
