@@ -52,7 +52,7 @@ Let me give you an example of what I mean and then make it rigorous.
 	[Important: this stupid model satisfies $\PowerSet$]
 	Most incredibly of all: $\MM = (\omega, \in)$ satisfies $\PowerSet$.
 	This is a really important example.
-	
+
 	You might think this is ridiculous. Look at $2 = \{0,1\}$.
 	The power set of this is $\{0, 1, 2, \{1\}\}$ which is not in the model, right?
 
@@ -103,7 +103,7 @@ plus a model $\MM = (M,E)$.
 We want to ask whether $\MM$ satisfies $\phi$.
 
 To give meaning to this, we have to designate certain variables as \vocab{parameters}.
-For example, if I asked you 
+For example, if I asked you
 \begin{quote}
 	``Does $a=b$?''
 \end{quote}
@@ -144,7 +144,7 @@ Note that possibly $n=0$, for example all $\ZFC$ axioms have no parameters.
 		\ii If $\phi$ is ``$\psi_1 \lor \psi_2$'' then $\MM \vDash \phi[b_1, \dots, b_n]$
 		means $\MM \vDash \psi_i[b_1, \dots, b_n]$ for some $i=1,2$.
 		\ii Most important case: suppose $\phi$ is $\exists x \psi(x,x_1, \dots, x_n)$.
-		Then $\MM \vDash \phi[b_1, \dots, b_n]$ if and only if 
+		Then $\MM \vDash \phi[b_1, \dots, b_n]$ if and only if
 		\[ \exists b \in M \text{ such that } \MM \vDash \psi[b, b_1, \dots, b_n]. \]
 		Note that $\psi$ has one extra parameter.
 	\end{itemize}
@@ -202,7 +202,7 @@ We call such a quantifier a \vocab{bounded quantifier}.
 We like sentences with bounded quantifiers because they designate
 properties which are \vocab{absolute} over transitive models.
 It doesn't matter how strange your surrounding model $M$ is.
-As long as $M$ is transitive, 
+As long as $M$ is transitive,
 \[ M \vDash \mathtt{isEmpty}(\varnothing) \]
 will always hold.
 Similarly, the sentence
@@ -379,7 +379,7 @@ Here's a second, better reason we might only care about transitive models.
 
 \begin{lemma}
 	[Mostowski collapse lemma]
-	Let $X = (X, \in)$ be a model,
+	Let $X = (X, \in)$ be a model satisfying Extensionality,
 	where $X$ is a set (possibly not transitive).
 	Then there exists an isomorphism $\pi \colon X \to M$ for
 	a transitive model $M = (M,\in)$.
@@ -624,7 +624,7 @@ Nonetheless, the model $M$ has its own version of the first uncountable
 cardinal $\aleph_1^M$.
 In the true universe, $\aleph_1^M$ is countable (below $\aleph_1^V$),
 but the necessary bijection witnessing this might not be inside $M$.
-That's why $M$ can think $\aleph_1^M$ is uncountable, 
+That's why $M$ can think $\aleph_1^M$ is uncountable,
 even if it is a countable cardinal in the original universe.
 
 So our model $M$ is a brain in a vat.
@@ -674,7 +674,7 @@ the uncountable $\aleph_1^M$ is really just an ordinary countable cardinal.
 		There are only $\left\lvert V_\alpha \right\rvert^n$ many possible choices of $\vec b$,
 		and in particular there are fewer than $\kappa$ of these
 		(since we know that $\left\lvert V_\alpha \right\rvert < \kappa$; compare \Cref{prob:strongly_inaccessible}).
-		Otherwise, we can construct a cofinal map from $\left\lvert V_\alpha^n \right\rvert$ 
+		Otherwise, we can construct a cofinal map from $\left\lvert V_\alpha^n \right\rvert$
 		into $\kappa$ by mapping each vector $\vec b$ into a $\beta$ for which the proposition fails.
 		And that's impossible since $\kappa$ is regular!
 
