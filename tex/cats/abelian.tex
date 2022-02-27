@@ -14,7 +14,7 @@ of $\phi : G \to H$ is $H/\img \phi$.}
 
 A \vocab{zero object} of a category is an object $0$ which is both initial and terminal;
 of course, it's unique up to unique isomorphism.
-For example, in $\catname{Grp}$ the zero object is the trivial group, 
+For example, in $\catname{Grp}$ the zero object is the trivial group,
 in $\catname{Vect}_k$ it's the zero-dimensional vector space consisting of one point, and so on.
 \begin{ques}
 	Show that $\catname{Set}$ and $\catname{Top}$ don't have zero objects.
@@ -39,7 +39,7 @@ We can now define:
 	\end{center}
 	commutes, and moreover any other map with the same property factors uniquely through $\Ker A$
 	(so it is universal with this property).
-	By \Cref{prob:equalizer_monic}, $\ker f$ is a monic morphism, 
+	By \Cref{prob:equalizer_monic}, $\ker f$ is a monic morphism,
 	which justifies the use of ``$\injto$''.
 \end{definition}
 Notice that we're using $\ker f$ to represent the map and $\Ker f$ to represent the object
@@ -353,7 +353,7 @@ This relies on:
 \begin{example}
 Let's analyze this theorem in our two examples of abelian categories:
 \begin{enumerate}[(a)]
-	\ii In the category of abelian groups, 
+	\ii In the category of abelian groups,
 	this is basically the first isomorphism theorem.
 	\ii In the category $\catname{Vect}_k$,
 	this amounts to the rank-nullity theorem, \Cref{thm:rank_nullity}.
@@ -391,7 +391,7 @@ where $C_k = \img f_{k-1} = \ker f_k$ for every $k$.
 	\end{center}
 	where the first and second rows are exact.
 	Prove that if $\alpha$ is epic, and $\beta$ and $\delta$ are monic,
-	then $\gamma$ is epic.
+	then $\gamma$ is monic.
 	\begin{sol}
 		Let $c \in C$ with $\gamma(c) = 0$.
 		We show $c = 0$.
@@ -429,6 +429,10 @@ where $C_k = \img f_{k-1} = \ker f_k$ for every $k$.
 		A' \ar[r, "p'"'] & B' \ar[r, "q'"'] & C' \ar[r, "r'"'] & D' \ar[r, "s'"'] & E'
 	\end{tikzcd}
 	\end{center}
+	where the two rows are exact,
+	$\beta$ and $\delta$ are isomorphisms,
+	$\alpha$ is epic, and $\eps$ is monic.
+	Prove that $\gamma$ is an isomorphism.
 \end{problem}
 
 \begin{sproblem}
