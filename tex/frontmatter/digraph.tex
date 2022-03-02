@@ -3,30 +3,31 @@
 
 \bgroup
 \renewcommand{\href}[1]{} % temp disable links
+\hypersetup{linkcolor=black} % temporarily make internal refs black, so part labels are not all maroon
 \renewcommand{\solidwidth}{0.7pt}
 \renewcommand{\boldwidth}{1.5pt}
 
 \setcounter{diagheight}{50}
 \begin{chart}
-\reqhalfcourse 20,45:{Ch 1,3-5}{Abs Alg}{}
-\reqhalfcourse 55,45:{Ch 2,6-8}{Topology}{}
-\halfcourse 33,45:{Ch 9-15,18}{Lin Alg}{}
-\halfcourse 5,35:{Ch 16}{Grp Act}{}
-\halfcourse 5,24:{Ch 17}{Grp Classif}{}
-\halfcourse 30,35:{Ch 19-22}{Rep Th}{}
-\halfcourse 45,43:{Ch 23-25}{Quantum}{}
-\halfcourse 64,38:{Ch 26-30}{Calc}{}
-\halfcourse 64,30:{Ch 31-33}{Cmplx Ana}{}
-\halfcourse 55,20:{Ch 34-41}{Measure/Pr}{}
-\halfcourse 48,28:{Ch 42-45}{Diff Geo}{}
-\halfcourse 40,10:{Ch 46-51}{Alg NT 1}{}
-\halfcourse 40,0:{Ch 52-56}{Alg NT 2}{}
-\halfcourse 23,10:{Ch 57-59}{Alg Top 1}{}
-\halfcourse 20,28:{Ch 60-63}{Cat Th}{}
-\halfcourse 23,0:{Ch 64-69}{Alg Top 2}{}
-\halfcourse 6,10:{Ch 70-74}{Alg Geo 1}{}
-\halfcourse 6,0:{Ch 75-80}{Alg Geo 2-3}{}
-\reqhalfcourse 5,45:{Ch 81-87}{Set Theory}{}
+\reqhalfcourse 20,45:{Ch 1,3-5}{\hyperref[part:absalg]{Abs Alg}}{}
+\reqhalfcourse 55,45:{Ch 2,6-8}{\hyperref[part:basictop]{Topology}}{}
+\halfcourse 33,45:{Ch 9-15,18}{\hyperref[part:linalg]{Lin Alg}}{}
+\halfcourse 5,35:{Ch 16}{\hyperref[part:groups]{Grp Act}}{}
+\halfcourse 5,24:{Ch 17}{\hyperref[chapter:sylow]{Grp Classif}}{}
+\halfcourse 30,35:{Ch 19-22}{\hyperref[part:repth]{Rep Th}}{}
+\halfcourse 45,43:{Ch 23-25}{\hyperref[part:quantum]{Quantum}}{}
+\halfcourse 64,38:{Ch 26-30}{\hyperref[part:calc]{Calc}}{}
+\halfcourse 64,30:{Ch 31-33}{\hyperref[part:cmplxana]{Cmplx Ana}}{}
+\halfcourse 55,20:{Ch 34-41}{\hyperref[part:measure]{Measure/Pr}}{}
+\halfcourse 48,28:{Ch 42-45}{\hyperref[part:diffgeo]{Diff Geo}}{}
+\halfcourse 40,10:{Ch 46-51}{\hyperref[part:algnt1]{Alg NT 1}}{}
+\halfcourse 40,0:{Ch 52-56}{\hyperref[part:algnt2]{Alg NT 2}}{}
+\halfcourse 23,10:{Ch 57-59}{\hyperref[part:algtop1]{Alg Top 1}}{}
+\halfcourse 20,28:{Ch 60-63}{\hyperref[part:cats]{Cat Th}}{}
+\halfcourse 23,0:{Ch 64-69}{\hyperref[part:algtop2]{Alg Top 2}}{}
+\halfcourse 6,10:{Ch 70-74}{\hyperref[part:ag1]{Alg Geo 1}}{}
+\halfcourse 6,0:{Ch 75-80}{\hyperref[part:ag2]{Alg Geo 2-3}}{}
+\reqhalfcourse 5,45:{Ch 81-87}{\hyperref[part:st1]{Set Theory}}{}
 
 %% Basic alg ch
 \prereqc 20,45,30,35;0:    % Abs Alg -> Rep Th
