@@ -105,7 +105,7 @@ will approximate the big square in $U$.
 \begin{center}
 	\begin{asy}
 		bigblob("$U$");
-		filldraw( (-2,-2)--(-2,2)--(2,2)--(2,-2)--cycle, 
+		filldraw( (-2,-2)--(-2,2)--(2,2)--(2,-2)--cycle,
 			opacity(0.4) + orange, red);
 		label("$c$", (2,2), dir(45), red);
 		for (real t = -1; t < 2; t += 1) {
@@ -192,7 +192,7 @@ This is again just a case of the so-called Stokes' theorem.
 \begin{center}
 	\begin{asy}
 		bigblob("$U$");
-		filldraw( (-2,-2)--(-2,2)--(2,2)--(2,-2)--cycle, 
+		filldraw( (-2,-2)--(-2,2)--(2,2)--(2,-2)--cycle,
 			opacity(0.4) + orange, red);
 		label("$c$", (2,2), dir(45), red);
 		for (real t = -1; t < 2; t += 1) {
@@ -260,11 +260,11 @@ Like with $Df$, we'll use $\alpha_p$ instead of $\alpha(p)$.
 
 Now, by the projection principle (\Cref{thm:project_principle}) we only have to specify
 a function on each of $\binom nk$ basis elements of $\Lambda^k(V^\vee)$.
-So, take any basis $\{e_i\}$ of $V$, and 
+So, take any basis $\{e_i\}$ of $V$, and
 take the usual basis for $\Lambda^k(V^\vee)$ of elements
 \[ e_{i_1}^\vee \wedge e_{i_2}^\vee \wedge \dots \wedge e_{i_k}^\vee. \]
 Thus, a general $k$-form takes the shape
-\[ \alpha_p = \sum_{1 \le i_1 < \dots < i_k \le n} 
+\[ \alpha_p = \sum_{1 \le i_1 < \dots < i_k \le n}
 	f_{i_1, \dots, i_k}(p) \cdot
 	e_{i_1}^\vee \wedge e_{i_2}^\vee \wedge \dots \wedge e_{i_k}^\vee. \]
 Since this is a huge nuisance to write, we will abbreviate this to just
@@ -354,7 +354,7 @@ given explicit coordinates to work with.
 
 First, given a function $f : U \to \RR$,
 we define
-\[ df \defeq Df = \sum_i \frac{\partial f_i}{\partial e_i} e_i^\vee \]
+\[ df \defeq Df = \sum_i \frac{\partial f}{\partial e_i} e_i^\vee \]
 In particular, suppose $V = \RR^n$ and $f(x_1, \dots, x_n) = x_1$
 (i.e.\ $f = \ee_1^\vee$). Then:
 \begin{ques}
@@ -495,7 +495,7 @@ The so-called de Rham cohomology will make this relation explicit.
 	\[ \alpha = \frac{-y \; dx + x \; dy}{x^2+y^2} \]
 	is closed.
 \end{problem}
-  
+
 \begin{problem}
 	\label{prob:dd_zero}
 	Establish \Cref{thm:dd_zero}, which states that $d^2 = 0$.
