@@ -46,7 +46,7 @@ The concept of a metric space is very ``concrete'', and lends itself easily to v
 \end{example}
 \begin{example}[Taxicab on $\RR^2$]
 	It is also possible to place the \vocab{taxicab distance} on $\RR^2$:
-	\[ d\left( (x_1, y_1), (x_2, y_2) \right) = 
+	\[ d\left( (x_1, y_1), (x_2, y_2) \right) =
 		\left\lvert x_1-x_2 \right\rvert + \left\lvert y_1-y_2 \right\rvert.
 		\]
 	For now, we will use the more natural Euclidean metric.
@@ -59,7 +59,7 @@ The concept of a metric space is very ``concrete'', and lends itself easily to v
 		\ii We let $\RR^n$ be the metric space whose points are points in $n$-dimensional Euclidean space,
 		and whose metric is the Euclidean metric
 		\[
-			d\left( 
+			d\left(
 			\left( a_1, \dots, a_n \right), \left( b_1, \dots, b_n \right)
 			\right)
 			= \sqrt{(a_1-b_1)^2 + \dots + (a_n-b_n)^2}.
@@ -719,14 +719,14 @@ The reason for the opposing terms is the following theorem:
 	\end{hint}
 	\begin{sol}
 		Two possible approaches, one using metric definition
-		and one using open sets. 
+		and one using open sets.
 
 		Metric approach: I claim there is no injective map from $\QQ$ to $\NN$
 		that is continuous. Indeed, suppose $f$ was such a map and $f(x) = n$.
 		Then, choose $\eps = 1/2$.
 		There should be a $\delta > 0$ such that everything with $\delta$ of $x$
 		in $\QQ$ should land within $\eps$ of $n \in \NN$ --- i.e., is equal to $n$.
-		This is a blatant contradiction of continuity.
+		This is a blatant contradiction of injectivity.
 
 		Open set approach: In $\QQ$, no singleton set is open,
 		whereas in $\NN$, they all are (in fact $\NN$ is discrete).
