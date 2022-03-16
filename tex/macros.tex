@@ -181,18 +181,18 @@
 
 \usepackage{tkz-graph}
 \pgfarrowsdeclare{biggertip}{biggertip}{%
-  \setlength{\arrowsize}{1pt}  
-  \addtolength{\arrowsize}{.1\pgflinewidth}  
-  \pgfarrowsrightextend{0}  
-  \pgfarrowsleftextend{-5\arrowsize}  
+  \setlength{\arrowsize}{1pt}
+  \addtolength{\arrowsize}{.1\pgflinewidth}
+  \pgfarrowsrightextend{0}
+  \pgfarrowsleftextend{-5\arrowsize}
 }{%
-  \setlength{\arrowsize}{1pt}  
-  \addtolength{\arrowsize}{.1\pgflinewidth}  
-  \pgfpathmoveto{\pgfpoint{-5\arrowsize}{4\arrowsize}}  
-  \pgfpathlineto{\pgfpointorigin}  
-  \pgfpathlineto{\pgfpoint{-5\arrowsize}{-4\arrowsize}}  
-  \pgfusepathqstroke  
-}  
+  \setlength{\arrowsize}{1pt}
+  \addtolength{\arrowsize}{.1\pgflinewidth}
+  \pgfpathmoveto{\pgfpoint{-5\arrowsize}{4\arrowsize}}
+  \pgfpathlineto{\pgfpointorigin}
+  \pgfpathlineto{\pgfpoint{-5\arrowsize}{-4\arrowsize}}
+  \pgfusepathqstroke
+}
 \tikzset{
 	EdgeStyle/.style = {>=biggertip}
 }

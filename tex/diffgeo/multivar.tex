@@ -1,7 +1,7 @@
 \chapter{Multivariable calculus done correctly}
 As I have ranted about before, linear algebra is done wrong
 by the extensive use of matrices to obscure the structure of a linear map.
-Similar problems occur with multivariable calculus, so here I would like to set 
+Similar problems occur with multivariable calculus, so here I would like to set
 the record straight.
 
 Since we are doing this chapter using morally correct linear algebra,
@@ -53,7 +53,7 @@ The derivative of $f$ at $p$ approximates $f$ near $p$ by a \emph{linear functio
 \end{moral}
 
 What about more generally?
-Suppose I have a function like $f : \RR^2 \to \RR$, say 
+Suppose I have a function like $f : \RR^2 \to \RR$, say
 \[ f(x,y) = x^2+y^2 \]
 for concreteness or something.
 For a point $p \in \RR^2$, the ``derivative'' of $f$ at $p$ ought to represent a linear map
@@ -129,7 +129,7 @@ Set $v = xe_1 + ye_2$, and note that the norm on $V$ is $\norm{(x,y)}_V = \sqrt{
 while the norm on $W$ is just the absolute value $\norm{c}_W = \left\lvert c \right\rvert$.
 Then we compute
 \begin{align*}
-	\frac{\norm{f(p + v) - f(p) - T(v)}_W}{\norm{v}_V} 
+	\frac{\norm{f(p + v) - f(p) - T(v)}_W}{\norm{v}_V}
 	&= \frac{\left\lvert (a+x)^2 + (b+y)^2 - (a^2+b^2) - (2ax+2by) \right\rvert}{\sqrt{x^2+y^2}} \\
 	&= \frac{x^2+y^2}{\sqrt{x^2+y^2}} = \sqrt{x^2+y^2} \\
 	&\to 0
@@ -156,7 +156,7 @@ Before proceeding I need to say something really important.
 	Let $W$ be an $n$-dimensional real vector space with basis $w_1, \dots, w_n$.
 	Then there is a bijection between continuous functions $f : U \to W$ and
 	$n$-tuples of continuous $f_1, f_2, \dots, f_n : U \to \RR$
-	by projection onto the $i$th basis element, i.e.\ 
+	by projection onto the $i$th basis element, i.e.\
 	\[ f(v) = f_1(v)w_1 + \dots + f_n(v)w_n. \]
 \end{theorem}
 \begin{proof}
@@ -197,7 +197,7 @@ The Projection Principle tells us that $Df$ can thus be thought of as just $n$ f
 \[ Df = \psi_1 e_1^\vee + \dots + \psi_n e_n^\vee.  \]
 In fact, we can even describe what the $\psi_i$ are.
 \begin{definition}
-	The \vocab{$i^{\text{th}}$ partial derivative} of $f : U \to \RR$, denoted 
+	The \vocab{$i^{\text{th}}$ partial derivative} of $f : U \to \RR$, denoted
 	\[ \fpartial{f}{e_i}: U \to \RR \]
 	is defined by
 	\[
@@ -219,7 +219,7 @@ From the above remarks, we can derive that
 	\boxed{
 	Df =
 	\frac{\partial f}{\partial e_1} \cdot e_1^\vee
-	+ \dots + 
+	+ \dots +
 	\frac{\partial f}{\partial e_n} \cdot e_n^\vee .
 	}
 \]
@@ -231,7 +231,7 @@ That is to say,
 \[
 	(Df)_p =
 	\underbrace{\frac{\partial f}{\partial e_1}(p)}_{\in \RR} \cdot e_1^\vee
-	+ \dots + 
+	+ \dots +
 	\underbrace{\frac{\partial f}{\partial e_n}(p)}_{\in \RR} \cdot e_n^\vee
 	\in V^\vee.
 \]
@@ -240,7 +240,7 @@ That is to say,
 
 \begin{example}[Partial derivatives of $f(x,y) = x^2+y^2$]
 	Let $f : \RR^2 \to \RR$ by $(x,y) \mapsto x^2+y^2$.
-	Then in our new language, 
+	Then in our new language,
 	\[ Df : (x,y) \mapsto 2x \cdot \ee_1^\vee + 2y \cdot \ee_2^\vee. \]
 	Thus the partials are
 	\[
@@ -310,7 +310,7 @@ Let $U \subseteq V$ be open, and take $f : U \to W$, so that $Df : U \to \Hom(V,
 
 Well, $\Hom(V,W)$ can also be thought of as a normed vector space in its own right:
 it turns out that one can define an operator norm on it by setting
-\[ \norm{T} \defeq \sup \left\{ \frac{\norm{T(v)}_W}{\norm{v}_V} \mid v \neq 0_V \right\}. \] 
+\[ \norm{T} \defeq \sup \left\{ \frac{\norm{T(v)}_W}{\norm{v}_V} \mid v \neq 0_V \right\}. \]
 So $\Hom(V,W)$ can be thought of as a normed vector space as well.
 Thus it makes sense to write
 \[ D(Df) : U \to \Hom(V,\Hom(V,W)) \]

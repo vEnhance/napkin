@@ -6,7 +6,7 @@ Here's one way to motivate this chapter. It turns out that:
 \end{itemize}
 This is unfortunate, because if possible we would like
 to be able to tell these spaces apart (as they are
-in fact not homotopy equivalent), but the homology groups 
+in fact not homotopy equivalent), but the homology groups
 cannot tell the difference between them.
 
 In this chapter, we'll define a \emph{cohomology group} $H^n(X)$ and $H^n(Y)$.
@@ -75,7 +75,7 @@ The case of interest is our usual geometric situation, with $C_\bullet(X)$.
 	its elements are called \vocab{cochains}.
 
 	Then we define the \vocab{cohomology groups}
-	of the space $X$ as 
+	of the space $X$ as
 	\[ H^n(X; G) \defeq H^n(C_\bullet(X); G) = H_n(C^\bullet(X;G)). \]
 \end{definition}
 \begin{remark}
@@ -98,9 +98,9 @@ The case of interest is our usual geometric situation, with $C_\bullet(X)$.
 	Given a $0$-cochain $\phi \in C^0(X)$,
 	i.e.\ a homomorphism $\phi : C^0(X) \to G$,
 	what is $\delta\phi : C^1(X) \to G$?
-	Answer: 
+	Answer:
 	\[ \delta\phi : [v_0, v_1] \mapsto \phi([v_0]) - \phi([v_1]). \]
-	Hence, elements of 
+	Hence, elements of
 	$\ker(C^0 \taking\delta C^1) \cong H^0(X;G)$
 	are those cochains
 	that are \emph{constant on path-connected components}.
@@ -276,7 +276,7 @@ you can pick any free resolution you want and compute the above.
 	then so is $F_1 \oplus F_1' \to F_0 \oplus F_0' \to H \oplus H' \to 0$.
 
 	For (b), note that $0 \to H \to H \to 0$ is a free resolution.
-	
+
 	Part (c) follows by taking the free resolution
 	\[ 0 \to \ZZ \taking{\times n} \ZZ \to \Zc n \to 0 \]
 	and applying $\Hom(-,G)$ to it.
@@ -300,7 +300,7 @@ any cohomology groups, provided we know the homology ones.
 	[Cohomolgy groups of $S^m$]
 	It is straightforward to compute $H^n(S^m)$ now:
 	all the $\Ext$ terms vanish since $H_n(S^m)$ is always free,
-	and hence we obtain that 
+	and hence we obtain that
 	\[ H^n(S^m) \cong \Hom(H_n(S^m), G) \cong
 		\begin{cases}
 			G & n=m, n=0 \\
@@ -373,7 +373,7 @@ From these examples one might notice that:
 			G & n = 0 \\
 			G \oplus \Hom(\Zc2, G) & n = 1 \\
 			G/2G & n = 2 \\
-			0 & n \ge 3. 
+			0 & n \ge 3.
 		\end{cases}
 	\]
 \end{example}
@@ -425,7 +425,7 @@ it is easiest to simply define:
 		\wt H^n(X \vee Y; G)
 		\cong
 		\wt H^n(X; G) \oplus \wt H^n(Y; G).
-	\]	
+	\]
 \end{sproblem}
 
 \begin{dproblem}

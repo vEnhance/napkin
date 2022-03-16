@@ -122,7 +122,7 @@ Picture:
 
 		draw((-9,0)--(-3,0), EndArrow);
 		label("$\phi$", (-6,0), dir(90));
-	
+
 		draw( (0,-4)--(0,-8), EndArrow );
 		label("$\alpha$", (0,-6), dir(0));
 		label("$\alpha_q(\dots) \in \mathbb R$", (0,-9), heavygreen);
@@ -156,7 +156,7 @@ To cut a long story short:
 There is a more concrete way to define the pullback using bases.
 Suppose $w_1, \dots, w_n$ is a basis of $V'$
 and $e_1, \dots, e_m$ is a basis of $V$.
-Thus, by the projection principle (\Cref{thm:project_principle}) 
+Thus, by the projection principle (\Cref{thm:project_principle})
 the map $\phi : V \to V'$ can be thought of as
 \[ \phi(v) = \phi_1(v) w_1 +  \dots \phi_n(v) w_n \]
 where each $\phi_i$ takes in a $v \in V$ and returns a real number.
@@ -186,12 +186,12 @@ It turns out that the pullback basically behaves nicely as possible, e.g.\
 	\ii $\phi^\ast(c\alpha + \beta) = c\phi^\ast \alpha + \phi^\ast\beta$ (linearity)
 	\ii $\phi^\ast(\alpha\wedge\beta)
 	= (\phi^\ast \alpha)\wedge(\phi^\ast \beta)$
-	\ii $\phi_1^\ast(\phi_2^\ast(\alpha)) 
+	\ii $\phi_1^\ast(\phi_2^\ast(\alpha))
 	= (\phi_2 \circ \phi_1)^\ast(\alpha)$ (naturality)
 \end{itemize}
 but I won't take the time to check these here
 (one can verify them all by expanding with a basis).
-	
+
 \section{Cells}
 \prototype{A disk in $\RR^2$ can be thought of as the cell
 	$[0,R]\times[0,2\pi] \to \RR^2$ by
@@ -230,7 +230,7 @@ so the above integral can be written as
 	Take the $2$-form $\alpha$ which gives $\alpha_p = \ee_1^\vee \wedge \ee_2^\vee$ at every point $p$.
 	Then
 	\begin{align*}
-		c^\ast\alpha &= 
+		c^\ast\alpha &=
 		\left( \cos\theta dr - r\sin\theta d\theta \right)
 		\wedge
 		\left( \sin\theta dr + r\cos\theta d\theta \right) \\

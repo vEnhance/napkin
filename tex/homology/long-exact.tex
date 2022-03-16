@@ -84,8 +84,8 @@ It is said to be \vocab{short exact} if \emph{each row} of the diagram below is 
 	\end{center}
 	to the bottom of the diagram.
 	In other words we modify the above into
-	\[ 0 \to  \wt C_\bullet(U \cap V) 
-		\injto \wt C_\bullet(U) \oplus \wt C_\bullet(V) 
+	\[ 0 \to  \wt C_\bullet(U \cap V)
+		\injto \wt C_\bullet(U) \oplus \wt C_\bullet(V)
 		\surjto \wt C_\bullet(U + V) \to 0 \]
 	where $\wt C_\bullet$ is the chain complex defined in \Cref{def:augment}.
 \end{example}
@@ -131,7 +131,7 @@ taking each $H_{n+1}(C_\bullet)$ to $H_n(A_\bullet)$.
 
 \begin{theorem}[Short exact $\implies$ long exact]
 	\label{thm:long_exact}
-	Let $0 \to A_\bullet \taking f B_\bullet \taking g C_\bullet \to 0$ 
+	Let $0 \to A_\bullet \taking f B_\bullet \taking g C_\bullet \to 0$
 	be \emph{any} short exact sequence of chain complexes we like.
 	Then there is an \emph{exact} sequence
 	\begin{center}
@@ -146,7 +146,7 @@ taking each $H_{n+1}(C_\bullet)$ to $H_n(A_\bullet)$.
 		H_{n-1}(A_\bullet) \ar[r, "f_\ast"']
 			& H_{n-1}(B_\bullet) \ar[r, "g_\ast"]
 			& H_{n-1}(C_\bullet) \ar[lld, "\partial"'] \\
-		H_{n-2}(A_\bullet) \ar[r] & \dots 
+		H_{n-2}(A_\bullet) \ar[r] & \dots
 	\end{tikzcd}
 	\end{center}
 	This is called a \vocab{long exact sequence} of homology groups.
@@ -292,7 +292,7 @@ At long last, we can compute the homology groups of the spheres.
 	\end{center}
 	Each of $U$ and $V$ is contractible, so all their reduced homology groups vanish.
 	Moreover, $U \cap V$ is homotopy equivalent to two points,
-	hence 
+	hence
 	\[ \wt H_n(U \cap V) \cong
 		\begin{cases}
 			\ZZ & n = 0 \\
@@ -300,7 +300,7 @@ At long last, we can compute the homology groups of the spheres.
 		\end{cases}
 	\]
 	Now consider again the segment of the short exact sequence
-	\[ 
+	\[
 		\dots \to
 		\underbrace{\wt H_n(U) \oplus \wt H_n(V)}_{= 0} \to
 		\wt H_n(S^1) \taking{\partial} \wt H_{n-1}(U \cap V) \to
@@ -349,7 +349,7 @@ At long last, we can compute the homology groups of the spheres.
 	\end{tikzcd}
 	\end{center}
 	In other words $\partial(c-d) = a-b$, so $c-d$ is a generator for $\wt H^1(S^1)$.
-	
+
 	Thus we wish to show that $c-d$ is (in $H^1(S^1)$) equivalent to the loop $\gamma$
 	wrapping around $S^1$ once, counterclockwise.
 	This was illustrated in \Cref{ex:S1_c_minus_d}.
@@ -396,11 +396,11 @@ Here are some more examples.
 	\[
 		\dots \to
 		\underbrace{\wt H_n(U \cap V)}_{=0}
-		\to \wt H_n(U) \oplus \wt H_n(V) \to \wt H_n(X) \to 
+		\to \wt H_n(U) \oplus \wt H_n(V) \to \wt H_n(X) \to
 		\underbrace{\wt H_{n-1}(U \cap V)}_{=0} \to \dots.
 	\]
 	So we get that $\wt H_n(X) \cong \wt H_n(S^1) \oplus \wt H_n(S^1)$,
-	The claim about the generators follows from the fact that, 
+	The claim about the generators follows from the fact that,
 	according to the isomorphism above,
 	the generators of $\wt H_n(X)$ are the generators of $\wt H_n(U)$
 	and $\wt H_n(V)$, which we described geometrically
@@ -462,10 +462,10 @@ actually understand the maps in question to complete the solution.
 	and $H_0(U \cap V) \cong \ZZ^{\oplus 2} \implies \wt H_0(U \cap V) \cong \ZZ$.
 
 	For $n \ge 3$, we have
-	\[ 
+	\[
 		\dots \to
 		\underbrace{\wt H_n(U \cap V)}_{=0}
-		\to \wt H_n(U) \oplus \wt H_n(V) \to \wt H_n(X) \to 
+		\to \wt H_n(U) \oplus \wt H_n(V) \to \wt H_n(X) \to
 		\underbrace{\wt H_{n-1}(U \cap V)}_{=0} \to \dots.
 	\]
 	and so $H_n(X) \cong 0$ for $n \ge 3$.
@@ -474,7 +474,7 @@ actually understand the maps in question to complete the solution.
 
 	Let's find $H_2(X)$ first.
 	We first consider the segment
-	\[ 
+	\[
 		\dots \to
 		\underbrace{\wt H_2(U) \oplus \wt H_2(V)}_{=0} \to \wt H_2(X) \xhookrightarrow{\delta}
 		\underbrace{\wt H_1(U \cap V)}_{\cong \ZZ \oplus \ZZ} \xrightarrow{\phi}
@@ -514,12 +514,12 @@ actually understand the maps in question to complete the solution.
 	(in particular $\img\phi \cong \ZZ$ and the quotient by $\img\phi$ is $\ZZ$ too).
 
 	The situation is similar with $\wt H_1(X)$: this time, we have
-	\[ 
-		\dots 
+	\[
+		\dots
 		%\to \underbrace{\wt H_1(U \cap V)}_{\cong \ZZ \oplus \ZZ}
 		\xrightarrow{\phi} \underbrace{\wt H_1(U) \oplus \wt H_1(V)}_{\cong \ZZ \oplus \ZZ}
 		\overset{\psi}{\to} \wt H_1(X) \overset\partial\surjto
-		\underbrace{\wt H_0(U \cap V)}_{\cong \ZZ} 
+		\underbrace{\wt H_0(U \cap V)}_{\cong \ZZ}
 		\to \underbrace{\wt H_0(U) \oplus \wt H_0(V)}_{=0} \to \dots
 	\]
 	and so we know that the connecting map $\partial$ is surjective,
@@ -534,7 +534,7 @@ actually understand the maps in question to complete the solution.
 	To finish off we need some algebraic tricks. The first is \Cref{prop:break_exact},
 	which gives us a short exact sequence
 	\[
-		0 \to \underbrace{\ker\partial}_{\cong \img\psi \cong \ZZ} 
+		0 \to \underbrace{\ker\partial}_{\cong \img\psi \cong \ZZ}
 		\injto \wt H_1(X)
 		\surjto \underbrace{\img\partial}_{\cong \ZZ} \to 0.
 	\]
@@ -645,7 +645,7 @@ we were done.
 		0 \ar[r] & A_1 \ar[r] \ar[d] & B_1 \ar[r] \ar[d] & C_1 \ar[r] \ar[d] & 0 \\
 		0 \ar[r] & A_2 \ar[r] \ar[d] & B_2 \ar[r] \ar[d] & C_2 \ar[r] \ar[d] & 0 \\
 		0 \ar[r] & A_3 \ar[r] \ar[d] & B_3 \ar[r] \ar[d] & C_3 \ar[r] \ar[d] & 0 \\
-		& 0 & 0 & 0 & 
+		& 0 & 0 & 0 &
 	\end{tikzcd}
 	\end{center}
 	and assume that all rows are exact,
@@ -663,7 +663,7 @@ we were done.
 	\gim
 	Show that the reduced homology groups of the Klein bottle $K$ are given by
 	\[
-		\wt H_n(K) = 
+		\wt H_n(K) =
 		\begin{cases}
 			\ZZ \oplus \Zc 2 & n = 1 \\
 			0 & \text{otherwise}.

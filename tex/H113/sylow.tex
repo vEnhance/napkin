@@ -62,14 +62,14 @@ Here's an example of another ``practical'' application.
 \end{proposition}
 \begin{proof}
 	WLOG, assume $p<q<r$.  Notice that $n_p \equiv 1 \pmod p$, $n_p | qr$ and cyclically, and assume for contradiction that $n_p, n_q, n_r > 1$.
-	
+
 	Since $n_r | pq$, we have $n_r = pq$ since $n_r$ divides neither $p$ nor $q$ as $n_r \ge 1 + r > p,q$.  Also, $n_p \ge 1+p$ and $n_q \ge 1+q$.
 	So we must have at least $1+p$ Sylow $p$-subgroups,
 	at least $1+q$ Sylow $q$-subgroups, and at least $pq$ Sylow $r$-subgroups.
 
 	But these groups are pretty exclusive.
 	\begin{ques}
-		Take the $n_p+n_q+n_r$ Sylow subgroups and consider two of them, 
+		Take the $n_p+n_q+n_r$ Sylow subgroups and consider two of them,
 		say $H_1$ and $H_2$.
 		Show that $\left\lvert H_1 \cap H_2 \right\rvert = 1$
 		as follows:
@@ -80,7 +80,7 @@ Here's an example of another ``practical'' application.
 	We claim that there are too many elements now.
 	Indeed, if we count the non-identity elements contributed by these subgroups, we get
 	\[ n_p(p-1) + n_q(q-1) + n_r(r-1)
-		\ge (1+p)(p-1) + (1+q)(q-1) + pq(r-1) > pqr 
+		\ge (1+p)(p-1) + (1+q)(q-1) + pq(r-1) > pqr
 	\]
 	which is more elements than $G$ has!
 \end{proof}
@@ -136,7 +136,7 @@ We are now ready to present the proof.
 
 \subsection{Step 1: Prove that a Sylow $p$-subgroup exists}
 What follows is something like the probabilistic method.
-By considering the set $X$ of ALL subsets of size $p^n$ at once, we can exploit the ``deep number theoretic fact'' that 
+By considering the set $X$ of ALL subsets of size $p^n$ at once, we can exploit the ``deep number theoretic fact'' that
 \[ \left\lvert X \right\rvert = \binom{p^n m}{p^n} \not\equiv 0 \pmod p. \]
 (It's not actually deep: use Lucas' theorem.)
 
@@ -149,7 +149,7 @@ Here is the proof.
 	the claimed orbit must exist.)
 	\ii Let $S \in \OO$, $H = \Stab_G(S)$.
 	Then $p^n$ divides $\left\lvert H \right\rvert$, by the orbit-Stabilizer theorem.
-	\ii Consider a second action: let $H$ act on $S$ by 
+	\ii Consider a second action: let $H$ act on $S$ by
 	$h \cdot s \defeq hs$ (we know $hs \in S$ since $H = \Stab_G(S)$).
 	\ii
 	Observe that $\Stab_H(s) = \{1_H\}$.
@@ -266,11 +266,11 @@ Every finite simple group falls in one of the following categories:
 	\ii Twenty-six ``sporadic'' groups which do not fit into any nice family.
 \end{itemize}
 The two largest of the sporadic groups have cute names.
-The \vocab{baby monster group} has order 
+The \vocab{baby monster group} has order
 \[ 2^{41} \cdot 3^{13} \cdot 5^6 \cdot 7^2 \cdot 11 \cdot 13 \cdot 17
 	\cdot 19 \cdot 23 \cdot 31 \cdot 47 \approx 4 \cdot 10^{33} \]
 and the \vocab{monster group} (also ``\vocab{friendly giant}'') has order
-\[ 
+\[
 	2^{46} \cdot 3^{20} \cdot 5^9 \cdot 7^6 \cdot 11^2 \cdot 13^3
 	\cdot 17 \cdot 19 \cdot 23 \cdot 29 \cdot 31 \cdot 41 \cdot 47
 	\cdot 59 \cdot 71 \approx 8 \cdot 10^{53}. \]

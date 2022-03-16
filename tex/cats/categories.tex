@@ -36,7 +36,7 @@ Let's use this to motivate the definition of a general \emph{category}.
 	A \vocab{category} $\AA$ consists of:
 	\begin{itemize}
 		\ii A class of \vocab{objects}, denoted $\obj(\AA)$.
-		\ii For any two objects $A_1, A_2 \in \obj(\AA)$, 
+		\ii For any two objects $A_1, A_2 \in \obj(\AA)$,
 		a class of \vocab{arrows} (also called \vocab{morphisms} or \vocab{maps}) between them.
 		We'll denote the set of these arrows by $\Hom_\AA(A_1, A_2)$.
 		\ii For any $A_1, A_2, A_3 \in \obj(\AA)$,
@@ -54,7 +54,7 @@ Let's use this to motivate the definition of a general \emph{category}.
 		The composition operation $\circ$ is part of the data of $\AA$;
 		it must be associative.
 		In the diagram above we say that $h$ \vocab{factors} through $A_2$.
-		
+
 		\ii Finally, every object $A \in \obj(\AA)$ has a special \vocab{identity arrow} $\id_A$;
 		you can guess what it does.\footnote{To be painfully explicit:
 			if $f \colon A' \to A$ is an arrow then $\id_A \circ f = f$;
@@ -200,7 +200,7 @@ Here's a second quite important example of a non-concrete category.
 	It's not: there's real content.
 	To see this, suppose your education had been shuffled and you took a course
 	on category theory before ever learning what a group was.
-	Someone comes to you and says: 
+	Someone comes to you and says:
 
 	``There are these structures called `groups', and the idea is this:
 	a group is what you get when you collect together all the symmetries
@@ -336,7 +336,7 @@ and avoid referring to anything about the sets themselves.
 How might I do this?
 
 Well, let's think about maps into $X \times Y$.
-The key observation is that 
+The key observation is that
 \begin{moral}
 A function $A \taking f X \times Y$
 amounts to a pair of functions $(A \taking g X, A \taking h Y)$.
@@ -629,7 +629,7 @@ Most notably:
 \begin{problem}
 	\gim
 	Consider a category $\AA$ with a \vocab{zero object},
-	meaning an object which is both initial and terminal. 
+	meaning an object which is both initial and terminal.
 	Given objects $X$ and $Y$ in $A$,
 	prove that the projection $X \times Y \to X$ is epic.
 \end{problem}

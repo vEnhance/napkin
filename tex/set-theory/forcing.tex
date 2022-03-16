@@ -323,7 +323,7 @@ The result is $M[G]$.
 		\Name_1 &= \PP(\varnothing \times \Po) \\
 		&= \{\varnothing\} \\
 		\Name_2 &= \PP(\{\varnothing\} \times \Po) \\
-		&= \PP\left( \left\{ 
+		&= \PP\left( \left\{
 			\left<\varnothing, p\right>
 			\mid p \in \Po
 		\right\} \right).
@@ -342,9 +342,9 @@ V_2 = \left\{ \varnothing, \left\{ \varnothing \right\} \right\}. \]
 			\left<\varnothing, p_2\right>,
 			\dots,
 			\left<\varnothing, p_n\right>
-		\right\} 
+		\right\}
 		\in \Name_2. \]
-	Then 
+	Then
 	\[
 		\tau^G
 		= \left\{ \varnothing \mid
@@ -399,7 +399,7 @@ Let's see what we can get off the bat.
 \begin{lemma}[Properties obtained from filters]
 	Let $M$ be a transitive model of $\ZFC$.
 	If $G$ is a filter, then $M[G]$ is transitive
-	and satisfies $\Extensionality$, $\Foundation$, 
+	and satisfies $\Extensionality$, $\Foundation$,
 	$\EmptySet$, $\Infinity$, $\Pairing$, and $\Union$.
 \end{lemma}
 
@@ -410,7 +410,7 @@ This leaves $\PowerSet$, $\Replacement$, and Choice.
 
 	For $\Pairing$, suppose $\sigma_1^G, \sigma_2^G \in M[G]$.
 	Then
-	\[ \sigma = 
+	\[ \sigma =
 		\left\{ \left<\sigma_1, 1_\Po\right>, \left<\sigma_2, 1_\Po\right> \right\}
 	\]
 	satisfies $\sigma^G = \{\sigma_1^G, \sigma_2^G\}$.
@@ -528,7 +528,7 @@ In what follows, the $\Vdash$ omits the $M$ and $\Po$.
 		\ii $p \Vdash \tau_1 \in \tau_2$ means
 		\[
 		\left\{ q \in \Po
-		\mid \exists \left<\tau, r\right> \in \tau_2 
+		\mid \exists \left<\tau, r\right> \in \tau_2
 		\left( q \le r \land q \Vdash(\tau=\tau_1) \right)
 		\right\} \]
 		is dense below $p$.
@@ -591,13 +591,13 @@ This completes the proof of the fundamental theorem.
 \end{theorem}
 \begin{proof}
 	We'll just do $\Comprehension$, as the other remaining axioms are similar.
-	
+
 	Suppose $\sigma^G, \sigma_1^G, \dots, \sigma_n^G \in M[G]$
 	are a set and parameters, and
 	$\varphi(x,x_1, \dots, x_n)$ is a formula
 	in the language of set theory.
 	We want to show that the set
-	\[ A = \left\{ 
+	\[ A = \left\{
 		x \in \sigma^G \mid M[G] \vDash \varphi[x, \sigma_1^G, \dots, \sigma_n^G]
 	\right\} \]
 	is in $M[G]$; i.e.\ it is the interpretation of some name.
@@ -607,7 +607,7 @@ This completes the proof of the fundamental theorem.
 	$\sigma$ is a bunch of pairs of names and $p$'s,
 	and the domain $\dom(\sigma)$ is just the set of names).
 	So by the fundamental theorem of forcing, we may write
-	\[ A = 
+	\[ A =
 		\left\{ \rho^G \mid \rho \in \dom(\sigma)
 			\text{ and }
 			\exists p \in G

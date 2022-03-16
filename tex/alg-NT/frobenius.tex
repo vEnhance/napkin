@@ -44,7 +44,7 @@ Let's see an example of this:
 	then $\Frob_\kp$ is the unique element such that
 	\[ (a+bi)^p \equiv \Frob_\kp(a+bi) \pmod{\kp} \]
 	in $\ZZ[i]$. In particular,
-	\[ \Frob_\kp(i) = i^p = 
+	\[ \Frob_\kp(i) = i^p =
 		\begin{cases}
 			i & p \equiv 1 \pmod 4 \\
 			-i & p \equiv 3 \pmod 4.
@@ -177,7 +177,7 @@ really just comes from the more friendly-looking rational prime $p$.
 \begin{example}
 	[Frobenius elements in $\QQ(\cbrt2,\omega)$]
 	With those remarks, here is a more involved example of a Frobenius map.
-	Let $K = \QQ(\cbrt2, \omega)$ be the splitting field of 
+	Let $K = \QQ(\cbrt2, \omega)$ be the splitting field of
 	\[ t^3-2 = (t-\cbrt2)(t-\omega\cbrt2)(t-\omega^2\cbrt2). \]
 	Thus $K/\QQ$ is Galois.
 	We've seen in an earlier example that
@@ -189,7 +189,7 @@ really just comes from the more friendly-looking rational prime $p$.
 	Note that all the prime ideals have inertial degree $2$.
 	Thus $\Frob_{\kp_i}$ will have order $2$ for each $i$.
 
-	Note that 
+	Note that
 	\[ \Gal(K/\QQ) =
 		\text{permutations of } \{\cbrt2,\omega\cbrt2,\omega^2\cbrt2\}
 		\cong S_3.  \]
@@ -220,7 +220,7 @@ the $\Frob_\kp$'s are ``equally distributed'' when we pick a random $\kp$.
 	with $\kp$ above $p$ so that $\Frob_{\kp} = \sigma$.
 \end{theorem}
 
-By density, I mean that the proportion of primes $p \le x$ that work 
+By density, I mean that the proportion of primes $p \le x$ that work
 approaches $\frac{\left\lvert C \right\rvert}{\left\lvert G \right\rvert}$ as $x \to \infty$.
 Note that I'm throwing out the primes that ramify in $K$.
 This is no issue, since the only primes that ramify are those dividing $\Delta_K$,
@@ -240,10 +240,10 @@ the probability of hitting any conjugacy class depends just on the size of the c
 		filldraw( (2,0)--(3.5,0)--(3.5,2.5)--(2,2.5)--cycle, b, k);
 		filldraw( (2,-1)--(3.5,-1)--(3.5,-2)--(2,-2)--cycle, b, k);
 		for (real x = -2; x < 1; ++x) {
-			dot( (x, 1.9) ); 
-			dot( (x, 1.1) ); 
-			dot( (x, -1.9) ); 
-			dot( (x, -1.1) ); 
+			dot( (x, 1.9) );
+			dot( (x, 1.1) );
+			dot( (x, -1.9) );
+			dot( (x, -1.1) );
 		}
 		label("$37.5\%$", (-2.6, 0.5), dir(140));
 		label("$37.5\%$", (-2.6,-2.5), dir(140));
@@ -414,7 +414,7 @@ Call it $\QQ(\sqrt{q^\ast})$, for $q^\ast$ squarefree:
 	\[ q^\ast = \pm q \text{ and } q^\ast \equiv 1 \pmod 4. \]
 	Together these determine the value of $q^\ast$.
 \end{exercise}
-(Actually, it is true in general 
+(Actually, it is true in general
 $\Delta_K$ divides $\Delta_L$ in a tower $L/K/\QQ$.)
 
 \subsection{Step 2: Reformulation}
@@ -450,7 +450,7 @@ It could possibly also split in $K$: the picture looks like
 \end{ques}
 
 \subsection{Step 3: Introducing the Frobenius}
-Now, we take the Frobenius 
+Now, we take the Frobenius
 \[ \sigma_p = \Frob_{\kP} \in \Gal(L/\QQ). \]
 We claim that
 \[ \Frob_{\kP} \in H \iff \text{$p$ splits in $K$}. \]
@@ -799,9 +799,9 @@ such that $X^p-p$ is irreducible modulo $q$.
 		By primitive roots, it's the same as the action of $\times 3$ on $\Zcc{p-1}$.
 		Let $\zeta$ be a $(p-1)$st root of unity.
 
-		Consider 
+		Consider
 		\[ d = \prod_{0 \le i < j < p-1} (\zeta^i - \zeta^j). \]
-		This is the square root of the discriminant of 
+		This is the square root of the discriminant of
 		the polynomial $X^{p-1}-1$; in other words $d^2 \in \ZZ$.
 		In fact, by elementary methods one can compute
 		\[ (-1)^{\binom{p-1}{2}} d^2 = -(p-1)^{p-1} \]

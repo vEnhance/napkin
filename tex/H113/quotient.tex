@@ -237,7 +237,7 @@ What is the correct interpretation of a more general homomorphism?
 
 Let's look at the special case where $\phi : \ZZ \to \Zc{100}$ is ``modding out by $100$''.
 We already saw that the kernel of this map is
-\[ 
+\[
 	\ker \phi = 100\ZZ = \left\{ \dots, -200, -100, 0, 100, 200, \dots  \right\}.
 \]
 Recall now that $\ker \phi$ is a subgroup of $G$.
@@ -426,7 +426,7 @@ The short version is:
 	\ii The elements of $G/N$ are cosets $gN$, which you can think
 	of as equivalence classes of a relation $\sim_N$
 	(where $g_1 \sim_N g_2$ if $g_1 = g_2n$ for some $n \in N$).
-	\ii Given cosets $g_1N$ and $g_2N$ the group operation is 
+	\ii Given cosets $g_1N$ and $g_2N$ the group operation is
 	\[ g_1N \cdot g_2N \defeq (g_1g_2)N. \]
 \end{itemize}
 Question: where do we actually use the fact that $N$ is normal?
@@ -530,14 +530,14 @@ make any external references to $\phi$.
 	(Footnote: the precise condition for this kind of ``canceling'' is called the Schur-Zassenhaus lemma.)
 \end{example}
 \begin{example}[Another explicit computation]
-	Let $\phi: D_8 \to \Zc 4$ be defined by \[ r \mapsto \ol 2, \quad s \mapsto \ol 2. \] 
+	Let $\phi: D_8 \to \Zc 4$ be defined by \[ r \mapsto \ol 2, \quad s \mapsto \ol 2. \]
 	The kernel of this map is $N = \{1,r^2,sr,sr^3\}$.
 
 	We can do a quick computation of all the elements of $D_8$ to get
-	\[ \phi(1) = \phi(r^2) = \phi(sr) = \phi(sr^3) = \ol 0 
+	\[ \phi(1) = \phi(r^2) = \phi(sr) = \phi(sr^3) = \ol 0
 	\text{ and }
 	 \phi(r) = \phi(r^3) = \phi(s) = \phi(sr^2) = \ol 2. \]
-	The two relevant fibers are \[ \phi\pre(\ol 0) = 1N = r^2N = srN = sr^3N = \{1,r^2,sr,sr^3\} \] and 
+	The two relevant fibers are \[ \phi\pre(\ol 0) = 1N = r^2N = srN = sr^3N = \{1,r^2,sr,sr^3\} \] and
 	\[ \phi\pre(\ol 2) = rN = r^3N = sN = sr^2N = \{r,r^3,s,sr^2\}. \]
 	So we see that $|D_8/N| = 2$ is a group of order two, or $\Zc 2$.
 	Indeed, the image of $\phi$ is \[ \left\{ \ol 0, \ol 2 \right\} \cong \Zc 2. \]
@@ -601,7 +601,7 @@ is an \emph{embedding} of $G$ into $H$.
 \section\problemhead
 \begin{problem}
 	[18.701 at MIT]
-	Determine all groups $G$ for which the map $\phi : G \to G$ defined by 
+	Determine all groups $G$ for which the map $\phi : G \to G$ defined by
 	\[ \phi(g) = g^2 \] is a homomorphism.
 	\begin{hint}
 		Write it out: $\phi(ab) = \phi(a)\phi(b)$.
@@ -715,7 +715,7 @@ is an \emph{embedding} of $G$ into $H$.
 
 		In that case, if $c^{2018} = b^{2019}$,
 		we conclude $1 = a^{2018 \cdot 18 - 2019 \cdot 15} = a^{6039}$.
-		Finally, 
+		Finally,
 		\begin{align*}
 			bc &= ca^6 \\
 			a^{-15} c &= ca^6 \\

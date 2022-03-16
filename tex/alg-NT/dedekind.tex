@@ -97,7 +97,7 @@ First, I have to tell you how to add and multiply two ideals $\ka$ and $\kb$.
 (Note that infinite sums don't make sense in general rings, which is why in $\ka \cdot \kb$
 we cut off the sum after some finite number of terms.)
 You can readily check these are actually ideals.
-This definition is more natural if you think about it in terms of 
+This definition is more natural if you think about it in terms of
 the generators of $\ka$ and $\kb$.
 \begin{proposition}[Ideal arithmetic via generators]
 	Suppose $\ka = \left( a_1, a_2, \dots, a_n \right)$
@@ -199,7 +199,7 @@ First, the boring part.
 	Suppose that $\eta \in K$ is the root of some polynomial with coefficients in $\OO_K$.
 	Thus
 	\[ \eta^n = \alpha_{n-1} \cdot \eta^{n-1} + \alpha_{n-2} \cdot \eta^{n-2}
-		+ \dots + \alpha_0 \] 
+		+ \dots + \alpha_0 \]
 	where $\alpha_i \in \OO_K$. We want to show that $\eta \in \OO_K$ as well.
 
 	Well, from the above, $\OO_K[\eta]$ is finitely generated\dots
@@ -229,7 +229,7 @@ We'll prove a stronger result, which will re-appear repeatedly.
 
 	We now do something pretty tricky to show $\kp$ is maximal.
 	Look at $\OO_K / \kp$;
-	since $\kp$ is prime it's supposed to be an integral domain\dots\ 
+	since $\kp$ is prime it's supposed to be an integral domain\dots\
 	but we claim that it's actually finite!
 	To do this, we forget that we can multiply on $\OO_K$.
 	Recalling that $\OO_K \cong \ZZ^{\oplus n}$ as an abelian group,
@@ -389,7 +389,7 @@ Then $x$ divides both $1+\sqrt{-5}$ and $2$, in the sense
 that $1+\sqrt{-5} = \alpha_1 x$ and $2 = \alpha_2 x$
 for some $\alpha_1, \alpha_2 \in \OO_K$.
 (Principal ideals are exactly the ``multiples'' of $x$, so $(x) = x \OO_K$.)
-Taking the norms, we find that $\Norm_{K/\QQ}(x)$ divides both 
+Taking the norms, we find that $\Norm_{K/\QQ}(x)$ divides both
 \[ \Norm_{K/\QQ}(1+\sqrt{-5}) = 6 \quad\text{and}\quad \Norm_{K/\QQ}(2) = 4. \]
 Since $\kp \neq (1)$, $x$ cannot be a unit, so its norm must be $2$.
 But there are no elements of norm $2 = a^2+5b^2$ in $\OO_K$.
@@ -456,7 +456,7 @@ Here $\ol \psi$ denotes the image in $\FF_p[x]$ of a polynomial $\psi \in \ZZ[x]
 \end{ques}
 
 Note that earlier, we could check the factorization worked
-for any particular case. 
+for any particular case.
 The proof that this works is much the same, but we need one extra tool, the ideal norm.
 After that we leave the proposition as \Cref{prob:prove_factoring_algorithm}.
 
@@ -498,7 +498,7 @@ The analogue of a rational number is as follows.
 
 \begin{definition}
 	Let $\mathcal A$ be a Dedekind domain with field of fractions $K$.
-	A \vocab{fractional ideal} $J$ of $K$ is a set of the form 
+	A \vocab{fractional ideal} $J$ of $K$ is a set of the form
 	\[ J = \frac{1}{x} \cdot \ka \quad \text{where $x \in \mathcal A$, and $\ka$ is an integral ideal.} \]
 	For emphasis, ideals of $\mathcal A$ will be sometimes referred to as \vocab{integral ideals}.
 \end{definition}
@@ -556,7 +556,7 @@ which gives us a notion of the ``size'' of an ideal.
 \begin{example}[Ideal norm of $(5)$ in the Gaussian integers]
 	Let $K = \QQ(i)$, $\OO_K = \ZZ[i]$.
 	Consider the ideal $(5)$ in $\OO_K$.
-	We have that 
+	We have that
 	\[ \OO_K / (5) \cong \{ a+bi \mid a,b \in \Zc5 \} \]
 	so $(5)$ has ideal norm $25$,
 	corresponding to the fact that $\OO_K/(5)$ has $5^2=25$ elements.
@@ -600,7 +600,7 @@ was a Dedekind domain.
 %	% \ii The norm of the principal ideal $(4+\sqrt 3)$ is the norm of the element, $(4+\sqrt3)(4-\sqrt3) = 13$.
 %	% \ii
 %	Consider $\ka = (2, \sqrt3)$.
-%		We need to have 
+%		We need to have
 %		\[ \Norm(\ka) \mid \gcd(\Norm_{K/\QQ}(2), \Norm_{K/\QQ}(3)) = \gcd(4, 3) = 1. \]
 %		So in fact, $\Norm(\ka) = 1$. Surprise!
 %		This actually means $\ka = (1)$,
@@ -611,7 +611,7 @@ was a Dedekind domain.
 
 The fact that $\Norm$ is completely multiplicative lets us also consider the norm
 of a fractional ideal $J$ by the natural extension
-\[ J = \prod_i \kp_i^{n_i} \cdot \prod_i \kq_i^{-m_i} 
+\[ J = \prod_i \kp_i^{n_i} \cdot \prod_i \kq_i^{-m_i}
 	\quad \implies \quad
 	\Norm(J) \defeq \frac{\prod_i \Norm(\kp_i)^{n_i}}{\prod_i \Norm(\kq_i)^{m_i}}. \]
 Thus $\Norm$ is a natural group homomorphism $J_K \to \QQ \setminus \{0\}$.
@@ -686,7 +686,7 @@ Thus $\Norm$ is a natural group homomorphism $J_K \to \QQ \setminus \{0\}$.
 	\end{hint}
 	\begin{sol}
 	For part (a), note that the $\kp_i$ are prime
-	just because 
+	just because
 	\[ \OO_K / \kp_i
 		\cong (\ZZ[x] / f) / (p, f_i)
 		\cong \FF_p[x] / (f_i) \]

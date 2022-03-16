@@ -39,7 +39,7 @@ for every open set $U$.
 		pair q = (0,0.5);
 		filldraw(CR(q, 1.2), opacity(0.2)+lightred, red+dashed);
 		label("$U$", q+1.2*dir(45), dir(45), red);
-		
+
 		draw( (-9,0.5)--(-3,0.5), EndArrow);
 		label("$\pi$", (-6,0.5), dir(90));
 		label("$\boxed{f \in \mathcal O_Y(U)}$", (0,-5), red);
@@ -151,7 +151,7 @@ We already obviously have uniqueness in the following senes.
 \end{proposition}
 \begin{proof}
 	Given a section $s \in \OO_Y(U)$,
-	let 
+	let
 	\[ t = \pi^\sharp_U(s) \in \OO_X(\pi\pre(U)) \]
 	denote the image under $\pi^\sharp$.
 
@@ -355,7 +355,7 @@ We now consider what we would think
 of as the map $t \mapsto t^2$.
 \begin{example}
 	[The map $t \mapsto t^2$]
-	We consider a map 
+	We consider a map
 	\[ \pi \colon X = \Spec \CC[x] \to \Spec \CC[y] = Y \]
 	defined on points as follows:
 	\begin{align*}
@@ -472,7 +472,7 @@ into just the single ring homomorphism on the top level.
 			\pi(\kp) &= \kq = \left\{ f \in B \mid f \in \kq \right\} \\
 			&= \left\{ f \in B \mid f \text{ vanishes on } \kq \right\} \\
 			&= \left\{ f \in B \mid \pi^\sharp_B(f) \text{ vanishes on } \kp \right\} \\
-			&= \left\{ f \in B \mid \pi^\sharp_B(f) \in \kp \right\} 
+			&= \left\{ f \in B \mid \pi^\sharp_B(f) \in \kp \right\}
 			= \left\{ f \in B \mid \psi(f) \in \kp \right\} \\
 			&= \psi\pre(\kp).
 		\end{align*}
@@ -777,7 +777,7 @@ The most important class of schemes which are not affine are
 The complete the obvious analogy:
 \[
 	\frac{\text{Affine variety}}{\text{Projective variety}}
-	= 
+	=
 	\frac{\text{Affine scheme}}{\text{Projective scheme}}.
 \]
 Let $S$ be \emph{any} (commutative) graded ring, like $\CC[x_0, \dots, x_n]$.
@@ -788,11 +788,11 @@ Let $S$ be \emph{any} (commutative) graded ring, like $\CC[x_0, \dots, x_n]$.
 		$\kp$ which do not contain $S^+$.
 		\ii If $I \subseteq S$ is homogeneous, then
 		we let $\Vp(I) = \{ \kp \in \Proj S \mid I \subseteq \kp \}$.
-		Then the \vocab{Zariski topology} is imposed by declaring 
+		Then the \vocab{Zariski topology} is imposed by declaring
 		sets of the form $\Vp(I)$ to be closed.
 		\ii We now define a pre-sheaf $\SF$ on $\Proj S$ by
-		\[ \SF(U) = 
-			\left\{ \frac{f}{g} \mid 
+		\[ \SF(U) =
+			\left\{ \frac{f}{g} \mid
 			g(\kp) \neq 0 \; \forall \kp \in U \text{ and }
 			\deg f = \deg g \right\}.
 		\]
@@ -816,7 +816,7 @@ So, we define a slightly modified localization:
 			\deg f = \deg g \right\} \]
 		denote the elements of $S_\kp$ with ``degree zero''.
 		\ii For any homogeneous $g \in S$ of degree $d$, let
-		\[ S_{(g)} = \left\{ \frac{f}{g^r} \mid 
+		\[ S_{(g)} = \left\{ \frac{f}{g^r} \mid
 			\deg f = r \deg g \right\} \]
 		denote the elements of $S_g$ with ``degree zero''.
 	\end{enumerate}
@@ -905,4 +905,3 @@ And in fact:
 \end{proof}
 Thus a morphism of sheaves can be instead modelled as a morphism
 of all the stalks. We will see later on that this viewpoint is quite useful.
-

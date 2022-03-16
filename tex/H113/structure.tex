@@ -260,11 +260,11 @@ what operations are permitted?  Here are some examples:
 	to re-ordering the basis.
 	\ii Adding a multiple of a column to another column.
 	For example, if we add $3$ times the first column to the second column,
-	this is equivalent to replacing the basis 
+	this is equivalent to replacing the basis
 	\[ (e_1, e_2, e_3, \dots, e_m) \mapsto (e_1, e_2+3e_1, e_3, \dots, e_m). \]
 	\ii Adding a multiple of a row to another row.
 	One can see that adding $3$ times the first row to the second row
-	is equivalent to replacing the basis 
+	is equivalent to replacing the basis
 	\[ (f_1, f_2, f_3, \dots, f_n) \mapsto (f_1-3f_2, f_2, f_3, \dots, f_n). \]
 \end{itemize}
 More generally,
@@ -272,12 +272,12 @@ More generally,
 	If $A$ is an invertible $n \times n$ matrix we can
 	replace $T$ with $AT$.
 \end{moral}
-This corresponds to replacing 
+This corresponds to replacing
 \[ (f_1, \dots, f_n) \mapsto (A(f_1), \dots, A(f_n)) \]
 (the ``invertible'' condition just guarantees the latter is a basis).
 Of course similarly we can replace $X$ with $XB$
 where $B$ is an invertible $m \times m$ matrix;
-this corresponds to 
+this corresponds to
 \[ (e_1, \dots, e_m) \mapsto (B\inv(e_1), \dots, B\inv(e_m)) \]
 Armed with this knowledge, we can now approach:
 \begin{theorem}
@@ -293,7 +293,7 @@ Armed with this knowledge, we can now approach:
 \end{theorem}
 So if $m > n$, the matrix should take the form
 \[
-	\begin{bmatrix} 
+	\begin{bmatrix}
 		s_1 & 0 & 0 & 0 & \dots & 0 \\
 		0 & s_2 & 0 & 0 & \dots & 0 \\
 		\vdots & \vdots & \ddots & \vdots & \dots & \vdots \\
@@ -329,7 +329,7 @@ and similarly when $m \le n$.
 	we perform the \textbf{Euclidean algorithm on the left column}:
 	subtract the second row from the first row,
 	then three times the first row from the second:
-	\[ 
+	\[
 		\begin{bmatrix}
 			18 & 38 & 48 \\
 			14 & 30 & 32
@@ -359,8 +359,8 @@ and similarly when $m \le n$.
 			2 & 6 & 2 \\
 			4 & 8 & 10
 		\end{bmatrix}
-		\mapsto 
-		\begin{bmatrix} 
+		\mapsto
+		\begin{bmatrix}
 			2 & 6 & 2 \\
 			0 & -4 & 6 \\
 		\end{bmatrix}
@@ -373,17 +373,17 @@ and similarly when $m \le n$.
 	This reduces the problem to a $1 \times 2$ matrix.
 	So we just apply the Euclidean algorithm again there:
 	\[
-		\begin{bmatrix} 
+		\begin{bmatrix}
 			2 & 0 & 0 \\
 			0 & -4 & 6
 		\end{bmatrix}
 		\mapsto
-		\begin{bmatrix} 
+		\begin{bmatrix}
 			2 & 0 & 0 \\
 			0 & -4 & 2
 		\end{bmatrix}
 		\mapsto
-		\begin{bmatrix} 
+		\begin{bmatrix}
 			2 & 0 & 0 \\
 			0 & 0 & 2
 		\end{bmatrix}
@@ -467,7 +467,7 @@ Now, we can apply our structure theorem!
 	over an arbitrary field $k$ (not necessarily algebraically closed).
 	Show that one can write $T$ as a block-diagonal matrix whose blocks
 	are all of the form
-	\[ 
+	\[
 		\begin{bmatrix}
 			0 & 0 & 0 & \dots & 0 & \ast  \\
 			1 & 0 & 0 & \dots & 0 & \ast  \\

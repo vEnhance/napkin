@@ -72,7 +72,7 @@ whose pre-image is a bunch of copies in $\RR$.
 		size(12cm);
 
 		real[] t = {-2,-1,0,1,2};
-		xaxis(-3.5,3.5, graph.LeftTicks(Ticks=t), Arrows); 
+		xaxis(-3.5,3.5, graph.LeftTicks(Ticks=t), Arrows);
 
 		pen bloo = blue+1.5;
 
@@ -162,7 +162,7 @@ Picture:
 			size(6cm);
 
 			real[] t = {-1,0,1,2};
-			xaxis(-2,3, graph.LeftTicks(Ticks=t), Arrows); 
+			xaxis(-2,3, graph.LeftTicks(Ticks=t), Arrows);
 			MP("\mathbb R", (2.5,0), dir(90));
 			path gt = (0,0.3)--(1,0.3);
 			draw(gt, blue, EndArrow);
@@ -206,7 +206,7 @@ a corresponding path in $E$.
 
 It turns out this is true more generally.
 \begin{theorem}[Lifting paths]
-	Suppose $\gamma : [0,1] \to B$ is a path with $\gamma(0) = b_0$, and 
+	Suppose $\gamma : [0,1] \to B$ is a path with $\gamma(0) = b_0$, and
 	$ p : (E,e_0) \to (B,b_0) $
 	is a covering projection.
 	Then there exists a \emph{unique} lifting $\tilde\gamma : [0,1] \to E$
@@ -342,7 +342,7 @@ This motivates:
 	Since $\RR$ is simply connected, this is a universal cover of $S^1$.
 	And indeed, the fiber of any point in $S^1$
 	is a copy of the integers: naturally in bijection with loops in $S^1$.
-	
+
 	You can show (and it's intuitively obvious) that the bijection
 	\[ \Phi : \pi_1(S^1) \leftrightarrow \ZZ \]
 	is in fact a group homomorphism if we equip $\ZZ$ with its
@@ -355,7 +355,7 @@ This motivates:
 
 Here's another way to generate some coverings.
 Let $X$ be a topological space and $G$ a group acting on its points.
-Thus for every $g$, we get a map $X \to X$ by 
+Thus for every $g$, we get a map $X \to X$ by
 \[ x \mapsto g \cdot x. \]
 We require that this map is continuous\footnote{%
 	Another way of phrasing this: the action,
@@ -376,7 +376,7 @@ by simply sending every point to the orbit it lives in.
 
 \begin{example}[$\RR \to S^1$ is regular]
 	Let $G = \ZZ$, $X = \RR$
-	and define the group action of $G$ on $X$ by 
+	and define the group action of $G$ on $X$ by
 	\[ n \cdot x = n + x \]
 	You can then think of $X/G$ as ``real numbers modulo $1$'',
 	with $[0,1)$ a complete set of representatives and $0 \sim 1$. % chktex 9
@@ -403,7 +403,7 @@ by simply sending every point to the orbit it lives in.
 	and the associated regular projection
 	is just our usual $\exp : \theta \mapsto e^{2i\pi \theta}$.
 \end{example}
-	
+
 \begin{example}[The torus]
 	Let $G = \ZZ \times \ZZ$ and $X = \RR^2$,
 	and define the group action of $G$ on $X$ by $(m,n) \cdot (x,y)
@@ -473,7 +473,7 @@ Next up, we're going to turn functions between spaces into homomorphisms of fund
 
 Let $X$ and $Y$ be topological spaces and $f : (X, x_0) \to (Y, y_0)$.
 Recall that we defined a group homomorphism
-\[ f_\sharp : \pi_1(X, x_0) \to \pi_1(Y_0, y_0) 
+\[ f_\sharp : \pi_1(X, x_0) \to \pi_1(Y_0, y_0)
 	\quad\text{by}\quad
 	[\gamma] \mapsto [f \circ \gamma]. \]
 % which gave us a functor $\catname{Top}_\ast \to \catname{Grp}$.
@@ -482,12 +482,12 @@ More importantly, we have:
 \begin{proposition}
 	Let $p : (E,e_0) \to (B,b_0)$ be a covering projection of path-connected spaces.
 	Then the homomorphism $p_\sharp : \pi_1(E, e_0) \to \pi_1(B, b_0)$ is \emph{injective}.
-	Hence $p_\sharp \im(\pi_1(E, e_0))$ is an isomorphic copy of $\pi_1(E, e_0)$ 
+	Hence $p_\sharp \im(\pi_1(E, e_0))$ is an isomorphic copy of $\pi_1(E, e_0)$
 	as a subgroup of $\pi_1(B, b_0)$.
 \end{proposition}
 \begin{proof}
 	We'll show $\ker p_\sharp$ is trivial.
-	It suffices to show if $\gamma$ is a nulhomotopic loop in $B$ 
+	It suffices to show if $\gamma$ is a nulhomotopic loop in $B$
 	then its lift is nulhomotopic.
 
 	By definition, there's a homotopy $F : [0,1] \times [0,1] \to B$

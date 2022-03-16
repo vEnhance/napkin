@@ -12,22 +12,22 @@ For example, the \vocab{AND gate} can be pictured as follows.
 \[
 	\Qcircuit @C=0.8em @R=.7em {
 		\lstick{0} &\qw & \multigate{1}{\textsc{and}} & \rstick{0} \qw \\
-		\lstick{0} &\qw & \ghost{\textsc{and}} & 
+		\lstick{0} &\qw & \ghost{\textsc{and}} &
 	}
 	\hspace{4.5em}
 	\Qcircuit @C=0.8em @R=.7em {
 		\lstick{0} &\qw & \multigate{1}{\textsc{and}} & \rstick{0} \qw \\
-		\lstick{1} &\qw & \ghost{\textsc{and}} & 
+		\lstick{1} &\qw & \ghost{\textsc{and}} &
 	}
 	\hspace{4.5em}
 	\Qcircuit @C=0.8em @R=.7em {
 		\lstick{1} &\qw & \multigate{1}{\textsc{and}} & \rstick{0} \qw \\
-		\lstick{0} &\qw & \ghost{\textsc{and}} & 
+		\lstick{0} &\qw & \ghost{\textsc{and}} &
 	}
 	\hspace{4.5em}
 	\Qcircuit @C=0.8em @R=.7em {
 		\lstick{1} &\qw & \multigate{1}{\textsc{and}} & \rstick{1} \qw \\
-		\lstick{1} &\qw & \ghost{\textsc{and}} & 
+		\lstick{1} &\qw & \ghost{\textsc{and}} &
 	}
 \]
 One can also represent the AND gate using the ``truth table'':
@@ -66,19 +66,19 @@ We also have a so-called \vocab{COPY gate}, which duplicates a bit.
 \[
 	\Qcircuit @C=0.8em @R=.7em {
 		\lstick{0} & \qw & \multigate{1}{\textsc{copy}} & \rstick{0} \qw & \\
-		&& & \rstick{0} \qw & 
+		&& & \rstick{0} \qw &
 	}
 	\qquad\qquad
 	\Qcircuit @C=0.8em @R=.7em {
 		\lstick{1} & \qw & \multigate{1}{\textsc{copy}} & \rstick{1} \qw & \\
-		&& & \rstick{1} \qw & 
+		&& & \rstick{1} \qw &
 	}
 \]
 Of course, the first theorem you learn about these gates is that:
 \begin{theorem}
 	[AND, OR, NOT, COPY are universal]
 	The set of four gates AND, OR, NOT, COPY is universal in the sense that
-	any boolean function $f : \{0,1\}^n \to \{0,1\}$ 
+	any boolean function $f : \{0,1\}^n \to \{0,1\}$
 	can be implemented as a circuit using only these gates.
 \end{theorem}
 \begin{proof}
@@ -88,7 +88,7 @@ Of course, the first theorem you learn about these gates is that:
 	$f(abc)$ with $f(011) = f(110) = 1$ and $0$ otherwise.
 	Then the corresponding Boolean expression for $f$ is simply
 	\[
-		f(abc) = 
+		f(abc) =
 		\left[ \text{(not $a$) and $b$ and $c$} \right]
 		\text{ or }
 		\left[ \text{$a$ and $b$ and (not $c$)} \right].
@@ -126,9 +126,9 @@ In particular, such gates must take the same number of input and output gates.
 			 \hline
 			 \multicolumn{2}{|c|}{\text{In}} & \multicolumn{2}{|c|}{\text{Out}} \\
 			 \hline
-			 0 & 0 & 0 & 0 \\ 
-			 1 & 0 & 1 & 1 \\ 
-			 0 & 1 & 0 & 1 \\ 
+			 0 & 0 & 0 & 0 \\
+			 1 & 0 & 1 & 1 \\
+			 0 & 1 & 0 & 1 \\
 			 1 & 1 & 1 & 0 \\ \hline
 		\end{array}
 	\]
@@ -138,7 +138,7 @@ In particular, such gates must take the same number of input and output gates.
 	\[
 		\Qcircuit @C=1em @R=.7em {
 			\lstick{x} & \ctrl{1} & \rstick{x} \qw \\
-			\lstick{y} & \targ & \rstick{x+y \mod 2} \qw 
+			\lstick{y} & \targ & \rstick{x+y \mod 2} \qw
 		}
 	\]
 	The first dot is called the ``control'',
@@ -203,7 +203,7 @@ The most commonly used one is:
 			\lstick{z} & \targ & \rstick{z + xy \pmod 2} \qw
 		}
 	\]
-	So the Toffoli has two controls, and toggles the last bit if and only if 
+	So the Toffoli has two controls, and toggles the last bit if and only if
 	both of the control bits are $1$.
 \end{definition}
 This replacement is sufficient.
@@ -401,9 +401,9 @@ Suppose we try to use CNOT as a copy, with truth table.
 		 \hline
 		 \multicolumn{2}{|c|}{\text{In}} & \multicolumn{2}{|c|}{\text{Out}} \\
 		 \hline
-		 0 & 0 & 0 & 0 \\ 
-		 1 & 0 & 1 & 1 \\ 
-		 0 & 1 & 0 & 1 \\ 
+		 0 & 0 & 0 & 0 \\
+		 1 & 0 & 1 & 1 \\
+		 0 & 1 & 0 & 1 \\
 		 1 & 1 & 1 & 0 \\ \hline
 	\end{array}
 \]
@@ -499,12 +499,12 @@ However,
 		\otimes
 		\left( \frac{1}{\sqrt2}(\ket0-\ket1) \right) \\
 		&=
-		\half \Big( \ket0\otimes\big(\ket0-\ket1\big) 
+		\half \Big( \ket0\otimes\big(\ket0-\ket1\big)
 		\; + \; \ket1\otimes\big(\ket0-\ket1\big) \Big).
 	\end{align*}
 	So after applying $U_f$, we obtain
 	\[
-		\half\Big( 
+		\half\Big(
 		\ket0\otimes\big(\ket{0+f(0)}-\ket{1+f(0)}\big)
 		\; + \; \ket1\otimes\big(\ket{0+f(1)}-\ket{1+f(1)}\big)
 		\Big)
@@ -632,11 +632,11 @@ However,
 		Put $\xdown = \frac{1}{\sqrt2} (\ket0-\ket1)$.
 		Then we have that $U_f$ sends
 		\[
-			\ket{x_1}  \dots  \ket{x_m}  \ket 0 
-			- \ket{x_1}  \dots  \ket{x_m}  \ket 1 
+			\ket{x_1}  \dots  \ket{x_m}  \ket 0
+			- \ket{x_1}  \dots  \ket{x_m}  \ket 1
 			\xmapsto{U_f}
-			\pm \ket{x_1}  \dots  \ket{x_m}  \ket 0 
-			\mp \ket{x_1}  \dots  \ket{x_m}  \ket 1 
+			\pm \ket{x_1}  \dots  \ket{x_m}  \ket 0
+			\mp \ket{x_1}  \dots  \ket{x_m}  \ket 1
 		\]
 		the sign being $+$, $-$ exactly when $f(x_1, \dots, x_m) = 1$.
 
@@ -661,20 +661,20 @@ However,
 		so minus signs arise exactly if $x_i = 0$ and $y_i = 0$ simultaneously,
 		hence the term $(-1)^{x_1 y_1 + \dots + x_n y_n}$.
 		Swapping the order of summation, we get
-		\[ 
+		\[
 			2^{-n}
 			\sum_{y_1, \dots, y_n}
 			C(y_1, \dots, y_n)
 			\ket{y_1} \ket{y_2} \dots \ket{y_n}
 		\]
-		where $C_{y_1, \dots, y_n} 
+		where $C_{y_1, \dots, y_n}
 		= \sum_{x_1, \dots, x_n} (-1)^{f(x_1, \dots, x_n)
 			+x_1 y_1 + \dots + x_n y_n}$.
 		Now, we finally consider two cases.
 		\begin{itemize}
 			\ii If $f$ is the constant function, then we find that
 			\[
-				C(y_1, \dots, y_n) = 
+				C(y_1, \dots, y_n) =
 				\begin{cases}
 					\pm 1 &  y_1 = \dots = y_n = 0 \\
 					0 & \text{otherwise}.
@@ -696,7 +696,7 @@ However,
 \begin{dproblem}[Barenco et al, 1995; arXiv:quant-ph/9503016v1]
 	Let
 	\[
-		P = \begin{bmatrix} 1 & 0 \\ 0& i \end{bmatrix} 
+		P = \begin{bmatrix} 1 & 0 \\ 0& i \end{bmatrix}
 		\qquad
 		Q = \frac{1}{\sqrt2}\begin{bmatrix} 1 & -i \\ -i & 1 \end{bmatrix}
 	\]

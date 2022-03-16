@@ -196,7 +196,7 @@ want $\chi(X)$ to only depend on the space $X$ itself
 	\[ \chi(X) = \sum_n (-1)^n \rank H_n(X). \]
 \end{theorem}
 Thus $\chi(X)$ does not depend on the choice of CW decomposition.
-The numbers 
+The numbers
 \[ b_n = \rank H_n(X) \]
 are called the \vocab{Betti numbers} of $X$.
 In fact, we can use this to define $\chi(X)$ for any reasonable space;
@@ -238,7 +238,7 @@ we are happy because in the (frequent) case that $X$ is a CW complex,
 		\ii The Betti numbers of $\CP^n$ are $b_0 = b_2 = \dots = b_{2n} = 1$,
 		and zero elsewhere. Thus the Euler characteristic is $n+1$.
 		\ii The Betti numbers of the Klein bottle
-		are $b_0 = 1$, $b_1 = 1$ and zero elsewhere. 
+		are $b_0 = 1$, $b_1 = 1$ and zero elsewhere.
 		Thus the Euler characteristic is $0$, the same as the sphere
 		(also since their CW structures use the same number of cells).
 	\end{enumerate}
@@ -280,7 +280,7 @@ This gives us an algorithm for computing homology groups of a CW complex:
 	Repeat the following for each $k$-cell $e^k$:
 	\begin{itemize}
 		\ii For every $k-1$ cell $e^{k-1}_\beta$,
-		compute the degree of the boundary of $e^k$ welded onto 
+		compute the degree of the boundary of $e^k$ welded onto
 		the boundary of $e^{k-1}_\beta$, say $d_\beta$.
 		\ii Then $d_k(e^k) = \sum_\beta d_\beta e^{k-1}_\beta$.
 	\end{itemize}

@@ -154,14 +154,14 @@ To see why, let's consider an annulus, with a $1$-chain $c$ drawn in red:
 		draw(v2..(3.6*dir(45))..v0, rr, EndArrow);
 	\end{asy}
 \end{center}
-Notice that 
+Notice that
 \[ \partial c = ([v_1]-[v_0]) - ([v_2]-[v_0]) + ([v_2]-[v_1]) = 0 \]
 and so we can say this $1$-chain $c$ is a ``cycle'',
 because it has trivial boundary.
 However, $c$ is not itself the boundary of any $2$-chain,
 because of the hole in the center of the space
 --- it's impossible to ``fill in'' the interior of $c$!
-So, we have detected the hole by the algebraic fact that 
+So, we have detected the hole by the algebraic fact that
 \[ c \in \ker\left( C_1(X) \taking{\partial} C_0(X) \right)
 	\qquad\text{but}\qquad
 	c \notin \img \left( C_2(X) \taking{\partial} C_1(X) \right). \]
@@ -169,7 +169,7 @@ Indeed, if the hole was not present then this statement would be false.
 
 We can capture this idea in any dimension, as follows.
 \begin{definition}
-	Let 
+	Let
 	\[ \dots \taking\partial C_2(X) \taking\partial C_1(X) \taking\partial C_0(X) \taking\partial 0 \]
 	as above.
 	We say that $c \in C_n(X)$ is:
@@ -311,7 +311,7 @@ whereas $\pi_1(X, x_0)$ does not.
 \end{example}
 Actually, more generally it turns out that we will have
 \[
-	H_n(S^m) \cong 
+	H_n(S^m) \cong
 	\begin{cases}
 		\ZZ & n=m \text{ or } n=0 \\
 		0 & \text{otherwise}.
@@ -548,7 +548,7 @@ in the image for $Y$.
 
 		pen hg = heavygreen;
 		dot("$w_0$", C, dir(90), hg); dot("$w_1$", D, dir(-90), hg);
-		path w = C..(2.3,0)..D; 
+		path w = C..(2.3,0)..D;
 		draw(w, hg, EndArrow);
 		label("$g(\sigma)$", w, dir(0), hg);
 
@@ -695,7 +695,7 @@ and we will discuss this when we reach the excision theorem.
 	We can define $C_n(U+V)$ as follows:
 	it consists of chains such that each simplex is either entirely contained in $U$,
 	or entirely contained in $V$.
-	
+
 	Of course, $\partial$ then defines another chain complex
 	\[ \dots \taking\partial C_{n+1}(U+V) \taking\partial C_n(U+V)
 	\taking\partial C_{n-1}(U+V) \taking\partial \dots. \]

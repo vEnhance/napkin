@@ -36,7 +36,7 @@ Here is the case $G = S_3$:
 	\[
 		\begin{array}{|r|rrrrrr|}
 			\hline
-			\chi_V(g) & \id & (1\;2) & (2\;3) & (3\;1) 
+			\chi_V(g) & \id & (1\;2) & (2\;3) & (3\;1)
 				& (1\;2\;3) & (3\;2\;1)  \\ \hline
 			\Ctriv & 1 & 1 & 1 & 1 & 1 & 1 \\
 			\CC_{\mathrm{sign}} & 1 & -1 & -1 & -1 & 1 & 1 \\
@@ -73,7 +73,7 @@ we have for any $V$ that
 \[ \chi_V(ab) = \chi_V(ba). \]
 This explains observation (I) from earlier:
 \begin{ques}
-	Deduce that if $g$ and $h$ are in the same conjugacy class of a 
+	Deduce that if $g$ and $h$ are in the same conjugacy class of a
 	group $G$, and $V$ is a representation of $\CC[G]$,
 	then $\chi(g) = \chi(h)$.
 \end{ques}
@@ -103,7 +103,7 @@ So we can think of each character $\chi_V$ as an element of $(A\ab)^\vee$.
 		Consequently, $A\ab$ is one-dimensional.
 		\ii Suppose $A = k[G]$.  We claim that $\dim A\ab$ is equal to the
 		number of conjugacy classes of $A$.
-		Indeed, an element of $A$ can be thought of as just 
+		Indeed, an element of $A$ can be thought of as just
 		an arbitrary function $\xi : G \to k$.
 		So an element of $A\ab$ is a function $\xi: G \to k$ such that
 		$\xi(gh) = \xi(hg)$ for every $g,h \in G$.
@@ -162,7 +162,7 @@ character $\chi_V$.
 	viewed as a vector space over $\CC$.
 	We endow it with the inner form
 	\[
-		\left< f_1, f_2 \right> = 
+		\left< f_1, f_2 \right> =
 		\frac{1}{|G|}
 		\sum_{g \in G} f_1(g) \ol{f_2(g)}.
 	\]
@@ -176,7 +176,7 @@ which will imply (III) and (IV) from earlier.
 	of $G$ we have
 	\[ \left< \chi_V, \chi_W \right> = \dim \Homrep(W, V). \]
 	In particular, if $V$ and $W$ are irreps then
-	\[ \left< \chi_V, \chi_W \right> 
+	\[ \left< \chi_V, \chi_W \right>
 		=
 		\begin{cases}
 			1 & V  \cong W \\
@@ -206,7 +206,7 @@ which give a natural way to deal with the quantity $\chi_V(g)\ol{\chi_W(g)}$.
 	on $V \otimes W$ with the action of $G$ given on pure tensors by
 	\[
 		g \cdot (v \otimes w)
-		= 
+		=
 		(\rho_V(g)(v)) \otimes (\rho_W(g)(w)) \]
 	which extends linearly to define the action of $G$ on all of $V \otimes W$.
 \end{definition}
@@ -351,7 +351,7 @@ a complete set of irreps.
 				& (\bullet\;\bullet)(\bullet\;\bullet)
 				\\ \hline
 			\Ctriv & 1 & 1 & 1 & 1 & 1 \\
-			\Csign & 1 & -1 & 1 & -1 & 1 \\ 
+			\Csign & 1 & -1 & 1 & -1 & 1 \\
 			\vdots & \multicolumn{5}{|c|}{\vdots}
 		\end{array}
 	\]
@@ -373,7 +373,7 @@ a complete set of irreps.
 		\left< \chi_{\refl_0}, \chi_{\refl_0} \right>
 		=
 		\frac{1}{4!}
-		\left( 
+		\left(
 			\underbrace{3^2}_{\id}
 			+ \underbrace{6\cdot(1)^2}_{(\bullet\;\bullet)}
 			+ \underbrace{8\cdot(0)^2}_{(\bullet\;\bullet\;\bullet)}
@@ -396,8 +396,8 @@ a complete set of irreps.
 				& (\bullet\;\bullet)(\bullet\;\bullet)
 				\\ \hline
 			\Ctriv & 1 & 1 & 1 & 1 & 1 \\
-			\Csign & 1 & -1 & 1 & -1 & 1 \\ 
-			\CC^2 & 2 & 0 & -1 & 0 & 2 \\ 
+			\Csign & 1 & -1 & 1 & -1 & 1 \\
+			\CC^2 & 2 & 0 & -1 & 0 & 2 \\
 			\refl_0 & 3 & 1 & 0 & -1 & -1 \\
 			\refl_0 \otimes \Csign & 3 & -1 & 0 & 1 & -1 \\\hline
 		\end{array}
@@ -446,10 +446,10 @@ a complete set of irreps.
 		\begin{align*}
 			\left< \chi_{V \otimes W}, \chi_{V \otimes W} \right>
 			&= \left< \chi_V \chi_W, \chi_V \chi_W \right> \\
-			&= \frac{1}{|G|} \sum_{g \in G} 
+			&= \frac{1}{|G|} \sum_{g \in G}
 			\left\lvert \chi_V(g) \right\rvert^2
 			\left\lvert \chi_W(g) \right\rvert^2 \\
-			&= \frac{1}{|G|} \sum_{g \in G} 
+			&= \frac{1}{|G|} \sum_{g \in G}
 			\left\lvert \chi_V(g) \right\rvert^2 \\
 			&= \left< \chi_V, \chi_V \right> = 1.
 		\end{align*}
@@ -503,7 +503,7 @@ a complete set of irreps.
 	Here, $C_G(g) = \left\{ x \in G : xg = gx \right\}$
 	is the centralizer of $g$.
 	\begin{hint}
-		Write as 
+		Write as
 		\[ \sum_{i=1}^r \chi_{V_i \otimes V_i^\vee} (gh\inv)
 			= \chi_{\bigoplus_i V_i \otimes V_i^\vee}(gh\inv)
 			= \chi_{\CC[G]}(gh\inv).

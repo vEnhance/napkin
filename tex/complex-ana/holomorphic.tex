@@ -27,7 +27,7 @@ Here are some examples.
 		is continuous \emph{everywhere} but differentiable \emph{nowhere}.
 		\ii The function
 		\[
-			x \mapsto 
+			x \mapsto
 			\begin{cases}
 				x^{100} & x \ge 0 \\
 				-x^{100} & x < 0
@@ -105,7 +105,7 @@ when it does we say $f$ is \vocab{differentiable} at $z_0$.
 
 What do I mean by a ``complex'' limit $h \to 0$?
 It's what you might expect: for every $\eps > 0$ there should be a $\delta > 0$
-such that 
+such that
 \[ 0 < \left\lvert h \right\rvert < \delta
 	\implies
 	\left\lvert \frac{f(z_0+h)-f(z_0)}{h} - L \right\rvert < \eps. \]
@@ -389,7 +389,7 @@ Let's pull back the curtain:
 	which bounds a disk $D$.
 	Suppose $f : U \to \CC$ is holomorphic such that $U$ contains the circle and its interior.
 	Then for any point $a$ in the interior of $D$, we have
-	\[ 
+	\[
 		f(a)
 		=
 		\frac{1}{2\pi i} \oint_\gamma \frac{f(z)}{z-a} \; dz.
@@ -473,7 +473,7 @@ In fact, that's the central result we're going to use to prove the result.
 		2\pi i f(a).
 	\end{align*}
 	where we've used \Cref{thm:central_cauchy_computation}
-	Thus, all we have to do is show that 
+	Thus, all we have to do is show that
 	\[ \oint_{\gamma_\eps} \frac{f(z)-f(a)}{z-a} \; dz = 0. \]
 	For this we can basically use the weakest bound possible, the so-called $ML$ lemma
 	which I'll cite without proof:
@@ -533,14 +533,14 @@ So let's state the full result below, with arbitrary center $p$.
 	Let $f : U \to \CC$ be a holomorphic function and let $D$ be a disk centered at point $p$
 	bounded by a circle $\gamma$.  Suppose $D$ is contained inside $U$.
 	Then $f$ is given everywhere in $D$ by a Taylor series
-	\[ 
+	\[
 		f(z) = c_0 + c_1(z-p) + c_2(z-p)^2 + \dots
 	\]
 	where
 	\[
 		c_k = \frac{f^{k}(p)}{k!} = \frac{1}{2\pi i} \oint_\gamma \frac{f(w-p)}{(w-p)^{k+1}} \; dw
 	\]
-	In particular, 
+	In particular,
 	\[ f^{(k)}(p) = k! c_k = \frac{k!}{2\pi i} \oint_\gamma \frac{f(w-p)}{(w-p)^{k+1}} \; dw. \]
 \end{theorem}
 

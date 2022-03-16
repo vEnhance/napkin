@@ -59,7 +59,7 @@ and $[\half, 1]$ for the second path; we run ``twice as fast''.
 	Given two paths $\gamma_1, \gamma_2 : [0,1] \to X$
 	such that $\gamma_1(1) = \gamma_2(0)$, we define
 	a path $\gamma_1 \ast \gamma_2 : [0,1] \to X$ by
-	\[ 
+	\[
 		(\gamma_1 \ast \gamma_2)(t)
 		=
 		\begin{cases}
@@ -118,7 +118,7 @@ which is a continuous deformation from $\alpha$ to $\beta$.)
 It is definitely true that
 \[
 	\left( \gamma_1 \ast \gamma_2 \right) \ast \gamma_3
-	\simeq 
+	\simeq
 	\gamma_1 \ast \left( \gamma_2 \ast \gamma_3 \right) . \]
 It is also true that if $\alpha_1 \simeq \alpha_2$ and $\beta_1 \simeq \beta_2$
 then $\alpha_1 \ast \beta_1 \simeq \alpha_2 \ast \beta_2$.
@@ -309,7 +309,7 @@ Before you read the proof, see if you can guess the isomorphism based just on th
 \begin{proof}
 	Let $\alpha$ be any path from $x_1$ to $x_2$ (possible by path-connectedness), and let $\ol\alpha$ be its reverse.
 	Then we can construct a map
-	\[ 
+	\[
 		\pi_1(X,x_1) \to \pi_1(X,x_2)
 		\text{ by }
 		[\gamma] \mapsto [\ol\alpha \ast \gamma \ast \alpha]. \]
@@ -325,7 +325,7 @@ Before you read the proof, see if you can guess the isomorphism based just on th
 	as $\alpha \ast \ol\alpha$ is nulhomotopic.
 
 	Similarly, there is a homomorphism
-	\[ 
+	\[
 		\pi_1(X,x_2) \to \pi_1(X,x_1)
 		\text{ by }
 		[\gamma] \mapsto [\alpha \ast \gamma \ast \ol\alpha]. \]
@@ -377,7 +377,7 @@ Let's call this loop $f_\sharp \gamma$.
 	\[ f_\sharp \gamma_1 \simeq f_\sharp \gamma_2. \]
 \end{lemma}
 \begin{proof}
-	Just take the homotopy $h$ taking $\gamma_1$ to $\gamma_2$	
+	Just take the homotopy $h$ taking $\gamma_1$ to $\gamma_2$
 	and consider $f \circ h$.
 \end{proof}
 
@@ -444,7 +444,7 @@ Let's see some examples.
 	In general, it's true that $\pi_n(S^n) \cong \ZZ$.
 \end{example}
 \begin{example}[$\pi_n(S^m) \cong \{1\}$ when $n < m$]
-	We saw that $\pi_1(S^2) \cong \{1\}$, because 
+	We saw that $\pi_1(S^2) \cong \{1\}$, because
 	a circle in $S^2$ can just be reeled in to a point.
 	It turns out that similarly, any smaller $n$-dimensional sphere
 	can be reeled in on the surface of a bigger $m$-dimensional sphere.
@@ -486,7 +486,7 @@ But let me tell you what the general definition of homotopy is first.
 \begin{definition}
 	Let $f,g : X \to Y$ be continuous functions.
 	A \vocab{homotopy} is a continuous function $F : X \times [0,1] \to Y$,
-	which we'll write $F_s(x)$ for $s \in [0,1]$, $x \in X$, such that 
+	which we'll write $F_s(x)$ for $s \in [0,1]$, $x \in X$, such that
 	\[ F_0(x) = f(x) \text{ and } F_1(x) = g(x) \text{ for all $x \in X$.} \]
 	If such a function exists, then $f$ and $g$ are \vocab{homotopic}.
 \end{definition}
@@ -524,7 +524,7 @@ and bending than homeomorphism: we are allowed to compress huge spaces into sing
 
 \begin{example}[$\CC$ is contractible]
 	Consider the topological spaces $\CC$
-	and the space consisting of the single point $\{0\}$. 
+	and the space consisting of the single point $\{0\}$.
 	We claim these spaces are homotopy equivalent (can you guess what $f$ and $g$ are?)
 	Indeed, the two things to check are
 	\begin{enumerate}[(i)]
@@ -564,7 +564,7 @@ and bending than homeomorphism: we are allowed to compress huge spaces into sing
 	(This might be a little easier to visualize, since it's finite.)
 \end{example}
 
-I bring these up because it turns out that 
+I bring these up because it turns out that
 \begin{moral}
 	Algebraic topology can't distinguish between homotopy equivalent spaces.
 \end{moral}
@@ -662,15 +662,15 @@ This implies several things, like
 	Let $X$ be a topological space.
 	Suppose $U$ and $V$ are connected open subsets of $X$, with $X = U \cup V$,
 	so that $U \cap V$ is nonempty and path-connected.
-		
+
 	Prove that if $\pi_1(U) = \pi_1(V) = \{1\}$ then $\pi_1(X) = 1$.
 \end{dproblem}
 \begin{remark}
-	The \vocab{Seifert--van Kampen theorem} generalizes this 
+	The \vocab{Seifert--van Kampen theorem} generalizes this
 	for $\pi_1(U)$ and $\pi_1(V)$ any groups; it gives a formula for calculating $\pi_1(X)$
 	in terms of $\pi_1(U)$, $\pi_1(V)$, $\pi_1(U \cap V)$.
 	The proof is much the same.
-	
+
 	Unfortunately, this does not give us a way to calculate $\pi_1(S^1)$,
 	because it is not possible to write $S^1 = U \cup V$ for $U \cap V$ \emph{connected}.
 \end{remark}

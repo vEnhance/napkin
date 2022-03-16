@@ -139,7 +139,7 @@ This allows us to define:
 	Suppose $\alpha_1, \dots, \alpha_n$ is a $\ZZ$-basis of $\OO_K$.
 	The \vocab{discriminant} of the number field $K$ is defined by
 	\[
-	\Delta_K \defeq \det 
+	\Delta_K \defeq \det
 	\begin{bmatrix}
 		\sigma_1(\alpha_1) & \dots & \sigma_n(\alpha_1) \\
 		\vdots & \ddots & \vdots \\
@@ -153,7 +153,7 @@ we will not prove this here.
 	We have $\OO_K = \ZZ[\sqrt 2]$
 	and as discussed above the discriminant is
 	\[
-		\Delta_K = 
+		\Delta_K =
 		(-2 \sqrt 2)^2 = 8.
 	\]
 \end{example}
@@ -164,8 +164,8 @@ we will not prove this here.
 	which take $1$ to $(1,1)$ and $i$ to $(i, -i)$.
 	So
 	\[
-		\Delta_K = 
-		\det 
+		\Delta_K =
+		\det
 		\begin{bmatrix}
 			1 & 1 \\
 			i & -i
@@ -234,7 +234,7 @@ To do so, we're going to take advantage of complex conjugation.
 Let $K$ be a number field and $\sigma_1, \dots, \sigma_n$ be its embeddings.
 We distinguish between the \vocab{real embeddings}
 (which map all of $K$ into $\RR$)
-and the \vocab{complex embeddings} 
+and the \vocab{complex embeddings}
 (which map some part of $K$ outside $\RR$).
 Notice that if $\sigma$ is a complex embedding,
 then so is the conjugate $\ol{\sigma} \ne \sigma$;
@@ -277,7 +277,7 @@ hence complex embeddings come in pairs.
 
 From now on, we will number the embeddings of $K$ in such a way that
 \[ \sigma_1, \sigma_2, \dots, \sigma_{r_1}  \]are the real embeddings,
-while 
+while
 \[
 	\sigma_{r_1+1} = \ol{\sigma_{r_1+r_2+1}}, \quad
 	\sigma_{r_1+2} = \ol{\sigma_{r_1+r_2+2}}, \quad
@@ -290,7 +290,7 @@ We define the \vocab{canonical embedding} of $K$ as
 	K \overset\iota\injto \RR^{r_1} \times \CC^{r_2} \
 	\quad\text{by}\quad
 	\alpha \mapsto  \left( \sigma_1(\alpha), \dots, \sigma_{r_1}(\alpha),
-	\sigma_{r_1+1}(\alpha), \dots, \sigma_{r_1+r_2}(\alpha) \right). 
+	\sigma_{r_1+1}(\alpha), \dots, \sigma_{r_1+r_2}(\alpha) \right).
 \]
 All we've done is omit, for the complex case, the second of the embeddings in each conjugate pair.
 This is no big deal, since they are just conjugates;
@@ -306,7 +306,7 @@ by breaking each complex number into its real and imaginary part, as
 & \Re \sigma_{r_1+1}(\alpha), \;\; \Im \sigma_{r_1+1}(\alpha), \\
 & \Re \sigma_{r_1+2}(\alpha), \;\; \Im \sigma_{r_1+2}(\alpha), \\
 & \dots, \\
-& \Re \sigma_{r_1+r_2}(\alpha), \;\; \Im \sigma_{r_1+r_2}(\alpha) \big). 
+& \Re \sigma_{r_1+r_2}(\alpha), \;\; \Im \sigma_{r_1+r_2}(\alpha) \big).
 \end{align*}
 \begin{example}[Example of canonical embedding]
 	As before let $K = \QQ(\sqrt[3]{2})$ and set
@@ -390,7 +390,7 @@ In geometry, there's a really cool theorem of Minkowski's that goes as follows.
 	Thus we want to show that any such convex set $S$
 	with area more than $4$ contains a lattice point.
 
-	Dissect the plane into $2 \times 2$ squares 
+	Dissect the plane into $2 \times 2$ squares
 	\[ [2a-1, 2a+1] \times [2b-1, 2b+1] \]
 	and overlay all these squares on top of each other.
 	By the Pigeonhole Principle, we find there exist two points $p \neq q \in S$ which map to the same point.
@@ -413,7 +413,7 @@ The last ingredient we need is a set to apply Minkowski's theorem to.  I propose
 	\[
 		\sum_{i=1}^{r_1} \left\lvert x_i \right\rvert
 		+ 2 \sum_{j=1}^{r_2} \left\lvert z_j \right\rvert
-		\le M. 
+		\le M.
 	\]
 	Note that this depends on the value of $M$.
 \end{definition}
@@ -523,7 +523,7 @@ We can now put everything we have together to obtain the great Minkowski bound.
 		M^n
 		= M^n \cdot 2^n \cdot \frac{\text{mesh}}{\text{vol box}}
 		= 2^n \cdot \frac{n!}{2^{r_1} \cdot \left( \frac \pi 2 \right)^{r_2}}
-		\cdot 2^{-r_2} \sqrt{\left\lvert \Delta_K \right\rvert} \Norm(\ka) 
+		\cdot 2^{-r_2} \sqrt{\left\lvert \Delta_K \right\rvert} \Norm(\ka)
 	\]
 	which gives the bound after some arithmetic.
 \end{proof}
@@ -657,10 +657,10 @@ Let's do a couple more.
 	We have $M_K = \frac{2}{\pi}\sqrt{4} < 2$.
 	So every class
 	has an integral ideal of norm $\kb$ satisfying
-	\[ 
+	\[
 		\Norm(\kb)
 		\le \left( \frac4\pi \right)^{1} \cdot \frac{2!}{2^2} \cdot \sqrt{4}
-		= \frac4\pi < 2. 
+		= \frac4\pi < 2.
 	\]
 	Well, that's silly: we don't have any branches to pick from at all.
 	In other words, we can only have $\kb = (1)$.
@@ -761,7 +761,7 @@ From this we deduce \[ \Cl_K \cong \Zc 4. \qedhere \]
 \begin{remark}
 	When we did this at Harvard during Math 129,
 	there was a five-minute interruption in which students (jokingly) complained
-	about the difficulty of evaluating $\frac{4}{\pi} \sqrt{17}$. Excerpt: 
+	about the difficulty of evaluating $\frac{4}{\pi} \sqrt{17}$. Excerpt:
 	\begin{quote}
 		``Will we be allowed to bring a small calculator on the exam?'' -- Student 1 \\
 		``What does the size have to do with anything?  You could have an Apple Watch'' -- Professor \\
@@ -803,7 +803,7 @@ From this we deduce \[ \Cl_K \cong \Zc 4. \qedhere \]
 	\end{hint}
 \end{problem}
 
-\begin{problem} 
+\begin{problem}
 	[\Cref{lem:vol_OK_mesh}]
 	\label{prob:OK_linalg}
 	Consider the composition of the embeddings $K \injto \RR^{r_1} \times \CC^{r_2} \taking\sim \RR^n$.
