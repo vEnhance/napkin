@@ -10,7 +10,7 @@ Thus an irrep is just specified by a set of $\dim A$ numbers.
 \begin{definition}
 	Let $V = (V, \rho)$ be a finite-dimensional representation of $A$.
 	The \vocab{character} $\chi_V : A \to k$ attached to
-	$A$ is defined $\chi_V = \Tr \circ \rho$, i.e.\
+	$A$ is defined by $\chi_V = \Tr \circ \rho$, i.e.\
 	\[ \chi_V(a) \defeq \Tr\left( \rho(a) : V \to V \right). \]
 \end{definition}
 Since $\Tr$ and $\rho$ are additive, this is a $k$-linear map
@@ -124,15 +124,15 @@ So we can think of each character $\chi_V$ as an element of $(A\ab)^\vee$.
 	In particular, in (b) the number of irreps of $A$ equals $\dim A\ab$.
 \end{theorem}
 \begin{proof}
-	Part (a) is more or less obvious by the density theorem.
-	Suppose there is a linear dependence, so that for every $a$ we have
+	Part (a) is more or less obvious by the density theorem:
+	suppose there is a linear dependence, so that for every $a$ we have
 	\[ c_1 \chi_{V_1}(a) + c_2 \chi_{V_2}(a) + \dots + c_r \chi_{V_r} (a) = 0\]
 	for some integer $r$.
 	\begin{ques}
 		Deduce that $c_1 = \dots = c_r = 0$ from the density theorem.
 	\end{ques}
-	For part (b), assume there are $r$ irreps
-	we may assume that \[ A = \bigoplus_{i=1}^r \Mat(V_i) \]
+	For part (b), assume there are $r$ irreps.
+	We may assume that \[ A = \bigoplus_{i=1}^r \Mat(V_i) \]
 	where $V_1$, \dots, $V_r$ are the irreps of $A$.
 	Since we have already showed the characters are linearly independent
 	we need only show that $\dim ( A / [A,A] ) = r$,
