@@ -324,13 +324,19 @@ Math is weird.
 	where $w$ is a word, anywhere in the given word,
 	or by deleting such a sequence from the word.
 	Can we turn the word $ab$ into the word $ba$?
-	% http://www.artofproblemsolving.com/Forum/viewtopic.php?f=780&t=456603&p=2572053
+	% https://aops.com/community/c340h456603p2572053
 	% lol Alex Zhu op
 	\begin{hint}
 		Construct a non-abelian group such that all elements have order three.
 	\end{hint}
 	\begin{sol}
-		One example is upper triangular matrices with entries in mod $3$.
+		One example is the group of $3 \times 3$
+		matrices with entries in $\FF_3$ that are of the form
+		$\begin{bmatrix}
+			1 & x & y \\
+			& 1 & z \\
+			& & 1
+		\end{bmatrix}$.
 	\end{sol}
 \end{problem}
 
