@@ -336,13 +336,13 @@ and similarly when $m \le n$.
 		\end{bmatrix}
 		\mapsto
 		\begin{bmatrix}
-			4 & 8 & 10 \\
+			4 & 8 & 16 \\
 			14 & 30 & 32
 		\end{bmatrix}
 		\mapsto
 		\begin{bmatrix}
-			4 & 8 & 10 \\
-			2 & 6 & 2
+			4 & 8 & 16 \\
+			2 & 6 & -16
 		\end{bmatrix}.
 	\]
 	Now that the GCD of $2$ is present, we move it to the upper-left
@@ -351,23 +351,23 @@ and similarly when $m \le n$.
 	since $2$ was the GCD all along, we isolate $2$ completely:
 	\[
 		\begin{bmatrix}
-			4 & 8 & 10 \\
-			2 & 6 & 2
+			4 & 8 & 16 \\
+			2 & 6 & -16
 		\end{bmatrix}
 		\mapsto
 		\begin{bmatrix}
-			2 & 6 & 2 \\
-			4 & 8 & 10
+			2 & 6 & -16 \\
+			4 & 8 & 16
 		\end{bmatrix}
 		\mapsto
 		\begin{bmatrix}
-			2 & 6 & 2 \\
-			0 & -4 & 6 \\
+			2 & 6 & -16 \\
+			0 & -4 & 48 \\
 		\end{bmatrix}
 		\mapsto
 		\begin{bmatrix}
 			2 & 0 & 0 \\
-			0 & -4 & 6
+			0 & -4 & 48
 		\end{bmatrix}.
 	\]
 	This reduces the problem to a $1 \times 2$ matrix.
@@ -375,22 +375,12 @@ and similarly when $m \le n$.
 	\[
 		\begin{bmatrix}
 			2 & 0 & 0 \\
-			0 & -4 & 6
+			0 & -4 & 0
 		\end{bmatrix}
 		\mapsto
 		\begin{bmatrix}
 			2 & 0 & 0 \\
-			0 & -4 & 2
-		\end{bmatrix}
-		\mapsto
-		\begin{bmatrix}
-			2 & 0 & 0 \\
-			0 & 0 & 2
-		\end{bmatrix}
-		\mapsto
-		\begin{bmatrix}
-			2 & 0 & 0 \\
-			0 & 2 & 0
+			0 & 4 & 0
 		\end{bmatrix}.
 	\]
 \end{example}
