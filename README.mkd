@@ -1,5 +1,9 @@
 # Napkin v1.5
 
+![Last commit](https://img.shields.io/github/last-commit/vEnhance/napkin)
+![Forks](https://img.shields.io/github/forks/vEnhance/napkin)
+![Stars](https://img.shields.io/github/stars/vEnhance/napkin)
+
 These are the source files for Evan Chen's _An Infinitely Large Napkin_.
 You can read about the project on my [webpage](https://web.evanchen.cc/napkin.html).
 
