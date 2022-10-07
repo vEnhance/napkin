@@ -12,7 +12,7 @@ One silly slogan might be:
 \end{moral}
 You may remember that when we were working with affine varieties,
 there were constantly expressions of the form
-$\left\{ \frac{f}{g} \mid g(p) \ne 0 \right\}$
+$\left\{ \frac{f}{g} \mid g(p) \neq 0 \right\}$
 and the like.
 The point is that we introduced a lot of denominators.
 Localization will give us a concise way of doing this in general.
@@ -32,12 +32,12 @@ We saw in previous sections how to compute $\OO_V(D(g))$
 and $\OO_{V, p}$ for $p \in V$ a point.
 For example, if we take $\Aff^1$ and consider a point $p$, then
 $\OO_{\Aff^1}(D(x-p)) = \left\{ \frac{f(x)}{(x-p)^n} \right\}$
-and $\OO_{\Aff^1, p} = \left\{ \frac{f(x)}{g(x)} \mid g(p) \ne 0 \right\}$.
+and $\OO_{\Aff^1, p} = \left\{ \frac{f(x)}{g(x)} \mid g(p) \neq 0 \right\}$.
 More generally, we had
 \begin{align*}
 	\OO_{V}(D(g)) &= \left\{ \frac{f}{g^n} \mid f \in R \right\}
 		\quad\text{by \Cref{thm:reg_func_distinguish_open}} \\
-	\OO_{V,p} &= \left\{ \frac{f}{g} \mid f,g \in R, g(p) \ne 0 \right\}
+	\OO_{V,p} &= \left\{ \frac{f}{g} \mid f,g \in R, g(p) \neq 0 \right\}
 		\quad\text{by \Cref{thm:stalks_affine_var}}.
 \end{align*}
 
@@ -109,11 +109,11 @@ motivating forces for the construction of the affine scheme.
 		this is also expressible as $\CC[x,y] / (xy-1)$.
 
 		\ii Let $p \in \CC$.
-		Suppose we let $S = \left\{ g(x) \mid g(p) \ne 0 \right\}$,
-		i.e.\ we allow any denominators where $g(p) \ne 0$.
+		Suppose we let $S = \left\{ g(x) \mid g(p) \neq 0 \right\}$,
+		i.e.\ we allow any denominators where $g(p) \neq 0$.
 		Then
 		\[ S\inv A = \left\{ \frac{f(x)}{g(x)}
-			\mid f,g \in \CC[x], g(p) \ne 0 \right\}.  \]
+			\mid f,g \in \CC[x], g(p) \neq 0 \right\}.  \]
 		You might recognize this is as the stalk $\OO_{\Aff^1, p}$.
 		This will be important later on.
 	\end{enumerate}
@@ -246,7 +246,7 @@ In fact, the same was true for affine varieties too.
 	if and only if $f \pmod{\km} = 0$, equivalently $f \in \km$.
 	Thus, by \Cref{thm:stalks_affine_var} we can write
 	\begin{align*}
-		\OO_{V,p} &= \left\{ \frac{f}{g} \mid f,g \in A, g(p) \ne 0 \right\} \\
+		\OO_{V,p} &= \left\{ \frac{f}{g} \mid f,g \in A, g(p) \neq 0 \right\} \\
 		&= \left\{ \frac{f}{g} \mid f \in A, g \in A \setminus \km \right\} \\
 		&= \left( A \setminus \km \right)\inv A = A_\km.
 	\end{align*}
@@ -259,11 +259,11 @@ Consequently, we give several examples in this vein.
 	\listhack
 	\begin{enumerate}[(a)]
 		\ii We let $\km$ be the maximal ideal $(x)$ of $A = \CC[x]$.
-		Then \[ A_\km = \left\{ \frac{f(x)}{g(x)} \mid g(0) \ne 0 \right\} \]
+		Then \[ A_\km = \left\{ \frac{f(x)}{g(x)} \mid g(0) \neq 0 \right\} \]
 		consists of the Laurent polynomials.
 
 		\ii We let $\km$ be the maximal ideal $(x,y)$ of $A = \CC[x,y]$.
-		Then \[ A_\km = \left\{ \frac{f(x,y)}{g(x,y)} \mid g(0,0) \ne 0 \right\}. \]
+		Then \[ A_\km = \left\{ \frac{f(x,y)}{g(x,y)} \mid g(0,0) \neq 0 \right\}. \]
 
 		\ii Let $\kp$ be the prime ideal $(y-x^2)$ of $A = \CC[x,y]$.
 		Then
@@ -277,7 +277,7 @@ Consequently, we give several examples in this vein.
 		(it will be the ``stalk at the generic point of the parabola'').
 
 		\ii Let $A = \CC[x]$ and localize at the prime ideal $(0)$.
-		This gives \[ A_{(0)} = \left\{ \frac{f(x)}{g(x)} \mid g(x) \ne 0 \right\}. \]
+		This gives \[ A_{(0)} = \left\{ \frac{f(x)}{g(x)} \mid g(x) \neq 0 \right\}. \]
 		This is all rational functions, period.
 	\end{enumerate}
 \end{example}
@@ -287,7 +287,7 @@ Consequently, we give several examples in this vein.
 	We localize $\ZZ$ at a few different primes.
 	\begin{enumerate}[(a)]
 		\ii If we localize $\ZZ$ at $(0)$:
-		\[ \ZZ_{(0)} = \left\{ \frac mn \mid n \ne 0 \right\}
+		\[ \ZZ_{(0)} = \left\{ \frac mn \mid n \neq 0 \right\}
 			\cong \QQ. \]
 		\ii If we localize $\ZZ$ at $(3)$, we get
 		\[ \ZZ_{(3)} = \left\{ \frac mn \mid \gcd(n,3) = 1 \right\} \]
@@ -388,7 +388,7 @@ Anyways, here are some examples, to help cement the picture.
 	i.e.\ those elements whose numerators are divisible by $5$.
 
 	There are no other prime ideals:
-	if $p \ne 5$ is a rational prime,
+	if $p \neq 5$ is a rational prime,
 	then $(p) = (1)$, the whole ring, again.
 \end{example}
 

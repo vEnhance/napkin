@@ -321,7 +321,7 @@ so we do it carefully now.
 	Let $V \subseteq \Aff^n$ be a variety,
 	and assume $p \in V$ is a point.
 	Then \[ \OO_{V,p} \cong
-		\left\{ \frac fg \mid f,g \in \CC[V], \; g(p) \ne 0 \right\}. \]
+		\left\{ \frac fg \mid f,g \in \CC[V], \; g(p) \neq 0 \right\}. \]
 \end{theorem}
 \begin{proof}
 %	It is possible to skip this proof since we will subsume it later,
@@ -363,14 +363,14 @@ so we do it carefully now.
 		\ii Let $V = \Aff^1$; then the stalk of $\OO_V$
 		at each point $p \in V$ is
 		\[ \OO_{V,p}
-			= \left\{ \frac{f(x)}{g(x)} \mid g(p) \ne 0 \right\}. \]
-		Examples of elements are $x^2+5$, $\frac{1}{x-1}$ if $p \ne 1$,
-		$\frac{x+7}{x^2-9}$ if $p \ne \pm 3$, and so on.
+			= \left\{ \frac{f(x)}{g(x)} \mid g(p) \neq 0 \right\}. \]
+		Examples of elements are $x^2+5$, $\frac{1}{x-1}$ if $p \neq 1$,
+		$\frac{x+7}{x^2-9}$ if $p \neq \pm 3$, and so on.
 
 		\ii Let $V = \Aff^2$;
 		then the stalk of $\OO_V$ at the origin is
 		\[ \OO_{V, (0,0)}
-			= \left\{ \frac{f(x,y)}{g(x,y)} \mid g(0,0) \ne 0 \right\}. \]
+			= \left\{ \frac{f(x,y)}{g(x,y)} \mid g(0,0) \neq 0 \right\}. \]
 		Examples of elements are $x^2+y^2$,
 		$\frac{x^3}{xy+1}$, $\frac{13x+37y}{x^2+8y+2}$.
 
@@ -378,14 +378,14 @@ so we do it carefully now.
 		then the stalk of $\OO_V$ at the origin is
 		\[ \OO_{V, (0,0)}
 			= \left\{ \frac{f(x,y)}{g(x,y)} \mid f,g \in \CC[x,y] / (y-x^2),
-				\; g(0,0) \ne 0 \right\}. \]
+				\; g(0,0) \neq 0 \right\}. \]
 		For example, $\frac{y}{1+x} = \frac{x^2}{1+x}$
 		denote the same element in the stalk.
 		Actually, you could give a canonical choice of representative
 		by replacing $y$ with $x^2$ everywhere, so it would also be
 		correct to write
 		\[ \OO_{V, (0,0)}
-			= \left\{ \frac{f(x)}{g(x)} \mid \; g(0) \ne 0 \right\} \]
+			= \left\{ \frac{f(x)}{g(x)} \mid \; g(0) \neq 0 \right\} \]
 		which is the same as the first example.
 	\end{enumerate}
 \end{example}
