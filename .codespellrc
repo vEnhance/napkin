@@ -1,0 +1,4 @@
+[codespell]
+skip=tex/Qcircuit.tex
+count=
+ignore-words-list=ques,alph,mor,nd,ket,braket
