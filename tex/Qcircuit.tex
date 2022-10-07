@@ -17,9 +17,9 @@
 %    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 % Thanks to the Xy-pic guys, Kristoffer H Rose, Ross Moore, and Daniel Müllner,
-% for their help in making Qcircuit work with Xy-pic version 3.8.  
+% for their help in making Qcircuit work with Xy-pic version 3.8.
 % Thanks also to Dave Clader, Andrew Childs, Rafael Possignolo, Tyson Williams,
-% Sergio Boixo, Cris Moore, Jonas Anderson, and Stephan Mertens for helping us test 
+% Sergio Boixo, Cris Moore, Jonas Anderson, and Stephan Mertens for helping us test
 % and/or develop the new version.
 
 \usepackage{xy}
@@ -67,7 +67,7 @@
     % Inserts a measurement meter.
     % In case you're wondering, the constants .778em and .322em specify
     % one quarter of a circle with radius 1.1em.
-    % The points added at + and - <2.2em,2.2em> are there to strech the
+    % The points added at + and - <2.2em,2.2em> are there to stretch the
     % canvas, ensuring that the size is unaffected by erratic spacing issues
     % with the arc.
 \newcommand{\measure}[1]{*+[F-:<.9em>]{#1} \qw}
@@ -131,4 +131,4 @@
 \newcommand{\link}[2]{\ar @{-} [#1,#2]}
     % Draws a wire or connecting line to the element #1 rows down and #2 columns forward.
 \newcommand{\pureghost}[1]{*+<1em,.9em>{\hphantom{#1}}}
-    % Same as \ghost except it omits the wire leading to the left. 
+    % Same as \ghost except it omits the wire leading to the left.
