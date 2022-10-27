@@ -53,7 +53,7 @@ which somehow lives inside $\RR$ and is
 ``one-dimensional'' in that sense, into a two-dimensional space.
 It also depends on a choice of basis, which we don't like.
 A better way is to think about the fact that there are two embeddings
-$\sigma_1 : K \to \CC$ and $\sigma_2 : K \to \CC$, namely the identity, and conjugation:
+$\sigma_1 \colon K \to \CC$ and $\sigma_2 \colon K \to \CC$, namely the identity, and conjugation:
 \begin{align*}
 	\sigma_1(a+b\sqrt2) &= a+b\sqrt 2 \\
 	\sigma_2(a+b\sqrt2) &= a-b\sqrt 2.
@@ -463,7 +463,7 @@ This looks like the trace, but the absolute values are in the way.
 So instead, we apply AM-GM to obtain:
 \begin{lemma}[Effect of the mousetrap]
 	Let $\alpha \in \OO_K$, and suppose $\iota(\alpha)$ is in $S$
-	(where $\iota : K \injto \RR^{r_1} \times \CC^{r_2}$ as usual).
+	(where $\iota \colon K \injto \RR^{r_1} \times \CC^{r_2}$ as usual).
 	Then
 	\[ \Norm_{K/\QQ}(\alpha)
 		= \prod_{i=1}^n \left\lvert \sigma_i(\alpha) \right\rvert
@@ -472,7 +472,7 @@ So instead, we apply AM-GM to obtain:
 The last step we need to do is compute the volume of the box.
 This is again some geometry I won't do, but take my word for it:
 \begin{lemma}[Size of the mousetrap]
-	Let $\tau : \RR^{r_1} \times \CC^{r_2} \taking\sim \RR^n$ as before.
+	Let $\tau \colon \RR^{r_1} \times \CC^{r_2} \taking\sim \RR^n$ as before.
 	Then the image of $S$ under $\tau$ is a convex, compact, centrally symmetric set with volume
 	\[ 2^{r_1} \cdot \left( \frac{\pi}{2} \right)^{r_2} \cdot \frac{M^n}{n!}. \]
 \end{lemma}

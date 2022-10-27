@@ -405,7 +405,7 @@ We can now write down something that's more true generally.
 The above is perhaps a bit dense, so here is a concrete example.
 \begin{example}[Explicit example]
 	Let $V = \RR^2$ and take a basis $e_1$, $e_2$ of $V$.
-	Then define $T : V \to V$ by
+	Then define $T \colon V \to V$ by
 	\[ T = \begin{bmatrix}
 			1 & 2 \\ 3 & 4
 		\end{bmatrix}. \]
@@ -426,7 +426,7 @@ Despite this, we'll indulge ourselves in using coordinates for the proof.
 	\begin{enumerate}
 		\ii First, we check that $\Psi$ is \emph{surjective};
 		every linear map has at least one representation in $V^\vee \otimes W$.
-		To see this, take any $T : V \to W$.
+		To see this, take any $T \colon V \to W$.
 		Suppose $V$ has basis $e_1$, $e_2$, $e_3$ and that
 		$T(e_1) = w_1$, $T(e_2) = w_2$ and $T(e_3) = w_3$.
 		Then the element
@@ -453,7 +453,7 @@ According to the above theorem,
 \[ \Hom(V, V) \cong V^\vee \otimes V \]
 so every map $V \to V$ can be thought of as an element of $V^\vee \otimes V$.
 But we can also define an
-\emph{evaluation map} $\opname{ev} : V^\vee \otimes V \to k$
+\emph{evaluation map} $\opname{ev} \colon V^\vee \otimes V \to k$
 by ``collapsing'' each pure tensor: $f \otimes v \mapsto f(v)$.
 So this gives us a composed map
 \begin{center}
@@ -544,7 +544,7 @@ This result is called the \vocab{trace} of a matrix $T$.
 	[Putnam 1988]
 	\gim
 	Let $V$ be an $n$-dimensional vector space.
-	Let $T : V \to V$ be a linear map and suppose there exists $n+1$ eigenvectors,
+	Let $T \colon V \to V$ be a linear map and suppose there exists $n+1$ eigenvectors,
 	any $n$ of which are linearly independent.
 	Does it follow that $T$ is a scalar multiple of the identity?
 	\begin{hint}

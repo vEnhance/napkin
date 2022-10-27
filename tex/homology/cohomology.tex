@@ -94,10 +94,10 @@ The case of interest is our usual geometric situation, with $C_\bullet(X)$.
 		\ii $C_1(X)$ is the free abelian group on $1$-simplices in $X$.
 		So $C^1(X)$ needs to take every $1$-simplex to an element of $G$.
 	\end{itemize}
-	Let's now try to understand $\delta : C^0(X) \to C^1(X)$.
+	Let's now try to understand $\delta \colon C^0(X) \to C^1(X)$.
 	Given a $0$-cochain $\phi \in C^0(X)$,
-	i.e.\ a homomorphism $\phi : C^0(X) \to G$,
-	what is $\delta\phi : C^1(X) \to G$?
+	i.e.\ a homomorphism $\phi \colon C^0(X) \to G$,
+	what is $\delta\phi \colon C^1(X) \to G$?
 	Answer:
 	\[ \delta\phi : [v_0, v_1] \mapsto \phi([v_0]) - \phi([v_1]). \]
 	Hence, elements of
@@ -150,17 +150,17 @@ First, let's categorize the previous results we had:
 \begin{exercise}
 	Interpret $\Hom(-,G)$ as a contravariant functor
 	from \[ \Hom(-,G) : \catname{Cmplx}\op \to \catname{CoCmplx}. \]
-	This means in particular that given a chain map $f : A_\bullet \to B_\bullet$,
-	we naturally obtain a dual map $f^\vee : B^\bullet \to A^\bullet$.
+	This means in particular that given a chain map $f \colon A_\bullet \to B_\bullet$,
+	we naturally obtain a dual map $f^\vee \colon B^\bullet \to A^\bullet$.
 \end{exercise}
 
 \begin{ques}
-	Interpret $H^n : \catname{CoCmplx} \to \catname{Grp}$ as a functor.
+	Interpret $H^n \colon \catname{CoCmplx} \to \catname{Grp}$ as a functor.
 	Compose these to get a contravariant functor
 	$H^n(-;G) : \catname{Cmplx}\op \to \catname{Grp}$.
 \end{ques}
 
-Then in exact analog to our result that $H_n : \catname{hTop} \to \catname{Grp}$ we have:
+Then in exact analog to our result that $H_n \colon \catname{hTop} \to \catname{Grp}$ we have:
 \begin{theorem}[$H^n (-;G): \catname{hTop}\op \to \catname{Grp}$]
 	For every $n$, $H^n(-;G)$ is a contravariant functor
 	from $\catname{hTop}\op$ to $\catname{Grp}$.
@@ -199,7 +199,7 @@ Then in exact analog to our result that $H_n : \catname{hTop} \to \catname{Grp}$
 	$f_\sharp - g_\sharp = P \partial + \partial P$.
 	If we apply the entire functor $\Hom(-;G)$ we get that
 	$f^\sharp - g^\sharp = \delta P^\vee + P^\vee \delta$
-	where $P^\vee : C^{n+1}(Y;G) \to C^n(X;G)$.
+	where $P^\vee \colon C^{n+1}(Y;G) \to C^n(X;G)$.
 	So $f^\sharp$ and $g^\sharp$ are chain homotopic thus $f^\ast = g^\ast$.
 \end{proof}
 
@@ -250,7 +250,7 @@ but the upshot of the little bit that I did include is that the $\Ext$
 functor is very easy to compute in practice, since
 you can pick any free resolution you want and compute the above.
 
-%By ``natural'', we mean that if $f : A_\bullet \to B_\bullet$ is a chain map,
+%By ``natural'', we mean that if $f \colon A_\bullet \to B_\bullet$ is a chain map,
 %then we obtain a commutative diagram
 %\begin{diagram}
 %	0 & \rTo & \Ext(H_{n-1}(A_\bullet), G) & \rTo

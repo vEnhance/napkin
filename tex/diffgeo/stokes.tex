@@ -4,7 +4,7 @@ and state Stokes' theorem in this context.
 In this chapter, all vector spaces are finite-dimensional and real.
 
 \section{Motivation: line integrals}
-Given a function $g : [a,b] \to \RR$,
+Given a function $g \colon [a,b] \to \RR$,
 we know by the fundamental theorem of calculus that
 \[
 	\int_{[a,b]} g(t) \; dt = f(b) - f(a)
@@ -12,14 +12,14 @@ we know by the fundamental theorem of calculus that
 where $f$ is a function such that $g = df/dt$.
 %(You might recognize this more readily
 %as the more customary $\int_a^b g(t) \; dt$.)
-Equivalently, for $f : [a,b] \to \RR$,
+Equivalently, for $f \colon [a,b] \to \RR$,
 \[ \int_{[a,b]} g \; dt = \int_{[a,b]} df = f(b) - f(a) \]
 where $df$ is the exterior derivative we defined earlier.
 
 Cool, so we can integrate over $[a,b]$.
 Now suppose more generally, we have $U$ an open subset of our real vector space $V$
-and a $1$-form $\alpha : U \to V^\vee$.
-We consider a \vocab{parametrized curve}, which is a smooth function $c : [a,b] \to U$.
+and a $1$-form $\alpha \colon U \to V^\vee$.
+We consider a \vocab{parametrized curve}, which is a smooth function $c \colon [a,b] \to U$.
 Picture:
 \begin{center}
 	\begin{asy}
@@ -83,7 +83,7 @@ specifically, in this case we define $c^\ast\alpha$ to be
 Thus, we can more succinctly write
 \[ \int_c \alpha \defeq \int_{[a,b]} c^\ast \alpha. \]
 This is a special case of a \emph{pullback}:
-roughly, if $\phi : U \to U'$ (where $U \subseteq V$, $U' \subseteq V'$),
+roughly, if $\phi \colon U \to U'$ (where $U \subseteq V$, $U' \subseteq V'$),
 we can change any differential $k$-form $\alpha$ on $U'$
 to a $k$-form on $U$.
 In particular, if $U = [a,b]$,\footnote{OK,
@@ -97,7 +97,7 @@ Let $V$ and $V'$ be finite dimensional real vector spaces (possibly different di
 and suppose $U$ and $U'$ are open subsets of each;
 next, consider a $k$-form $\alpha$ on $U'$.
 
-Given a map $\phi : U \to U'$ we now want to define a pullback in
+Given a map $\phi \colon U \to U'$ we now want to define a pullback in
 much the same way as before.
 Picture:
 \begin{center}
@@ -145,7 +145,7 @@ derivative of $\phi$ at $p$, $(D\phi)_p$, which will scale each of our vectors $
 into some vector in the target $V'$.
 To cut a long story short:
 \begin{definition}
-	Given $\phi : U \to U'$ and $\alpha$ a $k$-form, we define the \vocab{pullback}
+	Given $\phi \colon U \to U'$ and $\alpha$ a $k$-form, we define the \vocab{pullback}
 	\[
 		(\phi^\ast \alpha)_p(v_1, \dots, v_k)
 		\defeq \alpha_{\phi(p)}
@@ -157,7 +157,7 @@ There is a more concrete way to define the pullback using bases.
 Suppose $w_1, \dots, w_n$ is a basis of $V'$
 and $e_1, \dots, e_m$ is a basis of $V$.
 Thus, by the projection principle (\Cref{thm:project_principle})
-the map $\phi : V \to V'$ can be thought of as
+the map $\phi \colon V \to V'$ can be thought of as
 \[ \phi(v) = \phi_1(v) w_1 + \dots + \phi_n(v) w_n \]
 where each $\phi_i$ takes in a $v \in V$ and returns a real number.
 We know also that $\alpha$ can be written concretely as
@@ -172,10 +172,10 @@ A diligent reader can check these definitions are equivalent.
 \begin{example}
 	[Computation of a pullback]
 	Let $V = \RR^2$ with basis $\ee_1$ and $\ee_2$,
-	and suppose $\phi : V \to V'$ is given by sending
+	and suppose $\phi \colon V \to V'$ is given by sending
 	\[ \phi(a\ee_1 + b\ee_2) = (a^2+b^2)w_1 + \log(a^2+1) w_2 + b^3 w_3 \]
 	where $w_1$, $w_2$, $w_3$ is a basis for $V'$.
-	Consider the form $\alpha_q = f(q) w_1 \wedge w_3$, where $f : V' \to \RR$.
+	Consider the form $\alpha_q = f(q) w_1 \wedge w_3$, where $f \colon V' \to \RR$.
 	Then
 	\[ (\phi^\ast\alpha)_p = f(\phi(p)) \cdot (2a \ee_1^\vee + 2b\ee_2^\vee) \wedge (3b^2 \ee_2^\vee)
 		= f(\phi(p)) \cdot 6ab^2 \cdot \ee_1^\vee \wedge \ee_2^\vee. \]
@@ -200,7 +200,7 @@ Now that we have the notion of a pullback,
 we can define the notion of an integral for more general spaces.
 Specifically, to generalize the notion of integrals we had before:
 \begin{definition}
-	A \vocab{$k$-cell} is a smooth function $c : [a_1, b_1] \times [a_2,b_2] \times \dots [a_k, b_k] \to V$.
+	A \vocab{$k$-cell} is a smooth function $c \colon [a_1, b_1] \times [a_2,b_2] \times \dots [a_k, b_k] \to V$.
 \end{definition}
 \begin{example}
 	[Examples of cells]
@@ -209,7 +209,7 @@ Specifically, to generalize the notion of integrals we had before:
 		\ii A $0$-cell consists of a single point.
 		\ii As we saw, a $1$-cell is an arbitrary curve.
 		\ii A $2$-cell corresponds to a $2$-dimensional surface.
-		For example, the map $c : [0,R] \times [0,2\pi] \to V$ by
+		For example, the map $c \colon [0,R] \times [0,2\pi] \to V$ by
 		\[ c : (r,\theta) \mapsto (r\cos\theta, r\sin\theta) \]
 		can be thought of as a disk of radius $R$.
 	\end{enumerate}
@@ -227,7 +227,7 @@ So the above integral could also be written as
 \[ \int_0^1 \dots \int_0^1 f(x_1, \dots, x_n) \; dx_1 \wedge \dots \wedge dx_n. \]
 
 \begin{example}[Area of a circle]
-	Consider $V = \RR^2$ and let $c : (r,\theta) \mapsto (r\cos\theta)\ee_1 + (r\sin\theta)\ee_2$
+	Consider $V = \RR^2$ and let $c \colon (r,\theta) \mapsto (r\cos\theta)\ee_1 + (r\sin\theta)\ee_2$
 	on $[0,R] \times [0,2\pi]$ as before.
 	Take the $2$-form $\alpha$ which gives $\alpha_p = \ee_1^\vee \wedge \ee_2^\vee$ at every point $p$.
 	Then
@@ -251,19 +251,19 @@ Given a $k$-cell in $V$, a differential $k$-form $\alpha$ accepts a point $p$ an
 and spits out a number $\alpha_p(v_1, \dots, v_k)$,
 which as before we view as a signed hypervolume.
 Then the integral \emph{adds up all these infinitesimals across the entire cell}.
-In particular, if $V = \RR^k$ and we take the form $\alpha : p \mapsto \ee_1^\vee \wedge \dots \wedge \ee_k^\vee$,
+In particular, if $V = \RR^k$ and we take the form $\alpha \colon p \mapsto \ee_1^\vee \wedge \dots \wedge \ee_k^\vee$,
 then what these $\alpha$'s give is the $k$th hypervolume of the cell.
 For this reason, this $\alpha$ is called the \vocab{volume form} on $\RR^k$.
 
 You'll notice I'm starting to play loose with the term ``cell'':
-while the cell $c : [0,R] \times [0,2\pi] \to \RR^2$ is supposed to be a function
+while the cell $c \colon [0,R] \times [0,2\pi] \to \RR^2$ is supposed to be a function
 I have been telling you to think of it as a unit disk (i.e.\ in terms of its image).
 In the same vein, a curve $[0,1] \to V$ should be thought of as a curve in space,
 rather than a function on time.
 
 This error turns out to be benign.
-Let $\alpha$ be a $k$-form on $U$ and $c : [a_1, b_1] \times \dots \times [a_k, b_k] \to U$ a $k$-cell.
-Suppose $\phi : [a_1', b_1'] \times \dots [a_k', b_k'] \to [a_1, b_1] \times \dots \times [a_k, b_k]$;
+Let $\alpha$ be a $k$-form on $U$ and $c \colon [a_1, b_1] \times \dots \times [a_k, b_k] \to U$ a $k$-cell.
+Suppose $\phi \colon [a_1', b_1'] \times \dots [a_k', b_k'] \to [a_1, b_1] \times \dots \times [a_k, b_k]$;
 it is a \vocab{reparametrization} if $\phi$ is bijective and $(D\phi)_p$ is always invertible
 (think ``change of variables'');
 thus
@@ -313,7 +313,7 @@ Now, how do we define the boundary?
 For a $1$-cell $[a,b] \to U$, as I hinted earlier we want the answer to be the $0$-chain $\{c(b)\}-\{c(a)\}$.
 Here's how we do it in general.
 \begin{definition}
-	Suppose $c : [0,1]^k \to U$ is a $k$-cell.
+	Suppose $c \colon [0,1]^k \to U$ is a $k$-cell.
 	Then the \vocab{boundary} of $c$, denoted $\partial c : [0,1]^{k-1} \to U$,
 	is the $(k-1)$-chain defined as follows.
 	For each $i = 1,\dots,k$ define $(k-1)$-chains by
@@ -331,13 +331,13 @@ Here's how we do it in general.
 \end{definition}
 \begin{ques}
 	Satisfy yourself that one can extend this definition to
-	a $k$-cell $c$ defined on $c : [a_1, b_1] \times \dots \times [a_k, b_k] \to V$
+	a $k$-cell $c$ defined on $c \colon [a_1, b_1] \times \dots \times [a_k, b_k] \to V$
 	(rather than from $[0,1]^k \to V$).
 \end{ques}
 
 \begin{example}
 	[Examples of boundaries]
-	Consider the $2$-cell $c : [0,1]^2 \to \RR^2$ shown below.
+	Consider the $2$-cell $c \colon [0,1]^2 \to \RR^2$ shown below.
 	\begin{center}
 		\begin{asy}
 			size(7cm);
@@ -431,8 +431,8 @@ Obligatory theorem, analogous to $d^2=0$ and left as a problem.
 We now have all the ingredients to state Stokes' theorem for cells.
 \begin{theorem}
 	[Stokes' theorem for cells]
-	Take $U \subseteq V$ as usual, let $c : [0,1]^k \to U$ be a $k$-cell
-	and let $\alpha : U \to \Lambda^{k-1}(V^\vee)$ be a $(k-1)$-form.
+	Take $U \subseteq V$ as usual, let $c \colon [0,1]^k \to U$ be a $k$-cell
+	and let $\alpha \colon U \to \Lambda^{k-1}(V^\vee)$ be a $(k-1)$-form.
 	Then
 	\[ \int_c d\alpha = \int_{\partial c} \alpha. \]
 	In particular, if $d\alpha = 0$ then the left-hand side vanishes.
@@ -442,7 +442,7 @@ and thus we obtain the fundamental theorem of calculus.
 
 \section\problemhead
 \begin{dproblem}[Green's theorem]
-	Let $f,g : \RR^2 \to \RR$ be smooth functions.
+	Let $f,g \colon \RR^2 \to \RR$ be smooth functions.
 	Prove that
 	\[ \int_c \left( \fpartial gx - \fpartial fy \right) \; dx \wedge dy
 	= \int_{\partial c} (f \; dx + g \; dy). \]
@@ -461,7 +461,7 @@ and thus we obtain the fundamental theorem of calculus.
 
 \begin{problem}[Pullback and $d$ commute]
 	Let $U$ and $U'$ be open sets of vector spaces $V$ and $V'$
-	and let $\phi : U \to U'$ be a smooth map between them.
+	and let $\phi \colon U \to U'$ be a smooth map between them.
 	Prove that for any differential form $\alpha$ on $U'$ we have
 	\[ \phi^\ast(d\alpha) = d(\phi^\ast\alpha). \]
 	\begin{hint}
@@ -471,7 +471,7 @@ and thus we obtain the fundamental theorem of calculus.
 
 \begin{problem}[Arc length isn't a form]
 	Show that there does \emph{not} exist a $1$-form $\alpha$ on $\RR^2$ such that
-	for a curve $c : [0,1] \to \RR^2$,
+	for a curve $c \colon [0,1] \to \RR^2$,
 	the integral $\int_c \alpha$ gives the arc length of $c$.
 	\begin{hint}
 		We would want $\alpha_p(v) = \norm{v}$.

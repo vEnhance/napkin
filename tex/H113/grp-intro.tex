@@ -392,7 +392,7 @@ and $(10 \ZZ, +)$ are the same thing.
 Now, let's do the general definition.
 \begin{definition}
 	Let $G = (G, \star)$ and $H = (H, \ast)$ be groups.
-	A bijection $\phi : G \to H$ is called an \vocab{isomorphism} if
+	A bijection $\phi \colon G \to H$ is called an \vocab{isomorphism} if
 	\[ \phi(g_1 \star g_2) = \phi(g_1) \ast \phi(g_2) \quad
 		\text{for all $g_1, g_2 \in G$}. \]
 	If there exists an isomorphism from $G$ to $H$,
@@ -411,7 +411,7 @@ uses the operation of $H$.
 		\ii There is an isomorphism
 		\[ G \times H \cong H \times G\]
 		by the map $(g,h) \mapsto (h,g)$.
-		\ii The identity map $\id : G \to G$
+		\ii The identity map $\id \colon G \to G$
 		is an isomorphism, hence $G \cong G$.
 		\ii There is another isomorphism of $\ZZ$ to itself: send every $x$ to $-x$.
 	\end{enumerate}
@@ -549,7 +549,7 @@ And this definition generalizes in exactly the way you expect.
 	\begin{enumerate}[(a) ]
 		\ii $2\ZZ$ is a subgroup of $\ZZ$, which is isomorphic to $\ZZ$ itself!
 		\ii Consider again $S_n$, the symmetric group on $n$ elements.
-		Let $T$ be the set of permutations $\tau : \{1, \dots, n\} \to \{1, \dots, n\}$
+		Let $T$ be the set of permutations $\tau \colon \{1, \dots, n\} \to \{1, \dots, n\}$
 		for which $\tau(n) = n$.  Then $T$ is a subgroup of $S_n$;
 		in fact, it is isomorphic to $S_{n-1}$.
 		\ii Consider the group $G \times H$ (\Cref{def:product_group})

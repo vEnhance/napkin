@@ -158,7 +158,7 @@ taking each $H_{n+1}(C_\bullet)$ to $H_n(A_\bullet)$.
 
 \begin{remark}
 	\label{rem:leftdownleft}
-	The map $\partial : H_n(C_\bullet) \to H_{n-1}(A_\bullet)$ can be written explicitly as follows.
+	The map $\partial \colon H_n(C_\bullet) \to H_{n-1}(A_\bullet)$ can be written explicitly as follows.
 	Recall that $H_n$ is ``cycles modulo boundaries'', and consider the sub-diagram
 	\begin{center}
 	\begin{tikzcd}
@@ -237,10 +237,10 @@ The first theorem is that the notation $H_n(U+V)$ that we have kept until now
 is redundant, and can be replaced with just $H_n(X)$:
 \begin{theorem}[Open cover homology theorem]
 	\label{thm:open_cover_homology}
-	Consider the inclusion $\iota : C_\bullet(U+V) \injto C_\bullet(X)$.
+	Consider the inclusion $\iota \colon C_\bullet(U+V) \injto C_\bullet(X)$.
 	Then $\iota$ induces an isomorphism
 	\[ H_n(U+V) \cong H_n(X). \]
-	% Then there exists a $\rho : C_\bullet(X) \to C_\bullet(U+V)$ such that
+	% Then there exists a $\rho \colon C_\bullet(X) \to C_\bullet(U+V)$ such that
 	% $\rho\iota$ and $\iota\rho$ are chain homotopic to the identities.
 	% Thus $\iota$ induces an isomorphism
 \end{theorem}
@@ -555,8 +555,8 @@ Finally, to fully justify the last step, we present:
 	For a short exact sequence $0 \to A \taking f B \taking g C \to 0$
 	of abelian groups, the following are equivalent:
 	\begin{enumerate}[(a)]
-		\ii There exists $p : B \to A$ such that $A \taking f B \taking p A$ is the identity.
-		\ii There exists $s : C \to B$ such that $C \taking s B \taking g C$ is the identity.
+		\ii There exists $p \colon B \to A$ such that $A \taking f B \taking p A$ is the identity.
+		\ii There exists $s \colon C \to B$ such that $C \taking s B \taking g C$ is the identity.
 		\ii There is an isomorphism from $B$ to $A \oplus C$ such that the diagram
 		\begin{center}
 		\begin{tikzcd}

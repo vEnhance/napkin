@@ -30,7 +30,7 @@ It's ridiculous, I know.
 
 Let $U$ be an open subset of $\CC$ again.
 \begin{definition}
-	A function $f : U \to \CC$ is \vocab{meromorphic}
+	A function $f \colon U \to \CC$ is \vocab{meromorphic}
 	if there exists holomorphic functions $A, B \colon U \to \CC$
 	with $B$ not identically zero in any open neighborhood,
 	and $f(z) = A(z)/B(z)$ whenever $B(z) \neq 0$.
@@ -65,7 +65,7 @@ So all that's happened is that we have an extra $z^{-k}$ kicking around.
 This gives us an equivalent way of viewing meromorphic functions:
 
 \begin{definition}
-	Let $f : U \to \CC$ as usual.
+	Let $f \colon U \to \CC$ as usual.
 	A \vocab{meromorphic} function is a
 	function which is holomorphic on $U$
 	except at an isolated set $S$ of points
@@ -109,7 +109,7 @@ in such a way that no two open neighborhoods intersect.
 
 \begin{abuse}
 	We'll often say something like
-	``consider the function $f : \CC \to \CC$
+	``consider the function $f \colon \CC \to \CC$
 	by $z \mapsto \frac 1z$''.
 	Of course this isn't completely correct,
 	because $f$ doesn't have a value at $z=0$.
@@ -118,7 +118,7 @@ in such a way that no two open neighborhoods intersect.
 	with life, but for all intents
 	let's just think of it as ``undefined at $z=0$''.
 
-	Why don't I just write $g : \CC \setminus \{0\} \to \CC$?
+	Why don't I just write $g \colon \CC \setminus \{0\} \to \CC$?
 	The reason I have to do this is that it's still important
 	for $f$ to remember it's ``trying'' to be holomorphic on $\CC$,
 	even if isn't assigned a value at $z=0$.
@@ -130,7 +130,7 @@ in such a way that no two open neighborhoods intersect.
 	has this characterization with poles,
 	but an important result is
 	that the converse is true too:
-	if $f : U \setminus S \to \CC$ is holomorphic for some isolated set $S$,
+	if $f \colon U \setminus S \to \CC$ is holomorphic for some isolated set $S$,
 	and moreover $f$ admits a Laurent series at each point in $S$,
 	then $f$ can be written as a rational quotient of holomorphic functions.
 	I won't prove this here, but it is good to be aware of.
@@ -276,7 +276,7 @@ In the simplest case the winding numbers are either $0$ or $1$.
 With all these ingredients we get a stunning generalization of the Cauchy-Goursat theorem:
 \begin{theorem}
 	[Cauchy's residue theorem]
-	Let $f : \Omega \to \CC$ be meromorphic, where $\Omega$ is simply connected.
+	Let $f \colon \Omega \to \CC$ be meromorphic, where $\Omega$ is simply connected.
 	Then for any loop $\gamma$ not passing through any of its poles, we have
 	\[
 		\frac{1}{2\pi i} \oint_{\gamma} f(z) \; dz
@@ -299,7 +299,7 @@ The proof from here is not really too impressive -- the ``work'' was already
 done in our statements about the winding number.
 \begin{proof}
 	Let the poles with nonzero winding number be $p_1, \dots, p_k$ (the others do not affect the sum).\footnote{
-		To show that there must be finitely many such poles: recall that all our contours $\gamma : [a,b] \to \CC$
+		To show that there must be finitely many such poles: recall that all our contours $\gamma \colon [a,b] \to \CC$
 		are in fact bounded, so there is some big closed disk $D$ which contains all of $\gamma$.
 		The poles outside $D$ thus have winding number zero.
 		Now we cannot have infinitely many poles inside the disk $D$, for $D$ is compact and the
@@ -339,7 +339,7 @@ moreover the residues of these poles are the multiplicities of the roots.
 In an analogous fashion, we can obtain a similar result for any meromorphic function $f$.
 \begin{proposition}
 	[The logarithmic derivative]
-	Let $f : U \to \CC$ be a meromorphic function.
+	Let $f \colon U \to \CC$ be a meromorphic function.
 	Then the logarithmic derivative $f'/f$ is meromorphic as a function from $U$ to $\CC$;
 	its zeros and poles are:
 	\begin{enumerate}[(i)]
@@ -372,7 +372,7 @@ using the so-called Argument Principle.
 	[Argument principle]
 	\label{thm:arg_principle}
 	Let $\gamma$ be a regular curve.
-	Suppose $f : U \to \CC$ is meromorphic inside and on $\gamma$, and
+	Suppose $f \colon U \to \CC$ is meromorphic inside and on $\gamma$, and
 	none of its zeros or poles lie on $\gamma$.
 	Then
 	\[

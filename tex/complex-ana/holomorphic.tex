@@ -19,7 +19,7 @@ Here are some examples.
 	You can skim over these very quickly: they're only here to make a point.
 	\begin{enumerate}[(a)]
 		\ii The \vocab{Devil's Staircase} (or Cantor function)
-		is a continuous function $H : [0,1] \to [0,1]$
+		is a continuous function $H \colon [0,1] \to [0,1]$
 		which has derivative zero ``almost everywhere'',
 		yet $H(0) = 0$ and $H(1) = 1$.
 		\ii The \vocab{Weierstra\ss\ function}
@@ -95,7 +95,7 @@ As \cite{ref:pugh} writes: ``Complex analysis is the good twin and real analysis
 
 \section{Complex differentiation}
 \prototype{Polynomials are holomorphic; $\ol z$ is not.}
-Let $f : U \to \CC$ be a complex function.
+Let $f \colon U \to \CC$ be a complex function.
 Then for some $z_0 \in U$, we define the \vocab{derivative} at $z_0$ to be
 \[
 	\lim_{h \to 0} \frac{f(z_0+h) - f(z_0)}{h}.
@@ -123,7 +123,7 @@ from many directions, and we need all the limits to be equal.
 
 \begin{example}
 	[Important: conjugation is \emph{not} holomorphic]
-	Let $f(z) = \ol z$ be complex conjugation, $f : \CC \to \CC$.
+	Let $f(z) = \ol z$ be complex conjugation, $f \colon \CC \to \CC$.
 	This function, despite its simple nature, is not holomorphic!
 	Indeed, at $z=0$ we have,
 	\[ \frac{f(h)-f(0)}{h} = \frac{\ol h}{h}. \]
@@ -152,7 +152,7 @@ from many directions, and we need all the limits to be equal.
 	\end{center}
 \end{example}
 
-If a function $f : U \to \CC$ is complex differentiable
+If a function $f \colon U \to \CC$ is complex differentiable
 at all the points in its domain it is called \vocab{holomorphic}.
 In the special case of a holomorphic function with domain $U = \CC$,
 we call the function \vocab{entire}.\footnote{Sorry, I know the word ``holomorphic'' sounds so much cooler. I'll try to do things more generally for that sole reason.}
@@ -164,7 +164,7 @@ we call the function \vocab{entire}.\footnote{Sorry, I know the word ``holomorph
 	(e.g.\ the derivative of $e^z$ is $e^z$).
 	\begin{enumerate}[(a)]
 		\ii Any polynomial $z \mapsto z^n + c_{n-1} z^{n-1} + \dots + c_0$ is holomorphic.
-		\ii The complex exponential $\exp : x+yi \mapsto e^x (\cos y + i \sin y)$
+		\ii The complex exponential $\exp \colon x+yi \mapsto e^x (\cos y + i \sin y)$
 		can be shown to be holomorphic.
 		\ii $\sin$ and $\cos$ are holomorphic when extended
 		to the complex plane by $\cos z = \frac{e^{iz}+e^{-iz}}{2}$
@@ -185,12 +185,12 @@ Unlike in the real line, in the complex plane we have the power to integrate
 over arbitrary paths: for example, we might compute an integral around a unit circle.
 A contour integral lets us formalize this.
 
-First of all, if $f : \RR \to \CC$ and $f(t) = u(t) + iv(t)$ for $u,v \in \RR$,
+First of all, if $f \colon \RR \to \CC$ and $f(t) = u(t) + iv(t)$ for $u,v \in \RR$,
 we can define an integral $\int_a^b$ by just adding the real and imaginary parts:
 \[ \int_a^b f(t) \; dt
 	= \left( \int_a^b u(t) \; dt \right)
 	+ i \left( \int_a^b v(t) \; dt \right). \]
-Now let $\alpha : [a,b] \to \CC$ be a path, thought of as
+Now let $\alpha \colon [a,b] \to \CC$ be a path, thought of as
 a complex differentiable\footnote{This isn't entirely correct here:
 	you want the path $\alpha$ to be continuous and mostly differentiable,
 	but you allow a finite number of points to have ``sharp bends''; in other words,
@@ -215,7 +215,7 @@ In what follows I try to use $\alpha$ for general contours and $\gamma$ in the s
 Let's see an example of a contour integral.
 \begin{theorem}
 	\label{thm:central_cauchy_computation}
-	Take $\gamma : [0,2\pi] \to \CC$ to be the unit circle specified by
+	Take $\gamma \colon [0,2\pi] \to \CC$ to be the unit circle specified by
 	\[ t \mapsto e^{it}. \]
 	Then for any integer $m$, we have
 	\[ \oint_\gamma z^{m} \; dz
@@ -265,7 +265,7 @@ The theorem says that even if we multiply by $z^m$ for $m \neq -1$, we get the s
 \end{center}
 
 \begin{definition}
-	Given $\alpha : [0,1] \to \CC$,
+	Given $\alpha \colon [0,1] \to \CC$,
 	we denote by $\ol\alpha$ the ``backwards'' contour
 	$\ol\alpha(t) = \alpha(1-t)$.
 \end{definition}
@@ -298,7 +298,7 @@ What's the relation between $\oint_\alpha f(z) \; dz$ and $\oint_\beta f(z) \; d
 You might expect there to be some relation between them, considering that the space $\Omega$ is simply connected.
 But you probably wouldn't expect there to be \emph{much} of a relation.
 
-As a concrete example, let $\Psi : \CC \to \CC$ be the function $z \mapsto z - \Re[z]$
+As a concrete example, let $\Psi \colon \CC \to \CC$ be the function $z \mapsto z - \Re[z]$
 (for example, $\Psi(2015+3i) = 3i$). Let's consider two paths from $-1$ to $1$.
 Thus $\beta$ is walking along the real axis, and $\alpha$ which follows an upper semicircle.
 
@@ -339,7 +339,7 @@ but later we'll have a ``Cauchy Integral Formula'' so blah).
 
 \begin{theorem}
 	[Cauchy-Goursat theorem]
-	Let $\gamma$ be a loop, and $f : \Omega \to \CC$ a holomorphic function
+	Let $\gamma$ be a loop, and $f \colon \Omega \to \CC$ a holomorphic function
 	where $\Omega$ is open in $\CC$ and simply connected.
 	Then
 	\[ \oint_\gamma f(z) \; dz = 0. \]
@@ -358,10 +358,10 @@ and then applies the so-called Green's theorem.
 But it was Goursat who successfully proved the fully general theorem we've stated above,
 which assumed only that $f$ was holomorphic.
 I'll only outline the proof, and very briefly.
-You can show that if $f : \Omega \to \CC$ has an antiderivative $F : \Omega \to \CC$ which is also holomorphic,
+You can show that if $f \colon \Omega \to \CC$ has an antiderivative $F \colon \Omega \to \CC$ which is also holomorphic,
 and moreover $\Omega$ is simply connected, then you get a ``fundamental theorem of calculus'', a la
 \[ \oint_\alpha f(z) \; dz = F(\alpha(b)) - F(\alpha(a)) \]
-where $\alpha : [a,b] \to \CC$ is some path.
+where $\alpha \colon [a,b] \to \CC$ is some path.
 So to prove Cauchy-Goursat, you only have to show this antiderivative $F$ exists.
 Goursat works very hard to prove the result in the special case that $\gamma$ is a triangle,
 and hence by induction for any polygon.
@@ -385,9 +385,9 @@ it is likely that many more deep theorems will follow.''
 Let's pull back the curtain:
 
 \begin{theorem}[Cauchy's integral formula]
-	Let $\gamma : [0,2\pi] \to \CC$ be a circle in the plane given by $t \mapsto Re^{it}$,
+	Let $\gamma \colon [0,2\pi] \to \CC$ be a circle in the plane given by $t \mapsto Re^{it}$,
 	which bounds a disk $D$.
-	Suppose $f : U \to \CC$ is holomorphic such that $U$ contains the circle and its interior.
+	Suppose $f \colon U \to \CC$ is holomorphic such that $U$ contains the circle and its interior.
 	Then for any point $a$ in the interior of $D$, we have
 	\[
 		f(a)
@@ -487,7 +487,7 @@ In fact, that's the central result we're going to use to prove the result.
 		\[ \left\lvert \oint_\alpha f(z) \; dz \right\rvert \le ML. \]
 	\end{lemma}
 	(This is straightforward to prove if you know the definition of length:
-	$L = \int_a^b |\alpha'(t)| \; dt$, where $\alpha : [a,b] \to \CC$.)
+	$L = \int_a^b |\alpha'(t)| \; dt$, where $\alpha \colon [a,b] \to \CC$.)
 
 	Anyways, as $\eps \to 0$, the quantity $\frac{f(z)-f(a)}{z-a}$ approaches $f'(a)$,
 	and so for small enough $\eps$ (i.e.\ $z$ close to $a$) there's some upper bound $M$.
@@ -501,7 +501,7 @@ In fact, that's the central result we're going to use to prove the result.
 
 \section{Holomorphic functions are analytic}
 \prototype{Imagine a formal series $\sum_k c_k x^k$!}
-In the setup of the previous problem, we have a circle $\gamma : [0,2\pi] \to \CC$
+In the setup of the previous problem, we have a circle $\gamma \colon [0,2\pi] \to \CC$
 and a holomorphic function $f \colon U \to \CC$ which contains the disk $D$.
 We can write
 \begin{align*}
@@ -530,7 +530,7 @@ So let's state the full result below, with arbitrary center $p$.
 
 \begin{theorem}
 	[Cauchy's differentiation formula]
-	Let $f : U \to \CC$ be a holomorphic function and let $D$ be a disk centered at point $p$
+	Let $f \colon U \to \CC$ be a holomorphic function and let $D$ be a disk centered at point $p$
 	bounded by a circle $\gamma$.  Suppose $D$ is contained inside $U$.
 	Then $f$ is given everywhere in $D$ by a Taylor series
 	\[
@@ -574,7 +574,7 @@ The first few results are the most important.
 \begin{sproblem}
 	[Liouville's theorem]
 	\gim
-	Let $f : \CC \to \CC$ be an entire function.
+	Let $f \colon \CC \to \CC$ be an entire function.
 	Suppose that $\left\lvert f(z) \right\rvert < 1000$ for all complex numbers $z$.
 	Prove that $f$ is a constant function.
 	\begin{hint}
@@ -596,7 +596,7 @@ The first few results are the most important.
 	one can draw an open neighborhood not intersecting any other point of $S$.
 
 	Show that the zero set of any nonzero holomorphic
-	function $f : U \to \CC$ is an isolated set,
+	function $f \colon U \to \CC$ is an isolated set,
 	unless there exists a nonempty open subset of $U$
 	on which $f$ is identically zero.
 	\begin{hint}
@@ -640,7 +640,7 @@ The first few results are the most important.
 
 %\begin{dproblem}
 %	[Mean Value Property]
-%	Let $f : U \to \CC$ be holomorphic.
+%	Let $f \colon U \to \CC$ be holomorphic.
 %	Assume that $z_0 \in U$ and the disk centered at $z_0$
 %	with radius $r > 0$ is contained inside $U$. Show that
 %	\[ f(z_0) = \frac{1}{2\pi} \int_0^{2\pi} f(z_0+re^{it}) \; dt. \]
@@ -651,7 +651,7 @@ The first few results are the most important.
 %\end{dproblem}
 
 \begin{dproblem}[Maximums Occur On Boundaries]
-	Let $f : U \to \CC$ be holomorphic, let $Y \subseteq U$ be compact,
+	Let $f \colon U \to \CC$ be holomorphic, let $Y \subseteq U$ be compact,
 	and let $\partial Y$ be boundary\footnote{
 		The boundary $\partial Y$ is the set of points $p$
 		such that no open neighborhood of $p$ is contained in $Y$.
@@ -666,7 +666,7 @@ The first few results are the most important.
 
 \begin{problem}
 	[Harvard quals]
-	Let $f : \CC \to \CC$ be a nonconstant entire function.
+	Let $f \colon \CC \to \CC$ be a nonconstant entire function.
 	Prove that $f\im(\CC)$ is dense in $\CC$.
 	(In fact, a much stronger result is true:
 	Little Picard's theorem says that the image of a nonconstant
@@ -683,7 +683,7 @@ The first few results are the most important.
 
 %\begin{dproblem}
 %	[Liouiville's theorem extended]
-%	Let $f : \CC \to \CC$ be entire.
+%	Let $f \colon \CC \to \CC$ be entire.
 %	\begin{enumerate}[(a)]
 %		\ii Show that if $\left\lvert f(z) \right\rvert < C \left\lvert z \right\rvert^{1000}$
 %		for some constant $C$, then $f$ is a polynomial of degree at most $1000$.

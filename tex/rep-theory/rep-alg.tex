@@ -39,7 +39,7 @@ I'll present examples before the definition:
 		\ii The set of $n \times n$ matrices with entries in $k$,
 		which we denote by $\Mat_n(k)$.
 		Note the multiplication here is not commutative.
-		\ii The set $\Mat(V)$ of linear operators $T : V \to V$,
+		\ii The set $\Mat(V)$ of linear operators $T \colon V \to V$,
 		with multiplication given by the composition of operators.
 		(Here $V$ is some vector space over $k$.)
 		This is really the same as the previous example.
@@ -97,7 +97,7 @@ amounts to a representation of the group $G$ itself.
 It is worth mentioning at this point that:
 \begin{definition}
 	A \vocab{homomorphism} of $k$-algebras $A$, $B$ is a
-	linear map $T : A \to B$ which respects multiplication
+	linear map $T \colon A \to B$ which respects multiplication
 	(i.e.\ $T(xy) = T(x)T(y)$) and which sends $1_A$ to $1_B$.
 	In other words, $T$ is both a homomorphism as a ring and as a vector space.
 \end{definition}
@@ -133,7 +133,7 @@ It is worth mentioning at this point that:
 
 \begin{definition}
 	The action of $A$ can be more succinctly described as saying
-	that there is a \emph{$k$-algebra homomorphism} $\rho : A \to \Mat(V)$.
+	that there is a \emph{$k$-algebra homomorphism} $\rho \colon A \to \Mat(V)$.
 	(So $a \cdot v = \rho(a)(v)$.)
 	Thus we can also define a \vocab{representation} of $A$ as a pair
 	\[ \left( V, \rho : A \to \Mat(V) \right). \]
@@ -236,7 +236,7 @@ From this perspective, what we are really trying to do is:
 
 		\ii More generally, let $A = k[G]$.
 		Then a representation $(V, \rho)$ of $A$
-		amounts to a group homomorphism $\psi : G \to \GL(V)$.
+		amounts to a group homomorphism $\psi \colon G \to \GL(V)$.
 		(In particular, $\rho(1_G) = \id_V$.)
 		We call this a \vocab{group representation} of $G$.
 	\end{enumerate}
@@ -394,7 +394,7 @@ We now proceed to define the morphisms between representations.
 \begin{definition}
 	Let $(V, \rho_V)$ and $(W, \rho_W)$ be representations of $A$.
 	An \vocab{intertwining operator}, or \vocab{morphism}, is a
-	linear map $T : V \to W$ such that
+	linear map $T \colon V \to W$ such that
 	\[ T(a \cdot v) = a \cdot T(v) \]
 	for any $a \in A$, $v \in V$.
 	(Note that the first $\cdot$ is the action of $\rho_V$
@@ -439,12 +439,12 @@ Here are some examples of intertwining operators.
 		\[ \rho(x) = \begin{bmatrix} 0 & 1 \\ -1 & 0 \end{bmatrix}. \]
 		Thus $\rho(x)$ is rotation by $90\dg$ around the origin.
 		Let $T$ be rotation by $30\dg$.
-		Then $T : V \to V$ is intertwining (the rotations commute).
+		Then $T \colon V \to V$ is intertwining (the rotations commute).
 	\end{enumerate}
 \end{example}
 
 \begin{exercise}[Kernel and image are subrepresentations]
-	Let $T : V \to W$ be an intertwining operator.
+	Let $T \colon V \to W$ be an intertwining operator.
 	\begin{enumerate}[(a)]
 		\ii Show that $\ker T \subseteq V$ is a subrepresentation of $V$.
 		\ii Show that $\img T \subseteq W$ is a subrepresentation of $W$.
@@ -455,7 +455,7 @@ The previous lemma gives us the famous Schur's lemma.
 \begin{theorem}
 	[Schur's lemma]
 	Let $V$ and $W$ be representations of a $k$-algebra $A$.
-	Let $T : V \to W$ be a \emph{nonzero} intertwining operator.
+	Let $T \colon V \to W$ be a \emph{nonzero} intertwining operator.
 	Then
 	\begin{enumerate}[(a)]
 		\ii If $V$ is irreducible, then $T$ is injective.
@@ -599,7 +599,7 @@ of smaller dimension at all!
 	\[ a \cdot T = \rho(a) \circ T \]
 	for $T \in \Mat(V)$.
 	\begin{enumerate}[(a)]
-		\ii Show that $\rho : \Reg(A) \to \Mat(V)$ is an intertwining operator.
+		\ii Show that $\rho \colon \Reg(A) \to \Mat(V)$ is an intertwining operator.
 		\ii If $V$ is $d$-dimensional, show that $\Mat(V) \cong V^{\oplus d}$
 		as representations of $A$.
 	\end{enumerate}
@@ -630,7 +630,7 @@ of smaller dimension at all!
 	\gim
 	Let $(V, \rho)$ be an \emph{indecomposable}
 	(not irreducible) representation of an algebra $A$.
-	Prove that any intertwining operator $T : V \to V$
+	Prove that any intertwining operator $T \colon V \to V$
 	is either nilpotent or an isomorphism.
 
 	(Note that \Cref{thm:schur_algclosed} doesn't apply,

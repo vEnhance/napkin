@@ -4,7 +4,7 @@ the homology groups of any CW complex we like.
 
 \section{Degrees}
 \prototype{$z \mapsto z^d$ has degree $d$.}
-For any $n > 0$ and map $f : S^n \to S^n$, consider
+For any $n > 0$ and map $f \colon S^n \to S^n$, consider
 \[ f_\ast : \underbrace{H_n(S^n)}_{\cong \ZZ} \to \underbrace{H_n(S^n)}_{\cong \ZZ} \]
 which must be multiplication by some constant $d$.
 This $d$ is called the \vocab{degree} of $f$, denoted $\deg f$.
@@ -39,7 +39,7 @@ One nice application of this:
 \begin{proof}
 	If the vectors are nonzero then WLOG they have norm $1$;
 	that is for every $x$ we have an orthogonal unit vector $v(x)$.
-	Then we can construct a homotopy map $F : S^n \times [0,1] \to S^n$ by
+	Then we can construct a homotopy map $F \colon S^n \times [0,1] \to S^n$ by
 	\[ (x,t) \mapsto (\cos \pi t)x + (\sin \pi t) v(x). \]
 	which gives a homotopy from $\id$ to $-\id$.
 	So $\deg(\id) = \deg(-\id)$, which means $1 = (-1)^{n+1}$
@@ -273,9 +273,9 @@ This gives us an algorithm for computing homology groups of a CW complex:
 \begin{itemize}
 	\ii Construct the cellular chain complex,
 	where $\Cells_k(X)$ is $\ZZ^{\oplus \# \text{$k$-cells}}$.
-	\ii $d_1 : \Cells_1(X) \to \Cells_0(X)$ is just the boundary map
+	\ii $d_1 \colon \Cells_1(X) \to \Cells_0(X)$ is just the boundary map
 	(so $d_1(e^1)$ is the difference of the two endpoints).
-	\ii For any $k > 1$, we compute $d_k : \Cells_k(X) \to \Cells_{k-1}(X)$
+	\ii For any $k > 1$, we compute $d_k \colon \Cells_k(X) \to \Cells_{k-1}(X)$
 	on basis elements as follows.
 	Repeat the following for each $k$-cell $e^k$:
 	\begin{itemize}
@@ -381,7 +381,7 @@ as well as the Klein bottle and other spaces.
 \end{dproblem}
 
 \begin{problem}
-	Show that a non-surjective map $f : S^n \to S^n$ has degree zero.
+	Show that a non-surjective map $f \colon S^n \to S^n$ has degree zero.
 	\begin{hint}
 		The space $S^n - \{x_0\}$ is contractible.
 	\end{hint}

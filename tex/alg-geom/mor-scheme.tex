@@ -862,13 +862,13 @@ First, recall that a sheaf is a contravariant functor (pre-sheaf)
 with extra conditions. In light of this, it is not hard to guess
 the definition of a morphism of pre-sheaves:
 \begin{definition}
-	A \vocab{morphism of (pre-)sheaves} $\alpha : \SF \to \SG$ on the same
+	A \vocab{morphism of (pre-)sheaves} $\alpha \colon \SF \to \SG$ on the same
 	space $X$ is a \textbf{natural transformation} of the underlying functors.
 	Isomorphism of sheaves is defined in the usual way.
 \end{definition}
 \begin{ques}
 	Show that this amounts to: for each $U \subseteq X$ we need to specify
-	a morphism $\alpha_U : \SF(U) \to \SG(U)$ such that the diagram
+	a morphism $\alpha_U \colon \SF(U) \to \SG(U)$ such that the diagram
 	\begin{center}
 	\begin{tikzcd}
 		\SF(U_2) \ar[r, "\alpha_{U_2}"]
@@ -884,7 +884,7 @@ they are theoretically easier to think about.
 And in fact:
 \begin{proposition}
 	[Morphisms determined by stalks]
-	A morphism of sheaves $\alpha : \SF \to \SG$ induces a morphism of stalks
+	A morphism of sheaves $\alpha \colon \SF \to \SG$ induces a morphism of stalks
 	\[ \alpha_p : \SF_p \to \SG_p \]
 	for every point $p \in X$.
 	Moreover, the sequence $(\alpha_p)_{p \in X}$ determines $\alpha$ uniquely.

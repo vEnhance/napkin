@@ -9,7 +9,7 @@ To run this chapter, we follow the approach of \cite{ref:msci}.
 \todo{write introduction}
 
 \section{Equalizers}
-\prototype{The equalizer of $f,g : X \to Y$ is the set of points with $f(x) = g(x)$.}
+\prototype{The equalizer of $f,g \colon X \to Y$ is the set of points with $f(x) = g(x)$.}
 Given two sets $X$ and $Y$, and maps $X \taking{f,g} Y$, we define their \vocab{equalizer} to be
 \[ \left\{ x \in X \mid f(x) = g(x) \right\}. \]
 We would like a categorical way of defining this, too.
@@ -58,14 +58,14 @@ But when they do exist:
 	\begin{enumerate}[(a)]
 		\ii In $\catname{Set}$, given $X \taking{f,g} Y$
 		the equalizer $E$ can be realized as $E = \{x \mid f(x) = g(x)\}$,
-		with the inclusion $e : E \injto X$ as the morphism.
+		with the inclusion $e \colon E \injto X$ as the morphism.
 		As usual, by abuse we'll often just refer to $E$ as the equalizer.
 
 		\ii Ditto in $\catname{Top}$, $\catname{Grp}$.
 		One has to check that the appropriate structures are preserved
 		(e.g.\ one should check that $\{\phi(g) = \psi(g) \mid g \in G\}$ is a group).
 
-		\ii In particular, given a homomorphism $\phi : G \to H$, the inclusion
+		\ii In particular, given a homomorphism $\phi \colon G \to H$, the inclusion
 		$ \ker\phi \injto G $
 		is an equalizer for the fork $G \to H$ by $\phi$ and the trivial homomorphism.
 	\end{enumerate}

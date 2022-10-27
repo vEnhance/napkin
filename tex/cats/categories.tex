@@ -15,11 +15,11 @@ what surprising results are true for general categories, I strongly recommend \c
 From earlier chapters let's recall the definition of an \emph{isomorphism} of two objects:
 \begin{itemize}
 	\ii Two groups $G$ and $H$ are isomorphic if there was a bijective homomorphism:
-	equivalently, we wanted homomorphisms $\phi : G \to H$ and $\psi : H \to G$
+	equivalently, we wanted homomorphisms $\phi \colon G \to H$ and $\psi \colon H \to G$
 	which were mutual inverses, meaning $\phi \circ \psi = \id_H$ and $\psi \circ \phi = \id_G$.
 	\ii Two metric (or topological) spaces $X$ and $Y$ are isomorphic
-	if there is a continuous bijection $f : X \to Y$ such that $f\inv$ is also continuous.
-	\ii Two vector spaces $V$ and $W$ are isomorphic if there is a bijection $T : V \to W$
+	if there is a continuous bijection $f \colon X \to Y$ such that $f\inv$ is also continuous.
+	\ii Two vector spaces $V$ and $W$ are isomorphic if there is a bijection $T \colon V \to W$
 	which is a linear map.
 	Again, this can be re-cast as saying that $T$ and $T\inv$ are linear maps.
 	\ii Two rings $R$ and $S$ are isomorphic if there is a bijective ring homomorphism $\phi$;
@@ -97,7 +97,7 @@ Let's formalize the motivation we began with.
 		whose arrows are the continuous maps.
 		\ii There is a category $\catname{Top}_\ast$ of topological spaces with a \emph{distinguished basepoint};
 		that is, a pair $(X, x_0)$ where $x_0 \in X$.
-		Arrows are continuous maps $f : X \to Y$ with $f(x_0) = y_0$.
+		Arrows are continuous maps $f \colon X \to Y$ with $f(x_0) = y_0$.
 		\ii Similarly, there is a category $\catname{Vect}_k$ of
 		vector spaces (possibly infinite-dimensional) over a field $k$,
 		whose arrows are the linear maps.
@@ -602,7 +602,7 @@ Most notably:
 		(every two points have disjoint open neighborhoods),
 		in fact epic $\iff$ dense image (like $\QQ \injto \RR$).
 	\end{enumerate}
-	Thus failures arise when a function $f : X \to Y$ can be determined by just some of the points of $X$.
+	Thus failures arise when a function $f \colon X \to Y$ can be determined by just some of the points of $X$.
 \end{example}
 
 \section\problemhead

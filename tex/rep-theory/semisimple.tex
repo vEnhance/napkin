@@ -98,7 +98,7 @@ More generally, we have:
 	Then
 	\[ \Homrep(V, W)
 		\cong \bigoplus_i \Mat_{n_i \times m_i}(k) \]
-	meaning that an intertwining operator $T : V \to W$
+	meaning that an intertwining operator $T \colon V \to W$
 	amounts to, for each $i$, an $n_i \times m_i$ matrix of constants
 	which gives a map $V_i^{\oplus n_i} \to V_i^{\oplus m_i}$.
 \end{theorem}
@@ -262,14 +262,14 @@ the density theorem (and \Cref{cor:finiteness}), we obtain:
 \end{theorem}
 \begin{proof}
 	The inequality was already mentioned in \Cref{cor:finiteness}.
-	It is equality if and only if the map $\rho : A \to \bigoplus_i \Mat(V_i)$
+	It is equality if and only if the map $\rho \colon A \to \bigoplus_i \Mat(V_i)$
 	is an isomorphism; this means all $V_i$ are present.
 \end{proof}
 
 \begin{remark}
 	[Digression]
 	For any finite-dimensional $A$, the kernel of the map
-	$\rho : A \to \bigoplus_i \Mat(V_i)$ is denoted $\opname{Rad}(A)$
+	$\rho \colon A \to \bigoplus_i \Mat(V_i)$ is denoted $\opname{Rad}(A)$
 	and is the so-called \vocab{Jacobson radical} of $A$;
 	it's the set of all $a \in A$ which act by zero in all irreps of $A$.
 	The usual definition of ``semisimple'' given in books is that
@@ -294,9 +294,9 @@ all representations are completely reducible.
 	This will show that indecomposable $\iff$ irreducible,
 	which is enough to show $k[G]$ is semisimple.
 
-	Let $\pi : V \to W$ be any projection of $V$ onto $W$,
+	Let $\pi \colon V \to W$ be any projection of $V$ onto $W$,
 	meaning $\pi(v) = v \iff v \in W$.
-	We consider the \emph{averaging} map $P : V \to V$ by
+	We consider the \emph{averaging} map $P \colon V \to V$ by
 	\[
 		P(v) = \frac{1}{\left\lvert G \right\rvert}
 		\sum_{g \in G} \rho(g\inv) \circ \pi \circ \rho(g).
@@ -307,7 +307,7 @@ all representations are completely reducible.
 		\begin{itemize}
 			\ii For any $w \in W$, $P(w) = w$.
 			\ii For any $v \in V$, $P(w) \in W$.
-			\ii The map $P : V \to V$ is an intertwining operator.
+			\ii The map $P \colon V \to V$ is an intertwining operator.
 		\end{itemize}
 	\end{exercise}
 	Thus $P$ is idempotent (it is the identity on its image $W$),
@@ -316,7 +316,7 @@ all representations are completely reducible.
 \end{proof}
 \begin{remark}
 	In the case where $k = \CC$, there is a shorter proof.
-	Suppose $B : V \times V \to \CC$ is an arbitrary bilinear form.
+	Suppose $B \colon V \times V \to \CC$ is an arbitrary bilinear form.
 	Then we can ``average'' it to obtain a new bilinear form
 	\[ \left< v,w \right> \defeq \frac{1}{|G|} \sum_{g \in G} B(g \cdot v, g \cdot w). \]
 	The averaged form $\left< -,- \right>$ is $G$-invariant,

@@ -10,8 +10,8 @@ In this chapter, we turn our attention to the long exact
 sequence associated to the chain complex
 \[ 0 \to C_n(A) \injto C_n(X) \surjto C_n(X,A) \to 0. \]
 The setup will look a lot like the previous two chapters,
-except in addition to $H_n : \catname{hTop} \to \catname{Grp}$
-we will have a functor $H_n : \catname{hPairTop} \to \catname{Grp}$
+except in addition to $H_n \colon \catname{hTop} \to \catname{Grp}$
+we will have a functor $H_n \colon \catname{hPairTop} \to \catname{Grp}$
 which takes a pair $(X,A)$ to $H_n(X,A)$.
 Then, we state (again without proof) the key geometric result,
 and use this to make deductions.
@@ -69,20 +69,20 @@ and give ourselves the same functorial setup as before.
 
 \begin{definition}
 	Let $\varnothing \neq A \subseteq X$ and $\varnothing \neq B \subseteq X$
-	be subspaces, and consider a map $f : X \to Y$.
+	be subspaces, and consider a map $f \colon X \to Y$.
 	If $f\im(A) \subseteq B$ we write
 	\[ f : (X,A) \to (Y,B). \]
 	We say $f$ is a \vocab{map of pairs},
 	between the pairs $(X,A)$ and $(Y,B)$.
 \end{definition}
 \begin{definition}
-	We say that $f,g : (X,A) \to (Y,B)$ are \vocab{pair-homotopic} if they
+	We say that $f,g \colon (X,A) \to (Y,B)$ are \vocab{pair-homotopic} if they
 	are ``homotopic through maps of pairs''.
 
 	More formally, a \vocab{pair-homotopy}
-	$f, g : (X,A) \to (Y,B)$ is a map $F : [0,1] \times X \to Y$,
+	$f, g : (X,A) \to (Y,B)$ is a map $F \colon [0,1] \times X \to Y$,
 	which we'll write as $F_t(X)$, such that
-	$F$ is a homotopy of the maps $f,g : X \to Y$
+	$F$ is a homotopy of the maps $f,g \colon X \to Y$
 	and each $F_t$ is itself a map of pairs.
 \end{definition}
 Thus, we naturally arrive at two categories:
@@ -105,7 +105,7 @@ We can do the same song and dance as before with the prism operator to obtain:
 	We have a functor
 	\[ H_n : \catname{hPairTop} \to \catname{Grp}. \]
 \end{lemma}
-That is, if $f : (X,A) \to (Y,B)$ then we obtain an induced map
+That is, if $f \colon (X,A) \to (Y,B)$ then we obtain an induced map
 \[ f_\ast : H_n(X,A) \to H_n(Y,B). \]
 and if two such $f$ and $g$ are pair-homotopic
 then $f_\ast = g_\ast$.
@@ -116,7 +116,7 @@ The correct definition is:
 \begin{definition}
 	Let $A \subseteq X$.
 	We say that $A$ is a \vocab{deformation retract} of $X$
-	if there is a map of pairs $r : (X, A) \to (A, A)$
+	if there is a map of pairs $r \colon (X, A) \to (A, A)$
 	which is a pair homotopy equivalence.
 \end{definition}
 \begin{example}
@@ -124,9 +124,9 @@ The correct definition is:
 	\listhack
 	\begin{enumerate}[(a)]
 		\ii If a single point $p$ is a deformation retract of a space $X$,
-		then $X$ is contractible, since the retraction $r : X \to \{\ast\}$
+		then $X$ is contractible, since the retraction $r \colon X \to \{\ast\}$
 		(when viewed as a map $X \to X$)
-		is homotopic to the identity map $\id_X : X \to X$.
+		is homotopic to the identity map $\id_X \colon X \to X$.
 		\ii The punctured disk $D^2 \setminus \{0\}$
 		deformation retracts onto its boundary $S^1$.
 		\ii More generally, $D^{n} \setminus \{0\}$
@@ -172,7 +172,7 @@ Answer:
 	\label{thm:good_pair}
 	Let $X$ be a space and $A$ be a subspace such that
 	$A$ is a deformation retract of some open set $V \subseteq X$.
-	Then the quotient map $q : X \to X/A$ induces an isomorphism
+	Then the quotient map $q \colon X \to X/A$ induces an isomorphism
 	\[ H_n(X,A) \cong H_n(X/A, A/A) \cong \wt H_n(X/A). \]
 \end{theorem}
 \begin{proof}

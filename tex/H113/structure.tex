@@ -235,7 +235,7 @@ So it suffices to understand the map $T$ well.
 
 \section{Smith normal form}
 The idea is now that we have reduced our problem to studying
-linear maps $T : R^{\oplus m} \to R^{\oplus n}$,
+linear maps $T \colon R^{\oplus m} \to R^{\oplus n}$,
 which can be thought of as a generic matrix
 \[ T = \begin{bmatrix}
 		a_{11} & \dots & a_{1m} \\
@@ -248,7 +248,7 @@ and $f_1$, \dots, $f_n$ of $N$.
 Of course, as you might expect it ought to be possible to change the
 given basis of $T$ such that $T$ has a nicer matrix form.
 We already saw this in \emph{Jordan form},
-where we had a map $T : V \to V$ and changed the basis
+where we had a map $T \colon V \to V$ and changed the basis
 so that $T$ was ``almost diagonal''.
 This time, we have \emph{two} sets of bases we can change,
 so we would hope to get a diagonal basis, or even better.
@@ -308,10 +308,10 @@ and similarly when $m \le n$.
 \begin{remark}
 	Note that this is not a generalization of Jordan form.
 	\begin{itemize}
-		\ii In Jordan form we consider maps $T : V \to V$;
+		\ii In Jordan form we consider maps $T \colon V \to V$;
 		note that the source and target space are the \emph{same},
 		and we are considering one basis for the space $V$.
-		\ii In Smith form the maps $T : M \to N$ are between
+		\ii In Smith form the maps $T \colon M \to N$ are between
 		\emph{different} modules, and we pick \emph{two} sets of bases
 		(one for $M$ and one for $N$).
 	\end{itemize}
@@ -453,7 +453,7 @@ Now, we can apply our structure theorem!
 
 \begin{dproblem}
 	[Frobenius normal form]
-	Let $T : V \to V$ where $V$ is a finite-dimensional vector space
+	Let $T \colon V \to V$ where $V$ is a finite-dimensional vector space
 	over an arbitrary field $k$ (not necessarily algebraically closed).
 	Show that one can write $T$ as a block-diagonal matrix whose blocks
 	are all of the form
@@ -475,7 +475,7 @@ Now, we can apply our structure theorem!
 
 \begin{dproblem}
 	[Jordan normal form]
-	Let $T : V \to V$ where $V$ is a finite-dimensional vector space
+	Let $T \colon V \to V$ where $V$ is a finite-dimensional vector space
 	over an arbitrary field $k$ which is algebraically closed.
 	Prove that $T$ can be written in Jordan form.
 	\begin{hint}

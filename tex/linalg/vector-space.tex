@@ -98,7 +98,7 @@ but first, examples\dots
 		(It is not a real vector space -- why?)
 		\ii The set \[ \left\{ (x,y,z) \mid x+y+z = 0 \text{ and } x,y,z \in \RR \right\} \]
 		is a $2$-dimensional real vector space.
-		\ii The set of all functions $f : \RR \to \RR$ is also a real vector space
+		\ii The set of all functions $f \colon \RR \to \RR$ is also a real vector space
 		(since the notions $f+g$ and $c \cdot f$ both make sense for $c \in \RR$).
 	\end{enumerate}
 \end{example}
@@ -462,7 +462,7 @@ between vector spaces. Can you guess the definition?
 	\listhack
 	\begin{enumerate}[(a)]
 		\ii For any vector spaces $V$ and $W$ there is a trivial linear map sending everything to $0_W \in W$.
-		\ii For any vector space $V$, there is the identity isomorphism $\id : V \to V$.
+		\ii For any vector space $V$, there is the identity isomorphism $\id \colon V \to V$.
 		\ii The map $\RR^3 \to \RR$ by $(a,b,c) \mapsto 4a+2b+c$ is a linear map.
 		\ii Let $V$ be the set of real polynomials of degree at most $2$.
 		The map $\RR^3 \to V$ by $(a,b,c) \mapsto ax^2+bx+c$ is an \emph{isomorphism}.
@@ -797,7 +797,7 @@ says there is a unique line joining two points.
 		but you can then immediately forget about the basis
 		once you finish this exercise.
 	\end{ques}
-	Then consider the linear map $T : V \to W$ given by
+	Then consider the linear map $T \colon V \to W$ given by
 	\[ P \mapsto \left( P(x_1), \dots, P(x_{n+1}) \right). \]
 	This is indeed a linear map because,
 	well, $T(P+Q) = T(P)+T(Q)$ and $T(cP) = cT(P)$.

@@ -15,7 +15,7 @@ So in particular every vector space is also a metric space
 
 \section{The total derivative}
 \prototype{If $f(x,y) = x^2+y^2$, then $(Df)_{(x,y)} = 2x\ee_1^\vee + 2y\ee_2^\vee$.}
-First, let $f : [a,b] \to \RR$.
+First, let $f \colon [a,b] \to \RR$.
 You might recall from high school calculus that for every point $p \in \RR$,
 we defined $f'(p)$ as the derivative at the point $p$ (if it existed), which we interpreted as the \emph{slope} of
 the ``tangent line''.
@@ -53,16 +53,16 @@ The derivative of $f$ at $p$ approximates $f$ near $p$ by a \emph{linear functio
 \end{moral}
 
 What about more generally?
-Suppose I have a function like $f : \RR^2 \to \RR$, say
+Suppose I have a function like $f \colon \RR^2 \to \RR$, say
 \[ f(x,y) = x^2+y^2 \]
 for concreteness or something.
 For a point $p \in \RR^2$, the ``derivative'' of $f$ at $p$ ought to represent a linear map
 that approximates $f$ at that point $p$.
-That means I want a linear map $T : \RR^2 \to \RR$ such that
+That means I want a linear map $T \colon \RR^2 \to \RR$ such that
 \[ f(p + v) \approx f(p) + T(v) \]
 for small displacements $v \in \RR^2$.
 
-Even more generally, if $f : U \to W$ with $U \subseteq V$ open
+Even more generally, if $f \colon U \to W$ with $U \subseteq V$ open
 (in the $\norm{\bullet}_V$ metric as usual),
 then the derivative at $p \in U$ ought to be so that
 \[ f(p + v) \approx f(p) + T(v) \in W. \]
@@ -99,8 +99,8 @@ The only thing that we have to do is say what ``$\approx$'' means, and for
 this we use the norm of the vector space.
 \begin{definition}
 	Let $U \subseteq V$ be open.
-	Let $f : U \to W$ be a continuous function, and $p \in U$.
-	Suppose there exists a linear map $T : V \to W$ such that
+	Let $f \colon U \to W$ be a continuous function, and $p \in U$.
+	Suppose there exists a linear map $T \colon V \to W$ such that
 	\[
 		\lim_{\norm{v}_V \to 0}
 		\frac{\norm{f(p + v) - f(p) - T(v)}_W}{\norm{v}_V} = 0.
@@ -154,7 +154,7 @@ Before proceeding I need to say something really important.
 	\label{thm:project_principle}
 	Let $U$ be an open subset of the vector space $V$.
 	Let $W$ be an $n$-dimensional real vector space with basis $w_1, \dots, w_n$.
-	Then there is a bijection between continuous functions $f : U \to W$ and
+	Then there is a bijection between continuous functions $f \colon U \to W$ and
 	$n$-tuples of continuous $f_1, f_2, \dots, f_n : U \to \RR$
 	by projection onto the $i$th basis element, i.e.\
 	\[ f(v) = f_1(v)w_1 + \dots + f_n(v)w_n. \]
@@ -165,10 +165,10 @@ Before proceeding I need to say something really important.
 The theorem remains true if one replaces ``continuous'' by ``differentiable'', ``smooth'', ``arbitrary'',
 or most other reasonable words. Translation:
 \begin{moral}
-To think about a function $f : U \to \RR^{n}$,
+To think about a function $f \colon U \to \RR^{n}$,
 it suffices to think about each coordinate separately.
 \end{moral}
-For this reason, we'll most often be interested in functions $f : U \to \RR$.
+For this reason, we'll most often be interested in functions $f \colon U \to \RR$.
 That's why the dual space $V^\vee$ is so important.
 
 \section{Total and partial derivatives}
@@ -176,7 +176,7 @@ That's why the dual space $V^\vee$ is so important.
 $(Df) : (x,y) \mapsto 2x \cdot \ee_1^\vee + 2y \cdot \ee_2^\vee$, and
 $\fpartial fx = 2x$, $\fpartial fy = 2y$.}
 Let $U \subseteq V$ be open and let $V$ have a basis $e_1$, \dots, $e_n$.
-Suppose $f : U \to \RR$ is a function which is differentiable everywhere,
+Suppose $f \colon U \to \RR$ is a function which is differentiable everywhere,
 meaning $(Df)_p \in V^\vee$ exists for every $p$.
 In that case, one can consider $Df$ as \emph{itself} a function:
 \begin{align*}
@@ -197,7 +197,7 @@ The Projection Principle tells us that $Df$ can thus be thought of as just $n$ f
 \[ Df = \psi_1 e_1^\vee + \dots + \psi_n e_n^\vee.  \]
 In fact, we can even describe what the $\psi_i$ are.
 \begin{definition}
-	The \vocab{$i^{\text{th}}$ partial derivative} of $f : U \to \RR$, denoted
+	The \vocab{$i^{\text{th}}$ partial derivative} of $f \colon U \to \RR$, denoted
 	\[ \fpartial{f}{e_i}: U \to \RR \]
 	is defined by
 	\[
@@ -239,7 +239,7 @@ That is to say,
 
 
 \begin{example}[Partial derivatives of $f(x,y) = x^2+y^2$]
-	Let $f : \RR^2 \to \RR$ by $(x,y) \mapsto x^2+y^2$.
+	Let $f \colon \RR^2 \to \RR$ by $(x,y) \mapsto x^2+y^2$.
 	Then in our new language,
 	\[ Df : (x,y) \mapsto 2x \cdot \ee_1^\vee + 2y \cdot \ee_2^\vee. \]
 	Thus the partials are
@@ -263,7 +263,7 @@ It turns out for most reasonable functions, this is all you'll ever need.
 \begin{theorem}[Continuous partials implies differentiable]
 	\label{thm:apcalc_partials}
 	Let $U \subseteq V$ be open and pick any basis $e_1, \dots, e_n$.
-	Let $f : U \to \RR$ and suppose that $\fpartial{f}{e_i}$ is defined
+	Let $f \colon U \to \RR$ and suppose that $\fpartial{f}{e_i}$ is defined
 	for each $i$ and moreover is \emph{continuous}.
 	Then $f$ is differentiable and $Df$ is given by
 	\[ Df = \sum_{i=1}^n \fpartial{f}{e_i} \cdot e_i^\vee. \]
@@ -306,7 +306,7 @@ The example $f(x,y) = x^2+y^2$ is the same thing.
 That being said, who cares about $x \sin y + x^2y^4$ anyways?
 
 \section{(Optional) A word on higher derivatives}
-Let $U \subseteq V$ be open, and take $f : U \to W$, so that $Df : U \to \Hom(V,W)$.
+Let $U \subseteq V$ be open, and take $f \colon U \to W$, so that $Df \colon U \to \Hom(V,W)$.
 
 Well, $\Hom(V,W)$ can also be thought of as a normed vector space in its own right:
 it turns out that one can define an operator norm on it by setting
@@ -329,7 +329,7 @@ rather than writing a bunch of $\Hom$'s.
 The most important property of the second derivative is that
 \begin{theorem}
 	[Symmetry of $D^2 f$]
-	Let $f : U \to W$ with $U \subseteq V$ open.
+	Let $f \colon U \to W$ with $U \subseteq V$ open.
 	If $(D^2f)_p$ exists at some $p \in U$, then it is symmetric, meaning
 	\[ (D^2f)_p(v_1, v_2) = (D^2f)_p(v_2, v_1). \]
 \end{theorem}
@@ -338,7 +338,7 @@ because double derivatives make my head spin.
 An important corollary of this theorem:
 \begin{corollary}
 	[Clairaut's theorem: mixed partials are symmetric]
-	Let $f : U \to \RR$ with $U \subseteq V$ open be twice differentiable.
+	Let $f \colon U \to \RR$ with $U \subseteq V$ open be twice differentiable.
 	Then for any point $p$ such that the quantities are defined,
 	\[
 		\frac{\partial}{\partial e_i}
@@ -370,7 +370,7 @@ you'll finally know what all those stupid $dx$'s and $dy$'s really mean.
 \end{sproblem}
 
 \begin{problem}
-	Let $U \subseteq V$ be open, and $f : U \to \RR$ be differentiable $k$ times.
+	Let $U \subseteq V$ be open, and $f \colon U \to \RR$ be differentiable $k$ times.
 	Show that $(D^kf)_p$ is symmetric in its $k$ arguments, meaning for any $v_1, \dots, v_k \in V$
 	and any permutation $\sigma$ on $\left\{ 1, \dots, k \right\}$ we have
 	\[ (D^kf)_p(v_1, \dots, v_k) = (D^kf)_p(v_{\sigma(1)}, \dots, v_{\sigma(k)}). \]

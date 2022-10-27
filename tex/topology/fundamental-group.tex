@@ -50,7 +50,7 @@ We'd like to fuse\footnote{%
 	\end{asy}
 \end{center}
 
-We unfortunately do have to hack the definition a tiny bit. In an ideal world, we'd have a path $\gamma_1 : [0,1] \to X$ and $\gamma_2 : [1,2] \to X$ and we could just merge them together to get $\gamma_1 \ast \gamma_2 : [0,2] \to X$.
+We unfortunately do have to hack the definition a tiny bit. In an ideal world, we'd have a path $\gamma_1 \colon [0,1] \to X$ and $\gamma_2 \colon [1,2] \to X$ and we could just merge them together to get $\gamma_1 \ast \gamma_2 : [0,2] \to X$.
 But the ``$2$'' is wrong here.
 The solution is that we allocate $[0, \half]$ for the first path
 and $[\half, 1]$ for the second path; we run ``twice as fast''.
@@ -113,7 +113,7 @@ So as long as we're fusing paths together,
 we probably don't want to think of $[0,1]$ itself too seriously.
 And so we only consider everything up to (path) homotopy equivalence.
 (Recall that two paths $\alpha$ and $\beta$ are homotopic if
-there's a path homotopy $F : [0,1]^2 \to X$ between them,
+there's a path homotopy $F \colon [0,1]^2 \to X$ between them,
 which is a continuous deformation from $\alpha$ to $\beta$.)
 It is definitely true that
 \[
@@ -183,7 +183,7 @@ It might come as a surprise that this has a group structure.
 For example, what is the inverse?
 Let's define it now.
 \begin{definition}
-	Given a path $\alpha : [0,1] \to X$ we can define a path $\ol\alpha$
+	Given a path $\alpha \colon [0,1] \to X$ we can define a path $\ol\alpha$
 	\[ \ol\alpha (t) = \alpha(1-t). \]
 	In effect, this ``runs $\alpha$ backwards''.
 	Note that $\ol\alpha$ starts at the endpoint of $\alpha$
@@ -356,15 +356,15 @@ This is the ``usual'' definition of simply connected.
 \section{Fundamental groups are functorial}
 One quick shorthand I will introduce to clean up the discussion:
 \begin{definition}
-	By $f : (X, x_0) \to (Y, y_0)$, we will mean that
-	$f : X \to Y$ is a continuous function of spaces
+	By $f \colon (X, x_0) \to (Y, y_0)$, we will mean that
+	$f \colon X \to Y$ is a continuous function of spaces
 	which also sends the point $x_0$ to $y_0$.
 \end{definition}
 
-Let $X$ and $Y$ be topological spaces and $f : (X, x_0) \to (Y, y_0)$.
+Let $X$ and $Y$ be topological spaces and $f \colon (X, x_0) \to (Y, y_0)$.
 We now want to relate the fundamental groups of $X$ and $Y$.
 
-Recall that a loop $\gamma$ in $(X, x_0)$ is a map $\gamma : [0,1] \to X$
+Recall that a loop $\gamma$ in $(X, x_0)$ is a map $\gamma \colon [0,1] \to X$
 with $\gamma(0) = \gamma(1) = x_0$.
 Then if we consider the composition
 \[ [0,1] \taking\gamma (X, x_0) \taking f (Y, y_0) \]
@@ -383,9 +383,9 @@ Let's call this loop $f_\sharp \gamma$.
 
 It's worth noting at this point that if $X$ and $Y$ are homeomorphic,
 then their fundamental groups are all isomorphic.
-Indeed, let $f : X \to Y$ and $g : Y \to X$ be mutually inverse continuous maps.
-Then one can check that $f_\sharp : \pi_1(X, x_0) \to \pi_1(Y, y_0)$
-and $g_\sharp : \pi_1(Y, y_0) \to \pi_1(X, x_0)$ are inverse maps
+Indeed, let $f \colon X \to Y$ and $g \colon Y \to X$ be mutually inverse continuous maps.
+Then one can check that $f_\sharp \colon \pi_1(X, x_0) \to \pi_1(Y, y_0)$
+and $g_\sharp \colon \pi_1(Y, y_0) \to \pi_1(X, x_0)$ are inverse maps
 between the groups (assuming $f(x_0) = y_0$ and $g(y_0) = x_0$).
 
 %Now we want to show that by taking the map $f_\sharp$, we get a \emph{functor}
@@ -484,8 +484,8 @@ Up to now I've abused notation and referred to ``path homotopy'' as just ``homot
 I will unfortunately continue to do so (and so any time I say two paths are homotopic, you should assume I mean ``path-homotopic'').
 But let me tell you what the general definition of homotopy is first.
 \begin{definition}
-	Let $f,g : X \to Y$ be continuous functions.
-	A \vocab{homotopy} is a continuous function $F : X \times [0,1] \to Y$,
+	Let $f,g \colon X \to Y$ be continuous functions.
+	A \vocab{homotopy} is a continuous function $F \colon X \times [0,1] \to Y$,
 	which we'll write $F_s(x)$ for $s \in [0,1]$, $x \in X$, such that
 	\[ F_0(x) = f(x) \text{ and } F_1(x) = g(x) \text{ for all $x \in X$.} \]
 	If such a function exists, then $f$ and $g$ are \vocab{homotopic}.
@@ -507,7 +507,7 @@ I bring this up because I want to define:
 \begin{definition}
 	Let $X$ and $Y$ be continuous spaces.
 	They are \vocab{homotopy equivalent} if there exist
-	functions $f : X \to Y$ and $g : Y \to X$ such that
+	functions $f \colon X \to Y$ and $g \colon Y \to X$ such that
 	\begin{enumerate}[(i)]
 		\ii $f \circ g : X \to X$ is homotopic to the identity map on $X$, and
 		\ii $g \circ f : Y \to Y$ is homotopic to the identity map on $Y$.
@@ -575,8 +575,8 @@ More precisely,
 	Then $\pi_n(X) \cong \pi_n(Y)$ for every positive integer $n$.
 \end{theorem}
 \begin{proof}
-	Let $\gamma : [0,1] \to X$ be a loop.
-	Let $f : X \to Y$ and $g : Y \to X$ be maps witnessing that $X$ and $Y$ are homotopy equivalent
+	Let $\gamma \colon [0,1] \to X$ be a loop.
+	Let $f \colon X \to Y$ and $g \colon Y \to X$ be maps witnessing that $X$ and $Y$ are homotopy equivalent
 	(meaning $f \circ g$ and $g \circ f$ are each homotopic to the identity).
 	Then the composition
 	\[ [0,1] \taking\gamma X \taking f Y \]

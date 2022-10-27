@@ -11,7 +11,7 @@ What we want now is a notion where a big space $E$, a ``covering space'',
 can be projected down onto a base space $B$ in a nice way.
 Here is the notion of ``nice'':
 \begin{definition}
-	Let $p : E \to B$ be a continuous function.
+	Let $p \colon E \to B$ be a continuous function.
 	Let $U$ be an open set of $B$.
 	We call $U$ \vocab{evenly covered} (by $p$) if $p\pre(U)$ is a disjoint union of open sets (possibly infinite) such that $p$ restricted to any of these sets is a homeomorphism.
 \end{definition}
@@ -24,7 +24,7 @@ All we're saying is that $U$ is evenly covered if its pre-image
 is a bunch of copies of it. (Actually, a little more: each of the pancakes is homeomorphic to $U$, but we also require that $p$ is the homeomorphism.)
 
 \begin{definition}
-	A \vocab{covering projection} $p : E \to B$
+	A \vocab{covering projection} $p \colon E \to B$
 	is a surjective continuous map such that every base point $b \in B$
 	has an open neighborhood $U \ni b$ which is evenly covered by $p$.
 \end{definition}
@@ -56,7 +56,7 @@ This is not really that interesting because $B \times [n]$ is not path-connected
 A much more interesting example is that of $\RR$ and $S^1$.
 
 \begin{example}[Covering projection of $S^1$]
-	Take $p : \RR \to S^1$ by $\theta \mapsto e^{2\pi i \theta}$.
+	Take $p \colon \RR \to S^1$ by $\theta \mapsto e^{2\pi i \theta}$.
 	This is essentially wrapping the real line
 	into a single helix and projecting it down.
 \end{example}
@@ -115,7 +115,7 @@ would be the entire $\RR$.
 	[Covering projections of $\CC \setminus \{0\}$]
 	For those comfortable with complex arithmetic,
 	\begin{enumerate}[(a)]
-		\ii The exponential map $\exp : \CC \to \CC \setminus \{0\}$
+		\ii The exponential map $\exp \colon \CC \to \CC \setminus \{0\}$
 		is a covering projection.
 		\ii For each $n$, the $n$th power map
 		$-^n: \CC \setminus \{0\} \to \CC \setminus \{0\}$
@@ -134,8 +134,8 @@ So if we can interpret loops in $S^1$ as paths in $\RR$,
 that might (and indeed it does!)\ make computing $\pi_1(S^1)$ tractable.
 
 \begin{definition}
-	Let $\gamma : [0,1] \to B$ be a path and $p : E \to B$ a covering projection.
-	A \vocab{lifting} of $\gamma$ is a path $\tilde\gamma : [0,1] \to E$
+	Let $\gamma \colon [0,1] \to B$ be a path and $p \colon E \to B$ a covering projection.
+	A \vocab{lifting} of $\gamma$ is a path $\tilde\gamma \colon [0,1] \to E$
 	such that $p \circ \tilde\gamma = \gamma$.
 \end{definition}
 Picture:
@@ -148,11 +148,11 @@ Picture:
 
 
 \begin{example}[Typical example of lifting]
-	Take $p : \RR \to S^1 \subseteq \CC$ by $\theta \mapsto e^{2 \pi i \theta}$
+	Take $p \colon \RR \to S^1 \subseteq \CC$ by $\theta \mapsto e^{2 \pi i \theta}$
 	(so $S^1$ is considered again as the unit circle).
 	Consider the path $\gamma$ in $S^1$ which starts at $1 \in \CC$
 	and wraps around $S^1$ once, counterclockwise, ending at $1$ again.
-	In symbols, $\gamma : [0,1] \to S^1$ by $t \mapsto e^{2\pi i t}$.
+	In symbols, $\gamma \colon [0,1] \to S^1$ by $t \mapsto e^{2\pi i t}$.
 
 	Then one lifting $\tilde\gamma$ is the path which walks from $0$ to $1$.
 	In fact, \emph{for any integer $n$}, walking from $n$ to $n+1$ works.
@@ -206,10 +206,10 @@ a corresponding path in $E$.
 
 It turns out this is true more generally.
 \begin{theorem}[Lifting paths]
-	Suppose $\gamma : [0,1] \to B$ is a path with $\gamma(0) = b_0$, and
+	Suppose $\gamma \colon [0,1] \to B$ is a path with $\gamma(0) = b_0$, and
 	$ p : (E,e_0) \to (B,b_0) $
 	is a covering projection.
-	Then there exists a \emph{unique} lifting $\tilde\gamma : [0,1] \to E$
+	Then there exists a \emph{unique} lifting $\tilde\gamma \colon [0,1] \to E$
 	such that $\tilde\gamma(0) = e_0$.
 \end{theorem}
 \begin{proof}
@@ -297,7 +297,7 @@ pick a different path $\gamma'$ homotopic to $\tilde\gamma$.
 Thus every homotopy class of a loop at $b_0$ (i.e.\ an element of $\pi_1(B, b_0)$) can be associated with some $e$ in the fiber of $b_0$.
 The below proposition summarizes this and more.
 \begin{proposition}
-	Let $p : (E,e_0) \to (B,b_0)$ be a covering projection.
+	Let $p \colon (E,e_0) \to (B,b_0)$ be a covering projection.
 	Then we have a function of sets
 	\[ \Phi : \pi_1(B, b_0) \to p\pre(b_0) \]
 	by $[\gamma] \mapsto \tilde\gamma(1)$, where $\tilde\gamma$
@@ -321,7 +321,7 @@ The below proposition summarizes this and more.
 	Applying lifting, we get paths $\tilde\gamma_1$ and $\tilde\gamma_2$
 	both starting at some point $e_0 \in E$ and ending at some point $e_1 \in E$.
 	Since $E$ is simply connected that means they are \emph{homotopic},
-	and we can write a homotopy $F : [0,1] \times [0,1] \to E$
+	and we can write a homotopy $F \colon [0,1] \times [0,1] \to E$
 	which unites them.
 	But then consider the composition of maps
 	\[ [0,1] \times [0,1] \taking{F} E \taking{p} B. \]
@@ -332,14 +332,14 @@ The below proposition summarizes this and more.
 This motivates:
 \begin{definition}
 	A \vocab{universal cover} of a space $B$ is a covering projection
-	$p : E \to B$ where $E$ is simply connected (and in particular path-connected).
+	$p \colon E \to B$ where $E$ is simply connected (and in particular path-connected).
 \end{definition}
 \begin{abuse}
 	When $p$ is understood, we sometimes just say $E$ is the universal cover.
 \end{abuse}
 
 \begin{example}[Fundamental group of $S^1$]
-	Let's return to our standard $p : \RR \to S^1$.
+	Let's return to our standard $p \colon \RR \to S^1$.
 	Since $\RR$ is simply connected, this is a universal cover of $S^1$.
 	And indeed, the fiber of any point in $S^1$
 	is a copy of the integers: naturally in bijection with loops in $S^1$.
@@ -402,7 +402,7 @@ by simply sending every point to the orbit it lives in.
 	\end{center}
 	So we can identify $X/G$ with $S^1$
 	and the associated regular projection
-	is just our usual $\exp : \theta \mapsto e^{2i\pi \theta}$.
+	is just our usual $\exp \colon \theta \mapsto e^{2i\pi \theta}$.
 \end{example}
 
 \begin{example}[The torus]
@@ -472,7 +472,7 @@ by simply sending every point to the orbit it lives in.
 \prototype{$S^1$, with fundamental group $\ZZ$.}
 Next up, we're going to turn functions between spaces into homomorphisms of fundamental groups.
 
-Let $X$ and $Y$ be topological spaces and $f : (X, x_0) \to (Y, y_0)$.
+Let $X$ and $Y$ be topological spaces and $f \colon (X, x_0) \to (Y, y_0)$.
 Recall that we defined a group homomorphism
 \[ f_\sharp : \pi_1(X, x_0) \to \pi_1(Y_0, y_0)
 	\quad\text{by}\quad
@@ -481,8 +481,8 @@ Recall that we defined a group homomorphism
 
 More importantly, we have:
 \begin{proposition}
-	Let $p : (E,e_0) \to (B,b_0)$ be a covering projection of path-connected spaces.
-	Then the homomorphism $p_\sharp : \pi_1(E, e_0) \to \pi_1(B, b_0)$ is \emph{injective}.
+	Let $p \colon (E,e_0) \to (B,b_0)$ be a covering projection of path-connected spaces.
+	Then the homomorphism $p_\sharp \colon \pi_1(E, e_0) \to \pi_1(B, b_0)$ is \emph{injective}.
 	Hence $p_\sharp \im(\pi_1(E, e_0))$ is an isomorphic copy of $\pi_1(E, e_0)$
 	as a subgroup of $\pi_1(B, b_0)$.
 \end{proposition}
@@ -491,7 +491,7 @@ More importantly, we have:
 	It suffices to show if $\gamma$ is a nulhomotopic loop in $B$
 	then its lift is nulhomotopic.
 
-	By definition, there's a homotopy $F : [0,1] \times [0,1] \to B$
+	By definition, there's a homotopy $F \colon [0,1] \times [0,1] \to B$
 	taking $\gamma$ to the constant loop $1_B$.
 	We can lift it to a homotopy $\tilde F : [0,1] \times [0,1] \to E$
 	that establishes $\tilde\gamma \simeq \tilde 1_B$.
@@ -522,8 +522,8 @@ two covering projections to be equivalent.
 
 \begin{definition}
 	Fix a space $B$.
-	Given two covering projections $p_1 : E_1 \to B$ and $p_2 : E_2 \to B$
-	a \vocab{map of covering projections} is a continuous function $f : E_1 \to E_2$
+	Given two covering projections $p_1 \colon E_1 \to B$ and $p_2 \colon E_2 \to B$
+	a \vocab{map of covering projections} is a continuous function $f \colon E_1 \to E_2$
 	such that $p_2 \circ f = p_1$.
 	\begin{center}
 	\begin{tikzcd}
@@ -532,7 +532,7 @@ two covering projections to be equivalent.
 	\end{tikzcd}
 	\end{center}
 	Then two covering projections $p_1$ and $p_2$ are isomorphic if there are
-	$f : E_1 \to E_2$ and $g : E_2 \to E_1$
+	$f \colon E_1 \to E_2$ and $g \colon E_2 \to E_1$
 	such that $f \circ g = \id_{E_1}$ and $g \circ f = \id_{E_2}$.
 \end{definition}
 \begin{remark}
@@ -566,7 +566,7 @@ Then we get:
 	Then:
 	\begin{itemize}
 		\ii Every subgroup $H \subseteq \pi_1(B)$ corresponds
-		to exactly one covering projection $p : E \to B$
+		to exactly one covering projection $p \colon E \to B$
 		with $E$ path-connected (up to isomorphism).
 
 		(Specifically, $H$ is the image of $\pi_1(E)$ in $\pi_1(B)$ through $p_\sharp$.)
@@ -580,7 +580,7 @@ in terms of the covering projections.
 Moreover, this is how the ``universal cover'' gets its name:
 it is the one corresponding to the trivial subgroup of $\pi_1(B)$.
 Actually, you can show that it really is universal in the sense
-that if $p : E \to B$ is another covering projection,
+that if $p \colon E \to B$ is another covering projection,
 then $E$ is in turn covered by the universal space.
 More generally, if $H_1 \subseteq H_2 \subseteq G$ are subgroups,
 then the space corresponding to $H_2$ can be covered by the space

@@ -29,7 +29,7 @@ The idea of Fourier analysis is to then select an \emph{orthonormal basis}
 for this set of functions, say $(e_\xi)_{\xi}$,
 which we call the \vocab{characters};
 the indexing $\xi$ are called \vocab{frequencies}.
-In that case, since we have a basis, every function $f : Z \to \CC$
+In that case, since we have a basis, every function $f \colon Z \to \CC$
 becomes a sum
 \[ f(x) = \sum_{\xi} \wh f(\xi) e_\xi \]
 where $\wh f(\xi)$ are complex coefficients of the basis;
@@ -109,7 +109,7 @@ Thus, we have a decomposition
 	for each of the four $S$'s.
 \end{example}
 This notion is useful in particular for
-binary functions $f : \{\pm1\}^n \to \{\pm1\}$;
+binary functions $f \colon \{\pm1\}^n \to \{\pm1\}$;
 for these functions (and products thereof),
 we always have $\left< f,f \right> = 1$.
 
@@ -208,7 +208,7 @@ In that case, we can consider the function
 \[ w : \ZZ/3 \to \CC. \]
 such that $w(0) = 1$ but $w(1) = w(2) = 0$.
 By abuse of notation we will also think of $w$
-as a function $w : \ZZ \surjto \ZZ/3 \to \CC$.
+as a function $w \colon \ZZ \surjto \ZZ/3 \to \CC$.
 Then the sum in question is
 \begin{align*}
 	\sum_n \binom{1000}{n} w(n)
@@ -365,9 +365,9 @@ square sum of the coefficients.
 
 \begin{corollary}
 	[Fourier inversion formula]
-	Let $f : Z \to \CC$, where $Z$ is a finite abelian group.
+	Let $f \colon Z \to \CC$, where $Z$ is a finite abelian group.
 	Then \[ \wh f(\xi) = \frac{1}{|Z|} \sum_{x \in Z} f(x) \ol{e_\xi(x)}. \]
-	Similarly, if $f : [-\pi, \pi] \to \CC$ is square-integrable then
+	Similarly, if $f \colon [-\pi, \pi] \to \CC$ is square-integrable then
 	its Fourier series is given by
 	\[ \wh f(n) = \frac{1}{2\pi} \int_{[-\pi, \pi]} f(x) \exp(-inx) \; dx. \]
 \end{corollary}
@@ -381,9 +381,9 @@ the coefficient of $e_\xi$ in $f$ is $\left< f, e_\xi\right>$.
 
 \begin{corollary}
 	[Plancherel theorem]
-	Let $f : Z \to \CC$, where $Z$ is a finite abelian group.
+	Let $f \colon Z \to \CC$, where $Z$ is a finite abelian group.
 	Then \[ \left< f,g \right> = \sum_{\xi \in Z} \wh f(\xi) \ol{\wh g(\xi)}. \]
-	Similarly, if $f : [-\pi, \pi] \to \CC$ is square-integrable then
+	Similarly, if $f \colon [-\pi, \pi] \to \CC$ is square-integrable then
 	\[ \left< f,g \right> = \sum_n \wh f(n) \ol{\wh g(n)}. \]
 \end{corollary}
 \begin{ques}
@@ -554,13 +554,13 @@ that $f(+1, \dots, +1) = +1$ (hence possibility of anti-dictatorship).
 		\left( \wh f(S) \wh g(S) + \wh g(S) \wh h(S) + \wh h(S) \wh f(S) \right)
 		\]
 	\begin{hint}
-		Define the Boolean function $D : \{\pm 1\}^3 \to \RR$ by
+		Define the Boolean function $D \colon \{\pm 1\}^3 \to \RR$ by
 		$D(a,b,c) = ab+bc+ca$.
 		Write out the value of $D(a,b,c)$ for each $(a,b,c)$.
 		Then, evaluate its expected value.
 	\end{hint}
 	\begin{sol}
-	Define the Boolean function $D : \{\pm 1\}^3 \to \RR$ by
+	Define the Boolean function $D \colon \{\pm 1\}^3 \to \RR$ by
 	\[ D(a,b,c) = ab + bc + ca
 		= \begin{cases}
 			3 & a,b,c \text{ all equal} \\

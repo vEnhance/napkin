@@ -17,7 +17,7 @@ First things first:
 	Note that we keep track of the order $v_0$, \dots, $v_n$ of the vertices,
 	for reasons that will soon become clear.
 
-	Given a topological space $X$, a \vocab{singular $n$-simplex} is a map $\sigma : \Delta^n \to X$.
+	Given a topological space $X$, a \vocab{singular $n$-simplex} is a map $\sigma \colon \Delta^n \to X$.
 \end{definition}
 \begin{example}
 	[Singular simplices]
@@ -197,7 +197,7 @@ The key point is that we can now define:
 	Let's compute $H_0(X)$ for a topological space $X$.
 	We take $C_0(X)$, which is just formal linear sums of points of $X$.
 
-	First, we consider the kernel of $\partial : C_0(X) \to 0$,
+	First, we consider the kernel of $\partial \colon C_0(X) \to 0$,
 	so the kernel of $\partial$ is the entire space $C_0(X)$:
 	that is, every point is a ``cycle''.
 
@@ -362,7 +362,7 @@ In what follows, it will often be helpful to keep track of which things are pure
 \section{The homology functor and chain complexes}
 As I mentioned before, the homology groups are homotopy invariant.
 This will be a similar song and dance as the work we did to
-create a functor $\pi_1 : \catname{hTop}_\ast \to \catname{Grp}$.
+create a functor $\pi_1 \colon \catname{hTop}_\ast \to \catname{Grp}$.
 Rather than working slowly and pulling away the curtain to reveal the category theory at the end,
 we'll instead start with the category theory right from the start just to save some time.
 
@@ -383,15 +383,15 @@ except without the basepoints.
 	For any particular $n$, $H_n$ is a functor $\catname{hTop} \to \catname{Grp}$.
 	In particular,
 	\begin{itemize}
-		\ii Given any map $f : X \to Y$, we get an induced map $f_\ast : H_n(X) \to H_n(Y)$.
+		\ii Given any map $f \colon X \to Y$, we get an induced map $f_\ast \colon H_n(X) \to H_n(Y)$.
 		\ii For two homotopic maps $f, g : X \to Y$, $f_\ast = g_\ast$.
 		\ii Two homotopic spaces $X$ and $Y$ have isomorphic homology groups:
-		if $f : X \to Y$ is a homotopy then $f_\ast : H_n(X) \to H_n(Y)$ is an isomorphism.
+		if $f \colon X \to Y$ is a homotopy then $f_\ast \colon H_n(X) \to H_n(Y)$ is an isomorphism.
 		\ii (Insert your favorite result about functors here.)
 	\end{itemize}
 \end{theorem}
 
-In order to do this, we have to describe how to take a map $f : X \to Y$
+In order to do this, we have to describe how to take a map $f \colon X \to Y$
 and obtain a map $H_n(f) : H_n(X) \to H_n(Y)$.
 Then we have to show that this map doesn't depend on the choice of homotopy.
 (This is the analog of the work we did with $f_\sharp$ before.)
@@ -421,7 +421,7 @@ Obviously, this is just an algebraic generalization of the structure we previous
 rid of all its original geometric context.
 
 \begin{definition}
-	A \vocab{morphism of chain complexes} $f : A_\bullet \to B_\bullet$ is
+	A \vocab{morphism of chain complexes} $f \colon A_\bullet \to B_\bullet$ is
 	a sequence of maps $f_n$ for every $n$ such that the diagram
 	\begin{center}
 	\begin{tikzcd}
@@ -436,7 +436,7 @@ rid of all its original geometric context.
 	which we denote $\catname{Cmplx}$.
 \end{definition}
 
-Note that given a morphism of chain complexes $f : A_\bullet \to B_\bullet$,
+Note that given a morphism of chain complexes $f \colon A_\bullet \to B_\bullet$,
 every cycle in $A_n$ gets sent to a cycle in $B_n$, since the square
 \begin{center}
 \begin{tikzcd}
@@ -447,8 +447,8 @@ every cycle in $A_n$ gets sent to a cycle in $B_n$, since the square
 commutes.
 Similarly, every boundary in $A_n$ gets sent to a boundary in $B_n$. Thus,
 \begin{moral}
-	Every map of $f : A_\bullet \to B_\bullet$ gives a
-	map $f_\ast : H_n(A) \to H_n(B)$ for every $n$.
+	Every map of $f \colon A_\bullet \to B_\bullet$ gives a
+	map $f_\ast \colon H_n(A) \to H_n(B)$ for every $n$.
 \end{moral}
 \begin{exercise}
 	Interpret $H_n$ as a functor $\catname{Cmplx} \to \catname{Grp}$.
@@ -458,7 +458,7 @@ Next, we want to define what it means for two maps $f$ and $g$ to be homotopic.
 Here's the answer:
 \begin{definition}
 	Let $f, g : A_\bullet \to B_\bullet$.
-	Suppose that one can find a map $P_n : A_n \to B_{n+1}$ for every $n$ such that
+	Suppose that one can find a map $P_n \colon A_n \to B_{n+1}$ for every $n$ such that
 	\[ g_n - f_n = \partial_B \circ P_n + P_{n-1} \circ \partial_A \]
 	Then $P$ is a \vocab{chain homotopy} from $f$ to $g$
 	and $f$ and $g$ are \vocab{chain homotopic}.
@@ -509,7 +509,7 @@ Now, the point of this definition is that
 Now let's fill in the geometric details of the picture above.
 First:
 \begin{lemma}[Map of space $\implies$ map of singular chain complexes]
-	Each $f : X \to Y$ induces a map $C_n(X) \to C_n(Y)$.
+	Each $f \colon X \to Y$ induces a map $C_n(X) \to C_n(Y)$.
 \end{lemma}
 \begin{proof}
 	Take the composition
@@ -524,10 +524,10 @@ then they are chain homotopic.
 To produce a chain homotopy, we need to take every $n$-simplex $X$
 to an $(n+1)$-chain in $Y$, thus defining the map $P_n$.
 
-Let's think about how we might do this. Let's take the $n$-simplex $\sigma : \Delta^n \to X$
+Let's think about how we might do this. Let's take the $n$-simplex $\sigma \colon \Delta^n \to X$
 and feed it through $f$ and $g$; pictured below is a $1$-simplex $\sigma$ (i.e.\ a path in $X$)
 which has been mapped into the space $Y$.
-Homotopy means the existence of a map $F : X \times [0,1] \to Y$
+Homotopy means the existence of a map $F \colon X \times [0,1] \to Y$
 such that $F(-,0) = f$ and $F(-,1) = g$, parts of which I've illustrated below with grey arrows
 in the image for $Y$.
 
@@ -722,7 +722,7 @@ Miraculously, it will turn out that $H_n(U+V) \cong H_n(X)$.
 \begin{problem}
 	[Brouwer fixed point theorem]
 	Use the previous problem to prove that any
-	continuous function $f : D^n \to D^n$ has a fixed point.
+	continuous function $f \colon D^n \to D^n$ has a fixed point.
 	\begin{hint}
 		Build $F$ as follows:
 		draw the ray from $x$ through $f(x)$

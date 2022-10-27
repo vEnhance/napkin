@@ -54,7 +54,7 @@ For this, we turn to the notion of a cardinal number.
 	it relies on an \emph{external} function $f$.
 	That is, to verify $\kappa$ is a cardinal I can't just look at $\kappa$ itself;
 	I need to examine the entire universe $V$ to make sure
-	there does not exist a bijection $f : \kappa \to \alpha$ for $\alpha < \kappa$.
+	there does not exist a bijection $f \colon \kappa \to \alpha$ for $\alpha < \kappa$.
 	For now this is no issue, but later in model theory
 	this will lead to some highly counterintuitive behavior.
 \end{remark}
@@ -347,7 +347,7 @@ to prove or disprove this from the $\ZFC$ axioms.
 \begin{definition}
 	Let $\lambda$ be an ordinal (usually a limit ordinal),
 	and $\alpha$ another ordinal.
-	A map $f : \alpha \to \lambda$ of ordinals is called \vocab{cofinal}
+	A map $f \colon \alpha \to \lambda$ of ordinals is called \vocab{cofinal}
 	if for every $\ol\lambda < \lambda$, there is some $\ol\alpha \in \alpha$
 	such that $f(\ol\alpha) \ge \ol\lambda$.
 	In other words, the map reaches arbitrarily high into $\lambda$.

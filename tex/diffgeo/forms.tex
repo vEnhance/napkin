@@ -18,7 +18,7 @@ We'll assume that all functions are \vocab{smooth},
 i.e.\ infinitely differentiable.
 
 Let $U \subseteq V$ be an open set of a vector space $V$.
-Suppose that we have a function $f : U \to \RR$, i.e.\
+Suppose that we have a function $f \colon U \to \RR$, i.e.\
 we assign a value to every point of $U$.
 \begin{center}
 	\begin{asy}
@@ -30,7 +30,7 @@ we assign a value to every point of $U$.
 	\end{asy}
 \end{center}
 \begin{definition}
-	A \vocab{$0$-form} $f$ on $U$ is just a smooth function $f : U \to \RR$.
+	A \vocab{$0$-form} $f$ on $U$ is just a smooth function $f \colon U \to \RR$.
 \end{definition}
 Thus, if we specify a finite set $S$ of points in $U$
 we can ``integrate'' over $S$ by just adding up the values
@@ -140,7 +140,7 @@ Next question:
 \begin{moral}
 	How can we build a $1$-form from a $0$-form?
 \end{moral}
-Let $f$ be a $0$-form on $U$; thus, we have a function $f : U \to \RR$.
+Let $f$ be a $0$-form on $U$; thus, we have a function $f \colon U \to \RR$.
 Then in fact there is a very natural $1$-form on $U$ arising
 from $f$, appropriately called $df$.
 Namely, given a point $p$ and a tangent vector $v$,
@@ -230,7 +230,7 @@ Let $U$ be an open set.
 \begin{definition}
 	We define a \vocab{differential $k$-form} $\alpha$ on $U$
 	to be a smooth (infinitely differentiable) map
-	$\alpha : U \to \Lambda^k(V^\vee)$.
+	$\alpha \colon U \to \Lambda^k(V^\vee)$.
 	(Here $\Lambda^k(V^\vee)$ is the wedge product.)
 \end{definition}
 
@@ -254,7 +254,7 @@ Like with $Df$, we'll use $\alpha_p$ instead of $\alpha(p)$.
 			+ h(p) \cdot \ee_2^\vee \wedge \ee_3^\vee
 			\in \Lambda^2(V^\vee)
 		\]
-		where $f,g,h : V \to \RR$ are smooth functions.
+		where $f,g,h \colon V \to \RR$ are smooth functions.
 	\end{enumerate}
 \end{example}
 
@@ -376,7 +376,7 @@ In particular, suppose $V = \RR^n$ and $f(x_1, \dots, x_n) = x_1$
 \end{abuse}
 \begin{remark}
 	This is the reason why we use the notation $\frac{df}{dx}$ in calculus now:
-	given, say, $f : \RR \to \RR$ by $f(x) = x^2$, it is indeed true that
+	given, say, $f \colon \RR \to \RR$ by $f(x) = x^2$, it is indeed true that
 	\[ df = 2x \cdot \ee_1^\vee = 2x \cdot dx \]
 	and so by (more) abuse of notation we write $df/dx = 2x$.
 \end{remark}
@@ -468,7 +468,7 @@ Here is one important example.
 	and let $\theta(p)$ be the angle formed by the $x$-axis
 	and the line from the origin to $p$.
 
-	The $1$-form $\alpha : U \to (\RR^2)^\vee$ defined by
+	The $1$-form $\alpha \colon U \to (\RR^2)^\vee$ defined by
 	\[ \alpha = \frac{-y \; dx + x \; dy}{x^2+y^2} \]
 	is called the \vocab{angle form}:
 	given $p \in U$ it measures the change in angle $\theta(p)$
@@ -477,7 +477,7 @@ Here is one important example.
 	Indeed, one can check directly that the angle form is closed.
 
 	However, $\alpha$ is not exact: there is no global smooth
-	function $\theta : U \to \RR$ having $\alpha$ as a derivative.
+	function $\theta \colon U \to \RR$ having $\alpha$ as a derivative.
 	This reflects the fact that one can actually perform
 	a full $2\pi$ rotation around the origin, i.e.\ $\theta$
 	only makes sense mod $2\pi$.

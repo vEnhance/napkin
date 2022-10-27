@@ -61,13 +61,13 @@ This is bad, since:
 \begin{lemma}[Cantor's diagonal argument]
 	\label{lem:cantor_diag}
 	For \emph{any} set $X$, it's impossible to construct an injective
-	map $\iota : \PP(X) \injto X$.
+	map $\iota \colon \PP(X) \injto X$.
 \end{lemma}
 \begin{proof}
 	Assume for contradiction $\iota$ exists.
 	\begin{exercise}
 		Show that if, $\iota$ exists,
-		then there exists a surjective map $j : X \surjto \PP(X)$.
+		then there exists a surjective map $j \colon X \surjto \PP(X)$.
 		(This is easier than it appears, just ``invert $\iota$'').
 	\end{exercise}
 	We now claim that $j$ can't exist.
@@ -276,7 +276,7 @@ Note that $(x,y) = (a,b)$ if and only if $x=a$ and $y=b$.
 Ordered $k$-tuples can be defined recursively: a three-tuple $(a,b,c)$ means $(a,(b,c))$.
 
 \begin{definition}
-	A \vocab{function} $f : X \to Y$
+	A \vocab{function} $f \colon X \to Y$
 	is defined as a collection of ordered pairs such that
 	\begin{itemize}
 		\ii If $(x,y) \in f$, then $x \in X$ and $y \in Y$.
@@ -306,7 +306,7 @@ Et cetera, et cetera.
 
 \section{Choice and well-ordering}
 The Axiom of Choice states that given a collection $Y$ of nonempty sets,
-there is a function $g : Y \to \cup Y$ which ``picks'' an element of each member of $Y$.
+there is a function $g \colon Y \to \cup Y$ which ``picks'' an element of each member of $Y$.
 That means $g(y) \in y$ for every $y \in Y$.
 (The typical illustration is that $Y$ contains infinitely many drawers,
 and each drawer (a $y$) has some sock in it.)

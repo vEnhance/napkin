@@ -78,7 +78,7 @@ Of course, the first theorem you learn about these gates is that:
 \begin{theorem}
 	[AND, OR, NOT, COPY are universal]
 	The set of four gates AND, OR, NOT, COPY is universal in the sense that
-	any boolean function $f : \{0,1\}^n \to \{0,1\}$
+	any boolean function $f \colon \{0,1\}^n \to \{0,1\}$
 	can be implemented as a circuit using only these gates.
 \end{theorem}
 \begin{proof}
@@ -256,7 +256,7 @@ that we can still simulate any function when restricted to reversible gates
 First, some linear algebra:
 \begin{definition}
 	Let $V$ be a finite dimensional inner product space.
-	Then for a map $U : V \to V$, the following are equivalent:
+	Then for a map $U \colon V \to V$, the following are equivalent:
 	\begin{itemize}
 		\ii $\left< U(x), U(y) \right> = \left< x,y \right>$ for $x,y \in V$.
 		\ii $U^\dagger$ is the inverse of $U$.
@@ -275,7 +275,7 @@ quantum gates are always reversible
 (and hence they always take the same number of input and output bits).
 
 For example, consider the CNOT gate.
-Its quantum analog should be a unitary map $\UCNOT : H \to H$,
+Its quantum analog should be a unitary map $\UCNOT \colon H \to H$,
 where $H = \CC^{\oplus 2} \otimes \CC^{\oplus 2}$,
 given on basis elements by
 \[
@@ -374,7 +374,7 @@ even when the original inputs are not entangled.
 		\]
 		For example, the classical NOT gate is represented by $U = \sigma_x$.
 		\ii A \vocab{controlled $U$-rotation gate} generalizes the CNOT gate.
-		Let $U : \CC^{\oplus 2} \to \CC^{\oplus 2}$ be a rotation gate,
+		Let $U \colon \CC^{\oplus 2} \to \CC^{\oplus 2}$ be a rotation gate,
 		and let $H = \CC^{\oplus 2} \otimes \CC^{\oplus 2}$ be a $2$-qubit space.
 		Then the controlled $U$ gate has the following circuit diagrams.
 		\[
@@ -436,7 +436,7 @@ quantum algorithm which cannot be performed classically:
 it is a ``proof of concept'' that would later inspire Grover's search algorithm
 and Shor's factoring algorithm.
 
-The problem is as follows: we're given a function $f : \{0,1\}^n \to \{0,1\}$,
+The problem is as follows: we're given a function $f \colon \{0,1\}^n \to \{0,1\}$,
 and promised that the function $f$ is either
 \begin{itemize}
 	\ii A constant function, or
