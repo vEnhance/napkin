@@ -92,7 +92,7 @@ Let's see some examples of this.
 		Let's call it $U \colon \catname{Vect}_k \to \catname{Set}$.
 
 		Now, given a map $T \colon V_1 \to V_2$ in $\catname{Vect}_k$,
-		there is an obvious $U(T) : U(V_1) \to U(V_2)$ which is just
+		there is an obvious $U(T) \colon U(V_1) \to U(V_2)$ which is just
 		the set-theoretic map corresponding to $T$.
 
 		Similarly there are forgetful functors from
@@ -332,14 +332,14 @@ We made categories to keep track of objects and maps, then went a little crazy a
 Now we'll ask ``what are the maps between functors?'' to get natural transformations.
 
 It might sound terrifying that we're drawing arrows between functors, but this is actually an old idea.
-Recall that given two paths $\alpha, \beta : [0,1] \to X$,
+Recall that given two paths $\alpha, \beta \colon [0,1] \to X$,
 we built a path-homotopy by ``continuously deforming'' the path $\alpha$ to $\beta$;
 this could be viewed as a function $[0,1] \times [0,1] \to X$.
 The definition of a natural transformation is similar: we want to pull $F$ to $G$
 along a series of arrows in the target space $\BB$.
 
 \begin{definition}
-	Let $F, G : \AA \to \BB$ be two functors.
+	Let $F, G \colon \AA \to \BB$ be two functors.
 	A \vocab{natural transformation} $\alpha$ from $F$ to $G$, denoted
 	\[ \nattfm{\AA}{F}{\alpha}{G}{\BB} \]
 	consists of, for each $A \in \AA$ an arrow $\alpha_A \in \Hom_\BB(F(A), G(A))$, which is

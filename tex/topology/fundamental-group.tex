@@ -50,15 +50,15 @@ We'd like to fuse\footnote{%
 	\end{asy}
 \end{center}
 
-We unfortunately do have to hack the definition a tiny bit. In an ideal world, we'd have a path $\gamma_1 \colon [0,1] \to X$ and $\gamma_2 \colon [1,2] \to X$ and we could just merge them together to get $\gamma_1 \ast \gamma_2 : [0,2] \to X$.
+We unfortunately do have to hack the definition a tiny bit. In an ideal world, we'd have a path $\gamma_1 \colon [0,1] \to X$ and $\gamma_2 \colon [1,2] \to X$ and we could just merge them together to get $\gamma_1 \ast \gamma_2 \colon [0,2] \to X$.
 But the ``$2$'' is wrong here.
 The solution is that we allocate $[0, \half]$ for the first path
 and $[\half, 1]$ for the second path; we run ``twice as fast''.
 
 \begin{definition}
-	Given two paths $\gamma_1, \gamma_2 : [0,1] \to X$
+	Given two paths $\gamma_1, \gamma_2 \colon [0,1] \to X$
 	such that $\gamma_1(1) = \gamma_2(0)$, we define
-	a path $\gamma_1 \ast \gamma_2 : [0,1] \to X$ by
+	a path $\gamma_1 \ast \gamma_2 \colon [0,1] \to X$ by
 	\[
 		(\gamma_1 \ast \gamma_2)(t)
 		=
@@ -421,7 +421,7 @@ The answer lies in the following rephrasing:
 	as a continuous function $S^1 \to X$.
 \end{ques}
 It turns out we can define homotopy for things other than paths.
-Two functions $f, g : Y \to X$ are \vocab{homotopic} if there exists a continuous
+Two functions $f, g \colon Y \to X$ are \vocab{homotopic} if there exists a continuous
 function $Y \times [0,1] \to X$ which continuously deforms $f$ to $g$.
 So everything we did above was just the special case $Y = S^1$.
 
@@ -509,8 +509,8 @@ I bring this up because I want to define:
 	They are \vocab{homotopy equivalent} if there exist
 	functions $f \colon X \to Y$ and $g \colon Y \to X$ such that
 	\begin{enumerate}[(i)]
-		\ii $f \circ g : X \to X$ is homotopic to the identity map on $X$, and
-		\ii $g \circ f : Y \to Y$ is homotopic to the identity map on $Y$.
+		\ii $f \circ g \colon X \to X$ is homotopic to the identity map on $X$, and
+		\ii $g \circ f \colon Y \to Y$ is homotopic to the identity map on $Y$.
 	\end{enumerate}
 	If a topological space is homotopy equivalent to a point,
 	then it is said to be \vocab{contractible}.
@@ -637,7 +637,7 @@ This implies several things, like
 	In fact, you'll notice that the proofs
 	of \Cref{thm:functor_isom} and \Cref{thm:fundgrp_homotopy_invariant}
 	are secretly identical to each other.
-	\ii If maps $f, g : (X, x_0) \to (Y, y_0)$ are homotopic,
+	\ii If maps $f, g \colon (X, x_0) \to (Y, y_0)$ are homotopic,
 	then $f_\sharp = g_\sharp$. This is basically \Cref{lem:fsharp_homotopy_invariant}
 \end{itemize}
 

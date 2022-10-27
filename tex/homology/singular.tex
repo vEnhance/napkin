@@ -384,7 +384,7 @@ except without the basepoints.
 	In particular,
 	\begin{itemize}
 		\ii Given any map $f \colon X \to Y$, we get an induced map $f_\ast \colon H_n(X) \to H_n(Y)$.
-		\ii For two homotopic maps $f, g : X \to Y$, $f_\ast = g_\ast$.
+		\ii For two homotopic maps $f, g \colon X \to Y$, $f_\ast = g_\ast$.
 		\ii Two homotopic spaces $X$ and $Y$ have isomorphic homology groups:
 		if $f \colon X \to Y$ is a homotopy then $f_\ast \colon H_n(X) \to H_n(Y)$ is an isomorphism.
 		\ii (Insert your favorite result about functors here.)
@@ -392,7 +392,7 @@ except without the basepoints.
 \end{theorem}
 
 In order to do this, we have to describe how to take a map $f \colon X \to Y$
-and obtain a map $H_n(f) : H_n(X) \to H_n(Y)$.
+and obtain a map $H_n(f) \colon H_n(X) \to H_n(Y)$.
 Then we have to show that this map doesn't depend on the choice of homotopy.
 (This is the analog of the work we did with $f_\sharp$ before.)
 It turns out that this time around, proving this is much more tricky,
@@ -457,7 +457,7 @@ Similarly, every boundary in $A_n$ gets sent to a boundary in $B_n$. Thus,
 Next, we want to define what it means for two maps $f$ and $g$ to be homotopic.
 Here's the answer:
 \begin{definition}
-	Let $f, g : A_\bullet \to B_\bullet$.
+	Let $f, g \colon A_\bullet \to B_\bullet$.
 	Suppose that one can find a map $P_n \colon A_n \to B_{n+1}$ for every $n$ such that
 	\[ g_n - f_n = \partial_B \circ P_n + P_{n-1} \circ \partial_A \]
 	Then $P$ is a \vocab{chain homotopy} from $f$ to $g$
@@ -493,7 +493,7 @@ compositions along the sides.
 Now, the point of this definition is that
 \begin{proposition}[Chain homotopic maps induce the same map on homology groups]
 	Let $f, g: A_\bullet \to B_\bullet$ be chain homotopic maps $A_\bullet \to B_\bullet$.
-	Then the induced maps $f_\ast, g_\ast : H_n(A_\bullet) \to H_n(B_\bullet)$ coincide for each $n$.
+	Then the induced maps $f_\ast, g_\ast \colon H_n(A_\bullet) \to H_n(B_\bullet)$ coincide for each $n$.
 \end{proposition}
 \begin{proof}
 	It's equivalent to show $g-f$ gives the zero map on homology groups,
@@ -519,7 +519,7 @@ First:
 	check it if you like.)
 \end{proof}
 
-Now, what we need is to show that if $f , g : X \to Y$ are homotopic,
+Now, what we need is to show that if $f, g \colon X \to Y$ are homotopic,
 then they are chain homotopic.
 To produce a chain homotopy, we need to take every $n$-simplex $X$
 to an $(n+1)$-chain in $Y$, thus defining the map $P_n$.

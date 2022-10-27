@@ -118,7 +118,7 @@ this we use the norm of the vector space.
 \begin{example}[Total derivative of $f(x,y) = x^2+y^2$]
 	Let $V = \RR^2$ with standard basis $\ee_1$, $\ee_2$ and let $W = \RR$,
 	and let $f\left( x \ee_1 + y \ee_2 \right) = x^2+y^2$.  Let $p = a\ee_1 + b\ee_2$.
-	Then, we claim that \[ (Df)_p : \RR^2 \to \RR \quad\text{by}\quad
+	Then, we claim that \[ (Df)_p \colon \RR^2 \to \RR \quad\text{by}\quad
 	v \mapsto 2a \cdot \ee_1^\vee(v) + 2b \cdot \ee_2^\vee(v). \]
 \end{example}
 Here, the notation $\ee_1^\vee$ and $\ee_2^\vee$ makes sense,
@@ -155,7 +155,7 @@ Before proceeding I need to say something really important.
 	Let $U$ be an open subset of the vector space $V$.
 	Let $W$ be an $n$-dimensional real vector space with basis $w_1, \dots, w_n$.
 	Then there is a bijection between continuous functions $f \colon U \to W$ and
-	$n$-tuples of continuous $f_1, f_2, \dots, f_n : U \to \RR$
+	$n$-tuples of continuous $f_1, f_2, \dots, f_n \colon U \to \RR$
 	by projection onto the $i$th basis element, i.e.\
 	\[ f(v) = f_1(v)w_1 + \dots + f_n(v)w_n. \]
 \end{theorem}
@@ -173,14 +173,14 @@ That's why the dual space $V^\vee$ is so important.
 
 \section{Total and partial derivatives}
 \prototype{If $f(x,y) = x^2+y^2$, then
-$(Df) : (x,y) \mapsto 2x \cdot \ee_1^\vee + 2y \cdot \ee_2^\vee$, and
+$(Df) \colon (x,y) \mapsto 2x \cdot \ee_1^\vee + 2y \cdot \ee_2^\vee$, and
 $\fpartial fx = 2x$, $\fpartial fy = 2y$.}
 Let $U \subseteq V$ be open and let $V$ have a basis $e_1$, \dots, $e_n$.
 Suppose $f \colon U \to \RR$ is a function which is differentiable everywhere,
 meaning $(Df)_p \in V^\vee$ exists for every $p$.
 In that case, one can consider $Df$ as \emph{itself} a function:
 \begin{align*}
-	Df : U &\to V^\vee \\
+	Df \colon U &\to V^\vee \\
 	p &\mapsto (Df)_p.
 \end{align*}
 This is a little crazy: to every \emph{point} in $U$
@@ -244,9 +244,9 @@ That is to say,
 	\[ Df \colon (x,y) \mapsto 2x \cdot \ee_1^\vee + 2y \cdot \ee_2^\vee. \]
 	Thus the partials are
 	\[
-		\frac{\partial f}{\partial x} : (x,y) \mapsto 2x \in \RR
+		\frac{\partial f}{\partial x} \colon (x,y) \mapsto 2x \in \RR
 		\quad\text{and}\quad
-		\frac{\partial f}{\partial y} : (x,y) \mapsto 2y \in \RR
+		\frac{\partial f}{\partial y} \colon (x,y) \mapsto 2y \in \RR
 	\]
 \end{example}
 
@@ -313,7 +313,7 @@ it turns out that one can define an operator norm on it by setting
 \[ \norm{T} \defeq \sup \left\{ \frac{\norm{T(v)}_W}{\norm{v}_V} \mid v \neq 0_V \right\}. \]
 So $\Hom(V,W)$ can be thought of as a normed vector space as well.
 Thus it makes sense to write
-\[ D(Df) : U \to \Hom(V,\Hom(V,W)) \]
+\[ D(Df) \colon U \to \Hom(V,\Hom(V,W)) \]
 which we abbreviate as $D^2 f$. Dropping all doubt and plunging on,
 \[ D^3f \colon U \to \Hom(V, \Hom(V,\Hom(V,W))). \]
 I'm sorry.
