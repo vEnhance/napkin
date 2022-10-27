@@ -241,7 +241,7 @@ That is to say,
 \begin{example}[Partial derivatives of $f(x,y) = x^2+y^2$]
 	Let $f \colon \RR^2 \to \RR$ by $(x,y) \mapsto x^2+y^2$.
 	Then in our new language,
-	\[ Df : (x,y) \mapsto 2x \cdot \ee_1^\vee + 2y \cdot \ee_2^\vee. \]
+	\[ Df \colon (x,y) \mapsto 2x \cdot \ee_1^\vee + 2y \cdot \ee_2^\vee. \]
 	Thus the partials are
 	\[
 		\frac{\partial f}{\partial x} : (x,y) \mapsto 2x \in \RR
@@ -315,11 +315,11 @@ So $\Hom(V,W)$ can be thought of as a normed vector space as well.
 Thus it makes sense to write
 \[ D(Df) : U \to \Hom(V,\Hom(V,W)) \]
 which we abbreviate as $D^2 f$. Dropping all doubt and plunging on,
-\[ D^3f : U \to \Hom(V, \Hom(V,\Hom(V,W))). \]
+\[ D^3f \colon U \to \Hom(V, \Hom(V,\Hom(V,W))). \]
 I'm sorry.
 As consolation, we at least know that $\Hom(V,W) \cong V^\vee \otimes W$ in a natural way,
 so we can at least condense this to
-\[ D^kf : V \to (V^\vee)^{\otimes k} \otimes W \]
+\[ D^kf \colon V \to (V^\vee)^{\otimes k} \otimes W \]
 rather than writing a bunch of $\Hom$'s.
 \begin{remark}
 	If $k=2$, $W = \RR$, then $D^2f(v) \in (V^\vee)^{\otimes 2}$,

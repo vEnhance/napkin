@@ -5,7 +5,7 @@ the homology groups of any CW complex we like.
 \section{Degrees}
 \prototype{$z \mapsto z^d$ has degree $d$.}
 For any $n > 0$ and map $f \colon S^n \to S^n$, consider
-\[ f_\ast : \underbrace{H_n(S^n)}_{\cong \ZZ} \to \underbrace{H_n(S^n)}_{\cong \ZZ} \]
+\[ f_\ast \colon \underbrace{H_n(S^n)}_{\cong \ZZ} \to \underbrace{H_n(S^n)}_{\cong \ZZ} \]
 which must be multiplication by some constant $d$.
 This $d$ is called the \vocab{degree} of $f$, denoted $\deg f$.
 \begin{ques}
@@ -252,14 +252,14 @@ In fact, one can describe explicitly what the maps $d_n$ are.
 Recalling that $H_k(X^k, X^{k-1})$ has a basis the $k$-cells of $X$, we obtain:
 \begin{theorem}
 	[Cellular boundary formula for $k=1$]
-	For $k=1$, \[ d_1 : \Cells_1(X) \to \Cells_0(X) \] is just the boundary map.
+	For $k=1$, \[ d_1 \colon \Cells_1(X) \to \Cells_0(X) \] is just the boundary map.
 \end{theorem}
 \begin{theorem}
 	[Cellular boundary for $k > 1$]
 	Let $k > 1$ be a positive integer.
 	Let $e^k$ be an $k$-cell, and let $\{e_\beta^{k-1}\}_\beta$
 	denote all $(k-1)$-cells of $X$.
-	Then \[ d_k : \Cells_k(X) \to \Cells_{k-1}(X) \]
+	Then \[ d_k \colon \Cells_k(X) \to \Cells_{k-1}(X) \]
 	is given on basis elements by
 	\[ d_k(e^k) = \sum_\beta d_\beta e_\beta^{k-1} \]
 	where $d_\beta$ is be the degree of the composed map
