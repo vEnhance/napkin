@@ -44,7 +44,7 @@ So, by analogy, we want a $1$-form to let us integrate
 over $1$-dimensional cells: i.e.\ over curves.
 What information would we need to do that?
 To answer this, let's draw a picture of a curve $c$,
-which can be thought of as a function $c : [0,1] \to U$.
+which can be thought of as a function $c \colon [0,1] \to U$.
 \begin{center}
 	\begin{asy}
 		bigblob("$U$");
@@ -275,6 +275,7 @@ and $de_I$ represents $e_{i_1}^\vee \wedge \dots \wedge e_{i_k}^\vee$.
 Now that we have an element $\Lambda^k(V^\vee)$, what can it do?
 Well, first let me get the definition on the table, then tell you what it's doing.
 \begin{definition}
+	[How to evaluate a differential form at a point]
 	For linear functions $\xi_1, \dots, \xi_k \in V^\vee$
 	and vectors $v_1, \dots, v_k \in V$, set
 	\[
@@ -352,8 +353,8 @@ pictures of at the beginning of the section.
 It turns out that the exterior derivative is easy to compute
 given explicit coordinates to work with.
 
-First, given a function $f : U \to \RR$,
-we define
+Firstly, we define the exterior derivative
+of a function $f \colon U \to \RR$, as
 \[ df \defeq Df = \sum_i \frac{\partial f}{\partial e_i} e_i^\vee \]
 In particular, suppose $V = \RR^n$ and $f(x_1, \dots, x_n) = x_1$
 (i.e.\ $f = \ee_1^\vee$). Then:
@@ -380,12 +381,15 @@ In particular, suppose $V = \RR^n$ and $f(x_1, \dots, x_n) = x_1$
 	and so by (more) abuse of notation we write $df/dx = 2x$.
 \end{remark}
 
-More generally, we can define the \vocab{exterior derivative}
+More generally, we can define the exterior derivative
 in terms of our basis $e_1$, \dots, $e_n$ as follows:
-if $\alpha = \sum_I f_I de_I$ then we set
+\begin{definition}
+If $\alpha = \sum_I f_I de_I$ then we define the \vocab{exterior derivative} as
 \[ d\alpha \defeq \sum_I df_I \wedge de_I
 	= \sum_I \sum_j \fpartial{f_I}{e_j} de_j \wedge de_I. \]
+\end{definition}
 This doesn't depend on the choice of basis.
+(We'll mention a basis-free definition at the end of this section.)
 
 \begin{example}[Computing some exterior derivatives]
 	Let $V = \RR^3$ with standard basis $\ee_1$, $\ee_2$, $\ee_3$.
@@ -428,7 +432,7 @@ Here are some other properties of $d$:
 In fact, one can show that $df$ as defined above is
 the \emph{unique} map sending $k$-forms to $(k+1)$-forms
 with these properties.
-So, one way to define $df$ is to take as axioms
+So, one way to \emph{define} $df$ is to take as axioms
 the bulleted properties above
 and then declare $d$ to be the unique solution to this functional equation.
 In any case, this tells us that our definition of $d$
