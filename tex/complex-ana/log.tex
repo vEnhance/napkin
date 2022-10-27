@@ -5,10 +5,10 @@ The main results are \Cref{thm:nth_root}, \Cref{thm:holomorphic_log},
 \Cref{cor:nonvanishing}, and \Cref{cor:principal}.
 If you like, you can read just these four results, and skip the discussion of how they came to be.
 
-Let $f : U \to \CC$ be a holomorphic function.
-A \vocab{holomorphic $n$th root} of $f$ is a function $g : U \to \CC$
+Let $f \colon U \to \CC$ be a holomorphic function.
+A \vocab{holomorphic $n$th root} of $f$ is a function $g \colon U \to \CC$
 such that $f(z) = g(z)^n$ for all $z \in U$.
-A \vocab{logarithm} of $f$ is a function $g : U \to \CC$
+A \vocab{logarithm} of $f$ is a function $g \colon U \to \CC$
 such that $f(z) = e^{g(z)}$ for all $z \in U$.
 The main question we'll try to figure out is: when do these exist?
 In particular, what if $f = \id$?
@@ -155,13 +155,13 @@ So, what exactly is going on?
 
 \section{Square roots of holomorphic functions}
 To get a picture of what's happening, we would like to consider a more
-general problem: let $f: U \to \CC$ be holomorphic.
-Then we want to decide whether there is a $g : U \to \CC$
+general problem: let $f \colon U \to \CC$ be holomorphic.
+Then we want to decide whether there is a $g  \colon U \to \CC$
 such that \[ f(z) = g(z)^2. \]
 Our previous discussion with $f = \id$
 tells us we cannot hope to achieve this for $U = \CC$;
 there is a ``half-ray'' which causes problems.
-However, there are certainly functions $f : \CC \to \CC$ such that a $g$ exists.
+However, there are certainly functions $f \colon \CC \to \CC$ such that a $g$ exists.
 As a simplest example, $f(z) = z^2$ should definitely have a square root!
 
 Now let's see if we can fudge together a square root.
@@ -231,11 +231,11 @@ this should all seem quite familiar.
 The ``fudging'' procedure exactly describes the idea of a lifting.
 
 More precisely, recall that there is a covering projection
-\[ (-)^2 : \CC \setminus \{0\}
+\[ (-)^2 \colon \CC \setminus \{0\}
 	\to \CC \setminus \{0\}. \]
 Let $V = \left\{ z \in U \mid f(z) \neq 0 \right\}$.
 For $z \in U \setminus V$, we already have the square root $g(z) = \sqrt{f(z)} = \sqrt 0 = 0$.
-So the burden is completing $g : V \to \CC$.
+So the burden is completing $g \colon V \to \CC$.
 
 Then essentially, what we are trying to do is construct a lifting $g$ in the diagram
 \begin{center}
@@ -266,7 +266,7 @@ Replacing $2$ with $n$ and carrying over the discussion gives the first main res
 \begin{theorem}
 	[Existence of holomorphic $n$th roots]
 	\label{thm:nth_root}
-	Let $f : U \to \CC$ be holomorphic.
+	Let $f \colon U \to \CC$ be holomorphic.
 	Then $f$ has a holomorphic $n$th root if and only if
 	\[ \frac{1}{2\pi i}\oint_\gamma \frac{f'}{f} \; dz \in n\ZZ \]
 	for every contour $\gamma$ in $U$.
@@ -290,7 +290,7 @@ There is no longer a need to work with a separate $V$ since:
 \begin{ques}
 	Show that if $f$ has any zeros then $g$ can't possibly exist.
 \end{ques}
-In fact, the map $\exp : \CC \to \CC\setminus\{0\}$ is a universal cover,
+In fact, the map $\exp \colon \CC \to \CC\setminus\{0\}$ is a universal cover,
 since $\CC$ is simply connected.
 Thus, $p\im(\pi_1(\CC))$ is \emph{trivial}.
 So in addition to being zero-free, $f$ cannot have any winding number around $0 \in B$ at all.
@@ -298,7 +298,7 @@ In other words:
 \begin{theorem}
 	[Existence of logarithms]
 	\label{thm:holomorphic_log}
-	Let $f : U \to \CC$ be holomorphic.
+	Let $f \colon U \to \CC$ be holomorphic.
 	Then $f$ has a logarithm if and only if
 	\[ \frac{1}{2\pi i}\oint_\gamma \frac{f'}{f} \; dz  = 0 \]
 	for every contour $\gamma$ in $U$.
@@ -309,13 +309,13 @@ The most common special case is
 \begin{corollary}
 	[Nonvanishing functions from simply connected domains]
 	\label{cor:nonvanishing}
-	Let $f : \Omega \to \CC$ be continuous, where $\Omega$ is simply connected.
+	Let $f \colon \Omega \to \CC$ be continuous, where $\Omega$ is simply connected.
 	If $f(z) \neq 0$ for every $z \in \Omega$,
 	then $f$ has both a logarithm and holomorphic $n$th root.
 \end{corollary}
 
 Finally, let's return to the question of $f = \id$ from the very beginning.
-What's the best domain $U$ such that \[ \sqrt{-} : U \to \CC \]
+What's the best domain $U$ such that \[ \sqrt{-} \colon U \to \CC \]
 is well-defined?  Clearly $U = \CC$ cannot be made to work,
 but we can do almost as well.
 For note that the only zero of $f = \id$ is at the origin.
@@ -342,7 +342,7 @@ So this is what is meant by a ``branch'' of a logarithm.
 
 The \vocab{principal branch} is the ``canonical'' branch, analogous
 to the way we arbitrarily pick the positive branch
-to define $\sqrt{-} : \RR_{\ge 0} \to \RR_{\ge 0}$.
+to define $\sqrt{-} \colon \RR_{\ge 0} \to \RR_{\ge 0}$.
 For $\log$, we take the $w$ such that $e^w = z$
 and the imaginary part of $w$ lies in $(-\pi, \pi]$ % chktex 9
 (since we can shift by integer multiples of $2\pi i$).
@@ -351,13 +351,13 @@ Often, authors will write $\opname{Log} z$ to emphasize this choice.
 
 \section\problemhead
 \begin{problem}
-	Show that a holomorphic function $f : U \to \CC$
+	Show that a holomorphic function $f \colon U \to \CC$
 	has a holomorphic logarithm if and only if it
 	has a holomorphic $n$th root for every integer $n$.
 \end{problem}
 
 \begin{problem}
-	Show that the function $f : U \to \CC$
+	Show that the function $f \colon U \to \CC$
 	by $z \mapsto z(z-1)$ has a holomorphic square root,
 	where $U$ is the entire complex plane minus the closed interval $[0,1]$.
 \end{problem}

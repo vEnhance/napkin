@@ -32,7 +32,7 @@ We want to choose $\Po \in M$ such that $(\aleph_2)^M$ many real numbers appear,
 and then worry about cardinal collapse later.
 
 Recall the earlier situation where we set $\Po$ to be the infinite complete binary tree; its nodes can be thought of as partial functions $n \to 2$ where $n < \omega$.
-Then $G$ itself is a path down this tree; i.e.\ it can be encoded as a total function $G : \omega \to 2$,
+Then $G$ itself is a path down this tree; i.e.\ it can be encoded as a total function $G \colon \omega \to 2$,
 and corresponds to a real number.
 
 \begin{center}
@@ -74,7 +74,7 @@ but with $\omega_2$ many real numbers instead of just one.
 In light of this, consider in $M$ the poset
 \[
 	\Po = \opname{Add} \left( \omega_2, \omega \right)
-	\defeq \left( \left\{ p : \omega_2 \times \omega \to 2,
+	\defeq \left( \left\{ p \colon \omega_2 \times \omega \to 2,
 		\dom(p) \text{ is finite} \right\},
 	\supseteq \right).
 \]
@@ -181,10 +181,10 @@ We isolate a useful lemma:
 \begin{lemma}[Possible values argument]
 	Suppose $M$ is a transitive model of $\ZFC$ and $\Po$ is a partial order
 	such that $\Po$ has the $\kappa$-chain condition in $M$.
-	Let $X,Y \in M$ and let $f: X \to Y$
+	Let $X,Y \in M$ and let $f \colon X \to Y$
 	be some function in $M[G]$, but $f \notin M$.
 
-	Then there exists a function $F \in M$, with $F: X \to \PP(Y)$ and such that
+	Then there exists a function $F \in M$, with $F \colon X \to \PP(Y)$ and such that
 	for any $x \in X$,
 	\[ f(x) \in F(x) \quad\text{and}\quad \left\lvert F(x) \right\rvert^M < \kappa. \]
 \end{lemma}
@@ -227,7 +227,7 @@ It turns out that to verify this, one can check a weaker result.
 Intuition:
 In a model $M$, it's possible that two ordinals which are in bijection in $V$ are no longer in bijection in $M$.
 Similarly, it might be the case that some cardinal $\kappa \in M$ is regular,
-but stops being regular in $V$ because some function $f : \ol\kappa \to \kappa$ is cofinal but happened to only exist in $V$.
+but stops being regular in $V$ because some function $f \colon \ol\kappa \to \kappa$ is cofinal but happened to only exist in $V$.
 In still other words, ``$\kappa$ is a regular cardinal '' turns out to be a $\Pi_1$ statement too.
 
 Fortunately, each implies the other.
@@ -297,13 +297,13 @@ This is purely combinatorial, and so we work briefly.
 \end{lemma}
 \begin{proof}
 	Assume not. Let
-	\[ \left\{ p_\alpha : \alpha < \omega_1 \right\} \]
+	\[ \left\{ p_\alpha \colon \alpha < \omega_1 \right\} \]
 	be a strong antichain.  Let
-	\[ C = \left\{ \dom(p_\alpha) : \alpha < \omega_1 \right\}. \]
+	\[ C = \left\{ \dom(p_\alpha) \colon \alpha < \omega_1 \right\}. \]
 	Let $\ol C \subseteq C$ be such that $\ol C$ is uncountable, and $\ol C$ is a $\Delta$-system with root $R$.
 	Then let
-	\[ B = \left\{ p_\alpha : \dom(p_\alpha) \in R \right\}. \]
-	Each $p_\alpha \in B$ is a function $p_\alpha : R \to \{0,1\}$,
+	\[ B = \left\{ p_\alpha \colon \dom(p_\alpha) \in R \right\}. \]
+	Each $p_\alpha \in B$ is a function $p_\alpha \colon R \to \{0,1\}$,
 	so there are two that are the same.
 \end{proof}
 
@@ -317,7 +317,7 @@ Thus, we have proven that the Continuum Hypothesis cannot be proven in $\ZFC$.
 	Show that $\Po$ preserves regularity greater than or equal to $\kappa$.
 	\begin{hint}
 		Assume not, and take $\lambda > \kappa$ regular in $M$;
-		if $f : \ol \lambda \to \lambda$,
+		if $f \colon \ol \lambda \to \lambda$,
 		use the Possible Values Argument on $f$ to generate a function in $M$
 		that breaks cofinality of $\lambda$.
 	\end{hint}
@@ -326,7 +326,7 @@ Thus, we have proven that the Continuum Hypothesis cannot be proven in $\ZFC$.
 		Consider $\lambda > \kappa$ which is regular in $M$,
 		and suppose for contradiction that $\lambda$ is not regular in $M[G]$.
 		That's the same as saying that there is a function $f \in M[G]$,
-		$f : \ol \lambda \to \lambda$ cofinal, with $\ol \lambda < \lambda$.
+		$f \colon \ol \lambda \to \lambda$ cofinal, with $\ol \lambda < \lambda$.
 		Then by the Possible Values Argument,
 		there exists a function $F \in M$ from $\ol \lambda \to \PP(\lambda)$
 		such that $f(\alpha) \in F(\alpha)$ and $\left\lvert F(\alpha) \right\rvert^M < \kappa$

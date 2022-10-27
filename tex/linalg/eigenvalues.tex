@@ -244,7 +244,7 @@ which is an eigenvector with eigenvalue $\lambda_i$.
 
 \begin{example}
 	[A concrete example of Jordan form]
-	Let $T : k^6 \to k^6$ and suppose $T$ is given by the matrix
+	Let $T \colon k^6 \to k^6$ and suppose $T$ is given by the matrix
 	\[
 		T = \begin{bmatrix}
 			5 & 0 & 0 & 0 & 0 & 0 \\
@@ -288,7 +288,7 @@ which is an eigenvector with eigenvalue $\lambda_i$.
 \section{Nilpotent maps}
 Bear with me for a moment.  First, define:
 \begin{definition}
-	A map $T: V \to V$ is \vocab{nilpotent} if $T^m$ is the zero map for some integer $m$.
+	A map $T \colon V \to V$ is \vocab{nilpotent} if $T^m$ is the zero map for some integer $m$.
 	(Here $T^m$ means ``$T$ applied $m$ times''.)
 \end{definition}
 What's an example of a nilpotent map?
@@ -426,7 +426,7 @@ Consider a decomposition as above,
 so that $T \colon V_1 \to V_1$ is an indecomposable map.
 Then $T$ has an eigenvalue $\lambda_1$, so let $S = T - \lambda_1 \id$; hence $\ker S \neq \{0\}$.
 \begin{ques}
-	Show that $V_1$ is also $S$-invariant, so we can consider $S : V_1 \to V_1$.
+	Show that $V_1$ is also $S$-invariant, so we can consider $S \colon V_1 \to V_1$.
 \end{ques}
 By \Cref{prob:endomorphism_eventual_lemma}, we have
 \[ V_1 = \ker S^N \oplus \img S^N \]

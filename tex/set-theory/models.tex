@@ -350,7 +350,7 @@ true for any nonempty transitive set $M$.
 		\ii $M \vDash \Union$ if $x \in M \implies \cup x \in M$.
 		\ii $M \vDash \PowerSet$ if $x \in M \implies \PP(x) \cap M \in M$.
 		\ii $M \vDash \Replacement$ if for every $x \in M$
-		and every function $F : x \to M$
+		and every function $F \colon x \to M$
 		which is $M$-definable with parameters,
 		we have $F``x \in M$ as well.
 		\ii $M \vDash \Infinity$ as long as $\omega \in M$.
@@ -531,7 +531,7 @@ The reason this works I actually pointed out earlier:
 Recall that a set $x$ is countable if
 \emph{there exists} an injective map $x \injto \omega$.
 The first statement just says that \emph{in the universe $V$},
-there is a injective map $F: M \injto \omega$.
+there is a injective map $F \colon M \injto \omega$.
 In particular, for any $x \in M$ (hence $x \subseteq M$, since $M$ is transitive),
 $x$ is countable \emph{in $V$}.
 This is the content of the first statement.
@@ -541,9 +541,9 @@ More to the point, the fact that $\ZFC$ tells us there are uncountable sets mean
 \[ M \vDash \text{$\exists x$ uncountable}. \]
 In other words,
 \[ M \vDash \exists x \forall f
-	\text{ If $f : x \to \omega$ then $f$ isn't injective}. \]
+	\text{ If $f \colon x \to \omega$ then $f$ isn't injective}. \]
 The key point is the $\forall f$ searches only functions in our tiny model $M$.
-It is true that in the ``real world'' $V$, there are injective functions $f : x \to \omega$.
+It is true that in the ``real world'' $V$, there are injective functions $f \colon x \to \omega$.
 But $M$ has no idea they exist!
 It is a brain in a vat: $M$ is oblivious to any information outside it.
 
@@ -667,7 +667,7 @@ the uncountable $\aleph_1^M$ is really just an ordinary countable cardinal.
 		Then, take the supremum over the countably many sentences for each $\alpha$.
 	\end{hint}
 	\begin{sol}
-		For a sentence $\phi$ let \[ f_\phi : \kappa \to \kappa \]
+		For a sentence $\phi$ let \[ f_\phi \colon \kappa \to \kappa \]
 		send $\alpha$ to the least $\beta < \kappa$ such that for all $\vec b \in V_\alpha$, if there exists $a \in V_\kappa$ such that $V_\kappa \vDash \phi[a, \vec b]$ then $\exists a \in V_\beta$ such that $V_\kappa \vDash \phi[a, \vec b]$.
 
 		We claim this is well-defined.
@@ -679,7 +679,7 @@ the uncountable $\aleph_1^M$ is really just an ordinary countable cardinal.
 		And that's impossible since $\kappa$ is regular!
 
 		In other words, what we've done is fix $\phi$ and then use Tarski-Vaught on all the $\vec b \in V_\alpha^n$.
-		Now let $g : \kappa \to \kappa$ be defined by
+		Now let $g \colon \kappa \to \kappa$ be defined by
 		\[ \alpha \mapsto \sup f_\phi(\alpha). \]
 		Since $\kappa$ is regular and there are only countably many formulas, $g(\alpha)$ is well-defined.
 
