@@ -327,3 +327,86 @@ But really, it's nothing special.
 	Prove that there exists a maximal set $Y \in \mathcal F$
 	(i.e.\ $Y$ not contained in any other set of $\mathcal F$).
 \end{problem}
+
+\begin{problem}
+	Suppose $f \colon (0,\infty) \to \RR$ satisfies
+	$f(1)=1$, $f(\pi) = \frac{22}{7}$, and
+	\[ f(x+y) = f(x) + f(y) \]
+	for all $x,y > 0$.
+	Given that $\pi \approx 3.14159265358979$,
+	find, with proof and without a calculator,
+	an example of a real number $r$ such that $0 < r < 1$ and $f(r) > 9000$.
+	\begin{hint}
+		Let $\eps = \pi - 3.141592653 < 10^{-9}$. Find $f(\eps)$.
+	\end{hint}
+	\begin{sol}
+		Let $\eps = \pi - 3.141592653 < 10^{-9}$.
+		Then
+		\[ \frac{22}{7} = f(\pi) = f(3.141592653) + f(\eps) = 3.141592653 + f(\eps). \]
+		Therefore,
+		\[ f(\eps) = \frac{22}{7} - 3.141592653
+			= \frac{22 - 21.991148571}{7} > \frac{0.008}{7} > 10^{-3}. \]
+		So
+		\[ f(10^8 \eps) = 10^8 f(\eps) > 10^5 > 9000 \]
+		and $10^8 \eps < 1$, as needed.
+	\end{sol}
+\end{problem}
+
+\begin{problem}
+	Suppose $f \colon (0,\infty) \to \RR$ satisfies
+	\[ f(x+y) = f(x) + f(y) \]
+	for all $x,y > 0$.
+	Label each of the following statements as true or false.
+	\begin{enumerate}
+		\ii The function $f$ can be extended to $f \colon \RR \to \RR$
+		while still satisfying Cauchy's functional equation.
+		\ii If $f$ is extended as in the previous statement, then $f$ must be odd.
+		\ii If $f(x) \ge 0$ for all $x > 0$, then $f$ is linear.
+		\ii If $f$ is strictly increasing, then $f$ is linear.
+		\ii The function $f$ is not a bijection.
+		\ii It's possible for $f$ to be injective but not linear.
+		\ii It's possible for $f$ to be surjective.
+		\ii It's possible for $f$ to only take rational values.
+		\ii It's possible for $f$ to only take irrational values.
+	\end{enumerate}
+	\begin{sol}
+	Every statement is true.
+
+	The first statement follows by simply extending $f$ via
+	\[
+		x \mapsto
+		\begin{cases}
+			f(x) & x > 0 \\
+			0 & x = 0 \\
+			-f(-x) & x < 0.
+		\end{cases}
+	\]
+	The second statement is true for any additive function $\RR \to \RR$.
+	Indeed, $f(0) = f(0)+f(0) \implies f(0)=0$, and odd follows.
+
+	The third and fourth statement follow from
+	\url{https://en.wikipedia.org/wiki/Cauchy\%27s_functional_equation#Properties_of_nonlinear_solutions_over_the_real_numbers}.
+
+	The fifth statement is kind of stupid.
+	If $f$ was surjective, there should exist $a > 0$ such that $f(a) = 0$.
+	But then $f(2a) = f(a)+f(a) = 0$, so $f$ is not injective.
+
+	For the rest, fix a Hamel basis
+	\[ E = \{e_\alpha \mid \alpha \in S \coloneqq \{ 0,1,2,\dots\} \dots \}. \]
+	Here $S$ is an uncountable set of ordinals.
+	WLOG, $e_0 = 1$ and $e_\alpha > 0$ for all $\alpha \in S$.
+	Then $f$ is uniquely determined by the value of $f(e_\alpha)$ for each $\alpha \in S$.
+	\begin{itemize}
+		\ii For the sixth statement, let $f(e_0) = e_1$, $f(e_1) = e_0$,
+		and $f(e_\alpha) = e_\alpha$ for all other $\alpha \ge 2$.
+		\ii The seventh statement is the most complicated.
+		Since $S$ is infinite, it's possible to construct a $2$-to-$1$ map
+		$\psi \colon S \to S$, meaning every element of the codomain
+		is the image of exactly two elements in the domain.
+		Then if $\psi(\alpha) = \psi(\beta) = \gamma$ for $\alpha \neq \beta$,
+		set $f(e_\alpha) = e_\gamma$, $f(e_\beta) = -e_\gamma$.
+		\ii For the eighth statement, let $f(e_\alpha) = 1$ for every $\alpha \in S$.
+		\ii For the ninth statement, let $f(e_\alpha) = \sqrt 2$ for every $\alpha \in S$.
+	\end{itemize}
+	\end{sol}
+\end{problem}
