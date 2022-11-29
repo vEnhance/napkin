@@ -634,6 +634,18 @@ The next two chapters will give us a better definition.
 \end{problem}
 
 \begin{problem}
+	Suppose $T \colon \CC^{\oplus 2} \to \CC^{\oplus 2}$
+	is a linear map of $\CC$-vector spaces such that $T^{2011} = \id$.
+	Must $T$ be diagonalizable?
+	\begin{sol}
+		No, if $\zeta$ is a primitive $2011$th root of unity then
+		$T = \begin{bmatrix} \zeta & 1 \\ 0 & \zeta \end{bmatrix}$
+		is not diagonalizable (as $T - \zeta \id$ is a nonzero nilpotent)
+		but $T^{2011} = \id$ holds.
+	\end{sol}
+\end{problem}
+
+\begin{problem}
 	[Writing a polynomial backwards]
 	Define the complex vector space $V$
 	of polynomials with degree at most $2$,
@@ -649,7 +661,8 @@ The next two chapters will give us a better definition.
 
 \begin{problem}
 	[Differentiation of polynomials]
-	Let $V = \RR[x]$ be the real vector space of all real polynomials.
+	Let $V = \RR[x]$ be the infinite-dimensional real vector space of
+	all polynomials with real coefficients.
 	Note that $\frac{d}{dx} \colon V \to V$ is a linear map
 	(for example it sends $x^3$ to $3x^2$).
 	Which real numbers are eigenvalues of this map?
@@ -669,7 +682,7 @@ The next two chapters will give us a better definition.
 
 \begin{problem}
 	[Differentiation of functions]
-	Let $V$ be the real vector space of all
+	Let $V$ be the infinite-dimensional real vector space of all
 	infinitely differentiable functions $\RR \to \RR$.
 	Note that $\frac{d}{dx} \colon V \to V$ is a linear map
 	(for example it sends $\cos x$ to $-\sin x$).
