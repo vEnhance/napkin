@@ -244,37 +244,37 @@ consists of rational numbers with no pole at $3$.
 The stalk at the generic point is $\ZZ_{(0)} \cong \Frac \ZZ = \QQ$.
 
 %%fakechapter 0D from 1D
-\section{$\Spec k[x] / (x^2-x)$, two points}
+\section{$\Spec k[x] / (x^2-7x+12)$, two points}
 If we were working with affine varieties,
 you would already know what the answer is:
-$x^2-x = 0$ has solutions $x=0$ and $x=1$,
+$x^2-7x+12 = 0$ has solutions $x=3$ and $x=4$,
 so this should be a scheme with two points.
 
 To see this come true, we use \Cref{prop:prime_quotient}:
-the points of $\Spec k[x]/(x^2-x)$
-should correspond to prime ideals of $k[x]$ containing $(x^2-x)$.
-As $k[x]$ is a PID, there are only two, $(x-1)$ and $(x)$.
+the points of $\Spec k[x]/(x^2-7x+12)$
+should correspond to prime ideals of $k[x]$ containing $(x^2-7x+12)$.
+As $k[x]$ is a PID, there are only two, $(x-3)$ and $(x-4)$.
 They are each maximal,
 since their quotient with $k[x]$ is a field (namely $k$),
-so as promised $\Spec k[x] / (x^2-x)$ has just two closed points.
+so as promised $\Spec k[x] / (x^2-7x+12)$ has just two closed points.
 
 Each point has a stalk above it isomorphic to $k$.
 A section on the whole space $X$ is just a choice
-of two values, one at $(x)$ and one at $(x-1)$.
+of two values, one at $(x-3)$ and one at $(x-4)$.
 \begin{center}
 \begin{asy}
 	size(3cm);
 	draw("$k$", (-2,0)--(-2,5), dir(180), heavygreen);
 	draw("$k$", (2,0)--(2,5), heavygreen);
-	dot("$(x)$", (-2,0), dir(-90), blue);
-	dot("$(x-1)$", (2,0), dir(-90), blue);
-	label("$\operatorname{Spec} k[x]/(x^2-x)$", (0,5), 2*dir(90));
+	dot("$(x-3)$", (-2,0), dir(-90), blue);
+	dot("$(x-4)$", (2,0), dir(-90), blue);
+	label("$\operatorname{Spec} k[x]/(x^2-7x+12)$", (0,5), 2*dir(90));
 \end{asy}
 \end{center}
 So actually, this is a geometric way of thinking about the
 ring-theoretic fact that
-\[ k[x] / \left( x^2-x \right) \cong k \times k
-	\quad\text{by } f \mapsto \left( f(0), f(1) \right).  \]
+\[ k[x] / \left( x^2-7x+12 \right) \cong k \times k
+	\quad\text{by } f \mapsto \left( f(3), f(4) \right).  \]
 
 Also, this is the first example of a reducible space in this chapter:
 in fact $X$ is even disconnected.
@@ -311,9 +311,9 @@ Thus the set of \emph{values} is still just $k$
 but the stalk, having ``enriched'' values,
 can tell the difference.
 
-\section{$\Spec k[x]/(x^3-x^2)$, a double point and a single point}
+\section{$\Spec k[x]/(x^3-5x^2)$, a double point and a single point}
 There is no problem putting the previous two examples side by side:
-the scheme $X = \Spec k[x] / (x^3-x^2)$
+the scheme $X = \Spec k[x] / (x^3-5x^2)$
 consists of a double point next to a single point.
 Note that the stalks are different:
 the one above the double point is larger.
@@ -323,13 +323,13 @@ the one above the double point is larger.
 	draw("$k[x] / (x^2)$", (-2,0)--(-2,7), dir(180), heavygreen);
 	draw("$k$", (2,0)--(2,5), heavygreen);
 	dot("$(x)$", (-2,0), dir(-90), blue+5);
-	dot("$(x-1)$", (2,0), dir(-90), blue);
-	label("$\operatorname{Spec} k[x]/(x^3-x^2)$", (0,7), 2*dir(90));
+	dot("$(x-5)$", (2,0), dir(-90), blue);
+	label("$\operatorname{Spec} k[x]/(x^3-5x^2)$", (0,7), 2*dir(90));
 \end{asy}
 \end{center}
 This time, we implicitly have the ring isomorphism
-\[ k[x] / (x^3-x^2) \cong k[x] / (x^2) \times k \]
-by $f \mapsto \left( f(0) + f'(0) x, f(1) \right)$.
+\[ k[x] / (x^3-5x^2) \cong k[x] / (x^2) \times k \]
+by $f \mapsto \left( f(0) + f'(0) x, f(5) \right)$.
 The derivative is meant formally here!
 
 \section{$\Spec \Zc{60}$, a scheme with three points}
@@ -836,7 +836,6 @@ More generally:
 \end{exercise}
 So when we zoom in like this, all the stalks stay the same,
 even above the non-closed points.
-
 
 \section{$\Spec k[x,y]_{(x,y)}$, zooming in to the origin of the plane}
 The situation is more surprising if we pluck the stalk
