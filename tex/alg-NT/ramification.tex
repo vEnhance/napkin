@@ -330,33 +330,38 @@ Picture:
 		& G
 \end{tikzcd}
 \end{center}
-Something curious happens:
-\begin{itemize}
-	\ii When $(p)$ is lifted into $K^D$ it splits completely into $g$ unramified primes.
-	Each of these has inertial degree $1$.
-	\ii When the primes in $K^D$ are lifted to $K^I$, they remain inert, and now have
-	inertial degree $f$.
-	\ii When then lifted to $K$, they ramify with exponent $e$ (but don't split at all).
-\end{itemize}
-Picture:
-In other words, the process of going from $1$ to $efg$
-can be very nicely broken into the three steps above.
-To draw this in the picture, we get
-\begin{center}
-\begin{tikzcd}
-	(p) \ar[r]
-		& \kp_1 \dots \kp_g \ar[r]
-		& \kp_1 \dots \kp_g \ar[r]
-		& (\kp_1 \dots \kp_g)^e \\
-	\{f_i\}: & 1,\dots,1 & f,\dots,f & f,\dots,f \\
-	\QQ \ar[r, dash, "\text{Split}"]
-		& K^D \ar[r, dash, "\text{Inert}"]
-		& K^I \ar[r, dash, "\text{Ramify}"]
-		& K
-\end{tikzcd}
-\end{center}
-In any case, in the ``typical'' case that there is no ramification,
-we just have $K^I = K$.
+
+\textbf{TODO}:
+the rest of this section is broken and commented out, needs fix
+(actually I'm not sure what the correct statement is, for that matter).
+
+%Something curious happens:
+%\begin{itemize}
+%	\ii When $(p)$ is lifted into $K^D$ it splits completely into $g$ unramified primes.
+%	Each of these has inertial degree $1$.
+%	\ii When the primes in $K^D$ are lifted to $K^I$, they remain inert, and now have
+%	inertial degree $f$.
+%	\ii When then lifted to $K$, they ramify with exponent $e$ (but don't split at all).
+%\end{itemize}
+%Picture:
+%In other words, the process of going from $1$ to $efg$
+%can be very nicely broken into the three steps above.
+%To draw this in the picture, we get
+%\begin{center}
+%\begin{tikzcd}
+%	(p) \ar[r]
+%		& \kp_1 \dots \kp_g \ar[r]
+%		& \kp_1 \dots \kp_g \ar[r]
+%		& (\kp_1 \dots \kp_g)^e \\
+%	\{f_i\}: & 1,\dots,1 & f,\dots,f & f,\dots,f \\
+%	\QQ \ar[r, dash, "\text{Split}"]
+%		& K^D \ar[r, dash, "\text{Inert}"]
+%		& K^I \ar[r, dash, "\text{Ramify}"]
+%		& K
+%\end{tikzcd}
+%\end{center}
+%In any case, in the ``typical'' case that there is no ramification,
+%we just have $K^I = K$.
 
 \section{Tangential remark: more general Galois extensions}
 All the discussion about Galois extensions
