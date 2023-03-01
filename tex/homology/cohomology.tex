@@ -18,11 +18,12 @@ We will then see that $H^\bullet(X) \not\cong H^\bullet(Y)$ as rings.
 
 \section{Cochain complexes}
 \begin{definition}
-A \vocab{cochain complex} $A^\bullet$ is algebraically the same as a chain complex, except that the indices increase.
+A \vocab{cochain complex} $A^\bullet$ is algebraically the same as a chain complex,
+except that the indices increase.
 So it is a sequence of abelian groups
 \[ \dots \taking{\delta} A^{n-1} \taking\delta A^n \taking\delta A^{n+1} \taking\delta \dots. \]
 such that $\delta^2 = 0$.
-Notation-wise, we're now using subscripts, and use $\delta$ rather $\partial$.
+Notation-wise, we're now using superscripts, and use $\delta$ rather $\partial$.
 We define the \vocab{cohomology groups} by
 \[ H^n(A^\bullet) = \ker\left( A^n \taking\delta A^{n+1} \right)
 	/ \img\left( A^{n-1} \taking\delta A^n \right). \]
