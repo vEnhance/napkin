@@ -576,6 +576,26 @@ it's likely to be worth reading even before attempting these problems.
 	\begin{hint}
 		$k[x,y] \times k[z,z\inv]$.
 	\end{hint}
+	\begin{soln}
+		Let $V = D(x) \cup D(y) \subset U$ denote the punctured plane,
+		so its complement $D(z)$ looks like a punctured line.
+		Then $V \cap D(z) = \varnothing$ and the following diagram
+		of restriction maps commutes
+		\begin{center}
+		\begin{tikzcd}
+			& \OO_X(X) = A \ar[d] \ar[ldd] \ar[rdd] & \\
+			& \OO_X(U) \ar[ld] \ar[rd] & \\
+			\OO_X(D(z)) \ar[rd] & & \OO_X(V) \ar[ld] \\
+			& \OO_X(\varnothing) = 0 &
+		\end{tikzcd}
+		\end{center}
+		By sheaf axioms we should actually have
+		\[ \OO_X(U) = \OO_X(D(z)) \times \OO_X(V). \]
+		We have $\OO_X(D(z)) = A_z = k[x,y,z,z^{-1}]/(xz,yz) \cong k[z,z^{-1}]$.
+		On the other hand $\OO_X(V) = k[x,y]$ as shown in \S4.4.1 of Vakil.
+		So
+		\[ \OO_X(U) = k[x,y] \times k[z,z\inv]. \]
+	\end{soln}
 \end{problem}
 
 \begin{problem}
