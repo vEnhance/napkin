@@ -195,7 +195,7 @@ Sum rule, all that jazz.
 	For example the sum rule really should say that
 	if $f,g \colon U \to \RR$ are differentiable at the point $p$
 	then so is $f+g$ and the derivative equals $f'(p) + g'(p)$.
-	Thus $f$ and $g$ are differentiable on all of $U$,
+	Thus if $f$ and $g$ are differentiable on all of $U$,
 	then it of course follows that $(f+g)' = f' + g'$.
 	So each of the above rules has a ``point-by-point'' form
 	which then implies the ``whole $U$'' form.
@@ -206,8 +206,7 @@ Sum rule, all that jazz.
 	than the whole interval $U$, you can still use the below.
 \end{remark}
 
-We next list some derivatives of
-well-known functions,
+We next list some derivatives of well-known functions,
 but as we do not give rigorous definitions
 of these functions, we do not prove these here.
 \begin{proposition}
@@ -238,10 +237,10 @@ of these functions, we do not prove these here.
 		&= e^x + \sin(x^2) + x \cdot 2x \cdot \cos(x^2) & \text{chain rule}.
 	\end{align*}
 	Of course, this function $f$ is totally artificial and has no meaning,
-	which is why calculus is the topic of widespread scorn in the USA.
-	That said, it is worth appreciating that calculations like
-	this are possible: it would be better to write the pseudo-theorem
-	``derivatives can actually be computed''.
+	which is why calculus is the topic of widespread scorn in the United States.
+	That said, it is worth appreciating that calculations like this are possible:
+	one could say we have a pseudo-theorem
+	``derivatives can actually be computed in practice''.
 \end{example}
 
 If we take for granted that $(e^x)' = e^x$,
@@ -296,8 +295,7 @@ We will give a rigorous description of how to do this here.
 \begin{definition}
 	Let $f \colon U \to \RR$ be a function.
 	A \vocab{local maximum} is a point $p \in U$
-	such that there exists an open neighborhood $V$ of $p$
-	(contained inside $U$)
+	such that there exists an open neighborhood $V$ of $p$ (contained inside $U$)
 	such that $f(p) \ge f(x)$ for every $x \in V$.
 
 	A \vocab{local minimum} is defined similarly.\footnote{Equivalently,
@@ -348,8 +346,7 @@ but $x=0$ is not a local extrema for $f$.)
 
 However, this is not actually adequate
 if we want a complete method for optimization.
-The issue is that we seek \emph{global} extrema,
-which may not even exist:
+The issue is that we seek \emph{global} extrema, which may not even exist:
 for example $f(x) = x$ (which has $f'(x) = 1$)
 obviously has no local extrema at all.
 The key to resolving this is to use \emph{compactness}:
@@ -421,8 +418,7 @@ Here is a non-elementary example.
 \begin{remark}
 	If you are willing to use limits at $\pm \infty$,
 	you can rewrite proofs like the above in such a way
-	that you don't have to explicitly come
-	up with endpoints like $-1$ or $100$.
+	that you don't have to explicitly come up with endpoints like $-1$ or $100$.
 	We won't do so here, but it's nice food for thought.
 \end{remark}
 
