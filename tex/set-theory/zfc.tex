@@ -425,5 +425,18 @@ so for example we have:
 	which is either red, green, or blue.
 	Each person can see the hat color of everyone except themselves.
 	Simultaneously each person guesses the color of their hat.
-	Show that they can form a strategy such that at most finitely many people guess their color incorrectly.
+	Show that they can form a strategy such that at most
+	finitely many people guess their color incorrectly.
+	\begin{hint}
+		This is an application of Axiom of Choice.
+	\end{hint}
+	\begin{sol}
+		Define an equivalence relation equating two hat configurations
+		if they differ in only finitely many places.
+		Now for each equivalence class, everyone pre-agrees
+		on a particular representative.
+		Finally, note that a person can determine which equiv
+		class the group is in even without their own hat color.
+		Hence they unanimously select the same representative, QED.
+	\end{sol}
 \end{problem}
