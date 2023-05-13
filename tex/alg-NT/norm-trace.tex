@@ -373,35 +373,11 @@ We claim that in fact, the general picture looks exactly like this.
 	\label{thm:OK_free_Z_module}
 \end{theorem}
 
-\begin{proof}
-	TODO: add this in.
-	(Originally, there was an incorrect proof;
-	the mistake was pointed out 2020-02-12 on
-	\url{https://math.stackexchange.com/q/3543641/229197}
-	and I hope to supply a correct one soon.)
-%	This is a kind of fun proof, so it may be worth
-%	trying to work out yourself before reading it.
-%
-%	Pick a $\QQ$-basis of $\alpha_1$, \dots, $\alpha_n$ of $K$ and WLOG
-%	the $\alpha_i$ are in $\OO_K$ by scaling.
-%
-%	Consider $\alpha \in \OO_K$,
-%	and write $\alpha = c_1\alpha_1 + \dots + c_n\alpha_n$.
-%	We will try to bound the denominators of $c_i$.
-%	Look at $\Norm(\alpha) = \Norm(c_1\alpha_1 + \dots + c_n\alpha_n)$.
-%
-%	If we do a giant norm computation, we find that $\Norm(\alpha)$
-%	is a polynomial in the $c_i$ with fixed coefficients.
-%	(For example, $\Norm(c_1 + c_2\sqrt 2) = c_1^2 - 2c_2^2$, say.)
-%	But $\Norm(\alpha)$ is an \emph{integer}, so the denominators of the $c_i$
-%	have to be bounded by some very large integer $N$.
-%	Thus
-%	\[ \bigoplus_i \ZZ \cdot \alpha_i \subseteq \OO_K
-%		\subseteq \frac 1N \bigoplus_i \ZZ \cdot \alpha_i.  \]
-%	The latter inclusion shows that $\OO_K$ is a subgroup
-%	of a free group, and hence it is itself free.
-%	On the other hand, the first inclusion shows it's rank $n$.
-\end{proof}
+(I had a wrong proof here before; the mistake was pointed out 2020-02-12 on
+\url{https://math.stackexchange.com/q/3543641/229197}.
+Three years later, I still haven't bothered to fix it,
+but \url{http://www.jmilne.org/math/CourseNotes/ANT.pdf}
+has a write-up in Proposition 2.29.)
 
 This last theorem shows that in many ways $\OO_K$ is a ``lattice'' in $K$.
 That is, for a number field $K$ we can find $\alpha_1$, \dots, $\alpha_n$
