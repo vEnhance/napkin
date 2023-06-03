@@ -182,14 +182,14 @@ This also gives us the non-obvious corollary:
 	so by \Cref{thm:compred_schur} there is a matrix of constants $X$ with
 	\begin{center}
 		\begin{tikzcd}[row sep=tiny]
-			\Reg(A) \ar[r] & V^{\oplus n} & \ar[l, "X \cdot -", hook'] V^{\oplus r} \\
+			\Reg(A) \ar[r] & V^{\oplus n} & \ar[l, "X \cdot -", hook'] V^{\oplus m} \\
 			a \ar[r, mapsto] & (a \cdot e_1, \dots, a \cdot e_n) \\
 			1_A \ar[r, mapsto] & (e_1, \dots, e_n) & \ar[l, mapsto] (v_1, \dots, v_m)
 		\end{tikzcd}
 	\end{center}
 	where the two arrows in the top row have the same image;
 	hence the pre-image $(v_1, \dots, v_m)$ of $(e_1, \dots, e_n)$ can be found.
-	But since $r < n$ we can find constants $c_1, \dots, c_n$ not all zero
+	But since $m < n$ we can find constants $c_1, \dots, c_n$ not all zero
 	such that $X$ applied to the column vector $(c_1, \dots, c_n)$ is zero:
 	\[
 		\sum_{i=1}^n c_ie_i
@@ -206,8 +206,8 @@ This also gives us the non-obvious corollary:
 	Hence we conclude the theorem for $r=1$.
 
 	As for $r \ge 2$, the image $\rho\im(A)$ is necessarily of the form
-	$\bigoplus_i V_i^{\oplus r_i}$ (by \Cref{cor:subrep_schur})
-	and by the above $r_i = \dim V_i$ for each $i$.
+	$\bigoplus_i V_i^{\oplus d_i}$ (by \Cref{cor:subrep_schur})
+	and by the above $d_i = \dim V_i$ for each $i$.
 \end{proof}
 
 \section{Semisimple algebras}
@@ -298,7 +298,7 @@ all representations are completely reducible.
 	meaning $\pi(v) = v \iff v \in W$.
 	We consider the \emph{averaging} map $P \colon V \to V$ by
 	\[
-		P(v) = \frac{1}{\left\lvert G \right\rvert}
+		P = \frac{1}{\left\lvert G \right\rvert}
 		\sum_{g \in G} \rho(g\inv) \circ \pi \circ \rho(g).
 	\]
 	We'll use the following properties of the map:
@@ -306,7 +306,7 @@ all representations are completely reducible.
 		Show that the map $P$ satisfies:
 		\begin{itemize}
 			\ii For any $w \in W$, $P(w) = w$.
-			\ii For any $v \in V$, $P(w) \in W$.
+			\ii For any $v \in V$, $P(v) \in W$.
 			\ii The map $P \colon V \to V$ is an intertwining operator.
 		\end{itemize}
 	\end{exercise}
