@@ -595,6 +595,41 @@ Of these \Cref{thm:bzw} is definitely my favorite.
 	for which $(M,d)$ and $(M,d')$ are homeomorphic
 	(i.e.\ have the same open sets), then $d'$ is also bounded.
 	Prove that $M$ is compact.
+	\begin{hint}
+		Assuming $M$ is not compact, construct an
+		unbounded continuous function $F \colon M \to \RR$.
+		Once such a function $F$ is defined, the metric
+		\[ d'(x, y) \coloneqq d(x, y) + \abs{F(x) - F(y)} \]
+		will establish the contrapositive of the problem.
+	\end{hint}
+
+	\begin{sol}
+		The following solution is due to Royce Yao.
+		We show the contrapositive:
+		if $M$ is not compact, then there exists a homeomorphic unbounded metric.
+
+		The main step is to construction
+		an unbounded continuous function $F \colon M \to \RR$.
+		Once such a function $F$ is defined, the metric
+		\[ d'(x, y) \coloneqq d(x, y) + \abs{F(x) - F(y)} \]
+		will solve the problem.
+
+		So, let $a_1$, $a_2$, \cdots be a sequence in $M$
+		with no convergent subsequence.
+		For each $a_i$, there exists a radius $r_i$ such that
+		\[ 0 < r_i < \frac{1}{2} \min_{j} d(a_i, a_j) \]
+		Define $C_i$ as an open ball at $a_i$ with radius $r_i$.
+		Note that every ball is disjoint.
+		Then, we define $F$ as follow
+		\[
+			F(x) = \begin{cases}
+				0 & x \not\in C_i \\
+				\frac{i}{r_1}(r_i - d(x, a_i)) & x \in C_i
+			\end{cases}
+		\]
+		which can be seen to be continuous.
+		Then, $F$ is unbounded by considering $F(a_i)$ as $i$ goes to infinity.
+	\end{sol}
 \end{problem}
 
 \begin{problem}
