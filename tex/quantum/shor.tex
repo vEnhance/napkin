@@ -134,7 +134,7 @@ using this ``multiplication by tensor product'' trick that isn't possible classi
 Now, without further ado, here's the circuit.
 Define the rotation matrices
 \[ R_k = \begin{bmatrix} 1 & 0 \\ 0 & \exp(2\pi i/2^k) \end{bmatrix}. \]
-Then, for $n=3$ the circuit is given by by using controlled $R_k$'s as follows:
+Then, for $n=3$ the circuit is given by using controlled $R_k$'s as follows:
 \[
 	\Qcircuit @C=1em @R=.7em {
 		\lstick{\ket{x_3}} & \gate{H} & \gate{R_2} & \qw & \gate{R_3}  & \qw & \qw & \rstick{\ket{y_1}} \\
@@ -143,7 +143,7 @@ Then, for $n=3$ the circuit is given by by using controlled $R_k$'s as follows:
 	}
 \]
 \begin{exercise}
-	Show that in this circuit, the image of of $\ket{x_3x_2x_1}$
+	Show that in this circuit, the image of $\ket{x_3x_2x_1}$
 	(for binary $x_i$) is
 	\[
 		\Big(\ket0+\exp(2\pi i \cdot 0.x_1) \ket1\Big)
