@@ -576,12 +576,7 @@ The theorem is that these coincide:
 Often, we take $E = K$, in which case this is just asserting
 that the decomposition of the prime $p$ is controlled by a Frobenius element over it.
 
-An important special case is when $E = \QQ(\alpha)$,
-because as we will see it is let us determine how the minimal
-polynomial of $\alpha$ factors modulo $p$.
-To motivate this, let's go back a few chapters
-and think about the Factoring Algorithm.
-
+\begin{proof}[Sketch of Proof]
 Let $\alpha$ be an algebraic integer and $f$ its minimal polynomial (of degree $n$).
 Set $E = \QQ(\alpha)$ (which has degree $n$ over $\QQ$).
 Suppose we're lucky enough that $\OO_E = \ZZ[\alpha]$,
@@ -599,7 +594,19 @@ In particular, if $p$ is unramified then all the $e_i$ are equal to $1$, and we 
 Once again we have a partition of $n$;
 we call this the \vocab{factorization pattern} of $f$ modulo $p$.
 So, to see the factorization pattern of an unramified $p$ in $\OO_E$,
-we just have to know the factorization pattern of the $f \pmod p$.
+we just have to know the factorization pattern of $f \pmod p$.
+
+To prove our theorem, we will show that the factorization pattern of $f \pmod p$ corresponds exactly to the cycle decomposition of the action of $\Frob_{\kP}$ on the roots of $f$ and that the roots of $f$ correspond exactly to the cosets of $H$ in $G$.
+
+To do this, suppose $S = \{ \alpha_1,\alpha_2,\dots, \alpha_n\}$ are the roots of $f$ (distinct roots since $f$ is irreducible over $\QQ$). We let $\Frob_{\kP}$ act on $S$. This splits $S$ into orbits $S_1$, $S_2$, $\dots$, $S_k$. Construct polynomials $f_i$ with coefficients in $E$ having roots exactly the elements of $S_i$. This forms a factorization of $f$ over $E$, say \[ f = f_1f_2 \dots f_k. \]
+
+We claim that this in fact induces a factorization of $f \pmod p$. 
+To see this, consider the images of these polynomials $f_i$ under the quotient $\OO_K \to \OO_K/\kP$, denote them by $\overline{f_i}$. Then since $p$ is unramified, we know that the decomposition group $D(\kP|p)$ is isomorphic to the Galois group $\mathcal{G} = \Gal((\OO_E/\kP) / (\ZZ/p\ZZ))$. Thus $\Frob_{\kP}$ corresponds to the generator $\sigma$ of $\mathcal{G}$. It is not hard to believe that the action of $\Frob_{\kP}$ on the roots of $f$ is the same as that of $\sigma$ on the roots of $ \overline{f}$. Since the roots of $f_i$ form an orbit under the action of $\Frob_{\kP}$, we see that the roots of $\overline{f_i}$ form an orbit under the action of $\sigma$ and hence under the action of $\mathcal{G}$. It is now a standard fact of Galois theory that $\overline{f_i}$ is an irreducible polynomial over $\FF_p$ (since it is fixed by $\mathcal{G}$), thus the claim is proved.
+
+Now we just need to observe that the roots of $f$ correspond to the cosets of $H$, this will be established later.
+\end{proof}
+
+We saw above that given the factorization pattern of $f \pmod p$, we can determine the factorization pattern of an unramified prime $p$ in $\OO_E$.
 
 Turning this on its head, if we want to know the factorization pattern of $f \pmod p$,
 we just need to know how $p$ decomposes.
