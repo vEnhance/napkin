@@ -23,12 +23,12 @@ before_script:
   - mkdir asy
 
 script:
-  - pdflatex -interaction=batchmode Napkin.tex
-  - asy -nosafe -o asy/ asy/Napkin-*.asy -v
+  - pdflatex -interaction=nonstopmode Napkin.tex
   - biber Napkin
-  - pdflatex -interaction=batchmode Napkin.tex
-  - pdflatex -interaction=batchmode Napkin.tex
-  - pdflatex -interaction=batchmode Napkin.tex
+  - asy -nosafe -o asy/ asy/Napkin-*.asy -v
+  - pdflatex -interaction=nonstopmode Napkin.tex
+  - pdflatex -interaction=nonstopmode Napkin.tex
+  - pdflatex -interaction=nonstopmode Napkin.tex
   # ...
   # latexmk -pdf -halt-on-error -quiet -interaction=batchmode
 
