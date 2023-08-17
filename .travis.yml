@@ -1,5 +1,5 @@
 sudo: true
-dist: bionic
+dist: focal
 language: generic
 cache: apt
 
@@ -27,7 +27,6 @@ script:
   - pdflatex -interaction=batchmode Napkin.tex
   - asy -nosafe -o asy/ asy/Napkin-*.asy -v
   - biber Napkin
-  - pdflatex -interaction=batchmode Napkin.tex
   - pdflatex -interaction=batchmode Napkin.tex
   - pdflatex -interaction=batchmode Napkin.tex
   - pdflatex -interaction=batchmode Napkin.tex
