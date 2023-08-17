@@ -45,9 +45,9 @@ before_deploy:
   - tree -H '.' -I "index.html" -D --charset utf-8 -T "An Infinitely Large Napkin" > index.html
 
 deploy:
-  provider: pages
-  skip_cleanup: true
-  github_token: $GITHUB_TOKEN
+  provider: pages:git
+  token: $GITHUB_TOKEN
+  edge: true # opt in to dpl v2
   local_dir: dist/
   keep_history: false
   verbose: true
