@@ -50,5 +50,6 @@ deploy:
   github_token: $GITHUB_TOKEN
   local_dir: dist/
   keep_history: false
+  verbose: true
   on:
     branch: main
