@@ -1,4 +1,4 @@
-sudo: true
+os: linux
 dist: jammy
 language: generic
 cache: apt
@@ -44,9 +44,9 @@ before_deploy:
 
 deploy:
   provider: pages
-  skip-cleanup: true
-  github-token: $GITHUB_TOKEN
-  local-dir: dist/
-  keep-history: false
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN
+  local_dir: dist/
+  keep_history: false
   on:
     branch: main
