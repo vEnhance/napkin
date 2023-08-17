@@ -1,17 +1,16 @@
 sudo: true
-dist: focal
+dist: jammy
 language: generic
 cache: apt
 
 addons:
   apt:
-    sources:
-      - sourceline: "ppa:jonathonf/texlive"
     packages:
       - wget
       - freeglut3
       - ghostscript
       - tree
+      - texlive-latex-base
       - texlive-latex-recommended
       - texlive-latex-extra
       - texlive-science
