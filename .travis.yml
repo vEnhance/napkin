@@ -43,6 +43,7 @@ before_deploy:
   - cd dist/
   - ls
   - tree -H '.' -I "index.html" -D --charset utf-8 -T "An Infinitely Large Napkin" > index.html
+  - cd ../
 
 deploy:
   provider: pages:git
