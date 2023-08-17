@@ -17,6 +17,7 @@ addons:
       - texlive-science
       - texlive-bibtex-extra
       - asymptote
+      - lmodern
       - latexmk
       - biber
 
