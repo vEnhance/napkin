@@ -181,16 +181,19 @@ for general $m$ and $n$.
 	in increasing order.
 \end{proof}
 
-
 \section{The determinant}
 \prototype{$(ae_1+be_2)\wedge(ce_1+de_2) = (ad-bc)(e_1\wedge e_2)$.}
+
 Now we're ready to define the determinant.
 Suppose $T \colon V \to V$ is a square matrix.
 We claim that the map $\Lambda^m(V) \to \Lambda^m(V)$ given on wedges by
 \[ v_1 \wedge v_2 \wedge \dots \wedge v_m
-	\mapsto T(v_1) \wedge T(v_2) \wedge \dots \wedge T(v_m) \]
-and extending linearly to all of $\Lambda^m(V)$ is a linear map.
-(You can check this yourself if you like.)
+	\mapsto T(v_1) \wedge T(v_2) \wedge \dots \wedge T(v_m). \]
+and extending linearly to all of $\Lambda^m(V)$ is a
+well-defined  linear map
+(Here ``well-defined'' means that equivalent elements of the domain
+get mapped to equivalent elements of the codomain.
+This, and linearity, both follow from $T$ being a linear map.)
 We call that map $\Lambda^m(T)$.
 \begin{example}
 	[Example of $\Lambda^m(T)$]
