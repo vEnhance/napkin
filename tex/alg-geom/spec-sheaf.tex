@@ -234,7 +234,7 @@ Don't worry, this one is easier than last section.
 	[Stalks of $\Spec A$ are $A_\kp$]
 	Let $A$ be a ring and let $\kp \in \Spec A$.
 	Then \[ \OO_{\Spec A, \kp} \cong A_\kp. \]
-	In particular $X$ is a locally ringed space.
+	In particular $\Spec A$ is a locally ringed space.
 \end{theorem}
 \begin{proof}
 	Since sheafification preserved stalks,
@@ -267,7 +267,7 @@ Don't worry, this one is easier than last section.
 		= \left\{  \frac fg \mid g(0) \neq 0 \right\}. \]
 \end{example}
 \begin{example}
-	[Denominators not divisible by $x$]
+	[Denominators not divisible by $x$ or $y$]
 	Let $X = \Spec \CC[x,y]$ and let $\km = (x,y)$ be the origin.
 	Then
 	\[ \CC[x,y]_{(x,y)}
@@ -298,7 +298,7 @@ Now, you might recall that I pressed the point of view
 that a germ might be thought of as an ``enriched value''.
 Then it makes sense that if you know the germ of a section $f$ at
 a point $\km$ --- i.e., you know the ``enriched value'' ---
-then you should be able to value as well.
+then you should be able to compute its value as well.
 What this means is that we ought to have some map
 \[ A_\km \to A/\km \]
 sending germs to their associated values.
@@ -380,7 +380,7 @@ Thus what we find is that:
 Okay, we can write down a proof of the theorem now.
 \begin{proof}
 	[Proof of \Cref{thm:stalks_local_ring}]
-	One may check set $I = \kp A_\kp$ is an ideal of $A_\kp$.
+	One may check that the set $I = \kp A_\kp$ is an ideal of $A_\kp$.
 	Moreover, $1 \notin I$, so $I$ is proper.
 
 	To prove it is maximal and unique,
