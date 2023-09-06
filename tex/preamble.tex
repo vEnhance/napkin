@@ -39,7 +39,6 @@
 	urlcolor={blue!80!black},
 	pdfkeywords={napkin,math},
 	pdfsubject={web.evanchen.cc},
-	pagebackref,
 	colorlinks,
 	pdfusetitle,
 }
@@ -264,7 +263,7 @@ style=thmbluebox,name=Theorem,numberwithin=section]{theorem}
 \def\asydir{asy}
 
 %%fakesection Bibliography
-\usepackage[backend=biber,style=alphabetic]{biblatex}
+\usepackage[backend=biber,backref=true,style=alphabetic]{biblatex}
 \DeclareLabelalphaTemplate{
 	\labelelement{
 		\field[final]{shorthand}
