@@ -802,26 +802,3 @@ Please bear with me!
 		is then a ring isomorphism.
 	\end{enumerate}
 \end{problem}
-
-\begin{problem} % from Brian Chen
-	\yod
-	Let $A \subseteq B \subseteq C$ be rings.
-	Suppose $C$ is a finitely generated $A$-module.
-	Does it follow that $B$ is a finitely generated $A$-module?
-	% Assume $A$ is Noetherian. Show that $B$ is finitely generated as an $A$-module.
-	% Find a counterexample where $A$ is not Noetherian.
-	\begin{hint}
-		I think the result is true if you add the assumption $A$ is Noetherian,
-		so look for trouble by picking $A$ not Noetherian.
-	\end{hint}
-	\begin{sol}
-		Nope! Pick
-		\begin{align*}
-			A &= \ZZ[x_1, x_2, \dots] \\
-			B &= \ZZ[x_1, x_2, \dots, \eps x_1, \eps x_2, \dots] \\
-			C &= \ZZ[x_1, x_2, \dots, \eps].
-		\end{align*}
-		where $\eps \neq 0$ but $\eps^2 = 0$.
-		I think the result is true if you add the assumption $A$ is Noetherian.
-	\end{sol}
-\end{problem}
