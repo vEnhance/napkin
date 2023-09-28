@@ -243,7 +243,7 @@ which can be thought of as a generic matrix
 		a_{n1} & \dots & a_{nm}
 	\end{bmatrix} \]
 for a basis $e_1$, \dots, $e_m$ of $R^{\oplus m}$
-and $f_1$, \dots, $f_n$ of $N$.
+and $f_1$, \dots, $f_n$ of $R^{\oplus n}$.
 
 Of course, as you might expect it ought to be possible to change the
 given basis of $T$ such that $T$ has a nicer matrix form.
@@ -273,7 +273,7 @@ More generally,
 	replace $T$ with $AT$.
 \end{moral}
 This corresponds to replacing
-\[ (f_1, \dots, f_n) \mapsto (A(f_1), \dots, A(f_n)) \]
+\[ (f_1, \dots, f_n) \mapsto (A\inv(f_1), \dots, A\inv(f_n)) \]
 (the ``invertible'' condition just guarantees the latter is a basis).
 Of course similarly we can replace $X$ with $XB$
 where $B$ is an invertible $m \times m$ matrix;
