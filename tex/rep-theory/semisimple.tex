@@ -431,7 +431,7 @@ we just get that $V = \refl_0 \oplus \CC_{\text{triv}}$.
 \end{problem}
 
 \begin{problem}
-	\gim
+	\label{prob:dten_irrep}
 	Determine all the complex irreps of $D_{10}$.
 	\begin{hint}
 		There are only two one-dimensional ones
@@ -439,4 +439,35 @@ we just get that $V = \refl_0 \oplus \CC_{\text{triv}}$.
 		homomorphisms $D_{10} \to \CC^\times$).
 		So the remaining ones are two-dimensional.
 	\end{hint}
+\end{problem}
+
+\begin{problem}
+    [AIME 2018]
+    \gim
+    The wheel shown below consists of two circles and five spokes, with a label
+    where a spoke meets a circle. A bug walks along the wheel, starting from $A$.
+    The bug takes $15$ steps. At each step, the bug moves to an adjacent label such
+    that it only walks counterclockwise along the inner circle and clockwise along the 
+    outer circle. In how many ways can the bug move to end up at $A$ after all steps?
+    \begin{center}
+        \begin{asy}
+			size(5cm);
+            draw(unitcircle);
+            draw(scale(2) * unitcircle);
+            for (int d = 90; d < 360 + 90; d += 72) {
+                draw(2*dir(d) --dir(d));
+                dot(dir(d));
+                dot(2*dir(d));
+            }
+
+            label("$A$", 0.95*dir(90), -dir(90));
+        \end{asy}
+    \end{center}
+    \begin{hint}
+        Let $r, t \in D_{10}$ be rotation and reflection respectively. Then we can sum over all possible bug's moves with
+        \[
+            \frac{1}{10} \Tr (\rho(r) + \rho(t))^{15}.
+        \]
+        Then use \Cref{prob:dten_irrep} to compute this trace.
+    \end{hint}
 \end{problem}
