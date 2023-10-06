@@ -136,7 +136,7 @@ this completes the proof of (II).
 \section{Orthogonality of characters}
 Now we specialize to the case of finite groups $G$, represented over $\CC$.
 \begin{definition}
-	Let $\Classes(G)$ denote the set conjugacy classes of $G$.
+	Let $\Classes(G)$ denote the set of conjugacy classes of $G$.
 \end{definition}
 If $G$ has $r$ conjugacy classes, then it has $r$ irreps.
 Each (finite-dimensional) representation $V$, irreducible or not, gives a
@@ -148,7 +148,7 @@ character $\chi_V$.
 	and $\chi_V(C)$ (for a conjugacy class $C$);
 	the latter just means $\chi_V(g_C)$ for any representative $g_C \in C$.
 \end{abuse}
-\begin{definition}
+\begin{definition}G
 	Let $\FunCl(G)$ denote the set of functions $\Classes(G) \to \CC$
 	viewed as a vector space over $\CC$.
 	We endow it with the inner form
@@ -241,7 +241,7 @@ which give a natural way to deal with the quantity $\chi_V(g)\ol{\chi_W(g)}$.
 \begin{remark}
 	[Warning]
 	The identities (b) and (c) do not extend linearly to $\CC[G]$,
-	i.e.\ it is not true for example that $\chi_V(a) = \ol{\chi_V(a)}$
+    i.e.\ it is not true for example that $\chi_{V^\vee}(a) = \ol{\chi_V(a)}$
 	if we think of $\chi_V$ as a map $\CC[G] \to \CC$.
 \end{remark}
 \begin{proof}
@@ -494,11 +494,9 @@ a complete set of irreps.
 	Here, $C_G(g) = \left\{ x \in G : xg = gx \right\}$
 	is the centralizer of $g$.
 	\begin{hint}
-		Write as
-		\[ \sum_{i=1}^r \chi_{V_i \otimes V_i^\vee} (gh\inv)
-			= \chi_{\bigoplus_i V_i \otimes V_i^\vee}(gh\inv)
-			= \chi_{\CC[G]}(gh\inv).
-		\]
-		Now look at the usual basis for $\CC[G]$.
+        Construct two square $r \times r$ matrices $A$ and $B$ 
+        such that $AB$ is the identity by the first orthogonality.
+
+        Then use $BA$ to prove the second orthogonaliy relation.
 	\end{hint}
 \end{sproblem}
