@@ -2,6 +2,10 @@
 OK, now for Shor's Algorithm:
 how to factor $M = pq$ in $O\left( (\log M)^2 \right)$ time.
 
+This is arguably the reason agencies such as the US's National 
+Security Agency have been diverting millions of dollars toward 
+quantum computing.
+
 \section{The classical (inverse) Fourier transform}
 The ``crux move'' in Shor's algorithm is the so-called
 quantum Fourier transform.
@@ -32,7 +36,13 @@ Let $N$ be a positive integer, and let $\omega_N = \exp\left( \frac{2\pi i}{N} \
 	\]
 \end{definition}
 The reason this operation is important is because it lets
-us detect if the $x_i$ are periodic:
+us detect if the $x_i$ are periodic.
+More generally, given a sequence of $1$'s appearing with period $r$,
+the amplitudes will peak at inputs which are divisible by $\frac{N}{\gcd(N,r)}$.
+\[
+	x_k = \sum_{j=0}^{N-1} y_j \omega_N^{-jk}
+\]
+
 \begin{example}
 	[Example of discrete inverse Fourier transform]
 	Let $N = 6$, $\omega = \omega_6 = \exp(\frac{2\pi i}{6})$
@@ -52,8 +62,6 @@ us detect if the $x_i$ are periodic:
 	thus this reveals the periodicity of the original
 	sequence by $\frac N3 = 2$.
 \end{example}
-More generally, given a sequence of $1$'s appearing with period $r$,
-the amplitudes will peak at inputs which are divisible by $\frac{N}{\gcd(N,r)}$.
 \begin{remark}
 	The fact that this operation is called the ``inverse''
 	Fourier transform is mostly a historical accident
