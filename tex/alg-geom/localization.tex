@@ -17,6 +17,13 @@ and the like.
 The point is that we introduced a lot of denominators.
 Localization will give us a concise way of doing this in general.
 
+This thus also explain why the operation is called ``localization'':
+we start from a set of ``global'' functions, and get a (larger) set of functions
+that are well-defined on a ``smaller'' open set, or in an open neighborhood
+of point $p$.
+
+Of course, this is the Zariski topology, so ``small'' means ``everywhere except certain curves''.
+
 \emph{Notational note}:
 moving forward we'll prefer to denote rings by $A$, $B$, \dots,
 rather than $R$, $S$, \dots.
@@ -132,6 +139,11 @@ motivating forces for the construction of the affine scheme.
 	then this is a moot point.
 \end{remark}
 
+\begin{exercise}
+	Prove that the equivalence relation is precisely that if we define $a_1/s_1 = a_2/s_2$ to be equal if $a_1s_2-a_2s_1=0$, then take the transitive closure.
+\end{exercise}
+
+
 \begin{example}
 	[Field of fractions]
 	Let $A$ be an integral domain and $S = A \setminus \{0\}$.
@@ -200,6 +212,8 @@ one in this section, the other in the next section.
 	\end{enumerate}
 \end{example}
 
+%Looking at these examples, you can also think of "localization of A away from f" as "delete 𝒱(f) from the codomain of functions in A, then extend A to include the new functions that can be defined", or equivalently "allow functions to blow up at 𝒱(f)".
+
 \begin{example}
 	[An example with zero-divisors]
 	Let $A = \CC[x,y] / (xy)$
@@ -261,6 +275,7 @@ Consequently, we give several examples in this vein.
 		\ii We let $\km$ be the maximal ideal $(x)$ of $A = \CC[x]$.
 		Then \[ A_\km = \left\{ \frac{f(x)}{g(x)} \mid g(0) \neq 0 \right\} \]
 		consists of the Laurent polynomials.
+		% TODO must be Laurent series? But I think not all, only count those convergent in a positive radius around center?
 
 		\ii We let $\km$ be the maximal ideal $(x,y)$ of $A = \CC[x,y]$.
 		Then \[ A_\km = \left\{ \frac{f(x,y)}{g(x,y)} \mid g(0,0) \neq 0 \right\}. \]
@@ -281,6 +296,18 @@ Consequently, we give several examples in this vein.
 		This is all rational functions, period.
 	\end{enumerate}
 \end{example}
+
+%Comparing with the example of localizing away from an element above, you can see that
+%* when localizing away from an element, you allow the functions to blow up at (the vanishing set of) that element;
+%* when localizing at a prime, you allow the functions to blow up everywhere except at (the whole vanishing set of) that prime.
+%Thus we see why we say the 2 notations opposite.
+%
+%Thinking of functions that "may not blow up at the whole vanishing set" can be confusing, so
+%another (hopefully) more intuitive way to think about localizing at a prime is that the function
+%\textbf{must not blow up at the point corresponding to the prime ideal}.
+%
+%For example, if 𝔭 is the ideal (y-x²), then A_𝔭 is the set of functions that does not blow up at the
+%generic point on the parabola.
 
 \begin{example}
 	[Arithmetic examples]
@@ -334,7 +361,7 @@ where $S$ is one of the two special cases we discussed at length:
 	[Spectrums of localizations]
 	Let $A$ be a ring.
 	\begin{enumerate}[(a)]
-		\ii If $\kp$ is a prime ideal of $A$,
+		\ii If $f$ is an element of $A$,
 		then the prime ideals of $A[1/f]$ are naturally
 		in bijection with prime ideals of $A$
 		\textbf{do not contain the element} $f$.
