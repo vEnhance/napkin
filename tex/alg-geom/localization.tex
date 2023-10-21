@@ -135,14 +135,11 @@ motivating forces for the construction of the affine scheme.
 	Then we have for example $\frac01 = \frac02 = \frac{12}{2} = \frac61$.
 	So we need to have $\frac01=\frac61$ which is only true
 	with the first definition.
-	Of course, if $A$ is an integral domain (and $0\notin S$)
-	then this is a moot point.
+	Of course, if $A$ is an integral domain (and $0\notin S$) then this is a moot point.
+
+	Alternatively, one can start with this simpler relation,
+	and take the transitive closure; this yields an equivalent definition.
 \end{remark}
-
-\begin{exercise}
-	Prove that the equivalence relation is precisely that if we define $a_1/s_1 = a_2/s_2$ to be equal if $a_1s_2-a_2s_1=0$, then take the transitive closure.
-\end{exercise}
-
 
 \begin{example}
 	[Field of fractions]
@@ -274,8 +271,7 @@ Consequently, we give several examples in this vein.
 	\begin{enumerate}[(a)]
 		\ii We let $\km$ be the maximal ideal $(x)$ of $A = \CC[x]$.
 		Then \[ A_\km = \left\{ \frac{f(x)}{g(x)} \mid g(0) \neq 0 \right\} \]
-		consists of the Laurent polynomials.
-		% TODO must be Laurent series? But I think not all, only count those convergent in a positive radius around center?
+		consists of the Laurent series.
 
 		\ii We let $\km$ be the maximal ideal $(x,y)$ of $A = \CC[x,y]$.
 		Then \[ A_\km = \left\{ \frac{f(x,y)}{g(x,y)} \mid g(0,0) \neq 0 \right\}. \]
@@ -297,17 +293,26 @@ Consequently, we give several examples in this vein.
 	\end{enumerate}
 \end{example}
 
-%Comparing with the example of localizing away from an element above, you can see that
-%* when localizing away from an element, you allow the functions to blow up at (the vanishing set of) that element;
-%* when localizing at a prime, you allow the functions to blow up everywhere except at (the whole vanishing set of) that prime.
-%Thus we see why we say the 2 notations opposite.
-%
-%Thinking of functions that "may not blow up at the whole vanishing set" can be confusing, so
-%another (hopefully) more intuitive way to think about localizing at a prime is that the function
-%\textbf{must not blow up at the point corresponding to the prime ideal}.
-%
-%For example, if 𝔭 is the ideal (y-x²), then A_𝔭 is the set of functions that does not blow up at the
-%generic point on the parabola.
+\begin{remark*}
+	[Notational philosophy]
+	To reiterate:
+	\begin{itemize}
+	\ii when localizing away from an element,
+	you allow the functions to blow up at (the vanishing set of) that element;
+	\ii when localizing at a prime,
+	you allow the functions to blow up everywhere
+	\emph{except} at (the whole vanishing set of) that prime.
+	\end{itemize}
+	Thus we see why we say the 2 notations are opposites.
+
+	Thinking of functions that ``may not blow up at the whole vanishing set''
+	can be confusing, so another (hopefully) more intuitive way to think
+	about localizing at a prime is that the function
+	must not blow up at the point corresponding to the prime ideal.
+	For example, if $\kp$ is the ideal $(y-x^2)$ in $A = \CC[x,y]$,
+	then $A_\kp$ is the set of functions that do not blow up at the
+	generic point on the parabola.
+\end{remark*}
 
 \begin{example}
 	[Arithmetic examples]
