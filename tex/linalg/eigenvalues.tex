@@ -34,7 +34,7 @@ i.e.\ a \vocab{diagonal matrix} of the form
 \]
 These maps are more general.
 Indeed, you can, for example, compute $T^{100}$ in a heartbeat:
-the map sends $e_1 \to \lambda_1^{100} e_1$.
+the map sends $e_i \to \lambda_i^{100} e_i$.
 (Try doing that with an arbitrary $n \times n$ matrix.)
 
 Of course, most linear maps are probably not that nice.
@@ -637,12 +637,11 @@ The next two chapters will give us a better definition.
 	Suppose $T \colon \CC^{\oplus 2} \to \CC^{\oplus 2}$
 	is a linear map of $\CC$-vector spaces such that $T^{2011} = \id$.
 	Must $T$ be diagonalizable?
-	\begin{sol}
-		No, if $\zeta$ is a primitive $2011$th root of unity then
-		$T = \begin{bmatrix} \zeta & 1 \\ 0 & \zeta \end{bmatrix}$
-		is not diagonalizable (as $T - \zeta \id$ is a nonzero nilpotent)
-		but $T^{2011} = \id$ holds.
-	\end{sol}
+	\begin{hint}
+		The answer is yes.
+		In fact, the result is true if $\CC^{\oplus 2}$ is any finite-dimensional
+		$\CC$-vector space.
+	\end{hint}
 \end{problem}
 
 \begin{problem}

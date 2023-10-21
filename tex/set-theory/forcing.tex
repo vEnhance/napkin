@@ -212,7 +212,7 @@ Now, I can specify what it means to be ``generic''.
 \end{center}
 
 \begin{exercise}
-	Verify that these are every generic filter $2^{<\omega}$ has the form above.
+	Verify that every generic filter $2^{<\omega}$ has the form above.
 	Show that conversely, a binary number gives a filter, but it need not be generic.
 \end{exercise}
 
@@ -260,7 +260,7 @@ The condition that guarantees this is:
 \end{lemma}
 \begin{proof}
 	Consider $p \notin \Po \setminus F \iff p \in F$.
-	Then there exists $q, r \le p$ which are not compatible.
+	Since $\Po$ is splitting, there exist $q, r \le p$ which are not compatible.
 	Since $F$ is a filter it cannot contain both;
 	we must have one of them outside $F$, say $q$.
 	Hence every element of $p \in \Po \setminus (\Po \setminus F)$
@@ -405,7 +405,7 @@ Let's see what we can get off the bat.
 
 This leaves $\PowerSet$, $\Replacement$, and Choice.
 \begin{proof}
-	Hence, we get $\Extensionality$ and $\Foundation$ for free.
+	We get $\Extensionality$ and $\Foundation$ for free.
 	Then $\Infinity$ and $\EmptySet$ follows from $M \subseteq M[G]$.
 
 	For $\Pairing$, suppose $\sigma_1^G, \sigma_2^G \in M[G]$.
@@ -421,8 +421,7 @@ Up to here, we don't need to know anything about when a sentence is true in $M[G
 all we had to do was contrive some names like $\check x$ or
 $\left\{ \left<\sigma_1, 1_\Po\right>, \left<\sigma_2, 1_\Po\right> \right\}$
 to get the facts we wanted.
-But for the remaining axioms, we \emph{are} going to need this extra power
-are true in $M[G]$.
+But for the remaining axioms, we \emph{are} going to need this extra power.
 For this, we have to introduce the fundamental theorem of forcing.
 
 \section{Fundamental theorem of forcing}
@@ -483,7 +482,7 @@ $M[G] \vDash \varphi[\sigma_1^G, \dots, \sigma_n^G]$).
 We will then cross our fingers that the converse also works.
 
 We proceed by induction on the formula complexity.
-It turns out in this case that the atomic formula (base cases)
+It turns out in this case that the atomic formulas (base cases)
 are hardest and themselves require induction on ranks.
 
 For some motivation, let's consider how we should define

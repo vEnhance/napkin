@@ -14,7 +14,7 @@ In this chapter, we handle the first two parts;
 Quick note: \Cref{ch:spec_examples}
 contains a long list of examples of affine schemes.
 So if something written in this chapter is not making sense,
-one thing worth trying is skimming through the next chapter
+one thing worth trying is skimming through \Cref{ch:spec_examples}
 to see if any of the examples there are more helpful.
 
 \section{Some more advertising}
@@ -160,7 +160,7 @@ the analogy by thinking of the points $f$ as functions on $\Spec A$. That is:
 	and $\km = (x_1-a_1, x_2-a_2, \dots, x_n-a_n)$ is a maximal ideal of $A$.
 	Then for a polynomial $f \in \CC$,
 	\[ f \pmod \km = f(a_1, \dots, a_n) \]
-	with the identification that $\CC/\km \cong \CC$.
+	with the identification that $A/\km \cong \CC$.
 \end{example}
 \begin{example}
 	[Functions on $\Spec \ZZ$]
@@ -439,7 +439,7 @@ and we now prove it.
 Geometrically, this gives us a good way to describe $\sqrt I$:
 it is the \emph{set of all functions vanishing on all of $\VV(I)$}.
 Indeed, we may write
-\[ \sqrt I = \bigcap_{\kp \supset I} \kp
+\[ \sqrt I = \bigcap_{\kp \supseteq I} \kp
 	= \bigcap_{\kp \in \VV(I)} \kp
 	= \bigcap_{\kp \in \VV(I)} \left\{ f \in A \mid f(\kp) = 0 \right\}. \]
 

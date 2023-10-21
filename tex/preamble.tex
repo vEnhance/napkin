@@ -1,4 +1,10 @@
 %%fakesection Load packages
+
+%% because of an xy dependence, we're stuck with pdflatex
+%% which is annoying... font issues
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
 % These are evan.sty
 \usepackage{amsmath,amssymb,amsthm}
 \usepackage{mathrsfs}
@@ -13,7 +19,6 @@
 \usepackage{wasysym}
 \usepackage{multirow}
 \usepackage{prerex}
-\usepackage{hyperref}
 \usepackage[nameinlink]{cleveref}
 
 %%fakesection evan.sty macros
@@ -27,12 +32,15 @@
 	\bfseries\color{green!50!black}}%
 	{\end{mdframed}}
 
-%%fakesection Links
+%%fakesection Links (hyperref loaded earlier implicitly)
 \hypersetup{
-    colorlinks,
-    linkcolor={red!50!black},
-    citecolor={green!50!black},
-    urlcolor={blue!80!black}
+	linkcolor={red!50!black},
+	citecolor={green!50!black},
+	urlcolor={blue!80!black},
+	pdfkeywords={napkin,math},
+	pdfsubject={web.evanchen.cc},
+	colorlinks,
+	pdfusetitle,
 }
 
 %%fakesection Commutative diagrams
@@ -255,7 +263,7 @@ style=thmbluebox,name=Theorem,numberwithin=section]{theorem}
 \def\asydir{asy}
 
 %%fakesection Bibliography
-\usepackage[backend=biber,style=alphabetic]{biblatex}
+\usepackage[backend=biber,backref=true,style=alphabetic]{biblatex}
 \DeclareLabelalphaTemplate{
 	\labelelement{
 		\field[final]{shorthand}
@@ -269,6 +277,20 @@ style=thmbluebox,name=Theorem,numberwithin=section]{theorem}
 \DeclareFieldFormat{labelalpha}{\textbf{\scriptsize #1}}
 \addbibresource{references.bib}
 \addbibresource{images.bib}
+%% stylistic biblatex choices
+\DefineBibliographyStrings{english}{%
+	backrefpage  = {cited p.}, % for single page number
+	backrefpages = {cited pp.} % for multiple page numbers
+}
+\DeclareFieldFormat{journaltitle}{\mkbibemph{#1},} % italic journal title with comma
+\DeclareFieldFormat[inbook,thesis]{title}{\mkbibemph{#1}\addperiod} % italic title with period
+\DeclareFieldFormat[article]{title}{#1} % title of journal article is printed as normal text
+\DeclareFieldFormat[article]{volume}{\textbf{#1}\addcolon\space}
+\renewcommand{\mkbibnamefirst}[1]{\textsc{#1}}
+\renewcommand{\mkbibnamelast}[1]{\textsc{#1}}
+\renewcommand{\mkbibnameprefix}[1]{\textsc{#1}}
+\renewcommand{\mkbibnameaffix}[1]{\textsc{#1}}
+\renewcommand{\finentrypunct}{}
 
 %%fakesection Mini ToC
 \usepackage[tight]{minitoc}

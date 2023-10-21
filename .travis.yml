@@ -1,54 +1,56 @@
-sudo: true
-dist: bionic
+os: linux
+dist: jammy
 language: generic
 cache: apt
 
 addons:
   apt:
-    sources:
-      - sourceline: 'ppa:jonathonf/texlive'
     packages:
       - wget
       - freeglut3
       - ghostscript
       - tree
+      - texlive-latex-base
       - texlive-latex-recommended
+      - texlive-fonts-recommended
       - texlive-latex-extra
       - texlive-science
       - texlive-bibtex-extra
       - asymptote
+      - lmodern
       - latexmk
       - biber
 
 before_script:
-    - mkdir asy
+  - mkdir asy
 
 script:
-    - pdflatex -interaction=batchmode Napkin.tex
-    - asy -nosafe -o asy/ asy/Napkin-*.asy -v
-    - biber Napkin
-    - pdflatex -interaction=batchmode Napkin.tex
-    - pdflatex -interaction=batchmode Napkin.tex
-    - pdflatex -interaction=batchmode Napkin.tex
-    - pdflatex -interaction=batchmode Napkin.tex
-    # ...
-    # latexmk -pdf -halt-on-error -quiet -interaction=batchmode
+  - pdflatex -interaction=nonstopmode Napkin.tex
+  - biber Napkin
+  - asy -nosafe -o asy/ asy/Napkin-*.asy -v
+  - pdflatex -interaction=nonstopmode Napkin.tex
+  - pdflatex -interaction=nonstopmode Napkin.tex
+  - pdflatex -interaction=nonstopmode Napkin.tex
+  # ...
+  # latexmk -pdf -halt-on-error -quiet -interaction=batchmode
 
 before_deploy:
-    - mkdir dist
-    - mv Napkin.pdf dist/
-    - mv Napkin.log dist/
-    - mkdir dist/asy/
-    - mv asy/*.pdf dist/asy/
-    - cd dist/
-    - ls
-    - tree -H '.' -I "index.html" -D --charset utf-8 -T "An Infinitely Large Napkin" > index.html
+  - mkdir dist
+  - mv Napkin.pdf dist/
+  - mv Napkin.log dist/
+  - mkdir dist/asy/
+  - mv asy/*.pdf dist/asy/
+  - cd dist/
+  - ls
+  - tree -H '.' -I "index.html" -D --charset utf-8 -T "An Infinitely Large Napkin" > index.html
+  - cd ../
 
 deploy:
-    provider: pages
-    skip-cleanup: true
-    github-token: $GITHUB_TOKEN
-    local-dir: dist/
-    keep-history: false
-    on:
-        branch: main
+  provider: pages:git
+  token: $GITHUB_TOKEN
+  edge: true # opt in to dpl v2
+  local_dir: dist/
+  keep_history: false
+  verbose: true
+  on:
+    branch: main

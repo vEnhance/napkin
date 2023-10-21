@@ -63,7 +63,7 @@ as part of the definition of a morphism.
 	for every open set $U \subseteq Y$, such that the restriction diagram
 	\begin{center}
 	\begin{tikzcd}
-		\OO_Y(U) \ar[r] \ar[d] & \OO_Y(\pi\pre(U)) \ar[d] \\
+		\OO_Y(U) \ar[r] \ar[d] & \OO_X(\pi\pre(U)) \ar[d] \\
 		\OO_Y(V) \ar[r] & \OO_X(\pi\pre(V))
 	\end{tikzcd}
 	\end{center}
@@ -195,7 +195,7 @@ so $\kappa(p)$ and $\kappa(q)$ might even be different fields.
 	the map at the stalks also induces a well-defined ring homomorphism
 	\[ \pi^\sharp_p \colon \kappa(q) \to \kappa(p). \]
 \end{definition}
-So we require $\pi^\sharp_p$ induces a field homomorphisms\footnote{Which
+So we require $\pi^\sharp_p$ induces a field homomorphism\footnote{Which
 means it is automatically injective, by \Cref{prob:field_hom}.}
 on the \emph{residue fields}.
 In particular, since $\pi^\sharp(0) = 0$,
@@ -321,7 +321,7 @@ since $y-c$ is a unit of $\RR[x]$ for any $c \neq 3$.
 	which send everything to $(y^2+1)$.
 	Copying the previous example, we see that we want
 	\[ \OO_Y(U) \to \OO_X(X) = \RR[x]. \]
-	We find that $y$ and $1/y$ has nowhere to go:
+	We find that $y$ and $1/y$ have nowhere to go:
 	the same argument as last time shows that $y-c$ should be a unit of $\RR[x]$;
 	this time for any real number $c$.
 
@@ -586,13 +586,13 @@ $\CC \to \CC$ having nontrivial field automorphisms:
 		X \ar[r] \ar[rd] & Y \ar[d] \\ & S
 	\end{tikzcd}
 	commutes.
-	Often, if $S = \Spec k$, we will use refer
+	Often, if $S = \Spec k$, we will refer
 	to schemes over $k$ or $k$-schemes for short.
 \end{definition}
 \begin{example}
 	[{$\Spec k[\dots]$}]
 	If $X = \Spec k[x_1, \dots, x_n] / I$ for some ideal $I$,
-	then $X$ being a $k$-scheme in a natural way;
+	then $X$ is a $k$-scheme in a natural way;
 	since we have an obvious homomorphism
 	$k \injto k[x_1, \dots, x_n] / I$
 	which gives a map $X \to \Spec k$.
@@ -609,6 +609,7 @@ $\CC \to \CC$ having nontrivial field automorphisms:
 		& \ar[lu, hook] \ar[u, hook] \CC
 	\end{tikzcd}
 	\end{center}
+	commutes.
 	We see that the ``over $\CC$'' condition is eliminating
 	the pathology from before:
 	the $\psi$ is required to preserve $\CC$.
@@ -622,8 +623,8 @@ $\CC \to \CC$ having nontrivial field automorphisms:
 
 \begin{example}
 	[$\Spec \OO_K$]
-	This generalize $\Spec \ZZ[i]$ from before.
-	If $K$ is a number field and $\OO_K$,
+	This generalizes $\Spec \ZZ[i]$ from before.
+	If $K$ is a number field and $\OO_K$ is the ring of integers,
 	then there is a natural morphism $\Spec \OO_K \to \Spec \ZZ$
 	from the (unique) ring homomorphism $\ZZ \injto \OO_K$.
 	Above each rational prime $(p) \in \ZZ$,

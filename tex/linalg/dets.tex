@@ -106,8 +106,23 @@ And now of course you know why $v \wedge v$ ought to be zero:
 it's an area zero parallelogram!
 
 The \textbf{miracle of wedge products} is that the only additional condition
-we need to add to the tensor product axioms is that $v \wedge w = -(w \wedge v)$.
+we need to add to the tensor product axioms is that $v \wedge v = 0$.
 Then suddenly, the wedge will do all our work of interpreting volumes for us.
+
+\begin{remark*}
+	[Side digression on definitions in mathematics]
+	This ``property-based'' philosophy is a common trope in modern mathematics.
+	You have some intuition about an object you wish to define,
+	and then you write down a wishlist of properties that ``should'' follow.
+	But then it turns out the properties are sufficient to work with,
+	and so for the definition, you just define an abstract object
+	satisfying all the properties on your wishlist.
+	Thereafter the intuition plays no ``official'' role;
+	it serves only as cheerleading motivation for the wishlist.
+
+	For wedge products,
+	the wishlist has only the single property $v \wedge v = 0$.
+\end{remark*}
 
 In analog to earlier:
 \begin{proposition}
@@ -181,16 +196,19 @@ for general $m$ and $n$.
 	in increasing order.
 \end{proof}
 
-
 \section{The determinant}
 \prototype{$(ae_1+be_2)\wedge(ce_1+de_2) = (ad-bc)(e_1\wedge e_2)$.}
+
 Now we're ready to define the determinant.
 Suppose $T \colon V \to V$ is a square matrix.
 We claim that the map $\Lambda^m(V) \to \Lambda^m(V)$ given on wedges by
 \[ v_1 \wedge v_2 \wedge \dots \wedge v_m
-	\mapsto T(v_1) \wedge T(v_2) \wedge \dots \wedge T(v_m) \]
-and extending linearly to all of $\Lambda^m(V)$ is a linear map.
-(You can check this yourself if you like.)
+	\mapsto T(v_1) \wedge T(v_2) \wedge \dots \wedge T(v_m). \]
+and extending linearly to all of $\Lambda^m(V)$ is a
+well-defined  linear map
+(Here ``well-defined'' means that equivalent elements of the domain
+get mapped to equivalent elements of the codomain.
+This, and linearity, both follow from $T$ being a linear map.)
 We call that map $\Lambda^m(T)$.
 \begin{example}
 	[Example of $\Lambda^m(T)$]
@@ -499,9 +517,8 @@ then the theorem is almost obvious:
 	[Based on Sweden 2010]
 	\gim
 	A herd of $1000$ cows of nonzero weight is given.
-	Prove that we can remove one cow such that the
-	remaining $999$ cows cannot be split
-	into two halves of equal weights.
+	Prove that we can remove one cow such that the remaining $999$ cows
+	cannot be partition into two sets with equal sum of weights.
 	\begin{hint}
 		Consider $1000 \times 1000$ matrix $M$
 		with entries $0$ on diagonal and $\pm 1$ off-diagonal.
@@ -676,7 +693,7 @@ then the theorem is almost obvious:
 			\sum_{\sigma \in S_m}
 			\left( \sign(\sigma)
 			\left( \sum_{t=0}^{\left\lvert \Fix(\sigma) \right\rvert}
-			a^{m-t-\left\lvert \Fix(\sigma) \right\rvert}
+			a^{m-t-\left\lvert \NoFix(\sigma) \right\rvert}
 			\sum_{\substack{X \subseteq \{1, \dots, m\} \\ \NoFix(\sigma) \subseteq X \\ X \text{ has exactly $t$ fixed}}} \prod_{i \in X} -x_{i \sigma(i)}
 			\right) \right) \\
 			% -----------------------

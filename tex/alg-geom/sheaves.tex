@@ -20,7 +20,7 @@ In particular, we can keep drawing open sets $U$ as ovals,
 even though in the Zariski topology that's not what they look like.
 
 The payoff for this abstraction is that it will
-allow us to define an arbitrary scheme in the next chapter.
+allow us to define an arbitrary scheme in \Cref{ch:spec_zariski}.
 Varieties use $\CC[x_1, x_2, \dots, x_n] / I$ as their ``ring of functions'',
 and by using the fully general sheaf we replace this
 with \emph{any} commutative ring.
@@ -40,8 +40,7 @@ with the interpretation that $\OO_V(U)$ was a ``ring of functions''.
 \subsection{Usual definition}
 So here is the official definition of a pre-sheaf.
 \begin{definition}
-	For a topological space $X$ let $\Opens(X)$ denote
-	its open sets of $X$.
+	For a topological space $X$ let $\Opens(X)$ denote the open sets of $X$.
 \end{definition}
 \begin{definition}
 	A \vocab{pre-sheaf} of rings on a space $X$ is a function
@@ -455,8 +454,7 @@ $\SF(U \cup V)$, $\SF(U \cap V)$, $\SF(U)$ and $\SF(V)$.
 \end{center}
 Then for a sheaf of functions, the axioms are saying that:
 \begin{itemize}
-	\ii If $s$ and $t$ are functions (with property $P$)
-	on $U \cap V$
+	\ii If $s$ and $t$ are functions (with property $P$) on $U \cup V$
 	and $s \restrict{U} = t \restrict{U}$,
 	$s \restrict{V} = t \restrict{V}$,
 	then $s = t$ on the entire union.
