@@ -87,8 +87,8 @@ This is an important theorem, \Cref{thm:n_embeddings}.
 
 In this chapter we'll develop these ideas in full generality, for any field other than $\QQ$.
 
-\section{Field extensions, algebraic closures, and splitting fields}
-\prototype{$\QQ(\cbrt 2)/\QQ$ is an extension, $\CC$ is an algebraic closure of any number field.}
+\section{Field extensions, algebraic extension, and splitting fields}
+\prototype{$\QQ(\cbrt 2)/\QQ$ is an extension, $\CC$ is an algebraic extension of any number field.}
 
 First, we define a notion of one field sitting inside another,
 in order to generalize the notion of a number field.
@@ -121,24 +121,40 @@ Degrees of finite extensions are multiplicative.
 
 Next, given a field (like $\QQ(\cbrt2)$)
 we want something to embed it into (in our case $\CC$).
-So we just want a field that contains all the roots of all the polynomials:
-\begin{theorem}[Algebraic closures]
-	Let $F$ be a field.
-	Then there exists a field extension $\ol F$ containing $F$, called an \vocab{algebraic closure},
-	such that all polynomials in $\ol F[x]$ factor completely.
-\end{theorem}
+So we just want a field that contains all the roots of all the polynomials.
+Let's agree that a field $E$ is \vocab{algebraically closed} if every polynomial
+with coefficients in $E$ is a product of linear polynomials in $E$,
+with the classic example is:
 \begin{example}
 	[$\CC$]
-	$\CC$ is an algebraic closure of $\QQ$, $\RR$ and even itself.
+	$\CC$ is algebraically closed.
 \end{example}
-\begin{abuse}
-	Some authors also require the algebraic closure to be \emph{minimal by inclusion}:
-	for example, given $\QQ$ they would want only $\ol\QQ$ (the algebraic numbers).
-	It's a theorem that such a minimal algebraic closure is unique,
-	and so these authors will refer to \emph{the} algebraic closure of $K$.
-
-	I like $\CC$, so I'll use the looser definition.
-\end{abuse}
+A major theorem is that any field $F$ can be extended to an algebraically closed one
+$\ol F$; since all roots of polynomials in $\ol F[x]$ live in $\ol F$,
+in particular so do all roots of polynomials in $F[x]$.
+Here is the result:
+\begin{theorem}[Algebraic closures]
+	Any field $F$ has algebraically closed field extensions.
+	In fact, there is a unique such extension which is minimal by inclusion,
+	called the \vocab{algebraic closure} and denoted $\ol F$.
+	(Here ``minimal'' means any other algebraically closed extension of $F$
+	contains an isomorphic copy of $\ol F$.)
+	It has the property that every element of $\ol F$ is indeed the root
+	of some polynomial with coefficients in $F$.
+\end{theorem}
+\begin{example}
+	[$\ol{\RR} = \ol{\CC} = \CC \supsetneq \ol{\QQ}$]
+	$\CC$ is the algebraic closure of $\RR$ (and itself).
+	But the algebraic closure $\ol{\QQ}$ of $\QQ$ (i.e.\ the set of algebraic numbers)
+	is a proper subfield of $\CC$
+	(some complex numbers aren't the root of any rational-coefficient polynomial).
+\end{example}
+Usually we won't care much about what these extensions look like,
+and merely be satisfied they exist.
+Often we won't even use the algebraic closure, just any big enough field;
+for example, when working with a polynomial $f$ with $\QQ$-coefficients,
+we simply consider roots of $f$ as elements of $\CC$ for convenience and concreteness,
+even though it may be less wasteful to use the smaller $\ol{\QQ}$ in place of $\CC$.
 
 \section{Embeddings into algebraic closures for number fields}
 Now that I've defined all these ingredients, I can prove:
@@ -292,9 +308,10 @@ So the inclusion of the word ``separable'' is mostly a formality.
 
 Proceeding onwards, we obtain
 \begin{theorem}[The $n$ embeddings of any separable extension]
-	Let $K/F$ be a separable extension of degree $n$ and let $\ol F$ be an algebraic closure of $F$.
+	Let $K/F$ be a separable extension of degree $n$
+	and let $\ol F$ be an algebraic closure of $F$.
 	Then there are exactly $n$ field homomorphisms $K \injto \ol F$,
-	say $\sigma_1, \dots, \sigma_n$, which fix $F$.
+	say $\sigma_1$, \dots, $\sigma_n$, which fix $F$.
 \end{theorem}
 
 In any case, this lets us define the trace for \emph{any} separable normal extension.
@@ -309,7 +326,6 @@ be the $n$ embeddings into an algebraic closure of $F$. Then we define
 When $F = \QQ$ and the algebraic closure is $\CC$, this coincides with our earlier definition!
 \end{definition}
 
-
 \section{Automorphism groups and Galois extensions}
 \prototype{$\QQ(\sqrt 2)$ is Galois but $\QQ(\cbrt 2)$ is not.}
 We now want to get back at the idea we stated at the beginning of
@@ -321,11 +337,7 @@ First, we define the ``internal'' automorphisms.
 	Then $\Aut(K/F)$ is the set of \emph{field isomorphisms} $\sigma \colon K \to K$ which fix $F$.
 	In symbols
 	\[ \Aut(K/F) =
-		\left\{
-		\sigma \colon K \to K \mid
-		\text{$\sigma$ is identity on $F$}
-	  \right\}.
-	\]
+		\left\{ \sigma \colon K \to K \mid \text{$\sigma$ is identity on $F$} \right\}. \]
 	This is a group under function composition!
 \end{definition}
 Note that this time, we have a condition that $F$ is fixed by $\sigma$.
@@ -392,7 +404,7 @@ The way to capture the fact that there are missing Galois conjugates
 is the notion of a splitting field.
 \begin{definition}
 	Let $F$ be a field and $p(x) \in F[x]$ a polynomial of degree $n$.
-	Then $p(x)$ has roots $\alpha_1, \dots, \alpha_n$ in an algebraic closure of $F$.
+	Then $p(x)$ has roots $\alpha_1$, \dots, $\alpha_n$ in the algebraic closure of $F$.
 	The \vocab{splitting field} of $p(x)$ over $F$ is defined as $F(\alpha_1, \dots, \alpha_n)$.
 \end{definition}
 In other words, the splitting field is the smallest field in which $p(x)$ splits.
