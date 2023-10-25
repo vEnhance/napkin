@@ -214,6 +214,16 @@ We'll prove a stronger result, which will re-appear repeatedly.
 	Then $\kp$ contains a rational prime $p$.
 	Moreover, $\kp$ is maximal.
 \end{theorem}
+For a concrete example, consider $(2+i) \subseteq \ZZ[i]$. In this case, $p = 5$,
+and because $p \in (2+i)$, we get that the lattice is periodic in both dimensions
+with period $5$, which implies finitely many points in $\{a+bi \mid 0 \le a, b \le 4, a, b \in \ZZ\}$
+suffices to cover all cosets modulo the ideal.
+
+The proof of the finiteness of the quotient here is closely related to the
+statement that the mesh of the lattice is finite,
+which will be covered in the next section.
+% Point is, the proof is not that tricky.
+% You just need to remember the last step is "finite integral domain imply field".
 \begin{proof}
 	Take any $\alpha \neq 0$ in $\kp$.
 	Its Galois conjugates are algebraic integers
@@ -526,6 +536,13 @@ Now, as we prescribed, the fractional ideals form a multiplicative group:
 			\mid x\ka \subseteq (1) = \mathcal A \right\} \]
 	is a fractional ideal with $\ka \ka\inv = (1)$.
 \end{theorem}
+
+(This result is nontrivial.
+To prove $\ka \ka\inv = (1)$, one approach is to prove it first
+for prime $\ka$, then consider the factorization of $\ka$ into prime ideals.)
+% approach used by Neukirch.
+% I find proving 𝔞 𝔞⁻¹ ⊆ (1) trivial, but the reverse inclusion is difficult.
+
 \begin{definition}
 	Thus nonzero fractional ideals of $K$ form a group under multiplication
 	with identity $(1) = \mathcal A$.
