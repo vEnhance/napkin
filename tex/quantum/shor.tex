@@ -70,8 +70,9 @@ the amplitudes will peak at inputs which are divisible by $\frac{N}{\gcd(N,r)}$.
 	(not-inverted) Fourier transform.
 \end{remark}
 If we apply the definition as written, computing the transform takes $O(N^2)$ time.
-It turns out that by an algorithm called the \vocab{fast Fourier transform}
-(whose details we won't discuss), one can reduce this to $O(N \log N)$ time.
+It turns out that by a classical algorithm called the \vocab{fast Fourier transform}
+(whose details we won't discuss, but it effectively "reuses" calculations), 
+one can reduce this to $O(N \log N)$ time.
 However, for Shor's algorithm this is also insufficient;
 we need something like $O\left( (\log N)^2 \right)$ instead.
 This is where the quantum Fourier transform comes in.
@@ -90,6 +91,7 @@ First, some more notation:
 	where $x = x_n x_{n-1} \dots x_1$ in binary.
 	For example, if $n = 3$
 	then $\ket{6}$ really means $\ket1 \otimes \ket1 \otimes \ket 0$.
+	Likewise, we refer to $0.x_1x_2 \dots x_n$ as binary similarily.
 \end{abuse}
 Observe that the $n$-qubit space now has an
 orthonormal basis $\ket0$, $\ket1$, \dots, $\ket{N-1}$
@@ -136,8 +138,8 @@ But the trick is that in the quantum setup, the matrix can be rewritten:
 	In short, expand everything.
 \end{proof}
 
-So by using mixed states, we can deal with the quantum Fourier transform
-using this ``multiplication by tensor product'' trick that isn't possible classically.
+So by using mixed states, the quantum Fourier transform
+can use this ``multiplication by tensor product'' trick that isn't possible classically.
 
 Now, without further ado, here's the circuit.
 Define the rotation matrices
@@ -151,8 +153,7 @@ Then, for $n=3$ the circuit is given by using controlled $R_k$'s as follows:
 	}
 \]
 \begin{exercise}
-	Show that in this circuit, the image of $\ket{x_3x_2x_1}$
-	(for binary $x_i$) is
+	Show that in this circuit, the image of $\ket{x_3x_2x_1}$ is
 	\[
 		\Big(\ket0+\exp(2\pi i \cdot 0.x_1) \ket1\Big)
 		\otimes \Big(\ket0+\exp(2\pi i \cdot 0.x_2x_1) \ket1\Big)
@@ -217,7 +218,7 @@ first we generate a sequence which is periodic modulo $r$.
 	and we randomly select $x = 2$, and want to find its order $r$.
 	Let $n = 13$ and $N = 2^{13}$, and start by initializing the state
 	\[ \ket\psi = \frac{1}{\sqrt N} \sum_{k=0}^{N-1} \ket k. \]
-	Now, build a circuit $U_x$ (depending on $x=2$!)
+	Now, build a circuit $U_x$ (depending on $x$)
 	which takes $\ket k \ket 0$ to $\ket k \ket{x^k \bmod M}$.
 	Applying this to $\ket\psi \otimes \ket0$ gives
 	\[ U(\ket\psi\ket0) =
@@ -300,7 +301,10 @@ to extract the value of $r$.
 	And indeed, one can check that $r = 30$ is the desired order.
 \end{example}
 
-This won't work all the time (for example, we could get unlucky and
+This won't work all the time\footnote{%
+	Note to mention the general issue of noise, but that's for 
+	engineers to worry about.
+} (for example, we could get unlucky and
 measure $j=0$, i.e.\ $s=0$, which would tell us no information at all).
 
 But one can show that we succeed any time that \[ \gcd(s,r) = 1. \]
