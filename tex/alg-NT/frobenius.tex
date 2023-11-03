@@ -1,4 +1,4 @@
-\chapter{The Frobenius element}
+\chapter{The Frobenius element}\label{ch:frobenius-element}
 Throughout this chapter $K/\QQ$ is a Galois extension with Galois group $G$,
 $p$ is an \emph{unramified} rational prime in $K$, and $\kp$ is a prime above it.
 Picture:
@@ -12,6 +12,12 @@ Picture:
 	\QQ & \supset & \ZZ & (p) & \FF_p
 \end{tikzcd}
 \end{center}
+
+We recall that the $p$-th power map $\sigma \colon \FF_{p^f} \to \FF_{p^f}$ is an automorphism, and it's called the Frobenius map on $\FF_{p^f}$.
+We can try to extend this map to a $K \to K$ map by $\sigma(x) = x^p$, unfortunately this doesn't make it a field automorphism.
+
+Surprisingly, it is nevertheless possible to extend this to some field automorphism $\sigma \in \Gal(K/\QQ)$.
+
 If $p$ is unramified, then one can show there
 is a unique $\sigma \in \Gal(K/\QQ)$ such that
 $\sigma(\alpha) \equiv \alpha^p \pmod{\kp}$ for every prime $p$.
@@ -24,7 +30,7 @@ Here is the theorem statement again:
 	Assume $K/\QQ$ is Galois with Galois group $G$.
 	Let $p$ be a rational prime unramified in $K$, and $\kp$ a prime above it.
 	There is a \emph{unique} element $\Frob_\kp \in G$
-	with the property that
+	with the property that, for all $\alpha \in \OO_K$,
 	\[ \Frob_\kp(\alpha) \equiv \alpha^{p} \pmod{\kp}. \]
 	It is called the \vocab{Frobenius element} at $\kp$, and has order $f$.
 \end{theorem}

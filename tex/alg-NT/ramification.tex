@@ -262,21 +262,26 @@ So we ask:
 	How are $\Gal\left( (\OO_K/\kp) / \FF_p \right)$
 	and $\Gal(K/\QQ)$ related?
 \end{quote}
-Absurdly enough, there is an explicit answer:
-\textbf{it's just the stabilizer of $\kp$, at least when
-$p$ is unramified}.
+
+First, every $\sigma \in \Gal(K/\QQ)$ induces an automorphism of $\OO_K$, which induces a map
+$\OO_K \to \OO_K/\kp$ by
+\[ \alpha \mapsto \sigma(\alpha) \pmod\kp. \]
+For this to induce a map in $\Gal\left( (\OO_K/\kp) / \FF_p \right)$, it's necessary that $\sigma(\kp) \subseteq \kp$. So, we consider the subset of automorphisms that fixes $\kp$:
 \begin{definition}
 	Let $D_\kp \subseteq \Gal(K/\QQ)$ be the stabilizer of $\kp$, that is
 	\[ D_\kp \defeq \left\{ \sigma \in \Gal(K/\QQ) \mid \sigma\kp = \kp \right\}. \]
 	We say $D_\kp$ is the \vocab{decomposition group} of $\kp$.
 \end{definition}
-Then, every $\sigma \in D_\kp$ induces an automorphism of $\OO_K / \kp$ by
-\[ \alpha \mapsto \sigma(\alpha) \pmod\kp. \]
+Note that this definition is in fact equivalent to the set of $\sigma$ such that $\sigma(\kp) \subseteq \kp$,
+because a field isomorphism fixes the ideal norm $\Norm(\kp)$.
+
 So there's a natural map
 \[ D_\kp \taking\theta \Gal\left( (\OO_K/\kp) / \FF_p \right) \]
 by declaring $\theta(\sigma)$ to just be ``$\sigma \pmod \kp$''.
 The fact that $\sigma \in D_\kp$ (i.e.\ $\sigma$ fixes $\kp$)
 ensures this map is well-defined.
+
+Surprisingly, every element of $\Gal\left( (\OO_K/\kp) / \FF_p \right)$ arises this way from some field automorphism of $K$.
 
 \begin{theorem}[Decomposition group and Galois group]
 	\label{thm:decomposition}
