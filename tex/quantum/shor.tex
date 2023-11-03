@@ -72,7 +72,7 @@ Mathematically, we have that
 \end{remark}
 If we apply the definition as written, computing the transform takes $O(N^2)$ time.
 It turns out that by a classical algorithm called the \vocab{fast Fourier transform}
-(whose details we won't discuss, but it effectively "reuses" calculations), 
+(whose details we won't discuss, but it effectively ``reuses'' calculations), 
 one can reduce this to $O(N \log N)$ time.
 However, for Shor's algorithm this is also insufficient;
 we need something like $O\left( (\log N)^2 \right)$ instead.
@@ -303,7 +303,7 @@ to extract the value of $r$.
 \end{example}
 
 This won't work all the time\footnote{%
-	Note to mention the general issue of noise, but that's for 
+	Not to mention the general issue of noise, but that's for 
 	engineers to worry about.
 } (for example, we could get unlucky and
 measure $j=0$, i.e.\ $s=0$, which would tell us no information at all).
