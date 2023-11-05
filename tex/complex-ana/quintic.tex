@@ -50,7 +50,7 @@ along two paths that doesn't go through other roots.
 		real r = 1.44;
 		real[] dirs = {25,120,155,215,325};
 		real[] mag = {1.5,1.9,1.25,0.9,1.8};
-	    for (int i=0; i<5; ++i) {
+		for (int i=0; i<5; ++i) {
 			A[i] = mag[i]*dir(dirs[i]);
 			if (i < 2) {
 			    dot("$z_{" + (string) (i+1) + "}$", A[i], dir(dirs[i]), red);
@@ -114,10 +114,10 @@ $\alpha\beta\alpha^{-1}\beta^{-1}$.
 \begin{center}
 	\begin{asy}
 		unitsize(0.8cm);
-        size(7cm);
-        cplane();
+		size(7cm);
+		cplane();
 		pair A = Drawing((1.5,0));
-        dot("$R$", A, dir(-45));
+		dot("$R$", A, dir(-45));
 		draw(A..(0,2.5)..MP("\alpha", (-1.5,2), dir(90))..(-1.2,-1.3)..(1,1.5)..(1.8,1.1)..A, red, EndArrow);
 		draw(A..(0.7,0.5)..MP("\beta", (0.6,0.3), dir(90))..A, blue, EndArrow);
 	\end{asy}
