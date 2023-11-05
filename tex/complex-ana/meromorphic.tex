@@ -264,8 +264,9 @@ For example, by our previous results we see that if $\gamma$ is a circle, we hav
 \]
 If you've read the chapter on fundamental groups, then this is just the fundamental group
 associated to $\CC \setminus \{p\}$.
-In particular, the winding number is always an integer (the proof of this requires the complex logarithm,
-so we omit it here).
+In particular, the winding number is always an integer (Essentially, it uses 
+the complex logarithm to track how the arguement changes. The details are more complicated,
+so we omit them here).
 In the simplest case the winding numbers are either $0$ or $1$.
 \begin{definition}
 	We say a loop $\gamma$ is \vocab{regular} if $\Wind(\gamma, p) = 1$
@@ -377,6 +378,7 @@ using the so-called Argument Principle.
 	Then
 	\[
 		\frac{1}{2\pi i} \oint_\gamma \frac{f'}{f} \; dz
+		= frac{1}{2\pi i} \oint_{f \circ \gamma} \frac{1}{z} \; dz
 		= Z - P
 	\]
 	where $Z$ is the number of zeros inside $\gamma$ (counted with multiplicity)
