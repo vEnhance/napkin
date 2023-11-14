@@ -14,8 +14,8 @@
           inherit (pkgs.texlive)
           scheme-medium
           asymptote wrapfig amsmath ulem hyperref capt-of
-          latexmk biber xpatch 
-          tkz-graph tikz-cd xcolor todonotes 
+          latexmk biber xpatch
+          tkz-graph tikz-cd xcolor todonotes
           mdframed mathtools braket
           multirow prerex cleveref
           wasysym stmaryrd
