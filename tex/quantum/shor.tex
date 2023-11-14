@@ -2,8 +2,8 @@
 OK, now for Shor's Algorithm:
 how to factor $M = pq$ in $O\left( (\log M)^2 \right)$ time.
 
-This is arguably the reason agencies such as the US's National 
-Security Agency have been diverting millions of dollars toward 
+This is arguably the reason agencies such as the US's National
+Security Agency have been diverting millions of dollars toward
 quantum computing.
 
 \section{The classical (inverse) Fourier transform}
@@ -39,7 +39,7 @@ The reason this operation is important is because it lets
 us detect if the $x_i$ are periodic.
 More generally, given a sequence of $1$'s appearing with period $r$,
 the amplitudes will peak at inputs which are divisible by $\frac{N}{\gcd(N,r)}$.
-Mathematically, we have that 
+Mathematically, we have that
 \[
 	x_k = \sum_{j=0}^{N-1} y_j \omega_N^{-jk}.
 \]
@@ -72,7 +72,7 @@ Mathematically, we have that
 \end{remark}
 If we apply the definition as written, computing the transform takes $O(N^2)$ time.
 It turns out that by a classical algorithm called the \vocab{fast Fourier transform}
-(whose details we won't discuss, but it effectively ``reuses'' calculations), 
+(whose details we won't discuss, but it effectively ``reuses'' calculations),
 one can reduce this to $O(N \log N)$ time.
 However, for Shor's algorithm this is also insufficient;
 we need something like $O\left( (\log N)^2 \right)$ instead.
@@ -165,15 +165,15 @@ Then, for $n=3$ the circuit is given by using controlled $R_k$'s as follows:
 
 For general $n$, we can write this as inductively as
 \[
- \Qcircuit @C=1em @R=.7em {
-  \lstick{\ket{x_n}}     & \multigate{5}{\text{QFT}_{n-1}} & \gate{R_n} & \qw                    & \qw & \cdots & & \qw                    & \qw & \cdots & & \qw              & \qw      & \rstick{\ket{y_1}} \qw \\
-  \lstick{\ket{x_{n-1}}}     & \ghost{\text{QFT}_{n-1}}        & \qw                    & \gate{R_{n-1}} & \qw & \cdots & & \qw                    & \qw & \cdots & & \qw              & \qw      & \rstick{\ket{y_2}} \qw \\
-  \lstick{\vdots\ \ }    & \pureghost{\text{QFT}_{n-1}}    &                        &                        &     &        & &                        &     &        & &                  &          & \rstick{\ \ \vdots} \\
-  \lstick{\ket{x_i}}     & \ghost{\text{QFT}_{n-1}}        & \qw                    & \qw                    & \qw & \cdots & & \gate{R_i} & \qw & \cdots & & \qw              & \qw      & \rstick{\ket{y_{n-i+1}}} \qw \\
-  \lstick{\vdots\ \ }    & \pureghost{\text{QFT}_{n-1}}    &                        &                        &     &        & &                        &     &        & &                  &          & \rstick{\ \ \vdots} \\
-  \lstick{\ket{x_2}} & \ghost{\text{QFT}_{n-1}}        & \qw                    & \qw                    & \qw & \cdots & & \qw                    & \qw & \cdots & & \gate{R_2} & \qw      & \rstick{\ket{y_{n-1}}} \qw \\
-  \lstick{\ket{x_1}}     & \qw                             & \ctrl{-6}               & \ctrl{-5}               & \qw & \cdots & & \ctrl{-3}               & \qw & \cdots & & \ctrl{-1}         & \gate{H} & \rstick{\ket{y_n}} \qw
- }
+	\Qcircuit @C=1em @R=.7em {
+	\lstick{\ket{x_n}}     & \multigate{5}{\text{QFT}_{n-1}} & \gate{R_n} & \qw                    & \qw & \cdots & & \qw                    & \qw & \cdots & & \qw              & \qw      & \rstick{\ket{y_1}} \qw \\
+	\lstick{\ket{x_{n-1}}}     & \ghost{\text{QFT}_{n-1}}        & \qw                    & \gate{R_{n-1}} & \qw & \cdots & & \qw                    & \qw & \cdots & & \qw              & \qw      & \rstick{\ket{y_2}} \qw \\
+	\lstick{\vdots\ \ }    & \pureghost{\text{QFT}_{n-1}}    &                        &                        &     &        & &                        &     &        & &                  &          & \rstick{\ \ \vdots} \\
+	\lstick{\ket{x_i}}     & \ghost{\text{QFT}_{n-1}}        & \qw                    & \qw                    & \qw & \cdots & & \gate{R_i} & \qw & \cdots & & \qw              & \qw      & \rstick{\ket{y_{n-i+1}}} \qw \\
+	\lstick{\vdots\ \ }    & \pureghost{\text{QFT}_{n-1}}    &                        &                        &     &        & &                        &     &        & &                  &          & \rstick{\ \ \vdots} \\
+	\lstick{\ket{x_2}} & \ghost{\text{QFT}_{n-1}}        & \qw                    & \qw                    & \qw & \cdots & & \qw                    & \qw & \cdots & & \gate{R_2} & \qw      & \rstick{\ket{y_{n-1}}} \qw \\
+	\lstick{\ket{x_1}}     & \qw                             & \ctrl{-6}               & \ctrl{-5}               & \qw & \cdots & & \ctrl{-3}               & \qw & \cdots & & \ctrl{-1}         & \gate{H} & \rstick{\ket{y_n}} \qw
+}
 \]
 \begin{ques}
 	Convince yourself that when $n=3$ the two circuits displayed are equivalent.
@@ -297,13 +297,13 @@ to extract the value of $r$.
 		\frac{1152}{2033}, \;
 		\dots
 	\]
-	So $\frac{17}{30}$ is a very good approximation,
+	So $\frac{17}{30}$ is a good approximation,
 	hence we deduce $s = 17$ and $r = 30$ as candidates.
 	And indeed, one can check that $r = 30$ is the desired order.
 \end{example}
 
 This won't work all the time\footnote{%
-	Not to mention the general issue of noise, but that's for 
+	Not to mention the general issue of noise, but that's for
 	engineers to worry about.
 } (for example, we could get unlucky and
 measure $j=0$, i.e.\ $s=0$, which would tell us no information at all).
