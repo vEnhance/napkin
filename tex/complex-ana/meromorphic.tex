@@ -66,13 +66,11 @@ This gives us an equivalent way of viewing meromorphic functions:
 
 \begin{definition}
 	Let $f \colon U \to \CC$ as usual.
-	A \vocab{meromorphic} function is a
-	function which is holomorphic on $U$
+	A \vocab{meromorphic} function is a function which is holomorphic on $U$
 	except at an isolated set $S$ of points
 	(meaning it is holomorphic as a function $U \setminus S \to \CC$).
 	For each $p \in S$, called a \vocab{pole} of $f$,
-	the function $f$ must admit a \vocab{Laurent series},
-	meaning that
+	the function $f$ is further required to admit a \vocab{Laurent series}, meaning that
 	\[
 		f(z) =
 		\frac{c_{-m}}{(z-p)^m}
@@ -80,9 +78,8 @@ This gives us an equivalent way of viewing meromorphic functions:
 		+ \dots
 		+ \frac{c_{-1}}{z-p} + c_0 + c_1 (z-p) + \dots
 	\]
-	for all $z$ in some open neighborhood of $p$,
-	other than $z = p$.
-	Here $m$ is a positive integer (and $c_{-m} \neq 0$).
+	for all $z$ in some open neighborhood of $p$, other than $z = p$.
+	Here $m$ is a positive integer, and $c_{-m} \neq 0$.
 \end{definition}
 Note that the trailing end \emph{must} terminate.
 By ``isolated set'', I mean that we can draw
