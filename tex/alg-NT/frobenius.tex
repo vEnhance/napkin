@@ -359,7 +359,10 @@ Both maps $\Frob_{\kP}$ and $\Frob_{\kp}$ induce the power-of-$p$ map in the cor
 	First, $K/\QQ$ is normal, so $\Frob_{\kP}$ fixes the image of $K$, that is,
 	$\Frob_{\kP} \restrict{K} \in \Gal(K/\QQ)$ is well-defined.
 
-	We have the natural map $\phi \colon \OO_K \to \OO_L \to \OO_L/\kP$, and the quotient map $q\colon \OO_K \to \OO_K / \kp$. Since $\kP \subseteq \kP$, then $\phi$ factors through $q$ to give a natural field homomorphism $\OO_K / \kp \to \OO_L / \kP$.
+	We have the natural map $\phi \colon \OO_K \to \OO_L \to \OO_L/\kP$,
+	and the quotient map $q\colon \OO_K \to \OO_K / \kp$.
+	Since $\kp \subseteq \kP \cap \OO_K \subseteq \ker \phi$, it follows $\phi$ factors
+	through $q$ to give a natural field homomorphism $\OO_K / \kp \to \OO_L / \kP$.
 
 	Since a field homomorphism is injective, $\Frob_{\kP}$ induces the power-of-$p$ map on $\OO_L / \kP$, and everything is commutative, the theorem follows.
 \end{proof}
