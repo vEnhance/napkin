@@ -71,7 +71,11 @@
 	arrow style=tikz,
 	diagrams={>={Latex}},
 	tikzcd left hook/.tip={xGlyph[glyph math command=supset, swap, glyph axis = 5.7pt]},
-	tikzcd right hook/.tip={xGlyph[glyph math command=supset, glyph axis = 5.7pt]}
+	tikzcd right hook/.tip={xGlyph[glyph math command=supset, glyph axis = 5.7pt]},
+	surjective head arrow /.tip = {tikzcd to[sep=-1.5pt]tikzcd to},
+	surjective head/.style={
+		-surjective head arrow
+	}
 }
 
 %%fakesection Page layout

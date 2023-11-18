@@ -27,17 +27,17 @@ It is said to be \vocab{short exact} if \emph{each row} of the diagram below is 
 	& \vdots \ar[d, "\partial_A"] & \vdots \ar[d, "\partial_B"] & \vdots \ar[d, "\partial_C"] & \\
 	0 \ar[r]
 		& A_{n+1} \ar[hook, r, "f_{n+1}"] \ar[d, "\partial_A"]
-		& B_{n+1} \ar[r, two heads, "g_{n+1}"] \ar[d, "\partial_B"]
+		& B_{n+1} \ar[r, surjective head, "g_{n+1}"] \ar[d, "\partial_B"]
 		& C_{n+1} \ar[r] \ar[d, "\partial_C"]
 		& 0 \\
 	0 \ar[r]
 		& A_n \ar[hook, r, "f_n"] \ar[d, "\partial_A"]
-		& B_n \ar[r, two heads, "g_n"] \ar[d, "\partial_B"]
+		& B_n \ar[r, surjective head, "g_n"] \ar[d, "\partial_B"]
 		& C_n \ar[r] \ar[d, "\partial_C"]
 		& 0 \\
 	0 \ar[r]
 		& A_{n-1} \ar[hook, r, "f_{n-1}"] \ar[d, "\partial_A"]
-		& B_{n-1} \ar[r, two heads, "g_{n-1}"] \ar[d, "\partial_B"]
+		& B_{n-1} \ar[r, surjective head, "g_{n-1}"] \ar[d, "\partial_B"]
 		& C_{n-1} \ar[r] \ar[d, "\partial_C"]
 		& 0 \\
 	& \vdots & \vdots & \vdots
@@ -52,7 +52,7 @@ It is said to be \vocab{short exact} if \emph{each row} of the diagram below is 
 	For each $n$ consider
 	\begin{center}
 	\begin{tikzcd}[row sep=tiny]
-		C_n(U \cap V) \ar[r, hook] & C_n(U) \oplus C_n(V) \ar[r, two heads] & C_n(U + V) \\
+		C_n(U \cap V) \ar[r, hook] & C_n(U) \oplus C_n(V) \ar[r, surjective head] & C_n(U + V) \\
 		c \ar[r, mapsto] & (c, -c) \\
 		& (c, d) \ar[r, mapsto] & c + d
 	\end{tikzcd}
@@ -71,8 +71,8 @@ It is said to be \vocab{short exact} if \emph{each row} of the diagram below is 
 	\begin{center}
 	\begin{tikzcd}[row sep=large]
 		0 \ar[r]
-		& C_0(U \cap V) \ar[r, hook] \ar[d, "\eps"', two heads]
-			& C_0(U) \oplus C_0(V) \ar[r, two heads] \ar[d, "\eps \oplus \eps"', two heads]
+		& C_0(U \cap V) \ar[r, hook] \ar[d, "\eps"', surjective head]
+			& C_0(U) \oplus C_0(V) \ar[r, surjective head] \ar[d, "\eps \oplus \eps"', surjective head]
 			& C_0(U+V) \ar[r] \ar[d, "\eps"']
 			& 0 \\
 		0 \ar[r]
@@ -105,8 +105,8 @@ It is said to be \vocab{short exact} if \emph{each row} of the diagram below is 
 	\begin{center}
 	\begin{tikzcd}
 		0 \ar[r]
-		& C_0(A) \ar[r, hook] \ar[d, "\eps", two heads]
-			& C_0(X) \ar[r, two heads] \ar[d, "\eps", two heads]
+		& C_0(A) \ar[r, hook] \ar[d, "\eps", surjective head]
+			& C_0(X) \ar[r, surjective head] \ar[d, "\eps", surjective head]
 			& C_0(X,A) \ar[r]
 			& 0 \\
 		0 \ar[r] & \ZZ \ar[r, "\id"'] & \ZZ \ar[r] & 0 \ar[r] & 0.
@@ -162,8 +162,8 @@ taking each $H_{n+1}(C_\bullet)$ to $H_n(A_\bullet)$.
 	Recall that $H_n$ is ``cycles modulo boundaries'', and consider the sub-diagram
 	\begin{center}
 	\begin{tikzcd}
-		& B_n \ar[r, "g_n", two heads] \ar[d, "\partial_B"'] & C_n \ar[d, "\partial_C"] \\
-		A_{n-1} \ar[r, "f_{n-1}"', hook] & B_{n-1} \ar[r, "g_{n-1}"', two heads] & C_{n-1}
+		& B_n \ar[r, "g_n", surjective head] \ar[d, "\partial_B"'] & C_n \ar[d, "\partial_C"] \\
+		A_{n-1} \ar[r, "f_{n-1}"', hook] & B_{n-1} \ar[r, "g_{n-1}"', surjective head] & C_{n-1}
 	\end{tikzcd}
 	\end{center}
 	We need to take every cycle in $C_n$ to a cycle in $A_{n-1}$.
@@ -560,9 +560,9 @@ Finally, to fully justify the last step, we present:
 		\ii There is an isomorphism from $B$ to $A \oplus C$ such that the diagram
 		\begin{center}
 		\begin{tikzcd}
-			&& B \ar[rd, "g", two heads] \ar[dd, leftrightarrow, "\cong"] \\
+			&& B \ar[rd, "g", surjective head] \ar[dd, leftrightarrow, "\cong"] \\
 			0 \ar[r] & A \ar[ru, hook, "f"] \ar[rd, hook] && C \ar[r] & 0 \\
-			&& A \oplus C \ar[ru, two heads]
+			&& A \oplus C \ar[ru, surjective head]
 		\end{tikzcd}
 		\end{center}
 		commutes. (The maps attached to $A \oplus C$ are the obvious ones.)

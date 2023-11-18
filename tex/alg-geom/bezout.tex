@@ -166,7 +166,7 @@ this implies that $\dim W = \dim V + \dim X$.
 	\begin{tikzcd}
 		0 \ar[r]
 			& \left[ S / (I \cap J) \right]^d \ar[r, hook]
-			& \left[ S / I \right]^d \oplus \left[ S / J \right]^d \ar[r, two heads]
+			& \left[ S / I \right]^d \oplus \left[ S / J \right]^d \ar[r, surjective head]
 			& \left[ S / (I+J) \right]^d \ar[r] & 0 \\
 		& f \ar[r, mapsto] & (f,f) \\
 		&& (f,g) \ar[r, mapsto] & f-g
@@ -302,7 +302,7 @@ In fact, this behavior of ``eventually polynomial'' always works.
 	\begin{tikzcd}
 		0 \ar[r]
 			& \left[ S/I \right]^{d-1} \ar[r, hook]
-			& \left[ S / I \right]^d \ar[r, two heads]
+			& \left[ S / I \right]^d \ar[r, surjective head]
 			& \left[ S / (I+(f)) \right]^d \ar[r] & 0 \\
 		& f \ar[r, mapsto] & f \cdot x_0 \\
 		&& f \ar[r, mapsto] & f.
@@ -365,7 +365,7 @@ This is true:
 	\begin{tikzcd}
 		0 \ar[r]
 			& \left[ S/I \right]^{d-k} \ar[r, hook]
-			& \left[ S / I \right]^d \ar[r, two heads]
+			& \left[ S / I \right]^d \ar[r, surjective head]
 			& \left[ S / (I+(f)) \right]^d \ar[r] & 0.
 	\end{tikzcd}
 	\end{center}

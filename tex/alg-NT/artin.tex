@@ -374,8 +374,8 @@ Recalling that $C_K(\kf) = I_K(\kf) / P_K(\kf)$,
 the above theorem tells us we get a sequence of maps
 \begin{center}
 \begin{tikzcd}
-	I_K(\kf) \ar[r, two heads] & C_K(\kf) \ar[rd, two heads]
-		\ar[rr, "\left( \frac{L/K}{\bullet} \right)", two heads]
+	I_K(\kf) \ar[r, surjective head] & C_K(\kf) \ar[rd, surjective head]
+		\ar[rr, "\left( \frac{L/K}{\bullet} \right)", surjective head]
 		&& \Gal(L/K) \\
 	&& I_K(\kf) / H(L/K, \kf) \ar[ru, "\cong", swap] &
 \end{tikzcd}
@@ -472,7 +472,7 @@ Here by $L \subseteq M$ we mean that $L$ is isomorphic to some subfield of $M$.
 		I_K(\km)
 			\ar[r, "\left( \frac{M/K}\bullet \right)"]
 			\ar[rd, "\left( \frac{L/K}\bullet \right)", swap]
-			& \Gal(M/K) \ar[d, two heads] \\
+			& \Gal(M/K) \ar[d, surjective head] \\
 		& \Gal(L/K)
 	\end{tikzcd}
 	\end{center}
