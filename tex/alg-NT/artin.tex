@@ -10,6 +10,70 @@ Then all abelian extensions $L/K$ can be understood
 using solely information intrinsic to $K$:
 namely, the ray class groups (generalizing ideal class groups).
 
+\section{Overview}
+
+At the end of this section, for an Abelian field extension $L/K$, we will define
+the Artin symbol
+\[ \left( \frac{L/K}{\kp} \right), \]
+which generalizes the Legendre symbol $\left( \frac{a}{p} \right)$:
+\begin{itemize}
+	\item Above the solidus, instead of an integer $a$, we have a field
+		extension $L/K$.
+	\item Below the solidus, instead of a rational prime $p$, we have a prime
+		ideal $\kp$ of $K$.
+\end{itemize}
+
+We require $\kp$ to not ramify in the extension $L/K$ for the symbol to be
+defined.
+
+And, at the end, we want to state the Artin reciprocity theorem, which looks
+something like the following:
+\begin{moral}
+	For primes $\kp$,
+	$\left( \frac{L/K}{\kp} \right)$ depends
+	only on ``$\kp \pmod \kf$''.
+\end{moral}
+
+Here, $\kf$ is a ``modulus'', which only depends on the field extension $L/K$.
+
+In order to do that, we first need to define what it means for two ideals to be
+coprime modulo something. We will divide up the ideals of $\OO_K$ that is
+``coprime'' to $\kf$ into ``residue classes modulo $\kf$'' (we will call them
+``ray classes'' from now on) in such a way that:
+\begin{itemize}
+	\item It generalizes the class group -- two ideals that belong to different
+		ideal classes (i.e. are nonisomorphic as $\OO_K$-modules) belong to
+		different ray classes.
+	\item It respects the multiplicative structure -- if $\kp$ is in the same
+		ray class as $\kp'$, and $\kq$ is in the same ray class as $\kq'$, then
+		$\kp \kq$ is in the same ray class as $\kp' \kq'$.
+
+		Note that there is no analogue of element addition for the ideals (for
+		instance, $(1) = (-1)$ but $(1) + (1) \ne (1) + (-1)$), so this is the
+		best we can hope for.
+
+		In other words, the ray classes will form an \emph{abelian group} under
+		multiplication, with the operation induced from ideal multiplication.
+	\item For a fixed the modulus $\kf$, there are only finitely many ray
+		classes.
+\end{itemize}
+
+In the section above, you may think of a prime ideal $\kp \in \OO_K$ as an
+irreducible factor, such that all ideals can be written as products of.
+However, they can also naturally be used as a modulus:
+\begin{moral}
+	A prime $\kp$ gives a way to divide the elements of $\OO_K$ into residue
+	classes that respects the addition and multiplication of elements.
+\end{moral}
+This can further be generalized to divide
+up the \emph{ideals} of $\OO_K$ into ray classes --
+unfortunately, using only the finite primes is insufficient to divide up the
+ideals the way we want, as later seen in
+\Cref{ex:ray_class_group_finite_modulus}.
+So, the infinite primes will be introduced in order to divide up the
+\emph{elements}, as well as the ideals, into classes that satisfies the
+multiplicative structure.
+
 \section{Infinite primes}
 \prototype{$\QQ(\sqrt{-5})$ has a complex infinite prime,
 $\QQ(\sqrt5)$ has two real infinite ones.}
@@ -44,7 +108,7 @@ if all its infinite primes are real (resp complex).
 \end{example}
 
 \section{Modular arithmetic with infinite primes}
-A \vocab{modulus} is a formal product
+A \vocab{modulus} (or \vocab{module}) of $K$ is a formal product
 \[ \km = \prod_{\kp} \kp^{\nu(\kp)} \]
 where the product runs over all primes, finite and infinite.
 (Here $\nu(\kp)$ is a nonnegative integer,
@@ -57,7 +121,7 @@ We also require that
 Obviously, every $\km$ can be written as $\km = \km_0\km_\infty$
 by separating the finite from the (real) infinite primes.
 
-We say $a \equiv b \pmod{\km}$ if
+We say $a \equiv b \pmod{\kp}$ if
 \begin{itemize}
 	\ii If $\kp$ is a finite prime, then $a \equiv b \pmod{\kp^{\nu(\kp)}}$
 	means exactly what you think it should mean:
@@ -65,6 +129,16 @@ We say $a \equiv b \pmod{\km}$ if
 	\ii If $\kp$ is a \emph{real} infinite prime $\sigma \colon K \to \RR$, then
 	$a \equiv b \pmod{\kp}$ means that $\sigma(a/b) > 0$.
 \end{itemize}
+
+\begin{moral}
+	A real infinite prime $\kp = \sigma$ divides up the elements of $K^\times$
+	into two classes
+	$\{k \in K^\times \mid \sigma(k)>0 \}$
+	and
+	$\{k \in K^\times \mid \sigma(k)<0 \}$,
+	this division satisfies the multiplicative operation.
+\end{moral}
+
 Of course, $a \equiv b \pmod{\km}$ means $a \equiv b$
 modulo each prime power in $\km$.
 With this, we can define a generalization of the class group:
@@ -82,7 +156,10 @@ With this, we can define a generalization of the class group:
 				\alpha \equiv 1 \pmod{\km}
 			\right\}.
 		\]
-		This is sometimes called a ``ray'' of principal ideals.
+		This is sometimes called a ``ray'' of principal
+		ideals.\footnote{Probably because, similar to a geometrical ray, it only
+			extends infinitely in one direction -- at least when there is an
+		infinite prime in the modulus $\km$.}
 	\end{itemize}
 	Finally define the \vocab{ray class group} of $\km$
 	to be $C_K(\km) = I_K(\km) / P_K(\km)$.
@@ -101,6 +178,7 @@ quotients $I_K(\km) / H$, where $H$ is a congruence subgroup.
 This definition takes a while to get used to, so here are examples.
 \begin{example}
 	[Ray class groups in $\QQ$, finite modulus]
+	\label{ex:ray_class_group_finite_modulus}
 	Consider $K = \QQ$ with infinite prime $\infty$. Then
 	\begin{itemize}
 		\ii If we take $\km = 1$ then $I_\QQ(1)$ is all fractional ideals,
@@ -176,7 +254,7 @@ defined solely from $K$ rather than the above $L$.
 
 Now take a \emph{Galois} extension $L/K$ of degree $m$.
 We already know prime ideals $\kp$ of $K$ break into
-a product of prime ideals $\kP$ of $K$ in $L$ in a nice way,
+a product of prime ideals $\kP$ of $L$ in a nice way,
 so we want to do the same thing with infinite primes.
 This is straightforward: each of the $n$ infinite primes
 $\sigma \colon K \to \CC$ lifts to $m$ infinite primes $\tau \colon L \to \CC$,
@@ -214,11 +292,13 @@ Recall the key result:
 \begin{theorem}
 	[Frobenius element]
 	Let $L/K$ be a \emph{Galois} extension.
-	If $\kp$ is a prime unramified in $K$, and $\kP$ a prime above it in $L$,
+	If $\kp$ is a prime unramified in $L/K$, and $\kP$ a prime above it in $L$,
 	then there is a unique element of $\Gal(L/K)$, denoted $\Frob_\kP$, obeying
-	\[ \Frob_\kP(\alpha) \equiv \alpha^{N\kp} \pmod{\kP}
+	\[ \Frob_\kP(\alpha) \equiv \alpha^{\Norm(\kp)} \pmod{\kP}
 		\qquad \forall \alpha \in \OO_L. \]
 \end{theorem}
+
+Recall some examples from \Cref{ex:frob_gaussian_integers} and \Cref{lem:cyclo_frob}.
 \begin{example}
 	[Example of Frobenius elements]
 	Let $L = \QQ(i)$, $K = \QQ$.
@@ -253,6 +333,27 @@ Recall the key result:
 	\[ \Frob_\kP(x) = \sigma_p. \]
 \end{example}
 
+Here, as hinted in \Cref{sec:more_general_extensions}, we have to generalize the
+theory where the base field $K$ is not necessarily $\QQ$ (for example, in
+\Cref{ex:cubic_legendre_artin}, we need $K=\QQ(\omega)$).
+In this case, $\kp$ is
+not necessarily an integer, and the induced map on the quotient is the
+``power-by-$\Norm(\kp)$'' map.
+
+\begin{example}
+	[Frobenius element when the base field is $\QQ(\omega)$]
+	Let $L=\QQ(\omega, \sqrt[3]{2})$ and $K=\QQ(\omega)$.
+
+	Consider $\kp=(5)$, which is prime in $K$, and $\Norm(\kp)=25$.
+	The field $\OO_K/\kp$ is isomorphic to $\FF_{25}$.
+	In $L$, $\kp$ splits to $\kP_1 \kP_2 \kP_3$, and each residue field
+	$\OO_L/\kP_i$ is isomorphic to $\FF_{25}$.
+
+	The Frobenius element $\Frob_\kP \in \Gal(L/K)$ induces the power-of-25
+	isomorphism in the quotient field, thus is the identity.
+\end{example}
+
+
 An important property of the Frobenius element is its order
 is related to the decomposition of $\kp$ in the higher field $L$
 in the nicest way possible:
@@ -265,23 +366,18 @@ in the nicest way possible:
 	In particular, $\Frob_\kP = \id$ if and only if $\kp$
 	splits completely in $L/K$.
 \end{lemma}
+This naturally generalizes \Cref{lem:order_frob}.
 \begin{proof}
-	We want to understand the order of the map $T \colon x \mapsto x^{N\kp}$ on
-	the field $\OO_K / \kP$.
+	We want to understand the order of the map $T \colon x \mapsto x^{\Norm(\kp)}$ on
+	the field $\OO_L / \kP$.
 	But the latter is isomorphic to the splitting field
-	of $X^{N\kP} - X$ in $\FF_p$, by Galois theory of finite fields.
-	Hence the order is $\log_{N\kp} (N\kP) = f(\kP \mid \kp)$.
+	of $X^{\Norm(\kP)} - X$ in $\FF_p$, by Galois theory of finite fields.
+	Hence the order is $\log_{\Norm(\kp)} (\Norm(\kP)) = f(\kP \mid \kp)$.
 \end{proof}
-
-\begin{exercise}
-	Deduce from this that the rational primes which split completely
-	in $\QQ(\zeta)$ are exactly those with $p \equiv 1 \pmod m$.
-	Here $\zeta$ is an $m$th root of unity.
-\end{exercise}
 
 The Galois group acts transitively among the set of $\kP$ above a given $\kp$,
 so that we have
-\[ \Frob_{\sigma(\kP)} = \sigma \circ (\Frob_{\kp}) \circ \sigma\inv.  \]
+\[ \Frob_{\sigma(\kP)} = \sigma \circ (\Frob_{\kP}) \circ \sigma\inv.  \]
 Thus $\Frob_\kP$ is determined by its underlying $\kp$ up to conjugation.
 
 In class field theory, we are interested in \vocab{abelian extensions},
@@ -300,7 +396,7 @@ look like the Legendre symbol.
 To see why:
 \begin{example}[Legendre symbol subsumed by Artin symbol]
 	Suppose we want to understand
-	$(2/p) \equiv 2^{\frac{p-1}{2}}$ where $p > 2$ is prime.
+	$\left( \frac 2p \right) \equiv 2^{\frac{p-1}{2}}$ where $p > 2$ is prime.
 	Consider the element
 	\[ \left( \frac{\QQ(\sqrt 2)/\QQ}{p\ZZ} \right)
 		\in \Gal(\QQ(\sqrt 2) / \QQ). \]
@@ -318,18 +414,20 @@ To see why:
 	Thus the Artin symbol generalizes the quadratic Legendre symbol.
 \end{example}
 \begin{example}[Cubic Legendre symbol subsumed by Artin symbol]
+	\label{ex:cubic_legendre_artin}
 	Similarly, it also generalizes the cubic Legendre symbol.
-	To see this, assume $\theta$ is primary in $K = \QQ(\sqrt{-3}) = \QQ(\omega)$
-	(thus $\OO_K = \ZZ[\omega]$ is Eisenstein integers).
+	To see this, assume $\theta$ is a primary prime
+	in $K = \QQ(\sqrt{-3}) = \QQ(\omega)$
+	(thus $\OO_K = \ZZ[\omega]$ is the Eisenstein integers).
 	Then for example
 	\[
 		\left( \frac{K(\cbrt 2)/K}{\theta \OO_K} \right) \left( \cbrt 2 \right)
-		\equiv \left( \cbrt 2 \right)^{N(\theta)}
-		\equiv 2^{\frac{N\theta-1}{3}} \cdot \cbrt 2
+		\equiv \left( \cbrt 2 \right)^{\Norm(\theta)}
+		\equiv 2^{\frac{\Norm(\theta)-1}{3}} \cdot \cbrt 2
 		\equiv \left( \frac{2}{\theta} \right)_3 \cbrt 2.
 		\pmod{\kP}
 	\]
-	where $\kP$ is above $p$ in $K(\cbrt 2)$.
+	where $\kP$ is above $(\theta)$ in $K(\cbrt 2)$.
 \end{example}
 
 \section{Artin reciprocity}
@@ -370,8 +468,10 @@ and when $\km$ is divisible by the conductor,
 $H(L/K, \km)$ is a \emph{congruence subgroup}.
 
 Here's the reason this is called a ``reciprocity'' theorem.
+The above theorem applies on $\km=\kf$ tells us $P_K(\kf) \subseteq H(L/K, \kf)$,
+so the Artin map factors through the quotient map $I_K(\kf) \surjto I_K(\kf) / P_K(\kf)$.
 Recalling that $C_K(\kf) = I_K(\kf) / P_K(\kf)$,
-the above theorem tells us we get a sequence of maps
+we get a sequence of maps
 \begin{center}
 \begin{tikzcd}
 	I_K(\kf) \ar[r, surjective head] & C_K(\kf) \ar[rd, surjective head]

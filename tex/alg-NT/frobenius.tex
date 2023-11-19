@@ -42,6 +42,7 @@ the above functional equation.
 
 Let's see an example of this:
 \begin{example}[Frobenius elements of the Gaussian integers]
+	\label{ex:frob_gaussian_integers}
 	Let's actually compute some Frobenius elements for $K = \QQ(i)$,
 	which has $\OO_K = \ZZ[i]$.
 	This is a Galois extension, with $G = \Zm2$,
@@ -70,11 +71,16 @@ it satisfies the functional equation everywhere.
 We also have an important lemma:
 \begin{lemma}
 	[Order of the Frobenius element]
+	\label{lem:order_frob}
 	Let $\Frob_\kp$ be a Frobenius element from an extension $K/\QQ$.
 	Then the order of $\Frob_\kp$ is equal to the inertial degree $f_\kp$.
 	In particular, $(p)$ splits completely in $\OO_K$
 	if and only if $\Frob_\kp = \id$.
 \end{lemma}
+This lemma allows us to tell the splitting behavior of $\kp$ just by computing the
+$\Frob_\kp$, such as seen in \Cref{lem:cyclo_frob};
+or vice versa -- linking whether $p$ splits or is inert
+\Cref{subsec:quadratic_reciprocity_frobenius}
 \begin{exercise}
 	Prove this lemma as by using the fact that $\OO_K / \kp$
 	is the finite field of order $f_\kp$,
@@ -441,7 +447,7 @@ It could possibly also split in $K$: the picture looks like
 \begin{center}
 \begin{tikzcd}
 	\OO_L = \ZZ[\zeta_q] & \supset
-		& {\kP} \ar[r, dotted] & \ZZ[\zeta_p]/{\kP} \cong \FF_{p^f} \\
+		& {\kP} \ar[r, dotted] & \ZZ[\zeta_q]/{\kP} \cong \FF_{p^f} \\
 	\OO_K = \ZZ[\frac{1+\sqrt{q^\ast}}{2}] & \supset
 		& \kp \ar[r, dotted] & \FF_p \text{ or } \FF_{p^2} \\
 	\ZZ & \supset & (p) \ar[r, dotted]
@@ -453,6 +459,7 @@ It could possibly also split in $K$: the picture looks like
 \end{ques}
 
 \subsection{Step 3: Introducing the Frobenius}
+\label{subsec:quadratic_reciprocity_frobenius}
 Now, we take the Frobenius
 \[ \sigma_p = \Frob_{\kP} \in \Gal(L/\QQ). \]
 We claim that
@@ -461,7 +468,7 @@ To see this, note that $\Frob_{\kP}$ is in $H$ if and only if it acts
 as the identity on $K$.
 But $\Frob_{\kP} \restrict{K}$ is $\Frob_\kp$!
 So \[ \Frob_{\kP} \in H \iff \Frob_\kp = \id_K. \]
-Finally note that $\Frob_\kp$ has order $1$ if $p$ splits
+Finally, by \Cref{lem:order_frob}, $\Frob_\kp$ has order $1$ if $p$ splits
 ($\kp$ has inertial degree $1$)
 and order $2$ if $p$ is inert.
 This completes the proof of the claim.
@@ -475,11 +482,17 @@ On the other hand,
 	if and only if $\left( \frac{q^\ast}{p} \right) = 1$.
 	(Use the factoring algorithm. You need the fact that $p \neq 2$ here.)
 \end{exercise}
-In other words
-\[ \left( \frac pq \right) = 1
-	\iff \sigma_p \in H \iff \text{$p$ splits in $\ZZ\left[ \tfrac12(1+\sqrt{q^\ast}) \right]$}
-	\iff \left( \frac{q^\ast}{p} \right) = 1.
-\]
+In other words,
+\begin{align*}
+	\left( \frac pq \right) = 1
+	&\iff \sigma_p \in H \\
+	&\iff \Frob_{\kP} \in H \\
+	&\iff \Frob_{\kp} = \id_K \\
+	&\iff \ord \Frob_{\kp} = 1 \\
+	&\iff f_{\kp} = 1 \\
+	&\iff \text{$p$ splits in $\ZZ\left[ \tfrac12(1+\sqrt{q^\ast}) \right]$} \\
+	&\iff \left( \frac{q^\ast}{p} \right) = 1.
+\end{align*}
 This completes the proof.
 
 

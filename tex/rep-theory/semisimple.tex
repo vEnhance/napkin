@@ -31,6 +31,19 @@ $A$ is semisimple if and only if $A \cong \bigoplus_i \Mat(V_i)$,
 where the $V_i$ are the irreps of $A$
 (yes, there are only finitely many!).
 
+In the end, we will see that the group algebras $k[G]$ of finite group $G$ are
+all semisimple (at least when $k$ has characteristic 0), thus we're justified in
+focusing on studying the semisimple algebras.
+
+\begin{remark}
+	[Digression]
+	The converse does not hold, however -- if $k$ has characteristic $0$, not
+	all finite-dimensional semisimple $k$-algebra is isomorphic to some group
+	algebra.
+	Classifying exactly when a $k$-algebra is isomorphic to a group algebra
+	turns out to be a hard question, see \url{https://mathoverflow.net/q/314502}.
+\end{remark}
+
 \section{Schur's lemma continued}
 \prototype{For $V$ irreducible,
 	$\Homrep(V^{\oplus 2}, V^{\oplus 2}) \cong k^{\oplus 4}$.}
@@ -77,15 +90,15 @@ of constants, and the map is provided by
 \[
 	\begin{bmatrix}
 		c_{11} & c_{12} & \dots & c_{1(n-1)} & c_{1n} \\
-		c_{21} & c_{22} & \dots & c_{2(n-1)} & c_{1n} \\
+		c_{21} & c_{22} & \dots & c_{2(n-1)} & c_{2n} \\
 		\vdots & \vdots & \ddots & \vdots & \vdots \\
 		c_{m1} & c_{m2} & \dots & c_{m(n-1)} & c_{mn}
 	\end{bmatrix}
 	\begin{bmatrix} v_1 \\ v_2 \\ \vdots \\ v_n \end{bmatrix}
-	\in V^{\oplus n}
+	\in V^{\oplus m}
 \]
 where the $c_{ij} \in k$ but $v_i \in V$; note the type mismatch!
-This is \emph{not} just a linear map $V^{\oplus n_i} \to V^{\oplus m_i}$;
+This is \emph{not} just a $k$-linear map $V^{\oplus n} \to V^{\oplus m}$;
 rather, the outputs are $m$ \emph{linear combinations} of the inputs.
 
 More generally, we have:
@@ -97,9 +110,9 @@ More generally, we have:
 	for integers $n_i, m_i \ge 0$, where each $V_i$ is an irrep.
 	Then
 	\[ \Homrep(V, W)
-		\cong \bigoplus_i \Mat_{n_i \times m_i}(k) \]
+		\cong \bigoplus_i \Mat_{m_i \times n_i}(k) \]
 	meaning that an intertwining operator $T \colon V \to W$
-	amounts to, for each $i$, an $n_i \times m_i$ matrix of constants
+	amounts to, for each $i$, an $m_i \times n_i$ matrix of constants
 	which gives a map $V_i^{\oplus n_i} \to V_i^{\oplus m_i}$.
 \end{theorem}
 
@@ -116,8 +129,47 @@ More generally, we have:
 \begin{proof}
 	Apply Schur's lemma to the inclusion $W \injto V$.
 \end{proof}
+Recall from \Cref{sec:vector_space_linear_maps} that a linear maps from a
+$n$-dimensional vector space to a $m$-dimensional vector space can be written as
+a $n\times m$ matrix. Here the situation is similar, however the matrices are
+made for each irrep independently, and the non-isomorphic irreps, in some sense,
+``doesn't talk to each other''.
 
+%We can compare this to \label{prop:rep_direct_sum}: When our $k$-algebra is a
+%direct sum $A\oplus B$, then every representation $V$ can be broken down
+%cleanly into $V_A\oplus V_B$, and there is no ``mixing'' between the action of
+%$A$ and $B$ on $V_A$ and $V_B$.
 
+\begin{remark}
+	The representation $V^{\oplus n}$ can also be viewed as $n$
+	vectors of $V$ ``stacked horizontally'', as we did in
+	\Cref{ex:mat2_representation}:
+	\[
+		\begin{pmatrix}
+			\vdots & \vdots & & \vdots \\
+			v_1 & v_2 & \cdots & v_n \\
+			\vdots & \vdots & & \vdots
+		\end{pmatrix} \in V^{\oplus n}.
+	\]
+	That way, the action is given by
+	\[
+		\begin{pmatrix}
+			\vdots & \vdots & & \vdots \\
+			v_1 & v_2 & \cdots & v_n \\
+			\vdots & \vdots & & \vdots
+		\end{pmatrix}
+		\begin{bmatrix}
+			c_{11} & c_{21} & \cdots & c_{(m-1)1} & c_{m1} \\
+			c_{12} & c_{22} & \cdots & c_{(m-1)1} & c_{m2} \\
+			\vdots & \vdots & \ddots & \vdots & \vdots \\
+			c_{1n} & c_{2n} & \cdots & c_{(m-1)n} & c_{mn}
+		\end{bmatrix}
+		\in V^{\oplus m}.
+	\]
+	It may be clearer this way to see the type mismatch happening.
+	And this also gives a natural explanation why the intertwining operators in
+	\Cref{prob:regA_intertwine} corresponds to right matrix multiplication.
+\end{remark}
 
 \section{Density theorem}
 We are going to take advantage of the previous result to prove that
@@ -126,7 +178,7 @@ finite-dimensional algebras have finitely many irreps.
 \begin{theorem}
 	[Jacobson density theorem]
 	Let $(V_1, \rho_1)$, \dots, $(V_r, \rho_r)$ be pairwise nonisomorphic
-	finite-dimensional representations of $A$.
+	irreps of $A$.
 	Then there is a surjective map of vector spaces
 	\[ \bigoplus_{i=1}^r \rho_i \colon A \surjto \bigoplus_{i=1}^r \Mat(V_i). \]
 \end{theorem}
@@ -138,7 +190,7 @@ The right way to think about this theorem is that
 Recall that in number theory, the Chinese remainder theorem tells us
 that given lots of ``unrelated'' congruences, we can find a single $N$
 which simultaneously satisfies them all.
-Similarly, given lots of different nonisomorphic representations of $A$,
+Similarly, given lots of different nonisomorphic irreps of $A$,
 this means that we can select a single $a \in A$ which induces any tuple
 $(\rho_1(a), \dots, \rho_r(a))$ of actions we want --- a surprising result,
 since even the $r=1$ case is not obvious at all!
@@ -176,7 +228,7 @@ This also gives us the non-obvious corollary:
 	Assume for contradiction that the map is not surjective.
 	Then there is a map of representations (by $\rho$ and the isomorphism)
 	$\Reg(A) \to V^{\oplus n}$ given by $a \mapsto (a \cdot e_1, \dots, a \cdot e_n)$.
-	By hypothesis is not surjective:
+	By hypothesis, it is not surjective:
 	its image is a \emph{proper} subrepresentation of $V^{\oplus n}$.
 	Assume its image is isomorphic to $V^{\oplus m}$ for $m < n$,
 	so by \Cref{thm:compred_schur} there is a matrix of constants $X$ with
@@ -209,6 +261,43 @@ This also gives us the non-obvious corollary:
 	$\bigoplus_i V_i^{\oplus d_i}$ (by \Cref{cor:subrep_schur})
 	and by the above $d_i = \dim V_i$ for each $i$.
 \end{proof}
+% there's another proof in https://www3.nd.edu/~andyp/notes/JacobsonDensity.pdf
+% which might be more digestible
+
+\begin{example}
+	[Applying the proof of density theorem on an explicit example]
+	We can run through the argument on an explicit example to better understand
+	how it works -- in order to do
+	this, we need $V$ to be an irrep, otherwise the image of $\Reg(A)$ would not
+	be isomorphic to $V^{\oplus m}$, and we will not be able to run to the end of
+	the argument.
+
+	Let $A=\Mat_2(k)$, and $V \cong k^{\oplus 2}$ with the obvious action.
+	As we know, this is an irrep.
+
+	The density theorem claims that $\rho: A\to \Mat(V)$ is surjective, which
+	means for any $e_1, e_2 \in V$ independent, and any $w_1, w_2 \in V$, we can
+	find $a \in A$ such that $a \cdot (e_1, e_2)=(w_1, w_2)$.
+
+	Because we're working through a counterexample, pick $e_1=(1, 0)$, $e_2=(2,
+	0)$ instead. Then, for some $w_1, w_2 \in V$, there may be no $a$ that sends
+	$e_1$ to $w_1$ to $e_2$ to $w_2$.
+
+	Consider the representation morphism $\Reg(A)\to V^{\oplus 2}$ by $a
+	\mapsto(a \cdot e_1, a \cdot e_2)$, its image is thus $\{(v, 2v) \mid v \in V
+	\}$, which is a subrepresentation of $V^{\oplus 2}$, isomorphic as a
+	representation to $V^{\oplus 1}\cong V$ by
+	\[
+		v \mapsto(v, 2v) = v \begin{bmatrix}
+	1&2\end{bmatrix}. \]
+	Then, we can find $v=\begin{pmatrix}1 \\ 0\end{pmatrix}\in V^{\oplus 1}$,
+	for which
+	\[
+	\begin{pmatrix}e_1&e_2\end{pmatrix} = v \begin{bmatrix} 1&2\end{bmatrix}.
+	\]
+	Now, with the explicit array of numbers $\begin{bmatrix} 1&2\end{bmatrix}$,
+	it is easy to find a linear dependence on $e_1$ and $e_2$.
+\end{example}
 
 \section{Semisimple algebras}
 
@@ -228,8 +317,11 @@ This also gives us the non-obvious corollary:
 	\end{enumerate}
 \end{theorem}
 \begin{proof}
-	(i) $\implies$ (ii) follows
-	from \Cref{thm:rep_1mat} and \Cref{prop:rep_direct_sum}.
+	(i) $\implies$ (ii) follows from
+	using \Cref{prop:rep_direct_sum} to breaks any finite-dimensional
+	representation of $A$ into a direct sum of representations of
+	$\Mat_{d_i}(k)$, then \Cref{thm:rep_1mat} shows any such representations are
+	completely reducible.
 	(ii) $\implies$ (iii) is tautological.
 
 	To see (iii) $\implies$ (i), we use the following clever trick.
@@ -247,6 +339,23 @@ This also gives us the non-obvious corollary:
 	But $\Mat_n(k)\op \cong \Mat_n(k)$ (just by transposing),
 	so we recover the desired conclusion.
 \end{proof}
+
+\begin{remark}
+	The trick of the proof above resembles
+	Cayley's theorem (\Cref{thm:cayley_theorem}), in that we make the object
+	act on itself to get an explicit representation.
+\end{remark}
+
+\begin{remark}
+We can compare this to \Cref{cor:structure_theorem_primary}. Here, any
+finite-dimensional representation of $A$ is a finite-dimensional left
+$A$-module, and from the theorem above, we know that if $A$ is semisimple,
+any such module
+can be broken down into a direct sum of irreps $V_i \cong k^{\oplus d_i}$.
+
+Note that unlike the case where $A$ is a PID,
+$k^{\oplus d_i}$ is not isomorphic to a quotient of the ring $\Mat_{d_i}(k)$.
+\end{remark}
 
 In fact, if we combine the above result with
 the density theorem (and \Cref{cor:finiteness}), we obtain:
@@ -357,6 +466,12 @@ First, we define:
 	deleting the condition $1_A \cdot v = v$ from our definition;
 	then one can just set $a \cdot v = 0$.
 	But even then $\Ctriv$ would not be the trivial representation of $k[G]$.)
+
+	Another way to see this is that the trivial representation
+	depends on how the $k$-algebra is written as a group algebra:
+	$k[\ZZ/2\ZZ]$ has a $k$-algebra automorphism given by $g \mapsto-g$, where
+	$g$ is the generator of the group $\ZZ/2\ZZ$; however the corresponding
+	trivial representations are different.
 \end{remark}
 
 Then the representations are:
