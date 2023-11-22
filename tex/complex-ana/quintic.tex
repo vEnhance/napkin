@@ -12,7 +12,7 @@ Firstly, what do we even mean by ``formula'' here?
 \begin{definition}
     A \vocab{quintic formula} would be a formula taking in the coefficients $(a, \dots, f)$ of a 
     degree $5$ polynomial $P$, using the operations $+, -, \times, \div, \sqrt[n]{}$ 
-    finitely many times, that maps to the five roots $(z_1, \dots, z_5)$ of $P$.
+    finitely many times, that maps to the five roots $(z_1, \cdots, z_5)$ of $P$.
 \end{definition}
 
 Now, any proposed quintic formula $F$ receives the same coefficients when the roots are the same,
@@ -36,8 +36,8 @@ Suppose I told you that some rational function $R$ always finds
 a root of a quintic polynomial $P(z) = (z - z_1)(z - z_2)(z - z_3)(z - z_4)(z - z_5)$.
 For simplicity, let all the roots be distinct.
 
-Suppose its initially equal to $z_1$. Now, suppose we smoothly swap the roots $z_1$ and $z_2$ 
-along two paths that doesn't go through other roots. 
+Suppose that initially $R$ outputs $z_1$. Consider what happens we smoothly swap the roots $z_1$ and $z_2$ 
+along two non-intersecting paths that doesn't go through other roots.
 
 \begin{center}
 	%% First Diagram
@@ -74,7 +74,7 @@ of the roots in $S_5$.
 
 \section{Step 2: Nested Roots}
 
-Once we add $\sqrt[n]{}$ back to the picture, this idea no doesnlonger works out of the box.
+Once we add $\sqrt[n]{}$ back to the picture, this idea no longer works right out of the box.
 
 \begin{example}[Quadratic Formula]
     If you've done any competition math, you know that for a polynomial 
@@ -90,8 +90,8 @@ Once we add $\sqrt[n]{}$ back to the picture, this idea no doesnlonger works out
 \end{example}
 
 \begin{exercise}
-    Consider the polynomial $z^2 - 1$. Then smoothily swap the roots along
-    $(z - e^{it})(z + e^{it})$. See that the two roots given by the quadratic formula
+    Consider the polynomial $z^2 - 1$. Then smoothly swap the roots to get the intermediary
+	polynomials of $(z - e^{it})(z + e^{it})$. See that the two roots given by the quadratic formula
     also swap position.
 \end{exercise}
 
@@ -103,7 +103,7 @@ the origin may have accumulated some change in phase $2\pi a$. If we were to uns
 $z_1$ and $z_2$ in the same manner, we'd undo the change in phase, but we'd also be back
 to doing nothing.
 
-However, while changes in phase are \emph{abelian}, while permutations are not. Let's consider
+However, while changes in phase are \emph{abelian}, permutations are not. Let's consider
 another operation of swapping the roots $z_2$ and $z_3$. Taking a commutator of the two 
 operations, we keep all the phases the same, but end up with a permutation 
 $(12)(23)(12)^{-1}(23)^{-1}$.
@@ -142,14 +142,25 @@ How do we handle the nested radicals now?
     Here, we've taken multiple roots.
 \end{example}
 
-With our new tools, we can again consider their \emph{commutators}, which 
-by the same logic as before fix all doubly nested radicals. Then, we can 
-consider the commutators of commutators of commutators, and so on.
+\begin{definition}
+	Define the degree of a nested radical as the maximum number 
+	of times radicals can be found in other radicals. 
+\end{definition}
+
+Let's now consider nested radicals of degree $2$, such as say
+$\sqrt[3]{\sqrt{ab + c} - \sqrt{d}}$. We know that we have nontrivial commutators
+$\sigma$ and $\rho$ that fix the interior of the cube root, but once again the phase
+may not be preserved under each operation individually. Once again, 
+we can again consider the \emph{commutators} of these commutators, say $\sigma\rho\sigma^{-1}\rho^{-1}$ 
+which by the same logic fixes the issues with phase. 
+
+There's no reason, we can't consider the commutators of commutators of commutators to fix
+radicals of degree $3$ and so on. It thus just remains that we always can keep getting 
+nontrivial commutators.
 
 \section{Step 3: Normal Groups}
 
-We've reduced this to a group theory problem.
-Given a chain of commutators
+We've reduced this to a group theory problem. Given a chain of commutators
 \[
     S_5 = G \supseteq G^{(1)} \supseteq G^{(2)} \supseteq \dots
 \]
@@ -172,12 +183,14 @@ We leave the housekeeping as an exercise.
 \section{Summary}
 
 While this is indeed a valid proof, it has some pros and cons. 
-As a con, we haven't shown that any specific quintic polynomial 
-has no solvable root (like the standard example $z^5 - z - 1$), only that 
-it can't be consistent.
+As a con, we haven't shown that any polynomial such as $z^5 - z - 1$
+has a root that can't be expressed using nested $n$th roots. We've only
+that we don't have a formula for all degree $5$ polynomials.
 
 As a pro, this argument makes it very easy to add even more functions such 
-as $\exp$ to the mix, and showing that even then no such formula exists.
+as $\exp$, $\sin$, and $\cos$ to the mix and show even then that no such formula exists.
+It also allows you to broadly understand what people mean when they compare 
+this theorem to a fact that $A_5$ is insolvable.
 
 \section\problemhead
 

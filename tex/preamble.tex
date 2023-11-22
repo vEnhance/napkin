@@ -263,35 +263,6 @@ style=thmbluebox,name=Theorem,numberwithin=section]{theorem}
 \def\asydir{asy}
 
 %%fakesection Bibliography
-\usepackage[backend=biber,backref=true,style=alphabetic]{biblatex}
-\DeclareLabelalphaTemplate{
-	\labelelement{
-		\field[final]{shorthand}
-		\field{label}
-		\field[strwidth=2,strside=left]{labelname}
-	}
-	\labelelement{
-		\field[strwidth=2,strside=right]{year}
-	}
-}
-\DeclareFieldFormat{labelalpha}{\textbf{\scriptsize #1}}
-\addbibresource{references.bib}
-\addbibresource{images.bib}
-%% stylistic biblatex choices
-\DefineBibliographyStrings{english}{%
-	backrefpage  = {cited p.}, % for single page number
-	backrefpages = {cited pp.} % for multiple page numbers
-}
-\DeclareFieldFormat{journaltitle}{\mkbibemph{#1},} % italic journal title with comma
-\DeclareFieldFormat[inbook,thesis]{title}{\mkbibemph{#1}\addperiod} % italic title with period
-\DeclareFieldFormat[article]{title}{#1} % title of journal article is printed as normal text
-\DeclareFieldFormat[article]{volume}{\textbf{#1}\addcolon\space}
-\renewcommand{\mkbibnamefirst}[1]{\textsc{#1}}
-\renewcommand{\mkbibnamelast}[1]{\textsc{#1}}
-\renewcommand{\mkbibnameprefix}[1]{\textsc{#1}}
-\renewcommand{\mkbibnameaffix}[1]{\textsc{#1}}
-\renewcommand{\finentrypunct}{}
-
 %%fakesection Mini ToC
 \usepackage[tight]{minitoc}
 \mtcsetfont{parttoc}{chapter}{\sffamily\bfseries}
