@@ -16,11 +16,11 @@
 % \renewcommand{\thepage}{\arabic{page}}
 \maketitle
 
-%\include{tex/frontmatter/title-embellishments}
-%\include{tex/frontmatter/preface}
+\include{tex/frontmatter/title-embellishments}
+\include{tex/frontmatter/preface}
 
 \setcounter{chapter}{-1} % avoid sales pitch collision
-%\include{tex/frontmatter/advice}
+\include{tex/frontmatter/advice}
 
 % I DON'T want to reset the page number for mainmatter,
 % so save it to restore later
@@ -35,69 +35,69 @@
 \Opensolutionfile{tex/backmatter/all-hints}
 \Opensolutionfile{tex/backmatter/all-solns}
 
-%\part{Starting Out}
-%\label{part:startout}
-%\parttoc
+\part{Starting Out}
+\label{part:startout}
+\parttoc
 \setcounter{chapter}{-1} % sales pitch should be chapter 0
-%\include{tex/frontmatter/salespitch}
-%\include{tex/H113/grp-intro}
-%\include{tex/topology/metric-top}
+\include{tex/frontmatter/salespitch}
+\include{tex/H113/grp-intro}
+\include{tex/topology/metric-top}
 
-%\part{Basic Abstract Algebra}
-%\label{part:absalg}
-%\parttoc
-%\include{tex/H113/quotient}
-%\include{tex/H113/ideals}
-%\include{tex/H113/rings}
+\part{Basic Abstract Algebra}
+\label{part:absalg}
+\parttoc
+\include{tex/H113/quotient}
+\include{tex/H113/ideals}
+\include{tex/H113/rings}
 
-%\part{Basic Topology}
-%\label{part:basictop}
-%\parttoc
-%\include{tex/topology/metric-prop}
-%\include{tex/topology/top-more}
-%\include{tex/topology/compactness}
+\part{Basic Topology}
+\label{part:basictop}
+\parttoc
+\include{tex/topology/metric-prop}
+\include{tex/topology/top-more}
+\include{tex/topology/compactness}
 
-%\part{Linear Algebra}
-%\label{part:linalg}
-%\parttoc
-%\include{tex/linalg/vector-space}
-%\include{tex/linalg/eigenvalues}
-%\include{tex/linalg/dual-trace}
-%\include{tex/linalg/dets}
-%\include{tex/linalg/inner-form}
-%\include{tex/linalg/fourier}
-%\include{tex/linalg/transpose}
+\part{Linear Algebra}
+\label{part:linalg}
+\parttoc
+\include{tex/linalg/vector-space}
+\include{tex/linalg/eigenvalues}
+\include{tex/linalg/dual-trace}
+\include{tex/linalg/dets}
+\include{tex/linalg/inner-form}
+\include{tex/linalg/fourier}
+\include{tex/linalg/transpose}
 
-%\part{More on Groups}
-%\label{part:groups}
-%\parttoc
-%\include{tex/H113/action}
-%\include{tex/H113/sylow}
-%\include{tex/H113/structure}
+\part{More on Groups}
+\label{part:groups}
+\parttoc
+\include{tex/H113/action}
+\include{tex/H113/sylow}
+\include{tex/H113/structure}
 
-%\part{Representation Theory}
-%\label{part:repth}
-%\parttoc
-%\include{tex/rep-theory/rep-alg}
-%\include{tex/rep-theory/semisimple}
-%\include{tex/rep-theory/characters}
-%\include{tex/rep-theory/applications}
+\part{Representation Theory}
+\label{part:repth}
+\parttoc
+\include{tex/rep-theory/rep-alg}
+\include{tex/rep-theory/semisimple}
+\include{tex/rep-theory/characters}
+\include{tex/rep-theory/applications}
 
-%\part{Quantum Algorithms}
-%\label{part:quantum}
-%\parttoc
-%\include{tex/quantum/vectors}
-%\include{tex/quantum/circuits}
-%\include{tex/quantum/shor}
+\part{Quantum Algorithms}
+\label{part:quantum}
+\parttoc
+\include{tex/quantum/vectors}
+\include{tex/quantum/circuits}
+\include{tex/quantum/shor}
 
-%\part{Calculus 101}
-%\label{part:calc}
-%\parttoc
-%\include{tex/calculus/limits}
-%\include{tex/calculus/p-adic}
-%\include{tex/calculus/differentiate}
-%\include{tex/calculus/taylor}
-%\include{tex/calculus/integrate}
+\part{Calculus 101}
+\label{part:calc}
+\parttoc
+\include{tex/calculus/limits}
+\include{tex/calculus/p-adic}
+\include{tex/calculus/differentiate}
+\include{tex/calculus/taylor}
+\include{tex/calculus/integrate}
 
 \part{Complex Analysis}
 \label{part:cmplxana}
@@ -107,131 +107,130 @@
 \include{tex/complex-ana/log}
 \include{tex/complex-ana/quintic}
 
+\part{Measure Theory}
+\label{part:measure}
+\parttoc
+\include{tex/measure/measure-space}
+\include{tex/measure/caratheodory}
+\include{tex/measure/lebesgue-int}
+\include{tex/measure/swapsum}
+\include{tex/measure/pontryagin}
 
-%\part{Measure Theory}
-%\label{part:measure}
-%\parttoc
-%\include{tex/measure/measure-space}
-%\include{tex/measure/caratheodory}
-%\include{tex/measure/lebesgue-int}
-%\include{tex/measure/swapsum}
-%\include{tex/measure/pontryagin}
+\part{Probability (TO DO)}
+\label{part:prob}
+\parttoc
+\include{tex/measure/randvar}
+\include{tex/measure/large-laws}
+\include{tex/measure/martingale} % To be written
 
-%\part{Probability (TO DO)}
-%\label{part:prob}
-%\parttoc
-%\include{tex/measure/randvar}
-%\include{tex/measure/large-laws}
-%\include{tex/measure/martingale} % To be written
+\part{Differential Geometry}
+\label{part:diffgeo}
+\parttoc
+\include{tex/diffgeo/multivar} % missing sols
+\include{tex/diffgeo/forms}
+\include{tex/diffgeo/stokes} % sols
+\include{tex/diffgeo/manifolds}
 
-%\part{Differential Geometry}
-%\label{part:diffgeo}
-%\parttoc
-%\include{tex/diffgeo/multivar} % missing sols
-%\include{tex/diffgeo/forms}
-%\include{tex/diffgeo/stokes} % sols
-%\include{tex/diffgeo/manifolds}
+\part{Algebraic NT I: Rings of Integers}
+\label{part:algnt1}
+\parttoc
+\include{tex/alg-NT/numfield}
+\include{tex/alg-NT/norm-trace}
+\include{tex/alg-NT/dedekind}
+\include{tex/alg-NT/classgrp}
+\include{tex/alg-NT/discriminant}
+\include{tex/alg-NT/pell}
 
-%\part{Algebraic NT I: Rings of Integers}
-%\label{part:algnt1}
-%\parttoc
-%\include{tex/alg-NT/numfield}
-%\include{tex/alg-NT/norm-trace}
-%\include{tex/alg-NT/dedekind}
-%\include{tex/alg-NT/classgrp}
-%\include{tex/alg-NT/discriminant}
-%\include{tex/alg-NT/pell}
+\part{Algebraic NT II: Galois and Ramification Theory}
+\label{part:algnt2}
+\parttoc
+\include{tex/alg-NT/galois}
+\include{tex/alg-NT/finite-field}
+\include{tex/alg-NT/ramification} % missing probs
+\include{tex/alg-NT/frobenius}
+\include{tex/alg-NT/artin}
 
-%\part{Algebraic NT II: Galois and Ramification Theory}
-%\label{part:algnt2}
-%\parttoc
-%%\include{tex/alg-NT/galois}
-%\include{tex/alg-NT/finite-field}
-%\include{tex/alg-NT/ramification} % missing probs
-%\include{tex/alg-NT/frobenius}
-%\include{tex/alg-NT/artin}
+\part{Algebraic Topology I: Homotopy}
+\label{part:algtop1}
+\parttoc
+\include{tex/topology/constructions}
+\include{tex/topology/fundamental-group}
+\include{tex/topology/cover-project} % missing problems
 
-%\part{Algebraic Topology I: Homotopy}
-%\label{part:algtop1}
-%\parttoc
-%%\include{tex/topology/constructions}
-%%\include{tex/topology/fundamental-group}
-%%\include{tex/topology/cover-project} % missing problems
+\part{Category Theory}
+\label{part:cats}
+\parttoc
+\include{tex/cats/categories} % missing sols
+\include{tex/cats/functors} % missing sols
+\include{tex/cats/limits}
+\include{tex/cats/abelian}
 
-%\part{Category Theory}
-%\label{part:cats}
-%\parttoc
-%%\include{tex/cats/categories} % missing sols
-%%\include{tex/cats/functors} % missing sols
-%%\include{tex/cats/limits}
-%%\include{tex/cats/abelian}
+\part{Algebraic Topology II: Homology}
+\label{part:algtop2}
+\parttoc
+\include{tex/homology/singular} % missing problems
+\include{tex/homology/long-exact}
+\include{tex/homology/excision}
+\include{tex/homology/cellular}
+\include{tex/homology/cohomology}
+\include{tex/homology/cup-product}
 
-%\part{Algebraic Topology II: Homology}
-%\label{part:algtop2}
-%\parttoc
-%\include{tex/homology/singular} % missing problems
-%\include{tex/homology/long-exact}
-%\include{tex/homology/excision}
-%\include{tex/homology/cellular}
-%\include{tex/homology/cohomology}
-%\include{tex/homology/cup-product}
+\part{Algebraic Geometry I: Classical Varieties}
+\label{part:ag1}
+\parttoc
+\include{tex/alg-geom/affine-var}
+\include{tex/alg-geom/zariski}
+\include{tex/alg-geom/proj-var} % missing problems
+\include{tex/alg-geom/bezout}
+\include{tex/alg-geom/quasi-proj}
 
-%\part{Algebraic Geometry I: Classical Varieties}
-%\label{part:ag1}
-%\parttoc
-%%\include{tex/alg-geom/affine-var}
-%%\include{tex/alg-geom/zariski}
-%%\include{tex/alg-geom/proj-var} % missing problems
-%%\include{tex/alg-geom/bezout}
-%%\include{tex/alg-geom/quasi-proj}
+\part{Algebraic Geometry II: Affine Schemes}
+\label{part:ag2}
+\parttoc
+\include{tex/alg-geom/sheaves}
+\include{tex/alg-geom/localization}
+\include{tex/alg-geom/spec-zariski}
+\include{tex/alg-geom/spec-sheaf}
+\include{tex/alg-geom/spec-examples}
+\include{tex/alg-geom/mor-scheme}
 
-%\part{Algebraic Geometry II: Affine Schemes}
-%\label{part:ag2}
-%\parttoc
-%%\include{tex/alg-geom/sheaves}
-%%\include{tex/alg-geom/localization}
-%%\include{tex/alg-geom/spec-zariski}
-%%\include{tex/alg-geom/spec-sheaf}
-%%\include{tex/alg-geom/spec-examples}
-%%\include{tex/alg-geom/mor-scheme}
+\part{Algebraic Geometry III: Schemes (TO DO)}
+\label{part:ag3}
+\parttoc
 
-%\part{Algebraic Geometry III: Schemes (TO DO)}
-%\label{part:ag3}
-%\parttoc
+\part{Set Theory I: ZFC, Ordinals, and Cardinals}
+\label{part:st1}
+\parttoc
+\include{tex/set-theory/zorn-lemma}
+\include{tex/set-theory/zfc}
+\include{tex/set-theory/ordinal}
+\include{tex/set-theory/cardinal}
 
-%\part{Set Theory I: ZFC, Ordinals, and Cardinals}
-%\label{part:st1}
-%\parttoc
-%%\include{tex/set-theory/zorn-lemma}
-%%\include{tex/set-theory/zfc}
-%%\include{tex/set-theory/ordinal}
-%%\include{tex/set-theory/cardinal}
+\part{Set Theory II: Model Theory and Forcing}
+\label{part:st2}
+\parttoc
+\include{tex/set-theory/models}
+\include{tex/set-theory/forcing}
+\include{tex/set-theory/CH}
 
-%\part{Set Theory II: Model Theory and Forcing}
-%\label{part:st2}
-%\parttoc
-%%\include{tex/set-theory/models}
-%%\include{tex/set-theory/forcing}
-%%\include{tex/set-theory/CH}
-
-%\part{Appendix}
-%\parttoc
-%\appendix
+\part{Appendix}
+\parttoc
+\appendix
 % \automark{chapter} % change to chapter in appendix
 
 \Closesolutionfile{tex/backmatter/all-hints}
 \Closesolutionfile{tex/backmatter/all-solns}
-%%\include{tex/backmatter/references}
-%%\include{tex/backmatter/hintsol}
+\include{tex/backmatter/references}
+\include{tex/backmatter/hintsol}
 
-%%\include{tex/backmatter/notation}
-%%\include{tex/backmatter/sets-functions}
+\include{tex/backmatter/notation}
+\include{tex/backmatter/sets-functions}
 
 \backmatter
 
 %% References
 \clearpage
-%\printbibliography[type=image,title={Image Attributions}]
-%\printbibliography[nottype=image]
+\printbibliography[type=image,title={Image Attributions}]
+\printbibliography[nottype=image]
 
 \end{document}

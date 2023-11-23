@@ -26,7 +26,7 @@ before_script:
 
 script:
   - pdflatex -interaction=nonstopmode Napkin.tex
-#  - biber Napkin
+  - biber Napkin
   - asy -nosafe -o asy/ asy/Napkin-*.asy -v
   - pdflatex -interaction=nonstopmode Napkin.tex
   - pdflatex -interaction=nonstopmode Napkin.tex
