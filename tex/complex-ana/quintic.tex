@@ -2,7 +2,7 @@
 
 We've already shown the Fundamental Theorem of Algebra.
 Now, with our earlier intuition on holomorphic $n$th roots,
-we can now show that there is no general formula for 
+we can now show that there is no general formula for
 the roots of a quintic polynomial.
 
 \section{The Game Plan}
@@ -10,13 +10,13 @@ the roots of a quintic polynomial.
 Firstly, what do we even mean by ``formula'' here?
 
 \begin{definition}
-    A \vocab{quintic formula} would be a formula taking in the coefficients $(a, \dots, f)$ of a 
-    degree $5$ polynomial $P$, using the operations $+, -, \times, \div, \sqrt[n]{}$ 
+    A \vocab{quintic formula} would be a formula taking in the coefficients $(a, \dots, f)$ of a
+    degree $5$ polynomial $P$, using the operations $+, -, \times, \div, \sqrt[n]{}$
     finitely many times, that maps to the five roots $(z_1, \cdots, z_5)$ of $P$.
 \end{definition}
 
 Now, any proposed quintic formula $F$ receives the same coefficients when the roots are the same,
-and thus gives the same output. This is fine at first glance, but swapping two roots continuously 
+and thus gives the same output. This is fine at first glance, but swapping two roots continuously
 might pose more issues. $F$ must create and preserved the order of the roots under these permutations.
 
 \begin{ques}
@@ -24,19 +24,19 @@ might pose more issues. $F$ must create and preserved the order of the roots und
 \end{ques}
 
 \begin{remark}
-    This isn't true if we bring even more complicated functions 
-    such as \vocab{Bring Radicals} to the table. 
+    This isn't true if we bring even more complicated functions
+    such as \vocab{Bring Radicals} to the table.
     But this wasn't really considered ``fair game.''
 \end{remark}
 
 \section{Step 1: The Simplest Case}
 
 Let's first ignore the $\sqrt[n]{}$ operator for motivation.
-Suppose I told you that some rational function $R$ always finds 
+Suppose I told you that some rational function $R$ always finds
 a root of a quintic polynomial $P(z) = (z - z_1)(z - z_2)(z - z_3)(z - z_4)(z - z_5)$.
 For simplicity, let all the roots be distinct.
 
-Suppose that initially $R$ outputs $z_1$. Consider what happens we smoothly swap the roots $z_1$ and $z_2$ 
+Suppose that initially $R$ outputs $z_1$. Consider what happens we smoothly swap the roots $z_1$ and $z_2$
 along two non-intersecting paths that doesn't go through other roots.
 
 \begin{center}
@@ -65,11 +65,11 @@ along two non-intersecting paths that doesn't go through other roots.
 \end{center}
 
 
-Since $R$ is continuous, it must be tracking the same root. However, once we finish 
+Since $R$ is continuous, it must be tracking the same root. However, once we finish
 swapping $z_1$ and $z_2$, the coefficients of $P$ are the same as they were initially.
 But this means that $R$ has been tricked into changing the root it outputs, contradiction!
 
-The bigger picture here is that we were able to find an operation that fixes $R$ while changing the order 
+The bigger picture here is that we were able to find an operation that fixes $R$ while changing the order
 of the roots in $S_5$.
 
 \section{Step 2: Nested Roots}
@@ -77,7 +77,7 @@ of the roots in $S_5$.
 Once we add $\sqrt[n]{}$ back to the picture, this idea no longer works right out of the box.
 
 \begin{example}[Quadratic Formula]
-    If you've done any competition math, you know that for a polynomial 
+    If you've done any competition math, you know that for a polynomial
     $P(z) = az^2 + bz + c = (z-z_1)(z - z_2)$, it follows that the two branches of
     \[
         \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
@@ -98,17 +98,17 @@ Once we add $\sqrt[n]{}$ back to the picture, this idea no longer works right ou
 Let's now consider the next simplest case of the $n$th root of a rational function
 $\sqrt[n]{R}$, and try to fix it with a nontrivial permutation of the roots.
 
-Swapping the roots $z_1$ and $z_2$, we keep $R$ the same, but $R$'s path $\alpha$ around 
-the origin may have accumulated some change in phase $2\pi a$. If we were to unswap 
+Swapping the roots $z_1$ and $z_2$, we keep $R$ the same, but $R$'s path $\alpha$ around
+the origin may have accumulated some change in phase $2\pi a$. If we were to unswap
 $z_1$ and $z_2$ in the same manner, we'd undo the change in phase, but we'd also be back
 to doing nothing.
 
 However, while changes in phase are \emph{abelian}, permutations are not. Let's consider
-another operation of swapping the roots $z_2$ and $z_3$. Taking a commutator of the two 
-operations, we keep all the phases the same, but end up with a permutation 
+another operation of swapping the roots $z_2$ and $z_3$. Taking a commutator of the two
+operations, we keep all the phases the same, but end up with a permutation
 $(12)(23)(12)^{-1}(23)^{-1}$.
 
-If we mark the second operation's path with $\beta$, this corresponds to 
+If we mark the second operation's path with $\beta$, this corresponds to
 $\alpha\beta\alpha^{-1}\beta^{-1}$.
 
 \begin{center}
@@ -128,8 +128,8 @@ $\alpha\beta\alpha^{-1}\beta^{-1}$.
     Show that this permutation operation is nontrivial.
 \end{exercise}
 
-We now have better tools: We have permutations in $S_5$ that fix the 
-$n$th roots of rational functions, and their compositions under 
+We now have better tools: We have permutations in $S_5$ that fix the
+$n$th roots of rational functions, and their compositions under
 $+, -, \times, \div$.
 
 How do we handle the nested radicals now?
@@ -143,19 +143,19 @@ How do we handle the nested radicals now?
 \end{example}
 
 \begin{definition}
-	Define the degree of a nested radical as the maximum number 
-	of times radicals can be found in other radicals. 
+	Define the degree of a nested radical as the maximum number
+	of times radicals can be found in other radicals.
 \end{definition}
 
 Let's now consider nested radicals of degree $2$, such as say
 $\sqrt[3]{\sqrt{ab + c} - \sqrt{d}}$. We know that we have nontrivial commutators
 $\sigma$ and $\rho$ that fix the interior of the cube root, but once again the phase
-may not be preserved under each operation individually. Once again, 
-we can again consider the \emph{commutators} of these commutators, say $\sigma\rho\sigma^{-1}\rho^{-1}$ 
-which by the same logic fixes the issues with phase. 
+may not be preserved under each operation individually. Once again,
+we can again consider the \emph{commutators} of these commutators, say $\sigma\rho\sigma^{-1}\rho^{-1}$
+which by the same logic fixes the issues with phase.
 
 There's no reason, we can't consider the commutators of commutators of commutators to fix
-radicals of degree $3$ and so on. It thus just remains that we always can keep getting 
+radicals of degree $3$ and so on. It thus just remains that we always can keep getting
 nontrivial commutators.
 
 \section{Step 3: Normal Groups}
@@ -182,19 +182,19 @@ We leave the housekeeping as an exercise.
 
 \section{Summary}
 
-While this is indeed a valid proof, it has some pros and cons. 
+While this is indeed a valid proof, it has some pros and cons.
 As a con, we haven't shown that any polynomial such as $z^5 - z - 1$
 has a root that can't be expressed using nested $n$th roots. We've only
 that we don't have a formula for all degree $5$ polynomials.
 
-As a pro, this argument makes it very easy to add even more functions such 
+As a pro, this argument makes it very easy to add even more functions such
 as $\exp$, $\sin$, and $\cos$ to the mix and show even then that no such formula exists.
-It also allows you to broadly understand what people mean when they compare 
+It also allows you to broadly understand what people mean when they compare
 this theorem to a fact that $A_5$ is insolvable.
 
 \section\problemhead
 
 \begin{problem}
-    \gim 
+    \gim
     Show that $A_5$ is not solvable.
 \end{problem}
