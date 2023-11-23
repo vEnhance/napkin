@@ -1,12 +1,10 @@
 \chapter{Bonus: Topological Abel-Ruffini Theorem}
-
 We've already shown the Fundamental Theorem of Algebra.
 Now, with our earlier intuition on holomorphic $n$th roots,
 we can now show that there is no general formula for
 the roots of a quintic polynomial.
 
 \section{The Game Plan}
-
 Firstly, what do we even mean by ``formula'' here?
 
 \begin{definition}
@@ -30,7 +28,6 @@ might pose more issues. $F$ must create and preserved the order of the roots und
 \end{remark}
 
 \section{Step 1: The Simplest Case}
-
 Let's first ignore the $\sqrt[n]{}$ operator for motivation.
 Suppose I told you that some rational function $R$ always finds
 a root of a quintic polynomial $P(z) = (z - z_1)(z - z_2)(z - z_3)(z - z_4)(z - z_5)$.
@@ -73,7 +70,6 @@ The bigger picture here is that we were able to find an operation that fixes $R$
 of the roots in $S_5$.
 
 \section{Step 2: Nested Roots}
-
 Once we add $\sqrt[n]{}$ back to the picture, this idea no longer works right out of the box.
 
 \begin{example}[Quadratic Formula]
@@ -159,7 +155,6 @@ radicals of degree $3$ and so on. It thus just remains that we always can keep g
 nontrivial commutators.
 
 \section{Step 3: Normal Groups}
-
 We've reduced this to a group theory problem. Given a chain of commutators
 \[
 	S_5 = G \supseteq G^{(1)} \supseteq G^{(2)} \supseteq \dots
@@ -181,7 +176,6 @@ So all that remains is showing that $S_5$ is not solvable.
 We leave the housekeeping as an exercise.
 
 \section{Summary}
-
 While this is indeed a valid proof, it has some pros and cons.
 As a con, we haven't shown that any polynomial such as $z^5 - z - 1$
 has a root that can't be expressed using nested $n$th roots. We've only
