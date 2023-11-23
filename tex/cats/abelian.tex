@@ -49,7 +49,7 @@ Similarly, we define the cokernel, the dual notion:
 	The \vocab{cokernel} of $f$ is a map $\coker f \colon B \surjto \Coker f$ such that
 	\begin{center}
 	\begin{tikzcd}
-		A \ar[r, "f"] \ar[rd, "0"', dashed] & B \ar[d, "\coker f", two heads] \\
+		A \ar[r, "f"] \ar[rd, "0"', dashed] & B \ar[d, "\coker f", surjective head] \\
 		& \Coker f
 	\end{tikzcd}
 	\end{center}
@@ -78,7 +78,7 @@ Picture:
 \begin{center}
 \begin{tikzcd}
 	A \ar[rd, "\exists!"'] \ar[rr, "f"] \ar[rrrd, "0"', near start, dashed]
-		&& B \ar[rd, two heads, "\coker f"] \\
+		&& B \ar[rd, surjective head, "\coker f"] \\
 	& \Img f \ar[ur, hook] \ar[rr, "0", dashed] && \Coker f
 \end{tikzcd}
 \end{center}
@@ -118,8 +118,8 @@ which are the types of categories where this notion is most useful.
 		\Img(f) \ar[rd, hook]
 		&&
 		\Coker(f) \\
-		& A \ar[ru, "\img(f)", two heads] \ar[rr, "f"', dashed]
-		&& B \ar[ru, "\coker(f)"', two heads]
+		& A \ar[ru, "\img(f)", surjective head] \ar[rr, "f"', dashed]
+		&& B \ar[ru, "\coker(f)"', surjective head]
 	\end{tikzcd}
 	\end{center}
 \end{definition}
@@ -215,7 +215,7 @@ which encodes the fact that $\img(f) \subseteq \ker(g)$.
 Adding in all the relevant objects, we get the commutative diagram below.
 \begin{center}
 \begin{tikzcd}
-	A \ar[rd, "f"] \ar[rr, dashed, "0"] \ar[dd, "\img f"', two heads] && C  \\
+	A \ar[rd, "f"] \ar[rr, dashed, "0"] \ar[dd, "\img f"', surjective head] && C  \\
 	& B \ar[ru, "g"] \\
 	\Img f \ar[ru, hook, "\iota"] \ar[rr, dashed, "\exists!"] &&
 	\Ker g \ar["0"', dashed, uu] \ar[lu, hook']
@@ -284,10 +284,10 @@ For example, let's prove:
 	\begin{tikzcd}
 		0 \ar[r]
 		& A \ar[r, hook, "p"] \ar[d, "\alpha", "\cong"']
-			& B \ar[r, two heads, "q"] \ar[d, "\beta"]
+			& B \ar[r, surjective head, "q"] \ar[d, "\beta"]
 			& C \ar[r] \ar[d, "\gamma", "\cong"']
 			& 0 \\
-		0 \ar[r] & A' \ar[r, hook, "p'"'] & B' \ar[r, two heads, "q'"'] & C' \ar[r] & 0
+		0 \ar[r] & A' \ar[r, hook, "p'"'] & B' \ar[r, surjective head, "q'"'] & C' \ar[r] & 0
 	\end{tikzcd}
 	\end{center}
 	and assume the top and bottom rows are exact.
@@ -382,7 +382,7 @@ where $C_k = \img f_{k-1} = \ker f_k$ for every $k$.
 	In an abelian category, consider the commutative diagram
 	\begin{center}
 	\begin{tikzcd}
-		A \ar[r, "p"] \ar[d, "\alpha"', two heads]
+		A \ar[r, "p"] \ar[d, "\alpha"', surjective head]
 			& B \ar[r, "q"] \ar[d, "\beta"', hook]
 			& C \ar[r, "r"] \ar[d, "\gamma"']
 			& D \ar[d, "\delta"', hook] \\
@@ -421,7 +421,7 @@ where $C_k = \img f_{k-1} = \ker f_k$ for every $k$.
 	In an abelian category, consider the commutative diagram
 	\begin{center}
 	\begin{tikzcd}
-		A \ar[r, "p"] \ar[d, "\alpha"', two heads]
+		A \ar[r, "p"] \ar[d, "\alpha"', surjective head]
 			& B \ar[r, "q"] \ar[d, "\beta"', "\cong"]
 			& C \ar[r, "r"] \ar[d, "\gamma"']
 			& D \ar[r, "s"] \ar[d, "\delta"', "\cong"]
@@ -441,7 +441,7 @@ where $C_k = \img f_{k-1} = \ker f_k$ for every $k$.
 	In an abelian category, consider the diagram
 	\begin{center}
 	\begin{tikzcd}
-		& A \ar[r, "f"] \ar[d, "a"] & B \ar[r, "g", two heads] \ar[d, "b"] & C \ar[r] \ar[d, "c"] & 0 \\
+		& A \ar[r, "f"] \ar[d, "a"] & B \ar[r, "g", surjective head] \ar[d, "b"] & C \ar[r] \ar[d, "c"] & 0 \\
 		0 \ar[r] & A' \ar[r, hook, "f'"'] & B' \ar[r, "g'"'] & C'
 	\end{tikzcd}
 	\end{center}

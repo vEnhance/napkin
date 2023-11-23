@@ -244,12 +244,15 @@ These are the three Hermitian matrices
 	\qquad
 	\sigma_y = \begin{bmatrix} 0 & -i \\ i & 0 \end{bmatrix}.
 \]
+
 These matrices are important because:
 \begin{ques}
 	Show that these three matrices, plus the identity matrix,
 	form a basis for the set of Hermitian $2 \times 2$ matrices.
 \end{ques}
-So the Pauli matrices are a natural choice of basis.
+So the Pauli matrices are a natural choice of basis.\footnote{Well,
+	natural due to physics reasons.
+}
 
 Their normalized eigenvectors are
 \[ \zup = \ket0 = \pair10 \qquad \zdown = \ket1 = \pair01 \]
@@ -258,7 +261,7 @@ Their normalized eigenvectors are
 \[ \yup = \frac{1}{\sqrt2}\pair1i
 	\qquad \ydown = \frac{1}{\sqrt2}\pair1{-i} \]
 which we call ``$z$-up'', ``$z$-down'',
-``$x$-up'', ``$x$-down'', ``$y$-up'', ``$y$-down''.
+``$x$-up'', ``$x$-down'', ``$y$-up'', ``$y$-down'' respectively.
 (The eigenvalues are $+1$ for ``up'' and $-1$ for ``down''.)
 So, given a state $\ket\psi \in \CC^{\oplus 2}$
 we can make a measurement with respect to any of these three bases
@@ -476,12 +479,15 @@ That's what entangled states mean: the qubits somehow depend on each other.
 	\]
 	As for the paradox: what happens if you multiply all these measurements together?
 	\begin{hint}
-		$-1$, $1$, $1$, $1$.
+		$1$, $1$, $1$, $-1$ respectively.
 		When we multiply them all together,
 		we get that $\id^A \otimes \id^B \otimes \id^C$
 		has measurement $-1$, which is the paradox.
 		What this means is that the values of the measurements
-		are created when we make the observation,
-		and not prepared in advance.
+		can't be prepared in advance independently.
+		In other words, this contradicts certain local hidden-variable theories.
+
+		This was one of several results for which Zeilinger won a (shared)
+		Nobel Prize in 2022.
 	\end{hint}
 \end{problem}

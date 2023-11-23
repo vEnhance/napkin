@@ -153,6 +153,7 @@ Our structure theorem takes two forms:
 \end{theorem}
 \begin{corollary}
 	[Structure theorem, primary form]
+	\label{cor:structure_theorem_primary}
 	Let $R$ be a PID and let $M$ be any finitely generated $R$-module. Then
 	\[ M \cong R^{\oplus r}
 		\oplus R/(q_1) \oplus R/(q_2) \oplus \dots \oplus R/(q_m) \]
@@ -225,7 +226,7 @@ Consequently, we have a composition
 \begin{center}
 \begin{tikzcd}
 	& K \ar[rd, hook] \\
-	R^{\oplus f} \ar[ru, two heads] \ar[rr, "T"'] && R^{\oplus d} \ar[r, two heads] & M
+	R^{\oplus f} \ar[ru, surjective head] \ar[rr, "T"'] && R^{\oplus d} \ar[r, surjective head] & M
 \end{tikzcd}
 \end{center}
 Observe that $M$ is the \emph{cokernel} of the linear map $T$,

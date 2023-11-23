@@ -2,6 +2,10 @@
 OK, now for Shor's Algorithm:
 how to factor $M = pq$ in $O\left( (\log M)^2 \right)$ time.
 
+This is arguably the reason agencies such as the US's National
+Security Agency have been diverting millions of dollars toward
+quantum computing.
+
 \section{The classical (inverse) Fourier transform}
 The ``crux move'' in Shor's algorithm is the so-called
 quantum Fourier transform.
@@ -32,7 +36,14 @@ Let $N$ be a positive integer, and let $\omega_N = \exp\left( \frac{2\pi i}{N} \
 	\]
 \end{definition}
 The reason this operation is important is because it lets
-us detect if the $x_i$ are periodic:
+us detect if the $x_i$ are periodic.
+More generally, given a sequence of $1$'s appearing with period $r$,
+the amplitudes will peak at inputs which are divisible by $\frac{N}{\gcd(N,r)}$.
+Mathematically, we have that
+\[
+	x_k = \sum_{j=0}^{N-1} y_j \omega_N^{-jk}.
+\]
+
 \begin{example}
 	[Example of discrete inverse Fourier transform]
 	Let $N = 6$, $\omega = \omega_6 = \exp(\frac{2\pi i}{6})$
@@ -52,8 +63,6 @@ us detect if the $x_i$ are periodic:
 	thus this reveals the periodicity of the original
 	sequence by $\frac N3 = 2$.
 \end{example}
-More generally, given a sequence of $1$'s appearing with period $r$,
-the amplitudes will peak at inputs which are divisible by $\frac{N}{\gcd(N,r)}$.
 \begin{remark}
 	The fact that this operation is called the ``inverse''
 	Fourier transform is mostly a historical accident
@@ -62,8 +71,9 @@ the amplitudes will peak at inputs which are divisible by $\frac{N}{\gcd(N,r)}$.
 	(not-inverted) Fourier transform.
 \end{remark}
 If we apply the definition as written, computing the transform takes $O(N^2)$ time.
-It turns out that by an algorithm called the \vocab{fast Fourier transform}
-(whose details we won't discuss), one can reduce this to $O(N \log N)$ time.
+It turns out that by a classical algorithm called the \vocab{fast Fourier transform}
+(whose details we won't discuss, but it effectively ``reuses'' calculations),
+one can reduce this to $O(N \log N)$ time.
 However, for Shor's algorithm this is also insufficient;
 we need something like $O\left( (\log N)^2 \right)$ instead.
 This is where the quantum Fourier transform comes in.
@@ -82,6 +92,7 @@ First, some more notation:
 	where $x = x_n x_{n-1} \dots x_1$ in binary.
 	For example, if $n = 3$
 	then $\ket{6}$ really means $\ket1 \otimes \ket1 \otimes \ket 0$.
+	Likewise, we refer to $0.x_1x_2 \dots x_n$ as binary.
 \end{abuse}
 Observe that the $n$-qubit space now has an
 orthonormal basis $\ket0$, $\ket1$, \dots, $\ket{N-1}$
@@ -128,8 +139,8 @@ But the trick is that in the quantum setup, the matrix can be rewritten:
 	In short, expand everything.
 \end{proof}
 
-So by using mixed states, we can deal with the quantum Fourier transform
-using this ``multiplication by tensor product'' trick that isn't possible classically.
+So by using mixed states, the quantum Fourier transform
+can use this ``multiplication by tensor product'' trick that isn't possible classically.
 
 Now, without further ado, here's the circuit.
 Define the rotation matrices
@@ -143,8 +154,7 @@ Then, for $n=3$ the circuit is given by using controlled $R_k$'s as follows:
 	}
 \]
 \begin{exercise}
-	Show that in this circuit, the image of $\ket{x_3x_2x_1}$
-	(for binary $x_i$) is
+	Show that in this circuit, the image of $\ket{x_3x_2x_1}$ is
 	\[
 		\Big(\ket0+\exp(2\pi i \cdot 0.x_1) \ket1\Big)
 		\otimes \Big(\ket0+\exp(2\pi i \cdot 0.x_2x_1) \ket1\Big)
@@ -155,15 +165,15 @@ Then, for $n=3$ the circuit is given by using controlled $R_k$'s as follows:
 
 For general $n$, we can write this as inductively as
 \[
- \Qcircuit @C=1em @R=.7em {
-  \lstick{\ket{x_n}}     & \multigate{5}{\text{QFT}_{n-1}} & \gate{R_n} & \qw                    & \qw & \cdots & & \qw                    & \qw & \cdots & & \qw              & \qw      & \rstick{\ket{y_1}} \qw \\
-  \lstick{\ket{x_{n-1}}}     & \ghost{\text{QFT}_{n-1}}        & \qw                    & \gate{R_{n-1}} & \qw & \cdots & & \qw                    & \qw & \cdots & & \qw              & \qw      & \rstick{\ket{y_2}} \qw \\
-  \lstick{\vdots\ \ }    & \pureghost{\text{QFT}_{n-1}}    &                        &                        &     &        & &                        &     &        & &                  &          & \rstick{\ \ \vdots} \\
-  \lstick{\ket{x_i}}     & \ghost{\text{QFT}_{n-1}}        & \qw                    & \qw                    & \qw & \cdots & & \gate{R_i} & \qw & \cdots & & \qw              & \qw      & \rstick{\ket{y_{n-i+1}}} \qw \\
-  \lstick{\vdots\ \ }    & \pureghost{\text{QFT}_{n-1}}    &                        &                        &     &        & &                        &     &        & &                  &          & \rstick{\ \ \vdots} \\
-  \lstick{\ket{x_2}} & \ghost{\text{QFT}_{n-1}}        & \qw                    & \qw                    & \qw & \cdots & & \qw                    & \qw & \cdots & & \gate{R_2} & \qw      & \rstick{\ket{y_{n-1}}} \qw \\
-  \lstick{\ket{x_1}}     & \qw                             & \ctrl{-6}               & \ctrl{-5}               & \qw & \cdots & & \ctrl{-3}               & \qw & \cdots & & \ctrl{-1}         & \gate{H} & \rstick{\ket{y_n}} \qw
- }
+	\Qcircuit @C=1em @R=.7em {
+	\lstick{\ket{x_n}}     & \multigate{5}{\text{QFT}_{n-1}} & \gate{R_n} & \qw                    & \qw & \cdots & & \qw                    & \qw & \cdots & & \qw              & \qw      & \rstick{\ket{y_1}} \qw \\
+	\lstick{\ket{x_{n-1}}}     & \ghost{\text{QFT}_{n-1}}        & \qw                    & \gate{R_{n-1}} & \qw & \cdots & & \qw                    & \qw & \cdots & & \qw              & \qw      & \rstick{\ket{y_2}} \qw \\
+	\lstick{\vdots\ \ }    & \pureghost{\text{QFT}_{n-1}}    &                        &                        &     &        & &                        &     &        & &                  &          & \rstick{\ \ \vdots} \\
+	\lstick{\ket{x_i}}     & \ghost{\text{QFT}_{n-1}}        & \qw                    & \qw                    & \qw & \cdots & & \gate{R_i} & \qw & \cdots & & \qw              & \qw      & \rstick{\ket{y_{n-i+1}}} \qw \\
+	\lstick{\vdots\ \ }    & \pureghost{\text{QFT}_{n-1}}    &                        &                        &     &        & &                        &     &        & &                  &          & \rstick{\ \ \vdots} \\
+	\lstick{\ket{x_2}} & \ghost{\text{QFT}_{n-1}}        & \qw                    & \qw                    & \qw & \cdots & & \qw                    & \qw & \cdots & & \gate{R_2} & \qw      & \rstick{\ket{y_{n-1}}} \qw \\
+	\lstick{\ket{x_1}}     & \qw                             & \ctrl{-6}               & \ctrl{-5}               & \qw & \cdots & & \ctrl{-3}               & \qw & \cdots & & \ctrl{-1}         & \gate{H} & \rstick{\ket{y_n}} \qw
+}
 \]
 \begin{ques}
 	Convince yourself that when $n=3$ the two circuits displayed are equivalent.
@@ -209,7 +219,7 @@ first we generate a sequence which is periodic modulo $r$.
 	and we randomly select $x = 2$, and want to find its order $r$.
 	Let $n = 13$ and $N = 2^{13}$, and start by initializing the state
 	\[ \ket\psi = \frac{1}{\sqrt N} \sum_{k=0}^{N-1} \ket k. \]
-	Now, build a circuit $U_x$ (depending on $x=2$!)
+	Now, build a circuit $U_x$ (depending on $x$)
 	which takes $\ket k \ket 0$ to $\ket k \ket{x^k \bmod M}$.
 	Applying this to $\ket\psi \otimes \ket0$ gives
 	\[ U(\ket\psi\ket0) =
@@ -287,12 +297,15 @@ to extract the value of $r$.
 		\frac{1152}{2033}, \;
 		\dots
 	\]
-	So $\frac{17}{30}$ is a very good approximation,
+	So $\frac{17}{30}$ is a good approximation,
 	hence we deduce $s = 17$ and $r = 30$ as candidates.
 	And indeed, one can check that $r = 30$ is the desired order.
 \end{example}
 
-This won't work all the time (for example, we could get unlucky and
+This won't work all the time\footnote{%
+	Not to mention the general issue of noise, but that's for
+	engineers to worry about.
+} (for example, we could get unlucky and
 measure $j=0$, i.e.\ $s=0$, which would tell us no information at all).
 
 But one can show that we succeed any time that \[ \gcd(s,r) = 1. \]

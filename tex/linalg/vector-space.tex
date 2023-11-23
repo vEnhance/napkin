@@ -63,7 +63,7 @@ but first, examples\dots
 	In a sense we'll define later, this vector space
 	has dimension $3$ (as expected!).
 	% But I hope you can see why this is kind of true!
-	\label{example:quadratic_vector_space}
+	\label{ex:quadratic_vector_space}
 \end{example}
 \begin{example}[All polynomials]
 	The set of \emph{all} polynomials with real coefficients is an
@@ -137,7 +137,7 @@ Now let me write the actual rules for how this multiplication behaves.
 \end{abuse}
 
 \begin{ques}
-	In \Cref{example:quadratic_vector_space},
+	In \Cref{ex:quadratic_vector_space},
 	I was careful to say ``degree at most $2$'' instead of ``degree $2$''.
 	What's the reason for this?
 	In other words, why is
@@ -179,7 +179,7 @@ A couple less intuitive but somewhat important examples\dots
 \section{Direct sums}
 \prototype{$\{ax^2+bx+c\} = \RR \oplus x\RR \oplus x^2\RR$, and
 $\RR^3$ is the sum of its axes.}
-Let's return to \Cref{example:quadratic_vector_space}, and consider
+Let's return to \Cref{ex:quadratic_vector_space}, and consider
 \[ V = \left\{ ax^2+bx+c \mid a,b,c \in \RR \right\}.  \]
 Even though I haven't told you what a dimension is,
 you can probably see that this vector space ``should have'' dimension $3$.
@@ -204,6 +204,7 @@ This motivates us to write
 The notion which captures this formally is the \vocab{direct sum}.
 
 \begin{definition}
+	\label{def:vector_space_direct_sum}
 	Let $M$ be an $R$-module.
 	Let $M_1$ and $M_2$ be subsets of $M$ which are themselves $R$-modules.
 	Then we write $M = M_1 \oplus M_2$ and say $M$ is a \vocab{direct sum}
@@ -438,6 +439,7 @@ To put it another way, if $V$ is a $k$-vector space we always have
 \[ V = e_1 k \oplus e_2 k \oplus \dots \oplus e_n k. \]
 
 \section{Linear maps}
+\label{sec:vector_space_linear_maps}
 \prototype{Evaluation of $\{ax^2+bx+c\}$ at $x=3$.}
 We've seen homomorphisms and continuous maps.
 Now we're about to see linear maps, the structure preserving maps

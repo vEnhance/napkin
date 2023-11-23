@@ -31,7 +31,7 @@ Colloquially,
 % In particular this makes such an algebra into a $k$-vector space.
 I'll present examples before the definition:
 \begin{example}
-	[Examples of $k$-Algebras]
+	[Examples of $k$-algebras]
 	Let $k$ be any field. The following are examples of $k$-algebras:
 	\begin{enumerate}[(a)]
 		\ii The field $k$ itself.
@@ -109,6 +109,12 @@ It is worth mentioning at this point that:
 \begin{ques}
 	Show that $1_A + 1_B$ is the multiplicative identity of $A \oplus B$.
 \end{ques}
+Equivalently, similar to \Cref{def:vector_space_direct_sum},
+you can define the direct sum $A \oplus B$ to be the set of pairs $(a, b)$,
+where multiplication is defined by $(a, b)(a', b')=(a a', b b')$.
+
+In this notation, $(1_A, 1_B)$ would be the multiplicative identity
+of $A \oplus B$.
 
 \section{Representations}
 \prototype{$k[S_3]$ acting on $k^{\oplus 3}$ is my favorite.}
@@ -257,6 +263,7 @@ From this perspective, what we are really trying to do is:
 	This representation is called the \vocab{direct sum} of $V$ and $W$.
 \end{definition}
 \begin{example}
+	\label{ex:mat2_representation}
 	Earlier we let $\Mat_2(\RR)$ act on $\RR^{\oplus 4}$ by
 	\[
 		\rho :
@@ -266,7 +273,27 @@ From this perspective, what we are really trying to do is:
 			0 & 0 & a & b \\ 0 & 0 & c & d \end{bmatrix} .
 	\]
 	So this is just a direct sum of two two-dimensional representations.
+
+	You can also view the vectors of $\RR^{\oplus 4}$ as two vectors in
+	$\RR^{\oplus 2}$ ``stacked horizontally'' as
+	$\begin{pmatrix}e&f \\ g&h\end{pmatrix}$,
+	so the action would be given by
+	\[
+		\begin{bmatrix} a & b \\ c & d \end{bmatrix} \cdot
+		\begin{pmatrix} e&f \\ g&h\end{pmatrix}
+		= \begin{pmatrix} ae+bg&af+bh \\ ce+dg&cf+dh \end{pmatrix}.
+	\]
 \end{example}
+
+\begin{remark}
+	Perhaps this is the reason why people tend to write $V$ as the
+	representation without the accompanied $\rho_V$, as long as it's possible to
+	embed the $k$-algebra $A$ into a subalgebra of $\Mat_d(k)$, then $V$ can be
+	isomorphically embedded as a subrepresentation of $(k^{\oplus d})^{\oplus
+	m}$, being $m$ copied of the obvious $k^{\oplus d}$ representation stacked
+	horizontally.
+\end{remark}
+
 More generally, given representations $(V, \rho_V)$ and $(W, \rho_W)$
 the representation $\rho$ of $V \oplus W$ looks like
 \[ \rho(a) =
@@ -297,6 +324,21 @@ Direct sums also come up when we play with algebras.
 	\[ V_A \oplus V_B \]
 	where $V_A$ and $V_B$ are representations of $A$ and $B$, respectively.
 \end{proposition}
+
+\begin{example}
+	Take $A=B=\Mat_2(\RR)$. There are two obvious representations
+	of the $k$-algebra $A \oplus B$,
+	$V_A$ and $V_B$, corresponds to the action of $A$ and $B$ respectively.
+
+	Each of $V_A$ and $V_B$ are isomorphic
+	to $\RR^{\oplus 2}$ as $\RR$-vector spaces.
+
+	What this proposition says is that, you cannot ``mix'' the action of
+	$A$ and $B$ in order to get some representation $V\cong\RR^2$ of
+	$A \oplus B$, such as by $(a+b)\cdot v = a\cdot v+2 b\cdot v$
+	for $a\in A$ and $b\in B$.
+\end{example}
+
 \begin{proof}[Sketch of Proof]
 	Let $(V, \rho)$ be a representation of $A \oplus B$.
 	For any $v \in V$, $\rho(1_A+1_B)v = \rho(1_A)v + \rho(1_B)v$.
@@ -306,6 +348,17 @@ Direct sums also come up when we play with algebras.
 	we have $\rho(1_A)v = \rho(1_A1_A)v = \rho(1_A1_B) v' = 0_V$,
 	and similarly for the other side.
 \end{proof}
+
+In the example above, if you see the representation $V_A \oplus V_B$ as $\RR^4$,
+then any element in $A$ acting on an element in $V_A \oplus V_B$ would zero out
+the $V_B$-component of the vector.
+
+So, the key idea of the proof is:
+\begin{moral}
+	The $A$ and $B$ component of $A \oplus B$ is used to act on $V$,
+	in order to project the vector space $V$ into the components $V_A$ and
+	$V_B$ to separate out the subrepresentations.
+\end{moral}
 
 \section{Irreducible and indecomposable representations}
 \prototype{$k[S_3]$ decomposes as the sum of two spaces.}
@@ -441,6 +494,26 @@ Here are some examples of intertwining operators.
 		Let $T$ be rotation by $30\dg$.
 		Then $T \colon V \to V$ is intertwining (the rotations commute).
 	\end{enumerate}
+\end{example}
+
+\begin{example}[A non-example: Representation of $\Mat(V)$]
+	Let $A = \Mat_2(\RR)\oplus\Mat_2(\RR)$. Then $A$ can be viewed as a subset
+	of $\Mat_4(\RR)$ of the matrices of the form
+	\[
+		\begin{bmatrix}
+			a&b&0&0 \\
+			c&d&0&0 \\
+			0&0&e&f \\
+			0&0&g&h
+		\end{bmatrix}.
+	\]
+	There are two obvious irreps of $A$, given by $V_1$ consisting of the vectors
+	in $\RR^4$ of the form $(m, n, 0, 0)$, and $V_2$ consisting of the vectors in
+	$\RR^4$ of the form $(0, 0, p, q)$.
+
+	In this case, even though $V_1$ and $V_2$ are isomorphic as $\RR$-vector
+	spaces, they're not isomorphic as representations of $A$ -- so any
+	intertwining operator from $V_1$ to $V_2$ must be identically zero.
 \end{example}
 
 \begin{exercise}[Kernel and image are subrepresentations]

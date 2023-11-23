@@ -121,7 +121,7 @@ We conclude that $\Norm(\kp_i) = p^{f_i}$ for some integer $f_i \ge 1$, and more
 OK, that's all fine and well.
 But something \emph{really magical} happens when we add the
 additional hypothesis that $K/\QQ$ is \emph{Galois}:
-all the inertial degrees and ramification degrees are equal.
+all the inertial degrees and ramification indices are equal.
 We set about proving this.
 
 Let $K/\QQ$ be Galois with $G = \Gal(K/\QQ)$.
@@ -170,6 +170,10 @@ But miraculously, it turns out there is only one orbit!
 	Then $G$ acts transitively on the $\kp_i$:
 	for every $i$ and $j$, we can find $\sigma$ such that $\sigma\kp_i = \kp_j$.
 \end{theorem}
+In other words,
+\begin{moral}
+	All of the $\{\kp_i\}$ are Galois conjugates of each other.
+\end{moral}
 \begin{proof}
 	Fairly slick.
 	Suppose for contradiction that no $\sigma \in G$ sends $\kp_1$ to $\kp_2$, say.
@@ -262,21 +266,26 @@ So we ask:
 	How are $\Gal\left( (\OO_K/\kp) / \FF_p \right)$
 	and $\Gal(K/\QQ)$ related?
 \end{quote}
-Absurdly enough, there is an explicit answer:
-\textbf{it's just the stabilizer of $\kp$, at least when
-$p$ is unramified}.
+
+First, every $\sigma \in \Gal(K/\QQ)$ induces an automorphism of $\OO_K$, which induces a map
+$\OO_K \to \OO_K/\kp$ by
+\[ \alpha \mapsto \sigma(\alpha) \pmod\kp. \]
+For this to induce a map in $\Gal\left( (\OO_K/\kp) / \FF_p \right)$, it's necessary that $\sigma(\kp) \subseteq \kp$. So, we consider the subset of automorphisms that fixes $\kp$:
 \begin{definition}
 	Let $D_\kp \subseteq \Gal(K/\QQ)$ be the stabilizer of $\kp$, that is
 	\[ D_\kp \defeq \left\{ \sigma \in \Gal(K/\QQ) \mid \sigma\kp = \kp \right\}. \]
 	We say $D_\kp$ is the \vocab{decomposition group} of $\kp$.
 \end{definition}
-Then, every $\sigma \in D_\kp$ induces an automorphism of $\OO_K / \kp$ by
-\[ \alpha \mapsto \sigma(\alpha) \pmod\kp. \]
+Note that this definition is in fact equivalent to the set of $\sigma$ such that $\sigma(\kp) \subseteq \kp$,
+because a field isomorphism fixes the ideal norm $\Norm(\kp)$.
+
 So there's a natural map
 \[ D_\kp \taking\theta \Gal\left( (\OO_K/\kp) / \FF_p \right) \]
 by declaring $\theta(\sigma)$ to just be ``$\sigma \pmod \kp$''.
 The fact that $\sigma \in D_\kp$ (i.e.\ $\sigma$ fixes $\kp$)
 ensures this map is well-defined.
+
+Surprisingly, every element of $\Gal\left( (\OO_K/\kp) / \FF_p \right)$ arises this way from some field automorphism of $K$.
 
 \begin{theorem}[Decomposition group and Galois group]
 	\label{thm:decomposition}
@@ -364,6 +373,7 @@ the rest of this section is broken and commented out, needs fix
 %we just have $K^I = K$.
 
 \section{Tangential remark: more general Galois extensions}
+\label{sec:more_general_extensions}
 All the discussion about Galois extensions
 carries over if we replace $K/\QQ$ by some different Galois extension $K/F$.
 Instead of a rational prime $p$ breaking down in $\OO_K$,

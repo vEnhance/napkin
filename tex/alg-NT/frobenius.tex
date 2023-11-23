@@ -1,4 +1,5 @@
 \chapter{The Frobenius element}
+\label{ch:frobenius-element}
 Throughout this chapter $K/\QQ$ is a Galois extension with Galois group $G$,
 $p$ is an \emph{unramified} rational prime in $K$, and $\kp$ is a prime above it.
 Picture:
@@ -12,6 +13,12 @@ Picture:
 	\QQ & \supset & \ZZ & (p) & \FF_p
 \end{tikzcd}
 \end{center}
+
+We recall that the $p$-th power map $\sigma \colon \FF_{p^f} \to \FF_{p^f}$ is an automorphism, and it's called the Frobenius map on $\FF_{p^f}$.
+We can try to extend this map to a $K \to K$ map by $\sigma(x) = x^p$, unfortunately this doesn't make it a field automorphism.
+
+Surprisingly, it is nevertheless possible to extend this to some field automorphism $\sigma \in \Gal(K/\QQ)$.
+
 If $p$ is unramified, then one can show there
 is a unique $\sigma \in \Gal(K/\QQ)$ such that
 $\sigma(\alpha) \equiv \alpha^p \pmod{\kp}$ for every prime $p$.
@@ -24,7 +31,7 @@ Here is the theorem statement again:
 	Assume $K/\QQ$ is Galois with Galois group $G$.
 	Let $p$ be a rational prime unramified in $K$, and $\kp$ a prime above it.
 	There is a \emph{unique} element $\Frob_\kp \in G$
-	with the property that
+	with the property that, for all $\alpha \in \OO_K$,
 	\[ \Frob_\kp(\alpha) \equiv \alpha^{p} \pmod{\kp}. \]
 	It is called the \vocab{Frobenius element} at $\kp$, and has order $f$.
 \end{theorem}
@@ -35,6 +42,7 @@ the above functional equation.
 
 Let's see an example of this:
 \begin{example}[Frobenius elements of the Gaussian integers]
+	\label{ex:frob_gaussian_integers}
 	Let's actually compute some Frobenius elements for $K = \QQ(i)$,
 	which has $\OO_K = \ZZ[i]$.
 	This is a Galois extension, with $G = \Zm2$,
@@ -63,11 +71,15 @@ it satisfies the functional equation everywhere.
 We also have an important lemma:
 \begin{lemma}
 	[Order of the Frobenius element]
+	\label{lem:order_frob}
 	Let $\Frob_\kp$ be a Frobenius element from an extension $K/\QQ$.
 	Then the order of $\Frob_\kp$ is equal to the inertial degree $f_\kp$.
 	In particular, $(p)$ splits completely in $\OO_K$
 	if and only if $\Frob_\kp = \id$.
 \end{lemma}
+This lemma allows us to tell the splitting behavior of $\kp$ just by computing
+$\Frob_\kp$, which will later be seen in \Cref{lem:cyclo_frob} and
+\Cref{subsec:quadratic_reciprocity_frobenius}.
 \begin{exercise}
 	Prove this lemma as by using the fact that $\OO_K / \kp$
 	is the finite field of order $f_\kp$,
@@ -338,6 +350,8 @@ We may define
 	\Frob_{\kP} \colon L \to L \]
 and want to know how these are related.
 
+Both maps $\Frob_{\kP}$ and $\Frob_{\kp}$ induce the power-of-$p$ map in the corresponding quotient field, hence we would expect them to be naturally the same.
+
 \begin{theorem}
 	[Restrictions of Frobenius elements]
 	Assume $L/\QQ$ and $K/\QQ$ are both Galois.
@@ -346,22 +360,16 @@ and want to know how these are related.
 	i.e.\ for every $\alpha \in K$,
 	\[ \Frob_\kp(\alpha) = \Frob_{\kP}(\alpha). \]
 \end{theorem}
-%\begin{proof}
-%	We know
-%	\[ \Frob_{\kP}(\alpha) \equiv \alpha^p \pmod{\kP}
-%		\quad \forall \alpha \in \OO_L \]
-%	from the definition.
-%	\begin{ques}
-%		Deduce that
-%		\[ \Frob_{\kP}(\alpha) \equiv \alpha^p \pmod{\kp}
-%			\quad \forall \alpha \in \OO_K. \]
-%		(This is weaker than the previous statement in two ways!)
-%	\end{ques}
-%	Thus $\Frob_{\kP}$ restricted to $\OO_K$ satisfies the
-%	characterizing property of $\Frob_\kp$.
-%\end{proof}
 \begin{proof}
-	TODO: Broken proof. Needs repair.
+	First, $K/\QQ$ is normal, so $\Frob_{\kP}$ fixes the image of $K$, that is,
+	$\Frob_{\kP} \restrict{K} \in \Gal(K/\QQ)$ is well-defined.
+
+	We have the natural map $\phi \colon \OO_K \to \OO_L \to \OO_L/\kP$,
+	and the quotient map $q\colon \OO_K \to \OO_K / \kp$.
+	Since $\kp \subseteq \kP \cap \OO_K \subseteq \ker \phi$, it follows $\phi$ factors
+	through $q$ to give a natural field homomorphism $\OO_K / \kp \to \OO_L / \kP$.
+
+	Since a field homomorphism is injective, $\Frob_{\kP}$ induces the power-of-$p$ map on $\OO_L / \kP$, and everything is commutative, the theorem follows.
 \end{proof}
 In short, the point of this section is that
 \begin{moral}
@@ -438,7 +446,7 @@ It could possibly also split in $K$: the picture looks like
 \begin{center}
 \begin{tikzcd}
 	\OO_L = \ZZ[\zeta_q] & \supset
-		& {\kP} \ar[r, dotted] & \ZZ[\zeta_p]/{\kP} \cong \FF_{p^f} \\
+		& {\kP} \ar[r, dotted] & \ZZ[\zeta_q]/{\kP} \cong \FF_{p^f} \\
 	\OO_K = \ZZ[\frac{1+\sqrt{q^\ast}}{2}] & \supset
 		& \kp \ar[r, dotted] & \FF_p \text{ or } \FF_{p^2} \\
 	\ZZ & \supset & (p) \ar[r, dotted]
@@ -450,6 +458,7 @@ It could possibly also split in $K$: the picture looks like
 \end{ques}
 
 \subsection{Step 3: Introducing the Frobenius}
+\label{subsec:quadratic_reciprocity_frobenius}
 Now, we take the Frobenius
 \[ \sigma_p = \Frob_{\kP} \in \Gal(L/\QQ). \]
 We claim that
@@ -458,7 +467,7 @@ To see this, note that $\Frob_{\kP}$ is in $H$ if and only if it acts
 as the identity on $K$.
 But $\Frob_{\kP} \restrict{K}$ is $\Frob_\kp$!
 So \[ \Frob_{\kP} \in H \iff \Frob_\kp = \id_K. \]
-Finally note that $\Frob_\kp$ has order $1$ if $p$ splits
+Finally, by \Cref{lem:order_frob}, $\Frob_\kp$ has order $1$ if $p$ splits
 ($\kp$ has inertial degree $1$)
 and order $2$ if $p$ is inert.
 This completes the proof of the claim.
@@ -472,11 +481,17 @@ On the other hand,
 	if and only if $\left( \frac{q^\ast}{p} \right) = 1$.
 	(Use the factoring algorithm. You need the fact that $p \neq 2$ here.)
 \end{exercise}
-In other words
-\[ \left( \frac pq \right) = 1
-	\iff \sigma_p \in H \iff \text{$p$ splits in $\ZZ\left[ \tfrac12(1+\sqrt{q^\ast}) \right]$}
-	\iff \left( \frac{q^\ast}{p} \right) = 1.
-\]
+In other words,
+\begin{align*}
+	\left( \frac pq \right) = 1
+	&\iff \sigma_p \in H \\
+	&\iff \Frob_{\kP} \in H \\
+	&\iff \Frob_{\kp} = \id_K \\
+	&\iff \ord \Frob_{\kp} = 1 \\
+	&\iff f_{\kp} = 1 \\
+	&\iff \text{$p$ splits in $\ZZ\left[ \tfrac12(1+\sqrt{q^\ast}) \right]$} \\
+	&\iff \left( \frac{q^\ast}{p} \right) = 1.
+\end{align*}
 This completes the proof.
 
 
@@ -600,7 +615,7 @@ To prove our theorem, we will show that the factorization pattern of $f \pmod p$
 
 To do this, suppose $S = \{ \alpha_1,\alpha_2,\dots, \alpha_n\}$ are the roots of $f$ (distinct roots since $f$ is irreducible over $\QQ$). We let $\Frob_{\kP}$ act on $S$. This splits $S$ into orbits $S_1$, $S_2$, $\dots$, $S_k$. Construct polynomials $f_i$ with coefficients in $E$ having roots exactly the elements of $S_i$. This forms a factorization of $f$ over $E$, say \[ f = f_1f_2 \dots f_k. \]
 
-We claim that this in fact induces a factorization of $f \pmod p$. 
+We claim that this in fact induces a factorization of $f \pmod p$.
 To see this, consider the images of these polynomials $f_i$ under the quotient $\OO_K \to \OO_K/\kP$, denote them by $\overline{f_i}$. Then since $p$ is unramified, we know that the decomposition group $D(\kP|p)$ is isomorphic to the Galois group $\mathcal{G} = \Gal((\OO_E/\kP) / (\ZZ/p\ZZ))$. Thus $\Frob_{\kP}$ corresponds to the generator $\sigma$ of $\mathcal{G}$. It is not hard to believe that the action of $\Frob_{\kP}$ on the roots of $f$ is the same as that of $\sigma$ on the roots of $ \overline{f}$. Since the roots of $f_i$ form an orbit under the action of $\Frob_{\kP}$, we see that the roots of $\overline{f_i}$ form an orbit under the action of $\sigma$ and hence under the action of $\mathcal{G}$. It is now a standard fact of Galois theory that $\overline{f_i}$ is an irreducible polynomial over $\FF_p$ (since it is fixed by $\mathcal{G}$), thus the claim is proved.
 
 Now we just need to observe that the roots of $f$ correspond to the cosets of $H$, this will be established later.
