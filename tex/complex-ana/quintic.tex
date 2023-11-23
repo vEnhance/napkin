@@ -10,9 +10,9 @@ the roots of a quintic polynomial.
 Firstly, what do we even mean by ``formula'' here?
 
 \begin{definition}
-    A \vocab{quintic formula} would be a formula taking in the coefficients $(a, \dots, f)$ of a
-    degree $5$ polynomial $P$, using the operations $+, -, \times, \div, \sqrt[n]{}$
-    finitely many times, that maps to the five roots $(z_1, \cdots, z_5)$ of $P$.
+	A \vocab{quintic formula} would be a formula taking in the coefficients $(a, \dots, f)$ of a
+	degree $5$ polynomial $P$, using the operations $+, -, \times, \div, \sqrt[n]{}$
+	finitely many times, that maps to the five roots $(z_1, \cdots, z_5)$ of $P$.
 \end{definition}
 
 Now, any proposed quintic formula $F$ receives the same coefficients when the roots are the same,
@@ -20,13 +20,13 @@ and thus gives the same output. This is fine at first glance, but swapping two r
 might pose more issues. $F$ must create and preserved the order of the roots under these permutations.
 
 \begin{ques}
-    Convince yourself this is true.
+	Convince yourself this is true.
 \end{ques}
 
 \begin{remark}
-    This isn't true if we bring even more complicated functions
-    such as \vocab{Bring Radicals} to the table.
-    But this wasn't really considered ``fair game.''
+	This isn't true if we bring even more complicated functions
+	such as \vocab{Bring Radicals} to the table.
+	But this wasn't really considered ``fair game.''
 \end{remark}
 
 \section{Step 1: The Simplest Case}
@@ -53,7 +53,7 @@ along two non-intersecting paths that doesn't go through other roots.
 		for (int i=0; i<5; ++i) {
 			A[i] = mag[i]*dir(dirs[i]);
 			if (i < 2) {
-			    dot("$z_{" + (string) (i+1) + "}$", A[i], dir(dirs[i]), red);
+				dot("$z_{" + (string) (i+1) + "}$", A[i], dir(dirs[i]), red);
 			}
 			else {
 				dot("$z_{" + (string) (i+1) + "}$", A[i], dir(dirs[i]), blue);
@@ -77,22 +77,22 @@ of the roots in $S_5$.
 Once we add $\sqrt[n]{}$ back to the picture, this idea no longer works right out of the box.
 
 \begin{example}[Quadratic Formula]
-    If you've done any competition math, you know that for a polynomial
-    $P(z) = az^2 + bz + c = (z-z_1)(z - z_2)$, it follows that the two branches of
-    \[
-        \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
-    \]
-    give $z_1$ and $z_2$.
+	If you've done any competition math, you know that for a polynomial
+	$P(z) = az^2 + bz + c = (z-z_1)(z - z_2)$, it follows that the two branches of
+	\[
+		\frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
+	\]
+	give $z_1$ and $z_2$.
 
-    So why can't swapping $z_1$ and $z_2$ yield a contradiction here?
-    It's because while all the coefficients end up in the starting position,
-    the liftings of how $\sqrt{b^2 - 4ac}$ travels may not.
+	So why can't swapping $z_1$ and $z_2$ yield a contradiction here?
+	It's because while all the coefficients end up in the starting position,
+	the liftings of how $\sqrt{b^2 - 4ac}$ travels may not.
 \end{example}
 
 \begin{exercise}
-    Consider the polynomial $z^2 - 1$. Then smoothly swap the roots to get the intermediary
+	Consider the polynomial $z^2 - 1$. Then smoothly swap the roots to get the intermediary
 	polynomials of $(z - e^{it})(z + e^{it})$. See that the two roots given by the quadratic formula
-    also swap position.
+	also swap position.
 \end{exercise}
 
 Let's now consider the next simplest case of the $n$th root of a rational function
@@ -125,7 +125,7 @@ $\alpha\beta\alpha^{-1}\beta^{-1}$.
 
 
 \begin{exercise}
-    Show that this permutation operation is nontrivial.
+	Show that this permutation operation is nontrivial.
 \end{exercise}
 
 We now have better tools: We have permutations in $S_5$ that fix the
@@ -135,11 +135,11 @@ $+, -, \times, \div$.
 How do we handle the nested radicals now?
 
 \begin{example}[Cubic Formula]
-    The cubic formula contains a nasty term
-    \[
-        \sqrt[3]{\frac{2b^3 - 9abc + 27a^2d + \sqrt{(2b^3 - 9abc + 27a^d)^2 - 4(b^3 - 3ac)^3}}{2}}.
-    \]
-    Here, we've taken multiple roots.
+	The cubic formula contains a nasty term
+	\[
+		\sqrt[3]{\frac{2b^3 - 9abc + 27a^2d + \sqrt{(2b^3 - 9abc + 27a^d)^2 - 4(b^3 - 3ac)^3}}{2}}.
+	\]
+	Here, we've taken multiple roots.
 \end{example}
 
 \begin{definition}
@@ -162,19 +162,19 @@ nontrivial commutators.
 
 We've reduced this to a group theory problem. Given a chain of commutators
 \[
-    S_5 = G \supseteq G^{(1)} \supseteq G^{(2)} \supseteq \dots
+	S_5 = G \supseteq G^{(1)} \supseteq G^{(2)} \supseteq \dots
 \]
 where each group is the commutator subgroup of the next,
 we want to show that $G^{(n)}$ never becomes trivial.
 This chain is called the \vocab{derived series}.
 
 \begin{exercise}
-    Show that for the commutator subgroup $C$ of a group $G$, we have that $C \normalin G$,
-    and that $G/C$ is Abelian.
+	Show that for the commutator subgroup $C$ of a group $G$, we have that $C \normalin G$,
+	and that $G/C$ is Abelian.
 \end{exercise}
 
 \begin{definition}
-    A group $G$ is \vocab{solvable} if its derived series is nontrivial.
+	A group $G$ is \vocab{solvable} if its derived series is nontrivial.
 \end{definition}
 
 So all that remains is showing that $S_5$ is not solvable.
@@ -195,6 +195,6 @@ this theorem to a fact that $A_5$ is insolvable.
 \section\problemhead
 
 \begin{problem}
-    \gim
-    Show that $A_5$ is not solvable.
+	\gim
+	Show that $A_5$ is not solvable.
 \end{problem}
