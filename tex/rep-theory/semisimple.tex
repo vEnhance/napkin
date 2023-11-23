@@ -37,9 +37,8 @@ focusing on studying the semisimple algebras.
 
 \begin{remark}
 	[Digression]
-	The converse does not hold, however -- if $k$ has characteristic $0$, not
-	all finite-dimensional semisimple $k$-algebra is isomorphic to some group
-	algebra.
+	The converse does not hold, however --- if $k$ has characteristic $0$, not
+	every finite-dimensional semisimple $k$-algebra is isomorphic to some group algebra.
 	Classifying exactly when a $k$-algebra is isomorphic to a group algebra
 	turns out to be a hard question, see \url{https://mathoverflow.net/q/314502}.
 \end{remark}
@@ -267,40 +266,35 @@ This also gives us the non-obvious corollary:
 \begin{example}
 	[Applying the proof of density theorem on an explicit example]
 	We can run through the argument on an explicit example to better understand
-	how it works -- in order to do
-	this, we need $V$ to be an irrep, otherwise the image of $\Reg(A)$ would not
-	be isomorphic to $V^{\oplus m}$, and we will not be able to run to the end of
-	the argument.
+	how it works --- in order to do this, we need $V$ to be an irrep,
+	otherwise the image of $\Reg(A)$ would not be isomorphic to $V^{\oplus m}$,
+	and we will not be able to run to the end of the argument.
 
 	Let $A=\Mat_2(k)$, and $V \cong k^{\oplus 2}$ with the obvious action.
 	As we know, this is an irrep.
 
-	The density theorem claims that $\rho: A\to \Mat(V)$ is surjective, which
+	The density theorem claims that $\rho \colon A \to \Mat(V)$ is surjective, which
 	means for any $e_1, e_2 \in V$ independent, and any $w_1, w_2 \in V$, we can
-	find $a \in A$ such that $a \cdot (e_1, e_2)=(w_1, w_2)$.
+	find $a \in A$ such that $a \cdot (e_1, e_2) = (w_1, w_2)$.
 
-	Because we're working through a counterexample, pick $e_1=(1, 0)$, $e_2=(2,
-	0)$ instead. Then, for some $w_1, w_2 \in V$, there may be no $a$ that sends
-	$e_1$ to $w_1$ to $e_2$ to $w_2$.
+	Because we're working through a counterexample, pick $e_1=(1, 0)$, $e_2=(2, 0)$ instead.
+	Then, for some $w_1, w_2 \in V$,
+	there may be no $a$ that sends $e_1$ to $w_1$ to $e_2$ to $w_2$.
 
-	Consider the representation morphism $\Reg(A)\to V^{\oplus 2}$ by $a
-	\mapsto(a \cdot e_1, a \cdot e_2)$, its image is thus $\{(v, 2v) \mid v \in V
-	\}$, which is a subrepresentation of $V^{\oplus 2}$, isomorphic as a
-	representation to $V^{\oplus 1}\cong V$ by
-	\[
-		v \mapsto(v, 2v) = v \begin{bmatrix}
-	1&2\end{bmatrix}. \]
+	Consider the representation morphism $\Reg(A) \to V^{\oplus 2}$ by
+	$a \mapsto(a \cdot e_1, a \cdot e_2)$;
+	its image is thus $\{(v, 2v) \mid v \in V \}$,
+	which is a subrepresentation of $V^{\oplus 2}$,
+	isomorphic as a representation to $V^{\oplus 1}\cong V$ by
+	\[ v \mapsto(v, 2v) = v \begin{bmatrix} 1 & 2 \end{bmatrix}. \]
 	Then, we can find $v=\begin{pmatrix}1 \\ 0\end{pmatrix}\in V^{\oplus 1}$,
 	for which
-	\[
-	\begin{pmatrix}e_1&e_2\end{pmatrix} = v \begin{bmatrix} 1&2\end{bmatrix}.
-	\]
-	Now, with the explicit array of numbers $\begin{bmatrix} 1&2\end{bmatrix}$,
+	\[ \begin{pmatrix} e_1 & e_2 \end{pmatrix} = v \begin{bmatrix} 1 & 2 \end{bmatrix}. \]
+	Now, with the explicit array of numbers $\begin{bmatrix} 1 & 2 \end{bmatrix}$,
 	it is easy to find a linear dependence on $e_1$ and $e_2$.
 \end{example}
 
 \section{Semisimple algebras}
-
 \begin{definition}
 	A finite-dimensional algebra $A$ is a \vocab{semisimple}
 	if every finite-dimensional representation of $A$ is completely reducible.
