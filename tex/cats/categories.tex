@@ -341,11 +341,11 @@ The key observation is that
 A function $A \taking f X \times Y$
 amounts to a pair of functions $(A \taking g X, A \taking h Y)$.
 \end{moral}
-Put another way, there is a natural projection map $X \times Y \surjto X$ and $X \times Y \surjto Y$:
+Put another way, there is a natural projection map $X \times Y \to X$ and $X \times Y \to Y$:
 \begin{center}
 \begin{tikzcd}
 	& X \\
-	X \times Y \ar[ru, surjective head, "\pi_X"] \ar[rd, surjective head, "\pi_Y"'] & \\
+	X \times Y \ar[ru, "\pi_X"] \ar[rd, "\pi_Y"'] & \\
 	& Y
 \end{tikzcd}
 \end{center}
@@ -365,7 +365,7 @@ Picture:
 \begin{tikzcd}
 	&&& X \\
 	A \ar[rrru, bend left, "g"'] \ar[rrrd, bend right, "h"] \ar[rr, dotted, "\exists! f"] &&
-		X \times Y \ar[ru, surjective head, "\pi_X"] \ar[rd, surjective head, "\pi_Y"] & \\
+		X \times Y \ar[ru, "\pi_X"] \ar[rd, "\pi_Y"] & \\
 	&&& Y
 \end{tikzcd}
 \end{center}
@@ -404,9 +404,9 @@ Nonetheless:
 	\begin{tikzcd}
 		& & X & & \\
 		\\
-		P_1 \ar[rrdd, "\pi_Y^1"', surjective head] \ar[rruu, "\pi_X^1", surjective head] \ar[rr, "f", surjective head]
-			&& P_2 \ar[rr, "g", surjective head] \ar[uu, "\pi_X^2"', surjective head] \ar[dd, "\pi_Y^2", surjective head]
-			&& P_1 \ar[lluu, "\pi_X^1"', surjective head] \ar[lldd, "\pi_Y^1"', surjective head] \\
+		P_1 \ar[rrdd, "\pi_Y^1"'] \ar[rruu, "\pi_X^1"] \ar[rr, "f"]
+			&& P_2 \ar[rr, "g"] \ar[uu, "\pi_X^2"'] \ar[dd, "\pi_Y^2"]
+			&& P_1 \ar[lluu, "\pi_X^1"'] \ar[lldd, "\pi_Y^1"'] \\
 		\\
 		&& Y  &&
 	\end{tikzcd}
@@ -482,17 +482,17 @@ The picture of this is
 \begin{tikzcd}
 	&& A
 		\ar[dd, "\exists! f"]
-		\ar[llddd, surjective head, bend right]
-		\ar[lddd, surjective head, bend right]
-		\ar[rddd, surjective head, bend left]
-		\ar[rrddd, surjective head, bend left]
+		\ar[llddd, bend right]
+		\ar[lddd, bend right]
+		\ar[rddd, bend left]
+		\ar[rrddd, bend left]
 		&& \\
 	&&&& \\
 	&& P
-		\ar[lld, surjective head]
-		\ar[ld, surjective head]
-		\ar[rd, surjective head]
-		\ar[rrd, surjective head]
+		\ar[lld]
+		\ar[ld]
+		\ar[rd]
+		\ar[rrd]
 		&& \\
 	X_1 & X_2 && X_3 & X_4
 \end{tikzcd}
