@@ -53,7 +53,7 @@ which will give us a nice way of expressing the above:
 if $R = \CC[V]$ is the coordinate ring, then
 the above will become abbreviated to just
 \begin{align*}
-	\OO_{V}(D(g)) &= R_{g} \\
+	\OO_{V}(D(g)) &= R[g^{-1}] \\
 	\OO_{V, p} &= R_{\km} \quad \text{where } \{p\} = \VV(\km).
 \end{align*}
 The former will be pronounced
@@ -68,7 +68,7 @@ altogether and replace it with a general commutative ring $A$
 We will construct a ringed space called $X = \Spec A$,
 whose elements are \emph{prime ideals} of $A$
 and is equipped with the Zariski topology and a sheaf $\OO_X$.
-It will turn out that, in analogy to what we had before,
+It will turn out that, the right way to define the sheaf $\OO_X$ is to use localization,
 \begin{align*}
 	\OO_X(D(f)) &= A[f\inv] \\
 	\OO_{X,\kp} &= A_\kp
@@ -77,6 +77,13 @@ for any element $f \in A$ and prime ideal $\kp \in \Spec A$.
 Thus just as with complex affine varieties,
 localizations will give us a way to more or less
 describe the sheaf $\OO_X$ completely.
+
+In other words,
+\begin{moral}
+	Localization is the purely algebraic way to \emph{define} the
+	ring of regular functions on a smaller open set from the ring of ``global''
+	regular functions.
+\end{moral}
 
 \section{The definition}
 \begin{definition}
@@ -181,7 +188,8 @@ one in this section, the other in the next section.
 		if we localize $\Zc{60}$ away from the element $5$,
 		we get $(\Zc{60})[1/5] \cong \Zc{12}$.
 		You should try to think about why this is the case.
-		We will see a ``geometric'' reason later.
+		We will see a ``geometric'' reason later,
+		in \Cref{sec:example_spec_Zc60}.
 	\end{enumerate}
 \end{example}
 
@@ -221,6 +229,10 @@ one in this section, the other in the next section.
 	so $y = 0$ in $A$, and thus $y$ just goes away completely.
 	From this we get a ring isomorphism
 	\[ A[1/x] \cong \CC[x,1/x].\]
+
+	Later, we will be able to use our geometric intuition to ``see'' this
+	at \Cref{sec:example_spec_kxy_div_xy}, once
+	we have defined the affine scheme.
 \end{example}
 
 \section{Localization at a prime ideal}
@@ -403,12 +415,12 @@ Anyways, here are some examples, to help cement the picture.
 	and even $(0)$ give prime ideals of $\ZZ[1/6]$.
 
 	But $(2)$ and $(3)$ no longer correspond to
-	prime ideals; in fact in $A_6$ we have $(2) = (3) = (1)$,
+	prime ideals; in fact in $\ZZ[1/6]$ we have $(2) = (3) = (1)$,
 	the whole ring.
 \end{example}
 
 \begin{example}
-	[Prime ideals of $A_{(5)}$]
+	[Prime ideals of $\ZZ_{(5)}$]
 	Suppose we localize $\ZZ$ at the prime $(5)$.
 	As we saw,
 	\[ \ZZ_{(5)} = \left\{ \frac{m}{n} \mid m,n \in \ZZ,

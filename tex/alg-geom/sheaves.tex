@@ -37,8 +37,24 @@ The proper generalization of our $\OO_V$ is a so-called sheaf of rings.
 Recall that $\OO_V$ took \emph{open sets of $V$} to \emph{rings},
 with the interpretation that $\OO_V(U)$ was a ``ring of functions''.
 
+Recall from \Cref{sec:sheaf_regular_functions} that $\OO_V$, as a set, consist
+of simply the algebraic functions. However, if we view $\OO_V$ purely as a set,
+the structure of the functions is essentially thrown way.
+
+Let us see how the functions in $\OO_V$ are related to each other:
+\begin{itemize}
+	\ii Each function in $\OO_V$ is defined on a open set $U \subseteq V$.
+	\ii If two functions are defined on the same open set, you can add and
+	multiply them together. In other words, $\OO_V(U)$ is a ring.
+	\ii Given a function $f \in \OO_V(U)$, we can restrict it to a smaller open
+	subset $W \subseteq U$.
+\end{itemize}
+These are the operations that we will impose on a pre-sheaf.
+
 \subsection{Usual definition}
 So here is the official definition of a pre-sheaf.
+We will only define a pre-sheaf of rings, however it's possible to define a
+pre-sheaf of sets, pre-sheaf of abelian groups, etc.
 \begin{definition}
 	For a topological space $X$ let $\Opens(X)$ denote the open sets of $X$.
 \end{definition}
@@ -417,8 +433,10 @@ as much as the examples do,
 but sadly I have to give the definition first
 for the examples to make sense.
 \begin{definition}
-	A \vocab{sheaf} $\mathscr F$ is a pre-sheaf obeying two additional axioms:
-	Suppose $U$ is covered by open sets $U_\alpha \subseteq U$. Then:
+	A \vocab{sheaf} $\mathscr F$ on a topological space $X$
+	is a pre-sheaf obeying two additional axioms:
+	Suppose $U$ is an open set in $X$, and $U$ is covered by open sets
+	$U_\alpha \subseteq U$. Then:
 	\begin{enumerate}
 		\ii (Identity) If $s, t \in \mathscr F(U)$ are sections,
 		and $s\restrict{U_\alpha} = t\restrict{U_\alpha}$
@@ -435,7 +453,8 @@ for the examples to make sense.
 \end{definition}
 \begin{remark}
 	[For keepers of the empty set]
-	The above axioms imply $\SF(\varnothing) = 0$ (the zero ring).
+	The above axioms imply $\SF(\varnothing) = 0$ (the zero ring), when $\SF$ is
+	a sheaf of rings.
 	This is not worth worrying about until you actually need it,
 	so you can forget I said that.
 \end{remark}
@@ -501,6 +520,16 @@ Now for the examples.
 		This is because to verify a function is continuous,
 		one only needs to look at small open neighborhoods at once.
 
+		\ii Let $X = \RR$, and define the presheaf of rings $\SF$ by:
+		\[
+			\SF(U) = \{ f \colon U \to \RR: \text{there exists continuous $g
+			\colon \RR \to \RR$ such that $g\restrict{U} = f$} \}.
+		\]
+		Then $\SF$ is not a sheaf. Indeed, $s_1(x) = 0$ in $\SF((-1, 0))$
+		and $s_2(x) = 1$ in $\SF((0, 1))$ agrees on the (empty) overlap,
+		but they cannot be glued together to an element in $\SF((-1, 0) \cup(0,
+		1))$.
+
 		\ii For a complex variety $V$, $\OO_V$ is a sheaf,
 		precisely because our definition was \emph{locally} quotients
 		of polynomials.
@@ -513,11 +542,13 @@ Now for the examples.
 		while $s_2$ is the constant function $2$ on $U_2$,
 		then we cannot glue these to a constant function on $U_1 \cup U_2$.
 
-		\ii On the other hand, \emph{locally constant} functions
+		\ii \label{ex:sheaf_of_locally_constant} On the other hand,
+		\emph{locally constant} functions
 		do produce a sheaf. (A function is locally constant
 		if for every point it is constant on some open neighborhood.)
 	\end{enumerate}
-	In fact, the sheaf in (d) is what is called a \emph{sheafification}
+	In fact, the sheaf in \ref{ex:sheaf_of_locally_constant} is what is called
+	a \emph{sheafification}
 	of the pre-sheaf constant functions, which we define momentarily.
 \end{example}
 
@@ -553,7 +584,7 @@ a section will be a choice of germ at each stalk.
 \end{example}
 
 
-From the above example it's obvious that if we know each germ $[s]_p$
+From the above example it's obvious that if we know each germ $[s]_p$,
 this should let us reconstruct the entire section $s$.
 Let's check this from the sheaf axioms:
 \begin{exercise}
@@ -784,7 +815,7 @@ However, in practice, the details of the construction will often not matter.
 \end{problem}
 
 \begin{problem}
-	Let $\SF$ be a sheaf on a space $X$ and let $s \in \SF(X)$
+	Let $\SF$ be a sheaf of rings on a space $X$ and let $s \in \SF(X)$
 	be a global section.
 	Define the \vocab{support} of $s$ as
 	\[ Z = \left\{ p \in X \mid [s]_p \neq 0 \in \SF_p \right\}. \]

@@ -28,9 +28,20 @@ In an \emph{affine scheme}, we will take an \emph{arbitrary} ring $A$,
 and generate the entire structure from just $A$ itself.
 The final result is called $\Spec A$, the \vocab{spectrum} of $A$.
 The affine varieties $\VV(I)$ we met earlier will just be
-$\CC[x_1, \dots, x_n] / I$, but now we will be able to take
+$\Spec \CC[\VV(I)] = \Spec \CC[x_1, \dots, x_n] / I$
+, but now we will be able to take
 \emph{any} ideal $I$, thus finally completing the table at the end
 of the ``affine variety'' chapter.
+
+To emphasize the point:
+\begin{moral}
+	For affine varieties $V$, the spectrum of the coordinate ring $\CC[V]$ is
+	$V$.
+\end{moral}
+Thus, we may also think of $\Spec$ as the opposite operation of taking the
+ring of global sections, defined purely-algebraically in order to depend only on
+the intrinsic properties of the affine variety itself (the ring $\OO_V$) and not
+the embedding.
 
 The construction of the affine scheme in this way
 will have three big generalizations:
@@ -124,6 +135,13 @@ the one for the ideal $(y-x^2)$ floats along the parabola, etc.
 	\includegraphics[scale=0.4]{media/calvin-hobbes-fly.png} \\
 	\footnotesize Image from \cite{img:calvin_hobbes_fly}.
 \end{center}
+
+\begin{remark}
+	[Why don't the prime non-maximal ideals correspond to the whole parabola?]
+	We have already seen a geometric reason in \Cref{sec:localize_prime_ideal} earlier:
+	localizing a ring at a prime non-maximal ideal gives the functions that may blow up somewhere in the
+	parabola, but not \emph{generically}.
+\end{remark}
 
 \begin{example}
 	[More examples of spectrums]
@@ -306,7 +324,7 @@ kind of let us cheat our way through the following bit:
 \end{proposition}
 \begin{proof}
 	Just note $(0)$ is a prime ideal,
-	and in every open set.
+	and is in every open set.
 \end{proof}
 You should compare this with our old classical result that
 $\CC[x_1, \dots, x_n]/I$
@@ -412,9 +430,10 @@ and we now prove it.
 
 	Conversely, suppose $x \notin \sqrt I$,
 	meaning $1, x, x^2, x^3, \dots \notin I$.
-	Then, consider the localization $A[1/x]$.
+	Then, consider the localization $(A/I)[1/x]$, which is not the zero ring.
 	Like any ring, it has some maximal ideal (Krull's theorem).
-	This means our usual bijection between prime ideals of $A[1/x]$
+	This means our usual bijection between prime ideals of $(A/I)[1/x]$,
+	prime ideals of $A/I$ and prime ideals of $A$
 	gives some prime ideal $\kp$ of $A$ containing $I$ but not containing $x$.
 	Thus $x \notin \bigcap_{\kp \supseteq I} \kp$,
 	as desired.
@@ -424,7 +443,7 @@ and we now prove it.
 	The longer direction of this proof is essentially
 	saying that for any $x \in A$,
 	there is a maximal ideal of $A$ not containing $x$.
-	The ``short'' proof is to use Krull's theorem on $A[1/x]$ as above,
+	The ``short'' proof is to use Krull's theorem on $(A/I)[1/x]$ as above,
 	but one can also still prove it directly using Zorn's lemma
 	(by copying the proof of the original Krull's theorem).
 \end{remark}
