@@ -53,6 +53,12 @@ the sections are just random rings,
 which may not be so well-behaved.
 So the solution is that we \emph{include} the data of $f^\sharp$
 as part of the definition of a morphism.
+\begin{remark}
+	As we will see in \Cref{ex:spec_C_morphism}, unlike the situation in algebraic varieties
+	where the morphism is uniquely determined by the map of topological space,
+	here $\pi^\sharp$ is not necessarily uniquely determined by the map $\pi$.
+	Thus, including the $\pi^\sharp$ is necessary.
+\end{remark}
 \begin{definition}
 	A \vocab{morphism of ringed spaces}
 	$(X, \OO_X) \to (Y, \OO_Y)$ consists of a pair $(\pi, \pi^\sharp)$
@@ -246,6 +252,7 @@ where you can see all the moving parts in action.
 \end{example}
 \begin{example}
 	[$\Spec \CC$ horror story]
+	\label{ex:spec_C_morphism}
 	There are multiple maps $X = \Spec \CC \to \Spec \CC = Y$,
 	horribly enough!
 	Indeed, these are spaces with one point,
@@ -291,10 +298,15 @@ which will force the ring homomorphisms to fix $\CC$, later.
 	so this time we want to specify a map
 	\[ \pi^\sharp_U \colon \OO_Y(U) \to \OO_X(X) = \RR[x] \]
 	which satisfies restriction maps.
-	Note that for any $U$, the element $y$ must map to a unit in $\RR[x]$;
+	Note that for any $U$, the element $y$ must be mapped to a unit in $\RR[x]$;
 	since $1/y$ is a section too for a subset of $U$ not containing $(y)$.
+	In more detail, let $W = U \cap D(y)$ so that $(y) \notin W$, then
+	\[
+		\pi^\sharp_W(y) = \pi^\sharp_U(y) \quad \text{and} \quad
+		\pi^\sharp_W(y) \pi^\sharp_W(1/y) = 1.
+	\]
 	Actually for any real number $c \neq 3$,
-	$y-c$ must be map to a unit in $\RR[x]$.
+	$y-c$ must be mapped to a unit in $\RR[x]$.
 	This can only happen if $y \mapsto 3 \in \RR[x]$.
 
 	As we have specified $\RR[y] \mapsto \RR[x]$ with $y \mapsto 3$,
@@ -526,7 +538,7 @@ We thus get the huge important theorem about affine schemes.
 		in the Zariski topology.
 	\end{exercise}
 	\ii Now we want to also define maps on the stalks,
-	and so for ecah $\pi(\kp) = \kq$ we set
+	and so for each $\pi(\kp) = \kq$ we set
 	\[ B_\kq \ni \frac fg \mapsto \frac{\psi(f)}{\psi(g)} \in A_\kp. \]
 	This makes sense since $g \notin \kq \implies \psi(g) \notin \kp$.
 	Also $f \in \kq \implies \psi(f) \in \kp$,
@@ -587,7 +599,7 @@ $\CC \to \CC$ having nontrivial field automorphisms:
 	\end{tikzcd}
 	commutes.
 	Often, if $S = \Spec k$, we will refer
-	to schemes over $k$ or $k$-schemes for short.
+	to $X$ by schemes over $k$ or $k$-schemes for short.
 \end{definition}
 \begin{example}
 	[{$\Spec k[\dots]$}]
@@ -674,7 +686,7 @@ We have seen it is an open subset $U$ of $\Spec k[x,y]$, so it is a scheme.
 	Show that in fact $U$ can be covered by
 	two open sets which are both affine.
 \end{ques}
-However, we show now that you really do need two open sets.
+However, we show now that you really do need two distinguished open sets.
 \begin{proposition}
 	[Famous example: punctured plane isn't affine]
 	The punctured plane $U = (U, \OO_U)$,

@@ -163,6 +163,7 @@ orbit are closely related.
 But miraculously, it turns out there is only one orbit!
 \begin{theorem}
 	[Galois group acts transitively]
+	\label{thm:galois_group_transitive}
 	Let $K/\QQ$ be Galois with $G = \Gal(K/\QQ)$.
 	Let $\{\kp_i\}$ be the set of distinct prime ideals in
 	the factorization of $p \cdot \OO_K$ (in $\OO_K$).
@@ -174,10 +175,34 @@ In other words,
 \begin{moral}
 	All of the $\{\kp_i\}$ are Galois conjugates of each other.
 \end{moral}
+
+Before proving this, let us consider the easier problem
+of factorization into elements.
+\begin{quote}
+	Suppose $\OO_K$ is an UFD, and $p$ factors as $u p_1 p_2 \cdots p_n$ in
+	$\OO_K$, where $p_i$ are irreducibles and $u$ is an unit.
+	Show that the $p_i$ are all conjugates of each other, up to
+	multiplication by an unit.
+\end{quote}
+\begin{ques}
+	Try to prove it before reading it below.
+	(Hint: Galois theory. Alternatively, take the norm of $p_1$.)
+\end{ques}
 \begin{proof}
-	Fairly slick.
-	Suppose for contradiction that no $\sigma \in G$ sends $\kp_1$ to $\kp_2$, say.
-	By the Chinese remainder theorem, we can find an $x \in \OO_K$ such that
+	Let $q=\NK(p_1)$ be the product of all conjugates
+	of $p_1$, then $q \in \QQ$. Thus $p \mid q$, so each $p_i$ is a factor of
+	$q$, and we're done by unique factorization.
+\end{proof}
+
+Unfortunately, the product of all conjugates of an ideal $\kp_1$ is not
+necessarily of the form $p \cdot \OO_K$ (for example, $K=\QQ[i]$ and $(1+i)$
+has no other conjugates). So in the proof, we pick $x$ which is an
+``representative'' of $\kp_1$.
+
+\begin{proof}
+	[Proof of \Cref{thm:galois_group_transitive}]
+	Because $\kp_i$ are distinct primes, by the Chinese remainder theorem,
+	we can find an $x \in \OO_K$ such that
 	\begin{align*}
 		x &\equiv 0 \pmod{\kp_1} \\
 		x &\equiv 1 \pmod{\kp_i} \text{ for $i \ge 2$}
@@ -190,9 +215,13 @@ In other words,
 	Since $\NK(x)$ is an integer and divisible by $\kp_1$,
 	we should have that $\NK(x)$ is divisible by $p$.
 	Thus it should be divisible by $\kp_2$ as well.
-	But by the way we selected $x$, we have $x \notin \sigma\inv\kp_2$ for every $\sigma \in G$!
-	So $\sigma(x) \notin \kp_2$ for any $\sigma$, which is a contradiction.
+	Thus, for some $\sigma \in \Gal(K/\QQ)$, $\sigma(x)$ is divisible by
+	$\kp_2$, equivalently, $x$ is divisible by $\sigma\inv\kp_2$.
+	But by the way we selected $x$, we have within the factors of $p$, $x$ is
+	divisible by only $\kp_1$!
+	So $\sigma\inv\kp_2 = \kp_1$, and we're done.
 \end{proof}
+
 \begin{theorem}[Inertial degree and ramification indices are all equal]
 	Assume $K/\QQ$ is Galois.
 	Then for any rational prime $p$ we have

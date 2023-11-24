@@ -15,7 +15,7 @@ Let's see how we might do so.
 For a first example, suppose we intersect $y=x^2$ with the line $y=1$;
 or more accurately, in projective coordinates of $\CP^2$,
 the parabola $zy=x^2$ and $y=z$.
-The intersection of the ideals is
+The ideal of the intersection is
 \[ (zy-x^2, y-z) = (x^2-z^2, y-z) \subseteq \CC[x,y,z]. \]
 So this corresponds to having two points;
 this gives two intersection points: $(1:1:1)$ and $(-1:1:1)$.
@@ -77,9 +77,10 @@ we need to tell the difference between $(x^2,y)$ and $(x,y)$.
 \end{definition}
 \begin{definition}
 	If $V$ is a projective variety, we set $h_V = h_{\II(V)}$,
-	where $I$ is the \emph{radical} ideal satisfying $V = \Vp(I)$.
-	If $V = \varnothing$, we choose $I = (1)$.
+	where $I=\II(V)$ is the \emph{radical} ideal satisfying
+	$V = \Vp(I)$ as defined above.
 \end{definition}
+In this case, $\CC[x_0, \dots, x_n]/I$ is just $\CC[V]$.
 \begin{example}[Examples of Hilbert functions in zero dimensions]
 	\label{ex:hilbert_zero}
 	For concreteness, let us use $\CP^2$.
@@ -87,7 +88,7 @@ we need to tell the difference between $(x^2,y)$ and $(x,y)$.
 		\ii If $V$ is the single point $(0:0:1)$,
 		with ideal $\II(V) = (x,y)$,
 		then
-		\[ \CC[x,y,z] / (x,y) \cong \CC[z]
+		\[ \CC[V] = \CC[x,y,z] / (x,y) \cong \CC[z]
 		\cong \CC \oplus z\CC \oplus z^2\CC \oplus z^3\CC \dots \]
 		which has dimension $1$ in all degrees.
 		Consequently, we have \[ h_I(d) \equiv 1. \]
@@ -155,6 +156,7 @@ this implies that $\dim W = \dim V + \dim X$.
 
 \begin{proposition}
 	[Hilbert functions of $I \cap J$ and $I+J$]
+	\label{prop:hilbert_function_intersection_union}
 	Let $I$ and $J$ be homogeneous ideals in $\CC[x_0, \dots, x_n]$.
 	Then \[ h_{I \cap J} + h_{I+J} = h_I + h_J. \]
 \end{proposition}
@@ -276,6 +278,7 @@ Let's look at some more examples.
 In fact, this behavior of ``eventually polynomial'' always works.
 \begin{theorem}
 	[Hilbert polynomial]
+	\label{thm:hilbert_polynomial}
 	Let $I \subseteq \CC[x_0, \dots, x_n]$ be a homogeneous ideal,
 	not necessarily radical. Then
 	\begin{enumerate}[(a)]
@@ -303,7 +306,7 @@ In fact, this behavior of ``eventually polynomial'' always works.
 		0 \ar[r]
 			& \left[ S/I \right]^{d-1} \ar[r, hook]
 			& \left[ S / I \right]^d \ar[r, surjective head]
-			& \left[ S / (I+(f)) \right]^d \ar[r] & 0 \\
+			& \left[ S / (I+(x_0)) \right]^d \ar[r] & 0 \\
 		& f \ar[r, mapsto] & f \cdot x_0 \\
 		&& f \ar[r, mapsto] & f.
 	\end{tikzcd}
@@ -331,8 +334,42 @@ In fact, this behavior of ``eventually polynomial'' always works.
 	$m! \chi_I$ the \vocab{degree} of $I$, which is an integer,
 	denoted $\deg I$.
 
-	Of course for projective varieties $V$ we let $h_V = h_{\II(V)}$.
+	Of course for projective varieties $V$ we let $h_V = h_{\II(V)}$, and $\deg
+	V = \deg \II(V)$.
 \end{definition}
+
+\begin{remark}
+	Note that the degree of an ideal $\deg I$ is not the same as $\deg h_I$!
+\end{remark}
+
+Let us show some properties of the degrees, which will allow us to compute the
+degree of any projective variety from its irreducible components.
+\begin{proposition}[Properties of degrees]
+	For two varieties $V$ and $W$, we have the following:
+	\begin{itemize}
+		\ii If $V$ and $W$ are disjoint and have the same dimension, then $\deg (V \cup W)=\deg
+			V+\deg W$.
+		\ii If $\dim V<\dim W$, then $\deg (V \cup W)=\deg W$.
+	\end{itemize}
+\end{proposition}
+So,
+\begin{moral}
+	The degree is additive over components,
+	and it measures the ``degree'' of the highest-dimensional component.
+\end{moral}
+
+% TODO maybe add https://en.wikipedia.org/wiki/Degree_of_an_algebraic_variety to
+% make it easy to imagine the degree? No proof though so...?
+% It's quite interesting that the geometric property is related to a purely
+% algebraic concept (defined by Hilbert polynomial) though
+
+\begin{proof}
+	Follows from the properties of Hilbert polynomial in
+		\Cref{thm:hilbert_polynomial} and
+	\Cref{prop:hilbert_function_intersection_union},
+	and that the leading coefficient
+	only depends on the largest-degree summand.
+\end{proof}
 
 \begin{example}[Examples of degrees]
 	\listhack
@@ -340,7 +377,13 @@ In fact, this behavior of ``eventually polynomial'' always works.
 		\ii If $V$ is a finite set of $n \ge 1$ points, it has degree $n$.
 		\ii If $I$ corresponds to a double point, it has degree $2$.
 		\ii $\CP^n$ has degree $1$.
-		\ii The parabola has degree $2$.
+		\ii Any line or plane, being ``isomorphic'' to $\CP^1$ and $\CP^2$
+		respectively, has degree $1$.
+		% TODO check this, what if the line is embedded in \CP^3?
+		\ii The parabola has degree $2$. (Note that, as an algebraic variety, the parabola is isomorphic
+		to a line!)
+		% TODO is this still true if the parabola is embedded in \CP^3?
+		\ii The union of the parabola and a point has degree $2$.
 	\end{enumerate}
 \end{example}
 
@@ -358,6 +401,17 @@ This is true:
 	Then
 	\[ \deg\left( I + (f) \right) = k \deg I. \]
 \end{theorem}
+Geometrically,
+\begin{moral}
+	If $V$ is any projective variety, $\VV(f)$ is a hyperplane of degree $k$, then their
+	intersection $V \cap \VV(f)$ has degree $k \deg V$ --- unless
+	some irreducible component of $V$ is contained inside $\VV(f)$.
+\end{moral}
+This is what we mentioned at the beginning of the chapter.
+
+Because the ideal $I$ may not be radical, the geometric interpretation statement is not the most general
+possible --- the problem will be rectified later with the generalization to schemes.
+
 \begin{proof}
 	Let $S = \CC[x_0, \dots, x_n]$ again.
 	This time the exact sequence is
@@ -461,6 +515,9 @@ Now, we use this to prove Pascal's theorem.
 	so they must lie on this line.
 \end{proof}
 
+We'd like to remark that the Pascal's theorem is just a special case of the Cayley-Bacharach theorem,
+which can be used to prove that the addition operation on an elliptic curve is associative.
+Interested readers may want to try proving the Cayley-Bacharach theorem using the same technique.
 
 \section\problemhead
 \begin{problem}

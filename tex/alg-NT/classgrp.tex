@@ -358,7 +358,7 @@ From this we can deduce:
 	\[ \frac{\Norm(\ka)}{2^{r_2}} \sqrt{\left\lvert \Delta_K \right\rvert}. \]
 \end{lemma}
 \begin{proof}[Sketch of Proof]
-	Let \[ d = \Norm(\ka) \defeq [\OO_K : \ka]. \]
+	Let \[ d = \Norm(\ka) \defeq |\OO_K / \ka|. \]
 	Then in the lattice $L_\ka$, we somehow only take $\frac 1d$th of the points
 	which appear in the lattice $L$, which is why the area increases by a factor of $\Norm(\ka)$.
 	To make this all precise I would need to do a lot more with lattices and geometry
@@ -398,7 +398,8 @@ In geometry, there's a really cool theorem of Minkowski's that goes as follows.
 	Dissect the plane into $2 \times 2$ squares
 	\[ [2a-1, 2a+1] \times [2b-1, 2b+1] \]
 	and overlay all these squares on top of each other.
-	By the Pigeonhole Principle, we find there exist two points $p \neq q \in S$ which map to the same point.
+	By the Pigeonhole Principle, we find there exist two points $p \neq q \in S$
+	which is mapped to the same point.
 	Since $S$ is symmetric, $-q \in S$. Then $\half (p-q) \in S$ (convexity) and is a nonzero lattice point.
 
 	I'll briefly sketch part (b): the idea is to consider $(1+\eps) S$ for $\eps > 0$

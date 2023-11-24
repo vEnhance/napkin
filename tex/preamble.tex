@@ -4,6 +4,7 @@
 %% which is annoying... font issues
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
+\usepackage[pdfusetitle]{hyperref}
 
 % These are evan.sty
 \usepackage{amsmath,amssymb,amsthm}
@@ -40,7 +41,6 @@
 	pdfkeywords={napkin,math},
 	pdfsubject={web.evanchen.cc},
 	colorlinks,
-	pdfusetitle,
 }
 
 %%fakesection Commutative diagrams
@@ -146,7 +146,6 @@
 	frametitlefont=\bfseries,
 	innertopmargin=4pt,
 	innerbottommargin=8pt,
-	nobreak=true,
 	linecolor=RawSienna,
 	backgroundcolor=Salmon!5,
 }
@@ -209,7 +208,6 @@ style=thmbluebox,name=Theorem,numberwithin=section]{theorem}
 	mdframed={style=mdblackbox}
 ]{thmblackbox}
 
-\theoremstyle{theorem}
 \declaretheorem[name=Question,sibling=theorem,style=thmblackbox]{ques}
 \declaretheorem[name=Exercise,sibling=theorem,style=thmblackbox]{exercise}
 \declaretheorem[name=Remark,sibling=theorem,style=thmgreenbox]{remark}
@@ -290,10 +288,10 @@ style=thmbluebox,name=Theorem,numberwithin=section]{theorem}
 \DeclareFieldFormat[inbook,thesis]{title}{\mkbibemph{#1}\addperiod} % italic title with period
 \DeclareFieldFormat[article]{title}{#1} % title of journal article is printed as normal text
 \DeclareFieldFormat[article]{volume}{\textbf{#1}\addcolon\space}
-\renewcommand{\mkbibnamefirst}[1]{\textsc{#1}}
-\renewcommand{\mkbibnamelast}[1]{\textsc{#1}}
+\renewcommand{\mkbibnamegiven}[1]{\textsc{#1}}
+\renewcommand{\mkbibnamefamily}[1]{\textsc{#1}}
 \renewcommand{\mkbibnameprefix}[1]{\textsc{#1}}
-\renewcommand{\mkbibnameaffix}[1]{\textsc{#1}}
+\renewcommand{\mkbibnamesuffix}[1]{\textsc{#1}}
 \renewcommand{\finentrypunct}{}
 
 %%fakesection Mini ToC

@@ -84,7 +84,7 @@ In this chapter we'll develop this theory of unique factorization in full genera
 \end{remark}
 
 \section{Ideal arithmetic}
-\prototype{$(x)(y) = (xy)$. In any case, think in terms of generators.}
+\prototype{$(x)(y) = (xy)$, and $(x)+(y)=(\gcd(x, y))$. In any case, think in terms of generators.}
 First, I have to tell you how to add and multiply two ideals $\ka$ and $\kb$.
 \begin{definition}
 	Given two ideals $\ka$ and $\kb$ of a ring $R$, we define
@@ -124,6 +124,17 @@ the set \[ c \ka = \left\{ ca \mid a \in \ka \right\} \]
 is equal to $(c) \cdot \ka$.
 So ``scaling'' and ``multiplying by principal ideals'' are the same thing.
 This is important, since we'll be using the two notions interchangeably.
+\end{remark}
+\begin{remark}
+	The addition of two ideals does not correspond to the addition of elements --- for example, $(4)+(6)=(4, 6)=(2)$, but $4+6=10$.
+
+	This is the best we can hope for --- addition of elements does not make sense for ideals --- for example, $1+1=2$ and $1+(-1)=0$, but as ideals, $(1)=(-1)$.
+
+	In fact, addition of ideal is the straightforward generalization of $\gcd$ of elements --- as you can check in the example above, $\gcd(4, 6)=2$.
+
+	Nevertheless, I hope you agree that $\ka+\kb$ is a natural notation, compared to something like $(\ka, \kb)$.
+
+	Because factorization involves \emph{multiplying}, instead of adding, the ideals together, we will not need to use the notation $\ka+\kb$ any time soon.
 \end{remark}
 
 Finally, since we want to do factorization we better have some notion of divisibility.
@@ -258,6 +269,27 @@ Okay, I'll just say it now!
 \begin{moral}
 	Unique factorization works perfectly in Dedekind domains!
 \end{moral}
+
+\begin{remark}
+	[Comparison between Dedekind domain and UFD]
+	If we temporarily forget about the Noetherian and integrally closed condition, we have:
+	\begin{itemize}
+		\ii An integral domain admits unique factorization of elements if the prime elements and the irreducible elements are the same.
+		\ii An integral domain admits unique factorization of ideals if the prime ideals and the maximal ideals are the same.
+	\end{itemize}
+	Notice the similarity --- in either case, the Noetherian condition is ``merely'' to ensure that, if you keep extracting prime factors, you will terminate in a finite time.
+\end{remark}
+
+\begin{example}
+	[What went wrong if $\mathcal A$ is not integrally closed?]
+	Consider $\mathcal A = 2\ZZ$, which is an ideal of $\ZZ$.
+	Clearly, every nonzero prime ideal is maximal.
+
+	Nevertheless, in $\mathcal A$,
+	$(2 \cdot 3 \cdot 5)=(60)$ is not a prime ideal (so of course it isn't a maximal ideal),
+	but we cannot break it down into, for example, $(2 \cdot 3) \cdot (5)$.
+\end{example}
+
 \begin{theorem}[Prime factorization works]
 	Let $\ka$ be a nonzero proper ideal of a Dedekind domain $\mathcal A$.
 	Then $\ka$ can be written as a finite product of nonzero prime ideals $\kp_i$, say
@@ -442,7 +474,7 @@ to factor $p$ in any $\OO_K$ of the form $\ZZ[\theta]$.
 \begin{theorem}[Factoring algorithm / Dedekind-Kummer theorem]
 	\label{thm:factor_alg}
 	Let $K$ be a number field.
-	Let $\theta \in \OO_K$ with $[\OO_K : \ZZ[\theta]] = j < \infty$,
+	Let $\theta \in \OO_K$ with $|\OO_K / \ZZ[\theta]| = j < \infty$,
 	and let $p$ be a prime not dividing $j$.
 	Then $(p) = p \OO_K$ is factored as follows:
 	\begin{quote}
@@ -489,7 +521,7 @@ Then your $(p) = \kp_1^{e_1} \dots \kp_g^{e_g}$.
 %	It turns out that we can still apply the
 %	factoring algorithm to ``almost all primes'' as follows.
 %	Suppose $K$ is a number field and $\alpha \in \OO_K$ such that
-%	$[\OO_K : \ZZ[\alpha]] = j < \infty$.
+%	$|\OO_K / \ZZ[\alpha]| = j < \infty$.
 %	Then as long as $p \nmid j$, we can apply the above algorithm
 %	with $f$ the minimal polynomial of $\alpha$.
 %	The formulation we presented above was the special case where $j=1$.
@@ -568,7 +600,7 @@ which gives us a notion of the ``size'' of an ideal.
 \begin{definition}
 	The \vocab{ideal norm} (or absolute norm)
 	of a nonzero ideal $\ka \subseteq \OO_K$ is defined as
-	$[\OO_K : \ka]$ and denoted $\Norm(\ka)$.
+	$|\OO_K / \ka|$ and denoted $\Norm(\ka)$.
 \end{definition}
 \begin{example}[Ideal norm of $(5)$ in the Gaussian integers]
 	Let $K = \QQ(i)$, $\OO_K = \ZZ[i]$.
