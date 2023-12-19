@@ -347,7 +347,7 @@ We already have $ \OO_K / \kp \cong \FF_{p^f} $, and the Galois group is
 So \[ D_\kp \cong \Zc f \] as well.
 
 Let's now go back to
-\[ D_\kp \taking\theta \Gal\left( (\OO_K/\kp) : \FF_p \right). \]
+\[ D_\kp \taking\theta \Gal\left( (\OO_K/\kp)/\FF_p \right). \]
 The kernel of $\theta$ is called the \vocab{inertia group}
 and denoted $I_\kp \subseteq D_\kp$; it has order $e$.
 
@@ -359,47 +359,95 @@ Picture:
 \begin{center}
 \begin{tikzcd}
 	\kp \subset \OO_K \subset
-		& K \ar[r, leftrightarrow] \ar[d, "\text{Ramify}"']
+		& K \ar[r, leftrightarrow] \ar[<-, d, "\text{Ramify}"']
 		& \{1\} \ar[d, "e"] \\
-	\; & K^I \ar[d, "\text{Inert}"'] & I \ar[d, "f"] \\
-	\; & K^D \ar[d, "\text{Split}"'] & D \ar[d, "g"] \\
+	\; & K^I \ar[<-, d, "\text{Inert}"'] & I \ar[d, "f"] \\
+	\; & K^D \ar[<-, d, "\text{Split}"'] & D \ar[d, "g"] \\
 	(p) \subset \ZZ \subset
 		& \QQ \ar[r, leftrightarrow]
 		& G
 \end{tikzcd}
 \end{center}
 
-\textbf{TODO}:
-the rest of this section is broken and commented out, needs fix
-(actually I'm not sure what the correct statement is, for that matter).
+Something curious happens:
+\begin{itemize}
+	\ii If $D \normalin G$, when $(p)$ is lifted into $K^D$ it splits completely into $g$ unramified
+	primes.
+	Each of these has inertial degree $1$.
+	\ii If $I \normalin G$ as well, when the primes in $K^D$ are lifted to $K^I$, they remain inert,
+	and now have inertial degree $f$.
+	\ii When they're then lifted to $K$, they ramify with exponent $e$ (but don't split at all).
+\end{itemize}
+In other words, the process of going from $1$ to $efg$
+can be very nicely broken into the three steps above.
+To draw this in the picture, we get
+\begin{center}
+\begin{tikzcd}
+	(p) \ar[r]
+		& \kp'_1 \dots \kp'_g \ar[r]
+		& \kp''_1 \dots \kp''_g \ar[r]
+		& (\kp_1 \dots \kp_g)^e \\
+	\{f_i\}: & 1,\dots,1 & f,\dots,f & f,\dots,f \\
+	\QQ \ar[r, dash, "\text{Split}"]
+		& K^D \ar[r, dash, "\text{Inert}"]
+		& K^I \ar[r, dash, "\text{Ramify}"]
+		& K
+\end{tikzcd}
+\end{center}
+In any case, in the ``typical'' case that there is no ramification,
+we just have $K^I = K$.
 
-%Something curious happens:
-%\begin{itemize}
-%	\ii When $(p)$ is lifted into $K^D$ it splits completely into $g$ unramified primes.
-%	Each of these has inertial degree $1$.
-%	\ii When the primes in $K^D$ are lifted to $K^I$, they remain inert, and now have
-%	inertial degree $f$.
-%	\ii When then lifted to $K$, they ramify with exponent $e$ (but don't split at all).
-%\end{itemize}
-%Picture:
-%In other words, the process of going from $1$ to $efg$
-%can be very nicely broken into the three steps above.
-%To draw this in the picture, we get
-%\begin{center}
-%\begin{tikzcd}
-%	(p) \ar[r]
-%		& \kp_1 \dots \kp_g \ar[r]
-%		& \kp_1 \dots \kp_g \ar[r]
-%		& (\kp_1 \dots \kp_g)^e \\
-%	\{f_i\}: & 1,\dots,1 & f,\dots,f & f,\dots,f \\
-%	\QQ \ar[r, dash, "\text{Split}"]
-%		& K^D \ar[r, dash, "\text{Inert}"]
-%		& K^I \ar[r, dash, "\text{Ramify}"]
-%		& K
-%\end{tikzcd}
-%\end{center}
-%In any case, in the ``typical'' case that there is no ramification,
-%we just have $K^I = K$.
+\begin{example}[Primes split before remaining inert]
+	Let $K = \QQ[\zeta_5]$ where $\zeta_5$ is a primitive 5th root of unity.
+	From \Cref{prob:galois_cyclotomic}, we know that the Galois group $\Gal(K/\QQ)$ is isomorphic to
+	$(\ZZ/5\ZZ)^\ast \cong \ZZ/4\ZZ$.
+
+	Let $p = 19$. In $K$, $p$ factors as $19 = (2 \sqrt 5+1)(2 \sqrt 5-1)$,
+	and luckily for us, $\OO_K$ is a principal ideal domain, which means the ideal $(19)$ factors as
+	$(19) = \kp_1 \kp_2 = (2 \sqrt 5+1)(2 \sqrt 5-1)$.
+
+	In this case, we have $K^{D_{\kp_1}} = K^D = \QQ[\sqrt 5]$ and $K^I = K$, and indeed:
+	\begin{itemize}
+		\ii When $(19)$ is lifted to $K^D$, it already splits into $(2 \sqrt 5+1)(2 \sqrt 5-1)$ ---
+		because $2 \sqrt 5+1 \in K^D$. As $[K^D: \QQ] = 2$ and $(19)$ already split into $2$
+		primes, each of the prime necessarily have inertial degree $1$.
+		\ii When each of $(2 \sqrt 5+1)$ and $(2 \sqrt 5-1)$ is lifted from $K^D$ to $K$, they
+		remains inert. Again, as $[K: K^D] = 2$, the inertial degree must be 2.
+	\end{itemize}
+
+	Part of the theorem can be seen very easily:
+	by the fundamental theorem of Galois theory, because all of the field automorphisms in $D$ fixes
+	$2 \sqrt 5+1$, then tautologically, $2 \sqrt 5+1$ must belong to the fixed field of $D$!
+	In other words, $2 \sqrt 5+1 \in K^D$, which means $p$ already splits when lifted to $K^D$.
+
+	The argument only need to be modified a little to show $\kp_1' = \kp_1 \cap K^D$ does not split
+	when lifted from $K^D$ to $K$: because the extension $K/K^D$ is Galois,
+	the Galois group $\Gal(K/K^D)$ acts transitively on the primes $\kp_i$ above $\kp'_1 = (2
+	\sqrt 5+1) \subseteq K^D$, but once again, $\kp_1$ is the only prime in the orbit
+	by the definition of $D$.
+\end{example}
+
+\begin{example}[Different primes have different $K^D$]
+	When $D \not\normalin G$, there need not be a single subfield $K^D$ that $p$ splits cleanly into
+	$\kp_1 \dots \kp_g$ when lifted to that field.
+
+	The reason is simple --- each prime $\kp_i$ gets split from the product in its \emph{own}
+	$K^{D_{\kp_i}}$, but if $D_{\kp_1}$ is not normal in $G$,
+	then the different $D_{\kp_i}$ are not the same ---
+	instead, they're conjugate subgroups of $G$.
+
+	Let us take a concrete example: let $K = \QQ(\sqrt[3] 2, \omega)$ be the splitting field of
+	$x^3-2$ over $\QQ$. The rational prime $p = (5)$ splits as $p = \kp_1 \kp_2 \kp_3$ in $K$, and
+	each has inertial degree $2$. Thus $|D_{\kp_i}| = 2$ for each $i$.
+
+	We know that $\Gal(K/\QQ) \cong S_3$, and $S_3$ has no subgroups of order $2$, so obviously
+	$D_{\kp_i}$ is not normal in $G$!
+
+	As mentioned above, what happens here is: when $p$ is lifted to $K^{D_{\kp_1}}$, it splits into
+	$\kp'_1 \kp'_{23}$, with $\kp_1$ above $\kp'_1$ and both $\kp_2$ and $\kp_3$ above $\kp'_{23}$.
+	In the extension $K^{D_{\kp_1}}/\QQ$, $\kp'_1$ has inertial degree $1$ as before,
+	but $\kp'_{23}$ has inertial degree $2$.
+\end{example}
 
 \section{Tangential remark: more general Galois extensions}
 \label{sec:more_general_extensions}
