@@ -97,11 +97,12 @@ and usually do so privately.)
 	\[ \int_\Omega f \; d\mu \defeq
 		\inf_{0 \le s \le f} \left( \int_\Omega s \; d\mu \right) \]
 	where the infimum is taken over all simple $s$ such that $f \leq s$.
-	However, if the functions are unbounded or $|\Omega| = \infty$, the situation is not that simple:
+	However, if the functions are unbounded or $|\Omega| = \infty$, the situation is not that
+	simple:
 	\begin{itemize}
-		\ii Show that $f(x) = x^{-2}$ over $\Omega = (1, \infty)$ is absolutely integrable,
+		\ii The function $f(x) = x^{-2}$ defined over $\Omega = (1, \infty)$ is absolutely integrable,
 		yet for all simple $s$ such that $f \leq s$, then $\int_\Omega f \; d\mu = \infty$.
-		\ii Show that $f(x) = x^{-0.5}$ over $\Omega = (0, 1)$ is absolutely integrable,
+		\ii The function $f(x) = x^{-0.5}$ defined over $\Omega = (0, 1)$ is absolutely integrable,
 		yet there's no simple $s$ such that $f \leq s$ and $s$ is finite almost everywhere.
 	\end{itemize}
 \end{remark}
@@ -250,7 +251,7 @@ For closed intervals, this actually just works out of the box.
 	\[ \int_a^b f(x) \; dx = \int_{[a,b]} f \; d\mu. \]
 \end{theorem}
 
-Note that a Riemann integrable function is \emph{bounded},
+Note that a Riemann integrable function \emph{must be bounded},
 which means if you try to construct a function $f \colon [0, 1] \to \RR$
 in the same vein as \Cref{prob:sin_improper} by
 \[
