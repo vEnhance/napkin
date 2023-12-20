@@ -175,6 +175,18 @@ Such a model is called a \vocab{transitive model}.
 	An \vocab{inner model} of $\ZFC$ is a transitive model satisfying $\ZFC$.
 \end{definition}
 
+\begin{remark}
+	The definition of a model of $\ZFC$ only uses $M \vDash \varphi$ where $\varphi$ has no
+	parameters; nevertheless, you can see that we define what $M \vDash \varphi$ means when
+	$\varphi$ has parameters because it's used in the definition of $M \vDash \exists x \psi(x)$.
+
+	The extension $\varphi(x_1, \dots, x_n)$ is written with round parentheses, but $M \vDash
+	\varphi[b_1, \dots, b_n]$ is written with square brackets --- you can think of it as ``formally
+	substitute'' the parameters $b_1, \dots, b_n$ into $\varphi$, because if $b_1, \dots, b_n$ is
+	``actually'' substituted into $\varphi$, then $\varphi(b_1, \dots, b_n)$ is just a single
+	boolean value.
+\end{remark}
+
 \section{The Levy hierarchy}
 \prototype{$\mathtt{isSubset}(x,y)$ is absolute. The axiom
 $\EmptySet$ is $\Sigma_1$, $\mathtt{isPowerSetOf}(X,x)$ is $\Pi_1$.}
@@ -249,7 +261,7 @@ use this except for $n=0$.)
 	\end{enumerate}
 \end{example}
 \begin{exercise}
-	Write out the expansions for ``$x$ is transitive'' and ``$x$ is ordinal''
+	Write out the expansions for ``$x$ is transitive'' and ``$x$ is an ordinal''
 	in a $\Delta_0$ form.
 \end{exercise}
 \begin{example}
@@ -266,6 +278,13 @@ use this except for $n=0$.)
 		\[ \forall y \exists P \forall x (x\subseteq y \iff x \in P). \]
 	\end{enumerate}
 \end{example}
+
+\begin{remark}
+	[Why only alternating unbounded quantifier count?]
+	Note that a formula $\exists a \exists b \psi(a, b)$ can alternatively be written as $\exists c
+	(\text{$c$ is an ordered pair $(a, b)$} \land \psi(a, b))$, which explains why we only
+	want to consider the formula $\exists a \exists b \psi(a, b)$ as $\Sigma_1$.
+\end{remark}
 
 \section{Substructures, and Tarski-Vaught}
 Let $\MM_1 = (M_1, E_1)$ and $\MM_2 = (M_2, E_2)$ be models.
@@ -364,6 +383,7 @@ We allow $n=0$, in which case we say $X$ is \vocab{$M$-definable without paramet
 Note that $X$ need not itself be in $M$!
 As a trivial example, $X = M$ is $M$-definable without parameters
 (just take $\phi[x]$ to always be true), and certainly we do not have $X \in M$.
+% TODO what is the motivation?
 \begin{exercise}
 	Verify (i)-(iv) above.
 \end{exercise}
@@ -432,7 +452,8 @@ we can actually show that a model \emph{does} exist:
 for example, assuming that there exists a strongly inaccessible cardinal $\kappa$ would do the trick,
 $V_\kappa$ will be such a model (\Cref{prob:inaccessible_model}).
 Intuitively you can see why: $\kappa$ is so big that any set of rank lower than it can't escape it
-even if we take their power sets, or any other method that $\ZFC$ lets us do.
+even if we take their power sets, use the $\Replacement$ axiom,
+or any other method that $\ZFC$ lets us do.
 
 More pessimistically,
 this shows that it's impossible to prove in $\ZFC$ that such a $\kappa$ exists.
@@ -469,7 +490,7 @@ Great. Now we do something \emph{really} crazy.
 	at each step.
 	This exhibits an infinite nested sequence of countable sets
 	\[ X_0 \subseteq X_1 \subseteq X_2 \subseteq \dots \]
-	None of these is a substructure of $V_\kappa$,
+	None of these is an elementary substructure of $V_\kappa$,
 	because each $X_n$ relies on witnesses in $X_{n+1}$.
 	So we instead \emph{take the union}:
 	\[ X = \bigcup_n X_n. \]
@@ -489,7 +510,7 @@ It hinges irrevocably on the fact that there are countably many sentences we can
 
 	Usually, the right way to formalize the Axiom of Choice usage is,
 	for every formula $\phi(x, x_1, \dots, x_n)$, to pre-commit (at the very beginning)
-	to a function $f_\phi(x_1, \dots, x_n)$, such that given any $b_1, \dots, b_n$
+	to a function $f_\phi(x_1, \dots, x_n)$, such that given any $b_1, \dots, b_n$,
 	$f_\phi(b_1, \dots, b_n)$ will spit out the suitable value of $b$ (if one exists).
 	Personally, I think this is hiding the spirit of the proof, but it does
 	make it clear how exactly Choice is being used.
@@ -543,7 +564,9 @@ In other words,
 \[ M \vDash \exists x \forall f
 	\text{ If $f \colon x \to \omega$ then $f$ isn't injective}. \]
 The key point is the $\forall f$ searches only functions in our tiny model $M$.
-It is true that in the ``real world'' $V$, there are injective functions $f \colon x \to \omega$.
+It is true that in the ``real world'' $V$, there are injective functions $f \colon x \to \omega$.%
+\footnote{Since $M$ is transitive and countable, for any $x \in M$, then $x$ itself can have at most
+countably many elements. This isn't necessarily true if $M$ is not transitive.}
 But $M$ has no idea they exist!
 It is a brain in a vat: $M$ is oblivious to any information outside it.
 
@@ -693,9 +716,15 @@ the uncountable $\aleph_1^M$ is really just an ordinary countable ordinal.
 \end{dproblem}
 
 \begin{sproblem}
-	[Inaccessible cardinals produce models]
+	[Strongly inaccessible cardinals produce models]
 	\label{prob:inaccessible_model}
 	\gim
-	Let $\kappa$ be an inaccessible cardinal.
+	Let $\kappa$ be a strongly inaccessible cardinal.
 	Prove that $V_\kappa$ is a model of $\ZFC$.
+	\begin{hint}
+		Use \Cref{lem:transitive_ZFC}.
+		To prove $V_\kappa \vDash \PowerSet$ you need $\kappa$ to be a strong limit cardinal,
+		and to prove $V_\kappa \vDash \Replacement$ you need $\kappa$ to be inaccessible ---
+		this is why we cared about cofinality and inaccessibility.
+	\end{hint}
 \end{sproblem}
