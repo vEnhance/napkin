@@ -3,6 +3,7 @@ We now introduce cellular homology, which essentially lets us compute
 the homology groups of any CW complex we like.
 
 \section{Degrees}
+\label{sec:homology_degrees}
 \prototype{$z \mapsto z^d$ has degree $d$.}
 For any $n > 0$ and map $f \colon S^n \to S^n$, consider
 \[ f_\ast \colon \underbrace{H_n(S^n)}_{\cong \ZZ} \to \underbrace{H_n(S^n)}_{\cong \ZZ} \]
@@ -11,6 +12,12 @@ This $d$ is called the \vocab{degree} of $f$, denoted $\deg f$.
 \begin{ques}
 	Show that $\deg(f \circ g) = \deg(f) \deg(g)$.
 \end{ques}
+
+As we mentioned in \Cref{ex:homology_group_sphere}, roughly speaking:
+\begin{moral}
+	$\deg f$ counts how many times $\img f$ wraps around $S^n$.
+\end{moral}
+Or, it counts how many ``$S^n$ bags'' that $\img f$ consists of.
 
 \begin{example}
 	[Degree]
@@ -88,8 +95,28 @@ Before starting, we state:
 \end{lemma}
 \begin{proof}
 	% I'll prove just the case where $X$ is finite-dimensional as usual.
-	The first part is immediate by noting that $(X^n, X^{n-1})$ is a good pair
-	and $X^n/X^{n-1}$ is a wedge sum of two spheres.
+	The first part is immediate by noting that $(X^n, X^{n-1})$ satisfies the hypothesis of
+\Cref{thm:good_pair}, so $H_k(X^n, X^{n-1}) \cong \wt H_k(X^n/X^{n-1})$,
+	and $X^n/X^{n-1}$ is a wedge sum of several $n$-spheres.
+
+	For an example, for $n = 2$ (the ``spheres'' are drawn as a balloon-shaped blob here):
+	\begin{center}
+	\begin{asy}
+		pair A=(3, -1);
+		path blob=(0, 0){right}..(2, 2)..{down}cycle;
+		fill(shift(A)*blob, lightcyan);
+		label("$X/A$", A+(-1, 1));
+		fill(shift(A)*reflect(origin, (0, 1))*blob, lightgreen);
+		dot(A, red, L=Label("$A/A$", align=S));
+		label("$\longrightarrow$");
+		pair B=(-2.6, 0);
+		filldraw(B+(0, 1)--B+(0, -1)--B+(sqrt(3), 0)--cycle, lightcyan, red+1.5);
+		label("$X$", B+(-0.5, 0));
+		label("$A$", B+(1.2, 0.9), red);
+		filldraw(B+(0, 1)--B+(0, -1)--B+(-sqrt(3), 0)--cycle, lightgreen, red+1.5);
+	\end{asy}
+	\end{center}
+
 	For the second part, fix $k$ and note that, as long as $n \le k-1$ or $n \ge k+2$,
 	\[
 		\underbrace{H_{k+1}(X^n, X^{n-1})}_{=0}
@@ -123,7 +150,7 @@ Consider the following diagram.
 \begin{tikzcd}[column sep=tiny]
 	& \underbrace{H_3(X^2)}_{=0} \ar[d, "0"] \\
 	\CX{4} \ar[r, "\partial_4"] \ar[rd, "d_4", blue]
-		& H_3(X^3) \ar[r, surjective head] \ar[d, "0"]
+		& H_3(X^3) \ar[r, surjective head] \ar[d, hook]
 		& \underbrace{H_3(X^4)}_{\cong H_3(X)} \ar[r, "0"]
 		& \underbrace{H_3(X^4, X^3)}_{= 0} \\
 	& \CX{3} \ar[d, "\partial_3"] \ar[rd, "d_3", blue]
@@ -131,7 +158,7 @@ Consider the following diagram.
 	\underbrace{H_2(X^1)}_{=0} \ar[r, "0"]
 		& H_2(X^2) \ar[r, hook] \ar[d, surjective head]
 		& \CX{2} \ar[r, "\partial_2"] \ar[rd, "d_2", blue]
-		& H_1(X^1) \ar[r, surjective head]
+		& H_1(X^1) \ar[r, surjective head] \ar[d, hook]
 		& \underbrace{H_1(X^2)}_{\cong H_1(X)} \ar[r, "0"]
 		& \underbrace{H_1(X^2, X^1)}_{=0} \\
 	& \underbrace{H_2(X^3)}_{\cong H_2(X)} \ar[d, "0"]
@@ -151,10 +178,10 @@ skeletons, and strung them together at the groups $H_k(X^k)$,
 with half the exact sequences being laid out vertically
 and the other half horizontally.
 
-In that case, composition generates a sequence of dotted maps
+In that case, composition generates a sequence of blue maps
 between the $H_k(X^k, X^{k-1})$ as shown.
 \begin{ques}
-	Show that the composition of two adjacent dotted arrows is zero.
+	Show that the composition of two adjacent blue arrows is zero.
 \end{ques}
 
 So from the diagram above, we can read off a sequence of arrows
@@ -180,6 +207,158 @@ The other reason we care is that in fact:
 \begin{proof}
 	Follows from the diagram; \Cref{prob:diagram_chase}.
 \end{proof}
+
+\section{Digression: why are the homology groups equal?}
+\label{sec:homology_group_equal}
+
+There is another intuition that explains it --- roughly speaking,
+\[
+	H_k(\Cells_\bullet(X))
+	= \frac{\text{aligned cycle}}{\text{aligned boundary}}
+	= \frac{\text{aligned cycle} \times \text{fuzz}}{\text{aligned boundary} \times \text{fuzz}}
+	= \frac{\text{cycle}}{\text{boundary}}
+	= H_k(X). \]
+Let me explain. Consider a CW-complex $X$ that looks like the following, where $X^1$ is drawn in
+red. Each blue region corresponds to a $2$-cell.
+\begin{center}
+\begin{asy}
+	size(5cm);
+	for(int i=0; i<4; ++i){
+		filldraw(rotate(i*90)*((3, -3)--(3, 3)--(1, 1)--(1, -1)--cycle), lightcyan, lightred+1.5);
+		draw(rotate(i*90)*((1, -1)--(3, 3)), lightred+1.5);
+	}
+	label("$X$", (2.5, -1));
+	label("$X^1$", (3, 3), lightred, align=SE);
+\end{asy}
+\end{center}
+Then, look at the following figure.
+\begin{center}
+\begin{asy}
+	size(13cm);
+
+	void drawx(transform t){
+		for(int i=0; i<4; ++i){
+			filldraw(t*rotate(i*90)*((3, -3)--(3, 3)--(1, 1)--(1, -1)--cycle), lightcyan, lightred+1.5);
+			draw(t*rotate(i*90)*((1, -1)--(3, 3)), lightred+1.5);
+		}
+	}
+	transform t=identity;
+	void drawarrow(path p){
+		draw(t*p, linewidth(1.5), Arrow(size=5));
+	}
+	drawx(t);
+	drawarrow((-3, 3)--(1, 1)--(1, -0.3));
+	drawarrow((-1, -1)--(0.7, -1));
+	label("$C_1(X^1)$", t*(0, -3), align=S);
+
+	t=shift(8, 0);
+	drawx(t);
+	drawarrow((-3, 3)--(1, 1));
+	path tmp=(-1, -1)--(3, -3);
+	pair d=dir(tmp);
+	drawarrow((point(tmp, 0.2)){d*dir(20)}..{d*dir(-20)}(point(tmp, 0.8)){-d*dir(20)}..{-d*dir(-20)}cycle);
+	label("$Z_1(X^1, X^0)$", t*(0, -3), align=S);
+
+	t=shift(8, 0)*t;
+	drawx(t);
+	drawarrow((point(tmp, 0.2)){d*dir(20)}..{d*dir(-20)}(point(tmp, 0.8)){-d*dir(20)}..{-d*dir(-20)}cycle);
+	label("$B_1(X^1, X^0)$", t*(0, -3), align=S);
+
+	t=shift(8, 0)*t;
+	drawx(t);
+	drawarrow((-3, 3)--(1, 1));
+	label("$\operatorname{Cells}_1(X)$", t*(0, -3), align=S);
+
+	t=shift(-23, -8.5)*t;
+	drawx(t);
+	drawarrow((-3, 3)--(1, 1)--(1, -1)--(-1, -1)--(-3, -3)--cycle);
+	label("$\ker(\operatorname{Cells}_1(X) \to \operatorname{Cells}_0(X))$", t*(0, -3), align=S);
+
+	t=shift(12, 0)*t;
+	drawx(t);
+	drawarrow((-3, 3)--(1, 1)--(-1, 1)--(-1, -1)--(-3, -3)--cycle);
+	label("$\operatorname{im}(\operatorname{Cells}_2(X) \to \operatorname{Cells}_1(X))$", t*(0, -3), align=S);
+
+	t=shift(10, 0)*t;
+	drawx(t);
+	drawarrow((-1, 1)--(1, 1)--(1, -1)--(-1, -1)--cycle);
+	label("$H_1(\operatorname{Cells}_\bullet(X))$", t*(0, -3), align=S);
+\end{asy}
+\end{center}
+
+It looks like a lot, so let me explain.
+\begin{itemize}
+	\ii The first picture depicts a typical element of $C_1(X^1)$ --- that is, a $1$-chain that is
+	contained in $X^1$, being the formal sum of two
+	maps from $\Delta^1$ to $X^1$, whose image is drawn as black arrows.
+
+	Note that only the image of the maps are depicted, informations such as which point of the
+	simplex $\Delta^1$ get mapped to which point inside $X^1$ is not shown --- although different
+	continuous maps give rise to different elements of $C_1(X^1)$.
+	\ii The second picture depicts a typical element of $Z_1(X^1, X^0)$ --- that is, the
+	\emph{relative cycles}.
+
+	Although we never formally defined what is a relative cycle or the groups $Z_1(X^1, X^0)$, you
+	can guess the definition from the definition of $Z_1(X^1)$ --- it is the subgroup of
+	$C_1(X^1, X^0) = C_1(X^1)/C_1(X^0)$ whose boundary vanish.
+
+	The fact that the loop on the bottom is flattened is just to make it look nicer --- the whole
+	thing is contained inside the red skeleton i.e. $X^1$.
+
+	Of course, being an element of the quotient, only a representative element is depicted ---
+	the ``modded out'' parts are the chains that are entirely contained inside $X^0$ i.e. some
+	vertices.
+	\ii The third picture depicts a typical element of $B_1(X^1, X^0)$ i.e. the \emph{relative
+	boundaries}.
+
+	This belongs to $\img \left( C_2(X^1, X^0) \taking\partial C_1(X^1, X^0) \right)$ --- in words,
+	there is some $2$-chain whose boundary equals the depicted element.
+	\ii The fourth picture depicts a typical element of $\Cells_1(X)$ --- that is, ``relative cycles
+	mod relative boundaries''.
+
+	Hopefully it is intuitively obvious how this group is isomorphic to the abelian group generated
+	by each $1$-cell of $X$.
+
+	We can in fact think of each of these elements as an ``aligned element'' of $C_1(X^1)$
+	where all endpoints lie inside a vertex (that is, the boundary of that element is inside $X^0$),
+	and for each $1$-cell, a canonical $1$-simplex is chosen to cover that cell (note that different
+	simplexes with the same image intuitively corresponds to ``reparametrization'' to change the
+	speed, and the difference between a simplex and its reparametrization is in fact
+	an element of $B_1(X^1, X^0)$ --- try to make this rigorous! Hint: use the prism operator.)
+
+	\ii The fifth picture depicts a typical element of
+	\[ \ker \left( \Cells_1(X) \taking\partial \Cells_0(X) \right) \]
+	which can be thought of as a ``cellular cycle'', or a $1$-cycle
+	(element of $Z_1(X)$) that is ``aligned'', as explained above.
+
+	\ii The sixth picture depicts a typical element of
+	\[ \img \left( \Cells_2(X) \taking\partial \Cells_1(X) \right) \]
+	which can be thought of as a ``cellular boundary'', or a $1$-boundary
+	(element of $B_1(X)$\footnote{This is not an element of $B_1(X^1)$! Think about why.}) that is ``aligned'' in the same sense as above.
+
+	\ii Finally, the last picture is $H_1(\Cells_\bullet(X))$, which is
+	\[ H_1(\Cells_\bullet(X)) = \frac{ \ker \left( \Cells_1(X) \taking\partial \Cells_0(X) \right) }{
+	\img \left( \Cells_2(X) \taking\partial \Cells_1(X) \right) }. \]
+	Or, roughly speaking,
+	\[ H_1(\Cells_\bullet(X)) = \frac{\text{aligned cycle}}{\text{aligned boundary}}. \]
+\end{itemize}
+That is what we mean by $\frac{\text{aligned cycle}}{\text{aligned boundary}} =
+\frac{\text{cycle}}{\text{boundary}}$.
+With a suitable formalization and arbitrary selection of
+canonical simplices,\footnote{Technically we need a so-called $\Delta$-complex structure on $X$, but
+we don't define $\Delta$-structure in the Napkin. See \cite{ref:hatcher} for details.} we can
+make the argument above rigorous.
+
+What do we mean by ``fuzz''? This part is hopefully obvious, but the point is that an aligned cycle
+can be ``moved around'' a bit (with reparametrization, or addition of elements in $B_1(X^1, X^0)$)
+while still keep it a cycle (that is, an element of $Z_1(X)$). Similarly for aligned boundaries.
+
+So, the point is --- we can ``cancel'' the common fuzz factor in the numerator and the denominator,
+and the result will remain the same.
+
+Refer to \cite{ref:hatcher} for some formal treatment on simplicial approximation.
+
+\section{Application: Euler characteristic via Betti numbers}
 
 A nice application of this is to define
 the \vocab{Euler characteristic} of a finite CW complex $X$.
@@ -208,7 +387,7 @@ the definition coincides with the normal definition of the Euler characteristic.
 	is exact then $\rank B + \rank D = \rank A + \rank C$.
 	Then for example the row
 	\begin{center}
-	\begin{tikzcd}
+	\begin{tikzcd}[column sep=small]
 		\underbrace{H_2(X^1)}_{=0} \ar[r, "0"] & H_2(X^2) \ar[r, hook] &
 		H_2(X^2, X^1) \ar[r, "\partial_2"] & H_1(X^1) \ar[r, surjective head] &
 		\underbrace{H_1(X^2)}_{\cong H_1(X)} \ar[r, "0"]
@@ -264,12 +443,53 @@ Recalling that $H_k(X^k, X^{k-1})$ has a basis the $k$-cells of $X$, we obtain:
 	is given on basis elements by
 	\[ d_k(e^k) = \sum_\beta d_\beta e_\beta^{k-1} \]
 	where $d_\beta$ is be the degree of the composed map
-	\[ S^{k-1} = \partial D_\beta^k \xrightarrow{\text{attach}}
+	\[ S^{k-1} = \partial e^k \xrightarrow{\text{attach}}
 		X^{k-1} \surjto S_\beta^{k-1}. \]
 	Here the first arrow is the attaching map for $e^k$
 	and the second arrow is the quotient of collapsing
 	$X^{k-1} \setminus e^{k-1}_\beta$ to a point.
 \end{theorem}
+
+What is the degree doing here? Remember that a basis element $e^k \in \Cells_k(X)$ is just a
+$k$-cell, and its boundary should be just the cells that forms its boundary.
+
+With the same visualization as above, we can do something like the following.
+\begin{center}
+\begin{asy}
+	filldraw(shift(0, 3)*polygon(3), lightcyan, lightred+1.5);
+	draw(dir(-30)--dir(90) , lightred+1.5, Arrow(size=5));
+	draw(dir(90)--dir(210) , lightred+1.5, Arrow(size=5), L=Label("$e^1_\beta$", red));
+	draw(dir(210)--dir(-30), lightred+1.5, Arrow(size=5));
+	draw((0, 2.25)--(0, 1.2), Arrow, L=Label("$d_2$", MidPoint, align=E));
+	label("$\in \operatorname{Cells}_2(X)$", (0.9, 3.2), align=E);
+	label("$\in \operatorname{Cells}_1(X)$", (0.9, 0.2), align=E);
+	label("$e^2$", (0, 3));
+\end{asy}
+\end{center}
+But it's not that easy! Note that in a CW complex, the boundary of a $k$-cell can be fused into
+\emph{arbitrary points} in $X^{k-1}$, so an ``edge'' of a $k$-cell need not be a $k-1$-cell.
+
+To make matters worse, sometimes there may be a duplicated edge --- in the Klein bottle, each pair
+of two opposing edges depicted actually \emph{the same edge}, possibly in different orientations.
+\begin{center}
+\begin{asy}
+	size(2cm);
+	fill(unitsquare, yellow+opacity(0.2));
+	pair C = (0,0);
+	pair B = (1,0);
+	pair A = (1,1);
+	pair D = (0,1);
+	draw(A--B, red, MidArrow);
+	draw(C--B, blue, MidArrow);
+	draw(D--C, red, MidArrow);
+	draw(A--D, blue, MidArrow);
+\end{asy}
+\end{center}
+In such a case, we need to count the \emph{multiplicity} of each edge --- and this is exactly what
+the degree of the map counts!
+We will see an explicit example of computing the homology groups of the Klein bottle in just a
+moment.
+
 This gives us an algorithm for computing homology groups of a CW complex:
 \begin{itemize}
 	\ii Construct the cellular chain complex,
@@ -341,6 +561,7 @@ as well as the Klein bottle and other spaces.
 \end{example}
 \begin{example}
 	[Cellular homology of the Klein bottle]
+	\label{ex:homology_klein}
 	Let $X$ be a Klein bottle.
 	Consider cells $e^0$, $e^1_a$, $e^1_b$ and $e^2$ as before,
 	but this time $e^2$ is attached via the word $abab\inv$.
@@ -362,6 +583,68 @@ as well as the Klein bottle and other spaces.
 	but \[ H_1(X) \cong \ZZ \oplus \Zc2 \] this time
 	(it is $\ZZ^{\oplus 2}$ modulo a copy of $2\ZZ$).
 	Also, $\ker d_2 = 0$, and so now $H_2(X) = 0$.
+
+	Let us sanity check that this makes sense --- that is, there is some cycle that is not a
+	boundary, but when doubled it become a boundary.
+
+	Actually, most cycles work.
+	\begin{center}
+	\begin{asy}
+		size(2cm);
+		fill(unitsquare, yellow+opacity(0.2));
+		pair C = (0,0);
+		pair B = (1,0);
+		pair A = (1,1);
+		pair D = (0,1);
+		draw((0, 0.7)--(1, 0.7), MidArrow);
+		draw(A--B, red, MidArrow);
+		draw(C--B, blue, MidArrow);
+		draw(D--C, red, MidArrow);
+		draw(A--D, blue, MidArrow);
+	\end{asy}
+	\end{center}
+
+	If we double up the path, we get something like the following.
+	\begin{center}
+	\begin{asy}
+		size(2cm);
+		fill(unitsquare, yellow+opacity(0.2));
+		pair C = (0,0);
+		pair B = (1,0);
+		pair A = (1,1);
+		pair D = (0,1);
+		draw((0, 0.7){dir(20)}..(1, 0.7), MidArrow);
+		draw((0, 0.7){dir(-20)}..(1, 0.7), MidArrow);
+		draw(A--B, red, MidArrow);
+		draw(C--B, blue, MidArrow);
+		draw(D--C, red, MidArrow);
+		draw(A--D, blue, MidArrow);
+	\end{asy}
+	\end{center}
+
+	Here is the important part: since the two blue edges are identified in opposite direction, we
+	can pull one of the path across the edge to reverse its direction\dots but now the region is in
+	fact the boundary of the cyan region! So we're done.
+	\begin{center}
+	\begin{asy}
+		size(2cm);
+		fill(unitsquare, yellow+opacity(0.2));
+		pair C = (0,0);
+		pair B = (1,0);
+		pair A = (1,1);
+		pair D = (0,1);
+		fill(shift(0, 0.3)*scale(1, 0.4)*unitsquare, lightcyan);
+		draw((0, 0.7)--(1, 0.7), MidArrow);
+		draw((1, 0.3)--(0, 0.3), MidArrow);
+		draw(A--B, red, MidArrow);
+		draw(C--B, blue, MidArrow);
+		draw(D--C, red, MidArrow);
+		draw(A--D, blue, MidArrow);
+	\end{asy}
+	\end{center}
+
+	It remains to convince yourself that the difference of two homotopy equivalent path is a
+	boundary.
 \end{example}
 
 \section\problemhead

@@ -167,8 +167,24 @@ So, we have detected the hole by the algebraic fact that
 	c \notin \img \left( C_2(X) \taking{\partial} C_1(X) \right). \]
 Indeed, if the hole was not present then this statement would be false.
 
+\begin{remark}
+	\label{remark:different_holes}
+	Note that homotopy and homology captures slightly different notion of ``holes''.
+	For example, let $T$ be a torus.
+	Then, every map $S^2 \to T$ is nulhomotopic so $\pi_2(T)$ is trivial,
+	but, as we will see in \Cref{prop:homology_torus}, $H_2(T) \cong \ZZ$.
+
+	At least in the case of $n = 1$, then \Cref{thm:hurewicz} states that for any path-connected
+	space $X$ and $x_0 \in X$, then $H_1(X)$ is the abelianization of $\pi_1(X, x_0)$,
+	which is pretty much the best result you can expect --- $H_1(X)$ must be abelian, while
+	$\pi_1(X, x_0)$ need not be abelian.
+	Nevertheless, it is still possible that $\pi_1(X, x_0)$ is nontrivial and $H_1(X)$ is trivial
+	--- see \url{https://math.stackexchange.com/q/1052414} for an example.
+\end{remark}
+
 We can capture this idea in any dimension, as follows.
 \begin{definition}
+	\label{def:cycle_and_boundary}
 	Let
 	\[ \dots \taking\partial C_2(X) \taking\partial C_1(X) \taking\partial C_0(X) \taking\partial 0 \]
 	as above.
@@ -178,7 +194,9 @@ We can capture this idea in any dimension, as follows.
 		and
 		\ii a \vocab{boundary} if $c \in \img \left( C_{n+1}(X) \taking\partial C_n(X) \right)$.
 	\end{itemize}
-	Denote the cycles and boundaries by $Z_n(X), B_n(X) \subseteq C_n(X)$, respectively.
+	Denote the cycles and boundaries by $Z_n(X), B_n(X) \subseteq C_n(X)$, respectively.%
+	\footnote{We don't use $C_n(X)$ to denote cycles --- apart from the obvious reason that the
+	notation is already used, the letter $Z$ comes from the German word ``Zyklus''.}
 \end{definition}
 
 \begin{ques}
@@ -221,6 +239,7 @@ when $G$, $H$ are abelian.)
 
 Now let's investigate the first homology group.
 \begin{theorem}[Hurewicz theorem]
+	\label{thm:hurewicz}
 	Let $X$ be path-connected.
 	Then $H_1(X)$ is the \emph{abelianization} of $\pi_1(X, x_0)$.
 \end{theorem}
@@ -293,7 +312,7 @@ whereas $\pi_1(X, x_0)$ does not.
 	Both homology and homotopy see the two loops in $X_8$, call them $a$ and $b$.
 	The difference is that in $\pi_1(X_8, x_0)$,
 	these two loops are not allowed to commute: we don't have $ab \neq ba$,
-	because the group operation in $\pi_1$ is ``concatenate paths''
+	because the group operation in $\pi_1$ is ``concatenate paths''.
 	But in the homology group $H_1(X)$ the way we add $a$ and $b$
 	is to add them formally, to get the $1$-chain $a+b$.
 	So \[ H_1(X) \cong \ZZ^{\oplus 2} \quad\text{while}\quad \pi_1(X, x_0) = \left< a,b\right>. \]
@@ -301,13 +320,16 @@ whereas $\pi_1(X, x_0)$ does not.
 
 \begin{example}
 	[The homology groups of $S^2$]
+	\label{ex:homology_group_sphere}
 	Consider $S^2$, the two-dimensional sphere.
 	Since it's path connected, we have $H_0(S^2) = \ZZ$.
 	We also have $H_1(S^2) = 0$, for the same reason that $\pi_1(S^2)$ is trivial as well.
 	On the other hand we claim that \[ H_2(S^2) \cong \ZZ. \]
 	The elements of $H_2(S^2)$ correspond to wrapping $S^2$ in a tetrahedral bag
 	(or two bags, or three bags, etc.).
-	Thus, the second homology group lets us detect the spherical cavity of $S^2$.
+	Thus, the second homology group lets us detect the spherical cavity of $S^2$.%
+	\footnote{As remarked in \Cref{remark:different_holes}, unlike $\pi_2$,
+		$H_2$ also detects other kinds of cavities, not just spherical.}
 \end{example}
 Actually, more generally it turns out that we will have
 \[
@@ -624,6 +646,52 @@ and the $P_{n-1} \circ \partial_X$ represents the grey edges of the prism
 Indeed, one can check (just by writing down several $\sum$ signs)
 that the above identity holds.
 
+As a picture:
+\begin{center}
+\begin{asy}
+	size(10cm);
+
+	pen rr = red;
+	pen hg = heavygreen;
+	pen gr = grey + dashed;
+
+	label("$\underbrace{g(\sigma) - f(\sigma)} = \underbrace{\partial_Y(P_n(\sigma))} +
+		\underbrace{P_{n-1}(\partial_X(\sigma))}$", (4, 9));
+
+	draw((1.7, 8.6)--(1.5, 8.2), Arrow);
+	draw((3.95, 8.6)--(4, 8.2), Arrow);
+	draw((6.2, 8.6)--(7, 8.2), Arrow);
+
+	draw((0, 8){dir(-70)}..(0, 6), rr, L="$f(\sigma)$");
+	draw((2, 8){dir(-70)}..(2, 6), hg, L="$g(\sigma)$");
+	label("$=$", (2.5, 7));
+
+	draw((3, 8){dir(-70)}..(3, 6), rr);
+	draw((5, 8){dir(-70)}..(5, 6), hg);
+	draw((3, 8)--(5, 8), gr);
+	draw((3, 6)--(5, 6), gr);
+	label("$+$", (5.5, 7));
+
+	draw((6, 8)--(8, 8), gr);
+	draw((6, 6)--(8, 6), gr);
+
+	fill((3, 5){dir(-70)}..(3, 3)--(5, 3){dir(70)}..(5, 5)--cycle, lightblue+opacity(0.2));
+	draw((3, 5){dir(-70)}..(3, 3), rr);
+	draw((5, 5){dir(-70)}..(5, 3), hg);
+	draw((3, 5)--(5, 5), gr);
+	draw((3, 3)--(5, 3), gr);
+	draw((4, 5.1)--(4, 5.9), Arrow, L="$\partial_Y$");
+
+	dot((7, 3), gr);
+	dot((7, 5), gr);
+	draw((7, 5.1)--(7, 5.9), Arrow, L="$P_0$");
+
+	draw((5.5, 0){dir(70)}..(5.5, 2), L=Label("$\sigma$", Relative(0.8)));
+	draw((5.4, 2.1)--(4.2, 2.9), Arrow, L="$P_1$");
+	draw((5.6, 2.1)--(6.8, 2.9), Arrow, L="$\partial_X$");
+\end{asy}
+\end{center}
+
 So that gives the chain homotopy from $f$ to $g$, completing the proof of \Cref{thm:Hn_functor}.
 
 \section{More examples of chain complexes}
@@ -669,7 +737,7 @@ which we'll use in the next chapter to finally compute topological homology grou
 	$\partial(\sum n_ip_i) = \sum n_i \cdot 1$ --- so $\epsilon$ really is
 	just the boundary operator, generalized to the case
 	$\wt C_0(X) \taking\partial \wt C_{-1}(X)$.\footnote{What about
-		$n < -2$? An $n$-simplex comes from a list of vertices of
+		$n \leq -2$? An $n$-simplex comes from a list of vertices of
 		length $(n+1)$, so a $(-2)$-simplex would require a list of
 		vertices length $(-1)$ --- but there aren't any such lists. So
 		while there is one $(-1)$-simplex, there are zero

@@ -35,6 +35,7 @@ when we first defined the Betti numbers:
 
 
 \section{de Rham cohomology}
+\label{sec:de_rham_cohom}
 We now reveal the connection between
 differential forms and singular cohomology.
 
@@ -89,6 +90,60 @@ because it is possible to run a full circle around $S^1$.
 So the failure of $\alpha$ to be exact is signaling
 that $H_1(S^1) \cong \ZZ$.
 
+As another piece of intuition, note that:
+\begin{itemize}
+	\ii each $k$-differential form $\omega$ can be interpreted as a function that takes each
+	$k$-smooth submanifold $S \subseteq M$, and returns a real number $\int_S \omega$.
+	\ii let us pretend that all $k$-simplices are smooth for now. Then we have:
+	\begin{itemize}
+		\ii The $k$-cochains are the functions that sends each $k$-simplex to a real number.
+		\ii The $k$-cocycles are the $k$-cochains that sends the boundaries to $0$.
+		\ii The $k$-coboundaries are the $k$-cochains that sends the cycles to $0$.
+	\end{itemize}
+
+	Meanwhile:
+	\begin{itemize}
+		\ii The differential forms are the functions that sends each $k$-simplex to a real number,
+		satisfying certain linearity and smoothness properties --- for instance:
+		\begin{itemize}
+			\ii if $k \geq 1$ and a $k$-simplex has the image contained in a point, then it must be
+			sent to $0$;
+			\ii if we reparametrize a $k$-simplex, the assigned value must be the same;
+			\ii if we flip two vertices of a $k$-simplex, the assigned value must be negated;
+			\ii if a $k$-simplex can be formed by gluing two $k$-simplices along a face,
+			then the assigned value must be the sum of the corresponding values assigned to the
+			sub-$k$-simplices;
+			\ii etc.
+		\end{itemize}
+		\ii The closed forms are the differential forms that sends the boundaries to $0$;
+		\ii The exact forms are the differential forms that send the cycles to $0$.
+	\end{itemize}
+
+	We can't help but noticing the parallel --- my point is:
+	\[
+		H^k(M; \RR) = \frac{\text{cocycles}}{\text{coboundaries}} \cong
+		\frac{\text{cocycles} \cap \text{differential forms}}{\text{coboundaries} \cap
+		\text{differential forms}} = \HdR^k(M).
+	\]
+	Roughly speaking, both the numerator and the denominator on the left are bigger, and they
+	\emph{cancels out}.
+	We can compare this with \Cref{sec:homology_group_equal}.
+
+	Or, as a figure (for space reasons, the group of differential forms is denoted $D$):
+	\begin{center}
+	\begin{tikzcd}[column sep=tiny]
+		D
+			& & \text{cocycles} \\
+			& \text{cocycles} \cap D \ar[ul] \ar[ur]
+			& & \text{coboundaries} \ar[ul] \\
+			& & \text{coboundaries} \cap D \ar[ul] \ar[ur]
+	\end{tikzcd}
+	\end{center}
+	This is precisely the setup of the second isomorphism theorem,%
+	\footnote{See \Cref{sec:first_isomorphism_thm}.}
+	and you can try to work out why the two quotients are isomorphic.
+\end{itemize}
+
 \section{Graded rings}
 \prototype{Polynomial rings are commutative graded rings,
 while $\Lambda^\bullet(V)$ is anticommutative.}
@@ -97,7 +152,7 @@ given a $k$-form $\alpha$ and an $\ell$-form $\beta$, we can consider
 a $(k+\ell)$-form
 \[ \alpha \wedge \beta. \]
 So we can equip the set of forms with a ``product'', satisfying
-$\beta \wedge \alpha = (-1)^{k\ell} \alpha \wedge \beta$
+$\beta \wedge \alpha = (-1)^{k\ell} \alpha \wedge \beta$.
 This is a special case of a more general structure:
 
 \begin{definition}
@@ -122,6 +177,23 @@ We use other words if there are additional properties:
 	for any homogeneous $r$ and $s$ we have
 	\[ rs = (-1)^{|r| |s|} sr. \]
 \end{definition}
+
+\begin{remark}
+	Why not $rs = -sr$? This definition is inspired by the fact that the wedge product is
+	anticommutative. Note that, for $f_1, \dots, f_r, g_1, \dots, g_s$ being $0$-forms,
+	let $f = df_1 \wedge df_2 \wedge \dots \wedge df_r$ be a $r$-form and
+	$g = dg_1 \wedge dg_2 \wedge \dots \wedge dg_s$ be a $s$-form,
+	then starting from the expression
+	\[ f \wedge g = (df_1 \wedge df_2 \wedge \dots \wedge df_r) \wedge
+	(dg_1 \wedge dg_2 \wedge \dots \wedge dg_s) \]
+	if you repeatedly swap two adjacent entries, it will take $rs$ swaps total in order to obtain
+	the expression
+	\[ g \wedge f = (dg_1 \wedge dg_2 \wedge \dots \wedge dg_s) \wedge
+	(df_1 \wedge df_2 \wedge \dots \wedge df_r). \]
+	By linearity, we can prove that in general, for any $r$-form $f$ and any $s$-form $g$,
+	we have $fg = (-1)^{rs} gf$.
+\end{remark}
+% TODO too clumsy? Also this must have been proven somewhere before?
 
 To summarize:
 \begin{center}
@@ -187,7 +259,7 @@ We claim that:
 
 Therefore, we can obtain a \emph{anticommutative ring}
 \[ \HdR^\bullet(M) = \bigoplus_{k \ge 0} \HdR^k(M) \]
-with $\wedge$ as a product, and $1 \in \Lambda^0(\RR) = \RR$ as the identity
+with $\wedge$ as a product, and $1 \in \Lambda^0(\RR) = \RR$ as the identity.
 
 \section{Cup products}
 Inspired by this, we want to see if we can construct a similar product
@@ -213,6 +285,54 @@ Then this gives us a way to multiply two cochains, as follows.
 \begin{ques}
 	Assuming $R$ has a $1$, which $0$-cochain is the identity for $\smile$?
 \end{ques}
+
+\begin{remark}[Warning]
+	While you can interpret a $n$-differential form as a $n$-cochain the obvious way,
+	the cup product is \emph{not} directly a generalization of the wedge product!
+	For example, let $X = \RR^2$, and try to evaluate $dx \smile dy$ on $[v_0, v_1, v_2]$
+	and $[v_2, v_1, v_0]$ where $v_0 = (1, 0)$, $v_1 = (0, 0)$, $v_2 = (0, 1)$,
+	assume all of the edges are straight lines.
+
+	This is because we are not having the alternation operator.
+	Refer to \Cref{sec:wedge_product_dual} for details.
+	In this case, the ring $G$ might be $\ZZ$ where not all nonzero elements have an inverse,
+	so division would cause trouble.
+
+	Nevertheless, the differences will nicely cancel out, and
+	we still have the corresponding element in the cohomology group equal to
+	the element interpreted by the wedge product $dx \wedge dy$.
+
+	Let us consider the familiar example of a torus, and the $1$-cocycles ``$dx$'' and ``$dy$''.
+	\begin{center}
+	\begin{asy}
+		fill(scale(2)*unitsquare, orange+opacity(0.2));
+		draw((0, 0)--(0, 2), blue, MidArrow);
+		draw((2, 0)--(2, 2), blue, MidArrow);
+		draw((0, 0)--(2, 0), red, MidArrow, L=Label("$dx$", black));
+		draw((0, 2)--(2, 2), red, MidArrow);
+
+		draw((0, 0.3)--(1, 0.7), Arrow, L="$\frac{1}{2}$");
+		draw((0, 1.1){dir(20)}..(2, 1.1), Arrow, L="$1$");
+		draw((0.5, 1.3){dir(70)}..(0.5, 1.9), Arrow, L="$0$");
+
+		fill(shift(3, 0)*scale(2)*unitsquare, orange+opacity(0.2));
+		draw((3, 0)--(3, 2), blue, MidArrow);
+		draw((5, 0)--(5, 2), blue, MidArrow);
+		draw((3, 0)--(5, 0), red, MidArrow, L=Label("$dy$", black));
+		draw((3, 2)--(5, 2), red, MidArrow);
+
+		draw((3, 1.1){dir(20)}..(5, 1.1), Arrow, L="$0$");
+		draw((4.2, 0){dir(70)}..(4.2, 2), Arrow, L="$1$");
+	\end{asy}
+	\end{center}
+
+	From what we know about the wedge product, we want $(dx \wedge dy)(T) = 1$ for $T$ the whole
+	torus (up to a $\pm$ sign). Indeed, with the definition above (work it out! Divide $T$ into two
+	triangles arbitrarily) it will work.
+
+	Nevertheless, we don't really care about the cup product itself as much as the induced cup
+	product on the homology ring.
+\end{remark}
 
 First, we prove an analogous result as before:
 \begin{lemma}[$\delta$ with cup products]
@@ -270,6 +390,9 @@ the cohomology rings of some common spaces.
 	It is anti-commutative.
 \end{example}
 
+You have already seen the elements $\alpha$ and $\beta$ as the elements called $dx$ and $dy$ in the
+remark above.
+
 \begin{example}[Cohomology ring of $S^n$]
 	Consider $S^n$ for $n \ge 1$.
 	The nontrivial cohomology groups are given by
@@ -302,6 +425,62 @@ the cohomology rings of some common spaces.
 	In the second case, all nonzero homogeneous elements have degree $2$.
 \end{example}
 
+Already we have an interesting example where the cup product $\smile$ is different from the
+wedge product $\wedge$ --- if $n \geq 2$, then the generators $\alpha$ and $\beta$ above has
+$\alpha \smile \alpha \neq 0$ and $\beta \smile \beta \neq 0$.
+
+Let us try to see what happens here. The formula above says
+\[ H^\bullet(\RP^2; \Zc2) \cong \Zc2[\alpha]/(\alpha^3) \]
+As an abelian group, there is a single nonzero element in
+$H^0(\RP^2; \Zc2)$, $H^1(\RP^2; \Zc2)$, and $H^2(\RP^2; \Zc2)$,
+and the remaining groups are $0$.
+
+$\RP^2$ isn't too hard to visualize --- it's just a $2$-sphere, quotient by the relation to identify
+opposite vertices.
+
+There is a $1$-cycle on it that is not homologous to $0$:
+\begin{center}
+\begin{asy}
+	import three;
+	size(2cm);
+	currentprojection=orthographic((2, -3, 4), Z);
+	draw(unitsphere, cyan+opacity(0.2));
+	draw(arc((0, 0, 0), (1, 0, 0), (-1, 0, 0), (0, 0, 1)));
+	dot((1, 0, 0));
+	dot((-1, 0, 0));
+\end{asy}
+\end{center}
+It's not very easy to show, but every such $1$-cycle is homologous to each other,
+and double of that cycle is homologous to $0$.
+
+As such, $H^1(\RP^2; \Zc2) \cong \Hom(H_1(\RP^2), \Zc2)$, its only nontrivial element $\alpha$
+maps each such $1$-cycle to $1$.
+
+\begin{center}
+\begin{asy}
+	size(3cm);
+	fill(scale(2)*unitsquare, orange+opacity(0.2));
+	draw((0, 0)--(0, 2), blue, MidArrow);
+	draw((2, 2)--(2, 0), blue, MidArrow);
+	draw((0, 0)--(2, 0), red, MidArrow);
+	draw((2, 2)--(0, 2), red, MidArrow);
+	label("$a$", (0, 2), NW);
+	label("$b$", (2, 2), NE);
+	label("$c$", (0, 0), SW);
+	label("$d$", (2, 0), SE);
+	draw((0.5, 0)--(0.5, 2), Arrow);
+\end{asy}
+\end{center}
+
+Consider $\alpha \smile \alpha$. Notice that $\alpha$ acts like both $dx$ and $dy$ at the same time
+(both the blue edge and the red edge got assigned the value $1$), so it assigns the value $1$ to the
+whole surface of the real projective plane! Thus it's nontrivial.
+
+\begin{exercise}
+	Manually compute the cup product $\alpha \smile \alpha$ to verify that.
+	(Divide the surface into some triangles. $[a, c, d] + [a, d, b] - [c, c, d] + [c, d, c]$ is a
+	working choice. Verify that the boundary is nonzero, but is divisible by $2$.)
+\end{exercise}
 
 \section{Relative cohomology pseudo-rings}
 For $A \subseteq X$, one can also define a relative cup product
@@ -363,6 +542,8 @@ Now, the theorem is that:
 	\]
 	as graded pseudo-rings.
 \end{theorem}
+
+%TODO explain the intuition. It's not that difficult
 
 This allows us to resolve the first question posed at the beginning.
 Let $X = \CP^2$ and $Y = S^2 \vee S^4$.

@@ -1,10 +1,11 @@
 \chapter{Meromorphic functions}
+\label{ch:meromorphic_fn}
 \section{The second nicest functions on earth}
 If holomorphic functions are like polynomials,
 then \emph{meromorphic} functions are like rational functions.
 Basically, a meromorphic function is a function of the form
 $ \frac{A(z)}{B(z)} $
-where $A , B:  U \to \CC$ are holomorphic and $B$ is not zero.
+where $A , B \colon  U \to \CC$ are holomorphic and $B$ is not zero.
 The most important example of a meromorphic function is $\frac 1z$.
 
 We are going to see that meromorphic functions behave
@@ -46,11 +47,11 @@ in any disk not containing $0$.)
 On the other hand, suppose $p \in U$ has $B(p) = 0$: without loss of generality, $p=0$
 to ease notation.
 By using the Taylor series at $p=0$ we can put
-\[ B(z) = c_k z^k + c_{k+1} z^{k+1} + \dots \]
+\[ B(z) = c_k z^k + c_{k+1} z^{k+1} + \cdots \]
 with $c_k \neq 0$
 (certainly some coefficient is nonzero since $B$ is not identically zero!).
 Then we can write
-\[ \frac{1}{B(z)} = \frac{1}{z^k} \cdot \frac{1}{c_k + c_{k+1}z + \dots}. \]
+\[ \frac{1}{B(z)} = \frac{1}{z^k} \cdot \frac{1}{c_k + c_{k+1}z + \cdots}. \]
 But the fraction on the right is a
 holomorphic function in this open neighborhood!
 So all that's happened is that we have an extra $z^{-k}$ kicking around.
@@ -93,11 +94,11 @@ in such a way that no two open neighborhoods intersect.
 	At each of these points we can put a Laurent series: for example at $z=0$ we have
 	\begin{align*}
 		\frac{z+1}{\sin z}
-		&= (z+1) \cdot \frac{1}{z - \frac{z^3}{3!} + \frac{z^5}{5!} - \dots} \\
+		&= (z+1) \cdot \frac{1}{z - \frac{z^3}{3!} + \frac{z^5}{5!} - \dotsb} \\
 		&= \frac 1z \cdot \frac{z+1}{1 - \left(%
-			\frac{z^2}{3!} - \frac{z^4}{5!} + \frac{z^6}{7!} - \dots \right)} \\
+			\frac{z^2}{3!} - \frac{z^4}{5!} + \frac{z^6}{7!} - \dotsb \right)} \\
 		&= \frac 1z \cdot (z+1) \sum_{k \ge 0} \left( %
-			\frac{z^2}{3!}-\frac{z^4}{5!}+\frac{z^6}{7!}-\dots \right)^k.
+			\frac{z^2}{3!}-\frac{z^4}{5!}+\frac{z^6}{7!}-\dotsb \right)^k.
 	\end{align*}
 	If we expand out the horrible sum (which I won't do),
 	then you get $\frac 1z$ times a perfectly
@@ -152,10 +153,10 @@ in such a way that no two open neighborhoods intersect.
 The order of a pole tells you how ``bad'' the pole is.
 The order of a pole is the ``opposite'' concept of the \vocab{multiplicity} of a \vocab{zero}.
 If $f$ has a pole at zero, then its Laurent series near $z=0$ might look something like
-\[ f(z) = \frac{1}{z^5} + \frac{8}{z^3} - \frac{2}{z^2} + \frac{4}{z} + 9 - 3z + 8z^2 + \dots \]
+\[ f(z) = \frac{1}{z^5} + \frac{8}{z^3} - \frac{2}{z^2} + \frac{4}{z} + 9 - 3z + 8z^2 + \dotsb \]
 and so $f$ has a pole of order five.
 By analogy, if $g$ has a zero at $z=0$, it might look something like
-\[ g(z) = 3z^3 + 2z^4 + 9z^5 + \dots \]
+\[ g(z) = 3z^3 + 2z^4 + 9z^5 + \dotsb \]
 and so $g$ has a zero of multiplicity three.
 These orders are additive: $f(z) g(z)$ still has a pole of order $5-3=2$,
 but $f(z)g(z)^2$ is completely patched now, and in fact has a \vocab{simple zero} now
@@ -187,7 +188,7 @@ We can now give many more examples.
 		\[
 			\frac{e^z}{z^2}
 			= \frac{1}{z^2} + \frac{1}{z} + \frac{1}{2} + \frac{z}{6} + \frac{z^2}{24} + \frac{z^3}{120}
-			+ \dots.
+			+ \dotsb.
 		\]
 		Hence the pole $z=0$ has order $2$ and residue $1$.
 	\end{enumerate}
@@ -207,26 +208,42 @@ We can now give many more examples.
 \begin{example}
 	[Function with infinitely many poles]
 	The function $\CC \to \CC$ by \[ z \mapsto \frac{1}{\sin(z)} \]
-	has infinitely many poles: the numbers $z = 2\pi k$, where $k$ is an integer.
+	has infinitely many poles: the numbers $z = \pi k$, where $k$ is an integer.
 	Let's compute the Laurent series at just $z=0$:
 	\begin{align*}
 		\frac{1}{\sin(2\pi z)}
-		&= \frac{1}{\frac{z}{1!} - \frac{z^3}{3!} + \frac{z^5}{5!} - \dots} \\
-		% &= \frac{1/z}{\frac{1}{1!} - \frac{z^2}{3!} + \frac{z^4}{5!} - \dots} \\
-		&= \frac 1z \cdot \frac{1}{1 - \left( \frac{z^2}{3!} - \frac{z^4}{5!} + \dots \right)} \\
-		&= \frac 1z \sum_{k \ge 0} \left( \frac{z^2}{3!} - \frac{z^4}{5!} + \dots \right)^k.
+		&= \frac{1}{\frac{z}{1!} - \frac{z^3}{3!} + \frac{z^5}{5!} - \dotsb} \\
+		% &= \frac{1/z}{\frac{1}{1!} - \frac{z^2}{3!} + \frac{z^4}{5!} - \dotsb} \\
+		&= \frac 1z \cdot \frac{1}{1 - \left( \frac{z^2}{3!} - \frac{z^4}{5!} + \dotsb \right)} \\
+		&= \frac 1z \sum_{k \ge 0} \left( \frac{z^2}{3!} - \frac{z^4}{5!} + \dotsb \right)^k.
 	\end{align*}
 	which is a Laurent series, though I have no clue what the coefficients are.
 	You can at least see the residue; the constant term of that huge sum is $1$,
 	so the residue is $1$.
 	Also, the pole has order $1$.
 \end{example}
+\begin{example}[A function that is not meromorphic]
+	Consider the function
+	\[ z \mapsto \frac{1}{\sin(1/z)}. \]
+	It is a holomorphic function on
+	\[ U = \CC \setminus \{ 0 \} \setminus S \]
+	where we define $S = \{ \frac{1}{\pi k} \mid k \in \ZZ \setminus \{ 0 \} \}$.
+	Similar to $z \mapsto \frac{1}{\sin(z)}$,
+	each point in the set $S$ has a pole of order $1$.
+
+	However, at $z = 0$, the function admits no Laurent series --- if it were, there would be a
+	neighborhood around $z = 0$ where the function is defined, but there is no such set.
+
+	However, $f$ is meromorphic on $\CC \setminus \{ 0 \}$ --- the set $S$ is isolated, but $S \cup
+	\{ 0 \}$ is not isolated.
+\end{example}
+
 
 The Laurent series, if it exists, is unique (as you might have guessed),
 and by our result on holomorphic functions it is actually valid for \emph{any}
 disk centered at $p$ (minus the point $p$).
 The part $\frac{c_{-1}}{z-p} + \dots + \frac{c_{-m}}{(z-p)^m}$ is called the \vocab{principal part},
-and the rest of the series $c_0 + c_1(z-p) + \dots$ is called the \vocab{analytic part}.
+and the rest of the series $c_0 + c_1(z-p) + \dotsb$ is called the \vocab{analytic part}.
 
 
 
@@ -327,6 +344,47 @@ done in our statements about the winding number.
 	which gives the conclusion.
 \end{proof}
 
+\begin{remark}[Intuition behind Cauchy's integral formula]
+	\label{remark:cauchy_integral_intuition}
+	% from complex_analysis --- Serge Lang, proof using power series
+	In the setting of \Cref{thm:cauchy_integral_formula},
+	note that if $f$ is meromorphic in the disk $D$, we can compute the Laurent series of $f$ at the
+	point $a$:
+	\[
+		f(z) =
+		\frac{c_{-m}}{(z-a)^m}
+		+ \frac{c_{-m+1}}{(z-a)^{m-1}}
+		+ \dots
+		+ \frac{c_{-1}}{z-a} + c_0 + c_1 (z-a) + \cdots
+	\]
+
+	By the residue theorem, integrating $f(z)$ around the boundary of $D$
+	results in the $c_{-1}$ coefficient in the Laurent series:
+	\[
+		\frac{1}{2\pi i} \oint_\gamma f(z) \; dz = \Res(f; a) = c_{-1}.
+	\]
+	Of course, this is useless --- $f$ is holomorphic at $a$, so $c_{-1} = 0$.
+	We want to compute $c_0 = f(a)$ instead.
+
+	Nevertheless, the trick is that \emph{we can manipulate the function $f$} in order to move the
+	coefficient we want to compute to the coefficient corresponding to $(z-a)^{-1}$.
+	How are we going to do that? By dividing by $z-a$, of course!
+
+	So, $\frac{f(z)}{z-a}$ is meromorphic in the disk $D$, with Laurent series expansion around $a$
+	being
+	\[
+		\frac{f(z)}{z-a} =
+		\frac{c_{-m}}{(z-a)^{m+1}}
+		+ \frac{c_{-m+1}}{(z-a)^{m}}
+		+ \dots
+		+ \frac{c_{-1}}{(z-a)^2} + \frac{c_0}{z-a} + c_1 + c_2 (z-a) + \cdots
+	\]
+	Because $\frac{f(z)}{z-a}$ has no other poles in $D$ except at $a$,
+	the residue theorem immediately tells us the integral
+	$\frac{1}{2\pi i} \oint_\gamma \frac{f(z)}{z-a} \; dz$ equals $\Res(\frac{f(z)}{z-a}; a)$,
+	which equals $c_0$ looking at the Laurent series above.
+\end{remark}
+
 \section{Argument principle}
 One tricky application is as follows.
 Given a polynomial $P(x) = (x-a_1)^{e_1}(x-a_2)^{e_2}\dots(x-a_n)^{e_n}$, you might know that we have
@@ -340,7 +398,7 @@ In an analogous fashion, we can obtain a similar result for any meromorphic func
 	[The logarithmic derivative]
 	Let $f \colon U \to \CC$ be a meromorphic function.
 	Then the logarithmic derivative $f'/f$ is meromorphic as a function from $U$ to $\CC$;
-	its zeros and poles are:
+	its only poles are:
 	\begin{enumerate}[(i)]
 		\ii A pole at each zero of $f$ whose residue is the multiplicity, and
 		\ii A pole at each pole of $f$ whose residue is the negative of the pole's order.
@@ -349,9 +407,9 @@ In an analogous fashion, we can obtain a similar result for any meromorphic func
 Again, you can almost think of a pole as a zero of negative multiplicity.
 This spirit is exemplified below.
 \begin{proof}
-	Dead easy with Taylor series.
+	Dead easy with Laurent series.
 	Let $a$ be a zero/pole of $f$, and WLOG set $a=0$ for convenience.
-	We take the Taylor series at zero to get
+	We take the Laurent series at zero to get
 	\[ f(z) = c_k z^k + c_{k+1} z^{k+1} + \dots \] % chktex 25
 	where $k < 0$ if $0$ is a pole and $k > 0$ if $0$ is a zero.
 	Taking the derivative gives
@@ -365,7 +423,10 @@ This spirit is exemplified below.
 \end{proof}
 
 Using this trick you can determine the number of zeros and poles inside a regular closed curve,
-using the so-called Argument Principle.
+using the so-called Argument Principle.\footnote{So-called because the \emph{argument} of a complex
+number $z$ is the angle formed by the real axis and the vector representing $z$, not because you
+need to use any argument. If $z \in \CC$ is interpreted as a point in $\RR^2$,
+the argument of $z$ is the same as $\theta(z)$ defined in \Cref{ex:angle_form}.}
 
 \begin{theorem}
 	[Argument principle]
@@ -376,7 +437,7 @@ using the so-called Argument Principle.
 	Then
 	\[
 		\frac{1}{2\pi i} \oint_\gamma \frac{f'}{f} \; dz
-		= frac{1}{2\pi i} \oint_{f \circ \gamma} \frac{1}{z} \; dz
+		= \frac{1}{2\pi i} \oint_{f \circ \gamma} \frac{1}{z} \; dz
 		= Z - P
 	\]
 	where $Z$ is the number of zeros inside $\gamma$ (counted with multiplicity)
@@ -402,6 +463,90 @@ Even with machine rounding error, the integral will be close enough to the true 
 we can decide how many zeros are in any given circle.
 Numerical evidence for the Riemann Hypothesis (concerning the zeros of the Riemann zeta function)
 can be obtained in this way.
+
+\section{Digression: the Argument Principle viewed geometrically}
+
+There is another, more geometric, way to understand the Argument Principle.
+
+Assume a function $f$ is holomorphic on a connected open set $U$ containing $0$,
+and possibly has a zero or a
+pole at $0$. Let $\gamma \colon [0, 2 \pi] \to U$ be some curve contained in $U$, such that $0$ is
+not in the image of the curve.
+
+Let $a = \gamma(0)$ be the starting point of $\gamma$, and $b = \gamma(2 \pi)$ be the ending
+point of $\gamma$.
+
+We all know that $z \mapsto \log z$ is not an actual function --- even ignoring the singularity
+at $0$, it has a branch cut (we will formally handle this in \Cref{ch:complex_log}).
+
+Nevertheless, if we close our eyes and shuffling some symbols around, we get:
+\begin{align*}
+	\frac{1}{2 \pi i} \oint_\gamma \frac{f'(z)}{f(z)} \; dz
+	&= \frac{1}{2 \pi i} \oint_\gamma \frac{d}{dz} \log f(z) \; dz \\
+	&= \frac{1}{2 \pi i} \oint_\gamma d (\log f(z)) \\
+	&= \frac{1}{2 \pi i} \cdot (\log f(b) - \log f(a)).
+\end{align*}
+Miraculously, everything seems to cancel out so nicely! This is not a coincidence.
+
+Now, if $\gamma$ is a circle, then $a = b$, so the formula above seemingly states that the
+integral will be $0$?
+Fortunately for us, no --- $\log$ is in fact not a function.
+
+So, does the formula above means anything?
+It does! While we won't prove this rigorously, the point is that:
+\begin{moral}
+	If we let a point $p$ smoothly moves from $a$ to $b$, and let $\log f(p)$ follows the value,
+	then $\log f(b) - \log f(a)$ represents the change in value of $\log f(p)$.
+\end{moral}
+
+In the notation of \Cref{sec:lifting_thm},
+we have the mouse moves along $\gamma$ from $a$ to $b$, the first robot moves along $f \circ \gamma$
+from $f(a)$ to $f(b)$, and the second robot moves from $\log f(a)$ to $\log f(b)$.
+
+If we forget about the mouse for a moment, note that:
+\begin{moral}
+	The quantity $\frac{1}{2 \pi i} \oint_\gamma \frac{f'(z)}{f(z)} \; dz$ is equal to
+	the number of times the \emph{first} robot winds around the origin.
+\end{moral}
+That is, $\Wind(f \circ \gamma, 0)$. (This is essentially obvious to see, because of all the work we
+have done to prove $\oint d \log z = \oint \frac{1}{z} \; dz$ equals the winding number.)
+
+Finally, if we look at some simple examples like $z^3$:
+\begin{center}
+\begin{asy}
+	cplane();
+	guide zp, zp3;
+	pair fz(int d){
+		return exp((I+0.05)*d*2*pi/360)*1.2;
+	}
+	for(int d=0; d<=270; d+=45){
+		pair z=fz(d);
+		zp=zp..z;
+		zp3=zp3..z^3;
+		dot(zp, red);
+		dot(zp3, blue);
+	}
+	draw(zp, red);
+	draw(zp3, blue);
+
+	label("$z_0^{\phantom{3}}$", fz(0), align=S, red);
+	label("$z_1$", fz(45), align=SW, red);
+	label("$z_6$", fz(45*6), align=E, red);
+	label("$z_0^3$", fz(0)^3, align=S, blue);
+	label("$z_1^3$", fz(45)^3, align=NW, blue);
+	label("$z_6^3$", fz(45*6)^3, align=W, blue);
+\end{asy}
+\end{center}
+We can immediately see the relation between the winding number and the multiplicity of a zero:
+\begin{moral}
+	If $z$ moves around the origin in a circle once, then $z^n$ moves around the origin in a circle
+	$n$ times.
+\end{moral}
+$z^{-n}$ is not much different --- it moves around the origin in a circle $n$ times, just in the
+opposite direction.
+
+Piecing all these pieces together, we get the Argument Principle --- the logarithmic derivative can
+be used to count the multiplicity of the roots and the order of the poles.
 
 \section{Philosophy: why are holomorphic functions so nice?}
 All the fun we've had with holomorphic and meromorphic functions comes down to the fact that

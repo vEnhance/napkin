@@ -25,7 +25,7 @@ we will see three great things:
 To get the ball rolling, let's start with
 one infinite polynomial you'll recognize:
 for any fixed number $-1 < x < 1$ we have the series convergence
-\[ \frac{1}{1-x} = 1 + x + x^2 + \dots \]
+\[ \frac{1}{1-x} = 1 + x + x^2 + \cdots \]
 by the geometric series formula.
 
 Let's pretend we didn't see this already in
@@ -34,7 +34,7 @@ So, we instead have a smooth function $f \colon (-1,1) \to \RR$ by
 \[ f(x) = \frac{1}{1-x}. \]
 Suppose we wanted to pretend that it was equal to
 an ``infinite polynomial'' near the origin, that is
-\[ (1-x)\inv = a_0 + a_1 x + a_2 x^2 + a_3 x^3 + a_4 x^4 + \dots. \]
+\[ (1-x)\inv = a_0 + a_1 x + a_2 x^2 + a_3 x^3 + a_4 x^4 + \cdots. \]
 How could we find that polynomial,
 if we didn't already know?
 
@@ -56,11 +56,11 @@ In fact, let's keep taking derivatives and see what we get.
 \end{alignat*}
 If we set $x=0$ we find $1 = a_0 = a_1 = a_2 = \dots$
 which is what we expect;
-the geometric series $\frac{1}{1-x} = 1 + x + x^2 + \dots$.
+the geometric series $\frac{1}{1-x} = 1 + x + x^2 + \cdots$.
 And so actually taking derivatives was enough to get the right claim!
 
 \section{Power series}
-\prototype{$\frac{1}{1-z} = 1 + z + z^2 + \dots$, which converges on $(-1,1)$.}
+\prototype{$\frac{1}{1-z} = 1 + z + z^2 + \cdots$, which converges on $(-1,1)$.}
 Of course this is not rigorous,
 since we haven't described what the right-hand side is,
 much less show that it can be differentiated term by term.
@@ -69,7 +69,7 @@ So we define the main character now.
 \begin{definition}
 	A \vocab{power series} is a sum of the form
 	\[ \sum_{n = 0}^\infty a_n z^n
-		= a_0 + a_1 z + a_2 z^2 + \dots \]
+		= a_0 + a_1 z + a_2 z^2 + \cdots \]
 	where $a_0$, $a_1$, \dots\ are real numbers,
 	and $z$ is a variable.
 \end{definition}
@@ -116,7 +116,7 @@ It terms out there is a precise answer for this.
 \end{remark}
 \begin{example}
 	[$\sum z^n$ has radius $1$]
-	Consider the geometric series $\sum_{n} z^n = 1 + z + z^2 + \dots$.
+	Consider the geometric series $\sum_{n} z^n = 1 + z + z^2 + \cdots$.
 	Since $a_n = 1$ for every $n$, we get $R = 1$,
 	which is what we expected.
 \end{example}
@@ -258,7 +258,7 @@ we give this a name.
 		is \emph{not} analytic.
 		Indeed, suppose for contradiction it was.
 		As all the derivatives are zero,
-		its Taylor series would be $0 + 0x + 0x^2 + \dots$.
+		its Taylor series would be $0 + 0x + 0x^2 + \cdots$.
 		This Taylor series does \emph{converge}, but not to the right value ---
 		as $f(\eps) > 0$ for any $\eps > 0$, contradiction.
 	\end{enumerate}
@@ -286,7 +286,7 @@ we give this a name.
 	\end{align*}
 	and so by continuing the pattern
 	(which repeats every four) we find the Taylor series is
-	\[ z - \frac{z^3}{3!} + \frac{z^5}{5!} - \frac{z^7}{7!} + \dots \]
+	\[ z - \frac{z^3}{3!} + \frac{z^5}{5!} - \frac{z^7}{7!} + \cdots \]
 	which is seen to have radius of convergence $R = \infty$.
 \end{example}
 

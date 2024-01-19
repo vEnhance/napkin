@@ -47,6 +47,7 @@ You might notice that these examples are not very diverse.
 That's because they are actually the only examples:
 \begin{theorem}
 	[Fundamental theorem of finitely generated abelian groups]
+	\label{thm:fund_fg_abelian_group}
 	Let $G$ be a finitely generated abelian group.
 	Then there exists an integer $r$,
 	prime powers $q_1$, \dots, $q_m$ (not necessarily distinct) such that
@@ -142,6 +143,7 @@ a Noetherian ring $R$ is one for which $R$ is Noetherian as an $R$-module.
 \end{ques}
 
 \section{The structure theorem}
+\label{sec:structure_thm}
 Our structure theorem takes two forms:
 \begin{theorem}
 	[Structure theorem, invariant form]
@@ -167,8 +169,7 @@ Our structure theorem takes two forms:
 \end{proof}
 \begin{remark}
 	In both theorems the decomposition is unique up to
-	permutations of the summands; good to know, but
-	I won't prove this.
+	permutations of the summands.
 \end{remark}
 
 \section{Reduction to maps of free $R$-modules}
@@ -234,6 +235,153 @@ i.e.\ we have that
 \[ M \cong R^{\oplus d} / \img(T). \]
 So it suffices to understand the map $T$ well.
 
+\section{Uniqueness of primary form}
+
+In this section, we will prove that if $M \cong R^{\oplus r} \oplus R/(q_1) \oplus R/(q_2) \oplus \cdots
+\oplus R/(q_m)$, then the integer $r$ and the prime powers $q_i$ are unique, up to permutations.
+
+First, we consider the case where $M$ is free.
+
+\begin{theorem}
+	[Uniqueness of free module's rank]
+	For a commutative integral domain $R$,
+	if a free module $M$ has a finite basis, then every other basis has the same number of elements.
+\end{theorem}
+It was mentioned once in \Cref{thm:dimension_theorem} that the strategy of the proof is to pass to the
+field case. Indeed, we're going to pass to the field $F$ being the fraction field of $R$,
+then directly apply the dimension theorem for vector spaces.
+\begin{proof}
+	As before, but we prove by contradiction this time.
+	Assume $v_1, \dots, v_n$ is a basis for the free module $M$ of rank $n$,
+	while $w_1, \dots, w_m$ are any elements of $M$ such that $m > n$.
+
+	Let $F$ be the fraction field of $R$, and embed the $R$-module $M \cong R^n$
+	into the $F$-vector space $V \cong F^n$.
+
+	Then, because $m > n$, as elements of $V$, the elements $w_1, \dots, w_m$ are linearly dependent,
+	which means there are some elements $f_1, \dots, f_m \in F$ not all zero, such that $f_1 w_1 + \cdots
+	+ f_m w_m = 0$.
+
+	By clearing denominators, we can obtain ring elements $r_1, \dots, r_m \in R$ not all zero
+	such that $r_1 w_1 + \cdots + r_m w_m = 0$. This means $w_1, \dots, w_m$ cannot be a basis for $M$.
+\end{proof}
+
+Next, we prove the case where the rank $r$ is $0$.
+This case needs a different strategy, but it still boils down to applying the dimension theorem for
+appropriately constructed vector spaces.
+
+\begin{theorem}
+	\label{thm:uniqueness_primary_form_one_prime_torsion_module}
+	Let $R$ be a PID, let $p$ be a prime element of $R$,
+	and let $M \cong R/(p^{e_1}) \oplus R/(p^{e_2}) \oplus \cdots \oplus R/(p^{e_m})$
+	for positive integers $e_1, \dots, e_m$.
+	Then the $e_i$ are unique, up to permutations.
+\end{theorem}
+
+Intuitively, what the following proof is trying to do is:
+\begin{moral}
+	If we can compute the exponents $e_i$ from intrinsic properties of $M$, then the exponents must be
+	unique.
+\end{moral}
+
+Let us consider a simple case --- consider $R = \ZZ$ and $M = \Zc{4}$. This module has $4$ elements, but
+it's not the same as $\Zc{2} \oplus \Zc{2}$. In this case, the difference between the two modules can be
+detected by the fact that in $M$, the element $1 \pmod 4$ is not zero when multiplied by $2$, on the
+other hand, multiplying by $2$ makes every element in $\Zc{2} \oplus \Zc{2}$ zero.
+
+For notational convenience,
+\begin{definition}
+	For $r \in R$ and a $R$-module $M$, define $r M = \{ r m \mid m \in M \}$. (Check that this is still
+	a $R$-module.)
+\end{definition}
+
+Then, what the paragraph above says is that $M \not\cong \Zc{2} \oplus \Zc{2}$ because $|2 M| = 2 \neq 1
+= |2 (\Zc{2} \oplus \Zc{2})|$.
+In other words, in this case, counting the number of elements of $2M$ suffices to distinguish the two
+modules.
+
+For modules of the form
+$M \cong R/(p^{e_1}) \oplus R/(p^{e_2}) \oplus \cdots \oplus R/(p^{e_m})$ where $R = \ZZ$,
+this almost works in general --- except we also need to consider the number of elements in
+$p M$, $p^2 M$, $p^3 M$, etc.
+
+Equivalently, we may also consider the number of elements in the successive quotients:
+$M/pM$, $pM/p^2 M$, $p^2 M/p^3 M$, etc.
+\begin{example}
+	Let $R = \ZZ$, $p = 3$, and $M = \Zc{3^2} \oplus \Zc{3^5}$. Then:
+	\begin{itemize}
+		\ii $|M/3M| = 9$,
+		\ii $|3M/3^2 M| = 9$,
+		\ii $|3^2 M/3^3 M| = 3$,
+		\ii $|3^3 M/3^4 M| = 3$,
+		\ii $|3^4 M/3^5 M| = 3$,
+		\ii $|3^e M/3^{e+1} M| = 1$ for all integer $e \geq 5$.
+	\end{itemize}
+	You can already see where this is going --- each decrement of the size of the quotient
+	corresponds to a prime power $p^{e_i}$.
+\end{example}
+
+When the quotient is infinite however, we can no longer do this. However, note that:
+\begin{lemma}
+	For each integer $e \geq 0$, then $p^e M/p^{e+1} M$ is a $R/(p)$-vector space.
+\end{lemma}
+Thus, instead of counting the number of elements in $p^e M/p^{e+1} M$, we count the \emph{dimension} of
+the $p^e M/p^{e+1} M$ as a $R/(p)$-vector space --- by \Cref{thm:dimension_theorem}, this is indeed
+intrinsic to the module $M$.
+
+\begin{proof}[Proof of \Cref{thm:uniqueness_primary_form_one_prime_torsion_module}]
+	Note that, since $M \cong R/(p^{e_1}) \oplus R/(p^{e_2}) \oplus \cdots \oplus R/(p^{e_m})$, we have
+	\[ \pi(M) \cong \pi(R/(p^{e_1})) \oplus \pi(R/(p^{e_2})) \oplus \cdots \oplus \pi(R/(p^{e_m})) \]
+	where $\pi(M) = p^e M/p^{e+1} M$ for any integer $e \geq 0$.
+
+	This means, as $R/(p)$-vector space,
+	\[ \dim \pi(M) = \dim \pi(R/(p^{e_1})) + \dim \pi(R/(p^{e_2})) + \cdots + \dim \pi(R/(p^{e_m})). \]
+
+	Note that, for each term $R/(p^{e_1})$, then
+	\[ \dim p^e (R/(p^{e_i})) / p^{e+1} (R/(p^{e_1})) = \begin{cases}
+		1 & e < e_i \\
+		0 & \text{otherwise}.
+	\end{cases} \]
+	With some arithmetic, you can see that the values $e_i$ are indeed uniquely determined by $\dim p^e
+	M/p^{e+1} M$, up to permutation.
+\end{proof}
+
+Note that this can be easily generalized to the case where the primes in the denominator may be different
+-- because for different primes $p$ and $q$ of $R$, then $p^e (R/(q))/p^{e+1} (R/(q))$ is a
+$0$-dimensional $R/(p)$-vector space.
+
+Finally, we handle the general case.
+\begin{theorem}
+	If $M \cong R^{\oplus r} \oplus R/(q_1) \oplus R/(q_2) \oplus \cdots \oplus R/(q_m)$,
+	then the integer $r$ and the prime powers $q_i$ are unique, up to permutations.
+\end{theorem}
+\begin{proof}
+	From the two theorems above, it suffices if we can prove that the $R^{\oplus r}$ part and the
+	$R/(q_1) \oplus R/(q_2) \oplus \cdots \oplus R/(q_m)$ part are uniquely determined from $M$.
+
+	For notational convenience, we call an element $a \in M$ a \vocab{torsion element} if there is $r \in
+	R$, $r \neq 0$ such that $r a = 0$.
+
+	Then,
+	\begin{itemize}
+		\ii If an element $a \in M$ has the $R^{\oplus r}$ component zero, then $q_1 q_2 \cdots q_m \cdot
+		a = 0$, thus $a$ is a torsion element.
+		\ii If an element $a \in M$ has the $R^{\oplus r}$ component nonzero, then $a$ is not a torsion
+		element.
+	\end{itemize}
+
+	In other words, the submodule consisting of all torsion elements is identical to the submodule of the
+	elements with $R^{\oplus r}$ component zero, thus is isomorphic to
+	$R/(q_1) \oplus R/(q_2) \oplus \cdots \oplus R/(q_m)$.
+
+	For notation convenience, let $\Tor(M)$ be the submodule of $M$ consisting of all torsion elements.
+	Then $\Tor(M) \cong R/(q_1) \oplus R/(q_2) \oplus \cdots \oplus R/(q_m)$ and $M/\Tor(M) \cong
+	R^{\oplus r}$, in other words, the $R^{\oplus r}$ part and the
+	$R/(q_1) \oplus R/(q_2) \oplus \cdots \oplus R/(q_m)$ part are uniquely determined from $M$, so we're
+	done.
+\end{proof}
+
+
 \section{Smith normal form}
 The idea is now that we have reduced our problem to studying
 linear maps $T \colon R^{\oplus m} \to R^{\oplus n}$,
@@ -274,12 +422,17 @@ More generally,
 	replace $T$ with $AT$.
 \end{moral}
 This corresponds to replacing
-\[ (f_1, \dots, f_n) \mapsto (A\inv(f_1), \dots, A\inv(f_n)) \]
+\[ (f_1, \dots, f_n) \mapsto ((F A\inv)_1, \dots, (F A\inv)_n) \]
 (the ``invertible'' condition just guarantees the latter is a basis).
-Of course similarly we can replace $X$ with $XB$
+Here, $F$ is the $n \times n$ matrix with columns being $f_1, \dots, f_n$, and $(F A\inv)_1$ denotes the
+first column of $F A\inv$.
+
+Of course similarly we can replace $T$ with $TB$
 where $B$ is an invertible $m \times m$ matrix;
 this corresponds to
-\[ (e_1, \dots, e_m) \mapsto (B\inv(e_1), \dots, B\inv(e_m)) \]
+\[ (e_1, \dots, e_m) \mapsto ((E B)_1, \dots, (E B)_m) \]
+where $E$ is the $m \times m$ matrix with columns being $e_1, \dots, e_m$.
+
 Armed with this knowledge, we can now approach:
 \begin{theorem}
 	[Smith normal form]

@@ -161,7 +161,31 @@ This means we can \emph{excise} (delete) a subset $Z$ of $A$ in computing
 the relative homology groups $H_n(X,A)$.
 This should intuitively make sense:
 since we are ``modding out by points in $A$'',
-the internals of the point $A$ should not matter so much.
+the internals of the set $A$ should not matter so much.
+
+\begin{example}
+	Excision may seem trivial (for a fuzzy relative cycle in $H_n(X, A)$, just tweak the part that
+	lies inside $A$ until it doesn't touch $Z$), until you realize that it isn't always possible ---
+	you may accidentally cut a cycle apart! For example:
+	\begin{center}
+	\begin{asy}
+		fill(unitcircle, lightcyan);
+		fill(shift(2, 0)*unitcircle, lightcyan);
+		picture p;
+		fill(p, shift(1, 0)*scale(0.4)*unitcircle, orange);
+		clip(p, unitcircle);
+		add(p);
+		picture p;
+		fill(p, shift(1, 0)*scale(0.4)*unitcircle, orange);
+		label("$X$", (2.9, 0.9), cyan);
+		label("$A$", (1.3, 0.5), orange);
+		clip(p, shift(2, 0)*unitcircle);
+		add(p);
+		dot("$Z$", (1, 0), red, align=NE);
+		draw((0.6, 0.5)..(1, 0)..(1.5, 0.2));
+	\end{asy}
+	\end{center}
+\end{example}
 
 The main application of excision is to decide
 when $H_n(X,A) \cong \wt H_n(X/A)$.

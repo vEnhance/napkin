@@ -135,7 +135,7 @@ Then we compute
 	&\to 0
 \end{align*}
 as $\norm{v} \to 0$.
-Thus, for $p = ae_1 + be_2$ we indeed have $(Df)_p = 2a \cdot e_1^\vee + 2b \cdot e_2^\vee$.
+Thus, for $p = ae_1 + be_2$ we indeed have $(Df)_p = 2a \cdot \ee_1^\vee + 2b \cdot \ee_2^\vee$.
 
 \begin{remark}
 	As usual, differentiability implies continuity.
@@ -175,7 +175,7 @@ That's why the dual space $V^\vee$ is so important.
 \prototype{If $f(x,y) = x^2+y^2$, then
 $(Df) \colon (x,y) \mapsto 2x \cdot \ee_1^\vee + 2y \cdot \ee_2^\vee$, and
 $\fpartial fx = 2x$, $\fpartial fy = 2y$.}
-Let $U \subseteq V$ be open and let $V$ have a basis $e_1$, \dots, $e_n$.
+Let $U \subseteq V$ be open and let $V$ have a basis $\ee_1$, \dots, $\ee_n$.
 Suppose $f \colon U \to \RR$ is a function which is differentiable everywhere,
 meaning $(Df)_p \in V^\vee$ exists for every $p$.
 In that case, one can consider $Df$ as \emph{itself} a function:
@@ -190,49 +190,49 @@ to reflect how much information we're dealing with.
 We say $(Df)_p$ is the total derivative at $p$.
 
 Let's apply the projection principle now to $Df$.
-Since we picked a basis $e_1$, \dots, $e_n$ of $V$,
+Since we picked a basis $\ee_1$, \dots, $\ee_n$ of $V$,
 there is a corresponding dual basis
-$e_1^\vee$, $e_2^\vee$, \dots, $e_n^\vee$.
+$\ee_1^\vee$, $\ee_2^\vee$, \dots, $\ee_n^\vee$.
 The Projection Principle tells us that $Df$ can thus be thought of as just $n$ functions, so we can write
-\[ Df = \psi_1 e_1^\vee + \dots + \psi_n e_n^\vee.  \]
+\[ Df = \psi_1 \ee_1^\vee + \dots + \psi_n \ee_n^\vee.  \]
 In fact, we can even describe what the $\psi_i$ are.
 \begin{definition}
 	The \vocab{$i^{\text{th}}$ partial derivative} of $f \colon U \to \RR$, denoted
-	\[ \fpartial{f}{e_i}: U \to \RR \]
+	\[ \fpartial{f}{\ee_i} \colon U \to \RR \]
 	is defined by
 	\[
-		\fpartial{f}{e_i} (p)
+		\fpartial{f}{\ee_i} (p)
 		\defeq \lim_{t \to 0} \frac{f(p + te_i) - f(p)}{t}.
 	\]
 \end{definition}
-You can think of it as ``$f'$ along $e_i$''.
+You can think of it as ``$f'$ along $\ee_i$''.
 \begin{ques}
-	Check that if $Df$ exists, then \[ (Df)_p(e_i) = \fpartial{f}{e_i}(p). \]
+	Check that if $Df$ exists, then \[ (Df)_p(\ee_i) = \fpartial{f}{\ee_i}(p). \]
 \end{ques}
 \begin{remark}
 	Of course you can write down a definition of $\fpartial{f}{v}$
-	for any $v$ (rather than just the $e_i$).
+	for any $v$ (rather than just the $\ee_i$).
 \end{remark}
 
 From the above remarks, we can derive that
 \[
 	\boxed{
 	Df =
-	\frac{\partial f}{\partial e_1} \cdot e_1^\vee
+	\frac{\partial f}{\partial \ee_1} \cdot \ee_1^\vee
 	+ \dots +
-	\frac{\partial f}{\partial e_n} \cdot e_n^\vee .
+	\frac{\partial f}{\partial \ee_n} \cdot \ee_n^\vee .
 	}
 \]
 and so given a basis of $V$, we can think of $Df$ as just
 the $n$ partials.
 \begin{remark}
-Keep in mind that each $\frac{\partial f}{\partial e_i}$ is a function from $U$ to the \emph{reals}.
+Keep in mind that each $\frac{\partial f}{\partial \ee_i}$ is a function from $U$ to the \emph{reals}.
 That is to say,
 \[
 	(Df)_p =
-	\underbrace{\frac{\partial f}{\partial e_1}(p)}_{\in \RR} \cdot e_1^\vee
+	\underbrace{\frac{\partial f}{\partial \ee_1}(p)}_{\in \RR} \cdot \ee_1^\vee
 	+ \dots +
-	\underbrace{\frac{\partial f}{\partial e_n}(p)}_{\in \RR} \cdot e_n^\vee
+	\underbrace{\frac{\partial f}{\partial \ee_n}(p)}_{\in \RR} \cdot \ee_n^\vee
 	\in V^\vee.
 \]
 \end{remark}
@@ -262,11 +262,11 @@ because you had to take AP Calculus at some point in your life.
 It turns out for most reasonable functions, this is all you'll ever need.
 \begin{theorem}[Continuous partials implies differentiable]
 	\label{thm:apcalc_partials}
-	Let $U \subseteq V$ be open and pick any basis $e_1, \dots, e_n$.
-	Let $f \colon U \to \RR$ and suppose that $\fpartial{f}{e_i}$ is defined
+	Let $U \subseteq V$ be open and pick any basis $\ee_1, \dots, \ee_n$.
+	Let $f \colon U \to \RR$ and suppose that $\fpartial{f}{\ee_i}$ is defined
 	for each $i$ and moreover is \emph{continuous}.
 	Then $f$ is differentiable and $Df$ is given by
-	\[ Df = \sum_{i=1}^n \fpartial{f}{e_i} \cdot e_i^\vee. \]
+	\[ Df = \sum_{i=1}^n \fpartial{f}{\ee_i} \cdot \ee_i^\vee. \]
 \end{theorem}
 \begin{proof}
 	Not going to write out the details, but\dots
@@ -341,12 +341,12 @@ An important corollary of this theorem:
 	Let $f \colon U \to \RR$ with $U \subseteq V$ open be twice differentiable.
 	Then for any point $p$ such that the quantities are defined,
 	\[
-		\frac{\partial}{\partial e_i}
-		\frac{\partial}{\partial e_j}
+		\frac{\partial}{\partial \ee_i}
+		\frac{\partial}{\partial \ee_j}
 		f(p)
 		=
-		\frac{\partial}{\partial e_j}
-		\frac{\partial}{\partial e_i}
+		\frac{\partial}{\partial \ee_j}
+		\frac{\partial}{\partial \ee_i}
 		f(p).
 	\]
 \end{corollary}

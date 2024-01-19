@@ -364,7 +364,7 @@ This gives you a better way to draw non-closed points:
 they are the generic points lying along any irreducible closed set
 (consisting of more than just one point).
 
-At this point\footnote{Pun not intended},
+At this point,\footnote{Pun not intended}
 I may as well give you the real definition of generic point.
 \begin{definition}
 	Given a topological space $X$,
@@ -437,7 +437,45 @@ and we now prove it.
 	gives some prime ideal $\kp$ of $A$ containing $I$ but not containing $x$.
 	Thus $x \notin \bigcap_{\kp \supseteq I} \kp$,
 	as desired.
+
+	The key idea here is, for $x \in A$,
+	$x^n = 0$ for some positive \emph{finite} integer $n$ if and only if $A[1/x] = 0$.
+
+	So, in other words,
+	\begin{align*}
+		& x \in \sqrt{(0)} \\
+		& \iff \text{$x^n = 0$ for some positive integer $n$} \\
+		& \iff A[1/x] = 0 \\
+		& \iff \text{for all prime ideals $\kp$, $x \in \kp$} \\
+		& \iff x \in \bigcap_\kp \kp.
+	\end{align*}
+
+	When $I$ is not $(0)$, consider the ring $A/I$ instead.
 \end{proof}
+
+Geometrically speaking, this theorem states:
+\begin{quote}
+	For any $f$ a regular function on $\Spec A/I$, then
+	\[
+		\text{$f^n = 0$ for some positive integer $n$}
+		\iff \text{$f$ vanishes at all points in $\Spec A/I$}.
+	\]
+\end{quote}
+To which, the proof above reads:
+\begin{align*}
+	& f \in \sqrt{(I)} \\
+	& \iff \text{$f^n \in I$ for some positive integer $n$} \\
+	& \iff (A/I)[1/f] = 0 \\
+	& \iff \text{$\Spec (A/I)[1/f]$ is empty} \\
+	& \iff \text{for all $\kp \in \Spec A/I$, $f$ vanishes at $\kp$} \\
+	& \iff f \in \bigcap_{\kp \in \Spec A/I} \kp.
+\end{align*}
+
+You may want to run through the proof with the example $A = k[x]$, $I = (x^2)$ and $f = x$
+in \Cref{sec:spec_double_point},
+keeping in mind the image of $\Spec A/I$ as a ``fuzzy'' point and $f$ being a nonzero function that
+takes value zero at every point.
+
 \begin{remark}
 	[A variant of Krull's theorem]
 	The longer direction of this proof is essentially

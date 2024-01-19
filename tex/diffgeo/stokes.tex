@@ -370,8 +370,8 @@ Here's how we do it in general.
 	\end{center}
 	Here $p_1$, $p_2$, $p_3$, $p_4$ are the images of $(0,0)$, $(0,1)$, $(1,1)$, $(1,0)$, respectively.
 	Formally, $\partial c$ is given by
-	\[ \partial c = \left( (t \mapsto c(1,t)) - (t \mapsto c(0,t)) \right)
-		- \left( (t \mapsto c(t,1)) - (t \mapsto c(t,0)) \right). \]
+	\[ \partial c = (t \mapsto c(1,t)) - (t \mapsto c(0,t))
+		- (t \mapsto c(t,1)) + (t \mapsto c(t,0)). \]
 	I apologize for the eyesore notation caused by inline functions.
 	Let's make amends and just write
 	\[ \partial c = [p_2,p_3] - [p_1,p_4] - [p_4,p_3] + [p_1,p_2] \]

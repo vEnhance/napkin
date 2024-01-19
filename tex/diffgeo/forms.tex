@@ -91,6 +91,13 @@ that eats tangent vectors at $p$, and spits out a real number.
 Thus, we think of $\alpha_p$ as an element of $V^\vee$;
 \[ \alpha_p \in V^\vee. \]
 
+\begin{remark}
+	You might recall that, in high school calculus, the ``arc-length element'' $ds$ can be
+	integrated along a curve: $\int_c ds$ is the length of the curve $c$.
+
+	This is \emph{not} a $1$-form! More on this later.
+\end{remark}
+
 Next, we draw pictures of $2$-forms.
 This should, for example, let us integrate over a blob
 (a so-called $2$-cell) of the form
@@ -132,8 +139,9 @@ a small parallelogram. So, the right thing to do is in fact consider
 That is, to use the wedge product to get a handle on
 the idea that $v$ and $w$ span a parallelogram.
 Another valid choice would have been $(V \wedge V)^\vee$;
-in fact, the two are isomorphic, but it will be more convenient
-to write it in the former.
+in fact, the two are isomorphic,\footnote{We only consider finite-dimensional $V$.}
+but it will be more convenient to write it in the former.\footnote{%
+See \Cref{sec:wedge_product_dual}.}
 
 \section{Pictures of exterior derivatives}
 Next question:
@@ -260,22 +268,23 @@ Like with $Df$, we'll use $\alpha_p$ instead of $\alpha(p)$.
 
 Now, by the projection principle (\Cref{thm:project_principle}) we only have to specify
 a function on each of $\binom nk$ basis elements of $\Lambda^k(V^\vee)$.
-So, take any basis $\{e_i\}$ of $V$, and
+So, take any basis $\{\ee_i\}$ of $V$, and
 take the usual basis for $\Lambda^k(V^\vee)$ of elements
-\[ e_{i_1}^\vee \wedge e_{i_2}^\vee \wedge \dots \wedge e_{i_k}^\vee. \]
+\[ \ee_{i_1}^\vee \wedge \ee_{i_2}^\vee \wedge \dots \wedge \ee_{i_k}^\vee. \]
 Thus, a general $k$-form takes the shape
 \[ \alpha_p = \sum_{1 \le i_1 < \dots < i_k \le n}
 	f_{i_1, \dots, i_k}(p) \cdot
-	e_{i_1}^\vee \wedge e_{i_2}^\vee \wedge \dots \wedge e_{i_k}^\vee. \]
+	\ee_{i_1}^\vee \wedge \ee_{i_2}^\vee \wedge \dots \wedge \ee_{i_k}^\vee. \]
 Since this is a huge nuisance to write, we will abbreviate this to just
 \[ \alpha = \sum_I f_I \cdot de_I \]
 where we understand the sum runs over $I = (i_1, \dots, i_k)$,
-and $de_I$ represents $e_{i_1}^\vee \wedge \dots \wedge e_{i_k}^\vee$.
+and $de_I$ represents $\ee_{i_1}^\vee \wedge \dots \wedge \ee_{i_k}^\vee$.
 
 Now that we have an element $\Lambda^k(V^\vee)$, what can it do?
 Well, first let me get the definition on the table, then tell you what it's doing.
 \begin{definition}
 	[How to evaluate a differential form at a point]
+	\label{def:evaluate_differential_form}
 	For linear functions $\xi_1, \dots, \xi_k \in V^\vee$
 	and vectors $v_1, \dots, v_k \in V$, set
 	\[
@@ -345,17 +354,17 @@ the equality $\alpha_p(v_1, v_2) = -\alpha_p(v_2, v_1)$ holds.
 
 This is what makes differential forms so fit for integration.
 
-
 \section{Exterior derivatives}
-\prototype{Possibly $dx_1 = \ee_1^\vee$.}
-We now define the exterior derivative $df$ that we gave
+\prototype{Possibly $(dx_1)_p = \ee_1^\vee$.}
+We now define the exterior derivative\footnote{The name ``exterior derivative'' comes from the wedge
+product $\wedge$ being alternatively called the exterior product.} $df$ that we gave
 pictures of at the beginning of the chapter.
 It turns out that the exterior derivative is easy to compute
 given explicit coordinates to work with.
 
 Firstly, we define the exterior derivative
 of a function $f \colon U \to \RR$, as
-\[ df \defeq Df = \sum_i \frac{\partial f}{\partial e_i} e_i^\vee \]
+\[ df \defeq Df = \sum_i \frac{\partial f}{\partial \ee_i} \ee_i^\vee \]
 In particular, suppose $V = \RR^n$ and $f(x_1, \dots, x_n) = x_1$
 (i.e.\ $f = \ee_1^\vee$). Then:
 \begin{ques}
@@ -367,7 +376,7 @@ In particular, suppose $V = \RR^n$ and $f(x_1, \dots, x_n) = x_1$
 	it would be a good idea to use ``$x_1$'' to denote $\ee_1^\vee$
 	(because \emph{obviously}\footnote{Sarcasm.} $x_1$ means
 	``the function that takes $(x_1, \dots, x_n) \in \RR^n$ to $x_1$'')
-	and then decided that \[ dx_1 \defeq \ee_1^\vee. \]
+	and then decided that \[ dx_1 \defeq d(\ee_1^\vee). \]
 	This notation is so entrenched that I have no choice
 	but to grudgingly accept it.
 	Note that it's not even right,
@@ -380,13 +389,16 @@ In particular, suppose $V = \RR^n$ and $f(x_1, \dots, x_n) = x_1$
 	\[ df = 2x \cdot \ee_1^\vee = 2x \cdot dx \]
 	and so by (more) abuse of notation we write $df/dx = 2x$.
 \end{remark}
+%TODO this is backwards, the actual reason is mathematician used that notation before the
+%formalization using differential form (Newton etc.), and for convenience we update our definition
+%to match the definition, and not vice versa.
 
 More generally, we can define the exterior derivative
-in terms of our basis $e_1$, \dots, $e_n$ as follows:
+in terms of our basis $\ee_1$, \dots, $\ee_n$ as follows:
 \begin{definition}
 If $\alpha = \sum_I f_I de_I$ then we define the \vocab{exterior derivative} as
 \[ d\alpha \defeq \sum_I df_I \wedge de_I
-	= \sum_I \sum_j \fpartial{f_I}{e_j} de_j \wedge de_I. \]
+	= \sum_I \sum_j \fpartial{f_I}{\ee_j} d\ee_j \wedge de_I. \]
 \end{definition}
 This doesn't depend on the choice of basis.
 (We'll mention a basis-free definition at the end of this section.)
@@ -442,6 +454,244 @@ Recall that $df$ measures the change in boundary.
 In that sense, $d^2 = 0$ is saying something like
 ``the boundary of the boundary is empty''.
 We'll make this precise when we see Stokes' theorem in the next chapter.
+
+\section{Digression: $\Lambda^k(V^\vee)$ versus $(\Lambda^k(V))^\vee$}
+\label{sec:wedge_product_dual}
+
+Earlier on, we remarked that $\Lambda^k(V^\vee) \cong (\Lambda^k(V))^\vee$ canonically, but we
+use the former for convenience.
+
+The former notation is indeed more convenient (wedge product of
+two differential form is natural), but it's not clear why \Cref{def:evaluate_differential_form} is
+defined in such a way.
+
+If we used $(\Lambda^k(V))^\vee$ instead, it's trivial to evaluate a differential form:
+For $f \in (\Lambda^k(V))^\vee$ and vectors $v_1, \dots, v_k \in V$, then
+\[
+	f(v_1, \dots, v_k) \defeq f(v_1 \wedge \dots \wedge v_k).
+\]
+This is because $f$ naturally takes in an element of $\Lambda^k(V)$ and returns a real number.
+
+But now, it is not clear how we can take $f \in (\Lambda^1(V))^\vee$ and $g \in (\Lambda^1(V))$, and
+return something like $f \wedge g \in (\Lambda^2(V))^\vee$: The natural choice of $(v \wedge w
+\mapsto f(v) g(w)$ isn't even well-defined!\footnote{You can try it with $f = \ee_1^\vee$ and
+$g = \ee_2^\vee$, evaluate it at $\ee_1 \wedge \ee_2$ and $-\ee_2 \wedge \ee_1$,
+which we know is equal.}
+
+To figure out what to do, we have to take a step back and consider the tensor product.
+For a vector space $V$,
+define $T^k(V) = \underbrace{V \otimes V \otimes \cdots \otimes V}_{\text{$k$ times}}$.
+
+We have the following diagram:
+\begin{center}
+\begin{tikzcd}
+	T^k(V^\vee) \ar[r, hook, "\phi"] \ar[d, surjective head, "q", shift left] & (T^k(V))^\vee \\
+	\Lambda^k(V^\vee) \ar[u, hook, "\iota", shift left] & (\Lambda^k(V))^\vee \ar[u, hook, "q^\vee"]
+\end{tikzcd}
+\end{center}
+
+What is going on?
+
+First, there is a natural map $T^k(V^\vee) \to (T^k(V))^\vee$ given by
+\[ \phi(\xi_1 \otimes \dots \otimes \xi_k) = v_1 \otimes \dots \otimes v_k \mapsto
+\xi_1(v_1) \xi_2(v_2) \dotsm \xi_k(v_k) \]
+and extends to all of $T^k(V^\vee)$ by linearity the obvious way.
+
+Unlike the situation with the wedge product above, this map is indeed well-defined.
+
+With some manual work, we can check $\phi$ is injective. Because both $T^k(V^\vee)$ and
+$(T^k(V))^\vee$ has dimension $(\dim V)^k$, $\phi$ is bijective.
+
+Next, note that $\Lambda^k(V)$ is just ``$T^k(V)$ but with more relations imposed'',
+there is a natural quotient map $q \colon T^k(V) \surjto \Lambda^k(V)$.
+So, the tensors are divided into equivalence classes.
+\begin{example}
+	If $V = \RR^2$, then $T^2(V)$ would have elements such as $\ee_1 \otimes \ee_1$, $\ee_1 \otimes
+	\ee_2$ or $-\ee_2 \otimes \ee_1$.
+
+	Mapping these elements to $\Lambda^2(V)$, we get $\ee_1 \wedge \ee_1 = 0$, and $\ee_1 \wedge
+	\ee_2 = -\ee_2 \wedge \ee_1$, i.e. $\ee_1 \otimes \ee_2$ and $-\ee_2 \otimes \ee_1$ belongs to
+	the same equivalence class.
+\end{example}
+
+The map $q$ induces a dual map $q^\vee \colon (\Lambda^k(V))^\vee \to (T^k(V))^\vee$.
+\begin{ques}
+	Convince yourself that a function $f \in (T^k(V))^\vee$ belongs to $\img q^\vee$ if and only if
+	$f$ assigns the same value for every element in each equivalence class, as defined above.
+\end{ques}
+
+Thus, we get an isomorphism $q \circ \phi\inv \circ q^\vee \colon (\Lambda^k(V))^\vee \to
+\Lambda^k(V^\vee)$.\footnote{We're using $q$ for both the map $T^k(V) \to \Lambda^k(V)$ and
+$T^k(V^\vee) \to \Lambda^k(V^\vee)$, by abuse of notation.}
+
+To check this is indeed an isomorphism, we will construct its inverse map.
+As defined above, each equivalence class in $T^k(V^\vee)$ (fiber of $g \in \Lambda^k(V^\vee)$)
+has multiple elements, but we can find a canonical element by the following:
+\begin{definition}
+	For vector space $V$, and element $f = f_1 \otimes f_2 \otimes \dots \otimes f_k \in T^k(V)$,
+	we define the alternation of $f$ as follows:
+	\[ \Alt f = \frac{1}{k!} \sum_{\sigma \in S_k} \opname{sgn}(\sigma) \cdot
+	(f_{\sigma(1)} \otimes f_{\sigma(2)} \otimes \dots \otimes f_{\sigma(k)}) \]
+	and extend it to all of $T^k(V)$.
+\end{definition}
+Here, $S_k$ is the permutation group. Notice the similarity with the definition of the determinant.
+
+\begin{example}
+	As above, $V = \RR^2$. Then we get:
+	\[ \Alt (\ee_1 \otimes \ee_2) = \frac{\ee_1 \otimes \ee_2 - \ee_2 \otimes \ee_1}{2}. \]
+	Notice that if we swap the first and second component of $\ee_1 \otimes \ee_2$, we get $\ee_2
+	\otimes \ee_1$ which has little to do with the original tensor. However, if we swap
+	the first and second component of $\frac{\ee_1 \otimes \ee_2 - \ee_2 \otimes \ee_1}{2}$, we get
+	$\frac{\ee_2 \otimes \ee_1 - \ee_1 \otimes \ee_2}{2}$, which is exactly the negation of the
+	original tensor!
+\end{example}
+
+We see that $\Alt f$ is a desirable representative of the equivalence class of $f$ because:
+\begin{itemize}
+	\ii $\Alt (\Alt f) = \Alt f$;
+	\ii $q(f) = q(\Alt f)$ where $q$ is the quotient map $T^k(V) \surjto \Lambda^k(V)$;
+	\ii $\Alt f$ is an \emph{alternating tensor} --- that is, if we swap two adjacent components
+	of $\Alt f$ for each pure tensor, then the whole tensor gets negated.
+\end{itemize}
+Thus it makes sense for us to define $\iota \colon \Lambda^k(V^\vee) \injto T^k(V^\vee)$
+that takes each element to the alternating tensor in $T^k(V^\vee)$.
+\begin{example}
+	With the same example as above, $V = \RR^2$, then we get
+	\[
+		\iota(\ee_1 \wedge \ee_2) = \Alt(\ee_1 \otimes \ee_2)
+		= \frac{\ee_2 \otimes \ee_1 - \ee_1 \otimes \ee_2}{2}.
+	\]
+\end{example}
+Finally,
+\begin{exercise}
+	Show that $\img (\phi \circ \iota) = \img q^\vee$, and that
+	$\iota^\vee \circ \phi \circ \iota$ and $q \circ \phi\inv \circ q^\vee$
+	are inverses of each other.
+\end{exercise}
+
+It is common notation that we want to define the wedge product such that
+$\ee_1^\vee \wedge \ee_2^\vee$ takes in $\ee_1 \wedge \ee_2$ (that is, the square formed by $\ee_1$
+and $\ee_2$), and returns $1$. However, if we define the wedge product naturally by the method
+above, we get
+\[
+	\iota(\ee_1^\vee \wedge \ee_2^\vee)
+	= \frac{\ee_1^\vee \otimes \ee_2^\vee - \ee_2^\vee \otimes \ee_1^\vee}{2}
+\]
+which means
+\[
+	\phi(\iota(\ee_1^\vee \wedge \ee_2^\vee))(\ee_1, \ee_2)
+	= \frac{1 \cdot 1 - 0 \cdot 0}{2} = \frac{1}{2}.
+\]
+So, a corrective factor $k!$ is needed.
+
+To see how ``difficult'' the wedge product will be if we use the second notation, let $V = \RR^3$,
+$\alpha = dx \wedge dy \in \Lambda^2(V^\vee)$, and $\beta = dz \in \Lambda^1(V^\vee)$.
+
+Then, we knows:
+\begin{itemize}
+	\ii $\alpha(\ee_1 \wedge \ee_2) = 1$.
+	\ii $\beta(\ee_3) = 1$.
+	\ii We should have $(\alpha \wedge \beta)(\ee_1 \wedge \ee_2 \wedge \ee_3) = 1$.
+\end{itemize}
+The last point is obvious if we let the wedge product be the map $\wedge \colon
+\Lambda^2(V^\vee) \times \Lambda^1(V^\vee) \to \Lambda^3(V^\vee)$.
+
+However, if we're given $\alpha$ and $\beta$ as elements of $(\Lambda^2(V))^\vee$ and
+$(\Lambda^1(V))^\vee$ respectively (that is, we can only evaluate $\alpha$ at $v \wedge w$ for $v, w
+\in V$; and we can only evaluate $\beta$ at $v$ for $v \in V$), then it would be much more difficult
+to write down what $\alpha \wedge \beta$ should be. In fact,
+\[
+	(\alpha \wedge \beta)(v_1 \wedge v_2 \wedge v_3) =
+	\alpha(v_1 \wedge v_2) \beta(v_3)
+	- \alpha(v_1 \wedge v_3) \beta(v_2)
+	+ \alpha(v_2 \wedge v_3) \beta(v_1).
+\]
+You can see that this is a variant of the alternation operator (or the evaluation operation),
+where we compute a weighted average in order to force $\alpha \wedge \beta$ to be alternating.
+
+\section{Tangential remark: $ds$ is not a $1$-form}
+
+As mentioned in a remark earlier, $ds$ is not a
+$1$-form.\footnote{\url{https://mathoverflow.net/q/90455} has a discussion on this.}
+
+We said earlier that differential form is something you can integrate. You can certainly integrate
+$ds$, but it's not considered a $1$-form!
+
+What's going on here?
+
+In fact, the true story is that the objects that are integrable over a smooth curve are
+\vocab{$1$-densities}. We will define this later.
+
+For simplicity, we work over $\RR^2$ in this section.
+Given a (smooth) $1$-density $\omega$ that can be integrated over a smooth curve $c$,
+we would like the integral $\int_c \omega$ to have the following properties:
+\begin{itemize}
+	\ii It is additive: if $c$ is the concatenation of two curves $c_1$ and $c_2$, then
+	$\int_c \omega = \int_{c_1} \omega + \int_{c_2} \omega$.
+	\ii Because everything is smooth, we would expect that if $c$ is a tiny line segment,
+	then in fact $\int_{c_1} \omega \approx \int_{c_2} \omega$ if we divide $c$ into two segments
+	$c_1$ and $c_2$ of equal length.
+
+	Thus, it's natural to require $\int_c \omega$ to be ``approximately linear'' when the length of
+	$c$ is small enough.
+
+	In symbols: for $\eps > 0$, let $c_\eps$ be the initial segment of the curve $c$ with length
+	$\eps$, then
+	\[ \lim_{\eps \to 0^+} \frac{\int_{c_\eps} \omega}{\eps} = h \]
+	for some finite constant $h$.
+\end{itemize}
+
+We certainly can formalize a $1$-density $\omega$ to be simply a function that takes smooth curves
+$c$ and returns the value $\int_c \omega$ satisfying the two conditions above, but this definition
+is clunky.
+
+A better way to do it is to observe that, if we know $\int_c \omega$ for tiny curves $c$, then we
+can integrate $\omega$ over any smooth curves $c$ by chopping it up into tiny curves.
+But this isn't completely formal --- of course, as the length of a curve tends to $0$, the integral
+$\int_c \omega$ also tends to 0 --- so instead, we consider the limit above:
+\[ \lim_{\eps \to 0^+} \frac{\int_{c_\eps} \omega}{\eps}. \]
+
+\begin{ques}
+	Convince yourself that, given two curves $c \colon [0, 1] \to \RR^2$ and $c_2 \colon [0, 1] \to
+	\RR^2$ that starts at the same point $c(0) = c_2(0) = p$,
+	and moves in the same direction $c'(0) = c_2'(0) = v$, then basic smoothness condition of
+	$\int_c \omega$ would guarantee that the limit above is the same.
+\end{ques}
+
+Thus,
+\begin{moral}
+We can define a $1$-density $\omega$ to be a function that takes in a point $p$ and the initial
+direction $v \in \RR^2$, which is understood as a tangent vector of $\RR^2$ at $p$, and returns
+the limit.
+\end{moral}
+
+Formally:
+\begin{definition}[$1$-density]
+	A $1$-density $\omega$ is a function $\RR^2 \times \RR^2 \to \RR$.
+\end{definition}
+We writes $\omega_p(v) \in \RR$.
+
+Since only the direction matters, it makes sense to make $\omega$ satisfy
+$\omega_p(\lambda v) = \lambda \omega_p(v)$ for $\lambda \geq 0$.  In particular, $\omega_p(0) = 0$.
+
+Then, $ds$ is the differential form $ds_p(v) = \Vert v \Vert$. While we have not rigorously defined
+how to integrate over a curve (we will do this next chapter), you can intuitively see how it works.
+
+With this definition, a $1$-form is just a $1$-density that is in addition linear in the second
+argument --- $\omega_p(v + w) = \omega_p(v) + \omega_p(w)$.
+
+So, what is the special properties that differential forms enjoys? For one, if $\omega$ is a
+differential form, we have:
+\begin{quote}
+	Let $c \colon [0, 1] \to \RR^2$ be a smooth curve, then for any sequence of smooth curves $c_k$
+	that converges uniformly to $c$, then $\int_{c_k} \omega$ converges to $\int_c \omega$.
+\end{quote}
+
+You can easily imagine how this can fail for $ds$ --- a sequence of piecewise smooth curves
+that consist of only horizontal and vertical lines can approximate a circle, but the arc length of
+these jagged curves can never converge to the circumference of the circle.\footnote{In fact, using
+the same argument, you can also prove that, conversely, any smooth density that satisfies the latter
+property must in fact be linear!}
 
 \section{Closed and exact forms}
 Let $\alpha$ be a $k$-form.

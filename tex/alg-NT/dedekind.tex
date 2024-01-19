@@ -634,7 +634,7 @@ which turn out to be true:
 	\begin{enumerate}[(a)]
 		\ii $\Norm(\ka)$ is finite.
 		\ii For any other nonzero ideal $\kb$, $\Norm(\ka\kb) = \Norm(\ka)\Norm(\kb)$.
-		\ii If $\ka = (a)$ is principal, then $\Norm(\ka) = \Norm_{K/\QQ}(a)$.
+		\ii If $\ka = (a)$ is principal, then $\Norm(\ka) = |\Norm_{K/\QQ}(a)|$.
 		% \ii The ideal norm $\Norm(\ka)$ equals the GCD of $\Norm_{K/\QQ}(\alpha)$ across
 		% all $\alpha \in \ka$. In particular, if $\ka = (\alpha)$ is principal
 		% then $\Norm(\ka) = \Norm_{K/\QQ}(\alpha)$.
@@ -658,12 +658,23 @@ was a Dedekind domain.
 %		but $2 \in \ka$ so $1 \in \ka$.
 %\end{example}
 
+As with the case of the norm of an element, the ideal norm also has a geometrical interpretation:
+Recall that if $\ka = (a)$, let $\mu_a$ be the multiplication-by-$a$ map,
+then $\Norm_{K/\QQ}(a) = |\det \mu_a|$ measures how much $K$ is stretched under $\mu_a$ when viewed
+as a $\QQ$-vector space.
+\begin{exercise}
+	Convince yourself that if $\mu_a(\OO_K) \subseteq \OO_K$, then $|\OO_K / a \OO_K|$ is
+	exactly equal to $|\det \mu_a|$.
+\end{exercise}
+This explains why $\Norm(\ka) = |\Norm_{K/\QQ}(a)|$, although note that $\ka = (a) = (-a)$, so there
+need not be an unique multiplication-by-$\ka$ map.
+
 The fact that $\Norm$ is completely multiplicative lets us also consider the norm
 of a fractional ideal $J$ by the natural extension
 \[ J = \prod_i \kp_i^{n_i} \cdot \prod_i \kq_i^{-m_i}
 	\quad \implies \quad
 	\Norm(J) \defeq \frac{\prod_i \Norm(\kp_i)^{n_i}}{\prod_i \Norm(\kq_i)^{m_i}}. \]
-Thus $\Norm$ is a natural group homomorphism $J_K \to \QQ \setminus \{0\}$.
+Thus $\Norm$ is a natural group homomorphism $J_K \to \QQ^\times$.
 
 
 \section\problemhead
