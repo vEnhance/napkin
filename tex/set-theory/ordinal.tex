@@ -94,9 +94,32 @@ The first several ordinals can be illustrated in a nice spiral.
 	\includegraphics[scale=0.60]{media/500px-Omega-exp-omega-labeled.png}
 \end{center}
 
+\begin{remark}
+	You may think, well, why don't we define the ordinals like this instead? It certainly looks
+	shorter and simpler!
+	\begin{align*}
+		0 &= \varnothing \\
+		1 &= \{0\} \\
+		2 &= \{1\} \\
+		3 &= \{2\} \\
+		&\vdotswithin= \\
+		\omega &= \{0, 1, 2, \dots\} \\
+		\omega+1 &= \{\omega\} \\
+		&\vdotswithin=
+	\end{align*}
+	There are a few reasons why the usual definition is better.
+	\begin{itemize}
+		\ii The ``alternative definition'' above is not uniform ---
+		an ordinal of the form $\alpha+1$ is defined by a singleton set, while the other ordinals
+		are defined by a set that leads up to it.
+		\ii Comparison is simpler: for two ordinals $\alpha$ and $\beta$, $\alpha < \beta$ if
+		and only if $\alpha \in \beta$.
+		\ii Cardinals will be simpler: the size of the set $5$ is exactly $5$.
+	\end{itemize}
+\end{remark}
 
 \begin{remark}
-	(Digression)
+	[Digression]
 	The number $\omega^{\omega^{\omega^{\dots}}}$ has a name, $\eps_0$;
 	it has the property that $\omega^{\eps_0} = \eps_0$.
 	The reason for using ``$\eps$'' (which is usually used to denote small quantities)
@@ -148,6 +171,17 @@ with no infinite descending chains.
 	Satisfy yourself that this definition works.
 \end{ques}
 
+\begin{example}
+	\listhack
+	\begin{itemize}
+		\ii All of $0$, $1$, $2$, \dots, $\omega$, $\omega+1$, \dots\ defined above are ordinals.
+		\ii $\{ 3 \}$ is not an ordinal --- it's not transitive because $2 \in 3$,
+		but $2 \notin \{ 3 \}$.
+		\ii $\{ 0, 1, 2, \{ 0, 2 \} \}$ is not an ordinal --- the two elements $1$ and $\{ 0, 2
+		\}$ are not comparable.
+	\end{itemize}
+\end{example}
+
 We typically use Greek letters $\alpha$, $\beta$, etc.\ for ordinal numbers.
 \begin{definition}
 	We write
@@ -164,7 +198,8 @@ We typically use Greek letters $\alpha$, $\beta$, etc.\ for ordinal numbers.
 	either $\alpha < \beta$, $\alpha = \beta$ or $\alpha > \beta$.
 \end{theorem}
 \begin{proof}
-	Surprisingly annoying, thus omitted.
+	Surprisingly annoying, thus omitted. The key idea is that we can define $\min(\alpha, \beta) =
+	\alpha \cap \beta$, then prove that this must be equal to either $\alpha$ or $\beta$.
 \end{proof}
 \begin{theorem}[Ordinals represent all order types]
 	Suppose $<$ is a well-ordering on a set $X$.
@@ -329,6 +364,10 @@ This well-ordering is isomorphic to a unique ordinal.
 	Ordinal addition is not commutative.
 	However, from the explicit construction
 	we can see that it is at least associative.
+
+	Furthermore, you can see that for small enough $\alpha \neq 0$,
+	then $\alpha + \beta = \beta$ may happen; however, this does not happen on the other side --- if
+	$\beta < \gamma$, then $\alpha + \beta < \alpha + \gamma$.
 \end{remark}
 
 Similarly, we can define multiplication in two ways.
@@ -338,8 +377,9 @@ By transfinite induction:
 	\alpha \cdot (\beta + 1) &= (\alpha \cdot \beta) + \alpha \\
 	\alpha \cdot \lambda &= \bigcup_{\beta < \lambda} \alpha \cdot \beta.
 \end{align*}
-We can also do an explicit construction: $\alpha \cdot \beta$
-is the order type of
+We can also do an explicit construction:
+This time, the picture is to line up $\beta$ copies, each copy contains $\alpha$ items.
+That is, $\alpha \cdot \beta$ is the order type of
 \[ \llex \text{ applied to } \beta \times \alpha. \]
 \begin{example}[Ordinal multiplication is not commutative]
 	We have $\omega \cdot 2 = \omega + \omega$,
@@ -354,7 +394,14 @@ is the order type of
 	(Look at $\gamma \times \beta \times \alpha$.)
 \end{exercise}
 
-Exponentiation can also be so defined, though the explicit construction is less natural.
+Similar to ordinal addition, defining $\alpha \cdot (\beta+1) = (\alpha \cdot \beta) + \alpha$ makes
+sure that if $\beta < \gamma$ then $\alpha \cdot \beta < \alpha \cdot \gamma$ --- as long as $\alpha
+> 0$.
+
+Exponentiation can also be so defined, though the explicit construction is less natural ---
+since we will not use this definition in the rest of the book, you may ignore it.
+
+For $\alpha = 0$, define $0^0 = 1$ and $0^\beta = 0$ for all $\beta > 0$. Otherwise:
 \begin{align*}
 	\alpha^0 &= 1 \\
 	\alpha^{\beta+1} &= \alpha^{\beta} \cdot \alpha \\

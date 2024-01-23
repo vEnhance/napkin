@@ -208,12 +208,12 @@ The next two axioms give us basic ways of building new sets.
 	Since $U$ is unique by $\Extensionality$, we denote it $\cup a$.
 
 	\ii
-	We can construct the \vocab{power set} $\mathcal P(x)$.
+	We can construct the \vocab{power set} $\PP(x)$.
 	Formally, the sentence $\PowerSet$ says that
 	\[ \forall x \exists P \forall y (y \in P \iff y \subseteq x) \]
 	where $y \subseteq x$ is short for $\forall z (z \in y \implies z \in x)$.
 	As $\Extensionality$ gives us uniqueness of $P$,
-	we denote it $\mathcal P(x)$.
+	we denote it $\PP(x)$.
 
 	\ii $\Foundation$ says there are no infinite descending chains
 	\[ x_0 \ni x_1 \ni x_2 \ni \dots. \]
@@ -259,6 +259,25 @@ Then there exists a set $Y$ consisting exactly of these images:
 	By abuse of notation, we let $\Replacement$ abbreviate
 	the infinitely many axioms $\Replacement_\phi$ for every $\phi$.
 \end{abuse}
+
+\begin{remark}
+	What do we mean here that ``for every $x \in X$, there is a \emph{unique} $y$ in the universe
+	such that $\phi(x, y)$ is true''? How can we decide, given a formula $\phi$, whether that
+	statement is true, for $\Replacement_\phi$ to be an axiom?
+
+	Turns out we cannot in general. But we don't need it!
+	To circumvent the problem, for every $\phi(x, y)$, the axiom $\Replacement_\phi$ states that
+	\[
+		\text{``$\phi$ defines a function''} \implies
+		\forall X \quad \exists Y \quad \text{``$Y = f\im(X)$''}.
+	\]
+	In other words, the hypothesis that $\phi$ is a function is ``folded in'' the axiom
+	$\Replacement_\phi$ itself.
+
+	This will not really matter to us for now, but later on, it will matter in model theory,
+	where we will state in \Cref{lem:transitive_ZFC} what it means for a model $M$ to
+	satisfy $\Replacement$.
+\end{remark}
 
 We postpone discussion of the Axiom of Choice momentarily.
 

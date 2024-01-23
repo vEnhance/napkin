@@ -80,7 +80,7 @@ Thus $M[G]$ will have $\aleph_2^{M[G]}$ real numbers, as desired.
 \section{Setting up posets}
 \prototype{Infinite Binary Tree}
 Let $M$ be a transitive model of $\ZFC$.
-Let $\Po = (\Po, \le) \in M$ be a poset with a maximal element $1_\Po$
+Let $\Po = (\Po, \le) \in M$ be a poset with a maximum element $1_\Po$
 which lives inside a model $M$.
 The elements of $\Po$ are called \vocab{conditions};
 because they will force things to be true in $M[G]$.
@@ -139,12 +139,20 @@ as any downwards ``slice''.
 	\end{center}
 
 	\begin{enumerate}[(a)]
-		\ii The maximal element $1_\Po$ is the empty string $\varnothing$.
+		\ii The maximum element $1_\Po$ is the empty string $\varnothing$.
 		\ii $D = \{\text{all strings ending in $001$}\}$ is an example of a dense set.
 		\ii No two elements of $\Po$ are compatible unless they are comparable.
 	\end{enumerate}
 \end{example}
 
+\begin{example}[Infinite chain]
+	Let $\Po = (\NN, \geq)$. This can be considered the ``infinite unary tree''.
+	\begin{itemize}
+		\ii The maximum element $1_\Po$ is $1$.
+		\ii A set is dense if and only if it has infinitely many elements. For example, the set of
+		all positive even numbers and the set of all primes are dense.
+	\end{itemize}
+\end{example}
 
 Now, I can specify what it means to be ``generic''.
 \begin{definition}
@@ -160,12 +168,24 @@ Now, I can specify what it means to be ``generic''.
 \begin{ques}
 	Show that if $G$ is a filter then $1_\Po \in G$.
 \end{ques}
+Note that the condition that $D \in M$ is important, because:
+\begin{ques}
+	On the infinite binary tree, show that:
+	\begin{itemize}
+		\ii For every filter $G$, there's a dense subset $D$ (not
+		necessarily in $M$) such that $G \cap D = \varnothing$.
+		\ii Specifically, if $G \in M$, then such a set $D$ can be chosen such that $D \in M$ --- in
+		particular, $G$ is not $M$-generic.
+	\end{itemize}
+	We will formalize this later in \Cref{lemma:splitting_poset_omit_generic}.
+\end{ques}
+
 \begin{example}[Generic filters on the infinite binary tree]
 	Let $\Po = 2^{<\omega}$.
 	The generic filters on $\Po$ are sets of the form
 	\[ \left\{ 0,\; b_1,\; b_1b_2,\; b_1b_2b_3,\; \dots \right\}. \]
 	So every generic filter on $\Po$ corresponds
-	to a binary number $b = 0.b_1b_2b_3\dots$.
+	to a binary number $b = 0.b_1b_2b_3\dots$.\footnotemark
 
 	It is harder to describe which reals correspond to generic filters,
 	but they should really ``look random''.
@@ -175,41 +195,52 @@ Now, I can specify what it means to be ``generic''.
 	So one would expect the binary expansion of $\pi-3$ might correspond to a generic,
 	but not something like $0.010101\dots$.
 	That's why we call them ``generic''.
+
+	\begin{center}
+		\begin{asy}
+			size(8cm);
+			pair P = Drawing("\varnothing", (0,4), dir(90), red);
+			pair P0 = Drawing("0", (-5,2), 1.5*dir(90), red);
+			pair P1 = Drawing("1", (5,2),  1.5*dir(90));
+			pair P00 = Drawing("00", (-7,0), 1.4*dir(120));
+			pair P01 = Drawing("01", (-3,0), 1.4*dir(60), red);
+			pair P10 = Drawing("10", (3,0),  1.4*dir(120));
+			pair P11 = Drawing("11", (7,0),  1.4*dir(60));
+
+			pair P000 = Drawing("000", (-8,-3));
+			pair P001 = Drawing("001", (-6,-3));
+			pair P010 = Drawing("010", (-4,-3), red);
+			pair P011 = Drawing("011", (-2,-3));
+
+			pair P100 = Drawing("100", (2,-3));
+			pair P101 = Drawing("101", (4,-3));
+			pair P110 = Drawing("110", (6,-3));
+			pair P111 = Drawing("111", (8,-3));
+
+			draw(P01--P0--P00);
+			draw(P11--P1--P10);
+			draw(P0--P--P1);
+			draw(P000--P00--P001);
+			draw(P100--P10--P101);
+			draw(P010--P01--P011);
+			draw(P110--P11--P111);
+
+			draw(P--P0--P01--P010--(P010+2*dir(-90)), red+1.4);
+			MP("G", P010+2*dir(-90), dir(-90), red);
+		\end{asy}
+	\end{center}
 \end{example}
+\footnotetext{Note that it may be the case that two distinct filters correspond to the same real
+number, such as $0.1000\dots$ and $0.0111\dots$, but such filters are necessarily not generic.}
 
-\begin{center}
-	\begin{asy}
-		size(8cm);
-		pair P = Drawing("\varnothing", (0,4), dir(90), red);
-		pair P0 = Drawing("0", (-5,2), 1.5*dir(90), red);
-		pair P1 = Drawing("1", (5,2),  1.5*dir(90));
-		pair P00 = Drawing("00", (-7,0), 1.4*dir(120));
-		pair P01 = Drawing("01", (-3,0), 1.4*dir(60), red);
-		pair P10 = Drawing("10", (3,0),  1.4*dir(120));
-		pair P11 = Drawing("11", (7,0),  1.4*dir(60));
+\begin{example}[Generic filters on the infinite chain]
+	There's only one generic filter on $\Po = (\NN, \geq)$: $\NN$ itself.
 
-		pair P000 = Drawing("000", (-8,-3));
-		pair P001 = Drawing("001", (-6,-3));
-		pair P010 = Drawing("010", (-4,-3), red);
-		pair P011 = Drawing("011", (-2,-3));
-
-		pair P100 = Drawing("100", (2,-3));
-		pair P101 = Drawing("101", (4,-3));
-		pair P110 = Drawing("110", (6,-3));
-		pair P111 = Drawing("111", (8,-3));
-
-		draw(P01--P0--P00);
-		draw(P11--P1--P10);
-		draw(P0--P--P1);
-		draw(P000--P00--P001);
-		draw(P100--P10--P101);
-		draw(P010--P01--P011);
-		draw(P110--P11--P111);
-
-		draw(P--P0--P01--P010--(P010+2*dir(-90)), red+1.4);
-		MP("G", P010+2*dir(-90), dir(-90), red);
-	\end{asy}
-\end{center}
+	This is indeed generic --- it hits every dense set.
+	This doesn't ``look random'' by any measure, you may say ---
+	but if you think about it, if you start at the root $1_\Po = 1$ and move down randomly at each
+	step, there's only one choice where to go!
+\end{example}
 
 \begin{exercise}
 	Verify that every generic filter $2^{<\omega}$ has the form above.
@@ -224,6 +255,11 @@ since $G$ is upwards closed.
 
 \section{More properties of posets}
 We had better make sure that generic filters exist.
+\begin{example}
+	If $\Po$ is the infinite binary tree and $M$ contains every subset of $\Po$, then generic filter
+	does not exist --- for every filter $G \subseteq \Po$, $\Po \setminus G$ is a dense set $D \in
+	M$, and $G \cap M = \varnothing$.
+\end{example}
 In fact this is kind of tricky, but for countable models it works:
 \begin{lemma}[Rasiowa-Sikorski lemma]
 	Suppose $M$ is a \emph{countable} transitive model of $\ZFC$
@@ -254,6 +290,7 @@ The condition that guarantees this is:
 \end{example}
 
 \begin{lemma}[Splitting posets omit generic sets]
+	\label{lemma:splitting_poset_omit_generic}
 	Suppose $\Po$ is splitting.  Then if $F \subseteq \Po$ is a filter
 	such that $F \in M$, then $\Po \setminus F$ is dense.
 	In particular, if $G \subseteq \Po$ is generic, then $G \notin M$.
@@ -296,7 +333,8 @@ each $\Name_\alpha$ is just the set of all names with rank $\le \alpha$.)
 		\mid \left<\sigma, p\right> \in \tau
 		\text{ and } p \in G\right\}. \]
 	We then define the model
-	\[ M[G] = \left\{ \tau^G \mid \tau \in \Name^M \right\}. \]
+	\[ M[G] = \left\{ \tau^G \mid \tau \in \Name^M \right\} \]
+	where $\Name^M$ are the elements of the class $\Name$ that belongs to $M$. Thus $M[G]$ is a set.
 	In words, $M[G]$ is the interpretation of all the possible $\Po$-names
 	(as computed by $M$).
 \end{definition}
@@ -329,7 +367,7 @@ The result is $M[G]$.
 		\right\} \right).
 	\end{align*}
 \end{example}
-Compare the corresponding von Neuman universe.
+Compare the corresponding von Neumann universe.
 \[ V_0 = \varnothing, \; V_1 = \{\varnothing\}, \;
 V_2 = \left\{ \varnothing, \left\{ \varnothing \right\} \right\}. \]
 
@@ -355,21 +393,29 @@ V_2 = \left\{ \varnothing, \left\{ \varnothing \right\} \right\}. \]
 			\varnothing & \text{otherwise}.
 		\end{cases}
 	\]
-	In particular, remembering that $G$ is nonempty we see that
+	In particular, since $1_\Po \in G$, then:
+	\begin{itemize}
+		\ii when $n = 0$, $\tau = \varnothing$, so $\tau^G = \varnothing$.
+		\ii when $n = 1$ and $p_1 = 1_\Po$, $\tau = \{ \langle \varnothing, 1_\Po \rangle \}$,
+		so $\tau^G = \{ \varnothing \}$.
+	\end{itemize}
+	So,
 	\[ \left\{ \tau^G \mid \tau \in \Name_2 \right\} = V_2. \]
 	In fact, this holds for any natural number $n$, not just $2$.
 \end{example}
 So, $M[G]$ and $M$ agree on finite sets.
 
 Now, we want to make sure $M[G]$ contains the elements of $M$.
-To do this, we take advantage of the fact that $1_\Po$ must be in $G$, and define
+The proof of $\left\{ \tau^G \mid \tau \in \Name_2 \right\} = V_2$ above can be easily adapted:
+Since $1_\Po$ must be in $G$, we define
 for every $x \in M$ the set
 \[ \check x = \left\{ \left<\check y, 1_\Po\right> \mid y \in x \right\} \]
 by transfinite recursion.
-Basically, $\check x$ is just a copy of $x$ where we add check marks and tag every element with $1_\Po$.
+Basically, $\check x$ is just a copy of $x$ where we tag every element \emph{at every nesting level}
+with $1_\Po$.
 
 \begin{example}
-	Compute $\check 0 = 0$ and $\check 1 = \left\{ \left<\check 0, 1_\Po\right> \right\}$.
+	Compute $\check 0 = 0$ and $\check 1 = \{ \langle \check 0, 1_\Po \rangle \}$.
 	Thus \[ (\check 0)^G = 0 \quad\text{and}\quad (\check 1)^G = 1. \]
 \end{example}
 \begin{ques}
@@ -381,7 +427,7 @@ However, we'd also like to cause $G$ to be in $M[G]$.
 In fact, we can write down the name exactly: we define
 \[ \dot \Po \defeq \left\{ \left<\check p, p\right> \mid p \in \Po \right\}. \]
 \begin{ques}
-	Show that $(\dot \Po)^G = G$.
+	Show that $(\dot \Po) \in \Name^M$, and $(\dot \Po)^G = G$.
 \end{ques}
 \begin{ques}
 	Verify that $M[G]$ is transitive:
@@ -447,7 +493,7 @@ where $p \in \Po$, $\sigma_1, \dots, \sigma_n \in M[G]$, if and only if:
 \begin{quote}
 	For \emph{any} generic $G$,
 	if $p \in G$,
-	then $M[G] \vDash \varphi(\sigma_1^G, \dots, \sigma_n^G)$.
+	then $M[G] \vDash \varphi[\sigma_1^G, \dots, \sigma_n^G]$.
 \end{quote}
 Note that $\Vdash$ is defined without reference to $G$:
 it is something that $M$ can see.
@@ -462,7 +508,7 @@ And miraculously, we can define this relation in such a way that the converse is
 	Let $\Po \in M$ be a poset, and $G \subseteq \Po$ is an $M$-generic filter.
 	Then,
 	\begin{enumerate}[(1)]
-		\ii Consider $\sigma_1, \dots, \sigma_n \in \Name^M$,
+		\ii Consider $\sigma_1, \dots, \sigma_n \in \Name^M$.
 		Then
 		\[ M[G] \vDash \varphi[\sigma_1^G, \dots, \sigma_n^G] \]
 		if and only if there exists a condition $p \in G$
@@ -486,7 +532,7 @@ It turns out in this case that the atomic formulas (base cases)
 are hardest and themselves require induction on ranks.
 
 For some motivation, let's consider how we should define
-$p \Vdash \tau_1 \in \tau_2$ given that we've
+$p \Vdash \tau_1 \in \tau_2$ assuming that we've
 already defined $p \Vdash \tau_1 = \tau_2$.
 We need to ensure this holds iff
 \[ \forall \text{$M$-generic $G$ with $p \in G$}:
@@ -499,7 +545,9 @@ In other words, we want to choose the definition of $p \Vdash \tau_1 \in \tau_2$
 		\left( q \le r \land q \Vdash(\tau=\tau_1) \right) \right\}
 \]
 is dense below in $p$.
-In other words, if the set is dense, then the generic must hit $q$, so it must hit $r$, meaning that $\left<\tau_r\right> \in \tau_2$ will get interpreted such that $\tau^G \in \tau_2^G$, and moreover the $q \in G$ will force $\tau_1 = \tau$.
+In other words, if the set is dense, then the generic must hit $q$, so it must hit $r$
+(recall that a filter is upwards-closed),
+meaning that $\left<\tau_r\right> \in \tau_2$ will get interpreted such that $\tau^G \in \tau_2^G$, and moreover the $q \in G$ will force $\tau_1 = \tau$.
 
 Now let's write down the definition\dots
 In what follows, the $\Vdash$ omits the $M$ and $\Po$.
