@@ -16,7 +16,7 @@ But we can readily compute its Lebesgue integral over $[0,1]$, as
 	= \mu\left( [0,1] \cap \QQ \right) = 0 \]
 since it is countable.
 
-This \emph{could} be thought of as a failure of convergence
+This \emph{could} be thought of as a failure of existence
 for the Riemann integral.
 \begin{example}
 	[$\mathbf{1}_\QQ$ is a limit of finitely supported functions]
@@ -43,20 +43,65 @@ The limit here is defined in the following sense:
 	We can define $\liminf_{n \to \infty} f_n$
 	and $\limsup_{n \to \infty} f_n$ similarly.
 \end{definition}
-This is actually a fairly weak notion of convergence, for example:
-\begin{exercise}
-	[Witch's hat]
-	Find a sequence of continuous function on $[-1,1] \to \RR$
-	which converges pointwise to the function $f$ given by
-	\[ f(x) = \begin{cases}
-			1 & x = 0 \\
-			0 & \text{otherwise}.
-		\end{cases} \]
-\end{exercise}
-This is why when thinking about the Riemann integral
-it is commonplace to work with stronger conditions like
-``uniformly convergent'' and the like.
-However, with the Lebesgue integral, we can mostly not think about these!
+
+By ``the Lebesgue integral has better behavior'', we means the following:
+\begin{proposition}
+	If $f_1, f_2, \dots \colon \Omega \to \RR$ are measurable functions,
+	then $\liminf_{n \to \infty} f_n$ and $\limsup_{n \to \infty} f_n$ are measurable.
+\end{proposition}
+When $f_n$ are all nonnegative, this means
+$\int_\Omega \liminf_{n \to \infty} f_n d\mu$ and $\int_\Omega \limsup_{n \to \infty} f_n d\mu$ exists.
+(If they can be negative, the behavior is not that nice. \Cref{prob:sin_improper} gives an example.)
+
+Unfortunately, even if the integral exists, we can't always exchange pointwise limit with Lebesgue
+integral.
+
+Why would we want to? For instance, if we face this problem:
+\begin{quote}
+	Compute $\lim_{k \to \infty} \int_1^\infty \frac{1}{k} e^{-x^2} \; dx$.
+\end{quote}
+While the integral $\int e^{-x^2} dx$ is not computable by elementary means,
+we would like to say the limit is simply $0$ (why wouldn't it be?)
+
+Unfortunately, pointwise convergence is actually a fairly weak notion of convergence.
+
+\begin{example}
+	\label{ex:failure_interchange_lim_int}
+	In all of these examples, we cannot interchange the limit and the integral
+	without changing the result.
+	\begin{itemize}
+		\ii The sequence $f_k(x) = \frac{\sin(x)}{x} \cdot \mathbf{1}_{(1, k)}$ converges pointwise to
+		$f(x) = \frac{\sin(x)}{x} \cdot \mathbf{1}_{(1, \infty)}$ as $k \to \infty$,
+		and the limit $\lim_{k \to \infty} \int f_k(x) \; dx$ exists, but $f$ is not integrable.
+		\ii Similarly, $f_k(x) = \frac{\sin(1/x)}{x} \cdot \mathbf{1}_{(1/k, \infty)}$
+		converges pointwise to $f(x) = \frac{\sin(1/x)}{x} \cdot \mathbf{1}_{(0, \infty)}$
+		as $k \to \infty$,
+		the limit $\lim_{k \to \infty} \int f_k(x) \; dx$ exists and is finite,
+		but $f$ is not integrable.
+		\ii The sequence $f_k(x) = \frac{\mathbf{1}_{(0, k)}}{k}$ converges pointwise to $f(x)=0$ as $k
+		\to \infty$, for every $k$ then $\int f_k(x) \; dx=1$, but $\int f(x) \; dx=0$.
+
+		Note that, in this case, the convergence is actually uniform!
+		\ii We don't even need $k$ in the denominator --- the sequence $f_k(x) = \mathbf{1}_{(0, k)}$ also
+		converges pointwise to $f(x)=0$, but this time, for every $k$ then $\int f_k(x) \; dx=\infty$!
+		\ii The sequence $f_k(x) = k \cdot \mathbf{1}_{(0, 1/k)}$ converges pointwise to $f(x)=0$ as $k
+		\to \infty$. But similar to above, $\int f_k(x) \; dx=1$ for every $k$, but
+		$\int f(x) \; dx=0$.
+	\end{itemize}
+	The last example is similar in behavior to an example known as the Witch's hat.\footnotemark
+\end{example}
+\footnotetext{\url{https://www.geogebra.org/m/dv7ctmed} has an animation.}
+
+As such, the convergence theorems stated below is an attempt to classify all the possible anomalies,
+and to show that in ``usual'' cases, interchanging limit and integral just works.
+
+As mentioned earlier, we choose to use the Lebesgue integral instead of the Riemann integral,
+because in such cases, the Lebesgue integral will usually just exist.
+
+%This is why when thinking about the Riemann integral
+%it is commonplace to work with stronger conditions like
+%``uniformly convergent'' and the like.
+%However, with the Lebesgue integral, we can mostly not think about these!
 
 \section{Overview}
 The three big-name results for exchanging
@@ -71,7 +116,36 @@ pointwise limits with Lebesgue integrals is:
 \end{itemize}
 
 \section{Fatou's lemma}
-Without further ado:
+
+In all the above examples, we see that:
+\begin{itemize}
+	\ii The failure of the interchange of limit and integral is caused by
+	the functions in the sequence have too much room to ``wiggle around'', and
+	\ii as such, the integrals $\int f_k(x) dx$ are all greater than the integral of the limit $\int f(x)
+	dx$.
+\end{itemize}
+Of course, by negating all the functions $f_k(x)$ we can get $\lim_{k \to \infty} \int f_k(x) dx < \int
+f(x) dx$.
+But, as it turns out, for nonnegative functions, \emph{this sort of behavior is the only behavior
+possible}. In other words,
+\begin{moral}
+	For nonnegative functions, if limit of integral is not equal to integral of limit, the former one is
+	always larger.
+\end{moral}
+
+\begin{lemma}
+	[Fatou's lemma, preliminary version]
+	Let $f_1, f_2, \dots \colon \Omega \to [0,+\infty]$
+	be a sequence of \emph{nonnegative} measurable functions, converging pointwise to $f$.
+	Then $f$ is nonnegative, measurable, and
+	\[ \int_\Omega f \; d\mu
+		\le \lim_{n \to \infty} \left( \int_\Omega f_n \; d\mu \right).  \]
+	Here we allow either side to be $+\infty$.
+\end{lemma}
+
+As it turns out, this lemma can significantly be generalized as follows.
+If you compare the two statements, you can see the two $\lim$ operators are changed to $\liminf$ ---
+when the sequence actually converges, $\liminf$ and $\lim$ equals.
 \begin{lemma}
 	[Fatou's lemma]
 	Let $f_1, f_2, \dots \colon \Omega \to [0,+\infty]$
@@ -114,6 +188,10 @@ Here is the so-called ``monotone convergence theorem''.
 	$\int_\Omega f_n \le \int_\Omega f$ for every $n$.
 	This implies all the inequalities are equalities and we are done.
 \end{proof}
+You can see how short the proof is ---
+proving $\limsup_{n \to \infty} \int_\Omega f_n \; d\mu \le \int_\Omega f \; d\mu$ is the easy half,
+and the difficult half is automatically taken care of by Fatou's lemma.
+
 \begin{remark}
 	[The monotone convergence theorem does not require monotonicity!]
 	In the literature it is much more common
@@ -180,6 +258,13 @@ The most famous result, though is the following.
 	\[ \int_\Omega f \; d \mu
 		= \lim_{n \to \infty} \left( \int_\Omega f_n \; d\mu \right). \]
 \end{corollary}
+
+In other words,
+\begin{moral}
+	If there's only finite ``space'' for the functions $f_k$ to ``wiggle around'',
+	then no anomaly can happen.
+\end{moral}
+
 \begin{proof}
 	If $f(\omega) = \lim_{n \to \infty} f_n(\omega)$,
 	then $f(\omega) = \liminf_{n \to \infty} f_n(\omega)
@@ -207,6 +292,67 @@ Here is one example showing how they all look.
 		&= \int_{(0,1)} \sqrt{x} \; dx = \frac23.
 	\end{align*}
 \end{example}
+
+We can also say something else about the behavior of the anomalies --- that is, when
+$|\Omega| < \infty$, the anomaly only happens in a set of \emph{small measure}.
+
+\begin{theorem}
+	[Egorov's theorem]
+	Let $f_1, f_2, \dots \colon \Omega \to \RR$
+	be a sequence of measurable functions, on a measure space $\Omega$ with $|\Omega| < \infty$,
+	such that $f = \lim_{n \to \infty} f_n$ exists and is finite almost everywhere.
+	Then, for any $\eps>0$,
+	we can find a subset $U \subseteq \Omega$, such that
+	the remainder has small measure:
+	\[
+		|\Omega \smallsetminus U| < \eps,
+	\]
+	and the convergence is uniform on $U$: the sequence
+	\[
+		f_1|_U, f_2|_U, \dots
+	\]
+	converges to $f_U$ uniformly.
+\end{theorem}
+
+This is because of the following theorem.
+\begin{theorem}
+	[Uniform convergence theorem]
+	Let $f_1, f_2, \dots \colon \Omega \to \RR$
+	be a sequence of integrable functions, on a measure space $\Omega$ with $|\Omega| < \infty$,
+	such that $\lim_{n \to \infty} f_n = f$, and the convergence is uniform.
+	Then $f$ is integrable and,
+	\[ \lim_{n \to \infty} \left( \int_\Omega f_n \; d\mu \right)
+		= \int_\Omega f \; d\mu. \]
+\end{theorem}
+
+In other words,
+\begin{moral}
+	The fact that $\int f \; d\mu \neq \lim \int f_k \; d\mu$ is only caused by
+	$\int_{ \Omega \setminus U } f \; d\mu \neq \lim \int_{ \Omega \setminus U } f \; d\mu$.
+\end{moral}
+
+\begin{example}
+	[Removing a set of small measure will allow interchanging the integral and the limit]
+	We take a few examples from \Cref{ex:failure_interchange_lim_int}, and see what happens if we remove
+	a set of small measure here.
+	\begin{itemize}
+		\ii Consider the sequence $f_k(x) = k \cdot \mathbf{1}_{(0, 1/k)}$. If, for any $\eps>0$,
+		we delete a segment $(0, \eps)$ from the domain of $f_k$, then we will have that $f_k$ converges
+		uniformly to $f$ as $k \to \infty$, and that $\lim_{k \to \infty} \int f_k(x) \; dx = \int f(x)
+		\; dx = 0$.
+		\ii Similarly, the sequence $f_k(x) = \frac{\sin(1/x)}{x} \cdot \mathbf{1}_{(1/k, 1)}$
+		converges pointwise to $f(x) = \frac{\sin(1/x)}{x} \cdot \mathbf{1}_{(0, 1)}$,
+		and if we delete a segment $(0, \eps)$, then everything checks out.
+	\end{itemize}
+\end{example}
+
+\begin{remark}
+	Just because we only need to delete a set of small measure, doesn't mean the set is concentrated in a
+	small interval. The reader is invited to construct a sequence $f_k \colon [0, 1] \to \RR^+$
+	that converges pointwise to $f$, but in order to make the convergence uniform, a dense subset of $[0,
+	1]$ need to be removed.
+	(Hint: take any discontinuous everywhere nonnegative function $f$, and set $f_k = \min(k, f)$.)
+\end{remark}
 
 \section{Fubini and Tonelli}
 \todo{TO BE WRITTEN}

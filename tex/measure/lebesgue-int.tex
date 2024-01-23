@@ -62,6 +62,13 @@ Thus we can equip it with the Borel sigma-algebra.\footnote{We
 	such that $0 \le s \le f$.
 	As before, this integral may be $+\infty$.
 \end{step}
+
+That is,
+\begin{moral}
+	We define the integral $\int_\Omega f \; d\mu$ by approximating it from below with simple functions,
+	for which we know how to integrate.
+\end{moral}
+
 One can check this is compatible with the previous definitions.
 At this point, we introduce an important term.
 \begin{definition}
@@ -80,9 +87,25 @@ Even constant functions can fail to be integrable:
 	The constant function $1$ is \emph{not} integrable on $\RR$,
 	since $\int_\RR 1 \; d\mu = \mu(\RR) = +\infty$.
 \end{example}
-For this reason, I will usually prefer the term ``integrable''.
+For this reason, I will usually prefer the term ``absolutely integrable''.
 (If it were up to me, I would call it ``finitely integrable'',
 and usually do so privately.)
+
+\begin{remark}
+	[Why don't we approximate the integral from above?]
+	For bounded functions on measure spaces with $|\Omega| < \infty$, we can equivalently define
+	\[ \int_\Omega f \; d\mu \defeq
+		\inf_{0 \le s \le f} \left( \int_\Omega s \; d\mu \right) \]
+	where the infimum is taken over all simple $s$ such that $f \leq s$.
+	However, if the functions are unbounded or $|\Omega| = \infty$, the situation is not that
+	simple:
+	\begin{itemize}
+		\ii The function $f(x) = x^{-2}$ defined over $\Omega = (1, \infty)$ is absolutely integrable,
+		yet for all simple $s$ such that $f \leq s$, then $\int_\Omega f \; d\mu = \infty$.
+		\ii The function $f(x) = x^{-0.5}$ defined over $\Omega = (0, 1)$ is absolutely integrable,
+		yet there's no simple $s$ such that $f \leq s$ and $s$ is finite almost everywhere.
+	\end{itemize}
+\end{remark}
 
 Finally, this lets us integrate general functions.
 \begin{definition}
@@ -98,13 +121,21 @@ Since we'll be using the first word, this is easy to remember:
 	then we define
 	\begin{align*}
 		f^+(x) &= \max\left\{ f(x), 0 \right\} \\
-		f^-(x) &= \min\left\{ f(x), 0 \right\} \\
+		f^-(x) &= \min\left\{ f(x), 0 \right\}
 	\end{align*}
 	and set
 	\[ \int_\Omega f \; d\mu = \int_\Omega |f^+| \; d\mu
 		- \int_\Omega |f^-| \; d\mu \]
 	which in particular is finite.
 \end{step}
+
+That said, calling it ``finitely integrable'' here would also make it as easy to remember:
+\begin{exercise}
+	Show that $\int_\Omega |f| d\mu < \infty$ if and only if
+	$\int_\Omega |f^+| d\mu < \infty$ and
+	$\int_\Omega |f^-| d\mu < \infty$.
+\end{exercise}
+
 You may already start to see that we really like nonnegative functions:
 with the theory of measures, it is possible to integrate them,
 and it's even okay to throw in $+\infty$'s everywhere.
@@ -147,6 +178,69 @@ that are also true, but we won't state them here
 as we won't really have a use for them in the context of probability.
 (They appear later on in a bonus chapter.)
 
+\section{An equivalent definition}
+\label{sec:lebesgue_int_equivalent_def}
+
+The Lebesgue integral can also be defined as follows --- which should be more intuitive on the various
+choices of the definitions we made in the steps.
+
+In this definition,
+\begin{moral}
+	The integral $\int_\Omega f \; d\mu$ is just the volume of the region under the graph of $f$.
+\end{moral}
+
+Let us define it:
+\setcounter{step}{0}
+\begin{step}
+	[The region under the graph]
+	For a nonnegative function $f \colon \Omega \to \RR$, define the \vocab{region under the function}
+	$f$, $R(f)$, to be $\{(x, y) \in \Omega \times \RR, 0 \leq y \leq f(x)\}$.
+\end{step}
+
+\begin{remark}
+	It should be clear why we only define this for nonnegative function initially ---
+	for general function $f$, the only way we could sensibly define the region would be something like
+	the following:
+	\begin{align*}
+		R^+(f) &= \{(x, y) \in \Omega \times \RR, f(x) \geq 0, 0 \leq y \leq f(x)\}, \\
+		R^-(f) &= \{(x, y) \in \Omega \times \RR, f(x) \leq 0, 0 \geq y \geq f(x)\}.
+	\end{align*}
+	Nevertheless, notice that $R^+(f)$ is simply the region under the function
+	$f^+(x) = \max\{ f(x), 0 \}$, and $R^-(f)$ has the same measure as the region under the function
+	$f^-(x) = \min\{ f(x), 0 \}$, so defining $\int_\Omega f \; d\mu$ for nonnegative functions first
+	would actually simplify the definition.
+\end{remark}
+
+\begin{step}
+	[Making $\Omega \times \RR$ into a measure space]
+	We define a pre-measure on $\Omega \times \RR$ the obvious way:
+	if $X \subseteq \Omega$ and $Y \subseteq \RR$ are measurable subsets respectively,
+	then assign $|X \times Y| = |X| \times |Y|$.
+
+	The pre-measure can be extended to a measure, as we have done in the previous chapter.
+\end{step}
+
+\begin{step}
+	[Nonnegative functions]
+	For each function $f \colon \Omega \to [0, +\infty]$, let
+	\[ \int_\Omega f \; d\mu \defeq |R(f)|. \]
+	The integral is well-defined whenever $R(f)$ is measurable.
+\end{step}
+As promised in \Cref{sec:measurable_functions}, the definition of measurable function satisfies:
+\begin{moral}
+	A nonnegative function $f$ is measurable if and only if we can ``measure'' the region below the graph
+	of $f$.
+\end{moral}
+
+The last step is exactly the same as in the previous section.
+\begin{step}
+	[Absolutely integrable functions]
+	If $f \colon \Omega \to [-\infty, \infty]$ is absolutely integrable,
+	then we define
+	\[ \int_\Omega f \; d\mu = \int_\Omega |f^+| \; d\mu
+		- \int_\Omega |f^-| \; d\mu. \]
+\end{step}
+
 \section{Relation to Riemann integrals (or: actually computing Lebesgue integrals)}
 For closed intervals, this actually just works out of the box.
 \begin{theorem}
@@ -156,6 +250,18 @@ For closed intervals, this actually just works out of the box.
 	Then $f$ is also Lebesgue integrable and the integrals agree:
 	\[ \int_a^b f(x) \; dx = \int_{[a,b]} f \; d\mu. \]
 \end{theorem}
+
+Note that a Riemann integrable function \emph{must be bounded},
+which means if you try to construct a function $f \colon [0, 1] \to \RR$
+in the same vein as \Cref{prob:sin_improper} by
+\[
+	f(x) = \begin{cases}
+		\frac{\sin(1/x)}{x} & x > 0 \\
+		0 & x = 0
+	\end{cases}
+\]
+the function $f$ will in fact \emph{not} be Riemann integrable!
+Although of course, the improper Riemann integral $\lim_{\eps \to 0^+} \int_\eps^1 f(x) \; dx$ exists.
 
 Thus in practice, we do all theory with Lebesgue integrals (they're nicer),
 but when we actually need to compute $\int_{[1,4]} x^2 \; d\mu$
