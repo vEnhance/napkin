@@ -259,9 +259,9 @@ But the main idea is to climb up a poset until we're at the very top;
 in the previous case, when we reached the spanning set.
 
 The same thing works verbatim with any \href{https://en.wikipedia.org/wiki/Partially_ordered_set}{partially ordered set}
-$\mathcal P$.
+$\Po$.
 Let's define some terminology.
-A \vocab{local maximum} of the entire poset $\mathcal P$ is an element
+A \vocab{local maximum} of the entire poset $\Po$ is an element
 which has no other elements strictly greater than it.
 (Most authors refer to this as ``maximal element'', but I think
 ``local maximum'' is a more accurate term.)
@@ -276,9 +276,9 @@ In particular, if $\gamma$ is a successor ordinal, then just taking the last ele
 In this language, Zorn's lemma states that
 \begin{theorem}
 	[Zorn's lemma]
-	Let $\mathcal P$ be a nonempty partially ordered set.
+	Let $\Po$ be a nonempty partially ordered set.
 	If every chain has an upper bound,
-	then $\mathcal P$ has a local maximum.
+	then $\Po$ has a local maximum.
 \end{theorem}
 
 Chains with length equal to a successor ordinal always have upper bounds,
@@ -287,7 +287,7 @@ So the hypothesis of Zorn's lemma is exactly what
 lets us ``jump'' up to define $p_\omega$ and other limit ordinals.
 And the proof of Zorn's lemma is straightforward: keep climbing up the poset at successor stages,
 using Zorn's condition to jump up at limit stages, and thus building a really long chain.
-But we have to eventually stop, or we literally run out of elements of $\mathcal P$.
+But we have to eventually stop, or we literally run out of elements of $\Po$.
 And the only possible stopping point is a local maximum.
 
 If we want to phrase our previous solution in terms of Zorn's lemma, we'd say:

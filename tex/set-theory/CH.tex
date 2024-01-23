@@ -73,7 +73,7 @@ We want to do something similar,
 but with $\omega_2$ many real numbers instead of just one.
 In light of this, consider in $M$ the poset
 \[
-	\Po = \opname{Add} \left( \omega_2, \omega \right)
+	\Po = \opname{Add}(\omega, \omega_2)
 	\defeq \left( \left\{ p \colon \omega_2 \times \omega \to 2,
 		\dom(p) \text{ is finite} \right\},
 	\supseteq \right).
@@ -86,18 +86,18 @@ Moreover, we say $p \le q$ if $\dom(p) \supseteq \dom(q)$
 and the two functions agree over $\dom(q)$.
 
 \begin{ques}
-	What is the maximal element $1_\Po$ here?
+	What is the maximum element $1_\Po$ here?
 \end{ques}
 
 \begin{exercise}
 	Show that a generic $G$ can be encoded as a function $\omega_2 \times \omega \to 2$.
 \end{exercise}
 
-%Let $G \subseteq \opname{Add}(\omega_2, \omega)$ be an $M$-generic.
+%Let $G \subseteq \opname{Add}(\omega, \omega_2)$ be an $M$-generic.
 %We claim that, like in the binary case, $G$ can be encoded as a function $\omega_2 \times \omega \to 2$.
 %To see this, consider $\alpha \in \omega_2$ and $n \in \omega$; we have the dense set
 %\[ D_{\alpha, n}
-%	= \left\{ p \in \opname{Add}(\omega_2, \omega)
+%	= \left\{ p \in \opname{Add}(\omega, \omega_2)
 %	\mid (\alpha, n) \in \dom(p) \right\}
 %\]
 %(this is obviously dense, given any $p$ add in $(\alpha, n)$ if it's not in there already).
@@ -121,7 +121,7 @@ and the two functions agree over $\dom(q)$.
 		(Use the fact that the domains are all finite.)
 	\end{ques}
 %	This is pretty easy to see.
-%	Consider $p \in \opname{Add}(\omega_2, \omega)$.
+%	Consider $p \in \opname{Add}(\omega, \omega_2)$.
 %	Then you can find an $n$ such that
 %	neither $(\alpha, n)$ nor $(\beta, n)$ is defined,
 %	just because $\dom(p)$ is finite.
@@ -145,7 +145,7 @@ In that case, since $M[G]$ will have $\aleph_2^M = \aleph_2^{M[G]}$ many reals, 
 
 To do this, we'll rely on a combinatorial property of $\Po$:
 \begin{definition}
-	We say that $A \subseteq \mathcal P$ is a \vocab{strong antichain}
+	We say that $A \subseteq \Po$ is a \vocab{strong antichain}
 	if for any distinct $p$ and $q$ in $A$, we have $p \perp q$.
 \end{definition}
 \begin{example}[Example of an antichain]
@@ -161,6 +161,10 @@ but that they are in fact \emph{incompatible}.
 \begin{ques}
 	Draw a finite poset and an antichain of it which is not strong.
 \end{ques}
+\begin{ques}
+	Convince yourself that all antichains in the infinite binary tree are strong, but some
+	antichains in the poset $\Po$ defined above are not strong.
+\end{ques}
 
 \begin{definition}
 	A poset $\Po$ has the \vocab{$\kappa$-chain condition}
@@ -170,9 +174,15 @@ but that they are in fact \emph{incompatible}.
 	because it implies that every strong antichain is countable.
 \end{definition}
 
+\begin{remark}[Notational digression: Why $<$ instead of $\leq$?]
+	We could have defined that a poset $\Po$ has the $\kappa$-chain condition if all strong
+	antichains in $\Po$ has size $\leq \kappa$. Nevertheless, this alternative definition is less
+	versatile --- for instance, there would be no way to express that all strong antichains
+	in $\Po$ are finite!
+\end{remark}
+
 We are going to show that if the poset has the $\kappa$-chain condition
-then it preserves all cardinals greater than $\kappa$.
-% or was it > \kappa?
+then it preserves all cardinals $\geq \kappa$.
 In particular, the countable chain condition will show that $\Po$ preserves all the cardinals.
 Then, we'll show that $\opname{Add}(\omega, \omega_2)$ does indeed have this property.
 This will complete the proof.
@@ -189,7 +199,7 @@ We isolate a useful lemma:
 	\[ f(x) \in F(x) \quad\text{and}\quad \left\lvert F(x) \right\rvert^M < \kappa. \]
 \end{lemma}
 What this is saying is that if $f$ is some new function that's generated,
-$M$ is still able to pin down the values of $f$ to at most $\kappa$ many values.
+$M$ is still able to pin down the values of $f$ to less than $\kappa$ many values.
 
 \begin{proof}
 	The idea behind the proof is easy: any possible value of $f$ gives us some condition in
@@ -225,10 +235,10 @@ It turns out that to verify this, one can check a weaker result.
 	agree on the sentence ``$\kappa$ is a regular cardinal'' for every $\kappa$.
 \end{definition}
 Intuition:
-In a model $M$, it's possible that two ordinals which are in bijection in $V$ are no longer in bijection in $M$.
+In a model $M$, it's possible that two cardinals which are in bijection in $V$ are no longer in bijection in $M$.
 Similarly, it might be the case that some cardinal $\kappa \in M$ is regular,
 but stops being regular in $V$ because some function $f \colon \ol\kappa \to \kappa$ is cofinal but happened to only exist in $V$.
-In still other words, ``$\kappa$ is a regular cardinal '' turns out to be a $\Pi_1$ statement too.
+In still other words, ``$\kappa$ is a regular cardinal'' turns out to be a $\Pi_1$ statement too.
 
 Fortunately, each implies the other.
 We quote the following without proof.
@@ -247,7 +257,7 @@ it suffices to show that $\Po$ preserves regularity.
 The following theorem lets us do this:
 \begin{theorem}[Chain conditions preserve regular cardinals]
 	Let $M$ be a transitive model of ZFC, and let $\Po \in M$ be a poset.
-	Suppose $M$ satisfies the sentence ``$\Po$ has the $\kappa$ chain condition and $\kappa$ is regular''.
+	Suppose $M$ satisfies the sentence ``$\Po$ has the $\kappa$-chain condition and $\kappa$ is regular''.
 	Then $\Po$ preserves regularity greater than or equal to $\kappa$.
 \end{theorem}
 \begin{proof}
@@ -313,7 +323,7 @@ Thus, we have proven that the Continuum Hypothesis cannot be proven in $\ZFC$.
 \begin{problem}
 	\label{prob:chain}
 	Let $M$ be a transitive model of ZFC, and let $\Po \in M$ be a poset.
-	Suppose $M$ satisfies the sentence ``$\Po$ has the $\kappa$ chain condition and $\kappa$ is regular''.
+	Suppose $M$ satisfies the sentence ``$\Po$ has the $\kappa$-chain condition and $\kappa$ is regular''.
 	Show that $\Po$ preserves regularity greater than or equal to $\kappa$.
 	\begin{hint}
 		Assume not, and take $\lambda > \kappa$ regular in $M$;

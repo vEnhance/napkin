@@ -379,7 +379,9 @@ You have a machine gun and are firing bullets upwards, and you want to get arbit
 high but less than $\kappa$.
 The cofinality is then the number of bullets you need to do this.
 
-We now observe that ``most'' of the time, the cofinality of a cardinal is itself.
+We now observe that ``most'' of the time, the cofinality of a cardinal is itself.\footnote{Be
+careful --- the cofinality of an \emph{ordinal} is usually strictly less than itself.
+In fact, if the cofinality of an ordinal is itself, then that ordinal must be a cardinal.}
 Such a cardinal is called \vocab{regular}.
 \begin{example}[$\aleph_0$ is regular]
 	$\cof(\aleph_0) = \aleph_0$, because no finite subset of
@@ -426,7 +428,8 @@ We now confirm a suspicion you may have:
 
 \section{Inaccessible cardinals}
 So, what about limit cardinals?
-It seems to be that most of them are singular: if $\aleph_\lambda \neq \aleph_0$ is a limit ordinal,
+It seems that most of them are singular: if $\aleph_\lambda \neq \aleph_0$ is a limit cardinal (that
+is, $\lambda$ is a limit ordinal),
 then the sequence $\{\aleph_\alpha\}_{\alpha \in \lambda}$ (of length $\lambda$) is certainly cofinal.
 
 \begin{example}[Beth fixed point]
@@ -440,19 +443,27 @@ then the sequence $\{\aleph_\alpha\}_{\alpha \in \lambda}$ (of length $\lambda$)
 More generally, one can in fact prove that
 \[ \cof(\aleph_\lambda) = \cof(\lambda). \]
 But it is actually conceivable that $\lambda$ is so large
-that $\left\lvert \lambda \right\rvert = \left\lvert \aleph_\lambda \right\rvert$.
+that $\lambda = \aleph_\lambda$.
 
 A regular limit cardinal other than $\aleph_0$ has a special name: it is \vocab{weakly inaccessible}.
 Such cardinals are so large that it is impossible to prove or disprove their existence in $\ZFC$.
 It is the first of many so-called ``large cardinals''.
 
-An infinite cardinal $\kappa$ is a strong limit cardinal if
+An infinite cardinal $\kappa$ is a \vocab{strong limit cardinal} if
 \[ \forall \ol\kappa < \kappa \quad 2^{\ol\kappa} < \kappa \]
 for any cardinal $\ol\kappa$.  For example, $\aleph_0$ is a strong limit cardinal.
 \begin{ques}
 	Why must strong limit cardinals actually be limit cardinals?
 	(This is offensively easy.)
 \end{ques}
+\begin{remark}
+	A limit cardinal can equivalently be defined as a nonzero cardinal $\kappa$ such that
+	\[
+		\forall \ol\kappa < \kappa \quad (\ol\kappa)^+ < \kappa.
+	\]
+	If you compare it with the definition of strong limit cardinals, you can see the parallel.
+	(This remark also gives an answer to the previous question.)
+\end{remark}
 A regular strong limit cardinal other than $\aleph_0$
 is called \vocab{strongly inaccessible}.
 
