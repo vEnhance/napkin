@@ -559,10 +559,10 @@ In other words, a cocycle modulo coboundary can be ``evaluated'' on a cycle modu
 This is precisely what the universal coefficient theorem states, although it says something more:
 the ``error term'' is exactly $\Ext(H_{n-1}(X), G)$.
 
-Why would the error term exist? We had an example above, computing $H^2(X; G)$ for $X$ the Klein
+Why would the error term exist? We had an example above, computing $H^2(K; G)$ for $K$ the Klein
 bottle. Let us work through it geometrically, assume $G = \ZZ$ for now.
 
-A typical $2$-cochain $f \in C^2(X; \ZZ)$ may look something like this.
+A typical $2$-cochain $f \in C^2(K; \ZZ)$ may look something like this.
 (Only value assigned to a few $2$-simplices is depicted, there are too many $2$-simplices for us to
 draw.)
 \begin{center}
@@ -617,7 +617,7 @@ by adding a coboundary.
 \end{center}
 
 So, we may just say that the value assigned to the whole surface of the Klein bottle is $3$ ---
-formally, let $e^2_X \in C_2(X)$ be the sum of the two $2$-simplices above, we can write $f(e^2_X) =
+formally, let $e^2_K \in C_2(K)$ be the sum of the two $2$-simplices above, we can write $f(e^2_K) =
 3$.
 However:
 \begin{center}
@@ -653,11 +653,11 @@ However:
 
 The boundary of the $2$-chain corresponding to the whole surface of the Klein bottle is $2$ times
 the blue edge, so $\delta$ of the $1$-cochain whose value on the blue edge is $1$
-will assign the value $2$ to $e^2_X$.
+will assign the value $2$ to $e^2_K$.
 
-In symbols: let $e^1_b \in C_1(X)$ be the blue edge, pick $g \in C^1(X; \ZZ)$ such that
-$g(e^1_b) = 1$, then $\delta(g)(e^2_X) = 2$.
-Even though $e^2_X$ is not a cycle, we still need to care about its assigned value modulo $2$!
+In symbols: let $e^1_b \in C_1(K)$ be the blue edge, pick $g \in C^1(K; \ZZ)$ such that
+$g(e^1_b) = 1$, then $\delta(g)(e^2_K) = 2$.
+Even though $e^2_K$ is not a cycle, we still need to care about its assigned value modulo $2$!
 Because adding or subtracting the coboundary $\delta(g)$ can only adjust its values in increments
 of $2$.
 

@@ -474,8 +474,8 @@ For $f \in (\Lambda^k(V))^\vee$ and vectors $v_1, \dots, v_k \in V$, then
 This is because $f$ naturally takes in an element of $\Lambda^k(V)$ and returns a real number.
 
 But now, it is not clear how we can take $f \in (\Lambda^1(V))^\vee$ and $g \in (\Lambda^1(V))$, and
-return something like $f \wedge g \in (\Lambda^2(V))^\vee$: The natural choice of $(v \wedge w
-\mapsto f(v) g(w)$ isn't even well-defined!\footnote{You can try it with $f = \ee_1^\vee$ and
+return something like $f \wedge g \in (\Lambda^2(V))^\vee$: The natural choice $(v \wedge w
+\mapsto f(v) g(w))$ isn't even well-defined!\footnote{You can try it with $f = \ee_1^\vee$ and
 $g = \ee_2^\vee$, evaluate it at $\ee_1 \wedge \ee_2$ and $-\ee_2 \wedge \ee_1$,
 which we know is equal.}
 
@@ -618,6 +618,9 @@ $1$-form.\footnote{\url{https://mathoverflow.net/q/90455} has a discussion on th
 We said earlier that differential form is something you can integrate. You can certainly integrate
 $ds$, but it's not considered a $1$-form!
 
+While we can easily check against the definition that $ds$ is not linear
+(\Cref{prob:ds_not_a_form}), it still raises the question that why we would want to
+define differential form to exclude $ds$.
 What's going on here?
 
 In fact, the true story is that the objects that are integrable over a smooth curve are
