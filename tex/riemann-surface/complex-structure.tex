@@ -29,7 +29,8 @@ at places that previously was a pole.
 \end{remark}
 
 As an orientable $2$-manifold, we can define the \vocab{genus} of a Riemann surface --- it is a
-purely topological concept, yet it is crucially linked to several in very surprising ways.
+purely topological concept, yet it is crucially linked to several algebraic invariants
+in very surprising ways.
 You may have heard of the \emph{elliptic curve} in cryptography --- they also present as a Riemann
 surface, and a generalization, \vocab{hyperelliptic curve}, form a family of Riemann surfaces of
 arbitrary genus $\geq 2$!
@@ -212,7 +213,7 @@ equivalent to stating that a Riemann surface carries a complex-analytic structur
 
 From the motivation above, the definition of a Riemann surface naturally falls out:
 \begin{definition}[Riemann surface]
-	A \vocab{Riemann surface} is a second countable connected Hausdorff space with an open cover
+	A \vocab{Riemann surface} $X$ is a second countable connected Hausdorff space with an open cover
 	$\{ U_i \}$ of countably many sets homeomorphic to open subsets of $\CC$, say by homeomorphisms
 	\[ \phi_i \colon U_i \taking\cong E_i \subseteq \CC \]
 	such that the \vocab{transition maps} $\phi_{ij}$ defined by
@@ -230,9 +231,17 @@ We say that the complex atlas gives the Hausdorff space a \vocab{complex structu
 Thus, in other words, a Riemann surface is a (second countable, connected, Hausdorff) topological
 space with a complex structure.
 
-[Miranda] has an alternative definition, by a maximal complex atlas. Both definitions are the same,
+\cite{ref:miranda} has an alternative definition, by a maximal complex atlas. Both definitions are the same,
 but in practice, it's easier to specify finitely many complex charts than specifying infinitely many
 ones.
+
+A complex chart $U_i \to E_i$ should be think of as giving a \vocab{local coordinate} on $U_i$.
+Formally:
+\begin{definition}
+	For a point $p \in X$, open set $U \subseteq X$ and complex chart $\phi \colon U \to \CC$,
+	let $z = \phi(x)$ for each $x \in U$, we call $z$ a \vocab{local coordinate}.
+	We say that the local coordinate is \vocab{centered} at $p$ if $\phi(p) = 0$.
+\end{definition}
 
 \section{Complex manifold}
 Analogously to the definition of a real $n$-manifold, we can define a complex manifold.
@@ -326,6 +335,11 @@ In this chapter, several examples will be given.
 	We can think of the Riemann sphere as the result of welding two copies of $\CC$ together in order
 	to ``fill in'' the missing point $\infty$.
 \end{example}
+
+In the example above, the local coordinate given by $\phi_1$ is centered at $S$, and the local
+coordinate given by $\phi_2$ is centered at $N$.
+The point $\phi_1\inv(4)$ would have local coordinate $z = 4$ under the chart $\phi_1$, and
+local coordinate $t = \frac{1}{4}$ under the chart $\phi_2$.
 
 \begin{example}[The complex torus]
 	Let $L$ be the set $\ZZ[i]$ of complex numbers with both real and imaginary parts of $\CC$.

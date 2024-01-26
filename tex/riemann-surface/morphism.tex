@@ -16,6 +16,9 @@ if and only if it is holomorphic.
 	surfaces} if and only if it is holomorphic at all points of $X$.
 \end{definition}
 
+In other words: $f$ is holomorphic if and only if it is holomorphic as function mapping
+between local coordinates.
+
 \begin{example}
 	Some examples follows.
 	\begin{itemize}
@@ -165,29 +168,35 @@ You can see why this proposition is surprising:
 	\end{itemize}
 \end{example}
 
-The proof of the proposition is not difficult --- the main observation is that the theorem is true
-for functions of the form $f(x) = x^n$, and locally around each point $p \in X$, $f$ is either an
-isomorphism or has the form above.
-So $d_y$ is locally constant, and thus constant because $Y$ is connected.
-
 \begin{definition}
 	The value $d_y$ above is called the \vocab{degree} of the map $f$, written $\deg(f)$.
 \end{definition}
+
+\begin{example}
+	The map $z \mapsto z^k$, when extended to a $\CC_\infty \to \CC_\infty$ map, has degree $k$.
+\end{example}
+If $t \neq 0$, then we know that $t$ has $k$ distinct $k$-th roots.
+But if $t = 0$, its preimage only consist of the point $0$ --- in this case, we wish to say $z = 0$
+is a ``multiple point'' --- we will formalize it next section when we defines the multiplicity of a
+map.
+
 If you have read \Cref{sec:homology_degrees},
 this is in fact the same as the concept of a degree in homology when $X$ and $Y$ are both Riemann
 spheres --- it counts how many spherical bags that $\img f$ consists of.
 But, in this case, the theory is extra nice --- not only that the graph is homotopy equivalent to
 one that covers each point $d$ times, but each point is in fact covered \emph{exactly} $d$ times!
 
-
 This theme will be recurrent in complex analysis and Riemann surfaces. Basically:
 \begin{moral}
 	If the ``things'' are counted properly, the formula is very nice.
 \end{moral}
 
-\begin{example}
-	The map $z \mapsto z^k$, when extended to a $\CC_\infty \to \CC_\infty$ map, has degree $k$.
-\end{example}
+
+The proof of the proposition is not difficult --- the main observation is that the theorem is true
+for functions of the form $f(z) = z^n$, and locally around each point $p \in X$, $f$ is either an
+isomorphism or has the form above.
+So $d_y$ is locally constant, and thus constant because $Y$ is connected.
+
 
 \section{Multiplicity of a map}
 \prototype{$f(x) = (x-3)^2$ has $\mult_3(f) = 2$.}
@@ -238,9 +247,10 @@ furthermore, the exponent is independent of the selection.
 \end{definition}
 
 \begin{example}[More examples of multiplicity of a map at a point]
+	We consider some examples.
 	\begin{itemize}
 		\ii The function $z \mapsto z^{-2}$, extended to a $\CC \to \CC_\infty$ map,
-		has multiplicity $2$ at point $0$ --- two copies of the point $0$ is mapped to the point
+		has multiplicity $2$ at point $0$ --- ``two copies'' of the point $0$ is mapped to the point
 		$\infty$.
 		\ii The function $f(z) = (z-1) (z-2)^5$ has $\mult_2(f) = 5$ --- more generally,
 		if $p$ is a root of $f$, then $\mult_p(f)$ is the multiplicity of the root.
@@ -248,6 +258,12 @@ furthermore, the exponent is independent of the selection.
 		the multiplicity of a nonconstant map at ``most'' points will be $1$.
 	\end{itemize}
 \end{example}
+
+These are the official terms:
+\begin{definition}
+	A point $p$ such that $\mult_p(f) > 1$ is called a \vocab{ramification point}.
+	In that case, the point $f(p)$ is called a \vocab{branch point}.
+\end{definition}
 
 \section{The sum of the orders of a meromorphic function}
 
