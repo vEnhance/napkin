@@ -481,7 +481,9 @@ We call a function $\Norm \colon R \to \ZZ_{\geq 0}$ that satisfies the two cond
 	\[ |a + b\omega| = a^2 + ab + b^2. \]
 \end{example}
 \begin{example}[The ring {$\ZZ[\sqrt{11}]$} is an Euclidean domain]
-	As before. This time, the natural norm\footnotemark\ will be:
+	As before. This time, the natural norm\footnote{%
+	See \Cref{sec:norms_traces} for the explanation why this norm is the natural one.}
+	will be:
 	\[
 		\Norm_{\QQ(\sqrt{11})/\QQ}(a + b \sqrt 11) = (a + b \sqrt 11) (a - b \sqrt 11)
 		= a^2 - 11 b^2.
@@ -576,7 +578,6 @@ We call a function $\Norm \colon R \to \ZZ_{\geq 0}$ that satisfies the two cond
 	$\frac{a}{b} \in \QQ(\sqrt{11})$, there is some $q \in \ZZ[\sqrt{11}]$ such that
 	$\Norm(\frac{a}{b}-q) < 1$. Thus $\Norm$ is an Euclidean norm.
 \end{example}
-\footnotetext{See \Cref{sec:norms_traces} for the explanation why this norm is the natural one.}
 
 That having said, sometimes the natural norm of an Euclidean domain need not be Euclidean.
 $\ZZ[\frac{1 + \sqrt{69}}{2}]$ is the first example.
