@@ -1,10 +1,15 @@
 %%fakesection Load packages
 
-%% because of an xy dependence, we're stuck with pdflatex
-%% which is annoying... font issues
-\usepackage[T1]{fontenc}
 \usepackage{lmodern}
 \usepackage[pdfusetitle]{hyperref}
+\ExplSyntaxOn
+\sys_if_engine_luatex:T {
+	\usepackage{luatex85}
+}
+\sys_if_engine_pdftex:T {
+	\usepackage[T1]{fontenc}
+}
+\ExplSyntaxOff
 
 % These are evan.sty
 \usepackage{amsmath,amssymb,amsthm}
