@@ -824,3 +824,60 @@ The reason for the opposing terms is the following theorem:
 		so the collection $\mathcal F$ must be countable, contradiction.
 	\end{sol}
 \end{problem}
+
+\begin{problem}
+	Someone on the Internet posted the question ``is $1/x$ a continuous function?'',
+	leading to great controversy on Twitter. How should you respond?
+	\begin{hint}
+		First answer the following question: ``is $1/x$ a function?''.
+	\end{hint}
+	\begin{sol}
+		Like most Internet ``debates'' about math,
+		the question revolves around sloppy definitions.
+		The original posed question (which is ill-formed) is
+		\begin{quote}
+			(1) Is $1/x$ a continuous function?
+		\end{quote}
+		To make it well-formed, I want to \emph{first} bring up the question:
+		\begin{quote}
+			(2) Is $1/x$ a function?
+		\end{quote}
+		Technically, this question is \emph{also} ill-formed because it never specifies
+		the domain of the function, which is part of the data needed to specify a function.
+		One reasonable guess what the asker meant would be $\RR \setminus \{0\}$,
+		i.e.\ the set of nonzero real numbers, in which case we get the question
+		\begin{quote}
+			(2') Does $1/x$ define a function from $\RR \setminus \{0\}$ to $\RR$?.
+		\end{quote}
+		which has the firm answer YES.
+
+		On the other hand, it does \emph{not} make sense to try to define $1/x$
+		as a function on $\RR$.
+		The definition a function requires you to specify an output value for every input,
+		so at least if you want a real-valued function\footnote{Those of you
+			that know what $\mathbb{RP}^1$ is could consider it as a function
+			$\mathbb{RP}^1 \to \mathbb{RP}^1$ if you insisted;
+			but it's continuous in that case too.},
+		there isn't any way to construe $1/x$ as a function on all of $\RR$.\footnote{
+
+		Now, returning to (1), we can now ask a well-formed question
+		\begin{quote}
+			(1') Does $1/x$ describe a continuous function from $\RR \setminus \{0\} \to \RR$?
+		\end{quote}
+		which again has the firm answer YES.
+
+		Of course, you could also consider a question like
+		``does $1/x$ describe a continuous function $\RR \to \RR$?''.
+		However, this feels misleading:
+		it would be like asking ``is $\sqrt{2}$ an even integer?''.
+		The question doesn't make sense to begin with because $\sqrt2$ isn't an integer,
+		and ``even'' is an adjective used for integers,
+		so trying to apply it to $\sqrt2$ is a \href{https://qchu.wordpress.com/2013/05/28/the-type-system-of-mathematics/}{type-error}.
+		Similarly, ``continuous'' is an adjective used for functions;
+		it doesn't make sense to apply it on something that isn't a function.
+
+		See \url{https://twitter.com/davidcpvm/status/1481024944830046209}
+		for the Twitter post (in Spanish) and the accompanying Reddit post (one of several)
+		at \url{https://www.reddit.com/r/math/comments/s82vf8}.
+	\end{sol}
+\end{problem}
