@@ -9,25 +9,25 @@
 
 \setcounter{diagheight}{50}
 \begin{chart}
-\reqhalfcourse 20,45:{Ch 1,3-5}{\hyperref[part:absalg]{Abs Alg}}{}
-\reqhalfcourse 55,45:{Ch 2,6-8}{\hyperref[part:basictop]{Topology}}{}
-\halfcourse 33,45:{Ch 9-15,18}{\hyperref[part:linalg]{Lin Alg}}{}
-\halfcourse 5,35:{Ch 16}{\hyperref[part:groups]{Grp Act}}{}
-\halfcourse 5,24:{Ch 17}{\hyperref[ch:sylow]{Grp Classif}}{}
-\halfcourse 30,35:{Ch 19-22}{\hyperref[part:repth]{Rep Th}}{}
-\halfcourse 45,43:{Ch 23-25}{\hyperref[part:quantum]{Quantum}}{}
-\halfcourse 64,38:{Ch 26-30}{\hyperref[part:calc]{Calc}}{}
-\halfcourse 64,30:{Ch 31-34}{\hyperref[part:cmplxana]{Cmplx Ana}}{}
-\halfcourse 55,20:{Ch 35-42}{\hyperref[part:measure]{Measure/Pr}}{}
-\halfcourse 48,28:{Ch 43-46}{\hyperref[part:diffgeo]{Diff Geo}}{}
-\halfcourse 40,10:{Ch 47-52}{\hyperref[part:algnt1]{Alg NT 1}}{}
-\halfcourse 40,0:{Ch 53-57}{\hyperref[part:algnt2]{Alg NT 2}}{}
-\halfcourse 23,10:{Ch 58-60}{\hyperref[part:algtop1]{Alg Top 1}}{}
-\halfcourse 20,28:{Ch 61-64}{\hyperref[part:cats]{Cat Th}}{}
-\halfcourse 23,0:{Ch 65-70}{\hyperref[part:algtop2]{Alg Top 2}}{}
-\halfcourse 6,10:{Ch 71-75}{\hyperref[part:ag1]{Alg Geo 1}}{}
-\halfcourse 6,0:{Ch 76-81}{\hyperref[part:ag2]{Alg Geo 2-3}}{}
-\reqhalfcourse 5,45:{Ch 82-88}{\hyperref[part:st1]{Set Theory}}{}
+\reqhalfcourse 20,45:{Ch \ref*{ch:group_intro},\ref*{ch:homomorphisms_quotient}-\ref*{ch:flavors_rings}}{\hyperref[part:absalg]{Abs Alg}}{}
+\reqhalfcourse 55,45:{Ch \ref*{ch:metric_space},\ref*{ch:metric_properties}-\ref*{ch:compactness}}{\hyperref[part:basictop]{Topology}}{}
+\halfcourse 33,45:{Ch \ref*{ch:vector_spaces}-\ref*{ch:duals_adjoint_transposes},\ref*{ch:PID_structure_theorem}}{\hyperref[part:linalg]{Lin Alg}}{}
+\halfcourse 5,35:{Ch \ref*{ch:group_actions}}{\hyperref[part:groups]{Grp Act}}{}
+\halfcourse 5,24:{Ch \ref*{ch:sylow}}{\hyperref[ch:sylow]{Grp Classif}}{}
+\halfcourse 30,35:{Ch \ref*{ch:representations_of_algebras}-\ref*{ch:applications}}{\hyperref[part:repth]{Rep Th}}{}
+\halfcourse 45,43:{Ch \ref*{ch:quantum_states_and_measurements}-\ref*{ch:shors_algorithm}}{\hyperref[part:quantum]{Quantum}}{}
+\halfcourse 64,38:{Ch \ref*{ch:calc_limits}-\ref*{ch:holomorphic_functions}}{\hyperref[part:calc]{Calc}}{}
+\halfcourse 64,30:{Ch \ref*{ch:meromorphic_fn}-\ref*{ch:measure_space}}{\hyperref[part:cmplxana]{Cmplx Ana}}{}
+\halfcourse 55,20:{Ch \ref*{ch:caratheodory_measure}-\ref*{ch:multivar_calculus}}{\hyperref[part:measure]{Measure/Pr}}{}
+\halfcourse 48,28:{Ch \ref*{ch:forms_diffgeo}-\ref*{ch:algebraic_integers}}{\hyperref[part:diffgeo]{Diff Geo}}{}
+\halfcourse 40,10:{Ch \ref*{ch:ring_of_integers}-\ref*{ch:galois_theory}}{\hyperref[part:algnt1]{Alg NT 1}}{}
+\halfcourse 40,0:{Ch \ref*{ch:finite_fields}-\ref*{ch:artin_reciprocity}}{\hyperref[part:algnt2]{Alg NT 2}}{}
+\halfcourse 23,10:{Ch \ref*{ch:top_constructions}-\ref*{ch:covering_projections}}{\hyperref[part:algtop1]{Alg Top 1}}{}
+\halfcourse 20,28:{Ch \ref*{ch:cats}-\ref*{ch:abelian_categories}}{\hyperref[part:cats]{Cat Th}}{}
+\halfcourse 23,0:{Ch \ref*{ch:singular_homology}-\ref*{ch:application_of_cohomology}}{\hyperref[part:algtop2]{Alg Top 2}}{}
+\halfcourse 6,10:{Ch \ref*{ch:affine_varieties}-\ref*{ch:morphisms_of_varieties}}{\hyperref[part:ag1]{Alg Geo 1}}{}
+\halfcourse 6,0:{Ch \ref*{ch:sheaves_and_ringed_spaces}-\ref*{ch:morphisms_of_locally_ringed_spaces}}{\hyperref[part:ag2]{Alg Geo 2-3}}{}
+\reqhalfcourse 5,45:{Ch \ref*{ch:zorn}-\ref*{ch:break_CH}}{\hyperref[part:st1]{Set Theory}}{}
 
 %% Basic alg ch
 \prereqc 20,45,30,35;0:    % Abs Alg -> Rep Th

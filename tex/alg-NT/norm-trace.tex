@@ -1,5 +1,7 @@
 \chapter{The ring of integers}
+\label{ch:ring_of_integers}
 \section{Norms and traces}
+\label{sec:norms_traces}
 \prototype{$a+b\sqrt2$ as an element of $\QQ(\sqrt2)$ has norm $a^2-2b^2$ and trace $2a$.}
 Remember when you did olympiads and we had like $a^2+b^2$ was the ``norm'' of $a+bi$?
 Cool, let me tell you what's actually happening.
@@ -127,6 +129,12 @@ To do this, I have to give a new definition of norm and trace.
 		\ii the trace of $\alpha$ equals the trace $\Tr \mu_\alpha$.
 	\end{itemize}
 \end{theorem}
+The definition of the determinant has an obvious geometrical interpretation:
+viewing $K \cong \QQ^n$ as a vector space, the determinant measures how much $\QQ^n$ is
+stretched when multiplied by $\alpha$.
+That is, given a parallelepiped with volume $v$ in $\QQ^n$, it will be transformed to one with
+volume $|\Norm(\alpha)| v$ under the transformation $\mu_\alpha$.
+
 Since the trace and determinant don't depend on the choice of basis,
 you can pick whatever basis you want
 and use whatever definition you got in high school.

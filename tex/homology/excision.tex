@@ -1,4 +1,5 @@
 \chapter{Excision and relative homology}
+\label{ch:relative_hom}
 We have already seen how to use the Mayer-Vietoris sequence:
 we started with a sequence
 \[ \dots \to H_n(U \cap V) \to H_n(U) \oplus H_n(V) \to H_n(U+V) \to H_{n-1}(U \cap V) \to \dots \]
@@ -16,6 +17,103 @@ which takes a pair $(X,A)$ to $H_n(X,A)$.
 Then, we state (again without proof) the key geometric result,
 and use this to make deductions.
 
+\section{Motivation}
+
+The main motivation is that:
+\begin{moral}
+	Relative homology is the algebraic topology analog of quotient homology.
+	% (or analogue?)
+\end{moral}
+So, for instance, when you see a map of pairs
+$f \colon (X, A) \to (Y, B)$, you should think of $X/A \to Y/B$.
+
+Which explains the ``reasonable guess''
+that for spaces $A \subseteq X$, we have $H_n(X,A) \cong \wt H_n(X/A)$.
+
+By \Cref{thm:good_pair}, the guess above is indeed true for most spaces. For example:
+\begin{ques}
+	Let $X = [0, 1]$ and $A = \{ 0, 1 \}$. Show that $H_1(X/A)$ and $H_1(X, A)$
+	are isomorphic to $\ZZ$. (In this example, so is $\pi_1(X/A)$.)
+\end{ques}
+
+But not all. Similar to \Cref{ex:quotient_by_open_set}, if $A$ is not closed, weird
+things can happen:
+\begin{example}[$H_n(X, A)$ where $A$ is open in $X$]
+	% https://math.stackexchange.com/a/2578207
+	Let $X = D^2$ be the closed disk.
+
+	If $A$ is reasonably nice, for instance $A = S^1$ the boundary of $X$, we have $H_2(X, A) \cong
+	H_2(X/A) \cong \ZZ$.
+
+	However, if $A = X \setminus \{ 0 \}$ where $0$ is the center of $X$, then
+	$H_2(X, A)$ is still isomorphic to $\ZZ$; however $H_2(X/A) \cong 0$. (The latter
+	isomorphism is harder to see, mainly because $X/A$ is a weird space --- it's not Hausdorff.)
+\end{example}
+
+Even when $A$ is closed in $X$, problems can still happen.
+\begin{example}[The shrinking wedge of circles]
+	% exercise 26 section 2.1, Hatcher
+	Let $X$ be the interval $[0, 1]$, and $A \subseteq X$ be $A = \{ \frac{1}{n} \mid n \in \ZZ^+
+	\} \cup \{ 0 \}$. In this case, the quotient $X/A$ would be isomorphic to the shrinking wedge of
+	circles, as depicted below.
+	\begin{center}
+	\begin{asy}
+		draw((0, 0)--(1, 0), L=Label("$X$", EndPoint, align=NE));
+		dot((0, 0), red);
+		for(int n=1; n<30; ++n){
+			dot((1/n, 0), red);
+		}
+
+		draw((1.5, 0)--(2.5, 0), Arrow, L="$q$");
+		for(int n=1; n<30; ++n){
+			draw(shift(3, 0)*scale(1/(2*n))*shift(1, 0)*unitcircle);
+		}
+		dot((3, 0), red);
+		label("$X/A$", (4.2, 0.5));
+	\end{asy}
+	\end{center}
+	Note that in $X/A$, any open neighborhood of the red dot $A/A$ must contains all
+	but finitely many circles.
+
+	We claim that:
+	\[ H_1(X, A) \not\cong \wt H_1(X/A). \]
+
+	What could go wrong? Generally speaking, when you work algebraically then everything are finite,
+	while in topology you have to consider things related to infinity.
+
+	Consider the following $1$-simplex in $C(X/A)$, depicted in cyan.
+	\begin{center}
+	\begin{asy}
+		dot((0, 0), red);
+		for(int n=1; n<30; ++n){
+			draw((1/n, 0)--(1/(n+1), 0), (n%2==1 ? cyan: black)+(n==1 ? roundcap: squarecap));
+		}
+
+		draw((1.5, 0)--(2.5, 0), Arrow, L="$q$");
+		for(int n=1; n<30; ++n){
+			draw(shift(3, 0)*scale(1/(2*n))*shift(1, 0)*unitcircle, n%2==1 ? cyan: black);
+		}
+		dot((3, 0), red);
+		label("$X/A$", (4.2, 0.5));
+	\end{asy}
+	\end{center}
+
+	Every element of $H(X, A)$ has a representative in $C(X)$ as a $1$-cycles, which comprises of
+	finitely many $1$-simplices, each $1$-simplex is equivalent to a segment $[a, b]$ --- modulo a
+	difference of a $1$-boundary. Thus, intuitively, every element of $H(X, A)$ can only cover
+	``finitely many circles'' (or all but finitely many).
+
+	We haven't had enough tools to formalize all these yet.
+	Formally speaking, the quotient map $q \colon X \to X/A$ and $q \colon A \to A/A$ induces $q_*
+	\colon H(X, A) \to H(X/A, A/A)$, and $q_*$ is not injective.
+\end{example}
+
+Regardless, for nice spaces $A \subseteq X$ such that $H_n(X, A) \cong \wt H_n(X/A)$, we would be
+able to compute $H_n(X)$ based on $H_n(A)$ and $\wt H_n(X/A)$ --- note that $A$ and $X/A$ is, in
+some sense, smaller and simpler than $X$.
+% ``The Equivalence of Simplicial and Singular Homology'' section in \cite{ref:hatcher} has another
+% application.
+
 \section{The long exact sequences}
 Recall \Cref{thm:long_exact_rel}, which says that the sequences
 \[ \dots \to H_n(A) \to H_n(X) \to H_n(X,A) \to H_{n-1}(A) \to \dots. \]
@@ -32,7 +130,13 @@ By \Cref{prob:triple_long_exact} we even have a long exact sequence
 	\to \dots.
 \]
 for $A \subseteq B \subseteq X$.
-An application of the second long exact sequence above gives:
+
+\begin{moral}
+	This is the analog of the fact that $X/B$ is homeomorphic to $\frac{X/A}{B/A}$ --- we ``cancel
+	the common factor in the fraction''.
+\end{moral}
+
+An application of the first long exact sequence above gives:
 \begin{lemma}
 	[Homology relative to contractible spaces]
 	\label{lem:rel_contractible}
@@ -85,6 +189,32 @@ and give ourselves the same functorial setup as before.
 	$F$ is a homotopy of the maps $f,g \colon X \to Y$
 	and each $F_t$ is itself a map of pairs.
 \end{definition}
+
+A typical $f, g \colon (X, A) \to (Y, B)$ that are pair-homotopic might look like this.
+Note that for all $t \in [0, 1]$, we must have $F_t\im(A) \subseteq B$.
+\begin{center}
+\begin{asy}
+	usepackage("xcolor");
+	draw((0, 0)--(0, 1), L=Label("$(X, \mathcolor{red}{A})$", EndPoint));
+	dot((0, 0), red);
+	dot((0, 1), red);
+
+	draw((0.2, 0.5)--(0.8, 0.5), Arrow, L="$q$");
+	fill(shift(1, 0)*unitsquare, yellow+opacity(0.1));
+	draw((1, 0)--(2, 0), red);
+	draw((1, 1)--(2, 1), red);
+	label("$(Y, \mathcolor{red}{B})$", (2, 1), align=N);
+
+	draw((1.1, 0)--(1.3, 1), heavygreen, L=Label("$f(X)$"));
+	dot((1.1, 0), red);
+	dot((1.3, 1), red);
+
+	draw((1.75, 0)--(1.5, 1), blue, L=Label("$g(X)$", Relative(0.8)));
+	dot((1.75, 0), red);
+	dot((1.5, 1), red);
+\end{asy}
+\end{center}
+
 Thus, we naturally arrive at two categories:
 \begin{itemize}
 	\ii $\catname{PairTop}$, the category of \emph{pairs} of
@@ -99,6 +229,13 @@ Thus, we naturally arrive at two categories:
 	An isomorphism of $\catname{hPairTop}$ is a
 	\vocab{pair-homotopy equivalence}.
 \end{definition}
+
+\begin{remark}
+	Pair-homotopy equivalence of pairs is the natural generalization of homotopy equivalence of
+	spaces, as defined in \Cref{def:homotopy_equiv}. In fact, if $A = B = \varnothing$ then we
+	have $X$ is homotopy equivalent to $Y$ if and only if $(X, \varnothing)$ is pair-homotopy
+	equivalent to $(Y, \varnothing)$.
+\end{remark}
 
 We can do the same song and dance as before with the prism operator to obtain:
 \begin{lemma}[Induced maps of relative homology]
@@ -115,9 +252,10 @@ i.e.\ pairs of spaces $(X,A)$ such that $H_n(X,A) = 0$.
 The correct definition is:
 \begin{definition}
 	Let $A \subseteq X$.
-	We say that $A$ is a \vocab{deformation retract} of $X$
-	if there is a map of pairs $r \colon (X, A) \to (A, A)$
-	which is a pair homotopy equivalence.
+	We say that $A$ is a \vocab{deformation retract}\footnote{This might be called a
+	\emph{deformation retraction in the weak sense} in other resources, such as \cite{ref:hatcher}}
+	of $X$ if there is a map of pairs $r \colon (X, A) \to (A, A)$
+	which is a pair-homotopy equivalence.
 \end{definition}
 \begin{example}
 	[Examples of deformation retracts]
@@ -161,7 +299,32 @@ This means we can \emph{excise} (delete) a subset $Z$ of $A$ in computing
 the relative homology groups $H_n(X,A)$.
 This should intuitively make sense:
 since we are ``modding out by points in $A$'',
-the internals of the point $A$ should not matter so much.
+the internals of the set $A$ should not matter so much.
+
+\begin{example}
+	Excision may seem trivial (for a ``relative cycle modulo relative boundary'' in $H_n(X, A)$,
+	just tweak the part that
+	lies inside $A$ until it doesn't touch $Z$), until you realize that it isn't always possible ---
+	you may accidentally cut a cycle apart! For example:
+	\begin{center}
+	\begin{asy}
+		fill(unitcircle, lightcyan);
+		fill(shift(2, 0)*unitcircle, lightcyan);
+		picture p;
+		fill(p, shift(1, 0)*scale(0.4)*unitcircle, orange);
+		clip(p, unitcircle);
+		add(p);
+		picture p;
+		fill(p, shift(1, 0)*scale(0.4)*unitcircle, orange);
+		label("$X$", (2.9, 0.9));
+		label("$A$", (1.3, 0.5), orange);
+		clip(p, shift(2, 0)*unitcircle);
+		add(p);
+		dot("$Z$", (1, 0), red, align=NE);
+		draw((0.6, 0.5)..(1, 0)..(1.5, 0.2));
+	\end{asy}
+	\end{center}
+\end{example}
 
 The main application of excision is to decide
 when $H_n(X,A) \cong \wt H_n(X/A)$.
@@ -170,11 +333,19 @@ Answer:
 \begin{theorem}
 	[Relative homology $\implies$ quotient space]
 	\label{thm:good_pair}
-	Let $X$ be a space and $A$ be a subspace such that
+	Let $X$ be a space and $A$ be a closed subspace such that
 	$A$ is a deformation retract of some open set $V \subseteq X$.
 	Then the quotient map $q \colon X \to X/A$ induces an isomorphism
 	\[ H_n(X,A) \cong H_n(X/A, A/A) \cong \wt H_n(X/A). \]
 \end{theorem}
+
+The key idea of the proof is: While it is not necessarily true that $H(X, A) \cong H(X/A, A/A)$
+(indeed, we have seen two counterexamples earlier), if we cut out $A$, then we trivially have
+$H(X-A, A-A) \cong H(X/A-A/A, A/A-A/A)$. Unfortunately, this group is not isomorphic to $H(X, A)$,
+so we fix that using the set $V$ --- that is, $H(X-A, V-A) \cong H(X/A-A/A, V/A-A/A)$. The rest of
+the work is to use excision theorem and deformation retract to show the left hand side is
+isomorphic to $H(X, A)$, and the right hand side is isomorphic to $H(X/A)$.
+
 \begin{proof}
 	By hypothesis, we can consider the following maps of pairs:
 	\begin{align*}

@@ -1,4 +1,4 @@
 [codespell]
 skip=tex/Qcircuit.tex,./tex/Qcircuit.tex
 count=
-ignore-words-list=ques,alph,mor,nd,ket,braket
+ignore-words-list=ques,alph,mor,nd,ket,braket,oint

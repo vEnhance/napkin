@@ -1,0 +1,196 @@
+\chapter{Differential forms}
+\label{ch:forms_riemann}
+
+\section{Differential form on $\CC$}
+
+In this section, we will generalize the definition of what can be contour integrated.
+
+\begin{definition}[Differential $1$-forms on $\CC$]
+	A $1$-form $\omega$ on an open set $U \subseteq \CC$ is an expression of the form
+	$f(z) d \Re + g(z) d \Im$, where $f(z)$ and $g(z)$ are
+	smooth $U \to \CC$ functions.
+\end{definition}
+
+Here, smooth means being infinitely differentiable when interpreted as $\RR^2 \to \RR^2$ functions.
+
+This is almost the same as the definition of a $1$-form on $\RR^2$!
+Here, $\Re$ and $\Im$ takes the role of $\ee_1^\vee$ and $\ee_2^\vee$ the obvious way.
+
+The only difference is, as you can observe, $f(z)$ and $g(z)$ returns complex numbers instead of
+real numbers --- but this is mostly inconsequential, by the projection principle
+(\Cref{thm:project_principle}), the $1$-form $\omega$ is equivalent to a pair of real-valued
+$1$-forms $(\Re \omega, \Im \omega)$.
+
+The reason why we want to do what we did is simply for convenience --- by abuse of notation,
+let $z$ be the function $z \mapsto z$,
+then we want $dz$ to be a $1$-form that returns the change in $z$.
+
+\section{Visualization of differential forms}
+
+Because $\omega$ takes in a point and returns a $\RR$-linear map from the tangent space,
+the obvious way to visualize it is to draw a quiver diagram --- for each point, the value of
+$\omega_p(v)$ is plotted for vectors $v$, which we interpret as ``if we integrate a curve $c$ in the
+direction of $v$, with length approximately the length of $v$, close to the point $p$, then the
+result is approximately the labeled value.
+
+To integrate a differential form $\omega$ over a curve $c$, simply add up the numbers that
+corresponds to the direction of movement of $c$ that appears in the diagram.
+
+With that visualization, here are some examples.
+\begin{example}[The $1$-form $dz$]
+	We may visualize $dz$, which is just the change in $z$, as follows.
+	\begin{center}
+	\begin{asy}
+		size(8cm);
+		for(int x=-2; x<=2;++x){
+			for(int y=-2; y<=2;++y){
+				if(x!=2) draw((x, y)--(x+1, y), Arrow, L=Label("$1$", MidPoint, align=N));
+				if(y!=2) draw((x, y)--(x, y+1), Arrow, L=Label("$i$", MidPoint, align=W));
+			}
+		}
+		draw(shift(0.1, -0.1)*((-2, -1)--(0, -1)--(0, 0)), arrow=Arrow, purple, L=Label("$c$", MidPoint, align=S));
+		graph.xaxis(xmin=-2.8, xmax=2.8);
+		graph.yaxis(ymin=-2.8, ymax=2.8);
+		label("$\operatorname{Re} z$", (2.8, 0), S);
+		label("$\operatorname{Im} z$", (0, 2.8), E);
+	\end{asy}
+	\end{center}
+	The integration $\int_c dz$ can be computed by adding up the value of the vectors together, so
+	we get $2 + i$ --- this is indeed equal to the change of $z$ as we travel along the curve, $0 -
+	(-2-i) = 2 + i$.
+
+	Since having the arrows extending the whole length can be confusing,
+	we will shorten the arrow like the following.
+	\begin{center}
+	\begin{asy}
+		size(8cm);
+		for(int x=-2; x<=2;++x){
+			for(int y=-2; y<=2;++y){
+				draw((x, y)--(x+0.2, y), Arrow, L=Label("\tiny $1$" , EndPoint, align=E*0.3));
+				draw((x, y)--(x, y+0.2), Arrow, L=Label("\tiny $i$" , EndPoint, align=N*0.3));
+				draw((x, y)--(x-0.2, y), Arrow, L=Label("\tiny $-1$", EndPoint, align=W*0.3));
+				draw((x, y)--(x, y-0.2), Arrow, L=Label("\tiny $-i$", EndPoint, align=S*0.3));
+			}
+		}
+		draw(shift(0.1, -0.1)*((-2, -1)--(0, -1)--(0, 0)), arrow=Arrow, purple, L=Label("$c$", MidPoint, align=S));
+		graph.xaxis(xmin=-2.8, xmax=2.8);
+		graph.yaxis(ymin=-2.8, ymax=2.8);
+		label("$\operatorname{Re} z$", (2.8, 0), S);
+		label("$\operatorname{Im} z$", (0, 2.8), E);
+	\end{asy}
+	\end{center}
+\end{example}
+
+\begin{example}[Another holomorphic $1$-form: $d(z^2) = 2z \cdot dz$]
+	While we have never defined what a holomorphic $1$-form is, it makes intuitive sense for the
+	definition to satisfy that: if $f(z)$ is holomorphic, then $df(z)$ should be a holomorphic
+	$1$-form.
+
+	In any case, if you perform the same procedure as above and compute the differential change
+	of $z^2$ along the tangent vectors, you will get the following.
+
+	\begin{center}
+	\begin{asy}
+		size(8cm);
+		for(int x=-2; x<=2;++x){
+			for(int y=-2; y<=2;++y){
+				var d=(x+y*I)*2;
+				string complex_to_str(pair p){
+					if(p==0) return "0";
+					if(p.y==0) return string(p.x);
+					if(p.x==0) return p.y==1 ? "i": p.y==-1 ? "-i": string(p.y)+"i";
+					return string(p.x)+(p.y>0 ? "+": "")+string(p.y)+"i";
+				}
+				draw((x, y)--(x+0.2, y), Arrow, L=Label("\tiny $"+complex_to_str(d   )+"$", EndPoint, align=E*0.3+N));
+				draw((x, y)--(x, y+0.2), Arrow, L=Label("\tiny $"+complex_to_str(d*I )+"$", EndPoint, align=N*0.7  ));
+				draw((x, y)--(x-0.2, y), Arrow, L=Label("\tiny $"+complex_to_str(-d  )+"$", EndPoint, align=W*0.3+S));
+				draw((x, y)--(x, y-0.2), Arrow, L=Label("\tiny $"+complex_to_str(-d*I)+"$", EndPoint, align=S*0.7  ));
+			}
+		}
+		graph.xaxis(xmin=-2.8, xmax=2.8);
+		graph.yaxis(ymin=-2.8, ymax=2.8);
+		label("$\operatorname{Re} z$", (2.8, 0), S);
+		label("$\operatorname{Im} z$", (0, 2.8), E);
+	\end{asy}
+	\end{center}
+
+	Unfortunately, it gets a bit cluttered regardless.
+	Anyway, as you can see, at each point $z$ and along each direction, the value of the $1$-form
+	$d(z^2)$ is $2z$ times the corresponding value of the $1$-form $dz$, thus it makes sense for us
+	to define multiplication such that $d(z^2) = 2z \cdot dz$.
+\end{example}
+
+\begin{example}[A non-holomorphic form: $d \ol z$]
+	In both of the examples above, we see that, at each point $z$, $\omega_z(\ee_2) = i \cdot
+	\omega_z(\ee_1)$, where $\ee_1 = (1, 0)$ and $\ee_2 = (0, 1)$ --- in other words, rotating
+	the vector counterclockwise by $90 \deg$ multiplies the value of the differential form by $i$.
+
+	The natural question would be: Is this the property of all $1$-forms?
+	Turns out it isn't. (Later on, we will see that this is a common property of all holomorphic
+	$1$-forms, or more generally, all type $(1, 0)$ $1$-forms.)
+
+	Consider the following example: let $\omega = d \ol z$ --- this is just the change in value of
+	$\ol z$.
+
+	\begin{center}
+	\begin{asy}
+		size(8cm);
+		for(int x=-2; x<=2;++x){
+			for(int y=-2; y<=2;++y){
+				draw((x, y)--(x+0.2, y), Arrow, L=Label("\tiny $1$" , EndPoint, align=E*0.3));
+				draw((x, y)--(x, y+0.2), Arrow, L=Label("\tiny $-i$", EndPoint, align=N*0.3));
+				draw((x, y)--(x-0.2, y), Arrow, L=Label("\tiny $-1$", EndPoint, align=W*0.3));
+				draw((x, y)--(x, y-0.2), Arrow, L=Label("\tiny $i$" , EndPoint, align=S*0.3));
+			}
+		}
+		graph.xaxis(xmin=-2.8, xmax=2.8);
+		graph.yaxis(ymin=-2.8, ymax=2.8);
+		label("$\operatorname{Re} z$", (2.8, 0), S);
+		label("$\operatorname{Im} z$", (0, 2.8), E);
+	\end{asy}
+	\end{center}
+\end{example}
+
+\begin{example}[Another non-holomorphic form: $\ol z \cdot dz$]
+	Just as how a smooth function $f(z)$ is holomorphic if and only if it is complex-differentiable,
+	we should define a holomorphic $1$-form such that a smooth $1$-form $\omega$ is holomorphic if
+	and only if we can compute its differential $d \omega$.
+
+	We certainly haven't defined a $2$-form yet, nor have we defined what it means to differentiate
+	a $1$-form $\omega$ to a $2$-form.
+\end{example}
+
+\subsection{Holomorphic forms}
+
+With the above examples in mind, we defines:
+\begin{definition}[Holomorphic $1$-forms on the complex plane]
+	A $1$-form $\omega$ is holomorphic if and only if it can be written as $f(z) \cdot dz$ for some
+	holomorphic function $f$.
+\end{definition}
+
+And also a few other types.
+\begin{definition}[Type $(1, 0)$ and type $(0, 1)$ $1$-forms]
+	A $1$-form is of \vocab{type $(1, 0)$} if it is locally of the form $f(z) dz$ for smooth $f$.
+	Similarly, a $1$-form is of \vocab{type $(0, 1)$} if it is locally of the form $f(z) d \ol z$
+	for smooth $f$.
+\end{definition}
+\begin{example}[Some type $(1, 0)$ $1$-forms]
+	Looking at the examples above:
+	\begin{itemize}
+		\ii The holomorphic forms, $dz$ or $2z \cdot dz$, are of course type $(1, 0)$.
+		\ii $\ol z \cdot dz$ is still a type $(1, 0)$ form, even though it is not holomorphic.
+		\ii $d \ol z$, however, is not a type $(1, 0)$ form.
+	\end{itemize}
+\end{example}
+Why do we care? Note that it is nontrivial that the definition above is well-defined --- it only
+makes sense because a holomorphic function scales every direction the same amount!
+
+Intuitively,
+\begin{moral}
+	A $(1, 0)$ form $\omega$ is a form such that $\omega_p(\ee_2) = \omega_p(\ee_1) \cdot i$.
+\end{moral}
+
+\subsection{Putting the pieces together: $1$-forms on a Riemann surface}
+
+Unsurprisingly, now we can define a $1$-form on a Riemann surface.
+\todo{write this}

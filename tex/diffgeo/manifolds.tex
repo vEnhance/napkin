@@ -1,4 +1,5 @@
 \chapter{A bit of manifolds}
+\label{ch:manifolds_diffgeo}
 Last chapter, we stated Stokes' theorem for cells.
 It turns out there is a much larger class of spaces,
 the so-called \emph{smooth manifolds}, for which this makes sense.
@@ -40,6 +41,7 @@ While the first one is the best motivation for examples,
 the second one is easier to use formally.
 
 \begin{definition}
+	\label{def:topological_manif}
 	A \vocab{topological $n$-manifold} $M$ is a Hausdorff space
 	with an open cover $\{U_i\}$ of sets
 	homeomorphic to subsets of $\RR^n$,
@@ -184,6 +186,7 @@ of each $E_1$ and $E_2$:
 We want to add enough structure so that we can use differential forms.
 
 \begin{definition}
+	\label{def:smooth_manif}
 	We say $M$ is a \vocab{smooth manifold}
 	if all its transition maps are smooth.
 \end{definition}
@@ -206,7 +209,7 @@ As an example, here is the definition of a ``smooth map'':
 		is smooth as a function $E_i \to \RR$.
 		\ii Let $M$ and $N$ be smooth
 		with atlases $\{ U_i^M \taking{\phi_i} E_i^M \}_i$
-		and $\{ U_j^N \taking{\phi_j} E_j^N \}_j$,
+		and $\{ U_j^N \taking{\phi_j} E_j^N \}_j$.
 		A map $f \colon M \to N$ is \vocab{smooth} if for every $i$ and $j$,
 		the composed map
 		\[ E_i \taking{\phi_i\inv} U_i \injto M
@@ -447,7 +450,7 @@ rather than as embedded in $\RR^n$.\footnote{This
 	Note this wasn't always the case!
 	During the 19th century, a group was literally defined
 	as a subset of $\text{GL}(n)$ or of $S_n$.
-	In fact Sylow developed his theorems without the word ``group''
+	In fact Sylow developed his theorems without the word ``group''.
 	Only much later did the abstract definition of a group was given,
 	an abstract set $G$ which was independent of any \emph{embedding} into $S_n$,
 	and an object in its own right.}

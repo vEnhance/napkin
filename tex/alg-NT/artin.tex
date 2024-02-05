@@ -1,4 +1,5 @@
 \chapter{Bonus: A Bit on Artin Reciprocity}
+\label{ch:artin_reciprocity}
 In this chapter, I'm going to state some big theorems of
 global class field theory and use them to deduce the
 Kronecker-Weber plus Hilbert class fields.
@@ -509,6 +510,7 @@ Let's see how this result relates to quadratic reciprocity.
 Here is an example along the same lines.
 \begin{example}
 	[Cyclotomic field]
+	\label{ex:artin_cyclotomic}
 	Let $\zeta$ be a primitive $m$th root of unity.
 	For primes $p$, we know that $\Frob_p \in \Gal(\QQ(\zeta)/\QQ)$
 	is ``exactly'' $p \pmod m$.
@@ -584,6 +586,16 @@ Here by $L \subseteq M$ we mean that $L$ is isomorphic to some subfield of $M$.
 \end{proof}
 Note that we can always take $\km$ to be the product of conductors here.
 
+If you didn't realize it: Apart from generalizing quadratic reciprocity, Artin reciprocity and
+Takagi existence theorem together enumerates \emph{all abelian field extensions}!
+Now if you are given a field $K$ and want to list all (finite) abelian field extensions of $K$,
+you can list all the modulus $\km$ of $K$, list all subgroups of $C_K(\km)$, then each subgroup
+corresponds to a field extension.
+
+(Of course, the question of how to compute the field $L$ given a modulus and a congruence subgroup
+is still difficult. At least when $K = \QQ$, \Cref{prob:kronecker_weber_theorem} gives the answer:
+all finite abelian field extensions $L/\QQ$ are contained in some cyclotomic field.
+
 \bigskip
 
 To finish, here is a quote from Emil Artin on his reciprocity law:
@@ -612,8 +624,237 @@ To finish, here is a quote from Emil Artin on his reciprocity law:
 	--- and in half an hour I had it.
 \end{quote}
 
+\section{Application: Generalization of sum of two squares}
+
+We start with the follow classical theorem:
+\begin{theorem}[Fermat's theorem on sums of two squares]
+	An odd prime $p$ can be expressed as $p = x^2 + y^2$ for integers $x$ and $y$ if and only if $p
+	\equiv 1 \pmod{4}$.
+\end{theorem}
+You may see a proof that goes something like the following. Because we have learnt number theory and
+quadratic reciprocity, this should be intuitive to follow.
+\begin{proof}
+	Note that if $p = x^2 + y^2$, then $\left(\frac{x}{y}\right)^2 \equiv -1 \pmod{p}$, so a
+	necessary condition is that $-1$ is a quadratic residue modulo $p$.
+
+	We will show that this condition is also sufficient.
+
+	Let $a \in \ZZ$ be such that $a^2 \equiv -1 \pmod{p}$.
+	Note that $\Norm_{\QQ(i)/\QQ}(a + i) = a^2 + 1$ is divisible by $p$, and $\Norm_{\QQ(i)/\QQ}(p)
+	= p^2$.
+
+	Assume it is possible to write $p = x^2 + y^2$.
+	Then $p$ can be factored in $\ZZ[i]$ as $(x + y i)(x - y i)$, for integers $x$ and $y$.
+
+	We claim that letting $x + y i = \gcd(p, a + i)$ works.
+	Indeed, $p \mid (a + i) (a - i) = a^2 + 1$ but $p$ does not divide either of the factor, which
+	means $p$ is not a prime in $\ZZ[i]$ and taking the $\gcd$ with either $a + i$ or $a - i$ should
+	extract a nontrivial factor.
+
+	Note that $\Norm_{\QQ(i)/\QQ}(x + y i) = p$, thus $x + y i$ and $x - y i$ are already primes,
+	so the factor extraction above must already give us a prime factor, which is what we want.
+
+	Finally, we know that $-1$ is a quadratic residue modulo $p$ precisely when
+	$p \equiv 1 \pmod{4}$, so we're done.
+\end{proof}
+
+You may dismiss it as an arcane trick\dots\ until you realize that it can be generalized perfectly
+well to many other cases!
+Try to prove the following theorem using the same method.
+\begin{theorem}
+	An odd prime $p > 7$ can be expressed as $p = x^2 + 7 y^2$ for integers $x$ and $y$ if and only
+	if $-7$ is a quadratic residue modulo $p$.
+\end{theorem}
+Which, by quadratic reciprocity, would boil down to whether $(p \bmod 7) \in \{ 1, 2, 4 \}$.
+
+Nevertheless, it isn't always that nice.
+\begin{example}
+	Let $p = 3$. Then $1^2 \equiv -5 \pmod{p}$, but there is no integers $x$ and $y$ such that $p =
+	x^2 + 5 y^2$.
+\end{example}
+\begin{ques}
+	If you haven't, try to figure out what went wrong in the proof before reading the explanation
+	below.
+\end{ques}
+
+The bug, of course, is to assume that $\gcd(p, 1 + \sqrt{-5})$ is an element --- that is,
+in this case, the ring of integers of $\QQ(\sqrt{-5})$ is not an unique factorization domain.
+But we have all the tools of ideal theory to fix it:
+the ideal $(p) = (3) \subseteq \QQ$ splits into $(p) = \kp_1 \kp_2$ when lifted to $\QQ(\sqrt{-5})$,
+where $\kp_1 = (3, 1 + \sqrt{-5})$ and $\kp_2 = (3, 1 - \sqrt{-5})$.
+
+Thus,
+\begin{proposition}
+	A prime $p \in \QQ$ can be written as $p = x^2 + 5 y^2$ if and only if $(p)$ splits into $\kp_1
+	\kp_2$ when lifted to $\QQ(\sqrt{-5})$, where both $\kp_1$ and $\kp_2$ are principal ideals.
+\end{proposition}
+
+This is where Artin reciprocity and the Hilbert class field shines --- we want to determine the
+class of $\kp_1$, in other words, $\kp_1 \pmod{1}$.
+\begin{ques}
+	Check that $\kp \equiv (1) \pmod{1}$ if and only if $\kp \subseteq \QQ(\sqrt{-5})$ is principal.
+	(Definition chasing.)
+\end{ques}
+\begin{ques}
+	If $\kp_1$ is principal, then we automatically have $\kp_2$ principal. Why?
+\end{ques}
+
+From now on, let $K = \QQ(\sqrt{-5})$, and let $L$ be some abelian extension of $K$.
+
+Recall we defined above the group $H(L/K, \km) = \ker \left(\frac{L/K}{\bullet}\right)$, and the
+statement of Artin reciprocity claims, among others, that $P_K(\km) \subseteq H(L/K, \km)$.
+Naturally, you may wonder, if all we cares is that ``$\left(\frac{L/K}{\kp}\right)$ depends only on
+$\kp \pmod{\kf}$'', then why would we need to define yet another piece of notation for $H$?
+
+Well, the simplified version of Artin reciprocity theorem above states that we can compute
+$\left(\frac{L/K}{\kp}\right)$ once we know $\kp \pmod{\kf}$.
+Of course there is more than that:
+\begin{moral}
+	If $P_K(\kf) = H(L/K, \kf)$, then we can compute $\kp \pmod{\kf}$ once we know
+	$\left(\frac{L/K}{\kp}\right)$.
+\end{moral}
+In other words, if $L$ is such that the congruence subgroup reaches the ``lower bound'',
+then we also get the converse.
+\begin{ques}
+	Check that the algebra above works out.
+\end{ques}
+
+We have seen one example above, \Cref{ex:artin_cyclotomic}, where the congruence subgroup
+$H(\QQ(\zeta_m)/\QQ, m \infty)$ is equal to the lower bound $P_\QQ(m \infty)$.
+We will see one more example below.
+
+\begin{example}
+	In the example above, we can vary both the modulus $\km$ and the abelian field extension $L$
+	over $K$ to get different congruence subgroups.
+	This can be confusing, so let us take an example.
+
+	Consider abelian field extensions $L/\QQ$. Let the modulus in $\QQ$ be $\km = 15 \infty$.
+
+	The ray class group $C_K(\km)$ is of course isomorphic to $\Zm{15} \cong \Zm{3} \times \Zm{5}
+	\cong \Zc{2} \times \Zc{4}$.
+
+	As small as this group is (with only 8 elements), it has 8 subgroups.%
+	\footnote{\url{https://beta.lmfdb.org/Groups/Abstract/diagram/8.2} has a diagram.}
+	Nevertheless, we will only focus on the relevant parts of the subgroup lattice.
+
+	By Artin reciprocity and Takagi existence theorem, each congruence subgroup corresponds to
+	some abelian extension over $L/\QQ$.
+
+	We draw the correspondence between abelian field extension and the congruence subgroup
+	$H(L/\QQ, 15 \infty)$ below, depicted using the fact that
+	$H(L/\QQ, 15 \infty)/P_\QQ(15 \infty)$ is a subgroup of $C_\QQ(15 \infty)$,
+	which is canonically isomorphic to $\Zm{15}$.
+	\begin{center}
+	\begin{tikzcd}
+		\QQ(\zeta_{15}) \ar[r, leftrightarrow] & \{ 1 \} \ar[d] \\
+		\QQ(\zeta_{5}) \ar[u] & \{ 1, 11 \} \ar[d] \\
+		\QQ(\sqrt 5) \ar[u] & \{ 1, 11, 4, 14 \} \ar[d] \\
+		\QQ \ar[u] \ar[r, leftrightarrow] & \Zm{15}
+	\end{tikzcd}
+	\end{center}
+	(Where does the diagram above come from? Well, if the base field is $\QQ$,
+	\Cref{prob:kronecker_weber_theorem} gives a way.)
+
+	Interested readers may want to try to work out the canonical isomorphism between the Galois
+	group $\Gal(L/K)$ and the ray class group $C_K(\kf(L/K))$
+	in the general case of an abelian extension.
+
+	Next, how does this relate to the abelian extensions that corresponds to different modulus,
+	let's say $5 \infty$?
+	Intuitively speaking, if we know the value of an ideal mod $15 \infty$, we would know its
+	value mod $5 \infty$. Formally, we have this diagram:
+	\begin{center}
+	\begin{tikzcd}
+		P_K(15 \infty) \ar[d, hook] \ar[r, hook] &
+		I_K(15 \infty) \ar[d, hook] \ar[r, surjective head] &
+		C_K(15 \infty) \ar[d, surjective head] \\
+		P_K(5 \infty) \ar[r, hook] &
+		I_K(5 \infty) \ar[r, surjective head] &
+		C_K(5 \infty)
+	\end{tikzcd}
+	\end{center}
+	(If you have read the category theory chapter:
+	Morphism of short exact sequence appears everywhere! You just have to look for it.)
+
+	That is, we get an induced $C_K(15 \infty) \surjto C_K(5 \infty)$ map,
+	or equivalently, $\Zm{15} \surjto \Zm{5}$.
+	This time around, the abelian field extensions that corresponds to the modulus $5 \infty$ are:
+	\begin{center}
+	\begin{tikzcd}
+		\QQ(\zeta_{5}) \ar[r, leftrightarrow] & \{ 1 \} \ar[d] \\
+		\QQ(\sqrt 5) \ar[u] & \{ 1, 4 \} \ar[d] \\
+		\QQ \ar[u] \ar[r, leftrightarrow] & \Zm{5}
+	\end{tikzcd}
+	\end{center}
+\end{example}
+
+In our case, given $p \in \QQ$ be a prime factors as $(p) = \kp_1 \kp_2$ when lifted to
+$K = \QQ(\sqrt{-5})$, we want to determine if $\kp_1$ is principal --- in other words, we want to
+compute ``$\kp_1 \pmod{1}$''.
+With the insight above, we will rephrase the condition in terms of the Artin symbol.
+
+Let $L = K(i)$. (Later on, we will know that $L$ is the \vocab{Hilbert class field} of $K$.)
+We claim the following is true:
+\begin{itemize}
+	\ii $L/K$ is an abelian extension,
+	\ii the discriminant is $\kf = \kf(L/K) = 1$,
+	\ii $H(L/K, \kf) = P_K(\kf)$ --- that is, this is exactly the situation where we can determine
+	$\kp \pmod{1}$ for $\kp \subseteq K$ based on $\left(\frac{L/K}{\kp}\right)$.
+\end{itemize}
+
+(In the general case, the field $L$ exists according to \Cref{prob:hilbert_class_field}.)
+
+Then, for a prime $\kp \subseteq K$, the following are equivalent:
+\begin{enumerate}
+	\ii $\kp$ is principal;
+	\ii $\left(\frac{L/K}{\kp}\right) = \id$;
+	\ii $\kp$ splits completely when lifted to $L$.
+\end{enumerate}
+
+Notice that we used Artin reciprocity (and its ``converse'') for the abelian extension $L/K$
+to prove the equivalence of the first and the second statement.
+\begin{exercise}
+	Why is the second and the third statement equivalent?
+	(\Cref{prob:hilbert_class_field}.)
+\end{exercise}
+
+Thus, the condition that $(p) = \kp_1 \kp_2$ for principal ideals $\kp_1$ and $\kp_2$ is equivalent
+to that $(p) \subseteq \QQ$ splits completely when lifted to $L$.
+
+Reasoning similar to above for the abelian extension $L/\QQ$, the following are equivalent:
+\begin{enumerate}
+	\ii $(p) \subseteq \QQ$ splits completely when lifted to $L$;
+	\ii $\left(\frac{L/\QQ}{(p)}\right) = \id$.
+\end{enumerate}
+
+This time, we don't have the first bullet point anymore --- $L$ is \emph{not} the
+Hilbert class field of $\QQ$ --- but, by Artin reciprocity, we do know:
+\begin{moral}
+	The value of $\left(\frac{L/\QQ}{(p)}\right)$ only depends on $(p) \pmod{\kf(L/\QQ)}$.
+\end{moral}
+In this case, the discriminant of the extension $L/\QQ$ is $\kf(L/\QQ) = 20 \infty$.
+
+So, in summary:
+\begin{align*}
+	&\quad \text{$p$ can be written as $x^2 + 5y^2$} \\
+	&\iff \text{$(p) = \kp_1 \kp_2$ for principal $\kp_1$ when lifted to $\QQ(\sqrt{-5})$} \\
+	&\iff \text{$(p) = \kp_1 \kp_2$, and $\kp_1 \subseteq \QQ(\sqrt{-5})$ splits completely
+		when lifted to $\QQ(\sqrt{-5}, i)$} \\
+	&\iff \text{$(p) \subseteq \QQ$ splits completely when lifted to $\QQ(\sqrt{-5}, i)$} \\
+	&\iff \left( \frac{\QQ(\sqrt{-5}, i)/\QQ}{(p)} \right) = \id \\
+	&\iff (p \bmod 20) \in \{ 1, 9 \}.
+\end{align*}
+
+We're done! The final form of the theorem is:
+\begin{theorem}
+	Let $p$ be a prime with $p \nmid 20$, then $p$ can be written as $x^2 + 5y^2$ if and only if
+	$(p \bmod 20) \in \{ 1, 9 \}$.
+\end{theorem}
+
+
 \section{\problemhead}
 \begin{dproblem}
+	\label{prob:kronecker_weber_theorem}
 	[Kronecker-Weber theorem]
 	Let $L$ be an abelian extension of $\QQ$.
 	Then $L$ is contained in a cyclic extension $\QQ(\zeta)$
@@ -632,6 +873,7 @@ To finish, here is a quote from Emil Artin on his reciprocity law:
 
 \begin{dproblem}
 	[Hilbert class field]
+	\label{prob:hilbert_class_field}
 	Let $K$ be any number field.
 	Then there exists a unique abelian extension $E/K$
 	which is unramified at all primes (finite or infinite)
@@ -664,3 +906,11 @@ To finish, here is a quote from Emil Artin on his reciprocity law:
 		This completes the proof.
 	\end{sol}
 \end{dproblem}
+
+\begin{problem}
+	There is no positive integer $m$ such that whether a prime number $p \nmid m$ can be written as
+	$p = x^2 + 23 y^2$ depends only on $p \bmod m$. Guess why.
+	\begin{hint}
+		The extension $L/\QQ$ is not abelian.
+	\end{hint}
+\end{problem}

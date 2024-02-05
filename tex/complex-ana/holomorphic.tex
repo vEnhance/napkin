@@ -1,4 +1,5 @@
 \chapter{Holomorphic functions}
+\label{ch:holomorphic_functions}
 Throughout this chapter, we denote by $U$ an open subset of the complex plane,
 and by $\Omega$ an open subset which is also simply connected.
 The main references for this chapter were \cite{ref:dartmouth,ref:bak_ca}.
@@ -45,7 +46,7 @@ Here are some examples.
 			\end{cases}
 		\]
 		has derivatives at every point.
-		But if you expand the Taylor series at $x=0$, you get $0 + 0x + 0x^2 + \dots$,
+		But if you expand the Taylor series at $x=0$, you get $0 + 0x + 0x^2 + \cdots$,
 		which is wrong for \emph{any} $x > 0$ (even $x=0.0001$).
 	\end{enumerate}
 \end{example}
@@ -86,7 +87,7 @@ Some of the resulting corollaries:
 	on the boundary of the unit circle will tell you the values in its interior.
 	\ii Knowing the values of the function at $1$, $\half$, $\frac13$, \dots
 	are enough to determine the whole function!
-	\ii Bounded holomorphic functions $\CC \to \CC$ must be constant
+	\ii Bounded holomorphic functions $\CC \to \CC$ must be constant.
 	\ii And more\dots
 \end{itemize}
 
@@ -385,6 +386,7 @@ it is likely that many more deep theorems will follow.''
 Let's pull back the curtain:
 
 \begin{theorem}[Cauchy's integral formula]
+	\label{thm:cauchy_integral_formula}
 	Let $\gamma \colon [0,2\pi] \to \CC$ be a circle in the plane given by $t \mapsto Re^{it}$,
 	which bounds a disk $D$.
 	Suppose $f \colon U \to \CC$ is holomorphic such that $U$ contains the circle and its interior.
@@ -402,6 +404,11 @@ is simply connected anyways.
 The presence of $2\pi i$, which you saw earlier in the form $\oint_{\text{circle}} z^{-1} \; dz$,
 is no accident.
 In fact, that's the central result we're going to use to prove the result.
+
+\begin{remark}
+	With the introduction of meromorphic functions next chapter, we will see how to intuitively
+	derive this formula in \Cref{remark:cauchy_integral_intuition}.
+\end{remark}
 
 \begin{proof}
 	There are several proofs out there, but I want to give the one that really
@@ -591,7 +598,7 @@ The first few results are the most important.
 \end{sproblem}
 
 \begin{sproblem}[Zeros are isolated]
-	An \vocab{isolated set} in the complex plane is a
+	An \vocab{isolated set} in an open set $U$ in the complex plane is a
 	set of points $S$ such that around each point in $S$,
 	one can draw an open neighborhood not intersecting any other point of $S$.
 
@@ -601,26 +608,27 @@ The first few results are the most important.
 	on which $f$ is identically zero.
 	\begin{hint}
 		Proceed by contradiction,
-		meaning there exists a sequence $z_1, z_2, \dots \to z$
+		meaning there exists a sequence $z_1, z_2, \dotsc \to z$
 		where $0 = f(z_1) = f(z_2) = \dots$ all distinct.
 		Prove that $f = 0$ on an open neighborhood of $z$
 		by looking at the Taylor series of $f$ and
 		pulling out factors of $z$.
 	\end{hint}
 	\begin{sol}
-		Proceed by contradiction, meaning there exists a sequence $z_1, z_2, \dots \to z$
+		Proceed by contradiction, meaning there exists a sequence $z_1, z_2, \dotsc \to z$
 		where $0 = f(z_1) = f(z_2) = \dots$ all distinct.
 		WLOG set $z=0$.
 		Look at the Taylor series of $f$ around $z=0$.
 		Since it isn't uniformly zero by assumption,
-		write it as $a_N z^N + a_{N+1}z^{N+1} + \dots$, $a_N \neq 0$.
-		But by continuity of $h(z) = a_N + a_{N+1}z + \dots$ there is some
+		write it as $a_N z^N + a_{N+1}z^{N+1} + \cdots$, $a_N \neq 0$.
+		But by continuity of $h(z) = a_N + a_{N+1}z + \cdots$ there is some
 		open neighborhood of zero where $h(z) \neq 0$.
 	\end{sol}
 \end{sproblem}
 
 \begin{sproblem}
 	[Identity theorem]
+	\label{prob:identity_thm}
 	\gim
 	Let $f, g \colon U \to \CC$ be holomorphic, and assume that $U$ is connected.
 	Prove that if $f$ and $g$ agree on some open neighborhood,

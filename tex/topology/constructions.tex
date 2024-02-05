@@ -1,4 +1,5 @@
 \chapter{Some topological constructions}
+\label{ch:top_constructions}
 In this short chapter we briefly describe some common spaces and constructions
 in topology that we haven't yet discussed.
 
@@ -120,6 +121,18 @@ So in this notation, \[ D^n / S^{n-1} = S^n. \]
 	objects which are homoeomorphic/isomorphic/etc.\ are generally
 	not carefully distinguished from each other.
 \end{abuse}
+
+\begin{example}[Weirder quotient spaces]
+	\label{ex:quotient_by_open_set}
+	If the subspace $A$ is not closed in $X$, $X/A$ would be quite weird.
+
+	For instance, let $X = \RR$ and $A = (0, 1)$. Then the space $X/A$ consists of the points
+	$(-\infty, 0] \cup \{A/A\} \cup [1, \infty)$.
+	Here, the points $0$ and $A/A$ are different; yet every open set that contains $0$, also
+	contains $A/A$.
+
+	We say this space $X/A$ is not Hausdorff.
+\end{example}
 
 \section{Product topology}
 \prototype{$\RR \times \RR$ is $\RR^2$, $S^1 \times S^1$ is the torus.}

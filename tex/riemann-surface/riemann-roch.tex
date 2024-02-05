@@ -1,0 +1,250 @@
+\chapter{The Riemann-Roch theorem}
+\label{ch:riemann_roch}
+
+\section{Motivation}
+
+Recall a basic fact in complex analysis:
+\begin{quote}
+	A holomorphic $\CC \to \CC$ function is uniquely determined by its Taylor series expansion at
+	the origin.
+\end{quote}
+
+Compared to the case of real smooth function, this is already very rigid --- the value of the
+function in a small neighborhood of the origin determines the value of the function everywhere ---
+but, in order to specify a function, you still need infinitely many coordinates!
+
+Meanwhile, we have Liouville's theorem:
+\begin{quote}
+	A bounded holomorphic $\CC \to \CC$ function is constant.
+\end{quote}
+As we have learnt earlier, this theorem, when phrased in terms of Riemann surfaces, can be more
+elegantly rephrased to the following:
+\begin{quote}
+	A holomorphic $\CC_\infty \to \CC$ function is constant.
+\end{quote}
+In other words, in order to specify a holomorphic $\CC_\infty \to \CC$, you only need a \emph{single
+complex number}! That is, the $\CC$-vector space $\Hom(\CC_\infty, \CC)$ has dimension $1$.
+
+Naturally, you may ask, ``is there anything inbetween''? There is! And the Riemann-Roch theorem is
+the main ingredient to understand how these things work.
+
+So, how are we going to define this? If you compare the two situations above,
+a holomorphic $\CC \to \CC$ function is a meromorphic $\CC_\infty \to \CC$ function, which
+is allowed to have a pole at $\infty$, and nowhere else.
+
+So,
+\begin{moral}
+	By smoothly interpolate between ``allow pole of arbitrary order'' and ``must be holomorphic'',
+	we can produce many interesting spaces of functions.
+\end{moral}
+
+Conveniently, back in \cref{ch:meromorphic_fn}, we have defined the \vocab{multiplicity} of a
+zero and the \vocab{order} of a pole of a meromorphic function.
+So, the natural point between these two extremes is to allow a pole of order at most $d$.
+
+For notational convenience, we defines:
+\begin{definition}[Order of a meromorphic function]
+	Let $f$ be meromorphic at $p$. We define $\ord_p(f)$ to be:
+	\begin{itemize}
+		\ii $d$, if $f$ has a zero of multiplicity $d$ at $p$;
+		\ii $-d$, if $f$ has a pole of order $d$ at $p$;
+		\ii $0$, otherwise.
+	\end{itemize}
+\end{definition}
+
+\begin{example}[The space of functions with pole of order at most $4$ on $\CC_\infty$]
+	Let $L(4 \cdot \infty)$ be the set of meromorphic $\CC_\infty \to \CC$ function, being
+	holomorphic everywhere except $\infty$, and has a pole of order at most $4$ at $\infty$ ---
+	in other words,
+	\[
+		L(4 \cdot \infty) = \{ \text{$f$ meromorphic on $\CC_\infty$} \mid \text{$f$ defined on
+		$\CC_\infty \setminus \{ \infty \}$}, \ord_\infty(f) \geq -4 \}.
+	\]
+	(The notation $L(-)$ will be explained later.)
+
+	Obviously, this forms a natural $\CC$-vector space.
+
+	Consider the Taylor series of any $f \in L(4 \cdot \infty)$ at the origin:
+	\[
+		f(z) = \frac{c_{-m}}{z^m} + \frac{c_{-m+1}}{z^{m-1}} + \cdots + \frac{c_{-1}}{z} + c_0 +
+		c_1 z + \cdots
+	\]
+	Obviously, because $f$ is defined at the origin, it cannot have any nonzero coefficient $c_{-m}$
+	for $m > 0$.
+	But more importantly, it cannot have any nonzero coefficient $c_m$ for $m > 4$
+	either!\footnote{The reason is actually not very straightforward, but you can see for yourself
+		why it is true: if there are only finitely many nonzero terms, then the order of the pole at
+		$\infty$, $(-\ord_\infty(f))$, is precisely the degree of the highest nonzero coefficient.}
+
+	Did you see what happened here? We start with requiring the function to be analytic and does not
+	blow up too badly, and we end up with just the \emph{algebraic} function --- the polynomials!
+
+	In particular, $L(4 \cdot \infty)$ consists of the polynomials of degree $\leq 4$, and
+	\[
+		\dim L(4 \cdot \infty) = 5
+	\]
+	as a $\CC$-vector space.
+\end{example}
+
+\begin{example}[More complicated $L(-)$ spaces]
+	There's no reason why we should restrict ourselves to considering only the functions that blow
+	up at $\infty$ --- as we will see, more general meromorphic functions can be considered, as long
+	as we restrict the order of the poles.
+
+	Let $L(-1 \cdot 3 + 4 \cdot i + 5 \cdot \infty)$ be the set of meromorphic functions $f \colon
+	\CC_\infty \to \CC$ that are:
+	\begin{itemize}
+		\ii holomorphic everywhere in $\CC_\infty$,
+		possibly with the exception of the points $3$, $i$, and $\infty$;
+		\ii at $3$, it must have a root of order $\geq 1$;
+		\ii at $i$, it cannot have a pole of order more than $4$;
+		\ii at $\infty$, it cannot have a pole of order more than $5$.
+	\end{itemize}
+	So, for example, $(z \mapsto z-3)$, $(z \mapsto \frac{(z-3)^3}{(z-i)^2})$, or $(z \mapsto
+	(z-3)^4)$ are functions in the set, but not $(z \mapsto (z-3)^2+1)$ or $(z \mapsto (z-3)^7)$.
+
+	As before, this is a $\CC$-vector space, and furthermore, it is also finite-dimensional!
+	What should its dimension be?
+
+	Well, note that there is a $1$-$1$ bijection between functions $f \in L(-1 \cdot 3 + 4 \cdot i +
+	3 \cdot \infty)$ and functions $g \in L(-1 \cdot 3 + 7 \cdot \infty)$ by
+	\[ g = \Phi(f) = (z \mapsto f(z) \cdot (z-i)^4), \]
+	where, as you could probably have guessed by now, $L(-1 \cdot 3 + 7 \cdot \infty)$ is the space
+	of meromorphic functions that has at least a zero at $3$ and at most a pole of order $7$ at
+	$\infty$.
+
+	Using that information, it shouldn't be too hard for you to see that the dimension should be
+	$7$.
+\end{example}
+
+For another piece of motivation:
+Later on, we will also define the concept of \vocab{divisors} and \vocab{line bundles}.
+If you have learned about these concepts in algebraic geometry context, you might be interested to
+learn what they are actually about;
+otherwise,
+it is still very surprising that these theorems can be naturally generalized to completely algebraic
+settings, and \emph{your intuition from
+the case of analytic manifold will mostly work verbatim} --- in fact, you can even define the genus
+of a number field, like $\QQ[\sqrt 2]$!
+
+\section{Divisors}
+\prototype{$(-3) \cdot i + (-4) \cdot \infty$ is a divisor on $\CC_\infty$.}
+
+We start with defining a convenient notation for the above concepts.
+
+First, observe that the condition ``$f$ must have a zero of order at most $4$ at the origin'' can be
+conveniently written as
+\[ z^4 \mid f.  \]
+In other words, $z^4$ must be a \vocab{divisor} of $f$.
+
+This notation works if $f$ is a polynomial, since we already know what it means for two polynomials
+to divide each other.
+
+Generalizing, we could say ``$f$ cannot have a pole of order more than $3$ at the point $i$,
+and $f$ cannot have a pole of order more than $4$ at the point $\infty$'' by
+\[ (z-i)^{-3} \cdot (z-\infty)^{-4} \mid f.  \]
+
+Of course, at this point, the notation is purely formal --- there is no interpretation as
+``functions'' that could be assigned to the expression $(z-\infty)$, for instance.
+
+Those objects are, appropriately enough, called \vocab{divisors}. So we come to the formal
+definition:
+\begin{definition}[Divisors]
+	Let $X$ be a Riemann manifold, then a divisor $D$ on $X$ is a function $D \colon X \to \ZZ$,
+	which is nonzero on a discrete set of points.
+\end{definition}
+
+The formal objects $(z-i)^{-3} \cdot (z-\infty)^{-4}$ above, from now on, we will consider it as a
+function $D \colon \CC_\infty \to \ZZ$ by
+\[ D(z) = \begin{cases} -3 & z = i \\ -4 & z = \infty \\ 0 & \text{otherwise}. \end{cases} \]
+
+\begin{abuse}
+	For a point $p \in X$, we write $p$ to mean the divisor that takes value $1$ at $p$, and $0$
+	elsewhere.
+\end{abuse}
+
+Because divisors are integer-valued functions, we can add two divisors together or multiply a
+divisor with an integer, the result is an integer. So,
+\begin{example}[$(z-i)^{-3} \cdot (z-\infty)^{-4}$ as a divisor]
+	The divisor $D$ that corresponds to the formal object $(z-i)^{-3} \cdot (z-\infty)^{-4}$ above
+	can be written as $(-3) \cdot i + (-4) \cdot \infty$.
+\end{example}
+
+\section{Degree of a divisor}
+\prototype{$\deg ((-3) \cdot i + (-4) \cdot \infty) = -7$.}
+
+If the surface $X$ is compact, any discrete set of points is finite. Thus, a divisor $D$ on $X$ has
+finite support.
+
+This allows us to define the degree of a divisor:
+\begin{definition}[Degree of a divisor]
+	For a divisor $D$ on a compact surface $X$, its degree is $\sum_{p \in X} D(p)$.
+\end{definition}
+Of course, the sum is well-defined because only finitely many terms are nonzero.
+
+\section{The principal divisor of a meromorphic function}
+\prototype{$\Div \frac{(z-3)^2}{z-i} = 2 \cdot 3 + (-1) \cdot i + (-1) \cdot \infty$ has degree
+$0$.}
+After defining a divisor, we want a convenient notation to formalize our fuzzy notation earlier of a
+divisor ``divides'' a function.
+
+\begin{definition}[Divisor of a meromorphic function]
+	Let $f$ be meromorphic on a Riemann surface $X$. Then the divisor of $f$, $\Div(f)$, is such
+	that
+	\[
+		\Div(f)(p) = \ord_p(f).
+	\]
+\end{definition}
+
+We can also write it as a formal sum: $\Div(f) = \sum_p \ord_p(f) \cdot p$ --- by the abuse of
+notation above, this would be an actual sum if $f$ has finitely many roots and poles.
+
+If a divisor $D$ is equal to $\Div(f)$ for some $f$, we call $D$ a \vocab{principal divisor}.
+(Compare this with a principal ideal, being an ideal generated by one element!)
+
+Looking at the prototype example of this section, you might have guessed the following for the
+Riemann sphere. In fact, much more is true:
+\begin{proposition}
+	If a divisor $D$ on a compact surface $X$ is principal, then $\deg D = 0$.
+\end{proposition}
+
+Let us not forget our goal of defining a convenient notation to talk about the space of functions
+with bounded poles.
+With the notation defined above, if $f = z$, $\Div f = 1 \cdot 0 + (-1) \cdot \infty$,
+and we want to say $f$ ``divides'' the divisor $(-1) \cdot \infty$. The natural definition would be:
+\begin{definition}[The partial ordering of divisors]
+	We write $D \geq 0$ if $D(p) \geq 0$ for all $p \in X$.
+
+	For two divisors $D_1$ and $D_2$, we write $D_1 \geq D_2$ if $D_1-D_2 \geq 0$.
+\end{definition}
+
+And finally,
+\begin{definition}
+	Let $D$ be a divisor on a Riemann surface $X$.
+	Then the space of meromorphic functions with poles bounded by $D$ is
+	\[
+		L(D) = \{ \text{$f$ meromorphic on $X$} \mid \Div(f) \geq -D \}.
+	\]
+\end{definition}
+
+\begin{exercise}
+	This exercise is just for you to get familiar with the notation. Show the following:
+	\begin{itemize}
+		\ii For two divisors $D_1 \leq D_2$, then $L(D_1) \subseteq L(D_2)$.
+		\ii If $X$ is compact, then $L(0) \cong \CC$.
+		\ii If $X$ is compact and $\deg D < 0$, then $L(D) = \{ 0 \}$.
+	\end{itemize}
+\end{exercise}
+
+\section{The Riemann-Roch theorem}
+
+\todo{Explain canonical divisor}
+
+\begin{theorem}[The Riemann-Roch theorem]
+	Let $D$ be a divisor on an algebraic curve $X$ of genus $g$, and $K$ be a canonical divisor on
+	$X$. Then
+	\[ \dim L(D) - \dim L(K-D) = \deg(D) + 1 - g. \]
+\end{theorem}
+
+\todo{List some applications}
+

@@ -1,4 +1,5 @@
 \chapter{Determinant}
+\label{ch:determinant}
 The goal of this chapter is to give the basis-free
 definition of the determinant:
 that is, we're going to define $\det T$
@@ -49,7 +50,7 @@ But we will later replace $2$ with any $n$.
 This looks almost exactly the same as the definition for a tensor product,
 with two subtle differences.
 The first is that we only have $V$ now, rather than $V$ and $W$
-as with the tensor product\footnote{So maybe the wedge product
+as with the tensor product.\footnote{So maybe the wedge product
 	might be more accurately called the ``wedge power''!}
 Secondly, there is a new \emph{mysterious} relation
 \[ v \wedge v = 0 \implies v \wedge w = - (w \wedge v). \]
@@ -274,7 +275,7 @@ In this way, we also get \[ \det(S \circ T) = \det(S) \det(T) \] for free.
 
 More generally if we replace $2$ by $n$,
 an write out the result of expanding
-\[ \left( a_{11}e_1 + a_{21}e_2 + \dots \right) \wedge \dots \wedge
+\[ \left( a_{11}e_1 + a_{21}e_2 + \cdots \right) \wedge \dots \wedge
 	\left( a_{1n}e_1 + a_{2n}e_2 + \dots + a_{nn} e_n \right) \]
 then you will get the formula
 \[ \det(A) = \sum_{\sigma \in S_n} \opname{sgn}(\sigma)
@@ -473,7 +474,7 @@ then the theorem is almost obvious:
 	[Exponential matrix]
 	Let $X$ be an $n \times n$ matrix with complex coefficients.
 	We define the exponential map by
-	\[ \exp(X) = 1 + X + \frac{X^2}{2!} + \frac{X^3}{3!} + \dots \]
+	\[ \exp(X) = 1 + X + \frac{X^2}{2!} + \frac{X^3}{3!} + \cdots \]
 	(take it for granted that this converges to some $n \times n$ matrix).
 	Prove that
 	\[ \det(\exp(X)) = e^{\Tr X}. \]

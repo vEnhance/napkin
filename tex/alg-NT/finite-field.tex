@@ -1,4 +1,5 @@
 \chapter{Finite fields}
+\label{ch:finite_fields}
 In this short chapter, we classify all fields with finitely many elements
 and compute the Galois groups.
 Nothing in here is very hard, and so most of the proofs are just sketches;
@@ -240,6 +241,77 @@ We can see an example of this again with the finite field of order $9$.
 \end{example}
 
 This concludes the proof of all results stated at the beginning of this chapter.
+
+\section{Extra: The multiplicative group of a finite field}
+
+In this section we prove a result which is interesting by its own right, even though it is not used
+in the following chapters.
+
+Consider the field $F$ of order $p = 17$. We may want to ask the following questions about $F$:
+\begin{itemize}
+	\ii How many nonzero elements in $F$ is a quadratic residue (can be written as a square of
+	another element in $F$)?
+	\ii Is there any element $x$ in $p$ such that $x^2 = -1$?
+\end{itemize}
+
+With the following proposition, the questions above become easy.
+\begin{proposition}
+	Let $F$ be a finite field, then the multiplicative group $F^\times$ is a cyclic group.
+\end{proposition}
+
+Essentially, it says that the multiplicative group $F^\times$ is as nice as possible --- the cyclic
+group is the simplest Abelian group!
+
+If we look back at the examples above, we can see how this knowledge can help us.
+
+\begin{example}[The multiplicative group of $\FF_{17}$]
+The group $F^\times$ is cyclic of order $16$, so there is some element $g \in F^\times$ such
+that all of the elements in $F$ are
+\[ 0, g^0 = 1, g^1, g^2, \dots, g^15.  \]
+Using this knowledge, if we square the nonzero elements, we can easily see that the result are the
+following (note that $g^16 = g^0 = 1$):
+\[ g^0, g^2, g^4, \dots, g^14, g^0, g^2, \dots, g^14.  \]
+As such, exactly half of the elements --- 8 elements --- in $F^\times$ are quadratic residues!
+
+Checking whether there is an element $x$ such that $x^2 = -1$ isn't much harder.
+First, where may $-1$ appear in the sequence $\{g^0, g^1, \dots, g^15 \}$?
+If you find an explicit value of $g$ (you can pick $g = 3$ for instance), you will see that $g^8 =
+-1$. But, even without an explicit calculation, you can still see that, because:
+\begin{ques}
+	Note that the equation $x^2 = 1$ has only $2$ roots, $1$ and $-1$.
+	Using group operations in the group $F^\times$, what does the equation say?
+\end{ques}
+We have $g^8 = -1$, so $(g^4)^2 = (g^12)^2 = -1$, so we're done.
+\end{example}
+
+So, why is the proposition true? Consider a finite field $F$ of order a prime power $q$.
+
+First, using an idea similar to the above, we have:
+\begin{ques}
+	Show that, for any positive $d < |F^\times| = q-1$, then there are at most $d$ elements $x$ such
+	that $x^d = 1$.
+\end{ques}
+The rest is easily handled using group theory.
+Recall from \Cref{thm:fund_fg_abelian_group}, because $F^\times$ is a finite Abelian group, it is
+in particular finitely generated, and can be written in the form
+\[ F^\times \cong \ZZ^{\oplus r} \oplus \Zc{q_1} \oplus \Zc{q_2} \oplus
+	\dots \oplus \Zc{q_m}.  \]
+Of course, $r = 0$ here.
+
+Now, assume $F^\times$ is not cyclic, so the lowest common denominator of all the $q_i$ values are
+less than $|F^\times|$.
+Then, for all $x \in F^\times$, $x^{\lcm(q_1, \dots, q_m)} = 1$, which gives a contradiction.
+
+\begin{remark}
+	If you look up an elementary proof of why there are exactly $p-1$ quadratic residues modulo $p$,
+	most of the time, you will get some argument using ``$x^d-1$ has at most $d$ roots'' similar to
+	the proof above, but by not going all the way and show the structure of the multiplicative
+	group, it hides the spirit of what is really going on.
+
+	The proposition above takes a step further --- now, without any calculation, you know
+	for instance the finite field $\FF_{17^2}$ has exactly $\frac{17^2-1}{2} = 144$ nonzero
+	quadratic residues.
+\end{remark}
 
 \section\problemhead
 \begin{dproblem}[HMMT 2017]

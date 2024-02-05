@@ -1,4 +1,5 @@
 \chapter{Singular cohomology}
+\label{ch:singular_cohomology}
 Here's one way to motivate this chapter. It turns out that:
 \begin{itemize}
 	\ii $H_n(\CP^2) \cong H_n(S^2 \vee S^4)$ for every $n$.
@@ -13,7 +14,11 @@ In this chapter, we'll define a \emph{cohomology group} $H^n(X)$ and $H^n(Y)$.
 In fact, the $H^n$'s are completely determined by the $H_n$'s
 by the so-called \emph{universal coefficient theorem}.
 However, it turns out that one can take all the cohomology groups and put
-them together to form a \emph{cohomology ring} $H^\bullet$.
+them together to form a \emph{cohomology ring} $H^\bullet$.%
+\footnote{\cite{ref:hatcher} has an explanation why is it that cohomology has more structures than
+homology --- roughly speaking, the natural maps $X \times X \to X$ must be a projection which is not
+very interesting, but there is a more interesting natural map $X \to X \times X$ given by $p \mapsto
+(p, p)$.}
 We will then see that $H^\bullet(X) \not\cong H^\bullet(Y)$ as rings.
 
 \section{Cochain complexes}
@@ -129,15 +134,15 @@ if $X$ has $r$ path-connected components (where $r$ is finite\footnote{%
 	where there is no restriction.
 }).
 
-To the best of my knowledge, the higher cohomology groups $H^n(X; G)$
-(or even the cochain groups $C^n(X; G) = \Hom(C_n(X), G)$) are harder to describe concretely.
-
 \begin{abuse}
 	In this chapter the only cochain complexes
 	we will consider are dual complexes as above.
-	So, any time we write a chain complex $A^\bullet$ it is implicitly given
+	So, any time we write a cochain complex $A^\bullet$ it is implicitly given
 	by applying $\Hom(-,G)$ to $A_\bullet$.
 \end{abuse}
+
+The higher cohomology groups $H^n(X; G)$
+(or even the cochain groups $C^n(X; G) = \Hom(C_n(X), G)$) are harder to describe concretely.
 
 \section{Cohomology of spaces is functorial}
 We now check that the cohomology groups still exhibit the same nice functorial behavior.
@@ -219,7 +224,7 @@ This is achieved by the \emph{universal coefficient theorem}.
 		\taking{h} \Hom(H_n(A_\bullet), G) \to 0. \]
 	In addition, this exact sequence is \emph{split}
 	so in particular
-	\[ H^n(C_\bullet; G) \cong \Ext(H_{n-1}(A_\bullet, G))
+	\[ H^n(C_\bullet; G) \cong \Ext(H_{n-1}(A_\bullet), G)
 		\oplus \Hom(H_n(A_\bullet), G). \]
 \end{theorem}
 Fortunately, in our case of interest, $A_\bullet$ is $C_\bullet(X)$
@@ -250,6 +255,18 @@ which I won't take the time to discuss;
 but the upshot of the little bit that I did include is that the $\Ext$
 functor is very easy to compute in practice, since
 you can pick any free resolution you want and compute the above.
+
+\begin{remark}
+	You have seen a ``free resolution'' before in a disguised form ---
+	in \Cref{sec:structure_thm}, we proved the structure theorem of finitely-generated modules
+	over PID by writing any module $M$ as $R^{\oplus d}/K$, with both $R^{\oplus d}$ and $K$ free.
+	This gives a free resolution
+	\[ \dots \to 0 \to K \injto R^{\oplus d} \surjto M \to 0. \]
+
+	Intuitively, you can think of the $\Ext$ functor as measuring the ``maps that should be there
+	but aren't'' --- you will gradually gain some intuitions after seeing some
+	examples.\footnote{Taken from \url{https://mathoverflow.net/a/679}.}
+\end{remark}
 
 %By ``natural'', we mean that if $f \colon A_\bullet \to B_\bullet$ is a chain map,
 %then we obtain a commutative diagram
@@ -338,7 +355,7 @@ any cohomology groups, provided we know the homology ones.
 
 From these examples one might notice that:
 \begin{lemma}
-	[$0$th homology groups are just duals]
+	[$0$th and $1$th cohomology groups are just duals]
 	For $n = 0$ and $n = 1$, we have
 	\[ H^n(X;G) \cong \Hom(H_n(X), G). \]
 \end{lemma}
@@ -351,7 +368,7 @@ From these examples one might notice that:
 \begin{example}
 	[Cohomology groups of Klein bottle]
 	This example will actually have $\Ext$ term.
-	Recall that if $K$ is a Klein Bottle then its homology groups are
+	Recall from \Cref{ex:homology_klein} that if $K$ is a Klein Bottle then its homology groups are
 	$\ZZ$ in dimension $n=0$ and $\ZZ \oplus \Zc 2$ in $n=1$, and $0$ elsewhere.
 
 	For $n=0$, we again just have $H^0(K;G) \cong \Hom(\ZZ, G) \cong G$.
@@ -379,6 +396,280 @@ From these examples one might notice that:
 	\]
 \end{example}
 
+\section{Visualization of cohomology groups}
+
+We try to make sense of $C^n(X; G)$ and $H^n(X; G)$, for higher values of $n$.
+
+As above, $C_n(X; G)$ is the free abelian group on $n$-simplices on $X$, so an element
+$f \in C^n(X; G)$ is a function that takes each $n$-simplex to an element of $G$
+(and extends linearly to all of $C_n(X; G)$).
+
+This assignment of value need not have any nice properties --- recall that a $n$-simplex is simply
+a (continuous) map $\sigma \colon \Delta^n \to X$, and different maps $\sigma_1$ and
+$\sigma_2$ are considered different even though $\img \sigma_1 = \img \sigma_2$.
+In particular,
+\begin{itemize}
+	\ii If $[v_0, v_1, v_2]$ is a singular simplex,
+	it need not be the case that $f([v_0, v_1, v_2]) + f([v_0, v_2, v_1]) = 0$.
+	\ii A singular $n$-simplex ($n \geq 1$)
+	with image contained in a point need not be mapped to $0$ by $f$.
+\end{itemize}
+
+But it \emph{does not matter} that elements of $C_n(X)$ aren't this nice!
+We will see below why this is the case.
+
+In the homology case (\Cref{def:cycle_and_boundary}), we defined:
+\begin{align*}
+	Z_n(X) &\defeq \ker\left( C_{n}(X) \taking\partial C_{n-1}(X) \right), \\
+	B_n(X) &\defeq \img \left( C_{n+1}(X) \taking\partial C_n(X) \right), \\
+	H_n(X) &\defeq Z_n(X)/B_n(X).
+\end{align*}
+Elements of $Z_n(X)$ and $B_n(X)$ are called cycles and boundaries respectively,
+with the obvious geometrical interpretation.
+
+So,
+\[
+	H_n(X) = \frac{\text{$n$-cycles}}{\text{$n$-boundaries}}.
+\]
+
+For the current section, we will temporarily define:
+\begin{align*}
+	Z^n(X; G) &\defeq \ker\left( C^n(X; G) \taking\delta C^{n+1}(X; G) \right), \\
+	B^n(X; G) &\defeq \img\left( C^{n-1}(X; G) \taking\delta C^n(X; G) \right), \\
+	H^n(X; G) &\defeq Z^n(X; G)/B^n(X; G).
+\end{align*}
+
+For this section, we will call elements of $Z^n(X; G)$ the \vocab{cocycles}
+and elements of $B^n(X; G)$ the \vocab{coboundaries} respectively.
+Once again,
+\[ H^n(X; G) = \frac{\text{$n$-cocycles}}{\text{$n$-coboundaries}}. \]
+
+It's less clear geometrically why the elements are named as above, but
+if we assume the group $G$ is a \emph{field} (where the group operation is the addition
+operation in the field), then\footnote{Refer to
+\url{https://math.stackexchange.com/q/4712676}.} we have:
+\begin{itemize}
+	\ii a $n$-cocycle is a map that sends every $n$-boundary to $0 \in G$;
+	\ii a $n$-coboundary is a map that sends every $n$-cycle to $0 \in G$.
+\end{itemize}
+
+The first statement is clear (definition chasing), the second statement is only generally true in
+one direction (that a coboundary sends every cycle to $0$; but a map that sends every cycle to $0$
+need not be a coboundary --- we will see this later on with the Klein bottle example).
+
+Let us see what a $n$-cocycle must look like. First,
+\begin{moral}
+	Homotopic chains with the same boundary are mapped to the same value by cocycles.
+\end{moral}
+We defined what it means for two $k$-simplex to be homotopic in \Cref{sec:higher_homotopy_grps} ---
+in the current situation, we require in addition that the boundaries are always fixed.
+
+For instance, the blue and the orange $1$-simplex below are homotopic, but not the red $1$-simplex.
+\begin{center}
+\begin{asy}
+	size(4cm);
+	filldraw(scale(8, 6)*shift(-0.5, -0.5)*unitsquare, yellow+opacity(0.1));
+	pair A = (-3, 0);
+	pair B = (3, 0);
+	draw(A..(-2,0.5)..(0,2)..(1,1.2)..B, red);
+	draw(A--(-1,-1)--(2,-1)--B, blue);
+	draw(A--(-1,-2)--(2,-2)--B, orange);
+	dot("$p$", A, align=W);
+	dot("$q$", B, align=E);
+	filldraw(scale(0.5)*unitcircle, grey, black);
+\end{asy}
+\end{center}
+
+Proof is not difficult --- you just need to show that the difference between two homotopic
+$k$-simplex is the boundary of something (their interior!), and write the interior as the
+sum of some $k+1$-simplices. (Hint: The easiest way is actually to write the interior as the
+difference of two $k+1$-simplices instead, and be careful of vertex ordering issues.)
+\begin{exercise}
+	Finish the proof.
+\end{exercise}
+
+A typical $1$-cocycle might look something like this, where each arrow is labeled with the value
+assigned to that $1$-simplex. Remember that a cycle must be mapped to $0$.
+\begin{center}
+\begin{asy}
+	size(4cm);
+	filldraw(scale(4)*unitsquare, yellow+opacity(0.1));
+	draw((1.5, 1)--(1, 3), L=Label("$-3$", align=SW), Arrow, DotMargin);
+	draw((1, 3)--(3, 2), L=Label("$1$", align=NE), Arrow, DotMargin);
+	draw((3, 2){dir(-170)}..(1.5, 1), L=Label("$2$"), Arrow, DotMargin);
+	draw((3, 2){dir(-120)}..(1.5, 1), L=Label("$2$", align=SE), Arrow, DotMargin);
+\end{asy}
+\end{center}
+
+Now, the next observation is that:
+\begin{moral}
+	If we only consider cocycles modulo coboundaries, we basically only care about values assigned
+	to the cycles.
+\end{moral}
+Why?
+Remember that a $k$-coboundary is the $\delta$ of some $(k-1)$-cochain. So, given this $0$-cochain:
+\begin{center}
+\begin{asy}
+	size(3cm);
+	filldraw(scale(4)*unitsquare, yellow+opacity(0.1));
+	dot("$1$", (1.5, 2));
+\end{asy}
+\end{center}
+Its $\delta$ would look something like this:
+\begin{center}
+\begin{asy}
+	size(3cm);
+	filldraw(scale(4)*unitsquare, yellow+opacity(0.1));
+	pair A=(1.5, 2);
+	draw(A+dir(45)*1.5--A, Arrow, DotMargin, L=Label("$1$"));
+	draw(A+dir(120)*1.5--A, Arrow, DotMargin, L=Label("$1$"));
+	draw(A+dir(-160)*1--A, Arrow, DotMargin, L=Label("$1$"));
+	draw(A--A+dir(-60)*2, red, Arrow, DotMargin, L=Label("$-1$"));
+	dot(A);
+\end{asy}
+\end{center}
+
+So, roughly speaking,
+\begin{moral}
+	By adding or subtracting a coboundary to a given cochain, we can adjust the value assigned to
+	most chains however we want.
+\end{moral}
+I said ``most chains'' because, if the chains form a \emph{cycle}, adding a coboundary won't let us
+change its assigned value.
+
+Fortunately,
+\begin{itemize}
+	\ii Cycles that are \emph{boundaries} always get assigned the value $0$.
+	\ii Homotopic cycles get assigned the same value.
+
+	As a generalization, in fact, cycles that are homologous (i.e. they get mapped to
+	the same value under the map $Z_k(X) \surjto H_k(X)$) are assigned the same value.
+\end{itemize}
+
+Therefore,
+\begin{moral}
+	Knowing the value of a cocycle on each ``cycle modulo boundary'' almost determines that cocycle,
+	modulo coboundaries.
+\end{moral}
+In symbols: $H^n(X; G)$ is ``almost isomorphic'' to $\Hom(H_n(X), G)$.
+
+In other words, a cocycle modulo coboundary can be ``evaluated'' on a cycle modulo boundary.
+
+This is precisely what the universal coefficient theorem states, although it says something more:
+the ``error term'' is exactly $\Ext(H_{n-1}(X), G)$.
+
+Why would the error term exist? We had an example above, computing $H^2(K; G)$ for $K$ the Klein
+bottle. Let us work through it geometrically, assume $G = \ZZ$ for now.
+
+A typical $2$-cochain $f \in C^2(K; \ZZ)$ may look something like this.
+(Only value assigned to a few $2$-simplices is depicted, there are too many $2$-simplices for us to
+draw.)
+\begin{center}
+\begin{asy}
+	size(0); unitsize(2cm);
+	fill(unitsquare, yellow+opacity(0.2));
+	pair C = (0,0);
+	pair B = (1,0);
+	pair A = (1,1);
+	pair D = (0,1);
+	draw(A--B, red, MidArrow);
+	draw(C--B, blue, MidArrow);
+	draw(D--C, red, MidArrow, L=Label("$f = {}$", black));
+	draw(A--D, blue, MidArrow);
+	draw(A--C);
+	label("$1$", (A+B+C)/3);
+	label("$2$", (A+D+C)/3);
+\end{asy}
+\end{center}
+A coboundary may look like this --- identical to the situation above, the value assigned to
+particular simplex doesn't matter, we can ``transfer'' the assigned value between the two simplices
+by adding a coboundary.
+\begin{center}
+\begin{asy}
+	size(0); unitsize(2cm);
+	fill(unitsquare, yellow+opacity(0.2));
+	pair C = (0,0);
+	pair B = (1,0);
+	pair A = (1,1);
+	pair D = (0,1);
+	draw(A--B, red, MidArrow);
+	draw(C--B, blue, MidArrow);
+	draw(D--C, red, MidArrow);
+	draw(A--D, blue, MidArrow);
+	draw(A--C, Arrow, L="$1$");
+
+	A+=(2, 0);
+	B+=(2, 0);
+	C+=(2, 0);
+	D+=(2, 0);
+	draw((1.1, 0.5)--(1.9, 0.5), Arrow, L="$\delta$");
+	fill(shift(2, 0)*unitsquare, yellow+opacity(0.2));
+	draw(A--B, red, MidArrow);
+	draw(C--B, blue, MidArrow);
+	draw(D--C, red, MidArrow);
+	draw(A--D, blue, MidArrow);
+	draw(A--C);
+
+	label("$1$", (A+B+C)/3);
+	label("$-1$", (A+D+C)/3);
+\end{asy}
+\end{center}
+
+So, we may just say that the value assigned to the whole surface of the Klein bottle is $3$ ---
+formally, let $e^2_K \in C_2(K)$ be the sum of the two $2$-simplices above, we can write $f(e^2_K) =
+3$.
+However:
+\begin{center}
+\begin{asy}
+	size(0); unitsize(2cm);
+	fill(unitsquare, yellow+opacity(0.2));
+	pair C = (0,0);
+	pair B = (1,0);
+	pair A = (1,1);
+	pair D = (0,1);
+	draw(A--B, red, MidArrow);
+	draw(C--B, blue, MidArrow, L="$1$");
+	draw(D--C, red, MidArrow, L=Label("$g = {}$", black));
+	draw(A--D, blue, MidArrow, L="$1$");
+	draw(A--C);
+
+	A+=(2, 0);
+	B+=(2, 0);
+	C+=(2, 0);
+	D+=(2, 0);
+	draw((1.1, 0.5)--(1.9, 0.5), Arrow, L="$\delta$");
+	fill(shift(2, 0)*unitsquare, yellow+opacity(0.2));
+	draw(A--B, red, MidArrow);
+	draw(C--B, blue, MidArrow);
+	draw(D--C, red, MidArrow);
+	draw(A--D, blue, MidArrow);
+	draw(A--C);
+
+	label("$1$", (A+B+C)/3);
+	label("$1$", (A+D+C)/3);
+\end{asy}
+\end{center}
+
+The boundary of the $2$-chain corresponding to the whole surface of the Klein bottle is $2$ times
+the blue edge, so $\delta$ of the $1$-cochain whose value on the blue edge is $1$
+will assign the value $2$ to $e^2_K$.
+
+In symbols: let $e^1_b \in C_1(K)$ be the blue edge, pick $g \in C^1(K; \ZZ)$ such that
+$g(e^1_b) = 1$, then $\delta(g)(e^2_K) = 2$.
+Even though $e^2_K$ is not a cycle, we still need to care about its assigned value modulo $2$!
+Because adding or subtracting the coboundary $\delta(g)$ can only adjust its values in increments
+of $2$.
+
+Therefore,
+\begin{moral}
+	If the region $e^k \in C_k(X)$ has a boundary $\partial e^k \in C_{k-1}(X)$ divisible by $n$,
+	then we cares about the value assigned to $e^k$, modulo $n$.
+\end{moral}
+
+This explains where the error term $\Ext(H_{n-1}(X), G)$ comes from.
+
+We have another comparison with de Rham cohomology in \Cref{sec:de_rham_cohom} ---
+in that case, the group $G$ is a field, $\RR$, so $\Ext(H_{n-1}(X), G)$ is always zero.
 
 \section{Relative cohomology groups}
 One can also define relative cohomology groups in the obvious way:
@@ -389,7 +680,7 @@ to obtain a cochain complex
 	\dots \xleftarrow\delta C^1(X,A;G) \xleftarrow\delta C^0(X,A;G)
 	\leftarrow 0.
 \]
-We can take the cohomology groups ofthis.
+We can take the cohomology groups of this.
 \begin{definition}
 	The groups thus obtained are the \vocab{relative cohomology groups}
 	are denoted $H^n(X,A;G)$.
