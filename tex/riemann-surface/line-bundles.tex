@@ -283,18 +283,7 @@ Let us consider a more complicated space $X$ --- the Riemann sphere.
 
 Because we are looking at the real part only, so once again, $\CC_\infty$ looks like just a circle.
 \begin{center}
-\begin{asy}
-	import three;
-	currentprojection=orthographic((2, -3, 1), up=Z);
-
-	draw((-2, 0, 0)--(2, 0, 0), blue, Arrow3, L=Label("$\operatorname{Re} z$", EndPoint));
-	draw((0, -2, 0)--(0, 2, 0), Arrow3, L=Label("$\operatorname{Im} z$", EndPoint));
-	draw((-2, 0, 1)--(2, 0, 1), Arrow3, L=Label("$\operatorname{Re} t$", EndPoint));
-	draw((0, 2, 1)--(0, -2, 1), Arrow3, L=Label("$\operatorname{Im} t$", EndPoint, align=W));
-	draw(shift(0, 0, 0.5)*scale3(0.5)*unitsphere, opacity(0.3)+lightcyan);
-
-	draw(shift(0, 0, 0.5)*rotate(90, X)*scale3(0.5)*path3(unitcircle), blue);
-\end{asy}
+	\includegraphics{3dfigures/pdf/Cinf.pdf}
 \end{center}
 As before, we let $z$ and $t$ parametrize the points on the surface, with $t = \frac{1}{z}$ wherever
 both are defined.
@@ -302,26 +291,7 @@ both are defined.
 Still, we need two dimensions to embed a circle. So, the real part of $\CC \times \CC_\infty$ may
 looks something like the following:
 \begin{center}
-\begin{asy}
-	import three;
-	currentprojection=orthographic((2, -7, 1), up=Z);
-
-    pair project_up(real a){ a/=3; return (0, 1)+(a, -1)/(1+a^2); }
-    triple operator tuple(pair a, real b){ return (a.x, a.y, b); }
-
-    var halfcircle=shift(0, 0.5)*scale(0.5)*unitcircle;
-	draw(path3(halfcircle), blue);
-    var h=2;
-    draw(shift(0, 0.5, -h)*scale(0.5, 0.5, h*2)*unitcylinder, surfacepen=cyan+opacity(0.5));
-    dot((0, 0, 0), purple);
-    for(int a=-7; a<=7; ++a){
-        draw((project_up(a), -h)--(project_up(a), h), purple);
-    }
-    for(real i=-3; i<=3; ++i) if(i!=0){
-        real z=i/2;
-        draw(shift(0, 0, z)*path3(arc((0., 0.5), 0.5, 90+40, 90+360-40)), purple);
-    }
-\end{asy}
+	\includegraphics{3dfigures/pdf/CxCinf.pdf}
 \end{center}
 
 The grid lines are drawn, and the origin $z = 0$, is marked with a dot.
@@ -330,26 +300,7 @@ The vertical lines mark the position $z = 0$, $z = \frac{1}{2}$, $z = 1$, $z = \
 On the opposite side, we may have something like the following.
 The vertical lines mark the position $t = 0$, $t = \frac{1}{2}$, $t = 1$, $t = \frac{3}{2}$, \dots.
 \begin{center}
-\begin{asy}
-	import three;
-	currentprojection=orthographic((2, -7, 1), up=Z);
-
-    pair project_up(real a){ a/=3; return (0, 1)+(a, -1)/(1+a^2); }
-    triple operator tuple(pair a, real b){ return (a.x, a.y, b); }
-
-    var halfcircle=shift(0, 0.5)*scale(0.5)*unitcircle;
-	draw(path3(halfcircle), blue);
-    var h=2;
-    draw(shift(0, 0.5, -h)*scale(0.5, 0.5, h*2)*unitcylinder, surfacepen=cyan+opacity(0.5));
-    dot((0, 1, 0), red);
-    for(int a=-7; a<=7; ++a){
-        draw((I-project_up(a), -h)--(I-project_up(a), h), red);
-    }
-    for(real i=-3; i<=3; ++i) if(i!=0){
-        real z=i/2;
-        draw(shift(0, 0, z)*path3(arc((0., 0.5), 0.5, 270+40, 270+360-40)), red);
-    }
-\end{asy}
+	\includegraphics{3dfigures/pdf/CxCinf2.pdf}
 \end{center}
 
 \begin{ques}
@@ -399,79 +350,7 @@ will try to weld the green line $(\frac{y}{z}, z)$ to the red line $(y, t)$ for 
 
 The thing will look like this. It looks quite complicated, so this time 4 views are shown.
 \begin{center}
-\begin{asy}
-	import three;
-	import graph3;
-	size(12cm);
-    var halfcircle=shift(0, 0.5)*scale(0.5)*unitcircle;
-    var maxH=2.5;
-    draw(shift(0, 0.5, -maxH)*scale(0.5, 0.5, maxH*2)*unitcylinder, surfacepen=cyan+opacity(0.9));
-	draw(path3(halfcircle), blue);
-    dot((0, 0, 0), purple);
-    dot((0, 1, 0), red);
-
-	real pile(real z){
-		// any function that is large near z=0 and small as z → ± ∞.
-		return 1/(1+z^2);
-	}
-	pair weight(real z){
-		// return ≈ (1, 0) for z ≈ 0 and ≈ (0, 1) for z ≈ ∞.
-		if(abs(z)<1e-9) return (1, 0);
-		if(abs(z)>1e9) return (0, 1);
-		real a=pile(z), b=pile(1/z);
-		return (a/(a+b), b/(a+b));
-	}
-
-    triple wrap(real z, real h){
-		pair p=(0, 1)+(z, -1)/(1+z^2);
-		var ab=weight(z), a=ab.x, b=ab.y;
-		return (p.x, p.y, z==0 ? h: h*a+(h/z)*b);
-	}
-	maxH=2;
-
-    for(real z=-7/3; z<=7/3+1e-7; z+=1/3){
-		draw(wrap(z, -maxH)--wrap(z, maxH), purple);
-    }
-    for(real t=-7/3; t<=7/3+1e-7; t+=1/3){
-		if(t==0) t=1e-9;
-		draw(wrap(1/t, -maxH/t)--wrap(1/t, maxH/t), red);
-	}
-
-	for(real h=-1.5; h<=1.5+1e-7; h+=1/2){
-		if(h==0) continue;
-
-		draw(graph(
-			new triple(real z){
-				return wrap(z, h);
-			}
-		, -7/3, 7/3, operator..), purple);
-
-		var limit=min(7/3, maxH/h);
-		draw(graph(
-			new triple(real z){
-				return wrap(z, z*h);
-			}
-		, -limit, limit, operator..), green+opacity(0.7));
-
-		draw(graph(
-			new triple(real t){
-				if(t==0) t=1e-9;
-				return wrap(1/t, h/t);
-			}
-		, -7/3, 7/3, operator..), red+opacity(0.7));
-	}
-
-	picture p;
-	addViews(p, currentpicture, new projection[][]{
-		{
-			orthographic(rotate(-70, Z)*(2, -7, 1), up=Z),
-			orthographic((2, -7, 1), up=Z),
-			orthographic(rotate(70, Z)*(2, -7, 1), up=Z),
-			orthographic(rotate(140, Z)*(2, -7, 1), up=Z),
-		}
-	});
-	currentpicture=p;
-\end{asy}
+	\includegraphics{3dfigures/pdf/CxCinf3.pdf}
 \end{center}
 
 The cylinder this time is only for illustrative purpose. Let us see what is going on.
@@ -557,5 +436,3 @@ The definition of line bundle isomorphism is what you would expect.
 
 \section{Relation to invertible sheaves}
 \todo{write (actually we haven't defined sheaf yet either)}
-
-
