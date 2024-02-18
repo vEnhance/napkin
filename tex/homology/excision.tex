@@ -195,7 +195,7 @@ Note that for all $t \in [0, 1]$, we must have $F_t\im(A) \subseteq B$.
 \begin{center}
 \begin{asy}
 	usepackage("xcolor");
-	draw((0, 0)--(0, 1), L=Label("$(X, \mathcolor{red}{A})$", EndPoint));
+	draw((0, 0)--(0, 1), L=Label("$(X, {\color{red} A})$", EndPoint));
 	dot((0, 0), red);
 	dot((0, 1), red);
 
@@ -203,7 +203,7 @@ Note that for all $t \in [0, 1]$, we must have $F_t\im(A) \subseteq B$.
 	fill(shift(1, 0)*unitsquare, yellow+opacity(0.1));
 	draw((1, 0)--(2, 0), red);
 	draw((1, 1)--(2, 1), red);
-	label("$(Y, \mathcolor{red}{B})$", (2, 1), align=N);
+	label("$(Y, {\color{red} B})$", (2, 1), align=N);
 
 	draw((1.1, 0)--(1.3, 1), heavygreen, L=Label("$f(X)$"));
 	dot((1.1, 0), red);
