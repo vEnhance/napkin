@@ -269,19 +269,19 @@ The group $F^\times$ is cyclic of order $16$, so there is some element $g \in F^
 that all of the elements in $F$ are
 \[ 0, g^0 = 1, g^1, g^2, \dots, g^{15}.  \]
 Using this knowledge, if we square the nonzero elements, we can easily see that the result are the
-following (note that $g^16 = g^0 = 1$):
-\[ g^0, g^2, g^4, \dots, g^14, g^0, g^2, \dots, g^14.  \]
+following (note that $g^{16} = g^0 = 1$):
+\[ g^0, g^2, g^4, \dots, g^{14}, g^0, g^2, \dots, g^{14}.  \]
 As such, exactly half of the elements --- 8 elements --- in $F^\times$ are quadratic residues!
 
 Checking whether there is an element $x$ such that $x^2 = -1$ isn't much harder.
-First, where may $-1$ appear in the sequence $\{g^0, g^1, \dots, g^15 \}$?
+First, where may $-1$ appear in the sequence $\{g^0, g^1, \dots, g^{15} \}$?
 If you find an explicit value of $g$ (you can pick $g = 3$ for instance), you will see that $g^8 =
 -1$. But, even without an explicit calculation, you can still see that, because:
 \begin{ques}
 	Note that the equation $x^2 = 1$ has only $2$ roots, $1$ and $-1$.
 	Using group operations in the group $F^\times$, what does the equation say?
 \end{ques}
-We have $g^8 = -1$, so $(g^4)^2 = (g^12)^2 = -1$, so we're done.
+We have $g^8 = -1$, so $(g^4)^2 = (g^{12})^2 = -1$, so we're done.
 \end{example}
 
 So, why is the proposition true? Consider a finite field $F$ of order a prime power $q$.
