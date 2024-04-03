@@ -623,6 +623,38 @@ ever have to worry too much about are the $r$-neighborhoods.
 	\end{hint}
 \end{problem}
 
+\begin{problem}
+	Let $X$ be a topological space.
+	The \emph{connected component} of a point $p \in X$
+	is the union of all subspaces $S \subseteq X$ which are connected and contain $p$.
+	\begin{enumerate}[(a)]
+		\ii Does the connected component of a point have to be itself connected?
+		\ii Does the connected component of a point have to be an open subset of $X$?
+	\end{enumerate}
+	\begin{hint}
+		(a) is yes, and (b) is no even for metric spaces.
+		In fact, a \emph{totally disconnected} space is one for which
+		every connected component consists of only a single point,
+		and there are examples of totally disconnected metric spaces with
+		non-discrete topologies.
+	\end{hint}
+	\begin{sol}
+		Part (a) is straightforward:
+		assume for contradiction that the connected component of $p$ is
+		a disjoint union $U \sqcup V$ of two nonempty sets open in $X$.
+		WLOG, assume $x \in U$
+		Let $S$ be one of the subspaces containing $X$ that intersects $V$.
+		Then $S = (S \cap U) \sqcup (S \cap V)$ rewrites $S$ as the disjoint union
+		of two sets which are open in $S$, contradicting the connectedness of $S$.
+
+		(Though note that as $S$ is not necessarily open in $X$,
+		the sets $S \cap U$ and $S \cap V$ are not necessarily open in $X$ either.)
+
+		For (b), a counterexample is to take any \emph{totally disconnected} space
+		like the Cantor set or the $p$-adic numbers.
+	\end{sol}
+\end{problem}
+
 \begin{problem}[Furstenberg]
 	We declare a subset of $\ZZ$ to be open if it's the union (possibly empty or infinite)
 	of arithmetic sequences $\left\{ a + nd \mid n \in \ZZ \right\}$,
