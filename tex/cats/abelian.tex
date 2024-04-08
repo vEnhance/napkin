@@ -104,6 +104,12 @@ which are the types of categories where this notion is most useful.
 		The zero map serves as the identity element for each group.
 \end{itemize}
 \end{definition}
+In short:
+\begin{moral}
+	In an additive category, you can add two morphisms.
+\end{moral}
+Which is the only definition that makes sense anyway, we cannot talk about elements.
+
 \begin{definition}
 	An \vocab{abelian category} $\AA$ is one with the additional properties that
 	for any morphism $A \taking f B$,
@@ -135,6 +141,9 @@ which are the types of categories where this notion is most useful.
 		a commutative addition to pairs of morphisms.
 	\end{enumerate}
 \end{example}
+
+From now on, you can basically forget about additive category, we will be working in abelian
+category.
 
 In general, once you assume a category is abelian, all the properties you would want
 of these kernels, cokernels, \dots\ that you would guess hold true.
@@ -181,6 +190,7 @@ For example,
 \end{proof}
 
 \section{Exact sequences}
+\label{sec:exact_sequences}
 \prototype{$0 \to G \to G \times H \to H \to 0$ is exact.}
 Exact sequences will seem exceedingly unmotivated until you learn about homology groups,
 which is one of the most natural places that exact sequences appear.
@@ -207,6 +217,31 @@ We say the entire sequence is exact if it's exact at $k=1,\dots,n-1$.
 		\ii For groups, the map $0 \to A \to B$ is exact if and only if $A \to B$ is injective.
 		\ii For groups, the map $A \to B \to 0$ is exact if and only if $A \to B$ is surjective.
 	\end{enumerate}
+\end{example}
+
+If you look at the prototypical example, actually, a \vocab{short exact sequence} (an exact sequence
+of the form $0 \to A \to B \to C \to 0$) is the most natural things ever:
+\begin{moral}
+	It's basically just an equation $C = B/A$.
+\end{moral}
+Whenever you see ``there is a short exact sequence $0 \to A \to B \to C \to 0$'', you
+can mentally translate it to ``$C \cong B/A$''; but there's a slight difference:
+A group has more structures than a number, so the sequence also contains the information of the
+maps --- the map that identifies $A$ with a subgroup of $B$, and the map that identifies $C$
+with the quotient group $B/A$.
+\begin{example}[More exact sequences]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii The sequence
+			\[ 0 \to \ZZ \taking{\times 3} \ZZ \to \Zc{3} \to 0 \]
+		is short exact.
+		\ii So is
+			\[ 0 \to \ZZ \taking{\times 5} \ZZ \to \Zc{5} \to 0. \]
+	\end{enumerate}
+	As you can see, the written equation ``$C \cong B/A$'' is not completely accurate, the map $A
+	\to B$ also matters in determining what $C$ is. This also explains the common notation: the
+	image of the map $\ZZ \taking{\times 3} \ZZ$ is usually written $3 \ZZ$, thus $\Zc{3} =
+	\frac{\ZZ}{3 \ZZ}$.
 \end{example}
 
 Now, we want to mimic this definition in a general \emph{abelian} category $\AA$.
@@ -450,3 +485,21 @@ where $C_k = \img f_{k-1} = \ker f_k$ for every $k$.
 	Prove that there is an exact sequence
 	\[ \Ker a \to \Ker b \to \Ker c \to \Coker a \to \Coker b \to \Coker c. \]
 \end{sproblem}
+
+\begin{problem}
+	[An additive category that is not abelian]
+	Consider a category, where:
+	\begin{itemize}
+		\ii the objects are pairs of abelian groups $(B, A)$ where $A$ is a subgroup of $B$.
+		\ii the morphisms $(B, A) \to (B', A')$ are maps $f \colon B \to B'$ where
+		$f\im(A) \subseteq A'$.
+	\end{itemize}
+	(You can think of this similar to the $\catname{PairTop}$ category, seen in
+	\Cref{ch:relative_hom}. We use abelian groups here to make the category additive.)
+
+	This category can be equivalently viewed as the category of short exact sequences
+	$0 \to A \to B \to B/A \to 0$ of abelian groups.
+
+	Show that the arrow $(X, 0) \to (X, X)$ is monic and epic, but not an
+	isomorphism. Conclude that the category is not abelian.
+\end{problem}

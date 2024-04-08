@@ -506,6 +506,8 @@ where the component $\eps_V$ is given by $v \mapsto \opname{ev}_v$
 the fact that it is an isomorphism follows from the fact that $V$ and $(V^\vee)^\vee$
 have equal dimensions and $\eps_V$ is injective).
 
+Another example can be found in \Cref{remark:hurewicz}.
+
 \section{(Optional) The Yoneda lemma}
 Now that I have natural transformations, I can define:
 \begin{definition}
@@ -603,7 +605,9 @@ and refer you to \cite{ref:msci} for the proofs.
 	Each $A$ gives us some information on how $X$ and $Y$ are similar,
 	but the whole natural isomorphism is strong enough to imply $X \cong Y$.
 
-	\ii Consider the functor $U \colon \catname{Grp} \to \catname{Set}$.
+	\ii Consider the covariant forgetful functor $U \colon \catname{Grp} \to
+	\catname{Set}$.\footnote{Actually, you need to apply a dual version.
+	\Cref{thm:yoneda} uses contravariant functor.}
 	It can be represented by $H^\ZZ$, in the sense that
 	\[ \Hom_{\catname{Grp}}(\ZZ, G) \cong U(G)
 		\qquad\text{ by }\qquad \phi \mapsto \phi(1). \]

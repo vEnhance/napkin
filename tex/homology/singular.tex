@@ -252,6 +252,38 @@ and the boundaries (in $B_1(X)$, i.e.\ the things we mod out by)
 are exactly the nulhomotopic loops in $\pi_1(X, x_0)$.
 The difference is that $H_1(X)$ allows loops to commute,
 whereas $\pi_1(X, x_0)$ does not.
+
+\begin{remark}[Digression: category theory interpretation]
+	\label{remark:hurewicz}
+	From this, you can say that there is a Hurewicz map $\pi_1(X, x_0) \taking\phi H_1(X)$
+	for each $(X, x_0)$.
+
+	But there is more than that: this map is \emph{natural}, in the sense that for $h \colon (X,
+	x_0) \to (Y, y_0)$ map of pointed spaces, then
+	\begin{center}
+		\begin{tikzcd}
+			\pi_1(X, x_0) \rar["h_\sharp"] \dar["\phi"] & \pi_1(Y, y_0) \dar["\phi"] \\
+			H_1(X) \rar["h_\ast"] & H_1(Y) \\
+		\end{tikzcd}
+	\end{center}
+	commutes.
+
+	In category theory terms, we say that $\phi$ is a \emph{natural transformation}
+	from $\pi_1$ to $H_1$.
+
+	Another way to say this is: we have families of groups
+	\[ \{ \pi_1(X, x_0) \mid (X, x_0)\text{ pointed space} \} \]
+	and
+	\[ \{ H_1(X) \mid (X, x_0)\text{ pointed space} \} \]
+	then the natural transformation $\phi$ can be seen as a family of homomorphisms
+	\[ \{ \phi \colon \pi_1(X, x_0) \to H_1(X) \mid (X, x_0)\text{ pointed space} \} \]
+	satisfying the naturality conditions.
+
+	Of course, the fact that $\pi_1$ is a functor means
+	$\{ \pi_1(X, x_0) \mid (X, x_0)\text{ pointed space} \}$ is a lot more than a family of groups
+	indexed by pointed spaces, as explained in \Cref{thm:fundgrp_functor}.
+\end{remark}
+
 \begin{example}
 	[The first homology group of the annulus]
 	To give a concrete example, consider the annulus $X$ above.

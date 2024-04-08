@@ -354,7 +354,7 @@ fundamental groups.
 This is the ``usual'' definition of simply connected.
 
 
-\section{Fundamental groups are functorial}
+\section{Fundamental groups are invariant under homeomorphism}
 One quick shorthand I will introduce to clean up the discussion:
 \begin{definition}
 	By $f \colon (X, x_0) \to (Y, y_0)$, we will mean that
@@ -561,7 +561,7 @@ and bending than homeomorphism: we are allowed to compress huge spaces into sing
 	the same is not true for $\CC \setminus \{0\}$.
 \end{remark}
 \begin{example}
-	[$\text{Disk} = \text{Point}$, $\text{Annulus} = \text{Circle}$.]
+	[$\text{Disk} = \text{Point}$, $\text{Annulus} = \text{Circle}$]
 	By the same token, a disk is homotopic to a point;
 	an annulus is homotopic to a circle.
 	(This might be a little easier to visualize, since it's finite.)
@@ -610,7 +610,8 @@ the content of this chapter using categorical notions.
 \begin{definition}
 	The \vocab{pointed homotopy category} $\catname{hTop}_\ast$ is defined as follows.
 	\begin{itemize}
-		\ii Objects: pairs $(X, x_0)$ of spaces with a distinguished basepoint, and
+		\ii Objects: \vocab{pointed spaces}; that is, a pair $(X, x_0)$ of spaces $X$ with a
+		distinguished basepoint $x_0$, and
 		\ii Morphisms: \emph{homotopy classes} of continuous functions $(X, x_0) \to (Y, y_0)$.
 	\end{itemize}
 \end{definition}
@@ -629,19 +630,20 @@ Then we can summarize many of the preceding results as follows:
 	\end{tikzcd}
 	\end{center}
 \end{theorem}
-This implies several things, like
+The fact that $\pi_1$ is a functor instead of merely assigns some group $\pi_1(X, x_0)$
+to each pointed topological space $(X, x_0)$ automatically implies several nice things, like:
 \begin{itemize}
 	\ii The functor bundles the information of $f_\sharp$,
 	including the fact that it respects composition.
 	In the categorical language, $f_\sharp$ is $\pi_1(f)$.
-	\ii Homotopic spaces have isomorphic fundamental group
+	\ii Homotopic spaces have isomorphic fundamental groups
 	(since the spaces are isomorphic in $\catname{hTop}$,
 	and functors preserve isomorphism by \Cref{thm:functor_isom}).
 	In fact, you'll notice that the proofs
 	of \Cref{thm:functor_isom} and \Cref{thm:fundgrp_homotopy_invariant}
 	are secretly identical to each other.
 	\ii If maps $f, g \colon (X, x_0) \to (Y, y_0)$ are homotopic,
-	then $f_\sharp = g_\sharp$. This is basically \Cref{lem:fsharp_homotopy_invariant}
+	then $f_\sharp = g_\sharp$. This is basically \Cref{lem:fsharp_homotopy_invariant}.
 \end{itemize}
 
 \begin{remark}

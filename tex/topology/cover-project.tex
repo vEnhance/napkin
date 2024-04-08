@@ -61,7 +61,19 @@ A much more interesting example is that of $\RR$ and $S^1$.
 	This is essentially wrapping the real line
 	into a single helix and projecting it down.
 \end{example}
-\missingfigure{helix}
+\begin{center}
+	\begin{asy}
+		var flatten = yscale(0.4);
+		guide g;
+		for (real a=90+360*5; a>=90; a-=20){
+			g = g .. flatten*dir(a)+(0, a/360/3);
+		}
+		draw(g, Arrows);
+		draw((0, -0.4)--(0, -1.4), Arrow, L=Label("$p$"));
+		draw(shift(0, -2)*flatten*unitcircle, L=Label("$S^1$", Relative(0.1)));
+	\end{asy}
+\end{center}
+
 
 We claim this is a covering projection.
 Indeed, consider the point $1 \in S^1$
@@ -254,13 +266,13 @@ where $Y$ is some general path-connected space, as follows.
 	and consider a covering projection $p \colon (E, e_0) \to (B, b_0)$.
 	(As usual, $Y$, $B$, $E$ are path-connected.)
 	Then a lifting $\tilde f$ with $\tilde f(y_0) = e_0$ exists if and only if
-	\[ f_\ast\im(\pi_1(Y, y_0)) \subseteq p_\ast\im(\pi_1(E, e_0)), \]
+	\[ f_\sharp\im(\pi_1(Y, y_0)) \subseteq p_\sharp\im(\pi_1(E, e_0)), \]
 	i.e.\ the image of $\pi_1(Y, y_0)$ under $f$ is contained in
 	the image of $\pi_1(E, e_0)$ under $p$ (both viewed as subgroups of $\pi_1(B, b_0)$).
 	If this lifting exists, it is unique.
 \end{theorem}
-As $p_\ast$ is injective,
-we actually have $p_\ast\im(\pi_1(E, e_0)) \cong \pi_1(E, e_0)$.
+As $p_\sharp$ is injective,
+we actually have $p_\sharp\im(\pi_1(E, e_0)) \cong \pi_1(E, e_0)$.
 But in this case we are interested in the actual elements, not just the isomorphism classes of the groups.
 \begin{ques}
 	What happens if we put $Y= [0,1]$?
