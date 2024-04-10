@@ -97,8 +97,7 @@ It terms out there is a precise answer for this.
 \end{definition}
 \begin{theorem}
 	[Cauchy-Hadamard theorem]
-	Let $\sum_{n=0}^{\infty} a_n z^n$
-	be a power series with radius of convergence $R$.
+	Let $\sum_{n=0}^{\infty} a_n z^n$ be a power series with radius of convergence $R$.
 	Let $h$ be a real number, and consider the infinite series
 	\[ \sum_{n=0}^\infty a_n h^n \]
 	of real numbers.
@@ -172,13 +171,11 @@ As promised, differentiation works exactly as you want.
 
 \begin{theorem}
 	[Differentiation works term by term]
-	Let $\sum_{n \ge 0} a_n z^n$ be a power series
-	with radius of convergence $R > 0$,
+	Let $\sum_{n \ge 0} a_n z^n$ be a power series with radius of convergence $R > 0$,
 	and consider the corresponding function
 	\[ f \colon (-R,R) \to \RR \quad\text{by}\quad
 		f(x) = \sum_{n \ge 0} a_n x^n. \]
-	Then all the derivatives of $f$ exist and
-	are given by power series
+	Then all the derivatives of $f$ exist and are given by power series
 	\begin{align*}
 		f'(x) &= \sum_{n \ge 1} n a_n x^{n-1} \\
 		f''(x) &= \sum_{n \ge 2} n(n-1) a_n x^{n-2} \\
@@ -191,16 +188,14 @@ As promised, differentiation works exactly as you want.
 	Also omitted.
 	The right way to prove it is to define the notion ``converges uniformly'',
 	and strengthen Cauchy-Hadamard to have this as a conclusion as well.
-	However, we won't use this later.
 \end{proof}
 
 \begin{corollary}
 	[A description of power series coefficients]
-	Let $\sum_{n \ge 0} a_n z^n$ be a power series
-	with radius of convergence $R > 0$,
+	Let $\sum_{n \ge 0} a_n z^n$ be a power series with radius of convergence $R > 0$,
 	and consider the corresponding function $f(x)$ as above.
 	Then
-	\[ a_n = \frac{f^{(n)}(x)}{n!}. \]
+	\[ a_n = \frac{f^{(n)}(0)}{n!}. \]
 \end{corollary}
 \begin{proof}
 	Take the $n$th derivative and plug in $x=0$.
@@ -214,8 +209,7 @@ we now have a way to do this process the other way:
 suppose that $f \colon U \to \RR$ is a function.
 Can we express it as a power series?
 
-Functions for which this \emph{is} true
-are called analytic.
+Functions for which this \emph{is} true are called analytic.
 \begin{definition}
 	A function $f \colon U \to \RR$ is \vocab{analytic} at
 	the point $p \in U$
@@ -223,8 +217,7 @@ are called analytic.
 	and a power series $\sum_n a_n z^n$ such that
 	\[ f(x) = \sum_{n \ge 0} a_n (x-p)^n \]
 	for any $x \in V$.
-	As usual, the whole function is analytic
-	if it is analytic at each point.
+	As usual, the whole function is analytic if it is analytic at each point.
 \end{definition}
 \begin{ques}
 	Show that if $f$ is analytic, then it's smooth.
@@ -265,31 +258,27 @@ we give this a name.
 	\end{enumerate}
 \end{example}
 
-\begin{theorem}
-	[Analytic iff Taylor series has positive radius]
-	Let $f \colon U \to \RR$ be a smooth function.
-	Then $f$ is analytic if and only if for any point $p \in U$,
-	its Taylor series at $p$ has positive radius of convergence.
-\end{theorem}
+Example (b) shows that if you have a function $f \colon \RR \to \RR$,
+then even knowing $f$ is smooth and the full Taylor series at $p$,
+it's still impossible to recover any other values of $f$
+or deduce that $f$ is analytic in any interval containing $p$.
 
-\begin{example}
-	It now follows that $f(x) = \sin(x)$ is analytic.
-	To see that, we can compute
-	\begin{align*}
-		f(0) &= \sin 0 = 0 \\
-		f'(0) &= \cos 0 = 1 \\
-		f''(0) &= -\sin 0 = 0 \\
-		f^{(3)}(0) &= -\cos 0 = -1 \\
-		f^{(4)}(0) &= \sin 0 = 0 \\
-		f^{(5)}(0) &= \cos 0 = 1 \\
-		f^{(6)}(0) &= -\sin 0 = 0 \\
-		&\vdotswithin=
-	\end{align*}
-	and so by continuing the pattern
-	(which repeats every four) we find the Taylor series is
-	\[ z - \frac{z^3}{3!} + \frac{z^5}{5!} - \frac{z^7}{7!} + \cdots \]
-	which is seen to have radius of convergence $R = \infty$.
-\end{example}
+However, it's at least true that:
+\begin{proposition}
+	[Analytic at one point implies analytic on an interval]
+	Let $f \colon \RR \to \RR$ be smooth, and let $p \in \RR$ be a point in the domain.
+	Suppose that
+	\begin{itemize}
+		\ii the Taylor series of $f$ at $p$ has radius of convergence $R > 0$; \emph{and}
+		\ii that Taylor series actually does converge to the value $f(x)$
+		for every input $x \in (-R,R)$ within the radius of convergence.
+	\end{itemize}
+	Then $f$ is analytic on $(-R, R)$.
+	\label{prop:taylor_series_are_analytic}
+\end{proposition}
+This result is nontrivial because \emph{a priori} we only know $f$ is analytic at $p$;
+the result extends that to being analytic on the radius of convergence if $R > 0$.
+We'll use it for $\exp$ in just a moment, which is actually defined by a power series.
 
 Like with differentiable functions:
 \begin{proposition}
@@ -306,14 +295,14 @@ will be analytic, hence describable locally by Taylor series.
 We can actually give a definition of $e^x$ using the tools we have now.
 
 \begin{definition}
-	We define the map $\exp \colon \RR \to \RR$ by
-	using the following power series,
+	We define the map $\exp \colon \RR \to \RR$ by using the following power series,
 	which has infinite radius of convergence:
 	\[ \exp(x) = \sum_{n \ge 0} \frac{x^n}{n!}. \]
 	We then define Euler's constant as $e = \exp(1)$.
 \end{definition}
 \begin{ques}
 	Show that under this definition, $\exp' = \exp$.
+	Also conclude from \Cref{prop:taylor_series_are_analytic} that $\exp$ is analytic.
 \end{ques}
 
 We are then settled with:
@@ -352,16 +341,14 @@ We are then settled with:
 \begin{proof}
 	First \[ \exp(x) = \exp(x/2)^2 \ge 0 \]
 	which shows $\exp$ is nonnegative.
-	Also, $1 = \exp(0) = \exp(x) \exp(-x)$ implies $\exp(x) \neq 0$
-	for any $x$, proving (a).
+	Also, $1 = \exp(0) = \exp(x) \exp(-x)$ implies $\exp(x) \neq 0$ for any $x$, proving (a).
 
 	(b) is just since $\exp'$ is strictly positive (racetrack principle).
 \end{proof}
 
 The log function then comes after.
 \begin{definition}
-	We may define $\log \colon \RR_{>0} \to \RR$
-	to be the inverse function of $\exp$.
+	We may define $\log \colon \RR_{>0} \to \RR$ to be the inverse function of $\exp$.
 \end{definition}
 Since its derivative is $1/x$ it is smooth;
 and then one may compute its coefficients to show it is analytic.
@@ -382,8 +369,7 @@ with essentially no modifications.
 	The series will converge if $|z| < R$.
 	\ii Differentiation still works great.
 	(The definition of the derivative is unchanged.)
-	\ii Analytic still works great for functions
-	$f \colon U \to \CC$, with $U \subseteq \CC$ open.
+	\ii Analytic still works great for functions $f \colon U \to \CC$, with $U \subseteq \CC$ open.
 \end{itemize}
 In particular, we can now even define complex exponentials,
 giving us a function \[ \exp \colon \CC \to \CC \]
@@ -395,9 +381,7 @@ so that $\log a$ is defined, though.
 So this $i^i$ issue is still there.)
 
 However, if one tries to study calculus for complex functions
-as we did for the real case,
-in addition to most results carrying over,
-we run into a huge surprise:
+as we did for the real case, in addition to most results carrying over, we run into a huge surprise:
 \begin{quote}
 	\itshape
 	If $f \colon \CC \to \CC$ is differentiable,
@@ -405,8 +389,7 @@ we run into a huge surprise:
 \end{quote}
 And this is just the beginning of the nearly unbelievable
 results that hold for complex analytic functions.
-But this is the part on real analysis,
-so you will have to read about this later!
+But this is the part on real analysis, so you will have to read about this later!
 
 \section{\problemhead}
 
@@ -457,4 +440,17 @@ so you will have to read about this later!
 	\begin{hint}
 		Use Taylor's theorem.
 	\end{hint}
+\end{problem}
+
+\begin{problem}
+	\kurumi
+	Let $f \colon \RR \to \RR$ be smooth.
+	Suppose that for every point $p$,
+	the Taylor series of $f$ at $p$ has positive radius of convergence.
+	Prove that there exists at least one point at which $f$ is analytic.
+	\begin{sol}
+		See \url{https://mathoverflow.net/q/81613}
+		and in particular
+		\url{https://web.archive.org/web/20161009194815/http://mathforum.org/kb/message.jspa?messageID=387148}.
+	\end{sol}
 \end{problem}
