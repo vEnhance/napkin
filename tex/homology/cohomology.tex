@@ -308,6 +308,67 @@ you can pick any free resolution you want and compute the above.
 	$\Ext(\ZZ^{\oplus 2015}, G)$ and $\Ext(\Zc{30}, \Zc 4)$.
 \end{ques}
 
+\section{Explanation for universal coefficient theorem}
+
+There is so much unexplained symbols and formulas in the previous chapter that may make you scream:
+\begin{quote}
+	I don't care if $\CP^2$ and $S^2 \vee S^4$ are distinct anymore! What are these spaces anyway?
+\end{quote}
+Nevertheless, it is not all that difficult. There are two key points to be read from the theorem:
+\begin{itemize}
+	\ii Even though $H_n(A_\bullet) = 0$, it is still possible for $H^n(A_\bullet; G) \neq 0$
+	if $\Ext(H_{n-1}(A_\bullet), G) \neq 0$.
+
+	In low-dimensional cases, we can actually visualize it --- \Cref{sec:visual_cohom_groups}
+	does that for the Klein bottle.
+	\ii $H^n(A_\bullet; G)$ is uniquely determined by $H_n(A_\bullet)$ and $G$, regardless of what
+	$A_\bullet$ is, as long as each $A_n$ is free.
+\end{itemize}
+
+Which means: if you wish, you can forget about the formula in the universal coefficient theorem,
+and use the cellular chain complex $\Cells_\bullet(X)$ to compute cohomology by:
+\[ H^n(X; G) = \frac{\ker(\Hom(\Cells_n(X), G) \to \Hom(\Cells_{n+1}(X), G))}
+{\img(\Hom(\Cells_{n-1}(X), G) \to \Hom(\Cells_{n}(X), G))}. \]
+After all, the cellular chain complex and the singular chain complex are both free and have the same
+homology groups, so by the universal coefficient theorem they must have the same cohomology groups.
+
+Nevertheless, the formula of the universal coefficient theorem is desirable because, more often than
+not, the chain complex $A_\bullet$ is more complicated than $H_\bullet(A_\bullet)$.
+
+\begin{example}
+	The Klein bottle's cellular chain complex has the following form:
+	\[ \cdots \to \ZZ \taking{1 \mapsto (0, 2)} \ZZ^2 \taking {(a, b) \mapsto 0} \ZZ. \]
+	The homology groups is:
+	\[ H_2 = 0, H_1 = \ZZ \oplus \Zc{2}, H_0 = \ZZ. \]
+	It's indeed simpler, but only marginally (there are $3$ generators instead of $4$, and we don't
+	need to keep track of the maps)
+	because cellular homology is already so efficient.
+\end{example}
+
+Where does the formula come from, again? You can think of it like this.
+Because the universal coefficient theorem tells us that $H^\bullet(A_\bullet; G)$ only depends on
+$H_\bullet(A_\bullet)$, if we're given $H_\bullet$, we just construct \emph{any} chain complex of
+free abelian groups $A_\bullet$ and dualize it.
+
+Assume $H_k = 0$ for every terms, except $H_{n-1}\neq 0$. Then, tautologically,
+$H^n \cong \Ext(H_{n-1}; G)$ --- a free resolution \emph{is} a chain complex!
+
+\begin{exercise}
+	Verify this. (Hint: Starting from the exact sequence $Z_{n-1} \to H_{n-1} \to 0$.
+	Can you extend it to a free resolution of $H_{n-1}$?)
+\end{exercise}
+
+Assume $H_k = 0$ for every terms, except $H_n \neq 0$. Then we can see $H^n \cong \Hom(H_n, G)$.
+
+The universal coefficient theorem simply states that the choice of free resolution doesn't matter,
+and that if the other terms can be nonzero, $H^n$ is the direct sum of the two groups in the two
+cases above.
+
+If you want, you can even prove the fact that the choice of free resolution does not matter yourself
+--- it's a bit tricky, but not all that difficult. It boils down to the construction of maps
+between the chain complexes (it's not difficult to ensure the diagram commutes, the groups are free
+so we can send the basis wherever we want), and show the two free resolutions are chain homotopic.
+
 \section{Example computation of cohomology groups}
 \prototype{Possibly $H^n(S^m)$.}
 
@@ -397,6 +458,7 @@ From these examples one might notice that:
 \end{example}
 
 \section{Visualization of cohomology groups}
+\label{sec:visual_cohom_groups}
 
 We try to make sense of $C^n(X; G)$ and $H^n(X; G)$, for higher values of $n$.
 
@@ -461,10 +523,11 @@ Let us see what a $n$-cocycle must look like. First,
 \begin{moral}
 	Homotopic chains with the same boundary are mapped to the same value by cocycles.
 \end{moral}
-We defined what it means for two $k$-simplex to be homotopic in \Cref{sec:higher_homotopy_grps} ---
-in the current situation, we require in addition that the boundaries are always fixed.
+We defined what it means for two $k$-simplices to be homotopic in \Cref{sec:higher_homotopy_grps}
+--- in the current situation, we require in addition that the boundaries are always fixed.
 
-For instance, the blue and the orange $1$-simplex below are homotopic, but not the red $1$-simplex.
+For instance, the blue and the orange $1$-simplices below are homotopic, but not the red
+$1$-simplex.
 \begin{center}
 \begin{asy}
 	size(4cm);
@@ -481,7 +544,7 @@ For instance, the blue and the orange $1$-simplex below are homotopic, but not t
 \end{center}
 
 Proof is not difficult --- you just need to show that the difference between two homotopic
-$k$-simplex is the boundary of something (their interior!), and write the interior as the
+$k$-simplices is the boundary of something (their interior!), and write the interior as the
 sum of some $k+1$-simplices. (Hint: The easiest way is actually to write the interior as the
 difference of two $k+1$-simplices instead, and be careful of vertex ordering issues.)
 \begin{exercise}
