@@ -169,6 +169,12 @@ We now define a Dedekind domain as follows.
 	\emph{every nonzero prime ideal of $\mathcal A$ is in fact maximal}.
 	(The last condition is the important one.)
 \end{definition}
+
+\begin{remark}
+	Note that $\mathcal A$ is a Dedekind domain if and only if $\mathcal A = \OO_K$ for some field
+	$K$, as we will prove below. We're just defining this term for historical reasons\dots
+\end{remark}
+
 Here there's one new word I have to define for you, but we won't make much use of it.
 \begin{definition}
 	Let $R$ be an integral domain and let $K$ be its field of fractions.
@@ -205,7 +211,8 @@ First, the boring part.
 \begin{proof}
 	Boring, but here it is anyways for completeness.
 
-	Since $\OO_K \cong \ZZ^{\oplus n}$, we get that it's Noetherian.
+	Since $\OO_K \cong \ZZ^{\oplus n}$,\footnote{By \Cref{thm:OK_free_Z_module}.}
+	we get that it's Noetherian.
 
 	Now we show that $\OO_K$ is integrally closed.
 	Suppose that $\eta \in K$ is the root of some polynomial with coefficients in $\OO_K$.
@@ -214,13 +221,14 @@ First, the boring part.
 		+ \dots + \alpha_0 \]
 	where $\alpha_i \in \OO_K$. We want to show that $\eta \in \OO_K$ as well.
 
-	Well, from the above, $\OO_K[\eta]$ is finitely generated\dots
+	Well, from the above, $\OO_K[\eta]$ is finitely generated\dots\
 	thus $\ZZ[\eta] \subseteq \OO_K[\eta]$ is finitely generated.
 	So $\eta \in \ol\ZZ$, and hence $\eta \in K \cap \ol\ZZ = \OO_K$.
 \end{proof}
 Now let's do the fun part.
 We'll prove a stronger result, which will re-appear repeatedly.
 \begin{theorem}[Important: prime ideals divide rational primes]
+	\label{thm:prime_ideals_over_rational}
 	Let $\OO_K$ be a ring of integers
 	and $\kp$ a nonzero prime ideal inside it.
 	Then $\kp$ contains a rational prime $p$.
