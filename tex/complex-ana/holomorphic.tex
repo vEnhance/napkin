@@ -358,16 +358,6 @@ that the partial derivatives of $f$ are continuous
 and then applies the so-called Green's theorem.
 But it was Goursat who successfully proved the fully general theorem we've stated above,
 which assumed only that $f$ was holomorphic.
-I'll only outline the proof, and very briefly.
-You can show that if $f \colon \Omega \to \CC$ has an antiderivative $F \colon \Omega \to \CC$ which is also holomorphic,
-and moreover $\Omega$ is simply connected, then you get a ``fundamental theorem of calculus'', a la
-\[ \oint_\alpha f(z) \; dz = F(\alpha(b)) - F(\alpha(a)) \]
-where $\alpha \colon [a,b] \to \CC$ is some path.
-So to prove Cauchy-Goursat, you only have to show this antiderivative $F$ exists.
-Goursat works very hard to prove the result in the special case that $\gamma$ is a triangle,
-and hence by induction for any polygon.
-Once he has the result for a rectangle, he uses this special case to construct the function $F$ explicitly.
-Goursat then shows that $F$ is holomorphic, completing the proof.
 
 Anyways, the theorem implies that $\oint_\gamma z^m \; dz = 0$ when $m \ge 0$.
 So much for all our hard work earlier.
@@ -479,7 +469,7 @@ In fact, that's the central result we're going to use to prove the result.
 		+
 		2\pi i f(a).
 	\end{align*}
-	where we've used \Cref{thm:central_cauchy_computation}
+	where we've used \Cref{thm:central_cauchy_computation}.
 	Thus, all we have to do is show that
 	\[ \oint_{\gamma_\eps} \frac{f(z)-f(a)}{z-a} \; dz = 0. \]
 	For this we can basically use the weakest bound possible, the so-called $ML$ lemma
@@ -541,7 +531,7 @@ So let's state the full result below, with arbitrary center $p$.
 	bounded by a circle $\gamma$.  Suppose $D$ is contained inside $U$.
 	Then $f$ is given everywhere in $D$ by a Taylor series
 	\[
-		f(z) = c_0 + c_1(z-p) + c_2(z-p)^2 + \dots
+		f(z) = c_0 + c_1(z-p) + c_2(z-p)^2 + \cdots
 	\]
 	where
 	\[
@@ -561,6 +551,33 @@ This establishes a result we stated at the beginning of the chapter:
 that a function being complex differentiable once means it is not only infinitely differentiable,
 but in fact equal to its Taylor series.
 
+\begin{remark}
+	If you're willing to assume this, you can see why Cauchy-Goursat theorem should be true:
+	assuming
+	\[
+		f(z) = c_0 + c_1 z + c_2 z^2 + \cdots
+	\]
+	then, with $\gamma$ the unit circle,
+	\begin{align*}
+		\oint_\gamma f(z) \; dz
+		&= \oint_\gamma c_0 + c_1 z + c_2 z^2 + \dots \; dz \\
+		&= \left( \oint_\gamma c_0 \; dz \right) +
+		\left( \oint_\gamma c_1 z \; dz \right) +
+		\left( \oint_\gamma c_2 z^2 \; dz \right) + \cdots
+	\end{align*}
+	We have already proven that each $\oint_\gamma z^m \; dz = 0$, so the sum ought to be $0$ as
+	well.
+
+	Of course the argument is not completely rigorous, it exchanges the integration and the
+	infinite sum without justification.
+\end{remark}
+
+\begin{remark}
+	You can see where the term $\frac{f(w-p)}{(w-p)^{k+1}}$ comes from in
+	\Cref{remark:cauchy_integral_intuition}. It is very intuitive that even if you forget it,
+	you can derive it yourself as well!
+\end{remark}
+
 I should maybe emphasize a small subtlety of the result:
 the Taylor series centered at $p$ is only valid in a disk centered at $p$ which lies entirely in the domain $U$.
 If $U = \CC$ this is no issue, since you can make the disk big enough to accommodate any point you want.
@@ -571,6 +588,183 @@ open neighborhood for which the Taylor
 series is correct -- in stark contrast to the real case.
 Indeed, as you'll see in the problems,
 the existence of a Taylor series is incredibly powerful.
+
+\section{Optional: Proof that holomorphic functions are analytic}
+
+It is recommended to read the next chapter first to understand the origin of the term
+$\frac{f(w-p)}{(w-p)^{k+1}}$ in Cauchy's differentiation formula above.
+
+Each step of the proof is quite intuitive, if not a bit long.
+The outline is:
+\begin{itemize}
+	\ii We pretend that the function $f$ is analytic. (Yes, this is not circular reasoning!)
+	\ii We use Cauchy's differentiation formula to write down a power series:\footnote{Assume $0 \in
+	U$.}
+	\[ c_0 + c_1 z + c_2 z^2 + \cdots \]
+	\ii We prove that the power series coincide with $f$ using Cauchy-Goursat theorem.
+	\ii Note that the statement ``$f$ is analytic'' literally means ``for every $k \geq 0$, then
+	$f^{(k)}$ is differentiable''. So, we write down a power series for $f^{(k)}$, and show that it
+	is differentiable.
+	(We already did this for the real case in \Cref{prop:taylor_series_are_analytic}.)
+\end{itemize}
+
+\subsection{Proof of Cauchy-Goursat theorem}
+
+Suppose $f$ is holomorphic i.e. differentiable. We wish to prove $\oint_\gamma f \; dz = 0$.
+
+How may we attack this problem? Looking at the conclusion, we may want to stare at some function
+where $\oint_\gamma f \; dz \neq 0$.
+
+We readily got an example from the previous chapter: $f(z) = \frac{1}{z}$.
+\begin{ques}
+	What part of the hypothesis does not hold?
+\end{ques}
+
+In any case, you see the problem is it's because $f$ has a singularity at $0$ (even though we
+haven't formally defined what a singularity is yet). So, we try to prove the contrapositive:
+\begin{theorem}
+	Suppose $\oint_\gamma f \; dz \neq 0$.
+	Then something weird happens to $f$ somewhere inside $\gamma$.
+\end{theorem}
+(For arbitrary loops, it gets a bit more difficult, however. What does ``inside $\gamma$'' mean?)
+
+Phrasing like this, it isn't that difficult. You may want to look at $f(z) = \frac{1}{z}$ a bit and
+try to figure out how the proof follows before continue reading.
+
+For simplicity, I will prove the statement for $\gamma$ being a rectangle, leaving the case e.g.
+$\gamma$ is a circle to the reader. The case of fully general $\gamma$ will be handled later on.
+
+As you may figured out, for $f(z) = \frac{1}{z-w}$, you can try to locate where the singularity $w$
+is by ``binary search'': compute $\oint_\gamma f \; dz$, if it is $2\pi i$, we know $w$ is inside
+$\gamma$. We're going to do just that.
+
+What should we search for? Let's see:
+\begin{exercise}
+	Suppose $\oint_\gamma f \; dz \neq 0$.
+	Must there be a point where $f$ blows up to infinity, like the point $z = 0$ in $\frac{1}{z}$?
+\end{exercise}
+Answer: no, unfortunately. You can certainly take the function $f$ above, and ``smooth out'' the
+singularity.
+\begin{center}
+	\begin{asy}
+		import graph;
+		draw(graph(new real(real x){ return 1/x; }, -3, -1/3), red);
+		draw(graph(new real(real x){ return 1/x; }, 1/3, 3), red);
+		draw((-1/2, -2){(1, -2)} .. tension 5 .. {(1, -2)}(1/2, 2), blue+dashed);
+		graph.xaxis();
+		graph.yaxis();
+	\end{asy}
+\end{center}
+(Only real part depicted. You can imagine the imaginary part.)
+
+The best we can hope for, then, is to find a point where $f$ is not holomorphic (complex
+differentiable).
+
+Construct $4$ paths $\gamma_a$, $\gamma_b$, $\gamma_c$ and $\gamma_d$ as follows. The margin is only
+for illustration purpose, in reality the edges directly overlap on each other.
+\begin{center}
+	\begin{asy}
+		void drawrect(real x1, real y1, real x2, real y2){
+			draw((x1, y1)--(x2, y1), MidArrow);
+			draw((x2, y1)--(x2, y2), MidArrow);
+			draw((x2, y2)--(x1, y2), MidArrow);
+			draw((x1, y2)--(x1, y1), MidArrow);
+		}
+		var margin=0.2, halfmargin=margin/2;
+		drawrect(0, 0, 6, 4);
+		drawrect(0+margin, 0+margin, 3-halfmargin, 2-halfmargin);
+		drawrect(3+halfmargin, 0+margin, 6-margin, 2-halfmargin);
+		drawrect(0+margin, 2+halfmargin, 3-halfmargin, 4-margin);
+		drawrect(3+halfmargin, 2+halfmargin, 6-margin, 4-margin);
+		label("$\gamma$", (6, 4), dir(45));
+		label("$\gamma_a$", (3-halfmargin, 4-margin), dir(-135));
+		label("$\gamma_b$", (6-margin, 4-margin), dir(-135));
+		label("$\gamma_c$", (3-halfmargin, 2-halfmargin), dir(-135));
+		label("$\gamma_d$", (6-margin, 2-halfmargin), dir(-135));
+	\end{asy}
+\end{center}
+
+Notice that, because all the inner edges cancel out,
+\[
+	\oint_\gamma f \; dz =
+	\oint_{\gamma_a} f \; dz + \oint_{\gamma_b} f \; dz +
+	\oint_{\gamma_c} f \; dz + \oint_{\gamma_d} f \; dz.
+\]
+Which means $\oint_{\gamma_i} f \; dz \neq 0$ for some $i \in \{ a, b, c, d \}$.
+(Idea: we have more accurately located the singularity, now we know it is inside $\gamma_i$.
+Of course it's also possible that there are multiple singularities.)
+
+We also have $|\oint_{\gamma_i} f \; dz| \geq \frac{1}{4} \cdot |\oint_\gamma f \; dz|$
+for some $i$.
+The reason why we must carefully keep track of the magnitude (instead of just saying it's $\neq 0$)
+will become apparent later.
+
+So, we keep doing that, and get a decreasing sequence of rectangles $\{ \gamma_j \}$. Because the
+edge length gets halved each time, the rectangles converge to a single point $p$.
+
+How would the rectangle perimeter decrease? Perhaps something like the following:
+\begin{center}
+	\begin{tabular}{ccc}
+		$j$ & Perimeter of $\gamma_j$ & $|\oint_{\gamma_j} f \; dz|$ \\ \hline
+		$0$ & $1$ & $1$ \\
+		$1$ & $\frac{1}{2}$ & $\geq \frac{1}{4}$ \\
+		$2$ & $\frac{1}{4}$ & $\geq \frac{1}{16}$ \\
+		$3$ & $\frac{1}{8}$ & $\geq \frac{1}{64}$
+	\end{tabular}
+\end{center}
+$|\oint_{\gamma_j} f \; dz|$ decreases quite quickly compared to the perimeter --- as expected, we
+cannot hope for $f$ to blow up at $p$, but this is sufficient to show $f$ is not holomorphic.
+
+For the sake of contradiction, assume otherwise. Then, by definition,
+\[ \lim_{h \to 0} \frac{f(p+h)-f(p)}{h} = f'(p) \]
+where $p$ is the point that the rectangles $\{ \gamma_j \}$ converges to as defined above,
+and $f'(p) \in \CC$ is the derivative.  In other words, for $h \in \CC$ close enough to $0$,
+\[ f(p+h) = f(p) + f'(p) \cdot h + \eps(h) \cdot h\text{ for }\eps(h) \in o(1).  \]
+Why is this a problem? Notice that $f(p)$ and $f'(p) \cdot h$ are both polynomials, so
+\[ \oint_{\gamma_j} f(p) + f'(p) \cdot (z-p) \; dz = 0, \]
+which means
+\[ \oint_{\gamma_j} f(z)\; dz = \oint_{\gamma_j} \eps(h) \cdot (z-p) \; dz. \]
+We know the left hand side decreases as $4^{-j}$, but the integral on the right hand side is over a
+curve with length decreasing as $2^{-j}$.
+\begin{exercise}
+	Finish the proof. (Use the $ML$ estimation lemma.)
+\end{exercise}
+
+Finally, what to do with arbitrary curve (which may not even have an interior\footnote{A
+space-filling curve is an example.})?
+
+We construct the antiderivative $F \colon \Omega \to \CC$ by integrating $f$ across the side of a
+rectangle, prove $F' = f$,
+and get a ``fundamental theorem of calculus'', that is
+\[ \oint_\alpha f(z) \; dz = F(\alpha(b)) - F(\alpha(a)) \]
+where $\alpha \colon [a,b] \to \CC$ is some path.
+Considering $\alpha = \gamma$,
+because the starting and ending point for a loop $\gamma$ is the same, of course the integral would
+be $0$.
+
+\subsection{The rest}
+
+Next step, we should show the power series coincide with $f$, that is
+\[ f(z) =
+\oint_\gamma \frac{f(t)}{t} \; dt +
+\oint_\gamma \frac{f(t)}{t^2} \; dt \cdot z +
+\oint_\gamma \frac{f(t)}{t^3} \; dt \cdot z^2 + \cdots \]
+Here we assume $\gamma$ is the unit circle, the power series is centered at $0$, and $t$ is inside
+the unit disk.
+\begin{exercise}
+	Prove it. (You only need to know that you can interchange the infinite sum and the integral in
+	this situation,\footnote{Look at \Cref{ex:failure_interchange_lim_int} for some horror stories
+	where you cannot interchange a limit and an integral.}
+	how to sum a geometric series, and Cauchy's integral formula)
+\end{exercise}
+
+\begin{remark}
+\emph{Wait, where was Cauchy-Goursat theorem used?} If you forgot, it is used in the proof of
+Cauchy's integral formula.
+\end{remark}
+
+After we have proven that $f$ is a power series, then using \Cref{prop:taylor_series_are_analytic}
+(suitably adapted for the case of complex holomorphic functions), the result follows.
 
 \section\problemhead
 These aren't olympiad problems, but I think they're especially nice!
