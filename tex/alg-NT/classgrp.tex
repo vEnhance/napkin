@@ -36,6 +36,47 @@ You can also think of the classes as the ``shapes'' of the ideals,
 as two ideals belong to the same class if and only if
 they're isomorphic as $\OO_K$-modules.
 
+\begin{example}[Ideal classes in $\QQ(\sqrt{-5})$]
+	If the field is an imaginary quadratic field, visualizing the class of an ideal is really easy:
+	because multiplication by a complex number corresponds to a combination of a scaling and a
+	rotation (i.e. it preserves angles), two ideals belong to the same class if they are similar,
+	that is, you can overlap one onto the another using rotation and scaling.
+
+	When the field is $K = \QQ(\sqrt{-5})$, the ring of integers is $\OO_K = \ZZ[\sqrt{-5}]$.
+
+	The first picture below depicts the ideal $(1) \subseteq \OO_K$. The second picture depicts $(2,
+	1+\sqrt{-5}) \subseteq \OO_K$, which is not a principal ideal.
+	\begin{center}
+		\begin{asy}
+			import graph;
+			size(10cm);
+
+			picture q;
+			graph.xaxis(q, -5.2, 5.2);
+			graph.yaxis(q, -5.2, 5.2);
+
+			picture left, right;
+			add(left, q); add(right, q);
+			draw(left, yscale(sqrt(5))*unitsquare, cyan);
+			draw(right, scale(2, 2*sqrt(5))*unitsquare, cyan);
+			draw(right, rotate(angle(1+sqrt(5)*I)*180/pi)*scale(abs(1+sqrt(5)*I))*yscale(sqrt(5))*unitsquare, cyan);
+			for(int x=-8; x<=8; ++x){
+				for(int y=-8; y<=8; ++y){
+					pair p=x+y*sqrt(5)*I;
+					if(max(abs(p.x), abs(p.y))<=5){
+						dot(left, p, blue);
+						dot(right, p, (x+y)%2==0 ? blue: white*0.7
+							);
+					}
+				}
+			}
+
+			add(currentpicture, left);
+			add(currentpicture, shift(12, 0)*right);
+		\end{asy}
+	\end{center}
+\end{example}
+
 In particular, $\Cl_K$ is trivial if all ideals are principal,
 since the nonzero principal ideals are the same up to scaling.
 
@@ -545,39 +586,50 @@ We can now put everything we have together to obtain the great Minkowski bound.
 So that's cool and all, but what we really wanted was to show that
 the class group is finite.
 How can the Minkowski bound help?
-Well, you might notice that we can rewrite it to say
-\[ \Norm\left( (\alpha) \cdot \ka\inv \right) \le M_K \]
-where $M_K$ is some constant depending on $K$, and $\alpha \in \ka$.
+The key idea is the following:
+\begin{moral}
+	The class of $\ka$ is entirely determined by $(\alpha) \cdot \ka\inv$.
+\end{moral}
+\begin{ques}
+	Verify this. (That is, if $\ka$ and $\kb$ are such that $(\alpha) \cdot \ka\inv = (\beta) \cdot
+	\kb\inv$ for some $\alpha \in \ka$, $\beta \in \kb$, then prove that $\ka = (\gamma) \kb$
+	for some $\gamma \in K$.)
+\end{ques}
+
+\begin{example}
+	Recall this example:
+	\[
+		(6)
+		= (2,1-\sqrt{-5})^2 (3,1+\sqrt{-5})(3,1-\sqrt{-5})
+		= \kp^2 \kq_1 \kq_2. \]
+
+	Consider $\ka = (2)$ being principal, pick $\alpha = 2$, then $(\alpha) \cdot \ka\inv = (1)$.
+	If $(\alpha) \cdot \ka\inv = (1)$ (or $(2)$, or anything principal), we know $\ka$ must be
+	principal.
+
+	On the other hand, $\kq_1 = (3,1+\sqrt{-5})$ is not principal,
+	pick $\alpha = 3$.
+	We know $(3) = \kq_1 \kq_2$, so $(\alpha) \cdot \kq_1\inv = \kq_2 \neq (1)$.
+\end{example}
+
+In both examples above, $\ka \mid (\alpha)$, so their quotient should be an ``integer''. Indeed:
 \begin{ques}
 	Show that $(\alpha) \cdot \ka\inv$ is an integral ideal.
 	(Unwind definitions.)
 \end{ques}
-But in the class group we \emph{mod out} by principal ideals like $(\alpha)$.
-If we shut our eyes for a moment and mod out, the above statement becomes ``$\Norm(\ka\inv)\le M_K$''.
-The precise statement of this is
-\begin{corollary}
-	\label{cor:class_rep_minkowski}
-	Let $K$ be a number field, and pick a fractional ideal $J$.
-	Then we can find $\alpha$ such that $\kb = (\alpha) \cdot J$ is integral
-	and $\Norm(\kb) \le M_K$.
-\end{corollary}
-\begin{proof}
-	For fractional ideals $I$ and $J$ write $I \sim J$ to mean
-	that $I = (\alpha)J$ for some $\alpha$; then $\Cl_K$ is just modding out by $\sim$.
-	Let $J$ be a fractional ideal.
-	Then $J\inv$ is some other fractional ideal.
-	By definition, for some $\alpha \in \OO_K$ we have that $\alpha J\inv$ is an integral ideal $\ka$.
-	The Minkowski bound tells us that for some $x \in \ka$, we have $\Norm(x\ka\inv) \le M_K$.
-	But $x\ka\inv \sim \ka\inv = (\alpha J\inv)\inv \sim J$.
-\end{proof}
+
+You might notice that we can rewrite the Minkowski bound to say
+\[ \Norm\left( (\alpha) \cdot \ka\inv \right) \le M_K \]
+where $M_K$ is some constant depending on $K$.
+
+This statement is helpful, because in fact, there are only finitely many integral ideals
+with norm $\leq M_K$.
 
 \begin{corollary}[Finiteness of class group]
 	Class groups are always finite.
 \end{corollary}
 \begin{proof}
-	For every class in $\Cl_K$,
-	we can identify an integral ideal $\ka$ with norm less than $M_K$.
-	We just have to show there are finitely many such integral ideals;
+	We just have to show there are finitely many integral ideals as above;
 	this will mean there are finitely many classes.
 
 	Suppose we want to build such an ideal $\ka = \kp_1^{e_1} \dots \kp_m^{e_m}$.
@@ -648,10 +700,8 @@ Let's give an example how!
 	and the only ideals we can get are $(1)$ and $(2)$ (with norms $1$ and $4$).
 
 	Now we claim that's all.
-	Pick a fractional ideal $J$.
-	By \Cref{cor:class_rep_minkowski},
-	we can find an integral ideal $\kb \sim J$ with $\Norm(\kb) \le M_K$.
-	But by the above, either $\kb = (1)$ or $\kb = (2)$, both of which are principal,
+	Suppose $\kb$ is an integral ideal such that $\Norm(\kb) \le M_K$.
+	By the above, either $\kb = (1)$ or $\kb = (2)$, both of which are principal,
 	and hence trivial in $\Cl_K$.
 	So $J$ is trivial in $\Cl_K$ too, as needed.
 \end{proof}
@@ -713,6 +763,11 @@ narrowing down the work in our cherry tree.
 		\pmod \kb \qquad\text{for all } \alpha \in \OO_K. \]
 	Thus $(n) \subseteq \kb$, done.
 \end{proof}
+
+Alternatively, if you have read \Cref{ch:galois_theory}:
+If the extension $K/\QQ$ is Galois, we can actually prove that, analogous to
+\Cref{remark:norm_equal_product_embeddings},
+$\prod_{\sigma \in \Gal(K/\QQ)} \sigma(\kb) = (n)$, implying the result $id(\kb) \mid (n)$.
 
 Now we can give such an example.
 \begin{proposition}[Class group of $\QQ(\sqrt{-17})$]
@@ -779,6 +834,290 @@ From this we deduce \[ \Cl_K \cong \Zc 4. \qedhere \]
 		``This is an outrage.'' -- Student 1
 	\end{quote}
 \end{remark}
+
+\section{Optional: Proof that $\OO_K$ is a free $\ZZ$-module}
+
+We have the suitable tools to prove \Cref{thm:OK_free_Z_module} now.
+
+We know $\OO_K$ is a ring, so obviously it must be a $\ZZ$-module.
+Suppose it is not a free $\ZZ$-module of degree $n = |K:\QQ|$. What could go wrong?
+\begin{itemize}
+	\ii First, it may happen that it is dense like $\QQ$ or the ring extension $\ZZ[\frac{1}{2}]$
+	(which makes it not finitely generated and not free).
+	\ii Even without that, it may happen that its rank is less than $n$.
+\end{itemize}
+
+The second possibility is much easier to discard.
+Let $\alpha_1, \dots, \alpha_n$ be a basis of $K$.
+Using \Cref{thm:rationalize_denom}, we have positive integers $d_1, \dots, d_n$ such that
+$d_1 \alpha_1, \dots, d_n \alpha_n \in \OO_K$.
+Since $\alpha_1, \dots, \alpha_n$ are linearly independent,
+this implies $\rank \OO_K \geq n$.
+
+The other direction is harder. We wish to prove $\OO_K$ is ``discrete'' in some sense.
+
+From now on, replace $\alpha_i$ with $d_i \alpha_i$, so they are still a basis of the $\QQ$-vector
+space $K$, and furthermore they are now in $\OO_K$.
+
+\emph{Three} distinct proofs will be provided.
+
+\subsection{First proof}
+% lemma 2.9 in Neukirch
+
+\begin{moral}
+	We will show that $\OO_K$ is contained in some free $\ZZ$-module of rank $n$.
+\end{moral}
+
+Specifically, we will show that $\OO_K \subseteq \langle \frac{1}{d}\alpha_1, \dots,
+\frac{1}{d}\alpha_n \rangle$ for some integer $d \neq 0$.
+
+Let us pretend that we already know $\OO_K$ is a free $\ZZ$-module of
+rank $n$. How would we compute $d$?
+
+\begin{exercise}
+	These are a few naive attempts to compute $d$; unfortunately, they wouldn't work. Verify that
+	on $\langle 1, 1+2i \rangle \subseteq \ZZ[i]$.
+	\begin{itemize}
+		\ii Take $d$ to be the first positive integer that belongs to
+		$\langle \alpha_1, \dots, \alpha_n \rangle$.
+		(Attempt inspired by \Cref{thm:prime_ideals_over_rational}.)
+		\ii Take $d$ to be the product of the norm of $\alpha_1, \dots, \alpha_n$.
+	\end{itemize}
+\end{exercise}
+
+Instead, we compute $d$ by using an idea inspired by how we compute the mesh of the lattice.
+Let $A = \langle \alpha_1, \dots, \alpha_n \rangle$, then it is a lattice and a free $\ZZ$-module of
+rank $n$.
+
+\begin{exercise}
+	Assume you already know $\OO_K$ is free of rank $n$.
+	Show that $|\OO_K/A|$ is finite.
+	Conclude that for every $x \in \OO_K$, then $|\OO_K/A|
+	\cdot x \in A$.
+\end{exercise}
+
+Using the same argument as \Cref{prob:trace_discriminant}, you can prove that the ``discriminant''
+(squared mesh) of the lattice spanned by $\alpha_1, \dots, \alpha_n$ is an integer.
+Formally, let \[ d \defeq \det
+	\begin{bmatrix}
+		\sigma_1(\alpha_1) & \dots & \sigma_n(\alpha_1) \\
+		\vdots & \ddots & \vdots \\
+		\sigma_1(\alpha_n) & \dots & \sigma_n(\alpha_n) \\
+	\end{bmatrix}^2.  \]
+\begin{exercise}
+	Convince yourself (at least when all embeddings are real) that
+	the ratio of the meshes of $\OO_K$ and $A$ is exactly
+	the size of the quotient abelian group $\OO_K/A$, that is
+	$\abs{\frac{d}{\Delta_K}} = |\OO_K/A|^2$.
+	Conclude that for every $x \in \OO_K$, then
+	$d \cdot x \in A$.
+\end{exercise}
+Which implies $\OO_K \subseteq \langle \frac{1}{d} \alpha_1, \dots, \frac{1}{d} \alpha_n \rangle$,
+which is another free $\ZZ$-module of rank $n$.
+
+However, the argument above is circular since it assumes $\Delta_K$ exists (it can only serve as a
+motivation for where the value $d$ comes from).
+The actual proof is the following.
+
+Similar to \Cref{prob:trace_discriminant}, we define
+\[ d \defeq \det [\TrK(\alpha_i \alpha_j)]_{i, j}. \]
+Then, because $\{ \alpha_i \}_{i}$ spans $K$ as a $\QQ$-vector space,
+there is some $\begin{pmatrix} x_1 \\ \vdots \\ x_n \end{pmatrix} \in \QQ^{\oplus n}$ such that
+\[ \begin{bmatrix} \alpha_1 & \cdots & \alpha_n \end{bmatrix}
+\begin{pmatrix} x_1 \\ \vdots \\ x_n \end{pmatrix}
+= \begin{pmatrix} x \end{pmatrix}. \]
+Which means
+\[ \begin{bmatrix}
+	\TrK(\alpha_1 \alpha_1) & \cdots & \TrK(\alpha_1 \alpha_n) \\
+	\vdots & \ddots & \vdots \\
+	\TrK(\alpha_n \alpha_1) & \cdots & \TrK(\alpha_n \alpha_n)
+\end{bmatrix}
+\begin{pmatrix} x_1 \\ \vdots \\ x_n \end{pmatrix}
+= \begin{pmatrix} \TrK(\alpha_1 x) \\ \vdots \\ \TrK(\alpha_n x) \end{pmatrix}. \]
+Or, in short,
+\[
+	(\text{some matrix $\in \GL_n(\ZZ)$ with determinant $d$}) \cdot
+	\begin{pmatrix} x_1 \\ \vdots \\ x_n \end{pmatrix}
+	= (\text{some vector $\in \ZZ^{\oplus n}$}).
+\]
+\begin{ques}
+	Finish the proof that $d \cdot x \in A$.
+	(Cramer's rule. Or take the adjoint.)
+\end{ques}
+
+Finally, we have that $\OO_K$ is squeezed between two free $\ZZ$-modules of rank $n$, so it is
+also free of rank $n$.\footnote{We did something similar in \Cref{remark:prime_ideals_are_maximal}.}
+\begin{ques}
+	Finish this. (\Cref{thm:fund_fg_abelian_group} can be used here.)
+\end{ques}
+
+\subsection{Second proof}
+% chapter I, section 2, proposition 7 in Lang
+
+This time around, instead of dividing by $d$, we instead take the \emph{dual lattice}.
+
+What is the dual lattice, and why would we think about using it?
+One way to motivate this proof is to look at the inverse of an ideal:
+if $(1) \mid \ka$ (i.e. $\ka$ is an integral ideal), then $\ka\inv \mid (1)$.
+
+Here, $\ka\inv \defeq \{ x \in K \mid x a \in \OO_K \text{ for all }a \in \ka\}$.
+
+We can think of doing something similar, considering
+\[
+	\{ x \in K \mid x a \in \OO_K \text{ for all }a \in \langle \alpha_1, \dots, \alpha_n\rangle \}.
+\]
+This set is actually a lattice of rank $n$, but this won't work to prove the argument!
+We're trying to prove $\OO_K$ is ``discrete'' in the first place, if $\OO_K = K$ then the set above
+would equal $K$ as well.
+
+Instead, we must rely on what we already know --- the discreteness of $\ZZ$.
+Define
+\[
+	S \defeq \{ x \in K \mid \TrK(x a) \in \ZZ \text{ for all }a \in
+	\langle \alpha_1, \dots, \alpha_n\rangle \}.
+\]
+This set is a bit larger than the previous set.
+\begin{ques}
+	Verify that this set is a superset of the previous one. Then conclude that $\OO_K \subseteq S$.
+\end{ques}
+\begin{exercise}
+	Consider $\langle 1, 2i \rangle \subseteq \ZZ[i]$. What would the set $S$ be? (Recall that the
+	trace in $\CC$ is just twice the real part.)
+\end{exercise}
+
+$S$ is still a lattice of rank $n$ --- and this time, we can actually prove it! Since we already
+know $\ZZ$ is discrete.
+
+Now, this is a purely algebraic problem,
+we will only need to use knowledge of vector space here.
+Each element $x \in K$ can be written as a vector
+\[ F(x) \defeq \begin{pmatrix} x_1 \\ \vdots \\ x_n \end{pmatrix} \in \QQ^{\oplus n} \]
+if we use the basis $\{ \alpha_1, \dots, \alpha_n \}$.
+
+\begin{exercise}
+	Show that $(x, y) \mapsto \TrK(x \cdot y)$ can then be written as an \emph{invertible} matrix in
+	$\GL_n(\QQ)$ ---
+	specifically, there exists $M \in \GL_n(\QQ)$ such that $\TrK(x \cdot y) = F(x)^\top M F(y)$,
+	where $F(x)^\top$ is the transpose of $F(x)$.
+\end{exercise}
+
+Which makes $(x, y) \mapsto \TrK(x \cdot y)$ \emph{almost} an inner product
+(see \Cref{ch:inner_product_spaces}),
+except that it is not positive definite (for example, in $\CC$, we have $\Tr((1+i)^2) = 0$).
+But having the matrix invertible suffices to do the following:
+
+\begin{exercise}
+	Finish the proof. (Hint: Consider the matrix
+	$\begin{bmatrix} F(\alpha_1) & \cdots & F(\alpha_n) \end{bmatrix} \in \GL_n(\QQ)$.
+	What is the condition on $F(x)$ such that $x \in S$?)
+\end{exercise}
+
+\subsection{Third proof}
+
+Recall that we wish to prove $\OO_K$ is a free $\ZZ$-module of rank $n$.
+To do that, we suppose it cannot be generated by $n$ elements, then show that $\OO_K$ is not
+discrete, and this causes trouble because we know the norm is continuous.
+\begin{exercise}
+	Consider $K \cong \QQ^{\oplus n}$, this gives a topology on $K$.
+	Verify that $x \mapsto |\Norm(x)|$ is indeed continuous.
+\end{exercise}
+We have that for every $x \in \OO_K$, then $|\Norm(x)| \in \ZZ$.
+\begin{exercise}
+	Conclude that there is a ball $B(0, r)$ in the topology above that contains no element of
+	$\OO_K$, except $0$.
+\end{exercise}
+
+Now, what goes wrong if $\OO_K$ cannot be generated by $n$ elements? Things go wrong quickly:
+\begin{exercise}
+	Suppose $\langle \alpha_1, \dots, \alpha_n \rangle$ generates $K$ as a $\QQ$-vector space.
+	Let $x \in \OO_K$ such that $x$ is not a $\ZZ$-linear combination of $\{ \alpha_1, \dots,
+	\alpha_n \}$.
+	Show that there is $z_1, \dots, z_n \in [-\frac{1}{2}, \frac{1}{2}]$ not all zero,
+	and $z$ a $\ZZ$-linear combination of $\{ \alpha_1, \dots, \alpha_n \}$
+	such that $x + z = \sum_{i=1}^n z_i \alpha_i$.
+\end{exercise}
+\begin{exercise}
+	With notation as above, suppose $z_1 \neq 0$. Show that if we replace $\alpha_1$ with $z_1$,
+	then the new set $\{ z_1, \alpha_2, \dots, \alpha_n \}$ still spans $K$ as a $\QQ$-vector space;
+	furthermore, the mesh of the lattice gets decreased by \emph{at least a half}.
+\end{exercise}
+
+\begin{example}
+	Suppose $A \subseteq \CC$ is a lattice. We know $1 \in A$ and $i \in A$,
+	so $\ZZ[i] \subseteq A$.
+
+	Assume we know in addition that $2.3 - 3.1i \in A$.
+	\begin{center}
+		\begin{asy}
+			import graph;
+			for(int x=-4; x<=4; ++x){
+				for(int y=-4; y<=4; ++y){
+					dot((x, y), blue);
+				}
+			}
+			dot(2.3 - 3.1I, red);
+			graph.xaxis(-4.5, 4.5);
+			graph.yaxis(-4.5, 4.5);
+		\end{asy}
+	\end{center}
+
+	Because $A$ is closed under addition, we know that $(2.3 - 3.1i) + (-2 + 3i) = 0.3-0.1i \in A$.
+	We replace $1$ in the basis with $0.3-0.1i$.
+	Then, the lattice $\langle i, 0.3-0.1i\rangle \subseteq A$ has smaller mesh than $\langle 1, i
+	\rangle$ as expected.
+	\begin{center}
+		\begin{asy}
+			import graph;
+			for(int x=-8; x<=8; ++x){
+				for(int y=-20; y<=20; ++y){
+					pair p=x*I+y*(0.3-0.1I);
+					if(max(abs(p.x), abs(p.y))<=4.2){
+						dot(p, ((x, y)==(0, 1) ? red: blue));
+					}
+				}
+			}
+			graph.xaxis(-4.5, 4.5);
+			graph.yaxis(-4.5, 4.5);
+		\end{asy}
+	\end{center}
+\end{example}
+
+Since we can do this indefinitely ($\OO_K$ never gets spanned), the mesh decreases to $0$ rapidly.
+
+So, are we done? Since the mesh goes to $0$, maybe the smallest distance of some $\alpha_i$ also go
+to $0$? Almost, but not quite:
+\begin{example}
+	Consider $\alpha_1 = 1+3i$ and $\alpha_2 = 2+7i$.
+	\begin{center}
+		\begin{asy}
+			import graph;
+			pair a=1, b=I;
+			a+=3*b;
+			b+=2*a;
+			//write(a, b, a+b);
+			filldraw(origin--a--a+b--b--cycle, orange, orange*0.2);
+			dot("$\alpha_1$", a, blue);
+			dot("$\alpha_2$", b, blue, align=dir(135));
+			graph.xaxis(xmin=-11, xmax=11);
+			graph.yaxis(ymin=-11, ymax=11);
+		\end{asy}
+	\end{center}
+	The mesh of the lattice spanned by $\alpha_1$ and $\alpha_2$ is $1$,
+	however, neither $\alpha_1$ nor $\alpha_2$ are particularly close to the origin.
+\end{example}
+We need to apply Minkowski bound here again: suppose the mesh is $d$, then
+the cube centered at origin with volume $2^n d$ contains a nonzero lattice point.\footnote{Using a
+sphere would of course make for a better bound, but its volume is a bit harder to calculate.}
+This point's distance cannot be more than $\sqrt{n} \cdot \sqrt[n]{d}$ away from the origin.
+
+\begin{remark}
+	Speaking of which, the LLL lattice basis reduction algorithm can be used to find \emph{in
+	practice} a point on the lattice that is \emph{close enough} to the origin.
+\end{remark}
+
+For $d$ small enough, $\sqrt{n} \cdot \sqrt[n]{d} < r$ where $r$ is the ball of no lattice point we
+have shown above, which gives a contradiction. So we're done!
+
 \section\problemhead
 \begin{problem}
 	Show that $K = \QQ(\sqrt{-163})$ has trivial class group,

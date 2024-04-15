@@ -272,6 +272,14 @@ which will be covered in the next section.
 Since every nonzero prime $\kp$ is maximal, we now know that $\OO_K$ is a Dedekind domain.
 Note that this tricky proof is essentially inspired by the solution to \Cref{prob:dedekind_sample}.
 
+\begin{remark}
+	\label{remark:prime_ideals_are_maximal}
+	An alternative proof for the first part is:
+	because $\kp$ is an ideal, $\alpha \cdot \OO_K \subseteq \kp$, but $\alpha \cdot \OO_K$ is a
+	free $\ZZ$-module of rank $n$, so $\kp$ is squeezed between two free $\ZZ$-modules of rank $n$,
+	by \Cref{thm:fund_fg_abelian_group} we must have $\kp$ is also free of rank $n$.
+	So the quotient is finite, then use \Cref{lemma:ideal_divides_norm}.
+\end{remark}
 
 \section{Unique factorization works}
 Okay, I'll just say it now!
