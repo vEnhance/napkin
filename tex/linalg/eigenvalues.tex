@@ -533,6 +533,7 @@ we first state the ``intrinsic'' definition.
 	\end{itemize}
 	(Silly edge case: we allow ``multiplicity zero''
 	if $\lambda$ is not an eigenvalue at all.)
+  \label{def:eigen_multiplicity}
 \end{definition}
 However in practice you should just count the Jordan blocks.
 \begin{example}
@@ -566,6 +567,10 @@ To be completely explicit, here is how you think of these in practice:
 		corresponding to those blocks.
 	\end{itemize}
 \end{proposition}
+\begin{proof}
+  \Cref{def:eigen_multiplicity} was essentially chosen
+  to be a basis-free rephrasing of this proposition.
+\end{proof}
 
 \begin{ques}
 	Show that the geometric multiplicity
