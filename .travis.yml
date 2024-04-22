@@ -48,7 +48,7 @@ before_deploy:
 deploy:
   provider: pages:git
   token: $GITHUB_TOKEN
-  edge: true # opt in to dpl v2
+  # edge: true # opt in to dpl v2
   local_dir: dist/
   keep_history: false
   verbose: true
