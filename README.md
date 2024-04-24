@@ -12,7 +12,7 @@ You can read about the project on my [webpage](https://web.evanchen.cc/napkin.ht
 You can download the [_most recent PDF_](https://venhance.github.io/napkin/Napkin.pdf)
 or [generated log files](https://venhance.github.io/napkin/).
 (Thanks to [aDotInTheVoid](https://github.com/aDotInTheVoid)
-for helping me set up the Travis CI to automate this process!)
+who helped with the initial setup of the deployment system.)
 
 ### Code
 
@@ -20,7 +20,6 @@ The project can be compiled on a system supporting `latexmk` and `asymptote`,
 with a sufficiently recent version of TeX Live.
 You'll need to `mkdir asy`, then simply run `latexmk`.
 On a system with nix, just run `nix build`.
-(Or, see `.travis.yml` for the instructions that Travis CI uses to compile.)
 
 _Pull requests are welcome!_
 You can email corrections directly to me as well.
