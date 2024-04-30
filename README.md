@@ -28,3 +28,7 @@ You can email corrections directly to me as well.
 
 If you like this project and want to support me,
 you can consider [buying me a coffee](https://ko-fi.com/evanchen).
+
+### Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=vEnhance/napkin&type=Date)](https://star-history.com/#vEnhance/napkin&Date)
