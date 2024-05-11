@@ -96,13 +96,13 @@ and usually do so privately.)
 	[Why don't we approximate the integral from above?]
 	For bounded functions on measure spaces with $|\Omega| < \infty$, we can equivalently define
 	\[ \int_\Omega f \; d\mu \defeq
-		\inf_{0 \le s \le f} \left( \int_\Omega s \; d\mu \right) \]
+		\inf_{0 \le f \le s} \left( \int_\Omega s \; d\mu \right) \]
 	where the infimum is taken over all simple $s$ such that $f \leq s$.
 	However, if the functions are unbounded or $|\Omega| = \infty$, the situation is not that
 	simple:
 	\begin{itemize}
 		\ii The function $f(x) = x^{-2}$ defined over $\Omega = (1, \infty)$ is absolutely integrable,
-		yet for all simple $s$ such that $f \leq s$, then $\int_\Omega f \; d\mu = \infty$.
+		yet for all simple $s$ such that $f \leq s$ we have $\int_\Omega s \; d\mu = \infty$.
 		\ii The function $f(x) = x^{-0.5}$ defined over $\Omega = (0, 1)$ is absolutely integrable,
 		yet there's no simple $s$ such that $f \leq s$ and $s$ is finite almost everywhere.
 	\end{itemize}
