@@ -740,7 +740,7 @@ This makes rigorous the notion that ``groups are very symmetric''.
 
 \begin{sproblem}
 	Let $p$ be a prime.
-	Show that the only group of order $p$ is $\Zc p$.
+	Show that if $G$ is a group of order $p$ then $G \cong \Zc p$.
 	\begin{hint}
 		Generated groups.
 	\end{hint}
@@ -761,8 +761,7 @@ This makes rigorous the notion that ``groups are very symmetric''.
 	\gim
 	Let $G$ be a finite group.\footnote{In other words,
 		permutation groups can be arbitrarily weird.
-		I remember being highly unsettled
-		by this theorem when I first heard of it,
+		I remember being highly unsettled by this theorem when I first heard of it,
 		but in hindsight it is not so surprising.}
 	Show that there exists a positive integer $n$ such that
 	\begin{enumerate}[(a)]
@@ -782,7 +781,31 @@ This makes rigorous the notion that ``groups are very symmetric''.
 \end{dproblem}
 
 \begin{problem}
-	[IMO SL 2005 C5] \gim
+	\gim
+	Find the smallest integer $n$
+	such that the symmetric group $S_n$ has a subgroup isomorphic to $D_{2018}$.
+	\begin{hint}
+		For the lower bound, consider orders (note that $1009$ is prime).
+		For the upper bound, consider a $1009$-gon.
+	\end{hint}
+	\begin{sol}
+		The answer is $n = 1009$.
+		This solution uses the fact that $1009$ is prime.
+
+		To show that no smaller $m$ is possible,
+		note that $D_{2018}$ has elements of order $1009$, a prime.
+		Since $S_n$ has no elements of this order for $n < 1009$, we need $n \ge 1009$.
+
+		To give a construction from $n = 1009$,
+		note that $D_{2018}$ can be thought of the symmetries of a $1009$-gon.
+		If one labels the vertices of the $1009$-gon by $S \coloneqq \{1,2,\dots,1009\}$,
+		then elements of $D_{2018}$ induces permutations on $S$,
+		and the set of permutations achieved is the desired subgroup.
+	\end{sol}
+\end{problem}
+
+\begin{problem}
+	[IMO SL 2005 C5] \yod
 	There are $n$ markers, each with one side white and the other side black.
 	In the beginning, these $n$ markers are aligned in a row so that their white sides are all up.
 	In each step, if possible, we choose a marker whose white side is up
