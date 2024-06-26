@@ -883,6 +883,18 @@ The first few results are the most important.
 	\end{sol}
 \end{problem}
 
+\begin{problem}[Removable singularity theorem]
+	Let $U$ be open, $p \in U$, and $f \colon U \setminus \{p\} \to \CC$ be holomorphic.
+	Suppose $f$ is bounded. Show that $\lim_{z \to p} f(z)$ exists, and the extension
+	$f \colon U \to \CC$ is holomorphic at $p$.
+	\begin{hint}
+		You can adapt part of the proof of Cauchy-Goursat theorem presented above,
+		and apply $ML$ estimation lemma to prove $\oint_\gamma f(z) \; dz = 0$.
+		In this case however, you already know $f$ is holomorphic, so you must have
+		$|\oint_{\gamma_i} f \; dz| \geq |\oint_\gamma f \; dz|$, without the $\frac{1}{4}$ factor.
+	\end{hint}
+\end{problem}
+
 %\begin{dproblem}
 %	[Liouiville's theorem extended]
 %	Let $f \colon \CC \to \CC$ be entire.
