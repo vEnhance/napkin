@@ -46,6 +46,28 @@ Don't worry about those for now; you'll see why in a moment.)
 	\end{itemize}
 \end{itemize}
 
+That having said, here are some non-functors.
+Just so that when you see a theorem that says ``$F$ is a functor''
+(in other words, ``$F$ is functorial''), you should read it as
+``$F$ has a deep hidden symmetry behind it! This is very nice!'' instead of ``this theorem is
+trivial''.
+
+What is that deep symmetry? Keep reading.
+%https://math.stackexchange.com/questions/3719877/non-examples-of-functors-and-categories?rq=1
+%https://math.stackexchange.com/questions/182253/which-mappings-are-functors?rq=1
+\begin{itemize}
+	\ii Given a group $G$, we can build its automorphism group $\Aut(G)$. But this is not a functor
+	in any natural way.
+	\ii Given a group $G$, we can build its center $Z(G)$, which is the set of elements in $G$ that
+	commutes with everything in $G$. Again, this is not a functor in any natural way.\footnote{%
+	It is easy to find a counterexample based on properties of functor --- in particular, identity
+	maps get sent to identity maps. See \url{https://math.stackexchange.com/q/158438} for a proof.}
+	\ii The operation of taking the dual space above
+	is a contravariant functor $\catname{Vect}_k\op \to \catname{Vect}_k$,
+	but it isn't a covariant functor $\catname{Vect}_k \to \catname{Vect}_k$.
+	(Don't worry what a contravariant functor is for now.)
+\end{itemize}
+
 \section{Covariant functors}
 \prototype{Forgetful/free functors, \dots}
 Category theorists are always asking ``what are the maps?'',
@@ -228,6 +250,65 @@ spaces have isomorphic fundamental groups.
 %\begin{ques}
 %	Verify this works; figure out the identity and compositions.
 %\end{ques}
+
+\section{Covariant functors as indexed family of objects}
+
+Instead of viewing functor as a \emph{function}, sometimes it is more convenient to view a functor
+as an \emph{object} (or a family of objects).
+
+For sets $A$ and $B$, sometimes the notation $A^B$ is used to denote the set $\Hom(B, A)$ being the
+set of all functions from $B$ to $A$.
+This notation is natural because, for finite sets $A$ and $B$, then $|\Hom(B, A)|=|A|^{|B|}$.
+
+That said, the product set $A \times A$ is sometimes also denoted $A^2$. Is there a relation?
+
+Certainly! We define the set $\textbf{2} = \{ 0, 1 \}$ (or any set of two elements).
+Then we have $|\textbf{2}|=2$. It is not difficult to see there is a correspondence between $A^2$
+and $\Hom(\textbf{2}, A)$.
+
+Now, let $\AA$ be a category. Define the category $\AA \times \AA = \mathcal
+A^2$ the obvious way:
+\begin{itemize}
+	\ii The objects of $\AA^2$ are pairs of objects $(A_1, A_2)$ with
+	$A_1, A_2 \in \AA$,
+	\ii The morphisms are pairs of morphisms\dots
+\end{itemize}
+\begin{exercise}
+	For $X, Y \in \catname{Top}$, we can define the product space $X \times Y \in \catname{Top}$.
+	This gives a functor $\catname{Top}^2 \to \catname{Top}$. Verify this.
+	(From a pair of maps $(f, g): (X_1, Y_1) \to (X_2, Y_2)$ in $\catname{Top}^2$,
+	how do we get a map $X_1 \times Y_1 \to X_2 \times Y_2$? Check this map is continuous
+	i.e. it is indeed a morphism in $\catname{Top}$.)
+\end{exercise}
+
+Similar to above,
+each object in $\AA^2$ should correspond to some sort of function
+$f \colon 2 \to \AA$.
+But a function's codomain must be an object\dots\ $\AA$ is a category,
+so $f$ should be a functor!
+
+So we can make a category $\catname{2}$, and we have $F \colon \catname{2}\to \AA$.
+There is only one reasonable way to define $\catname{2}$
+that do what we want:\footnote{This is \textbf{different} from the category $\textbf{2}$ that we
+will define later for natural transformation! Be careful.}
+\begin{itemize}
+	\ii The objects are $\{ 0, 1 \}$;
+	\ii There is no morphism, except $\id_0$ and $\id_1$.
+\end{itemize}
+
+More generally,
+\begin{moral}
+	A functor $F \colon \AA \to \BB$ can be viewed
+	as an indexed collection of objects $\{ B_A \in \BB \}_{A \in \AA}$.
+\end{moral}
+
+This can be most easily seen for a presheaf: ``a contravariant functor $\Opens(X)\op \to
+\catname{Rings}$'' means ``a family of rings indexed by open sets of $X$, satisfying certain
+niceness conditions''.
+
+In fact, just as $\AA^2$ is a category,
+the functors $\catname{2}\to \AA$ also forms a category.
+We will see this in \Cref{sec:yoneda}.
 
 \section{Contravariant functors}
 \prototype{Dual spaces, contravariant Yoneda functor, etc.}
@@ -509,6 +590,8 @@ have equal dimensions and $\eps_V$ is injective).
 Another example can be found in \Cref{remark:hurewicz}.
 
 \section{(Optional) The Yoneda lemma}
+\label{sec:yoneda}
+
 Now that I have natural transformations, I can define:
 \begin{definition}
 	The \vocab{functor category} of two categories $\AA$ and $\BB$,
