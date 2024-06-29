@@ -6,12 +6,7 @@ DRAFT-*.tex
 .log
 .dropbox
 
-**/*.asy
-!extras.asy
-!olympiad.asy
-!cse5.asy
 **/*.out
-**/*.pdf
 
 **/*.aux
 **/*.bbl
@@ -34,7 +29,6 @@ DRAFT-*.tex
 drafts/**/*.bib
 keepsakes/*
 !media/**
-asy/*
 tkz-graph.sty
 html/*
 /result
