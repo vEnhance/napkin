@@ -39,6 +39,8 @@ jobs:
           packages: |
             texlive-base biber latexmk asymptote
             texlive-latex-recommended texlive-latex-extra texlive-science
+      - name: texconfig rehash
+        run: sudo texconfig rehash
       - name: Compile document
         run: latexmk -pdflatex -interaction=nonstopmode -file-line-error Napkin.tex
       - name: Create dist folder
