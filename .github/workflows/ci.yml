@@ -1,4 +1,4 @@
-name: CI
+name: Napkin CI
 
 on:
   push:
@@ -52,13 +52,16 @@ jobs:
           mkdir -p dist/asy
           cp Napkin.log dist/
           cp Napkin.pdf dist/
-          cp asy/*.asy dist/
-          cp asy/*.pdf dist/
+          cp asy/*.asy dist/asy/
+          cp asy/*.pdf dist/asy/
           cd dist
-          tree -H '.' -I "index.html" -D --charset utf-8 -T "An Infinitely Large Napkin" >index.html
+          tree -H '.' -I "index.html" -D --charset utf-8 --filesfirst -T "An Infinitely Large Napkin" >index.html
       - name: Setup Pages
         uses: actions/configure-pages@v3
-      - name: Upload Artifact
+      - name: Upload PDF artifact
+        uses: actions/upload-artifact@v4
+        path: Napkin.pdf
+      - name: Upload Pages Artifact
         uses: actions/upload-pages-artifact@v2
         with:
           path: dist/
