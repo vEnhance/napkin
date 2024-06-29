@@ -60,7 +60,8 @@ jobs:
         uses: actions/configure-pages@v3
       - name: Upload PDF artifact
         uses: actions/upload-artifact@v4
-        path: Napkin.pdf
+        with:
+          path: Napkin.pdf
       - name: Upload Pages Artifact
         uses: actions/upload-pages-artifact@v2
         with:
