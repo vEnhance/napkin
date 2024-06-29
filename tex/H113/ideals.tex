@@ -734,9 +734,23 @@ Please bear with me!
 \begin{problem}
 	Show that $\CC[x] / (x^2-x) \cong \CC \times \CC$.
 	\begin{hint}
-		The isomorphism is given by $x \mapsto (1,0)$
-		and $1-x \mapsto (0,1)$.
+		Show that the map
+		\begin{align*}
+			\CC[x] &\to \CC \times \CC \\
+			p &\mapsto \left( p(0), p(1) \right)
+		\end{align*}
+		is surjective and calculate its kernel.
 	\end{hint}
+	\begin{sol}
+		Note that the map
+		\begin{align*}
+			\CC[x] &\to \CC \times \CC \\
+			p &\mapsto \left( p(0), p(1) \right)
+		\end{align*}
+		is indeed a surjective ring homomorphism.
+		Its kernel consists of those polynomials $p$ such that $p(0) = p(1) = 0$;
+		this is the set of polynomials divisible by both $x$ and $x-1$, so it is $x(x-1)$.
+	\end{sol}
 \end{problem}
 
 \begin{problem}
