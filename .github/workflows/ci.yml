@@ -42,8 +42,6 @@ jobs:
         with:
           packages: |
             biber latexmk asymptote
-      - name: texconfig rehash
-        run: sudo texconfig rehash
       - name: Compile document
         run: latexmk -pdflatex -interaction=nonstopmode -file-line-error Napkin.tex
       - name: Create dist folder
@@ -53,6 +51,7 @@ jobs:
           cp Napkin.log dist/
           cp Napkin.pdf dist/
           cp asy/*.asy dist/
+          cp asy/*.pdf dist/
           cd dist
           tree -H '.' -I "index.html" -D --charset utf-8 -T "An Infinitely Large Napkin" >index.html
       - name: Upload artifact
@@ -65,3 +64,4 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: dist
+          single-commit: true
