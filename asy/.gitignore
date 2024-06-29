@@ -1,0 +1,3 @@
+# The folder /asy need to exist for the LaTeX build.
+/*.asy
+/*.pdf

@@ -11,14 +11,35 @@ jobs:
     runs-on: ubuntu-latest
     name: "Spellcheck"
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
       with:
         submodules: recursive
     - name: Set up Python
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v4
     - name: Install dependencies
       run: |
         python -m pip install --upgrade codespell
     - name: Run spellcheck
       run: |
         codespell $(git ls-files '*.tex')
+
+  tex:
+    runs-on: ubuntu-latest
+    name: "TeX"
+    steps:
+    - name: Set up Git repository
+      uses: actions/checkout@v4
+      with:
+        submodules: recursive
+    - name: Install packages
+      run: >
+        sudo apt install -y
+        texlive-base biber latexmk asymptote
+        texlive-latex-recommended texlive-latex-extra texlive-science
+    - name: Compile document
+      run: latexmk -pdflatex -interaction=nonstopmode -file-line-error Napkin.tex
+    - name: Upload PDF
+      uses: actions/upload-artifact@v4
+      with:
+        name: PDF
+        path: Napkin.pdf
