@@ -6,7 +6,9 @@ on:
   pull_request:
     branches: ["*"]
 permissions:
-  contents: write
+  contents: read
+  pages: write
+  id-token: write
 
 jobs:
   spellcheck:
@@ -54,14 +56,12 @@ jobs:
           cp asy/*.pdf dist/
           cd dist
           tree -H '.' -I "index.html" -D --charset utf-8 -T "An Infinitely Large Napkin" >index.html
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
+      - name: Upload Artifact
+        uses: actions/upload-pages-artifact@v2
         with:
-          name: napkin-dist
           path: dist/
-      - name: Deploy dist folder to GitHub Pages
-        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          folder: dist
-          single-commit: true
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
