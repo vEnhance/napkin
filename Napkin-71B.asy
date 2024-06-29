@@ -1,0 +1,33 @@
+if(!settings.multipleView) settings.batchView=false;
+settings.tex="pdflatex";
+defaultfilename="Napkin-71B";
+if(settings.render < 0) settings.render=4;
+settings.outformat="";
+settings.inlineimage=true;
+settings.embed=true;
+settings.toolbar=false;
+viewportmargin=(2,2);
+
+import extras;
+size(6cm);
+usepackage("amsmath");
+usepackage("amssymb");
+defaultpen(fontsize(11pt));
+settings.tex = "latex";
+settings.outformat = "pdf";
+
+size(6cm);
+pair O = origin;
+filldraw(CR(O, 6), lightblue+opacity(0.2), blue);
+filldraw(CR(O, 1), white, blue);
+label("$X$", 6*dir(45), dir(45));
+pen rr = red;
+pair v0 = 5*dir(100);
+pair v1 = 4*dir(220);
+pair v2 = 2.2*dir(330);
+dot("$v_0$", v0, dir(v0), rr);
+dot("$v_1$", v1, dir(v1), rr);
+dot("$v_2$", v2, dir(v2), rr);
+draw(v0..(3.2*dir(110))..v1, rr, EndArrow);
+draw(v1..(2.1*dir(270))..v2, rr, EndArrow);
+draw(v2..(3.6*dir(45))..v0, rr, EndArrow);

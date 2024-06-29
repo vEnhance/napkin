@@ -1,0 +1,31 @@
+if(!settings.multipleView) settings.batchView=false;
+settings.tex="pdflatex";
+defaultfilename="Napkin-31F";
+if(settings.render < 0) settings.render=4;
+settings.outformat="";
+settings.inlineimage=true;
+settings.embed=true;
+settings.toolbar=false;
+viewportmargin=(2,2);
+
+import extras;
+size(6cm);
+usepackage("amsmath");
+usepackage("amssymb");
+defaultpen(fontsize(11pt));
+settings.tex = "latex";
+settings.outformat = "pdf";
+
+size(4cm);
+MP("\gamma", dir(-45), dir(-45));
+pair a = 0.1 * dir(60);
+dot("$a$", a, dir(a));
+real delta_outer = 6;
+real delta_inner = 20;
+pair P = dir(60+delta_outer);
+pair Q = dir(60-delta_outer);
+draw(arc(origin, 1, 60+delta_outer, 360+60-delta_outer), MidArrow);
+draw(arc(a, 0.3, 60-delta_inner, -360+60+delta_inner), MidArrow);
+draw(dir(60-delta_outer)--(a+0.3*dir(60-delta_inner)), MidArrow);
+draw((a+0.3*dir(60+delta_inner))--dir(60+delta_outer), MidArrow);
+MP("\overline{\gamma_\varepsilon}", a+0.3*dir(225), dir(225));

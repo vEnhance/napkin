@@ -1,0 +1,30 @@
+if(!settings.multipleView) settings.batchView=false;
+settings.tex="pdflatex";
+defaultfilename="Napkin-2A";
+if(settings.render < 0) settings.render=4;
+settings.outformat="";
+settings.inlineimage=true;
+settings.embed=true;
+settings.toolbar=false;
+viewportmargin=(2,2);
+
+import extras;
+size(6cm);
+usepackage("amsmath");
+usepackage("amssymb");
+defaultpen(fontsize(11pt));
+settings.tex = "latex";
+settings.outformat = "pdf";
+
+size(9cm);
+Drawing("x_1", (-9,0.1), dir(90));
+Drawing("x_2", (-6,0.8), dir(90));
+Drawing("x_3", (-5,-0.3), dir(90));
+Drawing("x_4", (-2, 0.8), dir(90));
+Drawing("x_5", (-1.7, -0.7), dir(-90));
+Drawing("x_6", (-0.6, -0.3), dir(225));
+Drawing("x_7", (-0.4, 0.3), dir(90));
+Drawing("x_8", (-0.25, -0.24), dir(-90));
+Drawing("x_9", (-0.12, 0.1), dir(45));
+dot("$x$", (0,0), dir(-45), blue);
+draw(CR(origin, 1.5), blue+dashed);

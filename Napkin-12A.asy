@@ -1,0 +1,30 @@
+if(!settings.multipleView) settings.batchView=false;
+settings.tex="pdflatex";
+defaultfilename="Napkin-12A";
+if(settings.render < 0) settings.render=4;
+settings.outformat="";
+settings.inlineimage=true;
+settings.embed=true;
+settings.toolbar=false;
+viewportmargin=(2,2);
+
+import extras;
+size(6cm);
+usepackage("amsmath");
+usepackage("amssymb");
+defaultpen(fontsize(11pt));
+settings.tex = "latex";
+settings.outformat = "pdf";
+
+pair v = (4,1);
+pair w = (2,3);
+dot("$0$", origin, dir(225));
+dot("$v = ae_1 + be_2$", v, dir(-45), red);
+dot("$w = ce_1 + de_2$", w, dir(135), red);
+dot("$v+w$", v+w, dir(45));
+label("$ad-bc$", (v+w)/2, blue);
+fill(origin--v--(v+w)--w--cycle, opacity(0.1)+lightcyan);
+draw(origin--v, EndArrow, Margins);
+draw(origin--w, EndArrow, Margins);
+draw(v--(v+w), EndArrow, Margins);
+draw(w--(v+w), EndArrow, Margins);

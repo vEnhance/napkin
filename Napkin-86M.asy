@@ -1,0 +1,32 @@
+if(!settings.multipleView) settings.batchView=false;
+settings.tex="pdflatex";
+defaultfilename="Napkin-86M";
+if(settings.render < 0) settings.render=4;
+settings.outformat="";
+settings.inlineimage=true;
+settings.embed=true;
+settings.toolbar=false;
+viewportmargin=(2,2);
+
+import extras;
+size(6cm);
+usepackage("amsmath");
+usepackage("amssymb");
+defaultpen(fontsize(11pt));
+settings.tex = "latex";
+settings.outformat = "pdf";
+
+size(6cm);
+draw( (0,0)--(0,3), heavygreen);
+label("$\operatorname{Spec} k[x,y]_{(x,y)}$", (0,3), dir(90), blue);
+draw( (-1,0.1)--(1,1.1), dotted+red );
+dot("$(3x-2y)$", (0.4,0.8), dir(-45), red);
+path p1 = (-0.5,2.5)..(0,2)..(0.5,2.5);
+draw(p1, dotted+red);
+dot("$(y-x^2)$", relpoint(p1,0.3), dir(200), red);
+path p2 = (-1,1.3)..(-0.5,1.8)..(0,1.6)..(0.5,1.4)..(1,1.9);
+draw(p2, dotted+red);
+dot("$(2y-x^3)$", relpoint(p2,0.7), dir(-45), red);
+dot("$(x,y)$", (0,0), dir(-90), blue);
+dot("$(0)$", (1.5,2.5), dir(225), red);
+filldraw(CR( (1.5,2.5), 0.5 ), opacity(0.1)+lightred, red+dotted);

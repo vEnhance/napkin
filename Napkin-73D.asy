@@ -1,0 +1,32 @@
+if(!settings.multipleView) settings.batchView=false;
+settings.tex="pdflatex";
+defaultfilename="Napkin-73D";
+if(settings.render < 0) settings.render=4;
+settings.outformat="";
+settings.inlineimage=true;
+settings.embed=true;
+settings.toolbar=false;
+viewportmargin=(2,2);
+
+import extras;
+size(6cm);
+usepackage("amsmath");
+usepackage("amssymb");
+defaultpen(fontsize(11pt));
+settings.tex = "latex";
+settings.outformat = "pdf";
+
+fill(unitcircle, lightcyan);
+fill(shift(2, 0)*unitcircle, lightcyan);
+picture p;
+fill(p, shift(1, 0)*scale(0.4)*unitcircle, orange);
+clip(p, unitcircle);
+add(p);
+picture p;
+fill(p, shift(1, 0)*scale(0.4)*unitcircle, orange);
+label("$X$", (2.9, 0.9));
+label("$A$", (1.3, 0.5), orange);
+clip(p, shift(2, 0)*unitcircle);
+add(p);
+dot("$Z$", (1, 0), red, align=NE);
+draw((0.6, 0.5)..(1, 0)..(1.5, 0.2));

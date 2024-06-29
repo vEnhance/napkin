@@ -1,0 +1,36 @@
+if(!settings.multipleView) settings.batchView=false;
+settings.tex="pdflatex";
+defaultfilename="Napkin-26A";
+if(settings.render < 0) settings.render=4;
+settings.outformat="";
+settings.inlineimage=true;
+settings.embed=true;
+settings.toolbar=false;
+viewportmargin=(2,2);
+
+import extras;
+size(6cm);
+usepackage("amsmath");
+usepackage("amssymb");
+defaultpen(fontsize(11pt));
+settings.tex = "latex";
+settings.outformat = "pdf";
+
+size(10cm);
+draw( (-8,0)--(8,0), Arrows );
+label("$\mathbb R$", (8,0), dir(-90));
+draw( (3.1,1)--(3.1,-1), red );
+draw( (2.7,1.5)--(2.7,-1.5), deepgreen );
+label("$M$", (3.1,-1), dir(-45), red);
+label("$M-\frac12\varepsilon$", (2.7,1.5), dir(90), deepgreen);
+dot("$a_1$", (-5, 0), dir(-90), blue);
+dot("$a_2$", (-1, 0), dir(-90), blue);
+dot("$a_3$", ( 6, 0), dir(-90), blue);
+dot("$a_4$", ( 0, 0), dir(-90), blue);
+dot("$a_5$", (4.8, 0), dir(-90), blue);
+dot("$a_6$", (4.1, 0), dir(-90), blue);
+dot("$a_8$", (3.5, 0), dir(-90), blue);
+dot("$a_7$", (1.5, 0), dir(-90), blue);
+dot((3.3, 0), blue);
+dot((3.2, 0), blue);
+dot((3.05, 0), blue);

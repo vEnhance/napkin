@@ -1,0 +1,33 @@
+if(!settings.multipleView) settings.batchView=false;
+settings.tex="pdflatex";
+defaultfilename="Napkin-66D";
+if(settings.render < 0) settings.render=4;
+settings.outformat="";
+settings.inlineimage=true;
+settings.embed=true;
+settings.toolbar=false;
+viewportmargin=(2,2);
+
+import extras;
+size(6cm);
+usepackage("amsmath");
+usepackage("amssymb");
+defaultpen(fontsize(11pt));
+settings.tex = "latex";
+settings.outformat = "pdf";
+
+size(9cm);
+dotfactor *= 2;
+pair A = MP("0", (-5.1,0), 1.4*dir(90));
+pair B = MP("1", (-3,0), 1.4*dir(90));
+draw(A--B);
+Drawing("\frac13", (-4.4,0), 1.4*dir(90));
+Drawing("\frac23", (-3.7,0), 1.4*dir(90));
+MP("\mathbb R / G", (-4,-0.6), dir(-90));
+dot(A); opendot(B);
+draw(unitcircle);
+draw( (-2.4,0)--(-1.6,0), EndArrow);
+dot("$0=1$", dir(0), dir(0));
+dot("$\frac13$", dir(120), dir(120));
+dot("$\frac23$", dir(240), dir(240));
+label("$S^1$", origin, origin);

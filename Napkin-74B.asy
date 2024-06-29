@@ -1,0 +1,30 @@
+if(!settings.multipleView) settings.batchView=false;
+settings.tex="pdflatex";
+defaultfilename="Napkin-74B";
+if(settings.render < 0) settings.render=4;
+settings.outformat="";
+settings.inlineimage=true;
+settings.embed=true;
+settings.toolbar=false;
+viewportmargin=(2,2);
+
+import extras;
+size(6cm);
+usepackage("amsmath");
+usepackage("amssymb");
+defaultpen(fontsize(11pt));
+settings.tex = "latex";
+settings.outformat = "pdf";
+
+pair A=(3, -1);
+path blob=(0, 0){right}..(2, 2)..{down}cycle;
+fill(shift(A)*blob, lightcyan);
+label("$X/A$", A+(-1, 1));
+fill(shift(A)*reflect(origin, (0, 1))*blob, lightgreen);
+dot(A, red, L=Label("$A/A$", align=S));
+label("$\longrightarrow$");
+pair B=(-2.6, 0);
+filldraw(B+(0, 1)--B+(0, -1)--B+(sqrt(3), 0)--cycle, lightcyan, red+1.5);
+label("$X$", B+(-0.5, 0));
+label("$A$", B+(1.2, 0.9), red);
+filldraw(B+(0, 1)--B+(0, -1)--B+(-sqrt(3), 0)--cycle, lightgreen, red+1.5);

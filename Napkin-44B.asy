@@ -1,0 +1,31 @@
+if(!settings.multipleView) settings.batchView=false;
+settings.tex="pdflatex";
+defaultfilename="Napkin-44B";
+if(settings.render < 0) settings.render=4;
+settings.outformat="";
+settings.inlineimage=true;
+settings.embed=true;
+settings.toolbar=false;
+viewportmargin=(2,2);
+
+import extras;
+size(6cm);
+usepackage("amsmath");
+usepackage("amssymb");
+defaultpen(fontsize(11pt));
+settings.tex = "latex";
+settings.outformat = "pdf";
+
+bigblob("$U$");
+pair a = (-2,-2);
+pair b = (3,0);
+pair p = (0,1);
+pair q = (2,0);
+label("$c$", q, dir(45), heavygreen);
+dot(a, heavygreen);
+dot(b, heavygreen);
+draw(a..p..q..b, heavygreen);
+dot("$p$", p, dir(90), blue);
+pair v = p+1.5*dir(-10);
+label("$v$", v, dir(50), blue);
+draw(p--v, blue, EndArrow);

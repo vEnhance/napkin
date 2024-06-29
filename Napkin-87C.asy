@@ -1,0 +1,38 @@
+if(!settings.multipleView) settings.batchView=false;
+settings.tex="pdflatex";
+defaultfilename="Napkin-87C";
+if(settings.render < 0) settings.render=4;
+settings.outformat="";
+settings.inlineimage=true;
+settings.embed=true;
+settings.toolbar=false;
+viewportmargin=(2,2);
+
+import extras;
+size(6cm);
+usepackage("amsmath");
+usepackage("amssymb");
+defaultpen(fontsize(11pt));
+settings.tex = "latex";
+settings.outformat = "pdf";
+
+unitsize(0.9cm);
+draw( (0,-3)--(0,3), red );
+draw( (-3,0)--(3,0), red );
+fill(box( (-3,-3), (3,3) ), opacity(0.2)+lightcyan);
+opendot(origin, blue+1.5);
+label("$\mathcal V(x)$", (3,0), dir(135), red);
+label("$\mathcal V(y)$", (0,3), dir(-45), red);
+label("$U$", (0,3), dir(90), deepcyan);
+label("$\mathcal O_U(U) = k[x,y]$", (0,-3), dir(-90), deepcyan);
+add(shift(-8,0)*CC());
+fill(box( (-3,-3), (3,3) ), opacity(0.2)+lightblue);
+path a = (-3,-1)..(-1,0.7)..(0.2,0.5)..(2,1)..(3,0.8);
+path b = (-0.5,-3)..(0.4,-1)..(0.2,0.5)..(-0.4,2)..(-0.7,3);
+draw(a, red);
+draw(b, red);
+label("$\mathcal V(a)$", (3,0.8), dir(225), red);
+label("$\mathcal V(b)$", (-0.7,3), dir(225), red);
+dot("$(a,b)$", (0.2,0.5), dir(225), red);
+label("$\operatorname{Spec} B$", (0,3), dir(90), blue);
+label("$\mathcal O_{\operatorname{Spec} B}(\operatorname{Spec} B) \cong k[a,b]$", (0,-3), dir(-90), blue);
