@@ -36,12 +36,12 @@ jobs:
       - name: Install TeX Live
         run: |
           sudo apt update
-          sudo apt install -y texlive-base texlive-latex-recommended texlive-latex-extra texlive-science
+          sudo apt install -y biber texlive-base texlive-latex-recommended texlive-latex-extra texlive-science
       - name: Install more packages
         uses: awalsh128/cache-apt-pkgs-action@latest
         with:
           packages: |
-            biber latexmk asymptote
+            latexmk asymptote
       - name: Compile document
         run: latexmk -pdflatex -interaction=nonstopmode -file-line-error Napkin.tex
       - name: Create dist folder
