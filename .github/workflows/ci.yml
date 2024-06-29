@@ -2,9 +2,11 @@ name: CI
 
 on:
   push:
-    branches: ["*"]
+    branches: ["main"]
   pull_request:
     branches: ["*"]
+permissions:
+  contents: write
 
 jobs:
   spellcheck:
@@ -23,9 +25,9 @@ jobs:
         run: |
           codespell $(git ls-files '*.tex')
 
-  tex:
+  build:
     runs-on: ubuntu-latest
-    name: "TeX"
+    name: "Build"
     steps:
       - name: Set up Git repository
         uses: actions/checkout@v4
@@ -39,8 +41,22 @@ jobs:
             texlive-latex-recommended texlive-latex-extra texlive-science
       - name: Compile document
         run: latexmk -pdflatex -interaction=nonstopmode -file-line-error Napkin.tex
-      - name: Upload PDF
+      - name: Create dist folder
+        run: |
+          mkdir -p dist
+          mkdir -p dist/asy
+          cp Napkin.log dist/
+          cp Napkin.pdf dist/
+          cp asy/*.asy dist/
+          cd dist
+          tree -H '.' -I "index.html" -D --charset utf-8 -T "An Infinitely Large Napkin" >index.html
+      - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: PDF
-          path: Napkin.pdf
+          name: napkin-dist
+          path: dist/
+      - name: Deploy dist folder to GitHub Pages
+        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: dist
