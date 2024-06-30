@@ -31,6 +31,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     name: "Compile document"
+    permissions:
+      actions: write
     steps:
       - name: Set up Git repository
         uses: actions/checkout@v4
