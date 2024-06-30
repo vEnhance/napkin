@@ -7,7 +7,7 @@ on:
     branches: ["*"]
 
 permissions:
-  content: read
+  contents: read
 
 jobs:
   spellcheck:
