@@ -52,6 +52,7 @@ jobs:
           key: "napkin-cache"
           path: |
             **/*.aux
+            **/*.out
             Napkin.bbl
             Napkin.bcf
             Napkin.blg
@@ -61,7 +62,6 @@ jobs:
             Napkin.maf
             Napkin.mtc
             Napkin.mtc0
-            Napkin.out
             Napkin.pre
             Napkin.ptc*
             Napkin.run.xml
@@ -77,6 +77,7 @@ jobs:
           key: "napkin-cache"
           path: |
             **/*.aux
+            **/*.out
             Napkin.bbl
             Napkin.bcf
             Napkin.blg
@@ -86,7 +87,6 @@ jobs:
             Napkin.maf
             Napkin.mtc
             Napkin.mtc0
-            Napkin.out
             Napkin.pre
             Napkin.ptc*
             Napkin.run.xml
