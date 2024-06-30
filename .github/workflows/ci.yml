@@ -114,7 +114,7 @@ jobs:
         with:
           path: Napkin.pdf
           name: Napkin.pdf
-      - name: Upload Pages Artifact
+      - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: dist/
