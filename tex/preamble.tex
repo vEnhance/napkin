@@ -251,8 +251,9 @@ style=thmbluebox,name=Theorem,numberwithin=section]{theorem}
 \makeatother
 \setcounter{tocdepth}{1}
 \RedeclareSectionCommand[tocnumwidth=4.2em]{part}
-\RedeclareSectionCommand[tocnumwidth=4.2em]{chapter}
-\RedeclareSectionCommand[tocnumwidth=2.8em]{section}
+\RedeclareSectionCommand[tocpagenumberwidth=2.2em,tocnumwidth=4.2em]{chapter}
+\RedeclareSectionCommand[tocpagenumberwidth=2.2em,tocnumwidth=2.8em]{section}
+% adjust tocpagenumberwidth manually for large page number: https://tex.stackexchange.com/a/502168
 
 %%fakesection Asymptote definitions
 \usepackage{patch-asy}
