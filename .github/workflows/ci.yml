@@ -45,8 +45,56 @@ jobs:
         with:
           packages: |
             latexmk asymptote
+
+      - name: Restore cache
+        uses: actions/cache/restore@v4
+        with:
+          key: "napkin-cache"
+          path: |
+            **/*.aux
+            Napkin.bbl
+            Napkin.bcf
+            Napkin.blg
+            Napkin.fdb_latexmk
+            Napkin.fls
+            Napkin.log
+            Napkin.maf
+            Napkin.mtc
+            Napkin.mtc0
+            Napkin.out
+            Napkin.pre
+            Napkin.ptc*
+            Napkin.run.xml
+            Napkin.synctex.gz
+            Napkin.toc
+            asy/Napkin-*.asy
+            asy/Napkin-*.pdf
       - name: Compile document
         run: latexmk -pdflatex -interaction=nonstopmode -file-line-error Napkin.tex
+      - name: Save cache
+        uses: actions/cache/save@v4
+        with:
+          key: "napkin-cache"
+          path: |
+            **/*.aux
+            Napkin.bbl
+            Napkin.bcf
+            Napkin.blg
+            Napkin.fdb_latexmk
+            Napkin.fls
+            Napkin.log
+            Napkin.maf
+            Napkin.mtc
+            Napkin.mtc0
+            Napkin.out
+            Napkin.pre
+            Napkin.ptc*
+            Napkin.run.xml
+            Napkin.synctex.gz
+            Napkin.toc
+            asy/Napkin-*.asy
+            asy/Napkin-*.pdf
+
       - name: Create dist folder
         run: |
           mkdir -p dist
