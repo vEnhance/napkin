@@ -18,7 +18,7 @@ jobs:
         with:
           submodules: recursive
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: "3.12"
       - name: Install dependencies
@@ -31,6 +31,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     name: "Compile document"
+    permissions:
+      actions: write
     steps:
       - name: Set up Git repository
         uses: actions/checkout@v4
@@ -45,8 +47,56 @@ jobs:
         with:
           packages: |
             latexmk asymptote
+
+      - name: Restore cache
+        uses: actions/cache/restore@v4
+        with:
+          key: "napkin-cache"
+          path: |
+            **/*.aux
+            **/*.out
+            Napkin.bbl
+            Napkin.bcf
+            Napkin.blg
+            Napkin.fdb_latexmk
+            Napkin.fls
+            Napkin.log
+            Napkin.maf
+            Napkin.mtc
+            Napkin.mtc0
+            Napkin.pre
+            Napkin.ptc*
+            Napkin.run.xml
+            Napkin.synctex.gz
+            Napkin.toc
+            asy/Napkin-*.asy
+            asy/Napkin-*.pdf
       - name: Compile document
         run: latexmk -pdflatex -interaction=nonstopmode -file-line-error Napkin.tex
+      - name: Save cache
+        uses: actions/cache/save@v4
+        with:
+          key: "napkin-cache"
+          path: |
+            **/*.aux
+            **/*.out
+            Napkin.bbl
+            Napkin.bcf
+            Napkin.blg
+            Napkin.fdb_latexmk
+            Napkin.fls
+            Napkin.log
+            Napkin.maf
+            Napkin.mtc
+            Napkin.mtc0
+            Napkin.pre
+            Napkin.ptc*
+            Napkin.run.xml
+            Napkin.synctex.gz
+            Napkin.toc
+            asy/Napkin-*.asy
+            asy/Napkin-*.pdf
+
       - name: Create dist folder
         run: |
           mkdir -p dist
@@ -63,8 +113,9 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           path: Napkin.pdf
-      - name: Upload Pages Artifact
-        uses: actions/upload-pages-artifact@v2
+          name: Napkin.pdf
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
         with:
           path: dist/
 
