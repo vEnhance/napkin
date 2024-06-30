@@ -60,6 +60,272 @@ eventually drops below $\delta$.
 
 \subsection{Convergence in law}
 
+\section{Weak law of large numbers}
+
+As the name implies, this is a direct corollary of the strong law of large numbers.
+Nevertheless, the proof of this law is simpler, and some applications only require the weak law.
+
+\todo{write}
+
+\subsection{Application: Weierstrass approximation}
+
+\section{Strong law of large numbers}
+
+\subsection{Motivation: Biased random walk}
+
+Consider a random walk defined as follows:
+\begin{itemize}
+	\ii Let $X_0 = 1$.
+	\ii For each $i \geq 1$, define $X_i$ to be $X_{i-1}-1$ with probability $p=0.6$
+	or $X_{i-1}+1$ with probability $1-p=0.4$.
+\end{itemize}
+
+Then we can ask: What's the expected number of steps until some $X_i$ equals $0$?
+
+A naive attempt might be the following.
+\begin{quote}
+	Let $f(i)$ be the expected number of steps starting to reach $0$ starting from $X_0=i$.
+
+	Then:
+	\begin{itemize}
+		\ii $f(0)=0$,
+		\ii $f(1)=1+0.6 f(0)+0.4 f(2)$,
+		\ii $f(2)=1+0.6 f(1)+0.4 f(3)$,
+		\ii $\vdots$
+	\end{itemize}
+\end{quote}
+This isn't getting anywhere because there are infinitely many terms.
+A better attempt is the following:
+\begin{quote}
+	Let the answer be $x$.
+	If we start from $X_0=2$, let $i$ be the first time such that $X_i=1$
+	and $j$ be the first time after $i$ such that $X_j=0$. Then
+	\[ \EE[i]=\EE[j-i]=x. \]
+	Therefore,
+	\[ x = 1 + 0.6 \cdot 0 + 0.4 \cdot (2x) \]
+	Solving the equation, we get $x=5$.
+\end{quote}
+It gives the correct result --- however, the same method gives $x=-5$ when
+the probability of going down is $p=0.4$, which is clearly nonsense.
+
+What went wrong? The problem is when $p=0.4$, there is a nonzero probability\footnote{%
+	Preview: Using martingale theory next chapter, you will be able to prove the probability
+	the sequence never reaches $0$ is exactly $1-\frac{0.4}{0.6}$.
+} that the
+sequence never reaches $0$, so the expected value is undefined
+and we're subtracting $\infty$ from $\infty$ in the proof.
+
+In this case, the strong law of large numbers can help us patch this hole, by showing that in almost
+every world, the sequence $X_i$ eventually reaches $0$.
+
+\subsection{Statement}
+
+\begin{theorem}[Strong law of large numbers]
+Let $X_1$, $X_2$, \dots\ be i.i.d. random variables with mean $0$.
+Define the partial mean
+\[ M_n = \frac{X_1+\dots+X_n}{n}. \]
+Then, in almost every world, $M_n \to 0$.
+\end{theorem}
+In other words, $M_n$ converges almost surely to $0$.
+
+The requirement that the mean is $0$ is only to simplify the proof,
+as long as the mean exists, we can subtract the mean from the random variables and apply the
+theorem.
+
+\begin{example}[The hypothesis {$\EE[X_i]=0$} is important]
+	Consider an example where $M_n \to 0$ does not hold ---
+	this is a minor variation of the St. Petersburg paradox.
+
+	Let the distribution of each $X_i$ be as follows:
+	\begin{align*}
+		X_i &= \begin{cases}
+			1&\text{with probability }\frac{1}{4} \\
+			-1&\text{with probability }\frac{1}{4} \\
+			2&\text{with probability }\frac{1}{8} \\
+			-2&\text{with probability }\frac{1}{8} \\
+			4&\text{with probability }\frac{1}{16} \\
+			-4&\text{with probability }\frac{1}{16} \\
+			&\vdots
+		\end{cases}
+	\end{align*}
+	Formally, $X_i$ takes each of the value in $\{2^k,-2^k\}$ with probability $2^{-k-2}$.
+
+	In this case, the mean $\EE[X_i] = \int_\Omega X_i(\omega)$ is actually undefined.
+	Furthermore, as symmetric as the distribution may look, in almost no world will $M_n$ converge
+	to $0$.
+
+	Intuitively, you can see why:
+	\begin{itemize}
+		\ii Within the first $16$ values, on average there's one $X_i$ with $|X_i|=4$,
+		this will skew $M_{16}$ by $\frac{1}{4}$.
+		\ii Within the first $32$ values, on average there's one $X_i$ with $|X_i|=8$,
+		this will skew $M_{32}$ by $\frac{1}{4}$.
+		\ii Et cetera.
+	\end{itemize}
+	In other words, just like our skeleton archer, there are almost no worlds in which the $M_n$
+	got skewed by more than $\frac{1}{4}$ only finitely many times.
+\end{example}
+
+\subsection{Proof for finite-variance case}
+
+In practice, most distribution we ever come across has finite variance,
+it may be better to give a counterexample.
+
+\begin{example}[A distribution with finite mean but infinite variance]
+	Taking $Y_i = \opname{sgn}(X_i) \sqrt{|X_i|}$ where $X_i$ is the St. Petersburg paradox example
+	above suffices. If you do the math, you will see $\EE[Y_i] = 0$, but $\EE[Y_i^2] = \infty$.
+\end{example}
+
+We will give a proof when $\EE[X_i^2]$ is finite first.
+
+First, we define a seemingly unrelated series as follows:
+\[ T_n = X_1+\frac{X_2}{2}+\frac{X_3}{3}+\dots+\frac{X_n}{n}. \]
+
+This step is a bit difficult to motivate.
+On the positive side, it is easy to show the following:
+\begin{claim}
+	In almost every world, the sequence $T_n$ converges.
+\end{claim}
+That is the same as saying the series
+\[ X_1+\frac{X_2}{2}+\frac{X_3}{3}+\cdots \]
+converges.
+
+The key idea is to show that the total variance of the summands are finite.
+Indeed:
+\begin{align*}
+	\Var\left[X_1\right] + \Var\left[\frac{X_2}{2}\right] + \Var\left[\frac{X_3}{3}\right] + \cdots
+	&= \Var[X_1] + \frac{1}{4} \Var[X_2] + \frac{1}{9} \Var[X_3] + \cdots \\
+	&= \Var[X_1] \cdot \left(1 + \frac{1}{4} + \frac{1}{9} + \cdots \right)
+\end{align*}
+which is finite.
+
+Why should finite total variance imply almost surely convergence?
+Intuitively, we recall:
+\begin{theorem}[Chebyshev's inequality]
+	Let $X$ be a random variable with mean $0$ and variance $\sigma^2$.
+	Then
+	\[ \Pr[|X| \geq k \sigma] \leq \frac{1}{k^2}. \]
+\end{theorem}
+Or equivalently we can write it in the following form, which avoid the $\sqrt{-}$ implicit in
+the definition of $\sigma$:
+\[ \Pr[|X| \geq a] \leq \frac{1}{a^2} \Var[X]. \]
+
+So if we look at, say, $T_{1000}$ and $T_{2000}$:
+\[ \Var[T_{2000}-T_{1000}] = \sum_{i=1001}^{2000} \frac{\Var[X_i]}{i^2} \]
+Because $\sum_{i=1}^{\infty} \frac{\Var[X_i]}{i^2}$ is finite, we expect
+$\sum_{i=1001}^{2000} \frac{\Var[X_i]}{i^2}$ to be very small, which means $T_{2000}$ should deviate
+very little from $T_{1000}$.
+
+To show convergence, we need something stronger, however.
+\begin{theorem}[Kolmogorov's inequality]
+	Let $X_1$, \dots, $X_n$ be independent random variables with mean $0$.
+	Define $S_i = X_1+\dots+X_i$ for each $1 \leq i \leq n$.
+	Then
+	\[ \Pr[|S_i| \geq a \text{ for any }1 \leq i \leq n]
+		\leq \frac{1}{a^2} \Var[S_n]. \]
+\end{theorem}
+You can see why this theorem is stronger --- with Chebyshev's inequality, we can only show
+\[ \Pr[|S_n| \geq a] \leq \frac{1}{a^2} \Var[S_n]. \]
+So, with the same right hand side, we can also bound the probability of
+$|S_1|\geq a \vee |S_2| \geq a \vee \cdots$ for free!
+\begin{proof}
+	Define $A_i$ be the event that $i$ is the smallest value such that $|S_i|\geq a$. Then the left
+	hand side above equals
+	\[ \Pr[|S_i| \geq a \text{ for any }1 \leq i \leq n] = \Pr[A_1]+\Pr[A_2]+\dots+\Pr[A_n]. \]
+
+	Intuitively, if the events $|S_i|\geq a$ were independent,
+	the best we can do is to use Chebyshev's inequality to bound individual probability values:
+	\[ \Pr[|S_i|\geq a] \leq \frac{1}{a^2} \Var[S_i] \]
+	However, they're very much not independent --- in fact, they are positively correlated!
+	For example, we have:
+	\[ \EE[S_n \mid S_1 = a] = a \]
+	because $\EE[X_2+\dots+X_n] = 0$.
+	So if each $X_i$ is symmetrically distributed, $\Pr[S_n \geq a \mid S_1 = a] \geq \frac{1}{2}$,
+	which is much larger than $\frac{1}{a^2} \Var[S_n]$ for large $a$.
+
+	Here is the formal proof.
+	For each $1 \leq i \leq n$, we have
+	\[ \EE[S_i^2 \mid A_i] \geq a^2 \]
+	which is equivalent to
+	\[ \Pr[A_i] \leq \frac{1}{a^2} \EE[S_i^2 \cdot \mathbf{1}_{A_i}] \]
+	and
+	\begin{align*}
+		\EE[S_n^2 \cdot \mathbf{1}_{A_i}]
+		&= \EE[(S_i + (S_n-S_i))^2 \cdot \mathbf{1}_{A_i}] \\
+		&= \EE[S_i^2 \cdot \mathbf{1}_{A_i}]
+		+ \EE[S_i  \cdot \mathbf{1}_{A_i} (S_n-S_i)]
+		+ \EE[(S_n-S_i)^2 \cdot \mathbf{1}_{A_i}] \\
+	\end{align*}
+	The middle term $\EE[S_i  \cdot \mathbf{1}_{A_i} (S_n-S_i)]$ is $0$
+	because $S_i  \cdot \mathbf{1}_{A_i}$ and $S_n-S_i = X_{i+1}+\dots+X_n$ are independent
+	and $\EE[X_{i+1}+\dots+X_n]=0$,
+	and the last term is $\geq 0$.
+
+	Combining the inequalities, we get
+	\[ a^2 \Pr[A_i] \leq \EE[S_n^2 \cdot \mathbf{1}_{A_i}]. \]
+	Summing over all $i$ gives the final result.
+\end{proof}
+
+Generalizing:
+\begin{corollary}
+	Let $X_1$, \dots\ be independent random variables with mean $0$. Define $S_i$ as above. Then
+	\[ \Pr[|S_i| \geq a \text{ for any }1 \leq i] \leq \frac{1}{a^2} \sum_{1 \leq i} \Var[X_i]. \]
+\end{corollary}
+\begin{proof}
+	The event
+	\[ |S_i| \geq a \text{ for any }1 \leq i \leq n \]
+	is a subset of the event
+	\[ |S_i| \geq a \text{ for any }1 \leq i \leq n+1 \]
+	therefore we have
+	\[ \Pr[|S_i| \geq a \text{ for any }1 \leq i]
+	= \lim_{n \to \infty} \Pr[|S_i| \geq a \text{ for any }1 \leq i \leq n]. \]
+	Applying Kolmogorov's inequality on each $\Pr[|S_i| \geq a \text{ for any }1 \leq i \leq n]$,
+	we get the result.
+\end{proof}
+
+Now, the idea is to apply this on the \emph{tails} of the sequence
+\[ X_1, \frac{X_2}{2}, \frac{X_3}{3}, \dots \]
+By the corollary, we know that for every $\eps>0$, in almost every world,
+there exists $n_\eps$ such that for arbitrary $i \geq n_\eps$,
+$|T_i-T_{n_\eps}|<\frac{\eps}{2}$. By triangle inequality, for arbitrary $i, j \geq n_\eps$,
+then $|T_i-T_j|<\eps$.
+
+By Cauchy's criterion for convergence,
+this implies the sequence $T_n$ is convergent in almost every world.
+
+Finally, here is the relation with the original goal:
+\begin{claim}[Relation with the original series]
+	In every world where $T_n$ converges, then $M_n$ converges to $0$.
+\end{claim}
+
+\begin{proof}
+	Just a bit of algebraic manipulation.
+	We try to write $M_n$ in terms of $T_n$.
+
+	We have
+	\[ X_n = n \cdot (T_n-T_{n-1}) \]
+	so
+	\begin{align*}
+		M_n &= \frac{(T_1-T_0) +2(T_2-T_1) + \dots + n(T_n-T_{n-1})}{n} \\
+			&= \frac{n T_n - (T_0+T_1+\cdots+T_{n-1})}{n} \\
+			&= T_n - \frac{T_0+T_1+\cdots+T_{n-1}}{n}.
+	\end{align*}
+	Now this is easy: given $T_n$ converges,
+	$\frac{T_0+T_1+\cdots+T_{n-1}}{n}$ must also converge to the same value (Ces\`aro mean),
+	so $M_n \to 0$ as required.
+\end{proof}
+
+\begin{exercise}
+	The converse is not true: if $M_n \to 0$, $T_n$ does not necessarily converge.
+	Find a counterexample. (Write $T_n$ in terms of $M_n$, and see what happens.)
+\end{exercise}
+
+\subsection{The general proof}
+
+The basic idea is to truncate the value of each $X_i$ so that each of them has finite variance.
+
+\todo{write}
+
 \section{\problemhead}
 \begin{problem}
 	[Quantifier hell]
@@ -106,7 +372,7 @@ eventually drops below $\delta$.
 	Prove that it's impossible to impose a metric on this space
 	which makes the following statement true:
 	\begin{quote}
-		A sequence $X_1$, $X_2$, \dots, of converges almost surely to $X$
+		A sequence $X_1$, $X_2$, \dots, of random variables converges almost surely to $X$
 		if and only if $X_i$ converge to $X$ in the metric.
 	\end{quote}
 	\begin{sol}
