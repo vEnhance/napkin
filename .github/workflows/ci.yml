@@ -8,6 +8,8 @@ on:
 
 permissions:
   contents: read
+  pages: write
+  id-token: write
 
 jobs:
   spellcheck:
@@ -67,19 +69,7 @@ jobs:
         uses: actions/upload-pages-artifact@v2
         with:
           path: dist/
-
-  deploy:
-    runs-on: ubuntu-latest
-    if: github.event_name == 'push'
-    name: "Deploy to GitHub Pages"
-    needs: build
-    permissions:
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
       - name: Deploy to GitHub Pages
+        if: github.event_name == 'push'
         id: deployment
         uses: actions/deploy-pages@v4
