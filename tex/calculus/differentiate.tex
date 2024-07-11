@@ -662,3 +662,19 @@ Here is a weird example which we'll grow more next time.
 		= \lim_{x \to p} \frac{f'(x)}{g'(x)} \]
 	provided the right-hand limit exists.
 \end{problem}
+
+\begin{problem}
+	Calculate the derivative of the function $f \colon (0,\infty) \to \RR$
+	defined by $f(x) = x^x$.
+	\begin{hint}
+		First rewrite it as $f(x) = e^{x \log x}$.
+	\end{hint}
+	\begin{sol}
+		Write $f(x) = e^{x \log x}$ and then apply the chain rule and product rule:
+		\begin{align*}
+			f'(x) &= e^{x \log x} \cdot (x \log x)' \\
+				&= e^{x \log x} \cdot \left( 1 + \log x \right) \\
+				&= x^x \left( 1 + \log x \right).
+		\end{align*}
+	\end{sol}
+\end{problem}
