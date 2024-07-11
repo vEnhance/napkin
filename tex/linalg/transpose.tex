@@ -115,7 +115,7 @@ for every $v$.
 \end{ques}
 
 And this works beautifully in the real case.
-\begin{theorem}[$V \cong V^\vee$ for real inner form]
+\begin{theorem}[$V \cong V^\vee$ for real inner forms]
 	\label{thm:real_dual_isomorphic}
 	Let $V$ be a finite-dimensional \emph{real}
 	inner product space and $V^\vee$ its dual.
@@ -126,9 +126,9 @@ And this works beautifully in the real case.
 \begin{proof}
 	It suffices to show that the map is injective and surjective.
 	\begin{itemize}
-		\ii Injective: suppose $\left< v_1, v \right> = \left< v_2, v \right>$
+		\ii Injective: suppose $\left< v, v_1 \right> = \left< v, v_2 \right>$
 		for every vector $v \in V$.
-		This means $\left< v_1 - v_2, v \right> = 0$ for every vector $v \in V$.
+		This means $\left< v, v_1 - v_2 \right> = 0$ for every vector $v \in V$.
 		This can only happen if $v_1 - v_2 = 0$; for example, take $v = v_1 - v_2$
 		and use positive definiteness.
 		\ii Surjective: take an orthonormal basis $e_1$, \dots $e_n$
@@ -465,7 +465,7 @@ As a corollary:
 \begin{problem}
 	[$T^\dagger$ vs $T^\vee$]
 	Let $V$ and $W$ be real inner product spaces
-	and let $T \colon V \to W$ be an inner product.
+	and let $T \colon V \to W$ be a linear map.
 	Show that the following diagram commutes:
 	\begin{center}
 	\begin{tikzcd}
