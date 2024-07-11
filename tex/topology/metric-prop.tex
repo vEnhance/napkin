@@ -320,10 +320,43 @@ i.e.\ the only examples look quite like the one we've given above.
 \begin{dproblem}[Banach fixed point theorem]
 	Let $M = (M,d)$ be a complete metric space.
 	Suppose $T \colon M \to M$ is a continuous map
-	such that for any $p \neq q \in M$,
-	\[ d\left( T(p), T(q) \right) < 0.999 d(p,q). \]
+	such that for any $p, q \in M$,
+	\[ d\left( T(p), T(q) \right) \le 0.999 d(p,q). \]
 	(We call $T$ a \vocab{contraction}.)
 	Show that $T$ has a unique fixed point.
+	\begin{hint}
+		The main task is to show there exists some fixed point.
+		Start at some point $x_0$ and consider the sequence
+		$x_1 = T(x_0)$, $x_2 = T(x_1)$, $x_3 = T(x_2)$, \dots, and so on.
+	\end{hint}
+	\begin{sol}
+		Uniqueness of the fixed point follows from noting that if $T(p) = p$ and $T(q) = q$
+		and $p \neq q$ then we get a direct contradiction by plugging this into the given statement.
+		Hence the main task is to show there exists some fixed point.
+
+		Start with any point $x_0$.
+		Let $x_1 = T(x_0)$, $x_2 = T(x_1)$, $x_3 = T(x_2)$, \dots, and so on.
+		We contend that $(x_0, x_1, x_2, \dots)$ is a Cauchy sequence.
+		Indeed, if we let $r \coloneqq 0.999 < 1$ and $c \coloneqq d(x_0, x_1)$, then
+		\begin{align*}
+			d(x_1, x_2) &< r \cdot c \\
+			d(x_2, x_3) &< r^2 \cdot c \\
+			d(x_3, x_4) &< r^3 \cdot c \\
+			&\vdotswithin< \\
+		\end{align*}
+		and so for large $M < N$ we have
+		\[ d(x_M, x_N) < \left( r^M + r^{M+1} + \dots + r^N \right) \cdot c
+			< \frac{r^M}{1-r} \cdot c
+		\]
+		which tends to zero once $M$ is large enough.
+
+		Hence, because $M$ is complete, the sequence must converge to some limit $x$.
+		Because $T$ is continuous, we get
+		\[ T(x) = T\left( \lim_{n \to \infty} x_n \right)
+			= \lim_{n \to \infty} T(x_n) =
+			= \lim_{n \to \infty} x_{n+1} = x \]
+		as desired.
+	\end{sol}
 \end{dproblem}
 
 \begin{problem}
