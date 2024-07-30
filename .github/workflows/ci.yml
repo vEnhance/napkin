@@ -115,7 +115,7 @@ jobs:
           cp asy/*.asy dist/asy/
           cp asy/*.pdf dist/asy/
 
-          python3 print-toc.py > dist/toc.txt
+          python3 print-toc.py -pcn > dist/toc.txt
           cp flowchart.png dist/
 
           cd dist
