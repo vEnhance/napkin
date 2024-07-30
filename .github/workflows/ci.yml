@@ -103,8 +103,10 @@ jobs:
 
       - name: Compile flowchart
         run: |
-          latexmk -pdflatex flowchart-only.tex
-          gs -dSAFER -r600 -sDEVICE=png256 -o flowchart.png flowchart-only.pdf
+          ./export-flowchart.sh
+      - name: Extract table of contents
+        run: |
+          python3 print-toc.py --parts --chapters --numbers > toc.txt
 
       - name: Create dist folder
         run: |
@@ -115,8 +117,8 @@ jobs:
           cp asy/*.asy dist/asy/
           cp asy/*.pdf dist/asy/
 
-          python3 print-toc.py -pcn > dist/toc.txt
           cp flowchart.png dist/
+          cp toc.txt dist/
 
           cd dist
           tree -H '.' -I "index.html" -D --charset utf-8 --filesfirst -T "An Infinitely Large Napkin" >index.html
