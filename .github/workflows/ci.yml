@@ -42,11 +42,15 @@ jobs:
         run: |
           sudo apt update
           sudo apt install -y biber texlive-base texlive-latex-recommended texlive-latex-extra texlive-science
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
       - name: Install more packages
         uses: awalsh128/cache-apt-pkgs-action@latest
         with:
           packages: |
-            latexmk asymptote
+            latexmk asymptote imagemagick
 
       - name: Restore cache
         uses: actions/cache/restore@v4
@@ -97,6 +101,11 @@ jobs:
             asy/Napkin-*.asy
             asy/Napkin-*.pdf
 
+      - name: Compile flowchart
+        run: |
+          latexmk -pdflatex flowchart-only.tex
+          convert -density 300 -background white -alpha remove -alpha off flowchart-only.pdf flowchart.png
+
       - name: Create dist folder
         run: |
           mkdir -p dist
@@ -105,6 +114,10 @@ jobs:
           cp Napkin.pdf dist/
           cp asy/*.asy dist/asy/
           cp asy/*.pdf dist/asy/
+
+          python3 print-toc.py > dist/toc.txt
+          cp flowchart.png dist/
+
           cd dist
           tree -H '.' -I "index.html" -D --charset utf-8 --filesfirst -T "An Infinitely Large Napkin" >index.html
       - name: Setup Pages
