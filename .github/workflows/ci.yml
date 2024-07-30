@@ -50,7 +50,7 @@ jobs:
         uses: awalsh128/cache-apt-pkgs-action@latest
         with:
           packages: |
-            latexmk asymptote imagemagick
+            latexmk asymptote ghostscript
 
       - name: Restore cache
         uses: actions/cache/restore@v4
@@ -104,7 +104,7 @@ jobs:
       - name: Compile flowchart
         run: |
           latexmk -pdflatex flowchart-only.tex
-          convert -density 300 -background white -alpha remove -alpha off flowchart-only.pdf flowchart.png
+          gs -dSAFER -r600 -sDEVICE=png256 -o flowchart.png flowchart-only.pdf
 
       - name: Create dist folder
         run: |
