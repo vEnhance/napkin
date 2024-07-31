@@ -50,7 +50,7 @@ jobs:
         uses: awalsh128/cache-apt-pkgs-action@latest
         with:
           packages: |
-            latexmk asymptote ghostscript
+            latexmk asymptote ghostscript qpdf
 
       - name: Restore cache
         uses: actions/cache/restore@v4
@@ -107,18 +107,24 @@ jobs:
       - name: Extract table of contents
         run: |
           python3 print-toc.py --parts --chapters --numbers > toc.txt
+      - name: Extract per-part PDF's
+        run: |
+          python3 print-toc.py --qpdf | bash
 
       - name: Create dist folder
         run: |
           mkdir -p dist
-          mkdir -p dist/asy
+          mkdir -p dist/figures
+          mkdir -p dist/cuts/
+
           cp Napkin.log dist/
           cp Napkin.pdf dist/
-          cp asy/*.asy dist/asy/
-          cp asy/*.pdf dist/asy/
+          cp asy/*.asy dist/figures/
+          cp asy/*.pdf dist/figures/
 
-          cp flowchart.png dist/
-          cp toc.txt dist/
+          mv flowchart.png dist/
+          mv toc.txt dist/
+          mv part-*.pdf dist/cuts
 
           cd dist
           tree -H '.' -I "index.html" -D --charset utf-8 --filesfirst -T "An Infinitely Large Napkin" >index.html
