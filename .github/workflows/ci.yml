@@ -115,7 +115,7 @@ jobs:
         run: |
           mkdir -p dist
           mkdir -p dist/figures
-          mkdir -p dist/cuts/
+          mkdir -p dist/Parts/
 
           cp Napkin.log dist/
           cp Napkin.pdf dist/
@@ -124,10 +124,10 @@ jobs:
 
           mv flowchart.png dist/
           mv toc.txt dist/
-          mv part-*.pdf dist/cuts
+          mv part-*.pdf dist/Parts
 
           cd dist
-          tree -H '.' -I "index.html" -D --charset utf-8 --filesfirst -T "An Infinitely Large Napkin" >index.html
+          tree -H '.' -I "index.html" -D --charset utf-8 --filesfirst -T "An Infinitely Large Napkin: All Generated Files" >index.html
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Upload PDF artifact

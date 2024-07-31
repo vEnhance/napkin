@@ -51,7 +51,7 @@ def get_qpdf_invocation(
 
 if opts.links:
     filename = get_filename(last_part_number, last_part_title)
-    print(f"- [{last_part_title}](https://venhance.github.io/napkin/cuts/{filename})")
+    print(f"- [{last_part_title}](https://venhance.github.io/napkin/Parts/{filename})")
 
 
 has_started = False
@@ -81,7 +81,7 @@ with open("Napkin.toc") as f:
                 filename = get_filename(last_part_number, part_title)
                 print(
                     f"- {part_number}. "
-                    f"[{part_title}](https://venhance.github.io/napkin/cuts/{filename})"
+                    f"[{part_title}](https://venhance.github.io/napkin/Parts/{filename})"
                 )
 
             elif opts.parts:
