@@ -183,29 +183,6 @@
 \newcommand{\obj}{\operatorname{obj}}
 \newcommand{\op}{^{\mathrm{op}}}
 
-
-\usepackage{tkz-graph}
-\pgfarrowsdeclare{biggertip}{biggertip}{%
-  \setlength{\arrowsize}{1pt}
-  \addtolength{\arrowsize}{.1\pgflinewidth}
-  \pgfarrowsrightextend{0}
-  \pgfarrowsleftextend{-5\arrowsize}
-}{%
-  \setlength{\arrowsize}{1pt}
-  \addtolength{\arrowsize}{.1\pgflinewidth}
-  \pgfpathmoveto{\pgfpoint{-5\arrowsize}{4\arrowsize}}
-  \pgfpathlineto{\pgfpointorigin}
-  \pgfpathlineto{\pgfpoint{-5\arrowsize}{-4\arrowsize}}
-  \pgfusepathqstroke
-}
-\tikzset{
-	EdgeStyle/.style = {>=biggertip}
-}
-
-\usepackage[all,cmtip,2cell]{xy}
-\UseTwocells
-\newcommand\nattfm[5]{\xymatrix@C+2pc{#1 \rtwocell<4>^{#2}_{#4}{\; #3} & #5}}
-
 %% Alg Top macros
 \DeclareMathOperator{\Cells}{Cells}
 \newcommand{\HdR}{H_{\mathrm{dR}}}
