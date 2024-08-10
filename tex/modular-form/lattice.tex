@@ -425,11 +425,11 @@ Translated to $\tau$ notation, we have (where $\tau = \frac{\omega_2}{\omega_1}$
 	f(\omega_1, \omega_2) &= f(\alpha_1, \alpha_2) \\
 	\iff f\left(\frac{\omega_2}{\omega_1}\right) \omega_1^{-k}
 						  &= f\left(\frac{\alpha_2}{\alpha_1}\right) \alpha_1^{-k} \\
-	\iff (c \tau+d)^k f(\tau) &= f\left(\frac{a+b \tau}{c+d \tau}\right).
+	\iff (c \tau+d)^k f(\tau) &= f\left(\frac{a \tau+b}{c \tau+d}\right).
 \end{align*}
 
 \begin{exercise}
-	Assume both $\tau$ and $\frac{a+b \tau}{c+d \tau}$ are in the upper half-plane $H$.
+	Assume both $\tau$ and $\frac{a \tau+b}{c \tau+d}$ are in the upper half-plane $H$.
 	Prove that the determinant $ad-bc$ cannot be $-1$.
 \end{exercise}
 
@@ -441,7 +441,7 @@ That explains the commonly-seen textbook definition.
 For more notational convenience, we define:
 \begin{definition}
 	For $g = \begin{pmatrix} a&b \\ c&d \end{pmatrix} \in \SL_2(\ZZ)$,
-	define $g \tau = \frac{a+b \tau}{c+d \tau}$.
+	define $g \tau = \frac{a \tau+b}{c \tau+d}$.
 \end{definition}
 
 \subsection{Relation to Riemann surfaces}
