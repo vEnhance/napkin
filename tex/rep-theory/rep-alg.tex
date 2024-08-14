@@ -40,7 +40,7 @@ I'll present examples before the definition:
 		\ii The set of $n \times n$ matrices with entries in $k$,
 		which we denote by $\Mat_n(k)$.
 		Note the multiplication here is not commutative.
-		\ii The set $\Mat(V)$ of linear operators $T \colon V \to V$,
+		\ii The set $\Mat(V)$ of linear maps $T \colon V \to V$,
 		with multiplication given by the composition of operators.
 		(Here $V$ is some vector space over $k$.)
 		This is really the same as the previous example.
@@ -206,12 +206,12 @@ From this perspective, what we are really trying to do is:
 		\ii If $A = k[x]$,
 		then a representation $(V, \rho)$ of $A$
 		amounts to a vector space $V$ plus the choice of
-		a linear operator $T \in \Mat(V)$ (by $T = \rho(x)$).
+		a linear map $T \in \Mat(V)$ (by $T = \rho(x)$).
 
 		\ii If $A = k[x] / (x^2)$
 		then a representation $(V, \rho)$ of $A$
 		amounts to a vector space $V$ plus the choice of
-		a linear operator $T \in \Mat(V)$ satisfying $T^2 = 0$.
+		a linear map $T \in \Mat(V)$ satisfying $T^2 = 0$.
 
 		\ii We can create arbitrary ``functional equations'' with this pattern.
 		For example, if $A = k[x,y] / (x^2 - x+y, y^4)$
@@ -605,7 +605,7 @@ Proceeding in a similar way, we can obtain the following multiplication table:
 	\qquad \text{and} \qquad
 	M_1 + M_2 = \id_V
 \]
-Note that each $M_i$ is a linear operator $V \to V$;
+Note that each $M_i$ is a linear map $V \to V$;
 for all we know, it could have hundreds of entries.
 Nonetheless, given the multiplication table of the basis $E_i$
 we get the corresponding table for the $M_i$.
