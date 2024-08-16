@@ -1,0 +1,357 @@
+\chapter{Dirichlet's theorem on arithmetic progressions}
+
+\section{Introduction}
+
+In this chapter, we will sketch a proof of the following theorem:
+\begin{theorem}[Dirichlet's theorem on arithmetic progressions]
+	For every positive integers $a, n > 0$ such that $\gcd(a, n) = 1$, then there are infinitely
+	many primes coprime to $a$ modulo $n$.
+\end{theorem}
+
+For an even more concrete example:
+\begin{corollary}
+There are infinitely many primes $p$ that is congruent to $3$ modulo $4$.
+\end{corollary}
+
+You can see why this is called a theorem on arithmetic progressions:
+the example above is equivalent to saying that there are infinitely many primes in the arithmetic
+progression
+\[ 3, 7, 11, 15, 19, 23, \dots \]
+
+If you haven't noticed, the condition $\gcd(a, n) = 1$ is also very natural:
+look at the arithmetic progression $2, 6, 10, \dots$ where $a = 2$ and $n = 4$ are not coprime,
+and you will see that it obviously has only finitely many primes.
+
+(By the way, using Chebotarev density theorem which will be mentioned in the next section,
+you can even deduce something stronger: for example, a ``randomly chosen'' prime has probability
+$\frac{1}{2}$ to be congruent to $3$ modulo $4$. But here we will give a simple sketch of proof.)
+
+\section{The $L$-series}
+
+Actually, this chapter is just an excuse to introduce you to something called the $L$-series.
+Here is a quote from \cite{ref:neukirch} (emphasis mine):
+
+\begin{quote}
+One of the most astounding phenomena in number theory consists in the
+fact that a great number of deep arithmetic properties of a number field are
+hidden within a single analytic function, its \vocab{zeta function}. This function has
+a simple shape, but it is unwilling to yield its mysteries. Each time, however,
+that we succeed in stealing one of these well-guarded truths, we may expect to
+be rewarded by the revelation of some \emph{surprising} and \emph{significant} relationship.
+This is why zeta functions, as well as their generalizations, the $L$-series,
+have increasingly moved to the foreground of the arithmetic scene, and today
+are more than ever the focus of number-theoretic research.
+\end{quote}
+
+Surprisingly, you will see $L$-series in many other places as well --- an elliptic curve over $\QQ$
+has a $L$-series, and a modular form also have a $L$-series!\todo{really?
+And is there more examples?}
+
+So what is a $L$-series? In one sentence:\footnote{In my (limited) understanding, at the time of
+writing this.}
+\begin{moral}
+	A $L$-series bridges between an infinite sum (complex analysis)
+	and an infinite product over primes (number theory)
+	using unique factorization,
+	thus using tools from complex analysis to deduce hidden facts about the primes.
+\end{moral}
+
+Okay, that is a long sentence, sorry.
+
+\subsection{Riemann zeta function}
+
+Let's look at the Riemann zeta function, which is the prototype for a $L$-series:
+
+\begin{definition}[Riemann zeta function]
+	When $\Re(s) > 1$, we define the \vocab{Riemann zeta function} by the following infinite sum
+	\[ \zeta(s) = \frac{1}{1^s} + \frac{1}{2^s} + \frac{1}{3^s} + \cdots. \]
+	We can prove that the series converges whenever $\Re(s) > 1$, and that there exists an unique
+	meromorphic function on $\CC$ that is equal to the series above.
+	For $\Re(s) \leq 1$ define $\zeta(s)$ using that meromorphic function.
+\end{definition}
+
+This is called an \vocab{analytic continuation} of the series to the whole complex plane.
+(If you recalled:
+the identity theorem in complex analysis guarantees that if such a meromorphic function exists,
+it must be unique. The difficult part is to prove it exists.)
+
+So far, so good --- we have seen the infinite sum (complex analysis) part. How about the primes
+(number theory) part?
+
+For the Riemann zeta function, the idea has been discovered centuries ago by Euler
+(though it wasn't formalized until much later).
+Thus such product over primes are aptly called \vocab{Euler products}.
+The \href{https://en.wikipedia.org/wiki/Divergence_of_the_sum_of_the_reciprocals_of_the_primes}{%
+Wikipedia page} has a good explanation.
+
+Here are some manipulations that is not fully justified.
+We can factorize each integer in the denominator as follows:
+\[ \zeta(s) = 1 + \frac{1}{2^s}
+	+ \frac{1}{3^s}
+	+ \frac{1}{2^{2s}}
+	+ \frac{1}{5^s}
+	+ \frac{1}{2^s} \cdot \frac{1}{3^s}
+	+ \cdots
+\]
+Then, group like terms:
+\[ \zeta(s) =
+	\left(1 + \frac{1}{2^s} + \frac{1}{2^{2s}} + \cdots \right)
+	\left(1 + \frac{1}{3^s} + \frac{1}{3^{2s}} + \cdots \right)
+	\left(1 + \frac{1}{5^s} + \frac{1}{5^{2s}} + \cdots \right) \cdots
+\]
+By unique factorization, this grouping is indeed correct.
+So, our infinite product is:
+\[ \zeta(s) = \prod_{p\text{ prime}} \left(1 + \frac{1}{p^s} + \frac{1}{p^{2s}} + \cdots\right). \]
+
+\begin{theorem}
+	\label{thm:riemann_zeta_product_rep}
+	For $\Re(s) > 1$, this infinite product converges to the same value as $\zeta(s)$.
+	(That is, our questionable manipulations can be proven correct.)
+\end{theorem}
+The proof is omitted.
+
+Because the ``$\cdots$'' are verbose,
+we note that the series $1 + x + x^2 + \cdots$ is equal to $\frac{1}{1-x}$.
+So, for brevity we write
+\[ \zeta(s) = \prod_{p\text{ prime}} \frac{1}{1-p^{-s}}. \]
+
+\subsection{Example: Euclid's theorem}
+
+We will use \Cref{thm:riemann_zeta_product_rep} to give a roundabout proof of the following:
+\begin{theorem}[Euclid's theorem]
+	There are infinitely many primes.
+\end{theorem}
+
+\begin{proof}[Sketch of Proof]
+	Note that, by the infinite sum representation,
+	$\zeta(1) = 1+\frac{1}{2}+\frac{1}{3}+\cdots$ is the harmonic series and diverges.
+
+	Now look at the Euler product representation,
+	$\zeta(1) = \prod_{p\text{ prime}} \frac{1}{1-p^{-1}}$.
+	For this to diverge, there must be infinitely many primes $p$.
+\end{proof}
+
+\section{The actual proof}
+
+Here comes the actual proof, or at least a sketch of it.
+Just as above, the plan is to do the following:
+\begin{itemize}
+	\ii Write down some infinite sum.
+	\ii Prove that it is equal to some Euler product.
+	\ii Use the infinite sum to determine the behavior of the function at $s = 1$.
+	\ii Use the Euler product to say something about the primes.
+\end{itemize}
+
+Easier said than done.
+You might guess we could try something like
+\[
+	\frac{1}{3^s} + \frac{1}{7^s} + \frac{1}{11^s} + \cdots =
+	\prod_{p\text{ prime},\ p \equiv 3 \ (\opname{mod} 4)} \frac{1}{1-p^{-s}}
+\]
+Unfortunately, this fails miserably. (Try to expand out a few terms of the product.)
+
+How can we fix it? Look at this:
+\[
+	\frac{1}{1^s} - \frac{1}{3^s} + \frac{1}{5^s} - \frac{1}{7^s} + \frac{1}{9^s} - \cdots
+\]
+\begin{exercise}
+	Do the ``non-rigorous'' factorization and grouping of like terms as above. It should work out!
+\end{exercise}
+
+If you did the exercise correctly, you should get the following:
+\[
+	\left( \frac{1}{1+3^{-s}}\right)
+	\left( \frac{1}{1-5^{-s}}\right)
+	\left( \frac{1}{1+7^{-s}}\right)
+	\left( \frac{1}{1+11^{-s}}\right)
+	\left( \frac{1}{1-13^{-s}}\right) \cdots
+\]
+In order to save us from writing down a lot of ``$\cdots$'', for now, define the following function
+on positive integers integers $n$:
+\[ \chi(n) = \begin{cases}
+	1 &\text{if }n \equiv 1 \pmod{4} \\
+	-1&\text{if }n \equiv 3 \pmod{4} \\
+	0 &\text{otherwise.}
+\end{cases} \]
+Then we have
+\[ \sum_{n \geq 1} \frac{\chi(n)}{n^s} = \prod_{p\text{ prime}} \frac{1}{1-\chi(p) \cdot p^{-s}}. \]
+
+Of course, what we have seen deserves a name:
+\begin{definition}[Dirichlet character, informal]
+	A \vocab{Dirichlet character} is a function $\chi$ as above that we are interested in and makes
+	the equality works.
+\end{definition}
+
+\begin{exercise}
+	Notice that the sum and product in our broken attempt also comes from a function as follows:
+	\[ \chi(n) = \begin{cases}
+		\textcolor{red}{0} &\text{if }n \equiv 1 \pmod{4} \\
+		\textcolor{red}{1} &\text{if }n \equiv 3 \pmod{4} \\
+		0 &\text{otherwise.}
+	\end{cases} \]
+	What makes this function $\chi$ not work (so, it's not a Dirichlet character)?
+\end{exercise}
+
+So what's the point? Turns out there's \emph{a lot} of Dirichlet characters ---
+enough for us to write down (almost) the product we want!
+
+Look: if we consider
+\[ \chi_2(n) = \begin{cases}
+	1 &\text{if }n \equiv 1 \pmod{4} \\
+	1 &\text{if }n \equiv 3 \pmod{4} \\
+	0 &\text{otherwise.}
+\end{cases} \]
+then we also have
+\[ \sum_{n \geq 1} \frac{\chi_2(n)}{n^s} =
+\prod_{p\text{ prime}} \frac{1}{1-\chi_2(p) \cdot p^{-s}}. \]
+
+Wait, writing down all these $\sum$ signs are boring. Let us define:
+\begin{definition}[$L$-series]
+	For $\chi$ a Dirichlet character, define the \vocab{$L$-series}
+	\[ L(\chi, s) \sum_{n \geq 1} \frac{\chi(n)}{n^s}
+	= \prod_{p\text{ prime}} \frac{1}{1-\chi(p) \cdot p^{-s}}. \]
+\end{definition}
+
+Okay, back to the proof. Writing things down concretely,
+\begin{align*}
+	L(\chi, s) &=
+	\left( \frac{1}{1+3^{-s}} \right)
+	\left( \frac{1}{1-5^{-s}} \right)
+	\left( \frac{1}{1+7^{-s}} \right)
+	\left( \frac{1}{1+11^{-s}} \right)
+	\left( \frac{1}{1-13^{-s}} \right) \cdots
+	\\
+	L(\chi_2, s) &=
+	\left( \frac{1}{1-3^{-s}} \right)
+	\left( \frac{1}{1-5^{-s}} \right)
+	\left( \frac{1}{1-7^{-s}} \right)
+	\left( \frac{1}{1-11^{-s}} \right)
+	\left( \frac{1}{1-13^{-s}} \right) \cdots
+\end{align*}
+We want to ``forget'' about the primes in the arithmetic progression $1, 5, 9, 13, \dots$
+so obviously we're going to divide the two series:
+\[
+	\frac{L(\chi, s)}{L(\chi_2, s)} =
+	\left( \frac{1-3^{-s}}{1+3^{-s}} \right)
+	\left( \frac{1-7^{-s}}{1+7^{-s}} \right)
+	\left( \frac{1-11^{-s}}{1+11^{-s}} \right) \cdots
+\]
+You can easily guess what are the remaining steps:
+\begin{itemize}
+	\ii The numerator $L(\chi, s)$ is finite at $s = 1$.
+	\ii The denominator $L(\chi_2, s)$ diverges at $s = 1$.
+	\ii So the left hand side is $0$.
+	\ii This cannot happen if there are only finitely many terms on the right hand side.
+\end{itemize}
+
+\section{Generalization}
+
+It is not a coincidence that the $\chi$ above are called \emph{characters} --- functions sure, but
+characters?
+
+Turns out, if you have read the chapter on representation theory,
+it has a lot in common with characters of representations:
+\begin{itemize}
+	\ii they're independent,
+	\ii they're orthogonal,
+	\ii they span the whole space.\todo{double check. Besides, what space?}
+\end{itemize}
+
+Abstract algebra aside, how are we going to construct the product in such a way that only the primes
+congruent to $a$ modulo $m$ remains?
+Look:
+
+\begin{theorem}
+	Fix a modulus $m$.
+	Let $\chi_1, \chi_2, \dots$ be all the Abelian group homomorphism
+	$\Zm{m} \to \CC^{\times}$.
+	For each of them, define a $\NN \to \CC$ function the obvious way:
+	\[ \chi_i(n) = \begin{cases}
+		\chi_i(n \bmod m)&\text{if }\gcd(n, m) = 1 \\
+		0&\text{otherwise.}
+	\end{cases} \]
+	Then there are exactly $|\Zm{m}|$ characters, they're Dirichlet characters,
+	and most importantly, you can extract out \emph{only} the primes congruent to $a$ modulo $m$ by:
+	\[
+		\prod_{i=1}^{|\Zm{m}|} L(\chi_i, s)^{1/\chi_i(a)}.
+	\]
+\end{theorem}
+\todo{this is a lie, explain what the product expand to. See \cite[page 469]{ref:neukirch}}
+
+And:
+\begin{proposition} % Neukirch chapter 7, proposition 5.13
+	\label{prop:l1_finite_nonzero}
+	With notation as above, unless $\chi_i$ is the trivial character which assigns $1$ to every
+	element of $\Zm{m}$, then
+	\[ L(\chi_i, 1) \in \CC \setminus \{0\}. \]
+\end{proposition}
+
+\begin{remark}[Anecdote]
+	$|\Zm{m}|$ is equal to $\phi(m)$, where $\phi$ is the Euler's totient function.
+\end{remark}
+
+\section{More proof}
+
+In this section, we will prove \Cref{prop:l1_finite_nonzero}.
+
+\begin{exercise}
+	Recall the Dirichlet character we used in the example above.
+	\[ \chi(n) = \begin{cases}
+		1 &\text{if }n \equiv 1 \pmod{4} \\
+		-1&\text{if }n \equiv 3 \pmod{4} \\
+		0 &\text{otherwise.}
+	\end{cases} \]
+	Try to prove $L(\chi, 1)$ is finite.
+\end{exercise}
+
+That one was easy --- the sum the series is decreasing and alternating.
+But what if the modulus is $5$?
+
+Let us start with writing down all Dirichlet characters modulo $5$:
+\[
+	\begin{array}{|r|rrrr|}
+		\hline
+		    & 1 & 2 & 3 & 4 \\ \hline
+		\chi_1 & 1 & 1 & 1 & 1 \\
+		\chi_2 & 1 & i & -i & -1 \\
+		\chi_3 & 1 & -i & i & -1 \\ \hline
+	\end{array}
+\]
+Great, we got some complex numbers.
+No worries --- complex numbers need complex tools to deal with it.
+
+(Recall that a Dirichlet character can be defined from a group homomorphism $\Zm{5} \to
+\CC^{\times}$. Of course the value $\chi(n)$ would be $0$ at values $5 \mid n$.)
+
+Consider the cyclotomic field extension $K = \QQ(\zeta_5)$.
+We are going to \emph{generalize the Riemann zeta function $\zeta$ to $\zeta_K$}!
+
+How? To start with, there is no unique factorization of elements in arbitrary number fields,
+and there is no notation of \emph{positive} or \emph{negative} values either.
+
+We do have unique factorization of ideals though, so maybe we can make something out of ideals?
+Let's see:
+\begin{definition} % Neukirch chapter 7, definition 5.1
+	Define the Dedekind zeta function by
+	\[ \zeta_K(s) = \sum_{\ka\text{ ideal of }\OO_K} \frac{1}{\Norm(\ka)^s}. \]
+	When $\Re(s) \leq 1$, do analytic continuation as in the case of Riemann zeta function.
+\end{definition}
+\begin{exercise}
+	Verify that when $K = \QQ$ then $\zeta_\QQ = \zeta$.
+\end{exercise}
+
+Of course we have the following ``Euler product'':
+\begin{proposition}
+	\[ \zeta_K(s) = \prod_{\kp\text{ prime ideal of }\OO_K} \frac{1}{1-\Norm(\kp)^{-s}}. \]
+\end{proposition}
+
+So?\todo{double check (how do you numerically evaluate $\zeta_K$ for $K \neq \QQ$ anyway?)}
+\begin{proposition} % Neukirch chapter 7, proposition 5.12, specialized to m = 5
+	For $K = \QQ(\zeta_5)$ and $\chi_i$ the Dirichlet characters modulo $5$ defined above, then
+	\[ \zeta_K(s) = \frac{1}{1-5^{-s}} \cdot \prod_{i=1}^{3} L(\chi_i, s). \]
+\end{proposition}
+We can prove that at $s = 1$, $\zeta_K(s)$ has a pole of order exactly $1$,
+which means only $L(\chi_1, s)$ is allowed to have a pole there.
+The other $L(\chi_i, s)$ are thus not allowed to have one.\todo{why can't it be that one has a pole
+and the other have a root to cancel it out?}
+
