@@ -6,6 +6,11 @@
 % \begin{quote}
 % No normal person likes to think in terms of ``equivalence classes'', [\dots]
 % \end{quote}
+% or
+% \begin{quote}
+% In fact, this argument undoubtedly qualifies as the world's most roundabout proof of that fact,
+% which was proved by Fermat more than three hundred years ago.
+% \end{quote}
 % and (makes the reader at ease looking at a unnatural definition):
 % \begin{quote}
 % At first glance, it might seem simpler to define $Z(T)$ as $\sum N_r T^r$; however, [\dots]
@@ -50,8 +55,8 @@ Everyone knows what a lattice is:
 	\begin{asy}
 		import graph;
 		real bound=6, extrax=2, extray=1;
-		graph.xaxis("$\Re z$",-bound-extrax, bound+extrax);
-		graph.yaxis("$\Im z$",-bound-extray, bound+extray, autorotate=false);
+		graph.xaxis("$\operatorname{Re} z$",-bound-extrax, bound+extrax);
+		graph.yaxis("$\operatorname{Im} z$",-bound-extray, bound+extray, autorotate=false);
 		for(int a=-10; a<=10; ++a){
 			for(int b=-10; b<=10; ++b){
 				pair p=(1, 0)*a+(0.4, 0.7)*b;

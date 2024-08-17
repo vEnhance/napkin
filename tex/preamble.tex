@@ -83,32 +83,6 @@
 	}
 }
 
-%%fakesection Category Theory macros
-% (put here instead of macros.tex to avoid Asymptote loading TikZ every compilation which is slow)
-
-\usepackage{tkz-graph}
-\pgfarrowsdeclare{biggertip}{biggertip}{%
-  \setlength{\arrowsize}{1pt}
-  \addtolength{\arrowsize}{.1\pgflinewidth}
-  \pgfarrowsrightextend{0}
-  \pgfarrowsleftextend{-5\arrowsize}
-}{%
-  \setlength{\arrowsize}{1pt}
-  \addtolength{\arrowsize}{.1\pgflinewidth}
-  \pgfpathmoveto{\pgfpoint{-5\arrowsize}{4\arrowsize}}
-  \pgfpathlineto{\pgfpointorigin}
-  \pgfpathlineto{\pgfpoint{-5\arrowsize}{-4\arrowsize}}
-  \pgfusepathqstroke
-}
-\tikzset{
-	EdgeStyle/.style = {>=biggertip}
-}
-
-\usepackage[all,cmtip,2cell]{xy}
-\UseTwocells
-\newcommand\nattfm[5]{\xymatrix@C+2pc{#1 \rtwocell<4>^{#2}_{#4}{\; #3} & #5}}
-
-
 %%fakesection Page layout
 \usepackage[headsepline]{scrlayer-scrpage}
 \renewcommand{\headfont}{}
@@ -290,7 +264,6 @@ style=thmbluebox,name=Theorem,numberwithin=section]{theorem}
 	size(6cm);
 	usepackage("amsmath");
 	usepackage("amssymb");
-	texpreamble("\input{tex/macros}"); // must be after loading amsmath
 	defaultpen(fontsize(11pt));
 	settings.tex = "latex";
 	settings.outformat = "pdf";
