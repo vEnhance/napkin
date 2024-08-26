@@ -121,6 +121,8 @@ jobs:
           cp Napkin.pdf dist/
           cp asy/*.asy dist/figures/
           cp asy/*.pdf dist/figures/
+          cp cover-art.png dist/
+          cp cover-art.jpg dist/
 
           mv flowchart.png dist/
           mv toc.txt dist/

@@ -1,5 +1,5 @@
-\documentclass[11pt,twoside=semi,openright,numbers=noenddot]{scrbook}
-\newcommand{\napkinversion}{v1.5.\hbox{\the\year\twodigits\month\twodigits\day}}
+\documentclass[11pt,twoside=semi,openright,numbers=noenddot,titlepage=false]{scrbook}
+\newcommand{\napkinversion}{v1.6.\hbox{\the\year\twodigits\month\twodigits\day}}
 
 \input{tex/preamble}
 \input{tex/macros}
@@ -15,6 +15,12 @@
 \frontmatter
 % \renewcommand{\thepage}{\arabic{page}}
 \maketitle
+
+\bgroup
+\fboxrule=4pt
+\noindent\fbox{\includegraphics[width=\textwidth]{cover-art.jpg}}
+\egroup
+\newpage
 
 \include{tex/frontmatter/title-embellishments}
 \include{tex/frontmatter/preface}
