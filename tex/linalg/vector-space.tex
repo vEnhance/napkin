@@ -509,16 +509,218 @@ Note that this notion of isomorphism really only cares about the size of the bas
 \end{remark}
 
 \section{What is a matrix?}
-Now I get to tell you what a matrix is:
-it's a way of writing a linear map in terms of bases.
+Now I get to tell you what a matrix is!
+This is fun, because now I can finally explain to you how to \emph{derive}
+the recipes for matrix multiplication, rather than being told.
 
-Suppose we have a finite-dimensional
-vector space $V$ with basis $e_1, \dots, e_m$
+This section is so important, and also revelatory for so many students,
+that I'm actually going to do it twice.
+The frist time, I'm going to work in an extremely special case,
+namely $V = W = \RR^2$, using lots of numbers.
+(This is how I explained this concept when I taught it to first-year
+undergraduate students that didn't have proof experience.)
+Then the second time, we'll do it in modern language without all the numbers.
+
+\subsection{Extended example with $\RR^2$, suitable for the general public}
+Throughout this section, I'll work specifically with $\RR^2$, whose elements
+I will write as $\left[ \begin{smallmatrix} x \\ y \end{smallmatrix} \right]$ rather than $(x,y)$
+(you'll see why when I talk about matrix multiplication).
+
+Pop quiz:
+\begin{itemize}
+	\ii \textbf{Question 1}:
+	Suppose that you're given a linear map $T \colon \RR^2 \to \RR^2$ such that
+	$T\left( \left[ \begin{smallmatrix} 3 \\ 4 \end{smallmatrix} \right] \right)
+	= \left[ \begin{smallmatrix} \pi \\ 9 \end{smallmatrix} \right]$
+	and
+	$T\left( \left[ \begin{smallmatrix} 100 \\ 100 \end{smallmatrix} \right] \right)
+	= \left[ \begin{smallmatrix} 0 \\ 12 \end{smallmatrix} \right]$.
+	What are
+	$T\left( \left[ \begin{smallmatrix} 103 \\ 104 \end{smallmatrix} \right] \right)$ and
+	$T\left( \left[ \begin{smallmatrix} 203 \\ 204 \end{smallmatrix} \right] \right)$?
+
+	\textbf{Answer 1}: just add them.
+	\begin{align*}
+		T\left( \begin{bmatrix} 103 \\ 104  \end{bmatrix} \right)
+		&= \begin{bmatrix} \pi \\ 9 \end{bmatrix}
+		+ \begin{bmatrix} 0 \\ 12 \end{bmatrix}
+		= \begin{bmatrix} \pi \\ 21 \end{bmatrix} \\
+		T\left( \begin{bmatrix} 203 \\ 204  \end{bmatrix} \right)
+		&= \begin{bmatrix} \pi \\ 9 \end{bmatrix}
+		+ 2\begin{bmatrix} 0 \\ 12 \end{bmatrix}
+		= \begin{bmatrix} \pi \\ 33 \end{bmatrix}.
+	\end{align*}
+
+	\ii \textbf{Question 2}:
+	Suppose that you're given a linear map $T \colon \RR^2 \to \RR^2$ such that
+	$T\left( \left[ \begin{smallmatrix} 1 \\ 0 \end{smallmatrix} \right] \right)
+	= \left[ \begin{smallmatrix} 1 \\ 3 \end{smallmatrix} \right]$
+	and
+	$T\left( \left[ \begin{smallmatrix} 0 \\ 1 \end{smallmatrix} \right] \right)
+	= \left[ \begin{smallmatrix} 2 \\ 4 \end{smallmatrix} \right]$.
+	What is
+	$T\left( \left[ \begin{smallmatrix} 50 \\ 70 \end{smallmatrix} \right] \right)$?
+
+	\textbf{Answer 2}:
+	\[
+		T\left( \begin{bmatrix} 50 \\ 70 \end{bmatrix} \right)
+		= 50 \begin{bmatrix} 1 \\ 3 \end{bmatrix}
+		+ 70 \begin{bmatrix} 2 \\4 \end{bmatrix}
+		= \begin{bmatrix} 190 \\ 430 \end{bmatrix}.
+	\]
+\end{itemize}
+
+So what this example illustrates is that the requirements on a linear map
+$T \colon \RR^2 \to \RR^2$ are so strong that if you just know
+$T\left( \left[ \begin{smallmatrix} 1 \\ 0 \end{smallmatrix} \right] \right)$
+and $T\left( \left[ \begin{smallmatrix} 0 \\ 1 \end{smallmatrix} \right] \right)$
+then you can \emph{compute} the values of $T$ at any other point.
+That's true for any two basis vectors
+(i.e., Question 1 could have been asked for inputs much
+nastier than the cherry-picked
+$\left[ \begin{smallmatrix} 103 \\ 104 \end{smallmatrix} \right]$
+and $\left[ \begin{smallmatrix} 203 \\ 204 \end{smallmatrix} \right]$,
+and it would still be solvable),
+but of course
+$\left[ \begin{smallmatrix} 1 \\ 0 \end{smallmatrix} \right]$
+and $\left[ \begin{smallmatrix} 0 \\ 1 \end{smallmatrix} \right]$
+is an especially convenient choice.
+
+Now we can give the following definition:
+\begin{definition}
+	For a linear transform $T \colon \RR^2 \to \RR^2$,
+	its \emph{matrix} is an encoding of $T$
+	obtained by gluing the column vectors
+	\[
+		T\left( \begin{bmatrix} 1 \\ 0 \end{bmatrix} \right)
+		\qquad\text{and}\qquad
+		T\left( \begin{bmatrix} 0 \\ 1 \end{bmatrix} \right)
+	\]
+	together to get a $2 \times 2$ array of numbers.
+\end{definition}
+
+For example,
+\[
+	T\left( \begin{bmatrix} 1 \\ 0 \end{bmatrix} \right) = \begin{bmatrix} 1 \\ 3 \end{bmatrix}
+	\text{ and }
+	T\left( \begin{bmatrix} 0 \\ 1  \end{bmatrix} \right) = \begin{bmatrix} 2 \\ 4 \end{bmatrix}
+	\iff
+	T \text{ encoded as }
+	\begin{bmatrix} 1 & 3 \\ 2 & 4 \end{bmatrix}.
+\]
+
+Now, what happens if you apply the matrix multiplication rule from high school to
+the column vector $\left[ \begin{smallmatrix} 50 \\ 70 \end{smallmatrix} \right]$?
+Well, you get that
+\[
+	\begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix}
+	\begin{bmatrix} 50 \\ 70 \end{bmatrix}
+	= \begin{bmatrix} 1 \cdot 50 + 2 \cdot 70 \\ 3 \cdot 50 + 4 \cdot 70 \end{bmatrix}
+	= \begin{bmatrix} 190 \\ 430 \end{bmatrix}
+\]
+\dots and you can see we're actually just doing the second pop quiz question again.
+So:
+\begin{moral}
+	If $T \colon \RR^2 \to \RR^2$ is encoded as a $2 \times 2$ matrix $M$,
+	then multiplication of $M$ with a (column) vector $v \in \RR^2$
+	is defined to coincide with $T(v)$.
+\end{moral}
+\begin{remark}
+	[The identity matrix deserves its name]
+	This also gives a more natural reason why the $2 \times 2$ identity matrix
+	is $\left[ \begin{smallmatrix} 1 & 0 \\ 0 & 1 \end{smallmatrix} \right]$
+	rather than the explanation high school gives
+	(namely, ``well, try multiplying by it and notice you get the same thing'').
+	If $\id$ is the identity function, then
+	$\id\left( \left[ \begin{smallmatrix} 1 \\ 0 \end{smallmatrix} \right] \right)
+	= \left[ \begin{smallmatrix} 1 \\ 0 \end{smallmatrix} \right]$,
+	so that's the first column of the matrix;
+	similarly
+	$\id\left( \left[ \begin{smallmatrix} 0 \\ 1 \end{smallmatrix} \right] \right)
+	= \left[ \begin{smallmatrix} 0 \\ 1 \end{smallmatrix} \right]$
+	is the second column.
+\end{remark}
+
+Now, what happens if we bring two maps $S$ and $T$ into the game, and compose them?
+We can do the same game with $S \circ T$.
+\begin{itemize}
+	\ii \textbf{Question 3}:
+	Suppose that you're given a linear map $T \colon \RR^2 \to \RR^2$ such that
+	$T\left( \left[ \begin{smallmatrix} 1 \\ 0 \end{smallmatrix} \right] \right)
+	= \left[ \begin{smallmatrix} 1 \\ 3 \end{smallmatrix} \right]$
+	and
+	$T\left( \left[ \begin{smallmatrix} 0 \\ 1 \end{smallmatrix} \right] \right)
+	= \left[ \begin{smallmatrix} 2 \\ 4 \end{smallmatrix} \right]$.
+	Then you're given a second linear map $S \colon \RR^2 \to \RR^2$ such that
+	$S\left( \left[ \begin{smallmatrix} 1 \\ 0 \end{smallmatrix} \right] \right)
+	= \left[ \begin{smallmatrix} 5 \\ 7 \end{smallmatrix} \right]$
+	and
+	$S\left( \left[ \begin{smallmatrix} 0 \\ 1 \end{smallmatrix} \right] \right)
+	= \left[ \begin{smallmatrix} 6 \\ 8 \end{smallmatrix} \right]$.
+	What are
+	$S\left( T\left( \left[ \begin{smallmatrix} 1 \\ 0 \end{smallmatrix} \right] \right) \right)$
+	and
+	$S\left( T\left( \left[ \begin{smallmatrix} 0 \\ 1 \end{smallmatrix} \right] \right) \right)$?
+
+	\textbf{Answer 3}:
+	\begin{align*}
+		S\left( T\left( \begin{bmatrix} 1 \\ 0 \end{bmatrix} \right) \right)
+		&= S\left( \begin{bmatrix} 1 \\ 3 \end{bmatrix} \right)
+		= 1 \begin{bmatrix} 5 \\ 7 \end{bmatrix} + 3 \begin{bmatrix} 6 \\ 8 \end{bmatrix}
+			= \begin{bmatrix} 23 \\ 31 \end{bmatrix}. \\
+		S\left( T\left( \begin{bmatrix} 0 \\1 \end{bmatrix} \right) \right)
+		&= S\left( \begin{bmatrix} 2 \\ 4 \end{bmatrix} \right)
+		= 2 \begin{bmatrix} 5 \\ 7 \end{bmatrix}
+			+ 4 \begin{bmatrix} 6 \\ 8 \end{bmatrix}
+		= \begin{bmatrix} 34 \\ 46 \end{bmatrix}.
+	\end{align*}
+\end{itemize}
+Since $S \circ T$ is itself a linear map, we now know its matrix encoding:
+\[ S \circ T = \begin{bmatrix} 23 & 34 \\ 31 & 46 \end{bmatrix}. \]
+
+Now, you might have learned some matrix multiplication rule in school as a definition.
+If you exexcute that definition on the matrices for $S$ and $T$, you should get
+\[
+	\underbrace{\begin{bmatrix} 5 & 7 \\ 6 & 8 \end{bmatrix}}_{\text{encoding of $S$}}
+	\underbrace{\begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix}}_{\text{encoding of $T$}}
+	=
+	\begin{bmatrix}
+		5 \cdot 1 + 7 \cdot 3 & 5 \cdot 2 + 7 \cdot 4 \\
+		6 \cdot 1 + 8 \cdot 3 & 6 \cdot 2 + 8 \cdot 4 \\
+	\end{bmatrix}
+	= \begin{bmatrix} 23 & 34 \\ 31 & 46 \end{bmatrix}
+\]
+It's the encoding for $S \circ T$ --- indeed, you can see why,
+because if you trace through the work in Answer 3,
+it's actually the same arithmetic being carried out.
+
+This shows why our Napkin definition of matrix as the \emph{encoding}
+of a linear function is better than what many of you have seen.
+In high school, the recipe for matrix multiplication
+is provided as an unnatural definition, e.g., in cute pictures like \Cref{fig:matmult}.
+However, for us, the recipe in \Cref{fig:matmult} is a \emph{theorem}:
+we can \emph{derive} how to get the encoding of $S \circ T$
+given the encodings of $S$ and $T$.
+
+\begin{figure}[ht]
+	\centering
+	\fbox{\includegraphics[width=0.8\textwidth]{media/matrix-mult.jpg}}
+	\caption{Matrix multiplication as taught in American high school:
+		``here's a recipe, trust me bro''. Image from \cite{img:matrixmult}.}
+	\label{fig:matmult}
+\end{figure}
+
+\subsection{General discussion, back to Napkin levels of abstraction}
+Let's go back to modern language,
+where we work with finite-dimensional spaces over any field,
+and any basis of the spaces (rather than a fixed basis like in the previous section).
+
+Pick a finite-dimensional vector space $V$ with \emph{some} basis $e_1, \dots, e_m$
 and a vector space $W$ with basis $w_1, \dots, w_n$.
-I also have a map $T \colon V \to W$ and I want to tell you what $T$ is.
+Suppose I have a map $T \colon V \to W$ and I want to tell you what $T$ is.
 It would be awfully inconsiderate of me to try and tell you what $T(v)$
 is at every point $v$.
-In fact, I only have to tell you what $T(e_1)$, \dots, $T(e_m)$ are,
+But we saw I only have to tell you what $T(e_1)$, \dots, $T(e_m)$ are,
 because from there you can work out
 $T(a_1 e_1 + \dots + a_m e_m)$ for yourself:
 \[ T(a_1 e_1 + \dots + a_m e_m) = a_1 T(e_1) + \dots + a_m T(e_m). \]
@@ -542,6 +744,7 @@ and that would tell you everything you need to know about $T$.
 That's where the matrix $T$ comes from!
 It's a concise way of writing down all $mn$ numbers
 I need to tell you.
+
 To be explicit, the matrix for $T$ is defined as the array
 \begin{align*}
 	T &= \underbrace{%
@@ -559,6 +762,11 @@ To be explicit, the matrix for $T$ is defined as the array
 		a_{n1} & a_{n2} & \dots & a_{nm}
 	\end{bmatrix}.
 \end{align*}
+To drive this point home,
+\begin{moral}
+	A matrix is the laziest possible way to specify
+	a linear map from $V$ to $W$.
+\end{moral}
 
 \begin{example}
 	[An example of a matrix]
@@ -598,7 +806,6 @@ To be explicit, the matrix for $T$ is defined as the array
 	with the columns corresponding to $T(1)$, $T(x)$, $T(x^2)$.
 \end{example}
 
-
 From here you can actually work out for yourself
 what it means to multiply two matrices.
 Suppose we have picked a basis for three spaces $U$, $V$, $W$.
@@ -606,25 +813,11 @@ Given maps $T \colon U \to V$ and $S \colon V \to W$,
 we can consider their composition $S \circ T$, i.e.
 \[ U \taking{T} V \taking{S} W. \]
 Matrix multiplication is defined exactly so that the matrix $ST$
-is the same thing we get from interpreting the composed function $S \circ T$ as a matrix.
-\begin{exercise}
-	[Super duper mandatory if you haven't seen it before]
-	Check this for yourself!
-	For a concrete example let
-	\[ \RR^2 \taking{T} \RR^2 \taking{S} \RR^2 \]
-	by
-	\[ T(e_1) = 2e_1+3e_2, \; T(e_2) = 4e_1+5e_2, \qquad
-		S(e_1) = 6e_1+7e_2, \; S(e_2) = 8e_1+9e_2. \]
-	Compute $S(T(e_1))$ and $S(T(e_2))$ and see how it compares
-	to multiplying the matrices associated to $S$ and $T$.
-\end{exercise}
+is the same thing we get from interpreting the composed function $S \circ T$ as a matrix,
+as we saw last section.
+
 In particular, since function composition is associative,
 it follows that matrix multiplication is as well.
-To drive this point home,
-\begin{moral}
-	A matrix is the laziest possible way to specify
-	a linear map from $V$ to $W$.
-\end{moral}
 
 This means you can define concepts like the determinant or the trace of a matrix
 both in terms of an ``intrinsic'' map $T \colon V \to W$
@@ -816,8 +1009,12 @@ says there is a unique line joining two points.
 	Thus it is actually a bijection, which is exactly what we wanted.
 \end{proof}
 
-\section{(Digression) Arrays of numbers are evil}
+\section{Pedagogical digression: Arrays of numbers are evil}
 \label{sec:basis_evil}
+
+(This whole section is Evan yapping about how to \emph{teach} linear algebra,
+so it can be safely skipped.)
+
 As I'll stress repeatedly, a matrix represents a
 \emph{linear map between two vector spaces}.
 Writing it in the form of an $m \times n$ matrix
