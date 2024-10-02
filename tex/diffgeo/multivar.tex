@@ -150,15 +150,28 @@ Thus, for $p = ae_1 + be_2$ we indeed have $(Df)_p = 2a \cdot \ee_1^\vee + 2b \c
 \end{remark}
 
 \section{The projection principle}
-Before proceeding I need to say something really important.
+You may have learned single-variable calculus as the topic of doing
+differentiation and integration on single-variable functions $\RR \to \RR$.
+So ``multivariable calculus'' ought to be calculus with functions $\RR^n \to \RR^m$.
+You might notice there are \emph{two} upgrades happening here:
+\begin{itemize}
+	\ii The domain got upgraded from $\RR$ to $\RR^n$.
+	\ii The codomain got upgraded from $\RR$ to $\RR^m$.
+\end{itemize}
+
+The point of this section is that the second upgrade is
+is \emph{super easy} in comparison to the first upgrade,
+and basically doesn't require doing anything new.
+All the interesting actions happens because we upgraded the domain, not the codomain.
+Here's why:
 \begin{theorem}[Projection principle]
 	\label{thm:project_principle}
 	Let $U$ be an open subset of the vector space $V$.
-	Let $W$ be an $n$-dimensional real vector space with basis $w_1, \dots, w_n$.
+	Let $W$ be an $m$-dimensional real vector space with basis $w_1, \dots, w_m$.
 	Then there is a bijection between continuous functions $f \colon U \to W$ and
-	$n$-tuples of continuous $f_1, f_2, \dots, f_n \colon U \to \RR$
+	$m$-tuples of continuous $f_1, f_2, \dots, f_m \colon U \to \RR$
 	by projection onto the $i$th basis element, i.e.\
-	\[ f(v) = f_1(v)w_1 + \dots + f_n(v)w_n. \]
+	\[ f(v) = f_1(v)w_1 + \dots + f_m(v)w_m. \]
 \end{theorem}
 \begin{proof}
 	Obvious.
@@ -166,8 +179,8 @@ Before proceeding I need to say something really important.
 The theorem remains true if one replaces ``continuous'' by ``differentiable'', ``smooth'', ``arbitrary'',
 or most other reasonable words. Translation:
 \begin{moral}
-To think about a function $f \colon U \to \RR^{n}$,
-it suffices to think about each coordinate separately.
+	To think about a function $f \colon U \to \RR^{m}$,
+	it suffices to think about each coordinate separately.
 \end{moral}
 For this reason, we'll most often be interested in functions $f \colon U \to \RR$.
 That's why the dual space $V^\vee$ is so important.
