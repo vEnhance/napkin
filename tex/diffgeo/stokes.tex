@@ -176,7 +176,7 @@ A diligent reader can check these definitions are equivalent.
 	and suppose $\phi \colon V \to V'$ is given by sending
 	\[ \phi(a\ee_1 + b\ee_2) = (a^2+b^2)w_1 + \log(a^2+1) w_2 + b^3 w_3 \]
 	where $w_1$, $w_2$, $w_3$ is a basis for $V'$.
-	Consider the form $\alpha_q = f(q) w_1 \wedge w_3$, where $f \colon V' \to \RR$.
+	Consider the form $\alpha_q = f(q) w_1^\vee \wedge w_3^\vee$, where $f \colon V' \to \RR$.
 	Then
 	\[ (\phi^\ast\alpha)_p = f(\phi(p)) \cdot (2a \ee_1^\vee + 2b\ee_2^\vee) \wedge (3b^2 \ee_2^\vee)
 		= f(\phi(p)) \cdot 6ab^2 \cdot \ee_1^\vee \wedge \ee_2^\vee. \]
@@ -441,12 +441,399 @@ We now have all the ingredients to state Stokes' theorem for cells.
 For example, if $c$ is the interval $[a,b]$ then $\partial c = \{b\} - \{a\}$,
 and thus we obtain the fundamental theorem of calculus.
 
+\section{Back to Earth: A comparison to what you learned in vector calculus}
+Now that we've done everything abstractly,
+let's compare what we've learned to what you might see in $\RR^3$
+if you're doing a vector calculus course at a typical university.
+
+In \Cref{fig:1802gradcurldiv} I've copied a picture I drew in fall 2024
+for the 18.02 class at MIT,
+which is the multivariable calculus class that a lot of first-year students take.
+For each $0 \le d \le n \le 3$ (besides $d=n=0$),
+it shows what kind of integral showed up in the class
+if you were doing a $d$-dimensional integral of a function whose domain was $\RR^n$.
+Note that every integral in this picture is real-valued.
+
+I've deliberately used the notation that was actually used at MIT,
+which I'll refer to as 18.02 notation,
+because it's similar to what you will see on Wikipedia and other places too.
+The goal of this section is to provide a translation system from 18.02 notation to Napkin notation.
+(Throughout the whole section, $\RR^n$ is thought of as a normed vector space,
+so the identification $\ee_1 \mapsto \ee_1^\vee$ and so on is canonical.)
+
+\begin{figure}[ht]
+\centering
+\textbf{\Large An 18.02 chart.}
+
+\begin{asy}
+size(16cm);
+usepackage("amsmath");
+usepackage("amssymb");
+usepackage("derivative");
+label("$\boxed{f \colon \mathbb R^1 \to \mathbb R}$", (-0.5,8), dir(180), blue);
+label("$\boxed{f \colon \mathbb R^2 \to \mathbb R}$", (-0.5,3.5), dir(180), blue);
+label("$\boxed{f \colon \mathbb R^3 \to \mathbb R}$", (-0.5,0), dir(180), blue);
+label("$\boxed{\mathbf F \colon \mathbb R^2 \to \mathbb R^2}$", (-0.5,6.5), dir(180), purple);
+label("$\boxed{\mathbf F \colon \mathbb R^3 \to \mathbb R^3}$", (-0.5,-3), dir(180), purple);
+
+real w = 0.7; // axis length
+pair O = (0,0);
+defaultpen(fontsize(11pt));
+pen intfont = fontsize(9pt);
+
+picture vector_field;
+for (int i=0; i<5; ++i) {
+  for (int j=0; j<4; ++j) {
+    draw(vector_field,
+    shift(-0.9*w,-0.6*w)*((0.4*i*w,0.45*j*w)--(0.4*i*w+0.2,0.45*j*w-0.15)),
+    rgb(0.6,0.6,0.9), EndArrow(TeXHead));
+  }
+}
+
+picture axis1;
+picture axis2;
+picture axis3;
+draw(axis1, (-w,0)--(w,0), grey, Arrows(TeXHead));
+draw(axis2, (-w,0)--(w,0), grey, Arrows(TeXHead));
+draw(axis2, (0,-w)--(0,w), grey, Arrows(TeXHead));
+draw(axis3, (-w,0)--(w,0), grey, Arrows(TeXHead));
+draw(axis3, (0,-w)--(0,w), grey, Arrows(TeXHead));
+draw(axis3, (-w/1.6,-w/1.6)--(w/1.6,w/1.6), grey, Arrows(TeXHead));
+
+transform t;
+
+/* 0-D integrals */
+label("\fbox{0-D integral}", (1,9.5), deepblue);
+string s = "Eval $f$ at point";
+
+t = shift(1,8);
+add(t*axis1);
+dot("$f(x_0)$", t*O, dir(-90));
+label(s, t*(dir(90)/2), deepgreen);
+
+t = shift(1,3.5);
+add(t*axis2);
+dot("$f(x_0, y_0)$", t*(-w/2,-w/2), dir(-75));
+label(s, t*dir(90), deepgreen);
+
+t = shift(1,0);
+add(t*axis3);
+dot("$f(x_0, y_0, z_0)$", t*(-w/3,-2*w/3), dir(-75));
+label(s, t*dir(90), deepgreen);
+
+/* 1-D integrals */
+label("\fbox{1-D integral}", (4,9.5), deepblue);
+
+t = shift(4,8);
+add(t*axis1);
+draw(t*((-0.3,0)--(0.3,0)), black+1.4);
+dot(t*(-0.3,0), black);
+dot(t*( 0.3,0), black);
+label("$\int\limits_a^b f(x) \odif x$", t*O, dir(-90));
+label("1-var integral", t*(dir(90)/2), deepgreen);
+
+t = shift(4,3.5);
+add(t*axis2);
+draw("$\int\limits_{t_0}^{t_1} f(\mathbf r(t)) |\mathbf r'(t)| \odif t$", t*(0,-w), dir(-90), intfont);
+draw(t*((-0.7*w,-0.4*w)..(-0.2*w,0.5*w)..(0.6*w,0.55*w)), black+1.4);
+dot(t*(-0.7*w, -0.4*w));
+dot(t*(0.6*w, 0.55*w));
+label("Line integral", t*dir(90), deepgreen);
+
+t = shift(4,0);
+add(t*axis3);
+draw("$\int\limits_{t_0}^{t_1} f(\mathbf r(t)) |\mathbf r'(t)| \odif t$", t*(0,-w), dir(-90), intfont);
+draw(t*((-0.8*w,-0.3*w)..(0.2*w,-0.1*w)..(0.6*w,0.3*w)), black+1.4);
+dot(t*(-0.8*w, -0.3*w));
+dot(t*(0.6*w, 0.3*w));
+label("Line integral", t*dir(90), deepgreen);
+
+/* 2-D integrals */
+label("\fbox{2-D integral}", (8,9.5), deepblue);
+
+t = shift(8,3.5);
+path square = box((-0.6*w,-0.6*w), (0.6*w,0.6*w));
+filldraw(t*square, lightgrey, black+1.4);
+draw("$\int\limits_{a_1}^{b_1} \int\limits_{a_2}^{b_2} f(x,y) \odif x \odif y$", t*(0,-w), dir(-90));
+label("Area integral", t*dir(90), deepgreen);
+add(t*axis2);
+
+t = shift(8,0);
+path surface = (-0.8*w,-0.1*w)..(-0.2*w,-0.3*w)..(0.6*w,-0.6*w)..(0.7*w,-0.1*w)..(0.3*w,0.4*w)..(-0.5*w,0.3*w)..cycle;
+filldraw(t*surface, lightgrey, black+1.4);
+draw("$\int\limits_{u_0}^{u_1} \int\limits_{v_0}^{v_1} f(\mathbf r(u,v)) |\pdv{\mathbf{r}}{u} \times \pdv{\mathbf{r}}{v}| \odif u \odif v$", t*(0,-w), dir(-90), intfont);
+label("Surface integral", t*dir(90), deepgreen);
+add(t*axis3);
+
+/* 3-D integrals */
+label("\fbox{3-D integral}", (12.5,9.5), deepblue);
+
+t = shift(12.5,0);
+pair A = (-0.4, -0.25);
+pair C = (0.1, 0.25);
+pair B = (A.x, C.y);
+pair D = (C.x, A.y);
+transform s = shift(0.17,0.13);
+fill(t*(A--B--s*B--s*C--s*D--D--cycle), lightgrey);
+draw(t*s*(A--B--C--D--cycle), black+1.4);
+draw(t*(A--B--C--D--cycle), black+1.4);
+draw(t*(A--s*A), black+1.4);
+draw(t*(B--s*B), black+1.4);
+draw(t*(C--s*C), black+1.4);
+draw(t*(D--s*D), black+1.4);
+draw("$\int\limits_{a_1}^{b_1} \int\limits_{a_2}^{b_2} \int\limits_{a_3}^{b_3} f(x,y,z) \odif x \odif y \odif z$", t*(0,-w), dir(-90), intfont);
+label("Volume integral", t*dir(90), deepgreen);
+add(t*axis3);
+
+/* Work */
+t = shift(4,5.5);
+add(t*axis2);
+draw("$\int\limits_{t_0}^{t_1} \mathbf{F}(\mathbf{r}(t)) \cdot \mathbf{r}'(t) \odif{t}$", t*(-w,w), dir(180), intfont+purple);
+add(t*vector_field);
+draw(t*((-0.7*w,-0.4*w)..(-0.2*w,0.5*w)..(0.6*w,0.55*w)), purple+1.4);
+dot(t*(-0.7*w, -0.4*w), purple);
+dot(t*(0.6*w, 0.55*w), purple);
+label("Work", t*dir(90), purple);
+
+t = shift(4,-3);
+add(t*axis3);
+draw("$\int\limits_{t_0}^{t_1} \mathbf{F}(\mathbf{r}(t)) \cdot \mathbf{r}'(t) \odif{t}$", t*(-w,-w), dir(180), intfont+purple);
+add(t*vector_field);
+draw(t*((-0.8*w,-0.3*w)..(0.2*w,-0.1*w)..(0.6*w,0.3*w)), purple+1.4);
+dot(t*(-0.8*w, -0.3*w), purple);
+dot(t*(0.6*w, 0.3*w), purple);
+label("Work", t*dir(90), purple);
+
+/* Flux */
+t = shift(8,-3);
+draw("$\int\limits_{u_0}^{u_1} \int\limits_{v_0}^{v_1} \mathbf{F}(\mathbf{r}(u,v)) \cdot \left( \pdv{\mathbf{r}}{u} \times \pdv{\mathbf{r}}{v} \right) \odif{u} \odif{v}$", t*(w,-w), dir(0), intfont+purple);
+filldraw(t*surface, pink, purple+1.4);
+add(t*axis3);
+add(t*vector_field);
+label("Flux", t*dir(90), purple);
+
+/* Arrows */
+draw("$\frac{df}{dx}$", (2,8)--(3,8), red, EndArrow);
+
+draw((1,5)--(1,5.5)--(3,5.5), red, EndArrow);
+label("$\nabla f$ (grad)", (1,5.5), dir(180), red);
+draw((5,5.5)--(8,5.5)--(8,5), red, EndArrow);
+label("$\pdv{g}{x}-\pdv{f}{y}$ (2d scalar curl)", (8,5.5), dir(0), red);
+
+draw((1,-1.5)--(1,-3)--(3,-3), red, EndArrow);
+label("$\nabla f$ (grad)", (1,-2.25), dir(180), red);
+draw((5,-3)--(7,-3), red, EndArrow);
+label("$\nabla \times \mathbf{F}$ (curl)", (6,-3), dir(270), red);
+draw((9,-3)--(12.5,-3)--(12.5,-1.5), red, EndArrow);
+label("$\nabla \cdot \mathbf{F}$ (div)", (12.5,-2.25), dir(0), red);
+\end{asy}
+\caption{Throwback to first year of college?}
+\label{fig:1802gradcurldiv}
+\end{figure}
+
+
+There is a lot going in \Cref{fig:1802gradcurldiv}, so let's break it down piece by piece.
+
+\paragraph{$0$-forms.}
+A $0$-form is the same as just a function,
+so the column of 0-D integrals should be easy to understand:
+it's just evaluation at point, or a sum of points.
+
+\paragraph{$n$-forms.} The case $n=d$ is also easy:
+we know it's possible to integrate an $n$-form in $\RR^n$ and get a number. That is:
+\begin{itemize}
+	\ii A normal integral $\int_a^b \odif x$ is the integral across a $1$-cell $[a,b]$
+	across the $1$-form $f \cdot \ee_1^\vee$.
+
+	\ii An area integral $\int_{a_1}^{b_1} \int_{a_2}^{b_2} f(x,y) \odif x \odif y$
+	corresponds to integrating the $1$-form $f \cdot \ee_1^\vee \wedge \ee_2^\vee$.
+
+	\ii A volume integral $\int_{a_1}^{b_1} \int_{a_2}^{b_2} \int_{a_3}^{b_3} f(x,y) \odif x \odif y$
+	corresponds to integrating the $1$-form $f \cdot \ee_1^\vee \wedge \ee_2^\vee \wedge \ee_3^\vee$.
+\end{itemize}
+So this takes care of the green-labeled things on the diagonal.
+
+\paragraph{We can't interpret the remaining three green pictures!}
+The tricky part is the situations where $0 < d < n < 3$.
+There are three such things, the two line integrals when $d=1$ and $n \in \{2,3\}$
+and the surface integral when $d=2$ and $n=3$.
+
+In fact, these are \emph{not} covered by our theory of differential forms!
+Indeed, even in the special case where $f = 1$ is a constant function,
+the line integrals are actually arc length,
+and as we mentioned in \Cref{sec:arc_length_not_one_form},
+that integral cannot be viewed as the integral of any differential form.
+Similarly, surface area isn't a differential form either.
+
+\paragraph{$1$-forms and $2$-forms.}
+However, the three purplish integrals (over vector fields) can be viewed in our framework.
+\begin{itemize}
+	\ii Consider $d = 1$ and $n = 3$, i.e.\ the 3-D line integral.
+	We have as input a vector-valued function $\mathbf{F} \colon \RR^3 \to \RR^3$.
+	By projection principle (\Cref{thm:project_principle}), it's the same as the data of
+	\[ \mathbf{F}(p) = F_1(p) \ee_1 + F_2(p) \ee_2 + F_3(p) \ee_3 \]
+	for three functions $F_i \colon \RR^3 \to \RR$ for $i = 1, 2, 3$.
+
+	To convert the 18.02 notation $\mathbf{F}(p)$ into Napkin notation,
+	we identify $\mathbf{F}$ with the differential form
+	\[ \alpha_p = F_1(p) \ee_1^\vee + F_2(p) \ee_2^\vee + F_3(p) \ee_3^\vee. \]
+	Meanwhile, the path $\mathbf{r}(t)$ parametrized by time $t \in [t_0, t_1]$
+	matches the concept of a $1$-form $c : [t_0, t_1] \to \RR^3$.
+	The ``work'' in the integral is written as
+	\[ \mathbf F(\mathbf{r}(t)) \cdot \mathbf{r}'(t) \]
+	but that dot product is exactly the pullback $c^\ast\alpha$.
+
+	\ii The case $d = 1$ and $n = 2$ is exactly the same, with $3$ replaced by $2$.
+
+	\ii The weirdest case is the flux integral, for $d = 2$ and $n = 3$.
+	The parametrization $\mathbf{r}(u,v)$ is fine, and it corresponds to a $2$-cell $c$o.
+	But $\mathbf{F}(p)$ seems to have the wrong type.
+
+	But let's again write
+	\[ \mathbf{F}(p) = F_1(p) \ee_1 + F_2(p) \ee_2 + F_3(p) \ee_3. \]
+	There is a fairly weird hack used to convert this into Napkin notation: the form desired is
+	\[ \alpha_p = F_1(p) \ee_2^\vee \wedge \ee_3^\vee
+		+ F_2(p) \ee_3^\vee \wedge \ee_1^\vee
+		+ F_3(p) \ee_1^\vee \wedge \ee_2^\vee. \]
+	Yes, that's really the identification!
+	For this definition to be possible, we had to exploit the fact that
+	\[ \binom 31 = \binom 32. \]
+	That is the three-dimensional space $\Lambda^2(\RR^3)$
+	happens to have the same number of basis elements as $\Lambda(\RR^3)$, so the
+	\begin{align*}
+		\star \colon \Lambda^2(\RR^3) &\to \RR^3 \\
+		\ee_1 \wedge \ee_2 &\mapsto \ee_3 \\
+		\ee_2 \wedge \ee_3 &\mapsto \ee_1 \\
+		\ee_3 \wedge \ee_1 &\mapsto \ee_2
+	\end{align*}
+	is really an isomorphism, because it maps basis elements to basis elements.
+	We denote this map by $\star$,
+	because it turns out this map generalizes to the so-called Hodge star operator in higher dimensions.
+
+	This is where I talk about cross products, which I've deliberately avoided until now.
+	The cross product is a weird operation that takes two vectors in $\RR^3$
+	and outputs a vector in $\RR^3$.
+	Specifically, if $\mathbf{v} = x \ee_1 + y \ee_2 + z \ee_3$
+	and $\mathbf{w} = x' \ee_1 + y' \ee_2 + z' \ee_3$,
+	the definition of cross products taught in school is
+	\[ \mathbf{v} \times \mathbf{w} \coloneqq (yz'-y'z) \ee_1 + (zx'-xz') \ee_2 + (xy'-x'y) \ee_3. \]
+	Where does this come from?
+	The answer is that $\star(\mathbf{v} \vee \mathbf{w})$:
+	\begin{align*}
+		\mathbf{v} \wedge \mathbf{w} &=
+		(x \ee_1 + y \ee_2 + z \ee_3) \times (x' \ee_1 + y' \ee_2 + z' \ee_3) \\
+		&= (xy'-x'y) \ee_1 \wedge \ee_2
+		+ (yz'-y'z) \ee_2 \wedge \ee_3
+		+ (zx'-xz') \ee_3 \wedge \ee_1 \\
+		\star(\mathbf{v} \wedge \mathbf{w})
+		&\mapsto (xy'-x'y) \ee_3
+		+ (yz'-y'z) \ee_1
+		+ (zx'-xz') \ee_2.
+	\end{align*}
+	With that out of the way, the weird dot-cross product
+	\[ \mathbf{F}(\mathbf{r}(u,v)) \cdot \left( \mathbf{r}_u \times \mathbf{r}_v \right) \odif{u} \odif{v} \]
+	is now rigged to correspond to the pullback $c^\ast\alpha$.
+	So using this Hodge star, we find that flux is actually the integration of a $2$-form.
+\end{itemize}
+
+\paragraph{Exterior derivatives}
+Every red arrow in \Cref{fig:1802gradcurldiv} corresponds to the exterior derivative
+of the corresponding form.
+That is:
+\begin{itemize}
+	\ii The ``grad'' operation takes a $0$-form $f$ and outputs a vector field
+	corresponding to the $1$-form $df$.
+
+	\ii The ``curl'' operation takes a $1$-form $\alpha$ and outputs a vector field
+	corresponding to the $2$-form $d\alpha$.
+	When $n = 3$, this checks out because the space of $1$-forms is $\binom 31$ dimensional,
+	and the space of $2$-forms is $\binom 32$, and thankfully $\binom 31 = 3 = \binom 32$.
+
+	The weird notation $\nabla \times \mathbf{F}$
+	can be checked to correspond to the exterior derivative.
+	On the 18.02 side, if we have
+	\[ \mathbf{F} = F_1 \ee_1 + F_2 \ee_2 + F_3 \ee_3 \]
+	then the 18.02 definition of curl is that
+	\[ \opname{curl}(\mathbf{F}) \coloneqq \nabla \times \mathbf{F} \coloneqq
+		\left( \pdv{F_3}{y} - \pdv{F_2}{z} \right) \ee_1
+		+ \left( \pdv{F_1}{z} - \pdv{F_3}{x} \right) \ee_2
+		+ \left( \pdv{F_2}{x} - \pdv{F_1}{y} \right) \ee_3
+	\]
+	The reason for the nonsensical $\nabla \times$ notation
+	is that if you \emph{really} abuse notation you can almost think of this as
+	the cross product of a vector $\nabla = \left< \pdv{}x, \pdv{}y, \pdv{}z \right>$
+	and the vector $\mathbf{F} = \left< F_1, F_2, F_3 \right>$.
+
+	Now to convert $\mathbf{F}$ into Napkin notation,
+	remember we identified $\mathbf{F}$ with the differential form
+	\[ \alpha = F_1 \ee_1^\vee + F_2 \ee_2^\vee + F_3 \ee_3^\vee. \]
+	If we follow our formula for exterior derivative in \Cref{def:exterior_derivative}, we get
+	\begin{align*}
+		d\alpha &= dF_1 \wedge \ee_1^\vee + dF_2 \wedge \ee_2^\vee + dF_3 \wedge \ee_3^\vee \\
+		&= \left( \pdv{F_1}{x} \ee_1^\vee + \pdv{F_1}{y} \ee_2^\vee + \pdv{F_1}{z} \ee_3^\vee \right) \wedge \ee_1^\vee \\
+		&+ \left( \pdv{F_2}{x} \ee_1^\vee + \pdv{F_2}{y} \ee_2^\vee + \pdv{F_2}{z} \ee_3^\vee \right) \wedge \ee_2^\vee \\
+		&+ \left( \pdv{F_3}{x} \ee_1^\vee + \pdv{F_3}{y} \ee_2^\vee + \pdv{F_3}{z} \ee_3^\vee \right) \wedge \ee_3^\vee \\
+		&=
+		\left( \pdv{F_3}{y} - \pdv{F_2}{z} \right) \ee_2^\vee \wedge \ee_3^\vee
+		+ \left( \pdv{F_1}{z} - \pdv{F_3}{x} \right) \ee_3^\vee \wedge \ee_1^\vee
+		+ \left( \pdv{F_2}{x} - \pdv{F_1}{y} \right) \ee_1^\vee \wedge \ee_2^\vee.
+	\end{align*}
+	Taking the Hodge star and then dropping all the $\vee$'s
+	gives the same thing as $\nabla \times \mathbf{F}$,
+	so this completes the correspondence between the 18.02 notation and the Napkin notation.
+
+	\ii In 18.02 terminology, the divergence $\opname{div}$ is defined by
+	\[ \opname{div}(\mathbf{F}) \coloneqq \nabla \cdot \mathbf{F} \coloneqq
+		\pdv{F_1}{x} + \pdv{F_2}{y} + \pdv{F_3}{z} \]
+	which is a scalar-valued function for input points $p \in \RR^3$.
+	We let you do this one in \Cref{prob:div1802}.
+
+	The reason for the nonsensical $\nabla \cdot$ notation
+	is that if you \emph{really} abuse notation you can almost think of this as
+	the dot product of a vector $\nabla = \left< \pdv{}x, \pdv{}y, \pdv{}z \right>$
+	and the vector $\mathbf{F} = \left< F_1, F_2, F_3 \right>$.
+\end{itemize}
+
+\paragraph{Double derivative}
+We know that $d^2=0$,
+which in \Cref{fig:1802gradcurldiv} means composing two arrows gives zero.
+You'll see this in 18.02 as
+\begin{itemize}
+	\ii The curl of a gradient is zero.
+	\ii The flux of a curl is zero.
+\end{itemize}
+but really they're the same theorem.
+
+\paragraph{Stokes' theorem}
+Each red arrow also gives an instance of Stokes' theorem for cells.
+So Stokes' theorem even for cells is really great,
+because we get six 18.02 theorems as special cases!
+\begin{itemize}
+	\ii The three arrows from 0-D integrals to 1-D integrals are all called
+	``Fundamental Theorem of Calculus''.
+	Some authors will say ``Fundamental Theorem of Calculus for line integrals''
+	instead for $n > 1$.
+
+	\ii For $n=2$, the other red arrow is called ``Green's theorem'';
+	we let you work it out as \Cref{sec:green_theorem}.
+
+	\ii For $n=3$, the arrow from work to flux is confusingly also called
+	``Stokes' theorem''; it says the flux of a 2-D surface equals the work on the 1-D boundary.
+
+	\ii The rightmost red arrow for $n = 3$
+	is called the ``divergence theorem'';
+	it says the divergence of a 3-D volume equals the flux of the 2-D boundary surface.
+\end{itemize}
+
+
+
 \section\problemhead
 \begin{dproblem}[Green's theorem]
-	Let $f,g \colon \RR^2 \to \RR$ be smooth functions.
+	Let $f,g \colon \RR^2 \to \RR$ be smooth functions and $c$ a $2$-cell.
 	Prove that
 	\[ \int_c \left( \fpartial gx - \fpartial fy \right) \; dx \wedge dy
 	= \int_{\partial c} (f \; dx + g \; dy). \]
+	\label{sec:green_theorem}
 	\begin{hint}
 		Direct application of Stokes' theorem to $\alpha = f \; dx + g \; dy$.
 	\end{hint}
@@ -458,6 +845,17 @@ and thus we obtain the fundamental theorem of calculus.
 	\begin{hint}
 		This is just an exercises in sigma notation.
 	\end{hint}
+\end{problem}
+
+\begin{problem}
+	Finish the correspondence of the 18.02 notation with Napkin notation.
+	That is, let $\mathbf{F} \colon \RR^3 \to \RR^3$ be a vector field,
+	and let $\alpha$ be the $2$-form corresponding to it in Napkin version.
+	Show that the scalar-valued function defined by
+	\[ \opname{div}(\mathbf{F}) \coloneqq \nabla \cdot \mathbf{F} \coloneqq
+		\pdv{F_1}{x} + \pdv{F_2}{y} + \pdv{F_3}{z} \]
+	coincides with evaluation at the $3$-form $d\alpha$.
+	\label{prob:div1802}
 \end{problem}
 
 \begin{problem}[Pullback and $d$ commute]

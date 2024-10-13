@@ -93,10 +93,15 @@ Thus, we think of $\alpha_p$ as an element of $V^\vee$;
 \[ \alpha_p \in V^\vee. \]
 
 \begin{remark}
+	[Warning: arc length isn't a $1$-form]
 	You might recall that, in high school calculus, the ``arc-length element'' $ds$ can be
 	integrated along a curve: $\int_c ds$ is the length of the curve $c$.
 
 	This is \emph{not} a $1$-form! More on this later.
+	(To be brief: basically, the issue is that it's not a linear function.
+	In some places you'll see $ds = \sqrt{dx^2 + dy^2}$ written colloquially,
+	which should give you a sense that $ds$ does not behave like a
+	linear thing in $dx$ and $dy$.)
 \end{remark}
 
 Next, we draw pictures of $2$-forms.
@@ -277,9 +282,9 @@ Thus, a general $k$-form takes the shape
 	f_{i_1, \dots, i_k}(p) \cdot
 	\ee_{i_1}^\vee \wedge \ee_{i_2}^\vee \wedge \dots \wedge \ee_{i_k}^\vee. \]
 Since this is a huge nuisance to write, we will abbreviate this to just
-\[ \alpha = \sum_I f_I \cdot de_I \]
+\[ \alpha = \sum_I f_I \cdot d\ee_I \]
 where we understand the sum runs over $I = (i_1, \dots, i_k)$,
-and $de_I$ represents $\ee_{i_1}^\vee \wedge \dots \wedge \ee_{i_k}^\vee$.
+and $d\ee_I$ represents $\ee_{i_1}^\vee \wedge \dots \wedge \ee_{i_k}^\vee$.
 
 Now that we have an element $\Lambda^k(V^\vee)$, what can it do?
 Well, first let me get the definition on the table, then tell you what it's doing.
@@ -397,12 +402,13 @@ In particular, suppose $V = \RR^n$ and $f(x_1, \dots, x_n) = x_1$
 More generally, we can define the exterior derivative
 in terms of our basis $\ee_1$, \dots, $\ee_n$ as follows:
 \begin{definition}
-If $\alpha = \sum_I f_I de_I$ then we define the \vocab{exterior derivative} as
-\[ d\alpha \defeq \sum_I df_I \wedge de_I
-	= \sum_I \sum_j \fpartial{f_I}{\ee_j} d\ee_j \wedge de_I. \]
+If $\alpha = \sum_I f_I d\ee_I$ then we define the \vocab{exterior derivative} as
+\[ d\alpha \defeq \sum_I df_I \wedge d\ee_I
+	= \sum_I \sum_j \fpartial{f_I}{\ee_j} d\ee_j \wedge d\ee_I. \]
+\label{def:exterior_derivative}
 \end{definition}
-This doesn't depend on the choice of basis.
-(We'll mention a basis-free definition at the end of this section.)
+It turns out this doesn't depend on the choice of basis;
+we'll mention a basis-free definition at the end of this section.
 
 \begin{example}[Computing some exterior derivatives]
 	Let $V = \RR^3$ with standard basis $\ee_1$, $\ee_2$, $\ee_3$.
@@ -610,13 +616,13 @@ to write down what $\alpha \wedge \beta$ should be. In fact,
 You can see that this is a variant of the alternation operator (or the evaluation operation),
 where we compute a weighted average in order to force $\alpha \wedge \beta$ to be alternating.
 
-\section{Tangential remark: $ds$ is not a $1$-form}
-
-As mentioned in a remark earlier, $ds$ is not a
+\section{Tangential remark: Arc length $ds$ is not a $1$-form}
+\label{sec:arc_length_not_one_form}
+As mentioned in a remark earlier, the arc length $ds$ is not a
 $1$-form.\footnote{\url{https://mathoverflow.net/q/90455} has a discussion on this.}
 
-We said earlier that differential form is something you can integrate. You can certainly integrate
-$ds$, but it's not considered a $1$-form!
+We said earlier that differential form is something you can integrate.
+You can certainly integrate $ds$, but it's not considered a $1$-form!
 
 While we can easily check against the definition that $ds$ is not linear
 (\Cref{prob:ds_not_a_form}), it still raises the question that why we would want to
