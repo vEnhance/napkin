@@ -433,7 +433,7 @@ We now have all the ingredients to state Stokes' theorem for cells.
 \begin{theorem}
 	[Stokes' theorem for cells]
 	Take $U \subseteq V$ as usual, let $c \colon [0,1]^k \to U$ be a $k$-cell
-	and let $\alpha \colon U \to \Lambda^{k-1}(V^\vee)$ be a $(k-1)$-form.
+	and let $\alpha \colon U \to \bigwedge^{k-1}(V^\vee)$ be a $(k-1)$-form.
 	Then
 	\[ \int_c d\alpha = \int_{\partial c} \alpha. \]
 	In particular, if $d\alpha = 0$ then the left-hand side vanishes.
@@ -698,10 +698,10 @@ However, the three purplish integrals (over vector fields) can be viewed in our 
 	Yes, that's really the identification!
 	For this definition to be possible, we had to exploit the fact that
 	\[ \binom 31 = \binom 32. \]
-	That is the three-dimensional space $\Lambda^2(\RR^3)$
-	happens to have the same number of basis elements as $\Lambda(\RR^3)$, so the
+	That is the three-dimensional space $\bigwedge^2(\RR^3)$
+	happens to have the same number of basis elements as $\bigwedge^1(\RR^3) \cong \RR^3$, so the
 	\begin{align*}
-		\star \colon \Lambda^2(\RR^3) &\to \RR^3 \\
+		\star \colon \bigwedge^2(\RR^3) &\to \RR^3 \\
 		\ee_1 \wedge \ee_2 &\mapsto \ee_3 \\
 		\ee_2 \wedge \ee_3 &\mapsto \ee_1 \\
 		\ee_3 \wedge \ee_1 &\mapsto \ee_2

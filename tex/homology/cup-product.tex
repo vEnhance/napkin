@@ -162,7 +162,7 @@ As another piece of intuition, note that:
 
 \section{Graded rings}
 \prototype{Polynomial rings are commutative graded rings,
-while $\Lambda^\bullet(V)$ is anticommutative.}
+while $\bigwedge^\bullet(V)$ is anticommutative.}
 In the de Rham cohomology, the differential forms can interact in another way:
 given a $k$-form $\alpha$ and an $\ell$-form $\beta$, we can consider
 a $(k+\ell)$-form
@@ -234,9 +234,9 @@ To summarize:
 		of homogeneous degree $d$ polynomials (and $0$).
 		\ii Let $V$ be a vector space, and consider
 		the abelian group
-		\[ \Lambda^\bullet(V) = \bigoplus_{d \ge 0} \Lambda^d(V). \]
-		For example, $e_1 + (e_2 \wedge e_3) \in \Lambda^\bullet(V)$, say.
-		We endow $\Lambda^\bullet(V)$ with the product $\wedge$,
+		\[ \bigwedge^\bullet(V) = \bigoplus_{d \ge 0} \bigwedge^d(V). \]
+		For example, $e_1 + (e_2 \wedge e_3) \in \bigwedge^\bullet(V)$, say.
+		We endow $\bigwedge^\bullet(V)$ with the product $\wedge$,
 		which makes it into an \textbf{anticommutative ring}.
 		\ii Consider the set of differential forms of a manifold $M$,
 		say \[ \Omega^\bullet(M) = \bigoplus_{d \ge 0} \Omega^d(M) \]
@@ -275,7 +275,7 @@ We claim that:
 
 Therefore, we can obtain a \emph{anticommutative ring}
 \[ \HdR^\bullet(M) = \bigoplus_{k \ge 0} \HdR^k(M) \]
-with $\wedge$ as a product, and $1 \in \Lambda^0(\RR) = \RR$ as the identity.
+with $\wedge$ as a product, and $1 \in \bigwedge^0(\RR) = \RR$ as the identity.
 
 \section{Cup products}
 Inspired by this, we want to see if we can construct a similar product
@@ -837,8 +837,8 @@ As promised --- you can define the wedge product using the cross product.
 There's only one thing you can do:
 \begin{definition}[Definition of wedge product using the cross product]
 	For $X$ a $\RR$-vector space,
-	let $\alpha \in (\Lambda^m(X))^\vee$ and $\beta \in (\Lambda^n(X))^\vee$,
-	then $\alpha \wedge \beta \in (\Lambda^{m + n}(X)$ is defined by
+	let $\alpha \in (\bigwedge^m(X))^\vee$ and $\beta \in (\bigwedge^n(X))^\vee$,
+	then $\alpha \wedge \beta \in (\bigwedge^{m + n}(X)$ is defined by
 	\[
 		\alpha \wedge \beta = \Delta^*(\alpha \times \beta)
 	\]

@@ -244,8 +244,8 @@ Let $U$ be an open set.
 \begin{definition}
 	We define a \vocab{differential $k$-form} $\alpha$ on $U$
 	to be a smooth (infinitely differentiable) map
-	$\alpha \colon U \to \Lambda^k(V^\vee)$.
-	(Here $\Lambda^k(V^\vee)$ is the wedge product.)
+	$\alpha \colon U \to \bigwedge^k(V^\vee)$.
+	(Here $\bigwedge^k(V^\vee)$ is the wedge product.)
 \end{definition}
 
 Like with $Df$, we'll use $\alpha_p$ instead of $\alpha(p)$.
@@ -266,16 +266,16 @@ Like with $Df$, we'll use $\alpha_p$ instead of $\alpha(p)$.
 			f(p) \cdot \ee_1^\vee \wedge \ee_2^\vee
 			+ g(p) \cdot \ee_1^\vee \wedge \ee_3^\vee
 			+ h(p) \cdot \ee_2^\vee \wedge \ee_3^\vee
-			\in \Lambda^2(V^\vee)
+			\in \bigwedge^2(V^\vee)
 		\]
 		where $f,g,h \colon V \to \RR$ are smooth functions.
 	\end{enumerate}
 \end{example}
 
 Now, by the projection principle (\Cref{thm:project_principle}) we only have to specify
-a function on each of $\binom nk$ basis elements of $\Lambda^k(V^\vee)$.
+a function on each of $\binom nk$ basis elements of $\bigwedge^k(V^\vee)$.
 So, take any basis $\{\ee_i\}$ of $V$, and
-take the usual basis for $\Lambda^k(V^\vee)$ of elements
+take the usual basis for $\bigwedge^k(V^\vee)$ of elements
 \[ \ee_{i_1}^\vee \wedge \ee_{i_2}^\vee \wedge \dots \wedge \ee_{i_k}^\vee. \]
 Thus, a general $k$-form takes the shape
 \[ \alpha_p = \sum_{1 \le i_1 < \dots < i_k \le n}
@@ -286,7 +286,7 @@ Since this is a huge nuisance to write, we will abbreviate this to just
 where we understand the sum runs over $I = (i_1, \dots, i_k)$,
 and $d\ee_I$ represents $\ee_{i_1}^\vee \wedge \dots \wedge \ee_{i_k}^\vee$.
 
-Now that we have an element $\Lambda^k(V^\vee)$, what can it do?
+Now that we have an element $\bigwedge^k(V^\vee)$, what can it do?
 Well, first let me get the definition on the table, then tell you what it's doing.
 \begin{definition}
 	[How to evaluate a differential form at a point]
@@ -462,25 +462,25 @@ In that sense, $d^2 = 0$ is saying something like
 ``the boundary of the boundary is empty''.
 We'll make this precise when we see Stokes' theorem in the next chapter.
 
-\section{Digression: $\Lambda^k(V^\vee)$ versus $(\Lambda^k(V))^\vee$}
+\section{Digression: $\bigwedge^k(V^\vee)$ versus $(\bigwedge^k(V))^\vee$}
 \label{sec:wedge_product_dual}
 
-Earlier on, we remarked that $\Lambda^k(V^\vee) \cong (\Lambda^k(V))^\vee$ canonically, but we
+Earlier on, we remarked that $\bigwedge^k(V^\vee) \cong (\bigwedge^k(V))^\vee$ canonically, but we
 use the former for convenience.
 
 The former notation is indeed more convenient (wedge product of
 two differential form is natural), but it's not clear why \Cref{def:evaluate_differential_form} is
 defined in such a way.
 
-If we used $(\Lambda^k(V))^\vee$ instead, it's trivial to evaluate a differential form:
-For $f \in (\Lambda^k(V))^\vee$ and vectors $v_1, \dots, v_k \in V$, then
+If we used $(\bigwedge^k(V))^\vee$ instead, it's trivial to evaluate a differential form:
+For $f \in (\bigwedge^k(V))^\vee$ and vectors $v_1, \dots, v_k \in V$, then
 \[
 	f(v_1, \dots, v_k) \defeq f(v_1 \wedge \dots \wedge v_k).
 \]
-This is because $f$ naturally takes in an element of $\Lambda^k(V)$ and returns a real number.
+This is because $f$ naturally takes in an element of $\bigwedge^k(V)$ and returns a real number.
 
-But now, it is not clear how we can take $f \in (\Lambda^1(V))^\vee$ and $g \in (\Lambda^1(V))$, and
-return something like $f \wedge g \in (\Lambda^2(V))^\vee$: The natural choice $(v \wedge w
+But now, it is not clear how we can take $f \in (\bigwedge^1(V))^\vee$ and $g \in (\bigwedge^1(V))$, and
+return something like $f \wedge g \in (\bigwedge^2(V))^\vee$: The natural choice $(v \wedge w
 \mapsto f(v) g(w))$ isn't even well-defined!\footnote{You can try it with $f = \ee_1^\vee$ and
 $g = \ee_2^\vee$, evaluate it at $\ee_1 \wedge \ee_2$ and $-\ee_2 \wedge \ee_1$,
 which we know is equal.}
@@ -493,7 +493,7 @@ We have the following diagram:
 \begin{center}
 \begin{tikzcd}
 	T^k(V^\vee) \ar[r, hook, "\phi"] \ar[d, surjective head, "q", shift left] & (T^k(V))^\vee \\
-	\Lambda^k(V^\vee) \ar[u, hook, "\iota", shift left] & (\Lambda^k(V))^\vee \ar[u, hook, "q^\vee"]
+	\bigwedge^k(V^\vee) \ar[u, hook, "\iota", shift left] & (\bigwedge^k(V))^\vee \ar[u, hook, "q^\vee"]
 \end{tikzcd}
 \end{center}
 
@@ -509,30 +509,30 @@ Unlike the situation with the wedge product above, this map is indeed well-defin
 With some manual work, we can check $\phi$ is injective. Because both $T^k(V^\vee)$ and
 $(T^k(V))^\vee$ has dimension $(\dim V)^k$, $\phi$ is bijective.
 
-Next, note that $\Lambda^k(V)$ is just ``$T^k(V)$ but with more relations imposed'',
-there is a natural quotient map $q \colon T^k(V) \surjto \Lambda^k(V)$.
+Next, note that $\bigwedge^k(V)$ is just ``$T^k(V)$ but with more relations imposed'',
+there is a natural quotient map $q \colon T^k(V) \surjto \bigwedge^k(V)$.
 So, the tensors are divided into equivalence classes.
 \begin{example}
 	If $V = \RR^2$, then $T^2(V)$ would have elements such as $\ee_1 \otimes \ee_1$, $\ee_1 \otimes
 	\ee_2$ or $-\ee_2 \otimes \ee_1$.
 
-	Mapping these elements to $\Lambda^2(V)$, we get $\ee_1 \wedge \ee_1 = 0$, and $\ee_1 \wedge
+	Mapping these elements to $\bigwedge^2(V)$, we get $\ee_1 \wedge \ee_1 = 0$, and $\ee_1 \wedge
 	\ee_2 = -\ee_2 \wedge \ee_1$, i.e. $\ee_1 \otimes \ee_2$ and $-\ee_2 \otimes \ee_1$ belongs to
 	the same equivalence class.
 \end{example}
 
-The map $q$ induces a dual map $q^\vee \colon (\Lambda^k(V))^\vee \to (T^k(V))^\vee$.
+The map $q$ induces a dual map $q^\vee \colon (\bigwedge^k(V))^\vee \to (T^k(V))^\vee$.
 \begin{ques}
 	Convince yourself that a function $f \in (T^k(V))^\vee$ belongs to $\img q^\vee$ if and only if
 	$f$ assigns the same value for every element in each equivalence class, as defined above.
 \end{ques}
 
-Thus, we get an isomorphism $q \circ \phi\inv \circ q^\vee \colon (\Lambda^k(V))^\vee \to
-\Lambda^k(V^\vee)$.\footnote{We're using $q$ for both the map $T^k(V) \to \Lambda^k(V)$ and
-$T^k(V^\vee) \to \Lambda^k(V^\vee)$, by abuse of notation.}
+Thus, we get an isomorphism $q \circ \phi\inv \circ q^\vee \colon (\bigwedge^k(V))^\vee \to
+\bigwedge^k(V^\vee)$.\footnote{We're using $q$ for both the map $T^k(V) \to \bigwedge^k(V)$ and
+$T^k(V^\vee) \to \bigwedge^k(V^\vee)$, by abuse of notation.}
 
 To check this is indeed an isomorphism, we will construct its inverse map.
-As defined above, each equivalence class in $T^k(V^\vee)$ (fiber of $g \in \Lambda^k(V^\vee)$)
+As defined above, each equivalence class in $T^k(V^\vee)$ (fiber of $g \in \bigwedge^k(V^\vee)$)
 has multiple elements, but we can find a canonical element by the following:
 \begin{definition}
 	For vector space $V$, and element $f = f_1 \otimes f_2 \otimes \dots \otimes f_k \in T^k(V)$,
@@ -556,11 +556,11 @@ Here, $S_k$ is the permutation group. Notice the similarity with the definition 
 We see that $\Alt f$ is a desirable representative of the equivalence class of $f$ because:
 \begin{itemize}
 	\ii $\Alt (\Alt f) = \Alt f$;
-	\ii $q(f) = q(\Alt f)$ where $q$ is the quotient map $T^k(V) \surjto \Lambda^k(V)$;
+	\ii $q(f) = q(\Alt f)$ where $q$ is the quotient map $T^k(V) \surjto \bigwedge^k(V)$;
 	\ii $\Alt f$ is an \emph{alternating tensor} --- that is, if we swap two adjacent components
 	of $\Alt f$ for each pure tensor, then the whole tensor gets negated.
 \end{itemize}
-Thus it makes sense for us to define $\iota \colon \Lambda^k(V^\vee) \injto T^k(V^\vee)$
+Thus it makes sense for us to define $\iota \colon \bigwedge^k(V^\vee) \injto T^k(V^\vee)$
 that takes each element to the alternating tensor in $T^k(V^\vee)$.
 \begin{example}
 	With the same example as above, $V = \RR^2$, then we get
@@ -592,7 +592,7 @@ which means
 So, a corrective factor $k!$ is needed.
 
 To see how ``difficult'' the wedge product will be if we use the second notation, let $V = \RR^3$,
-$\alpha = dx \wedge dy \in \Lambda^2(V^\vee)$, and $\beta = dz \in \Lambda^1(V^\vee)$.
+$\alpha = dx \wedge dy \in \bigwedge^2(V^\vee)$, and $\beta = dz \in \bigwedge^1(V^\vee)$.
 
 Then, we know:
 \begin{itemize}
@@ -601,10 +601,10 @@ Then, we know:
 	\ii We should have $(\alpha \wedge \beta)(\ee_1 \wedge \ee_2 \wedge \ee_3) = 1$.
 \end{itemize}
 The last point is obvious if we let the wedge product be the map $\wedge \colon
-\Lambda^2(V^\vee) \times \Lambda^1(V^\vee) \to \Lambda^3(V^\vee)$.
+\bigwedge^2(V^\vee) \times \bigwedge^1(V^\vee) \to \bigwedge^3(V^\vee)$.
 
-However, if we're given $\alpha$ and $\beta$ as elements of $(\Lambda^2(V))^\vee$ and
-$(\Lambda^1(V))^\vee$ respectively (that is, we can only evaluate $\alpha$ at $v \wedge w$ for $v, w
+However, if we're given $\alpha$ and $\beta$ as elements of $(\bigwedge^2(V))^\vee$ and
+$(\bigwedge^1(V))^\vee$ respectively (that is, we can only evaluate $\alpha$ at $v \wedge w$ for $v, w
 \in V$; and we can only evaluate $\beta$ at $v$ for $v \in V$), then it would be much more difficult
 to write down what $\alpha \wedge \beta$ should be. In fact,
 \[
