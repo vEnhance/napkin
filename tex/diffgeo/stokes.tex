@@ -554,7 +554,7 @@ label("\fbox{2-D integral}", (8,9.5), deepblue);
 t = shift(8,3.5);
 path square = box((-0.6*w,-0.6*w), (0.6*w,0.6*w));
 filldraw(t*square, lightgrey, black+1.4);
-draw("$\int\limits_{a_1}^{b_1} \int\limits_{a_2}^{b_2} f(x,y) \odif x \odif y$", t*(0,-w), dir(-90));
+draw("$\int\limits_{a_1}^{b_1} \int\limits_{a_2}^{b_2} f(x,y) \odif x \odif y$", t*(0,-w), dir(-90), intfont);
 label("Area integral", t*dir(90), deepgreen);
 add(t*axis2);
 
@@ -627,10 +627,10 @@ label("$\nabla \times \mathbf{F}$ (curl)", (6,-3), dir(270), red);
 draw((9,-3)--(12.5,-3)--(12.5,-1.5), red, EndArrow);
 label("$\nabla \cdot \mathbf{F}$ (div)", (12.5,-2.25), dir(0), red);
 \end{asy}
-\caption{Throwback to first year of college?}
+\caption{Throwback to first year of college?
+  High-resolution version at \url{https://web.evanchen.cc/upload/1802/integrals-stokes.pdf}.}
 \label{fig:1802gradcurldiv}
 \end{figure}
-
 
 There is a lot going in \Cref{fig:1802gradcurldiv}, so let's break it down piece by piece.
 
