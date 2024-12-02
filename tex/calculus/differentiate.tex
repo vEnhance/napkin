@@ -247,6 +247,21 @@ of these functions, we do not prove these here.
 If we take for granted that $(e^x)' = e^x$,
 then we can derive two more useful functions
 to add to our library of functions we can differentiate.
+
+\begin{corollary}
+	[Derivative of $\log$ is $1/x$]
+	The function $\log \colon \RR_{>0} \to \RR$
+	has derivative $(\log x)' = 1/x$.
+\end{corollary}
+\begin{proof}
+	We have that $x = e^{\log x}$.
+	Differentiate both sides, and again use the chain rule\footnote{There
+		is actually a small subtlety here:
+		we are taking for granted that $\log$ is differentiable.}
+	\[ 1 = e^{\log x} \cdot (\log x)'. \]
+	Thus $(\log x)' = \frac{1}{e^{\log x}} = 1/x$.
+\end{proof}
+
 \begin{corollary}
 	[Power rule]
 	Let $r$ be a real number.
@@ -270,19 +285,6 @@ to add to our library of functions we can differentiate.
 	is that we don't at the moment even have a rigorous
 	definition for either, or even for $2^x$ if $x$ is not rational.
 	However it's nice to know that some things imply the other.
-\end{proof}
-\begin{corollary}
-	[Derivative of $\log$ is $1/x$]
-	The function $\log \colon \RR_{>0} \to \RR$
-	has derivative $(\log x)' = 1/x$.
-\end{corollary}
-\begin{proof}
-	We have that $x = e^{\log x}$.
-	Differentiate both sides, and again use the chain rule\footnote{There
-		is actually a small subtlety here:
-		we are taking for granted that $\log$ is differentiable.}
-	\[ 1 = e^{\log x} \cdot (\log x)'. \]
-	Thus $(\log x)' = \frac{1}{e^{\log x}} = 1/x$.
 \end{proof}
 
 \section{Local (and global) maximums}
@@ -339,7 +341,7 @@ but $x=0$ is not a local extrema for $f$.)
 	Then for sufficiently small $|h|$ we should have
 	\[ \frac{f(p+h)-f(p)}{h} > \eps. \]
 	In particular $f(p+h) > f(p)$ for $h > 0$
-	while $f(p-h) < f(p)$ for $h < 0$.
+	while $f(p+h) < f(p)$ for $h < 0$.
 	So $p$ is not a local extremum.
 
 	The proof for $f'(p) < 0$ is similar.
@@ -493,8 +495,7 @@ and Rolle's theorem is the special case where that secant is horizontal.
 	Let $s = \frac{f(b)-f(a)}{b-a}$ be the slope of the secant line,
 	and define
 	\[ g(x) = f(x) - s x \]
-	which intuitively shears $f$ downwards so that the
-	secant becomes vertical.
+	which intuitively shears $f$ downwards so that the secant becomes horizontal.
 	In fact $g(a) = g(b)$ now, so we apply Rolle's theorem to $g$.
 \end{proof}
 
@@ -508,8 +509,7 @@ and Rolle's theorem is the special case where that secant is horizontal.
 	(say $f(0) = 0$, $f(5) = 900$).
 	Then there is \emph{some} point at time in which
 	your speed at that moment was exactly $180$ kilometers per hour,
-	and so you cannot really complain
-	when the cops pull you over for speeding.
+	and so you cannot really complain when the cops pull you over for speeding.
 \end{remark}
 
 The mean value theorem is important because it lets

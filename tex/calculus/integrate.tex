@@ -61,17 +61,14 @@ The good news is that in the compact case all is well.
 \begin{theorem}
 	[Uniform continuity free for compact spaces]
 	Let $M$ be a compact metric space.
-	Then any continuous map $f \colon M \to N$ is
-	also uniformly continuous.
+	Then any continuous map $f \colon M \to N$ is also uniformly continuous.
 \end{theorem}
 \begin{proof}
 	Assume for contradiction there is some bad $\eps > 0$.
-	Then taking $\delta = 1/n$,
-	we find that for each integer $n$
-	there exists points $p_n$ and $q_n$
-	which are within $1/n$ of each other,
+	Then taking $\delta = 1/n$, we find that for each integer $n$
+	there exists points $p_n$ and $q_n$ which are within $1/n$ of each other,
 	but are mapped more than $\eps$ away from each other by $f$.
-	In symbols, $d_M(p_n, q_n) < 1/n$ but $d_N(f(p_n), f(q_n)) > \eps$.
+	In symbols, $d_M(p_n, q_n) \le 1/n$ but $d_N(f(p_n), f(q_n)) > \eps$.
 
 	By compactness of $M$,
 	we can find a convergent subsequence
@@ -80,7 +77,7 @@ The good news is that in the compact case all is well.
 	it ought to converge as well, to the same point $x \in M$.
 	Then the sequences $f(p_{i_n})$ and $f(q_{i_n})$
 	should both converge to $f(x) \in N$,
-	but this is impossible as they are always $\eps$
+	but this is impossible as they are always more than $\eps$
 	away from  each other.
 \end{proof}
 This means for example that $x^2$ viewed
