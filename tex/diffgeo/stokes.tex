@@ -220,7 +220,7 @@ So we can now give the definition.
 	[How to integrate differential $k$-forms]
 	Take a differential $k$-form $\alpha$ and a $k$-cell $c \colon [0,1]^k \to V$.
 	Define the integral $\int_c \alpha$ using the pullback
-	\[ \int_c \alpha \coloneqq \int_{[0,1]^k} c^\ast \alpha. \]
+	\[ \int_c \alpha \coloneq \int_{[0,1]^k} c^\ast \alpha. \]
 \end{definition}
 Since $c^\ast \alpha$ is a $k$-form on the $k$-dimensional unit box,
 it can be written as $f(x_1, \dots, x_n) \; dx_1 \wedge \dots \wedge dx_n$,
@@ -716,7 +716,7 @@ However, the three purplish integrals (over vector fields) can be viewed in our 
 	Specifically, if $\mathbf{v} = x \ee_1 + y \ee_2 + z \ee_3$
 	and $\mathbf{w} = x' \ee_1 + y' \ee_2 + z' \ee_3$,
 	the definition of cross products taught in school is
-	\[ \mathbf{v} \times \mathbf{w} \coloneqq (yz'-y'z) \ee_1 + (zx'-xz') \ee_2 + (xy'-x'y) \ee_3. \]
+	\[ \mathbf{v} \times \mathbf{w} \coloneq (yz'-y'z) \ee_1 + (zx'-xz') \ee_2 + (xy'-x'y) \ee_3. \]
 	Where does this come from?
 	The answer is that $\star(\mathbf{v} \vee \mathbf{w})$:
 	\begin{align*}
@@ -754,7 +754,7 @@ That is:
 	On the 18.02 side, if we have
 	\[ \mathbf{F} = F_1 \ee_1 + F_2 \ee_2 + F_3 \ee_3 \]
 	then the 18.02 definition of curl is that
-	\[ \opname{curl}(\mathbf{F}) \coloneqq \nabla \times \mathbf{F} \coloneqq
+	\[ \opname{curl}(\mathbf{F}) \coloneq \nabla \times \mathbf{F} \coloneq
 		\left( \pdv{F_3}{y} - \pdv{F_2}{z} \right) \ee_1
 		+ \left( \pdv{F_1}{z} - \pdv{F_3}{x} \right) \ee_2
 		+ \left( \pdv{F_2}{x} - \pdv{F_1}{y} \right) \ee_3
@@ -783,7 +783,7 @@ That is:
 	so this completes the correspondence between the 18.02 notation and the Napkin notation.
 
 	\ii In 18.02 terminology, the divergence $\opname{div}$ is defined by
-	\[ \opname{div}(\mathbf{F}) \coloneqq \nabla \cdot \mathbf{F} \coloneqq
+	\[ \opname{div}(\mathbf{F}) \coloneq \nabla \cdot \mathbf{F} \coloneq
 		\pdv{F_1}{x} + \pdv{F_2}{y} + \pdv{F_3}{z} \]
 	which is a scalar-valued function for input points $p \in \RR^3$.
 	We let you do this one in \Cref{prob:div1802}.
@@ -852,7 +852,7 @@ because we get six 18.02 theorems as special cases!
 	That is, let $\mathbf{F} \colon \RR^3 \to \RR^3$ be a vector field,
 	and let $\alpha$ be the $2$-form corresponding to it in Napkin version.
 	Show that the scalar-valued function defined by
-	\[ \opname{div}(\mathbf{F}) \coloneqq \nabla \cdot \mathbf{F} \coloneqq
+	\[ \opname{div}(\mathbf{F}) \coloneq \nabla \cdot \mathbf{F} \coloneq
 		\pdv{F_1}{x} + \pdv{F_2}{y} + \pdv{F_3}{z} \]
 	coincides with evaluation at the $3$-form $d\alpha$.
 	\label{prob:div1802}
