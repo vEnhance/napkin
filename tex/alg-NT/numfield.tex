@@ -64,7 +64,7 @@ Notice that by plugging in $x = \alpha$, we find that $R(\alpha) = 0$.
 But $\deg R < \deg P$, and $P(x)$ was supposed to be the minimal polynomial.
 That's impossible!
 
-It follows from this and the monotonicity of the minimal polynomial
+It follows from this and the monicity of the minimal polynomial
 that it is unique (when it exists), so actually it is better to refer to
 \emph{the} minimal polynomial.
 \begin{exercise}
@@ -136,8 +136,7 @@ as \vocab{rational integers}.
 	that any monic integer polynomial does not have $\half$ as a root!)
 \end{example}
 
-There are two properties I want to give
-for these off the bat,
+There are two properties I want to state off the bat,
 because they'll be used extensively in the tricky
 (but nice) problems at the end of the section.
 The first we prove now, since it's very easy:
@@ -165,6 +164,18 @@ The other is that:
 We could prove this now if we wanted to,
 but the results in the next chapter will more or less
 do it for us, and so we take this on faith temporarily.
+
+\begin{remark}
+  For $\alpha$ an algebraic integer with minimal 
+  polynomial $P$, it's clear by definition that all 
+  other roots of $P$ are also algebraic integers. One 
+  can check that this property (along with the two 
+  properties above) characterize the set of algebraic
+  integers. From this point of view, the algebraic
+  integers can be thought of as an intrinsically-defined 
+  generalization of the ring of integers $\ZZ \subseteq 
+  \QQ$ to the field of all algebraic numbers $\ol{\QQ}$. 
+\end{remark}
 
 \section{Number fields}
 \prototype{$\QQ(\sqrt2)$ is a typical number field.}
