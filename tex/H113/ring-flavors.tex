@@ -439,10 +439,10 @@ So, naturally, for any ring with a similar integer-valued function, we can perfo
 We call a function $\Norm \colon R \to \ZZ_{\geq 0}$ that satisfies the two conditions above an
 \vocab{Euclidean norm}, and an integral domain $R$ that has a norm an \vocab{Euclidean domain}.
 
-\begin{example}[The ring of Gaussian integers is an Euclidean domain]
+\begin{example}[The ring of Gaussian integers is a Euclidean domain]
 	On $\ZZ[i]$, the usual norm
 	\[ |a + bi| = a^2 + b^2 \]
-	is an Euclidean norm.
+	is a Euclidean norm.
 
 	Indeed, for any elements $a$ and $b$ with $b \neq 0$, we can compute the remainder $r$
 	by dividing $a$ by $b$, let $q$ be the Gaussian integer that is closest to $\frac{a}{b}$ (that
@@ -473,14 +473,14 @@ We call a function $\Norm \colon R \to \ZZ_{\geq 0}$ that satisfies the two cond
 	\end{asy}
 	\end{center}
 \end{example}
-\begin{example}[The ring of Eisenstein integers is an Euclidean domain]
+\begin{example}[The ring of Eisenstein integers is a Euclidean domain]
 	Similarly, let $\omega = \frac{1 + \sqrt 3 i}{2}$ (that is $\omega^3 = -1$), then $\ZZ[\omega]$ is
-	an Euclidean domain with the usual norm
+	a Euclidean domain with the usual norm
 	\[ |a + bi| = a^2 + b^2 \]
 	or equivalently
 	\[ |a + b\omega| = a^2 + ab + b^2. \]
 \end{example}
-\begin{example}[The ring {$\ZZ[\sqrt{11}]$} is an Euclidean domain]
+\begin{example}[The ring {$\ZZ[\sqrt{11}]$} is a Euclidean domain]
 	As before. This time, the natural norm\footnote{%
 	See \Cref{sec:norms_traces} for the explanation why this norm is the natural one.}
 	will be:
@@ -488,7 +488,7 @@ We call a function $\Norm \colon R \to \ZZ_{\geq 0}$ that satisfies the two cond
 		\Norm_{\QQ(\sqrt{11})/\QQ}(a + b \sqrt 11) = (a + b \sqrt 11) (a - b \sqrt 11)
 		= a^2 - 11 b^2.
 	\]
-	Since we need an Euclidean norm, we will take $\Norm(a + b \sqrt 11) = |a^2 - 11 b^2|.$
+	Since we need a Euclidean norm, we will take $\Norm(a + b \sqrt 11) = |a^2 - 11 b^2|.$
 
 	Given two elements $a$ and $b$ in $\ZZ[\sqrt{11}]$ with $b \neq 0$,
 	we will try to compute $r$ such that $\Norm(r) < \Norm(b)$ as $r = a - q b$ as before.
@@ -576,24 +576,24 @@ We call a function $\Norm \colon R \to \ZZ_{\geq 0}$ that satisfies the two cond
 	As such, rounding to the nearest point is not always the best way --- nevertheless, it can be
 	proven (by exhaustive case checking, similar to the case of $\ZZ[i]$) that for every value of
 	$\frac{a}{b} \in \QQ(\sqrt{11})$, there is some $q \in \ZZ[\sqrt{11}]$ such that
-	$\Norm(\frac{a}{b}-q) < 1$. Thus $\Norm$ is an Euclidean norm.
+	$\Norm(\frac{a}{b}-q) < 1$. Thus $\Norm$ is a Euclidean norm.
 \end{example}
 
-That having said, sometimes the natural norm of an Euclidean domain need not be Euclidean.
+That having said, sometimes the natural norm of a Euclidean domain need not be Euclidean.
 $\ZZ[\frac{1 + \sqrt{69}}{2}]$ is the first example.
 %DOI 10.1007/BF02567617
 
-\begin{example}[{$\QQ[x]$ is an Euclidean domain}]
+\begin{example}[{$\QQ[x]$ is a Euclidean domain}]
 	Similarly, in $\QQ[x]$ we can let the norm be the degree of a polynomial --- the polynomial
 	division with remainder algorithm will take care of computing the $\gcd$.
 \end{example}
 
-Back to the topic of PID. In an Euclidean domain, you can compute the $\gcd$ of any two elements.
+Back to the topic of PID. In a Euclidean domain, you can compute the $\gcd$ of any two elements.
 What about an infinite family of elements?
 
 Turns out the situation is very nice:
 \begin{proposition}
-	An Euclidean domain is a PID.
+	A Euclidean domain is a PID.
 \end{proposition}
 Actually, we don't need to provide an explicit algorithm to compute the $\gcd$ of an infinite family
 of elements --- of course any such algorithm cannot terminate in a finite amount of time! --- but we
@@ -617,7 +617,7 @@ With that intuition in mind, we formalize our proof:
 \end{proof}
 
 
-\begin{example}[{The ring $\ZZ[\frac{1 + \sqrt{-19}}{2}]$ is not an Euclidean domain}]
+\begin{example}[{The ring $\ZZ[\frac{1 + \sqrt{-19}}{2}]$ is not a Euclidean domain}]
 	Let $R = \ZZ[\frac{1 + \sqrt{-19}}{2}]$.
 
 	With the above example in mind, what can we say about this ring?
@@ -630,10 +630,10 @@ With that intuition in mind, we formalize our proof:
 
 We will prove the above claim. The general plan is:
 \begin{itemize}
-	\ii Show that the existence of an Euclidean norm implies the existence of something that we
+	\ii Show that the existence of a Euclidean norm implies the existence of something that we
 	calls an \vocab{universal side divisor}.
 	\ii Show that $R$ has no universal side divisor.
-	\ii Thus, $R$ cannot have an Euclidean norm.
+	\ii Thus, $R$ cannot have a Euclidean norm.
 \end{itemize}
 
 First, look at the examples above of $\ZZ[i]$ and $\ZZ[\omega]$. We see that the units are the
@@ -722,7 +722,7 @@ divisor of every element $a \in R$.
 
 Now, the connection between the two concepts considered above.
 \begin{lemma}
-	In an Euclidean domain,
+	In a Euclidean domain,
 	the smallest-norm nonzero element $b$ that is not an unit is a universal side divisor.
 \end{lemma}
 \begin{proof}
