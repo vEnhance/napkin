@@ -52,18 +52,15 @@ The relevant theorem, which we will just quote:
 \begin{theorem}
 	[Haar measure]
 	Let $G$ be a locally compact abelian group.
-	We regard it as a measurable space
-	using its Borel $\sigma$-algebra $\SB(G)$.
-	There exists a measure $\mu \colon \SB(G) \to [0,\infty]$,
-	called the \vocab{Haar measure},
+	We regard it as a measurable space using its Borel $\sigma$-algebra $\SB(G)$.
+	There exists a measure $\mu \colon \SB(G) \to [0,\infty]$, called the \vocab{Haar measure},
 	satisfying the following properties:
 	\begin{itemize}
 		\ii $\mu(gS) = \mu(S)$ for every $g \in G$ and measurable $S$.
-		That means that $\mu$ is ``translation-invariant''
-		under translation by $G$.
+		That means that $\mu$ is ``translation-invariant'' under translation by $G$.
 		\ii $\mu(K)$ is finite for any compact set $K$.
 		\ii if $S$ is measurable, then $\mu(S) = \inf\left\{ \mu(U) \mid U \supseteq S \text{ open} \right\}$.
-		\ii if $U$ is open, then $\mu(U) = \sup\left\{ \mu(S) \mid S \supseteq U \text{ measurable} \right\}$.
+		\ii if $U$ is open, then $\mu(U) = \sup\left\{ \mu(K) \mid K \subseteq U \text{ compact} \right\}$.
 	\end{itemize}
 	Moreover, it is unique up to scaling by a positive constant.
 \end{theorem}
@@ -77,11 +74,9 @@ The relevant theorem, which we will just quote:
 For this chapter, we will only use the first two properties at all,
 and the other two are just mentioned for completeness.
 Note that this actually generalizes the chapter where
-we constructed a measure on $\SB(\RR^n)$,
-since $\RR^n$ is an LCA group!
+we constructed a measure on $\SB(\RR^n)$, since $\RR^n$ is an LCA group!
 
-So, in short: if we have an LCA group,
-we have a measure $\mu$ on it.
+So, in short: if we have an LCA group, we have a measure $\mu$ on it.
 
 \section{The Pontryagin dual}
 Now the key definition is:
@@ -93,11 +88,10 @@ Now the key definition is:
 	The maps $\xi$ are called \vocab{characters}.
 	It can be itself made into an LCA group.\footnote{If you must
 		know the topology, it is the \vocab{compact-open topology}:
-		for any compact set $K \subseteq G$
-		and open set $U \subseteq \TT$,
+		for any compact set $K \subseteq G$ and open set $U \subseteq \TT$,
 		we declare the set of all $\xi$ with $\xi\im(K) \subseteq U$ to be open,
-		and then take the smallest topology
-		containing all such sets. We won't use this at all.}
+		and then take the smallest topology containing all such sets.
+		We won't use this at all.}
 \end{definition}
 \begin{example}
 	[Examples of Pontryagin duals]
@@ -231,9 +225,9 @@ in the second half $G$ is not.
 		\text{Fourier series} & \TT \cong [-\pi, \pi]  & n \in \ZZ
 			& \exp(inx) \\ \hline
 		\text{Continuous Fourier transform} & \RR & \xi \in \RR
-		 	& e(\xi x) \\
+			& e(\xi x) \\
 		\text{Discrete time Fourier transform} & \ZZ & \xi \in \TT \cong [-\pi, \pi]
-		 	& \exp(i \xi n) \\
+			& \exp(i \xi n) \\
 	\end{array}
 \]
 You might notice that the \textbf{various names are awful}.
