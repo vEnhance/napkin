@@ -328,18 +328,20 @@ A trivial result that gets used enough that I should explicitly call it out:
 \begin{dproblem}
 	[Classical]
 	\gim
-	Assume $G$ is a finite group and $p$ is the smallest prime dividing its order.
-	Let $H$ be a subgroup of $G$ with $\left\lvert G \right\rvert / \left\lvert H \right\rvert = p$.
+    Assume $G$ is a finite group of order $n \ge 2$ and $p$ is the
+    smallest prime dividing $n$. Let $H$ be a subgroup of $G$ with
+    $\left\lvert G \right\rvert / \left\lvert H \right\rvert = p$.
 	Show that $H$ is normal in $G$.
-	\begin{hint}
-		Let $G$ act on the left cosets $\{gH \mid g \in G\}$
-		by left multiplication: $g' \cdot gH = g'gH$.
-		Consider the orbit $\OO$ of the coset $H$.
-		By the orbit-stabilizer theorem, $\left\lvert \OO \right\rvert$ divides $\left\lvert G \right\rvert$.
-		But $\left\lvert \OO \right\rvert \le p$ also.
-		So either $\OO = \{H\}$ or $\OO$ contains all cosets.
-		The first case is impossible.
-	\end{hint}
+    \begin{hint}
+        Let $H$ act on the left cosets $\{gH \mid g \in G\}$
+        by left multiplication: $h \cdot gH = hgH$.
+        Consider any orbit $\OO$
+        By the orbit-stabilizer theorem, $\left\lvert \OO \right\rvert$
+        divides $\left\lvert H \right\rvert$ which divides $n$, so $\OO$
+        divides $n$. But $\left\lvert \OO \right\rvert \le p$ since
+        there are $p$ cosets. So either $\OO = \{H\}$ or $\OO$ contains
+        all cosets. Show that the latter is impossible and conclude.
+    \end{hint}
 	\begin{sol}
 		\url{https://math.stackexchange.com/a/3012179/229197}
 	\end{sol}
