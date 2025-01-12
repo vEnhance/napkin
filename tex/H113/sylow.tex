@@ -142,7 +142,7 @@ By considering the set $X$ of ALL subsets of size $p^n$ at once, we can exploit 
 
 Here is the proof.
 \begin{itemize}
-	\ii Let $G$ act on $X$ by $g \cdot X \defeq \left\{ gx \mid x \in X \right\}$.
+	\ii Let $G$ act on $X$ by $g \cdot S \defeq \left\{ gs \mid s \in S \right\}$.
 	\ii Take an orbit $\OO$ with size not divisible by $p$.
 	(This is possible because of our deep number theoretic fact.
 	Since $\left\lvert X \right\rvert$ is nonzero mod $p$ and the orbits partition $X$,
@@ -159,10 +159,10 @@ Here is the proof.
 
 
 \subsection{Step 2: Any two Sylow $p$-subgroups are conjugate}
-Let $P$ be a Sylow $p$-subgroup (which exists by the previous step).
-We now prove that for any $p$-group $Q$, $Q \subseteq gPg\inv$.
-Note that if $Q$ is also a Sylow $p$-subgroup, then $Q = gPg\inv$ for size reasons;
-this implies that any two Sylow subgroups are indeed conjugate.
+If $P$ is a Sylow $p$-subgroup and $Q$ is a $p$-group, we prove $Q
+\subseteq gPg\inv$. Note that if $Q$ is also a Sylow $p$-subgroup, then
+$Q = gPg\inv$ for size reasons; this implies that any two Sylow
+subgroups are indeed conjugate.
 
 \textbf{Let $Q$ act on the set of left cosets of $P$ by left multiplication.}
 Note that
@@ -176,15 +176,14 @@ Equivalently, $qg \in gP$ for all $q \in Q$, so $Q \subseteq gPg\inv$ as desired
 
 
 \subsection{Step 3: Showing $n_p \equiv 1 \pmod p$}
-Let $\mathcal S$ denote the set of all the Sylow $p$-subgroups.
-Let $P \in \mathcal S$ be arbitrary.
+Let $\mathcal S$ denote the set of all the Sylow $p$-subgroups. By our
+first step, there exists some $P \in \mathcal S$.
 \begin{ques}
 	Why does $\left\lvert \mathcal S \right\rvert$ equal $n_p$?
 	(In other words, are you awake?)
 \end{ques}
-Now we can proceed with the proof.
-Let $P$ act on $\mathcal S$ by conjugation.
-Then:
+Now we can proceed with the proof. Let $P$ act on $\mathcal S$ by
+conjugation. Then:
 \begin{itemize}
 	\ii Because $P$ is a $p$-group, $n_p \pmod p$ is the number of fixed points
 	of this action.
