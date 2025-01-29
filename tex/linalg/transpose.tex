@@ -479,12 +479,9 @@ As a corollary:
 
 \begin{problem}
 	[Polynomial criteria for normality]
-	Let $V$ be a complex inner product space
-	and let $T \colon V \to V$ be a linear map.
-	Show that $T$ is normal if and only if
-	there is a polynomial\footnote{Here,
-		$p(T)$ is meant in the same composition
-		sense as in Cayley-Hamilton.}
+	Let $V$ be a complex inner product space and let $T \colon V \to V$ be a linear map.
+	Show that $T$ is normal if and only if there is a polynomial\footnote{Here,
+			we mean $p(T)$ in the same composition sense as in Cayley-Hamilton.}
 	$p \in \CC[t]$ such that \[ T^\dagger = p(T). \]
 	\begin{hint}
 		If there is a polynomial, check $TT^\dagger = T^\dagger T$ directly.
@@ -531,4 +528,22 @@ As a corollary:
 		Since there are finitely many $\lambda_i$,
 		we can construct such a polynomial using Lagrange interpolation.
 	\end{sol}
+\end{problem}
+
+\begin{problem}
+	[Kronecker product of matrices]
+	\gim
+	Find an equivalence between the following two definitions of the
+	\href{https://en.wikipedia.org/wiki/Kronecker_product}{Kronecker product},
+	the former from a mathematician and the latter from a computer scientist:
+	\begin{itemize}
+		\ii Suppose $A \colon V_1 \to W_1$ and $B \colon V_2 \to W_2$
+		are linear maps of finite-dimensional vector spaces over $\RR$.
+		Then we define $A \otimes B \colon V_1 \otimes V_2 \to W_1 \otimes W_2$
+		on simple tensors by $v_1 \otimes v_2 \mapsto A(v_1) \otimes B(v_2)$.
+
+		\ii Suppose $A$ is an $m \times n$ matrix and $B$ is a $p \times q$ matrix.
+		Then $A \otimes B$ is an operator which takes a $q \times n$ matrix $X$
+		and returns the $p \times m$ matrix $BXA^\top$.
+	\end{itemize}
 \end{problem}
