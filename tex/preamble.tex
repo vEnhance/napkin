@@ -35,9 +35,11 @@
 	\emph{{\color{red} Prototypical example for this section:} #1} \par\medskip
 }
 \newenvironment{moral}{%
-	\begin{mdframed}[linecolor=green!70!black]%
+	\begin{tcolorbox}[boxrule=0.4pt,colframe=green!70!black,sharp corners,
+		standard jigsaw,opacityback=0,left=10pt,right=10pt,top=3pt,bottom=3pt,
+		before skip=10pt,after skip=20pt]%
 	\bfseries\color{green!50!black}}%
-	{\end{mdframed}}
+	{\end{tcolorbox}}
 
 %%fakesection Links (hyperref loaded earlier implicitly)
 \hypersetup{
@@ -122,103 +124,140 @@
 \renewcommand*{\partformat}{\color{purple}\scalebox{2.5}{\thepart}}
 
 %%fakesection Theorems
+\usepackage{tcolorbox}
+\tcbuselibrary{breakable,skins,hooks}
+
+% patch tcolorbox to support continuation of a paragraph
+% after box
+% from https://tex.stackexchange.com/questions/568782/
+\makeatletter
+\tcbset{
+	after app={%
+		\ifx\tcb@drawcolorbox\tcb@drawcolorbox@breakable
+		\else
+		% add only when not breakabel
+		\@endparenv
+		\fi
+	}
+}
+
+% for breakable
+\appto\tcb@use@after@lastbox{\@endparenv\@doendpe}
+\makeatother
+% END patch tcolorbox for continuation of paragraph
+
+
 \usepackage{thmtools}
-\usepackage[framemethod=TikZ]{mdframed}
 
 \theoremstyle{definition}
-\mdfdefinestyle{mdbluebox}{%
-	roundcorner = 10pt,
-	linewidth=1pt,
-	skipabove=12pt,
-	innerbottommargin=9pt,
-	skipbelow=2pt,
-	nobreak=true,
-	linecolor=blue,
-	backgroundcolor=TealBlue!5,
-}
 \declaretheoremstyle[
 	headfont=\sffamily\bfseries\color{MidnightBlue},
-	mdframed={style=mdbluebox},
-	headpunct={\\[3pt]},
-	postheadspace={0pt}
-]{thmbluebox}
-
-\mdfdefinestyle{mdredbox}{%
-	linewidth=0.5pt,
-	skipabove=12pt,
-	frametitleaboveskip=5pt,
-	frametitlebelowskip=0pt,
-	skipbelow=2pt,
-	frametitlefont=\bfseries,
-	innertopmargin=4pt,
-	innerbottommargin=8pt,
-	linecolor=RawSienna,
-	backgroundcolor=Salmon!5,
-}
-\declaretheoremstyle[
-	headfont=\bfseries\color{RawSienna},
-	mdframed={style=mdredbox},
 	headpunct={\\[3pt]},
 	postheadspace={0pt},
-]{thmredbox}
+]{thmtheorem}
 
-\declaretheorem[%
-style=thmbluebox,name=Theorem,numberwithin=section]{theorem}
-\declaretheorem[style=thmbluebox,name=Lemma,sibling=theorem]{lemma}
-\declaretheorem[style=thmbluebox,name=Proposition,sibling=theorem]{proposition}
-\declaretheorem[style=thmbluebox,name=Corollary,sibling=theorem]{corollary}
-\declaretheorem[style=thmredbox,name=Example,sibling=theorem]{example}
 
-\mdfdefinestyle{mdgreenbox}{%
-	skipabove=8pt,
-	linewidth=2pt,
-	rightline=false,
-	leftline=true,
-	topline=false,
-	bottomline=false,
-	linecolor=ForestGreen,
-	backgroundcolor=ForestGreen!5,
+\declaretheoremstyle[
+	headfont=\bfseries\color{RawSienna},
+	headpunct={\\[3pt]},
+	postheadspace={0pt},
+]{thmexample}
+
+\tcbset{
+	theorem box/.style={
+		enhanced,
+		arc=9pt,
+		outer arc=10pt,
+		colframe=blue,
+		colback=TealBlue!5,
+		boxrule=1pt,
+		before skip=12pt,
+		after skip=14pt,
+		left=10pt,
+		right=10pt
+	},
+	remark box/.style={
+		boxrule=0pt,
+		frame hidden,
+		sharp corners,
+		enhanced,
+		borderline west={2pt}{0pt}{ForestGreen},
+		before skip=8pt,
+		colback=ForestGreen!5,
+		after skip=12pt,
+		breakable,
+		left=10pt,
+		right=10pt
+	},
+	example box/.style={
+		enhanced,
+		sharp corners,
+		arc=9pt,
+		outer arc=10pt,
+		colframe=RawSienna,
+		colback=Salmon!5,
+		boxrule=0.5pt,
+		before skip=12pt,
+		after skip=14pt,
+		breakable,
+		top=6pt,
+		bottom=8pt,
+		breakable,
+		left=10pt,
+		right=10pt
+	},
+	ques box/.style={
+		boxrule=0pt,
+		frame hidden,
+		enhanced,
+		sharp corners,
+		before skip=8pt,
+		after skip=12pt,
+		borderline west={3pt}{0pt}{black},
+		colback=RedViolet!5!gray!5,
+		breakable,
+		left=10pt,
+		right=10pt
+	}
 }
+
+\declaretheorem[style=thmtheorem,name=Theorem,numberwithin=section]{theorem}
+\tcolorboxenvironment{theorem}{theorem box}
+\declaretheorem[style=thmtheorem,name=Lemma,sibling=theorem]{lemma}
+\tcolorboxenvironment{lemma}{theorem box}
+\declaretheorem[style=thmtheorem,name=Proposition,sibling=theorem]{proposition}
+\tcolorboxenvironment{proposition}{theorem box}
+\declaretheorem[style=thmtheorem,name=Corollary,sibling=theorem]{corollary}
+\tcolorboxenvironment{corollary}{theorem box}
+\declaretheorem[style=thmexample,name=Example,sibling=theorem]{example}
+\tcolorboxenvironment{example}{example box}
+
 \declaretheoremstyle[
 	headfont=\bfseries\sffamily\color{ForestGreen!70!black},
 	bodyfont=\normalfont,
-	spaceabove=2pt,
-	spacebelow=1pt,
-	mdframed={style=mdgreenbox},
 	headpunct={ --- },
-]{thmgreenbox}
+]{thmremark}
 \declaretheoremstyle[
 	headfont=\bfseries\sffamily\color{ForestGreen!70!black},
 	bodyfont=\normalfont,
-	spaceabove=2pt,
-	spacebelow=1pt,
-	mdframed={style=mdgreenbox},
 	headpunct={},
-]{thmgreenbox*}
+]{thmremark*}
 
-\mdfdefinestyle{mdblackbox}{%
-	skipabove=8pt,
-	linewidth=3pt,
-	rightline=false,
-	leftline=true,
-	topline=false,
-	bottomline=false,
-	linecolor=black,
-	backgroundcolor=RedViolet!5!gray!5,
-}
 \declaretheoremstyle[
 	headfont=\bfseries,
-	bodyfont=\normalfont\small,
-	spaceabove=0pt,
-	spacebelow=0pt,
-	mdframed={style=mdblackbox}
-]{thmblackbox}
+	bodyfont=\normalfont\small
+]{thmques}
 
-\declaretheorem[name=Question,sibling=theorem,style=thmblackbox]{ques}
-\declaretheorem[name=Exercise,sibling=theorem,style=thmblackbox]{exercise}
-\declaretheorem[name=Remark,sibling=theorem,style=thmgreenbox]{remark}
-\declaretheorem[name=Remark,sibling=theorem,style=thmgreenbox*]{remark*}
-\declaretheorem[name=Step,style=thmgreenbox]{step} % only used in Lebesgue int
+\declaretheorem[name=Question,sibling=theorem,style=thmques]{ques}
+\tcolorboxenvironment{ques}{ques box}
+\declaretheorem[name=Exercise,sibling=theorem,style=thmques]{exercise}
+\tcolorboxenvironment{exercise}{ques box}
+\declaretheorem[name=Remark,sibling=theorem,style=thmremark]{remark}
+\tcolorboxenvironment{remark}{remark box}
+\declaretheorem[name=Remark,sibling=theorem,style=thmremark*]{remark*}
+\tcolorboxenvironment{remark*}{remark box}
+\declaretheorem[name=Step,style=thmremark]{step} % only used in Lebesgue int
+\tcolorboxenvironment{step}{remark box}
 
 \theoremstyle{definition}
 \newtheorem{claim}[theorem]{Claim}
