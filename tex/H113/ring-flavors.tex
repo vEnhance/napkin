@@ -734,7 +734,17 @@ And finally,
 \begin{proposition}
 	There is no universal side divisor in $R$.
 \end{proposition}
-Proof is tedious, omitted.\todo{fix}  % actually I haven't worked through the proof yet -user202729
+% actually I haven't worked through the proof yet -user202729 % draft solution below - palindrome868
+\begin{proof}
+All numbers are of the form, $\frac{a}{2} + \frac{b\sqrt{-19}}{2}$ where $a$ and $b$ have the same parity. The absolute value of a complex number, defined as $\frac{a^2}{4} + \frac{19b^2}{4}$, is multiplicative and is greater than $1$ for all numbers in $\mathbb Z [\frac{1+\sqrt{-19}}{2}]$ except for $-1, 0, 1$, which have absolute values of $1, 0, 1$, respectively. Since there are no numbers in the ring with absolute values greater than $0$ and less than $1$, all numbers in the ring with absolute values greater than $1$ do not have multiplicative inverses in the ring. Hence, the only units are $1$ and $-1$.
+
+When we multiply all the elements in the ring by $x$, the distances between pairs of elements in the complex plane multiplies by $|x|$. Initially, the distances between pairs of elements were at least $1$.
+\begin{itemize}
+\item If $x$ is real and $|x| \geq 2$, then $xR$ doesn't contain any elements of the form $a + \frac{\sqrt{-19}}{2}$, so $x$ is not a universal side divisor.
+\item If $x$ is non-real and $|x| \geq 2$, then an element in $xR$ can only be real if it was previously non-real. This means the elements of $xR$ on the real axis have absolute value of at least $2|\frac{1+\sqrt{-19}}{2}| = 2\sqrt{5} \geq 4$. Hence, $x$ is not a side divisor of $2$, so $x$ is not a universal side divisor.
+\end{itemize}
+Since $R$ does not have a universal side divisor, $R$ is not an Euclidean domain.
+\end{proof}
 
 \section{\problemhead}
 Not olympiad problems, but again the spirit is very close
