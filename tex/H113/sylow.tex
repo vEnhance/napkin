@@ -182,14 +182,15 @@ first step, there exists some $P \in \mathcal S$.
 	Why does $\left\lvert \mathcal S \right\rvert$ equal $n_p$?
 	(In other words, are you awake?)
 \end{ques}
-Now we can proceed with the proof. Let $P$ act on $\mathcal S$ by
-conjugation. Then:
+Now we can proceed with the proof.
+Let $P$ act on $\mathcal S$ by conjugation. Then:
 \begin{itemize}
-	\ii Because $P$ is a $p$-group, $n_p \pmod p$ is the number of fixed points
-	of this action.
-	Now we claim $P$ is the only fixed point of this action.
+	\ii Because $P$ is a $p$-group,
+  the orbits of the action have sizes which are in $\{p^0, p^1, p^2, \dots\}$
+  In particular, the number of fixed points modulo $p$ equals $n_p \pmod p$.
+	\ii Now we claim $P$ is the only fixed point of this action.
 	\ii Let $Q$ be any other fixed point, meaning $xQx\inv = Q$ for any $x \in P$.
-	\ii Define the normalizer $N_G(Q) = \left\{ g \in G \mid gQg\inv = Q \right\}$.  It contains both $P$ and $Q$.
+	\ii Define the normalizer $N_G(Q) = \left\{ g \in G \mid gQg\inv = Q \right\}$. It contains both $P$ and $Q$.
 	\ii Now for the crazy part: apply Step 2 to $N_G(Q)$.
 	Since $P$ and $Q$ are Sylow $p$-subgroups of it, they must be conjugate.
 	\ii Hence $P=Q$, as desired.
