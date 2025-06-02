@@ -374,6 +374,45 @@ $\Spec A$ has generic point $(0)$.
 	and as a topological subspace, it has generic point $(y-x^2)$.
 \end{abuse}
 
+\section{Krull dimension}
+Surprisingly, the topology is good enough to give dimension.
+For affine schemes:
+\begin{definition}
+	Let $A$ be a commutative ring.
+	Consider chains of prime ideals
+	$\kp_0 \subsetneq \kp_1 \subsetneq \dots \subsetneq \kp_n \subseteq A$,
+	where $n$ is called the \emph{length}.
+	The supremum of all possible $n$ is the called \vocab{Krull dimension} of $A$.
+
+	The Krull dimension is always nonnegative unless $A$ is the zero ring,
+	in which case either $-1$ or $-\infty$ are used conventionally.
+\end{definition}
+
+This definition should match your intuition.
+\begin{example}
+	[Examples of Krull dimension]
+	\listhack
+	\begin{enumerate}[(a)]
+		\ii $\CC[x_1, \dots, x_n]$ has Krull dimension $n$, with the chain
+		\[ (0) \subsetneq (x_1) \subsetneq (x_1, x_2) \subsetneq \dots \subsetneq (x_1, \dots, x_n) \]
+		having length $n$.
+		This matches our expectation that $\Spec \CC[x_1, \dots, x_n]$ corresponds to $\Aff^n$.
+		\ii $\CC[x,y] / (y-x^2)$ has Krull dimension $1$, with the chain
+		\[ (x,y) \subsetneq (y-x^2) \]
+		having length $1$.
+		Geometrically, we think of $(x,y)$ as the origin and $(y-x^2)$ as the parabola itself.
+		\ii $\ZZ$ has Krull dimension $1$.
+		\ii $\ZZ/(60)$ has Krull dimension $0$; it's just three points.
+	\end{enumerate}
+\end{example}
+
+You can do this more generally with a topological space $X$:
+the Krull dimension of a space is the supremum of chains of irreducible closed subspaces
+$Z_0 \subsetneq Z_1 \subsetneq \dots \subsetneq Z_n$.
+You'd only want to use this definition in situations
+where $X$ had a Zariski topology:
+in particular, if $X = \Spec A$, this is just the Krull dimension of the ring $A$ itself.
+
 \section{On radicals}
 Back when we studied classical algebraic geometry in $\CC^n$,
 we saw Hilbert's Nullstellensatz (\Cref{thm:hilbert_null}) show up
@@ -533,6 +572,20 @@ even though there will be some parts that won't make sense yet.
 	Describe the points and topology of $\Spec A \times B$
 	in terms of $\Spec A$ and $\Spec B$.
 \end{problem}
+
+\begin{sproblem}
+	[How to actually think about Artinian rings]
+	\label{prob:artinian}
+	Let $A$ be a Noetherian ring.
+	Prove that all of the following are equivalent:
+	\begin{enumerate}[(i)]
+		\ii $A$ is Artinian, i.e.\ satisfies the descending chain condition
+		(as defined in \Cref{prob:akizuki}).
+		\ii $A$ has Krull dimension $0$ or $A$ is the zero ring.
+		\ii $\Spec A$ is finite and discrete.
+		\ii $\Spec A$ is finite.
+	\end{enumerate}
+\end{sproblem}
 
 \endinput
 
