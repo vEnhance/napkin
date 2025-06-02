@@ -616,7 +616,6 @@ then the theorem is almost obvious:
 	\end{sol}
 \end{problem}
 
-
 %\begin{problem}[USAMO 2008, edited]
 %	At a certain mathematical conference,
 %	every two mathematicians are either friends or strangers.
@@ -627,9 +626,6 @@ then the theorem is almost obvious:
 %	that the mathematicians may be split between the two rooms is a power of two.
 %	% https://www.artofproblemsolving.com/Forum/viewtopic.php?p=3338962#p3338962
 %\end{problem}
-
-
-
 \begin{problem}
 	\twochili
 	Let $V$ be a finite-dimensional vector space over $k$ and $T \colon V \to V$.
@@ -748,5 +744,21 @@ then the theorem is almost obvious:
 		Hence it remains to show that the permutations over $X$
 		are in bijection with the permutations over $S_m$ which fix $\{1, \dots, m\} - X$,
 		which is clear, and moreover, the signs clearly coincide.
+	\end{sol}
+\end{problem}
+
+\begin{problem}
+	[Cauchy-Binet formula]
+	\onechili
+	Let $n \ge s \ge 1$ be integers,
+	and let $A$ and $B$ be an $s \times n$ matrix and $n \times s$ matrix, respectively.
+	(Hence $AB$ is an $s \times s$ matrix.)
+	For any subset $S \subseteq \{1, 2, \dots, n\}$ with $|S| = s$,
+	we let $A_S$ be the $s \times s$ submatrix of $A$ of the rows with indices in $S$
+	and let $B_S$ be the $s \times s$ submatrix of $B$ of the columns with indices in $S$.
+	Prove that
+	\[ \det(AB) = \sum_{|S| = s} \det A_S \det B_S. \]
+	\begin{sol}
+		See \url{https://www3.nd.edu/~andyp/notes/CauchyBinet.pdf}.
 	\end{sol}
 \end{problem}
