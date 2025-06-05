@@ -302,7 +302,6 @@ Any time you're faced with a statement about an abelian category,
 it suffices to just prove it for a ``concrete'' category
 where injective/surjective/kernel/image/exact/etc.\
 agree with your previous notions.
-A proof by this means is sometimes called \emph{diagram chasing}.
 
 \begin{remark}
 	The ``small'' condition is a technical obstruction
@@ -373,6 +372,22 @@ For example, let's prove:
 	\]
 	so $b' \in \Img \beta$ which completes the proof that $\beta'$ is surjective.
 \end{proof}
+
+In general, proofs in the style above (whether or not they use the embedding theorem)
+are sometimes referred to by the name \emph{diagram chasing}.
+I'm not sure there's an exact definition for this term,
+but the following quote is due to Aluffi \cite{ref:aluffi}:
+\begin{quote}
+	Proving the snake lemma [\Cref{prob:snake}]
+	is something that should not be done in public,
+	and it is notoriously useless to write down the
+	details of the verification for others to read:
+	the details are all essentially obvious,
+	but they lead quickly to a notational quagmire.
+	Such proofs are collectively known as the sport of diagram chase,
+	best executed by pointing several fingers at different parts of a diagram on a blackboard,
+	while enunciating the elements one is manipulating and stating their fate.
+\end{quote}
 
 \section{Breaking long exact sequences}
 \prototype{First isomorphism theorem.}
@@ -484,6 +499,7 @@ where $C_k = \img f_{k-1} = \ker f_k$ for every $k$.
 	where the first and second rows are exact sequences.
 	Prove that there is an exact sequence
 	\[ \Ker a \to \Ker b \to \Ker c \to \Coker a \to \Coker b \to \Coker c. \]
+	\label{prob:snake}
 \end{sproblem}
 
 \begin{problem}
