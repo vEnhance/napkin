@@ -1,4 +1,4 @@
-# Napkin v1.5
+# An Infinitely Large Napkin
 
 ![Last commit](https://img.shields.io/github/last-commit/vEnhance/napkin)
 ![Forks](https://img.shields.io/github/forks/vEnhance/napkin)
