@@ -15,14 +15,13 @@ Given two sets $X$ and $Y$, and maps $X \taking{f,g} Y$, we define their \vocab{
 \[ \left\{ x \in X \mid f(x) = g(x) \right\}. \]
 We would like a categorical way of defining this, too.
 
-Consider two objects $X$ and $Y$ with two maps $f$ and $g$ between them.
-Stealing a page from \cite{ref:msci}, we call this a \vocab{fork}:
+Consider two objects $X$ and $Y$ with two maps $f$ and $g$ between them:
 \begin{center}
 \begin{tikzcd}
 	X \ar[r, "f", shift left] \ar[r, "g"', shift right] & Y
 \end{tikzcd}
 \end{center}
-A cone over this fork is an object $A$ and arrows over $X$ and $Y$
+A cone over this diagram is an object $A$ and arrows over $X$ and $Y$
 which make the diagram commute, like so.
 \begin{center}
 \begin{tikzcd}
@@ -30,8 +29,12 @@ which make the diagram commute, like so.
 	X \ar[r, "f", shift left, near start] \ar[r, "g"', shift right, near start] & Y
 \end{tikzcd}
 \end{center}
+As per \cite{ref:msci}, we call this cone a \vocab{fork}.
+The name coming from the shape obtained if one writes $A \to X \rightrightarrows Y$
+all in the same line; but to emphasize the cone-ness, we have bent the fork in our pictures.
+
 Effectively, the arrow over $Y$ is just forcing $f \circ q = g \circ q$.
-In any case, the \vocab{equalizer} of $f$ and $g$ is a ``universal cone'' over this fork:
+In any case, the \vocab{equalizer} of $f$ and $g$ is a ``universal fork'':
 it is an object $E$ and a map $E \taking{e} X$ such that
 for each $A \taking q X$ the diagram
 \begin{center}
@@ -45,8 +48,8 @@ for each $A \taking q X$ the diagram
 commutes for a unique $A \taking h E$.
 In other words, any map $A \taking{q} X$ as above
 must factor uniquely through $E$.
-Again, the dotted arrows can be omitted,
-and as before equalizers may not exist.
+
+Again, the dotted arrows can be omitted, and as before equalizers may not exist.
 But when they do exist:
 \begin{exercise}
 	If $E \taking{e} X$ and $E' \taking{e'} X$ are equalizers,
@@ -68,7 +71,7 @@ But when they do exist:
 
 		\ii In particular, given a homomorphism $\phi \colon G \to H$, the inclusion
 		$ \ker\phi \injto G $
-		is an equalizer for the fork $G \to H$ by $\phi$ and the trivial homomorphism.
+		is an equalizer for $\phi \colon G \to H$ and the trivial homorphism $G \to H$.
 	\end{enumerate}
 \end{example}
 
@@ -86,26 +89,25 @@ Great example: differentiable functions on $(-3,1)$ and $(-1,3)$
 \end{example}
 
 \section{Limits}
-We've defined cones over discrete sets of $X_i$ and over forks.
+We've defined cones over discrete sets of $X_i$ (to get products)
+and over pairs of errors (to get forks).
 It turns out you can also define a cone over any general \vocab{diagram} of objects and arrows;
 we specify a projection from $A$ to each object and
 require that the projections from $A$ commute with the arrows in the diagram.
-(For example, a cone over a fork is a diagram with two edges and two arrows.)
+
 If you then demand the cone be universal,
 you have the extremely general definition of a \vocab{limit}.
 As always, these are unique up to unique isomorphism.
 We can also define the dual notion of a \vocab{colimit} in the same way.
 
-
 \section{\problemhead}
 \begin{sproblem}[Equalizers are monic]
-	Show that the equalizer of any fork is monic.
+	Show that the equalizer of any diagram $X \rightrightarrows Y$ is monic.
 	\label{prob:equalizer_monic}
 \end{sproblem}
 
 pushout square gives tenor product
 
 p-adic
-
 
 relative Chinese remainder theorem!!
