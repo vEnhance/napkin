@@ -178,7 +178,7 @@ A couple less intuitive but somewhat important examples\dots
 \end{example}
 
 \section{Direct sums}
-\prototype{$\{ax^2+bx+c\} = \RR \oplus x\RR \oplus x^2\RR$, and
+\prototype{$\{ax^2+bx+c\} = \RR \oplus \RR x \oplus \RR x^2$, and
 $\RR^3$ is the sum of its axes.}
 Let's return to \Cref{ex:quadratic_vector_space}, and consider
 \[ V = \left\{ ax^2+bx+c \mid a,b,c \in \RR \right\}.  \]
@@ -191,8 +191,8 @@ the $x^2$, $x$ and $1$ terms don't ``talk to each other''.
 They're totally unrelated.
 In other words, we can consider the three sets
 \begin{align*}
-	x^2\RR &\defeq \left\{ ax^2 \mid a \in \RR \right\} \\
-	x\RR &\defeq \left\{ bx \mid b \in \RR \right\} \\
+	\RR x^2 &\defeq \left\{ ax^2 \mid a \in \RR \right\} \\
+	\RR x &\defeq \left\{ bx \mid b \in \RR \right\} \\
 	\RR &\defeq \left\{ c \mid c \in \RR \right\}.
 \end{align*}
 In an obvious way, each of these can be thought of as a ``copy'' of $\RR$.
@@ -201,7 +201,7 @@ Then $V$ quite literally consists of the ``sums of these sets''.
 Specifically, every element of $V$ can be written \emph{uniquely}
 as the sum of one element from each of these sets.
 This motivates us to write
-\[ V = x^2\RR \oplus x\RR \oplus \RR. \]
+\[ V = \RR x^2 \oplus \RR x \oplus \RR. \]
 The notion which captures this formally is the \vocab{direct sum}.
 
 \begin{definition}
@@ -254,7 +254,7 @@ we might as well have written $\RR^2 \cong \RR \oplus \RR$.
 
 In this way, you can see that $V$ should be isomorphic
 to $\RR \oplus \RR \oplus \RR$;
-we had $V = x^2\RR \oplus x\RR \oplus \RR$,
+we had $V = \RR x^2 \oplus \RR x \oplus \RR$,
 but the $1$, $x$, $x^2$ don't really talk to each other
 and each of the summands is really just a copy of $\RR$ at heart.
 
