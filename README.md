@@ -24,6 +24,15 @@ On a system with nix, just run `nix build`.
 _Pull requests are welcome!_
 You can email corrections directly to me as well.
 
+### Community solutions
+
+There is a community working on both human-readable and Lean4 proofs
+of Napkin problems and examples. See:
+
+- Napkin formal proofs written in Lean4: https://github.com/napkin-community/proofs
+- Napkin human-readible solutions written in Typst: https://github.com/napkin-community/solutions
+  - Rendered: https://napkin-community.github.io/solutions/ (written in Typst)
+
 ### Coffee
 
 If you like this project and want to support me,
