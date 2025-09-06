@@ -6,7 +6,6 @@ title: An Infinitely Large Napkin
 message: >-
   This is not a formally published textbook, so citation format is flexible.
   Some metadata is provided here for your convenience anyway.
-type: book
 authors:
   - given-names: Evan
     family-names: Chen
@@ -34,3 +33,5 @@ keywords:
   - textbook
   - lecture notes
 license: MIT
+preferred-citation:
+  type: book
