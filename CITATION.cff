@@ -1,0 +1,36 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: An Infinitely Large Napkin
+message: >-
+  This is not a formally published textbook, so citation format is flexible.
+  Some metadata is provided here for your convenience anyway.
+type: software
+authors:
+  - given-names: Evan
+    family-names: Chen
+    email: evan@evanchen.cc
+    orcid: 'https://orcid.org/0000-0001-9550-5068'
+repository-code: 'https://github.com/vEnhance/napkin/'
+url: 'https://web.evanchen.cc/napkin.html'
+repository-artifact: 'https://venhance.github.io/napkin/Napkin.pdf'
+abstract: >-
+  _An Infinitely Large Napkin_ is a light and mostly
+  self-contained introduction to higher math, roughly
+  ranging from the undergraduate syllabus to first-year
+  graduate topics. The Napkin provides a general bird's-eye
+  views of main ideas of fields and what makes them cool or
+  interesting. It's less detailed than a real textbook but
+  more precise than pop-math books and assumes proof
+  experience. So for example, definitions and theorem
+  statements will typically be complete and precise, but
+  explanations for why a result "should" be true will
+  supersede formal proofs.
+keywords:
+  - math
+  - napkin
+  - evan chen
+  - textbook
+  - lecture notes
+license: MIT
