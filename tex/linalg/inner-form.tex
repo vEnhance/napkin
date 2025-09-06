@@ -269,6 +269,7 @@ which will be a stepping stone later:
 Thus:
 \begin{theorem}
 	[Triangle inequality]
+	\label{thm:inner_product_tri_ineq}
 	We always have
 	\[ \norm v + \norm w \ge \norm{v+w} \]
 	with equality if and only if $v$ and $w$ are linearly dependent
@@ -526,6 +527,30 @@ is exactly the one which ensures the infinite sum makes sense.
 	\[ \left< a, b\right> = \sum_i a_i b_i. \]
 	Is this a Hilbert space?
 	If so, identify a Hilbert basis.
+\end{problem}
+
+\begin{problem}
+	[General normed vector spaces]
+	Generalizing an inner product space,
+	a \href{https://w.wiki/7ZHe}{normed vector space}
+	is a vector space $V$ over $\RR$ or $\CC$
+	equipped with any norm function $\norm \bullet \colon V \to \RR$
+	satisfying the following axioms:
+	\begin{itemize}
+		\ii $\norm v \ge 0$ for every $v \in V$, with equality if and only if $v$ is the zero vector.
+		\ii for a scalar $\lambda$, we have $\norm{\lambda v} = |\lambda| \cdot \norm{v}$.
+		\ii the triangle inequality $\norm{v+w} \le \norm{v} + \norm{w}$ holds for all $v$ and $w$.
+	\end{itemize}
+	Hence, \Cref{thm:inner_product_tri_ineq}
+	can be rephrased as saying
+	that any inner product space becomes a normed vector space
+	by choosing the norm $\norm{v} \coloneq \sqrt{\left\langle v, v \right\rangle}$.
+
+	Show that the converse does not hold by proving that for $n \ge 2$,
+	one can define a norm on $\RR^n$ by
+	\[ \norm{(x_1, \dots, x_n)} \defeq \sum_{i=1}^n |x_i| \]
+	and moreover this norm does not arise from any inner product.
+	% https://math.stackexchange.com/q/528864/229197
 \end{problem}
 
 \begin{problem}
