@@ -35,3 +35,10 @@ keywords:
 license: MIT
 preferred-citation:
   type: book
+  title: An Infinitely Large Napkin
+  authors:
+    - given-names: Evan
+      family-names: Chen
+      email: evan@evanchen.cc
+      orcid: 'https://orcid.org/0000-0001-9550-5068'
+  url: 'https://web.evanchen.cc/napkin.html'
