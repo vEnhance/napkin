@@ -875,13 +875,13 @@ A very common use case is picking a convenient basis for a map $T$.
 	\label{thm:linear_map_basis}
 	Let $T \colon V \to W$ be a map of finite-dimensional vector spaces,
 	with $n = \dim V$, $m = \dim W$.
-	Then there exists a basis $v_1, \dots, v_n$ of $V$
-	and a basis $w_1, \dots, w_m$ of $W$,
+	Then there exists a basis $e_1, \dots, e_n$ of $V$
+	and a basis $f_1, \dots, f_m$ of $W$,
 	as well as a nonnegative integer $k$, such that
 	\[
-		T(v_i) =
+		T(e_i) =
 		\begin{cases}
-			w_i & \text{if $i \le k$} \\
+			f_i & \text{if $i \le k$} \\
 			0_W & \text{if $i > k$}.
 		\end{cases}
 	\]
@@ -892,11 +892,11 @@ A very common use case is picking a convenient basis for a map $T$.
 	it's a repeated application of \Cref{thm:basis_completion}.
 
 	Let $\ker T$ have dimension $n-k$.
-	We can pick $v_{k+1}, \dots, v_{n}$ a basis of $\ker T$.
-	Then extend it to a basis $v_1, \dots, v_n$ of $V$.
-	The map $T$ is injective over the span of $v_1, \dots, v_k$
+	We can pick $e_{k+1}, \dots, e_{n}$ a basis of $\ker T$.
+	Then extend it to a basis $e_1, \dots, e_n$ of $V$.
+	The map $T$ is injective over the span of $e_1, \dots, e_k$
 	(since only $0_V$ is in the kernel) so its images in $W$ are linearly independent.
-	Setting $w_i = T(v_i)$ for each $i$,
+	Setting $f_i = T(e_i)$ for each $i$,
 	we get some linearly independent set in $W$.
 	Then extend it again to a basis of $W$.
 \end{proof}

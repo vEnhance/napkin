@@ -70,9 +70,11 @@ mirror images of each other over the diagonal.
 Of course, this should work in general.
 \begin{theorem}
 	[Transpose interpretation of $T^\vee$]
-	Let $V$ and $W$ be finite-dimensional $k$-vector spaces.
-	Then, for any $T \colon V \to W$,
-	the following two matrices are transposes:
+	\label{thm:transpose_dual}
+	Let $V$ and $W$ be finite-dimensional $k$-vector spaces,
+	with $e_1$, \dots, $e_n$ any basis for $V$
+	with $f_1$, \dots, $f_m$ any basis for $V$.
+	Then, for any $T \colon V \to W$, the following two matrices are transposes:
 	\begin{itemize}
 		\ii The matrix for $T \colon V \to W$
 		expressed in the basis $(e_i)$, $(f_j)$.
@@ -90,6 +92,110 @@ The nice part of this is that the definition of $T^\vee$ is basis-free.
 So it means that if we start with any linear map $T$,
 and then pick whichever basis we feel like,
 then $T$ and $T^\vee$ will still be transposes.
+
+\section{(Optional) A cautionary tale on what goes wrong if you don't have a natural isomorphism $V \cong V^\vee$}
+After this section, we are going to assume that $V$ and $W$ are in fact inner product spaces.
+This optional cautionary section is meant to explain what goes wrong \emph{without} that assumption.
+However, this section is really confusing and disorienting,
+so you might want to skip it until after you've finished the rest of the chapter
+and solved a couple of the problems at the end (like \Cref{prob:row_rank_column_rank}).
+
+For example, by just using \Cref{thm:transpose_dual} you can already prove the following,
+which is one of the most important theorems in a typical high-school linear algebra class.
+\begin{theorem}
+	[Row rank = column rank]
+	A $m \times n$ matrix $M$ is given over some field $k$.
+	The \emph{column rank} of $M$ is the dimension of the span in $k^{\oplus m}$
+	of its $n$ column vectors.
+	The \emph{row rank} of $M$ is the dimension of the span in $k^{\oplus n}$
+	of its $m$ row vectors.
+	Prove that the row rank and column rank are equal.
+\end{theorem}
+\begin{proof}
+	Left as \Cref{prob:fundamental_theorem_of_linalg} and \Cref{prob:row_rank_column_rank}.
+	One approach is to combine \Cref{thm:linear_map_basis} and \Cref{thm:transpose_dual}.
+\end{proof}
+
+However, let's see what can go wrong if we try to overplay our non-canonical isomorphism
+$V \to V^\vee$ with $e_i \mapsto e_i^\vee$.
+Let's consider the following ``theorem'':
+\begin{tcolorbox}
+	\textbf{False Theorem.}
+	A $m \times n$ matrix $M$ is given over some field $k$.
+	Then $M^\top M$ and $M$ have the same rank.
+\end{tcolorbox}
+
+We proceed to give a bogus proof of this result.
+\begin{proof}[WRONG Proof of False Theorem]
+	Let $V = k^{\oplus n}$, $W = k^{\oplus m}$,
+	and let $T \colon V \to W$ be the linear map encoded by $M$.
+	By \Cref{thm:transpose_dual}, $T^\vee \colon W^\vee \to V^\vee$
+	is encoded as $M^\top$.
+
+	By \Cref{thm:linear_map_basis},
+	there exists different bases $e_i$ (for $V$) and $f_j$ (for $W$) such that
+	\begin{align*}
+		T(e_1) &= f_1, \; \dots, \; T(e_k) = f_k \\
+		T(e_{k+1}) &= \dots = T(e_n) = 0
+	\end{align*}
+	where $k = \rank T$.
+	(Sorry for using the letter $k$ for both the rank and the base field.)
+	We won't use this new basis for any matrix encodings,
+	just to compute the ranks.
+
+	Then, from the definition of $T^\vee \colon W^\vee \to V^\vee$ we can see
+	\begin{align*}
+		T^\vee(f_1^\vee) &= e_1^\vee, \; \dots, \; T^\vee(f_k^\vee) = e_k^\vee \\
+		T^\vee(f_{k+1}^\vee) &= \dots = T(f_m^\vee) = 0.
+	\end{align*}
+	We can then combine this with our (non-canonical) isomorphism $W \to W^\vee$
+	to get that $M^\top M$ is the matrix for the composed map $V \to V^\vee$ by
+	\begin{align*}
+		e_1 & \mapsto f_1 \mapsto f_1^\vee \mapsto e_1^\vee \\
+		e_2 & \mapsto f_2 \mapsto f_2^\vee \mapsto e_2^\vee \\
+		&\vdotswithin\mapsto \\
+		e_k & \mapsto f_k \mapsto f_k^\vee \mapsto e_k^\vee \\
+		e_{k+1} &\mapsto 0 \mapsto 0 \mapsto 0 \\
+		e_{k+2} &\mapsto 0 \mapsto 0 \mapsto 0 \\
+		&\vdotswithin\mapsto \\
+		e_n &\mapsto 0 \mapsto 0 \mapsto 0.
+	\end{align*}
+	It's clear that this composed map also has rank $k$,
+	since the outputs on $e_1$ through $e_k$ are linearly independent
+	and the outputs on $e_{k+1}$ through $e_n$ are all $0$.
+	Hence, $M^\top M$ also has rank $k$, as desired.
+\end{proof}
+
+Seems okay?
+But as we'll see in \Cref{prob:rank_Mdagger_M}, the theorem \emph{is}
+actually true when $k = \RR$.
+But it is false when $k = \CC$, as the following exercise shows:
+\begin{exercise}
+	Find a counterexample to the fake theorem
+	by giving an example of a nonzero $2 \times 2$ matrix $M$ with complex entries
+	for which $M^\top M$ is the zero matrix.
+\end{exercise}
+
+So where is the mistake in the bogus proof?
+I would say the issue is that the map given above by
+\[ e_i \mapsto f_i \mapsto f_i^\vee \mapsto e_i^\vee \]
+is not $T^\vee \circ T$ (which is not even defined),
+but rather $T^\vee \circ \iota \circ T$
+where $\iota \colon W \to W^\vee$ is a ``random'' isomorphism that we know nothing about.
+Hence, when encoded as a matrix,
+the matrix we would get is actually $M^\top N M$
+where $N$ is some random invertible matrix we have no control over.
+
+You can fix this proof for $k = \RR$ if you
+\begin{itemize}
+	\ii Choose $\iota$ to be the map $w \mapsto \left\langle -, w \right\rangle$
+	defined in the next section, so that $N$ encodes as the identity matrix; and
+	\ii Additionally, require $f_i$ to be orthonormal in \Cref{thm:linear_map_basis}
+	(which is possible) so that $\iota(f_i) = f_i^\vee$.
+\end{itemize}
+However this is a fairly ugly proof in my opinion,
+because by the end of the chapter we'll have the tools to write
+a basis-free proof for \Cref{prob:rank_Mdagger_M}.
 
 \section{Identifying with the dual space}
 For the rest of this chapter, though,
@@ -407,6 +513,7 @@ As a corollary:
 
 \begin{problem}
 	[Fundamental theorem of linear algebra]
+	\label{prob:fundamental_theorem_of_linalg}
 	Let $T \colon V \to W$ be a map of finite-dimensional $k$-vector spaces.
 	Prove that
 	\[ \dim \img T = \dim \img T^\vee
@@ -429,6 +536,7 @@ As a corollary:
 
 \begin{dproblem}
 	[Row rank is column rank]
+	\label{prob:row_rank_column_rank}
 	A $m \times n$ matrix $M$ is given over some field $k$.
 	The \emph{column rank} of $M$ is the dimension of the span in $k^{\oplus m}$
 	of its $n$ column vectors.
@@ -479,7 +587,7 @@ As a corollary:
 
 \begin{problem}
 	[Polynomial criteria for normality]
-	Let $V$ be a complex inner product space and let $T \colon V \to V$ be a linear map.
+	Let $V$ be a finite-dimensional complex inner product space and let $T \colon V \to V$ be a linear map.
 	Show that $T$ is normal if and only if there is a polynomial\footnote{Here,
 			we mean $p(T)$ in the same composition sense as in Cayley-Hamilton.}
 	$p \in \CC[t]$ such that \[ T^\dagger = p(T). \]
@@ -549,15 +657,13 @@ As a corollary:
 \end{problem}
 
 \begin{dproblem}
+	\label{prob:rank_Mdagger_M}
 	Let $M$ be an $m \times n$ matrix of complex numbers.
-	\begin{enumerate}[(a)]
-	\ii Show that $M^\dagger M$ and $M$ have equal rank.
-	\ii Show that $M^\top M$ and $M$ need not have equal rank.
-	\end{enumerate}
+	Show that $M^\dagger M$ and $M$ have equal rank.
+	(Try to find a basis-free proof.)
 	\begin{hint}
-		For the first part, show that $\ker M^\dagger M = \ker M$
-		(not just the dimension, they are actually the same kernel).
-		For the second part, try to construct a nonzero $2 \times 2$ complex matrix $M$
-		for which $M^\top M$ is the zero matrix.
+		I do not recommend picking any basis.
+		Instead, show directly that $\ker(T^\dagger T) = \ker(T)$ for any map $T$.
+		(This is better than having the same dimension: the kernels actually match.)
 	\end{hint}
 \end{dproblem}
