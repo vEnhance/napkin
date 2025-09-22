@@ -429,10 +429,10 @@ As a corollary:
 
 \begin{dproblem}
 	[Row rank is column rank]
-	A $m \times n$ matrix $M$ of real numbers is given.
-	The \emph{column rank} of $M$ is the dimension of the span in $\RR^m$
+	A $m \times n$ matrix $M$ is given over some field $k$.
+	The \emph{column rank} of $M$ is the dimension of the span in $k^{\oplus m}$
 	of its $n$ column vectors.
-	The \emph{row rank} of $M$ is the dimension of the span in $\RR^n$
+	The \emph{row rank} of $M$ is the dimension of the span in $k^{\oplus n}$
 	of its $m$ row vectors.
 	Prove that the row rank and column rank are equal.
 	\begin{hint}
@@ -547,3 +547,17 @@ As a corollary:
 		and returns the $p \times m$ matrix $BXA^\top$.
 	\end{itemize}
 \end{problem}
+
+\begin{dproblem}
+	Let $M$ be an $m \times n$ matrix of complex numbers.
+	\begin{enumerate}[(a)]
+	\ii Show that $M^\dagger M$ and $M$ have equal rank.
+	\ii Show that $M^\top M$ and $M$ need not have equal rank.
+	\end{enumerate}
+	\begin{hint}
+		For the first part, show that $\ker M^\dagger M = \ker M$
+		(not just the dimension, they are actually the same kernel).
+		For the second part, try to construct a nonzero $2 \times 2$ complex matrix $M$
+		for which $M^\top M$ is the zero matrix.
+	\end{hint}
+\end{dproblem}
