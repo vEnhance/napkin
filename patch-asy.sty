@@ -158,6 +158,7 @@
   \begingroup
   \def\CurrentAsymptote{#1}%
   \let\do\@makeother \dospecials
+  \catcode`\^^I=10
   \@makeother\^^L% and whatever other special cases
   \catcode`\ =10
   \endlinechar`\^^M \catcode`\^^M=12 \xAsymptote
