@@ -380,11 +380,10 @@ for a nonnegative function $f \colon \Omega \to \RR_{\geq 0}$,
 $\int_\Omega f \; d\mu$ exists if and only if $f$ is measurable.
 
 \begin{remark}
-	By symmetry, you might have guessed that a function $f: X \to Y$ is measurable if for any measurable
-	$S \subseteq Y$, we have $f\pre(S) \subseteq X$ is measurable.
-
-	Nevertheless, this definition doesn't work the way we expect --- even continuous function can fail
-	this definition.
+	Note that a measurable function actually does not need to be continuous,
+	as the next example shows.
+	On the other hand, most functions you actually encounter in practice will be continuous,
+	and in that case ware fine.
 \end{remark}
 \begin{example}
 	[Continuous function with non-measurable preimage of measurable set]
@@ -408,15 +407,12 @@ $\int_\Omega f \; d\mu$ exists if and only if $f$ is measurable.
 	\end{itemize}
 \end{example}
 
-In practice, most functions you encounter will be continuous anyways,
-and in that case we are fine.
 \begin{proposition}
 	[Continuous implies Borel measurable]
 	Suppose $X$ and $Y$ are topological spaces
 	and we pick the Borel measures on both.
 	A function $f \colon X \to Y$
-	which is continuous as a map of topological spaces
-	is also measurable.
+	which is continuous as a map of topological spaces is also measurable.
 \end{proposition}
 \begin{proof}
 	Follows from the fact that pre-images of open sets are open, thus Borel measurable.
