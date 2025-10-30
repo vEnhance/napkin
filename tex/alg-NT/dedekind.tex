@@ -811,3 +811,35 @@ Thus $\Norm$ is a natural group homomorphism $J_K \to \QQ^\times$.
 %		As $e_i' \le e_i$ for each $i$, we can only have $e_i = e_i'$.
 	\end{sol}
 \end{problem}
+
+\begin{problem}
+	[USEMO 2025]
+	\onechili
+	Let $k$ be a positive integer not divisible by $6$.
+	Suppose that there exists a prime $p$
+	such that $p$ divides both $2025^k-1$ and $2026^k-1$.
+	Prove that $p<3^k$.
+	\begin{hint}
+		Let $\omega$ be a $k$'th root of unity.
+		Let $\kp$ be any prime ideal above $p$ in the ring of integers of $K = \QQ(\omega)$.
+		Show that there exist indices $i$ and $j$ such that
+		$2025-\omega^i$ and $2026-\omega^j$ are in $\kp$.
+		Then show that $1+\omega^i-\omega^j$ is nonzero with norm at most $3^k$.
+	\end{hint}
+	\begin{sol}
+		As before, set $\omega \coloneq e^{\frac{2i\pi}{k}}$.
+		Let $K = \QQ(\omega)$ and choose any prime ideal $\kp$ of $\mathcal{O}_K$ lying over $p\ZZ$.
+
+		We know that
+		\[ \prod_{i=0}^{k-1} (2025-\omega^i) = 2025^k-1 \in (p) \subseteq \kp \]
+		and since $\kp$ is prime ideal, we know $2025-\omega^i \in \kp$ for some $i$.
+		Similarly $2026-\omega^j \in \kp$ for some $j$.
+		Subtracting,
+		\[ (2026-\omega^j) - (2025-\omega^i) = 1 + \omega^i - \omega^j \in \kp \implies p \mid \Norm_{K/\QQ}(1+\omega^i-\omega^j). \]
+		Since $6\nmid k$, it follows that $1 + \omega^i - \omega^j \neq 0$,
+		and so $p$ is at most the norm above.
+		However, straight from the definitions,
+		\[  \left|\Norm_{\mathbb{Q}(\omega)/\mathbb{Q}}(1+\omega^i-\omega^j) \right|
+			= \prod_{\gcd(m,k)=1, 1\le m\le k} |1+\omega^{mi}-\omega^{mj}| \le 3^k. \]
+	\end{sol}
+\end{problem}
