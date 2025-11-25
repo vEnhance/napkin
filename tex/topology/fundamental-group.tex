@@ -445,7 +445,7 @@ Let's see some examples.
 	we can wrap a second circle around it as many times as we want.
 	In general, it's true that $\pi_n(S^n) \cong \ZZ$.
 \end{example}
-\begin{example}[$\pi_n(S^m) \cong \{1\}$ when $n < m$]
+\begin{example}[$\pi_n(S^m)$ is trivial when $n < m$]
 	We saw that $\pi_1(S^2) \cong \{1\}$, because
 	a circle in $S^2$ can just be reeled in to a point.
 	It turns out that similarly, any smaller $n$-dimensional sphere
@@ -543,7 +543,7 @@ and bending than homeomorphism: we are allowed to compress huge spaces into sing
 	because there is no bijection of sets between them.
 \end{remark}
 
-\begin{example}[$\CC \setminus \{0\}$ is homotopy equivalent to $S^1$]
+\begin{example}[The punctured plane is homotopy equivalent to $S^1$]
 	Consider the topological spaces $\CC \setminus \{0\}$,
 	the \vocab{punctured plane}, and the circle $S^1$ viewed as a subset of $\CC$.
 	We claim these spaces are actually homotopy equivalent!
@@ -686,6 +686,19 @@ to each pointed topological space $(X, x_0)$ automatically implies several nice 
 	A stone is placed at each vertex of a regular $2n$-gon.
 	A move consists of selecting an edge of the $2n$-gon and swapping the two stones at the endpoints of the edge.
 	Prove that if a sequence of moves swaps every pair of stones exactly once, then there is some edge never used in any move.
+  (This problem doesn't technically have anything to do with the chapter,
+  but the ``gut feeling'' which motivates the solution is very similar.)
 \end{problem}
-(This last problem doesn't technically have anything to do with the chapter,
-but the ``gut feeling'' which motivates the solution is very similar.)
+
+\begin{problem}
+	How do you hang a picture frame on a wall with two nails and one string
+	such that if you remove either nail, the picture frame will fall?
+	\begin{hint}
+		The idea is to look at $aba^{-1}b^{-1}$ in $\pi_1(\text{wall with two nails})$.
+	\end{hint}
+	\begin{soln}
+		There's a write-up at
+		\url{https://aamathematics.wordpress.com/2020/05/29/hanging-pictures-with-homotopy/}
+		where I heard this problem from.
+	\end{soln}
+\end{problem}
