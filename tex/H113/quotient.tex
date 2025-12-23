@@ -754,3 +754,41 @@ is an \emph{embedding} of $G$ into $H$.
 		one is \url{https://math.stackexchange.com/q/843966/229197}.
 	\end{sol}
 \end{problem}
+
+% Copying math.SE content:
+% F:=FreeGroup("a","b","c","d","e","f","g","h","i","j","k","l","m",
+%              "n","o","p","q","r","s","t","u","v","w","x","y","z");
+%
+% AssignGeneratorVariables(F);
+%
+% pairs:=[
+% "bye=by",          # e=1
+% "lead=led",        # a=1
+% "maid=made",       # mid=md => i=1
+% "sow=sew",         # o=e=1
+% "buy=by",          # u=1
+% "sow=so",          # w=1
+% "lye=lie",         # y=1
+% "hour=our",        # h=1
+% "knight=night",    # k=1
+% "damn=dam",        # n=1
+% "psalter=salter",  # p=1
+% "plumb=plum",      # b=1
+% "bass=base",       # s=1
+% "butt=but",        # t=1
+% "tolled=told",     # l=1
+% "barred=bard",     # r=1
+% "dammed=damned",   # m=1
+% "chased=chaste",   # d=1
+% "sign=sine",       # g=1
+% "daze=days",       # z=1
+% "cite=sight",      # c=1
+% "jeans=genes",     # j=1
+% "queue=cue",       # q=1
+% "tax=tacks",       # x=1
+% # "ruff=rough",    # f=1, we need not this relation used in the paper
+% "phase=faze",      # f=1
+% "chivvy=chivy"];   # v=1
+%
+% rels:=List( pairs, r -> ParseRelators(GeneratorsOfGroup(F),r)[1]);
+% G:=F/rels;
