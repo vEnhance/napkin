@@ -539,13 +539,13 @@ The previous exercise gives us the famous Schur's lemma.
 	In particular if both $V$ and $W$ are irreducible then $T$
 	is an isomorphism.
 \end{theorem}
-An important special case is if $k$ is algebraically closed:
+An important special case is if $k$ is algebraically closed and finite-dimensional:
 then the only intertwining operators $T \colon V \to V$
 are multiplication by a constant.
 \begin{theorem}
 	[Schur's lemma for algebraically closed fields]
 	Let $k$ be an algebraically closed field.
-	Let $V$ be an irrep of a $k$-algebra $A$.
+	Let $V$ be a finite-dimensional irrep of a $k$-algebra $A$.
 	Then any intertwining operator $T \colon V \to V$ is multiplication by a scalar.
 	\label{thm:schur_algclosed}
 \end{theorem}
@@ -586,7 +586,7 @@ The algebra $A = \Mat_2(k)$ has basis given by four matrices
 	\qquad
 	E_4 = \begin{bmatrix} 0 & 0 \\ 1 & 0 \end{bmatrix}
 \]
-satisfying relations like $E_1 + E_2 = \id_A$, $E_i^2 = E_i$, $E_1E_2 = 0$, etc.
+satisfying relations like $E_1 + E_2 = \id_A$, $E_1^2 = E_1$, $E_3^2 = 0$, $E_1E_2 = 0$, etc.
 So let $V$ be a representation of $A$, and let $M_i = \rho(E_i)$ for each $i$;
 we want to classify the possible matrices $M_i$ on $V$
 satisfying the same functional equations.
