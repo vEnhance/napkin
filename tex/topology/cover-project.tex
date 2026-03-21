@@ -259,31 +259,49 @@ The theorem can be generalized to a diagram
 	(Y, y_0)  \ar[ru, "\tilde{f}"] \ar[r, "f"'] & (B, b_0)
 \end{tikzcd}
 \end{center}
-where $Y$ is some general path-connected space, as follows.
+where $Y$ is a sufficiently nice space, as follows.
+\begin{definition}
+	A space $Y$ is \vocab{locally path-connected} if, at any point $x\in Y$,
+	every open neighborhood $U$ of $x$ contains a path-connected open neighborhood
+	$V\subseteq U$.
+\end{definition}
 \begin{theorem}[General lifting criterion]
 	\label{thm:lifting}
-	Let $f \colon (Y,y_0) \to (B, b_0)$ be continuous
-	and consider a covering projection $p \colon (E, e_0) \to (B, b_0)$.
-	(As usual, $Y$, $B$, $E$ are path-connected.)
-	Then a lifting $\tilde f$ with $\tilde f(y_0) = e_0$ exists if and only if
+	Let $p \colon (E, e_0) \to (B, b_0)$ be a covering projection. If $Y$ is a
+	path-connected and locally path-connected space, then for any continuous
+	$f \colon (Y,y_0) \to (B, b_0)$, a lifting $\tilde f$ with $\tilde f(y_0) = e_0$
+	exists if and only if
 	\[ f_\sharp\im(\pi_1(Y, y_0)) \subseteq p_\sharp\im(\pi_1(E, e_0)), \]
 	i.e.\ the image of $\pi_1(Y, y_0)$ under $f$ is contained in
 	the image of $\pi_1(E, e_0)$ under $p$ (both viewed as subgroups of $\pi_1(B, b_0)$).
-	If this lifting exists, it is unique.
+	If this lifting exists, then it is unique.
 \end{theorem}
 As $p_\sharp$ is injective,
 we actually have $p_\sharp\im(\pi_1(E, e_0)) \cong \pi_1(E, e_0)$.
 But in this case we are interested in the actual elements, not just the isomorphism classes of the groups.
 \begin{ques}
-	What happens if we put $Y= [0,1]$?
+	What happens if we put $Y=[0,1]$?
 \end{ques}
-
 \begin{remark}[Lifting homotopies]
 	Here's another cool special case:
 	Recall that a homotopy can be encoded as a continuous function $[0,1] \times [0,1] \to X$.
 	But $[0,1] \times [0,1]$ is also simply connected.
 	Hence given a homotopy $\gamma_1 \simeq \gamma_2$ in the base space $B$, we can lift it to get
 	a homotopy $\tilde\gamma_1 \simeq \tilde\gamma_2$ in $E$.
+\end{remark}
+\begin{remark}[The locally path-connected condition really is necessary]
+	Let $Y$ be the \textit{Warsaw circle}, depicted below,
+	consisting of the graph of $y=\sin(1/x)$ for $0<x<1/\pi$,
+	the segment $\{0\}\times[-1,1]$, and a curve to close everything up.
+    \begin{center}
+        \includegraphics[width=4cm]{media/warsaw_circle.png}
+        \\ \scriptsize Image from \cite{img:warsaw_circle}
+    \end{center}
+    The space $Y$ is simply connected, thus the lifting criteria
+	is trivially satisfied, but the function $f:Y\to S^1$ which
+	collapses the sine curve vertically does not lift to a function
+	$\tilde f:Y\to\RR$. The lifting theorem does not apply here,
+	because $Y$ is not locally path-connected at the origin.
 \end{remark}
 Another nice application of this result is \Cref{ch:complex_log}.
 
