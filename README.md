@@ -7,7 +7,7 @@
 These are the source files for Evan Chen's _An Infinitely Large Napkin_.
 You can read about the project on my [webpage](https://web.evanchen.cc/napkin.html).
 
-### About
+## About
 
 _An Infinitely Large Napkin_ is a light
 and mostly self-contained introduction to higher math,
@@ -42,9 +42,9 @@ You can email corrections directly to me as well.
 There is a community working on both human-readable and Lean4 proofs
 of Napkin problems and examples. See:
 
-- Napkin formal proofs written in Lean4: https://github.com/napkin-community/proofs
-- Napkin human-readible solutions written in Typst: https://github.com/napkin-community/solutions
-  - Rendered: https://napkin-community.github.io/solutions/ (written in Typst)
+- Napkin formal proofs written in Lean4: <https://github.com/napkin-community/proofs>
+- Napkin human-readible solutions written in Typst: <https://github.com/napkin-community/solutions>
+  - Rendered: <https://napkin-community.github.io/solutions/> (written in Typst)
 
 ### Coffee
 

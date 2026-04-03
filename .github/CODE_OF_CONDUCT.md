@@ -1,3 +1,3 @@
 # Code of conduct
 
-1. Be kind.
+1.  Be kind.
