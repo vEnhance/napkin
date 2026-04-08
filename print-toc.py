@@ -87,7 +87,7 @@ with open("Napkin.toc") as f:
                 )
 
             elif opts.parts:
-                print(f"{part_number+'.':<6} {part_title}")
+                print(f"{part_number + '.':<6} {part_title}")
         if line.startswith(ch_chunk) and opts.chapters:
             ch_number, ch_title, *junk = line.strip()[len(ch_chunk) :].split("}")
             assert junk[0].startswith("{")
