@@ -1,16 +1,17 @@
-name: "Conventional commits"
+name: "Conventional commit"
 
 on:
-  pull_request_target:
+  pull_request:
     types:
       - opened
       - edited
       - synchronize
       - reopened
 
-permissions:
-  pull-requests: write
+permissions: {}
 
 jobs:
-  main:
-    uses: vEnhance/dotfiles/.github/workflows/conv-commit.yml@main
+  conv-commit:
+    permissions:
+      pull-requests: read
+    uses: vEnhance/dotfiles/.github/workflows/conv-commit.yml@5687553c4974d7b4485d7decd84453e4ffa8014d # main
