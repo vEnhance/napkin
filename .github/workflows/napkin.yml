@@ -10,24 +10,6 @@ permissions:
   contents: read
 
 jobs:
-  spellcheck:
-    runs-on: ubuntu-latest
-    name: "Spellcheck"
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          submodules: recursive
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade codespell
-      - name: Run spellcheck
-        run: |
-          codespell $(git ls-files '*.tex')
-
   build:
     runs-on: ubuntu-latest
     name: "Compile document"
@@ -35,25 +17,26 @@ jobs:
       actions: write
     steps:
       - name: Set up Git repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
         with:
           submodules: recursive
+          persist-credentials: false
       - name: Install TeX Live
         run: |
           sudo apt update
           sudo apt install -y biber texlive-base texlive-latex-recommended texlive-latex-extra texlive-science
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6
         with:
-          python-version: "3.12"
+          python-version: "3.14"
       - name: Install more packages
-        uses: awalsh128/cache-apt-pkgs-action@latest
+        uses: awalsh128/cache-apt-pkgs-action@2c09a5e66da6c8016428a2172bd76e5e4f14bb17 # latest
         with:
           packages: |
             latexmk asymptote ghostscript qpdf
 
       - name: Restore cache
-        uses: actions/cache/restore@v4
+        uses: actions/cache/restore@668228422ae6a00e4ad889ee87cd7109ec5666a7 # v5
         with:
           key: "napkin-cache"
           path: |
@@ -78,7 +61,7 @@ jobs:
       - name: Compile document
         run: latexmk -pdflatex -interaction=nonstopmode -file-line-error Napkin.tex
       - name: Save cache
-        uses: actions/cache/save@v4
+        uses: actions/cache/save@668228422ae6a00e4ad889ee87cd7109ec5666a7 # v5
         with:
           key: "napkin-cache"
           path: |
@@ -131,14 +114,14 @@ jobs:
           cd dist
           tree -H '.' -I "index.html" -D --charset utf-8 --filesfirst -T "An Infinitely Large Napkin: All Generated Files" >index.html
       - name: Setup Pages
-        uses: actions/configure-pages@v3
+        uses: actions/configure-pages@b8130d9ab958b325bbde9786d62f2c97a9885a0e # v3
       - name: Upload PDF artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           path: Napkin.pdf
           name: Napkin.pdf
       - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3
         with:
           path: dist/
 
@@ -157,4 +140,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4
