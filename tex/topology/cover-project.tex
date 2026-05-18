@@ -305,7 +305,7 @@ But in this case we are interested in the actual elements, not just the isomorph
 
 			real k = 25;
 			real f(real x) {
-			    return h * sin(k * log(w/x)); 
+			    return h * sin(k * log(w/x));
 			}
 
 			draw((0, -h) -- (0, h), linewidth(2.5) + squarecap);
@@ -324,8 +324,8 @@ But in this case we are interested in the actual elements, not just the isomorph
 			real cy = -b * sin(theta0);
 
 			guide loop;
-			int steps = 500; 
-			real sweep_angle = pi + 2 * theta0; 
+			int steps = 500;
+			real sweep_angle = pi + 2 * theta0;
 			for(int i = 0; i <= steps; ++i) {
     			real theta = theta0 - sweep_angle * (i / (real)steps);
     			real px = cx + a * cos(theta);
