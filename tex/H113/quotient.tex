@@ -1,7 +1,7 @@
 \chapter{Homomorphisms and quotient groups}
 \label{ch:homomorphisms_quotient}
 \section{Generators and group presentations}
-\prototype{$D_{2n} = \left< r,s \mid r^n=s^2=1\right>$}
+\prototype{$D_{2n} = \left< r,s \mid r^n=s^2=1, rs = sr\inv\right>$}
 
 Let $G$ be a group.
 Recall that for some element $x \in G$,
@@ -30,7 +30,7 @@ This leads us to define:
 \end{definition}
 \begin{exercise}
 	Why is the condition ``and their inverses''
-	not necessary if $G$ is  a finite group?
+	not necessary if $G$ is a finite group?
 	(As usual, assume Lagrange's theorem.)
 \end{exercise}
 
@@ -102,7 +102,7 @@ In fact, it is undecidable to even determine if a group is finite from its prese
 \begin{example}
 	[Presentations can look very different]
 	The same group can have very different presentations.
-	For instance consider
+	For instance, consider:
 	\[ D_{2n} = \left< x,y \mid x^2=y^2=1, (xy)^n=1 \right>. \]
 	(To see why this is equivalent, set $x=s$, $y=rs$.)
 \end{example}
