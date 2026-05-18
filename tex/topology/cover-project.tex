@@ -293,9 +293,48 @@ But in this case we are interested in the actual elements, not just the isomorph
 	Let $Y$ be the \textit{Warsaw circle}, depicted below,
 	consisting of the graph of $y=\sin(1/x)$ for $0<x<1/\pi$,
 	the segment $\{0\}\times[-1,1]$, and a curve to close everything up.
-    \begin{center}
-        \includegraphics[width=4cm]{media/warsaw_circle.png}
-        \\ \scriptsize Image from \cite{ref:hatcher}
+	\begin{center}
+		\begin{asy}
+			size(4cm);
+			import graph;
+
+			real w = 0.55;  // width
+			real h = 0.22;  // amplitude
+			real a = 0.70;  // horizontal radius
+			real b = 0.55;  // vertical radius
+
+			real k = 25;
+			real f(real x) {
+			    return h * sin(k * log(w/x)); 
+			}
+
+			draw((0, -h) -- (0, h), linewidth(2.5) + squarecap);
+
+			guide sine_curve;
+			int n = 4000;
+			real max_depth = 8.0;
+			for(int i = n; i >= 0; --i) {
+			    real t = i / (real)n;
+			    real x = w * exp(-t * max_depth);
+			    sine_curve = sine_curve -- (x, f(x));
+			}
+
+			real cx = w / 2;
+			real theta0 = acos((w / 2) / a);
+			real cy = -b * sin(theta0);
+
+			guide loop;
+			int steps = 500; 
+			real sweep_angle = pi + 2 * theta0; 
+			for(int i = 0; i <= steps; ++i) {
+    			real theta = theta0 - sweep_angle * (i / (real)steps);
+    			real px = cx + a * cos(theta);
+    			real py = cy + b * sin(theta);
+    			loop = loop -- (px, py);
+			}
+
+			draw(sine_curve -- loop, linewidth(2.5) + roundjoin);
+		\end{asy}
     \end{center}
     The space $Y$ is simply connected, thus the lifting criteria
 	is trivially satisfied, but the function $f:Y\to S^1$ which
