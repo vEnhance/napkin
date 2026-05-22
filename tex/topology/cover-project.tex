@@ -329,7 +329,7 @@ But in this case we are interested in the actual elements, not just the isomorph
 			    return h * sin(k * log(w/x));
 			}
 
-			draw((0, -h) -- (0, h), linewidth(2.5) + squarecap);
+			draw((0, -h) -- (0, h), linewidth(1.8) + squarecap);
 
 			guide sine_curve;
 			int n = 4000;
@@ -354,7 +354,7 @@ But in this case we are interested in the actual elements, not just the isomorph
     			loop = loop -- (px, py);
 			}
 
-			draw(sine_curve -- loop, linewidth(2.5) + roundjoin);
+			draw(sine_curve -- loop, linewidth(1.8) + roundjoin);
 		\end{asy}
     \end{center}
     The space $Y$ is simply connected, thus the lifting criteria
