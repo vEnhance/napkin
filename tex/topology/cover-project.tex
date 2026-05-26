@@ -18,8 +18,29 @@ Here is the notion of ``nice'':
 \end{definition}
 Picture:
 \begin{center}
-	\includegraphics[width=4cm]{media/even-covering.png}
-	\\ \scriptsize Image from \cite{img:even_covering}
+	\begin{asy}
+		import math;
+
+		size(8cm);
+
+		real a = 1.2;
+		real b = 0.35;
+
+		filldraw(ellipse((0, 3.2), a, b), white, linewidth(1.2));
+		label("$\vdots$", (0, 2.64), fontsize(14));
+		filldraw(ellipse((0, 1.6), a, b), white, linewidth(1.2));
+		filldraw(ellipse((0, 1.95), a, b), white, linewidth(1.2));
+
+		path bracePath = shift((-1.34, 1.6)) * rotate(90) * brace(0, 1.58, 0.26);
+		draw(bracePath, linewidth(1));
+		label("$p^{-1}(U)$", (-2.08, 2.4), fontsize(14));
+
+		draw((0, 1.02)--(0, 0.28), linewidth(1), Arrow(size=4.8));
+		label("$p$", (0.02, 0.7), E, fontsize(14));
+
+		draw(ellipse((0, -0.3), a, b), linewidth(1.2));
+		label("$U$", (-1.84, -0.3), fontsize(14));
+	\end{asy}
 \end{center}
 All we're saying is that $U$ is evenly covered if its pre-image
 is a bunch of copies of it. (Actually, a little more: each of the pancakes is homeomorphic to $U$, but we also require that $p$ is the homeomorphism.)
@@ -308,7 +329,7 @@ But in this case we are interested in the actual elements, not just the isomorph
 			    return h * sin(k * log(w/x));
 			}
 
-			draw((0, -h) -- (0, h), linewidth(2.5) + squarecap);
+			draw((0, -h) -- (0, h), linewidth(1.8) + squarecap);
 
 			guide sine_curve;
 			int n = 4000;
@@ -333,7 +354,7 @@ But in this case we are interested in the actual elements, not just the isomorph
     			loop = loop -- (px, py);
 			}
 
-			draw(sine_curve -- loop, linewidth(2.5) + roundjoin);
+			draw(sine_curve -- loop, linewidth(1.8) + roundjoin);
 		\end{asy}
     \end{center}
     The space $Y$ is simply connected, thus the lifting criteria
