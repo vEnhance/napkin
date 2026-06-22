@@ -632,12 +632,12 @@ label("$\nabla \cdot \mathbf{F}$ (div)", (12.5,-2.25), dir(0), red);
 \label{fig:1802gradcurldiv}
 \end{figure}
 
-There is a lot going in \Cref{fig:1802gradcurldiv}, so let's break it down piece by piece.
+There is a lot going on in \Cref{fig:1802gradcurldiv}, so let's break it down piece by piece.
 
 \paragraph{$0$-forms.}
 A $0$-form is the same as just a function,
 so the column of 0-D integrals should be easy to understand:
-it's just evaluation at point, or a sum of points.
+it's just evaluation at a point, or a sum of points.
 
 \paragraph{$n$-forms.} The case $n=d$ is also easy:
 we know it's possible to integrate an $n$-form in $\RR^n$ and get a number. That is:
@@ -646,10 +646,10 @@ we know it's possible to integrate an $n$-form in $\RR^n$ and get a number. That
 	across the $1$-form $f \cdot \ee_1^\vee$.
 
 	\ii An area integral $\int_{a_1}^{b_1} \int_{a_2}^{b_2} f(x,y) \odif x \odif y$
-	corresponds to integrating the $1$-form $f \cdot \ee_1^\vee \wedge \ee_2^\vee$.
+	corresponds to integrating the $2$-form $f \cdot \ee_1^\vee \wedge \ee_2^\vee$.
 
-	\ii A volume integral $\int_{a_1}^{b_1} \int_{a_2}^{b_2} \int_{a_3}^{b_3} f(x,y) \odif x \odif y$
-	corresponds to integrating the $1$-form $f \cdot \ee_1^\vee \wedge \ee_2^\vee \wedge \ee_3^\vee$.
+	\ii A volume integral $\int_{a_1}^{b_1} \int_{a_2}^{b_2} \int_{a_3}^{b_3} f(x,y) \odif x \odif y \odif z$
+	corresponds to integrating the $3$-form $f \cdot \ee_1^\vee \wedge \ee_2^\vee \wedge \ee_3^\vee$.
 \end{itemize}
 So this takes care of the green-labeled things on the diagonal.
 
