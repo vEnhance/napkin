@@ -328,7 +328,7 @@ In that sense, we could rewrite the above table as:
 			& S \subseteq \left\{ 1, \dots, n \right\}
 			& \prod_{s \in S} x_s \\
 		\text{Finite group} & Z
-			& \xi \in \wh Z \cong Z & e( i \xi \cdot x) \\
+			& \xi \in \wh Z \cong Z & e(\xi \cdot x) \\
 		\text{Fourier series} & \TT \cong [-\pi, \pi]  & n \in \ZZ
 			& \exp(inx) \\
 		\text{Discrete} & \ZZ/n\ZZ & \xi \in \ZZ/n\ZZ
@@ -609,15 +609,15 @@ that $f(+1, \dots, +1) = +1$ (hence possibility of anti-dictatorship).
 	\[
 		\EE D(f(x_\bullet), g(y_\bullet), h(z_\bullet))
 		=
-		\left( \wh f(S) \wh g(T) + \wh g(S) \wh h(T) + \wh h(S) \wh f(T) \right)
+		\sum_S \left( \wh f(S) \wh g(S) + \wh g(S) \wh h(S) + \wh h(S) \wh f(S) \right)
 		\left( -\frac13 \right)^{|S|}.
 	\]
 	Then, we obtain that
 	\begin{align*}
 		&\EE \frac14 \left( 1 + D(f(x_\bullet), g(y_\bullet), h(z_\bullet)) \right) \\
 		=& \frac14 + \frac14\sum_S
-		\left( \wh f(S) \wh g(T) + \wh g(S) \wh h(T) + \wh h(S) \wh f(T) \right)
-		\wh f(S)^2 \left( -\frac13 \right)^{|S|}.
+		\left( \wh f(S) \wh g(S) + \wh g(S) \wh h(S) + \wh h(S) \wh f(S) \right)
+		\left( -\frac13 \right)^{|S|}.
 	\end{align*}
 	Comparing this with the definition of $D$ gives the desired result.
 	\end{sol}
