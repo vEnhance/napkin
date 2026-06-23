@@ -666,7 +666,7 @@ then the theorem is almost obvious:
 			\sum_{\substack{\sigma \in S_m \\ \sigma \text{ fixes } (i_k)}}
 			\left( \sign(\sigma)
 			\cdot \prod_{i \notin (i_k)} -x_{i \sigma(i)}
-			\prod_{i \in (i_k)}^n \left( a \cdot - x_{ii}
+			\prod_{i \in (i_k)} \left( a - x_{ii}
 			\right)\right) \\
 			% -----------------------
 			&=
@@ -738,7 +738,7 @@ then the theorem is almost obvious:
 			&= \sum_{1 \le i_1 < \dots < i_n \le m}
 			\sum_{\pi \in S_n} \sign(\pi) \prod_{k=1}^n x_{i_{\pi(k)}k} \\
 			&= \sum_{\substack{X \subseteq \{1,\dots,m\} \\ \left\lvert X \right\rvert = n}}
-			\sum_{\pi \in S_X} \sign(\pi) \prod_{i \in X} x_{t \pi(t)}
+			\sum_{\pi \in S_X} \sign(\pi) \prod_{t \in X} x_{t \pi(t)}
 		\end{align*}
 		Hence it remains to show that the permutations over $X$
 		are in bijection with the permutations over $S_m$ which fix $\{1, \dots, m\} - X$,
