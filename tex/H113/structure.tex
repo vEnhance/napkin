@@ -338,8 +338,8 @@ intrinsic to the module $M$.
 	This means, as $R/(p)$-vector space,
 	\[ \dim \pi(M) = \dim \pi(R/(p^{e_1})) + \dim \pi(R/(p^{e_2})) + \cdots + \dim \pi(R/(p^{e_m})). \]
 
-	Note that, for each term $R/(p^{e_1})$, then
-	\[ \dim p^e (R/(p^{e_i})) / p^{e+1} (R/(p^{e_1})) = \begin{cases}
+	Note that, for each term $R/(p^{e_i})$, then
+	\[ \dim p^e (R/(p^{e_i})) / p^{e+1} (R/(p^{e_i})) = \begin{cases}
 		1 & e < e_i \\
 		0 & \text{otherwise}.
 	\end{cases} \]
@@ -576,7 +576,7 @@ the PID condition more or less lets you perform a Euclidean algorithm.
 	\end{subproof}
 	Let $s_1 = (a_{ij})_{i,j}$ be the GCD of all entries.
 	Now by repeatedly applying this algorithm,
-	we can cause $s$ to appear in the upper left hand corner.
+	we can cause $s_1$ to appear in the upper left hand corner.
 	Then, we use it to kill off all the entries in the first
 	row and the first column, thus arriving at a matrix
 	\[ \begin{bmatrix}
