@@ -3,7 +3,7 @@
 Characters are basically the best thing ever.
 To every representation $V$ of $A$ we will attach a
 so-called character $\chi_V \colon A \to k$.
-It will turn out that the characters of finite-dimensional irreps of $V$
+It will turn out that the characters of finite-dimensional irreps of $A$
 will determine the representation $V$ completely.
 Thus a finite-dimensional irrep is just specified by a set of $\dim A$ numbers.
 
@@ -11,7 +11,7 @@ Thus a finite-dimensional irrep is just specified by a set of $\dim A$ numbers.
 \begin{definition}
 	Let $V = (V, \rho)$ be a finite-dimensional representation of $A$.
 	The \vocab{character} $\chi_V \colon A \to k$ attached to
-	$A$ is defined by $\chi_V = \Tr \circ \rho$, i.e.\
+	$V$ is defined by $\chi_V = \Tr \circ \rho$, i.e.\
 	\[ \chi_V(a) \defeq \Tr\left( \rho(a) \colon V \to V \right). \]
 \end{definition}
 Since $\Tr$ and $\rho$ are additive, this is a $k$-linear map
@@ -91,7 +91,7 @@ Thus $[A,A]$ is contained in the kernel of each $\chi_V$.
 	\begin{enumerate}[(a)]
 		\ii If $A$ is commutative, then $[A,A] = \{0\}$
 		and $A\ab = A$.
-		\ii If $A = \Mat_k(d)$, then $[A,A]$ consists exactly
+		\ii If $A = \Mat_d(k)$, then $[A,A]$ consists exactly
 		of the $d \times d$ matrices of trace zero.
 		(Proof: harmless exercise.)
 		Consequently, $A\ab$ is one-dimensional.

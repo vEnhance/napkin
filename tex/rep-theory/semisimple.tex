@@ -80,12 +80,12 @@ by the $mn$ choices of compositions
 \end{tikzcd}
 \end{center}
 where the first arrow is inclusion to the $i$th component of $V^{\oplus m}$
-(for $1 \le i \le m$) and the second arrow is inclusion to the $j$th
+(for $1 \le i \le m$) and the second arrow is projection onto the $j$th
 component of $V^{\oplus n}$ (for $1 \le j \le n$).
 However, by Schur's lemma on each of these compositions,
 we know they must be constant.
 
-Thus, $\Homrep(V^{\oplus n}, V^{\oplus m})$ consist of $n \times m$ ``matrices''
+Thus, $\Homrep(V^{\oplus n}, V^{\oplus m})$ consists of $m \times n$ ``matrices''
 of constants, and the map is provided by
 \[
 	\begin{bmatrix}
@@ -129,11 +129,11 @@ More generally, we have:
 \begin{proof}
 	Apply Schur's lemma to the inclusion $W \injto V$.
 \end{proof}
-Recall from \Cref{sec:vector_space_linear_maps} that a linear maps from a
-$n$-dimensional vector space to a $m$-dimensional vector space can be written as
-a $n \times m$ matrix. Here the situation is similar, however the matrices are
+Recall from \Cref{sec:vector_space_linear_maps} that a linear map from an
+$n$-dimensional vector space to an $m$-dimensional vector space can be written as
+an $m \times n$ matrix. Here the situation is similar, however the matrices are
 made for each irrep independently, and the non-isomorphic irreps, in some sense,
-``doesn't talk to each other''.
+``don't talk to each other''.
 
 %We can compare this to \Cref{prop:rep_direct_sum}: When our $k$-algebra is a
 %direct sum $A \oplus B$, then every representation $V$ can be broken down
@@ -160,7 +160,7 @@ made for each irrep independently, and the non-isomorphic irreps, in some sense,
 		\end{pmatrix}
 		\begin{bmatrix}
 			c_{11} & c_{21} & \cdots & c_{(m-1)1} & c_{m1} \\
-			c_{12} & c_{22} & \cdots & c_{(m-1)1} & c_{m2} \\
+			c_{12} & c_{22} & \cdots & c_{(m-1)2} & c_{m2} \\
 			\vdots & \vdots & \ddots & \vdots & \vdots \\
 			c_{1n} & c_{2n} & \cdots & c_{(m-1)n} & c_{mn}
 		\end{bmatrix}
@@ -280,7 +280,7 @@ This also gives us the non-obvious corollary:
 
 	Because we're working through a counterexample, pick $e_1=(1, 0)$, $e_2=(2, 0)$ instead.
 	Then, for some $w_1, w_2 \in V$,
-	there may be no $a$ that sends $e_1$ to $w_1$ to $e_2$ to $w_2$.
+	there may be no $a$ that sends $e_1$ to $w_1$ and $e_2$ to $w_2$.
 
 	Consider the representation morphism $\Reg(A) \to V^{\oplus 2}$ by
 	$a \mapsto(a \cdot e_1, a \cdot e_2)$;
@@ -313,7 +313,7 @@ This also gives us the non-obvious corollary:
 \end{theorem}
 \begin{proof}
 	(i) $\implies$ (ii) follows from
-	using \Cref{prop:rep_direct_sum} to breaks any finite-dimensional
+	using \Cref{prop:rep_direct_sum} to break any finite-dimensional
 	representation of $A$ into a direct sum of representations of
 	$\Mat_{d_i}(k)$, then \Cref{thm:rep_1mat} shows any such representations are
 	completely reducible.
@@ -362,7 +362,7 @@ the density theorem (and \Cref{cor:finiteness}), we obtain:
 	equality holds exactly when $A$ is semisimple,
 	in which case
 	\[ \Reg(A) \cong \bigoplus_i \Mat(V_i)
-		\cong \bigoplus_I V_i^{\oplus \dim V_i}. \]
+		\cong \bigoplus_i V_i^{\oplus \dim V_i}. \]
 \end{theorem}
 \begin{proof}
 	The inequality was already mentioned in \Cref{cor:finiteness}.
