@@ -58,7 +58,7 @@ First, we prove:
 	To see this, note that $T_i$ commutes with elements of $G$,
 	and hence is an intertwining operator $T_i \colon V \to V$.
 	Thus by Schur's lemma, $T_i = \lambda_i \cdot \id_V$
-	and $\Tr T = \lambda_i \dim V$.
+	and $\Tr T_i = \lambda_i \dim V$.
 	By \Cref{lem:group_ring_integral}, $\lambda_i \in \ol\ZZ$, as desired.
 
 	Now we are done, since $\ol{\chi_V(C_i)} \in \ol\ZZ$ too
@@ -83,7 +83,7 @@ In what follows $p$ and $q$ will always denote prime numbers.
 
 \begin{lemma}[On $\gcd(|C|, \dim V) = 1$]
 	\label{lem:burnside_ant_lemma}
-	Let $V = (V, \rho)$ be an complex irrep of $G$.
+	Let $V = (V, \rho)$ be a complex irrep of $G$.
 	Assume $C$ is a conjugacy class of $G$ with $\gcd(|C|, \dim V) = 1$.
 	Then for any $g \in C$, either
 	\begin{itemize}
@@ -112,7 +112,7 @@ In what follows $p$ and $q$ will always denote prime numbers.
 	By contradiction.
 	Assume $C$ is such a conjugacy class, and fix any $g \in C$.
 	By the second orthogonality formula (\Cref{prob:second_orthog})
-	applied $g$ and $1_G$ (which are not conjugate since $g \neq 1_G$) we have
+	applied to $g$ and $1_G$ (which are not conjugate since $g \neq 1_G$) we have
 	\[ \sum_{i=1}^r \dim V_i \chi_{V_i}(g) = 0 \]
 	where $V_i$ are as usual all irreps of $G$.
 	\begin{exercise}
@@ -128,7 +128,7 @@ In what follows $p$ and $q$ will always denote prime numbers.
 	We claim this is a nontrivial normal subgroup of $G$.
 	It is easy to check $H$ is normal,
 	and since $|C| > 1$ we have that $H$ is nontrivial.
-	As represented by $V$ each element of $H$ acts trivially in $G$,
+	As represented by $V$ each element of $H$ acts trivially on $V$,
 	so since $V$ is nontrivial and irreducible, $H \neq G$.
 	This contradicts the assumption that $G$ was simple.
 \end{proof}
