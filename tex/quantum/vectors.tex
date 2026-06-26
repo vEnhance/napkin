@@ -178,7 +178,7 @@ This behavior is called \vocab{quantum collapse}.
 	it has now been projected onto the eigenspace $H_\lambda$.
 	In still other words, after observation, the state collapses to
 	\[
-		\sum_{\substack{0 \le i \le n \\ \substack{\lambda_i = \lambda}}}
+		\sum_{\substack{0 \le i \le n-1 \\ \lambda_i = \lambda}}
 		c_i \ket{i}_T.
 	\]
 \end{itemize}
@@ -458,7 +458,7 @@ That's what entangled states mean: the qubits somehow depend on each other.
 		span one eigenspace of $\sigma_x^A \otimes \id_B$,
 		and $\xdown_A \otimes \xup_B$, $\xdown_A \otimes \xdown_B$
 		span the other. So this is the same as before:
-		$+1$ gives $\xdown_B$ and $-1$ gives $\xdown_A$.
+		$+1$ gives $\xdown_B$ and $-1$ gives $\xup_B$.
 	\end{sol}
 \end{problem}
 

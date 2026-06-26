@@ -119,7 +119,7 @@ orthonormal basis $\ket0$, $\ket1$, \dots, $\ket{N-1}$
 		\end{bmatrix}
 	\]
 \end{definition}
-This is the exactly the same definition as before,
+This is exactly the same definition as before,
 except we have a $\sqrt N$ factor added so that $\UQFT$ is unitary.
 But the trick is that in the quantum setup, the matrix can be rewritten:
 \begin{proposition}
@@ -225,9 +225,10 @@ first we generate a sequence which is periodic modulo $r$.
 	Applying this to $\ket\psi \otimes \ket0$ gives
 	\[ U(\ket\psi\ket0) =
 		\frac{1}{\sqrt N} \sum_{k=0}^{N-1} \ket k \otimes \ket{x^k \bmod M}. \]
-	Now suppose we measure the second qubit, and get a state of $\ket{128}$.
+	Now suppose we measure the second qubit, and get a state of $\ket{51}$
+		(note that $2^7 \equiv 51 \pmod{77}$).
 	That tells us that the collapsed state now, up to scaling, is
-	\[ (\ket{7} + \ket{7+r} + \ket{7+2r} + \dots) \otimes \ket{128}. \]
+	\[ (\ket{7} + \ket{7+r} + \ket{7+2r} + \dots) \otimes \ket{51}. \]
 \end{example}
 The bottleneck is actually the circuit $U_x$;
 one can compute $x^k \pmod M$ by using repeated squaring,
@@ -253,7 +254,7 @@ but we don't expect $r$ to be.
 
 Nevertheless, consider a state
 \[ \ket\phi = \ket{k_0} + \ket{k_0+r} + \dots \]
-so for example previously we had $k_0=7$ if we measured $128$ on $x=2$.
+so for example previously we had $k_0=7$ if we measured $51$ on $x=2$.
 Applying the quantum Fourier transform, we see that the
 coefficient of $\ket j$ in the transformed image is equal to
 \[
