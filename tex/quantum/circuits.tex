@@ -7,7 +7,7 @@ linear combinations of $0$ and $1$.
 
 \section{Classical logic gates}
 In classical logic, we build circuits which take in some bits for input,
-and output some more bits for input.
+and output some more bits for output.
 These circuits are built out of individual logic gates.
 For example, the \vocab{AND gate} can be pictured as follows.
 \[
@@ -109,7 +109,7 @@ Of course, the first theorem you learn about these gates is that:
 For the purposes of quantum mechanics, this is not enough.
 To carry through the analogy we in fact need gates that are \vocab{reversible},
 meaning the gates are bijections from the input space to the output space.
-In particular, such gates must take the same number of input and output gates.
+In particular, such gates must take the same number of input and output bits.
 \begin{example}[Reversible gates]
 	\listhack
 	\begin{enumerate}[(a)]
@@ -340,7 +340,7 @@ even when the original inputs are not entangled.
 		\ii Every reversible classical gate that we encountered before
 		has a quantum analog obtained in the same way as CNOT:
 		by specifying the values on basis elements.
-		For example, there is a quantum Tofolli gate which
+		For example, there is a quantum Toffoli gate which
 		for example sends
 		\[
 			\Qcircuit @C=0.8em @R=.7em {
@@ -625,29 +625,29 @@ However,
 	is $1$ if $f$ is constant and $0$ if $f$ is balanced.
 	\begin{hint}
 		First show that the box sends
-		$\ket{x_1} \otimes \dots \otimes \ket{x_m} \otimes \xdown$
-		to $(-1)^{f(x_1, \dots, x_m)}
-		(\ket{x_1} \otimes \dots \otimes \ket{x_m} \otimes \xdown)$.
+		$\ket{x_1} \otimes \dots \otimes \ket{x_n} \otimes \xdown$
+		to $(-1)^{f(x_1, \dots, x_n)}
+		(\ket{x_1} \otimes \dots \otimes \ket{x_n} \otimes \xdown)$.
 	\end{hint}
 	\begin{sol}
 		Put $\xdown = \frac{1}{\sqrt2} (\ket0-\ket1)$.
 		Then we have that $U_f$ sends
 		\[
-			\ket{x_1}  \dots  \ket{x_m}  \ket 0
-			- \ket{x_1}  \dots  \ket{x_m}  \ket 1
+			\ket{x_1}  \dots  \ket{x_n}  \ket 0
+			- \ket{x_1}  \dots  \ket{x_n}  \ket 1
 			\xmapsto{U_f}
-			\pm \ket{x_1}  \dots  \ket{x_m}  \ket 0
-			\mp \ket{x_1}  \dots  \ket{x_m}  \ket 1
+			\pm \ket{x_1}  \dots  \ket{x_n}  \ket 0
+			\mp \ket{x_1}  \dots  \ket{x_n}  \ket 1
 		\]
-		the sign being $+$, $-$ exactly when $f(x_1, \dots, x_m) = 1$.
+		the sign being $+$, $-$ exactly when $f(x_1, \dots, x_n) = 1$.
 
-		Now, upon inputting $\ket0 \dots \ket0 \ket1$, we find that $H^{\otimes m+1}$ maps it to
+		Now, upon inputting $\ket0 \dots \ket0 \ket1$, we find that $H^{\otimes n+1}$ maps it to
 		\[ 2^{-n/2} \sum_{x_1, \dots, x_n} \ket{x_1} \dots \ket{x_n} \xdown.  \]
 		Then the image under $U_f$ is
 		\[ 2^{-n/2} \sum_{x_1, \dots, x_n} (-1)^{f(x_1, \dots, x_n)} \ket{x_1} \dots \ket{x_n} \xdown.  \]
 		We now discard the last qubit, leaving us with
 		\[ 2^{-n/2} \sum_{x_1, \dots, x_n} (-1)^{f(x_1, \dots, x_n)} \ket{x_1} \dots \ket{x_n}.  \]
-		Applying $H^{\otimes m}$ to this, we get
+		Applying $H^{\otimes n}$ to this, we get
 		\[ 2^{-n/2} \sum_{x_1, \dots, x_n} (-1)^{f(x_1, \dots, x_n)}
 			\cdot
 			\left(
@@ -668,7 +668,7 @@ However,
 			C(y_1, \dots, y_n)
 			\ket{y_1} \ket{y_2} \dots \ket{y_n}
 		\]
-		where $C_{y_1, \dots, y_n}
+		where $C(y_1, \dots, y_n)
 		= \sum_{x_1, \dots, x_n} (-1)^{f(x_1, \dots, x_n)
 			+x_1 y_1 + \dots + x_n y_n}$.
 		Now, we finally consider two cases.
@@ -711,7 +711,7 @@ However,
 		}
 	\]
 	This was a big surprise to researchers when discovered,
-	because classical reversible logic requires three-bit gates (e.g. Toffoli, Fredkind).
+	because classical reversible logic requires three-bit gates (e.g. Toffoli, Fredkin).
 	\begin{hint}
 		This is direct computation.
 	\end{hint}
