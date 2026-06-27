@@ -5,7 +5,7 @@ of metric (and topological) spaces well,
 we give a three-chapter sequence which
 briskly covers the theory of single-variable calculus.
 
-Much of the work has secretly already been done,
+Much of the work has secretly already been done.
 For example, if $x_n$ and $y_n$ are real sequences
 with $\lim_n x_n = x$ and $\lim_n y_n = y$,
 then in fact $\lim_n (x_n + y_n) = x+y$
@@ -81,8 +81,8 @@ To write it out:
 \end{theorem}
 
 \begin{definition}
-	For convenience, if $S$ has not bounded above, we write $\sup S = +\infty$.
-	Similarly, if $S$ has not bounded below, we write $\inf S = -\infty$.
+	For convenience, if $S$ is not bounded above, we write $\sup S = +\infty$.
+	Similarly, if $S$ is not bounded below, we write $\inf S = -\infty$.
 \end{definition}
 
 \begin{example}
@@ -235,7 +235,7 @@ as the real line, and slicing at some real number.
 The subset $\QQ \subset \RR$ gets cut into two halves $A$ and $B$.
 If the knife happens to land exactly at a rational number,
 by convention we consider that number to be in the right half
-(which explains the last fourth condition that $\sup A \notin A$).
+(which explains the last condition that $\sup A \notin A$).
 
 With this definition \Cref{thm:inf_sup} is easy:
 to take the supremum of a set of real numbers,
@@ -259,7 +259,7 @@ Here is a great exercise.
 	you can also try to use completeness of $\RR$.
 	Second hint: if you are really stuck,
 	wait until after \Cref{thm:nonneg_bounded},
-	at which point you can use essentially copy its proof.
+	at which point you can essentially copy its proof.
 \end{exercise}
 
 The proof here readily adapts by shifting.
@@ -287,7 +287,7 @@ The proof here readily adapts by shifting.
 		a_5 &= 1.2481632 \\
 		&\vdotswithin=
 	\end{align*}
-	and so on, where in general we stuck
+	and so on, where in general we tack
 	on the decimal representation of the next power of $2$.
 	This will converge to \emph{some} real number,
 	although of course this number
@@ -344,7 +344,7 @@ We can think of $\limsup_n a_n$ as
 
 
 \section{Infinite series}
-\prototype{$\sum_{k \ge 1}^\infty \frac{1}{k(k+1)}
+\prototype{$\sum_{k=1}^\infty \frac{1}{k(k+1)}
 = \lim_{n \to \infty} \left( 1 - \frac{1}{n+1} \right) = 1$.}
 
 We will actually begin by working with infinite series,
@@ -817,7 +817,7 @@ I've mentioned this, so I will not say more.
 			&\le a_M \\
 			a_M - a_{M+1} + a_{M+2} - \dots
 			&= a_M - a_{M+1} + (a_{M+2} - a_{M+3}) + (a_{M+4} - a_{M+5}) \\
-			&\quad+ \dots + (a_{N-2} - a_{N+1}) + a_N \\
+			&\quad+ \dots + (a_{N-2} - a_{N-1}) + a_N \\
 			&\ge -a_{M+1}.
 		\end{align*}
 		In this way we see that the sequence of partial sums is Cauchy,
