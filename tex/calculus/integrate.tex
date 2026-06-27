@@ -24,8 +24,8 @@ but functions on compact sets are always uniformly continuous.}
 	for all $\eps > 0$ there exists a $\delta > 0$ such that
 	\[ d_M(p,q) < \delta \implies d_N(f(p), f(q)) < \eps. \]
 \end{definition}
-This difference is that given an $\eps > 0$ we must specify a $\delta > 0$
-which works for \emph{every} choice $p$ and $q$ of inputs;
+The difference is that given an $\eps > 0$ we must specify a $\delta > 0$
+which works for \emph{every} choice of inputs $p$ and $q$;
 whereas usually $\delta$ is allowed to depend on $p$ and $q$.
 (Also, this definition can't be ported
 to a general topological space.)
@@ -193,7 +193,7 @@ I need to introduce a bit of notation so bear with me.
 Warning: only $C^0([a,b])$ is common notation,
 and the other two are made up.
 
-See picture below for a typical a rectangle function.
+See picture below for a typical rectangle function.
 (It is irritating that we have to officially assign a single
 value to each $t_i$,
 even though there are naturally two values we want to use,
@@ -314,8 +314,8 @@ We denote this function by
 The above definition might seem fantastical, overcomplicated,
 hilarious, or terrible, depending on your taste.
 But if you unravel it, it's really the picture you are used to.
-What we have done is taking every continuous function $f \colon [a,b] \to \RR$
-and showed that it can be approximated by a rectangle function
+What we have done is take every continuous function $f \colon [a,b] \to \RR$
+and show that it can be approximated by a rectangle function
 (which we phrased as a dense inclusion).
 Then we added the area of the rectangles.
 Nonetheless, we will give a definition that's
@@ -323,7 +323,7 @@ more like what you're used to seeing in other places.
 \begin{definition}
 	A \emph{tagged partition} $P$ of $[a,b]$
 	consists of a partition of $[a,b]$ into $n$ intervals,
-	with a point $\xi_i$ in the $n$th interval, denoted
+	with a point $\xi_i$ in the $i$th interval, denoted
 	\[ a = t_0 < t_1 < t_2 < \dots < t_n = b
 		\qquad\text{and}\qquad \xi_i \in [t_{i-1}, t_i]
 		\quad \forall \; 1 \le i \le n.  \]
@@ -371,8 +371,8 @@ but the $\xi_i$ are the sample points.
 	The right-hand side corresponds to the areas
 	of some rectangle functions $g_1$, $g_2$, \dots
 	with increasingly narrow rectangles.
-	As in the proof \Cref{thm:gaitsgory_riemann},
-	as the meshes of those rectangles approaches zero,
+	As in the proof of \Cref{thm:gaitsgory_riemann},
+	as the meshes of those rectangles approach zero,
 	by uniform continuity, we have $d(f, g_n) \to 0$ as well.
 	Thus by continuity in the diagram of \Cref{thm:gaitsgory_riemann},
 	we get $\lim_n \Sigma(g_n) = \int(f)$ as needed.

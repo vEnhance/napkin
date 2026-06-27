@@ -27,7 +27,7 @@ I suspect most of you have seen this before, but:
 	The function $f$ is differentiable if it is differentiable
 	at every point.
 	In that case, we regard the derivative $f' \colon (a,b) \to \RR$
-	as a function it its own right.
+	as a function in its own right.
 \end{definition}
 
 \begin{exercise}
@@ -131,10 +131,10 @@ Sum rule, all that jazz.
 	In what follows $f$ and $g$ are differentiable functions,
 	and $U$, $V$ are open subsets of $\RR$.
 	\begin{itemize}
-		\ii (Sum rule) If $f,g \colon U \to \RR$ then
+		\ii (Sum rule) If $f,g \colon U \to \RR$
 		then $(f+g)'(x) = f'(x) + g'(x)$.
 
-		\ii (Product rule) If $f,g \colon U \to \RR$ then
+		\ii (Product rule) If $f,g \colon U \to \RR$
 		then $(f \cdot g)'(x) = f'(x) g(x) + f(x) g'(x)$.
 
 		\ii (Chain rule) If $f \colon U \to V$ and $g \colon V \to \RR$
@@ -305,7 +305,7 @@ We will give a rigorous description of how to do this here.
 		it is a local maximum of $-f$.}
 \end{definition}
 \begin{definition}
-	A point $p$ is a \vocab{local extrema}
+	A point $p$ is a \vocab{local extremum}
 	if it satisfies either of these.
 \end{definition}
 
@@ -313,7 +313,7 @@ The nice thing about derivatives is that they pick up all extrema.
 \begin{theorem}
 	[Fermat's theorem on stationary points]
 	Suppose $f \colon U \to \RR$ is differentiable
-	and $p \in U$ is a local extrema.
+	and $p \in U$ is a local extremum.
 	Then $f'(p) = 0$.
 \end{theorem}
 
@@ -333,7 +333,7 @@ If you draw a picture, this result is not surprising.
 \end{center}
 (Note also: the converse is not true.
 Say, $f(x) = x^{2019}$ has $f'(0) = 0$
-but $x=0$ is not a local extrema for $f$.)
+but $x=0$ is not a local extremum for $f$.)
 
 \begin{proof}
 	Assume for contradiction $f'(p) > 0$.
@@ -357,10 +357,10 @@ we change the domain to be a compact set $Z$,
 for which we know that $f$ will achieve some global maximum.
 The set $Z$ will naturally have some \emph{interior} $S$,
 and calculus will give us all the extrema within $S$.
-Then we manually check all cases outside $Z$.
+Then we manually check all cases outside $S$.
 
 Let's see two extended examples.
-The one is simple, and you probably already know about it,
+The first one is simple, and you probably already know about it,
 but I want to show you how to use compactness to argue thoroughly,
 and how the ``boundary'' points naturally show up.
 
@@ -461,7 +461,7 @@ One can adapt the theorem as follows.
 \end{theorem}
 
 Pictorially, there is a $c$ such that the tangent at $c$
-has the same slope as the secant joining $(a, f(a))$, to $(b, f(b))$;
+has the same slope as the secant joining $(a, f(a))$ to $(b, f(b))$;
 and Rolle's theorem is the special case where that secant is horizontal.
 
 \begin{center}
@@ -513,7 +513,7 @@ and Rolle's theorem is the special case where that secant is horizontal.
 \end{remark}
 
 The mean value theorem is important because it lets
-you relate \textbf{use derivative information
+you \textbf{use derivative information
 to get information about the function}
 in a way that is really not possible without it.
 Here is one quick application to illustrate my point:
@@ -595,7 +595,7 @@ By convention, $f^{(0)} = f$.
 Most of the functions we encounter,
 such as polynomials, $e^x$, $\log$, $\sin$, $\cos$
 are smooth, and so are their compositions.
-Here is a weird example which we'll grow more next time.
+Here is a weird example which we'll see more of next time.
 \begin{example}
 	[A smooth function with all derivatives zero]
 	Consider the function

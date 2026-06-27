@@ -318,7 +318,7 @@ So you can divide by $p$ with no repercussions.
 Up until now we've been thinking about things mostly algebraically,
 but moving forward it will be helpful to start using the language of analysis.
 Usually, two real numbers are considered ``close'' if
-they are close on the number of line,
+they are close on the number line,
 but for $p$-adic purposes we only care about modulo $p^e$ information.
 So, we'll instead think of two elements of $\ZZ_p$ or $\QQ_p$
 as ``close'' if they differ by a large multiple of $p^e$.
@@ -350,7 +350,7 @@ in that case $\nu_p(x-y)$ is large
 and accordingly $\left\lvert x-y \right\rvert_p$ is small.
 
 \subsection{Ultrametric space}
-In this way, $\QQ_p$ and $\ZZ_p$ becomes a metric space
+In this way, $\QQ_p$ and $\ZZ_p$ become metric spaces
 with metric given by $\left\lvert x-y \right\rvert_p$.
 
 \begin{exercise}
@@ -579,7 +579,7 @@ in the following way.
 \end{theorem}
 The $a_i$ are called the \emph{Mahler coefficients} of $f$.
 \begin{exercise}
-	Last post we proved that if $f \colon \ZZ_p \to \QQ_p$ is continuous
+	Earlier we proved that if $f \colon \ZZ_p \to \QQ_p$ is continuous
 	and $f(n) = (-1)^n$ for every $n \in \ZZ_{\ge 0}$ then $p = 2$.
 	Re-prove this using Mahler's theorem,
 	and this time show conversely that a unique such $f$ exists when $p=2$.
@@ -644,7 +644,7 @@ which was interesting even before $p$-adics came along!
 	Let $T$ be an integer such that $A^T \equiv \id \pmod p$
 	(with $\id$ denoting the identity matrix).
 
-	Fix any $0 \le r < N$.
+	Fix any $0 \le r < T$.
 	We will prove that either all the terms
 	\[ f(n) = x_{nT+r} \qquad n = 0, 1, \dots \]
 	are zero, or at most finitely many of them are.
@@ -655,9 +655,9 @@ which was interesting even before $p$-adics came along!
 	\begin{align*}
 		f(n) &= \left< A^{nT+r} u, v \right>
 		= \left< (\id + pB)^n A^r u, v \right> \\
-		&= \sum_{k \ge 0} \binom nk \cdot p^n \left< B^n A^r u, v \right> \\
-		&= \sum_{k \ge 0} a_n \binom nk \qquad \text{ where }
-			a_n = p^n \left< B^n A^r u, v \right> \in p^n \ZZ.
+		&= \sum_{k \ge 0} \binom nk \cdot p^k \left< B^k A^r u, v \right> \\
+		&= \sum_{k \ge 0} a_k \binom nk \qquad \text{ where }
+			a_k = p^k \left< B^k A^r u, v \right> \in p^k \ZZ.
 	\end{align*}
 	Thus we have written $f$ in Mahler form.
 	Initially, we define $f \colon \ZZ_{\ge 0} \to \ZZ$,
@@ -666,7 +666,7 @@ which was interesting even before $p$-adics came along!
 	Also, we can check that $\lim_n \frac{a_n}{n!} = 0$
 	hence $f$ is even analytic.
 
-	Thus by Strassman's theorem, $f$ is either identically zero,
+	Thus by Strassmann's theorem, $f$ is either identically zero,
 	or else it has finitely many zeros, as desired.
 \end{proof}
 
