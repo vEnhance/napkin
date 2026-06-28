@@ -211,7 +211,7 @@ We can now give many more examples.
 	has infinitely many poles: the numbers $z = \pi k$, where $k$ is an integer.
 	Let's compute the Laurent series at just $z=0$:
 	\begin{align*}
-		\frac{1}{\sin(2\pi z)}
+		\frac{1}{\sin(z)}
 		&= \frac{1}{\frac{z}{1!} - \frac{z^3}{3!} + \frac{z^5}{5!} - \dotsb} \\
 		% &= \frac{1/z}{\frac{1}{1!} - \frac{z^2}{3!} + \frac{z^4}{5!} - \dotsb} \\
 		&= \frac 1z \cdot \frac{1}{1 - \left( \frac{z^2}{3!} - \frac{z^4}{5!} + \dotsb \right)} \\
@@ -479,7 +479,7 @@ point of $\gamma$.
 We all know that $z \mapsto \log z$ is not an actual function --- even ignoring the singularity
 at $0$, it has a branch cut (we will formally handle this in \Cref{ch:complex_log}).
 
-Nevertheless, if we close our eyes and shuffling some symbols around, we get:
+Nevertheless, if we close our eyes and shuffle some symbols around, we get:
 \begin{align*}
 	\frac{1}{2 \pi i} \oint_\gamma \frac{f'(z)}{f(z)} \; dz
 	&= \frac{1}{2 \pi i} \oint_\gamma \frac{d}{dz} \log f(z) \; dz \\
@@ -492,10 +492,10 @@ Now, if $\gamma$ is a circle, then $a = b$, so the formula above seemingly state
 integral will be $0$?
 Fortunately for us, no --- $\log$ is in fact not a function.
 
-So, does the formula above means anything?
+So, does the formula above mean anything?
 It does! While we won't prove this rigorously, the point is that:
 \begin{moral}
-	If we let a point $p$ smoothly moves from $a$ to $b$, and let $\log f(p)$ follows the value,
+	If we let a point $p$ smoothly move from $a$ to $b$, and let $\log f(p)$ follow the value,
 	then $\log f(b) - \log f(a)$ represents the change in value of $\log f(p)$.
 \end{moral}
 

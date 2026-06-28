@@ -36,8 +36,8 @@ Suppose I told you that some rational function $R$ always finds
 a root of a quintic polynomial $P(z) = (z - z_1)(z - z_2)(z - z_3)(z - z_4)(z - z_5)$.
 For simplicity, let all the roots be distinct.
 
-Suppose that initially $R$ outputs $z_1$. Consider what happens we smoothly swap the roots $z_1$ and $z_2$
-along two non-intersecting paths that doesn't go through other roots.
+Suppose that initially $R$ outputs $z_1$. Consider what happens when we smoothly swap the roots $z_1$ and $z_2$
+along two non-intersecting paths that don't go through other roots.
 
 \begin{center}
 	%% First Diagram
@@ -134,7 +134,7 @@ How do we handle the nested radicals now?
 \begin{example}[Cubic Formula]
 	The cubic formula contains a nasty term
 	\[
-		\sqrt[3]{\frac{2b^3 - 9abc + 27a^2d + \sqrt{(2b^3 - 9abc + 27a^d)^2 - 4(b^3 - 3ac)^3}}{2}}.
+		\sqrt[3]{\frac{2b^3 - 9abc + 27a^2d + \sqrt{(2b^3 - 9abc + 27a^2d)^2 - 4(b^2 - 3ac)^3}}{2}}.
 	\]
 	Here, we've taken multiple roots.
 \end{example}
@@ -152,7 +152,7 @@ we can again consider the \emph{commutators} of these commutators,
 say $\sigma\rho\sigma^{-1}\rho^{-1}$
 which by the same logic fixes the issues with phase.
 
-There's no reason, we can't consider the commutators of commutators of commutators to fix
+There's no reason we can't consider the commutators of commutators of commutators to fix
 radicals of degree $3$ and so on. It thus just remains that we always can keep getting
 nontrivial commutators.
 
@@ -161,7 +161,7 @@ We've reduced this to a group theory problem. Given a chain of commutators
 \[
 	S_5 = G \supseteq G^{(1)} \supseteq G^{(2)} \supseteq \dots
 \]
-where each group is the commutator subgroup of the next,
+where each group is the commutator subgroup of the previous,
 we want to show that $G^{(n)}$ never becomes trivial.
 This chain is called the \vocab{derived series}.
 
@@ -171,7 +171,7 @@ This chain is called the \vocab{derived series}.
 \end{exercise}
 
 \begin{definition}
-	A group $G$ is \vocab{solvable} if its derived series is nontrivial.
+	A group $G$ is \vocab{solvable} if its derived series eventually becomes trivial.
 \end{definition}
 
 So all that remains is showing that $S_5$ is not solvable.
