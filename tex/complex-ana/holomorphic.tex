@@ -535,7 +535,7 @@ So let's state the full result below, with arbitrary center $p$.
 	\]
 	where
 	\[
-		c_k = \frac{f^{k}(p)}{k!} = \frac{1}{2\pi i} \oint_\gamma \frac{f(w)}{(w-p)^{k+1}} \; dw
+		c_k = \frac{f^{(k)}(p)}{k!} = \frac{1}{2\pi i} \oint_\gamma \frac{f(w)}{(w-p)^{k+1}} \; dw
 	\]
 	In particular,
 	\[ f^{(k)}(p) = k! c_k = \frac{k!}{2\pi i} \oint_\gamma \frac{f(w)}{(w-p)^{k+1}} \; dw. \]
@@ -573,7 +573,7 @@ but in fact equal to its Taylor series.
 \end{remark}
 
 \begin{remark}
-	You can see where the term $\frac{f(w-p)}{(w-p)^{k+1}}$ comes from in
+	You can see where the term $\frac{f(w)}{(w-p)^{k+1}}$ comes from in
 	\Cref{remark:cauchy_integral_intuition}. It is very intuitive that even if you forget it,
 	you can derive it yourself as well!
 \end{remark}
@@ -592,7 +592,7 @@ the existence of a Taylor series is incredibly powerful.
 \section{Optional: Proof that holomorphic functions are analytic}
 
 It is recommended to read the next chapter first to understand the origin of the term
-$\frac{f(w-p)}{(w-p)^{k+1}}$ in Cauchy's differentiation formula above.
+$\frac{f(w)}{(w-p)^{k+1}}$ in Cauchy's differentiation formula above.
 
 Each step of the proof is quite intuitive, if not a bit long.
 The outline is:
