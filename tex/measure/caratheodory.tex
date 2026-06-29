@@ -329,8 +329,8 @@ gives a $\sigma$-algebra $\SA\cme$ with a complete measure $\mu\cme$,
 and our two compatibility results
 (namely (b) of \Cref{thm:construct_outer},
 together with \Cref{prop:cm_compatible})
-means that $\SA\cme \supset \SA_0$
-and $\mu\cme$ agrees with $\mu$.
+mean that $\SA\cme \supset \SA_0$
+and $\mu\cme$ agrees with $\mu_0$.
 
 Here is a table showing the process,
 where going down each row of the table corresponds to restriction process.
@@ -406,7 +406,7 @@ Here is an example.
 \begin{example}
 	[The Cantor set has measure zero]
 	The standard \vocab{middle-thirds Cantor set} is the subset
-	$[0,1]$ obtained as follows:
+	of $[0,1]$ obtained as follows:
 	we first delete the open interval $(1/3, 2/3)$.
 	This leaves two intervals $[0,1/3]$ and $[2/3,1]$
 	from which we delete the middle thirds again from both,
@@ -521,7 +521,7 @@ Fortunately, this restriction is trivial to do.
 We will in a moment add this as the fourth row in our table.
 
 However, if this is the end goal,
-than a somewhat different Carath\'{e}odory theorem
+then a somewhat different Carath\'{e}odory theorem
 can be stated because often one more niceness condition holds:
 \begin{definition}
 	A pre-measure or measure $\mu$ on $\Omega$ is \vocab{$\sigma$-finite}
@@ -586,8 +586,8 @@ when $\mu_0$ is $\sigma$-finite.
 \begin{proof}
 	[Proof of \Cref{thm:cara_premeasure}]
 	For (a): this is just \Cref{thm:construct_outer} and \Cref{thm:cara_outer}
-	put together, combined with the observation that $\SA^\ast \supset \SA_0$
-	and hence $\SA^\ast \supset \SA$.
+	put together, combined with the observation that $\SA\cme \supset \SA_0$
+	and hence $\SA\cme \supset \SA$.
 	Parts (b) and (c) are more technical, and omitted.
 \end{proof}
 
