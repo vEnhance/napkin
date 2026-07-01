@@ -223,9 +223,9 @@ So we can now give the definition.
 	\[ \int_c \alpha \coloneqq \int_{[0,1]^k} c^\ast \alpha. \]
 \end{definition}
 Since $c^\ast \alpha$ is a $k$-form on the $k$-dimensional unit box,
-it can be written as $f(x_1, \dots, x_n) \; dx_1 \wedge \dots \wedge dx_n$,
+it can be written as $f(x_1, \dots, x_k) \; dx_1 \wedge \dots \wedge dx_k$,
 So the above integral could also be written as
-\[ \int_0^1 \dots \int_0^1 f(x_1, \dots, x_n) \; dx_1 \wedge \dots \wedge dx_n. \]
+\[ \int_0^1 \dots \int_0^1 f(x_1, \dots, x_k) \; dx_1 \wedge \dots \wedge dx_k. \]
 
 \begin{example}[Area of a circle]
 	Consider $V = \RR^2$ and let $c \colon (r,\theta) \mapsto (r\cos\theta)\ee_1 + (r\sin\theta)\ee_2$
@@ -306,7 +306,7 @@ First, I introduce a technical term that lets us consider multiple cells at once
 	i.e.\ a sum of the form
 	\[ c = a_1 c_1 + \dots + a_m c_m \]
 	where each $a_i \in \RR$ and $c_i$ is a $k$-cell.
-	We define $\int_c \alpha = \sum_i a_i \int c_i$.
+	We define $\int_c \alpha = \sum_i a_i \int_{c_i} \alpha$.
 \end{definition}
 In particular, a $0$-chain consists of several points, each with a given weight.
 
@@ -369,7 +369,7 @@ Here's how we do it in general.
 			label("$c$", (p1+p2+p3+p4)/4);
 		\end{asy}
 	\end{center}
-	Here $p_1$, $p_2$, $p_3$, $p_4$ are the images of $(0,0)$, $(0,1)$, $(1,1)$, $(1,0)$, respectively.
+	Here $p_1$, $p_2$, $p_3$, $p_4$ are the images of $(0,0)$, $(1,0)$, $(1,1)$, $(0,1)$, respectively.
 	Formally, $\partial c$ is given by
 	\[ \partial c = (t \mapsto c(1,t)) - (t \mapsto c(0,t))
 		- (t \mapsto c(t,1)) + (t \mapsto c(t,0)). \]
@@ -648,7 +648,7 @@ we know it's possible to integrate an $n$-form in $\RR^n$ and get a number. That
 	\ii An area integral $\int_{a_1}^{b_1} \int_{a_2}^{b_2} f(x,y) \odif x \odif y$
 	corresponds to integrating the $2$-form $f \cdot \ee_1^\vee \wedge \ee_2^\vee$.
 
-	\ii A volume integral $\int_{a_1}^{b_1} \int_{a_2}^{b_2} \int_{a_3}^{b_3} f(x,y) \odif x \odif y \odif z$
+	\ii A volume integral $\int_{a_1}^{b_1} \int_{a_2}^{b_2} \int_{a_3}^{b_3} f(x,y,z) \odif x \odif y \odif z$
 	corresponds to integrating the $3$-form $f \cdot \ee_1^\vee \wedge \ee_2^\vee \wedge \ee_3^\vee$.
 \end{itemize}
 So this takes care of the green-labeled things on the diagonal.
@@ -718,10 +718,10 @@ However, the three purplish integrals (over vector fields) can be viewed in our 
 	the definition of cross products taught in school is
 	\[ \mathbf{v} \times \mathbf{w} \coloneqq (yz'-y'z) \ee_1 + (zx'-xz') \ee_2 + (xy'-x'y) \ee_3. \]
 	Where does this come from?
-	The answer is that $\star(\mathbf{v} \vee \mathbf{w})$:
+	The answer is that $\star(\mathbf{v} \wedge \mathbf{w})$:
 	\begin{align*}
 		\mathbf{v} \wedge \mathbf{w} &=
-		(x \ee_1 + y \ee_2 + z \ee_3) \times (x' \ee_1 + y' \ee_2 + z' \ee_3) \\
+		(x \ee_1 + y \ee_2 + z \ee_3) \wedge (x' \ee_1 + y' \ee_2 + z' \ee_3) \\
 		&= (xy'-x'y) \ee_1 \wedge \ee_2
 		+ (yz'-y'z) \ee_2 \wedge \ee_3
 		+ (zx'-xz') \ee_3 \wedge \ee_1 \\
@@ -843,7 +843,7 @@ because we get six 18.02 theorems as special cases!
 	Show that $\partial^2 = 0$.
 	\label{prob:partial_zero}
 	\begin{hint}
-		This is just an exercises in sigma notation.
+		This is just an exercise in sigma notation.
 	\end{hint}
 \end{problem}
 
