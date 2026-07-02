@@ -38,8 +38,8 @@ $2$-dimensional object --- because:
 	\ii Since all of our functions of interest are analytic, the behavior of a function elsewhere is
 	determined by its value on the real axis.
 \end{itemize}
-Looking only at the real part can makes some intuition slipped however --- for example, it is
-possible to overlook that the circle $x^2 + y^2 = 1$ and the hyperbola $x^2 = 1 + y^2$ cuts out
+Looking only at the real part can make some intuition slip however --- for example, it is
+possible to overlook that the circle $x^2 + y^2 = 1$ and the hyperbola $x^2 = 1 + y^2$ cut out
 Riemann surfaces in $\CC^2$ of the same shape, or that the function $\frac{1}{x^2 + 1}$ has a pole
 at $x = \pm i$. So, be careful.
 
@@ -52,8 +52,8 @@ at $x = \pm i$. So, be careful.
 		that bijectively maps each point in $\pi\inv(p)$ to a point in $\CC \times p$,
 		\ii For two open sets $U_1$ and $U_2$, the \vocab{transition function} $\phi_2 \circ
 		\phi_1\inv \colon \CC \times U_1 \to \CC \times U_2$ must be a \emph{$\CC$-vector space
-		isomorphism} restricted to $\CC \times p \to \CC \times p$ for each point $p \in U_1 \times
-		U_2$, and the scaling factor must be an analytic function on $U$.
+		isomorphism} restricted to $\CC \times p \to \CC \times p$ for each point $p \in U_1 \cap
+		U_2$, and the scaling factor must be an analytic function on $U_1 \cap U_2$.
 	\end{itemize}
 \end{definition}
 
@@ -72,7 +72,7 @@ The definition is dense, but essentially:
 	A line bundle is a set with a line bundle structure, consisting of an analytic structure and a
 	$1$-dimensional vector space structure.
 \end{moral}
-The transition maps is simply to weld the pieces of the line bundle together, just like how they
+The transition maps are simply to weld the pieces of the line bundle together, just like how we
 welded pieces of a Riemann surface in \Cref{ch:complex_structure_def}.
 
 Another definition, we will explain this one later.
@@ -143,7 +143,7 @@ We can visualize it by marking the points $1, 2, 3, \dots$ on the line.
 	dotfactor/=2;
 \end{asy}
 \end{center}
-The other structure is that the lines must ``smoothly varies'' as $p$ varies over $X$.
+The other structure is that the lines must ``smoothly vary'' as $p$ varies over $X$.
 We visualize this by drawing, well, a grid.
 \begin{center}
 \begin{asy}
@@ -289,7 +289,7 @@ As before, we let $z$ and $t$ parametrize the points on the surface, with $t = \
 both are defined.
 
 Still, we need two dimensions to embed a circle. So, the real part of $\CC \times \CC_\infty$ may
-looks something like the following:
+look something like the following:
 \begin{center}
 	\includegraphics{3dfigures/pdf/CxCinf.pdf}
 \end{center}
@@ -355,9 +355,9 @@ The thing will look like this. It looks quite complicated, so this time 4 views 
 
 The cylinder this time is only for illustrative purpose. Let us see what is going on.
 \begin{itemize}
-	\ii First, near the purple and the red point, the graph lines looks like our usual situation.
+	\ii First, near the purple and the red point, the graph lines look like our usual situation.
 
-	Note that because $t = \frac{1}{z}$, looking from outside, the red coordinate lines will looks
+	Note that because $t = \frac{1}{z}$, looking from outside, the red coordinate lines will look
 	flipped.
 	\ii On the positive side ($z > 0$ and $t > 0$), no problem --- we just need to squeeze the
 	purple lines closer together --- as depicted in the figure.
@@ -430,7 +430,7 @@ space structure and the analytic structure) on $L_1$ and $L_2$.
 
 The definition of line bundle isomorphism is what you would expect.
 \begin{definition}[Isomorphism of line bundles]
-	Two line bundles $L_1$ and $L_2$ are \vocab{isomorphic} if there are line bundle isomorphisms
+	Two line bundles $L_1$ and $L_2$ are \vocab{isomorphic} if there are line bundle morphisms
 	$\alpha \colon L_1 \to L_2$ and $\beta \colon L_2 \to L_1$ that are inverse of each other.
 \end{definition}
 
