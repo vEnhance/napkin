@@ -40,7 +40,7 @@ they're isomorphic as $\OO_K$-modules.
 	If the field is an imaginary quadratic field, visualizing the class of an ideal is really easy:
 	because multiplication by a complex number corresponds to a combination of a scaling and a
 	rotation (i.e. it preserves angles), two ideals belong to the same class if they are similar,
-	that is, you can overlap one onto the another using rotation and scaling.
+	that is, you can overlap one onto the other using rotation and scaling.
 
 	When the field is $K = \QQ(\sqrt{-5})$, the ring of integers is $\OO_K = \ZZ[\sqrt{-5}]$.
 
@@ -767,7 +767,7 @@ narrowing down the work in our cherry tree.
 Alternatively, if you have read \Cref{ch:galois_theory}:
 If the extension $K/\QQ$ is Galois, we can actually prove that, analogous to
 \Cref{remark:norm_equal_product_embeddings},
-$\prod_{\sigma \in \Gal(K/\QQ)} \sigma(\kb) = (n)$, implying the result $id(\kb) \mid (n)$.
+$\prod_{\sigma \in \Gal(K/\QQ)} \sigma(\kb) = (n)$, implying the result $\kb \mid (n)$.
 
 Now we can give such an example.
 \begin{proposition}[Class group of $\QQ(\sqrt{-17})$]
@@ -934,7 +934,7 @@ Which means
 = \begin{pmatrix} \TrK(\alpha_1 x) \\ \vdots \\ \TrK(\alpha_n x) \end{pmatrix}. \]
 Or, in short,
 \[
-	(\text{some matrix $\in \GL_n(\ZZ)$ with determinant $d$}) \cdot
+	(\text{some matrix $\in \Mat_n(\ZZ)$ with determinant $d$}) \cdot
 	\begin{pmatrix} x_1 \\ \vdots \\ x_n \end{pmatrix}
 	= (\text{some vector $\in \ZZ^{\oplus n}$}).
 \]
@@ -1182,10 +1182,10 @@ have shown above, which gives a contradiction. So we're done!
 	\end{hint}
 	\begin{sol}
 		Let $K = \QQ(\sqrt{-5})$. Check that $\Cl_K$ has order two using the Minkowski bound;
-		moreover $\Delta_K = 20$.
+		moreover $\Delta_K = -20$.
 		Now note that $\OO_K = \ZZ[\sqrt{-5}]$, and $x^2+5$ factors mod $p$ as $(x+k)(x-k)$;
 		hence in $\OO_K$ we have $(p) = (p, \sqrt{-5}+k)(p, \sqrt{-5}-k) = \kp_1 \kp_2$, say.
-		For $p > 5$ the prime $p$ does not ramify and we have $\kp_1 \neq \kp_2$, since $\Delta_K = 20$.
+		For $p > 5$ the prime $p$ does not ramify and we have $\kp_1 \neq \kp_2$, since $\Delta_K = -20$.
 
 		Then $(p^2) = \kp_1^2 \cdot \kp_2^2$. Because the class group has order two,
 		both $\kp_1^2$ and $\kp_2^2$ are principal, and because $\kp_1 \neq \kp_2$ they are distinct.
