@@ -226,7 +226,7 @@ This example illustrates the content of the main result:
 	To add in the $m$th point we note that
 	\[
 		h_{I_1 \cap \dots \cap I_m}(d)
-		= h_{I_1 \cap \dots I_{m-1}}(d) + h_{I_m}(d)
+		= h_{I_1 \cap \dots \cap I_{m-1}}(d) + h_{I_m}(d)
 		- h_J(d)
 	\]
 	where $J = (I_1 \cap \dots \cap I_{m-1}) + I_m$.
@@ -273,7 +273,7 @@ Let's look at some more examples.
 		h_{(zy-x^2)}(1) &= 3 & \text{Basis $x,y,z$} \\
 		h_{(zy-x^2)}(2) &= 5 & \text{Basis $xy$, $xz$, $y^2$, $yz$, $z^2$}.
 	\end{align*}
-	We thus in fact see that $h_{(zy-x^2)}(d) = 2d-1$.
+	We thus in fact see that $h_{(zy-x^2)}(d) = 2d+1$.
 \end{example}
 
 In fact, this behavior of ``eventually polynomial'' always works.
@@ -404,7 +404,7 @@ This is true:
 \end{theorem}
 Geometrically,
 \begin{moral}
-	If $V$ is any projective variety, $\VV(f)$ is a hyperplane of degree $k$, then their
+	If $V$ is any projective variety, $\VV(f)$ is a hypersurface of degree $k$, then their
 	intersection $V \cap \VV(f)$ has degree $k \deg V$ --- unless
 	some irreducible component of $V$ is contained inside $\VV(f)$.
 \end{moral}
@@ -516,7 +516,7 @@ Now, we use this to prove Pascal's theorem.
 	so they must lie on this line.
 \end{proof}
 
-We'd like to remark that the Pascal's theorem is just a special case of the Cayley-Bacharach theorem,
+We'd like to remark that Pascal's theorem is just a special case of the Cayley-Bacharach theorem,
 which can be used to prove that the addition operation on an elliptic curve is associative.
 Interested readers may want to try proving the Cayley-Bacharach theorem using the same technique.
 
@@ -531,7 +531,7 @@ Interested readers may want to try proving the Cayley-Bacharach theorem using th
 		\[ \chi_{I+(f)}(d) = \chi_I(d) - \chi_I(d-k). \]
 		Let $m = \dim \Vp(I) \ge 1$.
 		Now $\dim \Vp(I+(f)) = m-1$, so
-		and $c_{\text{new}} = \deg I+(f)$ then we have
+		we have
 		\[
 			\frac{\deg (I+(f)) d^{m-1} + \dots}{(m-1)!}
 			=
