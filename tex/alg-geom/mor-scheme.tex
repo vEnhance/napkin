@@ -9,7 +9,7 @@ of arbitrary locally ringed spaces.
 
 \section{Morphisms of ringed spaces via sections}
 Let $(X, \OO_X)$ and $(Y, \OO_Y)$ be ringed spaces.
-We want to give a define what it means
+We want to define what it means
 to have a function $\pi \colon X \to Y$ between them.\footnote{Notational
 	connotations: for ringed spaces, $\pi$ will be used for maps,
 	since $f$ is often used for sections.}
@@ -44,7 +44,7 @@ for every open set $U$.
 		draw( (-9,0.5)--(-3,0.5), EndArrow);
 		label("$\pi$", (-6,0.5), dir(90));
 		label("$\boxed{f \in \mathcal O_Y(U)}$", (0,-5), red);
-		label("$\boxed{\pi^\sharp f \in \mathcal O_X(f^{\text{pre}}(U))}$",
+		label("$\boxed{\pi^\sharp f \in \mathcal O_X(\pi^{\text{pre}}(U))}$",
 			t*(0,-6), deepgreen);
 	\end{asy}
 \end{center}
@@ -52,7 +52,7 @@ for every open set $U$.
 Now, for general locally ringed spaces,
 the sections are just random rings,
 which may not be so well-behaved.
-So the solution is that we \emph{include} the data of $f^\sharp$
+So the solution is that we \emph{include} the data of $\pi^\sharp$
 as part of the definition of a morphism.
 \begin{remark}
 	As we will see in \Cref{ex:spec_C_morphism}, unlike the situation in algebraic varieties
@@ -315,7 +315,7 @@ which will force the ring homomorphisms to fix $\CC$, later.
 \end{example}
 But we could have used stalks, too.
 We wanted to specify a morphism
-\[ \RR[y]_{(y-3)} = \OO_{\Spec Y, (y-3)} \to \OO_{\Spec X, \kp} \]
+\[ \RR[y]_{(y-3)} = \OO_{Y, (y-3)} \to \OO_{X, \kp} \]
 for every prime ideal $\kp$,
 sending compatible germs to compatible germs\dots
 but wait, $(y-3)$ is spitting out all the germs.
@@ -323,7 +323,7 @@ So every \emph{individual} germ in $\OO_{\Spec Y, (y-3)}$
 needs to yield a (compatible) germ above every point of $\Spec X$,
 which is the data of an entire global section.
 So we're actually trying to specify
-\[ \RR[y]_{(y-3)} = \OO_{\Spec Y, (y-3)} \to \OO_{\Spec X}(\Spec X) = \RR[x]. \]
+\[ \RR[y]_{(y-3)} = \OO_{Y, (y-3)} \to \OO_{X}(X) = \RR[x]. \]
 This requires $y \mapsto 3$, as we saw,
 since $y-c$ is a unit of $\RR[x]$ for any $c \neq 3$.
 
@@ -353,7 +353,7 @@ You might already notice the following:
 	of $\CC[x]$, then it can never be mapped to the generic point $(0)$ of $\CC[y]$.
 
 	For otherwise, we would get a local ring homomorphism
-	\[ \CC(y) \cong \OO_{\Spec k[y], (0)}
+	\[ \CC(y) \cong \OO_{\Spec \CC[y], (0)}
 		\to \OO_{\Spec \CC[x], \km} \cong \CC[x]_\km \]
 	which in particular means we have a map on the residue fields
 	\[ \CC(y) \to \CC[x] / \km \cong \CC \]
@@ -404,7 +404,7 @@ of as the map $t \mapsto t^2$.
 \end{example}
 The above example works equally well if $t^2$ is replaced
 by some polynomial $f(t)$,
-so that $(x-a)$ maps to $(y-f(y))$.
+so that $(x-a)$ maps to $(y-f(a))$.
 The image of $y$ must be a polynomial $g(x)$
 with the property that $g(x)-c$ has the same roots as $f(x)-c$
 for any $c \in \CC$.
@@ -449,7 +449,7 @@ Put another way, $f$ and $g$ have the same values, so $f = g$.
 \section{The big theorem}
 We did a few examples of $\Spec A \to \Spec B$ by hand,
 specifying the full data of a map of locally ringed spaces.
-It turns out that in fact, we didn't to specify that much data,
+It turns out that in fact, we didn't have to specify that much data,
 and much of the process can be automated:
 \begin{proposition}
 	[Affine reconstruction]
@@ -514,7 +514,7 @@ and that we can get a suitable $\pi^\sharp$.
 We thus get the huge important theorem about affine schemes.
 \begin{theorem}
 	[$\Spec A \to \Spec B$ is just $B \to A$]
-	These two construction gives a bijection between
+	These two constructions give a bijection between
 	ring homomorphisms $B \to A$ and $\Spec A \to \Spec B$.
 \end{theorem}
 \begin{proof}
@@ -528,7 +528,7 @@ We thus get the huge important theorem about affine schemes.
 	Given $\psi \colon B \to A$, we define
 	$(\pi, \pi^\sharp) \colon \Spec A \to \Spec B$
 	by copying \Cref{prop:affine_reconstruction}
-	and checking that everything is well-definced.
+	and checking that everything is well-defined.
 	The details are:
 	\begin{itemize}
 	\ii For each prime ideal $\kp \in \Spec A$,

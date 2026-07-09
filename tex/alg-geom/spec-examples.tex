@@ -11,7 +11,7 @@ be better than your algebraic one.
 For example, while studying $k[x,y] / (xy)$ you will say
 ``geometrically, I expect so-and-so to look like other thing'',
 but when you write down the algebraic statements
-you find two expressions that are don't look equal to you.
+you find two expressions that don't look equal to you.
 However, if you then do some calculation you will
 find that they were isomorphic after all.
 So in that sense, in this chapter you will learn to begin drawing
@@ -41,7 +41,7 @@ We will also use the following color connotations:
 This one is easy: for any field $k$,
 $X = \Spec k$ has a single point,
 corresponding to the only proper ideal $(0)$.
-There is only way to put a topology on it.
+There is only one way to put a topology on it.
 
 As for the sheaf,
 \[ \OO_X(X) = \OO_{X,(0)} = k. \]
@@ -105,7 +105,7 @@ consider the generic point $\eta = (0)$.
 
 What is the stalk $\OO_{X, \eta}$?
 Well, it should be $\CC[x]_{(0)} = \CC(x)$,
-which is the again the set of \emph{rational} functions.
+which is again the set of \emph{rational} functions.
 And that's what you expect.
 For example, $\frac{x^2+8}{(x-1)(x-5)}$
 certainly describes a rational function on ``most'' complex numbers.
@@ -230,7 +230,7 @@ so a ``rational function'' is literally a rational number!
 Thus, $\frac{20}{19}$ is a function
 with a double root at $(2)$, a root at $(5)$,
 and a simple pole at $(19)$.
-If we evaluate it at $\kp = (7)$, we get $3 \pmod 7$.
+If we evaluate it at $\kp = (7)$, we get $4 \pmod 7$.
 In general, the residue fields are what you'd guess:
 \[ \kappa\left( (p) \right) = \ZZ/(p) \cong \FF_p \]
 for each prime $p$, and
@@ -286,7 +286,7 @@ as the space is discrete, all points are closed.
 We can now elaborate on the ``double point'' scheme
 \[ X_2 = \Spec k[x] / (x^2) \]
 since it is such an important motivating example.
-How it does differ from the ``one-point'' scheme
+How does it differ from the ``one-point'' scheme
 $X_1 = \Spec k[x] / (x) = \Spec k$?
 Both $X_2$ and $X_1$ have exactly one point,
 and so obviously the topologies are the same too.
@@ -430,7 +430,7 @@ We also go ahead and compute the stalks above each point.
 Let's consider the global section $f = x^2 + y^2$
 and also take the value at each of the above points.
 \begin{itemize}
-	\ii $f \pmod{x-1,y-2} = 5$, so $f$ has value $5$ at $(x-1, y+2)$.
+	\ii $f \pmod{x-1,y+2} = 5$, so $f$ has value $5$ at $(x-1, y+2)$.
 	\ii The new bit is that we can think of evaluating
 	$f$ along the parabola too --- it is given a particular value
 	in the quotient $k[x,y] / (y-x^2)$.
@@ -538,7 +538,7 @@ Also unsurprising.
 Finally, we expect the parabola is actually isomorphic to $\Spec k[x]$,
 since there is an isomorphism $k[x,y] / (y-x^2) \cong k[x]$
 by sending $y \mapsto x^2$.
-Pictorially, this looks like ``un-bending'' the hyperbola.
+Pictorially, this looks like ``un-bending'' the parabola.
 In general, we would hope that when two rings $A$ and $B$ are isomorphic,
 then $\Spec A$ and $\Spec B$ should be ``the same''
 (otherwise we would be horrified),
@@ -585,7 +585,7 @@ To make sure things are making sense:
 	lying in $\VV(x)$.
 \end{ques}
 
-The ideal $(0)$ is longer prime,
+The ideal $(0)$ is no longer prime,
 so it is not a point of this space.
 Rather, there are two non-closed points this time:
 the ideals $(x)$ and $(y)$,
@@ -716,7 +716,7 @@ You can try to work out the statement now if you want, but we won't do so.
 %%fakechapter 1D with holes
 \section{$\Spec k[x,x\inv]$, the punctured line (or hyperbola)}
 This is supposed to look like $D(x)$ of $\Spec k[x]$,
-or the line with the origin deleted it.
+or the line with the origin deleted.
 Alternatively, we could also write
 \[ k[x,x\inv] \cong k[x,y] / (xy-1) \]
 so that the scheme could also be drawn as a hyperbola.
@@ -746,7 +746,7 @@ So again, we see that the deletion of the origin
 doesn't affect the stalk at the farther away point $(x-3)$.
 
 As mentioned, since $k[x,x\inv]$ is isomorphic to $k[x,y] / (xy-1)$,
-another way to draw the visualize the same curve
+another way to visualize the same curve
 would be to draw the hyperbola
 (which you can imagine as flattening to give the punctured line.)
 There is one generic point $(0)$ since $k[x,y]/(xy-1)$
@@ -808,7 +808,7 @@ if you pluck out that stalk from the affine line.
 
 Since $k[x]_{(x)}$ is a local ring
 (it is the localization of a prime ideal),
-this point has only one closed point: the maximal ideal $(x)$.
+this space has only one closed point: the maximal ideal $(x)$.
 However, surprisingly, it has one more point:
 a ``generic'' point $(0)$.
 So $\Spec k[x]_{(x)}$ is a \emph{two-point space},

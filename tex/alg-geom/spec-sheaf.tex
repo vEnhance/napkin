@@ -93,7 +93,7 @@ We will now really hammer in the importance of
 the distinguished open sets.
 The definition is analogous to before:
 \begin{definition}
-	Let $f \in \Spec A$.
+	Let $f \in A$.
 	Then $D(f)$ is the set of $\kp$ such that $f(\kp) \neq 0$,
 	a \vocab{distinguished open set}.
 \end{definition}
@@ -257,7 +257,7 @@ Don't worry, this one is easier than last section.
 	\begin{itemize}
 		\ii Injective: suppose $(U_1, f_1 / g_1)$ and $(U_2, f_2 / g_2)$
 		are two germs with $f_1/g_1 = f_2/g_2 \in A_\kp$.
-		This means $h(g_1 f_2 - f_2 g_1) = 0$ in $A$, for some nonzero $h$.
+		This means $h(f_1 g_2 - f_2 g_1) = 0$ in $A$, for some $h \notin \kp$.
 		Then both germs identify with
 		the germ $(U_1 \cap U_2 \cap D(h), f_1 / g_1)$.
 		\ii Surjective: let $U = D(g)$. \qedhere
@@ -270,7 +270,7 @@ Don't worry, this one is easier than last section.
 	that I will only write it in the new notation,
 	and make no further comment:
 	if $X = \Spec \CC[x]$ then
-	\[ \OO_{\Spec X, (x)} = \CC[x]_{(x)}
+	\[ \OO_{X, (x)} = \CC[x]_{(x)}
 		= \left\{  \frac fg \mid g(0) \neq 0 \right\}. \]
 \end{example}
 \begin{example}
@@ -294,7 +294,7 @@ The stalk was
 So let's take some section like $f = \frac{1}{xy + 4}$,
 which is a section of $U = D(xy+4)$ (or some smaller open set,
 but we'll just use this one for simplicity).
-We also have $U \ni m$, and so $f$ gives a germ at $\km$.
+We also have $U \ni \km$, and so $f$ gives a germ at $\km$.
 
 On the other hand, $f$ also has a value at $\km$:
 it is $f \pmod{\km} = \frac 14$.
@@ -341,7 +341,7 @@ give our examples in the proper language.
 \begin{definition}
 	A ring $R$ with exactly one maximal ideal $\km$
 	will be called a \vocab{local ring}.
-	The \vocab{residue field} is the quotient $A / \km$.
+	The \vocab{residue field} is the quotient $R / \km$.
 \end{definition}
 \begin{ques}
 	Are fields local rings?
@@ -576,7 +576,7 @@ it's likely to be worth reading even before attempting these problems.
 
 \begin{problem}
 	[Punctured gyrotop, communicated by Aaron Pixton]
-	The gyrotop is the scheme $X = \Spec \CC[x,y,z] / (xy,z)$.
+	The gyrotop is the scheme $X = \Spec \CC[x,y,z] / (xz,yz)$.
 	We let $U$ denote the open subset obtained
 	by deleting the closed point $\km = (x,y,z)$.
 	Compute $\OO_X(U)$.
@@ -607,7 +607,7 @@ it's likely to be worth reading even before attempting these problems.
 
 \begin{problem}
 	Show that a ring $R$ is a local ring
-	if and only of the following property is true:
+	if and only if the following property is true:
 	for any $x \in R$,
 	either $x$ or $1-x$ is a unit.
 \end{problem}

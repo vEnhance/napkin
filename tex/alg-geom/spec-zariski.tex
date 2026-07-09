@@ -126,7 +126,7 @@ there is one for each non-maximal prime ideal
 (visualized as ``irreducible subvariety'').
 I like to visualize them in my head like a fly:
 you can hear it, so you know it is floating \emph{somewhere} in the room,
-but as it always moving, you never know exactly where.
+but as it is always moving, you never know exactly where.
 So the generic point of $\Spec \CC[x,y]$ corresponding to the prime
 ideal $(0)$ is floating everywhere in the plane,
 the one for the ideal $(y-x^2)$ floats along the parabola, etc.
@@ -175,14 +175,14 @@ the analogy by thinking of the points $f$ as functions on $\Spec A$. That is:
 	[Vanishing locii in $\Aff^n$]
 	Suppose $A = \CC[x_1, \dots, x_n]$,
 	and $\km = (x_1-a_1, x_2-a_2, \dots, x_n-a_n)$ is a maximal ideal of $A$.
-	Then for a polynomial $f \in \CC$,
+	Then for a polynomial $f \in A$,
 	\[ f \pmod \km = f(a_1, \dots, a_n) \]
 	with the identification that $A/\km \cong \CC$.
 \end{example}
 \begin{example}
 	[Functions on $\Spec \ZZ$]
-	Consider $A = \Spec \ZZ$.
-	Then $2019$ is a function on $A$.
+	Consider $A = \ZZ$.
+	Then $2019$ is a function on $\Spec A$.
 	Its value at the point $(5)$ is $4 \pmod 5$;
 	its value at the point $(7)$ is $3 \pmod 7$.
 \end{example}
@@ -222,7 +222,7 @@ Recall also in \Cref{def:closure} we denote by $\ol S$
 the closure of a set $S$ (i.e.\ the smallest closed set containing $S$);
 so you can think of a closed point $p$ also
 as one whose closure is just $\{p\}$.
-Therefore the Zariski topology lets us refer back to the old ``geometric''
+Therefore the Zariski topology lets us refer back to the old ``geometric'' points
 as just the closed points.
 
 \begin{example}
@@ -382,7 +382,7 @@ For affine schemes:
 	Consider chains of prime ideals
 	$\kp_0 \subsetneq \kp_1 \subsetneq \dots \subsetneq \kp_n \subseteq A$,
 	where $n$ is called the \emph{length}.
-	The supremum of all possible $n$ is the called \vocab{Krull dimension} of $A$.
+	The supremum of all possible $n$ is then called the \vocab{Krull dimension} of $A$.
 
 	The Krull dimension is always nonnegative unless $A$ is the zero ring,
 	in which case either $-1$ or $-\infty$ are used conventionally.
@@ -398,7 +398,7 @@ This definition should match your intuition.
 		having length $n$.
 		This matches our expectation that $\Spec \CC[x_1, \dots, x_n]$ corresponds to $\Aff^n$.
 		\ii $\CC[x,y] / (y-x^2)$ has Krull dimension $1$, with the chain
-		\[ (x,y) \subsetneq (y-x^2) \]
+		\[ (y-x^2) \subsetneq (x,y) \]
 		having length $1$.
 		Geometrically, we think of $(x,y)$ as the origin and $(y-x^2)$ as the parabola itself.
 		\ii $\ZZ$ has Krull dimension $1$.
@@ -535,7 +535,7 @@ We can now state:
 \begin{theorem}
 	[Radical ideals correspond to closed sets]
 	Let $I$ and $J$ be ideals of $A$,
-	and considering the space $\Spec A$.
+	and consider the space $\Spec A$.
 	Then
 	\[ \VV(I) = \VV(J) \iff \sqrt I = \sqrt J. \]
 	In particular, radical ideals exactly
