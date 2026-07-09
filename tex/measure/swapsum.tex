@@ -36,7 +36,7 @@ The limit here is defined in the following sense:
 \begin{definition}
 	Let $f$ and $f_1, f_2, \dots \colon \Omega \to \RR$ be a sequence of functions.
 	Suppose that for each $\omega \in \Omega$, the sequence
-	\[ f_1(\omega), \; f_2(\omega), \; f_3(\omega), \;, \dots \]
+	\[ f_1(\omega), \; f_2(\omega), \; f_3(\omega), \; \dots \]
 	converges to $f(\omega)$.
 	Then we say $f_1$, $f_2$, \dots\ \vocab{converges pointwise}
 	to the limit $f$, written $\lim_{n \to \infty} f_n = f$.
@@ -45,13 +45,13 @@ The limit here is defined in the following sense:
 	and $\limsup_{n \to \infty} f_n$ similarly.
 \end{definition}
 
-By ``the Lebesgue integral has better behavior'', we means the following:
+By ``the Lebesgue integral has better behavior'', we mean the following:
 \begin{proposition}
 	If $f_1, f_2, \dots \colon \Omega \to \RR$ are measurable functions,
 	then $\liminf_{n \to \infty} f_n$ and $\limsup_{n \to \infty} f_n$ are measurable.
 \end{proposition}
 When $f_n$ are all nonnegative, this means
-$\int_\Omega \liminf_{n \to \infty} f_n d\mu$ and $\int_\Omega \limsup_{n \to \infty} f_n d\mu$ exists.
+$\int_\Omega \liminf_{n \to \infty} f_n d\mu$ and $\int_\Omega \limsup_{n \to \infty} f_n d\mu$ exist.
 (If they can be negative, the behavior is not that nice. \Cref{prob:sin_improper} gives an example.)
 
 Unfortunately, even if the integral exists, we can't always exchange pointwise limit with Lebesgue
@@ -93,7 +93,7 @@ Unfortunately, pointwise convergence is actually a fairly weak notion of converg
 	\url{https://www.geogebra.org/m/dv7ctmed} has an animation.}
 \end{example}
 
-As such, the convergence theorems stated below is an attempt to classify all the possible anomalies,
+As such, the convergence theorems stated below are an attempt to classify all the possible anomalies,
 and to show that in ``usual'' cases, interchanging limit and integral just works.
 
 As mentioned earlier, we choose to use the Lebesgue integral instead of the Riemann integral,
@@ -106,7 +106,7 @@ because in such cases, the Lebesgue integral will usually just exist.
 
 \section{Overview}
 The three big-name results for exchanging
-pointwise limits with Lebesgue integrals is:
+pointwise limits with Lebesgue integrals are:
 \begin{itemize}
 	\ii Fatou's lemma: the most general statement possible,
 	for any nonnegative measurable functions.
@@ -156,13 +156,13 @@ when the sequence actually converges, $\liminf$ and $\lim$ equals.
 		\le \liminf_{n \to \infty} \left( \int_\Omega f_n \; d\mu \right).  \]
 	Here we allow either side to be $+\infty$.
 \end{lemma}
-Notice that there are \emph{no extra hypothesis}
+Notice that there are \emph{no extra hypotheses}
 on $f_n$ other than nonnegative: which makes this quite surprisingly versatile
 if you ever are trying to prove some general result.
 
 \section{Everything else}
 The big surprise is how quickly all the ``big-name''
-theorem follows from Fatou's lemma.
+theorems follow from Fatou's lemma.
 Here is the so-called ``monotone convergence theorem''.
 \begin{corollary}
 	[Monotone convergence theorem]
@@ -312,7 +312,7 @@ $|\Omega| < \infty$, the anomaly only happens in a set of \emph{small measure}.
 	\[
 		f_1|_U, f_2|_U, \dots
 	\]
-	converges to $f_U$ uniformly.
+	converges to $f|_U$ uniformly.
 \end{theorem}
 
 This is because of the following theorem.
