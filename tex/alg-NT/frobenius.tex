@@ -21,7 +21,7 @@ Surprisingly, it is nevertheless possible to extend this to some field automorph
 
 If $p$ is unramified, then one can show there
 is a unique $\sigma \in \Gal(K/\QQ)$ such that
-$\sigma(\alpha) \equiv \alpha^p \pmod{\kp}$ for every prime $p$.
+$\sigma(\alpha) \equiv \alpha^p \pmod{\kp}$ for every $\alpha \in \OO_K$.
 
 \section{Frobenius elements}
 \prototype{$\Frob_\kp$ in $\ZZ[i]$ depends on $p \pmod 4$.}
@@ -207,7 +207,7 @@ really just comes from the more friendly-looking rational prime $p$.
 		\cong S_3.  \]
 	In this $S_3$ there are $3$ elements of order two:
 	fixing one root and swapping the other two.
-	These correspond to each of $\Frob_{\kp_1}$, $\Frob{\kp_2}$, $\Frob_{\kp_3}$.
+	These correspond to each of $\Frob_{\kp_1}$, $\Frob_{\kp_2}$, $\Frob_{\kp_3}$.
 
 	In conclusion, the conjugacy class
 	$\left\{ \Frob_{\kp_1}, \Frob_{\kp_2}, \Frob_{\kp_3} \right\}$
@@ -785,7 +785,7 @@ such that $X^p-p$ is irreducible modulo $q$.
 		Chebotarev Density on $\QQ(\zeta_m)$.
 	\end{hint}
 	\begin{sol}
-		Let $K = \Gal(\QQ(\zeta_m)/\QQ)$.
+		Let $K = \QQ(\zeta_m)$.
 		One can show that $\Gal(K/\QQ) \cong \Zm m$ exactly as before.
 		In particular, $\Gal(K/\QQ)$ is abelian and therefore its conjugacy classes
 		are singleton sets; there are $\phi(m)$ of them.

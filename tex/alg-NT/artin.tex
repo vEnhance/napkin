@@ -331,7 +331,7 @@ Recall some examples from \Cref{ex:frob_gaussian_integers} and \Cref{lem:cyclo_f
 
 	Then it follows just like before that
 	if $p \nmid m$ is prime and $\kP$ is above $p$
-	\[ \Frob_\kP(x) = \sigma_p. \]
+	\[ \Frob_\kP = \sigma_p. \]
 \end{example}
 
 Here, as hinted in \Cref{sec:more_general_extensions}, we have to generalize the
@@ -425,7 +425,7 @@ To see why:
 		\left( \frac{K(\cbrt 2)/K}{\theta \OO_K} \right) \left( \cbrt 2 \right)
 		\equiv \left( \cbrt 2 \right)^{\Norm(\theta)}
 		\equiv 2^{\frac{\Norm(\theta)-1}{3}} \cdot \cbrt 2
-		\equiv \left( \frac{2}{\theta} \right)_3 \cbrt 2.
+		\equiv \left( \frac{2}{\theta} \right)_3 \cbrt 2
 		\pmod{\kP}
 	\]
 	where $\kP$ is above $(\theta)$ in $K(\cbrt 2)$.
@@ -594,7 +594,7 @@ corresponds to a field extension.
 
 (Of course, the question of how to compute the field $L$ given a modulus and a congruence subgroup
 is still difficult. At least when $K = \QQ$, \Cref{prob:kronecker_weber_theorem} gives the answer:
-all finite abelian field extensions $L/\QQ$ are contained in some cyclotomic field.
+all finite abelian field extensions $L/\QQ$ are contained in some cyclotomic field.)
 
 \bigskip
 
@@ -730,7 +730,7 @@ We will see one more example below.
 
 	Consider abelian field extensions $L/\QQ$. Let the modulus in $\QQ$ be $\km = 15 \infty$.
 
-	The ray class group $C_K(\km)$ is of course isomorphic to $\Zm{15} \cong \Zm{3} \times \Zm{5}
+	The ray class group $C_\QQ(\km)$ is of course isomorphic to $\Zm{15} \cong \Zm{3} \times \Zm{5}
 	\cong \Zc{2} \times \Zc{4}$.
 
 	As small as this group is (with only 8 elements), it has 8 subgroups.%
@@ -765,18 +765,18 @@ We will see one more example below.
 	value mod $5 \infty$. Formally, we have this diagram:
 	\begin{center}
 	\begin{tikzcd}
-		P_K(15 \infty) \ar[d, hook] \ar[r, hook] &
-		I_K(15 \infty) \ar[d, hook] \ar[r, surjective head] &
-		C_K(15 \infty) \ar[d, surjective head] \\
-		P_K(5 \infty) \ar[r, hook] &
-		I_K(5 \infty) \ar[r, surjective head] &
-		C_K(5 \infty)
+		P_\QQ(15 \infty) \ar[d, hook] \ar[r, hook] &
+		I_\QQ(15 \infty) \ar[d, hook] \ar[r, surjective head] &
+		C_\QQ(15 \infty) \ar[d, surjective head] \\
+		P_\QQ(5 \infty) \ar[r, hook] &
+		I_\QQ(5 \infty) \ar[r, surjective head] &
+		C_\QQ(5 \infty)
 	\end{tikzcd}
 	\end{center}
 	(If you have read the category theory chapter:
 	Morphism of short exact sequence appears everywhere! You just have to look for it.)
 
-	That is, we get an induced $C_K(15 \infty) \surjto C_K(5 \infty)$ map,
+	That is, we get an induced $C_\QQ(15 \infty) \surjto C_\QQ(5 \infty)$ map,
 	or equivalently, $\Zm{15} \surjto \Zm{5}$.
 	This time around, the abelian field extensions that corresponds to the modulus $5 \infty$ are:
 	\begin{center}
@@ -797,7 +797,7 @@ Let $L = K(i)$. (Later on, we will know that $L$ is the \vocab{Hilbert class fie
 We claim the following is true:
 \begin{itemize}
 	\ii $L/K$ is an abelian extension,
-	\ii the discriminant is $\kf = \kf(L/K) = 1$,
+	\ii the conductor is $\kf = \kf(L/K) = 1$,
 	\ii $H(L/K, \kf) = P_K(\kf)$ --- that is, this is exactly the situation where we can determine
 	$\kp \pmod{1}$ for $\kp \subseteq K$ based on $\left(\frac{L/K}{\kp}\right)$.
 \end{itemize}
@@ -832,7 +832,7 @@ Hilbert class field of $\QQ$ --- but, by Artin reciprocity, we do know:
 \begin{moral}
 	The value of $\left(\frac{L/\QQ}{(p)}\right)$ only depends on $(p) \pmod{\kf(L/\QQ)}$.
 \end{moral}
-In this case, the discriminant of the extension $L/\QQ$ is $\kf(L/\QQ) = 20 \infty$.
+In this case, the conductor of the extension $L/\QQ$ is $\kf(L/\QQ) = 20 \infty$.
 
 So, in summary:
 \begin{align*}
@@ -857,7 +857,7 @@ We're done! The final form of the theorem is:
 	\label{prob:kronecker_weber_theorem}
 	[Kronecker-Weber theorem]
 	Let $L$ be an abelian extension of $\QQ$.
-	Then $L$ is contained in a cyclic extension $\QQ(\zeta)$
+	Then $L$ is contained in a cyclotomic extension $\QQ(\zeta)$
 	where $\zeta$ is an $m$th root of unity (for some $m$).
 	\begin{hint}
 		Pick $m$ so that $\kf(L/\QQ) \mid m\infty$.
@@ -866,7 +866,7 @@ We're done! The final form of the theorem is:
 		Suppose $\kf(L/\QQ) \mid m\infty$ for some $m$.
 		Then by the example from earlier we have the chain
 		\[ P_{\QQ}(m\infty) = H(\QQ(\zeta)/\QQ, m\infty)
-			\subseteq H(L/\QQ, m) \subseteq I_\QQ(m\infty). \]
+			\subseteq H(L/\QQ, m\infty) \subseteq I_\QQ(m\infty). \]
 		So by inclusion reversal we're done.
 	\end{sol}
 \end{dproblem}
@@ -898,9 +898,9 @@ We're done! The final form of the theorem is:
 			with this property has conductor $1$ (no primes divide the conductor),
 			and then we have $P_K(1) = H(E/K, 1) \subseteq H(M/K, 1) \subseteq I_K(1)$,
 			so inclusion reversal gives $M \subseteq E$.
-			\ii We have $\Gal(L/K) \cong I_K(1) / P_K(1) = C_K(1)$ the class group.
+			\ii We have $\Gal(E/K) \cong I_K(1) / P_K(1) = C_K(1)$ the class group.
 			\ii The isomorphism in the previous part is given by the Artin symbol.
-			So $\kp$ splits completely if and only if $\left( \frac{L/K}{\kp} \right) = \id$
+			So $\kp$ splits completely if and only if $\left( \frac{E/K}{\kp} \right) = \id$
 			if and only if $\kp$ is principal (trivial in $C_K(1)$).
 		\end{itemize}
 		This completes the proof.

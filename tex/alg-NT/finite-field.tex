@@ -249,9 +249,9 @@ in the following chapters.
 
 Consider the field $F$ of order $p = 17$. We may want to ask the following questions about $F$:
 \begin{itemize}
-	\ii How many nonzero elements in $F$ is a quadratic residue (can be written as a square of
+	\ii How many nonzero elements in $F$ are quadratic residues (can be written as a square of
 	another element in $F$)?
-	\ii Is there any element $x$ in $p$ such that $x^2 = -1$?
+	\ii Is there any element $x$ in $F$ such that $x^2 = -1$?
 \end{itemize}
 
 With the following proposition, the questions above become easy.
@@ -298,7 +298,7 @@ in particular finitely generated, and can be written in the form
 	\dots \oplus \Zc{q_m}.  \]
 Of course, $r = 0$ here.
 
-Now, assume $F^\times$ is not cyclic, so the lowest common denominator of all the $q_i$ values are
+Now, assume $F^\times$ is not cyclic, so the least common multiple of all the $q_i$ values is
 less than $|F^\times|$.
 Then, for all $x \in F^\times$, $x^{\lcm(q_1, \dots, q_m)} = 1$, which gives a contradiction.
 
@@ -325,7 +325,7 @@ Then, for all $x \in F^\times$, $x^{\lcm(q_1, \dots, q_m)} = 1$, which gives a c
 	Show the polynomial $P(X)$ is irreducible modulo $127$;
 	then work in the splitting field of $P$, namely $\FF_{p^2}$.
 
-	Show that $\FF_p=-1$, $\FF_{p+1}=0$, $\FF_{2p+1}=1$, $\FF_{2p+2}=0$.
+	Show that $F_p=-1$, $F_{p+1}=0$, $F_{2p+1}=1$, $F_{2p+2}=0$.
 	(Look at the action of $\Gal(\FF_{p^2}/\FF_p)$
 	on the roots of $P$.)
 	\end{hint}
