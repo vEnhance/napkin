@@ -28,7 +28,7 @@ except that the indices increase.
 So it is a sequence of abelian groups
 \[ \dots \taking{\delta} A^{n-1} \taking\delta A^n \taking\delta A^{n+1} \taking\delta \dots. \]
 such that $\delta^2 = 0$.
-Notation-wise, we're now using superscripts, and use $\delta$ rather $\partial$.
+Notation-wise, we're now using superscripts, and use $\delta$ rather than $\partial$.
 We define the \vocab{cohomology groups} by
 \[ H^n(A^\bullet) = \ker\left( A^n \taking\delta A^{n+1} \right)
 	/ \img\left( A^{n-1} \taking\delta A^n \right). \]
@@ -57,7 +57,7 @@ and thus takes every chain complex
 into a cochain complex: letting $A^n = \Hom(A_n, G)$ we obtain
 \[ \dots \taking\delta A^{n-1} \taking\delta
 	A^n \taking\delta A^{n+1} \taking\delta \dots. \]
-where $\delta(A_n \taking{f} G) = A_{n+1} \taking\partial A \taking{f} G$.
+where $\delta(A_n \taking{f} G) = A_{n+1} \taking\partial A_n \taking{f} G$.
 
 These are the cohomology groups we study most in algebraic topology,
 so we give a special notation to them.
@@ -192,7 +192,7 @@ Then in exact analog to our result that $H_n \colon \catname{hTop} \to \catname{
 			\quad \\
 		Y
 			&& C_\bullet(Y)
-			&& C^\bullet(Y;G) \ar[uu, "f_\sharp"', near start]
+			&& C^\bullet(Y;G) \ar[uu, "f^\sharp"', near start]
 			&& H^n(Y;G). \ar[uu, "f^\ast"', near start]
 	\end{tikzcd}
 	\end{center}
@@ -290,7 +290,7 @@ you can pick any free resolution you want and compute the above.
 \end{lemma}
 \begin{proof}
 	For (a), note that if $\dots \to F_1 \to F_0 \to H \to 0$
-	and $\dots \to F_1' \to F_0' \to F_0' \to H' \to 0$ are free resolutions,
+	and $\dots \to F_1' \to F_0' \to H' \to 0$ are free resolutions,
 	then so is $F_1 \oplus F_1' \to F_0 \oplus F_0' \to H \oplus H' \to 0$.
 
 	For (b), note that $0 \to H \to H \to 0$ is a free resolution.
@@ -310,7 +310,7 @@ you can pick any free resolution you want and compute the above.
 
 \section{Explanation for universal coefficient theorem}
 
-There is so much unexplained symbols and formulas in the previous chapter that may make you scream:
+There are so many unexplained symbols and formulas in the previous chapter that may make you scream:
 \begin{quote}
 	I don't care if $\CP^2$ and $S^2 \vee S^4$ are distinct anymore! What are these spaces anyway?
 \end{quote}
@@ -338,7 +338,7 @@ not, the chain complex $A_\bullet$ is more complicated than $H_\bullet(A_\bullet
 \begin{example}
 	The Klein bottle's cellular chain complex has the following form:
 	\[ \cdots \to \ZZ \taking{1 \mapsto (0, 2)} \ZZ^2 \taking {(a, b) \mapsto 0} \ZZ. \]
-	The homology groups is:
+	The homology groups are:
 	\[ H_2 = 0, H_1 = \ZZ \oplus \Zc{2}, H_0 = \ZZ. \]
 	It's indeed simpler, but only marginally (there are $3$ generators instead of $4$, and we don't
 	need to keep track of the maps)
@@ -350,7 +350,7 @@ Because the universal coefficient theorem tells us that $H^\bullet(A_\bullet; G)
 $H_\bullet(A_\bullet)$, if we're given $H_\bullet$, we just construct \emph{any} chain complex of
 free abelian groups $A_\bullet$ and dualize it.
 
-Assume $H_k = 0$ for every terms, except $H_{n-1}\neq 0$. Then, tautologically,
+Assume $H_k = 0$ for every term, except $H_{n-1}\neq 0$. Then, tautologically,
 $H^n \cong \Ext(H_{n-1}; G)$ --- a free resolution \emph{is} a chain complex!
 
 \begin{exercise}
@@ -358,7 +358,7 @@ $H^n \cong \Ext(H_{n-1}; G)$ --- a free resolution \emph{is} a chain complex!
 	Can you extend it to a free resolution of $H_{n-1}$?)
 \end{exercise}
 
-Assume $H_k = 0$ for every terms, except $H_n \neq 0$. Then we can see $H^n \cong \Hom(H_n, G)$.
+Assume $H_k = 0$ for every term, except $H_n \neq 0$. Then we can see $H^n \cong \Hom(H_n, G)$.
 
 The universal coefficient theorem simply states that the choice of free resolution doesn't matter,
 and that if the other terms can be nonzero, $H^n$ is the direct sum of the two groups in the two
@@ -403,7 +403,7 @@ any cohomology groups, provided we know the homology ones.
 	So we obtain
 	\[ H^n(S^1 \times S^1) \cong \Hom(H_n(S^1 \times S^1), G). \]
 	Since $H_n(S^1 \times S^1)$ is $\ZZ$, $\ZZ^{\oplus 2}$, $\ZZ$
-	in dimensions $n=1,2,1$ we derive that
+	in dimensions $n=0,1,2$ we derive that
 	\[
 		H^n(S^1 \times S^1)
 		\cong
@@ -416,7 +416,7 @@ any cohomology groups, provided we know the homology ones.
 
 From these examples one might notice that:
 \begin{lemma}
-	[$0$th and $1$th cohomology groups are just duals]
+	[$0$th and $1$st cohomology groups are just duals]
 	For $n = 0$ and $n = 1$, we have
 	\[ H^n(X;G) \cong \Hom(H_n(X), G). \]
 \end{lemma}
@@ -462,9 +462,9 @@ From these examples one might notice that:
 
 We try to make sense of $C^n(X; G)$ and $H^n(X; G)$, for higher values of $n$.
 
-As above, $C_n(X; G)$ is the free abelian group on $n$-simplices on $X$, so an element
+As above, $C_n(X)$ is the free abelian group on $n$-simplices on $X$, so an element
 $f \in C^n(X; G)$ is a function that takes each $n$-simplex to an element of $G$
-(and extends linearly to all of $C_n(X; G)$).
+(and extends linearly to all of $C_n(X)$).
 
 This assignment of value need not have any nice properties --- recall that a $n$-simplex is simply
 a (continuous) map $\sigma \colon \Delta^n \to X$, and different maps $\sigma_1$ and
@@ -726,7 +726,7 @@ of $2$.
 Therefore,
 \begin{moral}
 	If the region $e^k \in C_k(X)$ has a boundary $\partial e^k \in C_{k-1}(X)$ divisible by $n$,
-	then we cares about the value assigned to $e^k$, modulo $n$.
+	then we care about the value assigned to $e^k$, modulo $n$.
 \end{moral}
 
 This explains where the error term $\Ext(H_{n-1}(X), G)$ comes from.

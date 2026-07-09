@@ -53,7 +53,7 @@ One nice application of this:
 	So $\deg(\id) = \deg(-\id)$, which means $1 = (-1)^{n+1}$
 	so $n$ must be odd.
 \end{proof}
-Of course, the one can construct such a vector field whenever $n$ is odd.
+Of course, one can construct such a vector field whenever $n$ is odd.
 For example, when $n=1$ such a vector field is drawn below.
 \begin{center}
 	\begin{asy}
@@ -301,7 +301,7 @@ It looks like a lot, so let me explain.
 
 	Although we never formally defined what is a relative cycle or the groups $Z_1(X^1, X^0)$, you
 	can guess the definition from the definition of $Z_1(X^1)$ --- it is the subgroup of
-	$C_1(X^1, X^0) = C_1(X^1)/C_1(X^0)$ whose boundary vanish.
+	$C_1(X^1, X^0) = C_1(X^1)/C_1(X^0)$ whose boundary vanishes.
 
 	The fact that the loop on the bottom is flattened is just to make it look nicer --- the whole
 	thing is contained inside the red skeleton i.e. $X^1$.
@@ -438,12 +438,12 @@ Recalling that $H_k(X^k, X^{k-1})$ has a basis the $k$-cells of $X$, we obtain:
 \begin{theorem}
 	[Cellular boundary for $k > 1$]
 	Let $k > 1$ be a positive integer.
-	Let $e^k$ be an $k$-cell, and let $\{e_\beta^{k-1}\}_\beta$
+	Let $e^k$ be a $k$-cell, and let $\{e_\beta^{k-1}\}_\beta$
 	denote all $(k-1)$-cells of $X$.
 	Then \[ d_k \colon \Cells_k(X) \to \Cells_{k-1}(X) \]
 	is given on basis elements by
 	\[ d_k(e^k) = \sum_\beta d_\beta e_\beta^{k-1} \]
-	where $d_\beta$ is be the degree of the composed map
+	where $d_\beta$ is the degree of the composed map
 	\[ S^{k-1} = \partial e^k \xrightarrow{\text{attach}}
 		X^{k-1} \surjto S_\beta^{k-1}. \]
 	Here the first arrow is the attaching map for $e^k$
@@ -452,7 +452,7 @@ Recalling that $H_k(X^k, X^{k-1})$ has a basis the $k$-cells of $X$, we obtain:
 \end{theorem}
 
 What is the degree doing here? Remember that a basis element $e^k \in \Cells_k(X)$ is just a
-$k$-cell, and its boundary should be just the cells that forms its boundary.
+$k$-cell, and its boundary should be just the cells that form its boundary.
 
 With the same visualization as above, we can do something like the following.
 \begin{center}
@@ -468,10 +468,10 @@ With the same visualization as above, we can do something like the following.
 \end{asy}
 \end{center}
 But it's not that easy! Note that in a CW complex, the boundary of a $k$-cell can be fused into
-\emph{arbitrary points} in $X^{k-1}$, so an ``edge'' of a $k$-cell need not be a $k-1$-cell.
+\emph{arbitrary points} in $X^{k-1}$, so an ``edge'' of a $k$-cell need not be a $(k-1)$-cell.
 
 To make matters worse, sometimes there may be a duplicated edge --- in the Klein bottle, each pair
-of two opposing edges depicted actually \emph{the same edge}, possibly in different orientations.
+of two opposing edges depicted is actually \emph{the same edge}, possibly in different orientations.
 \begin{center}
 \begin{asy}
 	size(2cm);
@@ -644,7 +644,7 @@ as well as the Klein bottle and other spaces.
 	\end{asy}
 	\end{center}
 
-	It remains to convince yourself that the difference of two homotopy equivalent path is a
+	It remains to convince yourself that the difference of two homotopy equivalent paths is a
 	boundary.
 \end{example}
 

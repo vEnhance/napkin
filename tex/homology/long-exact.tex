@@ -10,7 +10,7 @@ is \vocab{exact} if the image of any arrow is equal to the kernel of the next ar
 In particular,
 \begin{itemize}
 	\ii The map $0 \to A \to B$ is exact if and only if $A \to B$ is injective.
-	\ii the map $A \to B \to 0$ is exact if and only if $A \to B$ is surjective.
+	\ii The map $A \to B \to 0$ is exact if and only if $A \to B$ is surjective.
 \end{itemize}
 (On that note: what do you call a chain complex whose homology groups are all trivial?)
 A short exact sequence is one of the form $0 \to A \injto B \surjto C \to 0$.
@@ -355,9 +355,9 @@ At long last, we can compute the homology groups of the spheres.
 		a-b \ar[r, mapsto] & (a-b, a-b)
 	\end{tikzcd}
 	\end{center}
-	In other words $\partial(c-d) = a-b$, so $c-d$ is a generator for $\wt H^1(S^1)$.
+	In other words $\partial(c-d) = a-b$, so $c-d$ is a generator for $\wt H_1(S^1)$.
 
-	Thus we wish to show that $c-d$ is (in $H^1(S^1)$) equivalent to the loop $\gamma$
+	Thus we wish to show that $c-d$ is (in $H_1(S^1)$) equivalent to the loop $\gamma$
 	wrapping around $S^1$ once, counterclockwise.
 	This was illustrated in \Cref{ex:S1_c_minus_d}.
 \end{proof}
@@ -488,7 +488,7 @@ actually understand the maps in question to complete the solution.
 		\underbrace{\wt H_1(U \cap V)}_{\cong \ZZ \oplus \ZZ} \xrightarrow{\phi}
 		\underbrace{\wt H_1(U) \oplus \wt H_1(V)}_{\cong \ZZ \oplus \ZZ} \to \dots
 	\]
-	Unfortunately, this time it's not immediately clear what $\wt H_2(X)$ because
+	Unfortunately, this time it's not immediately clear what $\wt H_2(X)$ is because
 	we only have one zero at the left.
 	In order to do this, we have to actually figure out what the maps $\partial$ and $\phi$ look like.
 	Note that, as we'll see, $\phi$ isn't an isomorphism even though the groups are isomorphic.
@@ -499,8 +499,8 @@ actually understand the maps in question to complete the solution.
 	To figure out what $\ker \phi$ is, we have to think back to how the map
 	$C_\bullet(U \cap V) \to C_\bullet(U) \oplus C_\bullet(V)$ was constructed:
 	it was $c \mapsto (c, -c)$.
-	So the induced maps of homology groups is actually what you would guess:
-	a $1$-cycle $z$ in $\wt H_1(U \cap V)$ gets sent $(z, -z)$ in $\wt H_1(U) \oplus \wt H_1(V)$.
+	So the induced map of homology groups is actually what you would guess:
+	a $1$-cycle $z$ in $\wt H_1(U \cap V)$ gets sent to $(z, -z)$ in $\wt H_1(U) \oplus \wt H_1(V)$.
 
 	In particular, consider the two generators $z_1$ and $z_2$ of
 	$\wt H_1(U \cap V) = \ZZ \oplus \ZZ$,
@@ -584,7 +584,7 @@ actually understand the maps in question to complete the solution.
 
 \begin{remark}
 	Earlier, we remarked (without proof) that $\pi_2(X)$ is trivial --- that is, homotopy does not
-	found any ``$2$-dimensional holes'' in the torus. Why is it that $H_2(X) \cong \ZZ$?
+	find any ``$2$-dimensional holes'' in the torus. Why is it that $H_2(X) \cong \ZZ$?
 
 	You may want to manually compute the nontrivial element in $H_2(X)$ using the long
 	exact sequence using the following method. Look at the long exact sequence:
@@ -649,7 +649,7 @@ Finally, to fully justify the last step, we present:
 \end{lemma}
 In these cases we say the short exact sequence \vocab{splits}. The point is that
 \begin{moral}
-	An exact sequence which splits let us obtain $B$ given $A$ and $C$.
+	An exact sequence which splits lets us obtain $B$ given $A$ and $C$.
 \end{moral}
 In particular, for $C = \ZZ$ or any free abelian group,
 condition (b) is necessarily true.
@@ -695,7 +695,7 @@ we were done.
 		Alternatively, let $U$ be the desired space and let $V$
 		be the union of $p$ disjoint balls, one around every point.
 		Then $U \cup V = \RR^n$ has all reduced homology groups trivial.
-		From the Mayer-Vietoris sequence we can read $\wt H_k(U \cap V) \cong \wt H_k(U) \cap \wt H_k(V)$.
+		From the Mayer-Vietoris sequence we can read $\wt H_k(U \cap V) \cong \wt H_k(U) \oplus \wt H_k(V)$.
 		Then $U \cap V$ is $p$ punctured balls, which are each the same as $S^{n-1}$.
 		One can read the conclusion from here.
 	\end{sol}

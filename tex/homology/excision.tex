@@ -71,13 +71,13 @@ Even when $A$ is closed in $X$, problems can still happen.
 		label("$X/A$", (4.2, 0.5));
 	\end{asy}
 	\end{center}
-	Note that in $X/A$, any open neighborhood of the red dot $A/A$ must contains all
+	Note that in $X/A$, any open neighborhood of the red dot $A/A$ must contain all
 	but finitely many circles.
 
 	We claim that:
 	\[ H_1(X, A) \not\cong \wt H_1(X/A). \]
 
-	What could go wrong? Generally speaking, when you work algebraically then everything are finite,
+	What could go wrong? Generally speaking, when you work algebraically then everything is finite,
 	while in topology you have to consider things related to infinity.
 
 	Consider the following $1$-simplex in $C(X/A)$, depicted in cyan.
@@ -97,13 +97,13 @@ Even when $A$ is closed in $X$, problems can still happen.
 	\end{asy}
 	\end{center}
 
-	Every element of $H(X, A)$ has a representative in $C(X)$ as a $1$-cycles, which comprises of
+	Every element of $H(X, A)$ has a representative in $C(X)$ as a $1$-cycle, which comprises of
 	finitely many $1$-simplices, each $1$-simplex is equivalent to a segment $[a, b]$ --- modulo a
 	difference of a $1$-boundary. Thus, intuitively, every element of $H(X, A)$ can only cover
 	``finitely many circles'' (or all but finitely many).
 
 	We haven't had enough tools to formalize all these yet.
-	Formally speaking, the quotient maps $q \colon X \to X/A$ and $q \colon A \to A/A$ induces $q_*
+	Formally speaking, the quotient maps $q \colon X \to X/A$ and $q \colon A \to A/A$ induce $q_*
 	\colon H_1(X, A) \to H_1(X/A, A/A)$, and $q_*$ is not injective.
 \end{example}
 
@@ -289,7 +289,7 @@ Now for the key geometric result, which is the analog of
 	[Excision]
 	Let $Z \subseteq A \subseteq X$ be subspaces such that
 	the closure of $Z$ is contained in the interior of $A$.
-	Then the inclusion $\iota (X \setminus Z, A \setminus Z) \injto (X,A)$
+	Then the inclusion $\iota \colon (X \setminus Z, A \setminus Z) \injto (X,A)$
 	(viewed as a map of pairs) induces an isomorphism of
 	relative homology groups
 	\[ H_n(X \setminus Z, A \setminus Z) \cong H_n(X,A). \]
@@ -423,7 +423,7 @@ for any $n,m > 1$.
 However,
 \begin{itemize}
 	\ii $\wt H_0(S^n)$ is $\ZZ$ for $n=0$ and $0$ otherwise.
-	\ii $\wt H_n(S^0)$ is $\ZZ$ for $m=0$ and $0$ otherwise.
+	\ii $\wt H_n(S^0)$ is $\ZZ$ for $n=0$ and $0$ otherwise.
 \end{itemize}
 So by induction on $\min \{m,n\}$ we directly obtain that
 \[

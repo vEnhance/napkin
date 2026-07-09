@@ -26,11 +26,11 @@ First things first:
 	\label{ex:simplex}
 	\begin{enumerate}[(a)]
 		\ii Since $\Delta^0 = [v_0]$ is just a point,
-		a singular $0$-simplex $X$ is just a point of $X$.
+		a singular $0$-simplex in $X$ is just a point of $X$.
 		\ii Since $\Delta^1 = [v_0, v_1]$ is an interval,
-		a singular $1$-simplex $X$ is just a path in $X$.
+		a singular $1$-simplex in $X$ is just a path in $X$.
 		\ii Since $\Delta^2 = [v_0, v_1, v_2]$ is an equilateral triangle,
-		a singular $2$-simplex $X$ looks a ``disk'' in $X$.
+		a singular $2$-simplex in $X$ looks like a ``disk'' in $X$.
 	\end{enumerate}
 	Here is a picture of all three in a space $X$:
 	\begin{center}
@@ -131,7 +131,7 @@ of $n$-chains of $X$ that we defined earlier.
 Our work above gives us a boundary operator $\partial$, so we have a sequence of maps
 \[ \dots \taking\partial C_3(X) \taking\partial C_2(X)
 	\taking\partial C_1(X) \taking\partial C_0(X) \taking\partial 0 \]
-(here I'm using $0$ to for the trivial group, which is standard notation for abelian groups.)
+(here I'm using $0$ to denote the trivial group, which is standard notation for abelian groups.)
 We'll call this the \vocab{singular chain complex}.
 
 Now, how does this let us detect holes in the space?
@@ -302,7 +302,7 @@ whereas $\pi_1(X, x_0)$ does not.
 	and $d$ the simplex from $a$ to $b$ along the right half.
 	Finally, let $\gamma$ be the simplex which represents a loop $\gamma$ from $a$
 	to itself, wrapping once counterclockwise around $S^1$.
-	We claim that in $H^1(S^1)$ we have
+	We claim that in $H_1(S^1)$ we have
 	\[ \gamma = c - d \]
 	which geometrically means that $c-d$ represents wrapping once around
 	the circle (which is of course what we expect).
@@ -344,7 +344,7 @@ whereas $\pi_1(X, x_0)$ does not.
 	Consider $X_8$ (see \Cref{ex:figure8}).
 	Both homology and homotopy see the two loops in $X_8$, call them $a$ and $b$.
 	The difference is that in $\pi_1(X_8, x_0)$,
-	these two loops are not allowed to commute: we don't have $ab \neq ba$,
+	these two loops are not allowed to commute: we have $ab \neq ba$,
 	because the group operation in $\pi_1$ is ``concatenate paths''.
 	But in the homology group $H_1(X)$ the way we add $a$ and $b$
 	is to add them formally, to get the $1$-chain $a+b$.
