@@ -118,7 +118,7 @@ and the pullback of $\phi \colon U \to \CC$ (where $U \subseteq Y$).
 	The $f$-inverse image is $X \setminus \{\pm5\}$.
 	Thus the pullback is
 	\begin{align*}
-		f^\sharp\varphi \colon X \setminus \{\pm5\} &\to Y \setminus \{25\} \\
+		f^\sharp\varphi \colon X \setminus \{\pm5\} &\to \CC \\
 		\quad\text{by}\quad x &\mapsto \frac{1}{x^2-25}
 	\end{align*}
 	which is regular on $X \setminus \{\pm5\}$.
@@ -138,7 +138,7 @@ So in this section, we will
 	\ii classify all the morphisms from $\Aff^m \to \Aff^n$, and
 	\ii classify all the morphisms from $\CP^m \to \CP^n$.
 \end{itemize}
-It what follows I will wave my hands a lot in claiming
+In what follows I will wave my hands a lot in claiming
 that something is a morphism, since doing so is mostly detail checking.
 The theorems which follow will give us alternative definitions
 of morphism which are more coordinate-based
@@ -175,10 +175,10 @@ In fact, let's generalize the previous exercise:
 	First, remark that $f\pre(Y) = X$.
 	Now consider the regular function $\pi_1 \in \OO_Y(Y)$,
 	given by the projection $(y_1, \dots, y_n) \mapsto y_1$.
-	Thus we need $f \circ \pi_1$ to be regular on $X$.
+	Thus we need $\pi_1 \circ f$ to be regular on $X$.
 
 	But for affine varieties $\OO_X(X)$ is just the coordinate ring $\CC[X]$
-	and so we know there is a polynomial $P_1$ such that $f \circ \pi_1 = P_1$.
+	and so we know there is a polynomial $P_1$ such that $\pi_1 \circ f = P_1$.
 	Similarly for the other coordinates.
 \end{proof}
 
@@ -239,7 +239,7 @@ The good news is that ``local'' issues are the only limiting factor.
 
 \section{Some more applications and examples}
 \prototype{$\Aff^1 \injto \CP^1$ is a good one.}
-The previous section complete settles affine varieties to affine varieties,
+The previous section completely settles affine varieties to affine varieties,
 and projective varieties to projective varieties.
 However, the definition we gave at the start of the chapter
 works for \emph{any} baby ringed spaces,
@@ -340,7 +340,7 @@ say $\Aff^1$, and try to delete a point.
 Surprisingly, this doesn't work.
 \begin{example}
 	[Crucial example: punctured line is isomorphic to hyperbola]
-	Let $X = \Aff^1 \setminus \{0\}$ be an quasi-projective variety.
+	Let $X = \Aff^1 \setminus \{0\}$ be a quasi-projective variety.
 	We claim that in fact we have an isomorphism
 	\[ X \cong V = \VV(xy-1) \subseteq \Aff^2 \]
 	which shows that $X$ is still isomorphic to an affine variety.
@@ -429,8 +429,8 @@ so you will have a second chance to do so.
 \end{dproblem}
 
 \begin{problem}
-	Let $V$ be a affine variety
-	and let $W$ be a irreducible projective variety.
+	Let $V$ be an affine variety
+	and let $W$ be an irreducible projective variety.
 	Prove that $V \cong W$ if and only
 	if $V$ and $W$ are a single point.
 	\begin{hint}
