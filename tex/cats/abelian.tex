@@ -43,7 +43,7 @@ We can now define:
 	By \Cref{prob:equalizer_monic}, $\ker f$ is a monic morphism,
 	which justifies the use of ``$\injto$''.
 \end{definition}
-Notice that we're using $\ker f$ to represent the map and $\Ker f$ to represent the object
+Notice that we're using $\ker f$ to represent the map and $\Ker f$ to represent the object.
 Similarly, we define the cokernel, the dual notion:
 \begin{definition}
 	Consider a map $A \taking f B$.
@@ -220,7 +220,7 @@ We say the entire sequence is exact if it's exact at $k=1,\dots,n-1$.
 \end{example}
 
 If you look at the prototypical example, actually, a \vocab{short exact sequence} (an exact sequence
-of the form $0 \to A \to B \to C \to 0$) is the most natural things ever:
+of the form $0 \to A \to B \to C \to 0$) is the most natural thing ever:
 \begin{moral}
 	It's basically just an equation $C = B/A$.
 \end{moral}
@@ -341,7 +341,7 @@ For example, let's prove:
 	using the concrete interpretation of our category as $R$-modules.
 
 	Let $b'$ be an element of $B'$.
-	Then $q'(b') \in C'$, and since $\gamma$ is surjective, we have a $c$ such that $\gamma(c) = c'$,
+	Then $c' \defeq q'(b') \in C'$, and since $\gamma$ is surjective, we have a $c$ such that $\gamma(c) = c'$,
 	and finally a $b \in B$ such that $q(b) = c$.
 	Picture:
 	\begin{center}
@@ -370,7 +370,7 @@ For example, let's prove:
 		= \beta b + (b' - \beta b)
 		= b'
 	\]
-	so $b' \in \Img \beta$ which completes the proof that $\beta'$ is surjective.
+	so $b' \in \Img \beta$ which completes the proof that $\beta$ is surjective.
 \end{proof}
 
 In general, proofs in the style above (whether or not they use the embedding theorem)
@@ -456,7 +456,7 @@ where $C_k = \img f_{k-1} = \ker f_k$ for every $k$.
 			so if we let $b' = \beta(b)$,
 			then $b' \in \ker(q')$.
 			As the bottom row is exact, there exists $a'$ with $p'(a') = b'$.
-			\ii Since $\alpha$ is injective,
+			\ii Since $\alpha$ is surjective,
 			there is $a \in A$ with $\alpha(a) = a'$.
 			\ii Since $\beta$ is injective,
 			it follows that $p(a) = b$.

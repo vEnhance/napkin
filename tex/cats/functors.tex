@@ -34,7 +34,7 @@ Don't worry about those for now; you'll see why in a moment.)
 		obtain a set $\Hom_{\AA}(A_1, A_2)$.
 		This turns out to be a functor $\AA\op \times \AA \to \catname{Set}$.
 		\ii The above operation has two ``slots''.
-		If we ``pre-fill'' the first slots, then we get a functor $\AA \to \catname{Set}$.
+		If we ``pre-fill'' the first slot, then we get a functor $\AA \to \catname{Set}$.
 		That is, by fixing $A \in \AA$, we obtain a functor (called $H^A$)
 		from $\AA \to \catname{Set}$ by sending $A' \in \AA$ to $\Hom_{\AA} (A, A')$.
 		This is called the covariant Yoneda functor (explained later).
@@ -99,7 +99,7 @@ and so we can now think about maps between categories.
 
 So the idea is:
 \begin{moral}
-Whenever we naturally make an object $A \in \AA$ into an object of $B \in \BB$,
+Whenever we naturally make an object $A \in \AA$ into an object $B \in \BB$,
 there should usually be a natural way to transform a map $A_1 \to A_2$ into a map $B_1 \to B_2$.
 \end{moral}
 Let's see some examples of this.
@@ -186,12 +186,12 @@ skip it and come back after reading about its contravariant version.
 
 	Now we want to specify how $H^A$ behaves on arrows.
 	For each arrow $A_1 \taking{f} A_2$, we need
-	to specify $\catname{Set}$-map $\Hom_\AA (A, A_1) \to \Hom(A, A_2)$;
+	to specify a $\catname{Set}$-map $\Hom_\AA (A, A_1) \to \Hom(A, A_2)$;
 	in other words, we need to send an arrow $A \taking{p} A_1$ to an arrow $A \to A_2$.
 	There's only one reasonable way to do this: take the composition
 	\[ A \taking{p} A_1 \taking{f} A_2. \]
-	In other words, $H_A(f)$ is $p \mapsto f \circ p$.
-	In still other words, $H_A(f) = f \circ -$;
+	In other words, $H^A(f)$ is $p \mapsto f \circ p$.
+	In still other words, $H^A(f) = f \circ -$;
 	the $-$ is a slot for the input to go into.
 \end{example}
 
@@ -254,12 +254,12 @@ spaces have isomorphic fundamental groups.
 
 \section{Covariant functors as indexed family of objects}
 
-Instead of viewing functor as a \emph{function}, sometimes it is more convenient to view a functor
+Instead of viewing a functor as a \emph{function}, sometimes it is more convenient to view a functor
 as an \emph{object} (or a family of objects).
 
 For sets $A$ and $B$, sometimes the notation $A^B$ is used to denote the set $\Hom(B, A)$ being the
 set of all functions from $B$ to $A$.
-This notation is natural because, for finite sets $A$ and $B$, then $|\Hom(B, A)|=|A|^{|B|}$.
+This notation is natural because, for finite sets $A$ and $B$, we have $|\Hom(B, A)|=|A|^{|B|}$.
 
 That said, the product set $A \times A$ is sometimes also denoted $A^2$. Is there a relation?
 
@@ -290,7 +290,7 @@ so $f$ should be a functor!
 
 So we can make a category $\catname{2}$, and we have $F \colon \catname{2}\to \AA$.
 There is only one reasonable way to define $\catname{2}$
-that do what we want:\footnote{This is \textbf{different} from the category $\textbf{2}$ that we
+that does what we want:\footnote{This is \textbf{different} from the category $\textbf{2}$ that we
 will define later for natural transformation! Be careful.}
 \begin{itemize}
 	\ii The objects are $\{ 0, 1 \}$;
