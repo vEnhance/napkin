@@ -259,7 +259,7 @@ We had better make sure that generic filters exist.
 \begin{example}
 	If $\Po$ is the infinite binary tree and $M$ contains every subset of $\Po$, then generic filter
 	does not exist --- for every filter $G \subseteq \Po$, $\Po \setminus G$ is a dense set $D \in
-	M$, and $G \cap M = \varnothing$.
+	M$, and $G \cap D = \varnothing$.
 \end{example}
 In fact this is kind of tricky, but for countable models it works:
 \begin{lemma}[Rasiowa-Sikorski lemma]
@@ -545,10 +545,10 @@ In other words, we want to choose the definition of $p \Vdash \tau_1 \in \tau_2$
 		\mid \exists \left<\tau, r\right> \in \tau_2
 		\left( q \le r \land q \Vdash(\tau=\tau_1) \right) \right\}
 \]
-is dense below in $p$.
+is dense below $p$.
 In other words, if the set is dense, then the generic must hit $q$, so it must hit $r$
 (recall that a filter is upwards-closed),
-meaning that $\left<\tau_r\right> \in \tau_2$ will get interpreted such that $\tau^G \in \tau_2^G$, and moreover the $q \in G$ will force $\tau_1 = \tau$.
+meaning that $\left<\tau, r\right> \in \tau_2$ will get interpreted such that $\tau^G \in \tau_2^G$, and moreover the $q \in G$ will force $\tau_1 = \tau$.
 
 Now let's write down the definition\dots
 In what follows, the $\Vdash$ omits the $M$ and $\Po$.
@@ -557,7 +557,7 @@ In what follows, the $\Vdash$ omits the $M$ and $\Po$.
 	Let $\Po \in M$ be a partial order.
 	For $p \in \Po$ and $\varphi(\sigma_1, \dots, \sigma_n)$
 	a formula in the language of set theory,
-	we write $\tau \Vdash \varphi(\sigma_1, \dots, \sigma_n)$
+	we write $p \Vdash \varphi(\sigma_1, \dots, \sigma_n)$
 	to mean the following, defined by induction on formula complexity plus rank.
 	\begin{enumerate}[(1)]
 		\ii $p \Vdash \tau_1 = \tau_2$ means
@@ -568,7 +568,7 @@ In what follows, the $\Vdash$ omits the $M$ and $\Po$.
 				\left\{ r \mid
 				r \le q_1 \lthen \exists \left<\sigma_2, q_2\right> \in \tau_2 \left( r \le q_2 \land r \Vdash (\sigma_1 = \sigma_2) \right)\right\}.
 			\]
-			is dense in $p$.
+			is dense below $p$.
 			(This encodes ``$\tau_1 \subseteq \tau_2$''.)
 			\ii For all $\left<\sigma_2, q_2\right> \in \tau_2$,
 			the set $D_{\sigma_2, q_2}$ defined similarly is dense below $p$.

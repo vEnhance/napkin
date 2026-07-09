@@ -291,7 +291,7 @@ This is purely combinatorial, and so we work briefly.
 	The base case $n=1$ is trivial, since we can just take $R = \varnothing$.
 	For the inductive step we consider two cases.
 
-	First, assume there exists an $a \in C$ contained in uncountably many $F \in C$.
+	First, assume there exists an element $a$ contained in uncountably many $F \in C$.
 	Throw away all the other guys.
 	Then we can just delete $a$, and apply the inductive hypothesis.
 
@@ -312,8 +312,8 @@ This is purely combinatorial, and so we work briefly.
 	\[ C = \left\{ \dom(p_\alpha) \mid \alpha < \omega_1 \right\}. \]
 	Let $\ol C \subseteq C$ be such that $\ol C$ is uncountable, and $\ol C$ is a $\Delta$-system with root $R$.
 	Then let
-	\[ B = \left\{ p_\alpha \mid \dom(p_\alpha) \in R \right\}. \]
-	Each $p_\alpha \in B$ is a function $p_\alpha \colon R \to \{0,1\}$,
+	\[ B = \left\{ p_\alpha \mid \dom(p_\alpha) \in \ol C \right\}. \]
+	Each $p_\alpha \in B$ restricts to a function $p_\alpha \restriction R \colon R \to \{0,1\}$,
 	so there are two that are the same.
 \end{proof}
 
