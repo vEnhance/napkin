@@ -14,9 +14,9 @@ In this section, we will generalize the definition of what can be contour integr
 Here, smooth means being infinitely differentiable when interpreted as $\RR^2 \to \RR^2$ functions.
 
 This is almost the same as the definition of a $1$-form on $\RR^2$!
-Here, $\Re$ and $\Im$ takes the role of $\ee_1^\vee$ and $\ee_2^\vee$ the obvious way.
+Here, $\Re$ and $\Im$ take the role of $\ee_1^\vee$ and $\ee_2^\vee$ the obvious way.
 
-The only difference is, as you can observe, $f(z)$ and $g(z)$ returns complex numbers instead of
+The only difference is, as you can observe, $f(z)$ and $g(z)$ return complex numbers instead of
 real numbers --- but this is mostly inconsequential, by the projection principle
 (\Cref{thm:project_principle}), the $1$-form $\omega$ is equivalent to a pair of real-valued
 $1$-forms $(\Re \omega, \Im \omega)$.
@@ -31,10 +31,10 @@ Because $\omega$ takes in a point and returns a $\RR$-linear map from the tangen
 the obvious way to visualize it is to draw a quiver diagram --- for each point, the value of
 $\omega_p(v)$ is plotted for vectors $v$, which we interpret as ``if we integrate a curve $c$ in the
 direction of $v$, with length approximately the length of $v$, close to the point $p$, then the
-result is approximately the labeled value.
+result is approximately the labeled value''.
 
 To integrate a differential form $\omega$ over a curve $c$, simply add up the numbers that
-corresponds to the direction of movement of $c$ that appears in the diagram.
+correspond to the direction of movement of $c$ that appears in the diagram.
 
 With that visualization, here are some examples.
 \begin{example}[The $1$-form $dz$]
@@ -123,7 +123,7 @@ With that visualization, here are some examples.
 \begin{example}[A non-holomorphic form: $d \ol z$]
 	In both of the examples above, we see that, at each point $z$, $\omega_z(\ee_2) = i \cdot
 	\omega_z(\ee_1)$, where $\ee_1 = (1, 0)$ and $\ee_2 = (0, 1)$ --- in other words, rotating
-	the vector counterclockwise by $90 \deg$ multiplies the value of the differential form by $i$.
+	the vector counterclockwise by $90^\circ$ multiplies the value of the differential form by $i$.
 
 	The natural question would be: Is this the property of all $1$-forms?
 	Turns out it isn't. (Later on, we will see that this is a common property of all holomorphic
@@ -162,7 +162,7 @@ With that visualization, here are some examples.
 
 \subsection{Holomorphic forms}
 
-With the above examples in mind, we defines:
+With the above examples in mind, we define:
 \begin{definition}[Holomorphic $1$-forms on the complex plane]
 	A $1$-form $\omega$ is holomorphic if and only if it can be written as $f(z) \cdot dz$ for some
 	holomorphic function $f$.
