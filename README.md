@@ -53,4 +53,4 @@ you can consider [buying me a coffee](https://ko-fi.com/evanchen).
 
 ### Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=vEnhance/napkin&type=Date)](https://star-history.com/#vEnhance/napkin&Date)
+[![Star History Chart](https://star-history.dera.page/svg?repos=vEnhance/napkin&type=Date)](https://star-history.dera.page/#vEnhance/napkin&Date)
