@@ -43,7 +43,7 @@ hooks = [{ id = "check-useless-excludes" }]
 
 [[repos]]
 repo = "https://github.com/astral-sh/ruff-pre-commit"
-rev = "v0.15.22"
+rev = "v0.16.6"
 hooks = [{ id = "ruff-check" }, { id = "ruff-format" }]
 
 [[repos]]
@@ -58,12 +58,12 @@ hooks = [{ id = "prettier", types_or = ["css", "javascript", "json", "scss", "ts
 
 [[repos]]
 repo = "https://github.com/zizmorcore/zizmor-pre-commit"
-rev = "v1.28.0"
+rev = "v1.30.1"
 hooks = [{ id = "zizmor" }]
 
 [[repos]]
 repo = "https://github.com/shellcheck-py/shellcheck-py"
-rev = "v0.11.0.1"
+rev = "v0.11.0.1-1"
 hooks = [{ id = "shellcheck", files = '\.sh$'}]
 
 [[repos]]
