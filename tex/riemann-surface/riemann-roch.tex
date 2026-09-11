@@ -25,7 +25,7 @@ elegantly rephrased to the following:
 In other words, in order to specify a holomorphic $\CC_\infty \to \CC$, you only need a \emph{single
 complex number}! That is, the $\CC$-vector space $\Hom(\CC_\infty, \CC)$ has dimension $1$.
 
-Naturally, you may ask, ``is there anything inbetween''? There is! And the Riemann-Roch theorem is
+Naturally, you may ask, ``is there anything in between''? There is! And the Riemann-Roch theorem is
 the main ingredient to understand how these things work.
 
 So, how are we going to define this? If you compare the two situations above,
@@ -42,7 +42,7 @@ Conveniently, back in \cref{ch:meromorphic_fn}, we have defined the \vocab{multi
 zero and the \vocab{order} of a pole of a meromorphic function.
 So, the natural point between these two extremes is to allow a pole of order at most $d$.
 
-For notational convenience, we defines:
+For notational convenience, we define:
 \begin{definition}[Order of a meromorphic function]
 	Let $f$ be meromorphic at $p$. We define $\ord_p(f)$ to be:
 	\begin{itemize}
@@ -53,7 +53,7 @@ For notational convenience, we defines:
 \end{definition}
 
 \begin{example}[The space of functions with pole of order at most $4$ on $\CC_\infty$]
-	Let $L(4 \cdot \infty)$ be the set of meromorphic $\CC_\infty \to \CC$ function, being
+	Let $L(4 \cdot \infty)$ be the set of meromorphic $\CC_\infty \to \CC$ functions, being
 	holomorphic everywhere except $\infty$, and has a pole of order at most $4$ at $\infty$ ---
 	in other words,
 	\[
@@ -76,8 +76,8 @@ For notational convenience, we defines:
 		why it is true: if there are only finitely many nonzero terms, then the order of the pole at
 		$\infty$, $(-\ord_\infty(f))$, is precisely the degree of the highest nonzero coefficient.}
 
-	Did you see what happened here? We start with requiring the function to be analytic and does not
-	blow up too badly, and we end up with just the \emph{algebraic} function --- the polynomials!
+	Did you see what happened here? We start with requiring the function to be analytic and not
+	blow up too badly, and we end up with just the \emph{algebraic} functions --- the polynomials!
 
 	In particular, $L(4 \cdot \infty)$ consists of the polynomials of degree $\leq 4$, and
 	\[
@@ -150,7 +150,7 @@ Of course, at this point, the notation is purely formal --- there is no interpre
 Those objects are, appropriately enough, called \vocab{divisors}. So we come to the formal
 definition:
 \begin{definition}[Divisors]
-	Let $X$ be a Riemann manifold, then a divisor $D$ on $X$ is a function $D \colon X \to \ZZ$,
+	Let $X$ be a Riemann surface, then a divisor $D$ on $X$ is a function $D \colon X \to \ZZ$,
 	which is nonzero on a discrete set of points.
 \end{definition}
 
@@ -164,7 +164,7 @@ function $D \colon \CC_\infty \to \ZZ$ by
 \end{abuse}
 
 Because divisors are integer-valued functions, we can add two divisors together or multiply a
-divisor with an integer, the result is an integer. So,
+divisor with an integer, and the result is again a divisor. So,
 \begin{example}[$(z-i)^{-3} \cdot (z-\infty)^{-4}$ as a divisor]
 	The divisor $D$ that corresponds to the formal object $(z-i)^{-3} \cdot (z-\infty)^{-4}$ above
 	can be written as $(-3) \cdot i + (-4) \cdot \infty$.

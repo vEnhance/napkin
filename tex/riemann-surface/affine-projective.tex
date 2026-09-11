@@ -6,11 +6,11 @@ This has two purposes:
 \begin{itemize}
 	\ii Many interesting curves in $\RR^2$ can be defined as the set of roots of a polynomial.
 	This is just a natural generalization.
-	\ii We will see that, in fact, \emph{every} compact Riemann surfaces can be written as a
+	\ii We will see that, in fact, \emph{every} compact Riemann surface can be written as a
 	projective curve! Thus, by studying the projective curves, we have in fact studied all
 	compact Riemann surfaces.
 \end{itemize}
-We will see what these means in the following sections.
+We will see what this means in the following sections.
 
 \section{Affine plane curves}
 Consider some familiar curves on the plane.
@@ -22,7 +22,7 @@ Consider some familiar curves on the plane.
 There is not much going on so far, but here is a picture.
 \begin{center}
 	\begin{asy}
-		draw((-2, -4)--(2, 4), red, L=Label("$x=2y$", EndPoint, align=E));
+		draw((-2, -4)--(2, 4), red, L=Label("$y=2x$", EndPoint, align=E));
 		draw(unitcircle, blue, L=Label("$x^2+y^2=1$", Relative(0.13)));
 		graph.xaxis("$x$");
 		graph.yaxis("$y$");
@@ -62,10 +62,10 @@ the set of roots of a polynomial need not be a smooth curve.
 \end{example}
 
 This can be easily handled by placing a restriction on the polynomial.
-Let $f(x, y)$ a polynomial, and $X = \{(x, y) \in \RR^2 \mid f(x, y) = 0 \}$. Then:
+Let $f(x, y)$ be a polynomial, and $X = \{(x, y) \in \RR^2 \mid f(x, y) = 0 \}$. Then:
 \begin{theorem}
 	For a point $(x, y) \in X$ such that not both
-	$\frac{\partial f}{\partial x}$ and $\frac{\partial f}{\partial y}$ vanishes, then $X$
+	$\frac{\partial f}{\partial x}$ and $\frac{\partial f}{\partial y}$ vanish, then $X$
 	is smooth near $(x, y)$.
 \end{theorem}
 
@@ -308,7 +308,7 @@ There are two things to try:
 
 Both are equivalent to the definition above --- in fact, the definition is merely a special case of
 the first bullet point, where $X$ is taken to be the line $x = 1$ and $y = 1$ respectively.
-Coincidentally, the $2$ resulting complex charts is the simplest one to write down algebraically,
+Coincidentally, the $2$ resulting complex charts are the simplest ones to write down algebraically,
 and they already cover the whole $\CP^1$, so it is often taken to be the definition.
 There is no reason why it must be these $2$ lines however --- you might as well use $x + y = 1$ and
 $x - y = 1$.
@@ -377,7 +377,7 @@ We need some examples.
 	We want to find a polynomial $g(x, y, z)$ such that its set of roots in $\CP^2$, restricted to
 	$U_2$, equals to the elliptic curve.
 
-	Intuitively, by the identity theorem, this should suffices to uniquely determines the Riemann
+	Intuitively, by the identity theorem, this should suffice to uniquely determine the Riemann
 	surface. Indeed, our target polynomial $g$ is:
 	\[ g(x, y, z) = x^3-xz^2-y^2 z.  \]
 	This is just the laziest way to homogenize the polynomial $f$, multiplying the least power of
