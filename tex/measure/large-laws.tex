@@ -32,7 +32,7 @@ In fact, it is almost better for me to give a \emph{non-example}.
 Therefore, for many purposes we need a weaker notion of convergence.
 \begin{definition}
 	Let $X$, $X_n$ be random variables on a probability space $\Omega$.
-	We say $X_n$ \vocab{converges in probability} to $X$ if
+	We say $X_n$ \vocab{converges in probability} to $X$
 	if for every $\eps > 0$ and $\delta > 0$, we have
 	\[ \mu \left( \omega \in \Omega :
 			\left\lvert X_n(\omega) - X(\omega) \right\rvert < \eps
@@ -84,7 +84,7 @@ Then we can ask: What's the expected number of steps until some $X_i$ equals $0$
 
 A naive attempt might be the following.
 \begin{quote}
-	Let $f(i)$ be the expected number of steps starting to reach $0$ starting from $X_0=i$.
+	Let $f(i)$ be the expected number of steps to reach $0$ starting from $X_0=i$.
 
 	Then:
 	\begin{itemize}
@@ -150,7 +150,7 @@ theorem.
 	\end{align*}
 	Formally, $X_i$ takes each of the value in $\{2^k,-2^k\}$ with probability $2^{-k-2}$.
 
-	In this case, the mean $\EE[X_i] = \int_\Omega X_i(\omega)$ is actually undefined.
+	In this case, the mean $\EE[X_i] = \int_\Omega X_i(\omega) \; d\mu$ is actually undefined.
 	Furthermore, as symmetric as the distribution may look, in almost no world will $M_n$ converge
 	to $0$.
 
@@ -168,7 +168,7 @@ theorem.
 
 \subsection{Proof for finite-variance case}
 
-In practice, most distribution we ever come across has finite variance,
+In practice, most distributions we ever come across have finite variance,
 it may be better to give a counterexample.
 
 \begin{example}[A distribution with finite mean but infinite variance]
@@ -253,7 +253,7 @@ $|S_1|\geq a \vee |S_2| \geq a \vee \cdots$ for free!
 		\EE[S_n^2 \cdot \mathbf{1}_{A_i}]
 		&= \EE[(S_i + (S_n-S_i))^2 \cdot \mathbf{1}_{A_i}] \\
 		&= \EE[S_i^2 \cdot \mathbf{1}_{A_i}]
-		+ \EE[S_i  \cdot \mathbf{1}_{A_i} (S_n-S_i)]
+		+ 2\EE[S_i  \cdot \mathbf{1}_{A_i} (S_n-S_i)]
 		+ \EE[(S_n-S_i)^2 \cdot \mathbf{1}_{A_i}] \\
 	\end{align*}
 	The middle term $\EE[S_i  \cdot \mathbf{1}_{A_i} (S_n-S_i)]$ is $0$
@@ -360,14 +360,14 @@ The basic idea is to truncate the value of each $X_i$ so that each of them has f
 		So the complement of $A$ has measure $1$.
 		For any world $\omega \notin A$,
 		we then have
-		\[ \lim_n \left\lvert X(\omega) - X_n(\omega) \right\rvert = 1 \]
+		\[ \lim_n \left\lvert X(\omega) - X_n(\omega) \right\rvert = 0 \]
 		because when $n > N_m$ that absolute value
 		is always at most $1/m$ (as $\omega \notin A_m$).
 	\end{sol}
 \end{problem}
 
 \begin{problem}
-	[Almost sure convorgence is not topologizable]
+	[Almost sure convergence is not topologizable]
 	Consider the space of all random variables on $\Omega = [0,1]$.
 	Prove that it's impossible to impose a metric on this space
 	which makes the following statement true:

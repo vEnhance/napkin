@@ -4,7 +4,7 @@
 We now take our newfound knowledge of measure theory to a casino.
 
 Here's the most classical example that shows up:
-a casino lets us play a game where we can bet any amount of
+a casino lets us play a game where we can bet any amount
 on a fair coin flip, but with bad odds:
 we win $\$n$ if the coin is heads,
 but lose $\$2n$ if the coin is tails,
@@ -23,7 +23,7 @@ we actually can almost surely make a profit.
 			\ii If we win, then we leave having made $\$10-\$2=\$8$, and
 			\ii If we lose then we bet $\$100$ instead, and
 			\begin{itemize}
-				\ii If we win, we leave having made $\$1000-\$20-\$2=\$978$, and
+				\ii If we win, we leave having made $\$100-\$20-\$2=\$78$, and
 				\ii If we lose then we bet $\$1000$ instead, and so on\dots
 			\end{itemize}
 		\end{itemize}
@@ -56,7 +56,7 @@ you only know partial information about the world.
 For example, at the time of writing,
 we know that the world did not end in 2012
 (see \url{https://en.wikipedia.org/wiki/2012_phenomenon}),
-but the fate of humanity in future years remains at slightly uncertain.
+but the fate of humanity in future years remains slightly uncertain.
 
 Let's write this measure-theoretically: we could consider
 \begin{align*}
@@ -94,7 +94,7 @@ Here are some more serious examples.
 	[Examples of sub-$\sigma$-algebras]
 	\listhack
 	\begin{enumerate}[(a)]
-		\ii Let $X \colon \Omega \to \{0,1,2\}$ be a random
+		\ii Let $X \colon \Omega \to \{1,2,3\}$ be a random
 		variable taking on one of three values.
 		If we're interested in $X$ then we could define
 		\begin{align*}
@@ -105,7 +105,7 @@ Here are some more serious examples.
 		then we could write
 		\[ \SF = \left\{ \varnothing, \; A, \; B, \; C, \;
 				A \cup B, \; B \cup C, \; C \cup A, \; \Omega \right\}. \]
-		This is a sub-$\sigma$-algebra on $\SF$
+		This is a sub-$\sigma$-algebra on $\Omega$
 		that lets us ask questions about $X$
 		like ``what is the probability $X \neq 3$'', say.
 
@@ -248,11 +248,11 @@ it would be sensible for us to define random real variable $Z = \EE(X \mid Y)$ b
 \end{align*}
 
 \begin{example}
-	Let $X$ and $Y$ be the result of rolling two dices. Then:
+	Let $X$ and $Y$ be the result of rolling two dice. Then:
 	\begin{itemize}
 		\ii $\EE[X \mid X+Y = 3] = 1.5$, as you can easily calculate.
-		\ii $\EE(X \mid X+Y)$ is a random variable, which would takes the value
-		$1.5$ in any world whether $X+Y = 3$.
+		\ii $\EE(X \mid X+Y)$ is a random variable, which would take the value
+		$1.5$ in any world where $X+Y = 3$.
 		\ii More generally, we have in fact
 		\[ \EE(X \mid X+Y) = \frac{X+Y}{2}. \]
 	\end{itemize}
@@ -260,7 +260,7 @@ it would be sensible for us to define random real variable $Z = \EE(X \mid Y)$ b
 	definition.
 \end{example}
 
-Of course, as we explained earlier, this naive attempts will give us division-by-zero
+Of course, as we explained earlier, these naive attempts will give us division-by-zero
 everywhere for the continuous case --- so, enters the sub-$\sigma$-algebra.
 
 \begin{proposition}
@@ -442,7 +442,7 @@ Let's give examples.
 		Then the sequence $Y_1$, $Y_2$, \dots\ defined by
 		\[ Y_n \defeq X_1 X_2 \cdots X_n \]
 		is a martingale; as
-		$\EE(Y_n \mid Y_1, \dots, Y_{n-1}) = \EE[Y_n] \cdot Y_{n-1} = Y_{n-1}$.
+		$\EE(Y_n \mid Y_1, \dots, Y_{n-1}) = \EE[X_n] \cdot Y_{n-1} = Y_{n-1}$.
 
 		\ii \textbf{Iterated blackjack}:
 		Suppose one shows up to a casino and plays
@@ -453,7 +453,7 @@ Let's give examples.
 \end{example}
 
 \begin{example}
-	[Frivolous/inflamamtory example --- real life is a supermartingale]
+	[Frivolous/inflammatory example --- real life is a supermartingale]
 
 	Let $X_t$ be your happiness on day $t$ of your life.
 	Life has its ups and downs,
@@ -511,7 +511,7 @@ $\tau \colon \Omega \to \{0, 1, 2, \dots\} \cup \{\infty\}$ such that
 	\ii $X_{\tau \wedge n}$ is the random value representing the
 	value at time $n$ of the stopped martingale,
 	where if $n$ is \emph{after} the stopping time,
-	we just take it to be the our currently value after we leave.
+	we just take it to be our current value after we leave.
 
 	So for example in a world $\omega$ where we stopped at time $3$, then
 	$X_{\tau \wedge 0}(\omega) = X_0(\omega)$,
@@ -574,12 +574,12 @@ Here's the compiled machine code.
 	We have almost everywhere the inequalities
 	\begin{align*}
 		\EE\left( X_{\tau \wedge n} \mid \SF_{n-1} \right)
-		&= \EE \left( X_{n-1} + \mathbf 1_{\tau(\omega) = n-1} (X_n - X_{n-1}) \mid \SF_{n-1} \right) \\
-		&= \EE \left( X_{n-1} \mid \SF_{n-1} \right)
-		+ \EE \left( \mathbf 1_{\tau(\omega) = n-1} \cdot (X_n - X_{n-1}) \mid \SF_{n-1} \right) \\
-		&= X_{n-1} + \mathbf 1_{\tau(\omega) = n-1}
+		&= \EE \left( X_{\tau \wedge (n-1)} + \mathbf 1_{\tau(\omega) \ge n} (X_n - X_{n-1}) \mid \SF_{n-1} \right) \\
+		&= \EE \left( X_{\tau \wedge (n-1)} \mid \SF_{n-1} \right)
+		+ \EE \left( \mathbf 1_{\tau(\omega) \ge n} \cdot (X_n - X_{n-1}) \mid \SF_{n-1} \right) \\
+		&= X_{\tau \wedge (n-1)} + \mathbf 1_{\tau(\omega) \ge n}
 			\cdot\EE \left(  X_n - X_{n-1} \mid \SF_{n-1} \right)
-		\le X_{n-1}
+		\le X_{\tau \wedge (n-1)}
 	\end{align*}
 	as functions from $\Omega \to \RR$.
 \end{proof}
@@ -599,7 +599,7 @@ Here's the compiled machine code.
 		\ii \textbf{Finite bets}: we have $\mathbb E[\tau] < \infty$,
 		and for each $n \ge 1$, the conditional expectation
 		\[ \EE\left( \left\lvert X_n-X_{n-1} \right\rvert
-			\mid \SF_n \right) \]
+			\mid \SF_{n-1} \right) \]
 		takes on values at most $C$ for almost all $\omega \in \Omega$
 		satisfying $\tau(\omega) \ge n$.
 	\end{enumerate}
@@ -717,7 +717,7 @@ of random variables is modified to create a martingale can be found in \Cref{exe
 	\begin{itemize}
 		\ii If we define $X_1 = A_1-B_1+\frac{1}{3}$, then $\EE[X_1]=1$, so we're fine.
 		\ii Similarly, we can also define $X_1 = \frac{3}{2}\cdot(A_1-B_1)$.
-		\ii Or $X_1 = \frac{9}{4}\cdot (A_1-B_1)^2$.
+		\ii Or $X_1 = \frac{3}{4}\cdot (A_1-B_1)^2$.
 		\ii \dots\ et cetera\dots
 	\end{itemize}
 \end{example}
