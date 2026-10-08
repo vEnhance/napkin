@@ -166,15 +166,24 @@ but the results in the next chapter will more or less
 do it for us, and so we take this on faith temporarily.
 
 \begin{remark}
+	\label{remark:alg_int_largest}
 	For $\alpha$ an algebraic integer with minimal
 	polynomial $P$, it's clear by definition that all
 	other roots of $P$ are also algebraic integers. One
-	can check that this property (along with the two
-	properties above) characterize the set of algebraic
-	integers. From this point of view, the algebraic
+	can check that $\ol{\ZZ}$ is the \emph{largest} subring of $\ol{\QQ}$
+	with this property (along with $\ol{\ZZ} \cap \QQ = \ZZ$).
+	Indeed, if a subring $S$ has both properties and $\alpha \in S$,
+	then $S$ contains the coefficients of the minimal polynomial $P$ of $\alpha$,
+	because they are symmetric functions of the roots of $P$.
+	These coefficients are rational, so they are integers, and $\alpha \in \ol{\ZZ}$.
+	The condition on the other roots can't be dropped;
+	see \Cref{prob:alg_int_conjugates}.
+	From this point of view, the algebraic
 	integers can be thought of as an intrinsically-defined
 	generalization of the ring of integers $\ZZ \subseteq
 	\QQ$ to the field of all algebraic numbers $\ol{\QQ}$.
+	\Cref{sec:OK_discrete} gives a more geometric reason
+	to like this definition.
 \end{remark}
 
 \section{Number fields}
@@ -336,4 +345,22 @@ makes it clear why this theorem should not be too surprising.
 
 \begin{problem}
 	Is the ring of algebraic integers Noetherian?
+\end{problem}
+
+\begin{problem}
+	\label{prob:alg_int_conjugates}
+	Let $\alpha = \frac{-1+\sqrt{-7}}{4}$, which is a root of $2x^2+x+1$.
+	Show that $\ZZ[\alpha] \cap \QQ = \ZZ$,
+	even though $\alpha$ is not an algebraic integer.
+	(So the condition on conjugates in \Cref{remark:alg_int_largest}
+	can't be dropped: $\ZZ[\alpha]$ does not contain the other root $-\half-\alpha$.)
+	\begin{hint}
+		Since $2\alpha$ is a root of $x^2+x+2$,
+		every rational number in $\ZZ[\alpha]$
+		has a power of $2$ as its denominator.
+		So it's enough to show $\half \notin \ZZ[\alpha]$.
+		By Gauss's Lemma, $2x^2+x+1$ divides
+		every integer polynomial vanishing at $\alpha$,
+		so $\alpha \mapsto 1$ gives a ring homomorphism $\ZZ[\alpha] \to \FF_2$.
+	\end{hint}
 \end{problem}
