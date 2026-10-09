@@ -305,22 +305,14 @@ Okay, I'll just say it now!
 	[What went wrong if $\mathcal A$ is not integrally closed?]
 	Consider $\mathcal A = \ZZ[\sqrt{-3}]$.
 	It is Noetherian, and every nonzero prime ideal is maximal,
-	by the same proof as \Cref{thm:prime_ideals_over_rational}:
-	$\mathcal A \cong \ZZ^{\oplus 2}$ as an abelian group,
-	and the conjugate $a-b\sqrt{-3}$ of $a+b\sqrt{-3}$ is again in $\mathcal A$.
-	But $\mathcal A$ is not integrally closed:
-	$\omega = \frac{1+\sqrt{-3}}{2}$ is a root of $x^2-x+1$,
-	and $\omega \notin \mathcal A$.
+	by the same proof as \Cref{thm:prime_ideals_over_rational}.
+	But it's not integrally closed,
+	since $x^2-x+1$ has a root $\frac{1+\sqrt{-3}}{2} \notin \mathcal A$.
 
-	Let $\kp = (2, 1+\sqrt{-3})$.
-	Then $\mathcal A / \kp \cong \FF_2$, so $\kp$ is maximal.
-	Since $(1+\sqrt{-3})^2 = -2+2\sqrt{-3}$, we get
-	\[ \kp^2 = (4, 2+2\sqrt{-3}, -2+2\sqrt{-3}) = (4, 2+2\sqrt{-3}) = (2)\kp. \]
-	But $\kp \neq (2)$, because $1+\sqrt{-3} \notin (2)$.
-	So unique factorization fails:
-	if $(2) = \kq_1 \dots \kq_k$ were a product of prime ideals,
-	then $\kp \cdot \kp$ and $\kq_1 \dots \kq_k \cdot \kp$
-	would be two different prime factorizations of $\kp^2$.
+	Let $\kp = (2, 1+\sqrt{-3})$, which is prime since $\mathcal A / \kp \cong \FF_2$.
+	Then $\kp^2$ doesn't factor uniquely, because
+	\[ \kp^2 = (4, 2+2\sqrt{-3}, -2+2\sqrt{-3}) = (4, 2+2\sqrt{-3}) = (2)\kp \]
+	even though $\kp \neq (2)$.
 \end{example}
 
 \begin{theorem}[Prime factorization works]
