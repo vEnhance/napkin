@@ -169,9 +169,9 @@ do it for us, and so we take this on faith temporarily.
 	For $\alpha$ an algebraic integer with minimal
 	polynomial $P$, it's clear by definition that all
 	other roots of $P$ are also algebraic integers. One
-	can check that this property (along with the two
-	properties above) characterize the set of algebraic
-	integers. From this point of view, the algebraic
+	can check that $\ol{\ZZ}$ is the largest subring of $\ol{\QQ}$
+	with this property (along with $\ol{\ZZ} \cap \QQ = \ZZ$).
+	From this point of view, the algebraic
 	integers can be thought of as an intrinsically-defined
 	generalization of the ring of integers $\ZZ \subseteq
 	\QQ$ to the field of all algebraic numbers $\ol{\QQ}$.
@@ -336,4 +336,17 @@ makes it clear why this theorem should not be too surprising.
 
 \begin{problem}
 	Is the ring of algebraic integers Noetherian?
+\end{problem}
+
+\begin{problem}
+	\label{prob:alg_int_conjugates}
+	Let $\alpha = \frac{-1+\sqrt{-7}}{4}$.
+	\begin{enumerate}[(a)]
+		\ii Show that $\alpha$ is not an algebraic integer.
+		\ii Show that $\ZZ[\alpha] \cap \QQ = \ZZ$ anyways.
+	\end{enumerate}
+	\begin{hint}
+		For (b), the denominators are powers of $2$,
+		and there is a ring homomorphism $\ZZ[\alpha] \to \FF_2$.
+	\end{hint}
 \end{problem}

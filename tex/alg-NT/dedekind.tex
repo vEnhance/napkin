@@ -303,12 +303,16 @@ Okay, I'll just say it now!
 
 \begin{example}
 	[What went wrong if $\mathcal A$ is not integrally closed?]
-	Consider $\mathcal A = 2\ZZ$, which is an ideal of $\ZZ$.
-	Clearly, every nonzero prime ideal is maximal.
+	Consider $\mathcal A = \ZZ[\sqrt{-3}]$.
+	It is Noetherian, and every nonzero prime ideal is maximal,
+	by the same proof as \Cref{thm:prime_ideals_over_rational}.
+	But it's not integrally closed,
+	since $x^2-x+1$ has a root $\frac{1+\sqrt{-3}}{2} \notin \mathcal A$.
 
-	Nevertheless, in $\mathcal A$,
-	$(2 \cdot 3 \cdot 5)=(60)$ is not a prime ideal (so of course it isn't a maximal ideal),
-	but we cannot break it down into, for example, $(2 \cdot 3) \cdot (5)$.
+	Let $\kp = (2, 1+\sqrt{-3})$, which is prime since $\mathcal A / \kp \cong \FF_2$.
+	Then $\kp^2$ doesn't factor uniquely, because
+	\[ \kp^2 = (4, 2+2\sqrt{-3}, -2+2\sqrt{-3}) = (4, 2+2\sqrt{-3}) = (2)\kp \]
+	even though $\kp \neq (2)$.
 \end{example}
 
 \begin{theorem}[Prime factorization works]
