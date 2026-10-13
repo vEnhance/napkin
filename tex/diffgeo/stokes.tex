@@ -655,20 +655,6 @@ we know it's possible to integrate an $n$-form in $\RR^n$ and get a number. That
 \end{itemize}
 So this takes care of the green-labeled things on the diagonal.
 
-\paragraph{Change of variables.}
-In 18.02, the substitution $(x,y) = \phi(u,v)$ replaces $\odif x \odif y$
-with $\abs{\det(D\phi)} \odif u \odif v$.
-In Napkin notation this is just the pullback:
-since $\bigwedge^2$ of a linear map
-is multiplication by its determinant (\Cref{def:det}),
-\[ \phi^\ast\left( f \cdot \ee_1^\vee \wedge \ee_2^\vee \right)
-	= (f \circ \phi) \det(D\phi) \; du \wedge dv. \]
-For polar coordinates, $\det(D\phi)$ is the $r$ from \Cref{ex:area_circle}.
-We don't need the absolute value,
-since our integrals are sensitive to orientation (\Cref{thm:reparam_integral}).
-(This doesn't prove the 18.02 formula, though:
-the proof of that theorem used it.)
-
 \paragraph{We can't interpret the remaining three green pictures!}
 The tricky part is the situations where $0 < d < n < 3$.
 There are three such things, the two line integrals when $d=1$ and $n \in \{2,3\}$
@@ -841,6 +827,20 @@ because we get six 18.02 theorems as special cases!
 	it says the divergence of a 3-D volume equals the flux of the 2-D boundary surface.
 \end{itemize}
 
+\paragraph{Change of variables}
+In 18.02, the substitution $(x,y) = \phi(u,v)$ replaces $\odif x \odif y$
+with $\abs{\det(D\phi)} \odif u \odif v$.
+In Napkin notation this is just the pullback
+\[ \phi^\ast\left( f \cdot \ee_1^\vee \wedge \ee_2^\vee \right)
+	= (f \circ \phi) \det(D\phi) \; du \wedge dv \]
+because $\bigwedge^2$ of a linear map
+is multiplication by its determinant (\Cref{def:det}).
+For polar coordinates, $\det(D\phi)$ is the $r$ from \Cref{ex:area_circle}.
+Our integrals are signed (\Cref{thm:reparam_integral}),
+so we don't need the absolute value.
+(This is circular, though,
+since the proof of that theorem used the 18.02 formula.)
+
 
 
 \section\problemhead
@@ -913,7 +913,7 @@ because we get six 18.02 theorems as special cases!
 	Compute $c^\ast(dx \wedge dy \wedge dz)$.
 	(This explains the $\rho^2 \sin\varphi \odif \rho \odif \varphi \odif \theta$ from 18.02.)
 	\begin{hint}
-		Same as \Cref{ex:area_circle}, but with a $3 \times 3$ determinant.
+		Same as \Cref{ex:area_circle}, one dimension up.
 	\end{hint}
 	\begin{sol}
 		Write $c = (c_1, c_2, c_3)$.
