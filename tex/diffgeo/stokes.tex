@@ -228,6 +228,7 @@ So the above integral could also be written as
 \[ \int_0^1 \dots \int_0^1 f(x_1, \dots, x_k) \; dx_1 \wedge \dots \wedge dx_k. \]
 
 \begin{example}[Area of a circle]
+	\label{ex:area_circle}
 	Consider $V = \RR^2$ and let $c \colon (r,\theta) \mapsto (r\cos\theta)\ee_1 + (r\sin\theta)\ee_2$
 	on $[0,R] \times [0,2\pi]$ as before.
 	Take the $2$-form $\alpha$ which gives $\alpha_p = \ee_1^\vee \wedge \ee_2^\vee$ at every point $p$.
@@ -278,6 +279,7 @@ and \vocab{reverse orientation} if $\det(D\phi)_p < 0$ for all $p$.
 
 \begin{theorem}
 	[Changing variables doesn't affect integrals]
+	\label{thm:reparam_integral}
 	Let $c$ be a $k$-cell, $\alpha$ a $k$-form, and $\phi$ a reparametrization.
 	Then
 	\[ \int_{c \circ \phi} \alpha
@@ -653,6 +655,20 @@ we know it's possible to integrate an $n$-form in $\RR^n$ and get a number. That
 \end{itemize}
 So this takes care of the green-labeled things on the diagonal.
 
+\paragraph{Change of variables.}
+In 18.02, the substitution $(x,y) = \phi(u,v)$ replaces $\odif x \odif y$
+with $\abs{\det(D\phi)} \odif u \odif v$.
+In Napkin notation this is just the pullback:
+since $\bigwedge^2$ of a linear map
+is multiplication by its determinant (\Cref{def:det}),
+\[ \phi^\ast\left( f \cdot \ee_1^\vee \wedge \ee_2^\vee \right)
+	= (f \circ \phi) \det(D\phi) \; du \wedge dv. \]
+For polar coordinates, $\det(D\phi)$ is the $r$ from \Cref{ex:area_circle}.
+We don't need the absolute value,
+since our integrals are sensitive to orientation (\Cref{thm:reparam_integral}).
+(This doesn't prove the 18.02 formula, though:
+the proof of that theorem used it.)
+
 \paragraph{We can't interpret the remaining three green pictures!}
 The tricky part is the situations where $0 < d < n < 3$.
 There are three such things, the two line integrals when $d=1$ and $n \in \{2,3\}$
@@ -888,4 +904,48 @@ because we get six 18.02 theorems as special cases!
 		Show that $d^2=0$ implies $\int_{\partial c} \alpha = 0$ for exact $\alpha$.
 		Draw an annulus.
 	\end{hint}
+\end{problem}
+
+\begin{problem}[Spherical coordinates]
+	Let $c \colon [0,R] \times [0,\pi] \times [0,2\pi] \to \RR^3$ be the $3$-cell
+	\[ c(\rho, \varphi, \theta) = (\rho\sin\varphi\cos\theta)\ee_1
+		+ (\rho\sin\varphi\sin\theta)\ee_2 + (\rho\cos\varphi)\ee_3. \]
+	Compute $c^\ast(dx \wedge dy \wedge dz)$.
+	(This explains the $\rho^2 \sin\varphi \odif \rho \odif \varphi \odif \theta$ from 18.02.)
+	\begin{hint}
+		Same as \Cref{ex:area_circle}, but with a $3 \times 3$ determinant.
+	\end{hint}
+	\begin{sol}
+		Write $c = (c_1, c_2, c_3)$.
+		As in \Cref{ex:area_circle},
+		$c^\ast(dx \wedge dy \wedge dz) = Dc_1 \wedge Dc_2 \wedge Dc_3$, where
+		\begin{align*}
+			Dc_1 &= \sin\varphi\cos\theta \; d\rho + \rho\cos\varphi\cos\theta \; d\varphi
+				- \rho\sin\varphi\sin\theta \; d\theta \\
+			Dc_2 &= \sin\varphi\sin\theta \; d\rho + \rho\cos\varphi\sin\theta \; d\varphi
+				+ \rho\sin\varphi\cos\theta \; d\theta \\
+			Dc_3 &= \cos\varphi \; d\rho - \rho\sin\varphi \; d\varphi.
+		\end{align*}
+		The wedge of these is $\det(Dc) \; d\rho \wedge d\varphi \wedge d\theta$,
+		and expanding along the bottom row gives
+		\begin{align*}
+			\det(Dc) &= \det \begin{bmatrix}
+					\sin\varphi\cos\theta & \rho\cos\varphi\cos\theta & -\rho\sin\varphi\sin\theta \\
+					\sin\varphi\sin\theta & \rho\cos\varphi\sin\theta & \rho\sin\varphi\cos\theta \\
+					\cos\varphi & -\rho\sin\varphi & 0
+				\end{bmatrix} \\
+			&= \cos\varphi \cdot \det \begin{bmatrix}
+					\rho\cos\varphi\cos\theta & -\rho\sin\varphi\sin\theta \\
+					\rho\cos\varphi\sin\theta & \rho\sin\varphi\cos\theta
+				\end{bmatrix} \\
+			&\qquad + \rho\sin\varphi \cdot \det \begin{bmatrix}
+					\sin\varphi\cos\theta & -\rho\sin\varphi\sin\theta \\
+					\sin\varphi\sin\theta & \rho\sin\varphi\cos\theta
+				\end{bmatrix} \\
+			&= \cos\varphi \cdot \rho^2\sin\varphi\cos\varphi
+				+ \rho\sin\varphi \cdot \rho\sin^2\varphi \\
+			&= \rho^2\sin\varphi.
+		\end{align*}
+		Hence $c^\ast(dx \wedge dy \wedge dz) = \rho^2\sin\varphi \; d\rho \wedge d\varphi \wedge d\theta$.
+	\end{sol}
 \end{problem}
