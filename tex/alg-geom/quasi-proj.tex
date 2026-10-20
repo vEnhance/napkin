@@ -289,7 +289,21 @@ because this will subsume the affine ones, for example:
 	an open subset of $W$, thus we regard it as quasi-projective.
 \end{example}
 
-\missingfigure{parabola}
+\begin{center}
+	\begin{asy}
+		import graph;
+		size(5cm);
+		bigbox("$D(z)$");
+		real f(real x) { return x*x/2-1.5; }
+		draw(graph(f,-2.8,2.8,operator ..), blue);
+		label("$\mathcal V(zy-x^2)$", (0,f(0)), dir(-90), blue);
+		pair P = (0,5);
+		draw((-2.8,f(-2.8))--P, blue+dotted, EndArrow, Margins);
+		draw((2.8,f(2.8))--P, blue+dotted, EndArrow, Margins);
+		dotfactor *= 1.5;
+		dot("$(0:1:0)$", P, dir(90), heavygreen);
+	\end{asy}
+\end{center}
 
 In general this proof can be readily adapted:
 \begin{proposition}
