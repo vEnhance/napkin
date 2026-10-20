@@ -686,8 +686,64 @@ to each pointed topological space $(X, x_0)$ automatically implies several nice 
 	A stone is placed at each vertex of a regular $2n$-gon.
 	A move consists of selecting an edge of the $2n$-gon and swapping the two stones at the endpoints of the edge.
 	Prove that if a sequence of moves swaps every pair of stones exactly once, then there is some edge never used in any move.
-  (This problem doesn't technically have anything to do with the chapter,
-  but the ``gut feeling'' which motivates the solution is very similar.)
+	(This problem doesn't technically have anything to do with the chapter,
+	but the ``gut feeling'' which motivates the solution is very similar.)
+	\begin{hint}
+		Each stone moves only $2n-1$ times,
+		so it can't wind all the way around the polygon.
+	\end{hint}
+	\begin{sol}
+		First, look at any three stones.
+		Their clockwise order changes exactly when two of them swap,
+		which happens three times,
+		so the three stones end up in reverse order.
+		This holds for every three stones,
+		so the cyclic order of all the stones is reversed.
+		Hence the final arrangement is the initial one
+		reflected across some line $\ell$.
+
+		Every stone moves exactly $2n-1$ times, an odd number,
+		so no stone ends on the vertex where it started.
+		Hence $\ell$ passes through no vertex,
+		so it passes through the midpoints
+		of two opposite edges $a$ and $b$.
+		Number the stones $1$, $2$, \dots, $2n$ clockwise,
+		and give each vertex the number of the stone starting there,
+		so that $a$ joins vertices $2n$ and $1$,
+		and $b$ joins vertices $n$ and $n+1$.
+		Then stone $k$ ends on vertex $2n+1-k$,
+		on the other side of $\ell$.
+
+		Since a stone moves only $2n-1$ times,
+		it can't wind far enough around the polygon
+		to cross $\ell$ at both $a$ and $b$.
+		Indeed, suppose stone $k \le n$ did,
+		and that its first crossing of $\ell$ is at $a$.
+		That crossing takes at least $k$ moves
+		and leaves it on vertex $2n$.
+		To cross at $b$ it must then visit vertex $n$,
+		which is $n$ moves away,
+		and from there vertex $2n+1-k$ is at least $n+1-k$ moves away.
+		That makes at least $k + n + (n+1-k) = 2n+1$ moves.
+		(The other cases follow by reflecting
+		across $\ell$ or the line perpendicular to it.)
+		So each stone crosses $\ell$ at exactly one of $a$ and $b$,
+		and it crosses there an odd number of times.
+
+		Finally, we show that all stones cross at the same edge.
+		Then the other edge is never used,
+		since both stones in a move along it would cross there.
+		Assume for contradiction that stone $x$ crosses only at $b$
+		and stone $y$ crosses only at $a$.
+		Cut the polygon open at $a$, so that the vertices form a path.
+		Since $x$ never crosses at $a$,
+		the order of $x$ and $y$ along the path changes
+		exactly when they swap or when $y$ crosses at $a$.
+		The reflection across $\ell$ reverses the path,
+		so the order changes an odd number of times.
+		But $y$ crosses at $a$ an odd number of times,
+		so $x$ and $y$ swap an even number of times, contradiction.
+	\end{sol}
 \end{problem}
 
 \begin{problem}
