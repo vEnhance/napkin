@@ -652,7 +652,20 @@ If the votes are chosen in random order,
 one could ask: what is the probability that Alice remains strictly ahead of
 Bob in the election?
 
-\missingfigure{path}
+\begin{center}
+	\begin{asy}
+		import graph;
+		size(8cm);
+		int[] X = {0,1,2,3,2,1,2,1,2,3,2};
+		path p = (0,X[0]);
+		for (int i=1; i<X.length; ++i) p = p--(i,X[i]);
+		graph.xaxis(0, 11, red);
+		graph.yaxis(-1, 4);
+		draw(p, blue);
+		for (int i=0; i<X.length; ++i) dot((i,X[i]), blue);
+		label("$(a+b, a-b)$", (10,X[10]), dir(45), blue);
+	\end{asy}
+\end{center}
 
 \begin{proposition}
 	[Ballot problem]
