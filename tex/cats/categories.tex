@@ -611,9 +611,21 @@ Most notably:
 \section\problemhead
 
 \begin{problem}
-	In the category $\catname{Vect}_k$ of $k$-vector spaces
-	(for a field $k$),
-	what are the initial and terminal objects?
+	\begin{enumerate}[(a)]
+		\ii In the category $\catname{Vect}_k$ of $k$-vector spaces (for a field $k$),
+		what are the initial and terminal objects, if any?
+		\ii In the category of fields of characteristic zero,
+		what are the initial and terminal objects, if any?
+	\end{enumerate}
+	\begin{sol}
+		For $\catname{Vect}_k$, the $0$-dimensional space is both initial and terminal.
+
+		For fields of characteristic $0$, $\QQ$ is initial.
+		There is no terminal object.
+		(One way to prove this is to note that if $T$ is a field
+		then any map $f \colon \QQ(i) \to T$ is determined by the image of $f(i)$,
+		and negating that $f(i)$ image gives a second distinct map.)
+	\end{sol}
 \end{problem}
 
 \begin{dproblem}
